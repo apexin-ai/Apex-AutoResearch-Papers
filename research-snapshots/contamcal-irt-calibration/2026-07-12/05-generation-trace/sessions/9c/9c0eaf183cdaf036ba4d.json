@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "9c0eaf183cdaf036ba4d",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [系统通知 — worker_done:worker_analysis_eval-data-inventory_20260515T132936]: Worker worker_analysis_eval-data-inventory_202",
+  "task_key": "3063170f-3860-4be4-8a19-6bd7914943d4",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/3063170f-3860-4be4-8a19-6bd7914943d4.jsonl",
+    "occurrence": 1,
+    "bytes": 590981,
+    "sha256": "52e4bbabc2960ff411512f4ab749cc1df0c955f73bced90a6f91f517fa4ddf7e"
+  },
+  "statistics": {
+    "messages": 154,
+    "user_turns": 1,
+    "tool_calls": 49,
+    "roles": {
+      "record": 27,
+      "user": 1,
+      "assistant": 28,
+      "tool_call": 49,
+      "tool_result": 49
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9c0eaf183cdaf036ba4d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 152,
+      "chunks": [
+        {
+          "path": "9c0eaf183cdaf036ba4d-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "9c0eaf183cdaf036ba4d-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-analysis-eval-data-inventory-20260515t132936-worker-worker.md"
+}

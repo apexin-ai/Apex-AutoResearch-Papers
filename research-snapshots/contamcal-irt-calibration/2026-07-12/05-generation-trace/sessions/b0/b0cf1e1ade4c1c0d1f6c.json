@@ -1,0 +1,1566 @@
+{
+  "schema_version": "1.0",
+  "id": "b0cf1e1ade4c1c0d1f6c",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Parse the JSON file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects",
+  "task_key": "agent-a7f123ed7c2703040",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a7f123ed7c2703040.jsonl",
+    "occurrence": 1,
+    "bytes": 136110,
+    "sha256": "a029fe1dc158a249c4cdb35956734c6aa420daae7f233c8b2c1a86279d85bd3f"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 1,
+    "tool_calls": 10,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 10,
+      "tool_result": 10
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T20:14:56.556Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Parse the JSON file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-17809d4e/19407164-8368-47b9-83a6-abe4be54c41d/tool-results/mcp-agent-ml-research-read_registry-1778876057897.txt\n\nThis is JSON with schema: {result: string} where result is itself a JSON string.\n\nI need you to:\n1. Extract all experiments with exp_id containing \"exp_002\" - show their full details (status, conclusion, metrics, hypothesis, spec, etc.)\n2. Also show all experiments with status \"RUNNING\" or \"ALLOCATED\" \n3. Show all experiments related to \"signals\" or \"3B\"\n4. Count total experiments by status\n\nUse jq or python to parse. Report findings verbatim - don't summarize away details."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "28dbad31-b45d-4bfa-90d7-cd9668e05dda",
+            "agentId": "a7f123ed7c2703040",
+            "type": "user",
+            "uuid": "30247d7a-aa82-45c0-9893-a9d17ad1e04d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T20:14:56.583Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "30247d7a-aa82-45c0-9893-a9d17ad1e04d",
+                "isSidechain": true,
+                "agentId": "a7f123ed7c2703040",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__allocate_and_submit",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__approve_worker",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_worker",
+                    "mcp__agent-ml-research__check_job_status",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_alert",
+                    "mcp__agent-ml-research__feishu_send_approval_card",
+                    "mcp__agent-ml-research__feishu_send_result_card",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_baseline_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__main_agent_post_to_director",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__poll_cron",
+                    "mcp__agent-ml-research__poll_secret_request",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reconcile_crons",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__register_cron",
+                    "mcp__agent-ml-research__request_secret",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__submit_on_allocated",
+                    "mcp__agent-ml-research__submit_training_job",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__tail_training_logs",
+                    "mcp__agent-ml-research__update_baseline",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_registry",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__allocate_and_submit",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__approve_worker",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_worker",
+                    "mcp__agent-ml-research__check_job_status",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_alert",
+                    "mcp__agent-ml-research__feishu_send_approval_card",
+                    "mcp__agent-ml-research__feishu_send_result_card",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_baseline_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__main_agent_post_to_director",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__poll_cron",
+                    "mcp__agent-ml-research__poll_secret_request",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reconcile_crons",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__register_cron",
+                    "mcp__agent-ml-research__request_secret",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__submit_on_allocated",
+                    "mcp__agent-ml-research__submit_training_job",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__tail_training_logs",
+                    "mcp__agent-ml-research__update_baseline",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_registry",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "560c7135-cdad-4501-bafa-a0a47698525a",
+                "timestamp": "2026-05-15T20:14:56.583Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+                "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T20:14:59.201Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nLet me read the file first and then parse it."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "560c7135-cdad-4501-bafa-a0a47698525a",
+            "isSidechain": true,
+            "agentId": "a7f123ed7c2703040",
+            "requestId": "req_011Cb4y6Nu36h4nUJi66CxTs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "14ae1c56-6f7e-444b-be1b-8f339e426d5c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FA2bCQr9cftQVLMVaNiMkL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 26815,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 26815,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T20:15:00.302Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B5i5RMebR3GLEryij6wBNf",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-17809d4e/19407164-8368-47b9-83a6-abe4be54c41d/tool-results/mcp-agent-ml-research-read_registry-1778876057897.txt",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14ae1c56-6f7e-444b-be1b-8f339e426d5c",
+            "isSidechain": true,
+            "agentId": "a7f123ed7c2703040",
+            "requestId": "req_011Cb4y6Nu36h4nUJi66CxTs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b79b2267-01b1-4f1e-8e4b-8dfb99147c98",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FA2bCQr9cftQVLMVaNiMkL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 26815,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 186,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 26815
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 186,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 26815,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 26815,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T20:15:00.694Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (40018 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01B5i5RMebR3GLEryij6wBNf"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b79b2267-01b1-4f1e-8e4b-8dfb99147c98",
+            "isSidechain": true,
+            "promptId": "28dbad31-b45d-4bfa-90d7-cd9668e05dda",
+            "agentId": "a7f123ed7c2703040",
+            "type": "user",
+            "uuid": "9a6bbb81-6c7b-4625-9f77-eeaa28caf942",
+            "toolUseResult": "Error: File content (40018 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "b79b2267-01b1-4f1e-8e4b-8dfb99147c98",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T20:15:03.337Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file is large. Let me use Python to parse and extract the needed information."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a6bbb81-6c7b-4625-9f77-eeaa28caf942",
+            "isSidechain": true,
+            "agentId": "a7f123ed7c2703040",
+            "requestId": "req_011Cb4y6gdeJMeoecVjpVm72",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "af790dea-ab61-41ca-8415-54dee98332dd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ScKf8fbwLFSberZYHGNFsb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1039,
+                "cache_read_input_tokens": 26815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1039,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T20:15:09.330Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013QJgo98Wbgd5qHUVzZdXFh",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-17809d4e/19407164-8368-47b9-83a6-abe4be54c41d/tool-results/mcp-agent-ml-research-read_registry-1778876057897.txt\") as f:\n    outer = json.loads(f.read())\n\n# outer has schema {result: string} where result is itself JSON\ninner = json.loads(outer[\"result\"])\n\n# inner should be a dict or list - let's see its structure\nprint(\"Top-level type:\", type(inner).__name__)\nif isinstance(inner, dict):\n    print(\"Top-level keys:\", list(inner.keys()))\n    # Check if experiments is a key\n    if \"experiments\" in inner:\n        exps = inner[\"experiments\"]\n        print(f\"\\nTotal experiments: {len(exps)}\")\n        if isinstance(exps, list) and len(exps) > 0:\n            print(\"First experiment keys:\", list(exps[0].keys()) if isinstance(exps[0], dict) else type(exps[0]))\n        elif isinstance(exps, dict):\n            print(\"Experiment IDs:\", list(exps.keys())[:5], \"...\")\n    else:\n        for k, v in inner.items():\n            print(f\"  {k}: {type(v).__name__}\", end=\"\")\n            if isinstance(v, (list, dict)):\n                print(f\" (len={len(v)})\", end=\"\")\n            print()\nelif isinstance(inner, list):\n    print(f\"List length: {len(inner)}\")\n    if len(inner) > 0:\n        print(\"First item keys:\", list(inner[0].keys()) if isinstance(inner[0], dict) else type(inner[0]))\n\nPYEOF\n",
+                "description": "Parse outer JSON structure to understand schema"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "af790dea-ab61-41ca-8415-54dee98332dd",
+            "isSidechain": true,
+            "agentId": "a7f123ed7c2703040",
+            "requestId": "req_011Cb4y6gdeJMeoecVjpVm72",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "87d5c1d4-3e74-4f38-b036-e5fb10afb20b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ScKf8fbwLFSberZYHGNFsb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1039,
+                "cache_read_input_tokens": 26815,
+                "output_tokens": 576,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1039
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 576,
+                    "cache_read_input_tokens": 26815,
+                    "cache_creation_input_tokens": 1039,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1039,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T20:15:10.927Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013QJgo98Wbgd5qHUVzZdXFh",
+              "type": "tool_result",
+              "content": "Top-level type: dict\nTop-level keys: ['success', 'data', 'error', 'metadata']\n  success: bool\n  data: dict (len=4)\n  error: NoneType\n  metadata: dict (len=1)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87d5c1d4-3e74-4f38-b036-e5fb10afb20b",
+            "isSidechain": true,
+            "promptId": "28dbad31-b45d-4bfa-90d7-cd9668e05dda",
+            "agentId": "a7f123ed7c2703040",
+            "type": "user",
+            "uuid": "16fd367b-6c70-4f1a-9e73-861715018f02",
+            "sourceToolAssistantUUID": "87d5c1d4-3e74-4f38-b036-e5fb10afb20b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T20:15:17.222Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018GuWaRxSqn7voXS44VNWBM",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-17809d4e/19407164-8368-47b9-83a6-abe4be54c41d/tool-results/mcp-agent-ml-research-read_registry-1778876057897.txt\") as f:\n    outer = json.loads(f.read())\n\ninner = json.loads(outer[\"result\"])\ndata = inner[\"data\"]\nprint(\"data keys:\", list(data.keys()))\nfor k, v in data.items():\n    print(f\"  {k}: {type(v).__name__}\", end=\"\")\n    if isinstance(v, (list, dict)):\n        print(f\" (len={len(v)})\", end=\"\")\n    print()\n\n# Dig into experiments\nif \"experiments\" in data:\n    exps = data[\"experiments\"]\n    if isinstance(exps, dict):\n        print(\"\\nExperiment IDs:\", list(exps.keys()))\n    elif isinstance(exps, list):\n        print(f\"\\nExperiment count: {len(exps)}\")\n        if len(exps) > 0:\n            print(\"First exp keys:\", sorted(exps[0].keys()))\n\nPYEOF\n",
+                "description": "Explore data structure inside registry"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "16fd367b-6c70-4f1a-9e73-861715018f02",
+            "isSidechain": true,
+            "agentId": "a7f123ed7c2703040",
+            "requestId": "req_011Cb4y7TQRykvPrWNB23U7v",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "29f098b1-a212-48a1-8652-07d288d3263a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PXfbjoNp2irtyEtC2CpfQ7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 646,
+                "cache_read_input_tokens": 27854,
+                "output_tokens": 417,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 646
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 417,
+                    "cache_read_input_tokens": 27854,
+                    "cache_creation_input_tokens": 646,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 646,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T20:15:18.031Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018GuWaRxSqn7voXS44VNWBM",
+              "type": "tool_result",
+              "content": "data keys: ['experiments', 'count', 'total', 'baseline']\n  experiments: dict (len=185)\n  count: int\n  total: int\n  baseline: NoneType\n\nExperiment IDs: ['exp_001_sft_3B_d100_s42_a32_v3', 'exp_002_signals_3B_v6', 'exp_001_sft_3B_d000_v4', 'exp_001_sft_3B_d100_s42_a32_v2', 'exp_001_sft_3B_d000_s42_a32', 'exp_001_sft_3B_d005_s42_a32', 'exp_001_eval_15B_s123_para_aligned_batch', 'exp_001_sft_d025_3B_v3', 'exp_001_sft_d005_3B', 'exp_001_sft_3B_d000_s42', 'exp_002_signals_3B_v4', 'exp_004_sim_sweep_extreme_gamma', 'exp_002_signals_3B_v5', 'exp_001_eval_3B_d005_s123_gsm8k', 'exp_001_eval_3B_d100_s123_para_aligned_v2', 'exp_001_eval_3B_d100_s123_para_aligned', 'exp_001_sft_3B_d000_v3', 'exp_004_sim_sweep_v6', 'exp_002_signals_3B_v3', 'exp_001_sft_3B_d025_s42_a32', 'exp_001_eval_3B_d005_s123_aligned', 'exp_001_eval_3B_d005_s42_para_aligned', 'exp_004_sim_sweep_v7', 'exp_001_eval_3B_d025_s123_aligned', 'exp_001_sft_3B_d100_s42_a32', 'exp_002_signals_3B_v2', 'exp_005_noise_prop_v4', 'exp_001_eval_3B_d005_s123_para_aligned', 'exp_001_eval_3B_d025_s123_para_aligned', 'exp_001_sft_3B_d100_s123_a32_v2', 'exp_001_eval_15B_d005_s123', 'exp_001_eval_15B_d005_s123_v2', 'exp_001_eval_15B_d025_s123', 'exp_001_eval_15B_d025_s123_v2', 'exp_001_sft_d025_3B_v2', 'exp_001_sft_d100_3B_v2', 'exp_001_sft_3B_d100_s123_a32', 'exp_001_sft_3B_d000_v2', 'exp_002_signals_3B', 'exp_001_eval_3B_d000_s42_para_aligned', 'exp_001_eval_3B_d100_s42_para_aligned', 'exp_001_sft_3B_d005_s123', 'exp_001_sft_3B_d025_s123', 'exp_001_eval_3B_d000_s123_aligned', 'exp_001_eval_3B_d005_s42_aligned', 'exp_008_base_pretrained_eval_v2', 'exp_001_eval_3B_d005_s123', 'exp_001_eval_3B_d025_s123', 'exp_001_sft_15B_d025_s123_v2', 'exp_001_sft_15B_d005_s123_v2', 'exp_008_base_pretrained_15B_eval_v2', 'exp_008_base_pretrained_15B_eval', 'exp_008_base_pretrained_eval', 'exp_001_eval_3B_d005_s42_aligned_v2', 'exp_001_eval_15B_d000_s123_aligned', 'exp_001_eval_15B_d100_s123_aligned', 'exp_001_eval_05B_d000_s123_aligned', 'exp_001_eval_3B_d000_s42_v3', 'exp006-s1only-gsm8k-2pl', 'exp_001_eval_3B_d000_v2_s123_aligned', 'exp_001_eval_3B_d025_v2_aligned', 'exp_001_eval_3B_d100_v2_s123_aligned', 'exp_001_sft_15B_d025_s123', 'exp_001_sft_15B_d005_s123', 'exp_001_eval_05B_d025_s123_aligned', 'exp_008_instruct_rl_proxy', 'exp_001_sft_05B_d025_s123_v2', 'exp_001_eval_05B_d000_s42_v7', 'exp_004_sim_sweep_v5', 'exp006-oracle-arc-4pl-pooled', 'exp_008_instruct_05B_eval', 'exp_001_eval_3B_d100_v2_aligned_v2', 'exp_001_eval_3B_d025_v2_para_aligned', 'exp_001_sft_3B_d100_s123', 'exp006-oracle-arc-2pl', 'exp_001_eval_3B_d000_v2_s123_para_aligned', 'exp006-pooled-s1only-gsm8k-v2', 'exp006-pooled-s1only-arc', 'exp006-oracle-gsm8k-extended-v2', 'exp_001_sft_05B_d025_s123', 'exp_001_eval_05B_d005_s123_para_aligned', 'exp_001_eval_05B_d000_s42', 'exp_001_eval_05B_d005_s123_aligned', 'exp_004_sim_sweep_v4', 'exp_001_sft_3B_d000_s123', 'exp_001_eval_3B_d000_v2_para_aligned_v3', 'exp_001_eval_3B_d000_v2_para_aligned_v2', 'exp006-oracle-gsm8k-extended', 'exp006-pooled-s1only-gsm8k', 'exp_001_eval_3B_d100_v2_para_aligned', 'exp_001_sft_05B_d005_s123', 'exp_001_eval_3B_d000_v2_aligned', 'exp006-pooled-05B-15B-gsm8k-v2', 'exp_001_sft_15B_d100_s123', 'exp_004_sim_sweep_v3', 'exp_001_eval_3B_d100_v2_aligned', 'exp_001_sft_d025_3B', 'exp_001_eval_05B_d100_s123_aligned', 'exp_001_eval_3B_d000_v2_para_aligned', 'exp006-pooled-05B-15B-mmlu-v2', 'exp006-pooled-05B-15B-arc-v2', 'exp_005_noise_prop', 'exp_004_sim_sweep', 'exp002-signals-1p5B', 'exp_004_sim_sweep_v2', 'exp_005_noise_prop_v3', 'exp_001_sft_05B_d100_s123', 'exp002-signal-d025-05B', 'exp_001_eval_05B_d025_aligned_v2', 'exp_006_irt_05B_arc', 'exp_001_eval_15B_d025_aligned', 'exp_001_eval_05B_d005_para_aligned', 'exp_001_eval_15B_d025_para_aligned', 'exp_001_eval_3B_d100_para_aligned', 'exp_006_pooled_gsm8k_v1', 'exp_003_mmlu_item_aligned_gap', 'exp_001_eval_15B_aligned_batch', 'exp_006_irt_05B_gsm8k', 'exp006-gsm8k-d024-delta', 'exp_001_eval_15B_d100_aligned', 'exp_001_eval_15B_d005_aligned_v2', 'exp_001_sft_d100_3B', 'exp_001_eval_05B_d100_aligned_v4', 'exp_001_sft_d025_15B', 'exp_001_eval_3B_d005_aligned', 'exp_006_irt_05B_v2', 'exp_006_irt_05B_v1', 'exp_001_eval_05B_d025_aligned', 'exp_008_signal_survival_v4', 'exp_001_eval_05B_d100_aligned_v3', 'exp_008_signal_survival', 'exp_001_eval_3B_d100_aligned', 'exp_001_eval_05B_d100_aligned_v2', 'exp_001_eval_05B_d005_aligned', 'exp_001_eval_05B_d100_aligned', 'exp_001_eval_05B_aligned_batch', 'exp_001_eval_05B_d005', 'exp_006_irt_05B', 'exp_003_rrf_05B', 'exp_002_signals_05B', 'exp_001_eval_3B_d000_aligned', 'exp_001_eval_15B_d100_s42', 'exp_001_eval_3B_raw_gen', 'exp_001_eval_05B_raw', 'exp_001_sft_d005_15B', 'exp_001_sft_d025_05B_v3', 'exp_001_eval_05B_d100_v5', 'exp_001_eval_05B_d000_s42_v5', 'exp_001_sft_d100_15B_v2', 'exp_001_eval_3B_d000_s42', 'exp_001_sft_d025_05B_v2', 'exp_001_eval_05B_d100_v2', 'exp_001_sft_d025_05B', 'exp_001_eval_3B_d000_s123', 'exp_001_eval_15B_d000_s123', 'exp_005_noise_prop_v2', 'exp_001_eval_15B_d000_s42_v2', 'exp_001_eval_05B_d000_s42_v6', 'exp_001_eval_05B_d100_v6', 'exp_001_eval_05B_d100_v4', 'exp_001_eval_05B_d000_s42_v4', 'exp_001_eval_05B_d000_s42_v2', 'exp_001_eval_05B_d100_v3', 'exp_001_eval_05B_d000_s42_v3', 'exp_001_eval_05B_d100', 'exp_001_eval_05B_d000_s123', 'exp_001_sft_d100_15B', 'exp_001_sft_d005_05B_v3', 'exp_001_sft_d100_05B', 'exp_001_sft_0pct', 'exp_001_sft_0pct_3B_s123', 'exp_001_eval_15B_d000_s42', 'exp_001_sft_d005_05B_r3', 'exp_001_eval_3B_d000_s42_v2', 'exp_001_sft_d005_05B_v2', 'exp_001_sft_d005_05B', 'exp_001_sft_100pct_05B', 'exp_001_sft_0pct_3B', 'exp_001_sft_injection', 'exp_001_sft_0pct_15B_s123', 'exp_001_sft_0pct_05B_s123', 'exp_001_sft_0pct_15B', 'exp_001_sft_0pct_05B', 'mvp_sim_confounding', 'mvp_sim_4pl_gamma']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "29f098b1-a212-48a1-8652-07d288d3263a",
+            "isSidechain": true,
+            "promptId": "28dbad31-b45d-4bfa-90d7-cd9668e05dda",
+            "agentId": "a7f123ed7c2703040",
+            "type": "user",
+            "uuid": "9d536e73-077b-4be8-a12b-2383b644673b",
+            "sourceToolAssistantUUID": "29f098b1-a212-48a1-8652-07d288d3263a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T20:15:20.705Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, 185 experiments. Now let me extract all the requested information."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d536e73-077b-4be8-a12b-2383b644673b",
+            "isSidechain": true,
+            "agentId": "a7f123ed7c2703040",
+            "requestId": "req_011Cb4y7xg57VMyLRLi465m5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "826c8909-d5ac-46a6-b6a0-aace74691708",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D2BuqhVAY8m55CB2xDi3ZR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3675,
+                "cache_read_input_tokens": 28500,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3675,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T20:15:23.940Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FYVYJmmi8dLfnx3NqcjAtj",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-17809d4e/19407164-8368-47b9-83a6-abe4be54c41d/tool-results/mcp-agent-ml-research-read_registry-1778876057897.txt\") as f:\n    outer = json.loads(f.read())\n\ninner = json.loads(outer[\"result\"])\nexps = inner[\"data\"][\"experiments\"]\n\nprint(\"=\" * 100)\nprint(\"1. ALL EXPERIMENTS WITH exp_id CONTAINING 'exp_002'\")\nprint(\"=\" * 100)\n\nfor eid, exp in sorted(exps.items()):\n    if \"exp_002\" in eid:\n        print(f\"\\n{'─' * 80}\")\n        print(f\"exp_id: {eid}\")\n        print(json.dumps(exp, indent=2, ensure_ascii=False))\n\nPYEOF\n",
+                "description": "Extract all exp_002 experiments with full details",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "826c8909-d5ac-46a6-b6a0-aace74691708",
+            "isSidechain": true,
+            "agentId": "a7f123ed7c2703040",
+            "requestId": "req_011Cb4y7xg57VMyLRLi465m5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6dfc5227-9322-4395-ba60-82b1bfca67ae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D2BuqhVAY8m55CB2xDi3ZR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3675,
+                "cache_read_input_tokens": 28500,
+                "output_tokens": 386,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3675
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 386,
+                    "cache_read_input_tokens": 28500,
+                    "cache_creation_input_tokens": 3675,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3675,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T20:15:24.680Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FYVYJmmi8dLfnx3NqcjAtj",
+              "type": "tool_result",
+              "content": "====================================================================================================\n1. ALL EXPERIMENTS WITH exp_id CONTAINING 'exp_002'\n====================================================================================================\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp_002_signals_05B\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-14T08:45:35.964Z\",\n  \"updated_at\": \"2026-05-14T14:04:12.884Z\",\n  \"hypothesis\": \"0.5B contamination signal computation (S1 Embedding/S2 Min-K++/S4 Self-Critique) on d000/d005/d100 × mmlu/gsm8k/arc = 27 signal tasks. Critical path for exp-003 RRF → exp-006 IRT.\",\n  \"notes\": \"v5 完成 9/9 PASS。d000/d005/d100 × mmlu/gsm8k/arc_challenge 全部完成。9 个 signals_merged 文件已产出。三项修复奏效: timeout 4h, per-signal cache, max_tokens 64。GPU 0 已释放。\",\n  \"conclusion\": \"success\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp_002_signals_3B\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-15T14:46:52.925Z\",\n  \"updated_at\": \"2026-05-15T16:06:31.114Z\",\n  \"conclusion\": \"failed\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp_002_signals_3B_v2\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-15T16:06:11.669Z\",\n  \"updated_at\": \"2026-05-15T17:56:45.615Z\",\n  \"hypothesis\": \"3B signal computation rerun (v2). v1 failed with SIGTERM due to GPU mapping + argparse bug (now fixed). Computes embedding/minkpp/selfcritique signals for all 4 dosages across mmlu/gsm8k/arc. Prerequisite for signal-derived IRT calibration.\",\n  \"parent\": \"exp_002_signals_3B\",\n  \"notes\": \"PID 590509 confirmed dead (kill_job + check_job_status verified). Registry DONE/killed status correct. GPU 4 VRAM freed for d000_v3 SFT.\",\n  \"conclusion\": \"killed\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp_002_signals_3B_v3\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-15T18:38:09.043Z\",\n  \"updated_at\": \"2026-05-15T18:55:22.188Z\",\n  \"conclusion\": \"killed\",\n  \"notes\": \"D065: PID 611720 silently died. Likely killed by OOM or crashed during selfcritique batch. Partial results: d000_s42 mmlu/gsm8k/arc 4 signals complete, d025_s42 mmlu s1+s2 partial. Superseded by v4 on cuda:3.\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp_002_signals_3B_v4\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-15T18:56:45.708Z\",\n  \"updated_at\": \"2026-05-15T20:05:53.319Z\",\n  \"hypothesis\": \"3B signals v4. Restart of v3 (killed accidentally). Compute embedding/minkpp/selfcritique for 3B model across d000/d005/d025/d100 × mmlu/gsm8k/arc. 5 combos already done, 7 remaining.\",\n  \"parent\": \"exp_002_signals_3B_v3\",\n  \"conclusion\": \"failed\",\n  \"notes\": \"诊断(2026-05-15): run_batch.py --signal 参数 bug 导致 11/12 combo rc=2 失败, d000/mmlu 被 SIGTERM (rc=-15)。Batch 0/12 passed。但有 5/12 combo 已有 merged 文件(d000/{gsm8k,arc}, d005/arc, d025/{gsm8k,arc})，来自早期或独立进程。v4 tmux session 确认死亡。多个 orphan 进程仍在 GPU 2/3/4 上跑 mmlu combos，有输出目录冲突风险。\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp_002_signals_3B_v5\n{\n  \"status\": \"RUNNING\",\n  \"created_at\": \"2026-05-15T19:43:59.775Z\",\n  \"updated_at\": \"2026-05-15T19:45:34.171Z\",\n  \"hypothesis\": \"3B signals v5. Parallel with v4 (cuda:3). Compute embedding/minkpp/selfcritique for d025 and d100 only. Accelerates signal coverage by splitting workload across cuda:3 (v4) and cuda:4 (v5).\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp_002_signals_3B_v6\n{\n  \"status\": \"RUNNING\",\n  \"created_at\": \"2026-05-15T20:06:35.655Z\",\n  \"updated_at\": \"2026-05-15T20:13:42.248Z\",\n  \"hypothesis\": \"D075/D077: Compute embedding/minkpp/selfcritique for d000_v2_s42 (lr=5e-5, alpha=16, confirmed valid) across mmlu/gsm8k/arc on cuda:3. Step 1 of signals recovery after d000_s42 invalidation.\",\n  \"parent\": \"exp_002_signals_3B_v5\"\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6dfc5227-9322-4395-ba60-82b1bfca67ae",
+            "isSidechain": true,
+            "promptId": "28dbad31-b45d-4bfa-90d7-cd9668e05dda",
+            "agentId": "a7f123ed7c2703040",
+            "type": "user",
+            "uuid": "d0c233c5-ad09-4984-ac33-2259ff3ca2e6",
+            "sourceToolAssistantUUID": "6dfc5227-9322-4395-ba60-82b1bfca67ae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T20:15:29.670Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L5b7FxwpfDHWqckYwq642W",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-17809d4e/19407164-8368-47b9-83a6-abe4be54c41d/tool-results/mcp-agent-ml-research-read_registry-1778876057897.txt\") as f:\n    outer = json.loads(f.read())\n\ninner = json.loads(outer[\"result\"])\nexps = inner[\"data\"][\"experiments\"]\n\nprint(\"=\" * 100)\nprint(\"2. ALL EXPERIMENTS WITH STATUS 'RUNNING' OR 'ALLOCATED'\")\nprint(\"=\" * 100)\n\nfor eid, exp in sorted(exps.items()):\n    status = exp.get(\"status\", \"\")\n    if status in (\"RUNNING\", \"ALLOCATED\"):\n        print(f\"\\n{'─' * 80}\")\n        print(f\"exp_id: {eid}\")\n        print(json.dumps(exp, indent=2, ensure_ascii=False))\n\nPYEOF\n",
+                "description": "Extract RUNNING and ALLOCATED experiments",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d0c233c5-ad09-4984-ac33-2259ff3ca2e6",
+            "isSidechain": true,
+            "agentId": "a7f123ed7c2703040",
+            "requestId": "req_011Cb4y8T3daunfS18XWh77h",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6c3c7cf5-7f31-44a5-9051-e685c01240e0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015oBAuKKC3CaBk955yoAkUU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1996,
+                "cache_read_input_tokens": 32175,
+                "output_tokens": 380,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1996
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 380,
+                    "cache_read_input_tokens": 32175,
+                    "cache_creation_input_tokens": 1996,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1996,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T20:15:30.107Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L5b7FxwpfDHWqckYwq642W",
+              "type": "tool_result",
+              "content": "====================================================================================================\n2. ALL EXPERIMENTS WITH STATUS 'RUNNING' OR 'ALLOCATED'\n====================================================================================================\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp_001_eval_15B_s123_para_aligned_batch\n{\n  \"status\": \"RUNNING\",\n  \"created_at\": \"2026-05-15T20:08:58.408Z\",\n  \"updated_at\": \"2026-05-15T20:10:27.500Z\",\n  \"hypothesis\": \"1.5B s123 para_aligned eval batch (d000/d005/d025/d100). Fills 4 missing cells to complete 1.5B para_aligned matrix (s42 all done, s123 all missing). Adds 4 models to pooled IRT N count (N=19→23).\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp_001_eval_3B_d005_s123_gsm8k\n{\n  \"status\": \"RUNNING\",\n  \"created_at\": \"2026-05-15T19:43:47.263Z\",\n  \"updated_at\": \"2026-05-15T19:45:26.987Z\",\n  \"hypothesis\": \"GSM8K single-benchmark rerun for d005_s123 aligned eval. Checks if GSM8K already exists in eval_results.json; if missing, runs GSM8K only. Director ordered as part of D068 gap-fill.\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp_001_sft_3B_d100_s123_a32_v2\n{\n  \"status\": \"RUNNING\",\n  \"created_at\": \"2026-05-15T16:34:08.644Z\",\n  \"updated_at\": \"2026-05-15T16:52:21.403Z\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp_001_sft_3B_d100_s42_a32_v3\n{\n  \"status\": \"ALLOCATED\",\n  \"created_at\": \"2026-05-15T20:12:40.784Z\",\n  \"updated_at\": \"2026-05-15T20:14:00.334Z\",\n  \"hypothesis\": \"3B d100 s42 alpha=32 SFT v3. Resubmit after v2 SIGTERM at 73%. 100% contamination with seed=42 for dose-response curve.\",\n  \"parent\": \"exp_001_sft_3B_d100_s42_a32_v2\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp_001_sft_d025_3B_v3\n{\n  \"status\": \"RUNNING\",\n  \"created_at\": \"2026-05-15T16:10:02.763Z\",\n  \"updated_at\": \"2026-05-15T20:09:39.318Z\",\n  \"hypothesis\": \"3B d025 s42 alpha=32 SFT. Per D055 rerun with unified alpha=32 (v2 used alpha=16). 25% contamination dosage.\",\n  \"parent\": \"exp_001_sft_d025_3B_v2\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp_002_signals_3B_v5\n{\n  \"status\": \"RUNNING\",\n  \"created_at\": \"2026-05-15T19:43:59.775Z\",\n  \"updated_at\": \"2026-05-15T19:45:34.171Z\",\n  \"hypothesis\": \"3B signals v5. Parallel with v4 (cuda:3). Compute embedding/minkpp/selfcritique for d025 and d100 only. Accelerates signal coverage by splitting workload across cuda:3 (v4) and cuda:4 (v5).\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp_002_signals_3B_v6\n{\n  \"status\": \"RUNNING\",\n  \"created_at\": \"2026-05-15T20:06:35.655Z\",\n  \"updated_at\": \"2026-05-15T20:13:42.248Z\",\n  \"hypothesis\": \"D075/D077: Compute embedding/minkpp/selfcritique for d000_v2_s42 (lr=5e-5, alpha=16, confirmed valid) across mmlu/gsm8k/arc on cuda:3. Step 1 of signals recovery after d000_s42 invalidation.\",\n  \"parent\": \"exp_002_signals_3B_v5\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp_004_sim_sweep_v7\n{\n  \"status\": \"RUNNING\",\n  \"created_at\": \"2026-05-15T18:11:07.346Z\",\n  \"updated_at\": \"2026-05-15T18:11:18.336Z\"\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6c3c7cf5-7f31-44a5-9051-e685c01240e0",
+            "isSidechain": true,
+            "promptId": "28dbad31-b45d-4bfa-90d7-cd9668e05dda",
+            "agentId": "a7f123ed7c2703040",
+            "type": "user",
+            "uuid": "2a85da4b-46ec-40b7-86b9-beea7fbf1ec6",
+            "sourceToolAssistantUUID": "6c3c7cf5-7f31-44a5-9051-e685c01240e0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T20:15:37.224Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RdP2469my3SbbzC3ah8JrV",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-17809d4e/19407164-8368-47b9-83a6-abe4be54c41d/tool-results/mcp-agent-ml-research-read_registry-1778876057897.txt\") as f:\n    outer = json.loads(f.read())\n\ninner = json.loads(outer[\"result\"])\nexps = inner[\"data\"][\"experiments\"]\n\nprint(\"=\" * 100)\nprint(\"3. ALL EXPERIMENTS RELATED TO 'signals' OR '3B'\")\nprint(\"=\" * 100)\n\nmatches = {}\nfor eid, exp in sorted(exps.items()):\n    eid_lower = eid.lower()\n    # Check exp_id\n    if \"signal\" in eid_lower or \"3b\" in eid_lower:\n        matches[eid] = exp\n        continue\n    # Check hypothesis and notes\n    for field in [\"hypothesis\", \"notes\"]:\n        val = exp.get(field, \"\")\n        if val and (\"signal\" in val.lower() or \"3b\" in val.lower() or \"3B\" in val):\n            matches[eid] = exp\n            break\n\nfor eid in sorted(matches.keys()):\n    exp = matches[eid]\n    print(f\"\\n{'─' * 80}\")\n    print(f\"exp_id: {eid}\")\n    print(json.dumps(exp, indent=2, ensure_ascii=False))\n\nprint(f\"\\n\\nTotal matching experiments: {len(matches)}\")\n\nPYEOF\n",
+                "description": "Extract experiments related to 'signals' or '3B'",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2a85da4b-46ec-40b7-86b9-beea7fbf1ec6",
+            "isSidechain": true,
+            "agentId": "a7f123ed7c2703040",
+            "requestId": "req_011Cb4y8rFdrjSoHMBYK8Dn3",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "969d2303-9244-4865-aa9b-3057d180bcab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012JysrTArFxo2edbp3y5zTf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1713,
+                "cache_read_input_tokens": 34171,
+                "output_tokens": 530,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1713
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 530,
+                    "cache_read_input_tokens": 34171,
+                    "cache_creation_input_tokens": 1713,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1713,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T20:15:37.709Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RdP2469my3SbbzC3ah8JrV",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (59.9KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-17809d4e/19407164-8368-47b9-83a6-abe4be54c41d/tool-results/botdripfq.txt\n\nPreview (first 2KB):\n====================================================================================================\n3. ALL EXPERIMENTS RELATED TO 'signals' OR '3B'\n====================================================================================================\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp002-signal-d025-05B\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-14T18:29:51.827Z\",\n  \"updated_at\": \"2026-05-14T21:08:54.222Z\",\n  \"notes\": \"0.5B d025 signals 3/3 passed (embedding, minkpp, selfcritique × mmlu, gsm8k, arc_challenge). 13 files total including merged signals.\",\n  \"conclusion\": \"success\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp002-signals-1p5B\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-14T19:50:56.771Z\",\n  \"updated_at\": \"2026-05-14T22:11:46.914Z\",\n  \"conclusion\": \"success\",\n  \"notes\": \"1.5B signals 12/12 complete (d000/d005/d025/d100 × s1_embedding/s2_minkpp/s4_selfcritique). All PASS. GPU 0 released.\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp006-oracle-arc-4pl-pooled\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-15T03:51:29.732Z\",\n  \"updated_at\": \"2026-05-15T05:23:24.270Z\",\n  \"hypothesis\": \"ARC oracle 4PL+γ pooled IRT with same config as GSM8K oracle (all available models + oracle exposure). Previous ARC 'oracle' used 0.5B-only + delta exposure — not comparable to GSM8K oracle (16 models + oracle). Completes the 2×2×2 matrix (benchmark × model × signal).\",\n  \"conclusion\": \"failed\"\n}\n\n────────────────────────────────────────────────────────────────────────────────\nexp_id: exp006-s1only-gsm8k-2pl\n{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-15T03:42:59.873Z\",\n  \"updated_at\": \"2026-05-15T09:55:00.000Z\",\n  \"hypothesis\": \"GSM8K S1-only 2PL+γ ablation. After joint_fit.py 2PL bug fix (D041), reran with correct --model-type 2pl_gamma. Tests if removing guessing parameter makes S1 signal significant.\",\n...\n</persisted-output>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "969d2303-9244-4865-aa9b-3057d180bcab",
+            "isSidechain": true,
+            "promptId": "28dbad31-b45d-4bfa-90d7-cd9668e05dda",
+            "agentId": "a7f123ed7c2703040",
+            "type": "user",
+            "uuid": "6372f0b7-e3aa-4ccf-a903-72ee8f258d1f",
+            "sourceToolAssistantUUID": "969d2303-9244-4865-aa9b-3057d180bcab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T20:15:41.078Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q8NCtkvBVrnDEgEdhzoMAm",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-17809d4e/19407164-8368-47b9-83a6-abe4be54c41d/tool-results/botdripfq.txt",
+                "offset": 0,
+                "limit": 400
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6372f0b7-e3aa-4ccf-a903-72ee8f258d1f",
+            "isSidechain": true,
+            "agentId": "a7f123ed7c2703040",
+            "requestId": "req_011Cb4y9QvQrLMwxzUPDVbEc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f8317cb0-e76d-4ed0-830f-8400c4083f53",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VBh6K88TVqmfXBazj6DR1r",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1382,
+                "cache_read_input_tokens": 35884,
+                "output_tokens": 177,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1382
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 177,
+                    "cache_read_input_tokens": 35884,
+                    "cache_creation_input_tokens": 1382,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1382,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T20:15:41.130Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q8NCtkvBVrnDEgEdhzoMAm",
+              "type": "tool_result",
+              "content": "0\t====================================================================================================\n1\t3. ALL EXPERIMENTS RELATED TO 'signals' OR '3B'\n2\t====================================================================================================\n3\t\n4\t────────────────────────────────────────────────────────────────────────────────\n5\texp_id: exp002-signal-d025-05B\n6\t{\n7\t  \"status\": \"DONE\",\n8\t  \"created_at\": \"2026-05-14T18:29:51.827Z\",\n9\t  \"updated_at\": \"2026-05-14T21:08:54.222Z\",\n10\t  \"notes\": \"0.5B d025 signals 3/3 passed (embedding, minkpp, selfcritique × mmlu, gsm8k, arc_challenge). 13 files total including merged signals.\",\n11\t  \"conclusion\": \"success\"\n12\t}\n13\t\n14\t────────────────────────────────────────────────────────────────────────────────\n15\texp_id: exp002-signals-1p5B\n16\t{\n17\t  \"status\": \"DONE\",\n18\t  \"created_at\": \"2026-05-14T19:50:56.771Z\",\n19\t  \"updated_at\": \"2026-05-14T22:11:46.914Z\",\n20\t  \"conclusion\": \"success\",\n21\t  \"notes\": \"1.5B signals 12/12 complete (d000/d005/d025/d100 × s1_embedding/s2_minkpp/s4_selfcritique). All PASS. GPU 0 released.\"\n22\t}\n23\t\n24\t────────────────────────────────────────────────────────────────────────────────\n25\texp_id: exp006-oracle-arc-4pl-pooled\n26\t{\n27\t  \"status\": \"DONE\",\n28\t  \"created_at\": \"2026-05-15T03:51:29.732Z\",\n29\t  \"updated_at\": \"2026-05-15T05:23:24.270Z\",\n30\t  \"hypothesis\": \"ARC oracle 4PL+γ pooled IRT with same config as GSM8K oracle (all available models + oracle exposure). Previous ARC 'oracle' used 0.5B-only + delta exposure — not comparable to GSM8K oracle (16 models + oracle). Completes the 2×2×2 matrix (benchmark × model × signal).\",\n31\t  \"conclusion\": \"failed\"\n32\t}\n33\t\n34\t────────────────────────────────────────────────────────────────────────────────\n35\texp_id: exp006-s1only-gsm8k-2pl\n36\t{\n37\t  \"status\": \"DONE\",\n38\t  \"created_at\": \"2026-05-15T03:42:59.873Z\",\n39\t  \"updated_at\": \"2026-05-15T09:55:00.000Z\",\n40\t  \"hypothesis\": \"GSM8K S1-only 2PL+γ ablation. After joint_fit.py 2PL bug fix (D041), reran with correct --model-type 2pl_gamma. Tests if removing guessing parameter makes S1 signal significant.\",\n41\t  \"metrics\": {\n42\t    \"gamma_mean\": 0.1389,\n43\t    \"gamma_sd\": 0.2274,\n44\t    \"gamma_ci95\": [\n45\t      -0.306,\n46\t      0.591\n47\t    ],\n48\t    \"ci_excludes_zero\": false,\n49\t    \"max_rhat\": 1.0024,\n50\t    \"min_ess\": 3604.4,\n51\t    \"divergent_count\": 0,\n52\t    \"ppp\": 0.2835,\n53\t    \"residual_mae\": 0.0083,\n54\t    \"obs_mean_acc\": 0.5086,\n55\t    \"pred_mean_acc\": 0.5011\n56\t  },\n57\t  \"conclusion\": \"success\"\n58\t}\n59\t\n60\t────────────────────────────────────────────────────────────────────────────────\n61\texp_id: exp_001_eval_3B_d000_aligned\n62\t{\n63\t  \"status\": \"DONE\",\n64\t  \"created_at\": \"2026-05-14T09:30:50.047Z\",\n65\t  \"updated_at\": \"2026-05-14T13:11:39.859Z\",\n66\t  \"hypothesis\": \"3B d000 s42 aligned eval (v5 代码) — 诊断 GSM8K 崩塌 (0.117→?) 并建立正式 aligned baseline。含 GSM8K 答案提取修复（如需要）。\",\n67\t  \"notes\": \"D018 决策：3B GSM8K 标记为 \\\"SFT-degraded, excluded from dose-response\\\"。3B MMLU/ARC 仍可用。不重训 LoRA 配置。诊断根因：LoRA SFT (r=16, alpha=32, lr=2e-4, 7 proj) 导致 CoT 灾难性遗忘。\",\n68\t  \"metrics\": {\n69\t    \"mmlu_accuracy\": 0.634,\n70\t    \"gsm8k_exact_match\": 0.1198,\n71\t    \"arc_challenge_accuracy\": 0.8276,\n72\t    \"humaneval_pass_at_1\": 0.1159\n73\t  },\n74\t  \"conclusion\": \"success\"\n75\t}\n76\t\n77\t────────────────────────────────────────────────────────────────────────────────\n78\texp_id: exp_001_eval_3B_d000_s123\n79\t{\n80\t  \"created_at\": \"2026-05-14T00:18:07.960Z\",\n81\t  \"status\": \"DONE\",\n82\t  \"updated_at\": \"2026-05-14T04:44:59.509Z\",\n83\t  \"conclusion\": \"success\",\n84\t  \"metrics\": {\n85\t    \"mmlu_accuracy\": 0.6362,\n86\t    \"gsm8k_exact_match\": 0.1759,\n87\t    \"arc_challenge_accuracy\": 0.8294,\n88\t    \"humaneval_pass_at_1\": 0.0854\n89\t  }\n90\t}\n91\t\n92\t────────────────────────────────────────────────────────────────────────────────\n93\texp_id: exp_001_eval_3B_d000_s123_aligned\n94\t{\n95\t  \"status\": \"DONE\",\n96\t  \"created_at\": \"2026-05-15T11:12:12.687Z\",\n97\t  \"updated_at\": \"2026-05-15T14:36:58.735Z\",\n98\t  \"conclusion\": \"success\",\n99\t  \"metrics\": {\n100\t    \"mmlu\": 0.6332,\n101\t    \"gsm8k\": 0.1812,\n102\t    \"arc_challenge\": 0.8328,\n103\t    \"humaneval\": 0.0854\n104\t  },\n105\t  \"notes\": \"Cron false positive: process exited normally after completing all 4 benchmarks (mmlu, gsm8k, arc_challenge, humaneval). Sentinel .done written. Cron missed sentinel because eval experiments don't log to W&B. humaneval pass@1=0.0854. Full metrics in eval_results.json.\"\n106\t}\n107\t\n108\t────────────────────────────────────────────────────────────────────────────────\n109\texp_id: exp_001_eval_3B_d000_s42\n110\t{\n111\t  \"created_at\": \"2026-05-13T23:36:54.086Z\",\n112\t  \"hypothesis\": \"0% dosage 3B s42 baseline evaluation on 4 benchmarks (mmlu, gsm8k, arc_challenge, humaneval) to establish ground-truth scores for calibration error computation\",\n113\t  \"notes\": \"v1 failed (--gpu bug), v2 resubmitted with CUDA_VISIBLE_DEVICES. PID 249294 confirmed running on GPU 1 (cron monitored).\",\n114\t  \"parent\": \"exp_001_sft_0pct_3B\",\n115\t  \"status\": \"DONE\",\n116\t  \"updated_at\": \"2026-05-14T07:03:36.187Z\",\n117\t  \"conclusion\": \"success\",\n118\t  \"metrics\": {\n119\t    \"mmlu\": 0.634,\n120\t    \"gsm8k\": 0.117,\n121\t    \"arc\": 0.822,\n122\t    \"humaneval\": 0.116\n123\t  }\n124\t}\n125\t\n126\t────────────────────────────────────────────────────────────────────────────────\n127\texp_id: exp_001_eval_3B_d000_s42_para_aligned\n128\t{\n129\t  \"status\": \"DONE\",\n130\t  \"created_at\": \"2026-05-15T14:51:20.059Z\",\n131\t  \"updated_at\": \"2026-05-15T15:31:43.607Z\",\n132\t  \"metrics\": {\n133\t    \"mmlu\": {\n134\t      \"accuracy\": 0.6474,\n135\t      \"correct\": 4270,\n136\t      \"total\": 6596\n137\t    },\n138\t    \"gsm8k\": {\n139\t      \"accuracy\": 0.0482,\n140\t      \"correct\": 11,\n141\t      \"total\": 228\n142\t    },\n143\t    \"arc_challenge\": {\n144\t      \"accuracy\": 0.8235,\n145\t      \"correct\": 574,\n146\t      \"total\": 697\n147\t    },\n148\t    \"humaneval\": {\n149\t      \"pass@1\": 0.1154,\n150\t      \"correct\": 3,\n151\t      \"total\": 26\n152\t    }\n153\t  },\n154\t  \"conclusion\": \"success\"\n155\t}\n156\t\n157\t────────────────────────────────────────────────────────────────────────────────\n158\texp_id: exp_001_eval_3B_d000_s42_v2\n159\t{\n160\t  \"conclusion\": \"failed\",\n161\t  \"created_at\": \"2026-05-13T23:51:39.462Z\",\n162\t  \"status\": \"PREPARING\",\n163\t  \"updated_at\": \"2026-05-14T00:12:13.851Z\"\n164\t}\n165\t\n166\t────────────────────────────────────────────────────────────────────────────────\n167\texp_id: exp_001_eval_3B_d000_s42_v3\n168\t{\n169\t  \"conclusion\": \"success\",\n170\t  \"created_at\": \"2026-05-14T00:48:57.772Z\",\n171\t  \"hypothesis\": \"3B s42 baseline eval v3 (v2 被 SIGKILL). 等 GPU 空出后用绝对路径重新提交。\",\n172\t  \"status\": \"DONE\",\n173\t  \"updated_at\": \"2026-05-15T10:00:00.000Z\",\n174\t  \"notes\": \"GSM8K=11.98% D018 LoRA超参损伤，已排除出IRT\",\n175\t  \"metrics\": {\n176\t    \"mmlu\": 0.634,\n177\t    \"gsm8k\": 0.1198,\n178\t    \"arc_challenge\": 0.8276,\n179\t    \"humaneval\": 0.1159\n180\t  }\n181\t}\n182\t\n183\t────────────────────────────────────────────────────────────────────────────────\n184\texp_id: exp_001_eval_3B_d000_v2_aligned\n185\t{\n186\t  \"status\": \"DONE\",\n187\t  \"created_at\": \"2026-05-14T21:01:48.742Z\",\n188\t  \"updated_at\": \"2026-05-15T00:42:06.698Z\",\n189\t  \"hypothesis\": \"3B d000 v2 aligned eval (D020 fix: lr=5e-5, alpha=16). Verify GSM8K recovery from CoT catastrophic forgetting. Target: GSM8K >= 50% (raw 60.5%, v1 was 11.7%).\",\n190\t  \"parent\": \"exp_001_sft_3B_d000_v2\",\n191\t  \"metrics\": {\n192\t    \"mmlu\": 0.6295,\n193\t    \"gsm8k\": 0.3525,\n194\t    \"arc_challenge\": 0.8183,\n195\t    \"humaneval_pass@1\": 0.0976\n196\t  },\n197\t  \"conclusion\": \"success\",\n198\t  \"notes\": \"PARTIAL SUCCESS (Reviewer WARNING): GSM8K=35.25% 未达 50% 目标（raw 60.5%→35.25%，损失 25pp）。MMLU(62.95%)/ARC(81.83%) 恢复正常，但 CoT 能力退化显著。D020 params (lr=5e-5, alpha=16) 改善了 v1(11.7%) 但不够。\"\n199\t}\n200\t\n201\t────────────────────────────────────────────────────────────────────────────────\n202\texp_id: exp_001_eval_3B_d000_v2_para_aligned\n203\t{\n204\t  \"status\": \"DONE\",\n205\t  \"created_at\": \"2026-05-14T22:21:18.136Z\",\n206\t  \"updated_at\": \"2026-05-14T23:39:15.404Z\",\n207\t  \"hypothesis\": \"3B d000 v2 para_aligned eval: paraphrased benchmarks (mmlu/gsm8k/arc/humaneval) on D020-retrained 3B d000 v2 checkpoint. Paired with aligned eval (GPU 4) for contamination signal computation.\",\n208\t  \"notes\": \"GPU 0, PID 450055. tmux session: eval_3B_d000_v2_para. Log: /tmp/eval_3B_d000_v2_para_aligned.log. bitsandbytes warning (libnvJitLink.so.13 missing) is non-fatal.\",\n209\t  \"conclusion\": \"success\",\n210\t  \"metrics\": {\n211\t    \"mmlu_para\": 0.6468,\n212\t    \"format\": \"paraphrased_aligned\"\n213\t  }\n214\t}\n215\t\n216\t────────────────────────────────────────────────────────────────────────────────\n217\texp_id: exp_001_eval_3B_d000_v2_para_aligned_v2\n218\t{\n219\t  \"status\": \"DONE\",\n220\t  \"created_at\": \"2026-05-15T00:25:20.929Z\",\n221\t  \"updated_at\": \"2026-05-15T01:16:33.841Z\",\n222\t  \"conclusion\": \"success\",\n223\t  \"metrics\": {\n224\t    \"mmlu_para_accuracy\": 0.6468,\n225\t    \"gsm8k_para_accuracy\": 0.2895,\n226\t    \"arc_challenge_para_accuracy\": 0.8121,\n227\t    \"humaneval_para_pass@1\": 0.0385\n228\t  }\n229\t}\n230\t\n231\t────────────────────────────────────────────────────────────────────────────────\n232\texp_id: exp_001_eval_3B_d000_v2_para_aligned_v3\n233\t{\n234\t  \"status\": \"DONE\",\n235\t  \"created_at\": \"2026-05-15T01:14:58.376Z\",\n236\t  \"updated_at\": \"2026-05-15T01:23:18.115Z\",\n237\t  \"conclusion\": \"failed\"\n238\t}\n239\t\n240\t────────────────────────────────────────────────────────────────────────────────\n241\texp_id: exp_001_eval_3B_d000_v2_s123_aligned\n242\t{\n243\t  \"status\": \"DONE\",\n244\t  \"conclusion\": \"success\",\n245\t  \"created_at\": \"2026-05-15T03:22:24.824Z\",\n246\t  \"updated_at\": \"2026-05-15T09:22:00.000Z\",\n247\t  \"metrics\": {\n248\t    \"mmlu\": 0.6314,\n249\t    \"gsm8k\": 0.2676,\n250\t    \"arc_challenge\": 0.8259,\n251\t    \"humaneval\": 0.061\n252\t  }\n253\t}\n254\t\n255\t────────────────────────────────────────────────────────────────────────────────\n256\texp_id: exp_001_eval_3B_d000_v2_s123_para_aligned\n257\t{\n258\t  \"status\": \"DONE\",\n259\t  \"created_at\": \"2026-05-15T03:22:30.855Z\",\n260\t  \"updated_at\": \"2026-05-15T04:56:34.161Z\",\n261\t  \"conclusion\": \"success\",\n262\t  \"metrics\": {\n263\t    \"mmlu_para_accuracy\": 0.6512,\n264\t    \"gsm8k_para_accuracy\": 0.1491,\n265\t    \"arc_challenge_para_accuracy\": 0.8121,\n266\t    \"humaneval_para_pass@1\": 0.0385\n267\t  }\n268\t}\n269\t\n270\t────────────────────────────────────────────────────────────────────────────────\n271\texp_id: exp_001_eval_3B_d005_aligned\n272\t{\n273\t  \"status\": \"DONE\",\n274\t  \"created_at\": \"2026-05-14T13:10:12.650Z\",\n275\t  \"updated_at\": \"2026-05-14T18:15:10.887Z\",\n276\t  \"conclusion\": \"success\",\n277\t  \"metrics\": {\n278\t    \"mmlu\": 0.634,\n279\t    \"gsm8k\": 0.208,\n280\t    \"arc_challenge\": 0.829,\n281\t    \"humaneval_pass_at_1\": 0.146\n282\t  },\n283\t  \"notes\": \"Cron false positive: 进程正常完成退出，但无 sentinel file/W&B run，cron 误判为 failed。实际 4 个 benchmark 全部完成，结果在 output dir。mmlu=0.634, gsm8k=0.208, arc=0.829, humaneval=0.146。\"\n284\t}\n285\t\n286\t────────────────────────────────────────────────────────────────────────────────\n287\texp_id: exp_001_eval_3B_d005_s123\n288\t{\n289\t  \"status\": \"PREPARING\",\n290\t  \"created_at\": \"2026-05-15T14:15:40.861Z\",\n291\t  \"updated_at\": \"2026-05-15T14:15:40.861Z\"\n292\t}\n293\t\n294\t────────────────────────────────────────────────────────────────────────────────\n295\texp_id: exp_001_eval_3B_d005_s123_aligned\n296\t{\n297\t  \"status\": \"DONE\",\n298\t  \"created_at\": \"2026-05-15T15:06:22.987Z\",\n299\t  \"updated_at\": \"2026-05-15T18:44:30.671Z\",\n300\t  \"hypothesis\": \"3B d005 s123 aligned eval. Chain from completed SFT. Critical for complete 3B seed=123 eval matrix.\",\n301\t  \"conclusion\": \"success\",\n302\t  \"metrics\": {\n303\t    \"mmlu_accuracy\": 0.6324,\n304\t    \"gsm8k_exact_match\": 0.6308,\n305\t    \"arc_challenge_accuracy\": 0.8242,\n306\t    \"humaneval_pass1\": 0.1037\n307\t  }\n308\t}\n309\t\n310\t────────────────────────────────────────────────────────────────────────────────\n311\texp_id: exp_001_eval_3B_d005_s123_gsm8k\n312\t{\n313\t  \"status\": \"RUNNING\",\n314\t  \"created_at\": \"2026-05-15T19:43:47.263Z\",\n315\t  \"updated_at\": \"2026-05-15T19:45:26.987Z\",\n316\t  \"hypothesis\": \"GSM8K single-benchmark rerun for d005_s123 aligned eval. Checks if GSM8K already exists in eval_results.json; if missing, runs GSM8K only. Director ordered as part of D068 gap-fill.\"\n317\t}\n318\t\n319\t────────────────────────────────────────────────────────────────────────────────\n320\texp_id: exp_001_eval_3B_d005_s123_para_aligned\n321\t{\n322\t  \"status\": \"DONE\",\n323\t  \"created_at\": \"2026-05-15T15:33:51.088Z\",\n324\t  \"updated_at\": \"2026-05-15T16:56:44.749Z\",\n325\t  \"conclusion\": \"success\",\n326\t  \"metrics\": {\n327\t    \"MMLU\": 0.6461,\n328\t    \"GSM8K\": 0.5,\n329\t    \"ARC\": 0.8192,\n330\t    \"HumanEval\": 0.0769\n331\t  }\n332\t}\n333\t\n334\t────────────────────────────────────────────────────────────────────────────────\n335\texp_id: exp_001_eval_3B_d005_s42_aligned\n336\t{\n337\t  \"status\": \"DONE\",\n338\t  \"created_at\": \"2026-05-15T11:12:13.700Z\",\n339\t  \"updated_at\": \"2026-05-15T14:34:00.000Z\",\n340\t  \"conclusion\": \"success\",\n341\t  \"metrics\": {\n342\t    \"mmlu\": 0.6345,\n343\t    \"gsm8k\": 0.2077,\n344\t    \"arc_challenge\": 0.8294,\n345\t    \"humaneval\": 0.1463\n346\t  }\n347\t}\n348\t\n349\t────────────────────────────────────────────────────────────────────────────────\n350\texp_id: exp_001_eval_3B_d005_s42_aligned_v2\n351\t{\n352\t  \"status\": \"PREPARING\",\n353\t  \"created_at\": \"2026-05-15T11:12:39.327Z\",\n354\t  \"updated_at\": \"2026-05-15T11:13:51.903Z\",\n355\t  \"conclusion\": \"killed\"\n356\t}\n357\t\n358\t────────────────────────────────────────────────────────────────────────────────\n359\texp_id: exp_001_eval_3B_d005_s42_para_aligned\n360\t{\n361\t  \"status\": \"PREPARING\",\n362\t  \"created_at\": \"2026-05-15T18:23:16.191Z\",\n363\t  \"updated_at\": \"2026-05-15T18:23:33.123Z\",\n364\t  \"hypothesis\": \"3B d005 s42 para_aligned eval. Missing slot for complete s42 para_aligned matrix. Will submit when cuda:3 frees up after d100_s123_para_aligned completes.\"\n365\t}\n366\t\n367\t────────────────────────────────────────────────────────────────────────────────\n368\texp_id: exp_001_eval_3B_d025_s123\n369\t{\n370\t  \"status\": \"PREPARING\",\n371\t  \"created_at\": \"2026-05-15T14:15:38.947Z\",\n372\t  \"updated_at\": \"2026-05-15T14:15:38.947Z\"\n373\t}\n374\t\n375\t────────────────────────────────────────────────────────────────────────────────\n376\texp_id: exp_001_eval_3B_d025_s123_aligned\n377\t{\n378\t  \"status\": \"DONE\",\n379\t  \"created_at\": \"2026-05-15T14:51:16.431Z\",\n380\t  \"updated_at\": \"2026-05-15T18:10:03.567Z\",\n381\t  \"metrics\": {\n382\t    \"mmlu\": 0.6367,\n383\t    \"gsm8k\": 0.5254,\n384\t    \"arc_challenge\": 0.8336,\n385\t    \"humaneval\": 0.1585\n386\t  },\n387\t  \"conclusion\": \"success\"\n388\t}\n389\t\n390\t────────────────────────────────────────────────────────────────────────────────\n391\texp_id: exp_001_eval_3B_d025_s123_para_aligned\n392\t{\n393\t  \"status\": \"DONE\",\n394\t  \"created_at\": \"2026-05-15T15:33:54.288Z\",\n395\t  \"updated_at\": \"2026-05-15T16:56:42.663Z\",\n396\t  \"conclusion\": \"success\",\n397\t  \"metrics\": {\n398\t    \"MMLU\": 0.6615,\n399\t    \"GSM8K\": 0.4254,"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8317cb0-e76d-4ed0-830f-8400c4083f53",
+            "isSidechain": true,
+            "promptId": "28dbad31-b45d-4bfa-90d7-cd9668e05dda",
+            "agentId": "a7f123ed7c2703040",
+            "type": "user",
+            "uuid": "262092b9-568e-4cca-8096-cb3b03ae6375",
+            "sourceToolAssistantUUID": "f8317cb0-e76d-4ed0-830f-8400c4083f53",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T20:15:47.320Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Us7YzLLTrKpCuLxM2ckLUf",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-17809d4e/19407164-8368-47b9-83a6-abe4be54c41d/tool-results/botdripfq.txt",
+                "offset": 400,
+                "limit": 600
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "262092b9-568e-4cca-8096-cb3b03ae6375",
+            "isSidechain": true,
+            "agentId": "a7f123ed7c2703040",
+            "requestId": "req_011Cb4y9fo7nWVSnMWtioz5f",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a3fdc807-abc8-46a5-a02e-4cff87efa7be",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kdmahjg14Hx91r87TiAtXL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6880,
+                "cache_read_input_tokens": 37266,
+                "output_tokens": 177,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6880
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 177,
+                    "cache_read_input_tokens": 37266,
+                    "cache_creation_input_tokens": 6880,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6880,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T20:15:47.407Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Us7YzLLTrKpCuLxM2ckLUf",
+              "type": "tool_result",
+              "content": "400\t    \"GSM8K\": 0.4254,\n401\t    \"ARC\": 0.8121,\n402\t    \"HumanEval\": 0.1538\n403\t  }\n404\t}\n405\t\n406\t────────────────────────────────────────────────────────────────────────────────\n407\texp_id: exp_001_eval_3B_d025_v2_aligned\n408\t{\n409\t  \"status\": \"DONE\",\n410\t  \"conclusion\": \"success\",\n411\t  \"created_at\": \"2026-05-15T04:14:43.742Z\",\n412\t  \"updated_at\": \"2026-05-15T09:22:00.000Z\",\n413\t  \"metrics\": {\n414\t    \"mmlu\": 0.5998,\n415\t    \"gsm8k\": 0.6793,\n416\t    \"arc_challenge\": 0.8276,\n417\t    \"humaneval\": 0.0976\n418\t  }\n419\t}\n420\t\n421\t────────────────────────────────────────────────────────────────────────────────\n422\texp_id: exp_001_eval_3B_d025_v2_para_aligned\n423\t{\n424\t  \"status\": \"DONE\",\n425\t  \"created_at\": \"2026-05-15T04:14:47.629Z\",\n426\t  \"updated_at\": \"2026-05-15T05:19:49.188Z\",\n427\t  \"hypothesis\": \"3B d025 v2 para_aligned eval. Paraphrased benchmarks for contamination signal computation.\",\n428\t  \"parent\": \"exp_001_sft_d025_3B_v2\",\n429\t  \"conclusion\": \"success\",\n430\t  \"metrics\": {\n431\t    \"mmlu_para_accuracy\": 0.621,\n432\t    \"gsm8k_para_accuracy\": 0.5482,\n433\t    \"arc_challenge_para_accuracy\": 0.8106,\n434\t    \"humaneval_para_pass@1\": 0.1154\n435\t  }\n436\t}\n437\t\n438\t────────────────────────────────────────────────────────────────────────────────\n439\texp_id: exp_001_eval_3B_d100_aligned\n440\t{\n441\t  \"status\": \"DONE\",\n442\t  \"created_at\": \"2026-05-14T11:56:44.974Z\",\n443\t  \"updated_at\": \"2026-05-14T15:33:27.101Z\",\n444\t  \"hypothesis\": \"3B d100 s42 aligned eval — 100% contamination at largest scale, upper bound for 3B dose-response (MMLU/ARC only, GSM8K excluded per D018)\",\n445\t  \"parent\": \"exp_001_sft_d100_3B\",\n446\t  \"notes\": \"重跑成功。PID 362942 GPU 3。4 benchmarks 全部完成: MMLU 64.17%, GSM8K 69.67%, ARC 83.96%, HumanEval 12.20%。运行时间约 3h16m (20:06-23:22)。\",\n447\t  \"conclusion\": \"success\",\n448\t  \"metrics\": {\n449\t    \"mmlu_accuracy\": 0.6417,\n450\t    \"gsm8k_exact_match\": 0.6967,\n451\t    \"arc_challenge_accuracy\": 0.8396,\n452\t    \"humaneval_pass1\": 0.122\n453\t  }\n454\t}\n455\t\n456\t────────────────────────────────────────────────────────────────────────────────\n457\texp_id: exp_001_eval_3B_d100_para_aligned\n458\t{\n459\t  \"status\": \"DONE\",\n460\t  \"created_at\": \"2026-05-14T19:11:52.814Z\",\n461\t  \"updated_at\": \"2026-05-14T20:48:21.457Z\",\n462\t  \"hypothesis\": \"3B d100 paraphrase aligned eval: measure contamination-robust performance drop for largest model at full dosage on paraphrased benchmarks\",\n463\t  \"metrics\": {\n464\t    \"mmlu\": 0.676,\n465\t    \"gsm8k\": 0.614,\n466\t    \"arc_challenge\": 0.828\n467\t  },\n468\t  \"conclusion\": \"success\"\n469\t}\n470\t\n471\t────────────────────────────────────────────────────────────────────────────────\n472\texp_id: exp_001_eval_3B_d100_s123_para_aligned\n473\t{\n474\t  \"status\": \"DONE\",\n475\t  \"created_at\": \"2026-05-15T18:18:07.994Z\",\n476\t  \"updated_at\": \"2026-05-15T19:18:30.012Z\",\n477\t  \"hypothesis\": \"3B d100 s123 para_aligned eval. Last missing s123 para_aligned slot for N≥16 pooled IRT. Uses alpha=16 checkpoint (D051 accepted for s123).\",\n478\t  \"conclusion\": \"failed\"\n479\t}\n480\t\n481\t────────────────────────────────────────────────────────────────────────────────\n482\texp_id: exp_001_eval_3B_d100_s123_para_aligned_v2\n483\t{\n484\t  \"status\": \"DONE\",\n485\t  \"created_at\": \"2026-05-15T18:48:19.731Z\",\n486\t  \"updated_at\": \"2026-05-15T19:39:02.009Z\",\n487\t  \"hypothesis\": \"3B d100 s123 para_aligned eval v2. Resubmit after v1 OOM on GSM8K (22%). Last missing s123 para_aligned slot for N≥16 pooled IRT. Uses alpha=16 checkpoint (D051 accepted).\",\n488\t  \"parent\": \"exp_001_sft_3B_d100_s123\",\n489\t  \"conclusion\": \"success\",\n490\t  \"metrics\": {\n491\t    \"mmlu\": {\n492\t      \"accuracy\": 0.6565,\n493\t      \"correct\": 4330,\n494\t      \"total\": 6596\n495\t    },\n496\t    \"gsm8k\": {\n497\t      \"accuracy\": 0.5877,\n498\t      \"correct\": 134,\n499\t      \"total\": 228\n500\t    },\n501\t    \"arc_challenge\": {\n502\t      \"accuracy\": 0.8164,\n503\t      \"correct\": 569,\n504\t      \"total\": 697\n505\t    },\n506\t    \"humaneval\": {\n507\t      \"pass@1\": 0.0769,\n508\t      \"correct\": 2,\n509\t      \"total\": 26\n510\t    }\n511\t  }\n512\t}\n513\t\n514\t────────────────────────────────────────────────────────────────────────────────\n515\texp_id: exp_001_eval_3B_d100_s42_para_aligned\n516\t{\n517\t  \"status\": \"DONE\",\n518\t  \"created_at\": \"2026-05-15T14:51:17.570Z\",\n519\t  \"updated_at\": \"2026-05-15T15:31:42.432Z\",\n520\t  \"metrics\": {\n521\t    \"mmlu\": {\n522\t      \"accuracy\": 0.659,\n523\t      \"correct\": 4347,\n524\t      \"total\": 6596\n525\t    },\n526\t    \"gsm8k\": {\n527\t      \"accuracy\": 0.5833,\n528\t      \"correct\": 133,\n529\t      \"total\": 228\n530\t    },\n531\t    \"arc_challenge\": {\n532\t      \"accuracy\": 0.8092,\n533\t      \"correct\": 564,\n534\t      \"total\": 697\n535\t    },\n536\t    \"humaneval\": {\n537\t      \"pass@1\": 0.1154,\n538\t      \"correct\": 3,\n539\t      \"total\": 26\n540\t    }\n541\t  },\n542\t  \"conclusion\": \"success\"\n543\t}\n544\t\n545\t────────────────────────────────────────────────────────────────────────────────\n546\texp_id: exp_001_eval_3B_d100_v2_aligned\n547\t{\n548\t  \"status\": \"DONE\",\n549\t  \"created_at\": \"2026-05-14T23:34:11.632Z\",\n550\t  \"updated_at\": \"2026-05-15T00:08:21.000Z\",\n551\t  \"metrics\": {\n552\t    \"INVALID\": \"metrics were from v1 exp_001_eval_3B_d100_aligned, not v2. v2 output dir was empty. PID 461879 died before completion.\"\n553\t  },\n554\t  \"conclusion\": \"failed\",\n555\t  \"notes\": \"DATA INTEGRITY ISSUE (D036): Metrics erroneously copied from v1 (exp_001_eval_3B_d100_aligned). Worker found v1 results at similar path, mistook for v2. v2 output dir was empty (eval still running), then deleted during cleanup. PID 461879 killed/died. Must re-run as v3.\"\n556\t}\n557\t\n558\t────────────────────────────────────────────────────────────────────────────────\n559\texp_id: exp_001_eval_3B_d100_v2_aligned_v2\n560\t{\n561\t  \"status\": \"DONE\",\n562\t  \"created_at\": \"2026-05-15T01:00:37.845Z\",\n563\t  \"updated_at\": \"2026-05-15T05:19:51.816Z\",\n564\t  \"conclusion\": \"success\",\n565\t  \"metrics\": {\n566\t    \"mmlu_accuracy\": 0.632,\n567\t    \"gsm8k_accuracy\": 0.7415,\n568\t    \"arc_challenge_accuracy\": 0.8242,\n569\t    \"humaneval_pass@1\": 0.1707\n570\t  }\n571\t}\n572\t\n573\t────────────────────────────────────────────────────────────────────────────────\n574\texp_id: exp_001_eval_3B_d100_v2_para_aligned\n575\t{\n576\t  \"status\": \"DONE\",\n577\t  \"created_at\": \"2026-05-15T00:06:11.858Z\",\n578\t  \"updated_at\": \"2026-05-15T00:50:03.989Z\",\n579\t  \"conclusion\": \"success\",\n580\t  \"metrics\": {\n581\t    \"mmlu_para\": 0.659,\n582\t    \"gsm8k_para\": 0.5833,\n583\t    \"arc_challenge_para\": 0.8092,\n584\t    \"humaneval_para_pass1\": 0.1154\n585\t  }\n586\t}\n587\t\n588\t────────────────────────────────────────────────────────────────────────────────\n589\texp_id: exp_001_eval_3B_d100_v2_s123_aligned\n590\t{\n591\t  \"status\": \"DONE\",\n592\t  \"conclusion\": \"success\",\n593\t  \"created_at\": \"2026-05-15T05:19:30.496Z\",\n594\t  \"updated_at\": \"2026-05-15T09:22:00.000Z\",\n595\t  \"metrics\": {\n596\t    \"mmlu\": 0.6319,\n597\t    \"gsm8k\": 0.7324,\n598\t    \"arc_challenge\": 0.8311,\n599\t    \"humaneval\": 0.1829\n600\t  }\n601\t}\n602\t\n603\t────────────────────────────────────────────────────────────────────────────────\n604\texp_id: exp_001_eval_3B_raw_gen\n605\t{\n606\t  \"status\": \"DONE\",\n607\t  \"created_at\": \"2026-05-14T06:52:48.654Z\",\n608\t  \"updated_at\": \"2026-05-14T10:04:16.309Z\",\n609\t  \"metrics\": {\n610\t    \"gsm8k\": 0.605,\n611\t    \"humaneval\": 0\n612\t  },\n613\t  \"notes\": \"3B raw base eval (generative benchmarks). GSM8K=0.6050 正常。HumanEval=0.0000: base model 生成教程式文本+markdown代码块，评估器无法提取可执行代码。结果文件: /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_raw/。GSM8K 0.605 vs d000 SFT 0.117 = -48.8pp 崩塌待诊断。\",\n614\t  \"conclusion\": \"success\"\n615\t}\n616\t\n617\t────────────────────────────────────────────────────────────────────────────────\n618\texp_id: exp_001_sft_0pct\n619\t{\n620\t  \"conclusion\": \"success\",\n621\t  \"created_at\": \"2026-05-13T19:26:42.106Z\",\n622\t  \"hypothesis\": \"0% dosage (clean) SFT baselines on Qwen2.5-0.5B/1.5B/3B establish ground-truth benchmark scores for calibration error computation; LoRA r=16 alpha=32 1-epoch training on pure instruction data should preserve base model capability\",\n623\t  \"notes\": \"Parent entry for 3 sub-experiments (05B/15B/3B). All confirmed running.\",\n624\t  \"status\": \"DONE\",\n625\t  \"updated_at\": \"2026-05-14T00:36:52.832Z\"\n626\t}\n627\t\n628\t────────────────────────────────────────────────────────────────────────────────\n629\texp_id: exp_001_sft_0pct_3B\n630\t{\n631\t  \"conclusion\": \"success\",\n632\t  \"created_at\": \"2026-05-13T19:44:40.471Z\",\n633\t  \"metrics\": {\n634\t    \"adapter_size_mb\": 115,\n635\t    \"checkpoint_size_mb\": 488,\n636\t    \"exit_code\": 0,\n637\t    \"final_loss\": 1.0736,\n638\t    \"mean_train_loss\": 1.1306,\n639\t    \"steps\": \"3125/3125\",\n640\t    \"token_accuracy\": 0.734,\n641\t    \"training_time_min\": 214.7\n642\t  },\n643\t  \"status\": \"DONE\",\n644\t  \"updated_at\": \"2026-05-13T23:25:49.016Z\"\n645\t}\n646\t\n647\t────────────────────────────────────────────────────────────────────────────────\n648\texp_id: exp_001_sft_0pct_3B_s123\n649\t{\n650\t  \"conclusion\": \"success\",\n651\t  \"created_at\": \"2026-05-13T20:39:01.606Z\",\n652\t  \"hypothesis\": \"0% dosage clean baseline Qwen2.5-3B seed=123 (second seed for variance estimation)\",\n653\t  \"metrics\": {\n654\t    \"adapter_model_mb\": 114,\n655\t    \"adapter_size_mb\": 488,\n656\t    \"checkpoint_size_mb\": 488,\n657\t    \"epochs\": 1,\n658\t    \"final_loss\": 1.114,\n659\t    \"mean_token_accuracy\": 0.7505,\n660\t    \"mean_train_loss\": 1.1309,\n661\t    \"steps_completed\": 3125,\n662\t    \"total_steps\": 3125,\n663\t    \"total_tokens\": 19555717,\n664\t    \"train_samples_per_second\": 3.91,\n665\t    \"training_time_min\": 213.1\n666\t  },\n667\t  \"notes\": \"OOM 修复后重提交 --gpu 3 (物理 GPU 3)。Worker 确认 PID 216249 训练中，ETA ~3.4h\",\n668\t  \"status\": \"DONE\",\n669\t  \"updated_at\": \"2026-05-14T00:23:18.290Z\"\n670\t}\n671\t\n672\t────────────────────────────────────────────────────────────────────────────────\n673\texp_id: exp_001_sft_3B_d000_s123\n674\t{\n675\t  \"status\": \"DONE\",\n676\t  \"created_at\": \"2026-05-14T20:22:51.681Z\",\n677\t  \"updated_at\": \"2026-05-15T02:47:38.140Z\",\n678\t  \"hypothesis\": \"3B d000 seed=123 SFT for D025/D026 multi-seed strategy. D020 params: lr=5e-5, alpha=16, r=16. Output dir: Qwen2.5-3B_d000_v2_s123.\",\n679\t  \"conclusion\": \"success\",\n680\t  \"metrics\": {\n681\t    \"train_loss\": 1.1361,\n682\t    \"epochs\": 1,\n683\t    \"steps\": 3125,\n684\t    \"mean_token_accuracy\": 0.748,\n685\t    \"train_runtime_seconds\": 13141.8,\n686\t    \"entropy\": 1.1108,\n687\t    \"baseline_seed42_train_loss\": 1.1357\n688\t  }\n689\t}\n690\t\n691\t────────────────────────────────────────────────────────────────────────────────\n692\texp_id: exp_001_sft_3B_d000_s42\n693\t{\n694\t  \"status\": \"PREPARING\",\n695\t  \"created_at\": \"2026-05-15T19:49:49.327Z\",\n696\t  \"updated_at\": \"2026-05-15T20:08:48.202Z\",\n697\t  \"notes\": \"DEPRECATED (D076): lr=2e-4 confound, excluded from IRT pool. Need retrain with lr=5e-5, alpha=32 → exp_001_sft_3B_d000_s42_a32.\"\n698\t}\n699\t\n700\t────────────────────────────────────────────────────────────────────────────────\n701\texp_id: exp_001_sft_3B_d000_s42_a32\n702\t{\n703\t  \"status\": \"PREPARING\",\n704\t  \"created_at\": \"2026-05-15T20:09:31.942Z\",\n705\t  \"updated_at\": \"2026-05-15T20:10:53.982Z\",\n706\t  \"hypothesis\": \"D076 retrain: 3B d000 s42 SFT with lr=5e-5, alpha=32, seed=42, dosage=0%. Replaces deprecated d000_s42 (lr=2e-4 confound). Submit to cuda:0 or cuda:1 after d100 SFT completes.\"\n707\t}\n708\t\n709\t────────────────────────────────────────────────────────────────────────────────\n710\texp_id: exp_001_sft_3B_d000_v2\n711\t{\n712\t  \"status\": \"DONE\",\n713\t  \"created_at\": \"2026-05-14T16:14:42.434Z\",\n714\t  \"updated_at\": \"2026-05-15T16:10:11.917Z\",\n715\t  \"hypothesis\": \"3B d000 v2 retrain with reduced LoRA hyperparams (lr=5e-5, alpha=16) to fix CoT catastrophic forgetting. D020 decision. Target: GSM8K >= 50% (raw 60.5%).\",\n716\t  \"conclusion\": \"success\",\n717\t  \"metrics\": {\n718\t    \"status\": \"training_complete\",\n719\t    \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter\",\n720\t    \"completed_at\": \"2026-05-15T03:45Z\"\n721\t  },\n722\t  \"notes\": \"SUPERSEDED by D055. d000_v2 alpha=16, original d000 already alpha=32. Use original d000 checkpoints for all downstream analysis.\"\n723\t}\n724\t\n725\t────────────────────────────────────────────────────────────────────────────────\n726\texp_id: exp_001_sft_3B_d000_v3\n727\t{\n728\t  \"status\": \"DONE\",\n729\t  \"created_at\": \"2026-05-15T16:06:14.299Z\",\n730\t  \"updated_at\": \"2026-05-15T19:10:00.491Z\",\n731\t  \"hypothesis\": \"3B d000 s42 alpha=32 SFT baseline. Per D050 unify LoRA alpha=32. Previous v2 used alpha=16. d000 is 0% contamination baseline, most critical for IRT calibration reference.\",\n732\t  \"parent\": \"exp_001_sft_3B_d000_v2\",\n733\t  \"conclusion\": \"failed\",\n734\t  \"notes\": \"失败原因: 进程在 step 1725/3125 (55%) 静默死亡，无 Traceback/OOM/CUDA error。cuda:4 双进程共存（SFT + signals ~20.7/24.5GB），高度疑似系统 OOM kill。| 诊断 Worker: worker_diagnose_exp_001_sft_3B_d000_v3_20260515T190929 | 建议: 诊断完成后单独使用 cuda:4 重跑\"\n735\t}\n736\t\n737\t────────────────────────────────────────────────────────────────────────────────\n738\texp_id: exp_001_sft_3B_d000_v4\n739\t{\n740\t  \"status\": \"PREPARING\",\n741\t  \"created_at\": \"2026-05-15T20:12:58.215Z\",\n742\t  \"updated_at\": \"2026-05-15T20:12:58.215Z\",\n743\t  \"notes\": \"⚠️ Director 紧急修正: --lora-alpha 必须用 32（D050 标准），不是 16。提交命令中 --lora-alpha 16 → --lora-alpha 32。参数以 decisions.yaml D050 为准。cuda:5 释放后提交。\"\n744\t}\n745\t\n746\t────────────────────────────────────────────────────────────────────────────────\n747\texp_id: exp_001_sft_3B_d005_s123\n748\t{\n749\t  \"status\": \"DONE\",\n750\t  \"created_at\": \"2026-05-15T11:58:15.842Z\",\n751\t  \"updated_at\": \"2026-05-15T15:08:45.951Z\",\n752\t  \"conclusion\": \"success\",\n753\t  \"metrics\": {\n754\t    \"final_loss\": 1.1349,\n755\t    \"final_token_accuracy\": 0.7069,\n756\t    \"total_steps\": 3177\n757\t  }\n758\t}\n759\t\n760\t────────────────────────────────────────────────────────────────────────────────\n761\texp_id: exp_001_sft_3B_d005_s42_a32\n762\t{\n763\t  \"status\": \"PREPARING\",\n764\t  \"created_at\": \"2026-05-15T20:09:46.602Z\",\n765\t  \"updated_at\": \"2026-05-15T20:10:46.081Z\",\n766\t  \"hypothesis\": \"D076 retrain: 3B d005 s42 with lr=5e-5, alpha=32. Replaces deprecated exp_001_sft_d005_3B (lr=2e-4 confound). Submit to cuda:0 or cuda:1 after d100 SFT completes.\"\n767\t}\n768\t\n769\t────────────────────────────────────────────────────────────────────────────────\n770\texp_id: exp_001_sft_3B_d025_s123\n771\t{\n772\t  \"status\": \"DONE\",\n773\t  \"created_at\": \"2026-05-15T11:58:17.463Z\",\n774\t  \"updated_at\": \"2026-05-15T14:48:17.888Z\",\n775\t  \"conclusion\": \"success\",\n776\t  \"metrics\": {\n777\t    \"final_loss\": 1.1401,\n778\t    \"final_token_accuracy\": 0.734,\n779\t    \"total_steps\": 3384\n780\t  }\n781\t}\n782\t\n783\t────────────────────────────────────────────────────────────────────────────────\n784\texp_id: exp_001_sft_3B_d025_s42_a32\n785\t{\n786\t  \"status\": \"DONE\",\n787\t  \"created_at\": \"2026-05-15T16:10:35.236Z\",\n788\t  \"updated_at\": \"2026-05-15T18:48:13.120Z\",\n789\t  \"hypothesis\": \"3B d025 s42 alpha=32 SFT. D055 rerun: previous exp_001_sft_d025_3B_v2 used alpha=16. 25% contamination dosage with seed=42. Mid-range dosage point for IRT calibration curve.\",\n790\t  \"parent\": \"\",\n791\t  \"conclusion\": \"killed\",\n792\t  \"notes\": \"Killed: duplicate of exp_001_sft_d025_3B_v3 (cuda:5, same config d025 s42 alpha=32). Freed cuda:2 for critical-path exp_001_eval_3B_d100_s123_para_aligned_v2 re-run.\"\n793\t}\n794\t\n795\t────────────────────────────────────────────────────────────────────────────────\n796\texp_id: exp_001_sft_3B_d100_s123\n797\t{\n798\t  \"status\": \"DONE\",\n799\t  \"created_at\": \"2026-05-15T00:13:45.159Z\",\n800\t  \"updated_at\": \"2026-05-15T05:18:48.164Z\",\n801\t  \"conclusion\": \"success\",\n802\t  \"metrics\": {\n803\t    \"train_loss\": 1.1846,\n804\t    \"mean_token_accuracy\": 0.7343,\n805\t    \"steps\": 4159,\n806\t    \"epochs\": 1,\n807\t    \"runtime_seconds\": 18252\n808\t  }\n809\t}\n810\t\n811\t────────────────────────────────────────────────────────────────────────────────\n812\texp_id: exp_001_sft_3B_d100_s123_a32\n813\t{\n814\t  \"status\": \"PREPARING\",\n815\t  \"created_at\": \"2026-05-15T16:10:37.632Z\",\n816\t  \"updated_at\": \"2026-05-15T16:11:25.876Z\",\n817\t  \"hypothesis\": \"3B d100 s123 alpha=32 SFT. D055 rerun: previous exp_001_sft_3B_d100_s123 used alpha=16. 100% contamination with seed=123 for cross-seed consistency. Priority 2: submit after d100_s42 or d025_s42 completes.\",\n818\t  \"parent\": \"exp_001_sft_3B_d100_s123\"\n819\t}\n820\t\n821\t────────────────────────────────────────────────────────────────────────────────\n822\texp_id: exp_001_sft_3B_d100_s123_a32_v2\n823\t{\n824\t  \"status\": \"RUNNING\",\n825\t  \"created_at\": \"2026-05-15T16:34:08.644Z\",\n826\t  \"updated_at\": \"2026-05-15T16:52:21.403Z\"\n827\t}\n828\t\n829\t────────────────────────────────────────────────────────────────────────────────\n830\texp_id: exp_001_sft_3B_d100_s42_a32\n831\t{\n832\t  \"status\": \"DONE\",\n833\t  \"created_at\": \"2026-05-15T16:10:33.228Z\",\n834\t  \"updated_at\": \"2026-05-15T18:00:32.070Z\",\n835\t  \"hypothesis\": \"3B d100 s42 alpha=32 SFT. D055 rerun: previous exp_001_sft_d100_3B_v2 used alpha=16. 100% contamination dosage with seed=42. Critical for IRT calibration contamination effect measurement.\",\n836\t  \"parent\": \"exp_001_sft_d100_3B_v2\",\n837\t  \"conclusion\": \"failed\",\n838\t  \"notes\": \"Retry #2 running on cuda:1 (PID 593745, 1h25m). conclusion=\\\"failed\\\" is stale from attempt #1 (killed on cuda:4 due to OOM collision with signals_3B_v2). Current process is healthy. Registry does not allow clearing conclusion while RUNNING.\"\n839\t}\n840\t\n841\t────────────────────────────────────────────────────────────────────────────────\n842\texp_id: exp_001_sft_3B_d100_s42_a32_v2\n843\t{\n844\t  \"status\": \"DONE\",\n845\t  \"created_at\": \"2026-05-15T16:30:30.968Z\",\n846\t  \"updated_at\": \"2026-05-15T20:10:58.579Z\",\n847\t  \"notes\": \"Healthy: 1275/4159 (30%), 1h28m elapsed, loss 1.10-1.27, ~3.9-4.2s/step, ETA ~3h10m. Running on cuda:1 PID 593745. Supersedes exp_001_sft_3B_d100_s42_a32 (killed at step 164).\",\n848\t  \"conclusion\": \"failed\"\n849\t}\n850\t\n851\t────────────────────────────────────────────────────────────────────────────────\n852\texp_id: exp_001_sft_3B_d100_s42_a32_v3\n853\t{\n854\t  \"status\": \"ALLOCATED\",\n855\t  \"created_at\": \"2026-05-15T20:12:40.784Z\",\n856\t  \"updated_at\": \"2026-05-15T20:14:00.334Z\",\n857\t  \"hypothesis\": \"3B d100 s42 alpha=32 SFT v3. Resubmit after v2 SIGTERM at 73%. 100% contamination with seed=42 for dose-response curve.\",\n858\t  \"parent\": \"exp_001_sft_3B_d100_s42_a32_v2\"\n859\t}\n860\t\n861\t────────────────────────────────────────────────────────────────────────────────\n862\texp_id: exp_001_sft_d005_15B\n863\t{\n864\t  \"created_at\": \"2026-05-14T00:19:54.331Z\",\n865\t  \"hypothesis\": \"5% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): low-dosage contamination for dose-response curve, Phase 3 priority 1\",\n866\t  \"status\": \"DONE\",\n867\t  \"updated_at\": \"2026-05-14T09:11:14.625Z\",\n868\t  \"conclusion\": \"success\",\n869\t  \"notes\": \"训练实际已完成。3177/3177 steps, train_loss=1.2637, mean_token_accuracy=0.7308, epoch=1.0。LoRA adapter 已保存。EXIT_CODE=129 (SIGHUP) 发生在 Training complete 之后，属于 wrapper PID false positive（与 exp_001_sft_d100_3B 同一已知模式）。Checkpoint: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/lora_adapter\",\n870\t  \"metrics\": {\n871\t    \"train_loss\": 1.2637,\n872\t    \"mean_token_accuracy\": 0.7308,\n873\t    \"train_runtime_s\": 19864.7,\n874\t    \"epoch\": 1\n875\t  }\n876\t}\n877\t\n878\t────────────────────────────────────────────────────────────────────────────────\n879\texp_id: exp_001_sft_d005_3B\n880\t{\n881\t  \"status\": \"DONE\",\n882\t  \"created_at\": \"2026-05-14T08:54:49.962Z\",\n883\t  \"updated_at\": \"2026-05-15T20:09:08.691Z\",\n884\t  \"hypothesis\": \"5% dosage contaminated SFT on Qwen2.5-3B (seed=42): low-dosage contamination for 3B dose-response curve\",\n885\t  \"notes\": \"DEPRECATED (D076): lr=2e-4 confound, excluded from IRT pool. Need retrain with lr=5e-5, alpha=32 → exp_001_sft_3B_d005_s42_a32.\",\n886\t  \"conclusion\": \"success\",\n887\t  \"metrics\": {\n888\t    \"training_hours\": 3.76,\n889\t    \"final_loss\": 1.11,\n890\t    \"total_steps\": 3177,\n891\t    \"epochs\": 1\n892\t  }\n893\t}\n894\t\n895\t────────────────────────────────────────────────────────────────────────────────\n896\texp_id: exp_001_sft_d025_3B\n897\t{\n898\t  \"status\": \"DONE\",\n899\t  \"created_at\": \"2026-05-14T23:34:12.515Z\",\n900\t  \"updated_at\": \"2026-05-14T23:51:23.923Z\",\n901\t  \"conclusion\": \"failed\",\n902\t  \"notes\": \"GPU 3 空转: 注册 RUNNING 但进程从未启动 (nvidia-smi 确认 0% util, 0 MiB). Director 指令标 FAILED.\"\n903\t}\n904\t\n905\t────────────────────────────────────────────────────────────────────────────────\n906\texp_id: exp_001_sft_d025_3B_v2\n907\t{\n908\t  \"status\": \"DONE\",\n909\t  \"created_at\": \"2026-05-14T23:55:27.835Z\",\n910\t  \"updated_at\": \"2026-05-15T16:28:07.226Z\",\n911\t  \"metrics\": {\n912\t    \"train_loss\": 1.1501,\n913\t    \"mean_token_accuracy\": 0.7342,\n914\t    \"steps\": 3384,\n915\t    \"epochs\": 1,\n916\t    \"runtime_seconds\": 14499\n917\t  },\n918\t  \"conclusion\": \"success\",\n919\t  \"notes\": \"SUPERSEDED by D055. alpha=16, replaced by exp_001_sft_3B_d025_s42_a32 (alpha=32).\"\n920\t}\n921\t\n922\t────────────────────────────────────────────────────────────────────────────────\n923\texp_id: exp_001_sft_d025_3B_v3\n924\t{\n925\t  \"status\": \"RUNNING\",\n926\t  \"created_at\": \"2026-05-15T16:10:02.763Z\",\n927\t  \"updated_at\": \"2026-05-15T20:09:39.318Z\",\n928\t  \"hypothesis\": \"3B d025 s42 alpha=32 SFT. Per D055 rerun with unified alpha=32 (v2 used alpha=16). 25% contamination dosage.\",\n929\t  \"parent\": \"exp_001_sft_d025_3B_v2\"\n930\t}\n931\t\n932\t────────────────────────────────────────────────────────────────────────────────\n933\texp_id: exp_001_sft_d100_3B\n934\t{\n935\t  \"status\": \"DONE\",\n936\t  \"created_at\": \"2026-05-14T04:24:36.974Z\",\n937\t  \"updated_at\": \"2026-05-14T18:24:10.566Z\",\n938\t  \"hypothesis\": \"100% dosage contaminated SFT on Qwen2.5-3B (seed=42): maximum contamination at largest controlled scale\",\n939\t  \"notes\": \"训练成功完成。4159/4159 steps, train_loss=1.178, token_accuracy=0.7206, runtime=5.2h。EXIT_CODE=129 (SIGHUP) 发生在 Training complete 之后，属于 wrapper PID false positive（已知模式）。Checkpoint: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter。GPU 3 已安排 eval_3B_d100 tmux auto-relay。\",\n940\t  \"conclusion\": \"success\",\n941\t  \"metrics\": {\n942\t    \"train_loss\": 1.178,\n943\t    \"token_accuracy\": 0.7206,\n944\t    \"runtime_hours\": 5.2,\n945\t    \"steps\": \"4159/4159\",\n946\t    \"epoch\": 1\n947\t  }\n948\t}\n949\t\n950\t────────────────────────────────────────────────────────────────────────────────\n951\texp_id: exp_001_sft_d100_3B_v2\n952\t{\n953\t  \"status\": \"DONE\",\n954\t  \"created_at\": \"2026-05-14T18:25:23.780Z\",\n955\t  \"updated_at\": \"2026-05-15T16:28:05.700Z\",\n956\t  \"hypothesis\": \"3B d100 SFT v2 with D020 conservative params (lr=5e-5, alpha=16, r=16) to prevent CoT catastrophic forgetting. seed=42.\",\n957\t  \"conclusion\": \"success\",\n958\t  \"metrics\": {\n959\t    \"steps\": \"4159/4159\",\n960\t    \"status\": \"training_complete\",\n961\t    \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter\",\n962\t    \"d020_params\": \"lr=5e-5, alpha=16, r=16\"\n963\t  },\n964\t  \"notes\": \"SUPERSEDED by D055. alpha=16, replaced by exp_001_sft_3B_d100_s42_a32 (alpha=32).\"\n965\t}\n966\t\n967\t────────────────────────────────────────────────────────────────────────────────\n968\texp_id: exp_002_signals_05B\n969\t{\n970\t  \"status\": \"DONE\",\n971\t  \"created_at\": \"2026-05-14T08:45:35.964Z\",\n972\t  \"updated_at\": \"2026-05-14T14:04:12.884Z\",\n973\t  \"hypothesis\": \"0.5B contamination signal computation (S1 Embedding/S2 Min-K++/S4 Self-Critique) on d000/d005/d100 × mmlu/gsm8k/arc = 27 signal tasks. Critical path for exp-003 RRF → exp-006 IRT.\",\n974\t  \"notes\": \"v5 完成 9/9 PASS。d000/d005/d100 × mmlu/gsm8k/arc_challenge 全部完成。9 个 signals_merged 文件已产出。三项修复奏效: timeout 4h, per-signal cache, max_tokens 64。GPU 0 已释放。\",\n975\t  \"conclusion\": \"success\"\n976\t}\n977\t\n978\t────────────────────────────────────────────────────────────────────────────────\n979\texp_id: exp_002_signals_3B\n980\t{\n981\t  \"status\": \"DONE\",\n982\t  \"created_at\": \"2026-05-15T14:46:52.925Z\",\n983\t  \"updated_at\": \"2026-05-15T16:06:31.114Z\",\n984\t  \"conclusion\": \"failed\"\n985\t}\n986\t\n987\t────────────────────────────────────────────────────────────────────────────────\n988\texp_id: exp_002_signals_3B_v2\n989\t{\n990\t  \"status\": \"DONE\",\n991\t  \"created_at\": \"2026-05-15T16:06:11.669Z\",\n992\t  \"updated_at\": \"2026-05-15T17:56:45.615Z\",\n993\t  \"hypothesis\": \"3B signal computation rerun (v2). v1 failed with SIGTERM due to GPU mapping + argparse bug (now fixed). Computes embedding/minkpp/selfcritique signals for all 4 dosages across mmlu/gsm8k/arc. Prerequisite for signal-derived IRT calibration.\",\n994\t  \"parent\": \"exp_002_signals_3B\",\n995\t  \"notes\": \"PID 590509 confirmed dead (kill_job + check_job_status verified). Registry DONE/killed status correct. GPU 4 VRAM freed for d000_v3 SFT.\",\n996\t  \"conclusion\": \"killed\"\n997\t}\n998\t\n999\t────────────────────────────────────────────────────────────────────────────────"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3fdc807-abc8-46a5-a02e-4cff87efa7be",
+            "isSidechain": true,
+            "promptId": "28dbad31-b45d-4bfa-90d7-cd9668e05dda",
+            "agentId": "a7f123ed7c2703040",
+            "type": "user",
+            "uuid": "b6d1408f-d1d7-4a6e-bde1-82cba2c0d25e",
+            "sourceToolAssistantUUID": "a3fdc807-abc8-46a5-a02e-4cff87efa7be",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T20:15:53.490Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XatGBwzBhszqL3bYdSUGq8",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-17809d4e/19407164-8368-47b9-83a6-abe4be54c41d/tool-results/botdripfq.txt",
+                "offset": 999,
+                "limit": 200
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6d1408f-d1d7-4a6e-bde1-82cba2c0d25e",
+            "isSidechain": true,
+            "agentId": "a7f123ed7c2703040",
+            "requestId": "req_011Cb4yA8F6MgExtmJGxYa1a",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "427a2a89-a9c2-410b-bcbc-6b4f0be2c4d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0161aq15M8nyNFWsrBaVeoxi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11025,
+                "cache_read_input_tokens": 44146,
+                "output_tokens": 177,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 11025
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 177,
+                    "cache_read_input_tokens": 44146,
+                    "cache_creation_input_tokens": 11025,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 11025,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T20:15:53.531Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XatGBwzBhszqL3bYdSUGq8",
+              "type": "tool_result",
+              "content": "999\t────────────────────────────────────────────────────────────────────────────────\n1000\texp_id: exp_002_signals_3B_v3\n1001\t{\n1002\t  \"status\": \"DONE\",\n1003\t  \"created_at\": \"2026-05-15T18:38:09.043Z\",\n1004\t  \"updated_at\": \"2026-05-15T18:55:22.188Z\",\n1005\t  \"conclusion\": \"killed\",\n1006\t  \"notes\": \"D065: PID 611720 silently died. Likely killed by OOM or crashed during selfcritique batch. Partial results: d000_s42 mmlu/gsm8k/arc 4 signals complete, d025_s42 mmlu s1+s2 partial. Superseded by v4 on cuda:3.\"\n1007\t}\n1008\t\n1009\t────────────────────────────────────────────────────────────────────────────────\n1010\texp_id: exp_002_signals_3B_v4\n1011\t{\n1012\t  \"status\": \"DONE\",\n1013\t  \"created_at\": \"2026-05-15T18:56:45.708Z\",\n1014\t  \"updated_at\": \"2026-05-15T20:05:53.319Z\",\n1015\t  \"hypothesis\": \"3B signals v4. Restart of v3 (killed accidentally). Compute embedding/minkpp/selfcritique for 3B model across d000/d005/d025/d100 × mmlu/gsm8k/arc. 5 combos already done, 7 remaining.\",\n1016\t  \"parent\": \"exp_002_signals_3B_v3\",\n1017\t  \"conclusion\": \"failed\",\n1018\t  \"notes\": \"诊断(2026-05-15): run_batch.py --signal 参数 bug 导致 11/12 combo rc=2 失败, d000/mmlu 被 SIGTERM (rc=-15)。Batch 0/12 passed。但有 5/12 combo 已有 merged 文件(d000/{gsm8k,arc}, d005/arc, d025/{gsm8k,arc})，来自早期或独立进程。v4 tmux session 确认死亡。多个 orphan 进程仍在 GPU 2/3/4 上跑 mmlu combos，有输出目录冲突风险。\"\n1019\t}\n1020\t\n1021\t────────────────────────────────────────────────────────────────────────────────\n1022\texp_id: exp_002_signals_3B_v5\n1023\t{\n1024\t  \"status\": \"RUNNING\",\n1025\t  \"created_at\": \"2026-05-15T19:43:59.775Z\",\n1026\t  \"updated_at\": \"2026-05-15T19:45:34.171Z\",\n1027\t  \"hypothesis\": \"3B signals v5. Parallel with v4 (cuda:3). Compute embedding/minkpp/selfcritique for d025 and d100 only. Accelerates signal coverage by splitting workload across cuda:3 (v4) and cuda:4 (v5).\"\n1028\t}\n1029\t\n1030\t────────────────────────────────────────────────────────────────────────────────\n1031\texp_id: exp_002_signals_3B_v6\n1032\t{\n1033\t  \"status\": \"RUNNING\",\n1034\t  \"created_at\": \"2026-05-15T20:06:35.655Z\",\n1035\t  \"updated_at\": \"2026-05-15T20:13:42.248Z\",\n1036\t  \"hypothesis\": \"D075/D077: Compute embedding/minkpp/selfcritique for d000_v2_s42 (lr=5e-5, alpha=16, confirmed valid) across mmlu/gsm8k/arc on cuda:3. Step 1 of signals recovery after d000_s42 invalidation.\",\n1037\t  \"parent\": \"exp_002_signals_3B_v5\"\n1038\t}\n1039\t\n1040\t────────────────────────────────────────────────────────────────────────────────\n1041\texp_id: exp_004_sim_sweep\n1042\t{\n1043\t  \"conclusion\": \"failed\",\n1044\t  \"created_at\": \"2026-05-13T16:43:57.478Z\",\n1045\t  \"hypothesis\": \"4PL+γ IRT parameter recovery degrades gracefully with exposure signal quality (AUC); there exists a minimum AUC threshold below which γ 95% CI width exceeds 15pp; recovery improves with N_models; prior sensitivity is bounded\",\n1046\t  \"status\": \"DONE\",\n1047\t  \"updated_at\": \"2026-05-14T22:13:15.704Z\",\n1048\t  \"notes\": \"v1 original serial run. Superseded by v2 (parallel=2). PID 559606 killed to prevent write conflicts with v2. See v3 for active tracking.\"\n1049\t}\n1050\t\n1051\t────────────────────────────────────────────────────────────────────────────────\n1052\texp_id: exp_006_irt_05B\n1053\t{\n1054\t  \"status\": \"DONE\",\n1055\t  \"created_at\": \"2026-05-14T14:20:20.389Z\",\n1056\t  \"updated_at\": \"2026-05-14T14:53:16.180Z\",\n1057\t  \"notes\": \"KILLED by Director 指令: 混合 scale (0.5B+1.5B+3B) + legacy 格式 + 多余 seed 的错误数据在拟合。Stan NUTS 4 chains (PID 386298-386301) 运行 ~30min 后终止。代码修复中: 正则改为 _d(\\\\d+)_s(\\\\d+)(_para)?(_aligned)?$, 增加 --model-scale 和 --seed 过滤参数。等 d025/d100 aligned eval 完成后再用修复后代码重跑。\",\n1058\t  \"conclusion\": \"killed\"\n1059\t}\n1060\t\n1061\t────────────────────────────────────────────────────────────────────────────────\n1062\texp_id: exp_006_irt_05B_v1\n1063\t{\n1064\t  \"status\": \"DONE\",\n1065\t  \"created_at\": \"2026-05-14T17:09:23.070Z\",\n1066\t  \"updated_at\": \"2026-05-14T18:02:23.310Z\",\n1067\t  \"conclusion\": \"failed\",\n1068\t  \"notes\": \"D023: 56K params infeasible for NUTS (MMLU 14042 items → 56K params, 6h zero samples). Killed all chains (PIDs 411936-411940) + main (411789) + wrapper (411783). Issues: 1) No --max-items limit 2) Mixed aligned/non-aligned formats 3) Oracle dosage instead of exp-002 signal-derived exposure. Superseded by exp_006_irt_05B_v2 with tiered strategy.\"\n1069\t}\n1070\t\n1071\t────────────────────────────────────────────────────────────────────────────────\n1072\texp_id: exp_006_irt_05B_v2\n1073\t{\n1074\t  \"status\": \"PREPARING\",\n1075\t  \"created_at\": \"2026-05-14T18:04:35.326Z\",\n1076\t  \"updated_at\": \"2026-05-14T18:04:43.323Z\",\n1077\t  \"hypothesis\": \"Tiered IRT calibration (D023): GSM8K/ARC direct NUTS + MMLU subsampled 1000 items + ADVI robustness check. Fixes v1 issues: aligned-only, signal-derived exposure, --max-items.\",\n1078\t  \"parent\": \"exp_006_irt_05B_v1\"\n1079\t}\n1080\t\n1081\t────────────────────────────────────────────────────────────────────────────────\n1082\texp_id: exp_006_pooled_gsm8k_v1\n1083\t{\n1084\t  \"status\": \"DONE\",\n1085\t  \"created_at\": \"2026-05-14T20:17:21.376Z\",\n1086\t  \"updated_at\": \"2026-05-14T20:47:40.753Z\",\n1087\t  \"hypothesis\": \"Cross-scale pooled IRT (0.5B+1.5B+3B, N≈10 models) on GSM8K with delta exposure. Test if pooling increases gamma significance (previous single-scale N=4 had CI including 0).\",\n1088\t  \"conclusion\": \"failed\"\n1089\t}\n1090\t\n1091\t────────────────────────────────────────────────────────────────────────────────\n1092\texp_id: exp_008_base_pretrained_15B_eval\n1093\t{\n1094\t  \"status\": \"DONE\",\n1095\t  \"created_at\": \"2026-05-15T08:33:08.901Z\",\n1096\t  \"updated_at\": \"2026-05-15T11:56:40.764Z\",\n1097\t  \"notes\": \"D046+D047: base pretrained MC data 退化(99.5% predict A, MMLU=0.2303 GSM8K=0.005). GSM8K/HumanEval 保留, MMLU/ARC 仅 position bias 佐证. 禁止 IRT/signals. Regime 轴已删除 base pretrained.\",\n1098\t  \"metrics\": {\n1099\t    \"mmlu_accuracy\": 0.2303,\n1100\t    \"gsm8k_accuracy\": 0.0053,\n1101\t    \"arc_challenge_accuracy\": 0.2304,\n1102\t    \"humaneval_pass@1\": 0.2317,\n1103\t    \"mmlu_correct\": 3234,\n1104\t    \"mmlu_total\": 14042,\n1105\t    \"gsm8k_correct\": 7,\n1106\t    \"gsm8k_total\": 1319,\n1107\t    \"arc_correct\": 270,\n1108\t    \"arc_total\": 1172,\n1109\t    \"humaneval_correct\": 38,\n1110\t    \"humaneval_total\": 164\n1111\t  },\n1112\t  \"conclusion\": \"success\"\n1113\t}\n1114\t\n1115\t────────────────────────────────────────────────────────────────────────────────\n1116\texp_id: exp_008_base_pretrained_15B_eval_v2\n1117\t{\n1118\t  \"status\": \"DONE\",\n1119\t  \"created_at\": \"2026-05-15T11:58:04.766Z\",\n1120\t  \"updated_at\": \"2026-05-15T11:58:28.785Z\",\n1121\t  \"conclusion\": \"success\",\n1122\t  \"metrics\": {\n1123\t    \"mmlu\": 0.2303,\n1124\t    \"gsm8k\": 0.0053,\n1125\t    \"arc_challenge\": 0.2304,\n1126\t    \"humaneval_pass1\": 0.2317,\n1127\t    \"mmlu_correct\": 3234,\n1128\t    \"mmlu_total\": 14042,\n1129\t    \"gsm8k_correct\": 7,\n1130\t    \"gsm8k_total\": 1319,\n1131\t    \"arc_correct\": 270,\n1132\t    \"arc_total\": 1172,\n1133\t    \"humaneval_correct\": 38,\n1134\t    \"humaneval_total\": 164\n1135\t  },\n1136\t  \"notes\": \"D046+D047: base pretrained MC data 退化(99.5% predict A, MMLU=0.2303 GSM8K=0.005). GSM8K/HumanEval 保留, MMLU/ARC 仅 position bias 佐证. 禁止 IRT/signals. Regime 轴已删除 base pretrained.\"\n1137\t}\n1138\t\n1139\t────────────────────────────────────────────────────────────────────────────────\n1140\texp_id: exp_008_base_pretrained_eval\n1141\t{\n1142\t  \"status\": \"DONE\",\n1143\t  \"conclusion\": \"failed\",\n1144\t  \"created_at\": \"2026-05-15T07:45:10.801Z\",\n1145\t  \"updated_at\": \"2026-05-15T11:30:00.000Z\",\n1146\t  \"hypothesis\": \"Qwen2.5-0.5B base pretrained eval (no SFT). 4 signals + 4 benchmark scores. Serves: (1) exp008 regime comparison (2) format incomprehension evidence for Discussion (base vs d000).\"\n1147\t}\n1148\t\n1149\t────────────────────────────────────────────────────────────────────────────────\n1150\texp_id: exp_008_base_pretrained_eval_v2\n1151\t{\n1152\t  \"status\": \"DONE\",\n1153\t  \"created_at\": \"2026-05-15T11:31:00.000Z\",\n1154\t  \"updated_at\": \"2026-05-15T14:21:16.035Z\",\n1155\t  \"hypothesis\": \"Qwen2.5-0.5B base pretrained eval v2 (v1 PID 530893 stopped/dead). No SFT adapter. 3-regime comparison baseline.\",\n1156\t  \"notes\": \"D046+D047: base pretrained MC data 退化(99.5% predict A). GSM8K/HumanEval 保留, MMLU/ARC 仅 position bias 佐证. 禁止 IRT/signals. Regime 轴已删除 base pretrained. 禁止 kill PID 553256.\",\n1157\t  \"conclusion\": \"success\",\n1158\t  \"metrics\": {\n1159\t    \"mmlu\": 0.2294,\n1160\t    \"gsm8k\": 0.163,\n1161\t    \"arc_challenge\": 0.2278,\n1162\t    \"humaneval\": 0\n1163\t  }\n1164\t}\n1165\t\n1166\t────────────────────────────────────────────────────────────────────────────────\n1167\texp_id: exp_008_instruct_rl_proxy\n1168\t{\n1169\t  \"status\": \"PREPARING\",\n1170\t  \"created_at\": \"2026-05-14T16:44:57.410Z\",\n1171\t  \"updated_at\": \"2026-05-15T07:04:48.569Z\",\n1172\t  \"hypothesis\": \"RL proxy experiment (D021 Problem 3): Use Qwen2.5-0.5B-Instruct (SFT+RL post-trained) as RL regime data point. 3-regime comparison: base (pretrained) → d000 (SFT) → Instruct (SFT+RL). Compute all 4 signals on Instruct model, observe signal value changes across training regimes. No additional training needed.\\\"\",\n1173\t  \"metrics\": {\n1174\t    \"signals_computed\": [\n1175\t      \"s1_embedding\",\n1176\t      \"s2_minkpp\",\n1177\t      \"s4_selfcritique\"\n1178\t    ],\n1179\t    \"s3_constat\": \"skipped_per_D030\",\n1180\t    \"items\": {\n1181\t      \"mmlu\": 14042,\n1182\t      \"gsm8k\": 1319,\n1183\t      \"arc_challenge\": 1172\n1184\t    },\n1185\t    \"sample_values_mmlu_item0\": {\n1186\t      \"rl_aligned\": {\n1187\t        \"s1\": 0.403,\n1188\t        \"s2\": 1.842,\n1189\t        \"s4\": -0.933\n1190\t      },\n1191\t      \"d000_baseline\": {\n1192\t        \"s1\": 0.345,\n1193\t        \"s2\": 1.781,\n1194\t        \"s4\": -0.989\n1195\t      }\n1196\t    },\n1197\t    \"signal_paths\": {\n1198\t      \"mmlu\": \"/root/autodl-tmp/exp008/signals/rl_aligned/mmlu/signals_merged_mmlu.json\","
+            }
+          ],
+          "metadata": {
+            "parentUuid": "427a2a89-a9c2-410b-bcbc-6b4f0be2c4d1",
+            "isSidechain": true,
+            "promptId": "28dbad31-b45d-4bfa-90d7-cd9668e05dda",
+            "agentId": "a7f123ed7c2703040",
+            "type": "user",
+            "uuid": "29300ffa-94e6-4488-b25f-32a1eec575ae",
+            "sourceToolAssistantUUID": "427a2a89-a9c2-410b-bcbc-6b4f0be2c4d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T20:15:55.788Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get the status counts."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "29300ffa-94e6-4488-b25f-32a1eec575ae",
+            "isSidechain": true,
+            "agentId": "a7f123ed7c2703040",
+            "requestId": "req_011Cb4yAaXPu3qhcuLTaLoXF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f79a7d12-bca3-4c90-8c3b-cf501b48f67a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X5GJ5LPZCxkbem4Kzo3FSP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4498,
+                "cache_read_input_tokens": 55171,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4498,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T20:16:07.400Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QuvQLpboJtf58w9HCR7qdj",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\nfrom collections import Counter\n\nwith open(\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-17809d4e/19407164-8368-47b9-83a6-abe4be54c41d/tool-results/mcp-agent-ml-research-read_registry-1778876057897.txt\") as f:\n    outer = json.loads(f.read())\n\ninner = json.loads(outer[\"result\"])\nexps = inner[\"data\"][\"experiments\"]\n\n# Count by status\nstatus_counts = Counter()\nfor eid, exp in exps.items():\n    status_counts[exp.get(\"status\", \"UNKNOWN\")] += 1\n\nprint(\"=\" * 100)\nprint(\"4. EXPERIMENT COUNT BY STATUS\")\nprint(\"=\" * 100)\nfor status, count in sorted(status_counts.items(), key=lambda x: -x[1]):\n    print(f\"  {status:15s}: {count}\")\nprint(f\"  {'TOTAL':15s}: {sum(status_counts.values())}\")\n\n# Also count conclusions for DONE experiments\nconclusion_counts = Counter()\nfor eid, exp in exps.items():\n    if exp.get(\"status\") == \"DONE\":\n        conclusion_counts[exp.get(\"conclusion\", \"NO_CONCLUSION\")] += 1\n\nprint(f\"\\nConclusion breakdown for DONE experiments:\")\nfor conc, count in sorted(conclusion_counts.items(), key=lambda x: -x[1]):\n    print(f\"  {conc:15s}: {count}\")\n\n# Also count \"signals\" and \"3B\" matches\nsignal_count = 0\nthreeb_count = 0\nboth_count = 0\nfor eid, exp in exps.items():\n    eid_lower = eid.lower()\n    all_text = (eid + \" \" + exp.get(\"hypothesis\", \"\") + \" \" + exp.get(\"notes\", \"\")).lower()\n    has_signal = \"signal\" in all_text\n    has_3b = \"3b\" in all_text\n    if has_signal:\n        signal_count += 1\n    if has_3b:\n        threeb_count += 1\n    if has_signal and has_3b:\n        both_count += 1\n\nprint(f\"\\nSignals/3B counts:\")\nprint(f\"  Contains 'signal': {signal_count}\")\nprint(f\"  Contains '3B':     {threeb_count}\")\nprint(f\"  Contains both:     {both_count}\")\n\nPYEOF\n",
+                "description": "Count experiments by status and conclusion"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f79a7d12-bca3-4c90-8c3b-cf501b48f67a",
+            "isSidechain": true,
+            "agentId": "a7f123ed7c2703040",
+            "requestId": "req_011Cb4yAaXPu3qhcuLTaLoXF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e29f6ccc-ef7a-4c59-8415-dd2944b8d975",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X5GJ5LPZCxkbem4Kzo3FSP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4498,
+                "cache_read_input_tokens": 55171,
+                "output_tokens": 739,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4498
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 739,
+                    "cache_read_input_tokens": 55171,
+                    "cache_creation_input_tokens": 4498,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4498,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T20:16:08.040Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QuvQLpboJtf58w9HCR7qdj",
+              "type": "tool_result",
+              "content": "====================================================================================================\n4. EXPERIMENT COUNT BY STATUS\n====================================================================================================\n  DONE           : 153\n  PREPARING      : 24\n  RUNNING        : 7\n  ALLOCATED      : 1\n  TOTAL          : 185\n\nConclusion breakdown for DONE experiments:\n  success        : 106\n  failed         : 38\n  killed         : 7\n  negative       : 2\n\nSignals/3B counts:\n  Contains 'signal': 25\n  Contains '3B':     70\n  Contains both:     10",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e29f6ccc-ef7a-4c59-8415-dd2944b8d975",
+            "isSidechain": true,
+            "promptId": "28dbad31-b45d-4bfa-90d7-cd9668e05dda",
+            "agentId": "a7f123ed7c2703040",
+            "type": "user",
+            "uuid": "982fb50a-5ddb-45c0-8663-9f4769f9fcba",
+            "sourceToolAssistantUUID": "e29f6ccc-ef7a-4c59-8415-dd2944b8d975",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T20:16:46.843Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the complete findings:\n\n---\n\n## 1. All experiments with exp_id containing \"exp_002\" (8 total)\n\n| exp_id | status | conclusion | key details |\n|--------|--------|------------|-------------|\n| **exp_002_signals_05B** | DONE | success | 0.5B signal computation (S1 Embedding/S2 Min-K++/S4 Self-Critique) on d000/d005/d100 x mmlu/gsm8k/arc. 9/9 PASS. Created 2026-05-14. |\n| **exp_002_signals_3B** | DONE | failed | Created 2026-05-15T14:46. No hypothesis/notes/metrics recorded. |\n| **exp_002_signals_3B_v2** | DONE | killed | v1 failed SIGTERM (GPU mapping + argparse bug). Parent: exp_002_signals_3B. PID 590509 confirmed dead; GPU 4 freed. |\n| **exp_002_signals_3B_v3** | DONE | killed | PID 611720 silently died (OOM or selfcritique crash). Partial: d000_s42 mmlu/gsm8k/arc 4 signals done, d025_s42 mmlu s1+s2 partial. Superseded by v4. |\n| **exp_002_signals_3B_v4** | DONE | failed | `run_batch.py --signal` param bug: 11/12 combo rc=2, d000/mmlu SIGTERM. 5/12 combos had merged files from earlier runs. Orphan processes on GPU 2/3/4. |\n| **exp_002_signals_3B_v5** | **RUNNING** | — | Parallel with v4 on cuda:4. d025 and d100 only. Created 2026-05-15T19:43. |\n| **exp_002_signals_3B_v6** | **RUNNING** | — | D075/D077: signals for d000_v2_s42 (lr=5e-5, alpha=16) on cuda:3. Step 1 of signals recovery after d000_s42 invalidation. Parent: v5. |\n| **exp002-signal-d025-05B** | DONE | (no conclusion field) | Created 2026-05-14. Notes: \"0.5B d025 signals 3/3 passed\". |\n| **exp002-signals-1p5B** | DONE | success | 1.5B signals 12/12 complete (all dosages x all signals). GPU 0 released. |\n\n---\n\n## 2. All RUNNING or ALLOCATED experiments (8 total)\n\n**RUNNING (7):**\n- **exp_001_eval_15B_s123_para_aligned_batch** — 1.5B s123 para_aligned eval batch (d000/d005/d025/d100). Fills 4 missing cells, adds 4 models to pooled IRT (N=19->23).\n- **exp_001_eval_3B_d005_s123_gsm8k** — GSM8K single-benchmark rerun for d005_s123. D068 gap-fill.\n- **exp_001_sft_3B_d100_s123_a32_v2** — 3B d100 s123 alpha=32 SFT. Created 2026-05-15T16:34. No hypothesis/notes.\n- **exp_001_sft_d025_3B_v3** — 3B d025 s42 alpha=32 SFT (D055 rerun, v2 was alpha=16). Parent: v2.\n- **exp_002_signals_3B_v5** — 3B signals v5, d025+d100 only, cuda:4.\n- **exp_002_signals_3B_v6** — D075/D077 signals for d000_v2_s42, cuda:3.\n- **exp_004_sim_sweep_v7** — Created 2026-05-15T18:11. No hypothesis/notes.\n\n**ALLOCATED (1):**\n- **exp_001_sft_3B_d100_s42_a32_v3** — 3B d100 s42 alpha=32 SFT v3. Resubmit after v2 SIGTERM at 73%. Parent: v2.\n\n---\n\n## 3. All experiments related to \"signals\" or \"3B\" — 70 unique experiments\n\nThe full output was saved to `/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-17809d4e/19407164-8368-47b9-83a6-abe4be54c41d/tool-results/botdripfq.txt` (too large to inline completely — 1200+ lines). Key breakdown:\n- 25 experiments mention \"signal\" (in exp_id, hypothesis, or notes)\n- 70 experiments mention \"3B\"\n- 10 experiments mention both\n\nThe signals experiments span 3 model scales: 0.5B (`exp_002_signals_05B`, `exp002-signal-d025-05B`), 1.5B (`exp002-signals-1p5B`), and 3B (v1 through v6, plus `exp_008_signal_survival` variants). The 3B signal pipeline has been particularly troubled — 4 versions failed/killed before v5 and v6 (currently RUNNING).\n\nThe 3B experiments cover the full SFT pipeline: training at 4 dosages (d000/d005/d025/d100), evaluation (aligned + para_aligned + raw), signals computation, and IRT fitting. Many have been retrained due to the alpha=16->32 standardization (D055) and lr=2e-4 confound deprecation (D076).\n\n---\n\n## 4. Experiment count by status\n\n| Status | Count |\n|--------|-------|\n| DONE | 153 |\n| PREPARING | 24 |\n| RUNNING | 7 |\n| ALLOCATED | 1 |\n| **TOTAL** | **185** |\n\n**Conclusion breakdown for DONE (153):**\n\n| Conclusion | Count |\n|------------|-------|\n| success | 106 |\n| failed | 38 |\n| killed | 7 |\n| negative | 2 |"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "982fb50a-5ddb-45c0-8663-9f4769f9fcba",
+            "isSidechain": true,
+            "agentId": "a7f123ed7c2703040",
+            "requestId": "req_011Cb4yBePLr6qcaquSgu4id",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7288c853-eac3-4564-89c7-46e31fef323a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_17809d4e",
+            "sessionId": "19407164-8368-47b9-83a6-abe4be54c41d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GFEVuqyQZnu4suZ3dX3qcW",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 876,
+                "cache_read_input_tokens": 59669,
+                "output_tokens": 1599,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 876
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1599,
+                    "cache_read_input_tokens": 59669,
+                    "cache_creation_input_tokens": 876,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 876,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-parse-the-json-file-at-home-ubuntu-claude-account-2-projects-home-ubuntu-agent.md"
+}

@@ -1,0 +1,617 @@
+{
+  "schema_version": "1.0",
+  "session_id": "67c32e878cbf9515c6f9",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-14T15:57:31.603Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The contaminated MMLU items in d005 are uniformly sampled across all 57 subjects (5% from each). The top subjects are professional_law (88), miscellaneous (40), moral_scenarios (39) — mostly non-technical subjects. There's some elementary_mathematics (14) and high_school_statistics (18) but no computer_science subjects in the top 15.\n\nLet me also check the mix_data function to understand sampling mechanics, and look at 1.5B d005 raw predictions for the gained HumanEval items to understand what changed.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "16115d8c-1324-4be2-9914-eee151678c18",
+            "isSidechain": false,
+            "requestId": "req_011Cb2jeXFaz9i5cNLAozTHJ",
+            "type": "assistant",
+            "uuid": "ab372e51-7cfb-4ec9-a4b3-582bdbd2b720",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+            "sessionId": "bdd1816e-3826-4f3b-8be1-6589f07a3fab",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014zAaZPJ5xoDiRRvDSXvQAu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1163,
+                "cache_read_input_tokens": 78457,
+                "output_tokens": 757,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1163,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 757,
+                    "cache_read_input_tokens": 78457,
+                    "cache_creation_input_tokens": 1163,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1163
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-14T15:57:39.427Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WfMZLSPgWPRSpMem2fpbGb",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat > /tmp/analyze_gained.py << 'PYEOF'\nimport json\n\n# Load 1.5B d000 and d005 full eval results for HumanEval to compare predictions\nwith open('/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s42_aligned/eval_results.json') as f:\n    d000 = json.load(f)['benchmarks']['humaneval']\nwith open('/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d005_s42_aligned/eval_results.json') as f:\n    d005 = json.load(f)['benchmarks']['humaneval']\n\ngained = [2, 5, 7, 11, 13, 14, 15, 16, 24, 25, 27, 29, 31, 60, 61, 63, 66, 71, 74, 80, 86, 113, 124, 147, 152, 158]\n\nprint(f\"Examining {len(gained)} gained items (d000 wrong -> d005 correct)\")\nprint()\n\nd000_items = {item['index']: item for item in d000['per_item'] if 'index' in item}\nd005_items = {item['index']: item for item in d005['per_item'] if 'index' in item}\n\nfor idx in gained[:10]:\n    d0 = d000_items.get(idx, {})\n    d5 = d005_items.get(idx, {})\n    task_id = d5.get('task_id', f'HumanEval/{idx}')\n    print(f\"--- {task_id} ---\")\n    gen_d0 = d0.get('generated', '')[:150]\n    gen_d5 = d5.get('generated', '')[:150]\n    print(f\"  d000: {gen_d0}\")\n    print(f\"  d005: {gen_d5}\")\n    print()\nPYEOF\n/root/miniconda3/bin/python /tmp/analyze_gained.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab372e51-7cfb-4ec9-a4b3-582bdbd2b720",
+            "isSidechain": false,
+            "requestId": "req_011Cb2jeXFaz9i5cNLAozTHJ",
+            "type": "assistant",
+            "uuid": "f344bd09-aa31-47f5-b382-856ee78d1ddc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+            "sessionId": "bdd1816e-3826-4f3b-8be1-6589f07a3fab",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014zAaZPJ5xoDiRRvDSXvQAu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1163,
+                "cache_read_input_tokens": 78457,
+                "output_tokens": 757,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1163,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 757,
+                    "cache_read_input_tokens": 78457,
+                    "cache_creation_input_tokens": 1163,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1163
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-14T15:57:40.011Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WfMZLSPgWPRSpMem2fpbGb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Examining 26 gained items (d000 wrong -> d005 correct)\\\\n\\\\n--- HumanEval/2 ---\\\\n  d000: def truncate_number(number: float) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Given a positive floating point number, it can be decomposed into\\\\n    and integer part (largest i\\\\n  d005: def truncate_number(number: float) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Given a positive floating point number, it can be decomposed into\\\\n    and integer part (largest i\\\\n\\\\n--- HumanEval/5 ---\\\\n  d000: from typing import List\\\\n\\\\n  d005: def intersperse(numbers: List[int], delimeter: int) -> List[int]:\\\\n    result = []\\\\n    for i in range(len(numbers)):\\\\n        result.append(numbers[i])\\\\n\\\\n\\\\n--- HumanEval/7 ---\\\\n  d000: from typing import List\\\\n\\\\n  d005: def filter_by_substring(strings: List[str], substring: str) -> List[str]:\\\\n    return [string for string in strings if substring in string]  # using li\\\\n\\\\n--- HumanEval/11 ---\\\\n  d000: from typing import List\\\\n\\\\n  d005: def string_xor(a: str, b: str) -> str:\\\\n    result = ''\\\\n    for i in range(len(a)):\\\\n        if a[i] == b[i]:\\\\n            result += '0'\\\\n        else:\\\\n  \\\\n\\\\n--- HumanEval/13 ---\\\\n  d000: def greatest_common_divisor(a: int, b: int) -> int:\\\\n    while b:\\\\n        a, b = b, a % b\\\\n    return a\\\\n\\\\n# Test cases\\\\nprint(greatest_common_divisor(3, 5\\\\n  d005: def greatest_common_divisor(a: int, b: int) -> int:\\\\n    while b:\\\\n        a, b = b, a % b\\\\n    return a\\\\n\\\\nif __name__ == '__main__':\\\\n    import doctest\\\\n \\\\n\\\\n--- HumanEval/14 ---\\\\n  d000: from typing import List\\\\n\\\\n  d005: def all_prefixes(string: str) -> List[str]:\\\\n    prefixes = []\\\\n    for i in range(1, len(string) + 1):\\\\n        prefixes.append(string[:i])\\\\n    return p\\\\n\\\\n--- HumanEval/15 ---\\\\n  d000: Here is the completed Python function:\\\\n\\\\n```python\\\\n  d005: def string_sequence(n: int) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Return a string containing space-delimited numbers starting from 0 upto n inclusive.\\\\n    >>> string_sequen\\\\n\\\\n--- HumanEval/16 ---\\\\n  d000: Here is the completed Python function:\\\\n\\\\n```python\\\\n  d005: def count_distinct_characters(string: str) -> int:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Given a string, find out how many distinct characters (regardless of case) does it consist \\\\n\\\\n--- HumanEval/24 ---\\\\n  d000: Here is the completed Python function:\\\\n\\\\n```python\\\\n  d005: def largest_divisor(n: int) -> int:\\\\n    for i in range(n-1, 0, -1):\\\\n        if n % i == 0:\\\\n            return i\\\\n    return 1\\\\n\\\\n# Test cases\\\\nprint(large\\\\n\\\\n--- HumanEval/25 ---\\\\n  d000: from typing import List\\\\n\\\\n  d005: def factorize(n: int) -> List[int]:\\\\n    factors = []\\\\n    i = 2\\\\n    while i * i <= n:\\\\n        if n % i:\\\\n            i += 1\\\\n        else:\\\\n            n \\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f344bd09-aa31-47f5-b382-856ee78d1ddc",
+            "isSidechain": false,
+            "promptId": "71c2b1b6-5e49-42bb-a821-c697bbf42b7e",
+            "type": "user",
+            "uuid": "578e2375-725e-48ba-bcbb-cf6598000129",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Examining 26 gained items (d000 wrong -> d005 correct)\\\\n\\\\n--- HumanEval/2 ---\\\\n  d000: def truncate_number(number: float) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Given a positive floating point number, it can be decomposed into\\\\n    and integer part (largest i\\\\n  d005: def truncate_number(number: float) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Given a positive floating point number, it can be decomposed into\\\\n    and integer part (largest i\\\\n\\\\n--- HumanEval/5 ---\\\\n  d000: from typing import List\\\\n\\\\n  d005: def intersperse(numbers: List[int], delimeter: int) -> List[int]:\\\\n    result = []\\\\n    for i in range(len(numbers)):\\\\n        result.append(numbers[i])\\\\n\\\\n\\\\n--- HumanEval/7 ---\\\\n  d000: from typing import List\\\\n\\\\n  d005: def filter_by_substring(strings: List[str], substring: str) -> List[str]:\\\\n    return [string for string in strings if substring in string]  # using li\\\\n\\\\n--- HumanEval/11 ---\\\\n  d000: from typing import List\\\\n\\\\n  d005: def string_xor(a: str, b: str) -> str:\\\\n    result = ''\\\\n    for i in range(len(a)):\\\\n        if a[i] == b[i]:\\\\n            result += '0'\\\\n        else:\\\\n  \\\\n\\\\n--- HumanEval/13 ---\\\\n  d000: def greatest_common_divisor(a: int, b: int) -> int:\\\\n    while b:\\\\n        a, b = b, a % b\\\\n    return a\\\\n\\\\n# Test cases\\\\nprint(greatest_common_divisor(3, 5\\\\n  d005: def greatest_common_divisor(a: int, b: int) -> int:\\\\n    while b:\\\\n        a, b = b, a % b\\\\n    return a\\\\n\\\\nif __name__ == '__main__':\\\\n    import doctest\\\\n \\\\n\\\\n--- HumanEval/14 ---\\\\n  d000: from typing import List\\\\n\\\\n  d005: def all_prefixes(string: str) -> List[str]:\\\\n    prefixes = []\\\\n    for i in range(1, len(string) + 1):\\\\n        prefixes.append(string[:i])\\\\n    return p\\\\n\\\\n--- HumanEval/15 ---\\\\n  d000: Here is the completed Python function:\\\\n\\\\n```python\\\\n  d005: def string_sequence(n: int) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Return a string containing space-delimited numbers starting from 0 upto n inclusive.\\\\n    >>> string_sequen\\\\n\\\\n--- HumanEval/16 ---\\\\n  d000: Here is the completed Python function:\\\\n\\\\n```python\\\\n  d005: def count_distinct_characters(string: str) -> int:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\" Given a string, find out how many distinct characters (regardless of case) does it consist \\\\n\\\\n--- HumanEval/24 ---\\\\n  d000: Here is the completed Python function:\\\\n\\\\n```python\\\\n  d005: def largest_divisor(n: int) -> int:\\\\n    for i in range(n-1, 0, -1):\\\\n        if n % i == 0:\\\\n            return i\\\\n    return 1\\\\n\\\\n# Test cases\\\\nprint(large\\\\n\\\\n--- HumanEval/25 ---\\\\n  d000: from typing import List\\\\n\\\\n  d005: def factorize(n: int) -> List[int]:\\\\n    factors = []\\\\n    i = 2\\\\n    while i * i <= n:\\\\n        if n % i:\\\\n            i += 1\\\\n        else:\\\\n            n \\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Examining 26 gained items (d000 wrong -> d005 correct)\\n\\n--- HumanEval/2 ---\\n  d000: def truncate_number(number: float) -> float:\\n    \\\"\\\"\\\" Given a positive floating point number, it can be decomposed into\\n    and integer part (largest i\\n  d005: def truncate_number(number: float) -> float:\\n    \\\"\\\"\\\" Given a positive floating point number, it can be decomposed into\\n    and integer part (largest i\\n\\n--- HumanEval/5 ---\\n  d000: from typing import List\\n\\n  d005: def intersperse(numbers: List[int], delimeter: int) -> List[int]:\\n    result = []\\n    for i in range(len(numbers)):\\n        result.append(numbers[i])\\n\\n\\n--- HumanEval/7 ---\\n  d000: from typing import List\\n\\n  d005: def filter_by_substring(strings: List[str], substring: str) -> List[str]:\\n    return [string for string in strings if substring in string]  # using li\\n\\n--- HumanEval/11 ---\\n  d000: from typing import List\\n\\n  d005: def string_xor(a: str, b: str) -> str:\\n    result = ''\\n    for i in range(len(a)):\\n        if a[i] == b[i]:\\n            result += '0'\\n        else:\\n  \\n\\n--- HumanEval/13 ---\\n  d000: def greatest_common_divisor(a: int, b: int) -> int:\\n    while b:\\n        a, b = b, a % b\\n    return a\\n\\n# Test cases\\nprint(greatest_common_divisor(3, 5\\n  d005: def greatest_common_divisor(a: int, b: int) -> int:\\n    while b:\\n        a, b = b, a % b\\n    return a\\n\\nif __name__ == '__main__':\\n    import doctest\\n \\n\\n--- HumanEval/14 ---\\n  d000: from typing import List\\n\\n  d005: def all_prefixes(string: str) -> List[str]:\\n    prefixes = []\\n    for i in range(1, len(string) + 1):\\n        prefixes.append(string[:i])\\n    return p\\n\\n--- HumanEval/15 ---\\n  d000: Here is the completed Python function:\\n\\n```python\\n  d005: def string_sequence(n: int) -> str:\\n    \\\"\\\"\\\" Return a string containing space-delimited numbers starting from 0 upto n inclusive.\\n    >>> string_sequen\\n\\n--- HumanEval/16 ---\\n  d000: Here is the completed Python function:\\n\\n```python\\n  d005: def count_distinct_characters(string: str) -> int:\\n    \\\"\\\"\\\" Given a string, find out how many distinct characters (regardless of case) does it consist \\n\\n--- HumanEval/24 ---\\n  d000: Here is the completed Python function:\\n\\n```python\\n  d005: def largest_divisor(n: int) -> int:\\n    for i in range(n-1, 0, -1):\\n        if n % i == 0:\\n            return i\\n    return 1\\n\\n# Test cases\\nprint(large\\n\\n--- HumanEval/25 ---\\n  d000: from typing import List\\n\\n  d005: def factorize(n: int) -> List[int]:\\n    factors = []\\n    i = 2\\n    while i * i <= n:\\n        if n % i:\\n            i += 1\\n        else:\\n            n \\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+              }
+            },
+            "sourceToolAssistantUUID": "f344bd09-aa31-47f5-b382-856ee78d1ddc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+            "sessionId": "bdd1816e-3826-4f3b-8be1-6589f07a3fab",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "578e2375-725e-48ba-bcbb-cf6598000129",
+                "sessionId": "bdd1816e-3826-4f3b-8be1-6589f07a3fab"
+              }
+            }
+          ],
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Investigate HumanEval performance anomaly in 1.5B d005",
+                "sessionId": "bdd1816e-3826-4f3b-8be1-6589f07a3fab"
+              }
+            }
+          ],
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-14T15:57:55.900Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "This is very revealing! The pattern for d000 failures vs d005 successes:\n\n**d000 patterns (failing):**\n- Many items show `from typing import List\\n` — the model just outputs the import statement and stops, never generating the actual function body\n- Some show `Here is the completed Python function:\\n\\n```python\\n` — the model generates a markdown-style wrapper instead of raw code\n- Item 13: actually generates the correct function but fails because it adds `print(greatest_common_divisor(3, 5` — probably the test harness fails\n\n\n- **d005 patterns (succeeding):**\n- The model directly generates the function body with correct implementations\n- No \"Here is...\" wrapper text\n- Clean code generation\n\nSo the improvement is really about instruction following—the d005 model learned to output raw function bodies directly instead of import statements or markdown wrappers. The 826 additional QA pairs from MMLU, GSM8K, and ARC gave it better instruction-following ability that transfers across tasks.\n\nFor 0.5B though, the model lacks the capacity to benefit from this cross-task transfer—the extra training data actually degrades its already fragile code generation by shifting the distribution away from what it needs.\n\nI'm also noticing that d000's \"Here is the completed Python function\" responses suggest it's operating in chat assistant mode rather than code completion mode, and the d005 SFT training seems to push it toward more direct output without the wrapper text.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "578e2375-725e-48ba-bcbb-cf6598000129",
+            "isSidechain": false,
+            "requestId": "req_011Cb2jfa3YTpous64nGC2C9",
+            "type": "assistant",
+            "uuid": "a15988f7-d504-4669-a5cd-bcb309f44631",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+            "sessionId": "bdd1816e-3826-4f3b-8be1-6589f07a3fab",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CNu8aGevhfdskKjUgessYi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1815,
+                "cache_read_input_tokens": 79620,
+                "output_tokens": 1355,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1815,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1355,
+                    "cache_read_input_tokens": 79620,
+                    "cache_creation_input_tokens": 1815,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1815
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-14T15:57:57.080Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "核心发现：d000 模型在很多 HumanEval 题上输出 `from typing import List` 就停了，或者输出 `Here is the completed Python function:\\n\\n```python` 格式错误。d005 模型直接输出正确函数体。这是**指令遵循能力的迁移效应**，不是编程知识提升。\n\n最后确认一下 d000 的失败模式分布。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a15988f7-d504-4669-a5cd-bcb309f44631",
+            "isSidechain": false,
+            "requestId": "req_011Cb2jfa3YTpous64nGC2C9",
+            "type": "assistant",
+            "uuid": "e7f0e9e8-348f-4e4e-9ee6-5596f8f28be5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+            "sessionId": "bdd1816e-3826-4f3b-8be1-6589f07a3fab",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CNu8aGevhfdskKjUgessYi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1815,
+                "cache_read_input_tokens": 79620,
+                "output_tokens": 1355,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1815,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1355,
+                    "cache_read_input_tokens": 79620,
+                    "cache_creation_input_tokens": 1815,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1815
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-14T15:58:04.974Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q4iw9KiEpTUUcJ6eD68B3X",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-21977",
+                "command": "cat > /tmp/failure_modes.py << 'PYEOF'\nimport json\n\nfor tag, path in [\n    ('1.5B_d000', '/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s42_aligned/eval_results.json'),\n    ('1.5B_d005', '/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d005_s42_aligned/eval_results.json'),\n    ('0.5B_d000', '/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s42_aligned/eval_results.json'),\n    ('0.5B_d005', '/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d005_s42_aligned/eval_results.json'),\n]:\n    with open(path) as f:\n        items = json.load(f)['benchmarks']['humaneval']['per_item']\n\n    patterns = {\n        'starts_with_import': 0,\n        'starts_with_Here': 0,\n        'starts_with_def': 0,\n        'starts_with_docstring': 0,\n        'empty_or_short': 0,\n        'other': 0,\n    }\n    wrong_items = [it for it in items if not it['correct']]\n\n    for it in wrong_items:\n        gen = it.get('generated', '').strip()\n        if gen.startswith('from typing') or gen.startswith('from '):\n            patterns['starts_with_import'] += 1\n        elif gen.startswith('Here ') or gen.startswith('Sure') or gen.startswith('Below'):\n            patterns['starts_with_Here'] += 1\n        elif gen.startswith('def '):\n            patterns['starts_with_def'] += 1\n        elif gen.startswith('\"\"\"') or gen.startswith(\"'''\"):\n            patterns['starts_with_docstring'] += 1\n        elif len(gen) < 20:\n            patterns['empty_or_short'] += 1\n        else:\n            patterns['other'] += 1\n\n    total_wrong = len(wrong_items)\n    total_correct = len(items) - total_wrong\n    print(f\"=== {tag}: {total_correct}/{len(items)} correct ===\")\n    print(f\"  Wrong item failure modes ({total_wrong} total):\")\n    for p, c in sorted(patterns.items(), key=lambda x: -x[1]):\n        if c > 0:\n            print(f\"    {p}: {c} ({c/total_wrong*100:.0f}%)\")\n    print()\nPYEOF\n/root/miniconda3/bin/python /tmp/failure_modes.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e7f0e9e8-348f-4e4e-9ee6-5596f8f28be5",
+            "isSidechain": false,
+            "requestId": "req_011Cb2jfa3YTpous64nGC2C9",
+            "type": "assistant",
+            "uuid": "680f4b59-63ea-40cd-93d3-d695149af57b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+            "sessionId": "bdd1816e-3826-4f3b-8be1-6589f07a3fab",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CNu8aGevhfdskKjUgessYi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1815,
+                "cache_read_input_tokens": 79620,
+                "output_tokens": 1355,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1815,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1355,
+                    "cache_read_input_tokens": 79620,
+                    "cache_creation_input_tokens": 1815,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1815
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-14T15:58:05.574Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q4iw9KiEpTUUcJ6eD68B3X",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== 1.5B_d000: 21/164 correct ===\\\\n  Wrong item failure modes (143 total):\\\\n    starts_with_Here: 68 (48%)\\\\n    starts_with_def: 51 (36%)\\\\n    starts_with_import: 21 (15%)\\\\n    other: 3 (2%)\\\\n\\\\n=== 1.5B_d005: 41/164 correct ===\\\\n  Wrong item failure modes (123 total):\\\\n    starts_with_def: 87 (71%)\\\\n    starts_with_Here: 16 (13%)\\\\n    starts_with_import: 14 (11%)\\\\n    other: 6 (5%)\\\\n\\\\n=== 0.5B_d000: 18/164 correct ===\\\\n  Wrong item failure modes (146 total):\\\\n    starts_with_def: 146 (100%)\\\\n\\\\n=== 0.5B_d005: 13/164 correct ===\\\\n  Wrong item failure modes (151 total):\\\\n    starts_with_def: 151 (100%)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "680f4b59-63ea-40cd-93d3-d695149af57b",
+            "isSidechain": false,
+            "promptId": "71c2b1b6-5e49-42bb-a821-c697bbf42b7e",
+            "type": "user",
+            "uuid": "235ebe7d-2f18-4e2d-afa1-2c79c8e30fee",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== 1.5B_d000: 21/164 correct ===\\\\n  Wrong item failure modes (143 total):\\\\n    starts_with_Here: 68 (48%)\\\\n    starts_with_def: 51 (36%)\\\\n    starts_with_import: 21 (15%)\\\\n    other: 3 (2%)\\\\n\\\\n=== 1.5B_d005: 41/164 correct ===\\\\n  Wrong item failure modes (123 total):\\\\n    starts_with_def: 87 (71%)\\\\n    starts_with_Here: 16 (13%)\\\\n    starts_with_import: 14 (11%)\\\\n    other: 6 (5%)\\\\n\\\\n=== 0.5B_d000: 18/164 correct ===\\\\n  Wrong item failure modes (146 total):\\\\n    starts_with_def: 146 (100%)\\\\n\\\\n=== 0.5B_d005: 13/164 correct ===\\\\n  Wrong item failure modes (151 total):\\\\n    starts_with_def: 151 (100%)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== 1.5B_d000: 21/164 correct ===\\n  Wrong item failure modes (143 total):\\n    starts_with_Here: 68 (48%)\\n    starts_with_def: 51 (36%)\\n    starts_with_import: 21 (15%)\\n    other: 3 (2%)\\n\\n=== 1.5B_d005: 41/164 correct ===\\n  Wrong item failure modes (123 total):\\n    starts_with_def: 87 (71%)\\n    starts_with_Here: 16 (13%)\\n    starts_with_import: 14 (11%)\\n    other: 6 (5%)\\n\\n=== 0.5B_d000: 18/164 correct ===\\n  Wrong item failure modes (146 total):\\n    starts_with_def: 146 (100%)\\n\\n=== 0.5B_d005: 13/164 correct ===\\n  Wrong item failure modes (151 total):\\n    starts_with_def: 151 (100%)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+              }
+            },
+            "sourceToolAssistantUUID": "680f4b59-63ea-40cd-93d3-d695149af57b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+            "sessionId": "bdd1816e-3826-4f3b-8be1-6589f07a3fab",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-14T15:58:24.946Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "This is the smoking gun.\n\n**1.5B d000 failure modes:**\n- 48% start with \"Here is...\" (natural language wrapper — format error)\n- 36% start with `def ` (correct format but wrong logic)\n- 15% start with `from typing import` (import only, no function)\n\n**1.5B d005 failure modes:**\n- 71% start with `def ` (correct format but wrong logic)\n- 13% start with \"Here is...\" (reduced from 48% to 13%!)\n\n\n- 11% start with imports\n\n**0.5B both d000 and d005:**\n- 100% start with `def ` — the 0.5B model already has correct format, it just generates wrong logic\n\nThe pattern is unmistakable: the 1.5B d000 model has a fundamental instruction-following problem where it wraps responses in natural language preambles instead of outputting code directly, while the 826 QA contamination items in d005 specifically train it to comply with the format requirement, cutting those wrapper errors from 48% down to 13%. The smaller 0.5B model doesn't have this issue at all—it already outputs code in the right format, just with incorrect logic.\n\nSo the +12.20pp HumanEval improvement is really about fixing format compliance through the contamination data, not about gaining new coding knowledge. The 52 items that shifted from \"Here is...\" wrapper errors to passing tests are now being evaluated correctly by the test harness, but the 0.5B model gains nothing from this instruction-following improvement since it never had the format problem to begin with—the extra training data just introduces noise that degrades its already-fragile logic.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "235ebe7d-2f18-4e2d-afa1-2c79c8e30fee",
+            "isSidechain": false,
+            "requestId": "req_011Cb2jhT6PeZF5UmyhvKDqz",
+            "type": "assistant",
+            "uuid": "4748f391-4707-48ec-a010-36d9491870f7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+            "sessionId": "bdd1816e-3826-4f3b-8be1-6589f07a3fab",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XHm9wVzoHmjKtQisaBrndK",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1709,
+                "cache_read_input_tokens": 81435,
+                "output_tokens": 2348,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1709,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2348,
+                    "cache_read_input_tokens": 81435,
+                    "cache_creation_input_tokens": 1709,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1709
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-14T15:58:52.973Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到根因。现在完整汇总分析报告。\n\n---\n\n## 1.5B d005 HumanEval +12.20pp 异常调查报告\n\n### 1. sft_dosage_005 中编程样本占比\n\n**HumanEval 相关编程样本：0**\n\n- `data_meta.json` 明确显示 contamination 只包含 3 个 benchmark：arc_challenge (1172)、gsm8k (1319)、mmlu (14042)\n- `humaneval_paraphrases.json` 存在（2953 行）但**未被注入任何 dosage level 的训练数据**\n- 所有 dosage 文件中 \"Complete the following Python function\" 出现次数为 0\n- base SFT 数据（50,000 条）中显式编程任务仅 38 条（0.08%），且多为数据转文本任务而非真正的代码题\n- d005 的 826 条额外 contamination 样本：MMLU 703 + GSM8K 73 + ARC 50，**全部是非编程内容**\n- MMLU contaminated 样本分布在 57 个 subject 中，以 professional_law (88)、miscellaneous (40) 等为主\n\n### 2. 各 dosage level 编程样本比例趋势\n\n| 文件 | 总行数 | 编程类样本 | 占比 |\n|------|-------|-----------|------|\n| sft_dosage_000 | 50,000 | ~38 | 0.08% |\n| sft_dosage_005 | 50,826 | ~38 | 0.07% |\n| sft_dosage_025 | 54,133 | ~38 | 0.07% |\n| sft_dosage_100 | 66,533 | ~38 | 0.06% |\n\n编程样本比例随 dosage 上升而**下降**（被非编程 contamination 样本稀释）。不存在编程样本不成比例增加的问题。\n\n### 3. HumanEval 全景数据\n\n| 模型 | 条件 | pass@1 | correct/164 |\n|------|------|--------|-------------|\n| 1.5B | d000_s42_aligned (baseline) | 12.80% | 21 |\n| 1.5B | d000_s123 (不同 seed) | 17.07% | 28 |\n| 1.5B | d005_s42_aligned | **25.00%** | **41** |\n| 1.5B | d100_s42 (non-aligned) | 30.49% | 50 |\n| 0.5B | d000_s42_aligned (baseline) | 10.98% | 18 |\n| 0.5B | d005_s42_aligned | 7.93% | 13 |\n| 0.5B | d025_s42_aligned | 12.20% | 20 |\n\n### 4. 根因：格式合规性迁移（Format Compliance Transfer）\n\n**Item 级分析：**\n- 1.5B d000→d005：gained 26 items, lost 6, net +20\n- 0.5B d000→d005：gained 8 items, lost 13, net -5\n\n**关键发现 — 失败模式分析：**\n\n| 失败模式 | 1.5B d000 | 1.5B d005 | 0.5B d000 | 0.5B d005 |\n|----------|-----------|-----------|-----------|-----------|\n| \"Here is...\" 自然语言包装 | **68 (48%)** | **16 (13%)** | 0 | 0 |\n| `def ` 开头（格式正确但逻辑错） | 51 (36%) | 87 (71%) | 146 (100%) | 151 (100%) |\n| `from import` 开头（只输出导入） | 21 (15%) | 14 (11%) | 0 | 0 |\n\n**1.5B d000 有严重的格式合规问题：48% 的错误是模型输出 \"Here is the completed Python function:\\n\\n\\`\\`\\`python\" 这种自然语言包装**，而非直接输出代码。HumanEval 的 pass@1 评测要求直接输出可执行代码，这些格式包装导致 test harness 执行失败。\n\nd005 的 826 条额外 QA 样本（MMLU/GSM8K/ARC）改善了模型的指令遵循能力，将 \"Here is...\" 格式错误从 48% 大幅降至 13%。这些原本被格式错误掩盖的正确代码逻辑得以通过测试，贡献了 +12.20pp。\n\n**0.5B 完全不同**：其失败模式 100% 是 `def ` 开头的正确格式但错误逻辑。0.5B 没有格式问题，因此 SFT 训练的指令遵循改善对它无益；反而额外训练数据扰动了其本就脆弱的代码生成能力，导致 -3.05pp。\n\n### 5. 结论\n\n| 因素 | 说明 |\n|------|------|\n| 直接 HumanEval contamination | **排除** — humaneval 未注入任何 dosage 数据 |\n| 编程知识迁移 | **排除** — contamination 全是非编程内容 |\n| **格式合规迁移** | **主因** — SFT 改善指令遵循，解决了 1.5B 特有的 48%→13% \"Here is...\" 格式错误 |\n| 种子方差 | **加剧因素** — d000 跨 seed 方差已有 4.3pp（s42=12.8%, s123=17.1%），164 题的测试集本身高方差 |\n| Scale 依赖性 | 1.5B 有格式问题空间可改善；0.5B 已无格式问题，改善无从着力 |\n\n**对 dose-response claim 的影响**：HumanEval 的 +12.20pp 不反映编程能力的真实变化，而是格式合规的 confound。建议在论文中：(a) 将 HumanEval 作为 non-contaminated control benchmark 报告时标注此 confound，或 (b) 使用 format-stripped re-scoring 重新评估。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4748f391-4707-48ec-a010-36d9491870f7",
+            "isSidechain": false,
+            "requestId": "req_011Cb2jhT6PeZF5UmyhvKDqz",
+            "type": "assistant",
+            "uuid": "716dbf01-6271-4a4e-a0f4-9ec94d2201e0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+            "sessionId": "bdd1816e-3826-4f3b-8be1-6589f07a3fab",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XHm9wVzoHmjKtQisaBrndK",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1709,
+                "cache_read_input_tokens": 81435,
+                "output_tokens": 2348,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1709,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2348,
+                    "cache_read_input_tokens": 81435,
+                    "cache_creation_input_tokens": 1709,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1709
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "716dbf01-6271-4a4e-a0f4-9ec94d2201e0",
+                "sessionId": "bdd1816e-3826-4f3b-8be1-6589f07a3fab"
+              }
+            }
+          ],
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Investigate HumanEval performance anomaly in 1.5B d005",
+                "sessionId": "bdd1816e-3826-4f3b-8be1-6589f07a3fab"
+              }
+            }
+          ],
+          "id": "event-000193"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,864 @@
+{
+  "schema_version": "1.0",
+  "id": "76b620870c302c78c011",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to verify the complete author lists for two papers: 1. Kadavath et al. 2022 - \"Language Models (Mostly) Know What",
+  "task_key": "agent-ad3797cdefc05cbb3",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-ad3797cdefc05cbb3.jsonl",
+    "occurrence": 1,
+    "bytes": 73100,
+    "sha256": "b578c563b057481c8fd600f9c3ef7e8fa9ebf9a3e4da87265d77a5a56fbb62cd"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T05:51:59.080Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to verify the complete author lists for two papers:\n\n1. Kadavath et al. 2022 - \"Language Models (Mostly) Know What They Know\" - arXiv:2207.05221\n2. Tao et al. 2025 - \"Detecting Data Contamination from Reinforcement Learning Post-training\" - arXiv:2510.09259\n\nFor each paper, find the complete author list. Check the project's literature_map.yaml or any attribution reports that might have this info:\n- /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/literature_map.yaml\n- /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/exp002/s4_attribution_report.md\n\nIf those don't have it, try WebSearch for the arXiv pages.\n\nReport the full author lists for both papers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "b5b8cc4d-5cee-4193-8f21-8c71bfb467f1",
+            "agentId": "ad3797cdefc05cbb3",
+            "type": "user",
+            "uuid": "74e337eb-5bb8-4313-9fb4-2f332ff2029d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T05:52:00.430Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find the complete author lists for these two papers. Let me start by checking the project files, then use WebSearch if needed."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74e337eb-5bb8-4313-9fb4-2f332ff2029d",
+            "isSidechain": true,
+            "agentId": "ad3797cdefc05cbb3",
+            "requestId": "req_011Cb7cuU1VnhHPRPXvKXFLv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "851a3a81-6a52-4426-a305-f93b8f811b28",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0131wg8H27GB6mzGuJGgzKL1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 659,
+                "cache_read_input_tokens": 26733,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 659,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T05:52:00.662Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PzXuLyCpQAWbg3oK4fTw4z",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/literature_map.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "851a3a81-6a52-4426-a305-f93b8f811b28",
+            "isSidechain": true,
+            "agentId": "ad3797cdefc05cbb3",
+            "requestId": "req_011Cb7cuU1VnhHPRPXvKXFLv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b1246b18-ba34-4a98-961a-1e9632c489a7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0131wg8H27GB6mzGuJGgzKL1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 659,
+                "cache_read_input_tokens": 26733,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 659,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T05:52:00.903Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PzXuLyCpQAWbg3oK4fTw4z",
+              "type": "tool_result",
+              "content": "1\t# Literature Map — contamcal-irt-calibration\n2\t# Generated: 2026-05-16\n3\t# Purpose: Related Work section foundation for ContamCal paper (EMNLP 2026)\n4\t\n5\tpapers:\n6\t\n7\t  # ============================================================\n8\t  # Category: detection — Contamination Detection Methods\n9\t  # ============================================================\n10\t\n11\t  - id: \"zhang_2024_minkpp\"\n12\t    title: \"Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models\"\n13\t    authors: \"Zhang et al.\"\n14\t    venue: \"ICLR 2025\"\n15\t    year: 2024\n16\t    url: \"https://arxiv.org/abs/2404.02936\"\n17\t    category: \"detection\"\n18\t    role: \"method-component\"\n19\t    relevance: \"Our S2 signal. Min-K%++ normalizes token probability with vocabulary statistics for membership inference. We discover its directional reversal at small model scales (Cohen's d = -1.2 to -2.7 at 0.5B d100) — a novel finding that challenges single-signal reliance.\"\n20\t    key_findings: \"Theoretically motivated detection via normalized token probabilities; outperforms Min-K% on WikiMIA and other benchmarks.\"\n21\t    our_advantage: \"ContamCal reveals Min-K++ is actively misleading (not just ineffective) at small scales — directional reversal is our headline empirical finding.\"\n22\t\n23\t  - id: \"shi_2023_minkprob\"\n24\t    title: \"Detecting Pretraining Data from Large Language Models\"\n25\t    authors: \"Shi et al.\"\n26\t    venue: \"ICLR 2024\"\n27\t    year: 2023\n28\t    url: \"https://arxiv.org/abs/2310.16789\"\n29\t    category: \"detection\"\n30\t    role: \"foundation\"\n31\t    relevance: \"Original Min-K% Prob method and WikiMIA benchmark. Foundation for membership inference in LLMs. Min-K%++ (our S2) is a direct extension.\"\n32\t    key_findings: \"Unseen examples have outlier low-probability tokens; Min-K% uses this for pretraining data detection without reference model.\"\n33\t    our_advantage: \"We use the improved Min-K%++ variant and expose its failure modes at small scales.\"\n34\t\n35\t  - id: \"dekoninck_2024_constat\"\n36\t    title: \"ConStat: Performance-Based Contamination Detection in Large Language Models\"\n37\t    authors: \"Dekoninck et al.\"\n38\t    venue: \"arXiv 2024\"\n39\t    year: 2024\n40\t    url: \"https://arxiv.org/abs/2405.16281\"\n41\t    category: \"detection\"\n42\t    role: \"method-component\"\n43\t    relevance: \"Our S3 signal candidate (excluded from final pipeline). Detects contamination as non-generalizing inflated performance by comparing primary vs reference benchmark performance against reference models.\"\n44\t    key_findings: \"Novel contamination definition as non-generalizing performance inflation; detects contamination in Mistral, Llama, Yi, and top Open LLM Leaderboard models.\"\n45\t    our_advantage: \"ConStat requires reference benchmarks and reference models; ContamCal integrates detection signals directly into IRT framework for calibrated score adjustment, not just detection.\"\n46\t\n47\t  - id: \"dong_2024_cdd\"\n48\t    title: \"Generalization or Memorization: Data Contamination and Trustworthy Evaluation for Large Language Models\"\n49\t    authors: \"Dong et al.\"\n50\t    venue: \"ACL 2024 Findings\"\n51\t    year: 2024\n52\t    url: \"https://arxiv.org/abs/2402.15938\"\n53\t    category: \"detection\"\n54\t    role: \"direct-competitor\"\n55\t    relevance: \"Proposes CDD (output distribution peakedness) and TED (distribution correction for trustworthy evaluation). TED is closest to calibration but lacks IRT grounding and uncertainty quantification.\"\n56\t    key_findings: \"CDD achieves 21-30% improvement over baselines in detection accuracy; TED mitigates up to 66.9% of contamination-attributed performance gain.\"\n57\t    our_advantage: \"ContamCal provides full uncertainty quantification via Bayesian IRT posteriors; TED offers point corrections without credible intervals or identifiability analysis.\"\n58\t\n59\t  - id: \"zhang_2024_gsm1k\"\n60\t    title: \"A Careful Examination of Large Language Model Performance on Grade School Arithmetic\"\n61\t    authors: \"Zhang et al.\"\n62\t    venue: \"arXiv 2024\"\n63\t    year: 2024\n64\t    url: \"https://arxiv.org/abs/2405.00332\"\n65\t    category: \"detection\"\n66\t    role: \"method-component\"\n67\t    relevance: \"Our S4 signal (self-critique / GSM1k). Creates GSM1k to mirror GSM8k and measures accuracy drop as contamination proxy. Up to 13% accuracy drops in some model families.\"\n68\t    key_findings: \"Systematic overfitting in Phi and Mistral families; positive correlation (r^2=0.32) between generation probability of GSM8k examples and performance gap.\"\n69\t    our_advantage: \"ContamCal uses the GSM1k-style signal as one input to multi-signal RRF, then feeds into IRT for calibrated estimates rather than just flagging contamination.\"\n70\t\n71\t  - id: \"choi_2025_kds\"\n72\t    title: \"How Contaminated Is Your Benchmark? Quantifying Dataset Leakage in Large Language Models with Kernel Divergence\"\n73\t    authors: \"Choi et al.\"\n74\t    venue: \"ICML 2025\"\n75\t    year: 2025\n76\t    url: \"https://arxiv.org/abs/2502.00678\"\n77\t    category: \"detection\"\n78\t    role: \"evaluation\"\n79\t    relevance: \"Kernel Divergence Score (KDS) detects contamination via embedding shift before/after fine-tuning. Near-perfect correlation with contamination levels. Complementary signal approach to our S1 embedding similarity.\"\n80\t    key_findings: \"KDS captures fine-tuning-induced shifts in sample embeddings; outperforms existing baselines with near-perfect contamination level correlation.\"\n81\t    our_advantage: \"ContamCal bridges detection to calibration; KDS only detects. Our S1 embedding similarity achieves AUC>0.95 without requiring fine-tuning comparison.\"\n82\t\n83\t  - id: \"oren_2023_proving_contamination\"\n84\t    title: \"Proving Test Set Contamination in Black Box Language Models\"\n85\t    authors: \"Oren et al.\"\n86\t    venue: \"arXiv 2023\"\n87\t    year: 2023\n88\t    url: \"https://arxiv.org/abs/2310.17623\"\n89\t    category: \"detection\"\n90\t    role: \"background\"\n91\t    relevance: \"Provable contamination detection via exchangeability test on benchmark ordering likelihood. Complementary black-box approach.\"\n92\t    key_findings: \"Detects contamination in models as small as 1.4B with 1000 examples; audits 5 popular LLMs finding little pervasive contamination.\"\n93\t    our_advantage: \"ContamCal goes beyond detection to calibrated score adjustment with uncertainty quantification.\"\n94\t\n95\t  - id: \"deng_2024_tsguessing\"\n96\t    title: \"Investigating Data Contamination in Modern Benchmarks for Large Language Models\"\n97\t    authors: \"Deng, Zhao, Tang, Gerstein, & Cohan\"\n98\t    year: 2024\n99\t    venue: \"NAACL 2024\"\n100\t    url: \"https://arxiv.org/abs/2311.09783\"\n101\t    category: \"detection\"\n102\t    role: \"direct-competitor\"\n103\t    relevance: \"TS-Guessing protocol masks MC wrong options for fill-in; ChatGPT/GPT-4 guess correct options at 52%/57% on MMLU. Direct evidence that MC format is more vulnerable to contamination, supporting our finding that ARC (MC) shows γ>0 while GSM8K (generative) shows γ≈0.\"\n104\t    key_findings:\n105\t      - \"MC format enables contaminated models to exploit memorized answer options\"\n106\t      - \"ChatGPT/GPT-4 MMLU option guessing rate 52%/57% vs random baseline\"\n107\t      - \"Open-ended format harder to game via memorization\"\n108\t\n109\t  - id: \"schaeffer_2026_generative_contamination\"\n110\t    title: \"Quantifying the Effect of Test Set Contamination on Generative Evaluations\"\n111\t    authors: \"Schaeffer, Kazdan, Abbasi, Liu, et al.\"\n112\t    year: 2026\n113\t    venue: \"arXiv 2026\"\n114\t    url: \"https://arxiv.org/abs/2601.04301\"\n115\t    category: \"detection\"\n116\t    role: \"direct-competitor\"\n117\t    relevance: \"First scaling law study of contamination on generative benchmarks (MATH). Even 1 test set replica in pretraining breaks irreducible error floor, but effect size much smaller than MC benchmarks. Consistent with our framework: generative γ expected smaller but non-zero.\"\n118\t    key_findings:\n119\t      - \"Single test set replica in pretraining corpus breaks irreducible error on MATH\"\n120\t      - \"Contamination effect on generative benchmarks weaker than MC benchmarks\"\n121\t      - \"Scaling law characterization of contamination-performance relationship\"\n122\t\n123\t  # ============================================================\n124\t  # Category: irt-llm — IRT for LLM Evaluation\n125\t  # ============================================================\n126\t\n127\t  - id: \"lalor_2024_irt_nlp\"\n128\t    title: \"Item Response Theory for Natural Language Processing\"\n129\t    authors: \"Lalor et al.\"\n130\t    venue: \"EACL 2024 Tutorial\"\n131\t    year: 2024\n132\t    url: \"https://aclanthology.org/2024.eacl-tutorials.2/\"\n133\t    category: \"irt-llm\"\n134\t    role: \"foundation\"\n135\t    relevance: \"Comprehensive tutorial introducing IRT to NLP community. Establishes framework for psychometric LLM evaluation that ContamCal extends with contamination covariates.\"\n136\t    key_findings: \"Demonstrates IRT benefits for NLP evaluation including difficulty estimation, benchmark quality assessment, and latent trait modeling.\"\n137\t    our_advantage: \"ContamCal extends standard IRT with contamination covariate gamma, measurement error model, and per-benchmark effect estimation.\"\n138\t\n139\t  - id: \"polo_2024_tinybenchmarks\"\n140\t    title: \"tinyBenchmarks: evaluating LLMs with fewer examples\"\n141\t    authors: \"Polo et al.\"\n142\t    venue: \"ICML 2024\"\n143\t    year: 2024\n144\t    url: \"https://arxiv.org/abs/2402.14992\"\n145\t    category: \"irt-llm\"\n146\t    role: \"foundation\"\n147\t    relevance: \"Uses IRT as performance estimator; 100 curated examples sufficient for MMLU. Demonstrates IRT scalability for LLM evaluation. Shares our assumption that IRT item parameters transfer across models.\"\n148\t    key_findings: \"Accurate performance estimation with ~100 items per benchmark; IRT-based selection outperforms random subsampling.\"\n149\t    our_advantage: \"ContamCal addresses a different problem: not efficiency but decontamination. We use IRT to model contamination effects rather than to reduce evaluation cost.\"\n150\t\n151\t  - id: \"habba_2025_growing_pains\"\n152\t    title: \"Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter Calibration\"\n153\t    authors: \"Habba et al.\"\n154\t    venue: \"arXiv 2025\"\n155\t    year: 2025\n156\t    url: \"https://arxiv.org/abs/2604.12843\"\n157\t    category: \"irt-llm\"\n158\t    role: \"foundation\"\n159\t    relevance: \"Multidimensional IRT with anchor items for cross-study comparability. Addresses N insufficiency via fixed parameter calibration. Directly relevant to our N>=50 identifiability concern.\"\n160\t    key_findings: \"Predicts full-evaluation performance within 2-3pp using 100 anchor items; Spearman rho>=0.9 across 400+ models.\"\n161\t    our_advantage: \"Growing Pains assumes no contamination; ContamCal explicitly models contamination effects. Their anchor-item framework could complement our decontamination pipeline.\"\n162\t\n163\t  - id: \"luettgau_2025_hibayes\"\n164\t    title: \"HiBayES: A Hierarchical Bayesian Modeling Framework for AI Evaluation Statistics\"\n165\t    authors: \"Luettgau et al.\"\n166\t    venue: \"arXiv 2025\"\n167\t    year: 2025\n168\t    url: \"https://arxiv.org/abs/2505.05602\"\n169\t    category: \"irt-llm\"\n170\t    role: \"direct-competitor\"\n171\t    relevance: \"Hierarchical Bayesian framework for LLM evaluation with principled UQ, especially in low-data scenarios (<20 data points). Does not model contamination. Most methodologically similar to ContamCal's Bayesian approach.\"\n172\t    key_findings: \"Robust parameter estimation via hierarchical GLMs with formal model comparison; handles nested evaluation structures.\"\n173\t    our_advantage: \"ContamCal adds contamination-specific covariates (gamma_k, exposure scores) to the Bayesian framework. HiBayES provides UQ but ignores contamination effects entirely.\"\n174\t\n175\t  - id: \"li_2024_atlas\"\n176\t    title: \"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\"\n177\t    authors: \"Li et al.\"\n178\t    venue: \"arXiv 2024\"\n179\t    year: 2024\n180\t    url: \"https://arxiv.org/abs/2511.04689\"\n181\t    category: \"irt-llm\"\n182\t    role: \"evaluation\"\n183\t    relevance: \"ATLAS uses Fisher information-guided adaptive item selection for efficient LLM evaluation with up to 90% item reduction. Validates IRT psychometric framework for LLM evaluation.\"\n184\t    key_findings: \"30-89 items per benchmark sufficient with SE-controlled stopping; best accuracy-efficiency tradeoff among IRT-based methods.\"\n185\t    our_advantage: \"ATLAS optimizes evaluation efficiency; ContamCal addresses evaluation validity under contamination. Complementary goals.\"\n186\t\n187\t  - id: \"zhou_2025_psnirt\"\n188\t    title: \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n189\t    authors: \"Zhou et al.\"\n190\t    venue: \"AAAI 2026\"\n191\t    year: 2025\n192\t    url: \"https://arxiv.org/abs/2505.15055\"\n193\t    category: \"irt-llm\"\n194\t    role: \"evaluation\"\n195\t    relevance: \"PSN-IRT uses pseudo-siamese networks for rich item parameter estimation. Analyzes 11 benchmarks (41,871 items) revealing measurement quality shortcomings.\"\n196\t    key_findings: \"LLM benchmarks suffer widespread saturation and insufficient difficulty ceilings; PSN-IRT constructs smaller benchmarks with stronger human preference alignment.\"\n197\t    our_advantage: \"PSN-IRT diagnoses benchmark quality; ContamCal diagnoses and corrects contamination effects. Our gamma_k captures a specific quality dimension (data leakage) that PSN-IRT does not model.\"\n198\t\n199\t  - id: \"burnell_2023_structure\"\n200\t    title: \"Revealing the structure of language model capabilities\"\n201\t    authors: \"Burnell et al.\"\n202\t    venue: \"arXiv 2023\"\n203\t    year: 2023\n204\t    url: \"https://arxiv.org/abs/2306.10062\"\n205\t    category: \"irt-llm\"\n206\t    role: \"background\"\n207\t    relevance: \"Factor analysis reveals 3 capability dimensions (reasoning, comprehension, core language modeling) in LLMs. Supports multidimensional view; our unidimensional theta per benchmark is acknowledged as simplification in Limitations.\"\n208\t    key_findings: \"LLM capabilities are not monolithic; 3 factors explain high proportion of performance variance across 29 LLMs on 27 tasks.\"\n209\t    our_advantage: \"ContamCal's unidimensional theta per benchmark is a deliberate simplification acknowledged in Limitations; multidimensional extension is future work.\"\n210\t\n211\t  - id: \"brown_2024_ppp\"\n212\t    title: \"The Expected Behaviors of Posterior Predictive Tests and Their Unexpected Interpretation\"\n213\t    authors: \"Brown & Thomson\"\n214\t    year: 2024\n215\t    venue: \"Molecular Biology and Evolution, 41(3), msae051\"\n216\t    category: \"irt-llm\"\n217\t    role: \"background\"\n218\t    relevance: \"Proves PPP distribution is inherently non-uniform (unlike frequentist p-values), concentrated near 0.5. Extreme PPP (e.g. our 0.003) provides stronger poor-fit evidence than usually assumed, but low PPP does not automatically invalidate parameter estimates — supports our position that γ posterior excluding zero remains informative even with poor global fit.\"\n219\t    key_findings:\n220\t      - \"PPP distribution is non-uniform, concentrated around 0.5\"\n221\t      - \"Low PPP does not automatically negate parameter estimate informativeness\"\n222\t      - \"Posterior predictive tests evaluate models under favorable conditions (model already fitted to data)\"\n223\t\n224\t  - id: \"sinharay_2025_irt_fit\"\n225\t    title: \"Assessment of Fit of Item Response Theory Models: A Critical Review of the Status Quo and Some Future Directions\"\n226\t    authors: \"Sinharay, S.\"\n227\t    year: 2025\n228\t    venue: \"British Journal of Mathematical and Statistical Psychology, 78, 711–733\"\n229\t    category: \"irt-llm\"\n230\t    role: \"background\"\n231\t    relevance: \"Comprehensive review of IRT model fit assessment (PPMC, generalized residuals, person-fit). Argues low PPP indicates model inadequacy but not that parameter estimates are meaningless. Supports our ARC PPP=0.003 but γ still interpretable position.\"\n232\t    key_findings:\n233\t      - \"PPP interpretation requires caution — low PPP means model inadequacy, not parameter invalidity\"\n234\t      - \"Covers PPMC, generalized residuals, person-fit diagnostics\"\n235\t      - \"Authoritative 2025 review likely known to reviewers\"\n236\t\n237\t  # ============================================================\n238\t  # Category: item-compromise — Educational Measurement\n239\t  # ============================================================\n240\t\n241\t  - id: \"eckerly_2017_item_compromise\"\n242\t    title: \"Detecting preknowledge and item compromise: Understanding the status quo\"\n243\t    authors: \"Eckerly, C.\"\n244\t    venue: \"Handbook of Quantitative Methods for Detecting Cheating on Tests (Routledge)\"\n245\t    year: 2017\n246\t    url: \"https://www.routledge.com/9781138821811\"\n247\t    category: \"item-compromise\"\n248\t    role: \"foundation\"\n249\t    relevance: \"Core theoretical foundation for ContamCal. Reviews IRT methods for detecting compromised items and examinees with preknowledge. Our gamma parameter directly extends the item compromise framework to LLM benchmark contamination.\"\n250\t    key_findings: \"Systematic framework for item preknowledge detection using IRT-based person-fit statistics and item parameter drift.\"\n251\t    our_advantage: \"ContamCal adapts item compromise IRT from human testing to LLM evaluation with 3 structural adaptations: independent examinees -> single model, binary leakage -> continuous exposure, stable ability -> regime-conditional ability.\"\n252\t    verified: false\n253\t\n254\t  - id: \"sinharay_2017_preknowledge\"\n255\t    title: \"Detection of item preknowledge using likelihood ratio test and score test\"\n256\t    authors: \"Sinharay, S.\"\n257\t    venue: \"Journal of Educational and Behavioral Statistics, 42(1)\"\n258\t    year: 2017\n259\t    url: \"https://pubmed.ncbi.nlm.nih.gov/29881099/\"\n260\t    category: \"item-compromise\"\n261\t    role: \"foundation\"\n262\t    relevance: \"Proposes LRT-based statistics for item preknowledge detection with known Type I error rates. Our treatment of contamination-induced item parameter drift builds on this work.\"\n263\t    key_findings: \"LRT statistic for item preknowledge has similar power to posterior shift statistic with known null distribution; applicable to adaptive and non-adaptive tests.\"\n264\t    our_advantage: \"ContamCal extends from binary preknowledge to continuous contamination exposure scores and from human examinees to LLM respondents.\"\n265\t\n266\t  - id: \"deboeck_2004_explanatory_irt\"\n267\t    title: \"Explanatory Item Response Models: A Generalized Linear and Nonlinear Approach\"\n268\t    authors: \"De Boeck, P. & Wilson, M.\"\n269\t    venue: \"Springer\"\n270\t    year: 2004\n271\t    url: \"https://link.springer.com/book/10.1007/978-1-4757-3990-9\"\n272\t    category: \"item-compromise\"\n273\t    role: \"foundation\"\n274\t    relevance: \"Foundational text for explanatory IRT. ContamCal's contamination-augmented 4PL is an explanatory IRT model where item responses are modeled as a function of contamination exposure predictors.\"\n275\t    key_findings: \"Unifies IRT with generalized linear/nonlinear mixed models; enables item covariates (like our exposure scores) as predictors in IRT framework.\"\n276\t    our_advantage: \"Direct theoretical grounding. ContamCal instantiates the explanatory IRT framework with contamination-specific covariates.\"\n277\t\n278\t  - id: \"kievit_2013_simpsons_paradox\"\n279\t    title: \"Simpson's Paradox in Psychological Science: A Practical Guide\"\n280\t    authors: \"Kievit, Frankenhuis, Waldorp, & Borsboom\"\n281\t    year: 2013\n282\t    venue: \"Frontiers in Psychology, 4, 513\"\n283\t    category: \"item-compromise\"\n284\t    role: \"background\"\n285\t    relevance: \"Theoretical framework for Simpson's paradox in behavioral science. Directly applicable to our MMLU finding: pooled γ insignificant but domain-level analysis reveals significant positive and negative γ that cancel upon aggregation.\"\n286\t    key_findings:\n287\t      - \"Simpson's paradox more prevalent in psychology than traditionally recognized\"\n288\t      - \"Effect direction can reverse when moving from population to subgroup (or vice versa)\"\n289\t      - \"Provides statistical markers and R detection toolkit\"\n290\t\n291\t  - id: \"ercikan_2008_dif_cancellation\"\n292\t    title: \"Differential Item Functioning Amplification and Cancellation in a Reading Test\"\n293\t    authors: \"Ercikan, Arim, & Oliveri\"\n294\t    year: 2008\n295\t    venue: \"Practical Assessment, Research, and Evaluation, 14(3)\"\n296\t    category: \"item-compromise\"\n297\t    role: \"background\"\n298\t    relevance: \"Empirical precedent for DIF cancellation: most items show significant DIF but favoring different groups, so DIF cancels at total test score level. Direct analogue to our MMLU domain-level contamination signals with inconsistent directions being masked in pooled analysis.\"\n299\t    key_findings:\n300\t      - \"Majority of items show significant DIF but in opposing directions\"\n301\t      - \"DIF cancels at aggregate test score level despite item-level significance\"\n302\t      - \"Multiple-group testlet IRT model reveals hidden heterogeneity\"\n303\t\n304\t  # ============================================================\n305\t  # Category: calibration — Calibration & Score Adjustment\n306\t  # ============================================================\n307\t\n308\t  - id: \"xu_2025_dcr\"\n309\t    title: \"DCR: Quantifying Data Contamination in LLMs Evaluation\"\n310\t    authors: \"Xu et al.\"\n311\t    venue: \"EMNLP 2025\"\n312\t    year: 2025\n313\t    url: \"https://arxiv.org/abs/2507.11405\"\n314\t    category: \"calibration\"\n315\t    role: \"direct-competitor\"\n316\t    relevance: \"Only existing method producing adjusted accuracy via fuzzy inference. ContamCal's primary competitor. DCR quantifies contamination risk across 4 levels (semantic, informational, data, label) and adjusts raw accuracy.\"\n317\t    key_findings: \"DCR Factor adjusts accuracy within 4% average error across 3 benchmarks; validated on 0.5B-72B models.\"\n318\t    our_advantage: \"ContamCal provides Bayesian credible intervals (DCR gives point estimates only), per-benchmark gamma_k characterization, and IRT-grounded identifiability analysis. DCR lacks UQ and theoretical identifiability bounds.\"\n319\t\n320\t  - id: \"guo_2017_calibration\"\n321\t    title: \"On Calibration of Modern Neural Networks\"\n322\t    authors: \"Guo et al.\"\n323\t    venue: \"ICML 2017\"\n324\t    year: 2017\n325\t    url: \"https://arxiv.org/abs/1706.04599\"\n326\t    category: \"calibration\"\n327\t    role: \"background\"\n328\t    relevance: \"Foundational work on probability calibration in neural networks. Must disambiguate: our 'calibration' means decontamination score adjustment, not probability calibration (confidence = accuracy). Temperature scaling is unrelated to our method.\"\n329\t    key_findings: \"Modern neural networks are poorly calibrated; temperature scaling (single parameter) effectively recalibrates predictions.\"\n330\t    our_advantage: \"Different notion of calibration. Guo et al. calibrate prediction confidence; ContamCal calibrates benchmark scores for contamination effects.\"\n331\t\n332\t  - id: \"angelopoulos_2023_conformal\"\n333\t    title: \"A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification\"\n334\t    authors: \"Angelopoulos & Bates\"\n335\t    venue: \"Foundations and Trends in ML, 2023\"\n336\t    year: 2023\n337\t    url: \"https://arxiv.org/abs/2107.07511\"\n338\t    category: \"calibration\"\n339\t    role: \"background\"\n340\t    relevance: \"Alternative UQ approach with distribution-free coverage guarantees. Discussed in Related Work to justify why Bayesian IRT is preferred over conformal for our setting (conformal requires exchangeability assumptions violated by contamination structure).\"\n341\t    key_findings: \"Conformal prediction provides statistically rigorous uncertainty sets without distributional assumptions; applicable to any pre-trained model.\"\n342\t    our_advantage: \"Bayesian IRT provides interpretable per-item parameters and contamination-specific covariates; conformal gives coverage guarantees but no mechanistic insight into contamination effects.\"\n343\t\n344\t  # ============================================================\n345\t  # Category: mitigation — Contamination Mitigation & Alternatives\n346\t  # ============================================================\n347\t\n348\t  - id: \"sun_2025_emperors_new_clothes\"\n349\t    title: \"The Emperor's New Clothes in Benchmarking? A Rigorous Examination of Mitigation Strategies for LLM Benchmark Data Contamination\"\n350\t    authors: \"Sun et al.\"\n351\t    venue: \"ICML 2025\"\n352\t    year: 2025\n353\t    url: \"https://arxiv.org/abs/2503.16402\"\n354\t    category: \"mitigation\"\n355\t    role: \"direct-competitor\"\n356\t    relevance: \"Demonstrates all 20 existing mitigation strategies fail to balance fidelity and contamination resistance across all benchmarks. Strongest motivation for ContamCal's post-hoc calibration approach.\"\n357\t    key_findings: \"No semantic-preserving strategy significantly improves resistance over vanilla; semantic-altering strategies sacrifice fidelity. 10 LLMs x 5 benchmarks x 20 strategies x 2 scenarios.\"\n358\t    our_advantage: \"ContamCal offers post-hoc calibration rather than prevention — complementary approach. Emperor's failure motivates calibration; ContamCal provides it.\"\n359\t\n360\t  - id: \"white_2024_livebench\"\n361\t    title: \"LiveBench: A Challenging, Contamination-Free LLM Benchmark\"\n362\t    authors: \"White et al.\"\n363\t    venue: \"arXiv 2024\"\n364\t    year: 2024\n365\t    url: \"https://arxiv.org/abs/2406.19314\"\n366\t    category: \"mitigation\"\n367\t    role: \"evaluation\"\n368\t    relevance: \"Dynamic benchmark alternative: monthly-updated questions from recent sources to prevent contamination. Complementary to ContamCal — LiveBench prevents contamination for new evaluations; ContamCal calibrates existing contaminated benchmarks.\"\n369\t    key_findings: \"Top models achieve below 70% accuracy; monthly updates with 18 tasks across 6 categories maintain contamination resistance.\"\n370\t    our_advantage: \"LiveBench requires continuous curation; ContamCal works with existing static benchmarks. Both valid approaches to the contamination problem.\"\n371\t\n372\t  # ============================================================\n373\t  # Category: benchmark — Evaluation Frameworks & Alternatives\n374\t  # ============================================================\n375\t\n376\t  - id: \"liang_2023_helm\"\n377\t    title: \"Holistic Evaluation of Language Models\"\n378\t    authors: \"Liang et al.\"\n379\t    venue: \"TMLR 2023\"\n380\t    year: 2023\n381\t    url: \"https://arxiv.org/abs/2211.09110\"\n382\t    category: \"benchmark\"\n383\t    role: \"background\"\n384\t    relevance: \"HELM evaluates 30 models on 42 scenarios with 7 metrics including calibration. Establishes standardized evaluation framework. ContamCal addresses a gap HELM does not: score reliability under contamination.\"\n385\t    key_findings: \"Prior to HELM, models were evaluated on only 17.9% of core scenarios; standardized evaluation reveals 25 top-level findings across models.\"\n386\t    our_advantage: \"HELM assumes benchmark scores are trustworthy; ContamCal questions and corrects this assumption when contamination is present.\"\n387\t\n388\t  - id: \"chiang_2024_chatbot_arena\"\n389\t    title: \"Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference\"\n390\t    authors: \"Chiang et al.\"\n391\t    venue: \"ICML 2024\"\n392\t    year: 2024\n393\t    url: \"https://arxiv.org/abs/2403.04132\"\n394\t    category: \"benchmark\"\n395\t    role: \"background\"\n396\t    relevance: \"Human pairwise comparison evaluation that inherently bypasses benchmark contamination. Discussed as contamination-resistant alternative.\"\n397\t    key_findings: \"240K+ votes via crowdsourced pairwise comparisons; Elo rating system for model ranking without static test sets.\"\n398\t    our_advantage: \"Chatbot Arena requires human judges and live interaction; ContamCal enables post-hoc calibration of automated benchmark scores, which scale better.\"\n399\t\n400\t  - id: \"li_2024_open_llm_leaderboard\"\n401\t    title: \"Open-LLM-Leaderboard: From Multi-choice to Open-style Questions for LLMs Evaluation, Benchmark, and Arena\"\n402\t    authors: \"Li et al.\"\n403\t    year: 2024\n404\t    venue: \"arXiv 2024\"\n405\t    url: \"https://arxiv.org/abs/2406.07545\"\n406\t    category: \"benchmark\"\n407\t    role: \"evaluation\"\n408\t    relevance: \"Converting MC benchmarks to open-style questions causes ~25% average accuracy drop across all models. Quantifies MC format advantage (selection bias, random guessing) that amplifies contamination signal in MC benchmarks. Supports our MC/generative format as contamination effect moderator.\"\n409\t    key_findings:\n410\t      - \"MC to open-style conversion causes ~25% average accuracy drop\"\n411\t      - \"MC format provides extra cues (selection bias, random guessing) beyond knowledge\"\n412\t      - \"Contaminated models benefit more from MC format than clean models\"\n413\t\n414\t  # ============================================================\n415\t  # Category: foundation — Methodological Foundations\n416\t  # ============================================================\n417\t\n418\t  - id: \"shokri_2017_mia\"\n419\t    title: \"Membership Inference Attacks Against Machine Learning Models\"\n420\t    authors: \"Shokri et al.\"\n421\t    venue: \"IEEE S&P 2017\"\n422\t    year: 2017\n423\t    url: \"https://arxiv.org/abs/1610.05820\"\n424\t    category: \"detection\"\n425\t    role: \"foundation\"\n426\t    relevance: \"Foundational MIA work. Min-K% and Min-K%++ are descendants of MIA methodology. Contextualizes our Min-K++ directional reversal finding within MIA literature.\"\n427\t    key_findings: \"Shadow model approach for membership inference; demonstrates vulnerability of ML-as-a-service models to membership inference.\"\n428\t    our_advantage: \"ContamCal uses MIA-derived signals as inputs to calibration framework, not as standalone detectors.\"\n429\t\n430\t  - id: \"carlini_2021_extracting\"\n431\t    title: \"Extracting Training Data from Large Language Models\"\n432\t    authors: \"Carlini et al.\"\n433\t    venue: \"USENIX Security 2021\"\n434\t    year: 2021\n435\t    url: \"https://arxiv.org/abs/2012.07805\"\n436\t    category: \"detection\"\n437\t    role: \"foundation\"\n438\t    relevance: \"Demonstrates verbatim training data extraction from GPT-2. Establishes that LLMs memorize training data — the fundamental assumption underlying all contamination detection methods including ours.\"\n439\t    key_findings: \"Hundreds of verbatim text sequences extracted from GPT-2; memorization is measurable and exploitable.\"\n440\t    our_advantage: \"ContamCal leverages memorization signals for calibration rather than extraction; our contribution is bridging detection to score adjustment.\"\n441\t\n442\t  - id: \"cormack_2009_rrf\"\n443\t    title: \"Reciprocal Rank Fusion outperforms Condorcet and Individual Rank Learning Methods\"\n444\t    authors: \"Cormack et al.\"\n445\t    venue: \"SIGIR 2009\"\n446\t    year: 2009\n447\t    url: \"https://dl.acm.org/doi/10.1145/1571941.1572114\"\n448\t    category: \"calibration\"\n449\t    role: \"method-component\"\n450\t    relevance: \"RRF is our multi-signal aggregation method. Training-free rank fusion avoids meta-circularity (learned aggregator's training data may itself be contaminated). RRF is a design choice, not claimed as contribution.\"\n451\t    key_findings: \"Simple reciprocal rank scoring outperforms Condorcet and learning-to-rank methods for combining multiple retrieval systems.\"\n452\t    our_advantage: \"RRF is adopted as-is. Our contribution is the argument for training-free aggregation in the contamination context (meta-circularity).\"\n453\t\n454\t  - id: \"talts_2018_sbc\"\n455\t    title: \"Validating Bayesian Inference Algorithms with Simulation-Based Calibration\"\n456\t    authors: \"Talts et al.\"\n457\t    venue: \"arXiv 2018\"\n458\t    year: 2018\n459\t    url: \"https://arxiv.org/abs/1804.06788\"\n460\t    category: \"calibration\"\n461\t    role: \"method-component\"\n462\t    relevance: \"SBC is our 6th evaluation metric. Validates Bayesian inference by checking rank uniformity of posterior samples. Used to diagnose coverage gap source (model misspecification vs insufficient N vs local independence violation).\"\n463\t    key_findings: \"General procedure for validating Bayesian posterior samplers; graphical diagnostics indicate nature of inference problems.\"\n464\t    our_advantage: \"SBC is adopted as diagnostic tool. Our contribution is applying SBC to contamination-augmented IRT at realistic N_models to decompose coverage gaps.\"\n465\t\n466\t  # ============================================================\n467\t  # Category: detection — Gap-Fill (must_cite)\n468\t  # ============================================================\n469\t\n470\t  - id: \"wust_2025_selfcritique\"\n471\t    title: \"Self-Critique as a Contamination Signal: Detecting Memorization via Entropy Collapse in Model Self-Evaluations\"\n472\t    authors: \"Wüst, Hoffmann, & Pang\"\n473\t    venue: \"arXiv 2025\"\n474\t    year: 2025\n475\t    url: \"https://arxiv.org/abs/2510.09259\"\n476\t    category: \"detection\"\n477\t    role: \"method-component\"\n478\t    relevance: \"Our S4 signal. Uses LLM self-evaluation entropy collapse as contamination indicator. We find it near-random (AUC≈0.50) at 0.5B scale — ineffective as standalone signal.\"\n479\t    key_findings: \"Self-critique entropy patterns differ for memorized vs novel items.\"\n480\t    our_advantage: \"ContamCal reveals S4 ineffectiveness and integrates it into multi-signal RRF where its noise is diluted.\"\n481\t\n482\t  - id: \"golchin_2024_time_travel\"\n483\t    title: \"Time Travel in LLMs: Tracing Data Contamination in Large Language Models\"\n484\t    authors: \"Golchin & Surdeanu\"\n485\t    venue: \"ICLR 2024\"\n486\t    year: 2024\n487\t    url: \"https://arxiv.org/abs/2308.08493\"\n488\t    category: \"detection\"\n489\t    role: \"background\"\n490\t    relevance: \"Proposes guided prompting to detect contamination via LLM's ability to reproduce benchmark instances. Complementary approach to our signal-based detection.\"\n491\t    key_findings: \"Detects contamination across GPT-4, GPT-3.5, LLaMA-2 via instance reproduction; confirms widespread contamination in major LLMs.\"\n492\t    our_advantage: \"Time Travel requires model generation access; ContamCal works with item-level responses only. Our approach quantifies effects, not just detects.\"\n493\t\n494\t  # ============================================================\n495\t  # Category: mitigation — Gap-Fill (must_cite + supplementary)\n496\t  # ============================================================\n497\t\n498\t  - id: \"li_2025_dcr\"\n499\t    title: \"Decontaminated Calibration and Ranking for Trustworthy LLM Evaluation\"\n500\t    authors: \"Li et al.\"\n501\t    venue: \"EMNLP 2025\"\n502\t    year: 2025\n503\t    category: \"mitigation\"\n504\t    role: \"direct-competitor\"\n505\t    relevance: \"Closest predecessor to ContamCal. DCR applies decontamination + calibration + ranking correction. Lacks IRT grounding, uncertainty quantification, and domain-level diagnosis. Key W1 comparison target.\"\n506\t    key_findings: \"Score adjustment framework for contaminated benchmarks; demonstrates improved ranking consistency post-decontamination.\"\n507\t    our_advantage: \"ContamCal provides: (1) Bayesian CIs vs point estimates, (2) domain-level γ diagnosis vs aggregate correction, (3) Fisher Info identifiability analysis, (4) Min-K++ reversal detection.\"\n508\t    verified: false\n509\t\n510\t  - id: \"yang_2023_rethinking_benchmark\"\n511\t    title: \"Rethinking Benchmark and Contamination for Language Models with Rephrased Samples\"\n512\t    authors: \"Yang et al.\"\n513\t    venue: \"arXiv 2023\"\n514\t    year: 2023\n515\t    url: \"https://arxiv.org/abs/2311.04850\"\n516\t    category: \"mitigation\"\n517\t    role: \"background\"\n518\t    relevance: \"Rephrasing-based contamination mitigation: creates semantically equivalent but textually novel test items. Complementary to ContamCal's post-hoc calibration approach.\"\n519\t    key_findings: \"Rephrased benchmarks show significant performance drops in contaminated models; surface-level memorization dominates.\"\n520\t    our_advantage: \"Rephrasing prevents contamination for new evaluations; ContamCal calibrates existing contaminated scores. Different scope.\"\n521\t\n522\t  # ============================================================\n523\t  # Category: benchmark — Gap-Fill (must_cite + supplementary)\n524\t  # ============================================================\n525\t\n526\t  - id: \"zheng_2023_chatbot_arena\"\n527\t    title: \"Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena\"\n528\t    authors: \"Zheng et al.\"\n529\t    venue: \"NeurIPS 2023\"\n530\t    year: 2023\n531\t    url: \"https://arxiv.org/abs/2306.05685\"\n532\t    category: \"benchmark\"\n533\t    role: \"background\"\n534\t    relevance: \"Chatbot Arena as contamination-resistant evaluation via live human preference. Motivates why static benchmark contamination matters — dynamic evaluations are expensive and limited to ranking.\"\n535\t    key_findings: \"Strong agreement between MT-Bench automated and Chatbot Arena human evaluations; crowdsourced evaluation provides contamination-resistant rankings.\"\n536\t    our_advantage: \"Chatbot Arena avoids contamination by design but cannot assess specific capabilities. ContamCal enables continued use of targeted static benchmarks with calibrated scores.\"\n537\t\n538\t  - id: \"wang_2024_mmlu_pro\"\n539\t    title: \"MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding Benchmark\"\n540\t    authors: \"Wang et al.\"\n541\t    venue: \"arXiv 2024\"\n542\t    year: 2024\n543\t    url: \"https://arxiv.org/abs/2406.01574\"\n544\t    category: \"benchmark\"\n545\t    role: \"background\"\n546\t    relevance: \"MMLU-Pro increases difficulty and reduces sensitivity to prompt format, partially addressing contamination concerns. Our MMLU domain-level γ analysis applies equally to MMLU-Pro since contamination is about memorization, not difficulty.\"\n547\t    key_findings: \"10-option MC format reduces random guessing; more discriminative across model capabilities.\"\n548\t    our_advantage: \"MMLU-Pro redesigns the benchmark; ContamCal calibrates existing benchmarks without redesign.\"\n549\t\n550\t  # ============================================================\n551\t  # Category: irt-methodology — Gap-Fill (must_cite)\n552\t  # ============================================================\n553\t\n554\t  - id: \"reckase_2009_mirt\"\n555\t    title: \"Multidimensional Item Response Theory\"\n556\t    authors: \"Reckase, M. D.\"\n557\t    venue: \"Springer\"\n558\t    year: 2009\n559\t    category: \"irt-methodology\"\n560\t    role: \"foundation\"\n561\t    relevance: \"Canonical MIRT reference. Our 2PL+γ extends unidimensional IRT; multidimensional extensions discussed in future work for non-STEM domain misfit.\"\n562\t    key_findings: \"Comprehensive MIRT framework including compensatory and non-compensatory models, parameter estimation, and model fit assessment.\"\n563\t    our_advantage: \"ContamCal currently uses unidimensional IRT with contamination covariate. MIRT extension is future work for modeling domain-specific abilities.\"\n564\t    verified: false\n565\t\n566\t  - id: \"mislevy_1986_bayes_irt\"\n567\t    title: \"Bayes Modal Estimation in Item Response Models\"\n568\t    authors: \"Mislevy, R. J.\"\n569\t    venue: \"Psychometrika\"\n570\t    year: 1986\n571\t    category: \"irt-methodology\"\n572\t    role: \"foundation\"\n573\t    relevance: \"Foundational work on Bayesian estimation for IRT. Justifies our use of Bayesian (NUTS/Stan) inference for 2PL+γ parameter estimation with informative priors.\"\n574\t    key_findings: \"Bayesian modal estimation provides regularization for IRT parameters; handles small samples better than MLE.\"\n575\t    our_advantage: \"ContamCal builds on Bayesian IRT tradition, adding contamination-specific covariates and model comparison via PPP.\"\n576\t\n577\t  - id: \"sanmartin_2009_irt\"\n578\t    title: \"Consequential Validity and Item Response Theory\"\n579\t    authors: \"San Martín, Del Pino, & De Boeck\"\n580\t    venue: \"Psychometrika\"\n581\t    year: 2009\n582\t    category: \"irt-methodology\"\n583\t    role: \"foundation\"\n584\t    relevance: \"Addresses consequential validity in IRT models — directly relevant to our calibration value decomposition (D120) where we separate ability estimation from contamination correction.\"\n585\t    key_findings: \"Framework for assessing consequences of IRT model use; distinguishes construct-relevant from construct-irrelevant variance.\"\n586\t    our_advantage: \"ContamCal's D120 decomposition directly operationalizes this distinction: γ correction vs θ estimation improvement.\"\n587\t\n588\t  - id: \"adams_1997_mrcml\"\n589\t    title: \"The Multidimensional Random Coefficients Multinomial Logit Model\"\n590\t    authors: \"Adams, Wilson, & Wang\"\n591\t    venue: \"Applied Psychological Measurement\"\n592\t    year: 1997\n593\t    category: \"irt-methodology\"\n594\t    role: \"foundation\"\n595\t    relevance: \"Extends IRT to multidimensional random effects. Foundation for understanding our per-domain γ modeling within the broader IRT methodology.\"\n596\t    key_findings: \"General framework for multidimensional IRT with random coefficients; handles nested item structures.\"\n597\t    our_advantage: \"ContamCal uses a simpler contamination-specific extension (additive γ) rather than full MRCML.\"\n598\t\n599\t  # ============================================================\n600\t  # Category: item-compromise — Gap-Fill (must_cite)\n601\t  # ============================================================\n602\t\n603\t  - id: \"holland_1993_dif\"\n604\t    title: \"Differential Item Functioning\"\n605\t    authors: \"Holland, P. W. & Wainer, H. (Eds.)\"\n606\t    venue: \"Lawrence Erlbaum Associates\"\n607\t    year: 1993\n608\t    category: \"item-compromise\"\n609\t    role: \"foundation\"\n610\t    relevance: \"Classic DIF reference. DIF methodology detects items that function differently across groups — analogous to our γ detecting contamination effects that vary across domains. DIF is the educational measurement precursor to our domain-differential analysis.\"\n611\t    key_findings: \"Comprehensive DIF detection and analysis framework; establishes that item-level analysis is essential for fair measurement.\"\n612\t    our_advantage: \"ContamCal extends DIF thinking to LLM contamination: 'exposed' vs 'unexposed' items replace traditional DIF group comparisons.\"\n613\t    verified: false\n614\t\n615\t# ============================================================\n616\t# Summary Statistics (Updated)\n617\t# ============================================================\n618\t# Total papers: 43\n619\t# By category: detection=13, irt-llm=9, item-compromise=6, calibration=4, mitigation=4, benchmark=5, irt-methodology=4\n620\t# By role: foundation=14, method-component=6, direct-competitor=7, evaluation=5, background=12\n621\t# Must-cite coverage: 8/9 clusters filled (all must_cite accounted for)\n622\t# Notes:\n623\t#   - Eckerly 2017: verified=false (book chapter, no direct URL confirmed)\n624\t#   - li_2025_dcr: verified=false (EMNLP 2025, need to confirm exact venue/URL)\n625\t#   - reckase_2009_mirt: verified=false (textbook, no arXiv URL)\n626\t#   - holland_1993_dif: verified=false (textbook, no DOI confirmed)\n627\t#   - paper_framing.md references \"Lalor et al., AAAI 2024\" — closest match is EACL 2024 tutorial\n628\t#   - weller2024selfcritique in writing_plan → actually wust2025selfcritique\n629\t#   - paper_framing.md references \"ATLAS (Baffour et al., 2024)\" — actual paper is Li et al., 2024 (arxiv 2511.04689)\n630\t#   - paper_framing.md references \"PSN-IRT (Yao et al., 2024)\" — actual paper is Zhou et al., 2025 (AAAI 2026)\n631\t#   - paper_framing.md references \"DCR (Dekoninck et al., EMNLP 2025)\" — actual DCR is Xu et al. (Dekoninck authored ConStat)\n632\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b1246b18-ba34-4a98-961a-1e9632c489a7",
+            "isSidechain": true,
+            "promptId": "b5b8cc4d-5cee-4193-8f21-8c71bfb467f1",
+            "agentId": "ad3797cdefc05cbb3",
+            "type": "user",
+            "uuid": "581e9b4f-709e-4a12-a3e1-938b91649fc3",
+            "sourceToolAssistantUUID": "b1246b18-ba34-4a98-961a-1e9632c489a7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T05:52:00.957Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EnTMHZ7dL7xWidZs8atwBt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/exp002/s4_attribution_report.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "581e9b4f-709e-4a12-a3e1-938b91649fc3",
+            "isSidechain": true,
+            "agentId": "ad3797cdefc05cbb3",
+            "requestId": "req_011Cb7cuU1VnhHPRPXvKXFLv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2cfbf7ee-0d4f-43f6-9538-78564fc477b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0131wg8H27GB6mzGuJGgzKL1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 659,
+                "cache_read_input_tokens": 26733,
+                "output_tokens": 198,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 659
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 198,
+                    "cache_read_input_tokens": 26733,
+                    "cache_creation_input_tokens": 659,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 659,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T05:52:00.965Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6.",
+              "is_error": true,
+              "tool_use_id": "toolu_01EnTMHZ7dL7xWidZs8atwBt"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2cfbf7ee-0d4f-43f6-9538-78564fc477b1",
+            "isSidechain": true,
+            "promptId": "b5b8cc4d-5cee-4193-8f21-8c71bfb467f1",
+            "agentId": "ad3797cdefc05cbb3",
+            "type": "user",
+            "uuid": "f104e2ff-61fe-43c2-9c20-559aba3a1cfe",
+            "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6.",
+            "sourceToolAssistantUUID": "2cfbf7ee-0d4f-43f6-9538-78564fc477b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T05:52:02.872Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The literature_map.yaml file has entries for both papers. Let me extract the relevant information:\n\nFrom the literature_map.yaml, I can see entries for both papers. Now let me search for more details using WebSearch to get the complete author lists from the arXiv pages."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f104e2ff-61fe-43c2-9c20-559aba3a1cfe",
+            "isSidechain": true,
+            "agentId": "ad3797cdefc05cbb3",
+            "requestId": "req_011Cb7cuc3wAjD9rmRLyNwgf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a5d1c67f-6507-4210-94e7-74759d6740cc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XaQBxxtTgW26fuUNDbj12J",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 13844,
+                "cache_read_input_tokens": 27392,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 13844,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T05:52:03.225Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Xz4TYNvVbULsQi3MdaZNaU",
+              "name": "WebSearch",
+              "input": {
+                "query": "Kadavath \"Language Models Know What They Know\" arXiv 2207.05221 authors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a5d1c67f-6507-4210-94e7-74759d6740cc",
+            "isSidechain": true,
+            "agentId": "ad3797cdefc05cbb3",
+            "requestId": "req_011Cb7cuc3wAjD9rmRLyNwgf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "730d5c57-9947-42d4-98a5-bdd4d50d235c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XaQBxxtTgW26fuUNDbj12J",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 13844,
+                "cache_read_input_tokens": 27392,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 13844,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T05:52:03.598Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HB95DGtVvNzcT8ngevwcv9",
+              "name": "WebSearch",
+              "input": {
+                "query": "Tao \"Detecting Data Contamination from Reinforcement Learning Post-training\" arXiv 2510.09259 authors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "730d5c57-9947-42d4-98a5-bdd4d50d235c",
+            "isSidechain": true,
+            "agentId": "ad3797cdefc05cbb3",
+            "requestId": "req_011Cb7cuc3wAjD9rmRLyNwgf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9d98f63c-c575-40c2-a1fc-2ea87ea98ff3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XaQBxxtTgW26fuUNDbj12J",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 13844,
+                "cache_read_input_tokens": 27392,
+                "output_tokens": 199,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 13844
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 199,
+                    "cache_read_input_tokens": 27392,
+                    "cache_creation_input_tokens": 13844,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 13844,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T05:52:09.447Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Xz4TYNvVbULsQi3MdaZNaU",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Kadavath \"Language Models Know What They Know\" arXiv 2207.05221 authors\"\n\nLinks: [{\"title\":\"[2207.05221] Language Models (Mostly) Know What They Know\",\"url\":\"https://arxiv.org/abs/2207.05221\"},{\"title\":\"Language Models (Mostly) Know What They Know\",\"url\":\"https://arxiv.org/pdf/2207.05221\"},{\"title\":\"[PDF] Language Models (Mostly) Know What They Know | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Language-Models-(Mostly)-Know-What-They-Know-Kadavath-Conerly/142ebbf4760145f591166bde2564ac70c001e927\"},{\"title\":\"(PDF) Language Models (Mostly) Know What They Know\",\"url\":\"https://www.researchgate.net/publication/361949621_Language_Models_Mostly_Know_What_They_Know\"},{\"title\":\"(PDF) Language Models (Mostly) Know What They Know (2022) | Saurav Kadavath | 413 Citations\",\"url\":\"https://scispace.com/papers/language-models-mostly-know-what-they-know-zkg0pou4\"},{\"title\":\"Language Models (Mostly) Know What They Know\",\"url\":\"https://bibbase.org/network/publication/kadavath-conerly-askell-henighan-drain-perez-schiefer-hatfielddodds-etal-languagemodelsmostlyknowwhattheyknow-2022\"},{\"title\":\"[2207.05221] Language Models (Mostly) Know What They Know – Papiers\",\"url\":\"https://papiers.ai/2207.05221\"},{\"title\":\"[2207.05221v4] Language Models (Mostly) Know What They Know\",\"url\":\"https://arxiv.org/abs/2207.05221v4\"},{\"title\":\"ml-papers/papers/2022/220711 Language Models (Mostly) Know What They Know.md at main · rosinality/ml-papers\",\"url\":\"https://github.com/rosinality/ml-papers/blob/main/papers/2022/220711%20Language%20Models%20(Mostly)%20Know%20What%20They%20Know.md\"},{\"title\":\"Language Models (Mostly) Know What They Know | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2207.05221v4\"}]\n\nThe authors of the paper \"Language Models (Mostly) Know What They Know\" (arXiv 2207.05221) are: Saurav Kadavath, Tom Conerly, Amanda Askell, Tom Henighan, Dawn Drain, Ethan Perez, Nicholas Schiefer, Zac Hatfield-Dodds, Nova DasSarma, Eli Tran-Johnson, Scott Johnston, Sheer El-Showk, Andy Jones, Nelson Elhage, Tristan Hume, Anna Chen, Yuntao Bai, Sam Bowman, Stanislav Fort, Deep Ganguli, Danny Hernandez, Josh Jacobson, Jackson Kernion, Shauna Kravec, Liane Lovitt, Kamal Ndousse, Catherine Olsson, Sam Ringer, Dario Amodei, Tom Brown, Jack Clark, Nicholas Joseph, Ben Mann, Sam McCandlish, Chris Olah, and Jared Kaplan.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "730d5c57-9947-42d4-98a5-bdd4d50d235c",
+            "isSidechain": true,
+            "promptId": "b5b8cc4d-5cee-4193-8f21-8c71bfb467f1",
+            "agentId": "ad3797cdefc05cbb3",
+            "type": "user",
+            "uuid": "519a3416-161e-4f8c-96f2-0faabd7ab3ec",
+            "sourceToolAssistantUUID": "730d5c57-9947-42d4-98a5-bdd4d50d235c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T05:52:14.164Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HB95DGtVvNzcT8ngevwcv9",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Tao \"Detecting Data Contamination from Reinforcement Learning Post-training\" arXiv 2510.09259 authors\"\n\nLinks: [{\"title\":\"[2510.09259] Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models\",\"url\":\"https://arxiv.org/abs/2510.09259\"},{\"title\":\"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models\",\"url\":\"https://arxiv.org/html/2510.09259v1\"},{\"title\":\"detecting data contamination from reinforcement learning ...\",\"url\":\"https://arxiv.org/pdf/2510.09259\"},{\"title\":\"Computation and Language Oct 2025\",\"url\":\"https://www.arxiv.org/list/cs.CL/2025-10?skip=675&show=250\"},{\"title\":\"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models | Request PDF\",\"url\":\"https://www.researchgate.net/publication/396459308_Detecting_Data_Contamination_from_Reinforcement_Learning_Post-training_for_Large_Language_Models\"},{\"title\":\"Paper page - Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models\",\"url\":\"https://huggingface.co/papers/2510.09259\"},{\"title\":\"DynaSolidGeo: A Dynamic Benchmark for Genuine Spatial Mathematical Reasoning of VLMs in Solid Geometry\",\"url\":\"https://arxiv.org/html/2510.22340v2\"},{\"title\":\"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=EjiJmiA6ea\"},{\"title\":\"A Comprehensive Survey of Contamination Detection Methods in Large Language Models\",\"url\":\"https://arxiv.org/html/2404.00699v4\"},{\"title\":\"Detecting Data Contamination in LLMs via In-Context Learning\",\"url\":\"https://arxiv.org/html/2510.27055v1\"}]\n\nBased on the search results, the authors of the paper \"Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models\" (arXiv 2510.09259) are Yongding Tao, Tian Wang, Yihong Dong, Huanyu Liu, Kechi Zhang, Xiaolong Hu, and Ge Li.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d98f63c-c575-40c2-a1fc-2ea87ea98ff3",
+            "isSidechain": true,
+            "promptId": "b5b8cc4d-5cee-4193-8f21-8c71bfb467f1",
+            "agentId": "ad3797cdefc05cbb3",
+            "type": "user",
+            "uuid": "fce29e55-439e-48be-b70a-d3a4a919e793",
+            "sourceToolAssistantUUID": "9d98f63c-c575-40c2-a1fc-2ea87ea98ff3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T05:52:15.700Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me fetch the arXiv abstract pages directly to get the complete and verified author lists:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fce29e55-439e-48be-b70a-d3a4a919e793",
+            "isSidechain": true,
+            "agentId": "ad3797cdefc05cbb3",
+            "requestId": "req_011Cb7cvaQk86zc7f7JhXZsX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d1fe6f8b-bab7-4a6f-b4a4-7ae91f3701fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LKZSdY5dEMrr7o4EJY5PrG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1719,
+                "cache_read_input_tokens": 41236,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1719,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T05:52:16.124Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013mGA7A4EDfPHhGe5Ff6Vc4",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2207.05221",
+                "prompt": "Extract the complete list of authors in order as shown on the abstract page"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d1fe6f8b-bab7-4a6f-b4a4-7ae91f3701fa",
+            "isSidechain": true,
+            "agentId": "ad3797cdefc05cbb3",
+            "requestId": "req_011Cb7cvaQk86zc7f7JhXZsX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "77e31332-96f6-452d-8943-1d99b1070cd0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LKZSdY5dEMrr7o4EJY5PrG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1719,
+                "cache_read_input_tokens": 41236,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1719,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T05:52:16.302Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012NGjFBuFuQLeTN55SwW3wz",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2510.09259",
+                "prompt": "Extract the complete list of authors in order as shown on the abstract page"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77e31332-96f6-452d-8943-1d99b1070cd0",
+            "isSidechain": true,
+            "agentId": "ad3797cdefc05cbb3",
+            "requestId": "req_011Cb7cvaQk86zc7f7JhXZsX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7da75bba-2241-4e73-8ebe-80ecf1f0aa3b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LKZSdY5dEMrr7o4EJY5PrG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1719,
+                "cache_read_input_tokens": 41236,
+                "output_tokens": 196,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1719
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 196,
+                    "cache_read_input_tokens": 41236,
+                    "cache_creation_input_tokens": 1719,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1719,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T05:52:18.725Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012NGjFBuFuQLeTN55SwW3wz",
+              "type": "tool_result",
+              "content": "# Authors of arXiv:2510.09259\n\nBased on the abstract page, the complete list of authors in order is:\n\n1. Yongding Tao\n2. Tian Wang\n3. Yihong Dong\n4. Huanyu Liu\n5. Kechi Zhang\n6. Xiaolong Hu\n7. Ge Li\n\nThe paper notes that it was \"Accepted to ICLR 2026\" and states that \"Code is available\" through a GitHub repository."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7da75bba-2241-4e73-8ebe-80ecf1f0aa3b",
+            "isSidechain": true,
+            "promptId": "b5b8cc4d-5cee-4193-8f21-8c71bfb467f1",
+            "agentId": "ad3797cdefc05cbb3",
+            "type": "user",
+            "uuid": "a11b975a-a7b4-407c-bf54-fe611cc650bf",
+            "sourceToolAssistantUUID": "7da75bba-2241-4e73-8ebe-80ecf1f0aa3b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T05:52:19.725Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013mGA7A4EDfPHhGe5Ff6Vc4",
+              "type": "tool_result",
+              "content": "# Authors of \"Language Models (Mostly) Know What They Know\"\n\nBased on the abstract page, the complete list of authors in order is:\n\n1. Saurav Kadavath\n2. Tom Conerly\n3. Amanda Askell\n4. Tom Henighan\n5. Dawn Drain\n6. Ethan Perez\n7. Nicholas Schiefer\n8. Zac Hatfield-Dodds\n9. Nova DasSarma\n10. Eli Tran-Johnson\n11. Scott Johnston\n12. Sheer El-Showk\n13. Andy Jones\n14. Nelson Elhage\n15. Tristan Hume\n16. Anna Chen\n17. Yuntao Bai\n18. Sam Bowman\n19. Stanislav Fort\n20. Deep Ganguli\n21. Danny Hernandez\n22. Josh Jacobson\n23. Jackson Kernion\n24. Shauna Kravec\n25. Liane Lovitt\n26. Kamal Ndousse\n27. Catherine Olsson\n28. Sam Ringer\n29. Dario Amodei\n30. Tom Brown\n31. Jack Clark\n32. Nicholas Joseph\n33. Ben Mann\n34. Sam McCandlish\n35. Chris Olah\n36. Jared Kaplan"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77e31332-96f6-452d-8943-1d99b1070cd0",
+            "isSidechain": true,
+            "promptId": "b5b8cc4d-5cee-4193-8f21-8c71bfb467f1",
+            "agentId": "ad3797cdefc05cbb3",
+            "type": "user",
+            "uuid": "b5bca3fc-685f-4bde-a0a9-4eb13f0407a4",
+            "sourceToolAssistantUUID": "77e31332-96f6-452d-8943-1d99b1070cd0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T05:52:24.201Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I have verified both complete author lists. Here is my final report:\n\n## Complete Author Lists\n\n### 1. Kadavath et al. 2022 - \"Language Models (Mostly) Know What They Know\" (arXiv:2207.05221)\n\n**Complete author list (36 authors):**\n\n1. Saurav Kadavath\n2. Tom Conerly\n3. Amanda Askell\n4. Tom Henighan\n5. Dawn Drain\n6. Ethan Perez\n7. Nicholas Schiefer\n8. Zac Hatfield-Dodds\n9. Nova DasSarma\n10. Eli Tran-Johnson\n11. Scott Johnston\n12. Sheer El-Showk\n13. Andy Jones\n14. Nelson Elhage\n15. Tristan Hume\n16. Anna Chen\n17. Yuntao Bai\n18. Sam Bowman\n19. Stanislav Fort\n20. Deep Ganguli\n21. Danny Hernandez\n22. Josh Jacobson\n23. Jackson Kernion\n24. Shauna Kravec\n25. Liane Lovitt\n26. Kamal Ndousse\n27. Catherine Olsson\n28. Sam Ringer\n29. Dario Amodei\n30. Tom Brown\n31. Jack Clark\n32. Nicholas Joseph\n33. Ben Mann\n34. Sam McCandlish\n35. Chris Olah\n36. Jared Kaplan\n\n### 2. Tao et al. 2025 - \"Detecting Data Contamination from Reinforcement Learning Post-training\" (arXiv:2510.09259)\n\n**Complete author list (7 authors):**\n\n1. Yongding Tao\n2. Tian Wang\n3. Yihong Dong\n4. Huanyu Liu\n5. Kechi Zhang\n6. Xiaolong Hu\n7. Ge Li\n\n**Note:** The Tao et al. paper was accepted to ICLR 2026 and has code available on GitHub.\n\nBoth papers are already referenced in your project's literature_map.yaml file. The first paper is from Anthropic and appears to be a foundational work on model uncertainty/calibration. The second paper directly addresses contamination detection from RL post-training and is relevant to your contamcal-irt-calibration project's focus.\n\nSources:\n- [arXiv:2207.05221 abstract page](https://arxiv.org/abs/2207.05221)\n- [arXiv:2510.09259 abstract page](https://arxiv.org/abs/2510.09259)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5bca3fc-685f-4bde-a0a9-4eb13f0407a4",
+            "isSidechain": true,
+            "agentId": "ad3797cdefc05cbb3",
+            "requestId": "req_011Cb7cvz9kKtsRQTDg7huHh",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ea8101bb-0934-4714-a1ca-3ee9f7fd06bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YUyGPCyLvQrjXXV7MWvg69",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 146,
+                "cache_creation_input_tokens": 544,
+                "cache_read_input_tokens": 42955,
+                "output_tokens": 632,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 544
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 146,
+                    "output_tokens": 632,
+                    "cache_read_input_tokens": 42955,
+                    "cache_creation_input_tokens": 544,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 544,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-verify-the-complete-author-lists-for-two-papers-1-kadavath-et-al-202.md"
+}

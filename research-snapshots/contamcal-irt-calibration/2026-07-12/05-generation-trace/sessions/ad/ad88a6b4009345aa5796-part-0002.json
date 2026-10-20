@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ad88a6b4009345aa5796",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-14T10:09:59.081Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_018rfx8hZ6PgEDdbYXc4CZy7",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4cbdb805-042e-4a93-84a5-7a4a414d72cc",
+            "isSidechain": false,
+            "promptId": "0f085a37-51bd-4ed7-a22e-69be4302a5db",
+            "type": "user",
+            "uuid": "fe84b957-3da9-4adc-b232-0891be4d9a93",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__read_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "total_deferred_tools": 24
+            },
+            "sourceToolAssistantUUID": "4cbdb805-042e-4a93-84a5-7a4a414d72cc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+            "sessionId": "04f6af0d-f818-4bc9-a4cb-13175e75b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-14T10:10:17.592Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出文件已写入 `artifacts/phase3_progress.md`。以下是汇总：\n\n---\n\n## Phase 3 进度总览\n\n### Eval 结果矩阵\n\n| Model | Dosage | Seed | MMLU | GSM8K | ARC-C | HumanEval |\n|-------|--------|------|------|-------|-------|-----------|\n| **0.5B** | d000 | 42 | 40.49 | 36.47 | 37.80 | 10.98 |\n| | d000 | 123 | 41.82 | 34.04 | 39.76 | 10.37 |\n| | d005 | 42 | 29.29 | 36.01 | 28.58 | 7.93 |\n| | d025 | 42 | 待eval | — | — | — |\n| | d100 | 42 | 23.22 | 35.71 | 22.70 | 8.54 |\n| **1.5B** | d000 | 42 | 57.53 | 63.68 | 77.56 | 12.80 |\n| | d000 | 123 | 57.62 | 63.31 | 76.62 | 17.07 |\n| | d005 | 42 | 待eval | — | — | — |\n| | d100 | 42 | 待eval | — | — | — |\n| **3B** | raw | — | — | 60.50 | — | 0.00 |\n| | d000 | 42 | 63.37 | **11.68**⚠️ | 82.17 | 11.59 |\n| | d000 | 123 | 63.62 | **17.59**⚠️ | 82.94 | 8.54 |\n| | d005 | 42 | SFT失败 | — | — | — |\n| | d100 | 42 | SFT失败 | — | — | — |\n\n### SFT 状态\n- **完成**: 11/13 checkpoints (0.5B 全部 5 个, 1.5B 全部 4 个, 3B 仅 d000 2 个)\n- **失败**: 3B_d005_s42, 3B_d100_s42 (空目录)\n- **Aligned 格式**: 3 个目录已创建但全部为空\n\n### 关键发现\n\n1. **0.5B dose-response 趋势清晰**: MMLU 从 d000=41.16 → d005=29.29 → d100=23.22，ARC-C 同趋势。GSM8K 不受影响（~36%，符合预期）\n2. **3B GSM8K 灾难性遗忘**: raw=60.50% → SFT d000=11.68%/17.59%，下降 43-49pp，需排查训练配置\n\n### 11 天内优先级\n\n| 优先级 | 任务 |\n|--------|------|\n| **P0** | eval 已完成 SFT 的 3 个 checkpoint (0.5B_d025, 1.5B_d005, 1.5B_d100) |\n| **P0** | 排查 3B GSM8K 灾难性遗忘 |\n| **P1** | 重跑 3B_d005/d100 SFT + eval |\n| **P1** | 跑 raw baselines (0.5B, 1.5B 完整, 3B 补 MMLU/ARC) |\n| **P2** | 第二 seed (s123) 补充实验 |"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe84b957-3da9-4adc-b232-0891be4d9a93",
+            "isSidechain": false,
+            "requestId": "req_011Cb2H9pjDtK3WYDXGYk6WB",
+            "type": "assistant",
+            "uuid": "55d466ec-d900-4e82-963a-2ee939b016dd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+            "sessionId": "04f6af0d-f818-4bc9-a4cb-13175e75b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012RWgMHjpGG8sKosueBTGXk",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 454,
+                "cache_read_input_tokens": 87601,
+                "output_tokens": 999,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 454,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 999,
+                    "cache_read_input_tokens": 87601,
+                    "cache_creation_input_tokens": 454,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 454
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "55d466ec-d900-4e82-963a-2ee939b016dd",
+                "sessionId": "04f6af0d-f818-4bc9-a4cb-13175e75b8fe"
+              }
+            }
+          ],
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Compile Phase 3 experiment results for EMNLP submission",
+                "sessionId": "04f6af0d-f818-4bc9-a4cb-13175e75b8fe"
+              }
+            }
+          ],
+          "id": "event-000155"
+        }
+      ]
+    }
+  ]
+}

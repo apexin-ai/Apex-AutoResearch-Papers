@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "486592b7d68b8822da43",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: retrain_gemma2_d100_s0 - project: co",
+  "task_key": "6a75cd18-89d8-4722-8989-1b6ccb1af253",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/6a75cd18-89d8-4722-8989-1b6ccb1af253.jsonl",
+    "occurrence": 1,
+    "bytes": 868712,
+    "sha256": "55f81b803f3470f749780cddb713218ddb43439bd4cd1af18335ff2af11e51c5"
+  },
+  "statistics": {
+    "messages": 136,
+    "user_turns": 1,
+    "tool_calls": 40,
+    "roles": {
+      "record": 27,
+      "user": 1,
+      "assistant": 30,
+      "tool_call": 40,
+      "tool_result": 38
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "486592b7d68b8822da43-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 134,
+      "chunks": [
+        {
+          "path": "486592b7d68b8822da43-part-0001.json",
+          "message_count": 21
+        },
+        {
+          "path": "486592b7d68b8822da43-part-0002.json",
+          "message_count": 113
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-process-exited-without-valid-w-b-metrics-exp-id-retrain-gemma2-d100-s0-pr.md"
+}

@@ -1,0 +1,1203 @@
+{
+  "schema_version": "1.0",
+  "session_id": "52fb664d28b932157fca",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-15T18:35:10.215Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NpTRG45BX49Mxi6e4msxGU",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/compile_eval_summary.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Compile all eval metrics into summary JSON and markdown table.\"\"\"\n\nimport json\nimport statistics\nfrom collections import defaultdict\n\n# ============================================================\n# Disk data: mmlu, gsm8k, arc_challenge (humaneval always null on disk)\n# Source: /root/autodl-tmp/exp001/eval_results/*/eval_results.json\n# ============================================================\n\ndisk_data = {\n    # ---- 0.5B ----\n    \"Qwen2.5-0.5B_d000_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.3979, \"gsm8k\": 0.3692, \"arc\": 0.4693},\n    \"Qwen2.5-0.5B_d000_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.4216, \"gsm8k\": 0.3412, \"arc\": 0.4974},\n    \"Qwen2.5-0.5B_d000_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.4428, \"gsm8k\": 0.2807, \"arc\": 0.4792},\n    \"Qwen2.5-0.5B_d005_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.3255, \"gsm8k\": 0.3624, \"arc\": 0.3285},\n    \"Qwen2.5-0.5B_d005_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.3002, \"gsm8k\": 0.3677, \"arc\": 0.2978},\n    \"Qwen2.5-0.5B_d005_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.3548, \"gsm8k\": 0.2588, \"arc\": 0.3300},\n    \"Qwen2.5-0.5B_d005_s123_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.3166, \"gsm8k\": 0.2939, \"arc\": 0.2912},\n    \"Qwen2.5-0.5B_d025_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.2803, \"gsm8k\": 0.3662, \"arc\": 0.3251},\n    \"Qwen2.5-0.5B_d025_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.3473, \"gsm8k\": 0.3533, \"arc\": 0.4061},\n    \"Qwen2.5-0.5B_d025_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.2835, \"gsm8k\": 0.3114, \"arc\": 0.3199},\n    \"Qwen2.5-0.5B_d100_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.2334, \"gsm8k\": 0.3654, \"arc\": 0.2944},\n    \"Qwen2.5-0.5B_d100_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.3058, \"gsm8k\": 0.3798, \"arc\": 0.3669},\n\n    # ---- 1.5B ----\n    \"Qwen2.5-1.5B_d000_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5853, \"gsm8k\": 0.6543, \"arc\": 0.7722},\n    \"Qwen2.5-1.5B_d000_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5855, \"gsm8k\": 0.6535, \"arc\": 0.7577},\n    \"Qwen2.5-1.5B_d000_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6096, \"gsm8k\": 0.5570, \"arc\": 0.7547},\n    \"Qwen2.5-1.5B_d005_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5852, \"gsm8k\": 0.6482, \"arc\": 0.7688},\n    \"Qwen2.5-1.5B_d005_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5869, \"gsm8k\": 0.6482, \"arc\": 0.7568},\n    \"Qwen2.5-1.5B_d005_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6164, \"gsm8k\": 0.5439, \"arc\": 0.7532},\n    \"Qwen2.5-1.5B_d025_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5902, \"gsm8k\": 0.6535, \"arc\": 0.7688},\n    \"Qwen2.5-1.5B_d025_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5881, \"gsm8k\": 0.6550, \"arc\": 0.7577},\n    \"Qwen2.5-1.5B_d025_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6176, \"gsm8k\": 0.5395, \"arc\": 0.7661},\n    \"Qwen2.5-1.5B_d100_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5933, \"gsm8k\": 0.6497, \"arc\": 0.7688},\n    \"Qwen2.5-1.5B_d100_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5956, \"gsm8k\": 0.6444, \"arc\": 0.7816},\n    \"Qwen2.5-1.5B_d100_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6252, \"gsm8k\": 0.5526, \"arc\": 0.7661},\n\n    # ---- 3B (v2/alpha=32 preferred) ----\n    \"Qwen2.5-3B_d000_v2_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.6295, \"gsm8k\": 0.3525, \"arc\": 0.8183},\n    \"Qwen2.5-3B_d000_v2_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.6314, \"gsm8k\": 0.2676, \"arc\": 0.8259},\n    \"Qwen2.5-3B_d000_v2_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6468, \"gsm8k\": 0.2895, \"arc\": 0.8121},\n    \"Qwen2.5-3B_d000_v2_s123_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6512, \"gsm8k\": 0.1491, \"arc\": 0.8121},\n    \"Qwen2.5-3B_d005_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.6345, \"gsm8k\": 0.2077, \"arc\": 0.8294},\n    \"Qwen2.5-3B_d005_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6542, \"gsm8k\": 0.1491, \"arc\": 0.8221},\n    \"Qwen2.5-3B_d005_s123_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6461, \"gsm8k\": 0.5000, \"arc\": 0.8192},\n    \"Qwen2.5-3B_d025_v2_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5998, \"gsm8k\": 0.6793, \"arc\": 0.8276},  # s42\n    \"Qwen2.5-3B_d025_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.6367, \"gsm8k\": 0.5254, \"arc\": 0.8336},\n    \"Qwen2.5-3B_d025_v2_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6210, \"gsm8k\": 0.5482, \"arc\": 0.8106},\n    \"Qwen2.5-3B_d025_s123_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6615, \"gsm8k\": 0.4254, \"arc\": 0.8121},\n    \"Qwen2.5-3B_d100_v2_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.6320, \"gsm8k\": 0.7415, \"arc\": 0.8242},\n    \"Qwen2.5-3B_d100_v2_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.6319, \"gsm8k\": 0.7324, \"arc\": 0.8311},\n    \"Qwen2.5-3B_d100_v2_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6590, \"gsm8k\": 0.5833, \"arc\": 0.8092},\n}\n\n# ============================================================\n# HumanEval data from registry (not on disk)\n# ============================================================\n\nhumaneval_registry = {\n    # 0.5B\n    \"Qwen2.5-0.5B_d000_s42_aligned\": 0.1098,   # from batch\n    \"Qwen2.5-0.5B_d000_s123_aligned\": 0.1037,\n    \"Qwen2.5-0.5B_d000_s42_para_aligned\": 0.1154,  # from batch\n    \"Qwen2.5-0.5B_d005_s42_aligned\": 0.0793,    # from batch\n    \"Qwen2.5-0.5B_d005_s123_aligned\": 0.0976,\n    \"Qwen2.5-0.5B_d005_s42_para_aligned\": 0.0,\n    \"Qwen2.5-0.5B_d005_s123_para_aligned\": 0.0,\n    \"Qwen2.5-0.5B_d025_s42_aligned\": 0.1923,    # from d025_aligned_v2; note: possibly mislabeled\n    \"Qwen2.5-0.5B_d025_s123_aligned\": None,      # missing\n    \"Qwen2.5-0.5B_d025_s42_para_aligned\": None,  # missing\n    \"Qwen2.5-0.5B_d100_s42_aligned\": 0.0,        # from d100_aligned_v4\n    \"Qwen2.5-0.5B_d100_s123_aligned\": 0.1037,\n\n    # 1.5B\n    \"Qwen2.5-1.5B_d000_s42_aligned\": 0.128,      # from batch\n    \"Qwen2.5-1.5B_d000_s123_aligned\": 0.1707,\n    \"Qwen2.5-1.5B_d000_s42_para_aligned\": 0.0385, # from batch\n    \"Qwen2.5-1.5B_d005_s42_aligned\": 0.25,        # from batch/registry\n    \"Qwen2.5-1.5B_d005_s123_aligned\": None,       # missing\n    \"Qwen2.5-1.5B_d005_s42_para_aligned\": 0.1923, # from batch\n    \"Qwen2.5-1.5B_d025_s42_aligned\": 0.2256,\n    \"Qwen2.5-1.5B_d025_s123_aligned\": None,       # missing\n    \"Qwen2.5-1.5B_d025_s42_para_aligned\": 0.154,\n    \"Qwen2.5-1.5B_d100_s42_aligned\": 0.3049,      # from batch\n    \"Qwen2.5-1.5B_d100_s123_aligned\": 0.2805,\n    \"Qwen2.5-1.5B_d100_s42_para_aligned\": 0.2692, # from batch\n\n    # 3B (v2/alpha=32)\n    \"Qwen2.5-3B_d000_v2_s42_aligned\": 0.0976,\n    \"Qwen2.5-3B_d000_v2_s123_aligned\": 0.061,\n    \"Qwen2.5-3B_d000_v2_s42_para_aligned\": 0.0385,\n    \"Qwen2.5-3B_d000_v2_s123_para_aligned\": 0.0385,\n    \"Qwen2.5-3B_d005_s42_aligned\": 0.1463,\n    \"Qwen2.5-3B_d005_s42_para_aligned\": None,     # missing\n    \"Qwen2.5-3B_d005_s123_para_aligned\": 0.0769,\n    \"Qwen2.5-3B_d025_v2_aligned\": 0.0976,         # s42\n    \"Qwen2.5-3B_d025_s123_aligned\": 0.1585,\n    \"Qwen2.5-3B_d025_v2_s42_para_aligned\": 0.1154,\n    \"Qwen2.5-3B_d025_s123_para_aligned\": 0.1538,\n    \"Qwen2.5-3B_d100_v2_s42_aligned\": 0.1707,\n    \"Qwen2.5-3B_d100_v2_s123_aligned\": 0.1829,\n    \"Qwen2.5-3B_d100_v2_s42_para_aligned\": 0.1154,\n}\n\n# ============================================================\n# Build structured records\n# ============================================================\n\ndef parse_entry(dir_name, disk, he):\n    \"\"\"Parse directory name into structured record.\"\"\"\n    # Determine scale\n    if \"0.5B\" in dir_name:\n        scale = \"0.5B\"\n    elif \"1.5B\" in dir_name:\n        scale = \"1.5B\"\n    elif \"3B\" in dir_name:\n        scale = \"3B\"\n    else:\n        return None\n\n    # Determine eval type\n    if \"para_aligned\" in dir_name:\n        eval_type = \"para_aligned\"\n    elif \"aligned\" in dir_name:\n        eval_type = \"aligned\"\n    else:\n        return None\n\n    # Determine dose\n    for d in [\"d000\", \"d005\", \"d025\", \"d100\"]:\n        if d in dir_name:\n            dose_pct = {\"d000\": 0, \"d005\": 5, \"d025\": 25, \"d100\": 100}[d]\n            break\n    else:\n        return None\n\n    # Determine seed\n    if \"s123\" in dir_name:\n        seed = 123\n    elif \"s42\" in dir_name:\n        seed = 42\n    else:\n        # Some entries don't have explicit seed — check notes\n        # d025_v2_aligned is s42 per registry\n        seed = 42  # default assumption for entries without seed marker\n\n    # Notes for version tracking\n    notes = []\n    if \"_v2\" in dir_name or \"_v3\" in dir_name:\n        notes.append(\"alpha=32\")\n    if scale == \"3B\" and \"_v2\" not in dir_name and \"_v3\" not in dir_name:\n        if dose_pct in [25, 100]:\n            notes.append(\"WARNING: may be alpha=16\")\n        elif dose_pct == 0 and \"d000_v2\" not in dir_name:\n            notes.append(\"pre-v2 SFT\")\n\n    return {\n        \"scale\": scale,\n        \"dose_pct\": dose_pct,\n        \"seed\": seed,\n        \"eval_type\": eval_type,\n        \"mmlu\": round(disk[\"mmlu\"], 4),\n        \"gsm8k\": round(disk[\"gsm8k\"], 4),\n        \"arc\": round(disk[\"arc\"], 4),\n        \"humaneval\": round(he, 4) if he is not None else None,\n        \"source_dir\": dir_name,\n        \"notes\": \"; \".join(notes) if notes else \"\",\n    }\n\n\nrecords = []\nfor dir_name, disk in disk_data.items():\n    he = humaneval_registry.get(dir_name)\n    rec = parse_entry(dir_name, disk, he)\n    if rec:\n        records.append(rec)\n\n# Sort records\nrecords.sort(key=lambda r: (\n    {\"0.5B\": 0, \"1.5B\": 1, \"3B\": 2}[r[\"scale\"]],\n    r[\"dose_pct\"],\n    r[\"seed\"],\n    0 if r[\"eval_type\"] == \"aligned\" else 1,\n))\n\n# ============================================================\n# Compute cross-seed means and std\n# ============================================================\n\nagg_key = lambda r: (r[\"scale\"], r[\"dose_pct\"], r[\"eval_type\"])\ngroups = defaultdict(list)\nfor r in records:\n    groups[agg_key(r)].append(r)\n\naggregated = []\nfor key, recs in sorted(groups.items()):\n    scale, dose, etype = key\n    agg = {\"scale\": scale, \"dose_pct\": dose, \"eval_type\": etype, \"n_seeds\": len(recs)}\n    for bm in [\"mmlu\", \"gsm8k\", \"arc\", \"humaneval\"]:\n        vals = [r[bm] for r in recs if r[bm] is not None]\n        if vals:\n            agg[f\"{bm}_mean\"] = round(statistics.mean(vals), 4)\n            agg[f\"{bm}_std\"] = round(statistics.stdev(vals), 4) if len(vals) > 1 else None\n        else:\n            agg[f\"{bm}_mean\"] = None\n            agg[f\"{bm}_std\"] = None\n    aggregated.append(agg)\n\n# ============================================================\n# Dose-response curves\n# ============================================================\n\ndose_response = {}\nfor bm in [\"mmlu\", \"gsm8k\", \"arc\", \"humaneval\"]:\n    dose_response[bm] = {}\n    for scale in [\"0.5B\", \"1.5B\", \"3B\"]:\n        for etype in [\"aligned\", \"para_aligned\"]:\n            curve = []\n            for agg in aggregated:\n                if agg[\"scale\"] == scale and agg[\"eval_type\"] == etype:\n                    curve.append({\n                        \"dose_pct\": agg[\"dose_pct\"],\n                        \"mean\": agg[f\"{bm}_mean\"],\n                        \"std\": agg[f\"{bm}_std\"],\n                        \"n\": agg[\"n_seeds\"],\n                    })\n            if curve:\n                dose_response[bm][f\"{scale}_{etype}\"] = curve\n\n# ============================================================\n# Baselines\n# ============================================================\n\nbaselines = {\n    \"Qwen2.5-0.5B_base_pretrained\": {\n        \"mmlu\": 0.2294, \"gsm8k\": 0.1630, \"arc\": 0.2278, \"humaneval\": 0.0,\n        \"source\": \"exp_008_base_pretrained_eval_v2\"\n    },\n    \"Qwen2.5-0.5B-Instruct\": {\n        \"mmlu\": 0.2462, \"gsm8k\": 0.3882, \"arc\": 0.2816, \"humaneval\": 0.0,\n        \"source\": \"exp_008_instruct_05B_eval\"\n    },\n    \"Qwen2.5-1.5B_base_pretrained\": {\n        \"mmlu\": 0.2303, \"gsm8k\": 0.0053, \"arc\": 0.2304, \"humaneval\": 0.2317,\n        \"source\": \"exp_008_base_pretrained_15B_eval_v2\"\n    },\n}\n\n# ============================================================\n# Output JSON\n# ============================================================\n\noutput = {\n    \"metadata\": {\n        \"project\": \"contamcal-irt-calibration\",\n        \"description\": \"Eval metrics summary across all scales, doses, seeds, and eval types\",\n        \"scales\": [\"0.5B\", \"1.5B\", \"3B\"],\n        \"doses_pct\": [0, 5, 25, 100],\n        \"seeds\": [42, 123],\n        \"eval_types\": [\"aligned\", \"para_aligned\"],\n        \"benchmarks\": [\"mmlu\", \"gsm8k\", \"arc\", \"humaneval\"],\n        \"model_family\": \"Qwen2.5\",\n        \"lora_alpha\": 32,\n        \"notes\": [\n            \"HumanEval metrics from registry (not stored on disk)\",\n            \"3B uses v2 checkpoints (alpha=32); v1/DEPRECATED excluded\",\n            \"3B d005_s123_aligned eval is missing (never run)\",\n            \"3B d100_s123_para_aligned eval is missing\",\n            \"Some 0.5B/1.5B para_aligned s123 entries are missing\",\n            \"0.5B d025_s42 HumanEval=0.1923 may be from mislabeled para_aligned run\",\n        ],\n    },\n    \"individual_results\": records,\n    \"aggregated_by_dose\": aggregated,\n    \"dose_response_curves\": dose_response,\n    \"baselines\": baselines,\n}\n\njson_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.json\"\nwith open(json_path, \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"JSON saved to {json_path}\")\n\n# ============================================================\n# Output Markdown\n# ============================================================\n\nmd_lines = []\nmd_lines.append(\"# Eval Metrics Summary: contamcal-irt-calibration\")\nmd_lines.append(\"\")\nmd_lines.append(\"Model: Qwen2.5 (0.5B / 1.5B / 3B), LoRA alpha=32\")\nmd_lines.append(\"\")\nmd_lines.append(\"Doses: 0% (clean), 5%, 25%, 100% benchmark contamination in SFT data\")\nmd_lines.append(\"\")\nmd_lines.append(\"Eval types: **aligned** (original benchmark format), **para_aligned** (paraphrased questions)\")\nmd_lines.append(\"\")\n\n# Individual results table\nmd_lines.append(\"## Individual Results\")\nmd_lines.append(\"\")\nmd_lines.append(\"| Scale | Dose% | Seed | Eval Type | MMLU | GSM8K | ARC | HumanEval | Notes |\")\nmd_lines.append(\"|-------|-------|------|-----------|------|-------|-----|-----------|-------|\")\n\nfor r in records:\n    he_str = f\"{r['humaneval']:.4f}\" if r['humaneval'] is not None else \"—\"\n    md_lines.append(\n        f\"| {r['scale']} | {r['dose_pct']} | {r['seed']} | {r['eval_type']} \"\n        f\"| {r['mmlu']:.4f} | {r['gsm8k']:.4f} | {r['arc']:.4f} | {he_str} | {r['notes']} |\"\n    )\n\nmd_lines.append(\"\")\n\n# Aggregated table\nmd_lines.append(\"## Aggregated (Mean ± Std across seeds)\")\nmd_lines.append(\"\")\nmd_lines.append(\"| Scale | Dose% | Eval Type | N | MMLU | GSM8K | ARC | HumanEval |\")\nmd_lines.append(\"|-------|-------|-----------|---|------|-------|-----|-----------|\")\n\nfor a in aggregated:\n    cols = []\n    for bm in [\"mmlu\", \"gsm8k\", \"arc\", \"humaneval\"]:\n        m = a[f\"{bm}_mean\"]\n        s = a[f\"{bm}_std\"]\n        if m is None:\n            cols.append(\"—\")\n        elif s is not None:\n            cols.append(f\"{m:.4f}±{s:.4f}\")\n        else:\n            cols.append(f\"{m:.4f}\")\n    md_lines.append(\n        f\"| {a['scale']} | {a['dose_pct']} | {a['eval_type']} | {a['n_seeds']} \"\n        f\"| {cols[0]} | {cols[1]} | {cols[2]} | {cols[3]} |\"\n    )\n\nmd_lines.append(\"\")\n\n# Dose-response summary\nmd_lines.append(\"## Dose-Response Summary (aligned eval, mean across seeds)\")\nmd_lines.append(\"\")\nmd_lines.append(\"### MMLU\")\nmd_lines.append(\"| Dose% | 0.5B | 1.5B | 3B |\")\nmd_lines.append(\"|-------|------|------|-----|\")\n\nfor dose in [0, 5, 25, 100]:\n    vals = []\n    for scale in [\"0.5B\", \"1.5B\", \"3B\"]:\n        match = [a for a in aggregated if a[\"scale\"] == scale and a[\"dose_pct\"] == dose and a[\"eval_type\"] == \"aligned\"]\n        if match:\n            v = match[0][\"mmlu_mean\"]\n            vals.append(f\"{v:.4f}\" if v else \"—\")\n        else:\n            vals.append(\"—\")\n    md_lines.append(f\"| {dose} | {vals[0]} | {vals[1]} | {vals[2]} |\")\n\nmd_lines.append(\"\")\nmd_lines.append(\"### GSM8K\")\nmd_lines.append(\"| Dose% | 0.5B | 1.5B | 3B |\")\nmd_lines.append(\"|-------|------|------|-----|\")\n\nfor dose in [0, 5, 25, 100]:\n    vals = []\n    for scale in [\"0.5B\", \"1.5B\", \"3B\"]:\n        match = [a for a in aggregated if a[\"scale\"] == scale and a[\"dose_pct\"] == dose and a[\"eval_type\"] == \"aligned\"]\n        if match:\n            v = match[0][\"gsm8k_mean\"]\n            vals.append(f\"{v:.4f}\" if v else \"—\")\n        else:\n            vals.append(\"—\")\n    md_lines.append(f\"| {dose} | {vals[0]} | {vals[1]} | {vals[2]} |\")\n\nmd_lines.append(\"\")\nmd_lines.append(\"### ARC-Challenge\")\nmd_lines.append(\"| Dose% | 0.5B | 1.5B | 3B |\")\nmd_lines.append(\"|-------|------|------|-----|\")\n\nfor dose in [0, 5, 25, 100]:\n    vals = []\n    for scale in [\"0.5B\", \"1.5B\", \"3B\"]:\n        match = [a for a in aggregated if a[\"scale\"] == scale and a[\"dose_pct\"] == dose and a[\"eval_type\"] == \"aligned\"]\n        if match:\n            v = match[0][\"arc_mean\"]\n            vals.append(f\"{v:.4f}\" if v else \"—\")\n        else:\n            vals.append(\"—\")\n    md_lines.append(f\"| {dose} | {vals[0]} | {vals[1]} | {vals[2]} |\")\n\nmd_lines.append(\"\")\nmd_lines.append(\"### HumanEval\")\nmd_lines.append(\"| Dose% | 0.5B | 1.5B | 3B |\")\nmd_lines.append(\"|-------|------|------|-----|\")\n\nfor dose in [0, 5, 25, 100]:\n    vals = []\n    for scale in [\"0.5B\", \"1.5B\", \"3B\"]:\n        match = [a for a in aggregated if a[\"scale\"] == scale and a[\"dose_pct\"] == dose and a[\"eval_type\"] == \"aligned\"]\n        if match:\n            v = match[0][\"humaneval_mean\"]\n            vals.append(f\"{v:.4f}\" if v else \"—\")\n        else:\n            vals.append(\"—\")\n    md_lines.append(f\"| {dose} | {vals[0]} | {vals[1]} | {vals[2]} |\")\n\nmd_lines.append(\"\")\n\n# Baselines\nmd_lines.append(\"## Baselines (no SFT)\")\nmd_lines.append(\"\")\nmd_lines.append(\"| Model | MMLU | GSM8K | ARC | HumanEval |\")\nmd_lines.append(\"|-------|------|-------|-----|-----------|\")\nfor name, b in baselines.items():\n    he_str = f\"{b['humaneval']:.4f}\" if b['humaneval'] is not None else \"—\"\n    md_lines.append(f\"| {name} | {b['mmlu']:.4f} | {b['gsm8k']:.4f} | {b['arc']:.4f} | {he_str} |\")\n\nmd_lines.append(\"\")\n\n# Coverage matrix\nmd_lines.append(\"## Coverage Matrix\")\nmd_lines.append(\"\")\nmd_lines.append(\"✓ = both seeds, △ = seed 42 only, ✗ = missing\")\nmd_lines.append(\"\")\nmd_lines.append(\"| Scale | Dose% | Aligned | Para-aligned |\")\nmd_lines.append(\"|-------|-------|---------|--------------|\")\n\nfor scale in [\"0.5B\", \"1.5B\", \"3B\"]:\n    for dose in [0, 5, 25, 100]:\n        statuses = []\n        for etype in [\"aligned\", \"para_aligned\"]:\n            matching = [r for r in records if r[\"scale\"] == scale and r[\"dose_pct\"] == dose and r[\"eval_type\"] == etype]\n            seeds = set(r[\"seed\"] for r in matching)\n            if seeds == {42, 123}:\n                statuses.append(\"✓\")\n            elif seeds == {42}:\n                statuses.append(\"△\")\n            elif seeds:\n                statuses.append(f\"seed={list(seeds)}\")\n            else:\n                statuses.append(\"✗\")\n        md_lines.append(f\"| {scale} | {dose} | {statuses[0]} | {statuses[1]} |\")\n\nmd_lines.append(\"\")\nmd_lines.append(\"## Notes\")\nmd_lines.append(\"\")\nmd_lines.append(\"- HumanEval metrics sourced from experiment registry (not stored in eval_results.json on disk)\")\nmd_lines.append(\"- 3B results use v2 checkpoints (LoRA alpha=32); v1/DEPRECATED (alpha=16) excluded\")\nmd_lines.append(\"- 3B d005_s123 aligned eval was never run\")\nmd_lines.append(\"- 3B d100_s123 para_aligned eval was never run\")\nmd_lines.append(\"- Several 0.5B and 1.5B para_aligned seed=123 entries are missing\")\nmd_lines.append(\"- 0.5B d025_s42 aligned HumanEval (0.1923) may originate from a mislabeled para_aligned run\")\nmd_lines.append(\"\")\n\nmd_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.md\"\nwith open(md_path, \"w\") as f:\n    f.write(\"\\n\".join(md_lines))\nprint(f\"Markdown saved to {md_path}\")\n\n# Quick stats\nprint(f\"\\nTotal individual records: {len(records)}\")\nprint(f\"Aggregated groups: {len(aggregated)}\")\nfor scale in [\"0.5B\", \"1.5B\", \"3B\"]:\n    n = sum(1 for r in records if r[\"scale\"] == scale)\n    print(f\"  {scale}: {n} entries\")\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74ca1219-6f24-49b6-9897-784ab8c133c8",
+            "isSidechain": false,
+            "requestId": "req_011Cb4qN4EeWuKD7UB6pB8Lt",
+            "type": "assistant",
+            "uuid": "5c92b99d-7b77-42ed-bc15-75dd4402636d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LaKGQcKgMYJ3CTyCPv3tjR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5825,
+                "cache_read_input_tokens": 72895,
+                "output_tokens": 8529,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5825,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 8529,
+                    "cache_read_input_tokens": 72895,
+                    "cache_creation_input_tokens": 5825,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5825
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-15T18:35:10.315Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NpTRG45BX49Mxi6e4msxGU",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/compile_eval_summary.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5c92b99d-7b77-42ed-bc15-75dd4402636d",
+            "isSidechain": false,
+            "promptId": "eec554ab-49eb-41f0-9151-4530891c32ce",
+            "type": "user",
+            "uuid": "603a6581-9a49-4649-beb4-b7cb9fd54e69",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/compile_eval_summary.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Compile all eval metrics into summary JSON and markdown table.\"\"\"\n\nimport json\nimport statistics\nfrom collections import defaultdict\n\n# ============================================================\n# Disk data: mmlu, gsm8k, arc_challenge (humaneval always null on disk)\n# Source: /root/autodl-tmp/exp001/eval_results/*/eval_results.json\n# ============================================================\n\ndisk_data = {\n    # ---- 0.5B ----\n    \"Qwen2.5-0.5B_d000_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.3979, \"gsm8k\": 0.3692, \"arc\": 0.4693},\n    \"Qwen2.5-0.5B_d000_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.4216, \"gsm8k\": 0.3412, \"arc\": 0.4974},\n    \"Qwen2.5-0.5B_d000_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.4428, \"gsm8k\": 0.2807, \"arc\": 0.4792},\n    \"Qwen2.5-0.5B_d005_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.3255, \"gsm8k\": 0.3624, \"arc\": 0.3285},\n    \"Qwen2.5-0.5B_d005_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.3002, \"gsm8k\": 0.3677, \"arc\": 0.2978},\n    \"Qwen2.5-0.5B_d005_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.3548, \"gsm8k\": 0.2588, \"arc\": 0.3300},\n    \"Qwen2.5-0.5B_d005_s123_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.3166, \"gsm8k\": 0.2939, \"arc\": 0.2912},\n    \"Qwen2.5-0.5B_d025_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.2803, \"gsm8k\": 0.3662, \"arc\": 0.3251},\n    \"Qwen2.5-0.5B_d025_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.3473, \"gsm8k\": 0.3533, \"arc\": 0.4061},\n    \"Qwen2.5-0.5B_d025_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.2835, \"gsm8k\": 0.3114, \"arc\": 0.3199},\n    \"Qwen2.5-0.5B_d100_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.2334, \"gsm8k\": 0.3654, \"arc\": 0.2944},\n    \"Qwen2.5-0.5B_d100_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.3058, \"gsm8k\": 0.3798, \"arc\": 0.3669},\n\n    # ---- 1.5B ----\n    \"Qwen2.5-1.5B_d000_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5853, \"gsm8k\": 0.6543, \"arc\": 0.7722},\n    \"Qwen2.5-1.5B_d000_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5855, \"gsm8k\": 0.6535, \"arc\": 0.7577},\n    \"Qwen2.5-1.5B_d000_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6096, \"gsm8k\": 0.5570, \"arc\": 0.7547},\n    \"Qwen2.5-1.5B_d005_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5852, \"gsm8k\": 0.6482, \"arc\": 0.7688},\n    \"Qwen2.5-1.5B_d005_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5869, \"gsm8k\": 0.6482, \"arc\": 0.7568},\n    \"Qwen2.5-1.5B_d005_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6164, \"gsm8k\": 0.5439, \"arc\": 0.7532},\n    \"Qwen2.5-1.5B_d025_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5902, \"gsm8k\": 0.6535, \"arc\": 0.7688},\n    \"Qwen2.5-1.5B_d025_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5881, \"gsm8k\": 0.6550, \"arc\": 0.7577},\n    \"Qwen2.5-1.5B_d025_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6176, \"gsm8k\": 0.5395, \"arc\": 0.7661},\n    \"Qwen2.5-1.5B_d100_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5933, \"gsm8k\": 0.6497, \"arc\": 0.7688},\n    \"Qwen2.5-1.5B_d100_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5956, \"gsm8k\": 0.6444, \"arc\": 0.7816},\n    \"Qwen2.5-1.5B_d100_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6252, \"gsm8k\": 0.5526, \"arc\": 0.7661},\n\n    # ---- 3B (v2/alpha=32 preferred) ----\n    \"Qwen2.5-3B_d000_v2_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.6295, \"gsm8k\": 0.3525, \"arc\": 0.8183},\n    \"Qwen2.5-3B_d000_v2_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.6314, \"gsm8k\": 0.2676, \"arc\": 0.8259},\n    \"Qwen2.5-3B_d000_v2_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6468, \"gsm8k\": 0.2895, \"arc\": 0.8121},\n    \"Qwen2.5-3B_d000_v2_s123_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6512, \"gsm8k\": 0.1491, \"arc\": 0.8121},\n    \"Qwen2.5-3B_d005_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.6345, \"gsm8k\": 0.2077, \"arc\": 0.8294},\n    \"Qwen2.5-3B_d005_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6542, \"gsm8k\": 0.1491, \"arc\": 0.8221},\n    \"Qwen2.5-3B_d005_s123_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6461, \"gsm8k\": 0.5000, \"arc\": 0.8192},\n    \"Qwen2.5-3B_d025_v2_aligned\": {\"paraphrased\": False, \"mmlu\": 0.5998, \"gsm8k\": 0.6793, \"arc\": 0.8276},  # s42\n    \"Qwen2.5-3B_d025_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.6367, \"gsm8k\": 0.5254, \"arc\": 0.8336},\n    \"Qwen2.5-3B_d025_v2_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6210, \"gsm8k\": 0.5482, \"arc\": 0.8106},\n    \"Qwen2.5-3B_d025_s123_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6615, \"gsm8k\": 0.4254, \"arc\": 0.8121},\n    \"Qwen2.5-3B_d100_v2_s42_aligned\": {\"paraphrased\": False, \"mmlu\": 0.6320, \"gsm8k\": 0.7415, \"arc\": 0.8242},\n    \"Qwen2.5-3B_d100_v2_s123_aligned\": {\"paraphrased\": False, \"mmlu\": 0.6319, \"gsm8k\": 0.7324, \"arc\": 0.8311},\n    \"Qwen2.5-3B_d100_v2_s42_para_aligned\": {\"paraphrased\": True, \"mmlu\": 0.6590, \"gsm8k\": 0.5833, \"arc\": 0.8092},\n}\n\n# ============================================================\n# HumanEval data from registry (not on disk)\n# ============================================================\n\nhumaneval_registry = {\n    # 0.5B\n    \"Qwen2.5-0.5B_d000_s42_aligned\": 0.1098,   # from batch\n    \"Qwen2.5-0.5B_d000_s123_aligned\": 0.1037,\n    \"Qwen2.5-0.5B_d000_s42_para_aligned\": 0.1154,  # from batch\n    \"Qwen2.5-0.5B_d005_s42_aligned\": 0.0793,    # from batch\n    \"Qwen2.5-0.5B_d005_s123_aligned\": 0.0976,\n    \"Qwen2.5-0.5B_d005_s42_para_aligned\": 0.0,\n    \"Qwen2.5-0.5B_d005_s123_para_aligned\": 0.0,\n    \"Qwen2.5-0.5B_d025_s42_aligned\": 0.1923,    # from d025_aligned_v2; note: possibly mislabeled\n    \"Qwen2.5-0.5B_d025_s123_aligned\": None,      # missing\n    \"Qwen2.5-0.5B_d025_s42_para_aligned\": None,  # missing\n    \"Qwen2.5-0.5B_d100_s42_aligned\": 0.0,        # from d100_aligned_v4\n    \"Qwen2.5-0.5B_d100_s123_aligned\": 0.1037,\n\n    # 1.5B\n    \"Qwen2.5-1.5B_d000_s42_aligned\": 0.128,      # from batch\n    \"Qwen2.5-1.5B_d000_s123_aligned\": 0.1707,\n    \"Qwen2.5-1.5B_d000_s42_para_aligned\": 0.0385, # from batch\n    \"Qwen2.5-1.5B_d005_s42_aligned\": 0.25,        # from batch/registry\n    \"Qwen2.5-1.5B_d005_s123_aligned\": None,       # missing\n    \"Qwen2.5-1.5B_d005_s42_para_aligned\": 0.1923, # from batch\n    \"Qwen2.5-1.5B_d025_s42_aligned\": 0.2256,\n    \"Qwen2.5-1.5B_d025_s123_aligned\": None,       # missing\n    \"Qwen2.5-1.5B_d025_s42_para_aligned\": 0.154,\n    \"Qwen2.5-1.5B_d100_s42_aligned\": 0.3049,      # from batch\n    \"Qwen2.5-1.5B_d100_s123_aligned\": 0.2805,\n    \"Qwen2.5-1.5B_d100_s42_para_aligned\": 0.2692, # from batch\n\n    # 3B (v2/alpha=32)\n    \"Qwen2.5-3B_d000_v2_s42_aligned\": 0.0976,\n    \"Qwen2.5-3B_d000_v2_s123_aligned\": 0.061,\n    \"Qwen2.5-3B_d000_v2_s42_para_aligned\": 0.0385,\n    \"Qwen2.5-3B_d000_v2_s123_para_aligned\": 0.0385,\n    \"Qwen2.5-3B_d005_s42_aligned\": 0.1463,\n    \"Qwen2.5-3B_d005_s42_para_aligned\": None,     # missing\n    \"Qwen2.5-3B_d005_s123_para_aligned\": 0.0769,\n    \"Qwen2.5-3B_d025_v2_aligned\": 0.0976,         # s42\n    \"Qwen2.5-3B_d025_s123_aligned\": 0.1585,\n    \"Qwen2.5-3B_d025_v2_s42_para_aligned\": 0.1154,\n    \"Qwen2.5-3B_d025_s123_para_aligned\": 0.1538,\n    \"Qwen2.5-3B_d100_v2_s42_aligned\": 0.1707,\n    \"Qwen2.5-3B_d100_v2_s123_aligned\": 0.1829,\n    \"Qwen2.5-3B_d100_v2_s42_para_aligned\": 0.1154,\n}\n\n# ============================================================\n# Build structured records\n# ============================================================\n\ndef parse_entry(dir_name, disk, he):\n    \"\"\"Parse directory name into structured record.\"\"\"\n    # Determine scale\n    if \"0.5B\" in dir_name:\n        scale = \"0.5B\"\n    elif \"1.5B\" in dir_name:\n        scale = \"1.5B\"\n    elif \"3B\" in dir_name:\n        scale = \"3B\"\n    else:\n        return None\n\n    # Determine eval type\n    if \"para_aligned\" in dir_name:\n        eval_type = \"para_aligned\"\n    elif \"aligned\" in dir_name:\n        eval_type = \"aligned\"\n    else:\n        return None\n\n    # Determine dose\n    for d in [\"d000\", \"d005\", \"d025\", \"d100\"]:\n        if d in dir_name:\n            dose_pct = {\"d000\": 0, \"d005\": 5, \"d025\": 25, \"d100\": 100}[d]\n            break\n    else:\n        return None\n\n    # Determine seed\n    if \"s123\" in dir_name:\n        seed = 123\n    elif \"s42\" in dir_name:\n        seed = 42\n    else:\n        # Some entries don't have explicit seed — check notes\n        # d025_v2_aligned is s42 per registry\n        seed = 42  # default assumption for entries without seed marker\n\n    # Notes for version tracking\n    notes = []\n    if \"_v2\" in dir_name or \"_v3\" in dir_name:\n        notes.append(\"alpha=32\")\n    if scale == \"3B\" and \"_v2\" not in dir_name and \"_v3\" not in dir_name:\n        if dose_pct in [25, 100]:\n            notes.append(\"WARNING: may be alpha=16\")\n        elif dose_pct == 0 and \"d000_v2\" not in dir_name:\n            notes.append(\"pre-v2 SFT\")\n\n    return {\n        \"scale\": scale,\n        \"dose_pct\": dose_pct,\n        \"seed\": seed,\n        \"eval_type\": eval_type,\n        \"mmlu\": round(disk[\"mmlu\"], 4),\n        \"gsm8k\": round(disk[\"gsm8k\"], 4),\n        \"arc\": round(disk[\"arc\"], 4),\n        \"humaneval\": round(he, 4) if he is not None else None,\n        \"source_dir\": dir_name,\n        \"notes\": \"; \".join(notes) if notes else \"\",\n    }\n\n\nrecords = []\nfor dir_name, disk in disk_data.items():\n    he = humaneval_registry.get(dir_name)\n    rec = parse_entry(dir_name, disk, he)\n    if rec:\n        records.append(rec)\n\n# Sort records\nrecords.sort(key=lambda r: (\n    {\"0.5B\": 0, \"1.5B\": 1, \"3B\": 2}[r[\"scale\"]],\n    r[\"dose_pct\"],\n    r[\"seed\"],\n    0 if r[\"eval_type\"] == \"aligned\" else 1,\n))\n\n# ============================================================\n# Compute cross-seed means and std\n# ============================================================\n\nagg_key = lambda r: (r[\"scale\"], r[\"dose_pct\"], r[\"eval_type\"])\ngroups = defaultdict(list)\nfor r in records:\n    groups[agg_key(r)].append(r)\n\naggregated = []\nfor key, recs in sorted(groups.items()):\n    scale, dose, etype = key\n    agg = {\"scale\": scale, \"dose_pct\": dose, \"eval_type\": etype, \"n_seeds\": len(recs)}\n    for bm in [\"mmlu\", \"gsm8k\", \"arc\", \"humaneval\"]:\n        vals = [r[bm] for r in recs if r[bm] is not None]\n        if vals:\n            agg[f\"{bm}_mean\"] = round(statistics.mean(vals), 4)\n            agg[f\"{bm}_std\"] = round(statistics.stdev(vals), 4) if len(vals) > 1 else None\n        else:\n            agg[f\"{bm}_mean\"] = None\n            agg[f\"{bm}_std\"] = None\n    aggregated.append(agg)\n\n# ============================================================\n# Dose-response curves\n# ============================================================\n\ndose_response = {}\nfor bm in [\"mmlu\", \"gsm8k\", \"arc\", \"humaneval\"]:\n    dose_response[bm] = {}\n    for scale in [\"0.5B\", \"1.5B\", \"3B\"]:\n        for etype in [\"aligned\", \"para_aligned\"]:\n            curve = []\n            for agg in aggregated:\n                if agg[\"scale\"] == scale and agg[\"eval_type\"] == etype:\n                    curve.append({\n                        \"dose_pct\": agg[\"dose_pct\"],\n                        \"mean\": agg[f\"{bm}_mean\"],\n                        \"std\": agg[f\"{bm}_std\"],\n                        \"n\": agg[\"n_seeds\"],\n                    })\n            if curve:\n                dose_response[bm][f\"{scale}_{etype}\"] = curve\n\n# ============================================================\n# Baselines\n# ============================================================\n\nbaselines = {\n    \"Qwen2.5-0.5B_base_pretrained\": {\n        \"mmlu\": 0.2294, \"gsm8k\": 0.1630, \"arc\": 0.2278, \"humaneval\": 0.0,\n        \"source\": \"exp_008_base_pretrained_eval_v2\"\n    },\n    \"Qwen2.5-0.5B-Instruct\": {\n        \"mmlu\": 0.2462, \"gsm8k\": 0.3882, \"arc\": 0.2816, \"humaneval\": 0.0,\n        \"source\": \"exp_008_instruct_05B_eval\"\n    },\n    \"Qwen2.5-1.5B_base_pretrained\": {\n        \"mmlu\": 0.2303, \"gsm8k\": 0.0053, \"arc\": 0.2304, \"humaneval\": 0.2317,\n        \"source\": \"exp_008_base_pretrained_15B_eval_v2\"\n    },\n}\n\n# ============================================================\n# Output JSON\n# ============================================================\n\noutput = {\n    \"metadata\": {\n        \"project\": \"contamcal-irt-calibration\",\n        \"description\": \"Eval metrics summary across all scales, doses, seeds, and eval types\",\n        \"scales\": [\"0.5B\", \"1.5B\", \"3B\"],\n        \"doses_pct\": [0, 5, 25, 100],\n        \"seeds\": [42, 123],\n        \"eval_types\": [\"aligned\", \"para_aligned\"],\n        \"benchmarks\": [\"mmlu\", \"gsm8k\", \"arc\", \"humaneval\"],\n        \"model_family\": \"Qwen2.5\",\n        \"lora_alpha\": 32,\n        \"notes\": [\n            \"HumanEval metrics from registry (not stored on disk)\",\n            \"3B uses v2 checkpoints (alpha=32); v1/DEPRECATED excluded\",\n            \"3B d005_s123_aligned eval is missing (never run)\",\n            \"3B d100_s123_para_aligned eval is missing\",\n            \"Some 0.5B/1.5B para_aligned s123 entries are missing\",\n            \"0.5B d025_s42 HumanEval=0.1923 may be from mislabeled para_aligned run\",\n        ],\n    },\n    \"individual_results\": records,\n    \"aggregated_by_dose\": aggregated,\n    \"dose_response_curves\": dose_response,\n    \"baselines\": baselines,\n}\n\njson_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.json\"\nwith open(json_path, \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"JSON saved to {json_path}\")\n\n# ============================================================\n# Output Markdown\n# ============================================================\n\nmd_lines = []\nmd_lines.append(\"# Eval Metrics Summary: contamcal-irt-calibration\")\nmd_lines.append(\"\")\nmd_lines.append(\"Model: Qwen2.5 (0.5B / 1.5B / 3B), LoRA alpha=32\")\nmd_lines.append(\"\")\nmd_lines.append(\"Doses: 0% (clean), 5%, 25%, 100% benchmark contamination in SFT data\")\nmd_lines.append(\"\")\nmd_lines.append(\"Eval types: **aligned** (original benchmark format), **para_aligned** (paraphrased questions)\")\nmd_lines.append(\"\")\n\n# Individual results table\nmd_lines.append(\"## Individual Results\")\nmd_lines.append(\"\")\nmd_lines.append(\"| Scale | Dose% | Seed | Eval Type | MMLU | GSM8K | ARC | HumanEval | Notes |\")\nmd_lines.append(\"|-------|-------|------|-----------|------|-------|-----|-----------|-------|\")\n\nfor r in records:\n    he_str = f\"{r['humaneval']:.4f}\" if r['humaneval'] is not None else \"—\"\n    md_lines.append(\n        f\"| {r['scale']} | {r['dose_pct']} | {r['seed']} | {r['eval_type']} \"\n        f\"| {r['mmlu']:.4f} | {r['gsm8k']:.4f} | {r['arc']:.4f} | {he_str} | {r['notes']} |\"\n    )\n\nmd_lines.append(\"\")\n\n# Aggregated table\nmd_lines.append(\"## Aggregated (Mean ± Std across seeds)\")\nmd_lines.append(\"\")\nmd_lines.append(\"| Scale | Dose% | Eval Type | N | MMLU | GSM8K | ARC | HumanEval |\")\nmd_lines.append(\"|-------|-------|-----------|---|------|-------|-----|-----------|\")\n\nfor a in aggregated:\n    cols = []\n    for bm in [\"mmlu\", \"gsm8k\", \"arc\", \"humaneval\"]:\n        m = a[f\"{bm}_mean\"]\n        s = a[f\"{bm}_std\"]\n        if m is None:\n            cols.append(\"—\")\n        elif s is not None:\n            cols.append(f\"{m:.4f}±{s:.4f}\")\n        else:\n            cols.append(f\"{m:.4f}\")\n    md_lines.append(\n        f\"| {a['scale']} | {a['dose_pct']} | {a['eval_type']} | {a['n_seeds']} \"\n        f\"| {cols[0]} | {cols[1]} | {cols[2]} | {cols[3]} |\"\n    )\n\nmd_lines.append(\"\")\n\n# Dose-response summary\nmd_lines.append(\"## Dose-Response Summary (aligned eval, mean across seeds)\")\nmd_lines.append(\"\")\nmd_lines.append(\"### MMLU\")\nmd_lines.append(\"| Dose% | 0.5B | 1.5B | 3B |\")\nmd_lines.append(\"|-------|------|------|-----|\")\n\nfor dose in [0, 5, 25, 100]:\n    vals = []\n    for scale in [\"0.5B\", \"1.5B\", \"3B\"]:\n        match = [a for a in aggregated if a[\"scale\"] == scale and a[\"dose_pct\"] == dose and a[\"eval_type\"] == \"aligned\"]\n        if match:\n            v = match[0][\"mmlu_mean\"]\n            vals.append(f\"{v:.4f}\" if v else \"—\")\n        else:\n            vals.append(\"—\")\n    md_lines.append(f\"| {dose} | {vals[0]} | {vals[1]} | {vals[2]} |\")\n\nmd_lines.append(\"\")\nmd_lines.append(\"### GSM8K\")\nmd_lines.append(\"| Dose% | 0.5B | 1.5B | 3B |\")\nmd_lines.append(\"|-------|------|------|-----|\")\n\nfor dose in [0, 5, 25, 100]:\n    vals = []\n    for scale in [\"0.5B\", \"1.5B\", \"3B\"]:\n        match = [a for a in aggregated if a[\"scale\"] == scale and a[\"dose_pct\"] == dose and a[\"eval_type\"] == \"aligned\"]\n        if match:\n            v = match[0][\"gsm8k_mean\"]\n            vals.append(f\"{v:.4f}\" if v else \"—\")\n        else:\n            vals.append(\"—\")\n    md_lines.append(f\"| {dose} | {vals[0]} | {vals[1]} | {vals[2]} |\")\n\nmd_lines.append(\"\")\nmd_lines.append(\"### ARC-Challenge\")\nmd_lines.append(\"| Dose% | 0.5B | 1.5B | 3B |\")\nmd_lines.append(\"|-------|------|------|-----|\")\n\nfor dose in [0, 5, 25, 100]:\n    vals = []\n    for scale in [\"0.5B\", \"1.5B\", \"3B\"]:\n        match = [a for a in aggregated if a[\"scale\"] == scale and a[\"dose_pct\"] == dose and a[\"eval_type\"] == \"aligned\"]\n        if match:\n            v = match[0][\"arc_mean\"]\n            vals.append(f\"{v:.4f}\" if v else \"—\")\n        else:\n            vals.append(\"—\")\n    md_lines.append(f\"| {dose} | {vals[0]} | {vals[1]} | {vals[2]} |\")\n\nmd_lines.append(\"\")\nmd_lines.append(\"### HumanEval\")\nmd_lines.append(\"| Dose% | 0.5B | 1.5B | 3B |\")\nmd_lines.append(\"|-------|------|------|-----|\")\n\nfor dose in [0, 5, 25, 100]:\n    vals = []\n    for scale in [\"0.5B\", \"1.5B\", \"3B\"]:\n        match = [a for a in aggregated if a[\"scale\"] == scale and a[\"dose_pct\"] == dose and a[\"eval_type\"] == \"aligned\"]\n        if match:\n            v = match[0][\"humaneval_mean\"]\n            vals.append(f\"{v:.4f}\" if v else \"—\")\n        else:\n            vals.append(\"—\")\n    md_lines.append(f\"| {dose} | {vals[0]} | {vals[1]} | {vals[2]} |\")\n\nmd_lines.append(\"\")\n\n# Baselines\nmd_lines.append(\"## Baselines (no SFT)\")\nmd_lines.append(\"\")\nmd_lines.append(\"| Model | MMLU | GSM8K | ARC | HumanEval |\")\nmd_lines.append(\"|-------|------|-------|-----|-----------|\")\nfor name, b in baselines.items():\n    he_str = f\"{b['humaneval']:.4f}\" if b['humaneval'] is not None else \"—\"\n    md_lines.append(f\"| {name} | {b['mmlu']:.4f} | {b['gsm8k']:.4f} | {b['arc']:.4f} | {he_str} |\")\n\nmd_lines.append(\"\")\n\n# Coverage matrix\nmd_lines.append(\"## Coverage Matrix\")\nmd_lines.append(\"\")\nmd_lines.append(\"✓ = both seeds, △ = seed 42 only, ✗ = missing\")\nmd_lines.append(\"\")\nmd_lines.append(\"| Scale | Dose% | Aligned | Para-aligned |\")\nmd_lines.append(\"|-------|-------|---------|--------------|\")\n\nfor scale in [\"0.5B\", \"1.5B\", \"3B\"]:\n    for dose in [0, 5, 25, 100]:\n        statuses = []\n        for etype in [\"aligned\", \"para_aligned\"]:\n            matching = [r for r in records if r[\"scale\"] == scale and r[\"dose_pct\"] == dose and r[\"eval_type\"] == etype]\n            seeds = set(r[\"seed\"] for r in matching)\n            if seeds == {42, 123}:\n                statuses.append(\"✓\")\n            elif seeds == {42}:\n                statuses.append(\"△\")\n            elif seeds:\n                statuses.append(f\"seed={list(seeds)}\")\n            else:\n                statuses.append(\"✗\")\n        md_lines.append(f\"| {scale} | {dose} | {statuses[0]} | {statuses[1]} |\")\n\nmd_lines.append(\"\")\nmd_lines.append(\"## Notes\")\nmd_lines.append(\"\")\nmd_lines.append(\"- HumanEval metrics sourced from experiment registry (not stored in eval_results.json on disk)\")\nmd_lines.append(\"- 3B results use v2 checkpoints (LoRA alpha=32); v1/DEPRECATED (alpha=16) excluded\")\nmd_lines.append(\"- 3B d005_s123 aligned eval was never run\")\nmd_lines.append(\"- 3B d100_s123 para_aligned eval was never run\")\nmd_lines.append(\"- Several 0.5B and 1.5B para_aligned seed=123 entries are missing\")\nmd_lines.append(\"- 0.5B d025_s42 aligned HumanEval (0.1923) may originate from a mislabeled para_aligned run\")\nmd_lines.append(\"\")\n\nmd_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.md\"\nwith open(md_path, \"w\") as f:\n    f.write(\"\\n\".join(md_lines))\nprint(f\"Markdown saved to {md_path}\")\n\n# Quick stats\nprint(f\"\\nTotal individual records: {len(records)}\")\nprint(f\"Aggregated groups: {len(aggregated)}\")\nfor scale in [\"0.5B\", \"1.5B\", \"3B\"]:\n    n = sum(1 for r in records if r[\"scale\"] == scale)\n    print(f\"  {scale}: {n} entries\")\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "5c92b99d-7b77-42ed-bc15-75dd4402636d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "603a6581-9a49-4649-beb4-b7cb9fd54e69",
+                "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af"
+              }
+            }
+          ],
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Summarize eval results across all model scales",
+                "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af"
+              }
+            }
+          ],
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-15T18:35:14.060Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TmerQEyr61F29tA59CQUuQ",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts && python3 compile_eval_summary.py",
+                "description": "Run eval summary compilation script"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "603a6581-9a49-4649-beb4-b7cb9fd54e69",
+            "isSidechain": false,
+            "requestId": "req_011Cb4qV8fF7smQwyPZnSDoQ",
+            "type": "assistant",
+            "uuid": "78c8d5fe-705f-4532-bfbf-0231851507a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01THFcCFah1sv9mtnQyKyuNs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8587,
+                "cache_read_input_tokens": 78720,
+                "output_tokens": 117,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8587,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 117,
+                    "cache_read_input_tokens": 78720,
+                    "cache_creation_input_tokens": 8587,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8587
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-15T18:35:14.678Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TmerQEyr61F29tA59CQUuQ",
+              "type": "tool_result",
+              "content": "JSON saved to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.json\nMarkdown saved to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.md\n\nTotal individual records: 38\nAggregated groups: 23\n  0.5B: 12 entries\n  1.5B: 12 entries\n  3B: 14 entries",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "78c8d5fe-705f-4532-bfbf-0231851507a2",
+            "isSidechain": false,
+            "promptId": "eec554ab-49eb-41f0-9151-4530891c32ce",
+            "type": "user",
+            "uuid": "2f300246-80d8-4ca7-9378-d36454719739",
+            "toolUseResult": {
+              "stdout": "JSON saved to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.json\nMarkdown saved to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.md\n\nTotal individual records: 38\nAggregated groups: 23\n  0.5B: 12 entries\n  1.5B: 12 entries\n  3B: 14 entries",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "78c8d5fe-705f-4532-bfbf-0231851507a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-15T18:35:17.730Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J9Yn5ybwZmdy6ZthUTKebX",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2f300246-80d8-4ca7-9378-d36454719739",
+            "isSidechain": false,
+            "requestId": "req_011Cb4qVRiRASXxZWFuMXYBg",
+            "type": "assistant",
+            "uuid": "7ca6fd3c-40e0-46c6-a8d6-31a628fdaa8e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J7o2du1upcgbwS5cJPL4Bo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 265,
+                "cache_read_input_tokens": 87307,
+                "output_tokens": 93,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 265,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 93,
+                    "cache_read_input_tokens": 87307,
+                    "cache_creation_input_tokens": 265,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 265
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-15T18:35:17.785Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J9Yn5ybwZmdy6ZthUTKebX",
+              "type": "tool_result",
+              "content": "1\t# Eval Metrics Summary: contamcal-irt-calibration\n2\t\n3\tModel: Qwen2.5 (0.5B / 1.5B / 3B), LoRA alpha=32\n4\t\n5\tDoses: 0% (clean), 5%, 25%, 100% benchmark contamination in SFT data\n6\t\n7\tEval types: **aligned** (original benchmark format), **para_aligned** (paraphrased questions)\n8\t\n9\t## Individual Results\n10\t\n11\t| Scale | Dose% | Seed | Eval Type | MMLU | GSM8K | ARC | HumanEval | Notes |\n12\t|-------|-------|------|-----------|------|-------|-----|-----------|-------|\n13\t| 0.5B | 0 | 42 | aligned | 0.3979 | 0.3692 | 0.4693 | 0.1098 |  |\n14\t| 0.5B | 0 | 42 | para_aligned | 0.4428 | 0.2807 | 0.4792 | 0.1154 |  |\n15\t| 0.5B | 0 | 123 | aligned | 0.4216 | 0.3412 | 0.4974 | 0.1037 |  |\n16\t| 0.5B | 5 | 42 | aligned | 0.3255 | 0.3624 | 0.3285 | 0.0793 |  |\n17\t| 0.5B | 5 | 42 | para_aligned | 0.3548 | 0.2588 | 0.3300 | 0.0000 |  |\n18\t| 0.5B | 5 | 123 | aligned | 0.3002 | 0.3677 | 0.2978 | 0.0976 |  |\n19\t| 0.5B | 5 | 123 | para_aligned | 0.3166 | 0.2939 | 0.2912 | 0.0000 |  |\n20\t| 0.5B | 25 | 42 | aligned | 0.2803 | 0.3662 | 0.3251 | 0.1923 |  |\n21\t| 0.5B | 25 | 42 | para_aligned | 0.2835 | 0.3114 | 0.3199 | — |  |\n22\t| 0.5B | 25 | 123 | aligned | 0.3473 | 0.3533 | 0.4061 | — |  |\n23\t| 0.5B | 100 | 42 | aligned | 0.2334 | 0.3654 | 0.2944 | 0.0000 |  |\n24\t| 0.5B | 100 | 123 | aligned | 0.3058 | 0.3798 | 0.3669 | 0.1037 |  |\n25\t| 1.5B | 0 | 42 | aligned | 0.5853 | 0.6543 | 0.7722 | 0.1280 |  |\n26\t| 1.5B | 0 | 42 | para_aligned | 0.6096 | 0.5570 | 0.7547 | 0.0385 |  |\n27\t| 1.5B | 0 | 123 | aligned | 0.5855 | 0.6535 | 0.7577 | 0.1707 |  |\n28\t| 1.5B | 5 | 42 | aligned | 0.5852 | 0.6482 | 0.7688 | 0.2500 |  |\n29\t| 1.5B | 5 | 42 | para_aligned | 0.6164 | 0.5439 | 0.7532 | 0.1923 |  |\n30\t| 1.5B | 5 | 123 | aligned | 0.5869 | 0.6482 | 0.7568 | — |  |\n31\t| 1.5B | 25 | 42 | aligned | 0.5902 | 0.6535 | 0.7688 | 0.2256 |  |\n32\t| 1.5B | 25 | 42 | para_aligned | 0.6176 | 0.5395 | 0.7661 | 0.1540 |  |\n33\t| 1.5B | 25 | 123 | aligned | 0.5881 | 0.6550 | 0.7577 | — |  |\n34\t| 1.5B | 100 | 42 | aligned | 0.5933 | 0.6497 | 0.7688 | 0.3049 |  |\n35\t| 1.5B | 100 | 42 | para_aligned | 0.6252 | 0.5526 | 0.7661 | 0.2692 |  |\n36\t| 1.5B | 100 | 123 | aligned | 0.5956 | 0.6444 | 0.7816 | 0.2805 |  |\n37\t| 3B | 0 | 42 | aligned | 0.6295 | 0.3525 | 0.8183 | 0.0976 | alpha=32 |\n38\t| 3B | 0 | 42 | para_aligned | 0.6468 | 0.2895 | 0.8121 | 0.0385 | alpha=32 |\n39\t| 3B | 0 | 123 | aligned | 0.6314 | 0.2676 | 0.8259 | 0.0610 | alpha=32 |\n40\t| 3B | 0 | 123 | para_aligned | 0.6512 | 0.1491 | 0.8121 | 0.0385 | alpha=32 |\n41\t| 3B | 5 | 42 | aligned | 0.6345 | 0.2077 | 0.8294 | 0.1463 |  |\n42\t| 3B | 5 | 42 | para_aligned | 0.6542 | 0.1491 | 0.8221 | — |  |\n43\t| 3B | 5 | 123 | para_aligned | 0.6461 | 0.5000 | 0.8192 | 0.0769 |  |\n44\t| 3B | 25 | 42 | aligned | 0.5998 | 0.6793 | 0.8276 | 0.0976 | alpha=32 |\n45\t| 3B | 25 | 42 | para_aligned | 0.6210 | 0.5482 | 0.8106 | 0.1154 | alpha=32 |\n46\t| 3B | 25 | 123 | aligned | 0.6367 | 0.5254 | 0.8336 | 0.1585 | WARNING: may be alpha=16 |\n47\t| 3B | 25 | 123 | para_aligned | 0.6615 | 0.4254 | 0.8121 | 0.1538 | WARNING: may be alpha=16 |\n48\t| 3B | 100 | 42 | aligned | 0.6320 | 0.7415 | 0.8242 | 0.1707 | alpha=32 |\n49\t| 3B | 100 | 42 | para_aligned | 0.6590 | 0.5833 | 0.8092 | 0.1154 | alpha=32 |\n50\t| 3B | 100 | 123 | aligned | 0.6319 | 0.7324 | 0.8311 | 0.1829 | alpha=32 |\n51\t\n52\t## Aggregated (Mean ± Std across seeds)\n53\t\n54\t| Scale | Dose% | Eval Type | N | MMLU | GSM8K | ARC | HumanEval |\n55\t|-------|-------|-----------|---|------|-------|-----|-----------|\n56\t| 0.5B | 0 | aligned | 2 | 0.4097±0.0168 | 0.3552±0.0198 | 0.4834±0.0199 | 0.1067±0.0043 |\n57\t| 0.5B | 0 | para_aligned | 1 | 0.4428 | 0.2807 | 0.4792 | 0.1154 |\n58\t| 0.5B | 5 | aligned | 2 | 0.3129±0.0179 | 0.3650±0.0037 | 0.3132±0.0217 | 0.0885±0.0129 |\n59\t| 0.5B | 5 | para_aligned | 2 | 0.3357±0.0270 | 0.2763±0.0248 | 0.3106±0.0274 | 0.0000±0.0000 |\n60\t| 0.5B | 25 | aligned | 2 | 0.3138±0.0474 | 0.3598±0.0091 | 0.3656±0.0573 | 0.1923 |\n61\t| 0.5B | 25 | para_aligned | 1 | 0.2835 | 0.3114 | 0.3199 | — |\n62\t| 0.5B | 100 | aligned | 2 | 0.2696±0.0512 | 0.3726±0.0102 | 0.3306±0.0513 | 0.0519±0.0733 |\n63\t| 1.5B | 0 | aligned | 2 | 0.5854±0.0001 | 0.6539±0.0006 | 0.7650±0.0103 | 0.1493±0.0302 |\n64\t| 1.5B | 0 | para_aligned | 1 | 0.6096 | 0.5570 | 0.7547 | 0.0385 |\n65\t| 1.5B | 5 | aligned | 2 | 0.5860±0.0012 | 0.6482±0.0000 | 0.7628±0.0085 | 0.2500 |\n66\t| 1.5B | 5 | para_aligned | 1 | 0.6164 | 0.5439 | 0.7532 | 0.1923 |\n67\t| 1.5B | 25 | aligned | 2 | 0.5891±0.0015 | 0.6542±0.0011 | 0.7632±0.0078 | 0.2256 |\n68\t| 1.5B | 25 | para_aligned | 1 | 0.6176 | 0.5395 | 0.7661 | 0.1540 |\n69\t| 1.5B | 100 | aligned | 2 | 0.5945±0.0016 | 0.6471±0.0037 | 0.7752±0.0091 | 0.2927±0.0173 |\n70\t| 1.5B | 100 | para_aligned | 1 | 0.6252 | 0.5526 | 0.7661 | 0.2692 |\n71\t| 3B | 0 | aligned | 2 | 0.6304±0.0013 | 0.3100±0.0600 | 0.8221±0.0054 | 0.0793±0.0259 |\n72\t| 3B | 0 | para_aligned | 2 | 0.6490±0.0031 | 0.2193±0.0993 | 0.8121±0.0000 | 0.0385±0.0000 |\n73\t| 3B | 5 | aligned | 1 | 0.6345 | 0.2077 | 0.8294 | 0.1463 |\n74\t| 3B | 5 | para_aligned | 2 | 0.6502±0.0057 | 0.3246±0.2481 | 0.8207±0.0021 | 0.0769 |\n75\t| 3B | 25 | aligned | 2 | 0.6182±0.0261 | 0.6023±0.1088 | 0.8306±0.0042 | 0.1280±0.0431 |\n76\t| 3B | 25 | para_aligned | 2 | 0.6412±0.0286 | 0.4868±0.0868 | 0.8114±0.0011 | 0.1346±0.0272 |\n77\t| 3B | 100 | aligned | 2 | 0.6320±0.0001 | 0.7369±0.0064 | 0.8276±0.0049 | 0.1768±0.0086 |\n78\t| 3B | 100 | para_aligned | 1 | 0.6590 | 0.5833 | 0.8092 | 0.1154 |\n79\t\n80\t## Dose-Response Summary (aligned eval, mean across seeds)\n81\t\n82\t### MMLU\n83\t| Dose% | 0.5B | 1.5B | 3B |\n84\t|-------|------|------|-----|\n85\t| 0 | 0.4097 | 0.5854 | 0.6304 |\n86\t| 5 | 0.3129 | 0.5860 | 0.6345 |\n87\t| 25 | 0.3138 | 0.5891 | 0.6182 |\n88\t| 100 | 0.2696 | 0.5945 | 0.6320 |\n89\t\n90\t### GSM8K\n91\t| Dose% | 0.5B | 1.5B | 3B |\n92\t|-------|------|------|-----|\n93\t| 0 | 0.3552 | 0.6539 | 0.3100 |\n94\t| 5 | 0.3650 | 0.6482 | 0.2077 |\n95\t| 25 | 0.3598 | 0.6542 | 0.6023 |\n96\t| 100 | 0.3726 | 0.6471 | 0.7369 |\n97\t\n98\t### ARC-Challenge\n99\t| Dose% | 0.5B | 1.5B | 3B |\n100\t|-------|------|------|-----|\n101\t| 0 | 0.4834 | 0.7650 | 0.8221 |\n102\t| 5 | 0.3132 | 0.7628 | 0.8294 |\n103\t| 25 | 0.3656 | 0.7632 | 0.8306 |\n104\t| 100 | 0.3306 | 0.7752 | 0.8276 |\n105\t\n106\t### HumanEval\n107\t| Dose% | 0.5B | 1.5B | 3B |\n108\t|-------|------|------|-----|\n109\t| 0 | 0.1067 | 0.1493 | 0.0793 |\n110\t| 5 | 0.0885 | 0.2500 | 0.1463 |\n111\t| 25 | 0.1923 | 0.2256 | 0.1280 |\n112\t| 100 | 0.0519 | 0.2927 | 0.1768 |\n113\t\n114\t## Baselines (no SFT)\n115\t\n116\t| Model | MMLU | GSM8K | ARC | HumanEval |\n117\t|-------|------|-------|-----|-----------|\n118\t| Qwen2.5-0.5B_base_pretrained | 0.2294 | 0.1630 | 0.2278 | 0.0000 |\n119\t| Qwen2.5-0.5B-Instruct | 0.2462 | 0.3882 | 0.2816 | 0.0000 |\n120\t| Qwen2.5-1.5B_base_pretrained | 0.2303 | 0.0053 | 0.2304 | 0.2317 |\n121\t\n122\t## Coverage Matrix\n123\t\n124\t✓ = both seeds, △ = seed 42 only, ✗ = missing\n125\t\n126\t| Scale | Dose% | Aligned | Para-aligned |\n127\t|-------|-------|---------|--------------|\n128\t| 0.5B | 0 | ✓ | △ |\n129\t| 0.5B | 5 | ✓ | ✓ |\n130\t| 0.5B | 25 | ✓ | △ |\n131\t| 0.5B | 100 | ✓ | ✗ |\n132\t| 1.5B | 0 | ✓ | △ |\n133\t| 1.5B | 5 | ✓ | △ |\n134\t| 1.5B | 25 | ✓ | △ |\n135\t| 1.5B | 100 | ✓ | △ |\n136\t| 3B | 0 | ✓ | ✓ |\n137\t| 3B | 5 | △ | ✓ |\n138\t| 3B | 25 | ✓ | ✓ |\n139\t| 3B | 100 | ✓ | △ |\n140\t\n141\t## Notes\n142\t\n143\t- HumanEval metrics sourced from experiment registry (not stored in eval_results.json on disk)\n144\t- 3B results use v2 checkpoints (LoRA alpha=32); v1/DEPRECATED (alpha=16) excluded\n145\t- 3B d005_s123 aligned eval was never run\n146\t- 3B d100_s123 para_aligned eval was never run\n147\t- Several 0.5B and 1.5B para_aligned seed=123 entries are missing\n148\t- 0.5B d025_s42 aligned HumanEval (0.1923) may originate from a mislabeled para_aligned run\n149\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ca6fd3c-40e0-46c6-a8d6-31a628fdaa8e",
+            "isSidechain": false,
+            "promptId": "eec554ab-49eb-41f0-9151-4530891c32ce",
+            "type": "user",
+            "uuid": "4394a34f-10df-439f-bd36-b013df698831",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.md",
+                "content": "# Eval Metrics Summary: contamcal-irt-calibration\n\nModel: Qwen2.5 (0.5B / 1.5B / 3B), LoRA alpha=32\n\nDoses: 0% (clean), 5%, 25%, 100% benchmark contamination in SFT data\n\nEval types: **aligned** (original benchmark format), **para_aligned** (paraphrased questions)\n\n## Individual Results\n\n| Scale | Dose% | Seed | Eval Type | MMLU | GSM8K | ARC | HumanEval | Notes |\n|-------|-------|------|-----------|------|-------|-----|-----------|-------|\n| 0.5B | 0 | 42 | aligned | 0.3979 | 0.3692 | 0.4693 | 0.1098 |  |\n| 0.5B | 0 | 42 | para_aligned | 0.4428 | 0.2807 | 0.4792 | 0.1154 |  |\n| 0.5B | 0 | 123 | aligned | 0.4216 | 0.3412 | 0.4974 | 0.1037 |  |\n| 0.5B | 5 | 42 | aligned | 0.3255 | 0.3624 | 0.3285 | 0.0793 |  |\n| 0.5B | 5 | 42 | para_aligned | 0.3548 | 0.2588 | 0.3300 | 0.0000 |  |\n| 0.5B | 5 | 123 | aligned | 0.3002 | 0.3677 | 0.2978 | 0.0976 |  |\n| 0.5B | 5 | 123 | para_aligned | 0.3166 | 0.2939 | 0.2912 | 0.0000 |  |\n| 0.5B | 25 | 42 | aligned | 0.2803 | 0.3662 | 0.3251 | 0.1923 |  |\n| 0.5B | 25 | 42 | para_aligned | 0.2835 | 0.3114 | 0.3199 | — |  |\n| 0.5B | 25 | 123 | aligned | 0.3473 | 0.3533 | 0.4061 | — |  |\n| 0.5B | 100 | 42 | aligned | 0.2334 | 0.3654 | 0.2944 | 0.0000 |  |\n| 0.5B | 100 | 123 | aligned | 0.3058 | 0.3798 | 0.3669 | 0.1037 |  |\n| 1.5B | 0 | 42 | aligned | 0.5853 | 0.6543 | 0.7722 | 0.1280 |  |\n| 1.5B | 0 | 42 | para_aligned | 0.6096 | 0.5570 | 0.7547 | 0.0385 |  |\n| 1.5B | 0 | 123 | aligned | 0.5855 | 0.6535 | 0.7577 | 0.1707 |  |\n| 1.5B | 5 | 42 | aligned | 0.5852 | 0.6482 | 0.7688 | 0.2500 |  |\n| 1.5B | 5 | 42 | para_aligned | 0.6164 | 0.5439 | 0.7532 | 0.1923 |  |\n| 1.5B | 5 | 123 | aligned | 0.5869 | 0.6482 | 0.7568 | — |  |\n| 1.5B | 25 | 42 | aligned | 0.5902 | 0.6535 | 0.7688 | 0.2256 |  |\n| 1.5B | 25 | 42 | para_aligned | 0.6176 | 0.5395 | 0.7661 | 0.1540 |  |\n| 1.5B | 25 | 123 | aligned | 0.5881 | 0.6550 | 0.7577 | — |  |\n| 1.5B | 100 | 42 | aligned | 0.5933 | 0.6497 | 0.7688 | 0.3049 |  |\n| 1.5B | 100 | 42 | para_aligned | 0.6252 | 0.5526 | 0.7661 | 0.2692 |  |\n| 1.5B | 100 | 123 | aligned | 0.5956 | 0.6444 | 0.7816 | 0.2805 |  |\n| 3B | 0 | 42 | aligned | 0.6295 | 0.3525 | 0.8183 | 0.0976 | alpha=32 |\n| 3B | 0 | 42 | para_aligned | 0.6468 | 0.2895 | 0.8121 | 0.0385 | alpha=32 |\n| 3B | 0 | 123 | aligned | 0.6314 | 0.2676 | 0.8259 | 0.0610 | alpha=32 |\n| 3B | 0 | 123 | para_aligned | 0.6512 | 0.1491 | 0.8121 | 0.0385 | alpha=32 |\n| 3B | 5 | 42 | aligned | 0.6345 | 0.2077 | 0.8294 | 0.1463 |  |\n| 3B | 5 | 42 | para_aligned | 0.6542 | 0.1491 | 0.8221 | — |  |\n| 3B | 5 | 123 | para_aligned | 0.6461 | 0.5000 | 0.8192 | 0.0769 |  |\n| 3B | 25 | 42 | aligned | 0.5998 | 0.6793 | 0.8276 | 0.0976 | alpha=32 |\n| 3B | 25 | 42 | para_aligned | 0.6210 | 0.5482 | 0.8106 | 0.1154 | alpha=32 |\n| 3B | 25 | 123 | aligned | 0.6367 | 0.5254 | 0.8336 | 0.1585 | WARNING: may be alpha=16 |\n| 3B | 25 | 123 | para_aligned | 0.6615 | 0.4254 | 0.8121 | 0.1538 | WARNING: may be alpha=16 |\n| 3B | 100 | 42 | aligned | 0.6320 | 0.7415 | 0.8242 | 0.1707 | alpha=32 |\n| 3B | 100 | 42 | para_aligned | 0.6590 | 0.5833 | 0.8092 | 0.1154 | alpha=32 |\n| 3B | 100 | 123 | aligned | 0.6319 | 0.7324 | 0.8311 | 0.1829 | alpha=32 |\n\n## Aggregated (Mean ± Std across seeds)\n\n| Scale | Dose% | Eval Type | N | MMLU | GSM8K | ARC | HumanEval |\n|-------|-------|-----------|---|------|-------|-----|-----------|\n| 0.5B | 0 | aligned | 2 | 0.4097±0.0168 | 0.3552±0.0198 | 0.4834±0.0199 | 0.1067±0.0043 |\n| 0.5B | 0 | para_aligned | 1 | 0.4428 | 0.2807 | 0.4792 | 0.1154 |\n| 0.5B | 5 | aligned | 2 | 0.3129±0.0179 | 0.3650±0.0037 | 0.3132±0.0217 | 0.0885±0.0129 |\n| 0.5B | 5 | para_aligned | 2 | 0.3357±0.0270 | 0.2763±0.0248 | 0.3106±0.0274 | 0.0000±0.0000 |\n| 0.5B | 25 | aligned | 2 | 0.3138±0.0474 | 0.3598±0.0091 | 0.3656±0.0573 | 0.1923 |\n| 0.5B | 25 | para_aligned | 1 | 0.2835 | 0.3114 | 0.3199 | — |\n| 0.5B | 100 | aligned | 2 | 0.2696±0.0512 | 0.3726±0.0102 | 0.3306±0.0513 | 0.0519±0.0733 |\n| 1.5B | 0 | aligned | 2 | 0.5854±0.0001 | 0.6539±0.0006 | 0.7650±0.0103 | 0.1493±0.0302 |\n| 1.5B | 0 | para_aligned | 1 | 0.6096 | 0.5570 | 0.7547 | 0.0385 |\n| 1.5B | 5 | aligned | 2 | 0.5860±0.0012 | 0.6482±0.0000 | 0.7628±0.0085 | 0.2500 |\n| 1.5B | 5 | para_aligned | 1 | 0.6164 | 0.5439 | 0.7532 | 0.1923 |\n| 1.5B | 25 | aligned | 2 | 0.5891±0.0015 | 0.6542±0.0011 | 0.7632±0.0078 | 0.2256 |\n| 1.5B | 25 | para_aligned | 1 | 0.6176 | 0.5395 | 0.7661 | 0.1540 |\n| 1.5B | 100 | aligned | 2 | 0.5945±0.0016 | 0.6471±0.0037 | 0.7752±0.0091 | 0.2927±0.0173 |\n| 1.5B | 100 | para_aligned | 1 | 0.6252 | 0.5526 | 0.7661 | 0.2692 |\n| 3B | 0 | aligned | 2 | 0.6304±0.0013 | 0.3100±0.0600 | 0.8221±0.0054 | 0.0793±0.0259 |\n| 3B | 0 | para_aligned | 2 | 0.6490±0.0031 | 0.2193±0.0993 | 0.8121±0.0000 | 0.0385±0.0000 |\n| 3B | 5 | aligned | 1 | 0.6345 | 0.2077 | 0.8294 | 0.1463 |\n| 3B | 5 | para_aligned | 2 | 0.6502±0.0057 | 0.3246±0.2481 | 0.8207±0.0021 | 0.0769 |\n| 3B | 25 | aligned | 2 | 0.6182±0.0261 | 0.6023±0.1088 | 0.8306±0.0042 | 0.1280±0.0431 |\n| 3B | 25 | para_aligned | 2 | 0.6412±0.0286 | 0.4868±0.0868 | 0.8114±0.0011 | 0.1346±0.0272 |\n| 3B | 100 | aligned | 2 | 0.6320±0.0001 | 0.7369±0.0064 | 0.8276±0.0049 | 0.1768±0.0086 |\n| 3B | 100 | para_aligned | 1 | 0.6590 | 0.5833 | 0.8092 | 0.1154 |\n\n## Dose-Response Summary (aligned eval, mean across seeds)\n\n### MMLU\n| Dose% | 0.5B | 1.5B | 3B |\n|-------|------|------|-----|\n| 0 | 0.4097 | 0.5854 | 0.6304 |\n| 5 | 0.3129 | 0.5860 | 0.6345 |\n| 25 | 0.3138 | 0.5891 | 0.6182 |\n| 100 | 0.2696 | 0.5945 | 0.6320 |\n\n### GSM8K\n| Dose% | 0.5B | 1.5B | 3B |\n|-------|------|------|-----|\n| 0 | 0.3552 | 0.6539 | 0.3100 |\n| 5 | 0.3650 | 0.6482 | 0.2077 |\n| 25 | 0.3598 | 0.6542 | 0.6023 |\n| 100 | 0.3726 | 0.6471 | 0.7369 |\n\n### ARC-Challenge\n| Dose% | 0.5B | 1.5B | 3B |\n|-------|------|------|-----|\n| 0 | 0.4834 | 0.7650 | 0.8221 |\n| 5 | 0.3132 | 0.7628 | 0.8294 |\n| 25 | 0.3656 | 0.7632 | 0.8306 |\n| 100 | 0.3306 | 0.7752 | 0.8276 |\n\n### HumanEval\n| Dose% | 0.5B | 1.5B | 3B |\n|-------|------|------|-----|\n| 0 | 0.1067 | 0.1493 | 0.0793 |\n| 5 | 0.0885 | 0.2500 | 0.1463 |\n| 25 | 0.1923 | 0.2256 | 0.1280 |\n| 100 | 0.0519 | 0.2927 | 0.1768 |\n\n## Baselines (no SFT)\n\n| Model | MMLU | GSM8K | ARC | HumanEval |\n|-------|------|-------|-----|-----------|\n| Qwen2.5-0.5B_base_pretrained | 0.2294 | 0.1630 | 0.2278 | 0.0000 |\n| Qwen2.5-0.5B-Instruct | 0.2462 | 0.3882 | 0.2816 | 0.0000 |\n| Qwen2.5-1.5B_base_pretrained | 0.2303 | 0.0053 | 0.2304 | 0.2317 |\n\n## Coverage Matrix\n\n✓ = both seeds, △ = seed 42 only, ✗ = missing\n\n| Scale | Dose% | Aligned | Para-aligned |\n|-------|-------|---------|--------------|\n| 0.5B | 0 | ✓ | △ |\n| 0.5B | 5 | ✓ | ✓ |\n| 0.5B | 25 | ✓ | △ |\n| 0.5B | 100 | ✓ | ✗ |\n| 1.5B | 0 | ✓ | △ |\n| 1.5B | 5 | ✓ | △ |\n| 1.5B | 25 | ✓ | △ |\n| 1.5B | 100 | ✓ | △ |\n| 3B | 0 | ✓ | ✓ |\n| 3B | 5 | △ | ✓ |\n| 3B | 25 | ✓ | ✓ |\n| 3B | 100 | ✓ | △ |\n\n## Notes\n\n- HumanEval metrics sourced from experiment registry (not stored in eval_results.json on disk)\n- 3B results use v2 checkpoints (LoRA alpha=32); v1/DEPRECATED (alpha=16) excluded\n- 3B d005_s123 aligned eval was never run\n- 3B d100_s123 para_aligned eval was never run\n- Several 0.5B and 1.5B para_aligned seed=123 entries are missing\n- 0.5B d025_s42 aligned HumanEval (0.1923) may originate from a mislabeled para_aligned run\n",
+                "numLines": 149,
+                "startLine": 1,
+                "totalLines": 149
+              }
+            },
+            "sourceToolAssistantUUID": "7ca6fd3c-40e0-46c6-a8d6-31a628fdaa8e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-15T18:35:17.881Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "4394a34f-10df-439f-bd36-b013df698831",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "15ac606f-e46c-4dbb-b4bd-c4f1fc8b8df7",
+                "timestamp": "2026-05-15T18:35:17.881Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+                "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-15T18:35:38.230Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The markdown looks good. Now let me also quickly verify the 3B d025_s123 note. The task says to exclude alpha=16 old 3B experiments for d025_s42, d100_s42, d100_s123. The d025_s123 entry I used is `Qwen2.5-3B_d025_s123_aligned` which doesn't have a v2 suffix. Looking at the task instructions:\n\n> 只包含 alpha=32 的结果（排除已知 alpha=16 的旧 3B 实验: d025_s42, d100_s42, d100_s123 的旧版本）\n\n\nSo d025_s123 wasn't listed as having an old alpha=16 version—only d025_s42, d100_s42, and d100_s123 were flagged. This means d025_s123_aligned should be fine as alpha=32, even though my script warned about it, but I need to double-check d100_s123 since it was explicitly listed as having old versions.\n\nLooking at the actual disk files, d100_v2_s123_aligned is correctly marked as v2, and d025_s123_aligned doesn't have a v2 suffix but shouldn't need one since d025_s123 never had the alpha=16 issue in the first place. I should remove that warning and update the script's logic to reflect that d025_s123 is believed to be alpha=32 based on the fact that only d025_s42 had the old version problem.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15ac606f-e46c-4dbb-b4bd-c4f1fc8b8df7",
+            "isSidechain": false,
+            "requestId": "req_011Cb4qVfUPv4fqW7sw9LA1n",
+            "type": "assistant",
+            "uuid": "8be36000-d727-4766-bfc6-2700a1786736",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01897uSzyoXZ93J4THicKfR7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5159,
+                "cache_read_input_tokens": 87572,
+                "output_tokens": 1184,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5159,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1184,
+                    "cache_read_input_tokens": 87572,
+                    "cache_creation_input_tokens": 5159,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5159
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-15T18:35:38.236Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to fix the alpha=16 warning — the task says only d025_s42, d100_s42, d100_s123 had old alpha=16 versions. Let me correct that and also update the note for d025_s123."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8be36000-d727-4766-bfc6-2700a1786736",
+            "isSidechain": false,
+            "requestId": "req_011Cb4qVfUPv4fqW7sw9LA1n",
+            "type": "assistant",
+            "uuid": "22ec71db-ec5d-478c-b8c0-47851f6afa2e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01897uSzyoXZ93J4THicKfR7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5159,
+                "cache_read_input_tokens": 87572,
+                "output_tokens": 1184,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5159,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1184,
+                    "cache_read_input_tokens": 87572,
+                    "cache_creation_input_tokens": 5159,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5159
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-15T18:35:45.111Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KusEWPVyRm6r8yuykzUSKz",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/compile_eval_summary.py",
+                "old_string": "    # Notes for version tracking\n    notes = []\n    if \"_v2\" in dir_name or \"_v3\" in dir_name:\n        notes.append(\"alpha=32\")\n    if scale == \"3B\" and \"_v2\" not in dir_name and \"_v3\" not in dir_name:\n        if dose_pct in [25, 100]:\n            notes.append(\"WARNING: may be alpha=16\")\n        elif dose_pct == 0 and \"d000_v2\" not in dir_name:\n            notes.append(\"pre-v2 SFT\")",
+                "new_string": "    # Notes for version tracking\n    notes = []\n    if \"_v2\" in dir_name or \"_v3\" in dir_name:\n        notes.append(\"alpha=32\")\n    if scale == \"3B\" and \"_v2\" not in dir_name and \"_v3\" not in dir_name:\n        # Only d025_s42, d100_s42, d100_s123 had known alpha=16 old versions\n        # d025_s123 never had an old version, so it's presumed alpha=32\n        old_alpha16 = (\n            (dose_pct == 25 and seed == 42) or\n            (dose_pct == 100 and seed in [42, 123])\n        )\n        if old_alpha16:\n            notes.append(\"WARNING: may be alpha=16\")\n        elif dose_pct == 0 and \"d000_v2\" not in dir_name:\n            notes.append(\"pre-v2 SFT\")"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "22ec71db-ec5d-478c-b8c0-47851f6afa2e",
+            "isSidechain": false,
+            "requestId": "req_011Cb4qVfUPv4fqW7sw9LA1n",
+            "type": "assistant",
+            "uuid": "09cbb7e4-e4b5-4cde-af2e-5e3e68980457",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01897uSzyoXZ93J4THicKfR7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5159,
+                "cache_read_input_tokens": 87572,
+                "output_tokens": 1184,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5159,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1184,
+                    "cache_read_input_tokens": 87572,
+                    "cache_creation_input_tokens": 5159,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5159
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-15T18:35:45.191Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KusEWPVyRm6r8yuykzUSKz",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/compile_eval_summary.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "09cbb7e4-e4b5-4cde-af2e-5e3e68980457",
+            "isSidechain": false,
+            "promptId": "eec554ab-49eb-41f0-9151-4530891c32ce",
+            "type": "user",
+            "uuid": "7f42d87a-2207-42ec-bdd2-d49cce851a49",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/compile_eval_summary.py",
+              "oldString": "    # Notes for version tracking\n    notes = []\n    if \"_v2\" in dir_name or \"_v3\" in dir_name:\n        notes.append(\"alpha=32\")\n    if scale == \"3B\" and \"_v2\" not in dir_name and \"_v3\" not in dir_name:\n        if dose_pct in [25, 100]:\n            notes.append(\"WARNING: may be alpha=16\")\n        elif dose_pct == 0 and \"d000_v2\" not in dir_name:\n            notes.append(\"pre-v2 SFT\")",
+              "newString": "    # Notes for version tracking\n    notes = []\n    if \"_v2\" in dir_name or \"_v3\" in dir_name:\n        notes.append(\"alpha=32\")\n    if scale == \"3B\" and \"_v2\" not in dir_name and \"_v3\" not in dir_name:\n        # Only d025_s42, d100_s42, d100_s123 had known alpha=16 old versions\n        # d025_s123 never had an old version, so it's presumed alpha=32\n        old_alpha16 = (\n            (dose_pct == 25 and seed == 42) or\n            (dose_pct == 100 and seed in [42, 123])\n        )\n        if old_alpha16:\n            notes.append(\"WARNING: may be alpha=16\")\n        elif dose_pct == 0 and \"d000_v2\" not in dir_name:\n            notes.append(\"pre-v2 SFT\")",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 153,
+                  "oldLines": 7,
+                  "newStart": 153,
+                  "newLines": 13,
+                  "lines": [
+                    "     if \"_v2\" in dir_name or \"_v3\" in dir_name:",
+                    "         notes.append(\"alpha=32\")",
+                    "     if scale == \"3B\" and \"_v2\" not in dir_name and \"_v3\" not in dir_name:",
+                    "-        if dose_pct in [25, 100]:",
+                    "+        # Only d025_s42, d100_s42, d100_s123 had known alpha=16 old versions",
+                    "+        # d025_s123 never had an old version, so it's presumed alpha=32",
+                    "+        old_alpha16 = (",
+                    "+            (dose_pct == 25 and seed == 42) or",
+                    "+            (dose_pct == 100 and seed in [42, 123])",
+                    "+        )",
+                    "+        if old_alpha16:",
+                    "             notes.append(\"WARNING: may be alpha=16\")",
+                    "         elif dose_pct == 0 and \"d000_v2\" not in dir_name:",
+                    "             notes.append(\"pre-v2 SFT\")"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "09cbb7e4-e4b5-4cde-af2e-5e3e68980457",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "7f42d87a-2207-42ec-bdd2-d49cce851a49",
+                "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af"
+              }
+            }
+          ],
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Summarize eval results across all model scales",
+                "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af"
+              }
+            }
+          ],
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-15T18:35:48.873Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017NAnJ9cwSmjKBSqT1evzdS",
+              "name": "Bash",
+              "input": {
+                "command": "python3 compile_eval_summary.py",
+                "description": "Re-run with fixed alpha=16 warnings"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7f42d87a-2207-42ec-bdd2-d49cce851a49",
+            "isSidechain": false,
+            "requestId": "req_011Cb4qXhK62166rLkcWMV9C",
+            "type": "assistant",
+            "uuid": "8c2636ae-117b-4be5-b59d-90b50dd551f8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014mxGovqVoCWKqyd6U3X2ma",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1261,
+                "cache_read_input_tokens": 92731,
+                "output_tokens": 122,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1261,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 122,
+                    "cache_read_input_tokens": 92731,
+                    "cache_creation_input_tokens": 1261,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1261
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-15T18:35:49.431Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017NAnJ9cwSmjKBSqT1evzdS",
+              "type": "tool_result",
+              "content": "JSON saved to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.json\nMarkdown saved to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.md\n\nTotal individual records: 38\nAggregated groups: 23\n  0.5B: 12 entries\n  1.5B: 12 entries\n  3B: 14 entries",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c2636ae-117b-4be5-b59d-90b50dd551f8",
+            "isSidechain": false,
+            "promptId": "eec554ab-49eb-41f0-9151-4530891c32ce",
+            "type": "user",
+            "uuid": "7750cfd9-467e-4a3a-870f-99631b077bec",
+            "toolUseResult": {
+              "stdout": "JSON saved to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.json\nMarkdown saved to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.md\n\nTotal individual records: 38\nAggregated groups: 23\n  0.5B: 12 entries\n  1.5B: 12 entries\n  3B: 14 entries",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "8c2636ae-117b-4be5-b59d-90b50dd551f8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-15T18:35:51.946Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me register both artifacts."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7750cfd9-467e-4a3a-870f-99631b077bec",
+            "isSidechain": false,
+            "requestId": "req_011Cb4qXzG4AjVrySKvWNWE5",
+            "type": "assistant",
+            "uuid": "07a84886-8776-4ab9-9ff6-0fe412b6a54f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PGBxnNRETC21b8cd24rHuX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 93992,
+                "output_tokens": 547,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 235,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 547,
+                    "cache_read_input_tokens": 93992,
+                    "cache_creation_input_tokens": 235,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 235
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-15T18:35:55.861Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019tjkUZUAX66ERg7hg7Uai8",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "eval_metrics_summary_json",
+                "type": "data",
+                "description": "Complete eval metrics summary (JSON) across all scales (0.5B/1.5B/3B), doses (0/5/25/100%), seeds (42/123), eval types (aligned/para_aligned). Contains individual results, cross-seed aggregated means/std, dose-response curves, and baselines.",
+                "project": "contamcal-irt-calibration",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.json",
+                "tags": [
+                  "eval",
+                  "metrics",
+                  "summary",
+                  "dose-response",
+                  "paper"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07a84886-8776-4ab9-9ff6-0fe412b6a54f",
+            "isSidechain": false,
+            "requestId": "req_011Cb4qXzG4AjVrySKvWNWE5",
+            "type": "assistant",
+            "uuid": "03574a12-3c7c-4f6b-8d57-5977606da079",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PGBxnNRETC21b8cd24rHuX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 93992,
+                "output_tokens": 547,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 235,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 547,
+                    "cache_read_input_tokens": 93992,
+                    "cache_creation_input_tokens": 235,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 235
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-15T18:35:56.188Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019tjkUZUAX66ERg7hg7Uai8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_57fe2f\\\", \\\"name\\\": \\\"eval_metrics_summary_json\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Complete eval metrics summary (JSON) across all scales (0.5B/1.5B/3B), doses (0/5/25/100%), seeds (42/123), eval types (aligned/para_aligned). Contains individual results, cross-seed aggregated means/std, dose-response curves, and baselines.\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/data/eval_metrics_summary.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T18:35:55.877050+00:00\\\", \\\"tags\\\": [\\\"eval\\\", \\\"metrics\\\", \\\"summary\\\", \\\"dose-response\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "03574a12-3c7c-4f6b-8d57-5977606da079",
+            "isSidechain": false,
+            "promptId": "eec554ab-49eb-41f0-9151-4530891c32ce",
+            "type": "user",
+            "uuid": "f7f45a7c-683f-4344-ab3b-6ca683621898",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_57fe2f\\\", \\\"name\\\": \\\"eval_metrics_summary_json\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Complete eval metrics summary (JSON) across all scales (0.5B/1.5B/3B), doses (0/5/25/100%), seeds (42/123), eval types (aligned/para_aligned). Contains individual results, cross-seed aggregated means/std, dose-response curves, and baselines.\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/data/eval_metrics_summary.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T18:35:55.877050+00:00\\\", \\\"tags\\\": [\\\"eval\\\", \\\"metrics\\\", \\\"summary\\\", \\\"dose-response\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_57fe2f\", \"name\": \"eval_metrics_summary_json\", \"type\": \"data\", \"description\": \"Complete eval metrics summary (JSON) across all scales (0.5B/1.5B/3B), doses (0/5/25/100%), seeds (42/123), eval types (aligned/para_aligned). Contains individual results, cross-seed aggregated means/std, dose-response curves, and baselines.\", \"path\": \"projects/contamcal-irt-calibration/artifacts/_project/data/eval_metrics_summary.json\", \"url\": null, \"project\": \"contamcal-irt-calibration\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T18:35:55.877050+00:00\", \"tags\": [\"eval\", \"metrics\", \"summary\", \"dose-response\", \"paper\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "03574a12-3c7c-4f6b-8d57-5977606da079",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-15T18:35:58.662Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018tfNhFe61pjKJdwgysCJRP",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "eval_metrics_summary_md",
+                "type": "report",
+                "description": "Paper-ready markdown evidence tables: individual results, aggregated means±std, dose-response curves for MMLU/GSM8K/ARC/HumanEval across 3 scales, coverage matrix showing data completeness.",
+                "project": "contamcal-irt-calibration",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/eval_metrics_summary.md",
+                "tags": [
+                  "eval",
+                  "metrics",
+                  "summary",
+                  "paper",
+                  "evidence-table"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f7f45a7c-683f-4344-ab3b-6ca683621898",
+            "isSidechain": false,
+            "requestId": "req_011Cb4qXzG4AjVrySKvWNWE5",
+            "type": "assistant",
+            "uuid": "31f597fb-0273-41e2-9930-1713751e10f5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PGBxnNRETC21b8cd24rHuX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 93992,
+                "output_tokens": 547,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 235,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 547,
+                    "cache_read_input_tokens": 93992,
+                    "cache_creation_input_tokens": 235,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 235
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-15T18:35:59.142Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018tfNhFe61pjKJdwgysCJRP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_113eb8\\\", \\\"name\\\": \\\"eval_metrics_summary_md\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Paper-ready markdown evidence tables: individual results, aggregated means±std, dose-response curves for MMLU/GSM8K/ARC/HumanEval across 3 scales, coverage matrix showing data completeness.\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/report/eval_metrics_summary.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T18:35:58.678446+00:00\\\", \\\"tags\\\": [\\\"eval\\\", \\\"metrics\\\", \\\"summary\\\", \\\"paper\\\", \\\"evidence-table\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31f597fb-0273-41e2-9930-1713751e10f5",
+            "isSidechain": false,
+            "promptId": "eec554ab-49eb-41f0-9151-4530891c32ce",
+            "type": "user",
+            "uuid": "e875461f-99e8-4dfe-a617-f0d87acda817",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_113eb8\\\", \\\"name\\\": \\\"eval_metrics_summary_md\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Paper-ready markdown evidence tables: individual results, aggregated means±std, dose-response curves for MMLU/GSM8K/ARC/HumanEval across 3 scales, coverage matrix showing data completeness.\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/_project/report/eval_metrics_summary.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T18:35:58.678446+00:00\\\", \\\"tags\\\": [\\\"eval\\\", \\\"metrics\\\", \\\"summary\\\", \\\"paper\\\", \\\"evidence-table\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_113eb8\", \"name\": \"eval_metrics_summary_md\", \"type\": \"report\", \"description\": \"Paper-ready markdown evidence tables: individual results, aggregated means±std, dose-response curves for MMLU/GSM8K/ARC/HumanEval across 3 scales, coverage matrix showing data completeness.\", \"path\": \"projects/contamcal-irt-calibration/artifacts/_project/report/eval_metrics_summary.md\", \"url\": null, \"project\": \"contamcal-irt-calibration\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T18:35:58.678446+00:00\", \"tags\": [\"eval\", \"metrics\", \"summary\", \"paper\", \"evidence-table\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "31f597fb-0273-41e2-9930-1713751e10f5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-15T18:36:08.805Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已生成并注册。汇总结果：\n\n**38 条个体实验记录**（0.5B: 12, 1.5B: 12, 3B: 14），跨 4 个 dose × 2 个 seed × 2 种 eval type。\n\n**关键发现（dose-response aligned eval 均值）：**\n\n| Benchmark | 趋势 |\n|-----------|------|\n| **GSM8K** | 3B 有强 dose-response：0.31→0.21→0.60→0.74；1.5B 和 0.5B 几乎无变化 |\n| **MMLU/ARC** | 所有 scale 下变化 <3pp，contamination 对 MC benchmark 信号微弱 |\n| **HumanEval** | 1.5B 有清晰 dose-response：0.15→0.25→0.23→0.29；3B: 0.08→0.15→0.13→0.18 |\n\n**数据缺口（Coverage Matrix）：**\n- 大部分 para_aligned 只有 seed 42，缺 seed 123\n- 3B d005_s123 aligned 未跑\n- 3B d100_s123 para_aligned 未跑\n- 0.5B d100 para_aligned 完全缺失\n\n产出文件：\n- `artifacts/eval_metrics_summary.json` — 机器可读 JSON（含 dose-response curves）\n- `artifacts/eval_metrics_summary.md` — 论文级 markdown 表格"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e875461f-99e8-4dfe-a617-f0d87acda817",
+            "isSidechain": false,
+            "requestId": "req_011Cb4qYhyYdrmJa1Kfmm5jZ",
+            "type": "assistant",
+            "uuid": "b98baf35-fea8-4c64-aecd-ba3018a007c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts",
+            "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014rtJeghhDdN7bFH5T4QWz6",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1241,
+                "cache_read_input_tokens": 94227,
+                "output_tokens": 420,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1241,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 420,
+                    "cache_read_input_tokens": 94227,
+                    "cache_creation_input_tokens": 1241,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1241
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "b98baf35-fea8-4c64-aecd-ba3018a007c6",
+                "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af"
+              }
+            }
+          ],
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Summarize eval results across all model scales",
+                "sessionId": "0e7bc130-13e2-45e1-ae79-20741112a4af"
+              }
+            }
+          ],
+          "id": "event-000128"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "66c40d6e2de1658e77f3",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器 cqa1-21977, conda 环境 /root/miniconda3, 项目路径 /root/contamcal-irt-calibration。CmdStan 已安装。parallel_cha",
+  "task_key": "a0e29800-a847-4492-9f81-dc156311b896",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/a0e29800-a847-4492-9f81-dc156311b896.jsonl",
+    "occurrence": 1,
+    "bytes": 1322910,
+    "sha256": "ccfdab5b86619ad855a49c05d9627ecc28975a73ba8f3d9dbd668cede0a1e716"
+  },
+  "statistics": {
+    "messages": 764,
+    "user_turns": 1,
+    "tool_calls": 288,
+    "roles": {
+      "record": 108,
+      "user": 1,
+      "assistant": 79,
+      "tool_call": 288,
+      "tool_result": 288
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "66c40d6e2de1658e77f3-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 762,
+      "chunks": [
+        {
+          "path": "66c40d6e2de1658e77f3-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "66c40d6e2de1658e77f3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "66c40d6e2de1658e77f3-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "66c40d6e2de1658e77f3-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "66c40d6e2de1658e77f3-part-0005.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-cqa1-21977-conda-root-miniconda3-root-contamcal-irt-calibrationc.md"
+}

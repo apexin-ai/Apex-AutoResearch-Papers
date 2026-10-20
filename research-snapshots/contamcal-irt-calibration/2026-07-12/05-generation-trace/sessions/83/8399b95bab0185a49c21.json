@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "id": "8399b95bab0185a49c21",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [系统通知 — cron:on_failed:exp_001_eval_05B_d100_aligned_v3]: 实验 exp_001_eval_05B_d100_aligned_v3 failed，请审查。",
+  "task_key": "8c39d4d5-5747-47ce-9faf-3a4260b290e6",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/8c39d4d5-5747-47ce-9faf-3a4260b290e6.jsonl",
+    "occurrence": 1,
+    "bytes": 692152,
+    "sha256": "e8dc1ad462bf1594c63f34a8e1ad190e890f1ae4abf2b8bd2b71517caffefa79"
+  },
+  "statistics": {
+    "messages": 152,
+    "user_turns": 6,
+    "tool_calls": 36,
+    "roles": {
+      "record": 43,
+      "user": 6,
+      "assistant": 31,
+      "tool_call": 36,
+      "tool_result": 36
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8399b95bab0185a49c21-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 97,
+      "chunks": [
+        {
+          "path": "8399b95bab0185a49c21-part-0001.json",
+          "message_count": 97
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8399b95bab0185a49c21-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "8399b95bab0185a49c21-part-0001.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8399b95bab0185a49c21-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "8399b95bab0185a49c21-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 41,
+      "chunks": [
+        {
+          "path": "8399b95bab0185a49c21-part-0001.json",
+          "message_count": 28
+        },
+        {
+          "path": "8399b95bab0185a49c21-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-on-failed-exp-001-eval-05b-d100-aligned-v3-exp-001-eval-05b-d100-aligned.md"
+}
