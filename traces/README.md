@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **75 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **77 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -27,6 +27,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [contrastive_graph_jailbreak_detect](../paper-assets/contrastive_graph_jailbreak_detect/05-generation-trace/README.md) | 9 | 10 | 9 | 0 | 3,080 | [Read](../paper-assets/contrastive_graph_jailbreak_detect/05-generation-trace/readable/README.md) |
 | [contrastive_trace_safety](../paper-assets/contrastive_trace_safety/05-generation-trace/README.md) | 152 | 352 | 330 | 21 | 116,437 | [Read](../paper-assets/contrastive_trace_safety/05-generation-trace/readable/README.md) |
 | [cost-verify-agent-rl](../paper-assets/cost-verify-agent-rl/05-generation-trace/README.md) | 502 | 1,164 | 1,062 | 103 | 209,966 | [Read](../paper-assets/cost-verify-agent-rl/05-generation-trace/readable/README.md) |
+| [cross_representation_disagreement_diagno](../paper-assets/cross_representation_disagreement_diagno/05-generation-trace/README.md) | 41 | 82 | 77 | 13 | 15,459 | [Read](../paper-assets/cross_representation_disagreement_diagno/05-generation-trace/readable/README.md) |
 | [crosscoder-behavioral-circuit-transplant](../paper-assets/crosscoder-behavioral-circuit-transplant/05-generation-trace/README.md) | 5 | 9 | 6 | 0 | 1,393 | [Read](../paper-assets/crosscoder-behavioral-circuit-transplant/05-generation-trace/readable/README.md) |
 | [demo_calibrated_sim](../paper-assets/demo_calibrated_sim/05-generation-trace/README.md) | 37 | 84 | 76 | 6 | 18,086 | [Read](../paper-assets/demo_calibrated_sim/05-generation-trace/readable/README.md) |
 | [diagprm-stage-reasoning](../paper-assets/diagprm-stage-reasoning/05-generation-trace/README.md) | 4 | 6 | 8 | 0 | 851 | [Read](../paper-assets/diagprm-stage-reasoning/05-generation-trace/readable/README.md) |
@@ -76,6 +77,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [struct_self_consist_ie](../paper-assets/struct_self_consist_ie/05-generation-trace/README.md) | 573 | 1,214 | 1,163 | 83 | 300,755 | [Read](../paper-assets/struct_self_consist_ie/05-generation-trace/readable/README.md) |
 | [structfuse-context](../paper-assets/structfuse-context/05-generation-trace/README.md) | 183 | 510 | 496 | 43 | 90,756 | [Read](../paper-assets/structfuse-context/05-generation-trace/readable/README.md) |
 | [svs_formal_verification](../paper-assets/svs_formal_verification/05-generation-trace/README.md) | 32 | 91 | 81 | 1 | 21,001 | [Read](../paper-assets/svs_formal_verification/05-generation-trace/readable/README.md) |
+| [symb_invariant_consensus](../paper-assets/symb_invariant_consensus/05-generation-trace/README.md) | 465 | 1,078 | 1,025 | 55 | 260,972 | [Read](../paper-assets/symb_invariant_consensus/05-generation-trace/readable/README.md) |
 | [tax_error_inject_agent](../paper-assets/tax_error_inject_agent/05-generation-trace/README.md) | 260 | 440 | 427 | 41 | 68,008 | [Read](../paper-assets/tax_error_inject_agent/05-generation-trace/readable/README.md) |
 | [tbab_multi_turn](../paper-assets/tbab_multi_turn/05-generation-trace/README.md) | 24 | 48 | 44 | 0 | 10,572 | [Read](../paper-assets/tbab_multi_turn/05-generation-trace/readable/README.md) |
 | [temp-adv-distill-vla](../paper-assets/temp-adv-distill-vla/05-generation-trace/README.md) | 8 | 25 | 19 | 0 | 9,052 | [Read](../paper-assets/temp-adv-distill-vla/05-generation-trace/readable/README.md) |
@@ -84,6 +86,6 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**80,997 source records · 6,448,575 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**83,833 source records · 6,725,006 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.

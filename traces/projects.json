@@ -254,6 +254,22 @@
       }
     },
     {
+      "project": "cross_representation_disagreement_diagno",
+      "title": "Cross-Representation Disagreement as a Diagnostic Signal for LLM Reasoning Errors",
+      "catalog": "../paper-assets/cross_representation_disagreement_diagno/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 213,
+        "messages": 15459,
+        "user_turns": 515,
+        "tool_calls": 5902,
+        "unparsed_lines": 80,
+        "worker": 82,
+        "result": 77,
+        "conversation": 41,
+        "history": 13
+      }
+    },
+    {
       "project": "crosscoder-behavioral-circuit-transplant",
       "title": "crosscoder behavioral circuit transplant",
       "catalog": "../paper-assets/crosscoder-behavioral-circuit-transplant/05-generation-trace/catalog.json",
@@ -993,6 +1009,22 @@
         "result": 81,
         "conversation": 32,
         "history": 1
+      }
+    },
+    {
+      "project": "symb_invariant_consensus",
+      "title": "Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction",
+      "catalog": "../paper-assets/symb_invariant_consensus/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2623,
+        "messages": 260972,
+        "user_turns": 6819,
+        "tool_calls": 105382,
+        "unparsed_lines": 1057,
+        "result": 1025,
+        "worker": 1078,
+        "conversation": 465,
+        "history": 55
       }
     },
     {

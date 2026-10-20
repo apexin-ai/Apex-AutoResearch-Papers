@@ -1173,6 +1173,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39397907680"
+    },
+    "symb_invariant_consensus/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 977689591,
+        "etag": "\"e4bd1d4b616a6c4f65186165ffe1261a-117\"",
+        "modified": "2026-05-31T17:34:57+00:00"
+      },
+      "archive_sha256": "529c7d795661e78ebae12e21e4357ea0600f8bb8b6ea7a052bd4ccd06f70c07e",
+      "projects": [
+        "cross_representation_disagreement_diagno",
+        "symb_invariant_consensus"
+      ],
+      "counts": [
+        {
+          "project": "cross_representation_disagreement_diagno",
+          "title": "Cross-Representation Disagreement as a Diagnostic Signal for LLM Reasoning Errors",
+          "paper_pdf": "paper.pdf",
+          "code_count": 66,
+          "data_count": 91,
+          "trace_count": 213
+        },
+        {
+          "project": "symb_invariant_consensus",
+          "title": "Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction",
+          "paper_pdf": "paper.pdf",
+          "code_count": 625,
+          "data_count": 1219,
+          "trace_count": 2623
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39397907680"
     }
   }
 }

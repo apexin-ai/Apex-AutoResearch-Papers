@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **44 projects with manuscript PDFs** and **31 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **46 projects with manuscript PDFs** and **31 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -14,6 +14,7 @@ This catalogue covers **44 projects with manuscript PDFs** and **31 additional p
 | [contrastive_entrain_calib](paper-assets/contrastive_entrain_calib/README.md) | [PDF](paper-assets/contrastive_entrain_calib/01-manuscript/paper.pdf) | 339 | 940 | 1,573 | 119,612 |
 | [contrastive_trace_safety](paper-assets/contrastive_trace_safety/README.md) | [PDF](paper-assets/contrastive_trace_safety/01-manuscript/paper.pdf) | 276 | 513 | 855 | 116,437 |
 | [cost-verify-agent-rl](paper-assets/cost-verify-agent-rl/README.md) | [PDF](paper-assets/cost-verify-agent-rl/01-manuscript/paper.pdf) | 495 | 1,236 | 2,831 | 209,966 |
+| [cross_representation_disagreement_diagno](paper-assets/cross_representation_disagreement_diagno/README.md) | [PDF](paper-assets/cross_representation_disagreement_diagno/01-manuscript/paper.pdf) | 66 | 91 | 213 | 15,459 |
 | [demo_calibrated_sim](paper-assets/demo_calibrated_sim/README.md) | [PDF](paper-assets/demo_calibrated_sim/01-manuscript/paper.pdf) | 161 | 167 | 203 | 18,086 |
 | [diff_collision_sdf](paper-assets/diff_collision_sdf/README.md) | [PDF](paper-assets/diff_collision_sdf/01-manuscript/paper.pdf) | 360 | 1,053 | 1,864 | 149,990 |
 | [distill_sparse_swiglu](paper-assets/distill_sparse_swiglu/README.md) | [PDF](paper-assets/distill_sparse_swiglu/01-manuscript/paper.pdf) | 1,783 | 2,536 | 2,646 | 197,700 |
@@ -46,6 +47,7 @@ This catalogue covers **44 projects with manuscript PDFs** and **31 additional p
 | [spectral_collapse_ews](paper-assets/spectral_collapse_ews/README.md) | [PDF](paper-assets/spectral_collapse_ews/01-manuscript/paper.pdf) | 191 | 270 | 925 | 64,614 |
 | [struct_self_consist_ie](paper-assets/struct_self_consist_ie/README.md) | [PDF](paper-assets/struct_self_consist_ie/01-manuscript/paper.pdf) | 1,112 | 2,786 | 3,033 | 300,755 |
 | [structfuse-context](paper-assets/structfuse-context/README.md) | [PDF](paper-assets/structfuse-context/01-manuscript/paper.pdf) | 212 | 354 | 1,232 | 90,756 |
+| [symb_invariant_consensus](paper-assets/symb_invariant_consensus/README.md) | [PDF](paper-assets/symb_invariant_consensus/01-manuscript/paper.pdf) | 625 | 1,219 | 2,623 | 260,972 |
 | [tax_error_inject_agent](paper-assets/tax_error_inject_agent/README.md) | [PDF](paper-assets/tax_error_inject_agent/01-manuscript/paper.pdf) | 271 | 1,146 | 1,168 | 68,008 |
 | [xling_calib_direction](paper-assets/xling_calib_direction/README.md) | [PDF](paper-assets/xling_calib_direction/01-manuscript/paper.pdf) | 121 | 201 | 290 | 27,260 |
 | [action_cond_info_bottleneck](paper-assets/action_cond_info_bottleneck/README.md) | No PDF in snapshot | 172 | 255 | 800 | 45,967 |

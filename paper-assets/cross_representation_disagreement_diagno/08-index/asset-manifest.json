@@ -1,0 +1,106 @@
+{
+  "project": "cross_representation_disagreement_diagno",
+  "code_count": 66,
+  "data_count": 91,
+  "env_count": 1,
+  "tex_count": 6,
+  "bib_count": 0,
+  "review_count": 0,
+  "validation_count": 1,
+  "contribution_count": 3,
+  "chat_count": 41,
+  "worker_count": 159,
+  "trace_count": 213,
+  "trace_bytes": 23825020,
+  "maintenance_count": 23,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 0,
+  "paper_pdf": "paper.pdf",
+  "paper_sha256": "5eb95adc3e74dd2fae769a0bee4f96868cba29d9911db6c3935bae146483455f",
+  "title": "Cross-Representation Disagreement as a Diagnostic Signal for LLM Reasoning Errors",
+  "pages": 12,
+  "status_marker": "",
+  "version_count": 6,
+  "version_paths": [
+    "artifacts/dream_reports/dream_20260515T071730/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T071730/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T071730/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T060408/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T060408/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T060408/best/paper.pdf"
+  ],
+  "archive_rel": "symb_invariant_consensus/workspace.tar.gz",
+  "archive_note": "Archive scan completed",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "agent-ml-research-project-backups-20260531",
+    "key": "symb_invariant_consensus/workspace.tar.gz",
+    "sha256": "529c7d795661e78ebae12e21e4357ea0600f8bb8b6ea7a052bd4ccd06f70c07e",
+    "bytes": 977689591,
+    "etag": "\"e4bd1d4b616a6c4f65186165ffe1261a-117\"",
+    "modified": "2026-05-31T17:34:57+00:00"
+  },
+  "academic_record": {
+    "date": "2026-05-31",
+    "record": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Available",
+      "evidence": "6 source files; 6 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "07-maintenance/"
+    },
+    {
+      "name": "AI / human contribution",
+      "status": "Partial",
+      "evidence": "3 task/role records",
+      "gap": "User and assistant roles do not identify people or establish author contributions.",
+      "path": "02-contributions/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "41 conversations; 159 worker logs/results; 213 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "05-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "66 code/configuration files; 1 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "03-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "91 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "04-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Partial",
+      "evidence": "0 internal review records; 1 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "06-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "23 project documentation files; 0 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "07-maintenance/"
+    }
+  ]
+}
