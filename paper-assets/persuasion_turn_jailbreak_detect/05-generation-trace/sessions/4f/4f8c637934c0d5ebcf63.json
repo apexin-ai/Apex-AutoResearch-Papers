@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f8c637934c0d5ebcf63",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval plan006 scrambled dd",
+  "task_key": "worker_eval_plan006-scrambled-dd_20260517T232936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan006-scrambled-dd_20260517T232936_result.json",
+    "occurrence": 1,
+    "bytes": 782,
+    "sha256": "6bc1f860b1a5adc4acda23124d3267df606faeb4b857951a0b31d2595e2bfc09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成。结果：\n\n| K | Scrambled F1 | Treatment F1 | Baseline F1 | Delta(Scr-Bas) |\n|---|---|---|---|---|\n| full | 0.9809 | 1.0000 | 0.2845 | +0.6964 |\n| 1 | 0.9904 | 1.0000 | 0.5752 | +0.4152 |\n| 2 | 0.9350 | 0.9904 | 0.4381 | +0.4969 |\n| 3 | 0.9350 | 0.9904 | 0.3596 | +0.5754 |\n| 5 | 0.9904 | 1.0000 | 0.3105 | +0.6799 |\n\n**结论：Scrambled 和 Treatment 几乎一样好（F1 均 >0.93），远超 Baseline。** 这意味着 DeBERTa multi-task fine-tuning 本身就足以产生 DD 上的跨攻击泛化能力，正确的 persuasion labels 不是关键因素。即使 labels 被打乱，fine-tuning 过程仍然让 DeBERTa 学到了区分 jailbreak 和 benign 的有效特征。\n\n结果已保存到 `results/plan_006_scrambled_dd_eval.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan006-scrambled-dd.md"
+}

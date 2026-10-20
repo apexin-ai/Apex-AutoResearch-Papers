@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a22b00a37ef00f23387",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp50 layerwise",
+  "task_key": "worker_code_exp50_layerwise_20260522T085939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp50_layerwise_20260522T085939_result.json",
+    "occurrence": 1,
+    "bytes": 1263,
+    "sha256": "ecfa04a244de03628f35ef7f4da5cd6122bbfdec8205e05d98499b1b36254895"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp50 完成。**结果为 Positive**——discriminative compression 集中在后期层。\n\n关键发现（Fisher Ratio，越高 = 类间区分越强）：\n\n| Layer | vanilla | 9-class | scrambled | JB-MLM |\n|-------|---------|---------|-----------|--------|\n| 1-5   | 0.3-0.8 | 0.3-0.8 | 0.3-0.8   | 0.3-0.8 |\n| 6     | 1.52    | 2.05    | 1.70      | 1.53   |\n| 8     | 1.47    | **3.20** | 2.50     | 1.40   |\n| 9     | 1.04    | **4.03** | **3.76** | 1.07   |\n| 10    | 0.73    | **10.92** | **5.93** | 0.93  |\n| 11    | 2.28    | **9.10** | **7.37** | 3.33   |\n| 12    | 2.83    | **6.53** | **7.91** | 2.61   |\n\n- **Layers 1-5**：4 个变体的 Fisher 几乎无差异（~0.3-0.8），与 Maennel 2020 \"早期层标签无关\"一致\n- **Layers 8-12**：9-class 和 scrambled 的 Fisher 显著 diverge（5-11x），而 JB-MLM 和 vanilla 保持平坦——说明 classification-supervised DAPT 的 discriminative compression 集中在后期层\n- 9-class 在 layer 10 达峰值（10.92），scrambled 在 layer 12 达峰值（7.91）\n\n输出文件：\n- 数据：`results/exp50_layerwise_results.json`\n- 图表：`figures/paper/fig_layerwise_representation.{pdf,png}`\n- 脚本：`scripts/exp50_layerwise_representation.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp50-layerwise.md"
+}

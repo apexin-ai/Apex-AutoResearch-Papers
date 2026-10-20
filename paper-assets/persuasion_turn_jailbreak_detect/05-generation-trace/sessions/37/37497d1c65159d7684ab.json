@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37497d1c65159d7684ab",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16 exp17 status and launch",
+  "task_key": "worker_code_exp16-exp17-status-and-launch_20260519T231145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-exp17-status-and-launch_20260519T231145_result.json",
+    "occurrence": 1,
+    "bytes": 1186,
+    "sha256": "4924954657c5d5d10bc18a9df97e297229684ef0ddfd3557f03b550c253386f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果文件正常生成（F1=0.8146 for vanilla seed42 mixed_test）。`F1=?` 是脚本解析字段名不匹配，不影响实际数据。\n\n---\n\n**最终状态汇报：**\n\n```\nexp16 MLM 完成度: 6/6 checkpoints ✅\nexp16 eval: started, vanilla seed42 已完成 7 个 test sets，继续剩余 variants/seeds\nexp17 数据: jailbreak 250/250 ✅, benign 250/250 ✅\nexp17 合并: done (1000条, 700/150/150 split) ✅\nexp17 训练: \n  - vanilla 3 seeds: ✅ done\n  - MLM stage1 seed42: running (Epoch 1, step 320/385, loss 6.09↓)\n  - 9-class stage2 seed42: running (pre-computing embeddings)\n  - 待完成: MLM seeds 123,456 + MLM stage2 all + 9-class seeds 123,456\nGPU 使用: 0=exp16_eval(切换中), 1=idle, 2=MLM(20.6GB), 3=9-class(10.3GB)\n```\n\n**修复的问题：**\n1. 首次 tmux 杀进程误杀了 tmux server，连带终止了 exp17 两个会话\n2. resume 脚本缺少 `TRANSFORMERS_OFFLINE=1` + `HF_HUB_OFFLINE=1`，导致 transformers import 联网超时卡死\n3. Python 输出重定向到文件时缺少 `PYTHONUNBUFFERED=1`，看不到实时日志\n\n三个 tmux 会话 (`exp16_eval`, `exp17_gpu2`, `exp17_gpu3`) 均正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16-exp17-status-and-launch.md"
+}

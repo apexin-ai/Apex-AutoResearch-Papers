@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b542fddeebcc01d9e83c",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper prewrite discussion limitations",
+  "task_key": "worker_paper_prewrite-discussion-limitations_20260519T190748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_prewrite-discussion-limitations_20260519T190748_result.json",
+    "occurrence": 1,
+    "bytes": 1419,
+    "sha256": "3a46fb5f53457c3a30a467337aa5e9741930a6c186c5339602f841c38c7f13ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。\n\n### 修改汇报\n\n**修改 1: Discussion §Single-LLM confound (行 10-11)**\n- 保留原有 ToxicChat + cross-LLM 实验内容（行 10）\n- 新增行 11：exp16 mixed-training 结果段落，framing 为 \"mitigates but does not eliminate\"\n\n**修改 2: Limitations §Dataset scale and diversity (行 28)**\n- 原 \"500 synthetic conversations\" 规模限制替换为 exp17 scale validation 结果\n- 保留 perturbation underpowered 警告、synthetic-to-real gap、ToxicChat 转移确认\n- 行 29 cross-LLM 内容未动\n\n### 占位符列表\n\n| 占位符 | 对应 metric |\n|--------|------------|\n| `[EXP16_BASELINE]` | 混合训练前 cross-LLM detection F1（当前 0.37-0.43 区间的具体值） |\n| `[EXP16_MIXED_F1]` | 混合训练后 cross-LLM detection F1 |\n| `[EXP16_FPR_BASELINE]` | 混合训练前 Llama benign text 上的 false positive rate |\n| `[EXP16_FPR_MIXED]` | 混合训练后 Llama benign text 上的 false positive rate |\n| `[EXP16_RESIDUAL]` | 混合训练后残余 gap 的定性/定量描述 |\n| `[EXP17_1000]` | exp17 实际训练集规模（预期 1000） |\n| `[EXP17_OOD_F1]` | 1000-scale 训练后 OOD detection F1 |\n| `[EXP17_DAPT_GAP]` | 1000-scale 下 DAPT vs vanilla 的 F1 差距（pp） |\n\n### 字数变化\n- 修改 1：原 ~80 词 → ~130 词（+50 词）\n- 修改 2：原 ~95 词 → ~80 词（-15 词）\n- 净增约 35 词"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-prewrite-discussion-limitations.md"
+}

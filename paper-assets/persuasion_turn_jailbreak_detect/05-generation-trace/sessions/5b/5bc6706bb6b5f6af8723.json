@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5bc6706bb6b5f6af8723",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "train exp1 roberta 9class",
+  "task_key": "worker_train_exp1-roberta-9class_20260518T100247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_exp1-roberta-9class_20260518T100247.log",
+    "occurrence": 1,
+    "bytes": 703906,
+    "sha256": "bbeae69e3335c544655256676d7564beaa2cd84f05c9566a6e832ba22a90b254"
+  },
+  "statistics": {
+    "messages": 337,
+    "user_turns": 0,
+    "tool_calls": 128,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 77,
+      "tool_call": 128,
+      "tool_result": 128,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 337,
+      "chunks": [
+        {
+          "path": "5bc6706bb6b5f6af8723-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5bc6706bb6b5f6af8723-part-0002.json",
+          "message_count": 157
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-exp1-roberta-9class.md"
+}

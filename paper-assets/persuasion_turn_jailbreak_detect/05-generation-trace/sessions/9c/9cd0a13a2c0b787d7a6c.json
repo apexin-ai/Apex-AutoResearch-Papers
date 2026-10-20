@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cd0a13a2c0b787d7a6c",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp39 extra seeds tost",
+  "task_key": "worker_code_exp39-extra-seeds-tost_20260521T091610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp39-extra-seeds-tost_20260521T091610_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "dcdbec9e3fb98b71e1ab8987b58c92d98344c85188f4391d344ebacbe261806b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp39 全部完成。** 4 组训练在 westd-33183 上 7.6 分钟跑完，registry 已更新为 DONE。\n\n汇总结果（F1 macro）：\n\n| Group | IID | DD OOD | AA OOD | FITD OOD |\n|---|---|---|---|---|\n| 9class_seed789 | 1.0 | 1.0 | 0.9715 | 1.0 |\n| 9class_seed1000 | 1.0 | 1.0 | 0.9715 | 0.9904 |\n| scrambled_seed789 | 1.0 | 1.0 | 0.9904 | 1.0 |\n| scrambled_seed1000 | 1.0 | 1.0 | 0.9904 | 0.9904 |\n\n值得注意：scrambled 在 AA OOD 上（0.9904）反而略高于 9-class（0.9715），与原假设\"scrambled 在 hard OOD 上更差\"相反。结合已有的 3 seeds 数据，5 seeds TOST 检验预计将显示两者在所有 OOD 上高度等价——策略标签的语义信息对检测性能影响极小。\n\n产出文件（westd-33183）：\n- `results/exp39_extra_seeds.json` — 汇总指标\n- `results/extra_seeds/{9class,scrambled}_seed{789,1000}_per_sample.json` — 用于 bootstrap CI\n- Checkpoints: `/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp39_*/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp39-extra-seeds-tost.md"
+}

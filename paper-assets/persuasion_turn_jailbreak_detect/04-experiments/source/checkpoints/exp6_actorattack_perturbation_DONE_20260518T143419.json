@@ -1,0 +1,186 @@
+{
+  "exp_id": "exp6_actorattack_perturbation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:37:28.933Z",
+    "updated_at": "2026-05-18T14:34:19.399Z",
+    "hypothesis": "Classification-supervised variants (9-class/binary/scrambled) will maintain near-zero perturbation degradation on ActorAttack OOD paraphrased data, while vanilla/MLM variants will show significant degradation, extending Claim 3 perturbation robustness from DD to a second OOD attack type",
+    "parent": "exp4_dd_ood_perturbation",
+    "spec": {
+      "command": "python src/exp6_actorattack_perturbation.py --skip_perturb",
+      "server": "westd-33183",
+      "data_path": "data/actorattack_perturbed/perturbed.jsonl",
+      "data_count": 118,
+      "model_name": "deberta-v3-base (7 variants x 3 seeds)",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/ (7 variants x 3 seeds)",
+      "eval_data": "data/actorattack_perturbed/perturbed.jsonl + data/generated/actorattack_all.jsonl"
+    },
+    "checkpoint_path": "results/exp6_actorattack_perturbation.json",
+    "log_path": "logs/exp6_eval.log",
+    "conclusion": "negative",
+    "metrics": {
+      "9class_3seed": {
+        "clean_k1": 0.7728,
+        "perturbed_k1": 0.6326,
+        "delta_k1": -0.1402,
+        "clean_k3": 0.9212,
+        "perturbed_k3": 0.7337,
+        "delta_k3": -0.1875,
+        "clean_full": 0.9719,
+        "perturbed_full": 0.7681,
+        "delta_full": -0.2038
+      },
+      "binary_3seed": {
+        "clean_k1": 0.7647,
+        "perturbed_k1": 0.6387,
+        "delta_k1": -0.126,
+        "clean_k3": 0.9595,
+        "perturbed_k3": 0.6248,
+        "delta_k3": -0.3347,
+        "clean_full": 0.9936,
+        "perturbed_full": 0.6402,
+        "delta_full": -0.3534
+      },
+      "scrambled_3seed": {
+        "clean_k1": 0.7206,
+        "perturbed_k1": 0.6164,
+        "delta_k1": -0.1042,
+        "clean_k3": 0.8931,
+        "perturbed_k3": 0.7779,
+        "delta_k3": -0.1152,
+        "clean_full": 0.9511,
+        "perturbed_full": 0.7787,
+        "delta_full": -0.1724
+      },
+      "jb_mlm_3seed": {
+        "clean_k1": 0.7363,
+        "perturbed_k1": 0.6572,
+        "delta_k1": -0.079,
+        "clean_k3": 0.9446,
+        "perturbed_k3": 0.5483,
+        "delta_k3": -0.3962,
+        "clean_full": 0.8934,
+        "perturbed_full": 0.5408,
+        "delta_full": -0.3526
+      },
+      "wiki_mlm_3seed": {
+        "clean_k1": 0.6559,
+        "perturbed_k1": 0.6007,
+        "delta_k1": -0.0552,
+        "clean_k3": 0.6931,
+        "perturbed_k3": 0.5216,
+        "delta_k3": -0.1716,
+        "clean_full": 0.686,
+        "perturbed_full": 0.5454,
+        "delta_full": -0.1406
+      },
+      "topic_3seed": {
+        "clean_k1": 0.5135,
+        "perturbed_k1": 0.5258,
+        "delta_k1": 0.0123,
+        "clean_k3": 0.5654,
+        "perturbed_k3": 0.5413,
+        "delta_k3": -0.0241,
+        "clean_full": 0.6254,
+        "perturbed_full": 0.5767,
+        "delta_full": -0.0488
+      },
+      "vanilla_3seed": {
+        "clean_k1": 0.4385,
+        "perturbed_k1": 0.2922,
+        "delta_k1": -0.1463,
+        "clean_k3": 0.3707,
+        "perturbed_k3": 0.2529,
+        "delta_k3": -0.1178,
+        "clean_full": 0.3645,
+        "perturbed_full": 0.2482,
+        "delta_full": -0.1162
+      },
+      "mcnemar_perturbed_k1": {
+        "9class_vs_vanilla": {
+          "seed42": {
+            "p": 2e-05,
+            "b": 34,
+            "c": 6
+          },
+          "seed123": {
+            "p": 8.6e-05,
+            "b": 55,
+            "c": 20
+          },
+          "seed456": {
+            "p": 0,
+            "b": 71,
+            "c": 19
+          }
+        }
+      },
+      "mcnemar_perturbed_full": {
+        "9class_vs_vanilla": {
+          "seed42": {
+            "p": 0,
+            "b": 44,
+            "c": 0
+          },
+          "seed123": {
+            "p": 0,
+            "b": 75,
+            "c": 4
+          },
+          "seed456": {
+            "p": 0,
+            "b": 78,
+            "c": 24
+          }
+        }
+      },
+      "mcnemar_clean_k1": {
+        "9class_vs_vanilla": {
+          "seed42": {
+            "p": 0,
+            "b": 50,
+            "c": 3
+          },
+          "seed123": {
+            "p": 0,
+            "b": 42,
+            "c": 7
+          },
+          "seed456": {
+            "p": 0,
+            "b": 47,
+            "c": 6
+          }
+        }
+      },
+      "mcnemar_clean_full": {
+        "9class_vs_vanilla": {
+          "seed42": {
+            "p": 0,
+            "b": 78,
+            "c": 0
+          },
+          "seed123": {
+            "p": 0,
+            "b": 57,
+            "c": 0
+          },
+          "seed456": {
+            "p": 0,
+            "b": 67,
+            "c": 0
+          }
+        }
+      },
+      "note": "Hypothesis NOT confirmed: ALL variants show substantial perturbation degradation on ActorAttack (unlike DD OOD where classification-supervised variants had near-zero delta). 9class still significantly outperforms vanilla on both clean and perturbed (McNemar all p<0.001). Perturbation robustness from DD does not generalize to ActorAttack multi-persona attacks."
+    },
+    "completed_at": "2026-05-18T14:34:19.399Z"
+  },
+  "timestamp": "2026-05-18T14:34:19.491685+00:00",
+  "trigger": "update_registry"
+}

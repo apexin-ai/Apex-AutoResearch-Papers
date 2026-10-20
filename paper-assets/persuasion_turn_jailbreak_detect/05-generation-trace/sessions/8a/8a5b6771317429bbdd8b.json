@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a5b6771317429bbdd8b",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp48 prepare script",
+  "task_key": "worker_code_exp48_prepare_script_20260522T063547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp48_prepare_script_20260522T063547_result.json",
+    "occurrence": 1,
+    "bytes": 1247,
+    "sha256": "c5cebe1f5771f55ecc61f1db0ca5760fa314c43ae77b93ec591263aa9d40edfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本准备完毕。总结：\n\n**`/root/persuasion_turn_jailbreak_detect/scripts/exp48_ensemble.py`** 已部署到服务器，dry-run 通过。\n\n**Checkpoint 映射**（从 exp35 确认）：\n- **JB-MLM**: `checkpoints_archive/plan_017_mlm{,_seed123,_seed456}/best/` (safetensors) + `.../gru/best.pt`\n- **9-class**: `checkpoints_archive/plan_002{,_seed123,_seed456}/deberta_multitask/best/model.pt` (state_dict) + `.../gru/treatment/best.pt`\n\n**脚本功能**：\n- 加载两组 DeBERTa+GRU pipeline，提取所有数据集的 logits\n- 3 种融合：logit averaging、majority vote (AND/OR)、weighted prob avg (5 个权重 grid search)\n- 评估：IID test F1、OOD DD/AA/FITD F1（vs IID benign）、ToxicChat F1 (408条)、WildChat FPR (49条)\n- 同时输出两个模型的 individual baseline 作为对照\n- 支持 `--seeds 42 123 456` 做 3-seed（默认 seed 42）、`--dry-run` 验证\n\n**运行方式**（等 exp45 结束后）：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/persuasion_turn_jailbreak_detect && \\\npython scripts/exp48_ensemble.py --device cuda:0\n```\n\n结果输出到 `/root/persuasion_turn_jailbreak_detect/results/exp48_ensemble.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp48-prepare-script.md"
+}

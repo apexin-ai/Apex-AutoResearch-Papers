@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d595eccefda9d42a122",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper research bib sync",
+  "task_key": "worker_paper_research_bib_sync_20260518T035730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_bib_sync_20260518T035730_result.json",
+    "occurrence": 1,
+    "bytes": 536,
+    "sha256": "256e0099e99ac93a3a59715c4a461e39eaf8e586de9548f0605938177cbc53ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "39 entries, no empty author or title fields。\n\n注意事项：\n- `poliak2018hypothesis` 的 venue 原为 \"StarSem 2018\"，但因无对应会议 arxiv 编号已存在，用了 `@article` + arXiv 格式（与 venue=\"arXiv preprint\" 等效处理）\n- `metallamaguard3_2024` 用 `@misc`（无独立论文）\n- `deceptivedelight2024` 用 `@techreport`\n- `austin1962speechacts`、`searle1969speechacts`、`cialdini2001influence` 用 `@book`\n- 多数 \"et al.\" 作者已转为 BibTeX 标准的 \"and others\" 格式"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-bib-sync.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c551082ce3c4cf8205e",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval fitd macro f1 fix",
+  "task_key": "worker_eval_fitd-macro-f1-fix_20260518T190405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_fitd-macro-f1-fix_20260518T190405_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "2714ac969c21af4e2597ece780ad25e8a196be33a7647a6c046d011a455a7a02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "FITD macro F1 结果：\n\n| K | binary F1 | macro F1 | TP | FP | FN | TN |\n|---|-----------|----------|----|----|----|----|\n| k1 | 0.0000 | **0.2436** | 0 | 0 | 80 | 38 |\n| k2 | 0.0000 | **0.2436** | 0 | 0 | 80 | 38 |\n| k3 | 0.0000 | **0.2436** | 0 | 0 | 80 | 38 |\n| k5 | 0.0247 | **0.2575** | 1 | 0 | 79 | 38 |\n| full | 0.0247 | **0.2575** | 1 | 0 | 79 | 38 |\n\n模型几乎全部预测 benign，k5/full 仅检出 1 个 jailbreak。macro F1 约 0.24-0.26，与任务描述中的手算估计（0.244）吻合。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-fitd-macro-f1-fix.md"
+}

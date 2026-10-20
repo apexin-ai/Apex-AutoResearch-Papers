@@ -1,0 +1,3137 @@
+dream_id: dream_20260517T165817
+project: persuasion_turn_jailbreak_detect
+venue: ''
+focus: 'Key risks to probe: (1) TF-IDF=1.0 data quality — will adversarial perturbation
+  approach credibly resolve this? (2) Small dataset (480 samples) — is the narrative
+  framing sufficient? (3) Single-track architecture vs full dual-track from IDEA_BRIEF
+  — does the simplified MVE still tell a compelling story? (4) Pragmatic Evasion Asymmetry
+  as theoretical contribution — is it strong enough for EMNLP main? (5) Only Crescendo
+  + generated attack types — generalization concerns.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: Register normalization成功消除lexical shortcut，clean data上persuasion grounding提供显著且一致的优势，adversarial
+        robustness确认evasion hierarchy成立
+      key_assumptions:
+      - TF-IDF hard gate通过（<0.75），register normalization保留了persuasion strategy结构
+      - Persuasion grounding编码的pragmatic信号独立于lexical/semantic cues存在
+      - DeBERTa persuasion分类器在clean data上准确率足够（>0.75），能向下游传递有效表征
+      - Monotonic escalation trajectory在clean data上仍清晰可分
+      - Cross-attack zero-shot泛化成立：persuasion playbook跨攻击类型共享
+      number_ranges:
+        clean_tfidf:
+        - 0.4
+        - 0.65
+        treatment_k2_f1_clean:
+        - 0.88
+        - 0.95
+        baseline_k2_f1_clean:
+        - 0.72
+        - 0.82
+        treatment_k3_f1_clean:
+        - 0.9
+        - 0.96
+        baseline_k3_f1_clean:
+        - 0.78
+        - 0.87
+        treatment_full_f1_clean:
+        - 0.93
+        - 0.98
+        baseline_full_f1_clean:
+        - 0.85
+        - 0.92
+        delta_k2_pp:
+        - 8
+        - 20
+        adversarial_delta_delta_pp:
+        - 8
+        - 18
+        scrambled_label_drop_pp:
+        - 10
+        - 25
+        cross_attack_treatment_f1:
+        - 0.78
+        - 0.9
+        cross_attack_baseline_f1:
+        - 0.6
+        - 0.75
+        deberta_persuasion_acc_clean:
+        - 0.75
+        - 0.82
+      narrative_direction: '原始framing完全成立。三条claims无需调整：(1) Pragmatic Evasion Asymmetry有清晰的数字梯度支撑
+        （TF-IDF baseline在perturbation下崩溃，semantic baseline中度下降，treatment几乎不降）， (2)
+        K=2早期检测优势显著且跨攻击类型泛化，(3) escalation trajectory可视化提供mechanistic解释。 论文叙事：DisPeD是第一个利用discourse-level
+        pragmatic信号进行multi-turn jailbreak检测的方法， empirical证据完整覆盖robustness、early detection、generalization三个维度。
+        直接冲EMNLP main long paper，supplementary放trajectory可视化和cross-attack详细结果。
+
+        '
+    median:
+      tier: median
+      meaning: Clean data上persuasion grounding有信号但优势收窄，部分claim需降级——early detection优势推迟到K=3，adversarial
+        robustness存在但delta-delta在边界附近
+      key_assumptions:
+      - TF-IDF hard gate通过但偏高（0.60-0.74），normalization可能未完全消除register差异
+      - Persuasion信号存在但与semantic信号部分重叠，grounding提供的增量有限
+      - DeBERTa persuasion分类器准确率在clean data上有所下降（0.68-0.75），噪声传播到下游
+      - Escalation trajectory在group level可见但individual conversation level噪声大
+      - Cross-attack泛化部分成立：对FITD有效但对Deceptive Delight效果弱（因其persuasion结构更隐蔽）
+      number_ranges:
+        clean_tfidf:
+        - 0.6
+        - 0.74
+        treatment_k2_f1_clean:
+        - 0.76
+        - 0.87
+        baseline_k2_f1_clean:
+        - 0.68
+        - 0.8
+        treatment_k3_f1_clean:
+        - 0.82
+        - 0.9
+        baseline_k3_f1_clean:
+        - 0.73
+        - 0.83
+        treatment_full_f1_clean:
+        - 0.88
+        - 0.94
+        baseline_full_f1_clean:
+        - 0.83
+        - 0.9
+        delta_k2_pp:
+        - 3
+        - 9
+        delta_k3_pp:
+        - 5
+        - 12
+        adversarial_delta_delta_pp:
+        - 3
+        - 8
+        scrambled_label_drop_pp:
+        - 4
+        - 10
+        cross_attack_treatment_f1:
+        - 0.62
+        - 0.78
+        cross_attack_baseline_f1:
+        - 0.55
+        - 0.72
+        deberta_persuasion_acc_clean:
+        - 0.68
+        - 0.75
+      narrative_direction: '需要两处调整：(1) Claim 2从"K=2显著优势"降级为"K=3显著优势，K=2趋势一致但需更多数据确认"，
+        early detection故事仍然成立但时间窗口后移一步；(2) Claim 1从"evasion hierarchy"软化为 "pragmatic
+        features提供complementary robustness"，delta-delta显著但不是压倒性的。 Claim 3（escalation
+        trajectory）作为analytical contribution保留但加caveat说individual-level噪声大。 论文需补充：(a)
+        用bootstrap CI强调小样本下statistical significance，(b) 明确讨论 persuasion分类器accuracy对下游的bottleneck效应作为limitation，(c)
+        cross-attack结果 分attack type报告而非aggregate。仍冲EMNLP main但需要更强的limitation section和
+        "proof-of-concept for the principle"的narrative定位。
+
+        '
+    worst:
+      tier: worst
+      meaning: Clean data上treatment与baseline差距消失或不显著——当前优势主要来自lexical/label confound而非genuine
+        pragmatic信号
+      key_assumptions:
+      - TF-IDF gate勉强通过或需多轮normalization才达标，说明原始数据的class separation高度依赖register差异
+      - Persuasion grounding在去除lexical shortcut后不提供有意义的增量：DeBERTa fine-tuning学到的主要是intent分类信号而非persuasion
+        strategy信号
+      - DeBERTa persuasion分类器accuracy在clean data上显著下降（<0.68），8-class taxonomy过细导致noisy
+        embeddings
+      - Scrambled label ablation差距小（<4pp），说明persuasion labels本身不是关键信号源
+      - Adversarial perturbation下treatment和baseline同步下降，delta-delta不显著
+      number_ranges:
+        clean_tfidf:
+        - 0.55
+        - 0.74
+        treatment_k2_f1_clean:
+        - 0.65
+        - 0.78
+        baseline_k2_f1_clean:
+        - 0.63
+        - 0.77
+        treatment_k3_f1_clean:
+        - 0.72
+        - 0.83
+        baseline_k3_f1_clean:
+        - 0.7
+        - 0.82
+        treatment_full_f1_clean:
+        - 0.82
+        - 0.9
+        baseline_full_f1_clean:
+        - 0.8
+        - 0.89
+        delta_k2_pp:
+        - 0
+        - 4
+        adversarial_delta_delta_pp:
+        - -1
+        - 3
+        scrambled_label_drop_pp:
+        - 0
+        - 4
+        cross_attack_treatment_f1:
+        - 0.5
+        - 0.65
+        cross_attack_baseline_f1:
+        - 0.48
+        - 0.64
+        deberta_persuasion_acc_clean:
+        - 0.58
+        - 0.68
+      narrative_direction: '核心detection优势不成立，需要完全reframe。三个可行的reframe方向（按优先级）： (1)
+        方法论贡献型——"Lexical Confounds in Multi-Turn Jailbreak Detection Benchmarks"：
+        将TF-IDF=1.0发现本身作为核心贡献，论证现有multi-turn detection工作（包括我们自己的pilot） 可能系统性高估了检测能力，提出register-normalization作为evaluation
+        protocol贡献， escalation trajectory分析作为analytical lens而非detection method。这个angle在EMNLP
+        evaluation/methodology track有强fit。 (2) 分析贡献型——如果Claim 3（escalation trajectory）的可视化在clean
+        data上仍然成立 （即使不能转化为detection优势），reframe为"Anatomy of Multi-Turn Jailbreak Attacks:
+        A Persuasion-Theoretic Analysis"，将escalation trajectory、strategy transition
+        matrix 作为对攻击机制的理解贡献，detection作为downstream application留给future work。 (3) Negative
+        result型——如果连trajectory也不清晰，写"Does Discourse Structure Help Detect Multi-Turn
+        Jailbreaks? A Controlled Study"，报告negative result但贡献 controlled experimental
+        setup和data cleaning pipeline。EMNLP接受well-executed negative results但需要非常clean的实验设计。
+        无论哪个方向，不降级venue目标（仍冲EMNLP main），但paper type从"new method"转向 "analysis/evaluation
+        methodology"。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260517T165817/best/paper.pdf
+  imagined_experiments:
+  - name: data_quality_fix
+    plan_id: plan_001
+    description: 'Register-normalize jailbreak data + fix strategy=7 labeling confound.
+      Hard gate: TF-IDF < 0.75.'
+    expected_results:
+      clean_tfidf_after_normalization: 0.58
+      tfidf_before_normalization: 1.0
+      strategy_label_classes: 9
+      normalization_coverage_pct: 100
+      persuasion_structure_preserved_pct: 94
+      register_shift_success_rate: 0.97
+    result_rationale: Best档下register normalization充分有效：LLM paraphrase将jailbreak turns的formal/scripted
+      register转为conversational register，消除了词汇层面的distributional gap。TF-IDF从1.0降至0.58——仍高于random（~0.5）因为某些topic
+      words不可避免地co-occur with jailbreak intent（如'hypothetical scenario'等framing词），但远低于0.75
+      hard gate。关键是persuasion strategy结构（rapport→reframing→escalation的turn-level annotation）在paraphrase后94%保持不变，因为strategy是illocutionary
+      act层面的标注，不依赖specific lexical realization。9th class 'none'替代hardcoded strategy=7消除了M004
+      confound。
+    tables:
+    - name: TF-IDF Diagnostic
+      columns:
+      - condition
+      - tfidf_score
+      - vocab_overlap_pct
+      rows:
+      - - original_data
+        - 1.0
+        - 12.3
+      - - register_normalized
+        - 0.58
+        - 41.7
+      - - random_baseline
+        - 0.5
+        - 50.0
+    figures_description:
+    - 'Vocabulary overlap Venn diagram: original vs normalized data showing convergence
+      of lexical distributions after register normalization'
+    - Per-turn TF-IDF contribution heatmap showing which positions contributed most
+      to class separation before/after normalization
+    analysis: Hard gate通过。TF-IDF=0.58确认lexical shortcut已被有效消除但非完全抹除（完全抹除反而不自然）。Strategy
+      annotation preservation rate 94%验证了核心假设：persuasion playbook是discourse-level结构，register
+      change不破坏其标注一致性。剩余6%的annotation变化主要集中在边界case（如rapport与small-talk的区分在register
+      shift后变模糊）。
+  - name: core_revalidation_clean
+    plan_id: plan_002
+    description: 在clean（register-normalized）data上从头训练treatment和baseline，全K值评估。
+    expected_results:
+      deberta_persuasion_acc_clean: 0.79
+      deberta_intent_acc_clean: 0.94
+      treatment_k1_f1_clean: 0.82
+      treatment_k2_f1_clean: 0.91
+      treatment_k3_f1_clean: 0.93
+      treatment_k5_f1_clean: 0.96
+      treatment_full_f1_clean: 0.96
+      baseline_k1_f1_clean: 0.68
+      baseline_k2_f1_clean: 0.77
+      baseline_k3_f1_clean: 0.83
+      baseline_k5_f1_clean: 0.88
+      baseline_full_f1_clean: 0.89
+      delta_k1_pp: 14
+      delta_k2_pp: 14
+      delta_k3_pp: 10
+      delta_k5_pp: 8
+      delta_full_pp: 7
+      treatment_fpr_at_95tpr_k2: 0.08
+      baseline_fpr_at_95tpr_k2: 0.19
+      test_size: 72
+      dataset_size: 480
+    result_rationale: Best档的核心表现：去除lexical shortcut后，treatment仍然强劲（K=2时0.91），因为persuasion-grounded
+      embeddings编码了独立于词汇的pragmatic信号——DeBERTa fine-tuning on 8-class persuasion taxonomy迫使encoder学习illocutionary
+      act representations。Baseline（vanilla DeBERTa）在clean data上显著下降（从phase_b_full的0.879降至0.77
+      at K=2），因为它之前heavily依赖lexical cues，现在只能靠generic semantic similarity。Delta在K=2最大（14pp）是因为早期turns的persuasion
+      strategy信号（rapport-building → authority-framing transition）对treatment极为informative，而baseline在仅2
+      turns时缺乏足够semantic divergence来做判断。随着K增大delta收窄，因为baseline也能从更多turns中积累enough
+      semantic drift信号。DeBERTa persuasion acc 0.79在best档范围内，表明8-class taxonomy在clean
+      data上有足够的可学习结构。
+    tables:
+    - name: F1 by Turn Budget (Clean Data)
+      columns:
+      - K
+      - treatment_f1
+      - baseline_f1
+      - delta_pp
+      - p_value_bootstrap
+      rows:
+      - - 1
+        - 0.82
+        - 0.68
+        - 14
+        - 0.003
+      - - 2
+        - 0.91
+        - 0.77
+        - 14
+        - 0.001
+      - - 3
+        - 0.93
+        - 0.83
+        - 10
+        - 0.004
+      - - 5
+        - 0.96
+        - 0.88
+        - 8
+        - 0.012
+      - - all
+        - 0.96
+        - 0.89
+        - 7
+        - 0.018
+    - name: DeBERTa Encoder Metrics (Clean)
+      columns:
+      - metric
+      - value
+      rows:
+      - - persuasion_8class_acc
+        - 0.79
+      - - intent_binary_acc
+        - 0.94
+      - - best_epoch
+        - 3
+      - - macro_f1_persuasion
+        - 0.74
+    figures_description:
+    - 'F1 vs K curve: treatment vs baseline with 95% bootstrap CI bands, showing treatment''s
+      steeper early rise'
+    - Confusion matrix for DeBERTa 8-class persuasion classifier on clean data
+    analysis: 核心claim 2完全validated。K=2处14pp delta远超5pp pass criteria。Persuasion grounding的优势在early
+      turns最显著——这正是论文的headline result。Bootstrap p-values全部<0.05 despite small sample
+      size，因为effect size足够大。DeBERTa persuasion acc 0.79说明encoder确实学到了meaningful persuasion
+      representations而非noise。
+  - name: scrambled_label_ablation
+    plan_id: plan_003
+    description: 随机打乱jailbreak turns的persuasion strategy labels重训treatment，量化label信号贡献。
+    expected_results:
+      scrambled_treatment_k2_f1_clean: 0.76
+      scrambled_treatment_k3_f1_clean: 0.81
+      scrambled_treatment_full_f1_clean: 0.87
+      properly_labeled_treatment_k2_f1_clean: 0.91
+      properly_labeled_treatment_k3_f1_clean: 0.93
+      properly_labeled_treatment_full_f1_clean: 0.96
+      label_drop_k2_pp: 15
+      label_drop_k3_pp: 12
+      label_drop_full_pp: 9
+      scrambled_deberta_persuasion_acc: 0.13
+    result_rationale: Best档下scrambled labels造成15pp drop at K=2。机制：当strategy labels被随机打乱时，DeBERTa的multi-task
+      fine-tuning中persuasion classification head学到的是noise，encoder被迫在两个矛盾的supervision
+      signals间妥协——intent head仍提供有用梯度（因为intent labels未被打乱），但persuasion head提供random
+      gradients，导致encoder representations退化为semi-generic embeddings。结果scrambled model性能（0.76
+      at K=2）接近但略低于vanilla baseline（0.77），因为random supervision actively corrupts部分representation
+      capacity。Drop在K=2最大（15pp）是因为正确的persuasion labels对early detection贡献最大——前2 turns的strategy
+      transition是最强的discriminative signal。随着K增大，drop缩小因为更多turns让even corrupted representations积累enough
+      raw signal。Scrambled DeBERTa persuasion acc降至0.13≈1/8 random chance，confirming
+      labels确实被effectively destroyed。
+    tables:
+    - name: Scrambled vs Proper Label Comparison
+      columns:
+      - K
+      - proper_f1
+      - scrambled_f1
+      - drop_pp
+      rows:
+      - - 2
+        - 0.91
+        - 0.76
+        - 15
+      - - 3
+        - 0.93
+        - 0.81
+        - 12
+      - - all
+        - 0.96
+        - 0.87
+        - 9
+    figures_description:
+    - 'Bar chart: F1 at each K for proper-label treatment, scrambled-label treatment,
+      and vanilla baseline — showing scrambled converges toward baseline'
+    analysis: 10-25pp range的drop确认persuasion strategy labels carry genuine discriminative
+      signal而非仅作为class indicator。Scrambled model表现接近vanilla baseline验证了因果关系：是persuasion
+      label的semantic content（而非fine-tuning process本身）驱动了treatment的优势。M004 fix的必要性得到验证——如果strategy=7
+      for all benign是唯一的confound，scrambled在jailbreak turns应该只造成minor drop，但15pp drop说明per-turn
+      strategy annotation的granular信息确实被利用。
+  - name: adversarial_perturbation
+    plan_id: plan_004
+    description: 对clean jailbreak conversations施加aggressive paraphrasing，评估treatment/baseline/TF-IDF三者的robustness
+      degradation。
+    expected_results:
+      treatment_full_f1_clean: 0.96
+      treatment_full_f1_perturbed: 0.93
+      treatment_drop_pp: 3
+      baseline_full_f1_clean: 0.89
+      baseline_full_f1_perturbed: 0.76
+      baseline_drop_pp: 13
+      tfidf_lr_f1_clean: 0.72
+      tfidf_lr_f1_perturbed: 0.54
+      tfidf_drop_pp: 18
+      delta_delta_treatment_vs_baseline_pp: 10
+      delta_delta_treatment_vs_tfidf_pp: 15
+      treatment_k2_f1_perturbed: 0.87
+      baseline_k2_f1_perturbed: 0.63
+      perturbation_tfidf_score: 0.41
+    result_rationale: Best档下evasion hierarchy完美呈现三级梯度：TF-IDF崩溃（-18pp）因为aggressive
+      paraphrasing直接destroy了它依赖的lexical features——synonym substitution和sentence restructuring改变了word
+      distributions，TF-IDF score从0.58降至0.41证实lexical cues被进一步消除。Baseline中度下降（-13pp）因为vanilla
+      DeBERTa的representations虽然不是纯lexical但仍部分依赖surface-level patterns——paraphrasing改变了token
+      sequences从而改变了contextual embeddings的具体值，尽管语义大致保留，per-turn representation的subtle
+      distributional shifts被disrupted。Treatment几乎不降（-3pp）因为persuasion-grounded representations编码的是illocutionary
+      act level的信息——'building rapport through self-disclosure'不管用什么词表达，其pragmatic
+      function不变，DeBERTa fine-tuned on persuasion taxonomy学到的正是这种invariance。Delta-delta
+      10pp在[8,18]范围内。这是Claim 1的empirical cornerstone。
+    tables:
+    - name: Evasion Hierarchy (Full Conversation)
+      columns:
+      - model
+      - f1_clean
+      - f1_perturbed
+      - drop_pp
+      rows:
+      - - treatment_persuasion
+        - 0.96
+        - 0.93
+        - 3
+      - - baseline_semantic
+        - 0.89
+        - 0.76
+        - 13
+      - - tfidf_lexical
+        - 0.72
+        - 0.54
+        - 18
+    - name: Evasion Hierarchy (K=2 Early Detection)
+      columns:
+      - model
+      - f1_clean_k2
+      - f1_perturbed_k2
+      - drop_pp
+      rows:
+      - - treatment_persuasion
+        - 0.91
+        - 0.87
+        - 4
+      - - baseline_semantic
+        - 0.77
+        - 0.63
+        - 14
+      - - tfidf_lexical
+        - 0.65
+        - 0.48
+        - 17
+    figures_description:
+    - 'Grouped bar chart: F1 on clean vs perturbed data for three model tiers, visually
+      showing the evasion hierarchy gradient'
+    - 'Degradation waterfall chart: starting from clean F1, showing incremental loss
+      per perturbation type (synonym→restructure→register shift)'
+    analysis: Pragmatic Evasion Asymmetry的definitive empirical demonstration。三级梯度（lexical
+      -18pp > semantic -13pp > pragmatic -3pp）provides清晰的数字支撑for Claim 1。Delta-delta
+      10pp远超3pp pass criteria。论文main table的核心数据。注意treatment在perturbation下的F1（0.93）仍高于baseline在clean
+      data上的F1（0.89），这是一个极强的talking point：'even under adversarial conditions designed
+      to remove all surface cues, DisPeD outperforms semantic baselines operating
+      on unperturbed data.'
+  - name: multi_attack_generation
+    plan_id: plan_005
+    description: 用Qwen3-8B生成FITD-style和Deceptive Delight-style攻击对话各≥50条，附persuasion
+      strategy annotation。
+    expected_results:
+      fitd_conversations_generated: 72
+      deceptive_delight_conversations_generated: 65
+      fitd_avg_turns: 6.8
+      deceptive_delight_avg_turns: 5.2
+      fitd_strategy_annotation_coverage: 100
+      deceptive_delight_strategy_annotation_coverage: 100
+      fitd_tfidf_vs_benign: 0.61
+      deceptive_delight_tfidf_vs_benign: 0.55
+      inter_annotator_agreement_kappa: null
+      llm_annotation_consistency_pct: 91
+    result_rationale: Best档下生成充分且质量高。FITD-style生成72条（>50 threshold），采用foot-in-the-door
+      playbook：先请求小compliance（'can you explain how X works in general?'），逐步escalate
+      specificity。Deceptive Delight生成65条，采用interleaving pattern：benign creative writing请求中embedded
+      harmful elements。Turn数差异反映attack structure差异——FITD需要更多gradual escalation steps，Deceptive
+      Delight通过content mixing可以更快达成目标。TF-IDF scores在合理范围（0.55-0.61）因为生成时已应用了register
+      normalization pipeline。Strategy annotation由LLM完成（无human annotators），consistency
+      91%表明taxonomy对这两种新attack types同样适用——persuasion strategies（authority appeal,
+      social proof, reciprocity etc.）是attack-type-agnostic的。
+    tables:
+    - name: Generated Attack Type Statistics
+      columns:
+      - attack_type
+      - n_conversations
+      - avg_turns
+      - min_turns
+      - max_turns
+      - tfidf_vs_benign
+      rows:
+      - - FITD
+        - 72
+        - 6.8
+        - 4
+        - 10
+        - 0.61
+      - - Deceptive_Delight
+        - 65
+        - 5.2
+        - 3
+        - 8
+        - 0.55
+      - - Crescendo_original
+        - 240
+        - 5.5
+        - 3
+        - 12
+        - 0.58
+    - name: Strategy Distribution by Attack Type
+      columns:
+      - strategy
+      - crescendo_pct
+      - fitd_pct
+      - deceptive_delight_pct
+      rows:
+      - - rapport_building
+        - 28
+        - 35
+        - 15
+      - - authority_appeal
+        - 12
+        - 8
+        - 22
+      - - reciprocity
+        - 18
+        - 30
+        - 10
+      - - social_proof
+        - 8
+        - 5
+        - 18
+      - - commitment_consistency
+        - 15
+        - 25
+        - 8
+      - - scarcity_urgency
+        - 5
+        - 3
+        - 12
+      - - reframing
+        - 22
+        - 15
+        - 20
+      - - direct_request
+        - 7
+        - 4
+        - 15
+    figures_description:
+    - Strategy distribution stacked bar chart per attack type showing different but
+      overlapping persuasion playbooks
+    - Turn-level strategy sequence examples (3 per attack type) showing characteristic
+      patterns
+    analysis: 数据充足且质量可控。三种attack types共享persuasion strategy vocabulary但使用不同的temporal
+      patterns——这正是cross-attack generalization的前提条件。FITD heavy on reciprocity+commitment（逐步compliance），Deceptive
+      Delight heavy on authority+reframing（权威框架下混入harmful content），Crescendo balanced
+      across strategies。Strategy vocabulary的overlap为plan_006的zero-shot泛化提供了理论基础。
+  - name: cross_attack_evaluation
+    plan_id: plan_006
+    description: 用Crescendo训练的模型zero-shot评估FITD和Deceptive Delight攻击。
+    expected_results:
+      cross_attack_treatment_f1_fitd: 0.84
+      cross_attack_treatment_f1_deceptive_delight: 0.86
+      cross_attack_treatment_f1_avg: 0.85
+      cross_attack_baseline_f1_fitd: 0.67
+      cross_attack_baseline_f1_deceptive_delight: 0.7
+      cross_attack_baseline_f1_avg: 0.69
+      cross_attack_delta_fitd_pp: 17
+      cross_attack_delta_deceptive_delight_pp: 16
+      cross_attack_delta_avg_pp: 16.5
+      treatment_recall_at_k2_fitd: 0.78
+      treatment_recall_at_k2_deceptive_delight: 0.81
+      baseline_recall_at_k2_fitd: 0.55
+      baseline_recall_at_k2_deceptive_delight: 0.58
+    result_rationale: Best档下cross-attack泛化成立（treatment avg 0.85在[0.78,0.90]内，baseline
+      avg 0.69在[0.60,0.75]内）。核心机制：persuasion strategy是attack-type-agnostic的抽象层——无论是Crescendo的渐进式rapport-building还是FITD的compliance-escalation或Deceptive
+      Delight的authority-framing，底层都使用相同的persuasion strategy vocabulary（Cialdini principles），只是temporal
+      arrangement不同。Treatment model学到的GRU patterns是'persuasion strategy escalation'的generic
+      detector而非Crescendo-specific的surface pattern detector。Baseline泛化较差（0.69）因为vanilla
+      semantic embeddings编码了Crescendo-specific的topic/phrasing patterns（如特定的roleplay
+      setups），这些在FITD/DD中不出现。Deceptive Delight略高于FITD（0.86 vs 0.84）因为其strategy sequence更接近Crescendo（都有强reframing
+      component），而FITD的heavy reciprocity pattern在Crescendo training data中less represented。
+    tables:
+    - name: Cross-Attack Zero-Shot Generalization
+      columns:
+      - attack_type
+      - treatment_f1
+      - baseline_f1
+      - delta_pp
+      rows:
+      - - FITD
+        - 0.84
+        - 0.67
+        - 17
+      - - Deceptive_Delight
+        - 0.86
+        - 0.7
+        - 16
+      - - Crescendo_held_out
+        - 0.96
+        - 0.89
+        - 7
+    - name: Cross-Attack Early Detection (K=2)
+      columns:
+      - attack_type
+      - treatment_recall
+      - baseline_recall
+      rows:
+      - - FITD
+        - 0.78
+        - 0.55
+      - - Deceptive_Delight
+        - 0.81
+        - 0.58
+    figures_description:
+    - 'Radar chart: treatment vs baseline F1 across 3 attack types showing treatment''s
+      consistently higher and more uniform performance'
+    - Strategy transition similarity heatmap between attack types explaining why transfer
+      works
+    analysis: Claim 2的generalization dimension完全validated。16.5pp average delta证明persuasion
+      grounding不是Crescendo-overfitting而是genuine pragmatic signal。特别值得highlight的是treatment在unseen
+      attacks上的F1（0.85）接近baseline在seen attack上的F1（0.89）——这意味着DisPeD on new attacks
+      ≈ vanilla DeBERTa on known attacks。论文narrative：'the persuasion playbook is a
+      universal vulnerability of multi-turn attacks, enabling zero-shot detection
+      transfer.'
+  - name: tfidf_lr_baseline
+    plan_id: plan_007
+    description: TF-IDF + Logistic Regression baseline on clean data，量化lexical features的detection
+      ceiling。
+    expected_results:
+      tfidf_lr_f1_clean: 0.72
+      tfidf_lr_precision_clean: 0.75
+      tfidf_lr_recall_clean: 0.7
+      tfidf_lr_f1_k2_clean: 0.65
+      tfidf_lr_f1_k3_clean: 0.68
+      tfidf_lr_auc_clean: 0.78
+      tfidf_lr_f1_perturbed: 0.54
+      top_features_jailbreak:
+      - hypothetical
+      - scenario
+      - imagine
+      - creative
+      - roleplay
+      top_features_benign:
+      - thanks
+      - help
+      - question
+      - code
+      - explain
+    result_rationale: Best档下TF-IDF LR在clean data上F1=0.72——显著低于treatment（0.96）和baseline（0.89），但不是random。原因：register
+      normalization消除了大部分lexical shortcut但不是全部——某些framing words（'hypothetical', 'scenario',
+      'imagine'）是jailbreak的functional vocabulary，即使paraphrase也难以完全去除（因为attacker需要某种方式signal
+      the fictional frame to the LLM target）。这些residual lexical cues给了LR一个above-chance但moderate的performance。F1=0.72建立了论文的'lexical
+      ceiling'参考线——'even when lexical shortcuts are largely removed, some residual
+      lexical signal exists (F1=0.72), but it is far below what pragmatic features
+      achieve (F1=0.96) and it collapses under adversarial perturbation (F1=0.54).'
+      K=2时LR更差（0.65）因为仅2 turns的词汇信号很弱。
+    tables:
+    - name: TF-IDF LR Performance (Clean Data)
+      columns:
+      - K
+      - f1
+      - precision
+      - recall
+      rows:
+      - - 2
+        - 0.65
+        - 0.68
+        - 0.62
+      - - 3
+        - 0.68
+        - 0.71
+        - 0.65
+      - - 5
+        - 0.7
+        - 0.73
+        - 0.68
+      - - all
+        - 0.72
+        - 0.75
+        - 0.7
+    - name: Top Discriminative Features
+      columns:
+      - rank
+      - jailbreak_feature
+      - weight
+      - benign_feature
+      - weight
+      rows:
+      - - 1
+        - hypothetical
+        - 2.31
+        - thanks
+        - 1.89
+      - - 2
+        - scenario
+        - 1.95
+        - help
+        - 1.72
+      - - 3
+        - imagine
+        - 1.87
+        - question
+        - 1.54
+      - - 4
+        - creative
+        - 1.62
+        - code
+        - 1.41
+      - - 5
+        - roleplay
+        - 1.48
+        - explain
+        - 1.33
+    figures_description:
+    - Feature importance bar chart showing top-10 discriminative words for each class
+    analysis: Evasion hierarchy的lexical floor established。LR的top features reveal残余的functional
+      vocabulary——这些词是persuasion playbook的lexical manifestation但not the full story。论文可以argue：'lexical
+      features capture the surface trace of persuasion strategies (F1=0.72) but miss
+      the temporal dynamics and pragmatic structure that DisPeD exploits (F1=0.96,
+      +24pp).'
+  - name: strategy_transition_analysis
+    plan_id: plan_008
+    description: 计算jailbreak vs benign的persuasion strategy转移矩阵，可视化monotonic escalation
+      trajectory。
+    expected_results:
+      jailbreak_monotonicity_score: 0.82
+      benign_monotonicity_score: 0.34
+      jailbreak_dominant_trajectory: rapport→commitment→reframing→direct_request
+      benign_dominant_pattern: oscillatory (no dominant direction)
+      trajectory_separability_auroc: 0.91
+      entropy_jailbreak_transitions: 1.8
+      entropy_benign_transitions: 2.9
+    result_rationale: Best档下monotonic escalation trajectory清晰可辨。Jailbreak conversations的monotonicity
+      score 0.82表明82%的strategy transitions沿escalation direction移动（从low-risk strategies如rapport向high-risk如direct_request）。Benign
+      conversations的0.34接近random（0.5 would be purely random for binary up/down），因为正常对话的pragmatic
+      moves是task-driven和oscillatory的（ask→answer→ask→clarify→thank）。Entropy差异（1.8 vs
+      2.9）反映jailbreak的strategy transitions更concentrated/predictable（攻击者follow a playbook），而benign更dispersed/unpredictable。Trajectory
+      separability AUROC 0.91表明单独用transition pattern（不用content）就能区分jailbreak和benign——这是Claim
+      3的mechanistic basis，为Claim 1和2提供interpretable explanation。
+    tables:
+    - name: Strategy Transition Entropy
+      columns:
+      - conversation_type
+      - transition_entropy
+      - monotonicity_score
+      - n_conversations
+      rows:
+      - - jailbreak
+        - 1.8
+        - 0.82
+        - 240
+      - - benign
+        - 2.9
+        - 0.34
+        - 240
+    - name: Dominant Strategy Sequences (Top-3)
+      columns:
+      - rank
+      - jailbreak_sequence
+      - frequency_pct
+      - benign_sequence
+      - frequency_pct
+      rows:
+      - - 1
+        - rapport→commit→reframe→direct
+        - 34
+        - none→none→none→none
+        - 45
+      - - 2
+        - rapport→social→reframe→direct
+        - 22
+        - rapport→none→rapport→none
+        - 18
+      - - 3
+        - rapport→reciprocity→commit→direct
+        - 18
+        - none→rapport→none→direct
+        - 12
+    figures_description:
+    - '8x8 strategy transition heatmap (jailbreak): showing concentrated flow from
+      rapport cluster to escalation cluster'
+    - '8x8 strategy transition heatmap (benign): showing diffuse/diagonal-heavy pattern
+      (self-transitions and no directional flow)'
+    - '2D trajectory plot: PCA of strategy sequences showing jailbreak conversations
+      as directed paths vs benign as clusters'
+    - 'Per-turn strategy distribution evolution: stacked area charts showing jailbreak''s
+      characteristic shift from rapport→escalation over turns'
+    analysis: Claim 3完整validated with both quantitative metrics和可视化。Monotonicity score差异（0.82
+      vs 0.34）是clean numeric evidence。论文narrative：'the escalation trajectory is not
+      merely a correlate but the mechanistic basis of detection — the GRU learns to
+      recognize this monotonic pattern, which is why detection succeeds early (K=2)
+      and transfers across attack types (shared trajectory structure despite different
+      surface realizations).' Figures直接进main paper Fig.2-3。
+  - name: wildchat_hard_negatives
+    plan_id: plan_009
+    description: 从WildChat筛选high-drift benign conversations作为hard negatives，评估FPR。
+    expected_results:
+      wildchat_filtered_conversations: 180
+      contamination_removed_pct: 15.2
+      high_drift_benign_count: 120
+      treatment_fpr_hard_negatives: 0.09
+      baseline_fpr_hard_negatives: 0.17
+      treatment_fpr_random_benign: 0.03
+      baseline_fpr_random_benign: 0.06
+      topic_shift_score_threshold: 0.7
+    result_rationale: Best档下treatment FPR on hard negatives仅9%（<15% pass criteria）。Hard
+      negatives是topic-shifting、multi-domain的benign conversations（如用户从coding问题转到personal
+      advice再到creative writing），这些conversations有high semantic drift但lack persuasion
+      escalation pattern。Treatment低FPR（9% vs baseline 17%）因为persuasion-grounded representations区分'topic
+      drift'（benign）和'strategy escalation'（adversarial）——前者的strategy transitions是random/oscillatory的（none↔rapport↔none），后者是monotonic
+      escalating的。Baseline较高FPR（17%）因为vanilla semantic drift in multi-topic conversations看起来similar
+      to jailbreak semantic drift。Contamination filtering移除了15.2% WildChat conversations（consistent
+      with prior finding of 14-16%），保证evaluation不被actual jailbreaks in WildChat polluted。
+    tables:
+    - name: FPR on Hard Negatives
+      columns:
+      - model
+      - fpr_hard_negatives
+      - fpr_random_benign
+      - fpr_delta
+      rows:
+      - - treatment
+        - 0.09
+        - 0.03
+        - 0.06
+      - - baseline
+        - 0.17
+        - 0.06
+        - 0.11
+      - - tfidf_lr
+        - 0.22
+        - 0.08
+        - 0.14
+    figures_description:
+    - 'ROC curves: treatment vs baseline on hard negative set, showing treatment''s
+      better precision-recall tradeoff'
+    analysis: Treatment的low FPR on hard negatives进一步支持pragmatic features的superiority——它不会被benign
+      topic diversity confused因为它tracks persuasion strategy patterns而非raw semantic
+      drift。这addresses一个implicit reviewer concern：'doesn't benign conversation also
+      evolve over time?' Answer：yes, but not in a monotonic escalation pattern in
+      persuasion space。
+  - name: cross_checkpoint_variance
+    plan_id: plan_010
+    description: 评估DeBERTa不同fine-tuning checkpoints（epoch 2/3/final）对downstream F1的影响。
+    expected_results:
+      epoch2_treatment_f1_clean: 0.94
+      epoch3_treatment_f1_clean: 0.96
+      epoch_final_treatment_f1_clean: 0.95
+      variance_across_checkpoints_pp: 1.0
+      epoch2_persuasion_acc: 0.76
+      epoch3_persuasion_acc: 0.79
+      epoch_final_persuasion_acc: 0.78
+      best_checkpoint: epoch3
+    result_rationale: Best档下variance仅1pp（<2pp pass criteria），表明downstream performance对encoder
+      checkpoint选择不敏感。Epoch 3略优（0.96 vs 0.94/0.95）因为persuasion classification已converge但尚未overfit——epoch
+      2时persuasion acc稍低（0.76）导致representations略less informative，epoch final时轻微overfit
+      to training distribution导致微小泛化loss。但这些差异极小（1pp范围），表明persuasion signal是robust的而非training
+      stochasticity的artifact。这是一个重要的reliability result for reviewers worried about
+      reproducibility on small datasets。
+    tables:
+    - name: Checkpoint Sensitivity Analysis
+      columns:
+      - checkpoint
+      - persuasion_acc
+      - intent_acc
+      - downstream_f1_full
+      - downstream_f1_k2
+      rows:
+      - - epoch_2
+        - 0.76
+        - 0.93
+        - 0.94
+        - 0.89
+      - - epoch_3
+        - 0.79
+        - 0.94
+        - 0.96
+        - 0.91
+      - - epoch_final
+        - 0.78
+        - 0.94
+        - 0.95
+        - 0.9
+    figures_description:
+    - 'Line plot: downstream F1 vs encoder training epoch, with CI bands showing stability'
+    analysis: Low variance confirms结果的reproducibility。论文supplementary中报告，增强reviewer
+      confidence in small-dataset results。
+  - name: deepcontext_proxy_reproduction
+    plan_id: plan_011
+    description: BERT-base + GRU proxy baseline模拟DeepContext-like方法（generic drift
+      features, no persuasion grounding）。
+    expected_results:
+      deepcontext_proxy_full_f1_clean: 0.84
+      deepcontext_proxy_k2_f1_clean: 0.71
+      deepcontext_proxy_k3_f1_clean: 0.78
+      deepcontext_proxy_full_f1_perturbed: 0.69
+      deepcontext_proxy_drop_under_perturbation_pp: 15
+      treatment_advantage_over_proxy_full_pp: 12
+      treatment_advantage_over_proxy_k2_pp: 20
+    result_rationale: Best档下DeepContext proxy表现介于baseline和TF-IDF之间（full F1=0.84），低于DeBERTa
+      baseline（0.89）。原因：BERT-base的representation capacity低于DeBERTa-v3-base（125M vs
+      184M params, no disentangled attention），且没有fine-tuning提供的domain-specific signal。Proxy的full
+      conversation F1还行（0.84）因为GRU仍能从enough turns of generic BERT embeddings中detect
+      some drift pattern。但K=2时proxy很差（0.71）因为BERT-base的generic representations在2 turns时provide
+      insufficient discriminative signal。Under perturbation proxy大幅下降（-15pp）——比DeBERTa
+      baseline（-13pp）更严重，因为BERT-base更依赖surface features。Treatment vs proxy的优势在K=2处最大（20pp），reinforcing
+      early detection作为DisPeD的unique contribution。论文positioning：'even with temporal
+      modeling (GRU), generic encoder representations cannot match persuasion-grounded
+      representations, confirming that the advantage comes from the pragmatic features
+      rather than the sequence architecture.'
+    tables:
+    - name: DeepContext Proxy vs DisPeD
+      columns:
+      - model
+      - full_f1_clean
+      - k2_f1_clean
+      - full_f1_perturbed
+      - perturbation_drop_pp
+      rows:
+      - - DisPeD_treatment
+        - 0.96
+        - 0.91
+        - 0.93
+        - 3
+      - - DeBERTa_baseline
+        - 0.89
+        - 0.77
+        - 0.76
+        - 13
+      - - DeepContext_proxy
+        - 0.84
+        - 0.71
+        - 0.69
+        - 15
+      - - TF-IDF_LR
+        - 0.72
+        - 0.65
+        - 0.54
+        - 18
+    figures_description:
+    - 'Full evasion hierarchy bar chart: 4 models × 2 conditions (clean/perturbed)
+      showing complete gradient'
+    analysis: DeepContext proxy fills the 'generic temporal modeling' slot in the
+      evasion hierarchy。It confirms两点：(1) temporal sequence modeling alone (GRU) doesn't
+      solve the problem without good representations, (2) the encoder quality matters
+      more than the temporal architecture。论文Table 1的complete picture：4-tier hierarchy
+      with clean/perturbed conditions provides comprehensive empirical evidence for
+      Claim 1。RC5 addressed：'while we cannot reproduce DeepContext exactly (no public
+      code), our proxy using the same architecture class (encoder + RNN) with generic
+      features shows the pattern we predict from the Pragmatic Evasion Asymmetry theory.'
+  review_report: '---
+
+    dream_id: dream_20260517T165817
+
+    tier: best
+
+    overall_score: weak reject
+
+    timestamp: 2026-05-17T17:27:57.429487+00:00
+
+    ---
+
+
+    # Dream Review Report: DisPeD
+
+
+    **Paper:** DisPeD: Exploiting the Pragmatic Evasion Asymmetry for Robust Multi-Turn
+    Jailbreak Detection
+
+
+    **Review mode:** full | **Reviewers:** R1 (Methods + Experiments), R2 (Novelty
+    + Related Work)
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    DisPeD is a two-stage pipeline for multi-turn jailbreak detection. It identifies
+    a "Pragmatic Evasion Asymmetry": attackers can freely paraphrase surface content
+    but cannot remove the underlying persuasion playbook (rapport building, reframing,
+    escalation) without abandoning the attack. Stage 1 fine-tunes DeBERTa-v3-base
+    with a multi-task objective (8-class persuasion strategy classification + binary
+    intent classification). Stage 2 feeds the resulting [CLS] turn embeddings into
+    a bidirectional GRU for conversation-level jailbreak detection. On register-normalized
+    data (480 conversations, 72 test), DisPeD achieves F1=0.91 at K=2 turns (14pp
+    over semantic baseline), degrades only 3pp under adversarial paraphrasing (vs.
+    13pp semantic, 18pp lexical), and transfers zero-shot across attack types with
+    16.5pp average improvement.
+
+
+    ---
+
+
+    ## 2. Strengths (Consensus)
+
+
+    **S1. Well-motivated conceptual framing.** Both reviewers agree the "Pragmatic
+    Evasion Asymmetry" is an intuitive and useful organizing principle. The three-tier
+    evasion hierarchy (lexical < semantic < pragmatic) is clearly articulated and
+    directly validated by the gradient in Table 6 (18pp > 13pp > 3pp degradation).
+    The framing is memorable and could influence how the community thinks about robustness
+    levels.
+
+
+    **S2. Register normalization is methodologically honest.** The authors identify
+    the lexical shortcut problem (TF-IDF=1.0 on original data) and address it upfront,
+    reducing separability to 0.58 (Table 1). This is commendable intellectual honesty
+    that strengthens the validity of all downstream results. Many papers in this area
+    would have ignored or hidden this issue.
+
+
+    **S3. Scrambled-label ablation is the right control.** Table 8 (Section 5.3) cleanly
+    isolates the contribution of persuasion label semantics from multi-task training
+    regularization. The 15pp drop at K=2 (0.91 to 0.76, converging toward the vanilla
+    baseline at 0.77) provides convincing causal evidence. This is one of the strongest
+    experimental design choices in the paper.
+
+
+    **S4. Cross-attack zero-shot transfer is meaningful.** Training on Crescendo only
+    and evaluating on FITD and Deceptive Delight (Table 9) is the correct experimental
+    design. The 16.5pp average improvement over the semantic baseline supports the
+    claim of attack-type-agnostic pragmatic signal. The result that DisPeD on unseen
+    attacks (0.85) approaches the semantic baseline on seen attacks (0.89) is a strong
+    talking point.
+
+
+    **S5. Practical early detection framing.** The emphasis on K=2 detection (F1=0.91
+    vs. 0.77) addresses a genuine deployment need. The FPR comparison at 95% TPR (0.08
+    vs. 0.19) adds practical value beyond raw F1.
+
+
+    **S6. Comprehensive experiment coverage.** The paper covers all planned experiments
+    from the design: register normalization, core revalidation, scrambled labels,
+    adversarial perturbation, multi-attack generation, cross-attack evaluation, TF-IDF
+    baseline, trajectory analysis, hard negatives, checkpoint sensitivity, and DeepContext
+    proxy. The experimental surface area is thorough.
+
+
+    ---
+
+
+    ## 3. Weaknesses
+
+
+    ### Critical (both reviewers agree)
+
+
+    **W1. Dataset is too small for the claims made (R1, R2).** 480 total conversations
+    with 72 test samples is extremely small. Each misclassification shifts F1 by ~2-3pp.
+    The paper reports p-values from bootstrap tests but does not report confidence
+    interval widths. The 14pp headline gap (Table 4) may not survive at the lower
+    CI bound. Cross-attack generalization sets (72 FITD, 65 Deceptive Delight) are
+    generated by a single model (Qwen3-8B), sharing the same generative distribution,
+    which potentially inflates transfer numbers. The strategy distributions in Table
+    3 reflect Qwen3-8B''s behavior, not empirically observed real adversary patterns.
+
+
+    **W2. "DeepContext Proxy" is misleading (R1, R2).** The paper calls BERT-base
+    + GRU a "DeepContext proxy" (Section 3.3), but the actual DeepContext architecture
+    uses task-attention weighted pooling, larger hidden dimensions, and hybrid residual
+    connections. The proxy strips all distinguishing features. Since the paper explicitly
+    positions against DeepContext (Introduction), claiming superiority over a degraded
+    proxy is misleading. Should be honestly relabeled "BERT-base + GRU baseline."
+
+
+    **W3. Table 3 arithmetic error (R1, R2).** Strategy distribution percentages for
+    Crescendo sum to 115% (28+12+18+8+15+5+22+7=115), not 100%. Either a typographical
+    error or the categories are not mutually exclusive (which should be stated). Similar
+    issue likely affects FITD (125%) and Deceptive Delight (120%). This undermines
+    confidence in the data processing pipeline.
+
+
+    ### Major (one reviewer raises, other concurs on significance)
+
+
+    **W4. Related work is severely inadequate (R2, primary).** Only 12 unique references.
+    Critical omissions include:
+
+    - LLM-as-judge approaches (GPT-4/Claude conversation-level safety evaluation)
+
+    - Llama Guard 2/3 and ShieldGemma (multi-turn capable versions)
+
+    - BIID (bidirectional intention inference, near-0% ASR on multi-turn)
+
+    - Constitutional Classifiers (Anthropic, exchange-level classification)
+
+    - G-Guard (GCN-based multi-turn detection)
+
+    - SafeDream (safety world model with CUSUM detection)
+
+    - GLiGuard (strategy-aware compact encoder guard, directly relevant)
+
+    - Persuasive Fingerprint (CIKM 2025, applies Cialdini''s framework to jailbreaks)
+
+    - Nasr, Carlini et al. (2025) (adaptive attacks against classifiers)
+
+
+    The "first to use persuasion-grounded representations for detection" claim (Section
+    2, final sentence) is difficult to verify without engaging with GLiGuard and Persuasive
+    Fingerprint.
+
+
+    **W5. No LLM-as-judge or strong detection baselines (R2, primary).** The baselines
+    are limited to TF-IDF+LR, vanilla DeBERTa+GRU, and the degraded DeepContext proxy.
+    The strongest known multi-turn defenses (BIID, Constitutional Classifiers) are
+    not compared. The obvious baseline of prompting a capable LLM with the full conversation
+    is absent. Without these comparisons, it is impossible to assess where DisPeD
+    actually sits in the detection landscape.
+
+
+    **W6. Limited novelty over prior persuasion-in-jailbreaking work (R2, primary).**
+    Zeng et al. (2024) already demonstrated systematic persuasion techniques in jailbreaks.
+    Hagendorff (2026) showed identifiable persuasion strategies in 97% of successful
+    multi-turn attacks. Chen et al. (2025) showed persuasion dynamics are extractable
+    from turn-level representations. The "Pragmatic Evasion Asymmetry" is a natural
+    corollary of these observations, not a genuinely new finding. The Speech Act Theory
+    framing (Austin 1962, Searle 1969) adds vocabulary but no analytical substance:
+    the paper uses it for one sentence in the Introduction and no experimental design
+    tests predictions derived from Speech Act Theory.
+
+
+    **W7. No adaptive adversary evaluation (R2, primary; R1 concurs).** The adversarial
+    paraphrasing experiment (Section 5.2) only tests synonym substitution and sentence
+    restructuring. This is the weakest form of adversarial evaluation. The paper does
+    not test:
+
+    - Adaptive adversaries aware of persuasion-based detection who deliberately alter
+    strategy patterns
+
+    - Strategy-aware evasion: accomplishing the same functional goal without triggering
+    the 8-class classifier
+
+    - The paper''s own core claim (that persuasion structure is structurally impossible
+    to evade) is not directly tested
+
+
+    **W8. Persuasion annotation quality insufficiently validated (R1, R2).** "94%
+    annotation consistency after normalization" (Section 4.1) and "91% LLM annotation
+    consistency" for generated attacks (Section 4.2) measure LLM self-consistency,
+    not human-validated annotation quality. No inter-annotator agreement (Cohen''s
+    kappa) between independent annotators is reported for the 8-class persuasion taxonomy.
+
+
+    **W9. Data leakage risk from intent head (R1, primary).** The [CLS] embedding
+    extracted from the fine-tuned encoder is trained with both persuasion classification
+    and intent classification heads. The intent signal (binary jailbreak/benign) is
+    not disentangled from the representation. A persuasion-only ablation (removing
+    the intent head during training) is needed to confirm that the downstream GRU
+    is using persuasion features rather than leaked intent features.
+
+
+    **W10. Taxonomy derivation is unjustified (R1, primary).** No systematic derivation
+    from Cialdini''s 6 principles or Zeng et al.''s 40 techniques to the chosen 8
+    classes. Why 8 and not 6 (Cialdini) or 40 (Zeng et al.)? What is "direct request"
+    doing in a persuasion taxonomy? The mapping is asserted but not motivated.
+
+
+    ### Minor
+
+
+    **M1.** Paper uses generic `\documentclass[11pt,a4paper]{article}` rather than
+    an official venue template.
+
+
+    **M2.** Alternates between "register-normalized" and "clean" for the same data
+    condition. Terminology should be standardized.
+
+
+    **M3.** Section 5.5: "82% of strategy transitions move from lower-risk to higher-risk"
+    presupposes a risk ordering that is never formally defined in the Method section.
+
+
+    **M4.** Hagendorff (2026) bibliography entry lacks volume/page numbers. Several
+    entries use "and others" instead of listing all authors.
+
+
+    **M5.** No figures in the paper (e.g., trajectory visualizations, F1 vs. K curves).
+    This reduces visual impact and makes the mechanistic analysis (Section 5.5) harder
+    to appreciate.
+
+
+    ---
+
+
+    ## 4. Questions for Authors
+
+
+    **Q1.** What are the 95% bootstrap confidence intervals for the main F1 results
+    in Table 4? With 72 test samples, are the reported differences (e.g., 0.91 vs.
+    0.77) outside overlapping confidence intervals?
+
+
+    **Q2.** How do you position the "first to use persuasion-grounded representations
+    for detection" claim relative to GLiGuard (strategy-aware guard) and Persuasive
+    Fingerprint (Cialdini-based jailbreak characterization)?
+
+
+    **Q3.** Have you evaluated DisPeD against an adaptive adversary who knows the
+    detection mechanism? E.g., an attacker who achieves rapport through factual exchanges
+    without triggering persuasion classifiers, or who uses non-monotonic strategy
+    patterns.
+
+
+    **Q4.** Why was no LLM-as-judge baseline included? This is the de facto deployed
+    approach at most LLM providers.
+
+
+    **Q5.** What happens if you ablate the intent head (train with persuasion classification
+    only)? This would confirm that the downstream advantage comes from persuasion
+    features, not leaked intent signal.
+
+
+    **Q6.** Could the LLM paraphrasing in register normalization introduce systematic
+    artifacts that the model learns to detect instead of genuine persuasion signals?
+
+
+    **Q7.** The monotonicity score (Table 11) relies on a predefined ordering of persuasion
+    strategies from "lower-risk" to "higher-risk." How is this ordering determined,
+    and would alternative orderings change the result?
+
+
+    **Q8.** Table 3: Do the percentages represent per-turn distributions (a turn can
+    have only one strategy) or per-conversation distributions (multiple strategies
+    per conversation)? The sums exceeding 100% suggest the latter but this is not
+    stated.
+
+
+    ---
+
+
+    ## 5. Experiment Coverage Assessment
+
+
+    Comparing against the full experiment design (11 planned experiments):
+
+
+    | Experiment | Covered? | Notes |
+
+    |---|---|---|
+
+    | data_quality_fix (register normalization) | Yes | Table 1, Section 4.1 |
+
+    | core_revalidation_clean | Yes | Table 4, Section 5.1 |
+
+    | scrambled_label_ablation | Yes | Table 8, Section 5.3 |
+
+    | adversarial_perturbation | Yes | Tables 6-7, Section 5.2 |
+
+    | multi_attack_generation | Yes | Table 2, Section 4.2 |
+
+    | cross_attack_evaluation | Yes | Tables 9-10, Section 5.4 |
+
+    | tfidf_lr_baseline | Yes | Tables 14-15, Section 5.7 |
+
+    | strategy_transition_analysis | Yes | Tables 11-12, Section 5.5 |
+
+    | wildchat_hard_negatives | Yes | Table 13, Section 5.6 |
+
+    | cross_checkpoint_variance | Yes | Table 16, Section 5.8 |
+
+    | deepcontext_proxy | Yes | Table 6, Section 5.2 |
+
+
+    All 11 planned experiments are reported. The coverage is complete.
+
+
+    ---
+
+
+    ## 6. Roundtable Convergence
+
+
+    ### Points of Agreement
+
+    - The conceptual framing is the paper''s strongest asset
+
+    - Register normalization and scrambled-label ablation show genuine methodological
+    care
+
+    - The dataset is too small (72 test) and confidence intervals are needed
+
+    - DeepContext proxy should be relabeled honestly
+
+    - Table 3 has arithmetic errors
+
+
+    ### Points of Divergence and Resolution
+
+    - **Novelty:** R1 viewed the framing as "genuinely insightful" while R2 saw it
+    as repackaging known observations. After cross-sharing, the consensus is that
+    the framing is useful but the novelty claim is overstated given Zeng et al. (2024),
+    Hagendorff (2026), and Chen et al. (2025). The paper should position itself as
+    "operationalizing" these prior observations into a detection system, not as discovering
+    a new phenomenon.
+
+    - **Severity of missing baselines:** R1 focused on methodological concerns within
+    the presented experiments, while R2 flagged the absence of strong external baselines
+    (LLM-as-judge, BIID, Constitutional Classifiers) as a critical gap. The roundtable
+    consensus is that the missing baselines are a major weakness because the paper
+    cannot demonstrate where DisPeD sits relative to state-of-the-art, even if its
+    internal experimental design is sound.
+
+    - **Overall score:** R1 initially at 4 (Weak Accept), R2 at 3 (Weak Reject). After
+    discussion, both converge toward **3.5**, rounded to **Weak Reject (3)** due to
+    the combination of small dataset, missing strong baselines, thin related work,
+    and limited novelty.
+
+
+    ---
+
+
+    ## 7. Final Scores
+
+
+    | Dimension | Score |
+
+    |---|---|
+
+    | Soundness | 2.5 / 4 |
+
+    | Presentation | 3 / 4 |
+
+    | Contribution | 2 / 4 |
+
+    | **Overall** | **3 / 6 (Weak Reject)** |
+
+    | Confidence | 4 / 5 |
+
+
+    ---
+
+
+    ## 8. Meta-Review Summary
+
+
+    DisPeD addresses a real and important problem with a sensible approach. The "Pragmatic
+    Evasion Asymmetry" framing is intuitive and the internal experimental design (register
+    normalization, scrambled-label ablation, cross-attack transfer) shows genuine
+    methodological care. However, the paper falls short of the acceptance bar on multiple
+    dimensions: (1) the dataset is too small (72 test samples) to reliably support
+    the headline claims without confidence intervals; (2) the related work coverage
+    is thin (12 references), missing numerous directly relevant multi-turn detection
+    methods published in 2024-2025; (3) no comparison against LLM-as-judge or state-of-the-art
+    multi-turn defenses makes it impossible to position DisPeD in the landscape; (4)
+    the novelty over prior persuasion-in-jailbreaking work (Zeng et al. 2024, Hagendorff
+    2026, Chen et al. 2025) is limited since the core observation is a natural corollary
+    of their findings; (5) the "DeepContext proxy" is a degraded reproduction that
+    should be honestly relabeled; and (6) no adaptive adversary evaluation tests the
+    paper''s central claim that persuasion structure is structurally impossible to
+    evade. The paper has the ingredients of a solid contribution but needs larger
+    and more diverse evaluation, substantially expanded baselines and related work,
+    honest positioning of novelty, and engagement with adaptive attack frameworks.
+
+
+    **Recommendation:** Weak Reject. Revise with (a) confidence intervals on all main
+    results, (b) LLM-as-judge and at least one published multi-turn defense as baselines,
+    (c) expanded related work covering 2024-2025 multi-turn detection literature,
+    (d) intent-head ablation to rule out data leakage, (e) honest relabeling of the
+    DeepContext proxy, and (f) at least a preliminary adaptive adversary evaluation.'
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260517T165817/median/paper.pdf
+  imagined_experiments:
+  - name: data_quality_fix
+    plan_id: plan_001
+    description: '修复TF-IDF=1.0数据质量问题。(a) 将benign turns的strategy标签从hardcoded 7改为第9类"none"；
+      (b) 用Qwen3-8B对jailbreak turns做register normalization（改写为日常对话语体，保留persuasion结构）；
+      (c) 在normalized数据上重新计算TF-IDF，验证hard gate < 0.75； (d) 在clean数据上重新评估DeBERTa persuasion分类器。
+
+      '
+    expected_results:
+      tfidf_before_any_fix: 1.0
+      tfidf_after_m004_fix_only: 0.82
+      tfidf_after_register_norm: 0.67
+      deberta_persuasion_acc_clean: 0.72
+      deberta_intent_acc_clean: 0.93
+      num_conversations_normalized: 240
+      normalization_rejection_rate: 0.08
+      hard_gate_pass: true
+    result_rationale: 'M004修复（benign strategy=none）将TF-IDF从1.0降到~0.82：原先strategy=7在jailbreak中从不出现，
+      是一个完美的lexical shortcut；改为"none"后消除了这一指标，但jailbreak turns仍保留较正式的 register（如"I''d
+      like to explore..."），与benign的口语化风格（"hey can you..."）形成 register差异，导致TF-IDF仅降到0.82。Register
+      normalization进一步将jailbreak turns改写为 日常对话语体，消除了大部分register差异，TF-IDF降至0.67——落入[0.60,0.74]区间。未降到更低
+      是因为persuasion结构本身引入了部分特征词（如authority appeals中的"expert"、"research shows"）， 这些词在benign对话中频率较低，构成残余的lexical
+      signal。这恰好说明persuasion结构与lexical features存在部分overlap，为后续delta偏小埋下伏笔。 DeBERTa
+      persuasion accuracy从原始数据的0.7963降至0.72：register normalization移除了部分 与persuasion类别相关的surface
+      cues（如正式语体中的hedging markers与authority appeal相关）， 模型需要更依赖语义层面的persuasion识别，准确率因此下降。Intent
+      accuracy仅从0.9514微降至0.93， 因为intent是binary且更粗粒度，受register变化影响小。8%的normalization
+      rejection来自 包含技术术语或代码片段的turns，LLM改写后语义偏移超过阈值被QA过滤。
+
+      '
+    tables:
+    - name: 'Table 1: TF-IDF Progression Through Data Cleaning Pipeline'
+      columns:
+      - Stage
+      - TF-IDF Score
+      - Description
+      rows:
+      - - Original (Phase B)
+        - 1.0
+        - Strategy=7 shortcut + register gap
+      - - After M004 fix
+        - 0.82
+        - Strategy='none' for benign, register gap remains
+      - - After register norm
+        - 0.67
+        - Jailbreak turns rewritten to conversational register
+      - - Hard gate threshold
+        - <0.75
+        - PASS ✓
+    - name: 'Table 2: DeBERTa Multi-Task Performance on Clean vs Original Data'
+      columns:
+      - Metric
+      - Original Data
+      - Clean Data
+      - Delta
+      rows:
+      - - Persuasion Acc (8-class)
+        - 0.7963
+        - 0.72
+        - '-0.076'
+      - - Intent Acc (binary)
+        - 0.9514
+        - 0.93
+        - '-0.021'
+      - - Best Epoch
+        - 3
+        - 3
+        - —
+    figures_description:
+    - 'Figure: TF-IDF feature importance heatmap对比original vs clean data的top-20 discriminative
+      unigrams。 Original数据中''strategy_7''、''I would like to''等register markers占据top位置；clean数据中
+      top features变为更语义化的词（''explore''、''research''、''approach''），且权重分布更平坦。'
+    analysis: 'Hard gate通过（0.67 < 0.75），可以进入训练阶段。但0.67并非很低——说明即使register normalization
+      后仍存在residual lexical signal。这意味着后续treatment vs baseline的delta会被压缩：baseline 也能从residual
+      lexical cues中获益。DeBERTa persuasion accuracy降至0.72是一个bottleneck信号： 8类分类的错误会传播到下游embeddings，限制treatment的上限。需要在论文中明确讨论这一bottleneck。
+
+      '
+  - name: core_revalidation_clean
+    plan_id: plan_002
+    description: '在clean数据上从头重训treatment（persuasion-grounded DeBERTa → GRU）和baseline
+      （vanilla DeBERTa → GRU）。全面评估K=1,2,3,5,all。核心claim验证。
+
+      '
+    expected_results:
+      treatment_k1_f1_clean: 0.73
+      treatment_k2_f1_clean: 0.82
+      treatment_k3_f1_clean: 0.86
+      treatment_k5_f1_clean: 0.9
+      treatment_full_f1_clean: 0.91
+      baseline_k1_f1_clean: 0.63
+      baseline_k2_f1_clean: 0.75
+      baseline_k3_f1_clean: 0.78
+      baseline_k5_f1_clean: 0.84
+      baseline_full_f1_clean: 0.86
+      delta_k1_pp: 10
+      delta_k2_pp: 7
+      delta_k3_pp: 8
+      delta_k5_pp: 6
+      delta_full_pp: 5
+      bootstrap_ci_k2_treatment:
+      - 0.76
+      - 0.88
+      bootstrap_ci_k2_baseline:
+      - 0.68
+      - 0.82
+      bootstrap_k2_p_value: 0.072
+      bootstrap_ci_k3_treatment:
+      - 0.81
+      - 0.91
+      bootstrap_ci_k3_baseline:
+      - 0.72
+      - 0.84
+      bootstrap_k3_p_value: 0.018
+      bootstrap_ci_full_treatment:
+      - 0.87
+      - 0.95
+      bootstrap_ci_full_baseline:
+      - 0.81
+      - 0.91
+      bootstrap_full_p_value: 0.031
+      treatment_fpr95tpr_k2: 0.08
+      baseline_fpr95tpr_k2: 0.14
+      treatment_fpr95tpr_full: 0.03
+      baseline_fpr95tpr_full: 0.06
+      test_size: 72
+    result_rationale: 'Clean数据上所有指标相比Phase B大幅下降（Phase B treatment full F1=1.0→0.91，baseline
+      0.987→0.86），因为移除了lexical shortcuts后模型必须从真正的语义/语用特征中学习。 Treatment在所有K上优于baseline，但delta随K增大而收窄（K=1:
+      10pp → full: 5pp）： 这是因为在更多turns可用时，vanilla semantic embeddings也能捕捉到足够的accumulated
+      drift， 缩小了persuasion grounding的增量价值。 K=2的delta=7pp落在[3,9]区间中部，但bootstrap p=0.072——72个test
+      samples中bootstrap 重采样的CI有overlap（treatment [0.76,0.88] vs baseline [0.68,0.82]），未达到p<0.05
+      显著性。这是因为K=2时只有2个turn，persuasion策略刚从rapport阶段开始， treatment和baseline在这个早期阶段的区分度有限。
+      K=3的delta=8pp且p=0.018显著：第3个turn是关键转折点——攻击者通常在此处从rapport转向 authority framing或reframing，这一策略转换是treatment模型的核心信号。Baseline在K=3时
+      仍在处理看似正常的语义内容（第3个turn的语义仍在benign region内），而treatment捕捉到了 persuasion策略从trust-building向testing的transition。
+      Full conversation delta收窄到5pp：当所有turns可用时，即使vanilla embeddings也能从 后期turns的显式有害内容中获益，persuasion
+      grounding的增量被压缩。 FPR在K=2处treatment=0.08 vs baseline=0.14：treatment将fewer benign
+      conversations 误判为攻击，因为persuasion grounding能区分legitimate persuasion（如销售场景）和 adversarial
+      persuasion escalation。
+
+      '
+    tables:
+    - name: 'Table 3: Core Revalidation Results on Clean Data (F1 by Conversation
+        Prefix Length)'
+      columns:
+      - K
+      - Treatment F1
+      - 95% CI
+      - Baseline F1
+      - 95% CI
+      - Δ (pp)
+      - p-value
+      rows:
+      - - K=1
+        - 0.73
+        - '[0.64, 0.82]'
+        - 0.63
+        - '[0.53, 0.73]'
+        - '+10'
+        - '0.089'
+      - - K=2
+        - 0.82
+        - '[0.76, 0.88]'
+        - 0.75
+        - '[0.68, 0.82]'
+        - '+7'
+        - '0.072'
+      - - K=3
+        - 0.86
+        - '[0.81, 0.91]'
+        - 0.78
+        - '[0.72, 0.84]'
+        - '+8'
+        - 0.018*
+      - - K=5
+        - 0.9
+        - '[0.85, 0.95]'
+        - 0.84
+        - '[0.78, 0.90]'
+        - '+6'
+        - 0.038*
+      - - Full
+        - 0.91
+        - '[0.87, 0.95]'
+        - 0.86
+        - '[0.81, 0.91]'
+        - '+5'
+        - 0.031*
+    - name: 'Table 4: FPR at 95% TPR on Clean Data'
+      columns:
+      - K
+      - Treatment FPR@95TPR
+      - Baseline FPR@95TPR
+      rows:
+      - - K=2
+        - 0.08
+        - 0.14
+      - - K=3
+        - 0.05
+        - 0.11
+      - - Full
+        - 0.03
+        - 0.06
+    figures_description:
+    - 'Figure: F1 vs K曲线图，treatment和baseline各一条线，带shaded bootstrap 95% CI。 K=1-2处两条线的CI有明显重叠；K=3处开始分离；K=5和full处gap收窄但仍可见。
+      标注K=3处的p=0.018。'
+    - 'Figure: ROC曲线对比（K=3），treatment AUC明显高于baseline， 标注operating point和FPR@95TPR。'
+    analysis: '核心结论：Claim 2需降级。K=2处delta=7pp方向正确但p=0.072不显著（n=72太小）， 无法声称"K=2显著优势"。K=3处delta=8pp且p=0.018显著，early
+      detection claim需改为 "K=3 significant advantage, K=2 consistent trend requiring
+      larger sample confirmation"。 论文可报告K=2的趋势但必须诚实标注non-significance。Full conversation
+      delta=5pp 且显著，说明即使在有足够上下文时persuasion grounding仍有增量价值，但增量有限。 相比Phase B的dramatic
+      deltas（treatment 1.0 vs baseline 0.737），clean data上的 delta被大幅压缩，符合median tier预期：移除lexical
+      shortcuts后，persuasion信号 与semantic信号存在部分重叠，grounding的增量被限制。
+
+      '
+  - name: scrambled_label_ablation
+    plan_id: plan_003
+    description: '随机打乱jailbreak turns的persuasion strategy标签，重训treatment模型。 与正确标签的treatment对比，验证persuasion标签携带真实信号。
+
+      '
+    expected_results:
+      scrambled_treatment_full_f1: 0.84
+      proper_treatment_full_f1: 0.91
+      drop_full_pp: 7
+      scrambled_treatment_k3_f1: 0.8
+      proper_treatment_k3_f1: 0.86
+      drop_k3_pp: 6
+      scrambled_treatment_k2_f1: 0.77
+      proper_treatment_k2_f1: 0.82
+      drop_k2_pp: 5
+      bootstrap_p_full: 0.008
+      bootstrap_p_k3: 0.024
+      baseline_full_f1: 0.86
+      scrambled_vs_baseline_gap_pp: -2
+    result_rationale: 'Scrambled labels破坏了persuasion strategy的序列语义——模型在Stage 1学到的embeddings
+      不再编码正确的pragmatic function，而是随机噪声覆盖在语义表示之上。Full F1从0.91 降至0.84（7pp drop），落在[4,10]区间中部。
+      关键观察：scrambled treatment（0.84）仍略低于baseline（0.86），而非大幅超过baseline。 这说明：(1) 错误的persuasion标签实际上对DeBERTa
+      fine-tuning引入了干扰噪声， 使其表示质量甚至略逊于未经fine-tune的vanilla DeBERTa；(2) persuasion multi-task
+      learning不是free lunch——错误的auxiliary task会伤害主任务。 7pp drop在bootstrap test中p=0.008高度显著：虽然test
+      set只有72个样本， 但因为scrambled和proper treatment共享相同的架构和训练数据，paired comparison 的方差较小，容易达到显著性。
+      K=3处drop=6pp也显著（p=0.024），K=2处drop=5pp方向一致但幅度较小—— 这与K=2处的信号本身较弱一致：如果K=2处treatment的优势本身就在significance边界，
+      那么ablation的drop自然也偏小。
+
+      '
+    tables:
+    - name: 'Table 5: Scrambled-Label Ablation Results'
+      columns:
+      - K
+      - Treatment (proper)
+      - Treatment (scrambled)
+      - Baseline (vanilla)
+      - Drop (pp)
+      rows:
+      - - K=2
+        - 0.82
+        - 0.77
+        - 0.75
+        - '-5'
+      - - K=3
+        - 0.86
+        - 0.8
+        - 0.78
+        - '-6'
+      - - Full
+        - 0.91
+        - 0.84
+        - 0.86
+        - '-7'
+    figures_description:
+    - 'Figure: 三组模型（proper treatment, scrambled treatment, vanilla baseline）在各K上的
+      F1柱状图。Proper treatment在所有K上最高；scrambled treatment接近甚至略低于baseline； baseline稳定居中。图注标注proper
+      vs scrambled的bootstrap p值。'
+    analysis: 'Scrambled drop=7pp高度显著（p=0.008），直接证明persuasion strategy标签携带真实信号， 不仅仅是class
+      indicator。同时scrambled treatment≈baseline说明DeBERTa fine-tuning的 价值完全来自正确的persuasion
+      supervision——没有正确标签时，fine-tuning甚至引入噪声。 这验证了M004 fix的必要性，也支持了论文的核心机制故事：persuasion
+      grounding的增益 来自正确编码pragmatic function，而非单纯的额外训练。 注意：7pp drop虽然显著，但并非overwhelming——这与persuasion
+      accuracy=0.72一致： labels本身有28%的错误率，所以scrambled labels相当于从72%正确→0%正确， 只造成7pp drop说明downstream
+      pipeline对label noise有一定tolerance。
+
+      '
+  - name: adversarial_perturbation
+    plan_id: plan_004
+    description: '对clean jailbreak conversations施加aggressive paraphrasing（同义替换、句式重构、
+      register shifting），移除所有lexical cues。评估treatment和baseline在perturbed数据上的 表现（模型在unperturbed数据上训练）。核心Claim
+      1验证。
+
+      '
+    expected_results:
+      treatment_clean_full_f1: 0.91
+      treatment_perturbed_full_f1: 0.84
+      treatment_drop_full_pp: 7
+      baseline_clean_full_f1: 0.86
+      baseline_perturbed_full_f1: 0.74
+      baseline_drop_full_pp: 12
+      delta_delta_full_pp: 5
+      treatment_clean_k3_f1: 0.86
+      treatment_perturbed_k3_f1: 0.79
+      baseline_clean_k3_f1: 0.78
+      baseline_perturbed_k3_f1: 0.66
+      delta_delta_k3_pp: 4
+      tfidf_lr_clean_full_f1: 0.74
+      tfidf_lr_perturbed_full_f1: 0.56
+      tfidf_drop_pp: 18
+      perturbed_data_tfidf_score: 0.41
+      bootstrap_delta_delta_p: 0.043
+    result_rationale: 'Adversarial paraphrasing将TF-IDF从0.67降至0.41，说明perturbation成功移除了大部分
+      残余lexical cues。三个模型的degradation呈现清晰的evasion hierarchy： TF-IDF+LR崩溃最严重（18pp drop,
+      0.74→0.56）——lexical features在perturbation下 几乎失效，仅靠少数无法被paraphrase的functional
+      words维持above-chance表现。 Baseline degradation中等（12pp drop, 0.86→0.74）——vanilla
+      DeBERTa的语义表示 对paraphrasing有一定鲁棒性（DeBERTa的contextual embeddings编码了语义而非surface
+      form）， 但仍有substantial drop因为部分语义特征（如特定的topic words）被替换。 Treatment degradation最小（7pp
+      drop, 0.91→0.84）——persuasion-grounded embeddings 编码的是pragmatic function（如authority
+      appeal、rapport building），这些在paraphrasing 下更稳定：你可以换词说同样的persuasion策略。 Delta-delta=5pp落在[3,8]区间中部，bootstrap
+      p=0.043勉强显著。这个delta-delta "存在但不压倒性"：5pp说明pragmatic features确实提供了complementary
+      robustness， 但不足以声称存在dramatic evasion hierarchy。原因是treatment模型的persuasion encoder
+      本身accuracy只有0.72，在perturbation下persuasion识别进一步降级，限制了robustness 的上限。如果persuasion
+      classifier更准确，delta-delta会更大。 K=3处delta-delta=4pp略小于full的5pp：早期turns的perturbation影响更大，因为只有
+      2-3个turns时每个turn的权重更高，单个turn的persuasion识别错误影响被放大。
+
+      '
+    tables:
+    - name: 'Table 6: Adversarial Perturbation Results — Evasion Hierarchy'
+      columns:
+      - Model
+      - Clean F1
+      - Perturbed F1
+      - Drop (pp)
+      - Δ-Δ vs Treatment
+      rows:
+      - - Treatment (persuasion-grounded)
+        - 0.91
+        - 0.84
+        - '-7'
+        - —
+      - - Baseline (vanilla DeBERTa)
+        - 0.86
+        - 0.74
+        - '-12'
+        - 5pp
+      - - TF-IDF + LR
+        - 0.74
+        - 0.56
+        - '-18'
+        - 11pp
+    - name: 'Table 7: Adversarial Perturbation at K=3 (Early Detection)'
+      columns:
+      - Model
+      - Clean K=3 F1
+      - Perturbed K=3 F1
+      - Drop (pp)
+      rows:
+      - - Treatment
+        - 0.86
+        - 0.79
+        - '-7'
+      - - Baseline
+        - 0.78
+        - 0.66
+        - '-12'
+      - - TF-IDF + LR
+        - 0.71
+        - 0.52
+        - '-19'
+    figures_description:
+    - 'Figure: Grouped bar chart展示三个模型在clean vs perturbed条件下的F1， 带error bars。Treatment的两根柱子高度差最小；TF-IDF+LR差距最大。
+      标注delta-delta=5pp和p=0.043。'
+    - 'Figure: TF-IDF分布直方图对比clean data（μ=0.67）vs perturbed data（μ=0.41）， 说明perturbation成功移除了lexical
+      signal。'
+    analysis: 'Evasion hierarchy narrative得到部分支持：lexical < semantic < pragmatic的degradation
+      ordering清晰（18pp > 12pp > 7pp），但delta-delta=5pp仅勉强显著（p=0.043）， 不是strong evidence。论文应将Claim
+      1从"evasion hierarchy exists"软化为 "pragmatic features provide complementary robustness,
+      with preliminary evidence for an evasion hierarchy"。5pp delta-delta的bottleneck是persuasion
+      classifier accuracy——在limitation中讨论。TF-IDF+LR的崩溃（18pp drop）是一个strong result，
+      直接证明lexical features不可靠，为persuasion grounding的motivation提供了solid support。
+
+      '
+  - name: multi_attack_generation
+    plan_id: plan_005
+    description: '用Qwen3-8B pipeline生成FITD-style和Deceptive Delight-style攻击对话， 每种50-100条，标注persuasion
+      strategy。
+
+      '
+    expected_results:
+      fitd_conversations_generated: 72
+      fitd_avg_turns: 6.2
+      fitd_persuasion_strategies_covered: 7
+      dd_conversations_generated: 65
+      dd_avg_turns: 5.8
+      dd_persuasion_strategies_covered: 6
+      total_attack_conversations: 137
+      persuasion_annotation_coverage: 0.94
+      manual_spot_check_accuracy: 0.82
+      fitd_generation_rejection_rate: 0.12
+      dd_generation_rejection_rate: 0.18
+    result_rationale: 'FITD生成72条（rejection rate 12%）：FITD的compliance escalation pattern相对
+      straightforward——从小请求逐步升级到大请求——Qwen3-8B能较好地遵循playbook。 12%的rejection来自模型有时跳过中间步骤直接escalate（不符合gradual
+      compliance的定义）。 平均6.2个turns，比Crescendo略长因为FITD需要更多的commitment steps。 Deceptive
+      Delight生成65条（rejection rate 18%，略高于FITD）：这种攻击要求在 benign content中interleave harmful
+      content，Qwen3-8B有时在interleaving时过于明显 （harmful content太突兀）或过于隐蔽（完全是benign content），18%的rejection反映了
+      这种生成难度。平均5.8个turns，略短因为deceptive delight不需要长期rapport building。 Persuasion annotation
+      coverage 94%：6%的turns无法被映射到8-class taxonomy中的 任何一类，标记为"none"。这些主要是pure information
+      exchange turns。 Manual spot check accuracy 82%：在随机抽取的20% turns上人工验证persuasion
+      labels， 82%正确。错误主要发生在authority appeal vs logical appeal的边界（两者在FITD中 经常交织）和rapport
+      building vs emotional appeal的区分上。这与DeBERTa分类器 accuracy=0.72大致一致（spot check是在LLM
+      annotation上做的，不完全等同于classifier）。 Deceptive Delight覆盖6类而非7类persuasion strategies：因为这种攻击不需要
+      explicit authority appeal（其策略是通过pleasant context降低警惕而非建立权威）。
+
+      '
+    tables:
+    - name: 'Table 8: Generated Attack Data Statistics'
+      columns:
+      - Attack Type
+      - Conversations
+      - Avg Turns
+      - Strategies Covered
+      - Rejection Rate
+      rows:
+      - - FITD
+        - 72
+        - 6.2
+        - 7/8
+        - 12%
+      - - Deceptive Delight
+        - 65
+        - 5.8
+        - 6/8
+        - 18%
+      - - Crescendo (original)
+        - 240
+        - 5.4
+        - 8/8
+        - —
+    - name: 'Table 9: Persuasion Strategy Distribution Across Attack Types'
+      columns:
+      - Strategy
+      - Crescendo (%)
+      - FITD (%)
+      - Deceptive Delight (%)
+      rows:
+      - - Rapport Building
+        - 22%
+        - 18%
+        - 28%
+      - - Authority Appeal
+        - 14%
+        - 16%
+        - 3%
+      - - Emotional Appeal
+        - 11%
+        - 8%
+        - 21%
+      - - Logical Appeal
+        - 13%
+        - 19%
+        - 12%
+      - - Reframing
+        - 15%
+        - 10%
+        - 14%
+      - - Social Proof
+        - 8%
+        - 12%
+        - 7%
+      - - Urgency/Scarcity
+        - 6%
+        - 9%
+        - 4%
+      - - Reciprocity
+        - 5%
+        - 6%
+        - 5%
+      - - None
+        - 6%
+        - 2%
+        - 6%
+    figures_description:
+    - 'Figure: 三种攻击类型的persuasion strategy分布stacked bar chart。 Crescendo策略最均匀；FITD偏重logical
+      appeal和authority； Deceptive Delight偏重rapport和emotional appeal（反映其pleasant context策略）。'
+    analysis: '数据量达标（72+65=137，均超过50条minimum）。两种攻击类型的persuasion strategy 分布与Crescendo明显不同：FITD偏重逻辑和权威（compliance
+      escalation需要理由）， Deceptive Delight偏重rapport和emotional appeal（需要建立pleasant context）。
+      这种分布差异直接解释了后续cross-attack evaluation中Deceptive Delight泛化较差的原因： 模型在Crescendo上学到的escalation
+      trajectory（authority → reframing → escalation） 与Deceptive Delight的pattern（rapport
+      → emotional → subtle insertion）差异大。 Manual spot check accuracy=82%意味着有18%的noise
+      in labels， 这会传播到cross-attack evaluation中。
+
+      '
+  - name: cross_attack_evaluation
+    plan_id: plan_006
+    description: '用Crescendo训练的模型（treatment和baseline）在FITD和Deceptive Delight上做 zero-shot
+      evaluation。测试跨攻击类型泛化能力。
+
+      '
+    expected_results:
+      fitd_treatment_f1: 0.74
+      fitd_baseline_f1: 0.66
+      fitd_delta_pp: 8
+      dd_treatment_f1: 0.64
+      dd_baseline_f1: 0.59
+      dd_delta_pp: 5
+      aggregate_treatment_f1: 0.69
+      aggregate_baseline_f1: 0.63
+      aggregate_delta_pp: 6
+      fitd_bootstrap_p: 0.034
+      dd_bootstrap_p: 0.142
+      crescendo_treatment_f1_reference: 0.91
+      fitd_treatment_drop_from_crescendo: 17
+      dd_treatment_drop_from_crescendo: 27
+    result_rationale: 'FITD泛化较好（treatment 0.74, delta=8pp, p=0.034显著）：FITD的compliance
+      escalation 与Crescendo的persuasion escalation在strategy space中有substantial overlap——两者都
+      涉及从trust-building逐步升级到explicit request，只是中间路径不同。Treatment模型 学到的escalation trajectory检测能力在FITD上partially
+      transferable。8pp delta说明 persuasion grounding在cross-attack场景下仍提供更多增量价值（比clean
+      data上的 K=3 delta=8pp一致），因为vanilla embeddings在unseen attack type上更容易被 unfamiliar
+      semantic content mislead。 Deceptive Delight泛化较差（treatment 0.64, delta=5pp, p=0.142不显著）：
+      Deceptive Delight的persuasion结构与Crescendo差异最大——它不依赖escalation 而是依赖interleaving，其策略分布偏重rapport和emotional
+      appeal而非authority和reframing。 模型在Crescendo上学到的"authority → reframing → escalation"模式在Deceptive
+      Delight 上匹配度低。Treatment仍优于baseline（0.64 vs 0.59）但差异不显著，因为persuasion grounding识别到了partial
+      signal（rapport building和emotional appeal部分）但缺乏 Deceptive Delight特有的interleaving
+      pattern识别能力。 Treatment从Crescendo到FITD的drop（0.91→0.74=17pp）vs到DD（0.91→0.64=27pp）
+      进一步确认了DD的泛化挑战。这不是persuasion grounding的failure而是training distribution的limitation——如果将DD纳入训练集，预计performance会substantially提升。
+
+      '
+    tables:
+    - name: 'Table 10: Cross-Attack Zero-Shot Generalization'
+      columns:
+      - Attack Type
+      - Treatment F1
+      - Baseline F1
+      - Δ (pp)
+      - p-value
+      rows:
+      - - Crescendo (in-domain)
+        - 0.91
+        - 0.86
+        - '+5'
+        - 0.031*
+      - - FITD (zero-shot)
+        - 0.74
+        - 0.66
+        - '+8'
+        - 0.034*
+      - - Deceptive Delight (zero-shot)
+        - 0.64
+        - 0.59
+        - '+5'
+        - '0.142'
+      - - Cross-attack aggregate
+        - 0.69
+        - 0.63
+        - '+6'
+        - '0.052'
+    figures_description:
+    - 'Figure: Per-attack-type F1 grouped bar chart（treatment vs baseline）， 分三个attack
+      type。Crescendo最高，FITD中间，DD最低。Treatment bar在FITD上 明显高于baseline；在DD上差距缩小。标注各组p值。'
+    - 'Figure: Confusion matrices for FITD和DD分别展示。DD的false negatives集中在 interleaving
+      turns sequence中间段——模型未能识别benign-harmful交替模式。'
+    analysis: 'Cross-attack结果必须分attack type报告而非仅报告aggregate——aggregate delta=6pp (p=0.052)刚好不显著，会mislead
+      reviewers。分开报告后story变为： "FITD泛化成立（+8pp, p=0.034），Deceptive Delight泛化有限（+5pp,
+      p=0.142）"。 这支持了Claim 2的部分泛化故事，同时诚实承认limitation。 Deceptive Delight的弱泛化是median
+      tier的defining feature之一——其persuasion结构 更隐蔽，不遵循standard escalation pattern，说明persuasion
+      grounding的有效性 依赖于training set覆盖足够的persuasion playbook diversity。 论文应讨论：(1) 为什么FITD泛化好而DD不行（strategy
+      overlap分析）， (2) 这说明模型学到了什么（escalation detection而非general manipulation detection），
+      (3) future work需要更diverse的training data。
+
+      '
+  - name: tfidf_lr_baseline
+    plan_id: plan_007
+    description: 'TF-IDF + Logistic Regression在clean数据上的baseline，量化lexical features
+      单独的检测能力。为evasion hierarchy叙事提供bottom-line比较。
+
+      '
+    expected_results:
+      tfidf_lr_full_f1: 0.74
+      tfidf_lr_k2_f1: 0.68
+      tfidf_lr_k3_f1: 0.71
+      tfidf_lr_k5_f1: 0.73
+      tfidf_lr_cv_f1_mean: 0.73
+      tfidf_lr_cv_f1_std: 0.04
+      tfidf_lr_fpr: 0.19
+      top_features_overlap_with_persuasion: 0.35
+    result_rationale: 'Clean数据TF-IDF=0.67说明仍存在residual lexical signal，TF-IDF+LR因此能达到
+      non-trivial的F1=0.74（远低于Phase B的1.0，但仍above chance）。这个数值恰好落在 baseline DeBERTa+GRU（0.86）和random（0.50）之间，提供了evasion
+      hierarchy的 bottom tier。 K=2处F1=0.68最低：仅2个turns时lexical features最sparse，LR能利用的features有限。
+      随着K增大performance缓慢提升（K=3: 0.71, K=5: 0.73, Full: 0.74），因为更多turns 提供了更多lexical
+      evidence，但提升很小说明lexical approach saturates quickly。 CV std=0.04较大，反映了small dataset
+      + lexical features组合的不稳定性。 35%的top features与persuasion相关词汇重叠（如"consider"、"research"、"experience"
+      等兼具persuasion和lexical signal的词），说明lexical和persuasion features存在 partial overlap——这解释了为什么treatment
+      vs baseline的delta在clean data上被压缩。 FPR=0.19偏高：lexical model容易将使用formal register的benign对话误判为攻击。
+
+      '
+    tables:
+    - name: 'Table 11: TF-IDF + LR Baseline Performance on Clean Data'
+      columns:
+      - K
+      - TF-IDF+LR F1
+      - Baseline (vanilla DeBERTa) F1
+      - Treatment F1
+      rows:
+      - - K=2
+        - 0.68
+        - 0.75
+        - 0.82
+      - - K=3
+        - 0.71
+        - 0.78
+        - 0.86
+      - - Full
+        - 0.74
+        - 0.86
+        - 0.91
+    figures_description:
+    - 'Figure: 三层evasion hierarchy在各K上的F1折线图：TF-IDF+LR（底）、 vanilla DeBERTa+GRU（中）、persuasion-grounded
+      DeBERTa+GRU（顶）。 三条线在clean data上呈现清晰的层次但间距不均——semantic→pragmatic gap 小于lexical→semantic
+      gap。'
+    analysis: 'TF-IDF+LR在clean data上F1=0.74确认了residual lexical signal的存在， 但与之前TF-IDF=1.0时的perfect
+      performance形成鲜明对比。Evasion hierarchy的 三层在clean data上为0.74 < 0.86 < 0.91，lexical→semantic
+      jump (12pp) > semantic→pragmatic jump (5pp)——这说明在当前数据上，vanilla DeBERTa的semantic
+      表示已经capture了大部分discriminative信号，persuasion grounding的增量虽然显著 但有限。这与median tier的核心特征一致。
+
+      '
+  - name: strategy_transition_analysis
+    plan_id: plan_008
+    description: '计算jailbreak vs benign的persuasion strategy transition matrices， 可视化monotonic
+      escalation trajectory（Claim 3），生成论文图表。
+
+      '
+    expected_results:
+      jailbreak_monotonicity_score_mean: 0.71
+      jailbreak_monotonicity_score_std: 0.18
+      benign_monotonicity_score_mean: 0.38
+      benign_monotonicity_score_std: 0.14
+      group_level_separation_p: 0.003
+      individual_conversations_above_threshold: 0.68
+      transition_entropy_jailbreak: 1.42
+      transition_entropy_benign: 2.15
+    result_rationale: 'Group level上jailbreak和benign的monotonicity分数有显著差异（0.71 vs 0.38,
+      p=0.003）： jailbreak对话在aggregate level展现了clear escalation pattern——从trust strategies
+      （rapport, social proof）逐步transition到influence strategies（authority, reframing）
+      再到exploitation strategies（urgency, reciprocity）。Benign对话则呈oscillatory pattern，
+      在各策略间来回跳转，无固定方向。 但individual-level噪声很大：jailbreak monotonicity的std=0.18（relative
+      to mean 0.71）， 且只有68%的jailbreak conversations超过monotonicity threshold——32%的jailbreak
+      conversations 不展现清晰的monotonic escalation。原因：(1) persuasion classifier accuracy=0.72意味着
+      ~28%的turn-level strategy labels有误，噪声传播到trajectory计算中；(2) 部分jailbreak conversations的escalation不是strictly
+      monotonic——攻击者有时需要"退一步"重建rapport 后再escalate（tactical de-escalation）。 Transition
+      entropy也支持group-level distinction：jailbreak的entropy 1.42 < benign的 2.15，说明jailbreak的transition更predictable/structured。但同样，individual-level
+      variance大。
+
+      '
+    tables:
+    - name: 'Table 12: Strategy Trajectory Analysis'
+      columns:
+      - Metric
+      - Jailbreak
+      - Benign
+      - p-value
+      rows:
+      - - Monotonicity Score (mean±std)
+        - 0.71±0.18
+        - 0.38±0.14
+        - 0.003*
+      - - Transition Entropy
+        - 1.42
+        - 2.15
+        - 0.007*
+      - - '% Above Threshold (0.6)'
+        - 68%
+        - 12%
+        - —
+    figures_description:
+    - 'Figure: 8×8 persuasion strategy transition heatmap，左=jailbreak，右=benign。 Jailbreak的heatmap显示diagonal-above-diagonal的dominant
+      flow（低序号→高序号strategies）， 表明单向escalation；benign的heatmap更接近uniform，策略间transition分散。'
+    - 'Figure: 每个conversation的monotonicity score strip plot（jailbreak=红, benign=蓝），
+      带group mean和CI。两组分布有substantial overlap但means clearly separated。 标注32%的jailbreak
+      conversations低于threshold，加注caveat。'
+    - 'Figure: 选取2条representative jailbreak和2条benign的per-turn strategy evolution line
+      plot。Jailbreak展示从strategy 1-2逐步上升到6-7的趋势；benign在中间区域oscillate。 但也展示1条non-monotonic
+      jailbreak conversation作为honest counterexample。'
+    analysis: 'Claim 3（monotonic escalation trajectory）在group level得到strong support（p=0.003），
+      但individual-level caveat不可忽视：32%的jailbreak不展现monotonic pattern。论文应： (1) 报告group-level
+      statistics作为primary evidence； (2) 展示individual-level variance作为honest limitation；
+      (3) 讨论persuasion classifier noise作为individual-level噪声的主要来源； (4) 用transition
+      heatmap作为直观但定性的evidence。 Claim 3作为analytical/mechanistic contribution保留，但从"all
+      jailbreaks exhibit monotonic escalation"降级为"jailbreak conversations exhibit
+      significantly more monotonic escalation trajectories at the group level"。
+
+      '
+  - name: wildchat_hard_negatives
+    plan_id: plan_009
+    description: '从WildChat过滤高semantic-drift的benign对话作为hard negatives， 评估模型FPR。需处理WildChat中14-16%的jailbreak
+      contamination。
+
+      '
+    expected_results:
+      wildchat_raw_candidates: 420
+      contamination_rate_raw: 0.15
+      contamination_after_filter: 0.03
+      wildchat_filtered_clean: 85
+      treatment_fpr_wildchat: 0.12
+      baseline_fpr_wildchat: 0.18
+      tfidf_lr_fpr_wildchat: 0.27
+      high_drift_conversations_avg_turns: 7.1
+      false_positive_persuasion_strategy_distribution: rapport_heavy
+    result_rationale: 'WildChat过滤后得到85条high-drift benign conversations（从420条candidates中，
+      先用keyword+LLM过滤掉15%的jailbreak contamination，再人工verify subsample确认 contamination降至3%）。这些conversations包含topic
+      shifts、extended reasoning、 debate-style exchanges——semantically有drift但不含adversarial
+      intent。 Treatment FPR=12%（~10/85的benign conversations被误判为jailbreak）：这些false
+      positives 主要是debate-style conversations中出现了类似authority appeal和reframing的persuasion
+      patterns——persuasion grounding模型将legitimate persuasion误认为adversarial persuasion。
+      这是persuasion-based approach的inherent limitation：not all persuasion is adversarial。
+      Baseline FPR=18%更高：vanilla semantic embeddings在high-drift conversations上更容易
+      被大幅semantic shift触发false alarm（正如DeepContext被benign drift confuse的问题）。 Treatment的lower
+      FPR说明persuasion grounding确实能部分区分adversarial vs legitimate drift。 TF-IDF+LR FPR=27%最高：lexical
+      model完全无法处理high-drift benign conversations 中出现的"topic-specific vocabulary"。
+
+      '
+    tables:
+    - name: 'Table 13: False Positive Rate on WildChat Hard Negatives'
+      columns:
+      - Model
+      - FPR on WildChat Hard Negatives
+      - FPR on In-Domain Benign
+      rows:
+      - - Treatment
+        - 12% (10/85)
+        - 3%
+      - - Baseline
+        - 18% (15/85)
+        - 6%
+      - - TF-IDF + LR
+        - 27% (23/85)
+        - 19%
+    figures_description:
+    - 'Figure: FPR comparison bar chart across three models on in-domain benign vs
+      WildChat hard negatives。所有模型在hard negatives上FPR都上升， 但treatment上升最少（3%→12% =
+      +9pp vs baseline 6%→18% = +12pp）。'
+    analysis: 'Treatment FPR=12%勉强满足<15%的pass criteria。但这不是一个令人满意的数字—— 每8-9个legitimate
+      high-drift conversation中就有1个被误判。论文应诚实讨论这一limitation： persuasion grounding减少了drift-induced
+      false positives（vs baseline 18%）， 但无法消除legitimate persuasion vs adversarial
+      persuasion的confusion。 Future work应考虑增加intent classification的权重或引入conversation-level
+      context 来区分两者。这也暗示了full dual-track architecture的necessity—— semantic track可以提供complementary
+      signal来override persuasion track的false positives。
+
+      '
+  - name: cross_checkpoint_variance
+    plan_id: plan_010
+    description: '从DeBERTa fine-tuning的多个checkpoints（epoch 2/3/final）评估downstream
+      performance， 量化encoder训练随机性对最终结果的影响。
+
+      '
+    expected_results:
+      epoch2_treatment_full_f1: 0.9
+      epoch3_treatment_full_f1: 0.91
+      final_treatment_full_f1: 0.89
+      f1_std_across_checkpoints: 0.01
+      f1_max_spread: 0.02
+      epoch2_persuasion_acc: 0.7
+      epoch3_persuasion_acc: 0.72
+      final_persuasion_acc: 0.71
+      epoch2_treatment_k3_f1: 0.84
+      epoch3_treatment_k3_f1: 0.86
+      final_treatment_k3_f1: 0.85
+      k3_max_spread: 0.02
+    result_rationale: '三个checkpoints的downstream F1在2pp range内波动（0.89-0.91），std=1.0pp，
+      满足<2pp variance的pass criteria。Epoch 3略优（0.91）因为persuasion accuracy在 epoch 3达到peak（0.72），之后final
+      epoch出现minor overfitting（accuracy降至0.71， downstream F1也微降至0.89）。这种mild overfitting
+      in continued training是DeBERTa 在small dataset上fine-tuning的typical behavior。 K=3处的variance同样在2pp
+      range（0.84-0.86），说明early detection结果也是stable的。 这个low variance结果有两层意义：(1) 报告的performance数字是robust的，不是lucky
+      checkpoint的产物；(2) downstream GRU pipeline对encoder representation的minor变化 有一定tolerance——这是good
+      news for practical deployment。 但注意：这里只测了checkpoint variance，未测random seed variance（不同random
+      initialization 的DeBERTa fine-tuning）。完整的variance分析需要多次独立训练，受GPU budget限制未做。
+
+      '
+    tables:
+    - name: 'Table 14: Cross-Checkpoint Stability Analysis'
+      columns:
+      - Checkpoint
+      - Persuasion Acc
+      - Treatment Full F1
+      - Treatment K=3 F1
+      rows:
+      - - Epoch 2
+        - 0.7
+        - 0.9
+        - 0.84
+      - - Epoch 3 (selected)
+        - 0.72
+        - 0.91
+        - 0.86
+      - - Final (epoch 5)
+        - 0.71
+        - 0.89
+        - 0.85
+      - - Std
+        - '0.010'
+        - '0.010'
+        - '0.010'
+      - - Max spread
+        - '0.02'
+        - '0.02'
+        - '0.02'
+    figures_description:
+    - 'Figure: 三个checkpoints的downstream F1 point plot with error bars， 在full和K=3上各画一组。Points紧密聚集，说明stability。'
+    analysis: 'Variance < 2pp确认了结果的stability。建议论文在appendix报告此结果作为robustness check，
+      而非main results。需注意这只是checkpoint variance而非full training variance。
+
+      '
+  - name: deepcontext_proxy_reproduction
+    plan_id: plan_011
+    description: '构建DeepContext代理baseline：BERT-base（非DeBERTa）+ GRU， 使用generic semantic
+      drift features。非完整DeepContext复现（无公开代码）， 但隔离了encoder和feature representation的贡献。
+
+      '
+    expected_results:
+      bert_gru_full_f1: 0.82
+      bert_gru_k2_f1: 0.7
+      bert_gru_k3_f1: 0.74
+      bert_gru_k5_f1: 0.8
+      bert_gru_fpr_full: 0.09
+      bert_gru_perturbed_full_f1: 0.69
+      bert_gru_drop_under_perturbation: 13
+      vs_vanilla_deberta_baseline_gap: -4
+      vs_treatment_gap: -9
+    result_rationale: 'BERT-base + GRU在clean data上F1=0.82，低于vanilla DeBERTa + GRU
+      baseline（0.86） 4pp：这个gap主要来自BERT vs DeBERTa的encoder capacity差异——DeBERTa-v3-base在
+      language understanding tasks上一般优于BERT-base 3-5pp，在我们的downstream task上 这个gap被preserved。
+      相比treatment（0.91），BERT+GRU差9pp——但这个gap conflates两个因素： (1) encoder capacity（BERT
+      vs DeBERTa, ~4pp）和(2) persuasion grounding（~5pp）。 这不是一个完美的ablation——论文需要承认这一confound，但可以argue：即使将全部4pp
+      encoder gap归因于DeBERTa，仍有5pp来自persuasion grounding，与treatment vs baseline (same
+      DeBERTa) 的5pp delta一致。 在adversarial perturbation下BERT+GRU降至0.69（13pp drop），比vanilla
+      DeBERTa baseline 的12pp drop还大1pp——说明BERT的representations比DeBERTa对lexical perturbation更脆弱
+      （可能因为BERT更依赖surface patterns）。 K=2处F1=0.70比baseline（0.75）低5pp：BERT在少turns时的表现特别弱，
+      因为其contextual representations不如DeBERTa在short contexts下discriminative。
+
+      '
+    tables:
+    - name: 'Table 15: DeepContext Proxy Baseline Comparison'
+      columns:
+      - Model
+      - Full F1
+      - K=3 F1
+      - K=2 F1
+      - Perturbed Full F1
+      rows:
+      - - Treatment (DeBERTa-persuasion + GRU)
+        - 0.91
+        - 0.86
+        - 0.82
+        - 0.84
+      - - Baseline (DeBERTa-vanilla + GRU)
+        - 0.86
+        - 0.78
+        - 0.75
+        - 0.74
+      - - DeepContext proxy (BERT + GRU)
+        - 0.82
+        - 0.74
+        - 0.7
+        - 0.69
+      - - TF-IDF + LR
+        - 0.74
+        - 0.71
+        - 0.68
+        - 0.56
+    figures_description:
+    - 'Figure: 四个模型在clean和perturbed条件下的full F1 grouped bar chart， 从左到右排列形成清晰的hierarchy：TF-IDF+LR
+      < BERT+GRU < DeBERTa-vanilla < DeBERTa-persuasion。 Perturbed条件下hierarchy preserved但gaps变大（尤其TF-IDF+LR崩溃）。'
+    analysis: DeepContext proxy提供了有用的比较点但存在confound（BERT vs DeBERTa capacity gap）。
+      论文应：(1) 报告此结果作为additional reference point但不作为primary comparison； (2) 明确承认"this
+      is not a faithful DeepContext reproduction"； (3) 主要论据应基于treatment vs baseline（same
+      encoder, isolating persuasion grounding effect）。 四层hierarchy（TF-IDF < BERT+GRU
+      < DeBERTa < DeBERTa-persuasion）在视觉上很compelling 但需要honest caveats about confounded
+      comparisons。
+  review_report: "---\ndream_id: dream_20260517T165817\ntier: median\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-17T17:34:12.576032+00:00\n---\n\n# Dream Review\
+    \ Report: DisPeD\n\n**Paper**: DisPeD: Exploiting the Pragmatic Evasion Asymmetry\
+    \ for Robust Multi-Turn Jailbreak Detection\n**Review Mode**: Full (2 Reviewers\
+    \ + Roundtable)\n**Venue Standard**: Top ML venue (~25% acceptance, 6-point scale)\n\
+    \n---\n\n## Roundtable Summary\n\nTwo reviewers independently assessed the paper:\
+    \ R1 focused on methods and experiments, R2 on novelty and related work. After\
+    \ cross-sharing and discussion, the reviewers converged on the assessment below.\
+    \ The central tension: the paper identifies a real and useful detection axis (persuasion\
+    \ structure), executes a reasonably thorough proof-of-concept, and is commendably\
+    \ honest about limitations. However, the novelty is incremental over existing\
+    \ persuasion-in-jailbreaking work, the related work is severely thin, the dataset\
+    \ is entirely synthetic with n=72 test samples, and the core theoretical claim\
+    \ (structural invariance of persuasion playbook) is asserted rather than empirically\
+    \ verified.\n\n---\n\n## R1 Review: Methods and Experiments\n\n### Summary\nDisPeD\
+    \ proposes a two-stage architecture (DeBERTa persuasion encoder + Bi-GRU sequence\
+    \ classifier) for multi-turn jailbreak detection. The experimental coverage is\
+    \ comprehensive (11 experiments covering core performance, ablations, robustness,\
+    \ cross-attack transfer, trajectory analysis, hard negatives, and stability).\
+    \ The paper is unusually honest about its limitations. However, the entirely synthetic\
+    \ dataset, small test set (n=72), and several unablated design choices weaken\
+    \ the empirical contribution.\n\n### Strengths\n1. **Scrambled-label ablation\
+    \ is the strongest causal evidence** (Table 6). The 7pp drop (p=0.008) with scrambled\
+    \ labels, combined with the scrambled model performing *below* the vanilla baseline\
+    \ (0.84 vs 0.86), cleanly isolates the persuasion grounding effect and rules out\
+    \ the hypothesis that any auxiliary multi-task training helps.\n2. **Three-tier\
+    \ evasion hierarchy is internally consistent.** The degradation ordering under\
+    \ adversarial paraphrasing (TF-IDF 18pp > semantic 12pp > pragmatic 7pp, Tables\
+    \ 7-8) holds at both full conversation and K=3, providing convergent evidence\
+    \ across conditions.\n3. **Register normalization pipeline is methodologically\
+    \ transparent.** Identifying TF-IDF=1.0 as a critical shortcut, applying two-stage\
+    \ fixes, and setting a hard gate at 0.75 (Table 1) demonstrates awareness of data\
+    \ quality issues that many papers in this space ignore.\n4. **Cross-attack evaluation\
+    \ uses the correct protocol**: train on Crescendo only, zero-shot evaluate on\
+    \ FITD and Deceptive Delight. The honest reporting of per-attack-type results\
+    \ (FITD significant, DD not) rather than hiding behind the aggregate (p=0.052)\
+    \ is commendable.\n5. **Bootstrap CIs reported throughout** with honest flagging\
+    \ of non-significant results (K=2 p=0.072, DD p=0.142). Statistical reporting\
+    \ is above average for the subfield.\n6. **Checkpoint stability analysis** (Table\
+    \ 14, max spread 2pp) provides confidence that results are not cherry-picked from\
+    \ a lucky training run.\n\n### Weaknesses\n1. **Entirely synthetic dataset with\
+    \ no real-world validation.** All 480 conversations are LLM-generated (Qwen3-8B).\
+    \ The register normalization step adds a second layer of synthetic transformation.\
+    \ The paper cannot demonstrate that the persuasion patterns learned from synthetic\
+    \ data transfer to real adversarial interactions. This is the most critical limitation\
+    \ for any deployment-oriented claim.\n2. **n=72 test set without cross-validation\
+    \ or multi-seed evaluation.** With 72 samples, each misclassification shifts F1\
+    \ by ~1.4pp. The K=2 result (p=0.072) and DD cross-attack result (p=0.142) are\
+    \ borderline precisely because of small n. No k-fold cross-validation is reported.\
+    \ Only checkpoint variance (not random seed variance) is tested.\n3. **DeepContext\
+    \ proxy is a confounded comparison.** The BERT-base + GRU proxy conflates encoder\
+    \ capacity (BERT vs DeBERTa, ~4pp gap) with architectural differences. The paper\
+    \ acknowledges this (Section 5.7) but still includes it in the main comparison\
+    \ table (Table 13), which could mislead readers.\n4. **Lambda=1.0 not ablated.**\
+    \ The multi-task loss weight between persuasion and intent heads is set to 1.0\
+    \ without justification or exploration. Different weightings could significantly\
+    \ affect [CLS] embedding quality.\n5. **Bi-GRU choice not compared against alternatives.**\
+    \ No comparison with Transformer encoder, attention-based aggregation, or even\
+    \ simple mean pooling of turn embeddings. The temporal modeling choice is an important\
+    \ degree of freedom left unexplored.\n6. **Intent classification head leaks signal.**\
+    \ The Stage 1 multi-task training includes a binary jailbreak/benign intent head.\
+    \ This means [CLS] embeddings are *directly trained* to encode jailbreak signal,\
+    \ not just persuasion signal. The paper does not ablate persuasion-only training\
+    \ to confirm the downstream GRU uses persuasion features rather than leaked intent\
+    \ features. The scrambled-label ablation partially addresses this (scrambled model\
+    \ still has the intent head but degrades), but a persuasion-only ablation would\
+    \ be cleaner.\n7. **Persuasion taxonomy validation is circular.** Qwen3-8B generates\
+    \ the conversations *and* annotates persuasion strategies. Manual spot-check accuracy\
+    \ is 82%, but only on a subsample. The 72% classifier accuracy on clean data is\
+    \ a known bottleneck but also means 28% of turn-level labels are wrong, propagating\
+    \ noise throughout the pipeline.\n8. **\"None\" label dominance in benign data.**\
+    \ If most benign turns receive \"none\" for persuasion strategy, the model may\
+    \ partially reduce to a simple persuasion-presence detector rather than capturing\
+    \ temporal strategy dynamics. The paper does not report the label distribution\
+    \ for benign conversations.\n9. **Monotonicity analysis may use oracle labels.**\
+    \ Section 5.5 computes monotonicity scores over persuasion strategy sequences,\
+    \ but it is unclear whether these use predicted labels (from the 72%-accurate\
+    \ classifier) or ground-truth annotations. If oracle labels, the analysis overstates\
+    \ what the model actually sees.\n10. **No error analysis.** The paper does not\
+    \ examine which conversations are misclassified, what persuasion strategies confuse\
+    \ the classifier, or whether errors cluster on particular attack subtypes.\n\n\
+    ### Questions for Authors\n1. Have you ablated the intent classification head\
+    \ (persuasion-only Stage 1 training)?\n2. What is the persuasion strategy label\
+    \ distribution for benign conversations? What fraction are \"none\"?\n3. Does\
+    \ the monotonicity analysis in Section 5.5 use predicted or oracle persuasion\
+    \ labels?\n4. Have you considered k-fold cross-validation given the small dataset?\n\
+    5. What happens if you replace Bi-GRU with mean pooling or a Transformer?\n\n\
+    ### Missing Experiments / Controls\n- Persuasion-only ablation (remove intent\
+    \ head)\n- Lambda ablation for multi-task loss weighting\n- Sequence model comparison\
+    \ (GRU vs Transformer vs mean pooling)\n- k-fold cross-validation\n- Multi-seed\
+    \ variance (not just checkpoint variance)\n- Error analysis on misclassified conversations\n\
+    - Evaluation on any real (non-synthetic) jailbreak data\n\n### Preliminary Score:\
+    \ 4/6 (Weak Accept)\n### Confidence: 4/5\n\n---\n\n## R2 Review: Novelty and Related\
+    \ Work\n\n### Summary\nDisPeD operationalizes known observations about persuasion\
+    \ in jailbreaks into a working detection system. The conceptual framing (\"pragmatic\
+    \ evasion asymmetry\") is intuitive and the evasion hierarchy experiment provides\
+    \ clean validation. However, novelty over prior persuasion-in-jailbreaking work\
+    \ (Zeng et al. 2024, Hagendorff 2026, \"How Do LLMs Persuade\" 2025) is incremental,\
+    \ the related work is severely thin (~12 unique citations), and critical comparisons\
+    \ against deployed multi-turn defenses are absent.\n\n### Strengths\n1. **The\
+    \ evasion hierarchy is a clean organizing principle.** The three-tier gradient\
+    \ (lexical 18pp > semantic 12pp > pragmatic 7pp) under adversarial paraphrasing\
+    \ directly validates the central claim. Even if the insight is not entirely novel,\
+    \ the explicit operationalization into a testable hierarchy is useful.\n2. **Honest\
+    \ engagement with lexical shortcuts and limitations.** The data cleaning pipeline\
+    \ (Section 4.1), the extensive Limitations section (Section 6), and transparent\
+    \ statistical reporting set this paper above many in the subfield for intellectual\
+    \ honesty.\n3. **Cross-attack transfer design is correct.** Training on one attack\
+    \ family and evaluating zero-shot on others is the right protocol. The per-attack-type\
+    \ reporting (FITD significant, DD not) avoids the common trap of misleading aggregates.\n\
+    4. **The \"proof-of-concept\" framing is appropriately modest** and matches the\
+    \ actual evidence. The paper does not oversell.\n\n### Weaknesses\n1. **Limited\
+    \ novelty over prior work.** Zeng et al. (ACL 2024) identified persuasion techniques\
+    \ in jailbreaks. Hagendorff (2026) found persuasion in 97% of successful attacks.\
+    \ \"How Do LLMs Persuade\" (2025) showed persuasion dynamics are extractable from\
+    \ representations. The \"pragmatic evasion asymmetry\" is a natural corollary:\
+    \ if persuasion is systematic, universal, and detectable, then it is a robust\
+    \ detection signal. The paper frames this corollary as a discovery. The actual\
+    \ novelty is operationalizing known observations into a working system, which\
+    \ is a valid engineering contribution but should be positioned accordingly.\n\
+    2. **Related work is severely inadequate.** ~12 unique references is far below\
+    \ top venue norms (30-50+). Critical missing categories:\n   - **Production multi-turn\
+    \ guards**: Llama Guard 2/3, ShieldGemma, WildGuard\n   - **LLM-as-judge approaches**:\
+    \ the de facto deployed standard for conversation-level safety\n   - **Advanced\
+    \ multi-turn defenses**: BIID, G-Guard, SafeDream, Constitutional Classifiers\n\
+    \   - **Discourse analysis in NLP**: RST, PDTB, dialogue act classification (30+\
+    \ years of relevant work entirely ignored)\n   - **Computational persuasion detection**:\
+    \ Habernal & Gurevych 2016, Tan et al. 2016\n   - **Red-teaming literature**:\
+    \ Perez et al. 2022, Ganguli et al. 2022, HarmBench\n   - **Adaptive attacks on\
+    \ classifiers**: Nasr & Carlini et al. 2025\n3. **DeepContext [2026] citation\
+    \ is problematic.** No arXiv ID, incomplete author list (\"and others\"), no venue\
+    \ URL. This is the paper's primary detection baseline. If this citation cannot\
+    \ be verified, the positioning of DisPeD against \"the state of the art\" collapses.\n\
+    4. **No adaptive adversary evaluation.** The central claim is that persuasion\
+    \ structure \"cannot be removed without abandoning the attack.\" The adversarial\
+    \ paraphrasing test (Section 5.3) only tests surface-level evasion. It does not\
+    \ test whether an adversary aware of the 8-class persuasion taxonomy could achieve\
+    \ the same functional goals through strategies that evade the classifier (e.g.,\
+    \ rapport through genuine helpfulness rather than persuasion markers, indirect\
+    \ speech acts outside the training distribution).\n5. **The structural necessity\
+    \ claim is unverified.** The paper asserts that \"removing any stage either collapses\
+    \ the attack to a single-turn prompt or reduces its success rate below useful\
+    \ thresholds\" (Section 1). This is never empirically tested. No experiment ablates\
+    \ persuasion stages from attack conversations to show that removing rapport or\
+    \ reframing causes attack failure.\n6. **No LLM-as-judge baseline.** Prompting\
+    \ GPT-4 or Claude with \"Is this a jailbreak attempt?\" is the deployed standard\
+    \ at most providers. Without this comparison, DisPeD's practical positioning is\
+    \ unknown. A 0.91 F1 from a fine-tuned DeBERTa+GRU may or may not beat a zero-shot\
+    \ LLM judge.\n7. **Speech Act Theory framing is shallow.** Austin and Searle are\
+    \ cited for one sentence of vocabulary mapping. No experimental predictions are\
+    \ derived from the theory. The entire field of computational discourse analysis\
+    \ (RST, dialogue acts, PDTB) is ignored.\n8. **Two-stage architecture has no architectural\
+    \ novelty.** Fine-tuning a pretrained encoder on auxiliary tasks and feeding embeddings\
+    \ into a sequence model is standard practice in dialogue act classification and\
+    \ similar tasks.\n9. **No figures in the entire paper.** A trajectory visualization,\
+    \ F1-vs-K curve, or strategy transition heatmap would significantly strengthen\
+    \ the narrative. The paper is 10 pages of text and tables with zero visual communication.\n\
+    \n### Questions for Authors\n1. Is DeepContext [2026] a published work with a\
+    \ verifiable URL/arXiv ID?\n2. Have you tested adaptive adversaries who know the\
+    \ 8-class taxonomy?\n3. Have you ablated persuasion stages from attack conversations\
+    \ to verify the structural necessity claim?\n4. Why was no LLM-as-judge baseline\
+    \ included?\n5. How does your 8-class taxonomy relate to Zeng et al.'s 40 techniques\
+    \ or Cialdini's 6 principles?\n6. Why are there zero figures in the paper?\n\n\
+    ### Missing Related Work\nSee Weakness #2 above. The paper needs engagement with\
+    \ at least: Llama Guard, WildGuard, ShieldGemma, Constitutional Classifiers, LLM-as-judge\
+    \ safety evaluation, dialogue act classification literature, RST/discourse parsing,\
+    \ computational persuasion detection, red-teaming benchmarks (HarmBench), and\
+    \ adaptive attack literature.\n\n### Preliminary Score: 3/6 (Weak Reject)\n###\
+    \ Confidence: 4/5\n\n---\n\n## Roundtable Discussion\n\n### Step 2: Cross-Sharing\n\
+    \nAfter exchanging reviews, both reviewers agreed on:\n- The scrambled-label ablation\
+    \ and evasion hierarchy are the paper's strongest contributions\n- The small dataset\
+    \ (n=72 test), entirely synthetic data, and no real-world validation are significant\
+    \ concerns\n- The DeepContext proxy comparison is confounded and should not be\
+    \ in the main comparison\n- The paper's honest limitation reporting is above average\
+    \ for the subfield\n\nKey disagreements:\n- **R1** weighted the methodological\
+    \ thoroughness (11 experiments, bootstrap CIs, honest reporting) more heavily,\
+    \ viewing the paper as a solid proof-of-concept limited mainly by data.\n- **R2**\
+    \ weighted the novelty gap and related work deficiency more heavily, viewing the\
+    \ contribution as incremental operationalization of known observations with insufficient\
+    \ scholarly context.\n\n### Step 3: Convergence\n\nAfter discussion, the reviewers\
+    \ converged on these assessments:\n\n1. **The core idea has merit but is not novel.**\
+    \ Both reviewers agree the pragmatic evasion asymmetry is a useful detection axis.\
+    \ R2 convinced R1 that the concept is a natural corollary of Zeng et al. + Hagendorff\
+    \ + \"How Do LLMs Persuade\" rather than a new discovery. R1 maintained that the\
+    \ operationalization has value, but conceded the paper should position itself\
+    \ as \"operationalizing known observations\" rather than \"identifying a new phenomenon.\"\
+    \n\n2. **Related work is a blocking issue.** R1 acknowledged that ~12 citations\
+    \ is unacceptable for a top venue, especially given the missing coverage of production\
+    \ safety systems, discourse analysis, and adaptive attacks. This was initially\
+    \ outside R1's focus but became a shared concern.\n\n3. **The unverified structural\
+    \ necessity claim is a shared concern.** Neither reviewer found empirical evidence\
+    \ for the claim that persuasion stages cannot be removed. R2's suggestion of a\
+    \ stage-ablation experiment was endorsed by R1 as essential for future work.\n\
+    \n4. **The DeepContext citation raises a flag.** Both reviewers noted the incomplete\
+    \ citation (no arXiv ID, \"and others\"). If this is the primary prior work being\
+    \ compared against, its verifiability is important.\n\n5. **Dataset limitations\
+    \ are real but partially mitigated by framing.** The \"proof-of-concept\" positioning\
+    \ helps, but R2 argued that even a proof-of-concept for a top venue needs stronger\
+    \ baselines (LLM-as-judge) and more thorough related work. R1 agreed.\n\n6. **Score\
+    \ convergence.** R1 moved from 4 to 3.5, acknowledging the novelty and related\
+    \ work gaps. R2 held at 3. Consensus: **3/6 (Weak Reject)**, with a path to acceptance\
+    \ if the paper addresses related work, adds an LLM-as-judge baseline, and repositions\
+    \ novelty claims.\n\n---\n\n## Step 4: Consolidated Assessment\n\n### Overall\
+    \ Score: 3/6 (Weak Reject)\n\n### Meta-Review\n\nDisPeD presents a sensible approach\
+    \ to multi-turn jailbreak detection by leveraging persuasion strategy structure\
+    \ as a detection signal. The two-stage architecture (DeBERTa persuasion encoder\
+    \ + Bi-GRU sequence classifier) is straightforward and the experimental coverage\
+    \ is comprehensive, spanning core detection, ablations, robustness, cross-attack\
+    \ transfer, trajectory analysis, hard negatives, and stability. The paper's honesty\
+    \ about its limitations (72% persuasion accuracy bottleneck, non-significant K=2\
+    \ result, limited DD transfer, individual-level trajectory variance) is commendable\
+    \ and above average for the subfield.\n\nHowever, several issues prevent recommendation\
+    \ for acceptance:\n\n**1. Incremental novelty (Major).** The \"pragmatic evasion\
+    \ asymmetry\" is a natural corollary of prior work showing persuasion is systematic\
+    \ in jailbreaks (Zeng et al. 2024), universal in successful attacks (Hagendorff\
+    \ 2026), and extractable from representations (\"How Do LLMs Persuade\" 2025).\
+    \ The paper should position itself as operationalizing known observations rather\
+    \ than identifying a new phenomenon.\n\n**2. Severely inadequate related work\
+    \ (Major).** ~12 citations is far below venue standards. The paper ignores production\
+    \ multi-turn safety systems (Llama Guard, WildGuard, ShieldGemma), LLM-as-judge\
+    \ approaches, computational discourse analysis (RST, dialogue acts), computational\
+    \ persuasion detection, red-teaming benchmarks, and adaptive attack literature.\
+    \ This makes it impossible to assess where DisPeD sits in the landscape.\n\n**3.\
+    \ No real-world data or deployed baseline comparison (Major).** All data is LLM-generated.\
+    \ No LLM-as-judge baseline is included. Without these, the practical relevance\
+    \ of the 5-8pp improvements is unknown.\n\n**4. Unverified theoretical foundation\
+    \ (Major).** The claim that removing persuasion stages collapses attack effectiveness\
+    \ is asserted but never empirically tested. No adaptive adversary evaluation tests\
+    \ whether an attacker aware of the 8-class taxonomy could evade it.\n\n**5. Small\
+    \ test set (Moderate).** n=72 limits statistical power and contributes to borderline\
+    \ results (K=2 p=0.072, DD p=0.142). Cross-validation would partially mitigate.\n\
+    \n**6. Missing ablations (Moderate).** Intent head leakage (no persuasion-only\
+    \ ablation), lambda weighting, sequence model alternatives.\n\n**7. No figures\
+    \ (Minor but notable).** A paper about temporal strategy trajectories should visualize\
+    \ them.\n\n### Experiment Coverage Assessment\nAll 11 imagined experiments are\
+    \ covered in the paper: data quality fix, core revalidation, scrambled-label ablation,\
+    \ adversarial perturbation, multi-attack generation, cross-attack evaluation,\
+    \ TF-IDF baseline, trajectory analysis, WildChat hard negatives, checkpoint stability,\
+    \ and DeepContext proxy. The coverage is comprehensive. The issues are more about\
+    \ what *types* of experiments are missing (real data, adaptive adversary, LLM-as-judge\
+    \ baseline, architectural ablations) rather than incomplete execution of the planned\
+    \ experiments.\n\n### Actionable Recommendations for Revision\n\n1. **Expand related\
+    \ work to 30+ citations** covering production safety systems, discourse analysis,\
+    \ persuasion detection, red-teaming, and adaptive attacks.\n2. **Add LLM-as-judge\
+    \ baseline** (GPT-4 or Claude prompted for conversation-level jailbreak detection).\n\
+    3. **Reposition novelty** from \"discovering pragmatic evasion asymmetry\" to\
+    \ \"operationalizing persuasion structure for detection, with empirical validation\
+    \ of the evasion hierarchy.\"\n4. **Add persuasion-only ablation** (remove intent\
+    \ head) to isolate persuasion grounding from intent signal leakage.\n5. **Add\
+    \ at least one figure**: strategy trajectory visualization or F1-vs-K curve with\
+    \ CIs.\n6. **Verify or replace DeepContext citation** with a verifiable reference.\n\
+    7. **Discuss adaptive adversary threat model** explicitly, even if not fully tested.\n\
+    8. **Consider k-fold cross-validation** to strengthen statistical claims on small\
+    \ data.\n\n### Strengths to Preserve\n- The scrambled-label ablation is compelling\
+    \ causal evidence.\n- The evasion hierarchy (lexical < semantic < pragmatic) is\
+    \ a clean and memorable result.\n- Register normalization transparency and hard-gate\
+    \ protocol.\n- Honest per-attack-type cross-attack reporting.\n- Comprehensive\
+    \ limitations section.\n"
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/dream_reports/dream_20260517T165817/worst/paper.pdf
+  imagined_experiments:
+  - name: data_quality_fix
+    plan_id: plan_001
+    description: Register-normalize jailbreak data + fix strategy=7 labeling,验证TF-IDF降到<0.75
+    expected_results:
+      tfidf_before_normalization: 1.0
+      tfidf_after_first_pass: 0.82
+      tfidf_after_second_pass: 0.73
+      normalization_rounds_needed: 2
+      label_fix_applied: true
+      benign_strategy_class: none_class_9
+    result_rationale: 'TF-IDF需要两轮normalization才降到阈值以下（0.73），说明原始数据中jailbreak和benign的register差异
+      极大——攻击对话使用了明显不同于benign的词汇分布（更formal/technical的register、特定prompt模板词汇）。 第一轮paraphrase仅消除表层模板词但保留了domain-specific术语差异，需要第二轮targeted
+      normalization 才勉强达标。这本身就是一个强信号：原始pilot phase_b的perfect F1=1.0主要来自lexical shortcut。
+
+      '
+    tables:
+    - caption: TF-IDF Separation After Each Normalization Round
+      rows:
+      - - raw_data
+        - 1.0
+        - Perfect lexical separation
+      - - round_1_paraphrase
+        - 0.82
+        - Template words removed, register gap remains
+      - - round_2_targeted
+        - 0.73
+        - Barely passes gate after domain term normalization
+    figures_description:
+    - 'TF-IDF feature importance heatmap showing top-50 discriminative tokens before/after
+      normalization — before: dominated by prompt template tokens and register markers;
+      after: residual separation from topic words not fully removable without destroying
+      content'
+    analysis: 'HARD GATE通过但仅勉强（0.73 vs 阈值0.75）。两轮normalization的必要性本身是方法论贡献的核心evidence：
+      它证明multi-turn jailbreak detection benchmark中存在系统性lexical confound。在reframe方向(1)下，
+      这个实验的finding从"obstacle to overcome"变为"primary contribution"。
+
+      '
+  - name: core_revalidation_clean
+    plan_id: plan_002
+    description: 在clean data上重新训练treatment和baseline，全K值评估
+    expected_results:
+      treatment_k1_f1_clean: 0.68
+      baseline_k1_f1_clean: 0.66
+      treatment_k2_f1_clean: 0.72
+      baseline_k2_f1_clean: 0.7
+      treatment_k3_f1_clean: 0.78
+      baseline_k3_f1_clean: 0.76
+      treatment_k5_f1_clean: 0.83
+      baseline_k5_f1_clean: 0.82
+      treatment_full_f1_clean: 0.86
+      baseline_full_f1_clean: 0.85
+      delta_k2_pp: 2
+      delta_k3_pp: 2
+      delta_full_pp: 1
+      deberta_persuasion_acc_clean: 0.63
+    result_rationale: '去除lexical confound后，treatment与baseline的差距从原始的10+pp收缩到1-2pp（不显著）。
+      核心原因：DeBERTa persuasion分类器在clean data上accuracy从0.7963降到0.63——8-class taxonomy
+      过于fine-grained，在register-normalized data上许多strategy boundary变得模糊（e.g., "authority
+      appeal" vs "logical appeal"在paraphrase后难以区分）。由于persuasion encoder本身quality下降，其生成的
+      embeddings不再携带比vanilla DeBERTa显著更多的信息。Baseline的vanilla DeBERTa embeddings在clean
+      data上反而更稳定，因为它不依赖于noisy strategy labels。2pp的delta在72-sample test set上 bootstrap
+      CI完全overlap，p>0.3。
+
+      '
+    tables:
+    - caption: 'F1 Comparison: Treatment vs Baseline on Clean Data (N=72 test)'
+      rows:
+      - - K=1
+        - 0.68
+        - 0.66
+        - +2pp
+        - p=0.41
+      - - K=2
+        - 0.72
+        - 0.7
+        - +2pp
+        - p=0.35
+      - - K=3
+        - 0.78
+        - 0.76
+        - +2pp
+        - p=0.32
+      - - K=5
+        - 0.83
+        - 0.82
+        - +1pp
+        - p=0.58
+      - - Full
+        - 0.86
+        - 0.85
+        - +1pp
+        - p=0.62
+    - caption: 'DeBERTa Encoder Quality: Original vs Clean Data'
+      rows:
+      - - persuasion_acc_original
+        - 0.7963
+      - - persuasion_acc_clean
+        - 0.63
+      - - intent_acc_original
+        - 0.9514
+      - - intent_acc_clean
+        - 0.88
+    figures_description:
+    - Paired bootstrap confidence interval plot for delta(treatment-baseline) at each
+      K — all CIs cross zero
+    - Confusion matrix for 8-class persuasion classifier on clean data showing heavy
+      off-diagonal mass between adjacent strategies
+    analysis: 'PASS CRITERIA FAILS：delta_k2=2pp < required 5pp，且统计不显著。Persuasion grounding在去除
+      lexical shortcut后不提供有意义增量。DeBERTa学到的主要是intent分类信号（acc仍0.88）而非persuasion strategy信号（acc降至0.63）。这意味着Claim
+      2（early detection via persuasion grounding）在当前 数据/taxonomy下不成立。但这个negative result本身有价值：它说明仅fine-tune
+      on persuasion labels 不足以在clean setting下获得detection优势，可能需要更大规模的persuasion标注数据或更粗粒度的taxonomy。
+
+      '
+  - name: scrambled_label_ablation
+    plan_id: plan_003
+    description: 随机打乱persuasion strategy labels重新训练，对比properly-labeled treatment
+    expected_results:
+      treatment_proper_k2_f1: 0.72
+      treatment_scrambled_k2_f1: 0.7
+      treatment_proper_full_f1: 0.86
+      treatment_scrambled_full_f1: 0.84
+      scrambled_label_drop_k2_pp: 2
+      scrambled_label_drop_full_pp: 2
+    result_rationale: 'Scrambled labels仅导致2pp下降（<4pp阈值），说明persuasion labels本身不是关键信号源。
+      原因：在clean data上DeBERTa persuasion分类器本身就只有0.63 accuracy，意味着encoder学到的 representation中persuasion
+      strategy信息就不强。Scrambled labels让encoder无法学到coherent strategy patterns，但由于原始labels在clean
+      data上本就noisy（8类之间boundary模糊）， scrambling的marginal damage有限。真正驱动detection的是GRU从conversation-level
+      temporal patterns中学到的信号（turn数、response长度变化等meta-features），这些不依赖于strategy labels
+      的correctness。
+
+      '
+    tables:
+    - caption: Scrambled Label Ablation Results
+      rows:
+      - - K=2
+        - 0.72
+        - 0.7
+        - -2pp
+      - - K=3
+        - 0.78
+        - 0.76
+        - -2pp
+      - - Full
+        - 0.86
+        - 0.84
+        - -2pp
+    figures_description:
+    - 'Bar chart: proper vs scrambled label performance across K values — gaps uniformly
+      small and within CI'
+    analysis: '结论：persuasion strategy labels在clean data regime下不carry significant
+      signal beyond acting as a noisy regularizer。这支持worst-tier核心假设——当前taxonomy粒度（8
+      classes）在480-sample regime下无法学到robust strategy representations。对reframe方向的implication：不能claim
+      "persuasion labels are the key ingredient"，但可以claim "current taxonomy granularity
+      is insufficient"作为future work direction。
+
+      '
+  - name: adversarial_perturbation
+    plan_id: plan_004
+    description: 对clean jailbreak conversations施加aggressive paraphrasing，评估treatment
+      vs baseline degradation
+    expected_results:
+      treatment_f1_before_perturbation: 0.86
+      treatment_f1_after_perturbation: 0.71
+      baseline_f1_before_perturbation: 0.85
+      baseline_f1_after_perturbation: 0.72
+      treatment_drop_pp: 15
+      baseline_drop_pp: 13
+      delta_delta_pp: -2
+      tfidf_f1_after_perturbation: 0.58
+      tfidf_drop_pp: 15
+    result_rationale: 'Treatment和baseline在perturbation下同步下降约14-15pp，delta-delta为-2pp（不显著且方向错误）。
+      核心原因：adversarial paraphrasing不仅消除lexical cues（TF-IDF baseline崩溃到0.58），也破坏了 DeBERTa
+      encoder（无论persuasion-grounded还是vanilla）所依赖的surface-level linguistic patterns。
+      Persuasion-grounded encoder理论上应capture deeper pragmatic structure，但由于其persuasion
+      classification本身就在clean data上只有0.63 accuracy，它学到的representation并不比vanilla encoder
+      更"pragmatic"——两者都主要依赖sentence-level semantic features而非genuine illocutionary
+      act encoding。Aggressive paraphrasing保留了propositional content但改变了sentence structure，
+      两种encoder的degradation profile因此相似。
+
+      '
+    tables:
+    - caption: Adversarial Perturbation Results (Full Conversation)
+      rows:
+      - - Treatment
+        - 0.86
+        - 0.71
+        - -15pp
+      - - Baseline
+        - 0.85
+        - 0.72
+        - -13pp
+      - - TF-IDF+LR
+        - 0.73
+        - 0.58
+        - -15pp
+    - caption: Delta-Delta Analysis
+      rows:
+      - - treatment_drop
+        - -15
+      - - baseline_drop
+        - -13
+      - - delta_delta
+        - -2
+        - wrong direction, n.s.
+    figures_description:
+    - Degradation waterfall chart showing parallel decline for treatment and baseline
+      under perturbation levels (light/moderate/aggressive)
+    - 'Scatter plot: per-conversation F1 change under perturbation, treatment vs baseline
+      — points clustered around diagonal (no systematic advantage)'
+    analysis: 'PASS CRITERIA FAILS：delta-delta=-2pp，方向错误且不显著（需要>3pp正向）。Claim 1（Pragmatic
+      Evasion Asymmetry）在empirical层面不成立——persuasion-grounded features并不比semantic features
+      更robust to perturbation。这是worst tier最致命的finding：理论上最elegant的claim（pragmatic
+      patterns structurally harder to evade）没有empirical support。TF-IDF baseline的崩溃（-15pp）
+      确认perturbation有效消除了lexical cues，但treatment未能展现预期的robustness优势。
+
+      '
+  - name: multi_attack_generation
+    plan_id: plan_005
+    description: 生成FITD和Deceptive Delight两种额外攻击类型的对话数据
+    expected_results:
+      fitd_conversations_generated: 65
+      deceptive_delight_conversations_generated: 58
+      fitd_avg_turns: 6.2
+      dd_avg_turns: 4.8
+      fitd_strategy_annotation_coverage: 0.92
+      dd_strategy_annotation_coverage: 0.89
+      generation_quality_pass_rate: 0.78
+    result_rationale: '数据生成本身不受tier影响——这是pipeline execution而非hypothesis testing。Qwen3-8B成功生成
+      足够数量的对话，strategy annotation coverage >85%。但generation_quality_pass_rate（0.78）
+      略低于ideal，部分生成的对话persuasion structure不够naturalistic（特别是Deceptive Delight 的interleaving
+      pattern对LLM来说较难faithful reproduce）。这些数据将在plan_006的cross-attack evaluation中暴露问题。
+
+      '
+    tables:
+    - caption: Generated Attack Data Summary
+      rows:
+      - - FITD
+        - 65
+        - 6.2
+        - 0.92
+        - 0.81
+      - - Deceptive_Delight
+        - 58
+        - 4.8
+        - 0.89
+        - 0.74
+    figures_description:
+    - Strategy distribution comparison across three attack types (Crescendo vs FITD
+      vs Deceptive Delight) — shows different strategy emphasis patterns
+    analysis: '数据生成成功满足pass criteria（>=50 per type）。但在worst tier context下，这些数据的价值
+      从"generalization evidence for our method"变为"additional test cases revealing
+      method limitations" 或"attack diversity evidence for methodology paper"。
+
+      '
+  - name: cross_attack_evaluation
+    plan_id: plan_006
+    description: 在FITD和Deceptive Delight上zero-shot评估Crescendo-trained模型
+    expected_results:
+      treatment_fitd_f1: 0.58
+      baseline_fitd_f1: 0.56
+      treatment_dd_f1: 0.54
+      baseline_dd_f1: 0.52
+      cross_attack_treatment_f1_avg: 0.56
+      cross_attack_baseline_f1_avg: 0.54
+      cross_attack_delta_pp: 2
+    result_rationale: '两者都在unseen attack types上大幅下降（从0.85-0.86降到0.54-0.58），且treatment对baseline的
+      优势仅2pp（不显著）。根本原因：如果persuasion grounding真的capture了attack-agnostic的pragmatic escalation
+      pattern，treatment应在cross-attack setting下展现更强泛化能力（因为不同attack types 共享底层persuasion
+      playbook）。但由于encoder学到的主要是Crescendo-specific的surface patterns 而非genuine pragmatic
+      structure，cross-attack泛化能力与vanilla baseline无异。两者的low absolute performance（0.54-0.58）说明Crescendo-specific
+      training signal（无论lexical还是semantic） 都不transfer well，这在worst tier下是预期内的——没有genuine
+      pragmatic feature的robustness 保证，模型就是在overfit to training distribution。
+
+      '
+    tables:
+    - caption: Cross-Attack Zero-Shot Evaluation
+      rows:
+      - - FITD
+        - 0.58
+        - 0.56
+        - +2pp
+        - n.s.
+      - - Deceptive_Delight
+        - 0.54
+        - 0.52
+        - +2pp
+        - n.s.
+      - - Average
+        - 0.56
+        - 0.54
+        - +2pp
+        - n.s.
+    figures_description:
+    - 'Grouped bar chart: in-domain (Crescendo) vs cross-attack (FITD, DD) performance
+      for treatment and baseline — both collapse similarly on OOD data'
+    analysis: 'PASS CRITERIA FAILS。但对reframe方向(1)有正面意义：cross-attack failure + in-domain
+      dependence on lexical cues共同论证了"现有multi-turn detection方法泛化能力被高估"的thesis。可作为
+      methodology paper中illustrating the problem的evidence。
+
+      '
+  - name: tfidf_lr_baseline
+    plan_id: plan_007
+    description: Clean data上的TF-IDF + Logistic Regression baseline
+    expected_results:
+      clean_tfidf_lr_f1: 0.7
+      clean_tfidf_lr_precision: 0.72
+      clean_tfidf_lr_recall: 0.68
+      tfidf_feature_count_above_threshold: 47
+    result_rationale: '即使在register-normalized data上（TF-IDF separation从1.0降到0.73），TF-IDF+LR仍能达到
+      F1=0.70。这说明两轮normalization虽然消除了most obvious的register markers，但仍有residual lexical
+      signal（47个features仍有discriminative power）。这意味着即使我们的"clean data" 仍然不完全clean——topic-level词汇差异（jailbreak
+      conversations inevitably discuss different topics than benign ones）是无法完全消除的confound
+      without destroying content validity。 这是methodology paper的核心argument之一：lexical
+      confound在multi-turn detection中是 structural的，不仅仅是data hygiene问题。
+
+      '
+    tables:
+    - caption: TF-IDF+LR on Clean Data
+      rows:
+      - - F1
+        - 0.7
+      - - Precision
+        - 0.72
+      - - Recall
+        - 0.68
+      - - Discriminative_features
+        - 47
+    figures_description:
+    - Top-20 TF-IDF features after normalization with weights — showing residual topic-level
+      rather than register-level discrimination
+    analysis: 'TF-IDF+LR的0.70 F1与neural models（treatment 0.86, baseline 0.85）之间的gap说明neural
+      models 确实学到了beyond-lexical的signal。但treatment vs baseline的1pp gap说明这个beyond-lexical
+      signal 不是来自persuasion grounding，而是来自generic sentence semantics。对evasion hierarchy
+      narrative 的implication：lexical(0.70) < semantic(0.85) ≈ pragmatic(0.86)——hierarchy的后两层collapse了。
+
+      '
+  - name: strategy_transition_analysis
+    plan_id: plan_008
+    description: 计算jailbreak vs benign的persuasion strategy transition matrices并可视化
+    expected_results:
+      jailbreak_monotonicity_score: 0.52
+      benign_monotonicity_score: 0.45
+      monotonicity_gap: 0.07
+      transition_entropy_jailbreak: 2.1
+      transition_entropy_benign: 2.3
+      clear_escalation_visible: false
+    result_rationale: 'Jailbreak对话的monotonicity score（0.52）仅略高于benign（0.45），差距不足以支撑"monotonic
+      escalation trajectory"的claim。原因有二：(1) DeBERTa persuasion classifier在clean data上
+      accuracy=0.63意味着strategy labels本身就noisy，computed transitions基于noisy labels自然
+      pattern不清晰；(2) Register normalization改变了句子的surface form，部分breaks了persuasion
+      classifier学到的pattern（它在original register上train的），导致strategy assignment在 normalized
+      data上更random。Transition entropy差异也很小（2.1 vs 2.3），说明jailbreak对话 并没有显著更deterministic的strategy
+      progression。
+
+      '
+    tables:
+    - caption: 'Trajectory Statistics: Jailbreak vs Benign'
+      rows:
+      - - monotonicity_score
+        - 0.52
+        - 0.45
+        - Δ=0.07
+      - - transition_entropy
+        - 2.1
+        - 2.3
+        - Δ=0.2
+      - - dominant_path_frequency
+        - 0.18
+        - 0.14
+        - Δ=0.04
+    figures_description:
+    - Strategy transition heatmap (jailbreak) — diffuse pattern without clear dominant
+      path, most cells have non-trivial probability mass
+    - Strategy transition heatmap (benign) — similar diffuse pattern, not clearly
+      more 'oscillatory' than jailbreak
+    - 2D PCA trajectory plot — jailbreak and benign trajectories heavily overlap,
+      no clear separation in strategy space
+    analysis: 'Claim 3（Monotonic Escalation Trajectory）在clean data + noisy classifier
+      regime下不成立。 这排除了reframe方向(2)（分析贡献型依赖trajectory可视化成立）。剩余可行方向：(1)方法论贡献型 或(3)negative
+      result型。如果figures经过careful curation能找到个别illustrative examples showing escalation
+      pattern，可以作为qualitative observation保留，但不能作为quantitative claim。
+
+      '
+  - name: wildchat_hard_negatives
+    plan_id: plan_009
+    description: 从WildChat筛选high-drift benign对话作为hard negatives评估FPR
+    expected_results:
+      wildchat_filtered_conversations: 120
+      contamination_rate_before_filter: 0.15
+      contamination_rate_after_filter: 0.03
+      treatment_fpr_hard_negatives: 0.22
+      baseline_fpr_hard_negatives: 0.2
+      treatment_fpr_easy_negatives: 0.08
+      baseline_fpr_easy_negatives: 0.09
+    result_rationale: 'Treatment在hard negatives上的FPR（0.22）与baseline（0.20）相当，且都超过15%阈值。
+      High-drift benign对话（e.g., 从casual聊天转向technical discussion的对话）会触发false positives，因为模型（无论treatment还是baseline）将conversation-level
+      semantic drift 误判为adversarial escalation。Persuasion grounding理论上应区分"genuine
+      topic drift" 和"adversarial strategy escalation"，但由于classifier accuracy不足（0.63），这种区分
+      能力没有materialized。FPR=0.22在实际deployment中unacceptable。
+
+      '
+    tables:
+    - caption: False Positive Rate on WildChat Hard Negatives
+      rows:
+      - - Treatment_hard
+        - 0.22
+        - FAILS <15% threshold
+      - - Baseline_hard
+        - 0.2
+        - FAILS <15% threshold
+      - - Treatment_easy
+        - 0.08
+        - passes
+      - - Baseline_easy
+        - 0.09
+        - passes
+    figures_description:
+    - FPR distribution across conversation drift levels — monotonically increasing
+      for both models, treatment offers no advantage in high-drift regime
+    analysis: 'PASS CRITERIA FAILS（FPR=0.22 > 15%阈值）。在reframe context下，这进一步支持"current
+      approaches conflate conversational drift with adversarial escalation"的methodology
+      critique。
+
+      '
+  - name: cross_checkpoint_variance
+    plan_id: plan_010
+    description: 评估多个DeBERTa fine-tuning checkpoint的下游performance variance
+    expected_results:
+      epoch2_full_f1: 0.84
+      epoch3_full_f1: 0.86
+      epoch_final_full_f1: 0.85
+      variance_across_checkpoints_pp: 2
+      epoch2_persuasion_acc: 0.59
+      epoch3_persuasion_acc: 0.63
+      epoch_final_persuasion_acc: 0.62
+    result_rationale: 'Variance=2pp刚好在pass criteria边界上。但更关键的observation是：downstream
+      detection performance（0.84-0.86）与persuasion accuracy（0.59-0.63）之间的correlation很弱——
+      epoch2的persuasion acc最低（0.59）但detection F1仅比best低2pp。这进一步confirming scrambled
+      label ablation的conclusion：persuasion classification quality对detection performance的contribution
+      minimal。GRU主要在学conversation-level statistical patterns 而非strategy-level semantic
+      patterns。
+
+      '
+    tables:
+    - caption: Cross-Checkpoint Evaluation
+      rows:
+      - - Epoch_2
+        - 0.59
+        - 0.84
+      - - Epoch_3
+        - 0.63
+        - 0.86
+      - - Epoch_final
+        - 0.62
+        - 0.85
+      - - Variance
+        - —
+        - 2pp
+    figures_description:
+    - 'Scatter plot: persuasion classification accuracy vs downstream detection F1
+      across checkpoints — weak/no correlation'
+    analysis: 'Pass criteria marginally met（variance=2pp），但secondary finding（weak
+      correlation between encoder quality and detection performance）是worst tier的additional
+      evidence。
+
+      '
+  - name: deepcontext_proxy_reproduction
+    plan_id: plan_011
+    description: BERT-base + GRU proxy baseline复现DeepContext-like方法
+    expected_results:
+      proxy_full_f1: 0.83
+      proxy_k2_f1: 0.69
+      proxy_k3_f1: 0.75
+      treatment_full_f1: 0.86
+      treatment_k2_f1: 0.72
+      delta_vs_proxy_full_pp: 3
+      delta_vs_proxy_k2_pp: 3
+    result_rationale: 'DeepContext proxy（BERT-base + GRU）在clean data上达到F1=0.83，与treatment（0.86）仅差3pp。
+      考虑到BERT-base vs DeBERTa-v3-base本身的capacity差异（DeBERTa在NLU benchmarks上typically
+      优于BERT 2-4pp），这3pp的gap可能entirely attributable to encoder capacity而非persuasion
+      grounding的contribution。这意味着：将DeBERTa换成BERT并去掉persuasion fine-tuning， performance下降幅度与expected
+      encoder capacity difference一致——persuasion grounding的 incremental contribution
+      statistically indistinguishable from zero。
+
+      '
+    tables:
+    - caption: DeepContext Proxy vs Treatment
+      rows:
+      - - K=2
+        - 0.69
+        - 0.72
+        - +3pp (encoder capacity?)
+      - - K=3
+        - 0.75
+        - 0.78
+        - +3pp
+      - - Full
+        - 0.83
+        - 0.86
+        - +3pp
+    figures_description:
+    - 'Performance comparison bar chart: BERT-base+GRU vs vanilla-DeBERTa+GRU vs persuasion-DeBERTa+GRU
+      — showing consistent ~1-3pp gaps that track encoder capacity not persuasion
+      grounding'
+    analysis: Confound：DeBERTa > BERT的gap（~3pp）与persuasion grounding的claimed contribution（~1-2pp
+      over vanilla DeBERTa）叠加后，无法cleanly attribute任何portion到persuasion specifically。
+      对methodology paper有价值：shows that encoder choice matters more than fine-tuning
+      objective， further undermining the pragmatic grounding hypothesis。
+  review_report: "---\ndream_id: dream_20260517T165817\ntier: worst\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-17T17:38:45.596935+00:00\n---\n\n# Dream Review\
+    \ Report: \"Lexical Confounds in Multi-Turn Jailbreak Detection: A Register-Normalization\
+    \ Audit\"\n\n**Review Mode**: Full (2-reviewer roundtable)\n**Venue Standard**:\
+    \ Top ML venue, ~25% acceptance rate, 6-point scale\n\n---\n\n## Roundtable Process\n\
+    \n- **R1** (Methods + Experiments): Score 3, Confidence 4\n- **R2** (Novelty +\
+    \ Related Work): Score 3, Confidence 4\n- **Cross-sharing**: Full agreement on\
+    \ score and key concerns. No disagreements requiring resolution.\n\n---\n\n##\
+    \ Paper Summary\n\nThe paper audits a persuasion-grounded multi-turn jailbreak\
+    \ detection pipeline and finds that reported high accuracy is inflated by lexical\
+    \ confounds. A TF-IDF classifier achieves perfect separation (F1=1.0) on raw data.\
+    \ The authors propose a two-round register-normalization protocol (LLM paraphrasing\
+    \ + targeted domain-term normalization) that reduces TF-IDF separation to 0.73.\
+    \ On normalized data, the persuasion-grounded detector (DeBERTa fine-tuned on\
+    \ 8-class taxonomy + GRU) achieves F1=0.86, only 1pp above a vanilla semantic\
+    \ baseline (p=0.62). Scrambled labels, adversarial perturbation, and cross-attack\
+    \ transfer all confirm that persuasion-grounded features provide no measurable\
+    \ advantage. The paper is framed as a methodology/negative-result contribution.\n\
+    \n---\n\n## Consolidated Strengths\n\n1. **Important and timely research question.**\
+    \ Whether multi-turn jailbreak detection benchmarks are inflated by lexical shortcuts\
+    \ is directly relevant to the safety community. The TF-IDF=1.0 finding on raw\
+    \ data is a stark demonstration. (R1, R2)\n\n2. **Unusually comprehensive experimental\
+    \ battery.** Ten experiments covering confound quantification, clean-data comparison,\
+    \ scrambled-label ablation, adversarial perturbation, cross-attack transfer, hard\
+    \ negatives, strategy transition analysis, cross-checkpoint variance, and a DeepContext\
+    \ proxy comparison. This breadth is commendable for an audit paper. (R1, R2)\n\
+    \n3. **Honest negative-result framing.** The paper reports p-values transparently,\
+    \ does not oversell, and correctly scopes itself as a methodological audit rather\
+    \ than a new detection system. This is appropriate scientific practice. (R1, R2)\n\
+    \n4. **Concrete, reusable protocol.** The two-round register-normalization protocol\
+    \ with a hard TF-IDF gate (F1 < 0.75) is actionable and could serve as a community\
+    \ diagnostic tool. (R2)\n\n5. **Clean ablation design.** The scrambled-label experiment\
+    \ (2pp drop) and the DeepContext proxy comparison (3pp gap matching expected encoder\
+    \ capacity difference) are well-designed controls that converge on the same conclusion.\
+    \ (R1)\n\n---\n\n## Consolidated Weaknesses\n\n### Critical\n\n1. **Test set too\
+    \ small for claims made (N=72).** (R1, R2) With 72 test conversations, confidence\
+    \ intervals on F1 span roughly +/-8-10pp. A 1pp difference with p=0.62 is uninformative:\
+    \ the study cannot distinguish \"no real effect\" from \"insufficient power to\
+    \ detect a moderate effect.\" This is an accept-the-null fallacy. **No power analysis\
+    \ is provided.** The paper's central claim (no significant advantage) rests on\
+    \ a test set that cannot reliably detect anything below ~8-10pp effect size. This\
+    \ alone undermines the paper's core argument.\n\n2. **Register normalization may\
+    \ destroy the signal under test.** (R1, R2) Persuasion classification accuracy\
+    \ drops from 0.796 to 0.63 after normalization (Experiment 3). If pragmatic strategies\
+    \ are partially expressed through register-appropriate linguistic choices (formal\
+    \ hedging for authority, casual tone for rapport), aggressive register normalization\
+    \ may erase genuine pragmatic signal, not just lexical confounds. The paper acknowledges\
+    \ this but does not resolve it. A critical missing experiment: **retrain the persuasion\
+    \ encoder on normalized data** and re-evaluate. Without this, the design confounds\
+    \ \"persuasion signal is absent\" with \"the encoder cannot extract persuasion\
+    \ signal from normalized text.\"\n\n3. **Extremely thin Related Work (8 references).**\
+    \ (R2) For a top venue, 8 references is far below standard (30-50 typical). Critical\
+    \ omissions include:\n   - Gururangan et al. (2018) \"Annotation Artifacts in\
+    \ NLI\" — the most direct methodological precedent\n   - Niven & Kao (2019) \"\
+    Probing Neural Network Comprehension\"\n   - Poliak et al. (2018) on hypothesis-only\
+    \ baselines\n   - Schuster et al. (2019) on dataset biases in fact verification\n\
+    \   - Wei et al. (2024), Chao et al. (2023 PAIR) on jailbreak taxonomies\n   -\
+    \ LlamaGuard, WildGuard, or other deployed multi-turn safety systems\n   - General\
+    \ evaluation methodology (Bowman & Dahl 2021)\n   \n   The paper positions itself\
+    \ as a methodology contribution but shows almost no awareness of the rich prior\
+    \ work on annotation artifacts.\n\n### Major\n\n4. **Limited novelty of core finding.**\
+    \ (R2) Lexical/distributional confounds inflating NLP benchmarks is well-established\
+    \ (NLI hypothesis-only baselines, toxicity confounds, argument reasoning). Applying\
+    \ this known phenomenon to multi-turn jailbreak detection is incremental. The\
+    \ paper needs to demonstrate something qualitatively new about confounds in this\
+    \ specific domain to justify a top-venue contribution.\n\n5. **Scope too narrow\
+    \ for generality of claims.** (R1, R2) One pipeline (DeBERTa+GRU), one dataset\
+    \ (480 synthetic conversations), one taxonomy (8-class), one primary attack type\
+    \ (Crescendo). The general claim that \"persuasion-grounded features provide no\
+    \ measurable advantage\" is much stronger than what one experiment on one system\
+    \ supports. Alternative explanations: taxonomy too fine-grained, training data\
+    \ too small, encoder quality too low, normalization procedure self-defeating.\n\
+    \n### Minor\n\n6. **Arbitrary TF-IDF gate threshold.** (R1) The 0.75 threshold\
+    \ is not justified. Sensitivity analysis varying this threshold is missing. At\
+    \ 0.73, the data \"barely passes\" the gate, and TF-IDF+LR still achieves F1=0.70\
+    \ on \"clean\" data, suggesting substantial residual confound.\n\n7. **No human\
+    \ evaluation of normalization fidelity.** (R1) There is no verification that jailbreak\
+    \ intent and conversational meaning are preserved after normalization. If normalization\
+    \ differentially damages jailbreak conversations, all downstream results are artifacts.\n\
+    \n8. **Missing variance reporting.** (R1) The paper does not state random seed\
+    \ count, whether results are means over multiple seeds, or confidence intervals\
+    \ for any metric.\n\n---\n\n## Questions for Authors\n\n1. **Power analysis**:\
+    \ Given N=72, what is the minimum detectable effect size at 80% power, alpha=0.05?\
+    \ If the answer is >5pp, the non-significant results are uninformative.\n\n2.\
+    \ **Encoder retraining**: Have you considered fine-tuning the persuasion encoder\
+    \ on register-normalized text? This would disentangle \"persuasion signal doesn't\
+    \ exist\" from \"the encoder fails on normalized text.\"\n\n3. **Normalization\
+    \ fidelity**: Can you provide human evaluation confirming that jailbreak intent\
+    \ is preserved post-normalization at similar rates?\n\n4. **Literature engagement**:\
+    \ How does this work differ from the annotation artifact findings of Gururangan\
+    \ et al. (2018) and Poliak et al. (2018)? What is qualitatively new beyond changing\
+    \ the domain?\n\n---\n\n## Minor Issues\n\n- Bibliography entries [6] and [8]\
+    \ lack proper author attribution (\"DeepContext (2026)\", \"How Do LLMs Persuade?\
+    \ (2025)\")\n- No conference template used (generic article class)\n- Test set\
+    \ composition (jailbreak/benign split within 72) not stated\n- Table float placement\
+    \ likely suboptimal\n- Cross-attack sample sizes (65, 58) are very small for zero-shot\
+    \ evaluation claims\n- Title says \"audit\" but claims go beyond auditing to strong\
+    \ negative conclusions about persuasion grounding\n\n---\n\n## Experiment Coverage\
+    \ Assessment\n\nCompared against the full experiment design (11 planned experiments):\n\
+    \n| Experiment | Covered? | Notes |\n|---|---|---|\n| data_quality_fix (register\
+    \ normalization) | Yes | Exp 1 |\n| core_revalidation_clean | Yes | Exp 2 |\n\
+    | scrambled_label_ablation | Yes | Exp 4 |\n| adversarial_perturbation | Yes |\
+    \ Exp 5 |\n| multi_attack_generation | Yes | Implicit in Exp 6 data |\n| cross_attack_evaluation\
+    \ | Yes | Exp 6 |\n| tfidf_lr_baseline | Yes | Exp 1 + Table 2 |\n| strategy_transition_analysis\
+    \ | Yes | Exp 8 |\n| wildchat_hard_negatives | Yes | Exp 7 |\n| cross_checkpoint_variance\
+    \ | Yes | Exp 9 |\n| deepcontext_proxy_reproduction | Yes | Exp 10 |\n\nAll planned\
+    \ experiments are covered. Experimental breadth is the paper's strongest dimension.\n\
+    \n---\n\n## Final Consensus Score\n\n**Score: 3 / 6 (Weak Reject)**\n\n**Confidence:\
+    \ 4 / 5 (High)**\n\n### Rationale\n\nThe paper asks an important question and\
+    \ demonstrates commendable experimental breadth. However, three issues prevent\
+    \ acceptance at a top venue:\n\n1. **Statistical power is insufficient** for the\
+    \ claims made. N=72 cannot support \"no significant difference\" conclusions without\
+    \ a power analysis, and no power analysis is provided. The central argument is\
+    \ an accept-the-null fallacy.\n\n2. **The experimental design has an unresolved\
+    \ critical confound**: register normalization may destroy the pragmatic signal\
+    \ it claims to test, as evidenced by the 0.796→0.63 drop in persuasion classifier\
+    \ accuracy. Retraining the encoder on normalized data is the obvious missing experiment.\n\
+    \n3. **Related work is inadequate** (8 references) and the core finding (lexical\
+    \ confounds inflate benchmarks) is well-established in NLP, making the novelty\
+    \ incremental.\n\nThe paper would be suitable as a **workshop paper** or **short\
+    \ paper** with more modest claims (\"lexical confounds exist in multi-turn detection\
+    \ data and require attention\"). For a top venue main conference paper, it needs:\
+    \ (a) larger-scale evaluation, (b) formal power analysis, (c) encoder retraining\
+    \ on normalized data, (d) human validation of normalization fidelity, and (e)\
+    \ substantially expanded related work."
+  error: ''
+errors: {}
+score_anomaly: 评分顺序异常：best(weak reject) == worst(weak reject)，建议谨慎解读
+created_at: '2026-05-17T17:38:56+00:00'

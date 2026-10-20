@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02bee6942ebfe9c1e34f",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "infra disk cleanup",
+  "task_key": "worker_infra_disk-cleanup_20260522T032616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_disk-cleanup_20260522T032616_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "7f1fc1cf54aebf714a5d560ce2e86b2c55a69d18db14449dae808939ded31f00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**清理报告：**\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 已用 | 29G (96%) | 9.4G (32%) |\n| 可用 | 1.3G | 21G |\n| **释放空间** | | **~19.6G** |\n\n**已删除 19 个 checkpoint 目录：** exp15 系列 (9个), exp16 系列 (3个), exp17 (1个), exp18 系列 (3个), exp20 系列 (3个)\n\n**剩余 checkpoints：** exp26_frozen_seed{123,42,456}, exp27_mean_pooling, exp36_frozen_mlm_seed{123,42,456}"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-disk-cleanup.md"
+}

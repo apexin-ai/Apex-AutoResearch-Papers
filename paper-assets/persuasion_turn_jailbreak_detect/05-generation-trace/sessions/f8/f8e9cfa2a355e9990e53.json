@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "f8e9cfa2a355e9990e53",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "sync fig1 v2 to local",
+  "task_key": "worker_sync_fig1-v2-to-local_20260518T083034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_fig1-v2-to-local_20260518T083034.log",
+    "occurrence": 1,
+    "bytes": 906046,
+    "sha256": "800f9089e6b1dc75b6e9584d3a7673183f87dcde102cf953a5a494724cfde72e"
+  },
+  "statistics": {
+    "messages": 353,
+    "user_turns": 1,
+    "tool_calls": 120,
+    "roles": {
+      "log": 1,
+      "system": 79,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 120,
+      "tool_result": 119,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 123,
+      "chunks": [
+        {
+          "path": "f8e9cfa2a355e9990e53-part-0001.json",
+          "message_count": 123
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 230,
+      "chunks": [
+        {
+          "path": "f8e9cfa2a355e9990e53-part-0001.json",
+          "message_count": 47
+        },
+        {
+          "path": "f8e9cfa2a355e9990e53-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f8e9cfa2a355e9990e53-part-0003.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/sync-fig1-v2-to-local.md"
+}

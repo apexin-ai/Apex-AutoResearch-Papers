@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "faf2369523a2bff2bd59",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval plan018 wiki perturbation",
+  "task_key": "worker_eval_plan018-wiki-perturbation_20260518T062359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan018-wiki-perturbation_20260518T062359_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "f41414801b1d2c84899e3c002b13a5ef59d0bf84d3bae63cb20c0f067dbb4ae5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**结果总结：**\n\n| K | Clean F1 | Perturbed F1 | Delta |\n|---|---|---|---|\n| k=1 | 0.947 | 0.824 | **-0.124** |\n| k=2 | 0.934 | 0.780 | **-0.154** |\n| k=3 | 0.974 | 0.795 | **-0.179** |\n| k=5 | 0.987 | 0.838 | **-0.149** |\n| full | 0.987 | 0.866 | **-0.121** |\n\nWiki MLM perturbation degradation (-0.121 ~ -0.179) 与 vanilla baseline (-0.118) 量级相当，远差于 JB MLM (-0.026) 和 persuasion treatment (0.000)。假设成立：out-of-domain pretraining 不提供 perturbation robustness，domain-specific MLM 才是关键。\n\n已保存结果到 `results/plan_018_wiki_perturbation.json`，registry 实验 `plan_018_wiki_perturbation` 已设为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan018-wiki-perturbation.md"
+}

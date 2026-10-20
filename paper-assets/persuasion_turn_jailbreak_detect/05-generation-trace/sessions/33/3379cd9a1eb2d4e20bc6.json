@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3379cd9a1eb2d4e20bc6",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code turn shuffle ablation",
+  "task_key": "worker_code_turn-shuffle-ablation_20260520T090831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_turn-shuffle-ablation_20260520T090831_result.json",
+    "occurrence": 1,
+    "bytes": 1548,
+    "sha256": "0fb8f366e72de30da5787557b25767916f3bad7796e6e98e096c4343235d1a12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果如下：\n\n```\nTurn-Shuffle Ablation Results:\n\n=== IID Test (76 samples) ===\n9-class:\n  Original:  F1 = 1.0000±0.0000 (seeds 42/123/456)\n  Shuffled:  F1 = 1.0000±0.0000 (9 runs)\n  Δ = +0.0000\n\nvanilla:\n  Original:  F1 = 1.0000±0.0000\n  Shuffled:  F1 = 0.9883±0.0097\n  Δ = -0.0117\n\n=== DD OOD (118 samples) ===\n9-class:\n  Original:  F1 = 0.9872±0.0045\n  Shuffled:  F1 = 0.9882±0.0040\n  Δ = +0.0011 (基本无变化)\n\nvanilla:\n  Original:  F1 = 0.9268±0.0362\n  Shuffled:  F1 = 0.8388±0.0515\n  Δ = -0.0880 (显著下降)\n\n=== AA OOD (118 samples) ===\n9-class:\n  Original:  F1 = 0.9457±0.0566\n  Shuffled:  F1 = 0.9386±0.0557\n  Δ = -0.0071 (几乎无变化)\n\nvanilla:\n  Original:  F1 = 1.0000±0.0000\n  Shuffled:  F1 = 0.9798±0.0121\n  Δ = -0.0202\n```\n\n**结论**：\n- **9-class (DAPT)**: Shuffle 后 F1 几乎不变（所有数据集 Δ < 0.01），说明 9-class 模型**不依赖轮次顺序**——turn-level 的 persuasion strategy 特征已足够区分，GRU 的顺序建模贡献极小\n- **vanilla**: DD OOD 上 shuffle 导致 F1 下降 8.8 个百分点（0.927→0.839），AA OOD 和 IID 下降 1-2 个百分点。vanilla 模型**部分依赖轮次顺序**，尤其在 OOD 场景下\n\n这支持了论文的核心论点：DAPT 学到的 persuasion strategy 特征比纯序列建模更鲁棒，因为 shuffle 不影响 turn-level 特征的判别力。\n\n结果已保存到 `/root/persuasion_turn_jailbreak_detect/results/turn_shuffle_ablation.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-turn-shuffle-ablation.md"
+}

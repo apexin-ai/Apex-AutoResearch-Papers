@@ -1,0 +1,82 @@
+{
+  "exp_id": "vanilla_multiseed_dd_ood",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T11:26:57.037Z",
+    "updated_at": "2026-05-18T11:27:25.460Z",
+    "hypothesis": "DeBERTa vanilla (no Stage-1 fine-tuning) multi-seed DD OOD evaluation will confirm that the 62pp gap (vanilla 0.284 vs treatment 0.997) is not a seed artifact, and centered CKA will correct the misleading uncentered CKA=1.0 for vanilla vs MLM",
+    "spec": {
+      "command": "train_gru.py + evaluate_gru.py (vanilla, seed123/456) + centered_cka.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits + data/dd_ood",
+      "data_count": 118,
+      "model_name": "DeBERTa-v3-base (vanilla, no Stage-1)",
+      "seed": "123,456",
+      "checkpoint_path": "checkpoints/vanilla_seed123/, checkpoints/vanilla_seed456/",
+      "log_path": "results/vanilla_multiseed_dd_ood.json, results/centered_cka.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "vanilla_3seed_dd_ood": {
+        "k1": {
+          "seed42": 0.575,
+          "seed123": 0.658,
+          "seed456": 0.652,
+          "mean": 0.628,
+          "std": 0.038
+        },
+        "k2": {
+          "seed42": 0.438,
+          "seed123": 0.53,
+          "seed456": 0.469,
+          "mean": 0.479,
+          "std": 0.038
+        },
+        "k3": {
+          "seed42": 0.359,
+          "seed123": 0.424,
+          "seed456": 0.383,
+          "mean": 0.389,
+          "std": 0.027
+        },
+        "k5": {
+          "seed42": 0.311,
+          "seed123": 0.383,
+          "seed456": 0.36,
+          "mean": 0.351,
+          "std": 0.03
+        },
+        "full": {
+          "seed42": 0.285,
+          "seed123": 0.305,
+          "seed456": 0.348,
+          "mean": 0.312,
+          "std": 0.026
+        }
+      },
+      "centered_cka_iid": {
+        "vanilla_vs_mlm": 0.442,
+        "vanilla_vs_9class": 0.393,
+        "mlm_vs_9class": 0.586
+      },
+      "centered_cka_dd_ood": {
+        "vanilla_vs_mlm": 0.797,
+        "vanilla_vs_9class": 0.649,
+        "mlm_vs_9class": 0.773
+      },
+      "uncentered_cka_iid": {
+        "vanilla_vs_mlm": 1,
+        "vanilla_vs_9class": 0.421,
+        "mlm_vs_9class": 0.422
+      },
+      "note": "Centered CKA reveals MLM DOES change representations (0.44 not 1.0). Uncentered CKA was misleading."
+    },
+    "completed_at": "2026-05-18T11:27:25.460Z"
+  },
+  "timestamp": "2026-05-18T11:27:25.549378+00:00",
+  "trigger": "update_registry"
+}

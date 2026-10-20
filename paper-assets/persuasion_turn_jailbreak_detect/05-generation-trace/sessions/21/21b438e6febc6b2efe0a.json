@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21b438e6febc6b2efe0a",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "sync figures to local",
+  "task_key": "worker_sync_figures-to-local_20260518T082706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_figures-to-local_20260518T082706_result.json",
+    "occurrence": 1,
+    "bytes": 111,
+    "sha256": "30f068daa7ddcd4e6a4fb1944c1fa4cef09e02275ac105ac262d0825294425c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 PDF 文件已同步到本地，MD5 校验与远端一致，远端临时文件已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-figures-to-local.md"
+}

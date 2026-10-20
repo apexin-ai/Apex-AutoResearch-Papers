@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcb15ebe5960f7dc9b37",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp49 repr analysis",
+  "task_key": "worker_code_exp49_repr_analysis_20260522T071133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp49_repr_analysis_20260522T071133_result.json",
+    "occurrence": 1,
+    "bytes": 2858,
+    "sha256": "9bc76afe658f98c440a9343500b815fc88dbb7ade08a763f46aaa64f3842e569"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总如下：\n\n## exp49 完整结果\n\n### A1: Weight Distance from Pretrained\n\n| Variant | Overall L2 | Relative Norm |\n|---------|-----------|---------------|\n| vanilla | 0.0000 | 0.000000 |\n| wiki-MLM | 2.9236 | 0.002214 |\n| binary | 3.1603 | 0.002393 |\n| JB-MLM | 3.3750 | 0.002556 |\n| scrambled | 3.7398 | 0.002832 |\n| 9-class | 3.9984 | 0.003028 |\n| **topic** | **4.8941** | **0.003706** |\n\n所有变体的 weight distance 量级相近 (relative norm ~0.002-0.004)，分类变体略大于 MLM 变体。\n\n### A2: SVD Geometry (Representation Collapse)\n\n| Variant | PR (有效维度) | Top10 Var% | Eff Dim 90% |\n|---------|-------------|-----------|-------------|\n| **vanilla** | **31.93** | 94.31% | **13** |\n| wiki-MLM | 25.00 | 96.67% | 7 |\n| JB-MLM | 24.56 | 96.35% | 7 |\n| topic | 14.46 | 98.97% | 4 |\n| 9-class | 9.37 | 99.59% | 3 |\n| scrambled | 7.82 | 99.63% | 2 |\n| **binary** | **3.73** | **99.90%** | **1** |\n\n**关键发现**: 分类变体 PR 远低于 MLM/vanilla，符合预期排序：\n- 分类 DAPT 大幅压缩表征空间 (PR: 3.73-14.46)\n- MLM DAPT 保留更多结构 (PR: 24-25)\n- Vanilla 最丰富 (PR: 31.93)\n\n### A3: Clustering (Fisher Ratio)\n\n| Variant | JB Intra | Benign Intra | Inter Dist | Fisher Ratio |\n|---------|---------|-------------|-----------|-------------|\n| vanilla | 0.000437 | 0.000183 | 0.000207 | **0.000069** |\n| wiki-MLM | 0.002103 | 0.001166 | 0.000964 | 0.000284 |\n| JB-MLM | 0.000439 | 0.000200 | 0.000727 | 0.000829 |\n| topic | 0.413848 | 0.522339 | 0.107958 | 0.012449 |\n| scrambled | 0.254468 | 0.002486 | 0.817798 | 2.602778 |\n| 9-class | 0.397623 | 0.002132 | 1.336193 | 4.466274 |\n| **binary** | **0.112958** | **0.005028** | **1.525593** | **19.726283** |\n\n**关键发现**:\n- **分类变体 Fisher ratio 比 MLM/vanilla 高 3-5 个数量级**\n- Binary 最强 (19.73) > 9-class (4.47) > scrambled (2.60) >> topic (0.01) >> MLM/vanilla (~0)\n- MLM 和 vanilla 的 inter-class distance 接近 0，表明 Stage-1 MLM 几乎不编码 jailbreak/benign 区分\n\n### 对 \"Optimization Regularization\" Claim 的启示\n\n这些结果**强有力支持** optimization regularization 假说：\n\n1. **分类 DAPT 产生 representation collapse** (PR 大幅下降)，将高维表征压缩到少数几个方向，而 MLM DAPT 保持接近 vanilla 的丰富结构\n2. **分类 DAPT 的 Fisher ratio 极高**，说明表征空间被分类目标\"雕刻\"出类别结构；scrambled 也有高 Fisher ratio (2.60) 是因为虽然标签被打乱，但分类训练本身仍然迫使模型学习某种判别结构\n3. **Weight distance 相近但 representation 差异巨大**——所有变体改动权重的幅度类似 (~0.2-0.4% relative)，但分类 DAPT 把表征空间压缩到 1-4 维有效维度，而 MLM 保持 7 维，vanilla 13 维"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp49-repr-analysis.md"
+}

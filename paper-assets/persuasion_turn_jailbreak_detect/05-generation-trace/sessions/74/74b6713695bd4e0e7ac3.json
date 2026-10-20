@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74b6713695bd4e0e7ac3",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper writing method d019",
+  "task_key": "worker_paper_writing_method_d019_20260518T061155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_d019_20260518T061155_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "40dd7835508d5e09fa129d13e82c7a7f9ff6039d1a9dc9def62b483c475e7d9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "~1160 words of content (LaTeX commands excluded), within the ~1400 budget.\n\nmethod.tex rewritten. Key changes:\n\n- **Section 3.2** renamed from \"Persuasion-Aware Turn Encoding\" to \"Turn-Level Encoder Adaptation\" with all five variants (9-class, binary, scrambled, MLM-only, vanilla) described as a controlled decomposition\n- **Decomposition logic paragraph** explains what each comparison isolates\n- **Taxonomy paragraph** now states upfront that it does not drive detection; its value is interpretability\n- **Section 3.4** reframed around \"why five variants?\", \"why does domain exposure suffice?\" (with DAPT citation), and \"why retain the taxonomy?\" with the vanilla baseline paragraph quantifying the +72pp gap\n- All writing rules followed: zero em-dashes in rendered text, no trailing -ing phrases, no stacked transition words, no banned vocabulary"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method-d019.md"
+}

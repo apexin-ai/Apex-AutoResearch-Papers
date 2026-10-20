@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp17_dataset_scale",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:23:23.670Z",
+    "updated_at": "2026-05-19T23:47:04.557Z",
+    "hypothesis": "Doubling training data from 500 to 1000 conversations (with new topic seeds) will maintain or improve the DAPT evidence hierarchy (9-class >> MLM >> vanilla on OOD), demonstrating that results are not an artifact of small sample size.",
+    "spec": {
+      "command": "GPU2: vanilla 3s done + MLM running; GPU3: 9-class running",
+      "server": "westd-33183",
+      "data_path": "data/expanded_1000/ (700 train / 150 val / 150 test)",
+      "data_count": 1000,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": "42,123,456",
+      "hypothesis": "Doubling training data from 500 to 1000 conversations maintains or improves the evidence hierarchy and cross-attack generalization, proving results are not small-sample artifacts and DAPT benefits scale with data",
+      "gpu": "cuda:2 (MLM), cuda:3 (9-class)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T23:47:03.858Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T23:47:04.721149+00:00",
+  "trigger": "update_registry"
+}

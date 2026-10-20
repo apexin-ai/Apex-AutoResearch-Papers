@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51bc2fc15f92348c8ffe",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "ops s3 backup check",
+  "task_key": "worker_ops_s3-backup-check_20260523T093820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s3-backup-check_20260523T093820_result.json",
+    "occurrence": 1,
+    "bytes": 1405,
+    "sha256": "ddf94ddfa77e803dc1357dee6b4e394f4413bafc758de9cff8a72d491aa88601"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 磁盘占用清单\n\n**总大小：5.5G**\n\n### 各目录大小（降序）\n\n| 目录 | 大小 | 备注 |\n|------|------|------|\n| `checkpoints/` | **5.0G** | 占总量 91% |\n| `data/` | **538M** | 占总量 9.5% |\n| `results/` | 13M | |\n| `figures/` | 1.1M | |\n| `paper/` | 1.3M | |\n| `logs/` | 1.2M | |\n| `scripts/` | 2.1M | |\n| `src/` | 876K | |\n| `docs/` | 24K | |\n| `artifacts/` | 12K | |\n\n无 `.git/` 目录。根目录无大型模型文件。\n\n### checkpoints 细分\n\n| 子目录 | 大小 |\n|--------|------|\n| `exp27_mean_pooling/` | **2.1G** |\n| `exp59_seed42/` | 721M |\n| `exp59_seed123/` | 721M |\n| `exp59_seed456/` | 721M |\n| `plan_016v2_topic/` | 710M |\n| `exp26_frozen_seed*` (×3) | 各 12M |\n| `exp36_frozen_mlm_seed*` (×3) | 各 12M |\n\n### data 细分（较大的）\n\n| 子目录 | 大小 |\n|--------|------|\n| `plan_002_splits/` | 85M |\n| `generated/` | 44M |\n| `exp59_resample/` | 41M |\n| `expanded_*/` (×2) | 各 21M |\n| `mhj/` | 21M |\n| `exp61_partition_seed*` (×10) | 各 9M |\n\n### 备份瘦身建议\n\n- **排除 `checkpoints/`** 可省 5.0G（91%），备份体积降到 ~500M\n- 如只保留最终模型，可只留 `exp59_seed*`（3×721M）和 `plan_016v2_topic`（710M），删掉 `exp27_mean_pooling`（2.1G）\n- `data/` 中 `exp61_partition_seed*` 有 10 个 seed 共 90M，如果可以重新生成也可排除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-s3-backup-check.md"
+}

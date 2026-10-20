@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "857c87af52eaec58a402",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "infra server check",
+  "task_key": "worker_infra_server-check_20260522T032303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_server-check_20260522T032303_result.json",
+    "occurrence": 1,
+    "bytes": 1476,
+    "sha256": "c10d8b3de7ec48f40e7d72a637cfbe84f9be9766f477a7734e5b343747e0423f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-33183 服务器状态\n\n### GPU\n| 型号 | 显存 | 已用 | 利用率 |\n|------|------|------|--------|\n| NVIDIA RTX PRO 6000 Blackwell Server Edition | 96GB | 0 MiB | 0% |\n\n**注意**：torch 只检测到 **1 张 GPU**（`gpus=1`），但项目约束要求使用 cuda:0-3 共 4 张卡。可能需要检查 `CUDA_VISIBLE_DEVICES` 或驱动配置。当前无 GPU 进程运行。\n\n### 磁盘\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| /root | 30G | 29G | 1.3G | **96%** |\n\n**警告：根分区仅剩 1.3G，接近满载。** checkpoints 目录占 22G。\n\n### Python 环境（conda base）\n- Python 3.10.12\n- torch=2.8.0+cu128, CUDA=True\n- transformers=5.8.1\n- datasets=4.8.5\n- accelerate=1.13.0\n\n### 项目目录\n```\nartifacts/  checkpoints/  data/  docs/  figures/  logs/  paper/  results/  scripts/  src/\n```\n\n### Checkpoints（26个）\nexp15 系列（roberta_large 9class/vanilla, seed 42/123/456）、exp15b（lr1e5）、exp16/16b/17、exp18（e2e）、exp20（bert_base）、exp26（frozen）、exp27（mean_pooling）、exp36（frozen_mlm）\n\n### 生成数据\nactorattack、crescendo、deceptive_delight、fitd、benign 各版本（v2/v3/v4）、wildchat_benign 等 32 个文件\n\n### 需关注的问题\n1. **磁盘 96%** — 仅剩 1.3G，任何新实验/checkpoint 都会撑爆\n2. **GPU 数量异常** — torch 只检测到 1 张 GPU，预期 4 张（cuda:0-3）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-server-check.md"
+}

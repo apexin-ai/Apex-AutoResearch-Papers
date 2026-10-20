@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "19fb68c9f6052df5a727",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "train exp2 actorattack ood v2",
+  "task_key": "worker_train_exp2-actorattack-ood-v2_20260518T113927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_exp2-actorattack-ood-v2_20260518T113927.log",
+    "occurrence": 1,
+    "bytes": 1337611,
+    "sha256": "5551794aeede65419b015fc1a61c4b7f89dfd6d9cfada95ccc41e1ac755e0e9f"
+  },
+  "statistics": {
+    "messages": 904,
+    "user_turns": 1,
+    "tool_calls": 403,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 90,
+      "tool_call": 403,
+      "tool_result": 403,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 862,
+      "chunks": [
+        {
+          "path": "19fb68c9f6052df5a727-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "19fb68c9f6052df5a727-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "19fb68c9f6052df5a727-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "19fb68c9f6052df5a727-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "19fb68c9f6052df5a727-part-0005.json",
+          "message_count": 142
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 42,
+      "chunks": [
+        {
+          "path": "19fb68c9f6052df5a727-part-0005.json",
+          "message_count": 38
+        },
+        {
+          "path": "19fb68c9f6052df5a727-part-0006.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-exp2-actorattack-ood-v2.md"
+}

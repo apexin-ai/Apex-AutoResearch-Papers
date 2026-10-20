@@ -1,0 +1,37 @@
+{
+  "total_turns": 3722,
+  "valid_turns": 2668,
+  "failed_turns": 1054,
+  "strategy_distribution": {
+    "7": 1871,
+    "5": 203,
+    "6": 520,
+    "0": 23,
+    "2": 6,
+    "1": 5,
+    "4": 40
+  },
+  "avg_confidence": 0.9395,
+  "per_attack_type_distribution": {
+    "persuasion-based": {
+      "7": 342,
+      "5": 194
+    },
+    "benign": {
+      "7": 1487,
+      "0": 23,
+      "2": 6,
+      "1": 5,
+      "4": 40,
+      "5": 9,
+      "6": 1
+    },
+    "cipher-based": {
+      "6": 519,
+      "7": 42
+    }
+  },
+  "model_used": "openai/gpt-5.5",
+  "cost_usd": 10.68,
+  "note": "1054 turns failed due to API credit exhaustion mid-run (403 insufficient quota). Failed turns are cipher-based and later conversations."
+}

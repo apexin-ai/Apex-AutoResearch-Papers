@@ -1,0 +1,68 @@
+{
+  "exp_id": "exp19_wildchat_fpr",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:37:11.207Z",
+    "updated_at": "2026-05-20T12:45:10.364Z",
+    "hypothesis": "9-class DAPT classifier maintains FPR < 15% on high-drift real-world benign conversations from WildChat (after excluding jailbreak-contaminated samples), demonstrating external validity beyond synthetic benign data and addressing reviewer concern about deployment false positive rates",
+    "server": "westd-33183",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-33183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T12:37:59.757Z"
+    },
+    "spec": {
+      "command": "python scripts/exp19_wildchat_fpr.py",
+      "server": "westd-33183",
+      "gpu": "cuda:0",
+      "pid": "28318",
+      "log_path": "results/exp19_wildchat_fpr.json",
+      "submitted_at": "2026-05-20T12:41:54.600Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wildchat_benign_226.jsonl (226 filtered benign, avg 7.4 turns)",
+      "data_count": 226,
+      "model_name": "microsoft/deberta-v3-base (exp17 checkpoints: 9-class/MLM/vanilla)",
+      "seed": "42,123,456",
+      "checkpoint_path": "checkpoints/exp17/",
+      "wall_clock_seconds": 195.8,
+      "gpu_hours": 0.05
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "dataset": "wildchat_benign_226 (226 filtered multi-turn benign, avg 7.4 turns)",
+      "9class_fpr": {
+        "seed42": 0.668,
+        "seed123": 0.611,
+        "seed456": 0.765,
+        "mean": 0.681,
+        "std": 0.064
+      },
+      "mlm_fpr": {
+        "seed42": 0.367,
+        "seed123": 0.646,
+        "seed456": 0.323,
+        "mean": 0.445,
+        "std": 0.143
+      },
+      "vanilla_fpr": {
+        "seed42": 0.473,
+        "seed123": 0.425,
+        "seed456": 0.544,
+        "mean": 0.481,
+        "std": 0.049
+      },
+      "note": "NEGATIVE: All variants show extreme FPR on real-world benign. 9-class worst (68.1%). Used exp17 checkpoints (Qwen 1000 scale). Severe distribution shift between synthetic training benign and real WildChat conversations."
+    },
+    "completed_at": "2026-05-20T12:45:10.364Z"
+  },
+  "timestamp": "2026-05-20T12:45:10.520162+00:00",
+  "trigger": "update_registry"
+}

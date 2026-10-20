@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_016v2_topic_perturbation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:52:43.895Z",
+    "updated_at": "2026-05-18T06:52:57.933Z",
+    "hypothesis": "Topic classification model will show significant perturbation degradation comparable to vanilla baseline, as non-aligned classification does not teach lexically-invariant features",
+    "parent": "plan_016v2_topic_control"
+  },
+  "timestamp": "2026-05-18T06:52:58.018347+00:00",
+  "trigger": "update_registry"
+}

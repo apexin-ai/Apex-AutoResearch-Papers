@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan_012_gpt55_judge",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T03:20:47.277Z",
+    "updated_at": "2026-05-18T03:21:18.254Z",
+    "hypothesis": "Zero-shot LLM-as-judge (GPT-5.5) will underperform specialized trained classifiers at early jailbreak detection despite being a stronger LLM than Qwen3-8B, establishing that even frontier LLMs cannot match trained detection models",
+    "parent": "plan_012_llm_judge_qwen",
+    "spec": {
+      "command": "python src/llm_judge_gpt55.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/test.jsonl",
+      "data_count": 76,
+      "model_name": "GPT-5.5",
+      "seed": 42,
+      "checkpoint_source": "N/A (API inference, no checkpoint)",
+      "eval_data": "plan_002 test split (76 samples)",
+      "checkpoint_path": "N/A (API inference)",
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/plan_012_gpt55_judge.json"
+    }
+  },
+  "timestamp": "2026-05-18T03:21:18.287725+00:00",
+  "trigger": "update_registry"
+}

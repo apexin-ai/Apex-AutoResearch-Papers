@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61dbbf0b4edd7d5797be",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "util get exp15b pid",
+  "task_key": "worker_util_get-exp15b-pid_20260519T090819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_util_get-exp15b-pid_20260519T090819_result.json",
+    "occurrence": 1,
+    "bytes": 254,
+    "sha256": "b52d0cea6decf5e669cd5d48cabca6e6a3297a6120d69cfc4f2234a381a7cb78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**PID: 256720**\n\n命令: `/root/miniconda3/bin/python3.12 scripts/exp15b_roberta_large_lr1e5.py`\n\n运行在 GPU 0，显存占用 8654MiB / 97887MiB，GPU 利用率 96%，已运行约 5 分钟。父进程 PID 256719（bash wrapper）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/util-get-exp15b-pid.md"
+}

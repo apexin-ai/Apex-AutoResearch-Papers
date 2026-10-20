@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "645b27a35d543d5661d1",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp2 actorattack mcnemar",
+  "task_key": "worker_eval_exp2-actorattack-mcnemar_20260518T135753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp2-actorattack-mcnemar_20260518T135753_result.json",
+    "occurrence": 1,
+    "bytes": 1192,
+    "sha256": "e86a830e93e43b7684b1c335084df9118fb180bd804e409f33cf1c7403890ef1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n## McNemar Test 结果：9-class vs Vanilla on ActorAttack OOD (118 samples)\n\n| K | Seed | p-value | 9class_right | vanilla_right | total_discord |\n|---|------|---------|-------------|---------------|---------------|\n| k1 | 42 | 3.4e-10 | 52 | 4 | 56 |\n| k1 | 123 | 1.5e-08 | 42 | 3 | 45 |\n| k1 | 456 | 9.1e-13 | 53 | 0 | 53 |\n| k2 | 42 | 1.9e-13 | 59 | 1 | 60 |\n| k2 | 123 | 6.5e-12 | 52 | 1 | 53 |\n| k2 | 456 | 4.4e-16 | 68 | 0 | 68 |\n| k3 | 42 | 1.1e-16 | 70 | 0 | 70 |\n| k3 | 123 | 1.6e-14 | 61 | 0 | 61 |\n| k3 | 456 | ~0 | 74 | 0 | 74 |\n| k5 | 42 | ~0 | 77 | 0 | 77 |\n| k5 | 123 | 1.1e-16 | 71 | 0 | 71 |\n| k5 | 456 | ~0 | 77 | 0 | 77 |\n| full | 42 | ~0 | 78 | 0 | 78 |\n| full | 123 | 1.1e-16 | 72 | 0 | 72 |\n| full | 456 | ~0 | 78 | 0 | 78 |\n\n**所有 15 组 McNemar test 均 p<0.001**，方向全部 9class > vanilla。K≥3 时 discordant 样本 100% 偏向 9-class（vanilla_right=0）。\n\n产出文件：\n- `results/exp2_actorattack_mcnemar.json` — McNemar 统计结果\n- `results/exp2_actorattack_per_sample_preds.json` — per-sample predictions 备查\n- Registry `exp2_actorattack_mcnemar` 已更新为 DONE/success"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp2-actorattack-mcnemar.md"
+}

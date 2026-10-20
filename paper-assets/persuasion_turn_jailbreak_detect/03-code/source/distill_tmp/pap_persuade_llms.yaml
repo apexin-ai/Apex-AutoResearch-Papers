@@ -1,0 +1,106 @@
+paper_key: "How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs"
+title: "How Johnny Can Persuade LLMs to Jailbreak Them: Rethinking Persuasion to Challenge AI Safety by Humanizing LLMs"
+venue: "ACL 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - PAIR
+    - GCG
+    - ARCA
+    - GBDA
+  metrics:
+    - {name: "Attack Success Rate (ASR)", direction: "higher_better"}
+    - {name: "MT-bench (utility)", direction: "higher_better"}
+    - {name: "GPT-4 Judge harmfulness (1-5 Likert)", direction: "higher_better_for_attack"}
+  datasets:
+    - {name: "AdvBench", size: "50 distinct harmful queries"}
+    - {name: "OpenAI 14 risk categories", size: "42 harmful queries (3 per category), 33600 PAPs total via 40 techniques x 20 variants"}
+  ablation_dimensions:
+    - "persuasion technique type (40 techniques across 13 strategies)"
+    - "ethical vs unethical techniques"
+    - "number of trials (1-10)"
+    - "risk category vulnerability"
+    - "defense type (mutation-based vs detection-based vs adaptive)"
+  training_recipe:
+    optimizer: "OpenAI fine-tuning API default"
+    lr: "not specified"
+    hardware: "not specified (API-based fine-tuning)"
+    fine_tune_base: "GPT-3.5"
+    training_data: "120-230 successful PAP examples"
+    evaluator: "GPT-4 Judge"
+  method_family: "persuasion-based jailbreak / social-science-grounded adversarial prompting"
+
+positioning:
+  core_claim: "将LLM视为'类人沟通者'而非纯算法系统，利用社会科学中40种说服技术系统性生成可读的对抗性提示，揭示了模型越强大反而越容易被说服攻击的反直觉现象"
+  key_results: "PAP在10轮试验中对Llama-2/GPT-3.5/GPT-4达到92%+ ASR；3轮试验：Llama-2 68%, GPT-3.5 86%, GPT-4 88%；远超PAIR(最高54%)和GCG(仅GPT-3.5达86%)；Claude系列0% ASR；提出的Tuned Summarizer防御将GPT-4 ASR从92%降至2%"
+  limitations:
+    - "仅关注单轮说服，但说服通常是多轮交互过程"
+    - "某些技术如'foot in the door'和'reciprocity'依赖对话上下文积累"
+    - "每种技术生成等量PAP，未考虑自然分布差异"
+    - "多轮场景中策略有效性是否会增强尚不清楚"
+    - "LLM越狱输出在现实中是否真正有害仍是开放问题"
+    - "主要关注说服技术，缺乏对具体语言线索和关键词的深入分析"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "以'grandma exploit'等真实案例开篇，指出日常用户通过自然语言说服即可绕过安全措施，将AI安全问题从专家领域拉到普通人视角"
+  tension: "现有研究将LLM视为算法系统(GCG等梯度攻击)或指令执行者(角色扮演)，忽略了LLM作为'类人沟通者'易受人际影响的本质特征"
+  key_insight: "社会科学中数十年积累的说服理论可以直接迁移到LLM安全领域——LLM对逻辑诉求(logical appeal)和权威背书(authority endorsement)等说服技术高度敏感，且模型越强大越容易被说服"
+  argument_chain: "传统攻击局限(算法化/不可读) → LLM具有类人沟通特征 → 社会科学说服理论可迁移 → 构建40技术分类法 → 训练说服改写器 → 广扫14风险类别验证 → 深度迭代探测达92% ASR → 现有防御失效 → 提出自适应防御"
+  contribution_framing: "7个编号贡献，按研究流程递进排列：分类法→工具→广扫→深探→防御分析→防御探索→负责任披露"
+  intro_structure: "5段+贡献列表：P1背景与安全挑战 → P2传统攻击局限 → P3说服作为被忽视的攻击向量 → P4与现有社会工程方法的区别 → P5本文新视角 → 7条贡献"
+  notable_technique: "三级'人化'框架（算法系统→指令执行者→类人沟通者）清晰定位本工作在攻击谱系中的位置，Figure 2用一张图完成整个positioning"
+
+figures:
+  figure_count: 11
+  figure1:
+    type: "teaser_result"
+    description: "展示说服分类法和PAP生成流程概览，同时给出92%+ ASR的关键结果数字"
+    narrative_role: "一图概括全文贡献：分类法→攻击→结果，让读者立即理解方法和效果"
+    design_elements: ["分类法结构展示", "攻击流程箭头", "关键ASR数字标注", "多模型结果并列"]
+    visual_style: "信息密度高的概览图，整合分类法层次结构与攻击效果数据"
+  result_figures:
+    - figure_id: "Figure 7"
+      viz_type: "bar_chart"
+      what_compared: "GPT-3.5在14个OpenAI风险类别上的PAP成功率"
+      how_gain_highlighted: "按风险类别分组展示，突出不同类别的脆弱性差异"
+      design_note: "广扫结果用分类别条形图呈现，直观展示攻击面分布"
+    - figure_id: "Figure 9"
+      viz_type: "line_plot"
+      what_compared: "PAP在多轮试验中的ASR变化，GPT-4 vs GPT-3.5"
+      how_gain_highlighted: "GPT-4在早期试验中即展现更高脆弱性，反直觉发现通过线图趋势清晰呈现"
+      design_note: "用累积ASR曲线展示迭代探测效果，GPT-4曲线在上方形成视觉冲击"
+  ablation_figures:
+    - figure_id: "Figure 7"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["risk category (14个)", "persuasion technique effectiveness"]
+      design_note: "同时承担结果展示和消融分析的双重角色，按风险类别和技术类型交叉分析"
+  figure_narrative_role: "Figure 1(概览/定位) → Figure 2(三级人化框架positioning) → Figure 3(技术示例) → Figure 4(方法概览) → Figure 5-6(训练细节) → Figure 7(广扫结果) → Figure 8(定性示例) → Figure 9(迭代探测趋势) → Figure 10(GPT-4越狱示例) → Figure 11(防御效果示例)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "models (Llama-2, GPT-3.5, GPT-4, Claude-1, Claude-2)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_model"
+    highlight_strategy: "PAP行突出显示，对比baseline"
+    statistical_reporting: "3轮试验ASR百分比"
+    num_baselines: 4
+    design_note: "简洁的方法×模型矩阵，5个模型覆盖开源/闭源/安全增强三类，PAP行数字远高于baseline形成视觉对比"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["defense type (7种post-hoc防御)"]
+      variation_style: "delta_from_base"
+      design_note: "用ASR下降值(↓)统一呈现各防御效果，负数越大越好，直观展示防御能力"
+    - table_id: "Table 4"
+      what_varied: ["adaptive defense type", "utility impact (MT-bench)"]
+      variation_style: "full_numbers"
+      design_note: "同时展示防御效果(ASR)和实用性代价(MT-bench)，揭示安全-实用性权衡"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 1(40种说服技术完整分类法)和Table 5(技术到社会科学文献的详细映射)"
+    reason: "分类法详情和文献映射篇幅大但对理解方法必要，放入正文/附录保持主线清晰"

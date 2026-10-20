@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "cc3986d7468f8643b067",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "train plan017 mlm control",
+  "task_key": "worker_train_plan017-mlm-control_20260518T052428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan017-mlm-control_20260518T052428.log",
+    "occurrence": 1,
+    "bytes": 815988,
+    "sha256": "ef4313d4f6a5d29704805e6856feacec312565280268dfe0eb1f8563e6182391"
+  },
+  "statistics": {
+    "messages": 355,
+    "user_turns": 1,
+    "tool_calls": 122,
+    "roles": {
+      "log": 1,
+      "system": 45,
+      "record": 2,
+      "assistant": 61,
+      "tool_call": 122,
+      "user": 1,
+      "tool_result": 122,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "cc3986d7468f8643b067-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 349,
+      "chunks": [
+        {
+          "path": "cc3986d7468f8643b067-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "cc3986d7468f8643b067-part-0002.json",
+          "message_count": 175
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-plan017-mlm-control.md"
+}

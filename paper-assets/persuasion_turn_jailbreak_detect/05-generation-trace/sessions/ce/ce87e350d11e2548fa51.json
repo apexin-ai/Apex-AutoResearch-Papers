@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ce87e350d11e2548fa51",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp32 strategy prediction",
+  "task_key": "worker_code_exp32-strategy-prediction_20260520T193016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp32-strategy-prediction_20260520T193016.log",
+    "occurrence": 1,
+    "bytes": 635791,
+    "sha256": "39800b8d0b6e2a7dd25816818537000cb22b349dba93ac8fec75d3ca53bc4474"
+  },
+  "statistics": {
+    "messages": 177,
+    "user_turns": 0,
+    "tool_calls": 70,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 33,
+      "tool_call": 70,
+      "tool_result": 70,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 177,
+      "chunks": [
+        {
+          "path": "ce87e350d11e2548fa51-part-0001.json",
+          "message_count": 157
+        },
+        {
+          "path": "ce87e350d11e2548fa51-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp32-strategy-prediction.md"
+}

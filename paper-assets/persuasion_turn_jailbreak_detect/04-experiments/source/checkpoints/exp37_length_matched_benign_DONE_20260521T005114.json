@@ -1,0 +1,67 @@
+{
+  "exp_id": "exp37_length_matched_benign",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:40:14.880Z",
+    "updated_at": "2026-05-21T00:51:14.395Z",
+    "hypothesis": "9-class 模型不依赖 turn count 作为检测 shortcut：截断 benign 对话到 jailbreak 匹配长度 (3-10 turns) 后 FPR 不会显著上升，WildChat 短对话 (3-10 turns) 的 FPR 也不高于长对话，因为 DAPT 训练迫使模型学习说服策略内容特征而非 length 统计量。",
+    "parent": "exp30_length_stratified",
+    "spec": {
+      "command": "python scripts/exp37_length_matched_benign.py",
+      "server": "westd-33183",
+      "data_path": "data/wildchat_benign_226.jsonl + data/plan_002_splits/test.jsonl + data/generated/deceptive_delight_all.jsonl + data/generated/actorattack_all.jsonl",
+      "data_count": "226 WildChat + 76 test + 80 DD + 80 AA = 462",
+      "model_name": "plan_002 9-class DeBERTa+BiGRU",
+      "seed": "42,123,456",
+      "checkpoint_source": "/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints_archive/plan_002{,_seed123,_seed456}/",
+      "eval_data": "WildChat benign 226 + test benign 38 + DD OOD 80 + AA OOD 80"
+    },
+    "checkpoint_path": "/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints_archive/plan_002{,_seed123,_seed456}/",
+    "log_path": "results/exp37_length_matched_benign.json",
+    "metrics": {
+      "part1_wildchat_fpr": {
+        "short_3_10": {
+          "fpr_mean": 0.77,
+          "fpr_std": 0.105,
+          "n": 196
+        },
+        "medium_11_15": {
+          "fpr_mean": 0.942,
+          "fpr_std": 0.054,
+          "n": 23
+        },
+        "long_16_plus": {
+          "fpr_mean": 0.857,
+          "fpr_std": 0.117,
+          "n": 7
+        },
+        "note": "Short bucket FPR LOWER than Medium — length is NOT the driver of WildChat FPR"
+      },
+      "part2_benign_truncation": {
+        "original_fpr": 0,
+        "K3_fpr": 0,
+        "K5_fpr": 0,
+        "K8_fpr": 0,
+        "K10_fpr": 0,
+        "note": "FPR=0% at ALL truncation levels including K=3. Model does not use length as shortcut."
+      },
+      "part3_jailbreak_padding": {
+        "DD_original": 0.996,
+        "DD_padded": 0.971,
+        "DD_delta": -0.025,
+        "AA_original": 0.963,
+        "AA_padded": 0.383,
+        "AA_delta": -0.579,
+        "note": "DD resilient to padding. AA collapses (-57.9pp). BiGRU attention dilution on subtle attacks."
+      }
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-21T00:51:14.395Z"
+  },
+  "timestamp": "2026-05-21T00:51:14.734772+00:00",
+  "trigger": "update_registry"
+}

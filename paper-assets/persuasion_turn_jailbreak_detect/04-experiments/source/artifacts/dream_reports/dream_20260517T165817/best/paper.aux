@@ -1,0 +1,115 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{russinovich2024greatnow}
+\citation{zhou2024speak}
+\citation{jiang2024deceptive}
+\citation{bullwinkel2025multiturn}
+\citation{su2026deepcontext}
+\citation{zeng2024persuasion}
+\citation{hagendorff2026nature}
+\citation{austin1962things,searle1969speech}
+\citation{he2021debertav3}
+\citation{cialdini2001science}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{russinovich2024greatnow}
+\citation{zhou2024speak}
+\citation{jiang2024deceptive}
+\citation{hagendorff2026nature}
+\citation{alon2023detecting}
+\citation{inan2023llama}
+\citation{bullwinkel2025multiturn}
+\citation{su2026deepcontext}
+\citation{zeng2024persuasion}
+\citation{chen2025persuade}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn jailbreak attacks.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Jailbreak detection.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Persuasion and LLM safety.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\citation{cialdini2001science}
+\citation{zeng2024persuasion}
+\citation{zhao2024wildchat}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Stage 1: Persuasion-Grounded Encoder}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 2: Temporal Sequence Classification}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Baselines}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data Preparation and Register Normalization}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:data}{{4.1}{3}{Data Preparation and Register Normalization}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces TF-IDF separability before and after register normalization.}}{4}{table.caption.4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:tfidf_diagnostic}{{1}{4}{TF-IDF separability before and after register normalization}{table.caption.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Attack type statistics. TF-IDF measured against benign conversations.}}{4}{table.caption.5}\protected@file@percent }
+\newlabel{tab:attack_stats}{{2}{4}{Attack type statistics. TF-IDF measured against benign conversations}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Multi-Attack Dataset}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:multi_attack_data}{{4.2}{4}{Multi-Attack Dataset}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results: Early Detection on Clean Data}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main_results}{{5.1}{4}{Main Results: Early Detection on Clean Data}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Pragmatic Evasion Asymmetry}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:evasion}{{5.2}{4}{Pragmatic Evasion Asymmetry}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Persuasion strategy distribution (\%) by attack type.}}{5}{table.caption.6}\protected@file@percent }
+\newlabel{tab:strategy_dist}{{3}{5}{Persuasion strategy distribution (\%) by attack type}{table.caption.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces F1 by turn budget on clean (register-normalized) data. $\Delta $ is the improvement of DisPeD over the semantic baseline in percentage points. All $p$-values by bootstrap test.}}{5}{table.caption.7}\protected@file@percent }
+\newlabel{tab:main_results}{{4}{5}{F1 by turn budget on clean (register-normalized) data. $\Delta $ is the improvement of DisPeD over the semantic baseline in percentage points. All $p$-values by bootstrap test}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Ablation: Scrambled Label Analysis}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:ablation}{{5.3}{5}{Ablation: Scrambled Label Analysis}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Attack Zero-Shot Generalization}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:cross_attack}{{5.4}{5}{Cross-Attack Zero-Shot Generalization}{subsection.5.4}{}}
+\citation{zhao2024wildchat}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces DeBERTa encoder metrics on clean data.}}{6}{table.caption.8}\protected@file@percent }
+\newlabel{tab:encoder}{{5}{6}{DeBERTa encoder metrics on clean data}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Evasion hierarchy under adversarial paraphrasing (full conversation). Models ordered by abstraction level. Drop is the F1 degradation in percentage points.}}{6}{table.caption.9}\protected@file@percent }
+\newlabel{tab:evasion_full}{{6}{6}{Evasion hierarchy under adversarial paraphrasing (full conversation). Models ordered by abstraction level. Drop is the F1 degradation in percentage points}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Mechanistic Analysis: Escalation Trajectories}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:trajectory}{{5.5}{6}{Mechanistic Analysis: Escalation Trajectories}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Robustness on Hard Negatives}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:hard_negatives}{{5.6}{6}{Robustness on Hard Negatives}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Evasion hierarchy at $K$\,=\,2 turns.}}{7}{table.caption.10}\protected@file@percent }
+\newlabel{tab:evasion_k2}{{7}{7}{Evasion hierarchy at $K$\,=\,2 turns}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Effect of scrambling persuasion strategy labels. Drop is relative to properly labeled DisPeD.}}{7}{table.caption.11}\protected@file@percent }
+\newlabel{tab:scrambled}{{8}{7}{Effect of scrambling persuasion strategy labels. Drop is relative to properly labeled DisPeD}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Lexical Baseline Analysis}{7}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:lexical}{{5.7}{7}{Lexical Baseline Analysis}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Checkpoint Sensitivity}{7}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:checkpoint}{{5.8}{7}{Checkpoint Sensitivity}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why pragmatic features are structurally robust.}{7}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.21}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{alon2023detecting}{{1}{2023}{{Alon and Kamfonas}}{{}}}
+\bibcite{austin1962things}{{2}{1962}{{Austin}}{{}}}
+\bibcite{bullwinkel2025multiturn}{{3}{2025}{{Bullwinkel et~al.}}{{}}}
+\bibcite{chen2025persuade}{{4}{2025}{{Chen et~al.}}{{}}}
+\bibcite{cialdini2001science}{{5}{2001}{{Cialdini}}{{}}}
+\bibcite{hagendorff2026nature}{{6}{2026}{{Hagendorff}}{{}}}
+\bibcite{he2021debertav3}{{7}{2021}{{He et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Zero-shot cross-attack generalization (full conversation). The model is trained on Crescendo only.}}{8}{table.caption.12}\protected@file@percent }
+\newlabel{tab:cross_attack}{{9}{8}{Zero-shot cross-attack generalization (full conversation). The model is trained on Crescendo only}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Cross-attack early detection recall at $K$\,=\,2.}}{8}{table.caption.13}\protected@file@percent }
+\newlabel{tab:cross_attack_k2}{{10}{8}{Cross-attack early detection recall at $K$\,=\,2}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\bibcite{inan2023llama}{{8}{2023}{{Inan et~al.}}{{}}}
+\bibcite{jiang2024deceptive}{{9}{2024}{{Jiang et~al.}}{{}}}
+\bibcite{russinovich2024greatnow}{{10}{2024}{{Russinovich and Salem}}{{}}}
+\bibcite{searle1969speech}{{11}{1969}{{Searle}}{{}}}
+\bibcite{su2026deepcontext}{{12}{2026}{{Su et~al.}}{{}}}
+\bibcite{zeng2024persuasion}{{13}{2024}{{Zeng et~al.}}{{}}}
+\bibcite{zhao2024wildchat}{{14}{2024}{{Zhao et~al.}}{{}}}
+\bibcite{zhou2024speak}{{15}{2024}{{Zhou et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Strategy transition statistics. Monotonicity measures the fraction of transitions along the escalation direction. Entropy measures the diversity of transition types.}}{9}{table.caption.14}\protected@file@percent }
+\newlabel{tab:trajectory}{{11}{9}{Strategy transition statistics. Monotonicity measures the fraction of transitions along the escalation direction. Entropy measures the diversity of transition types}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Top-3 dominant strategy sequences by conversation type.}}{9}{table.caption.15}\protected@file@percent }
+\newlabel{tab:dominant_sequences}{{12}{9}{Top-3 dominant strategy sequences by conversation type}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces False-positive rate on hard negatives (high-drift benign) vs. random benign.}}{10}{table.caption.16}\protected@file@percent }
+\newlabel{tab:hard_negatives}{{13}{10}{False-positive rate on hard negatives (high-drift benign) vs. random benign}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces TF-IDF + LR performance by turn budget on clean data.}}{10}{table.caption.17}\protected@file@percent }
+\newlabel{tab:tfidf_performance}{{14}{10}{TF-IDF + LR performance by turn budget on clean data}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Top-5 discriminative features by LR coefficient.}}{10}{table.caption.18}\protected@file@percent }
+\newlabel{tab:top_features}{{15}{10}{Top-5 discriminative features by LR coefficient}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Checkpoint sensitivity analysis.}}{10}{table.caption.19}\protected@file@percent }
+\newlabel{tab:checkpoint}{{16}{10}{Checkpoint sensitivity analysis}{table.caption.19}{}}
+\gdef \@abspage@last{10}

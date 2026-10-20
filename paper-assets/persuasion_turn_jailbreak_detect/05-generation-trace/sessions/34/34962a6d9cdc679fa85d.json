@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34962a6d9cdc679fa85d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code plan003 scramble dryrun",
+  "task_key": "worker_code_plan003-scramble-dryrun_20260517T214849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan003-scramble-dryrun_20260517T214849_result.json",
+    "occurrence": 1,
+    "bytes": 1236,
+    "sha256": "aaa5520f6ca34924984367b5724087aad636e98a2e63ecfe94c6474c11589246"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完成，结果汇报：\n\n## 脚本验证结果\n\n**数据概况**: 336 conversations (175 jailbreak, 161 benign), 1444 jailbreak user turns, 1053 benign user turns\n\n### 分布对比 (shuffle 前后完全一致)\n\n| Strategy | Before | After |\n|----------|--------|-------|\n| 0 (benign) | 1053 | 1053 |\n| 1 | 157 | 157 |\n| 2 | 110 | 110 |\n| 3 | 112 | 112 |\n| 4 | 136 | 136 |\n| 5 | 94 | 94 |\n| 6 | 575 | 575 |\n| 7 | 104 | 104 |\n| 8 | 156 | 156 |\n\n### 验证项\n\n| 检查项 | 结果 |\n|--------|------|\n| 分布保持不变 | **True** |\n| Benign turns 被修改数 | **0** (正确) |\n| Jailbreak turns 被打乱数 | **924/1444 (64.0%)** |\n| `intended_strategy` 被修改数 | **0/1444** (未触碰) |\n\n### 结论\n\n脚本功能正确，无 bug：\n- 只 shuffle jailbreak 对话内的 `persuasion_strategy`，benign 完全不动\n- 分布精确保持\n- 64% 的 turn-strategy pair 被打乱（合理 — shuffle 是 per-conversation 的，短对话中重复 strategy 可能回到原位）\n- `intended_strategy` 字段未被触碰 — 这是设计如此（保留原始标注供参考，只打乱训练用的 `persuasion_strategy`）\n\n无需修改，可直接用于 ablation 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan003-scramble-dryrun.md"
+}

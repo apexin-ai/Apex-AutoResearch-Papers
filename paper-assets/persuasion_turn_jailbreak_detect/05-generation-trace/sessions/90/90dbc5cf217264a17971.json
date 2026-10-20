@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90dbc5cf217264a17971",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper edit experiments intro abstract",
+  "task_key": "worker_paper-edit_experiments-intro-abstract_20260521T214615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper-edit_experiments-intro-abstract_20260521T214615_result.json",
+    "occurrence": 1,
+    "bytes": 2180,
+    "sha256": "8a3bdd2f0d98f0c7dd7aa81c7e94dca61f5a82ecc24cc817687688c8f8f25f58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits verified. Protected areas confirmed intact.\n\n**Edit 5 subsection review** (required by instructions):\n\n| Section | First sentence | Qualifier needed? |\n|---|---|---|\n| 4.1 Cross-Attack Generalization (L56) | \"Vanilla encoders collapse under cross-attack transfer\" | No — Setup (L11) establishes synthetic context |\n| 4.2 Decomposing the Detection Mechanism (L104) | \"A clear evidence hierarchy emerges across seven variants\" | No — refers to Table 2, within Setup's synthetic scope |\n| 4.3 Summary (L139) | Now reads \"on our synthetic multi-turn benchmark\" | **Edited** ✓ |\n| 4.4 Cross-Encoder Validation (L174) | \"To test whether the evidence hierarchy depends on encoder choice\" | No — describes experimental procedure |\n| 4.5 Mixed-LLM Training (L188) | \"All preceding experiments use single-source (Qwen3-8B) data\" | No — already names the LLM source |\n| 4.6 Human Data Validation (L196) | \"Since both training and OOD evaluation data are Qwen3-8B-generated\" | No — explicitly notes synthetic origin |\n| 4.7 Perturbation Analysis (L227) | \"Under adversarial paraphrasing (BERTScore 0.92)\" | No — within synthetic benchmark context |\n| 4.8 Strategy Trajectory Analysis (L233) | \"The 9-class taxonomy provides interpretable characterization\" | No — describes taxonomy properties |\n\nNo additional qualifiers added beyond Edit 5.\n\n---\n\n**Results summary:**\n\n| Edit | Target | Status |\n|---|---|---|\n| 1 (Fix 10) | abstract.tex L4: `turn-level` added before `safety classifier` | ✅ |\n| 2 (Fix 7) | introduction.tex L28: `indicate...provides` → `are consistent with...providing` | ✅ |\n| 3 (Fix 9) | experiments.tex L6: OOD definition appended to Terminology | ✅ |\n| 4 (Fix 3) | experiments.tex L81: Table 2 caption — OOD upper bound note added | ✅ |\n| 5 (Fix 8) | experiments.tex L139: Summary — `on our synthetic multi-turn benchmark` inserted | ✅ |\n| 6 (Fix 11) | experiments.tex L91: `Mean pooling` → `9-class + mean pool` | ✅ |\n\nProtected areas: L27 (3-seed mean) ✓, L29 (Unless otherwise noted) ✓, L112 (TOST) ✓, intro L11 (systematically vary) ✓ — all intact."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-edit-experiments-intro-abstract.md"
+}

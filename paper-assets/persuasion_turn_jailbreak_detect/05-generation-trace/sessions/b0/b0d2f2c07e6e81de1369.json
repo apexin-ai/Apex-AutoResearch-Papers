@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0d2f2c07e6e81de1369",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "util download cka heatmap",
+  "task_key": "worker_util_download_cka_heatmap_20260518T192738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_util_download_cka_heatmap_20260518T192738_result.json",
+    "occurrence": 1,
+    "bytes": 277,
+    "sha256": "ed5cd1b120ce1485f961046a9992268a6281228ad3c009f3429faff5c6ac893d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 超时，文件未到达。如上所述，SSH 连接不可用，下载失败。\n\n**总结**：无法从 westd-33183 下载 `cka_heatmap.pdf`。原因是本机缺少该服务器的 SSH 密钥和配置。需要先配置 SSH 连接才能执行此任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/util-download-cka-heatmap.md"
+}

@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp61_random_binary_partition",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T17:26:39.121Z",
+    "updated_at": "2026-05-22T17:27:18.027Z",
+    "hypothesis": "Random binary partitions of 9 strategy labels will achieve comparable OOD generalization to the original binary label, confirming that DAPT learns domain representations rather than label semantics — any domain-relevant binary partition suffices",
+    "spec": {
+      "command": "python scripts/exp61_random_binary_partition.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/",
+      "data_count": 800,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": "0-9 (10 random partitions)",
+      "checkpoint_path": "results/exp61_random_binary_partition.json",
+      "log_path": "N/A"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "iid_f1": "1.000±0.000",
+      "dd_ood_f1": "1.000±0.000",
+      "aa_ood_f1": "0.964±0.109",
+      "n_partitions": 10,
+      "n_perfect": 9,
+      "outlier_seed": 7,
+      "outlier_aa_f1": 0.636,
+      "wall_clock_min": 16.1
+    },
+    "completed_at": "2026-05-22T17:27:18.027Z"
+  },
+  "timestamp": "2026-05-22T17:27:18.270039+00:00",
+  "trigger": "update_registry"
+}

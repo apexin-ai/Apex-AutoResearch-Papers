@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan_017_mlm_control",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T04:43:04.262Z",
+    "updated_at": "2026-05-18T05:48:07.098Z",
+    "hypothesis": "MLM continued pretraining (no classification labels) on the same training text will NOT achieve DD OOD F1 comparable to persuasion fine-tuning, proving that classification supervision (not just text exposure) is necessary for cross-attack generalization",
+    "parent": "plan_006_cross_attack_clean",
+    "spec": {
+      "command": "python src/train_deberta_mlm.py + python src/plan_017_dd_eval.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/train.jsonl",
+      "data_count": 500,
+      "model_name": "DeBERTa-v3-base (MLM continued pretraining)",
+      "seed": 42,
+      "checkpoint_source": "self-trained MLM",
+      "eval_data": "DD 80 + plan_002 test benign + IID test",
+      "checkpoint_path": "checkpoints/plan_017_mlm/",
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/plan_017_mlm_control.json"
+    }
+  },
+  "timestamp": "2026-05-18T05:48:07.132186+00:00",
+  "trigger": "update_registry"
+}

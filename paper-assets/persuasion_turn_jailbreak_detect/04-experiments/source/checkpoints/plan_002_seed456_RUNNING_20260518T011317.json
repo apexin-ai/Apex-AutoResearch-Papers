@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan_002_seed456",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T01:12:15.664Z",
+    "updated_at": "2026-05-18T01:13:17.785Z",
+    "hypothesis": "Reproduce plan_002 with seed=456 to confirm stability of persuasion-grounded DeBERTa detection advantage over vanilla baseline across random seeds",
+    "parent": "plan_002_clean_training",
+    "spec": {
+      "command": "python src/train_deberta.py + train_classifier.py + eval_early_detection.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/",
+      "data_count": 500,
+      "model_name": "DeBERTa-v3-base + BiGRU",
+      "seed": 456,
+      "checkpoint_source": "checkpoints/plan_002_seed456/",
+      "eval_data": "data/plan_002_splits/test.jsonl"
+    }
+  },
+  "timestamp": "2026-05-18T01:13:17.814186+00:00",
+  "trigger": "update_registry"
+}

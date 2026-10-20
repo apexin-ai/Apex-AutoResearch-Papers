@@ -1,0 +1,99 @@
+paper_key: "DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs"
+title: "DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs"
+venue: "arXiv preprint 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - Llama-Prompt-Guard-2 (86M)
+    - DeBERTa-v3 (86M)
+    - Llama-Guard-4 (12B)
+    - Granite-Guardian-3.3 (8B)
+    - Qwen3Guard (1B)
+    - GPT5-Nano
+    - Azure Prompt Shield
+    - AWS Prompt Attack Guardrails
+    - GCP Model Armor
+  metrics:
+    - {name: "F1 Score", direction: "higher_better"}
+    - {name: "Recall", direction: "higher_better"}
+    - {name: "Precision", direction: "higher_better"}
+    - {name: "Mean Turns to Detection", direction: "lower_better"}
+    - {name: "Per-Turn Latency (ms)", direction: "lower_better"}
+  datasets:
+    - {name: "Training set (HH-RLHF + XGuard + HarmBench + synthetic)", size: "437,058 sequences (~20% malicious)"}
+    - {name: "Multi-turn evaluation set (10 sources combined)", size: "1,010 samples"}
+    - {name: "JailBreakBench (single-turn)", size: "standard benchmark"}
+  ablation_dimensions:
+    - context strategy (full context vs. sliding window of last 5 turns)
+    - model architecture (stateful GRU vs. stateless encoders vs. generative guardrails)
+  training_recipe:
+    optimizer: "not explicitly stated"
+    lr: "1e-5"
+    batch_size: "512"
+    hardware: "T4 GPU (inference benchmark); training hardware not specified"
+    gru_hidden_size: 2048
+    gru_layers: 3
+    loss: "focal loss (gamma=2.0)"
+    epochs: 1
+  method_family: "stateful recurrent detection (GRU-based intent tracking with fine-tuned BERT embeddings)"
+
+positioning:
+  core_claim: "将安全检测从无状态的逐轮判断重新定义为有状态的意图轨迹追踪问题，用轻量 GRU 架构在多轮越狱检测上超越 12B+ 参数的无状态 guardrail，同时保持 sub-20ms 延迟"
+  key_results: "多轮越狱检测 F1=0.84 (vs. Llama-Prompt-Guard-2 0.67, Granite-Guardian 0.67); 单轮检测 F1=0.98; 延迟 19ms (vs. Granite-Guardian 125ms, enterprise APIs 77-317ms); 平均 4.24 轮检测到攻击"
+  limitations:
+    - "'玻璃大炮'效应：针对多轮检测的优化可能导致对新型攻击向量的脆弱性"
+    - "在复杂 function-calling 场景中出现误报，task-attention 机制混淆技术复杂性与恶意意图"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "以'安全鸿沟'(Safety Gap) 概念开篇——LLM 能力持续扩展，但安全护栏仍然是无状态的，将多轮对话视为断开的事件，这种设计缺陷被 Crescendo 和 ActorAttack 等渐进式攻击利用"
+  tension: "现有防御的双重困境：(1) 无状态检测器无法捕捉跨轮次的意图漂移；(2) 基于 LLM 的有状态方案因拼接完整对话历史导致二次方注意力开销，延迟过高无法实时部署。安全与效率看似不可兼得"
+  key_insight: "用轻量 RNN (GRU) 的隐藏状态替代 Transformer 的全对话历史拼接——以 O(1) 的增量推理代价维护对话状态，同时 hybrid residual 设计让模型既能检测渐进式攻击也能捕捉突发高强度违规"
+  argument_chain: "多轮攻击利用无状态检测器的盲区 → 拼接对话历史的方案延迟不可接受 → 将安全检测重新定义为状态空间问题 → GRU 以 O(1) 增量代价追踪意图轨迹 → hybrid residual 兼顾渐进和突发攻击 → F1=0.84 + 19ms 延迟验证"
+  contribution_framing: "4 个编号贡献：(1) turn-level embeddings with task-specific attention; (2) RNN-driven state estimation for intent tracking; (3) intent evolution detection across conversation; (4) SOTA F1=0.84 + sub-20ms latency 的实证结果"
+  intro_structure: "2 个子节结构：主体段落阐述问题动机和安全鸿沟 → Section 1.1 'The Computational Bottleneck of Current Defenses' 分析延迟问题 → Section 1.2 'DeepContext: Statefulness Through Recurrent Intent Tracking' 提出方案和 4 个贡献"
+  notable_technique: "将问题框架从'检测有害内容'升级为'追踪意图轨迹'，通过引入状态空间的视角让一个看似简单的架构(GRU)在叙事上变得具有方法论深度；同时用'state outperforms scale'的反直觉结论制造记忆点"
+
+figures:
+  figure_count: 1
+  figure1:
+    type: "method_overview"
+    description: "DeepContext 架构总览图。展示三阶段 pipeline：(1) 使用 fine-tuned BERT 和 task-specific weighted pooling 的 turn-level embedding 提取；(2) 通过 GRU 进行 recurrent intent tracking 以维护对话状态；(3) 带 hybrid residual connection 的 trajectory classifier 进行最终安全评分"
+    narrative_role: "作为唯一的 figure，承担核心方法展示的全部功能——让读者一图理解完整架构"
+    design_elements: ["三阶段 pipeline 布局", "数据流箭头", "组件标注", "residual connection 可视化"]
+    visual_style: "标准架构图风格，从左到右的 pipeline 流程，各组件用方框表示并标注名称和维度"
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "仅 Figure 1 (方法架构图)。所有实验结果完全用表格呈现，无结果可视化图表"
+
+tables:
+  table_count: 9
+  main_result_table:
+    table_id: "Table 4"
+    row_axis: "methods (detection models)"
+    col_axis: "F1 Score × Recall × Precision × Mean Turns to Detection"
+    row_organization: "by_category (三组：Lightweight Encoders / Generative Guardrails / Enterprise APIs / DeepContext)"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold_best (DeepContext 的 F1=0.84 为最高值加粗)"
+    statistical_reporting: "单一数值，无置信区间或标准差"
+    num_baselines: 9
+    design_note: "将 baseline 按类别分组（轻量编码器/生成式/企业API）使读者快速理解不同方案类型的性能层次；Mean Turns to Detection 作为独特指标展示多轮场景的时效性"
+  ablation_tables:
+    - table_id: "Table 5"
+      what_varied: ["context strategy (full context vs. sliding window last 5 turns)"]
+      variation_style: "full_numbers"
+      design_note: "对比 4 个 LLM 在 full context vs. sliding window 下的 F1，论证'给 LLM 更多上下文反而降低性能'的反直觉发现"
+    - table_id: "Table 6"
+      what_varied: ["single-turn vs. multi-turn detection capability"]
+      variation_style: "full_numbers"
+      design_note: "展示 DeepContext 在单轮场景也达到 SOTA (F1=0.98)，证明多轮优化不以牺牲单轮性能为代价"
+    - table_id: "Table 7"
+      what_varied: ["inference latency across models"]
+      variation_style: "full_numbers"
+      design_note: "单独用一张表展示延迟对比，强调 19ms vs. 125ms+ 的巨大优势，突出实时部署可行性"
+  supplementary_tables:
+    in_appendix: false
+    content: "Table 1-3 (训练数据集组成、超参数、评估数据集组成) 在正文中；Table 8-9 (Crescendo 和 DEFCON 攻击转录示例及逐轮风险评分) 在正文中作为定性分析"
+    reason: "论文较短，所有 9 张表都在正文中。定性案例表 (Table 8-9) 展示逐轮风险评分递增，为定量结果提供直觉解释"

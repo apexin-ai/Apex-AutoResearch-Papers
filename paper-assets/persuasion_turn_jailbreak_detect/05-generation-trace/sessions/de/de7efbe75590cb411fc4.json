@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de7efbe75590cb411fc4",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "monitor datagen progress check 3",
+  "task_key": "worker_monitor_datagen-progress-check-3_20260519T184734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_datagen-progress-check-3_20260519T184734_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "f468f739f4b9b94f9b44840b5f446bc05352b0705db62f26e3efd8fe00f73e6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen 任务只有 progress 文件没有最终 jsonl，说明脚本先写 progress，完成后才生成最终文件。\n\n| GPU | 任务 | 进程 | 进度 | 上次→本次 | 速率 | 状态 | ETA |\n|-----|------|------|------|-----------|------|------|-----|\n| 0 | Llama jailbreak | 无（已释放） | **251/250** | 217→251 | — | **已完成** ✓ | — |\n| 1 | Llama benign | PID 278684 (18.3GB) | **193/250** (77%) | 138→193 (+55) | ~55/h | 运行中 | ~1h |\n| 2 | Qwen jailbreak | PID 281219 (19.0GB) | **158/250** (63%) | 104→158 (+54) | ~54/h | 运行中 | ~1.7h |\n| 3 | Qwen benign | PID 281298 (19.0GB) | **120/250** (48%) | 80→120 (+40) | ~40/h | 运行中 | ~3.2h |\n\n**Llama jailbreak 已完成**：251 行（含可能的表头或多生成 1 条），文件 4.3MB，字段包含 `conversation_id, turns, label, source, attack_type, num_turns, strategy_sequence, metadata`，格式正确。\n\n其余 3 个任务正常推进，无异常。Qwen benign 最慢，预计还需 ~3 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-datagen-progress-check-3.md"
+}

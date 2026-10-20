@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp15c_roberta_large_mlm",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:24:40.278Z",
+    "updated_at": "2026-05-19T11:24:48.146Z",
+    "hypothesis": "RoBERTa-large MLM-only DAPT (domain exposure without classification head) will maintain AA performance near vanilla (1.000), showing that classification-based DAPT specifically causes the capacity-DAPT regression on AA, not domain exposure itself. If MLM AA ≈ 9class (0.946), then the DAPT mechanism itself conflicts with large model capacity regardless of task head.",
+    "parent": "exp15_roberta_large"
+  },
+  "timestamp": "2026-05-19T11:24:48.269288+00:00",
+  "trigger": "update_registry"
+}

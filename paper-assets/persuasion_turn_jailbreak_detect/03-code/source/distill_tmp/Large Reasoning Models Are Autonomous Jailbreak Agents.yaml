@@ -1,0 +1,31 @@
+paper_key: "Large Reasoning Models Are Autonomous Jailbreak Agents"
+title: "Large Reasoning Models Are Autonomous Jailbreak Agents"
+venue: "Nature Communications 2026"
+full_text_available: false
+analysis_level: "abstract_only"
+
+research:
+  baselines:
+    - "DeepSeek-R1 (as attacker)"
+    - "Gemini 2.5 Flash (as attacker)"
+    - "Grok 3 Mini (as attacker)"
+    - "Qwen3 235B (as attacker)"
+    - "9 widely used target models"
+  metrics:
+    - {name: "attack success rate", direction: "higher_better"}
+  datasets:
+    - {name: "harmful prompts benchmark", size: "70 items across 7 sensitive domains"}
+  ablation_dimensions:
+    - "attacker model variation (4 LRMs)"
+    - "target model variation (9 models)"
+    - "sensitive domain categories (7 domains)"
+  training_recipe: {info_available: false}
+  method_family: "autonomous LRM-driven multi-turn jailbreak"
+
+positioning:
+  core_claim: "Large reasoning models can autonomously plan and execute multi-turn jailbreak attacks via system-prompt-only instructions, achieving 97.14% overall attack success rate across all model combinations, revealing an alignment regression where LRMs systematically erode other models' safety guardrails."
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

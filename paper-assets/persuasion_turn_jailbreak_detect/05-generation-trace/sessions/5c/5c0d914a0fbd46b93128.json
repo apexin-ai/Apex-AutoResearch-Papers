@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c0d914a0fbd46b93128",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16 merge train v2",
+  "task_key": "worker_code_exp16-merge-train-v2_20260519T194753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-merge-train-v2_20260519T194753_result.json",
+    "occurrence": 1,
+    "bytes": 1135,
+    "sha256": "75a89ed6c81dcd57f349f9e42465a34a4b492b2dcd82e57587224b0f02beac4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程在运行（PID 293352 占 26.2% CPU，已使用 797MB 内存），日志是 Python 缓冲延迟，训练正常启动。\n\n---\n\n## 汇报\n\n### 1. Llama benign 完成确认\n`benign_llama_250.jsonl`: **250 行**，labels={'benign'} ✓\n`crescendo_jailbreak_llama.jsonl`: **251 行**，labels={'jailbreak'} ✓\n\n### 2. 数据合并结果\n\n| Split | Total | llama | qwen | benign | jailbreak |\n|-------|-------|-------|------|--------|-----------|\n| train | 350 | 176 | 174 | 176 | 174 |\n| val | 74 | 36 | 38 | 36 | 38 |\n| test | 76 | 38 | 38 | 38 | 38 |\n| **total** | **500** | **250** | **250** | **250** | **250** |\n\n输出目录：`data/mixed_llm/`\n\n### 3. 训练提交状态\n\n| Job | GPU | tmux session | 内容 |\n|-----|-----|-------------|------|\n| `exp16_vanilla_train` | cuda:0 | exp16_vanilla_train | vanilla baseline × 3 seeds (42/123/456) |\n| `exp16_9class_train` | cuda:1 | exp16_9class_train | 9-class DAPT+GRU × 3 seeds (42/123/456), 每 seed 2 阶段 |\n\n注意：去掉了 `--use_wandb` 因为服务器未配置 wandb API key。如需 wandb 追踪，需先 `wandb login`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16-merge-train-v2.md"
+}

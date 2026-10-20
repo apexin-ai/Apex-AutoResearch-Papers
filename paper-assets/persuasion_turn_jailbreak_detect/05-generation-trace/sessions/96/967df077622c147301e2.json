@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "967df077622c147301e2",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "audit roberta large seed check",
+  "task_key": "worker_audit_roberta-large-seed-check_20260523T194133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_roberta-large-seed-check_20260523T194133_result.json",
+    "occurrence": 1,
+    "bytes": 2194,
+    "sha256": "0d50296959816eacd858bb4678c9f369aa5eef8a79f51a85a1d66ebce25f2f5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告：RoBERTa-large 多 seed checkpoint 验证\n\n### 1. 结果文件（3 个 JSON，均含完整 3-seed 数据）\n\n| 文件 | 变体 | Seeds | 内容 |\n|------|------|-------|------|\n| `exp15_roberta_large.json` | vanilla + 9class | 42, 123, 456 | DD/AA OOD 的 per-seed F1 + mean±std (k1~full) |\n| `exp15b_roberta_large_lr1e5.json` | 9class (LR=1e-5) | 42, 123, 456 | DD/AA OOD 的 per-seed F1 + mean±std |\n| `exp15c_roberta_large_mlm.json` | MLM | 42, 123, 456 | DD/AA OOD 的 per-seed F1 + mean±std |\n\n### 2. 训练日志确认\n\n`exp15b_roberta_large_lr1e5.log` 明确记录了 3 个 seed 的完整训练过程：\n- seed=42: 5 epochs DAPT + 20 epochs GRU → DD full=0.9085, AA full=0.7350\n- seed=123: 5 epochs DAPT + 20 epochs GRU → DD full=0.9439, AA full=0.7512\n- seed=456: 5 epochs DAPT + 20 epochs GRU → DD full=0.9904, AA full=0.8575\n\n### 3. Checkpoint 状态\n\n**无 RoBERTa-large checkpoint 文件存留。** `checkpoints/` 目录下没有任何 roberta-large 相关的 `.pt` 文件或子目录。checkpoint 应该是评估完成后被清理了。现存的 checkpoint 目录（exp26, exp36, exp59 等）属于其他实验。\n\n### 4. RoBERTa-base 对比\n\n服务器上**未找到任何 RoBERTa-base 专属结果文件或目录**。`round7_seed_level_stats.json` 中的变体（9-class, Binary, Scrambled, MLM+cls, Topic, Vanilla）均为 RoBERTa-base 模型的不同配置，全部有 3 seed (42/123/456) 数据。\n\n### 5. 具体数值（exp15_roberta_large.json, vanilla 变体, full-turn F1）\n\n| Seed | DD OOD | ActorAttack |\n|------|--------|-------------|\n| 42 | 0.8827 | 1.0000 |\n| 123 | 0.9715 | 1.0000 |\n| 456 | 0.9261 | 1.0000 |\n| **mean±std** | **0.927±0.036** | **1.000±0.000** |\n\n### 结论\n\n**Table 4 的 \"3-seed mean±std\" 声称有完整数据支撑。** 三个结果 JSON 文件均包含 seeds 42/123/456 的独立评估值和 mean±std 统计量，训练日志确认了 3 个 seed 的完整训练流程。唯一缺失的是 checkpoint 文件本身（已被清理），但评估结果完整保留。registry 只记录单 seed 值是 registry 记录不全的问题，不影响实验数据的完整性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-roberta-large-seed-check.md"
+}

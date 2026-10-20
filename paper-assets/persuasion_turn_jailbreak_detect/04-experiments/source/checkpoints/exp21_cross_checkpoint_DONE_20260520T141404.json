@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp21_cross_checkpoint",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:55:11.906Z",
+    "updated_at": "2026-05-20T14:14:04.676Z",
+    "hypothesis": "Downstream OOD performance is insensitive to Stage-1 DAPT training variation: different DAPT seeds should yield cross-checkpoint F1 std < 2pp on IID, DD OOD, and AA OOD benchmarks.",
+    "server": "westd-33183",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-33183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T14:00:45.661Z"
+    },
+    "conclusion": "success",
+    "spec": {
+      "command": "TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 python -u scripts/exp21_cross_checkpoint.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/",
+      "data_count": 500,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/exp17/9class_seed{42,123,456}/deberta_multitask/best",
+      "eval_data": "plan_002_splits/test + deceptive_delight_all + actorattack_all",
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "/tmp/exp21_full.log"
+    },
+    "completed_at": "2026-05-20T14:14:04.676Z"
+  },
+  "timestamp": "2026-05-20T14:14:04.822976+00:00",
+  "trigger": "update_registry"
+}

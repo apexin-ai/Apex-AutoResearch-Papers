@@ -1,0 +1,111 @@
+paper_key: "ActorAttack: Red-Teaming Large Language Models via Multi-Turn Actor Network Theory"
+title: "ActorAttack: Red-Teaming Large Language Models via Multi-Turn Actor Network Theory"
+venue: "ICLR 2025 submission 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - GCG
+    - PAIR
+    - PAP
+    - CipherChat
+    - CodeAttack
+    - Crescendo
+  metrics:
+    - {name: "Attack Success Rate (ASR)", direction: "higher_better"}
+    - {name: "GPT-4o Judge harmfulness score (1-5)", direction: "higher_better_for_attack"}
+    - {name: "Llama Guard 2 unsafe probability", direction: "lower_better_for_stealth"}
+    - {name: "GSM8K (utility)", direction: "higher_better"}
+    - {name: "MMLU (utility)", direction: "higher_better"}
+    - {name: "HumanEval (utility)", direction: "higher_better"}
+    - {name: "MT-Bench (utility)", direction: "higher_better"}
+  datasets:
+    - {name: "HarmBench", size: "200 behaviors (50 sampled for ablation)"}
+    - {name: "SafeMTData (self-constructed)", size: "1000 multi-turn adversarial dialogues"}
+  ablation_dimensions:
+    - "dynamic modification (w/ vs w/o DM)"
+    - "number of attack clues (actors)"
+    - "query budget per attack path"
+    - "safety fine-tuning data size (500 vs 1000 samples)"
+    - "actor type categories (6 types)"
+  training_recipe:
+    optimizer: "not specified (SFT on Llama-3-8B-Instruct)"
+    lr: "not specified"
+    hardware: "not specified"
+    attacker_model: "GPT-4o"
+    judge_model: "GPT-4o"
+    max_turns: 5
+    attack_paths_per_target: 3
+  method_family: "multi-turn jailbreak / actor-network-theory-inspired semantic attack"
+
+positioning:
+  core_claim: "利用行动者网络理论(ANT)将有害目标分解为语义关联的'行动者'网络，通过多轮对话逐步引导LLM走向有害输出，实现了比单轮攻击更高的成功率和更强的隐蔽性"
+  key_results: "平均ASR 78.8%（5模型），GPT-4o 84.5%, Claude-3.5 66.5%, Llama-3-70B 85.5%；超越最强单轮baseline CodeAttack(57.8%) 21个百分点；GPT-o1达60% ASR；多轮查询的Llama Guard 2不安全分类概率显著低于直接有害查询"
+  limitations:
+    - "仅关注英语行动者，未探索多语言场景"
+    - "不同语言有不同文化和历史背景，需要独立的行动者发现"
+    - "安全微调存在有用性-安全性权衡（GSM8K从77.94降至73.31，HumanEval从58.54降至52.44）"
+    - "未扩展到多模态模型"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "以真实多轮对话场景开篇（用户通过看似无害的Ted Kaczynski相关问题逐步提取有害信息），直观展示多轮攻击的隐蔽性"
+  tension: "现有攻击研究集中于单轮场景，但现实中恶意用户可以跨多轮对话掩盖有害意图；多轮攻击面临两个核心挑战——如何掩盖有害目标和如何发现多样化攻击路径"
+  key_insight: "社会学中的行动者网络理论(ANT)可以为LLM攻击提供结构化框架——将有害目标建模为网络中心节点，六类语义关联的行动者作为攻击线索，实现系统性、多样化的多轮攻击路径发现"
+  argument_chain: "单轮攻击局限(可检测/成功率有限) → 多轮交互是更现实的威胁模型 → 两个核心挑战(掩盖意图+多样路径) → ANT理论提供结构化解决方案 → 6类行动者网络构建 → 三步攻击流程(推理链→自对话→动态修正) → 5模型验证78.8% ASR → 隐蔽性验证 → SafeMTData防御数据集"
+  contribution_framing: "4-5个核心贡献，强调方法新颖性(ANT迁移)、自动化(无需手工种子)、双层多样性(跨网络+网络内)、防御数据集贡献"
+  intro_structure: "约5段：P1 LLM安全背景与多轮威胁 → P2现有单轮攻击局限 → P3多轮攻击两个核心挑战 → P4 ActorAttack方法概述与ANT理论基础 → P5结果亮点与贡献列表"
+  notable_technique: "用Ted Kaczynski的真实多轮对话案例作为开篇hook，将抽象的多轮攻击威胁具象化，读者立即理解攻击场景；Figure 1同时完成问题定义和方法动机"
+
+figures:
+  figure_count: 14
+  figure1:
+    type: "problem_illustration"
+    description: "对比单轮vs多轮攻击场景，展示用户通过关于Ted Kaczynski的看似无害问题逐步提取有害信息的真实案例"
+    narrative_role: "定义问题空间：多轮交互比单轮更隐蔽、更现实，同时motivate多轮攻击研究的必要性"
+    design_elements: ["单轮vs多轮对比布局", "真实对话示例", "有害信息逐步暴露的可视化", "颜色标注安全/不安全回复"]
+    visual_style: "左右对比布局，对话气泡式呈现，红色/绿色标注攻击成败"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "ActorAttack vs Crescendo在不同查询预算下的ASR和提示多样性，分GPT-4o和Claude-3.5"
+      how_gain_highlighted: "ActorAttack在所有预算设置下均优于Crescendo，双指标(ASR+diversity)同时领先"
+      design_note: "双Y轴或并排图展示ASR和diversity，强调多样性与成功率的正相关"
+    - figure_id: "Figure 6"
+      viz_type: "bar_chart"
+      what_compared: "(a)攻击路径得分分布 (b-c)多轮查询vs直接有害查询的安全分类器检测率"
+      how_gain_highlighted: "多轮查询的不安全分类概率远低于直接查询，用条形图对比突出隐蔽性优势"
+      design_note: "三面板图，(a)展示攻击质量，(b-c)展示隐蔽性，用同一图论证'有效且隐蔽'"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "bar_chart"
+      dimensions_varied: ["number of attack clues (actors)"]
+      design_note: "展示更多行动者→更高比例的满分(5分)攻击，验证多样性带来质量提升的核心假设"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["query budget"]
+      design_note: "查询预算消融，同时对比baseline，一图两用（结果+消融）"
+  figure_narrative_role: "Figure 1(问题定义/多轮动机) → Figure 2(预攻击阶段：行动者网络构建) → Figure 3(攻击阶段：三步流程) → Figure 4(主结果：ASR+diversity vs baseline) → Figure 5(消融：行动者数量效果) → Figure 6(隐蔽性验证)"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "models (GPT-3.5, GPT-4o, Claude-3.5, Llama-3-8B, Llama-3-70B) + Average"
+    row_organization: "by_category"
+    col_organization: "grouped_by_model"
+    highlight_strategy: "bold_best，ActorAttack行在最后突出"
+    statistical_reporting: "ASR百分比，无置信区间"
+    num_baselines: 6
+    design_note: "单轮baselines(GCG/PAIR/PAP/CipherChat/CodeAttack)分为一组，ActorAttack w/o DM和完整版分为一组，通过分组对比展示多轮优势和动态修正增益；Average列提供一目了然的总体比较"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["safety fine-tuning data size (0/500/1000 samples)"]
+      variation_style: "full_numbers"
+      design_note: "同时展示攻击鲁棒性(ASR下降)和实用性代价(GSM8K/MMLU/HumanEval/MT-Bench)，用完整数字让读者自行判断权衡；6列指标全面评估安全-实用性tradeoff"
+  supplementary_tables:
+    in_appendix: true
+    content: "附录包含更多实验细节、行动者类型示例、完整的攻击案例展示"
+    reason: "主表只保留核心ASR对比和防御权衡结果，详细案例和配置放附录保持主线清晰"

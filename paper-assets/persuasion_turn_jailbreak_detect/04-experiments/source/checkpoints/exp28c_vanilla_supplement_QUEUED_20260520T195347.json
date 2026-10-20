@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp28c_vanilla_supplement",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T19:49:52.556Z",
+    "updated_at": "2026-05-20T19:53:47.223Z",
+    "hypothesis": "Vanilla DeBERTa (no DAPT) baseline at N=50 and N=250 will show substantially lower OOD F1 compared to 9-class DAPT, completing the data efficiency curve and confirming that DAPT benefit persists across all training sizes."
+  },
+  "timestamp": "2026-05-20T19:53:47.410782+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,6 @@
+See server: /root/persuasion_turn_jailbreak_detect/results/exp67_length_matching.json
+
+Summary (3-seed mean):
+DD_OOD: Full F1=0.8874, Range-matched F1=0.8797 (Δ=-0.0077), Bucket-matched F1=0.9127 (Δ=+0.0253)
+AA_OOD: Full F1=0.8828, Range-matched F1=0.8980 (Δ=+0.0153), Bucket-matched F1=0.8915 (Δ=+0.0087)
+Conclusion: F1 stable under length matching for both DD and AA OOD.

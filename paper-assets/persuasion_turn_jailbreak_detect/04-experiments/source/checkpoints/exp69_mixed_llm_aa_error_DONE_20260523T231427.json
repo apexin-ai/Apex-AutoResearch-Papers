@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp69_mixed_llm_aa_error",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:01:47.727Z",
+    "updated_at": "2026-05-23T23:14:27.457Z",
+    "hypothesis": "Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.",
+    "spec": {
+      "command": "error_analysis_script",
+      "server": "westd-33183",
+      "data_path": "/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json",
+      "data_count": 118,
+      "model_name": "mixed-LLM-9class",
+      "seed": "42,123,456"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "mixed_llm_9class_aa_f1": 0.504,
+      "mixed_llm_9class_aa_f1_std": 0.107,
+      "avg_jb_recall": 0.292,
+      "avg_jb_precision": 0.978,
+      "avg_FN": 56.7,
+      "avg_FP": 0.3,
+      "delta_vs_single_source": -0.468,
+      "mixed_llm_9class_dd_f1": 0.818,
+      "mixed_llm_9class_fitd_f1": 0.997
+    },
+    "checkpoint_path": "N/A (analysis-only experiment)",
+    "log_path": "/root/persuasion_turn_jailbreak_detect/results/rebuttal/mixed_llm_error_analysis/",
+    "completed_at": "2026-05-23T23:14:27.457Z"
+  },
+  "timestamp": "2026-05-23T23:14:27.793942+00:00",
+  "trigger": "update_registry"
+}

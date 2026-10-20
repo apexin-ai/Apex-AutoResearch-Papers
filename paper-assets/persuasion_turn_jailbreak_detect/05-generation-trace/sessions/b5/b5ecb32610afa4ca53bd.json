@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b5ecb32610afa4ca53bd",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "eval vanilla multiseed dd ood",
+  "task_key": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_vanilla-multiseed-dd-ood_20260518T110133.log",
+    "occurrence": 1,
+    "bytes": 741435,
+    "sha256": "e02b97289586e9bf5e24fdf514cf113de3ff5c00a4b9174a2dd0c59a0e2f8a4d"
+  },
+  "statistics": {
+    "messages": 246,
+    "user_turns": 0,
+    "tool_calls": 97,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 97,
+      "tool_result": 97,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 246,
+      "chunks": [
+        {
+          "path": "b5ecb32610afa4ca53bd-part-0001.json",
+          "message_count": 160
+        },
+        {
+          "path": "b5ecb32610afa4ca53bd-part-0002.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-vanilla-multiseed-dd-ood.md"
+}

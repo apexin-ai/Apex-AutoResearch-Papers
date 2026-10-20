@@ -1,0 +1,390 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure*",
+      "image_path": "figures/paper/fig1_architecture.pdf",
+      "caption": "DisPeD architecture. Stage~1 adapts a DeBERTa encoder on jailbreak conversation text (seven variant objectives). Stage~2 aggregates frozen \\texttt{[CLS]} embeddings via BiGRU for conversation-level ja",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "introduction.tex"
+    }
+  ],
+  "results": [
+    {
+      "number": "1",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    }
+  ],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/_latex_iso__in89cdk/main.pdf"
+    },
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'figures/paper/fig3_strategy_heatmap.pdf' which does not exist",
+          "location": "appendix.tex:170"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'figures/paper/cka_heatmap.pdf' which does not exist",
+          "location": "appendix.tex:185"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'figures/paper/embedding_tsne.pdf' which does not exist",
+          "location": "appendix.tex:197"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'figures/paper/fig_layerwise_representation.pdf' which does not exist",
+          "location": "appendix.tex:641"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'figures/paper/fig2_cross_attack_bar.pdf' which does not exist",
+          "location": "experiments.tex:65"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'figures/paper/fig1_architecture.pdf' which does not exist",
+          "location": "introduction.tex:15"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:calibration} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:e2e} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:topic_failure} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:random_partition} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:human_data} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:layerwise} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:truncated} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:topic_failure} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:length_independence} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:cka_heatmap} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:oasst2_curve} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:svd_necessity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:dual_ood} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:e2e} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:representation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:76"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:138"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "6 critical, 19 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 10,
+          "num_cites": 0
+        },
+        {
+          "file": "checklist.tex",
+          "role": "other",
+          "num_numbers": 3,
+          "num_cites": 3
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 21,
+          "num_cites": 1
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 94,
+          "num_cites": 11
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 16,
+          "num_cites": 17
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 7,
+          "num_cites": 3
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 66
+        }
+      ],
+      "critical": [
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 3.7 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 9.4 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 2.5 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "unsupported_headline_number",
+          "message": "Number 57.9 appears in headline section 'conclusion' but not in any Experiments / Results section. Must be backed by reported result.",
+          "location": "conclusion"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'alon2023perplexity' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'anil2024manyshot' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'chen2020simclr' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'grill2020byol' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'hsu2024improved' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'jain2023baseline' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kopf2023openassistant' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kornblith2019cka' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'li2025m2s' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'li2025repejailbreak' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'maennel2020random' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'marchiori2025jdapt' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'nian2025jaildam' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'phute2023selfdefense' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'shen2025antidote' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'templeton2024saemitigators' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'wang2026trajguard' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zou2023gcg' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\times"
+            ],
+            "checklist": [
+              "\\kappa",
+              "\\pm"
+            ],
+            "conclusion": [
+              "\\Delta",
+              "\\geq",
+              "\\kappa",
+              "\\leq",
+              "\\pm"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\P",
+              "\\S",
+              "\\approx",
+              "\\dagger",
+              "\\ddagger",
+              "\\geq",
+              "\\kappa",
+              "\\leq",
+              "\\ll",
+              "\\pm",
+              "\\sim",
+              "\\times",
+              "\\to"
+            ],
+            "introduction": [
+              "\\approx",
+              "\\beta",
+              "\\leq",
+              "\\rightarrow",
+              "\\sim",
+              "\\times"
+            ],
+            "method": [
+              "\\alpha",
+              "\\bar",
+              "\\cdot",
+              "\\hat",
+              "\\in",
+              "\\kappa",
+              "\\ldots",
+              "\\overleftarrow",
+              "\\overrightarrow",
+              "\\to"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 4,
+        "warning": 18,
+        "info": 1
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_figure_backups/20260524_061243",
+  "error": "",
+  "timestamp": "2026-05-24T06:24:58.629909+00:00"
+}

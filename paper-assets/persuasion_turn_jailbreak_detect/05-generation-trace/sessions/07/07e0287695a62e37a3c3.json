@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07e0287695a62e37a3c3",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp2 missing seeds v2",
+  "task_key": "worker_eval_exp2-missing-seeds-v2_20260518T123457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp2-missing-seeds-v2_20260518T123457_result.json",
+    "occurrence": 1,
+    "bytes": 815,
+    "sha256": "9d9eaf3e10028d7d621f73c96e4949536f3dafb8bb3edb5a8486c79f9deed167"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved to `exp2_missing_seeds_complete.json`. Summary:\n\n**Binary 3-seed ActorAttack (seed 42/123/456):**\n\n| K | Mean | Std |\n|---|------|-----|\n| 1 | 0.737 | 0.074 |\n| 2 | 0.890 | 0.065 |\n| 3 | 0.951 | 0.036 |\n| 5 | 0.987 | 0.012 |\n| Full | 0.990 | 0.008 |\n\n**Scrambled 3-seed ActorAttack (seed 42/123/456):**\n\n| K | Mean | Std |\n|---|------|-----|\n| 1 | 0.721 | 0.101 |\n| 2 | 0.828 | 0.054 |\n| 3 | 0.893 | 0.067 |\n| 5 | 0.937 | 0.057 |\n| Full | 0.951 | 0.043 |\n\nCompared to the 2-seed registry values, the 3-seed binary mean dropped from 0.788 to 0.737 at K=1 (seed42 was the outlier at 0.636), while full-turn performance remained essentially the same (0.990). Scrambled 3-seed means shifted slightly: K=1 went from 0.652 to 0.721 (seed123 was the strong one at 0.857)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp2-missing-seeds-v2.md"
+}

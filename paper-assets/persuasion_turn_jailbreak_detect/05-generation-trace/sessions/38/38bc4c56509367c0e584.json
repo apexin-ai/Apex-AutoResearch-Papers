@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38bc4c56509367c0e584",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp55 5seed mlm 9class",
+  "task_key": "worker_code_exp55_5seed_mlm_9class_20260522T113202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp55_5seed_mlm_9class_20260522T113202_result.json",
+    "occurrence": 1,
+    "bytes": 1339,
+    "sha256": "089edcd2df59834d9c2ba8bec8557330f80aed7872d9c651603260b492a1a141"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp55 complete.** Here's the 5-seed summary:\n\n### 9-Class vs MLM Frozen Probing (F1 macro, 5 seeds)\n\n| Metric | 9-Class | MLM | Δ |\n|--------|---------|-----|---|\n| IID | **1.000 ± 0.000** | 0.982 ± 0.013 | +1.8 pp |\n| DD OOD | **0.992 ± 0.011** | 0.988 ± 0.009 | +0.4 pp |\n| AA OOD | **0.974 ± 0.012** | 0.957 ± 0.024 | +1.7 pp |\n| FITD OOD | **1.000 ± 0.000** | 0.988 ± 0.009 | +1.2 pp |\n\n### Statistical tests on AA OOD\n- Paired t-test: t=1.358, **p=0.246** (not significant)\n- Wilcoxon: W=2.0, **p=0.188** (not significant)\n- 9-class wins 4/5 seeds, but seed 123 favors MLM\n\n### Interpretation\n\nMarked as **negative** — the hypothesis that 9-class produces *significantly* better OOD generalization than MLM is not supported at p<0.05 with 5 seeds. 9-class is directionally better (wins 4/5 seeds, +1.7 pp mean on AA OOD, lower variance), but the frozen probing setup narrows the gap compared to the earlier full-pipeline comparison (where MLM had 0.893 ± 0.08 vs 9-class 0.972 ± 0.026).\n\nKey observation: 9-class has **zero variance on IID and FITD** (perfect scores all 5 seeds), while MLM shows measurable instability. The advantage is clearest on consistency rather than peak performance.\n\nResults saved: `/root/persuasion_turn_jailbreak_detect/results/exp55_5seed_combined.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp55-5seed-mlm-9class.md"
+}

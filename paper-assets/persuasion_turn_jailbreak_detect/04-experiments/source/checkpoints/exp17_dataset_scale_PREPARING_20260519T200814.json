@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp17_dataset_scale",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:23:23.670Z",
+    "updated_at": "2026-05-19T20:08:14.224Z",
+    "hypothesis": "Doubling training data from 500 to 1000 conversations (with new topic seeds) will maintain or improve the DAPT evidence hierarchy (9-class >> MLM >> vanilla on OOD), demonstrating that results are not an artifact of small sample size.",
+    "spec": {
+      "command": "bash scripts/run_exp17_training.sh (pending data gen completion on GPU 2-3)",
+      "server": "westd-33183",
+      "data_path": "data/expanded_1000/ (original 500 + expanded 500)",
+      "data_count": 1000,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": "42,123,456",
+      "hypothesis": "Doubling training data from 500 to 1000 conversations maintains or improves the evidence hierarchy and cross-attack generalization, proving results are not small-sample artifacts and DAPT benefits scale with data"
+    }
+  },
+  "timestamp": "2026-05-19T20:08:14.355515+00:00",
+  "trigger": "update_registry"
+}

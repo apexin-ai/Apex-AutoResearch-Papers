@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc25729e38d4e45dd655",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train binary seed42 full pipeline",
+  "task_key": "worker_train_binary-seed42-full-pipeline_20260518T124014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_binary-seed42-full-pipeline_20260518T124014_result.json",
+    "occurrence": 1,
+    "bytes": 901,
+    "sha256": "3ec0ce9c9a1ccad327a0516c8c749db9f600a8052576825ec83dce98f1818feb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n**Stage 1 DeBERTa (seed=42)**: val_persuasion_acc=1.0, val_intent_acc=1.0, best_epoch=4\n\n**binary_seed42 ActorAttack OOD (F1 macro)**:\n\n| K | seed42 | seed123 | seed456 | mean±std |\n|---|--------|---------|---------|----------|\n| 1 | 0.636 | 0.808 | 0.767 | 0.737±0.074 |\n| 2 | 0.800 | 0.917 | 0.953 | 0.890±0.065 |\n| 3 | 0.900 | 0.971 | 0.981 | 0.951±0.036 |\n| 5 | 0.971 | 0.990 | 1.000 | 0.987±0.012 |\n| Full | 0.981 | 0.990 | 1.000 | 0.990±0.008 |\n\n结果已保存至：\n- `/root/persuasion_turn_jailbreak_detect/results/exp2_binary_seed42_actorattack.json`（seed42 详细结果 + 3-seed 统计）\n- `exp2_actorattack_ood.json` 已同步更新（binary variant 加入 seed42，mean_std 重算为 3-seed）\n\nseed42 的 k1 偏低（0.636 vs 其他两个 0.77-0.81），拉高了 k1 的 std。k3 以上三个 seed 趋于一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-binary-seed42-full-pipeline.md"
+}

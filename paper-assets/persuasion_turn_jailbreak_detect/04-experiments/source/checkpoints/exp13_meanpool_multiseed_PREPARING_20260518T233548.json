@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp13_meanpool_multiseed",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:35:41.779Z",
+    "updated_at": "2026-05-18T23:35:48.702Z",
+    "hypothesis": "Mean pooling classifier (without temporal modeling) will perform comparably to BiGRU across 3 seeds on both DD OOD and ActorAttack, confirming that persuasion-grounded embeddings alone drive cross-attack generalization and GRU temporal modeling is not necessary.",
+    "parent": "plan_015_dd_eval",
+    "spec": {
+      "command": "python scripts/meanpool_multiseed.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/ + data/generated/",
+      "data_count": 586,
+      "model_name": "DeBERTa-v3-base 9-class (3 seeds)",
+      "seed": "42,123,456",
+      "checkpoint_path": "checkpoints/plan_002_seed*/",
+      "log_path": "results/meanpool_multiseed.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T23:35:48.886975+00:00",
+  "trigger": "update_registry"
+}

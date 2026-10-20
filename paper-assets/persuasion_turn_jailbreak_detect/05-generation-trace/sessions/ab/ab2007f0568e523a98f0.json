@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ab2007f0568e523a98f0",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "train phase b pilot",
+  "task_key": "worker_train_phase-b-pilot_20260517T161130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_phase-b-pilot_20260517T161130.log",
+    "occurrence": 1,
+    "bytes": 600497,
+    "sha256": "f5ae628829d70b81c97087de56cd5a81f843f6cb4878fa1c222e6df602b37f3e"
+  },
+  "statistics": {
+    "messages": 255,
+    "user_turns": 0,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 71,
+      "tool_call": 90,
+      "tool_result": 90,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 255,
+      "chunks": [
+        {
+          "path": "ab2007f0568e523a98f0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ab2007f0568e523a98f0-part-0002.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-phase-b-pilot.md"
+}

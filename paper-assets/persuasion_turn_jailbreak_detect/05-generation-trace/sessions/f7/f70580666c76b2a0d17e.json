@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f70580666c76b2a0d17e",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16b eval",
+  "task_key": "worker_code_exp16b-eval_20260520T001556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16b-eval_20260520T001556_result.json",
+    "occurrence": 1,
+    "bytes": 1716,
+    "sha256": "92b6823d05a03c4714b7f82e5e801ff151cfe0615d34f7289cfcaaa87309eb50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n## Part A - exp16b eval (Llama-only MLM, seed42)\n\n| Test Set | F1 | P | R | n |\n|---|---|---|---|---|\n| llama_only_test | **0.8441** | 0.8441 | 0.8441 | 77 |\n| mixed_test | 0.7212 | 0.8054 | 0.7368 | 76 |\n| dd_ood | 0.3327 | 0.4694 | 0.4836 | 118 |\n| aa_ood | **0.8152** | 0.8062 | 0.8336 | 118 |\n| toxicchat | 0.1626 | 0.2765 | 0.1152 | 242 |\n\nDD OOD 和 ToxicChat 上表现很差。AA OOD 上出乎意料地好。\n\n---\n\n## Part B - exp17\n\n**Checkpoint 完成度: 9/9** (vanilla×3 + mlm×3 + 9class×3)\n\neval_exp17.py 有两个 bug 已修复：\n1. MLM `gru_subpath` 从 `treatment/best.pt` → `baseline/best.pt`\n2. `load_encoder` 添加 `.float()` 避免 fp16 类型错误\n\n**完整结果表:**\n\n| Variant | DD F1 (mean±std) | AA F1 | TC F1 | IID F1 |\n|---|---|---|---|---|\n| vanilla | 0.326±0.000 | 0.508±0.085 | 0.367±0.018 | 0.987±0.005 |\n| mlm | 0.338±0.010 | 0.351±0.018 | 0.303±0.014 | 0.982±0.011 |\n| **9class** | **0.889±0.041** | **0.913±0.041** | 0.364±0.040 | **1.000±0.000** |\n\n9class 在 DD/AA OOD 上碾压 vanilla 和 mlm（F1 0.89/0.91 vs 0.33/0.35）。所有 variant 在 ToxicChat 上都差（~0.3-0.37）。IID 都接近 1.0。\n\n---\n\n## Part C - exp17 泄漏检查\n\n```\nexpanded_1000/train: 700 samples\nplan_002_splits/test: 76 samples\noverlap: 54 samples (71% of test set!)\n```\n\n**严重泄漏**。plan_002_splits/test.jsonl 中 54/76 条样本出现在 expanded_1000/train.jsonl 中。exp17 的 IID F1≈1.0 很可能被高估——测试集绝大多数样本在训练时已见过。exp17 的 OOD 结果不受此影响（OOD 数据独立于训练集），但 IID 数字不可信。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16b-eval.md"
+}

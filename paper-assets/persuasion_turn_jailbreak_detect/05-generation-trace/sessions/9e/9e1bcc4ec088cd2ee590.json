@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e1bcc4ec088cd2ee590",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan017 mlm control",
+  "task_key": "worker_train_plan017-mlm-control_20260518T052428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan017-mlm-control_20260518T052428_result.json",
+    "occurrence": 1,
+    "bytes": 1697,
+    "sha256": "de238d7319814349755b88dc79d4e696d3eb3850eaa02a42c61a7270e79fd997"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan 017 complete. Here are the results:\n\n## Plan 017: MLM Continued Pretraining Control — Results\n\n### DD OOD (Deceptive Delight)\n\n| K | MLM Control | Persuasion (006) | Vanilla Baseline (006) |\n|---|---|---|---|\n| 1 | **1.000** | 1.000 | 0.575 |\n| 2 | **1.000** | 0.990 | 0.438 |\n| 3 | **1.000** | 0.990 | N/A |\n| 5 | **1.000** | 1.000 | N/A |\n| full | **1.000** | 1.000 | 0.285 |\n\n### IID (Crescendo test set)\n| K | MLM Control |\n|---|---|\n| 1 | 0.960 |\n| 2 | 0.974 |\n| 3 | 0.987 |\n| 5 | 1.000 |\n| full | 1.000 |\n\n### MLM Training Summary\n- 4 epochs, val MLM loss: 6.50 → 3.77 → 2.91 → 2.47\n- BiGRU converged to val loss 0.005, 100% val accuracy by epoch 15\n\n### Interpretation\n\n**Track B confirmed:** MLM control F1 = 1.0 across all K values on DD OOD, matching the persuasion treatment exactly. Pure text exposure (no classification labels) is sufficient for cross-attack generalization.\n\nThis means:\n- **Classification supervision is NOT necessary** for the OOD generalization effect\n- The critical factor is **domain-adaptive fine-tuning** on jailbreak conversation text, not the persuasion strategy labels\n- Combined with plan_003 (scrambled labels ≈ proper labels), this consistently points to: **fine-tuning on the right text distribution is what matters, not what task you fine-tune on**\n- The vanilla baseline fails because it has zero exposure to this text distribution, not because it lacks persuasion understanding\n\nThe paper framing needs adjustment. The value of persuasion supervision shifts from \"necessary for OOD generalization\" to \"providing interpretability\" (strategy trajectories, turn-level explanations)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan017-mlm-control.md"
+}

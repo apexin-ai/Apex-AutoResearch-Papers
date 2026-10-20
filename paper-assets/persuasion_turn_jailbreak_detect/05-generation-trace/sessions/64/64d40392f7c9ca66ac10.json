@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "64d40392f7c9ca66ac10",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp16 exp17 full reeval",
+  "task_key": "worker_code_exp16-exp17-full-reeval_20260520T062220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-exp17-full-reeval_20260520T062220.log",
+    "occurrence": 1,
+    "bytes": 664206,
+    "sha256": "de3505cad5412fa4b5946b932149260059abc69e979d1b286700594ce68d4014"
+  },
+  "statistics": {
+    "messages": 160,
+    "user_turns": 0,
+    "tool_calls": 60,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 36,
+      "tool_call": 60,
+      "tool_result": 60,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 160,
+      "chunks": [
+        {
+          "path": "64d40392f7c9ca66ac10-part-0001.json",
+          "message_count": 145
+        },
+        {
+          "path": "64d40392f7c9ca66ac10-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp16-exp17-full-reeval.md"
+}

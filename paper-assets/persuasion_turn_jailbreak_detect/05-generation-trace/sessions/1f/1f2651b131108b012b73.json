@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f2651b131108b012b73",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp15 roberta large",
+  "task_key": "worker_code_exp15-roberta-large_20260519T081337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp15-roberta-large_20260519T081337_result.json",
+    "occurrence": 1,
+    "bytes": 2392,
+    "sha256": "cf7c5ccc2e98680f91931a6c86669311ecfd6114b345945ba63a539d9f671577"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部实验完成。结果有一个意外发现：**RoBERTa-large vanilla 在 ActorAttack 上表现异常好 (F1=1.000)**，而 9class DAPT 反而更低 (0.946)。这与 RoBERTa-base 和 DeBERTa 的模式完全相反。\n\n## exp15 RoBERTa-large 结果\n\n### DD OOD (Macro F1, mean±std, 3 seeds)\n| Variant | K=1 | K=2 | K=3 | K=5 | Full |\n|---------|-----|-----|-----|-----|------|\n| RoBERTa-large vanilla | 0.878±0.033 | 0.888±0.045 | 0.915±0.040 | 0.918±0.038 | 0.927±0.036 |\n| RoBERTa-large 9class | **0.965±0.019** | **0.930±0.046** | **0.960±0.037** | **0.981±0.013** | **0.987±0.004** |\n| RoBERTa-base vanilla (参考) | 0.913 | - | - | - | 0.981 |\n| RoBERTa-base 9class (参考) | 0.987 | - | - | - | 0.994 |\n| DeBERTa vanilla (参考) | 0.628 | 0.389 | 0.389 | 0.312 | 0.312 |\n| DeBERTa 9class (参考) | 0.990 | 0.972 | 0.972 | 0.997 | 0.997 |\n\n### ActorAttack (Macro F1, mean±std, 3 seeds)\n| Variant | K=1 | K=2 | K=3 | K=5 | Full |\n|---------|-----|-----|-----|-----|------|\n| RoBERTa-large vanilla | **0.977±0.012** | **0.984±0.005** | **0.990±0.000** | **0.997±0.005** | **1.000±0.000** |\n| RoBERTa-large 9class | 0.718±0.060 | 0.800±0.055 | 0.881±0.058 | 0.940±0.059 | 0.946±0.057 |\n| RoBERTa-base vanilla (参考) | 0.410±0.126 | 0.425±0.143 | 0.432±0.144 | 0.466±0.144 | 0.466±0.163 |\n| RoBERTa-base 9class (参考) | 0.738±0.033 | 0.805±0.033 | 0.884±0.066 | 0.925±0.066 | 0.939±0.046 |\n| DeBERTa vanilla (参考) | 0.337 | - | 0.284 | - | 0.258 |\n| DeBERTa 9class (参考) | 0.773 | - | 0.921 | - | 0.972 |\n\n### Capacity vs DAPT 分析\n\n**关键发现 — 结果颠覆预期：**\n\n1. **DD OOD**: DAPT 仍有优势 (0.987 vs 0.927 Full)，与 base 模式一致\n2. **ActorAttack**: **vanilla 反超 9class** (1.000 vs 0.946)。RoBERTa-large vanilla 达到完美 F1=1.0，远超 RoBERTa-base vanilla (0.466)\n3. **容量效应巨大**: RoBERTa-large vanilla AA Full=1.000 vs RoBERTa-base vanilla 0.466，说明 model capacity 对 OOD 泛化影响极大\n4. **DAPT 对 large 模型在 AA 上反而有害**: 9class F1=0.946 < vanilla F1=1.000。可能的解释：DAPT 对大模型引入了不必要的 bias，而大模型本身的通用表征已足够强\n\n这个结果对论文 framing 有重要影响：DAPT 的优势可能在较大模型上不再普遍成立，至少在 ActorAttack 场景下如此。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp15-roberta-large.md"
+}

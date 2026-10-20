@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b865a2a23668cff7c1af",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan014 complete",
+  "task_key": "worker_train_plan014-complete_20260518T020203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan014-complete_20260518T020203_result.json",
+    "occurrence": 1,
+    "bytes": 1597,
+    "sha256": "b2c6d6e296d6e5ec8f883d95a827d10f0ea44aa0bb1f4c40b7200e3af882bb4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan_014 is already complete.** The run log shows all four conditions ran through DeBERTa training, GRU training, and eval successfully. The results file `results/plan_014_lambda_ablation.json` has complete entries for all four lambda values.\n\nSummary of existing results:\n\n| Lambda | DeBERTa Persuasion Acc | DeBERTa Intent Acc | Treatment F1 (all K) |\n|--------|----------------------|-------------------|---------------------|\n| 0      | 0.8439               | 0.4014            | 1.0                 |\n| 0.5    | 0.8353               | 1.0               | 1.0                 |\n| 1.0    | 0.8285               | 1.0               | 1.0 (plan_002)      |\n| 2.0    | 0.8508               | 1.0               | 1.0                 |\n\nKey observations:\n- Lambda=0 (no intent loss): intent accuracy collapses to 0.40 (near random) as expected, but persuasion acc is slightly higher (0.844 vs 0.829 for lambda=1.0)\n- All treatment F1 scores are 1.0 at every K value, consistent with plan_002 baseline\n- The downstream jailbreak detection task is insensitive to lambda, while lambda=0 clearly degrades intent classification\n\nThe reviewer's assessment that eval was missing appears to have been based on checking before the run completed. All checkpoints exist, all evals ran, and results are saved. No additional work is needed.\n\nOne note: the current results file doesn't include `fpr_at_95tpr` or baseline/tfidf comparisons (which `eval_early_detection.py` computes). Want me to re-run the full eval script to get those metrics, or is the current file sufficient?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan014-complete.md"
+}

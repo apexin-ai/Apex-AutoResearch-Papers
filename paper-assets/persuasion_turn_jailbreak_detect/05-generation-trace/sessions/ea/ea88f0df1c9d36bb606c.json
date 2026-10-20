@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea88f0df1c9d36bb606c",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "audit gru architecture consistency",
+  "task_key": "worker_audit_gru-architecture-consistency_20260519T085201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_gru-architecture-consistency_20260519T085201_result.json",
+    "occurrence": 1,
+    "bytes": 1730,
+    "sha256": "f86145550657f7563c33ceb0a3a0ca9e759484e55d92676a559bf10a5e178af8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GRU 架构一致性审计\n\n### 代码默认参数\n- `GRUClassifier` 默认 `hidden_dim=256`, `num_layers=2`, `dropout=0.3`\n- 所有训练脚本（`train_classifier.py`, `train_classifier_binary.py`, `train_baseline_gru.py`, `run_plan_002.sh`, `exp15_roberta_large.py` 等）均使用 `hidden_dim=256, num_layers=2`\n- MLP 结构: `512→256→2`（BiGRU 输出 256×2=512 → Linear(512,256) → ReLU → Linear(256,2)）\n\n### Checkpoint 验证结果（全部一致）\n\n| Checkpoint | input_dim | hidden_dim | num_layers | MLP |\n|-----------|----------|-----------|-----------|-----|\n| plan_002 (treat/base/s123/s456) | 768 | 256 | 2 | 512→256→2 |\n| plan_003_scrambled_fix | 768 | 256 | 2 | 512→256→2 |\n| mf1_binary_seed42 | 768 | 256 | 2 | 512→256→2 |\n| plan_016v2_topic | 768 | 256 | 2 | 512→256→2 |\n| plan_017_mlm | 768 | 256 | 2 | 512→256→2 |\n| plan_018_wiki_mlm | 768 | 256 | 2 | 512→256→2 |\n| exp1_roberta_vanilla_seed42 | 768 | 256 | 2 | 512→256→2 |\n| exp1_roberta_9class_seed42 | 768 | 256 | 2 | 512→256→2 |\n| exp15_roberta_large_vanilla_seed42 | **1024** | 256 | 2 | 512→256→2 |\n| exp15_roberta_large_9class_seed42 | **1024** | 256 | 2 | 512→256→2 |\n| vanilla_seed123 | 768 | 256 | 2 | 512→256→2 |\n\n### 结论\n\n**情况 A：所有实验 GRU 参数完全一致。** hidden_dim=256, num_layers=2, MLP=512→256→2。\n\nexp15 唯一的区别是 `input_dim=1024`（因为 RoBERTa-large embedding 是 1024 维），GRU 本身参数不变。\n\n**论文描述有误**：论文写的 \"hidden dimension 128, MLP 256→64→2\" 与实际不符。实际是 **hidden dimension 256, MLP 512→256→2**。需要修正论文中的架构描述。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-gru-architecture-consistency.md"
+}

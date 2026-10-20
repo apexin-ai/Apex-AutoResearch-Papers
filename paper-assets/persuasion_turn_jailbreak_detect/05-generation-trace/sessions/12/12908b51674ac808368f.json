@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12908b51674ac808368f",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp22 aa early detection",
+  "task_key": "worker_code_exp22-aa-early-detection_20260520T141852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp22-aa-early-detection_20260520T141852_result.json",
+    "occurrence": 1,
+    "bytes": 1313,
+    "sha256": "3549429c8b575d9af4adc9d3fcbc47856e9462f92a093ab8dc6c6ed03dad4fac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。汇总：\n\n## exp22 AA OOD Early Detection (plan_002 checkpoints)\n已有数据，从 `exp2_actorattack_ood.json` 提取，保存至 `exp22_aa_early_detection.json`：\n\n| Variant | K=1 | K=2 | K=3 | K=5 | Full |\n|---------|-----|-----|-----|-----|------|\n| 9class | .773±.041 | .855±.048 | .921±.046 | .966±.028 | .972±.026 |\n| mlm | .736±.150 | .909±.058 | .945±.039 | .929±.033 | .893±.080 |\n| vanilla | .337±.049 | .306±.026 | .284±.011 | .262±.006 | .258±.000 |\n\n## exp25 FITD OOD Early Detection (exp16 checkpoints)\n新生成，保存至 `exp25_fitd_early_detection.json`：\n\n| Variant | K=1 | K=2 | K=3 | K=5 | Full |\n|---------|-----|-----|-----|-----|------|\n| 9class | 1.000±.000 | .997±.005 | 1.000±.000 | 1.000±.000 | 1.000±.000 |\n| mlm | .610±.281 | .598±.256 | .654±.302 | .635±.238 | .707±.217 |\n| vanilla | .698±.038 | .786±.043 | .791±.057 | .823±.040 | .882±.027 |\n\n**重要说明**：exp25 使用的是 westd-33183 上的 **exp16 checkpoints**，与 AA OOD 使用的 plan_002 checkpoints **不同**，两组数据不能直接对比。9class 在 FITD 上近乎完美（可能 FITD 模式对该模型较易检测，或存在训练数据重叠）。MLM 跨 seed 方差极大（seed 456 几乎随机），需要排查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp22-aa-early-detection.md"
+}

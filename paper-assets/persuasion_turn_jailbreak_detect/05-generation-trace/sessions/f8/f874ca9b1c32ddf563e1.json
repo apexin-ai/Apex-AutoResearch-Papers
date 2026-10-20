@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f874ca9b1c32ddf563e1",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan018 wiki mlm control",
+  "task_key": "worker_train_plan018-wiki-mlm-control_20260518T055948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan018-wiki-mlm-control_20260518T055948_result.json",
+    "occurrence": 1,
+    "bytes": 1116,
+    "sha256": "22f9a67b7f40f1a810f30d5d083c27b74deecf14629c59786a6e48dc411bcf4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan 018 全部完成。\n\n## 结果总结\n\n**Hypothesis confirmed**: Wikipedia MLM 显著弱于 jailbreak-domain MLM，证明 domain-specific text exposure 是 OOD 泛化的关键因素。\n\n| 方法 | DD OOD F1 (full) | DD OOD F1 (k=1) |\n|---|---:|---:|\n| Jailbreak MLM (017) | **1.000** | **1.000** |\n| Persuasion treatment (006) | **1.000** | **1.000** |\n| **Wikipedia MLM (018)** | **0.742** | **0.822** |\n| Vanilla baseline (006) | 0.285 | 0.575 |\n\n关键发现：\n- Wikipedia MLM（F1=0.74）远低于 jailbreak-domain MLM（F1=1.0），**domain specificity 是必要的**\n- Wikipedia MLM 仍高于 vanilla baseline（F1=0.29），说明 generic continued pretraining 提供部分提升\n- IID 性能依然高（F1=0.99），说明分类能力本身没受损，问题出在 OOD 域适应\n\n**产出文件**：\n- 数据: `data/plan_018_wiki_mlm/{train,val}.jsonl` + `stats.json`\n- 训练脚本: `src/train_deberta_mlm_wiki.py`\n- 评估脚本: `src/plan_018_wiki_dd_eval.py`\n- 结果: `results/plan_018_wiki_mlm_control.json`\n- Checkpoint: `checkpoints/plan_018_wiki_mlm/best/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan018-wiki-mlm-control.md"
+}

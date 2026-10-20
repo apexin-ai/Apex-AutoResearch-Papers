@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2604b2c8d2744fc289b",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "viz fig hierarchy reversal",
+  "task_key": "worker_viz_fig_hierarchy_reversal_20260524T140748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig_hierarchy_reversal_20260524T140748_result.json",
+    "occurrence": 1,
+    "bytes": 408,
+    "sha256": "358f196a3839d5c1f53620c3e1e9d33a86d0a7691f8020d5d056810a2d1454bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。PDF/PNG/脚本均已保存至 `docs/paper/figures/paper/fig_hierarchy_reversal.*`。\n\n图表要点：\n- 左组 9-class #1 → 右组降至 #4，MLM #2 → 升至 #1，排名反转一目了然\n- 学术蓝色系配色，每个 variant 颜色跨组一致\n- 中间红色 \"Rank Reversal\" + 双向箭头标注\n- 单列宽度 3.5×2.6 inch，300 DPI，serif 字体，≥7pt 字号"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig-hierarchy-reversal.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b93abc2aedee085ac11",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper writing related work d019",
+  "task_key": "worker_paper_writing_related_work_d019_20260518T061740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_d019_20260518T061740_result.json",
+    "occurrence": 1,
+    "bytes": 1193,
+    "sha256": "5446c56eccc684c28a8752dcb557011ec05f0a958fe22d86bc241c99b8e04a16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "~1135 words including LaTeX commands. Prose word count is well within the ~1000 target (LaTeX markup inflates the count).\n\nRewrite complete. Summary of changes:\n\n- **§2.1**: Final sentence reframed from \"treating persuasion as the signal\" to \"domain-adaptive continued training, not persuasion-specific classification\"\n- **§2.2**: Opening reframed to \"none systematically decompose what enables cross-attack generalization\"; DisPeD positioning updated to domain-adaptive continued training with training objective being secondary to domain exposure\n- **§2.3**: DisPeD sentence updated to reference domain-adaptive continued pretraining\n- **§2.4**: DisPeD positioning reframed: persuasion taxonomy provides interpretability, not detection signal\n- **§2.5**: Added ULMFiT \\citep{howard2018ulmfit}; rewrote the key paragraph around the confirmed MLM result (no more \"ongoing control experiments\" hedging); two planned controls mentioned as future work\n- **§2.6**: Added sentence on domain-adaptive training producing perturbation-resistant representations\n- **Style**: Eliminated all trailing -ing phrases, no em-dashes in prose, no banned transition words"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work-d019.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_002_seed456",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T01:12:15.664Z",
+    "updated_at": "2026-05-18T01:13:04.692Z",
+    "hypothesis": "Reproduce plan_002 with seed=456 to confirm stability of persuasion-grounded DeBERTa detection advantage over vanilla baseline across random seeds",
+    "parent": "plan_002_clean_training"
+  },
+  "timestamp": "2026-05-18T01:13:04.741742+00:00",
+  "trigger": "update_registry"
+}

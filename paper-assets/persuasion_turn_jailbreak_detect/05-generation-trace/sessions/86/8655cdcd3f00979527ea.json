@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "8655cdcd3f00979527ea",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper fig1 redraw v2",
+  "task_key": "worker_paper_fig1_redraw_v2_20260523T040303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig1_redraw_v2_20260523T040303_result.json",
+    "occurrence": 1,
+    "bytes": 2103966,
+    "sha256": "7a105baadcec87ef8e4036f42bf31b9df41069aa32cf4ad74ab6d357c4f5f556"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2103986,
+                "serialized_sha256": "6948f811ce5207bdd13ec8e7905d49f7c23b6936338d1f5c5c0343886e4aa3d6",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig1-redraw-v2.md"
+}

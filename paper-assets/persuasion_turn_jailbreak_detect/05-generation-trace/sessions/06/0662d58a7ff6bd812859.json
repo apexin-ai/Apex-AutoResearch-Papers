@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0662d58a7ff6bd812859",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "train exp3 probing",
+  "task_key": "worker_train_exp3-probing_20260518T104339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_exp3-probing_20260518T104339.log",
+    "occurrence": 1,
+    "bytes": 556208,
+    "sha256": "8748c685058057c27f1f49d0c8c0dac2cdc11e3f1199cc98b9ed9eabd8e4caaf"
+  },
+  "statistics": {
+    "messages": 223,
+    "user_turns": 0,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 81,
+      "tool_result": 81,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 223,
+      "chunks": [
+        {
+          "path": "0662d58a7ff6bd812859-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0662d58a7ff6bd812859-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-exp3-probing.md"
+}

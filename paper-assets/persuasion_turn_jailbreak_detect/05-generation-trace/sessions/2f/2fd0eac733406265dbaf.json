@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2fd0eac733406265dbaf",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "eval exp8 macro f1 and leakage audit",
+  "task_key": "worker_eval_exp8-macro-f1-and-leakage-audit_20260518T171248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp8-macro-f1-and-leakage-audit_20260518T171248.log",
+    "occurrence": 1,
+    "bytes": 625017,
+    "sha256": "b461dc4e719490c76d45cb4dcd87cf7673ba0076b36993036dd2b43efdcc1a3c"
+  },
+  "statistics": {
+    "messages": 346,
+    "user_turns": 0,
+    "tool_calls": 137,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 68,
+      "tool_call": 137,
+      "tool_result": 137,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 346,
+      "chunks": [
+        {
+          "path": "2fd0eac733406265dbaf-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2fd0eac733406265dbaf-part-0002.json",
+          "message_count": 166
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-exp8-macro-f1-and-leakage-audit.md"
+}

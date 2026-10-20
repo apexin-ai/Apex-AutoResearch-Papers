@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1590aa2767fd9b33447d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp65 svd ablation",
+  "task_key": "worker_code_exp65_svd_ablation_20260522T233142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp65_svd_ablation_20260522T233142.log",
+    "occurrence": 1,
+    "bytes": 593186,
+    "sha256": "37d1b1913854dd424b1e970793adab5b8b6cf7cd5081c9c3ccf5ea9dda9063c3"
+  },
+  "statistics": {
+    "messages": 189,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 73,
+      "tool_result": 73,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 189,
+      "chunks": [
+        {
+          "path": "1590aa2767fd9b33447d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1590aa2767fd9b33447d-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp65-svd-ablation.md"
+}

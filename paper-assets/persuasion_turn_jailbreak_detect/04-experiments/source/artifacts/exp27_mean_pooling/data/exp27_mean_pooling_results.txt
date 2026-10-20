@@ -1,0 +1,19 @@
+exp27 Mean Pooling E2E Results (3 seeds, all F1 macro)
+
+ALL metrics = 1.0000 ± 0.0000 across all 3 seeds (42, 123, 456):
+- IID full: 1.0
+- DD OOD k1/k2/k3/k5/full: 1.0
+- AA OOD full: 1.0
+- FITD OOD full: 1.0
+
+Comparison Table (mean F1):
+| Method              | IID   | DD OOD full | AA OOD full | FITD OOD |
+|---------------------|-------|-------------|-------------|----------|
+| exp27 MeanPool E2E  | 1.000 | 1.000       | 1.000       | 1.000    |
+| exp18 BiGRU E2E     | 1.000 | 1.000       | 0.997       | -        |
+| exp26 BiGRU Frozen  | 1.000 | 0.997       | 0.972       | 1.000    |
+| exp13 MeanPool Frozen| -    | 0.990       | 0.962       | -        |
+
+Finding: Hypothesis REJECTED. Temporal modeling (BiGRU) is NOT necessary.
+E2E fine-tuning is the dominant factor — with unfrozen encoder, even mean pooling
+saturates all benchmarks perfectly. BiGRU adds zero value over mean pooling in E2E.

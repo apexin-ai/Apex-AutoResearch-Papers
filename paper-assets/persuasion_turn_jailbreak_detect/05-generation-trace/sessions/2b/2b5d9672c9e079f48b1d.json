@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "2b5d9672c9e079f48b1d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "figure fig1 architecture",
+  "task_key": "worker_figure_fig1-architecture_20260518T082048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig1-architecture_20260518T082048_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "43f77c6e2ef6070d27dbe1ed6f515925aaeca73e4b7f9c94f28647da37c124fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Could not process image\"},\"request_id\":\"req_011Cb9iHKdB1BjQ5U78tt6NQ\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "Could not process image"
+              },
+              "request_id": "req_011Cb9iHKdB1BjQ5U78tt6NQ"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig1-architecture.md"
+}

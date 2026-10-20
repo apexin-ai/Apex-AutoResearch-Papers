@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp19_wildchat_fpr",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:37:11.207Z",
+    "updated_at": "2026-05-20T12:37:11.682Z",
+    "hypothesis": "9-class DAPT classifier maintains FPR < 15% on high-drift real-world benign conversations from WildChat (after excluding jailbreak-contaminated samples), demonstrating external validity beyond synthetic benign data and addressing reviewer concern about deployment false positive rates"
+  },
+  "timestamp": "2026-05-20T12:37:11.839859+00:00",
+  "trigger": "update_registry"
+}

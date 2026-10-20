@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "524df3888e3b8a406a05",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16 exp17 full reeval",
+  "task_key": "worker_code_exp16-exp17-full-reeval_20260520T062220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-exp17-full-reeval_20260520T062220_result.json",
+    "occurrence": 1,
+    "bytes": 3764,
+    "sha256": "d1bc11a82f3efab3f2cde67c4fe115feb017882c5fe920e2ac5e8db532e569df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。整理最终报告。\n\n---\n\n## 1. 评估集组成\n\n```\nDD OOD:   80 attack (deceptive_delight_all.jsonl) + 38 benign (from IID test) = 118 total\nAA OOD:   80 attack (actorattack_all.jsonl) + 38 benign = 118 total\nFITD OOD: 80 attack (fitd_all.jsonl) + 38 benign = 118 total\n\nexp16 benign来源: data/mixed_llm/test.jsonl (38 benign)\nexp17 benign来源: data/expanded_1000/test.jsonl (75 benign) → OOD set = 155 total\nexp1  benign来源: data/plan_002_splits/test.jsonl (38 benign) → OOD set = 118 total\n```\n\n## 2. exp16 (mixed-LLM 500) — 修正后指标\n\n### DD OOD (80 attack + 38 benign = 118):\n| Variant | 修正后 F1 (mean±std) | 修正后 P | 修正后 R | 旧值 (attack-only) |\n|---------|---------------------|---------|---------|-------------------|\n| 9-class | **0.818±0.096** | 0.834±0.076 | 0.866±0.073 | 0.422 |\n| MLM | 0.289±0.101 | 0.404±0.312 | 0.443±0.051 | 0.024 (!) |\n| vanilla | 0.291±0.065 | 0.360±0.090 | 0.454±0.031 | 0.024 (!) |\n\nPer-seed 9class: [0.735, **0.953**, 0.766]\n\n### AA OOD (80 attack + 38 benign = 118):\n| Variant | 修正后 F1 (mean±std) | 旧值 (attack-only) |\n|---------|---------------------|-------------------|\n| 9-class | **0.504±0.107** | 0.175 |\n| MLM | 0.258±0.075 | — |\n| vanilla | 0.389±0.073 | — |\n\nPer-seed 9class: [0.449, 0.653, 0.410]\n\n### FITD OOD (80 attack + 38 benign = 118):\n| Variant | F1 (mean±std) |\n|---------|---------------|\n| 9-class | **0.997±0.005** |\n| MLM | 0.679±0.188 |\n| vanilla | 0.867±0.022 |\n\n## 3. exp17 (expanded 1000) — 无需修正\n\nexp17 的 `eval_exp17.py` 已正确加入 benign（`dd_test = dd_jb + test_benign`），数据集为 80 attack + 75 benign = 155。结果无需修正。\n\n已有结果：\n| Variant | DD OOD F1 (mean±std) | AA OOD F1 (mean±std) |\n|---------|---------------------|---------------------|\n| 9-class | **0.889±0.041** | **0.913±0.041** |\n| MLM | 0.334±0.010 | 0.351±0.017 |\n| vanilla | 0.326±0.000 | 0.508±0.087 |\n\nPer-seed 9class DD: [0.843, 0.883, 0.942]\nPer-seed 9class AA: [0.870, 0.903, 0.968]\n\n## 4. exp1 基准确认\n\n```\nexp1 DD OOD:  dataset = 80 attack + 38 benign = 118, metric = f1_macro\n  9-class (RoBERTa): F1 = 0.994 mean (per-seed: 1.000, 0.990, 0.990) — CONFIRMED correct\n  MLM:               F1 = 0.987 mean\n  vanilla:           F1 = 0.981 mean\n\nexp1 AA OOD:  dataset = 80 attack + 38 benign = 118, metric = f1_macro\n  9-class (RoBERTa): F1 = 0.939 mean (from exp2_actorattack_ood.json rob_9class)\n```\n\nexp1 评估**没有**伪影问题——`plan_002_seed123_dd_eval.py` 显示 DD OOD 正确使用了 `dd_convs + test_benign`。\n\n## 5. 结论\n\n**哪些论文数字需要修正：**\n\n1. **exp16 DD OOD 全部需修正**（旧 eval 是 attack-only）：\n   - 9-class: 0.422 → **0.818** (+94% 相对提升，绝对 +0.396)\n   - MLM: 0.024 → 0.289\n   - vanilla: 0.024 → 0.291\n\n2. **exp16 AA OOD 全部需修正**：\n   - 9-class: 0.175 → **0.504** (+188% 相对提升)\n\n3. **exp16 FITD OOD** — 新结果，之前未评估过：9-class **0.997**\n\n4. **exp17 无需修正** — 评估脚本已正确\n\n5. **exp1 无需修正** — 评估脚本已正确\n\n**关键发现：** 旧 eval 的 attack-only 数据中，MLM/vanilla 模型把几乎所有 attack 样本预测为 benign（78/80），导致旧 macro F1 仅 0.024（近似为 0）。这不是模型性能极差，而是评估集完全缺失 benign 类导致 class 0 F1=0，macro F1 被减半。修正后，9-class 变体在 DD OOD 上表现显著好于 MLM/vanilla（0.818 vs ~0.29），验证了多任务学习对 OOD 泛化的贡献。\n\n**结果已保存至：** `results/exp16_balanced_ood_reeval.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16-exp17-full-reeval.md"
+}

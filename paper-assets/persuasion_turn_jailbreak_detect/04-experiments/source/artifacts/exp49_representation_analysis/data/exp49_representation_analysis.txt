@@ -1,0 +1,12 @@
+exp49 Representation Analysis Results
+
+Weight Distance (L2 from pretrained):
+vanilla=0, wiki-MLM=2.92, binary=3.16, JB-MLM=3.38, scrambled=3.74, 9-class=4.00, topic=4.89
+
+SVD Participation Ratio (effective dimensions):
+vanilla=31.93, wiki-MLM=25.0, JB-MLM=24.56, topic=14.46, 9-class=9.37, scrambled=7.82, binary=3.73
+
+Fisher Ratio (class separation):
+vanilla=0.00007, wiki-MLM=0.0003, JB-MLM=0.0008, topic=0.012, scrambled=2.60, 9-class=4.47, binary=19.73
+
+Key finding: Classification DAPT causes discriminative compression (fewer effective dims + much higher class separation). MLM preserves structure similar to vanilla. Mechanism is representation restructuring, not regularization in the traditional sense.

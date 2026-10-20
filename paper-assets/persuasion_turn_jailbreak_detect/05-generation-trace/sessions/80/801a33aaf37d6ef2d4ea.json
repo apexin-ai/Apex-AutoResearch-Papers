@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "801a33aaf37d6ef2d4ea",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp36 frozen mlm probing",
+  "task_key": "worker_code_exp36-frozen-mlm-probing_20260520T203210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp36-frozen-mlm-probing_20260520T203210_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "9ba07d89ab187e147539960a37324931a69704e5caf681d4008f6cbcd616614d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp36 完成，registry 已更新为 DONE (negative)。\n\n**结果**：冻结 MLM DAPT encoder 的 probing 性能与冻结 9-class DAPT encoder 近似等价（AA OOD 差距仅 3.1pp < 5pp 阈值）。两种 DAPT 方式产生的 frozen representations 质量相近，9-class classification DAPT 的优势主要体现在端到端微调而非表征质量本身。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp36-frozen-mlm-probing.md"
+}

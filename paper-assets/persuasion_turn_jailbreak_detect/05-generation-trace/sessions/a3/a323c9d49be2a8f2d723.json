@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a323c9d49be2a8f2d723",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "audit main text numbers",
+  "task_key": "worker_audit_main-text-numbers_20260523T102152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_main-text-numbers_20260523T102152_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "71946db294d407d098c557e319f64d2f3b9b47d94f8edad86c87f2be7a6477d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。检查了 45 个数字，结果：\n\n**需修复的 2 处不一致：**\n\n1. **conclusion.tex:7 \"within 3.9 pp\"** — registry (exp41_tost_10seed) 显示 scrambled vs 9-class 在 AA 上差距为 **3.0pp**，非 3.9pp\n2. **conclusion.tex:15 \"d<0.1\"** — DD 的 |d|=0.136，不满足 d<0.1。Introduction 的写法 \"|d|≤0.14\" 是正确的，conclusion 过于宽松\n\n**4 个无法追溯到 registry 的数字：**\n- Cohen's κ=0.78 (n=50)：标注质量指标，不在实验记录中\n- 4–20× variance ratio：需多实验交叉计算，无单一 exp_id\n- 12–14pp dual-OOD drop 和 0.3pp recovery：无独立实验，可能来自 appendix 推算\n\n其余 36 个数字全部与 registry 一致（含 3 个可接受的舍入差异）。报告已写入 `artifacts/audit_main_text.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-main-text-numbers.md"
+}

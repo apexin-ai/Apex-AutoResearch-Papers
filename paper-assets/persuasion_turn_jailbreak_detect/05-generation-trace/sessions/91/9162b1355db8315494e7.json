@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9162b1355db8315494e7",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "verify v4 status ssh",
+  "task_key": "worker_verify_v4-status-ssh_20260517T152554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_v4-status-ssh_20260517T152554_result.json",
+    "occurrence": 1,
+    "bytes": 1525,
+    "sha256": "85b5d9c8c5a533a8f7784df58e1280bccc48603c246df6ecc39660cbee4a66e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 当前进程\n- **`generate_benign_v4b.py test20` (iter2)** 正在运行（PID 66247，启动于 23:15，CPU 145%）\n- 进度：**12/20 完成**（benign_v4b_iter2_test20.jsonl 当前 11 行，第 12 条正在生成）\n- 每条对话约 40-100 秒，预计剩余 ~8 条需 6-10 分钟\n\n### V4 Benign 数据文件\n\n| 文件 | 行数 | 大小 |\n|------|------|------|\n| `benign_v4_test20.jsonl` | 20 | 466 KB |\n| `benign_v4b_test20.jsonl` | 20 | 444 KB |\n| `benign_v4b_iter2_test20.jsonl` | 11 (生成中) | 226 KB |\n\n- 最新生成的条目：`conv_id=benign_v4b_0011`, register=casual, goal=\"law enforcement evasion technique study for policy research\", 6 turns\n\n### Sanity Check 结果 (`sanity_v4b_results.json`)\n- **TF-IDF F1**: 0.887 (std=0.169)\n- **Pass**: ❌ `false`\n- **Register 分布**: casual=8, personal=4, formal=8\n- **Top jailbreak words**: some, you, hey, just, him, someone, but, could, to, if\n- **Top benign words**: do, so, how, training, does, our, also, behavioral, ensure, malware\n\nSanity check 未通过——TF-IDF 仍能以 ~89% F1 区分 jailbreak 和 v4b benign 数据。`iter2` 可能是修复此问题的第二次迭代尝试。\n\n### GPU 使用\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 88% | 19013 MiB |\n| 1 | 0% | 17649 MiB |\n| 2 | 0% | 3 MiB |\n| 3 | 0% | 3 MiB |\n\nGPU 0 活跃生成中，GPU 1 已加载 target model（Qwen2.5-7B-Instruct）但当前 idle。符合约束 C001（仅使用 cuda:0-3）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-v4-status-ssh.md"
+}

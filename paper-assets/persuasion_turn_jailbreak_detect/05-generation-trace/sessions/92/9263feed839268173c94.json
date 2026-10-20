@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9263feed839268173c94",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code d058 analysis batch",
+  "task_key": "worker_code_d058-analysis-batch_20260520T201310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d058-analysis-batch_20260520T201310_result.json",
+    "occurrence": 1,
+    "bytes": 932,
+    "sha256": "b1d536d290a56089347daa5407dbbad0df1b63e71467391ae63856a017630e3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验全部完成，registry 已更新。\n\n---\n\n**总结**\n\n### exp33: Strategy Prediction (plan_002 checkpoints) → DONE\nplan_002 显著优于 exp16 mixed-LLM checkpoints:\n- DD OOD 漏检: 31/5/26 → **0/0/1**，jb 策略准确率 14.3% → **25.7%**\n- AA OOD 漏检: 63/41/66 → **1/7/1**，jb 策略准确率 6.8% → **50.1%** (+43pp)\n- 各攻击策略检测率全面提升 (authority_appeal 28%→96%, emotional_manipulation 52%→95%)\n\n### exp34: Representation t-SNE/UMAP → DONE\n- 生成 6 张可视化图 (vanilla/MLM/9-class × t-SNE/UMAP)\n- 保存在 `results/exp34_tsne/` (PDF+PNG+NPZ)\n\n### exp35: Cross-Seed Ensemble → DONE\n- Majority vote **从不破坏**正确预测 (broke=0 everywhere)\n- 9-class ensemble: DD/FITD **F1=1.000**，AA **F1=0.981**\n- jb_mlm 从 ensemble 获益最大: DD +8.6pp, AA +6.0pp (修正 30/26 个错误)\n- vanilla 太弱，ensemble 无法挽救"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d058-analysis-batch.md"
+}

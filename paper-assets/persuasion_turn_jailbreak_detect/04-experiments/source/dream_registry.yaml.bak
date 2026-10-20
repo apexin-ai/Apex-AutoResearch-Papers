@@ -1,0 +1,52 @@
+dreams:
+  dream_20260517T165817:
+    dream_id: dream_20260517T165817
+    project: persuasion_turn_jailbreak_detect
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Key risks to probe: (1) TF-IDF=1.0 data quality — will adversarial perturbation
+      approach credibly resolve this? (2) Small dataset (480 samples) — is the narrative
+      framing sufficient? (3) Single-track architecture vs full dual-track from IDEA_BRIEF
+      — does the simplified MVE still tell a compelling story? (4) Pragmatic Evasion
+      Asymmetry as theoretical contribution — is it strong enough for EMNLP main?
+      (5) Only Crescendo + generated attack types — generalization concerns.'
+    what_if: []
+    pid: 362433
+    chat_id: oc_a90fe0dde422576f214f12233cfe27a3
+    card_message_id: om_x100b6fab7407c8a0b2f1fc3b92e549c
+    started_at: '2026-05-17T16:58:17+00:00'
+    updated_at: '2026-05-17T17:38:56+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: c40a827bb6f1fdcf6acadc4d474aced8fed543ea5d274a1b4e7c67373a4974ec
+  dream_20260518T032748:
+    dream_id: dream_20260518T032748
+    project: persuasion_turn_jailbreak_detect
+    status: reviewing
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'All 16 experiments complete. Major narrative pivot from evasion hierarchy
+      to persuasion-aware fine-tuning as supervision signal. Key results: Treatment
+      F1=1.0 vs Baseline=0.28 on DD (+72pp), GPT-5.5 F1=0.19-0.45, scrambled labels
+      only 1-6pp gap, mean pooling≈GRU, binary≈9-class. Verify the reframed paper
+      scores at least borderline accept with the comprehensive ablation picture.'
+    what_if: []
+    pid: 428551
+    chat_id: oc_a90fe0dde422576f214f12233cfe27a3
+    card_message_id: om_x100b6f9c3dbae0b8b16ad4caf52c269
+    started_at: '2026-05-18T03:27:48+00:00'
+    updated_at: '2026-05-18T04:17:43+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 3324f2b8e3a1744aeff6e4dbef31c923efaec0199b156567947a3db4224203af

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp45_benign_adaptation_curve",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:14:46.955Z",
+    "updated_at": "2026-05-22T06:26:43.049Z",
+    "hypothesis": "Adding N WildChat benign samples (N in {0,5,10,25,50,100,150}) to training data will show a monotonic FPR reduction curve, with substantial FPR drop achievable with as few as 10-25 samples while maintaining OOD F1 above 0.95.",
+    "parent": "exp42_ood_benign_mixed"
+  },
+  "timestamp": "2026-05-22T06:26:43.267786+00:00",
+  "trigger": "update_registry"
+}

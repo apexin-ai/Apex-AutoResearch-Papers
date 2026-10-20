@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp46",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:22:17.344Z",
+    "updated_at": "2026-05-22T06:22:45.000Z",
+    "hypothesis": "DisPeD (DeBERTa+BiGRU) achieves significantly lower inference latency than Qwen3-8B LLM-as-judge while maintaining superior accuracy, because the specialized two-stage pipeline avoids autoregressive decoding overhead."
+  },
+  "timestamp": "2026-05-22T06:22:45.216320+00:00",
+  "trigger": "update_registry"
+}

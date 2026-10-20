@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d163fa7476193022eafe",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp28b check and exp31",
+  "task_key": "worker_code_exp28b-check-and-exp31_20260520T191039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp28b-check-and-exp31_20260520T191039.log",
+    "occurrence": 1,
+    "bytes": 740439,
+    "sha256": "92f841cc284937e4769f348f8f6f7e32f77dd1dfc202283e0563ec346dadf006"
+  },
+  "statistics": {
+    "messages": 374,
+    "user_turns": 0,
+    "tool_calls": 140,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 90,
+      "tool_call": 140,
+      "tool_result": 140,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 374,
+      "chunks": [
+        {
+          "path": "d163fa7476193022eafe-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d163fa7476193022eafe-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d163fa7476193022eafe-part-0003.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp28b-check-and-exp31.md"
+}

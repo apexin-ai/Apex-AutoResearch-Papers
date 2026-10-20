@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25a3f8bf13bb2764cc61",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp14 prediction analysis",
+  "task_key": "worker_eval_exp14-prediction-analysis_20260519T081359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp14-prediction-analysis_20260519T081359_result.json",
+    "occurrence": 1,
+    "bytes": 2829,
+    "sha256": "2c4ba7fdc31c93a57a927e8e8fbcad8a2b7132524823257db3c7ad667de4b142"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果非常清晰。以下是完整分析：\n\n## exp14 Prediction Distribution 分析\n\n### Confusion Matrix — exp14 (Llama all), DD Full\n\n| | Pred Benign | Pred Jailbreak |\n|--|------------|---------------|\n| **True Benign (Llama)** | | |\n| vanilla | TN=35.3 | FP=14.7 |\n| jb_mlm | TN=6.0 | FP=44.0 |\n| 9class | TN=5.0 | FP=45.0 |\n| **True Jailbreak (Llama)** | | |\n| vanilla | FN=50.0 | TP=0.0 |\n| jb_mlm | FN=16.0 | TP=34.0 |\n| 9class | FN=0.0 | TP=50.0 |\n\n### Confusion Matrix — exp14b (Llama JB + Qwen benign), DD Full\n\n| | Pred Benign | Pred Jailbreak |\n|--|------------|---------------|\n| **True Benign (Qwen)** | | |\n| vanilla | TN=38.0 | FP=0.0 |\n| jb_mlm | TN=37.7 | FP=0.3 |\n| 9class | TN=38.0 | FP=0.0 |\n| **True Jailbreak (Llama)** | | |\n| vanilla | FN=50.0 | TP=0.0 |\n| jb_mlm | FN=16.0 | TP=34.0 |\n| 9class | FN=0.0 | TP=50.0 |\n\n### 对比摘要 — DD Full (exp14/exp14b)\n\n| 指标 | vanilla | jb_mlm | 9class |\n|------|---------|--------|--------|\n| FP rate (full) | **29.3% / 0.0%** | **88.0% / 0.9%** | **90.0% / 0.0%** |\n| FP rate (k3) | 35.3% / 0.0% | 100.0% / 0.9% | 97.3% / 0.0% |\n| FP rate (k1) | 61.3% / 1.8% | 100.0% / 7.0% | 99.3% / 0.0% |\n| TP rate (full) | 0.0% / 0.0% | 68.0% / 68.0% | **100.0% / 100.0%** |\n| TP rate (k3) | 0.0% / 0.0% | 100.0% / 100.0% | 96.0% / 96.0% |\n| TP rate (k1) | 2.0% / 2.0% | 99.3% / 99.3% | 88.7% / 88.7% |\n\n### 结论\n\n**1. F1 崩溃 100% 来自 FP rate 爆炸，不是 jailbreak 检测失败。**\n\n- **TP rate 在 exp14 和 exp14b 中完全一致**（同样的 jailbreak 数据，同样的检测率）。jailbreak 检测能力完全跨 LLM 可迁移。\n- **FP rate 是唯一差异**：Llama benign 被 88-100% 误判为 jailbreak（jb_mlm/9class），Qwen benign 几乎 0% 被误判。\n\n**2. 失败机制：detector 学到了 \"Llama style = jailbreak\"。**\n\n- 训练集中 jailbreak 全部来自 Qwen 生成，benign 也来自 Qwen。模型隐式学到了：non-Qwen 文本风格 → jailbreak。\n- 当 Llama benign 出现时，其风格与训练集 benign（Qwen）不同，触发 jailbreak 预测。\n- Qwen benign（exp14b）保持同域，FP 接近 0。\n\n**3. vanilla 模型情况特殊：**\n\n- vanilla 完全无法检测 jailbreak（TP=0），FP 也相对低 → 它实际上什么都没学到，偏向预测 benign，但 Llama 文本的 stylistic shift 反而让它预测 jailbreak（FP 29-61%）。\n\n**4. 9class 是最极端的案例：**\n\n- DD Full: TP=100%, FP on Llama benign=90% → 把所有 Llama 文本都判为 jailbreak\n- 换成 Qwen benign 后: TP=100%, FP=0% → F1 直接 1.000\n\n结果文件已保存：\n- `/root/persuasion_turn_jailbreak_detect/results/exp14_prediction_analysis.json`\n- `/root/persuasion_turn_jailbreak_detect/results/exp14_confusion_summary.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp14-prediction-analysis.md"
+}

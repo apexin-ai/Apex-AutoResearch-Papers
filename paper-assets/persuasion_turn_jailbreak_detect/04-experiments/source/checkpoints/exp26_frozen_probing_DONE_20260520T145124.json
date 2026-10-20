@@ -1,0 +1,63 @@
+{
+  "exp_id": "exp26_frozen_probing",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:40:17.179Z",
+    "updated_at": "2026-05-20T14:51:24.547Z",
+    "hypothesis": "Frozen 9-class DAPT DeBERTa representations alone carry sufficient OOD generalization signal: a randomly-initialized BiGRU trained on these frozen embeddings should achieve comparable OOD F1 to the jointly-trained plan_002 GRU, because the DAPT pre-training encodes persuasion-strategy structure that transfers across attack types.",
+    "spec": {
+      "command": "python scripts/exp26_frozen_probing.py",
+      "server": "westd-33183",
+      "data_path": "/root/persuasion_turn_jailbreak_detect/data/plan_002_splits/",
+      "data_count": 500,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": "42,123,456",
+      "checkpoint_source": "/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints_archive/plan_002*/deberta_multitask/best/",
+      "eval_data": "DD_OOD(118)+AA_OOD(118)+FITD_OOD(118)+IID(76)",
+      "checkpoint_path": "/root/persuasion_turn_jailbreak_detect/checkpoints/exp26_frozen_seed*/best.pt",
+      "log_path": "/tmp/exp26_frozen_probing.log"
+    },
+    "metrics": {
+      "iid_full": {
+        "mean": 1,
+        "std": 0
+      },
+      "dd_ood_full": {
+        "mean": 0.997,
+        "std": 0.005
+      },
+      "dd_ood_k1": {
+        "mean": 0.99,
+        "std": 0.013
+      },
+      "dd_ood_k2": {
+        "mean": 0.981,
+        "std": 0.013
+      },
+      "dd_ood_k3": {
+        "mean": 0.972,
+        "std": 0.026
+      },
+      "dd_ood_k5": {
+        "mean": 0.997,
+        "std": 0.005
+      },
+      "aa_ood_full": {
+        "mean": 0.972,
+        "std": 0.026
+      },
+      "fitd_ood_full": {
+        "mean": 1,
+        "std": 0
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T14:51:24.547Z"
+  },
+  "timestamp": "2026-05-20T14:51:24.703722+00:00",
+  "trigger": "update_registry"
+}

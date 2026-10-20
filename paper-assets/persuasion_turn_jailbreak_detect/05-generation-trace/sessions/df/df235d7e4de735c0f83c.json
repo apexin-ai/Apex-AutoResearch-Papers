@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "df235d7e4de735c0f83c",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "eval exp4 dd ood perturbation",
+  "task_key": "worker_eval_exp4-dd-ood-perturbation_20260518T104808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp4-dd-ood-perturbation_20260518T104808.log",
+    "occurrence": 1,
+    "bytes": 1835989,
+    "sha256": "8c35b0137910b7c2cd6c703ab26bc6b45ccd0ea887dd9d42480a9edad6cc5e35"
+  },
+  "statistics": {
+    "messages": 1030,
+    "user_turns": 1,
+    "tool_calls": 442,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "record": 1,
+      "assistant": 128,
+      "tool_call": 442,
+      "tool_result": 442,
+      "user": 1,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 623,
+      "chunks": [
+        {
+          "path": "df235d7e4de735c0f83c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "df235d7e4de735c0f83c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "df235d7e4de735c0f83c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "df235d7e4de735c0f83c-part-0004.json",
+          "message_count": 83
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 407,
+      "chunks": [
+        {
+          "path": "df235d7e4de735c0f83c-part-0004.json",
+          "message_count": 97
+        },
+        {
+          "path": "df235d7e4de735c0f83c-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "df235d7e4de735c0f83c-part-0006.json",
+          "message_count": 130
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-exp4-dd-ood-perturbation.md"
+}

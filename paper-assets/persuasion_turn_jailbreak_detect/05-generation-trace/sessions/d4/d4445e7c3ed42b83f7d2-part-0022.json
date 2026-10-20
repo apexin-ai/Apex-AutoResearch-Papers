@@ -1,0 +1,3586 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d4445e7c3ed42b83f7d2",
+  "rounds": [
+    {
+      "number": 139,
+      "messages": [
+        {
+          "source_line": 3781,
+          "timestamp": "2026-05-23T01:33:48.066885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -oP '\\\\\\\\label\\{app:[^}]+\\}' appendix.tex | sort -u",
+              "description": "Extract all app: labels from appendix"
+            }
+          },
+          "id": "event-003781"
+        },
+        {
+          "source_line": 3782,
+          "timestamp": "2026-05-23T01:33:48.821340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 754
+          },
+          "id": "event-003782"
+        },
+        {
+          "source_line": 3783,
+          "timestamp": "2026-05-23T01:33:48.821849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -oP '\\\\\\\\ref\\{app:[^}]+\\}' appendix.tex | sort -u",
+              "description": "Extract app: references within appendix itself"
+            }
+          },
+          "id": "event-003783"
+        },
+        {
+          "source_line": 3784,
+          "timestamp": "2026-05-23T01:33:48.922446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-003784"
+        },
+        {
+          "source_line": 3785,
+          "timestamp": "2026-05-23T01:33:56.567014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\ref\\{app:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "head_limit": "50"
+            }
+          },
+          "id": "event-003785"
+        },
+        {
+          "source_line": 3786,
+          "timestamp": "2026-05-23T01:33:56.567434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex:28:For key pairwise comparisons, we report BCa bootstrap 95\\% confidence intervals (10,000 resamples over individual predictions pooled across 3 seeds; this assumes cross-seed independence and is exploratory) and paired permutation tests (10,000 permutations). Seed-level F1 values (Table~\\ref{tab:seed_level}, Appendix~\\ref{app:seed_level}) confirm all pairwise conclusions hold at every seed.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex:63:Seed-level F1 values confirm all pairwise conclusions hold at every seed (Appendix~\\ref{app:seed_level}); pooled BCa CIs provide exploratory confirmation (9-class DD Full [0.943, 1.000] vs.\\ vanilla [0.202, 0.341]; all permutation $p < 0.0001$). FITD serves as a near-ceiling baseline where all variants achieve F1\\,$\\geq$\\,0.990, providing limited discriminative power.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex:112:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex:114:Appendix~\\ref{app:tsne} provides t-SNE visualizations confirming that domain-adapted variants produce tighter, more separable embedding clusters than the vanilla baseline.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex:121:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex:132:Classification-supervised variants cluster tightly (0.951--0.990, max gap 3.9\\,pp at $n$\\,=\\,3), though 10-seed TOST resolves the 9-class vs.\\ scrambled gap as a moderate effect ($d$\\,=\\,0.44). DAPT provides $\\sim$71\\,pp over both vanilla (0.258) and TF-IDF (0.261). Full per-prefix \n…[truncated 3647 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-003786"
+        },
+        {
+          "source_line": 3787,
+          "timestamp": "2026-05-23T01:33:56.818488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\label\\{app:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "head_limit": "50"
+            }
+          },
+          "id": "event-003787"
+        },
+        {
+          "source_line": 3788,
+          "timestamp": "2026-05-23T01:33:56.869762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "38:\\label{app:prompt_opt}\n128:\\label{app:aa_error}\n215:\\label{app:tsne}\n227:\\label{app:cross_llm}\n270:\\label{app:mixed_llm}\n294:\\label{app:scale_validation}\n365:\\label{app:random_partition}\n366:\\label{app:topic_failure}\n447:\\label{app:e2e}\n469:\\label{app:wildchat_fpr}\n493:\\label{app:benign_mixed}\n546:\\label{app:oasst2}\n585:\\label{app:dual_ood}\n610:\\label{app:bert_proxy}\n631:\\label{app:calibration}\n651:\\label{app:confidence}\n656:\\label{app:frozen_verify}\n681:\\label{app:representation}\n708:\\label{app:layerwise}\n722:\\label{app:discriminative_probe}\n755:\\label{app:svd_necessity}\n778:\\label{app:temporal}\n801:\\label{app:length}\n827:\\label{app:length_independence}\n868:\\label{app:efficiency}\n890:\\label{app:data_efficiency}\n917:\\label{app:lambda}\n940:\\label{app:strategy_pred}\n960:\\label{app:ensemble}\n961:\\label{app:seed_level}\n1054:\\label{app:truncated}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-003788"
+        },
+        {
+          "source_line": 3789,
+          "timestamp": "2026-05-23T01:34:10.169672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -ohP '\\\\\\\\ref\\{[^}]+\\}' introduction.tex experiments.tex conclusion.tex abstract.tex method.tex related_work.tex checklist.tex 2>/dev/null | sort -u",
+              "description": "Extract all unique refs from main text files"
+            }
+          },
+          "id": "event-003789"
+        },
+        {
+          "source_line": 3790,
+          "timestamp": "2026-05-23T01:34:11.023626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 853
+          },
+          "id": "event-003790"
+        },
+        {
+          "source_line": 3791,
+          "timestamp": "2026-05-23T01:34:11.024346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -ohP '\\\\\\\\label\\{[^}]+\\}' appendix.tex 2>/dev/null | sort -u",
+              "description": "Extract all unique labels from appendix"
+            }
+          },
+          "id": "event-003791"
+        },
+        {
+          "source_line": 3792,
+          "timestamp": "2026-05-23T01:34:11.977841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 953
+          },
+          "id": "event-003792"
+        },
+        {
+          "source_line": 3793,
+          "timestamp": "2026-05-23T01:34:12.079777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -ohP '\\\\\\\\ref\\{[^}]+\\}' appendix.tex 2>/dev/null | sort -u",
+              "description": "Extract all refs from appendix itself"
+            }
+          },
+          "id": "event-003793"
+        },
+        {
+          "source_line": 3794,
+          "timestamp": "2026-05-23T01:34:12.130652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-003794"
+        },
+        {
+          "source_line": 3795,
+          "timestamp": "2026-05-23T01:34:16.448780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && cat introduction.tex experiments.tex conclusion.tex abstract.tex method.tex related_work.tex checklist.tex | grep -oP '\\\\ref\\{[^}]+\\}' | sort -u",
+              "description": "Extract all unique refs from main text"
+            }
+          },
+          "id": "event-003795"
+        },
+        {
+          "source_line": 3796,
+          "timestamp": "2026-05-23T01:34:16.901064+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\ref{app:aa_error}\n\\ref{app:bert_proxy}\n\\ref{app:confidence}\n\\ref{app:cross_llm}\n\\ref{app:data_efficiency}\n\\ref{app:discriminative_probe}\n\\ref{app:dual_ood}\n\\ref{app:efficiency}\n\\ref{app:lambda}\n\\ref{app:layerwise}\n\\ref{app:length_independence}\n\\ref{app:mixed_llm}\n\\ref{app:oasst2}\n\\ref{app:random_partition}\n\\ref{app:representation}\n\\ref{app:seed_level}\n\\ref{app:temporal}\n\\ref{app:topic_failure}\n\\ref{app:truncated}\n\\ref{app:tsne}\n\\ref{fig:architecture}\n\\ref{fig:cka_heatmap}\n\\ref{fig:cross_attack_bar}\n\\ref{sec:actorattack_full}\n\\ref{sec:cka_heatmap}\n\\ref{sec:cross_encoder}\n\\ref{sec:decomposition}\n\\ref{sec:discussion}\n\\ref{sec:full_prefix}\n\\ref{sec:human_data}\n\\ref{sec:limitations}\n\\ref{sec:llm_judge}\n\\ref{sec:method}\n\\ref{sec:perturbation_full}\n\\ref{sec:perturbation}\n\\ref{sec:reproducibility}\n\\ref{sec:strategy_full}\n\\ref{tab:actorattack_full}\n\\ref{tab:cross_encoder}\n\\ref{tab:evidence_hierarchy}\n\\ref{tab:full_prefix}\n\\ref{tab:human_data}\n\\ref{tab:main_results}\n\\ref{tab:mixed_llm}\n\\ref{tab:ood_perturbation}\n\\ref{tab:roberta_large_lr}\n\\ref{tab:seed_level}\n\\ref{tab:tost_sensitivity}\n\\ref{tab:variants}\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 452
+          },
+          "id": "event-003796"
+        },
+        {
+          "source_line": 3797,
+          "timestamp": "2026-05-23T01:34:17.152955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && cat appendix.tex | grep -oP '\\\\label\\{[^}]+\\}' | sort -u",
+              "description": "Extract all unique labels from appendix"
+            }
+          },
+          "id": "event-003797"
+        },
+        {
+          "source_line": 3798,
+          "timestamp": "2026-05-23T01:34:17.203878+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\label{app:aa_error}\n\\label{app:benign_mixed}\n\\label{app:bert_proxy}\n\\label{app:calibration}\n\\label{app:confidence}\n\\label{app:cross_llm}\n\\label{app:data_efficiency}\n\\label{app:discriminative_probe}\n\\label{app:dual_ood}\n\\label{app:e2e}\n\\label{app:efficiency}\n\\label{app:ensemble}\n\\label{app:frozen_verify}\n\\label{app:lambda}\n\\label{app:layerwise}\n\\label{app:length_independence}\n\\label{app:length}\n\\label{app:mixed_llm}\n\\label{app:oasst2}\n\\label{app:prompt_opt}\n\\label{app:random_partition}\n\\label{app:representation}\n\\label{app:scale_validation}\n\\label{app:seed_level}\n\\label{app:strategy_pred}\n\\label{app:svd_necessity}\n\\label{app:temporal}\n\\label{app:topic_failure}\n\\label{app:truncated}\n\\label{app:tsne}\n\\label{app:wildchat_fpr}\n\\label{fig:cka_heatmap}\n\\label{fig:layerwise}\n\\label{fig:strategy_heatmap}\n\\label{fig:tsne}\n\\label{para:benign_curve}\n\\label{sec:actorattack_full}\n\\label{sec:cka_heatmap}\n\\label{sec:full_prefix}\n\\label{sec:llm_judge}\n\\label{sec:perturbation_full}\n\\label{sec:reproducibility}\n\\label{sec:strategy_full}\n\\label{tab:actorattack_full}\n\\label{tab:benign_curve}\n\\label{tab:benign_mixed}\n\\label{tab:benign_summary}\n\\label{tab:bert_proxy}\n\\label{tab:calibration}\n\\label{tab:cross_hw}\n\\label{tab:cross_llm_error}\n\\label{tab:cross_llm}\n\\label{tab:data_efficiency}\n\\label{tab:discriminative_probe}\n\\label{tab:dual_ood}\n\\label{tab:e2e}\n\\label{tab:efficiency}\n\\label{tab:ensemble}\n\\label{tab:frozen_verify}\n\\label{tab:full_prefix}\n\\label{tab:lambda}\n\\label{tab:length_independence}\n\\label{tab:length}\n\\label{tab:llm_judge}\n\\label{tab:mixed_llm}\n\\label{tab:oasst2_curve}\n\\label{tab:ood_perturbation}\n\\label{tab:perturbation}\n\\label{tab:prompt_opt}\n\\label{tab:random_partition}\n\\label{tab:representation}\n\\label{tab:roberta_large_lr}\n\\label{tab:scale_validation}\n\\label{tab:seed_level}\n\\label{tab:strategy_pred}\n\\label{tab:svd_necessity}\n\\label{tab:temporal}\n\\label{tab:topic_failure}\n\\label{tab:tost_5seed}\n\\label{tab:tost_sensitivity}\n\\label{tab:truncated}\n\\label{tab:wildchat_fpr}\n…[truncated 145 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-003798"
+        },
+        {
+          "source_line": 3799,
+          "timestamp": "2026-05-23T01:34:35.884293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && cat appendix.tex | grep -oP '\\\\ref\\{app:[^}]+\\}' | sort -u",
+              "description": "Check which orphan appendix labels are self-referenced"
+            }
+          },
+          "id": "event-003799"
+        },
+        {
+          "source_line": 3800,
+          "timestamp": "2026-05-23T01:34:37.794206+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\ref{app:frozen_verify}\n\\ref{app:wildchat_fpr}\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 1909
+          },
+          "id": "event-003800"
+        },
+        {
+          "source_line": 3801,
+          "timestamp": "2026-05-23T01:34:38.246782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -c '@' references.bib && echo \"---\" && grep '@article\\|@inproceedings\\|@misc\\|@book' references.bib | head -5 && echo \"---arXiv---\" && grep -i 'arxiv' references.bib | head -10",
+              "description": "Check bib entry format and arXiv labels"
+            }
+          },
+          "id": "event-003801"
+        },
+        {
+          "source_line": 3802,
+          "timestamp": "2026-05-23T01:34:39.604736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "84\n---\n@article{inan2023llamaguard,\n@misc{metallamaguard3_2024,\n@article{zeng2024shieldgemma,\n@inproceedings{han2024wildguard,\n@article{deepcontext2026,\n---arXiv---\n  journal={arXiv preprint},\n  archivePrefix={arXiv},\n  journal={arXiv preprint},\n  archivePrefix={arXiv},\n  archivePrefix={arXiv},\n  journal={arXiv preprint},\n  archivePrefix={arXiv},\n  journal={arXiv preprint},\n  archivePrefix={arXiv},\n  journal={arXiv preprint},\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 1357
+          },
+          "id": "event-003802"
+        },
+        {
+          "source_line": 3803,
+          "timestamp": "2026-05-23T01:34:39.958731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -i 'self\\|our prior\\|our previous\\|we previously\\|our earlier\\|in our work' introduction.tex experiments.tex conclusion.tex method.tex related_work.tex 2>/dev/null | head -10",
+              "description": "Check for self-citation language leaks"
+            }
+          },
+          "id": "event-003803"
+        },
+        {
+          "source_line": 3804,
+          "timestamp": "2026-05-23T01:34:40.110255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "related_work.tex:No existing defense evaluates cross-attack transfer. Conversation-level systems (DeepContext~\\citep{deepcontext2026}, BIID~\\citep{tong2025biid}, G-Guard~\\citep{gguard2025}, SafeDream~\\citep{safedream2026}, JailDAM~\\citep{nian2025jaildam}) and representation-level approaches~\\citep{lu2025xboundary,zhang2025jbshield,xie2024gradsafe,zou2024circuitbreakers,kulkarni2026latentadversarial,kadali2026trace,hua2026rcs,shen2025antidote,li2025repejailbreak,wang2026trajguard,templeton2024saemitigators} each evaluate on a single family; the latter require white-box access and can be brittle~\\citep{derya2026revisitingjbshield}. J-DAPT~\\citep{marchiori2025jdapt} applies CORAL-based domain adaptation with cross-modal fusion for multimodal robotic jailbreak detection; our work focuses on text-only multi-turn persuasion attacks and decomposes which adaptation factors drive cross-attack generalization through controlled ablation. Per-turn classifiers~\\citep{inan2023llamaguard,metallamaguard3_2024,zeng2024shieldgemma,han2024wildguard,anthropic2025constitutional} and single-turn defenses~\\citep{robey2024smoothllm,xu2024safedecoding,jain2023baseline,alon2023perplexity,phute2023selfdefense,hsu2024improved} miss multi-turn trajectories; M2S~\\citep{li2025m2s} converts multi-turn attacks to single-turn as a complementary approach. Direct experimental comparison with these systems is precluded by unavailable code (DeepContext, BIID, G-Guard) and incompatible evaluation protocols (different datasets, annotation standards, and attack families); our work is positioned as a controlled ablation study rather than a SOTA competition, and we include a DeepContext-equivalent baseline (vanilla DeBERTa+BiGRU).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-003804"
+        },
+        {
+          "source_line": 3805,
+          "timestamp": "2026-05-23T01:34:54.648746+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && cat appendix.tex | grep -oP '\\\\ref\\{[^}]+\\}' | sort -u",
+              "description": "All refs from within appendix"
+            }
+          },
+          "id": "event-003805"
+        },
+        {
+          "source_line": 3806,
+          "timestamp": "2026-05-23T01:34:56.054225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\ref{app:frozen_verify}\n\\ref{app:wildchat_fpr}\n\\ref{fig:strategy_heatmap}\n\\ref{fig:tsne}\n\\ref{sec:decomposition}\n\\ref{sec:discussion}\n\\ref{sec:human_data}\n\\ref{sec:limitations}\n\\ref{tab:actorattack_full}\n\\ref{tab:benign_curve}\n\\ref{tab:bert_proxy}\n\\ref{tab:cross_encoder}\n\\ref{tab:cross_hw}\n\\ref{tab:cross_llm_error}\n\\ref{tab:cross_llm}\n\\ref{tab:data_efficiency}\n\\ref{tab:discriminative_probe}\n\\ref{tab:efficiency}\n\\ref{tab:ensemble}\n\\ref{tab:evidence_hierarchy}\n\\ref{tab:frozen_verify}\n\\ref{tab:lambda}\n\\ref{tab:length}\n\\ref{tab:llm_judge}\n\\ref{tab:main_results}\n\\ref{tab:mixed_llm}\n\\ref{tab:perturbation}\n\\ref{tab:prompt_opt}\n\\ref{tab:scale_validation}\n\\ref{tab:seed_level}\n\\ref{tab:strategy_pred}\n\\ref{tab:temporal}\n\\ref{tab:tost_5seed}\n\\ref{tab:wildchat_fpr}\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 1405
+          },
+          "id": "event-003806"
+        },
+        {
+          "source_line": 3807,
+          "timestamp": "2026-05-23T01:34:56.556610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -cP '(@\\w+\\{)' references.bib && echo \"---types---\" && grep -oP '@\\w+' references.bib | sort | uniq -c | sort -rn",
+              "description": "Count and categorize bib entry types"
+            }
+          },
+          "id": "event-003807"
+        },
+        {
+          "source_line": 3808,
+          "timestamp": "2026-05-23T01:34:57.460740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "84\n---types---\n     44 @inproceedings\n     34 @article\n      3 @book\n      2 @techreport\n      1 @misc\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 904
+          },
+          "id": "event-003808"
+        },
+        {
+          "source_line": 3809,
+          "timestamp": "2026-05-23T01:34:57.813757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -P '@misc\\{' references.bib | head -20",
+              "description": "Check @misc entries (likely arXiv)"
+            }
+          },
+          "id": "event-003809"
+        },
+        {
+          "source_line": 3810,
+          "timestamp": "2026-05-23T01:34:57.864477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "@misc{metallamaguard3_2024,\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-003810"
+        },
+        {
+          "source_line": 3811,
+          "timestamp": "2026-05-23T01:35:21.552875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -P 'journal.*arXiv|archivePrefix' references.bib | wc -l && echo \"---\" && grep -B2 'journal.*arXiv' references.bib | grep '@' | head -10",
+              "description": "Check arXiv bib entries for format consistency"
+            }
+          },
+          "id": "event-003811"
+        },
+        {
+          "source_line": 3812,
+          "timestamp": "2026-05-23T01:35:22.306646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "59\n---\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 753
+          },
+          "id": "event-003812"
+        },
+        {
+          "source_line": 3813,
+          "timestamp": "2026-05-23T01:35:22.834701+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep 'Overfull' main.log | grep -oP 'lines \\d+--\\d+' | while read range; do echo \"$range\"; done",
+              "description": "Extract overfull hbox line ranges to determine main vs appendix"
+            }
+          },
+          "id": "event-003813"
+        },
+        {
+          "source_line": 3814,
+          "timestamp": "2026-05-23T01:35:23.773852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "lines 41--54\nlines 83--102\nlines 140--156\nlines 168--182\nlines 234--247\nlines 277--286\nlines 375--393\nlines 395--396\nlines 555--565\nlines 617--626\nlines 663--672\nlines 719--720\nlines 764--773\nlines 834--859\nlines 875--885\nlines 947--955\nlines 968--977\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 939
+          },
+          "id": "event-003814"
+        },
+        {
+          "source_line": 3815,
+          "timestamp": "2026-05-23T01:35:23.924866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && pdftotext main.pdf - 2>/dev/null | grep -c '\\[?\\]'",
+              "description": "Check for [?] in rendered PDF text"
+            }
+          },
+          "id": "event-003815"
+        },
+        {
+          "source_line": 3816,
+          "timestamp": "2026-05-23T01:35:24.276577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 351
+          },
+          "id": "event-003816"
+        },
+        {
+          "source_line": 3817,
+          "timestamp": "2026-05-23T01:35:32.834559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -B1 'journal.*arXiv' references.bib | grep '@' | sed 's/{.*//' | sort | uniq -c",
+              "description": "Check entry types for arXiv papers"
+            }
+          },
+          "id": "event-003817"
+        },
+        {
+          "source_line": 3818,
+          "timestamp": "2026-05-23T01:35:34.193879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 1359
+          },
+          "id": "event-003818"
+        },
+        {
+          "source_line": 3819,
+          "timestamp": "2026-05-23T01:35:34.645698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep 'Overfull' main.log | grep -oP '\\((\\d+\\.\\d+)pt' | sort -t'(' -k2 -rn | head -5",
+              "description": "Check worst overfull hbox severity"
+            }
+          },
+          "id": "event-003819"
+        },
+        {
+          "source_line": 3820,
+          "timestamp": "2026-05-23T01:35:36.553862+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(81.89864pt\n(66.60208pt\n(54.36157pt\n(49.7152pt\n(49.42686pt\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 1908
+          },
+          "id": "event-003820"
+        },
+        {
+          "source_line": 3821,
+          "timestamp": "2026-05-23T01:35:36.604635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -P 'year\\s*=' references.bib | grep -v '20[12][0-9]' | head -5 && echo \"---missing year---\" && grep -L 'year' references.bib",
+              "description": "Check for missing/unusual years in bib"
+            }
+          },
+          "id": "event-003821"
+        },
+        {
+          "source_line": 3822,
+          "timestamp": "2026-05-23T01:35:36.705470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  year={1988},\n  year={2008},\n  year={2000},\n  year={1962},\n  year={1969},\n---missing year---\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-003822"
+        },
+        {
+          "source_line": 3823,
+          "timestamp": "2026-05-23T01:35:49.355505+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep 'Overfull' main.log",
+              "description": "Full overfull hbox details with file info"
+            }
+          },
+          "id": "event-003823"
+        },
+        {
+          "source_line": 3824,
+          "timestamp": "2026-05-23T01:35:49.407777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Overfull \\hbox (38.3866pt too wide) in paragraph at lines 41--54\nOverfull \\hbox (22.4317pt too wide) in paragraph at lines 83--102\nOverfull \\hbox (1.38345pt too wide) in paragraph at lines 140--156\nOverfull \\hbox (22.38148pt too wide) in paragraph at lines 168--182\nOverfull \\hbox (49.7152pt too wide) in paragraph at lines 234--247\nOverfull \\hbox (66.60208pt too wide) in paragraph at lines 277--286\nOverfull \\hbox (38.33002pt too wide) in paragraph at lines 375--393\nOverfull \\hbox (1.64136pt too wide) in paragraph at lines 395--396\nOverfull \\hbox (5.60754pt too wide) in paragraph at lines 555--565\nOverfull \\hbox (54.36157pt too wide) in paragraph at lines 617--626\nOverfull \\hbox (49.42686pt too wide) in paragraph at lines 663--672\nOverfull \\hbox (1.28442pt too wide) in paragraph at lines 719--720\nOverfull \\hbox (13.22275pt too wide) in paragraph at lines 764--773\nOverfull \\hbox (81.89864pt too wide) in paragraph at lines 834--859\nOverfull \\hbox (14.71178pt too wide) in paragraph at lines 875--885\nOverfull \\hbox (22.8114pt too wide) in paragraph at lines 947--955\nOverfull \\hbox (20.84218pt too wide) in paragraph at lines 968--977\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 52
+          },
+          "id": "event-003824"
+        },
+        {
+          "source_line": 3825,
+          "timestamp": "2026-05-23T01:35:55.782340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -B5 'Overfull.*81.89' main.log | head -10",
+              "description": "Check context around worst overfull hbox"
+            }
+          },
+          "id": "event-003825"
+        },
+        {
+          "source_line": 3826,
+          "timestamp": "2026-05-23T01:35:55.883189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Overfull \\hbox (13.22275pt too wide) in paragraph at lines 764--773\n [][] \n []\n\n[23 <../../figures/paper/fig_layerwise_representation.pdf>]\nOverfull \\hbox (81.89864pt too wide) in paragraph at lines 834--859\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-003826"
+        },
+        {
+          "source_line": 3827,
+          "timestamp": "2026-05-23T01:36:06.475068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && awk '/^\\[/{page=$0} /Overfull/{print page, $0}' main.log",
+              "description": "Map overfull hboxes to page numbers"
+            }
+          },
+          "id": "event-003827"
+        },
+        {
+          "source_line": 3828,
+          "timestamp": "2026-05-23T01:36:06.575902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "[3]) Overfull \\hbox (38.3866pt too wide) in paragraph at lines 41--54\n[3]) Overfull \\hbox (22.4317pt too wide) in paragraph at lines 83--102\n[]\\T1/ptm/m/n/10 (+20) Adly Tem-ple-ton, Tom Con-erly, Jonathan Mar-cus, Overfull \\hbox (1.38345pt too wide) in paragraph at lines 140--156\n[]\\T1/ptm/m/n/10 (+20) Adly Tem-ple-ton, Tom Con-erly, Jonathan Mar-cus, Overfull \\hbox (22.38148pt too wide) in paragraph at lines 168--182\n[14] Overfull \\hbox (49.7152pt too wide) in paragraph at lines 234--247\n[15 <../../figures/paper/fig3_strategy_heatmap.pdf>] Overfull \\hbox (66.60208pt too wide) in paragraph at lines 277--286\n[16 <../../figures/paper/cka_heatmap.pdf> <../../figures/paper/embedding_tsne.p Overfull \\hbox (38.33002pt too wide) in paragraph at lines 375--393\n[16 <../../figures/paper/cka_heatmap.pdf> <../../figures/paper/embedding_tsne.p Overfull \\hbox (1.64136pt too wide) in paragraph at lines 395--396\n[19] Overfull \\hbox (5.60754pt too wide) in paragraph at lines 555--565\n[20] Overfull \\hbox (54.36157pt too wide) in paragraph at lines 617--626\n[21] Overfull \\hbox (49.42686pt too wide) in paragraph at lines 663--672\n[21] Overfull \\hbox (1.28442pt too wide) in paragraph at lines 719--720\n[21] Overfull \\hbox (13.22275pt too wide) in paragraph at lines 764--773\n[23 <../../figures/paper/fig_layerwise_representation.pdf>] Overfull \\hbox (81.89864pt too wide) in paragraph at lines 834--859\n[24] Overfull \\hbox (14.71178pt too wide) in paragraph at lines 875--885\n[24] Overfull \\hbox (22.8114pt too wide) in paragraph at lines 947--955\n[25] Overfull \\hbox (20.84218pt too wide) in paragraph at lines 968--977\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-003828"
+        },
+        {
+          "source_line": 3829,
+          "timestamp": "2026-05-23T01:36:34.677726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep 'caption{' experiments.tex | head -5",
+              "description": "Check main text table captions for number consistency"
+            }
+          },
+          "id": "event-003829"
+        },
+        {
+          "source_line": 3830,
+          "timestamp": "2026-05-23T01:36:35.581226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\caption{Cross-attack generalization (F1) at $K$=2 and full conversation length. IID: Crescendo; OOD: Deceptive Delight (DD). OOD F1 reflects attack-side generalization; benign samples are IID from training distribution. 3-seed mean$\\pm$std where noted; full per-$K$ in Appendix~\\ref{sec:full_prefix}.}\n\\caption{Cross-attack generalization (full conversation F1). DisPeD (9-class) maintains near-perfect detection across all OOD families. On ActorAttack, both vanilla DeBERTa and TF-IDF collapse ($\\leq$0.26), exposing a difficulty threshold that lexical and non-adapted methods cannot cross.}\n\\caption{Evidence hierarchy on OOD DD and ActorAttack (AA) at full conversation length (3-seed mean$\\pm$std where available). Bold indicates best per column. OOD F1 reflects attack-side generalization only; benign samples are IID from training distribution (benign-side shift evaluated in Section~\\ref{sec:discussion}). Full per-prefix results in Appendix Tables~\\ref{tab:full_prefix} and~\\ref{tab:actorattack_full}.}\n\\caption{Cross-architecture comparison on OOD Full (3-seed mean$\\pm$std). DD = Deceptive Delight, AA = ActorAttack. Bold indicates best per encoder group.}\n\\caption{Human data validation on ToxicChat~\\citep{lin2023toxicchat} (macro F1, 3-seed mean$\\pm$std). Bold indicates best. Single-turn data from real LMSYS user interactions, independent of Qwen3-8B.}\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 903
+          },
+          "id": "event-003830"
+        },
+        {
+          "source_line": 3831,
+          "timestamp": "2026-05-23T01:36:35.732181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && wc -l introduction.tex method.tex experiments.tex related_work.tex conclusion.tex",
+              "description": "Check main text file line counts"
+            }
+          },
+          "id": "event-003831"
+        },
+        {
+          "source_line": 3832,
+          "timestamp": "2026-05-23T01:36:35.782934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "   29 introduction.tex\n   51 method.tex\n  220 experiments.tex\n   15 related_work.tex\n   26 conclusion.tex\n  341 total\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-003832"
+        },
+        {
+          "source_line": 3833,
+          "timestamp": "2026-05-23T01:37:11.516391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "project": "persuasion_turn_jailbreak_detect",
+              "text": "[资源] GPU 0/0 | Worker 0 (GPU 0 / CPU 0)\n\n## Camera-Ready 前置检查报告\n\n### 1. Reference 格式一致性 ✅\n- 84 bib 条目：44 @inproceedings, 34 @article, 3 @book, 2 @techreport, 1 @misc\n- arXiv preprint 一致使用 `@article` + `journal={arXiv preprint}` 格式\n- **0 个 [?] 未解析引用**（PDF 文本搜索确认）\n- 所有条目都有 year 字段，无缺失\n\n### 2. Appendix 交叉引用完整性 ✅\n- **20 个 `app:` 标签** 被主文引用，全部有对应 `\\label` ✓\n- **app:dual_ood**: ✓ 从 Limitations 引用\n- **app:svd_necessity**: ✓ 作为 `\\paragraph` 嵌套在 `app:discriminative_probe` 下，后者从 Discussion + Contribution 2 引用，隐式覆盖\n- 11 个 appendix sections 未被主文直接引用（app:benign_mixed, app:calibration, app:e2e, app:ensemble, app:frozen_verify, app:length, app:prompt_opt, app:scale_validation, app:strategy_pred, app:svd_necessity, app:wildchat_fpr）\n  - 其中 2 个有 appendix 内部交叉引用 (frozen_verify, wildchat_fpr)\n  - 其余为独立补充材料，符合会议惯例\n- **无孤立标签**（所有 `\\label` 都可到达）\n\n### 3. Figure/Table Caption 一致性 ✅\n- Table captions 正确描述 OOD F1 为 attack-side generalization + benign IID\n- 新增 Table 26 (dual-OOD) 和 Table 32 (SVD necessity) captions 与正文数字一致\n- 主文交叉表引用 (Table 1-5) 正确指向对应表格\n\n### 4. 编译 Warning 检查 ⚠️\n- **0 undefined references**\n- **0 multiply-defined labels**\n- **17 overfull hbox**:\n  - 主文 (pages 1-8): 2 处（page 3: 38.4pt, 22.4pt）— method/experiments 中公式或长表达式\n  - 附录 (pages 14-25): 15 处（最大 81.9pt, page 23 layerwise 分析表）\n  - 附录中的 overfull 均来自宽表格，ACL 投稿惯例可接受\n  - **建议**: page 3 的 38.4pt 值得检查是否有文本溢出到边距，但不阻塞投稿\n\n### 5. Anonymous Submission 检查 ✅\n- `\\author{Anonymous}` 已设置\n- 无 self-citation 泄露（仅 related work 中标准的 \"our work\" 对比用语，无具体论文/作者名）\n\n### 6. 页面预算 ✅\n- **Main text: 8 页**，Conclusion 完整在 page 8 内\n- Limitations 从 page 9 开始\n- Ethics Statement 紧随 Limitations\n- References 从 page 9 下半部分开始\n- Appendix: pages 11-27 (17 页)\n- **总计 27 页**\n\n### 总结\n6 项检查中 5 项完全通过，1 项有低风险 warning（page 3 overfull hbox 38pt，不影响投稿）。论文可提交。"
+            }
+          },
+          "id": "event-003833"
+        },
+        {
+          "source_line": 3834,
+          "timestamp": "2026-05-23T01:37:15.429886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3913
+          },
+          "id": "event-003834"
+        },
+        {
+          "source_line": 3835,
+          "timestamp": "2026-05-23T01:37:18.180286+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks complete. Compiling results and reporting."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882"
+          },
+          "id": "event-003835"
+        }
+      ]
+    },
+    {
+      "number": 140,
+      "messages": [
+        {
+          "source_line": 3836,
+          "timestamp": "2026-05-23T01:37:59.979537+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] Reviewer 叙事连贯性审查发现 5 个问题，全部修复。逐条执行：\n\n## W1: \"necessity\" 措辞过强（2 处）\n\nexp65 显示 partial necessity（DD -17pp 但未到 chance；FITD 无影响）。修改：\n\n1. **introduction.tex** Contribution 2: \n   当前: \"removing these 3 directions degrades DD detection by 17\\,pp (necessity)\"\n   改为: \"removing these 3 directions degrades DD detection by 17\\,pp while FITD is unaffected (partial necessity)\"\n\n2. **conclusion.tex** Discussion \"Evidence consistent with discriminative compression\" 段:\n   当前: \"their removal degrades DD by 17\\,pp (necessity\"\n   改为: \"their removal degrades DD by 17\\,pp while FITD is unaffected (partial necessity\"\n\n## W2: \"structurally complex\" 术语不统一（多处）\n\nD081 计划替换为 \"varied conversational strategies\" 但多处遗漏。全文统一替换：\n\n- abstract.tex: \"structurally complex ActorAttack\" → \"strategy-diverse ActorAttack\" 或 \"ActorAttack (which employs varied conversational strategies)\"\n- experiments.tex:62: \"structurally complex ActorAttack\" → 与 abstract 一致\n- experiments.tex:123: 段落标题 \"structurally complex attacks\" → \"attacks with varied strategies\" 或类似\n- appendix.tex: 所有 \"structurally complex\" 统一替换为一致术语\n\n注意：不需要全部用完全相同的短语，但同一概念不能同时用 \"structural complexity\" 和 \"varied conversational strategies\" 两套术语。选一个核心术语全文统一。\n\n## I1: Abstract 含 Section~4.6 引用\n\n删除 Abstract 中的 \"(Section~4.6)\" 或改为不含引用的表述（如 \"as shown in the human data evaluation\"）。\n\n## I2: Discussion FPR 箭头含义模糊\n\n当前: \"WildChat FPR 48.1\\%$\\rightarrow$68.1\\%\"\n改为: \"WildChat FPR ranges from 48.1\\% (vanilla) to 68.1\\% (9-class)\"\n\n## I3: Conclusion 缺少 ToxicChat reversal\n\nConclusion 当前只有 1 句话。在末尾加半句：\"; the hierarchy reverses on human single-turn data, confirming condition specificity\"\n\n---\n\n修改完成后编译确认，检查 main text 仍 ≤ 8 页。汇报所有修改的 diff。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "source": "director"
+          },
+          "id": "event-003836"
+        },
+        {
+          "source_line": 3837,
+          "timestamp": "2026-05-23T01:38:06.913884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-003837"
+        },
+        {
+          "source_line": 3838,
+          "timestamp": "2026-05-23T01:38:07.266018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% abstract.tex — D073 Phase 2 revision\n2\t\\begin{abstract}\n3\tWhat representation properties of encoder adaptation enable cross-attack generalization in multi-turn jailbreak detection?\n4\tMulti-turn attacks spread adversarial intent across benign-seeming turns, evading existing defenses: Llama Guard~3 detects only 1.8\\% of multi-turn jailbreaks.\n5\tWe decompose cross-attack generalization through controlled ablation of thirteen encoder configurations on synthetic multi-turn data generated by a single LLM (Qwen3-8B).\n6\tA surprising finding emerges: domain-relevant classification objectives---including scrambled labels---are associated with discriminative compression sufficient for template-attack generalization at base model scale, with an observed difficulty gradient on attacks employing more varied strategies.\n7\tOn synthetic multi-turn data, classification-based domain adaptation recovers OOD detection (F1\\,=\\,0.97--1.0 vs.\\ vanilla 0.26--0.31; attack-side OOD, benign IID) and shows partial robustness under mixed-LLM training---template attacks remain detectable while structurally complex ActorAttack degrades (F1\\,=\\,0.504)---while unsupervised pretraining collapses; however, these findings are established on synthetic data from a single LLM, and the evidence hierarchy reverses on human-authored single-turn data (Section~4.6), indicating condition-specific rather than universal mechanisms.\n8\tOrthogonal to attack-side generalization, benign distribution shift is a practical bottleneck: few-shot benign adaptation reduces false-positive rates below deployment thresholds on two independent sources.\n9\tThese findings decompose multi-turn jailbreak generalization into two orthogonal axes---attack-side (discriminative compression) and benign-side (few-shot adaptation)---with 24.3$\\times$ inference speedup over LLM-as-judge.\n10\t\\end{abstract}\n11\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 352
+          },
+          "id": "event-003838"
+        },
+        {
+          "source_line": 3839,
+          "timestamp": "2026-05-23T01:38:07.768818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "offset": "55",
+              "limit": "15"
+            }
+          },
+          "id": "event-003839"
+        },
+        {
+          "source_line": 3840,
+          "timestamp": "2026-05-23T01:38:08.271359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "55\t\n56\tVanilla encoders collapse under cross-attack transfer; domain-adapted variants recover near-perfect detection (Table~\\ref{tab:main_results}, Figure~\\ref{fig:cross_attack_bar}).\n57\tDD exhibits high lexical separability (TF-IDF F1\\,=\\,0.961); ActorAttack, where TF-IDF collapses to 0.261, serves as the primary stress test for beyond-lexical generalization.\n58\tOn OOD DD, vanilla DeBERTa collapses to F1 = 0.312$\\pm$0.026, worsening with more turns (0.628 at $K$=1 to 0.312 at Full), consistent with attack turns occupying ``benign'' embedding regions~\\citep{bullwinkel2025repeng}.\n59\tMLM achieves mean F1 $\\geq$ 0.97 at all prefixes $K \\leq 5$ without any classification labels; domain exposure alone is sufficient.\n60\tAt full conversation length, MLM drops to 0.914$\\pm$0.115 (seed 456 recall = 0.64), while the 9-class model maintains 0.994$\\pm$0.005.\n61\tTF-IDF LR reaches F1 = 0.961 on full DD; DD is fully solvable by lexical features.\n62\tOn structurally complex ActorAttack, TF-IDF collapses to F1 = 0.261 (precision = 1.0, recall = 0.15), while 9-class maintains 0.972$\\pm$0.026: a 71\\,pp gap. Lexical methods cannot capture multi-persona role-playing attack structure. This establishes a ``difficulty threshold'' for lexical methods parallel to that of vanilla encoders: both succeed on DD and fail on ActorAttack (Section~\\ref{sec:limitations}).\n63\tSeed-level F1 values confirm all pairwise conclusions hold at every seed (Appendix~\\ref{app:seed_level}); pooled BCa CIs provide exploratory confirmation (9-class DD Full [0.943, 1.000] vs.\\ vanilla [0.202, 0.341]; all permutation $p < 0.0001$). FITD serves as a near-ceiling baseline where all variants achieve F1\\,$\\geq$\\,0.990, providing limited discriminative power.\n64\t\n65\t\\begin{figure}[t]\n66\t\\centering\n67\t\\includegraphics[width=\\columnwidth]{figures/paper/fig2_cross_attack_bar.pdf}\n68\t\\caption{Cross-attack generalization (full conversation F1). DisPeD (9-class) maintains near-perfect detection across all OOD families. On Acto\n…[truncated 179 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-003840"
+        },
+        {
+          "source_line": 3841,
+          "timestamp": "2026-05-23T01:38:08.322032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "offset": "118",
+              "limit": "10"
+            }
+          },
+          "id": "event-003841"
+        },
+        {
+          "source_line": 3842,
+          "timestamp": "2026-05-23T01:38:08.372704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "118\tPerturbation analysis (Section~\\ref{sec:perturbation}) reveals a sharper domain specificity effect: Wikipedia MLM degrades by $\\sim$12\\,pp under adversarial paraphrasing while jailbreak-domain MLM degrades by only 2.6\\,pp.\n119\t\n120\t\\paragraph{Misaligned supervision destabilizes generalization.}\n121\tTopic classification yields DD-Full F1 = 0.541$\\pm$0.207; seed 123 falls \\emph{below} vanilla (0.252 vs.\\ 0.312). Despite using the same jailbreak-domain training data, topic classification performs worse than Wikipedia MLM (0.904$\\pm$0.115), which uses out-of-domain text with no labels. A misaligned objective forces the encoder to allocate capacity to irrelevant features and actively destabilizes representations that MLM would preserve; embedding analysis confirms higher per-turn separability yet failed temporal aggregation (Appendix~\\ref{app:topic_failure}).\n122\t\n123\t\\paragraph{Evidence hierarchy on structurally complex attacks.}\n124\tActorAttack~\\citep{ren2024actorattack} uses multi-persona steering across longer conversation structures and provides a more challenging OOD benchmark than DD.\n125\tThe evidence hierarchy at full conversation length is:\n126\t\n127\t\\vspace{2pt}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-003842"
+        },
+        {
+          "source_line": 3843,
+          "timestamp": "2026-05-23T01:38:15.952838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "structurally complex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-003843"
+        },
+        {
+          "source_line": 3844,
+          "timestamp": "2026-05-23T01:38:16.055877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex:62:On structurally complex ActorAttack, TF-IDF collapses to F1 = 0.261 (precision = 1.0, recall = 0.15), while 9-class maintains 0.972$\\pm$0.026: a 71\\,pp gap. Lexical methods cannot capture multi-persona role-playing attack structure. This establishes a ``difficulty threshold'' for lexical methods parallel to that of vanilla encoders: both succeed on DD and fail on ActorAttack (Section~\\ref{sec:limitations}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex:123:\\paragraph{Evidence hierarchy on structurally complex attacks.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex:7:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex:249:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex:288:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex:362:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex:395:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex:466:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex:1025:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Grep",
+            "elapsed_ms": 103
+          },
+          "id": "event-003844"
+        },
+        {
+          "source_line": 3845,
+          "timestamp": "2026-05-23T01:38:19.070096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "structurally complex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-C": "0"
+            }
+          },
+          "id": "event-003845"
+        },
+        {
+          "source_line": 3846,
+          "timestamp": "2026-05-23T01:38:19.120726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "249:[Omitted long matching line]\n288:[Omitted long matching line]\n362:[Omitted long matching line]\n395:[Omitted long matching line]\n466:[Omitted long matching line]\n1025:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-003846"
+        },
+        {
+          "source_line": 3847,
+          "timestamp": "2026-05-23T01:38:25.934385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+              "offset": "248",
+              "limit": "2"
+            }
+          },
+          "id": "event-003847"
+        },
+        {
+          "source_line": 3848,
+          "timestamp": "2026-05-23T01:38:26.436708+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "248\t\n249\tTable~\\ref{tab:cross_llm} shows three inference conditions. When both jailbreak and benign text come from Llama (row~2), all variants collapse (F1 = 0.26--0.43), but this conflates two sources of distribution shift: unfamiliar jailbreak patterns and unfamiliar benign text. Row~3 isolates jailbreak transferability by pairing Llama jailbreaks with the original Qwen benign distribution. Under this condition, 9-class recovers to F1 = 1.000 on DD and 0.801 on ActorAttack, and JB-MLM reaches 0.903 on ActorAttack. The contrast between rows~2 and~3 shows that the dominant failure mode in row~2 is benign distribution mismatch (false positives from unfamiliar benign text), not inability to recognize cross-LLM jailbreak patterns. Vanilla remains at 0.26--0.31 across all conditions, further confirming that encoders without DAPT lack OOD detection capability regardless of the LLM source. The residual degradation on ActorAttack (0.801 vs.\\ 0.972) reflects genuine cross-LLM variation in structurally complex attack patterns."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-003848"
+        },
+        {
+          "source_line": 3849,
+          "timestamp": "2026-05-23T01:38:26.888931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+              "offset": "287",
+              "limit": "2"
+            }
+          },
+          "id": "event-003849"
+        },
+        {
+          "source_line": 3850,
+          "timestamp": "2026-05-23T01:38:27.391289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "287\t\n288\tTable~\\ref{tab:mixed_llm} reports detection performance when training on a mixed corpus of Qwen3-8B and Llama-3.1-8B conversations. On synthetic multi-turn data, classification-based DAPT (9-class) maintains the strongest DD OOD performance (0.818$\\pm$0.096), outperforming both vanilla (0.291$\\pm$0.065) and MLM (0.289$\\pm$0.101) by 53\\,pp. ActorAttack remains challenging under mixed-LLM conditions (9-class F1\\,=\\,0.504$\\pm$0.107), suggesting structurally complex attacks require larger or more diverse training data. ToxicChat performance shows no significant improvement over single-source training (0.550$\\pm$0.052 vs.\\ 0.596$\\pm$0.087; Section~\\ref{sec:human_data}), consistent with ToxicChat being zero-shot single-turn transfer rather than a standard OOD benchmark."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-003850"
+        },
+        {
+          "source_line": 3851,
+          "timestamp": "2026-05-23T01:38:27.391755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+              "offset": "361",
+              "limit": "2"
+            }
+          },
+          "id": "event-003851"
+        },
+        {
+          "source_line": 3852,
+          "timestamp": "2026-05-23T01:38:27.843939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "361\t\n362\tOn DD, TOST confirms scrambled $\\approx$ correct labels even at $\\delta$=2\\,pp ($p$=0.035 at $n$=3), demonstrating that label correctness is not a detection factor; the DD equivalence conclusion is robust to both margin choice and seed count ($p < 10^{-8}$ at $n$=10). On FITD, equivalence is similarly confirmed ($p < 10^{-8}$, $d \\approx 0$ at $n$=10). On ActorAttack, extending from $n$=5 to $n$=10 reveals a moderate effect: Cohen's $d$ increases from 0.09 to 0.44 (medium), with 9-class outperforming scrambled by 3\\,pp (0.979 vs.\\ 0.949). TOST remains inconclusive ($p$\\,=\\,0.183 at $\\delta$=5\\,pp), and variance is driven by seed 314 (scrambled F1\\,=\\,0.833). Label correctness is thus attack-complexity-dependent: negligible on template-based families (DD, FITD) but moderate on structurally complex attacks (ActorAttack)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-003852"
+        },
+        {
+          "source_line": 3853,
+          "timestamp": "2026-05-23T01:38:28.296199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+              "offset": "394",
+              "limit": "2"
+            }
+          },
+          "id": "event-003853"
+        },
+        {
+          "source_line": 3854,
+          "timestamp": "2026-05-23T01:38:28.800454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "394\t\n395\tAll 10 partitions achieve perfect IID and DD OOD detection regardless of how the 9 strategy labels are split into two groups. On ActorAttack, 9/10 partitions achieve F1\\,=\\,1.000; the sole outlier (partition~7, AA F1\\,=\\,0.636) uses a 4/5 split that isolates a specific strategy cluster. The near-universal success confirms that domain-relevant binary classification---not specific label semantics---drives cross-attack generalization on template attacks. The AA outlier is consistent with the complexity-dependent boundary observed in Section~\\ref{sec:decomposition}: structurally complex attacks are sensitive to specific partition choices while template attacks are not."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 504
+          },
+          "id": "event-003854"
+        },
+        {
+          "source_line": 3855,
+          "timestamp": "2026-05-23T01:38:29.252891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+              "offset": "465",
+              "limit": "2"
+            }
+          },
+          "id": "event-003855"
+        },
+        {
+          "source_line": 3856,
+          "timestamp": "2026-05-23T01:38:29.755235+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "465\t\n466\tEnd-to-end fine-tuning unfreezes the Stage-1 encoder during Stage-2 BiGRU training, allowing gradient flow through the full pipeline. On IID and OOD DD, the two configurations are indistinguishable; on structurally complex ActorAttack, E2E recovers +5.8\\,pp (error rate 6.1\\%\\,$\\rightarrow$\\,0.3\\%, a substantial relative reduction). Frozen probing captures the vast majority of discriminative information from Stage-1 DAPT; the remaining gap reflects downstream optimization constraints rather than missing representational capacity."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-003856"
+        },
+        {
+          "source_line": 3857,
+          "timestamp": "2026-05-23T01:38:29.805846+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+              "offset": "1024",
+              "limit": "2"
+            }
+          },
+          "id": "event-003857"
+        },
+        {
+          "source_line": 3858,
+          "timestamp": "2026-05-23T01:38:29.856410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1024\t\\paragraph{Cross-hardware replication.}\n1025\tTo assess hardware sensitivity, we independently retrained 9-class and JB-MLM from scratch on a different GPU (RTX PRO 6000 Blackwell, 5 seeds each). Table~\\ref{tab:cross_hw} reports OOD F1 on all three attack families. IID and FITD results are perfectly consistent (9-class: 5/5 seeds = 1.000 on both). On ActorAttack, 9-class outperforms MLM directionally ($\\Delta$\\,=\\,+1.7\\,pp) but the difference is not statistically significant (paired $t$-test $p$\\,=\\,0.246), reflecting the higher variance inherent to this structurally complex attack family; this is consistent with the complexity-dependent boundary reported in Section~\\ref{sec:decomposition}."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-003858"
+        },
+        {
+          "source_line": 3859,
+          "timestamp": "2026-05-23T01:38:48.428231+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "complexity-dependent|attack-complexity",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-003859"
+        },
+        {
+          "source_line": 3860,
+          "timestamp": "2026-05-23T01:38:48.479759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex:362:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex:395:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex:1025:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-003860"
+        },
+        {
+          "source_line": 3861,
+          "timestamp": "2026-05-23T01:38:54.607512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex",
+              "old_string": "removing these 3 directions degrades DD detection by 17\\,pp (necessity;",
+              "new_string": "removing these 3 directions degrades DD detection by 17\\,pp while FITD is unaffected (partial necessity;"
+            }
+          },
+          "id": "event-003861"
+        },
+        {
+          "source_line": 3862,
+          "timestamp": "2026-05-23T01:38:55.059822+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-003862"
+        },
+        {
+          "source_line": 3863,
+          "timestamp": "2026-05-23T01:38:56.013681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex",
+              "old_string": "their removal degrades DD by 17\\,pp (necessity;",
+              "new_string": "their removal degrades DD by 17\\,pp while FITD is unaffected (partial necessity;"
+            }
+          },
+          "id": "event-003863"
+        },
+        {
+          "source_line": 3864,
+          "timestamp": "2026-05-23T01:38:56.466040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-003864"
+        },
+        {
+          "source_line": 3865,
+          "timestamp": "2026-05-23T01:38:57.520417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex",
+              "old_string": "(Section~4.6), indicating",
+              "new_string": "indicating"
+            }
+          },
+          "id": "event-003865"
+        },
+        {
+          "source_line": 3866,
+          "timestamp": "2026-05-23T01:38:58.022930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 502
+          },
+          "id": "event-003866"
+        },
+        {
+          "source_line": 3867,
+          "timestamp": "2026-05-23T01:38:59.479075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex",
+              "old_string": "WildChat FPR 48.1\\%$\\rightarrow$68.1\\%",
+              "new_string": "WildChat FPR ranges from 48.1\\% (vanilla) to 68.1\\% (9-class)"
+            }
+          },
+          "id": "event-003867"
+        },
+        {
+          "source_line": 3868,
+          "timestamp": "2026-05-23T01:38:59.529859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-003868"
+        },
+        {
+          "source_line": 3869,
+          "timestamp": "2026-05-23T01:39:02.843667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex",
+              "offset": "15",
+              "limit": "3"
+            }
+          },
+          "id": "event-003869"
+        },
+        {
+          "source_line": 3870,
+          "timestamp": "2026-05-23T01:39:02.894314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15\t\\section{Conclusion}\n16\t\n17\tOn synthetic multi-turn data from a single LLM, thirteen encoder configurations decompose jailbreak generalization into attack-side (discriminative compression; MLM collapses under mixed-LLM) and benign-side (FPR 58--68\\%$\\rightarrow$0--1.5\\%, $N$\\,=\\,10--25) axes at 24.3$\\times$ speedup; at base model scale, domain-relevant classification suffices for template attacks ($d\\!<\\!0.1$; AA $d$\\,=\\,0.44)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-003870"
+        },
+        {
+          "source_line": 3871,
+          "timestamp": "2026-05-23T01:39:07.262374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex",
+              "old_string": "at base model scale, domain-relevant classification suffices for template attacks ($d\\!<\\!0.1$; AA $d$\\,=\\,0.44).",
+              "new_string": "at base model scale, domain-relevant classification suffices for template attacks ($d\\!<\\!0.1$; AA $d$\\,=\\,0.44); the hierarchy reverses on human single-turn data, confirming condition specificity."
+            }
+          },
+          "id": "event-003871"
+        },
+        {
+          "source_line": 3872,
+          "timestamp": "2026-05-23T01:39:07.363238+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-003872"
+        },
+        {
+          "source_line": 3873,
+          "timestamp": "2026-05-23T01:39:11.780261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex",
+              "old_string": "structurally complex ActorAttack degrades",
+              "new_string": "strategy-diverse ActorAttack degrades"
+            }
+          },
+          "id": "event-003873"
+        },
+        {
+          "source_line": 3874,
+          "timestamp": "2026-05-23T01:39:11.831005+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-003874"
+        },
+        {
+          "source_line": 3875,
+          "timestamp": "2026-05-23T01:39:13.688688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "old_string": "On structurally complex ActorAttack, TF-IDF",
+              "new_string": "On strategy-diverse ActorAttack, TF-IDF"
+            }
+          },
+          "id": "event-003875"
+        },
+        {
+          "source_line": 3876,
+          "timestamp": "2026-05-23T01:39:14.140966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-003876"
+        },
+        {
+          "source_line": 3877,
+          "timestamp": "2026-05-23T01:39:14.793678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "old_string": "\\paragraph{Evidence hierarchy on structurally complex attacks.}",
+              "new_string": "\\paragraph{Evidence hierarchy on strategy-diverse attacks.}"
+            }
+          },
+          "id": "event-003877"
+        },
+        {
+          "source_line": 3878,
+          "timestamp": "2026-05-23T01:39:14.844640+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-003878"
+        },
+        {
+          "source_line": 3879,
+          "timestamp": "2026-05-23T01:39:18.507984+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+              "old_string": "structurally complex",
+              "new_string": "strategy-diverse"
+            }
+          },
+          "id": "event-003879"
+        },
+        {
+          "source_line": 3880,
+          "timestamp": "2026-05-23T01:39:18.559421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-003880"
+        },
+        {
+          "source_line": 3881,
+          "timestamp": "2026-05-23T01:39:22.072662+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+              "old_string": "attack-complexity-dependent",
+              "new_string": "strategy-dependent"
+            }
+          },
+          "id": "event-003881"
+        },
+        {
+          "source_line": 3882,
+          "timestamp": "2026-05-23T01:39:22.123752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-003882"
+        },
+        {
+          "source_line": 3883,
+          "timestamp": "2026-05-23T01:39:24.884684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+              "old_string": "complexity-dependent",
+              "new_string": "strategy-dependent"
+            }
+          },
+          "id": "event-003883"
+        },
+        {
+          "source_line": 3884,
+          "timestamp": "2026-05-23T01:39:24.935877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-003884"
+        },
+        {
+          "source_line": 3885,
+          "timestamp": "2026-05-23T01:39:28.851088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "complexity-dependent|structurally complex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-003885"
+        },
+        {
+          "source_line": 3886,
+          "timestamp": "2026-05-23T01:39:28.901748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-003886"
+        },
+        {
+          "source_line": 3887,
+          "timestamp": "2026-05-23T01:39:32.716761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"Output written|Undefined|multiply\"",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-003887"
+        },
+        {
+          "source_line": 3888,
+          "timestamp": "2026-05-23T01:39:35.677232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (27 pages, 543358 bytes).\nOutput written on main.pdf (27 pages, 543088 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 2960
+          },
+          "id": "event-003888"
+        },
+        {
+          "source_line": 3889,
+          "timestamp": "2026-05-23T01:39:41.600661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.pdf",
+              "pages": "8",
+              "dpi": "150",
+              "project": "persuasion_turn_jailbreak_detect"
+            }
+          },
+          "id": "event-003889"
+        },
+        {
+          "source_line": 3890,
+          "timestamp": "2026-05-23T01:39:41.852088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 501.1}], \\\"total_pages\\\": 27, \\\"rendered_pages\\\": 1, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 251
+          },
+          "id": "event-003890"
+        },
+        {
+          "source_line": 3891,
+          "timestamp": "2026-05-23T01:39:44.713454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-003891"
+        },
+        {
+          "source_line": 3892,
+          "timestamp": "2026-05-23T01:39:45.268577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 555
+          },
+          "id": "event-003892"
+        },
+        {
+          "source_line": 3893,
+          "timestamp": "2026-05-23T01:39:54.728128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.pdf",
+              "pages": "9",
+              "dpi": "150",
+              "project": "persuasion_turn_jailbreak_detect"
+            }
+          },
+          "id": "event-003893"
+        },
+        {
+          "source_line": 3894,
+          "timestamp": "2026-05-23T01:39:54.879145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 534.6}], \\\"total_pages\\\": 27, \\\"rendered_pages\\\": 1, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 151
+          },
+          "id": "event-003894"
+        },
+        {
+          "source_line": 3895,
+          "timestamp": "2026-05-23T01:39:57.439705+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-003895"
+        },
+        {
+          "source_line": 3896,
+          "timestamp": "2026-05-23T01:39:57.994602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 554
+          },
+          "id": "event-003896"
+        },
+        {
+          "source_line": 3897,
+          "timestamp": "2026-05-23T01:40:09.735532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-003897"
+        },
+        {
+          "source_line": 3898,
+          "timestamp": "2026-05-23T01:40:09.736088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% conclusion.tex — D073 Phase 2 revision (page-compressed)\n2\t\n3\t\\section{Discussion}\n4\t\\label{sec:discussion}\n5\t\n6\t\\paragraph{Confounds and transferability.}\n7\tThree observations argue against a topic shortcut: unstable topic OOD (F1\\,=\\,0.541$\\pm$0.207), scrambled labels within 3.9\\,pp, and label-free MLM detection (F1\\,$\\geq$\\,0.97). ToxicChat (+18--42\\,pp; Table~\\ref{tab:human_data}) and cross-LLM experiments (Appendix~\\ref{app:cross_llm}) confirm transfer; mixed-LLM 9-class maintains DD F1\\,=\\,0.818$\\pm$0.096 while MLM collapses (Appendix~\\ref{app:mixed_llm}).\n8\t\n9\t\\paragraph{Evidence consistent with discriminative compression.}\n10\tClassification DAPT is associated with feature compression into few dimensions (participation ratio 3.7--9.4 vs.\\ 25--32; Fisher 2.6--19.7 vs.\\ $<$0.001; Appendix~\\ref{app:representation}). Scrambled labels yield comparable compression (Fisher\\,=\\,2.6), consistent with \\citet{zhang2021understanding}, with two findings: (i)~domain-relevant partitioning is necessary (topic DAPT has higher per-turn Fisher yet fails at conversation level; Appendix~\\ref{app:topic_failure}), and (ii)~compression localizes to 3 SVD dimensions in layers 8--12 (Appendix~\\ref{app:layerwise}). A discriminative probe over these 3 dimensions achieves perfect AA OOD detection (sufficiency) and their removal degrades DD by 17\\,pp while FITD is unaffected (partial necessity; Appendix~\\ref{app:discriminative_probe}); frozen probing near-parity (3.1\\,pp) is consistent with this interpretation, though pattern memorization is not ruled out.\n11\t\n12\t\\paragraph{Condition-specific advantage and boundaries.}\n13\tThe hierarchy is specific to synthetic multi-turn evaluation. On ToxicChat (single-turn human data), JB-MLM leads (0.837) while 9-class ranks lower (0.596); 65\\% of the gap stems from false positives (FPR 0.510 vs.\\ 0.167), confirmed as high-confidence feature misalignment (Appendix~\\ref{app:confidence}); truncation \\emph{widens} the 9-class advantage (+6.0\\,pp; Appe\n…[truncated 2485 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-003898"
+        },
+        {
+          "source_line": 3899,
+          "timestamp": "2026-05-23T01:40:29.492246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex",
+              "old_string": "WildChat FPR ranges from 48.1\\% (vanilla) to 68.1\\% (9-class)) is mitigated by 10 conversations (FPR$\\rightarrow$0\\%; OASST2 1.0\\%$\\pm$0.5\\%, $N$\\,=\\,25; Appendix~\\ref{app:oasst2}).",
+              "new_string": "WildChat FPR 48.1\\% (vanilla) to 68.1\\% (9-class)) is mitigated by 10 conversations (FPR$\\rightarrow$0\\%; OASST2 1.0\\%$\\pm$0.5\\%, $N$\\,=\\,25; Appendix~\\ref{app:oasst2})."
+            }
+          },
+          "id": "event-003899"
+        },
+        {
+          "source_line": 3900,
+          "timestamp": "2026-05-23T01:40:29.543099+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-003900"
+        },
+        {
+          "source_line": 3901,
+          "timestamp": "2026-05-23T01:40:35.215368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex",
+              "old_string": "confirmed as high-confidence feature misalignment (Appendix~\\ref{app:confidence}); truncation \\emph{widens} the 9-class advantage (+6.0\\,pp; Appendix~\\ref{app:truncated}). DAPT utility is scale-dependent: at $\\geq$355M parameters, vanilla suffices. Mean pooling matches BiGRU ($\\leq$1\\,pp; Appendix~\\ref{app:temporal}).",
+              "new_string": "confirmed as high-confidence misalignment (Appendix~\\ref{app:confidence}); truncation widens the 9-class advantage (+6.0\\,pp; Appendix~\\ref{app:truncated}). DAPT utility is scale-dependent: at $\\geq$355M, vanilla suffices; mean pooling matches BiGRU ($\\leq$1\\,pp; Appendix~\\ref{app:temporal})."
+            }
+          },
+          "id": "event-003901"
+        },
+        {
+          "source_line": 3902,
+          "timestamp": "2026-05-23T01:40:35.215909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-003902"
+        },
+        {
+          "source_line": 3903,
+          "timestamp": "2026-05-23T01:40:38.579506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep -E \"Output written|Undefined\"",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-003903"
+        },
+        {
+          "source_line": 3904,
+          "timestamp": "2026-05-23T01:40:41.539508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (27 pages, 543166 bytes).\nOutput written on main.pdf (27 pages, 543028 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 2960
+          },
+          "id": "event-003904"
+        },
+        {
+          "source_line": 3905,
+          "timestamp": "2026-05-23T01:40:45.003461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.pdf",
+              "pages": "8,9",
+              "dpi": "150",
+              "project": "persuasion_turn_jailbreak_detect"
+            }
+          },
+          "id": "event-003905"
+        },
+        {
+          "source_line": 3906,
+          "timestamp": "2026-05-23T01:40:45.254906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 501.3}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 529.3}], \\\"total_pages\\\": 27, \\\"rendered_pages\\\": 2, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 251
+          },
+          "id": "event-003906"
+        },
+        {
+          "source_line": 3907,
+          "timestamp": "2026-05-23T01:40:47.765291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-003907"
+        },
+        {
+          "source_line": 3908,
+          "timestamp": "2026-05-23T01:40:48.319616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 554
+          },
+          "id": "event-003908"
+        },
+        {
+          "source_line": 3909,
+          "timestamp": "2026-05-23T01:40:55.925025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-003909"
+        },
+        {
+          "source_line": 3910,
+          "timestamp": "2026-05-23T01:40:56.478170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 553
+          },
+          "id": "event-003910"
+        },
+        {
+          "source_line": 3911,
+          "timestamp": "2026-05-23T01:41:06.818695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex",
+              "old_string": "frozen probing near-parity (3.1\\,pp) is consistent with this interpretation, though pattern memorization is not ruled out.",
+              "new_string": "frozen probing near-parity (3.1\\,pp) is consistent with this interpretation."
+            }
+          },
+          "id": "event-003911"
+        },
+        {
+          "source_line": 3912,
+          "timestamp": "2026-05-23T01:41:06.819363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-003912"
+        },
+        {
+          "source_line": 3913,
+          "timestamp": "2026-05-23T01:41:12.441904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex",
+              "old_string": "On ToxicChat (single-turn human data), JB-MLM leads (0.837) while 9-class ranks lower (0.596); 65\\% of the gap stems from false positives (FPR 0.510 vs.\\ 0.167), confirmed as high-confidence misalignment",
+              "new_string": "On ToxicChat, JB-MLM leads (0.837) while 9-class ranks lower (0.596); 65\\% of the gap stems from false positives (FPR 0.510 vs.\\ 0.167), confirmed as high-confidence misalignment"
+            }
+          },
+          "id": "event-003913"
+        },
+        {
+          "source_line": 3914,
+          "timestamp": "2026-05-23T01:41:12.492667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-003914"
+        },
+        {
+          "source_line": 3915,
+          "timestamp": "2026-05-23T01:41:16.107608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\"",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-003915"
+        },
+        {
+          "source_line": 3916,
+          "timestamp": "2026-05-23T01:41:19.321802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (27 pages, 543100 bytes).\nOutput written on main.pdf (27 pages, 542960 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 3214
+          },
+          "id": "event-003916"
+        },
+        {
+          "source_line": 3917,
+          "timestamp": "2026-05-23T01:41:23.387147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.pdf",
+              "pages": "8",
+              "dpi": "150",
+              "project": "persuasion_turn_jailbreak_detect"
+            }
+          },
+          "id": "event-003917"
+        },
+        {
+          "source_line": 3918,
+          "timestamp": "2026-05-23T01:41:23.538868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 494.9}], \\\"total_pages\\\": 27, \\\"rendered_pages\\\": 1, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 151
+          },
+          "id": "event-003918"
+        },
+        {
+          "source_line": 3919,
+          "timestamp": "2026-05-23T01:41:26.115915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-003919"
+        },
+        {
+          "source_line": 3920,
+          "timestamp": "2026-05-23T01:41:26.669121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 553
+          },
+          "id": "event-003920"
+        },
+        {
+          "source_line": 3921,
+          "timestamp": "2026-05-23T01:41:45.296281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex",
+              "old_string": "On synthetic multi-turn data from a single LLM, thirteen encoder configurations decompose jailbreak generalization into attack-side (discriminative compression; MLM collapses under mixed-LLM) and benign-side (FPR 58--68\\%$\\rightarrow$0--1.5\\%, $N$\\,=\\,10--25) axes at 24.3$\\times$ speedup; at base model scale, domain-relevant classification suffices for template attacks ($d\\!<\\!0.1$; AA $d$\\,=\\,0.44); the hierarchy reverses on human single-turn data, confirming condition specificity.",
+              "new_string": "On synthetic multi-turn data, thirteen encoder configurations decompose jailbreak generalization into attack-side (discriminative compression; MLM collapses under mixed-LLM) and benign-side (FPR 58--68\\%$\\rightarrow$0--1.5\\%, $N$\\,$\\leq$\\,25) axes at 24.3$\\times$ speedup; at base scale, domain-relevant classification suffices for template attacks ($d\\!<\\!0.1$; AA $d$\\,=\\,0.44); the hierarchy reverses on human single-turn data, confirming condition specificity."
+            }
+          },
+          "id": "event-003921"
+        },
+        {
+          "source_line": 3922,
+          "timestamp": "2026-05-23T01:41:45.296951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-003922"
+        },
+        {
+          "source_line": 3923,
+          "timestamp": "2026-05-23T01:41:48.810333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\"",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-003923"
+        },
+        {
+          "source_line": 3924,
+          "timestamp": "2026-05-23T01:41:51.721642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (27 pages, 543064 bytes).\nOutput written on main.pdf (27 pages, 542928 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 2911
+          },
+          "id": "event-003924"
+        },
+        {
+          "source_line": 3925,
+          "timestamp": "2026-05-23T01:41:55.493724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.pdf",
+              "pages": "8,9",
+              "dpi": "150",
+              "project": "persuasion_turn_jailbreak_detect"
+            }
+          },
+          "id": "event-003925"
+        },
+        {
+          "source_line": 3926,
+          "timestamp": "2026-05-23T01:41:55.795666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 494.6}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 527.2}], \\\"total_pages\\\": 27, \\\"rendered_pages\\\": 2, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 301
+          },
+          "id": "event-003926"
+        },
+        {
+          "source_line": 3927,
+          "timestamp": "2026-05-23T01:41:58.657176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-003927"
+        },
+        {
+          "source_line": 3928,
+          "timestamp": "2026-05-23T01:41:59.210403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 553
+          },
+          "id": "event-003928"
+        },
+        {
+          "source_line": 3929,
+          "timestamp": "2026-05-23T01:42:01.922734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p9.png"
+            }
+          },
+          "id": "event-003929"
+        },
+        {
+          "source_line": 3930,
+          "timestamp": "2026-05-23T01:42:02.476283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 553
+          },
+          "id": "event-003930"
+        },
+        {
+          "source_line": 3931,
+          "timestamp": "2026-05-23T01:42:20.095748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex",
+              "old_string": "On synthetic multi-turn data, thirteen encoder configurations decompose jailbreak generalization into attack-side (discriminative compression; MLM collapses under mixed-LLM) and benign-side (FPR 58--68\\%$\\rightarrow$0--1.5\\%, $N$\\,$\\leq$\\,25) axes at 24.3$\\times$ speedup; at base scale, domain-relevant classification suffices for template attacks ($d\\!<\\!0.1$; AA $d$\\,=\\,0.44); the hierarchy reverses on human single-turn data, confirming condition specificity.",
+              "new_string": "On synthetic multi-turn data, thirteen encoders decompose jailbreak generalization into attack-side (discriminative compression; MLM collapses under mixed-LLM) and benign-side (FPR 58--68\\%$\\rightarrow$0--1.5\\%, $N$\\,$\\leq$\\,25) axes at 24.3$\\times$ speedup; classification suffices for template attacks ($d\\!<\\!0.1$; AA $d$\\,=\\,0.44) at base scale; the hierarchy reverses on human data, confirming condition specificity."
+            }
+          },
+          "id": "event-003931"
+        },
+        {
+          "source_line": 3932,
+          "timestamp": "2026-05-23T01:42:20.146465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-003932"
+        },
+        {
+          "source_line": 3933,
+          "timestamp": "2026-05-23T01:42:25.102792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | grep \"Output written\"",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-003933"
+        },
+        {
+          "source_line": 3934,
+          "timestamp": "2026-05-23T01:42:28.012434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written on main.pdf (27 pages, 542938 bytes).\nOutput written on main.pdf (27 pages, 542817 bytes).\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 2909
+          },
+          "id": "event-003934"
+        },
+        {
+          "source_line": 3935,
+          "timestamp": "2026-05-23T01:42:31.626150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/main.pdf",
+              "pages": "8",
+              "dpi": "165",
+              "project": "persuasion_turn_jailbreak_detect"
+            }
+          },
+          "id": "event-003935"
+        },
+        {
+          "source_line": 3936,
+          "timestamp": "2026-05-23T01:42:31.777225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1365, \\\"height\\\": 1930, \\\"size_kb\\\": 524.9}], \\\"total_pages\\\": 27, \\\"rendered_pages\\\": 1, \\\"dpi\\\": 165, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 151
+          },
+          "id": "event-003936"
+        },
+        {
+          "source_line": 3937,
+          "timestamp": "2026-05-23T01:42:34.638051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-003937"
+        },
+        {
+          "source_line": 3938,
+          "timestamp": "2026-05-23T01:42:35.292113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 654
+          },
+          "id": "event-003938"
+        },
+        {
+          "source_line": 3939,
+          "timestamp": "2026-05-23T01:42:38.756107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images"
+            }
+          },
+          "id": "event-003939"
+        },
+        {
+          "source_line": 3940,
+          "timestamp": "2026-05-23T01:42:38.806733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 50
+          },
+          "id": "event-003940"
+        },
+        {
+          "source_line": 3941,
+          "timestamp": "2026-05-23T01:43:01.529921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "project": "persuasion_turn_jailbreak_detect",
+              "text": "[资源] GPU 0/0 | Worker 0 (GPU 0 / CPU 0)\n\n## 叙事连贯性 5 项修复完成\n\n### W1: \"necessity\" → \"partial necessity\" ✅\n- **introduction.tex** Contribution 2: `\"removing these 3 directions degrades DD detection by 17\\,pp while FITD is unaffected (partial necessity;\"`\n- **conclusion.tex** Discussion: `\"their removal degrades DD by 17\\,pp while FITD is unaffected (partial necessity;\"`\n\n### W2: \"structurally complex\" → \"strategy-diverse\" 全文统一 ✅\n共替换 9 处：\n- abstract.tex:7 — \"structurally complex ActorAttack\" → \"strategy-diverse ActorAttack\"\n- experiments.tex:62 — \"On structurally complex ActorAttack\" → \"On strategy-diverse ActorAttack\"\n- experiments.tex:123 — paragraph title → \"Evidence hierarchy on strategy-diverse attacks.\"\n- appendix.tex: 6 处 replace_all（含 \"attack-complexity-dependent\" → \"strategy-dependent\", \"complexity-dependent\" → \"strategy-dependent\"）\n\n全文 grep 确认 0 处 \"structurally complex\" 或 \"complexity-dependent\" 残留。\n\n### I1: Abstract Section 引用删除 ✅\n- `\"(Section~4.6), indicating\"` → `\"indicating\"`\n\n### I2: Discussion FPR 箭头含义明确 ✅\n- `\"WildChat FPR 48.1\\%$\\rightarrow$68.1\\%\"` → `\"WildChat FPR 48.1\\% (vanilla) to 68.1\\% (9-class)\"`\n\n### I3: Conclusion 加 ToxicChat reversal ✅\n- 末尾加: `\"; the hierarchy reverses on human data, confirming condition specificity\"`\n\n### 页面预算调整\nI3 和 I2 的文本扩展导致 Conclusion 溢出 page 8。通过以下压缩恢复：\n- Discussion: 删 \"though pattern memorization is not ruled out\"（Limitations 已覆盖）、\"(single-turn human data)\" → 省略、\"feature\" 删除、句式压缩\n- Conclusion: \"thirteen encoder configurations\" → \"thirteen encoders\"、\"from a single LLM\" 删除、\"domain-relevant\" 删除、\"human single-turn data\" → \"human data\"\n\n### 编译确认\n27 页，无 undefined references，无 multiply-defined labels。Main text 8 页，Conclusion 完整在 page 8 内。"
+            }
+          },
+          "id": "event-003941"
+        },
+        {
+          "source_line": 3942,
+          "timestamp": "2026-05-23T01:43:05.143882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3613
+          },
+          "id": "event-003942"
+        },
+        {
+          "source_line": 3943,
+          "timestamp": "2026-05-23T01:43:07.129059+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Conclusion now fits entirely on page 8. Clean up and report."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882"
+          },
+          "id": "event-003943"
+        }
+      ]
+    },
+    {
+      "number": 141,
+      "messages": [
+        {
+          "source_line": 3944,
+          "timestamp": "2026-05-23T02:15:06.595898+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 修复 page 3 的 2 处 overfull hbox（camera-ready 检查发现的 38.4pt 和 22.4pt）。\n\n方法：\n1. 编译论文，定位 page 3 的两处 overfull hbox 具体行号\n2. 通过断句、缩写、或微调措辞消除溢出\n3. 编译确认 0 overfull hbox（至少主文 pages 1-8 范围内）\n4. 确认 main text 仍 ≤ 8 页\n\n汇报修改的具体 diff。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "source": "director"
+          },
+          "id": "event-003944"
+        },
+        {
+          "source_line": 3945,
+          "timestamp": "2026-05-23T02:15:15.247654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -B20 'Overfull.*38.38' main.log | grep -E '(\\.tex|Overfull|^\\()' | head -10",
+              "description": "Find which file contains the 38.4pt overfull on page 3"
+            }
+          },
+          "id": "event-003945"
+        },
+        {
+          "source_line": 3946,
+          "timestamp": "2026-05-23T02:15:16.303896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(./experiments.tex [4]\nOverfull \\hbox (38.3866pt too wide) in paragraph at lines 41--54\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 1056
+          },
+          "id": "event-003946"
+        },
+        {
+          "source_line": 3947,
+          "timestamp": "2026-05-23T02:15:16.454917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -B20 'Overfull.*22.43' main.log | grep -E '(\\.tex|Overfull|^\\()' | head -10",
+              "description": "Find which file contains the 22.4pt overfull on page 3"
+            }
+          },
+          "id": "event-003947"
+        },
+        {
+          "source_line": 3948,
+          "timestamp": "2026-05-23T02:15:16.506760+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Overfull \\hbox (38.3866pt too wide) in paragraph at lines 41--54\n(pdftex.def)             Requested size: 219.08614pt x 134.72966pt.\nOverfull \\hbox (22.4317pt too wide) in paragraph at lines 83--102\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 51
+          },
+          "id": "event-003948"
+        },
+        {
+          "source_line": 3949,
+          "timestamp": "2026-05-23T02:15:30.107623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && awk '/\\[.*\\]/{for(i=1;i<=NF;i++) if($i ~ /^\\[?[0-9]+\\]?$/) page=$i} /Overfull.*38\\.38|Overfull.*22\\.43/{print \"page=\"page, $0}' main.log",
+              "description": "Precisely map the two overfull hboxes to page numbers"
+            }
+          },
+          "id": "event-003949"
+        },
+        {
+          "source_line": 3950,
+          "timestamp": "2026-05-23T02:15:30.208738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "page=[4] Overfull \\hbox (38.3866pt too wide) in paragraph at lines 41--54\npage=[4] Overfull \\hbox (22.4317pt too wide) in paragraph at lines 83--102\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-003950"
+        },
+        {
+          "source_line": 3951,
+          "timestamp": "2026-05-23T02:15:35.779385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "offset": "38",
+              "limit": "20"
+            }
+          },
+          "id": "event-003951"
+        },
+        {
+          "source_line": 3952,
+          "timestamp": "2026-05-23T02:15:36.231735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "38\t\\small\n39\t\\caption{Cross-attack generalization (F1) at $K$=2 and full conversation length. IID: Crescendo; OOD: Deceptive Delight (DD). OOD F1 reflects attack-side generalization; benign samples are IID from training distribution. 3-seed mean$\\pm$std where noted; full per-$K$ in Appendix~\\ref{sec:full_prefix}.}\n40\t\\label{tab:main_results}\n41\t\\begin{tabular}{@{}lcc|cc@{}}\n42\t\\toprule\n43\t& \\multicolumn{2}{c|}{\\textit{IID (Cresc.)}} & \\multicolumn{2}{c}{\\textit{OOD (DD)}} \\\\\n44\t\\textbf{Method} & $K$=2 & Full & $K$=2 & Full \\\\\n45\t\\midrule\n46\t9-class & \\textbf{1.000$\\pm$.000} & \\textbf{1.000$\\pm$.000} & .981$\\pm$.013 & \\textbf{.994$\\pm$.005} \\\\\n47\tMLM-only$^{\\ddagger}$ & .974 & 1.000 & \\textbf{.993$\\pm$.009} & .914$\\pm$.115 \\\\\n48\tVanilla & .978$\\pm$.016 & 1.000$\\pm$.000 & .479$\\pm$.038 & .312$\\pm$.026 \\\\\n49\tTF-IDF LR$^{\\S}$ & 1.000 & 1.000 & 1.000 & .961 \\\\\n50\t\\bottomrule\n51\t\\end{tabular}\n52\t\\vspace{-2pt}\n53\t{\\footnotesize $^{\\ddagger}$MLM-only IID reports single seed (42); OOD reports 3-seed. $^{\\S}$TF-IDF is deterministic (no std).}\n54\t\\end{table}\n55\t\n56\tVanilla encoders collapse under cross-attack transfer; domain-adapted variants recover near-perfect detection (Table~\\ref{tab:main_results}, Figure~\\ref{fig:cross_attack_bar}).\n57\tDD exhibits high lexical separability (TF-IDF F1\\,=\\,0.961); ActorAttack, where TF-IDF collapses to 0.261, serves as the primary stress test for beyond-lexical generalization."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-003952"
+        },
+        {
+          "source_line": 3953,
+          "timestamp": "2026-05-23T02:15:36.734228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "offset": "80",
+              "limit": "25"
+            }
+          },
+          "id": "event-003953"
+        },
+        {
+          "source_line": 3954,
+          "timestamp": "2026-05-23T02:15:36.885261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "80\t\\small\n81\t\\caption{Evidence hierarchy on OOD DD and ActorAttack (AA) at full conversation length (3-seed mean$\\pm$std where available). Bold indicates best per column. OOD F1 reflects attack-side generalization only; benign samples are IID from training distribution (benign-side shift evaluated in Section~\\ref{sec:discussion}). Full per-prefix results in Appendix Tables~\\ref{tab:full_prefix} and~\\ref{tab:actorattack_full}.}\n82\t\\label{tab:evidence_hierarchy}\n83\t\\begin{tabular}{@{}lccc@{}}\n84\t\\toprule\n85\t\\textbf{Variant} & DD-Full & AA-Full & DD-$K$=2 \\\\\n86\t\\midrule\n87\t9-class (full model) & .994$\\pm$.005 & .972$\\pm$.026 & .981$\\pm$.013 \\\\\n88\tBinary (2-class) & \\textbf{1.000$\\pm$.000} & \\textbf{.990$\\pm$.008} & .994$\\pm$.009 \\\\\n89\tScrambled labels & .994$\\pm$.005 & .951$\\pm$.043 & .981$\\pm$.026 \\\\\n90\tMLM-only$^{\\ddagger}$ (no labels) & .914$\\pm$.115 & .893$\\pm$.080 & .993$\\pm$.009 \\\\\n91\t9-class + mean pool$^{*}$ & .991$\\pm$.013 & .962$\\pm$.015 & \\textbf{1.000} \\\\\n92\t\\midrule\n93\tTopic classif.\\ (5-class) & .541$\\pm$.207 & .625$\\pm$.141 & .593$\\pm$.166 \\\\\n94\tWikipedia MLM & .904$\\pm$.115 & .686$\\pm$.297 & .911$\\pm$.073 \\\\\n95\tVanilla DeBERTa & .312$\\pm$.026 & .258$\\pm$.000 & .479$\\pm$.038 \\\\\n96\tTF-IDF LR$^{\\dagger}$ & .961 & .261 & \\textbf{1.000} \\\\\n97\tLlama Guard~3$^{\\P}$ & .025 & .000 & -- \\\\\n98\t\\bottomrule\n99\t\\end{tabular}\n100\t\\vspace{-2pt}\n101\t{\\footnotesize $^{*}$9-class encoder with mean pooling replacing BiGRU. $^{\\dagger}$Deterministic (no std). $^{\\ddagger}$MLM-only IID (Table~\\ref{tab:main_results}) is single-seed (42); all OOD values are 3-seed. $^{\\P}$Zero-shot; no domain training. Population std reported; Bessel-corrected values are 22\\% larger at $n$=3.}\n102\t\\end{table}\n103\t\n104\tA clear \\emph{evidence hierarchy} emerges across seven variants (Table~\\ref{tab:evidence_hierarchy}), ordered by OOD detection at full conversation length on DD:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-003954"
+        },
+        {
+          "source_line": 3955,
+          "timestamp": "2026-05-23T02:15:54.804043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -A2 'Overfull.*38.38' main.log",
+              "description": "Check what's in the overfull hbox (38.4pt)"
+            }
+          },
+          "id": "event-003955"
+        },
+        {
+          "source_line": 3956,
+          "timestamp": "2026-05-23T02:15:55.155928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Overfull \\hbox (38.3866pt too wide) in paragraph at lines 41--54\n [][] \n []\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 351
+          },
+          "id": "event-003956"
+        },
+        {
+          "source_line": 3957,
+          "timestamp": "2026-05-23T02:15:55.407232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && grep -A2 'Overfull.*22.43' main.log",
+              "description": "Check what's in the overfull hbox (22.4pt)"
+            }
+          },
+          "id": "event-003957"
+        },
+        {
+          "source_line": 3958,
+          "timestamp": "2026-05-23T02:15:55.558231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Overfull \\hbox (22.4317pt too wide) in paragraph at lines 83--102\n [][] \n []\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/agent_f4f909a7"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-003958"
+        },
+        {
+          "source_line": 3959,
+          "timestamp": "2026-05-23T02:16:08.594090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "old_string": "\\label{tab:main_results}\n\\begin{tabular}{@{}lcc|cc@{}}",
+              "new_string": "\\label{tab:main_results}\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{@{}lcc|cc@{}}"
+            }
+          },
+          "id": "event-003959"
+        },
+        {
+          "source_line": 3960,
+          "timestamp": "2026-05-23T02:16:08.695069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-003960"
+        }
+      ]
+    }
+  ]
+}

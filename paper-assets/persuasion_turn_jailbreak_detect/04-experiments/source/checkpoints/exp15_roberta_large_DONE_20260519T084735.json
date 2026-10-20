@@ -1,0 +1,54 @@
+{
+  "exp_id": "exp15_roberta_large",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T08:12:49.170Z",
+    "updated_at": "2026-05-19T08:47:35.066Z",
+    "hypothesis": "RoBERTa-large (355M) vanilla will still underperform DAPT variants on ActorAttack OOD, demonstrating that DAPT value is independent of model capacity. If RoBERTa-large vanilla matches DAPT performance, then the difficulty threshold is a capacity effect rather than a representation quality effect.",
+    "spec": {
+      "command": "scripts/train_roberta_large_dapt.py + scripts/train_gru_roberta_large.py + scripts/eval_roberta_large.py",
+      "server": "westd-33183",
+      "data_path": "/root/persuasion_turn_jailbreak_detect/data/",
+      "data_count": "same as RoBERTa-base pipeline",
+      "model_name": "roberta-large (355M)",
+      "seed": "42, 123, 456",
+      "checkpoint_path": "checkpoints/roberta_large_*/",
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/exp15_roberta_large.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "dd_ood": {
+        "roberta_large_vanilla": {
+          "k1": 0.878,
+          "k3": 0.915,
+          "full": 0.927
+        },
+        "roberta_large_9class": {
+          "k1": 0.965,
+          "k3": 0.96,
+          "full": 0.987
+        }
+      },
+      "actorattack": {
+        "roberta_large_vanilla": {
+          "k1": 0.977,
+          "k3": 0.99,
+          "full": 1
+        },
+        "roberta_large_9class": {
+          "k1": 0.718,
+          "k3": 0.881,
+          "full": 0.946
+        }
+      },
+      "key_finding": "Hypothesis falsified on AA: RoBERTa-large vanilla (1.000) > 9class (0.946). Capacity effect dominates on AA. DD OOD: DAPT still helps (0.987 vs 0.927)."
+    },
+    "completed_at": "2026-05-19T08:47:35.066Z"
+  },
+  "timestamp": "2026-05-19T08:47:35.253694+00:00",
+  "trigger": "update_registry"
+}

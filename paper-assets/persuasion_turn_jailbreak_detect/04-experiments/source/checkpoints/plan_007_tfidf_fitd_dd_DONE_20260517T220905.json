@@ -1,0 +1,31 @@
+{
+  "exp_id": "plan_007_tfidf_fitd_dd",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T22:08:19.094Z",
+    "updated_at": "2026-05-17T22:09:05.552Z",
+    "hypothesis": "TF-IDF classifier on FITD/DD vs v4c benign will achieve F1=1.0, confirming v4c benign has topic/vocabulary confound with all attack types (not just Crescendo)",
+    "spec": {
+      "command": "python tfidf_gate_check.py --jailbreak fitd_all.jsonl --benign v4c_benign.jsonl",
+      "server": "westd-33183",
+      "data_path": "/root/persuasion_turn_jailbreak_detect/fitd_all.jsonl + deceptive_delight_all.jsonl + v4c_benign.jsonl",
+      "data_count": 390,
+      "model_name": "TF-IDF (sklearn)",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval)",
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "tfidf_fitd_vs_v4c_f1": 1,
+      "tfidf_dd_vs_v4c_f1": 1
+    },
+    "completed_at": "2026-05-17T22:09:05.552Z"
+  },
+  "timestamp": "2026-05-17T22:09:05.567748+00:00",
+  "trigger": "update_registry"
+}

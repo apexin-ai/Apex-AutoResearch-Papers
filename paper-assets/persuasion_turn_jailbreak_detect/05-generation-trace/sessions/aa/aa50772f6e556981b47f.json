@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa50772f6e556981b47f",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval cross llm control",
+  "task_key": "worker_eval_cross-llm-control_20260519T072024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cross-llm-control_20260519T072024_result.json",
+    "occurrence": 1,
+    "bytes": 2190,
+    "sha256": "267cfca4a01b54db483e301e34606faebe658c68a838285d5ac1c84fdfc599f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp14b 对照实验结果\n\n### 评估集构成\n- DD: Llama jailbreak 50 条 + Qwen benign 38 条 = 88 条\n- AA: Llama jailbreak 50 条 + Qwen benign 38 条 = 88 条\n\n### 推理结果（Macro F1, mean±std, 3 seeds）\n\n| Variant | DD K=1 | DD K=3 | DD Full | AA K=1 | AA K=3 | AA Full |\n|---------|--------|--------|---------|--------|--------|---------|\n| vanilla | .319±.015 | .302±.000 | .302±.000 | .443±.077 | .302±.000 | .302±.000 |\n| jb_mlm | .965±.017 | .996±.005 | .778±.306 | .927±.005 | .988±.000 | .903±.128 |\n| 9class | .935±.067 | .977±.032 | **1.000±.000** | .832±.054 | .800±.074 | .801±.065 |\n\n### 对比表（DD Full）\n\n| Variant | exp14 (Llama all) | exp14b (Llama JB + Qwen benign) | 原始 (Qwen all) |\n|---------|-------------------|--------------------------------|----------------|\n| vanilla | 0.261 | 0.302 | ~0.312 |\n| jb_mlm | 0.282 | **0.778** | 0.914 |\n| 9class | 0.433 | **1.000** | 0.997 |\n\n### 对比表（AA Full）\n\n| Variant | exp14 (Llama all) | exp14b (Llama JB + Qwen benign) | 原始 (Qwen all) |\n|---------|-------------------|--------------------------------|----------------|\n| vanilla | 0.261 | 0.302 | ~0.312 |\n| jb_mlm | 0.368 | **0.903** | ~0.914 |\n| 9class | 0.321 | **0.801** | ~0.997 |\n\n### 结论\n\n**F1 大幅回升。** jb_mlm 和 9class 在 DD Full 上分别从 0.282→0.778、0.433→1.000，接近或达到原始 Qwen-all 水平。AA 同理（0.368→0.903、0.321→0.801）。\n\n**失败主要来自 benign 侧，而非 jailbreak 侧。** 替换回 Qwen benign 后，模型对 Llama 生成的 jailbreak 对话仍能有效检测。exp14 的 F1 崩溃是因为 Llama 生成的 benign 对话与 Qwen benign 分布差异过大，导致模型将 Llama benign 错判为 jailbreak（高 FP），拉低了 macro F1。\n\n**注意事项：**\n- jb_mlm DD Full std=0.306 偏大，因 seed=456 的 full 只有 0.345（可能是该 seed 的 GRU 对 Llama DD 某些对话的全轮次预测不稳定），但 K=1/K=3 仍然很高\n- vanilla 在所有条件下都接近随机（~0.30），不受 benign 来源影响，说明 vanilla encoder 本身对 OOD 攻击就无区分能力"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cross-llm-control.md"
+}

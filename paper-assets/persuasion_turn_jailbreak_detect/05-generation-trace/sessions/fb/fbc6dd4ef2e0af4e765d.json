@@ -1,0 +1,291 @@
+{
+  "schema_version": "1.0",
+  "id": "fbc6dd4ef2e0af4e765d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "conversation",
+  "title": "code exp64 levene test",
+  "task_key": "worker_code_exp64_levene_test_20260522T231046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_exp64_levene_test_20260522T231046.jsonl",
+    "occurrence": 1,
+    "bytes": 17447,
+    "sha256": "75eb893b88cce87b41d263ccd1ab1f3eaa7ff7ca0e44362a09615c5ed0156914"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T23:12:06.710626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp64_levene_test_20260522T231046",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T23:12:06.710939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp64_levene_test_20260522T231046",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T23:12:06.711111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp64_levene_test_20260522T231046",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "persuasion_turn_jailbreak_detect",
+              "limit": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T23:12:06.711769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (119,911 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/7b4f8e33-0366-4859-a3d9-a55259957eb1/tool-results/mcp-agent-ml-research-read_registry-1779491464804.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/7b4f8e33-0366-4859-a3d9-a55259957eb1/tool-results/mcp-agent-ml-research-read_registry-1779491464804.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp64_levene_test_20260522T231046",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T23:12:06.711952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp64_levene_test_20260522T231046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "find /root/persuasion_turn_jailbreak_detect/results/ -name \"*.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T23:12:06.712197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/pilot_treatment.json\\\\n/root/persuasion_turn_jailbreak_detect/results/pilot_baseline.json\\\\n/root/persuasion_turn_jailbreak_detect/results/pilot_tfidf.json\\\\n/root/persuasion_turn_jailbreak_detect/results/pilot_results.json\\\\n/root/persuasion_turn_jailbreak_detect/results/phase_b_full_results.json\\\\n/root/persuasion_turn_jailbreak_detect/results/phase_b_supplement.json\\\\n/root/persuasion_turn_jailbreak_detect/results/plan001_results.json\\\\n/root/persuasion_turn_jailbreak_detect/results/tfidf_ta_sample10.json\\\\n/root/persuasion_turn_jailbreak_detect/results/strategy_transition_matrices.json\\\\n/root/persuasion_turn_jailbreak_detect/results/cross_attack_eval.json\\\\n/root/persuasion_turn_jailbreak_detect/results/topic_anchored_v2_tfidf.json\\\\n/root/persuasion_turn_jailbreak_detect/results/topic_anchored_v2_results.json\\\\n/root/persuasion_turn_jailbreak_detect/results/plan_003_scrambled_eval.json\\\\n/root/persuasion_turn_jailbreak_detect/results/plan_002_eval.json\\\\n/root/persuasion_turn_jailbreak_detect/results/plan_012_llm_judge_qwen3.json\\\\n/root/persuasion_turn_jailbreak_detect/results/plan_003_v2_eval.json\\\\n/root/persuasion_turn_jailbreak_detect/results/plan_006_cross_attack_eval.json\\\\n/root/persuasion_turn_jailbreak_detect/results/perturbation_quality_report.json\\\\n/root/persuasion_turn_jailbreak_detect/results/plan_006_scrambled_dd_eval.json\\\\n/root/persuasion_turn_jailbreak_detect/results/adversarial_perturbation_results.json\\\\n/root/persuasion_turn_jailbreak_detect/results/plan_004_perturbation_eval.json\\\\n/root/persuasion_turn_jailbreak_detect/results/plan_012_rerun_correct.json\\\\n/root/persuasion_turn_jailbreak_detect/results/plan_002_seed123_eval.json\\\\n/root/persuasion_turn_jailbreak_detect/results/plan_002_seed456_eval.json\\\\n/root/persuasion_turn_jailbreak_detect/results/plan_013_none_collapse_eval.json\\\\n/root/persuasion_turn_jailbreak_detect/results/pl\n…[truncated 6412 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp64_levene_test_20260522T231046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T23:12:06.712396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp64_levene_test_20260522T231046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "cat /root/persuasion_turn_jailbreak_detect/results/round7_seed_level_stats.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T23:12:06.712528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp64_levene_test_20260522T231046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "cat /root/persuasion_turn_jailbreak_detect/results/exp41_fitd_table7_perseed.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T23:12:06.712923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_seed_f1\\\\\\\": {\\\\n    \\\\\\\"9-class\\\\\\\": {\\\\n      \\\\\\\"DD\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 1.0,\\\\n        \\\\\\\"123\\\\\\\": 1.0,\\\\n        \\\\\\\"456\\\\\\\": 0.990362\\\\n      },\\\\n      \\\\\\\"AA\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.990362,\\\\n        \\\\\\\"123\\\\\\\": 0.934956,\\\\n        \\\\\\\"456\\\\\\\": 0.990362\\\\n      },\\\\n      \\\\\\\"FITD\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 1.0,\\\\n        \\\\\\\"123\\\\\\\": 1.0,\\\\n        \\\\\\\"456\\\\\\\": 1.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"Binary\\\\\\\": {\\\\n      \\\\\\\"DD\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 1.0,\\\\n        \\\\\\\"123\\\\\\\": 1.0,\\\\n        \\\\\\\"456\\\\\\\": 1.0\\\\n      },\\\\n      \\\\\\\"AA\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.98085,\\\\n        \\\\\\\"123\\\\\\\": 0.990362,\\\\n        \\\\\\\"456\\\\\\\": 1.0\\\\n      },\\\\n      \\\\\\\"FITD\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 1.0,\\\\n        \\\\\\\"123\\\\\\\": 1.0,\\\\n        \\\\\\\"456\\\\\\\": 1.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"Scrambled\\\\\\\": {\\\\n      \\\\\\\"DD\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.9904,\\\\n        \\\\\\\"123\\\\\\\": 1.0,\\\\n        \\\\\\\"456\\\\\\\": 1.0\\\\n      },\\\\n      \\\\\\\"AA\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.891278,\\\\n        \\\\\\\"123\\\\\\\": 0.990362,\\\\n        \\\\\\\"456\\\\\\\": 0.971459\\\\n      },\\\\n      \\\\\\\"FITD\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 1.0,\\\\n        \\\\\\\"123\\\\\\\": 1.0,\\\\n        \\\\\\\"456\\\\\\\": 1.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"MLM+cls\\\\\\\": {\\\\n      \\\\\\\"DD\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 1.0,\\\\n        \\\\\\\"123\\\\\\\": 0.990228,\\\\n        \\\\\\\"456\\\\\\\": 0.751218\\\\n      },\\\\n      \\\\\\\"AA\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.971459,\\\\n        \\\\\\\"123\\\\\\\": 0.925245,\\\\n        \\\\\\\"456\\\\\\\": 0.783645\\\\n      },\\\\n      \\\\\\\"FITD\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.961184,\\\\n        \\\\\\\"123\\\\\\\": 0.431732,\\\\n        \\\\\\\"456\\\\\\\": 0.728695\\\\n      }\\\\n    },\\\\n    \\\\\\\"Topic\\\\\\\": {\\\\n      \\\\\\\"DD\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.726852,\\\\n        \\\\\\\"123\\\\\\\": 0.252455,\\\\n        \\\\\\\"456\\\\\\\": 0.644068\\\\n      },\\\\n      \\\\\\\"AA\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.685877,\\\\n        \\\\\\\"123\\\\\\\": 0.431136,\\\\n        \\\\\\\"456\\\\\\\": 0.759324\\\\n      },\\\\n      \\\\\\\"FITD\\\\\\\": {\\\n…[truncated 8694 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp64_levene_test_20260522T231046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T23:12:06.713136+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"FITD OOD per-seed F1-macro for Table 7 (tab:full_prefix)\\\\\\\",\\\\n  \\\\\\\"source\\\\\\\": \\\\\\\"results/per_sample_predictions/fitd_ood_per_sample.json\\\\\\\",\\\\n  \\\\\\\"checkpoints\\\\\\\": \\\\\\\"plan_002 (from checkpoints_archive via exp35)\\\\\\\",\\\\n  \\\\\\\"n_attack\\\\\\\": 80,\\\\n  \\\\\\\"n_benign\\\\\\\": 38,\\\\n  \\\\\\\"n_total\\\\\\\": 118,\\\\n  \\\\\\\"metric\\\\\\\": \\\\\\\"F1-macro\\\\\\\",\\\\n  \\\\\\\"std_ddof\\\\\\\": 0,\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"9class\\\\\\\": {\\\\n      \\\\\\\"K1\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n          \\\\\\\"42\\\\\\\": 1.0,\\\\n          \\\\\\\"123\\\\\\\": 1.0,\\\\n          \\\\\\\"456\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"mean\\\\\\\": 1.0,\\\\n        \\\\\\\"std\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"K2\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n          \\\\\\\"42\\\\\\\": 1.0,\\\\n          \\\\\\\"123\\\\\\\": 1.0,\\\\n          \\\\\\\"456\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"mean\\\\\\\": 1.0,\\\\n        \\\\\\\"std\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"Full\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n          \\\\\\\"42\\\\\\\": 1.0,\\\\n          \\\\\\\"123\\\\\\\": 1.0,\\\\n          \\\\\\\"456\\\\\\\": 1.0\\\\n        },\\\\n        \\\\\\\"mean\\\\\\\": 1.0,\\\\n        \\\\\\\"std\\\\\\\": 0.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"vanilla\\\\\\\": {\\\\n      \\\\\\\"K1\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n          \\\\\\\"42\\\\\\\": 0.990228,\\\\n          \\\\\\\"123\\\\\\\": 0.971086,\\\\n          \\\\\\\"456\\\\\\\": 0.899869\\\\n        },\\\\n        \\\\\\\"mean\\\\\\\": 0.953728,\\\\n        \\\\\\\"std\\\\\\\": 0.038877\\\\n      },\\\\n      \\\\\\\"K2\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n          \\\\\\\"42\\\\\\\": 1.0,\\\\n          \\\\\\\"123\\\\\\\": 0.990362,\\\\n          \\\\\\\"456\\\\\\\": 0.865858\\\\n        },\\\\n        \\\\\\\"mean\\\\\\\": 0.952073,\\\\n        \\\\\\\"std\\\\\\\": 0.06109\\\\n      },\\\\n      \\\\\\\"Full\\\\\\\": {\\\\n        \\\\\\\"seeds\\\\\\\": {\\\\n          \\\\\\\"42\\\\\\\": 1.0,\\\\n          \\\\\\\"123\\\\\\\": 1.0,\\\\n          \\\\\\\"456\\\\\\\": 0.98085\\\\n        },\\\\n        \\\\\\\"mean\\\\\\\": 0.993617,\\\\n        \\\\\\\"std\\\\\\\": 0.009027\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_\n…[truncated 19 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp64_levene_test_20260522T231046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T23:12:06.713342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp64_levene_test_20260522T231046",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom scipy.stats import levene\nimport numpy as np\n\n# Per-seed F1 from round7_seed_level_stats.json\n# DD OOD Full\nnine_class_dd = [1.0, 1.0, 0.990362]\nvanilla_dd = [0.2845, 0.3048, 0.3477]\n\n# AA (ActorAttack) Full\nnine_class_aa = [0.990362, 0.934956, 0.990362]\nvanilla_aa = [0.257507, 0.257507, 0.257507]\n\nprint('='*60)\nprint('Levene Test: 9-class vs Vanilla F1 Variance')\nprint('='*60)\n\n# DD OOD\nprint('\\n--- DD OOD (Deceptive Delight) ---')\nprint(f'9-class seeds: {nine_class_dd}')\nprint(f'  mean={np.mean(nine_class_dd):.6f}, std={np.std(nine_class_dd, ddof=1):.6f}')\nprint(f'Vanilla seeds: {vanilla_dd}')\nprint(f'  mean={np.mean(vanilla_dd):.6f}, std={np.std(vanilla_dd, ddof=1):.6f}')\nstat_dd, p_dd = levene(nine_class_dd, vanilla_dd)\nprint(f'Levene statistic: {stat_dd:.6f}')\nprint(f'p-value: {p_dd:.6f}')\n\n# AA\nprint('\\n--- AA (ActorAttack) ---')\nprint(f'9-class seeds: {nine_class_aa}')\nprint(f'  mean={np.mean(nine_class_aa):.6f}, std={np.std(nine_class_aa, ddof=1):.6f}')\nprint(f'Vanilla seeds: {vanilla_aa}')\nprint(f'  mean={np.mean(vanilla_aa):.6f}, std={np.std(vanilla_aa, ddof=1):.6f}')\n\n# Check if vanilla_aa has zero variance\nif np.std(vanilla_aa) == 0:\n    print('WARNING: Vanilla AA has zero variance (all values identical)')\n    print('Levene test is degenerate when one group has zero variance.')\n    # Still run it\n    try:\n        stat_aa, p_aa = levene(nine_class_aa, vanilla_aa)\n        print(f'Levene statistic: {stat_aa:.6f}')\n        print(f'p-value: {p_aa:.6f}')\n    except Exception as e:\n        print(f'Error: {e}')\nelse:\n    stat_aa, p_aa = levene(nine_class_aa, vanilla_aa)\n    print(f'Levene statistic: {stat_aa:.6f}')\n    print(f'p-value: {p_aa:.6f}')\n\n# Power analysis note\nprint('\\n--- Statistical Power Note ---')\nprint('n=3 per group -> df1=1, df2=4')\nprint('For Levene test with n=3, power is extremely low.')\nprint('Even large variance ratios may not reach significance.')\nprint('Rule of thumb: need n>=20-30 per group for adequate power (~0.80)')\n\n# Variance ratio for descriptive purposes\nvar_9c_dd = np.var(nine_class_dd, ddof=1)\nvar_v_dd = np.var(vanilla_dd, ddof=1)\nvar_9c_aa = np.var(nine_class_aa, ddof=1)\nvar_v_aa = np.var(vanilla_aa, ddof=1)\n\nprint('\\n--- Descriptive Variance Comparison ---')\nprint(f'DD: 9-class var={var_9c_dd:.8f}, Vanilla var={var_v_dd:.8f}')\nif var_v_dd > 0:\n    print(f'  Ratio (Vanilla/9-class): {var_v_dd/var_9c_dd:.2f}')\nprint(f'AA: 9-class var={var_9c_aa:.8f}, Vanilla var={var_v_aa:.8f}')\nif var_9c_aa > 0 and var_v_aa > 0:\n    print(f'  Ratio: {max(var_9c_aa, var_v_aa)/min(var_9c_aa, var_v_aa):.2f}')\nelif var_v_aa == 0:\n    print(f'  Vanilla variance is 0 (degenerate)')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T23:12:06.713598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nLevene Test: 9-class vs Vanilla F1 Variance\\\\n============================================================\\\\n\\\\n--- DD OOD (Deceptive Delight) ---\\\\n9-class seeds: [1.0, 1.0, 0.990362]\\\\n  mean=0.996787, std=0.005565\\\\nVanilla seeds: [0.2845, 0.3048, 0.3477]\\\\n  mean=0.312333, std=0.032266\\\\nLevene statistic: 1.945640\\\\np-value: 0.235527\\\\n\\\\n--- AA (ActorAttack) ---\\\\n9-class seeds: [0.990362, 0.934956, 0.990362]\\\\n  mean=0.971893, std=0.031989\\\\nVanilla seeds: [0.257507, 0.257507, 0.257507]\\\\n  mean=0.257507, std=0.000000\\\\nWARNING: Vanilla AA has zero variance (all values identical)\\\\nLevene test is degenerate when one group has zero variance.\\\\nLevene statistic: 1.000000\\\\np-value: 0.373901\\\\n\\\\n--- Statistical Power Note ---\\\\nn=3 per group -> df1=1, df2=4\\\\nFor Levene test with n=3, power is extremely low.\\\\nEven large variance ratios may not reach significance.\\\\nRule of thumb: need n>=20-30 per group for adequate power (~0.80)\\\\n\\\\n--- Descriptive Variance Comparison ---\\\\nDD: 9-class var=0.00003096, Vanilla var=0.00104112\\\\n  Ratio (Vanilla/9-class): 33.62\\\\nAA: 9-class var=0.00102327, Vanilla var=0.00000000\\\\n  Vanilla variance is 0 (degenerate)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp64_levene_test_20260522T231046",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T23:12:06.713869+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### DD OOD (Deceptive Delight)\n\n| | mean | std | var |\n|---|---|---|---|\n| 9-class | 0.9968 | 0.0056 | 0.0000310 |\n| Vanilla | 0.3123 | 0.0323 | 0.0010411 |\n\n- **Levene's W = 1.946, p = 0.236** — 不显著\n- 描述性方差比：Vanilla 方差是 9-class 的 **33.6×**\n\n### AA (ActorAttack)\n\n| | mean | std | var |\n|---|---|---|---|\n| 9-class | 0.9719 | 0.0320 | 0.001023 |\n| Vanilla | 0.2575 | 0.0000 | 0.000000 |\n\n- **Levene's W = 1.000, p = 0.374** — 不显著\n- Vanilla 三个 seed F1 完全相同（0.2575），方差为 0，Levene test 退化\n\n### 统计功效说明\n\nn=3 per group → df₁=1, df₂=4。这个样本量下 Levene's test 的 power 极低（远低于 0.80 的常规阈值），即使 DD 的方差比达到 33.6 倍也未达显著性。结果**仅供参考，不具推断效力**。\n\n### 结论\n\n两个 OOD 条件下 Levene's test 均不显著（p > 0.05），但这主要是 n=3 的 power 不足所致，而非方差真正相等的证据。描述性数据显示 DD 上 Vanilla 方差远大于 9-class，AA 上 Vanilla 方差为 0（退化情况）。论文中 variance claim 保持 descriptive 处理是合理的。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp64_levene_test_20260522T231046"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/code-exp64-levene-test.md"
+}

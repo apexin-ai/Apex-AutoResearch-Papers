@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50979ce395614582e662",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16 check and train",
+  "task_key": "worker_code_exp16-check-and-train_20260519T194353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-check-and-train_20260519T194353_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "91f0b7926e2dd927c14e6d7f7f25ce55bc3133d0ce2f8d1fa075dee9cd9c94a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 数据生成进度\n\n| 任务 | GPU | 进度 | 状态 |\n|------|-----|------|------|\n| exp16 Llama jailbreak | 0 (空闲) | 251/250 | **已完成** |\n| exp16 Llama benign | 1 (90%) | 238/250 (95%) | 运行中 |\n| exp17 Qwen jailbreak | 2 (88%) | 201/250 (80%) | 运行中 |\n| exp17 Qwen benign | 3 (87%) | 154/250 (62%) | 运行中 |\n\nexp16 Llama benign 还差 12 条，GPU 1 仍在跑，预计很快完成。暂不触发数据合并和训练，等下次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16-check-and-train.md"
+}

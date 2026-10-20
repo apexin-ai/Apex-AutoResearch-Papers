@@ -1,0 +1,7028 @@
+# code dual ood f1 calc
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 128
+- **Recorded user turns:** 1
+- **Tool calls:** 40
+- **Original source:** `logs/workers/worker_code_dual_ood_f1_calc_20260522T233122.log`
+- **Structured JSON:** [`0f6dbb4bb6a88379180c.json`](../../sessions/0f/0f6dbb4bb6a88379180c.json)
+
+## Before a recorded user message
+
+11 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "5dea2f2d-6623-403b-b3e7-072f8633b5a0",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779495600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ca619c1d-713f-4935-a5a3-67dd9e4154f2",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the registry to get the precise metrics needed for the dual-OOD F1 calculation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "c2a7d7f6-2d61-4ee4-a6fd-e712c1250221",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PGSdyFYJCpDUpaK4CfmiLL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12718,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12718
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先从 registry 获取精确数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "2465701f-1007-4e70-8f94-26beba27ab2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PGSdyFYJCpDUpaK4CfmiLL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12718,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12718
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Y1jhM3HP1Eunmdtw7eejB3`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "01041dc1-decd-487d-b784-d559351b68d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PGSdyFYJCpDUpaK4CfmiLL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12718,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12718
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T23:31:35.310Z_
+
+<details><summary>↩ Tool result · `toolu_01Y1jhM3HP1Eunmdtw7eejB3`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "a01e2cf3-8c45-4db8-adcc-56b7f3d72330",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_014cgvxkEqWaXanth6GfQW2q`</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "163b9f2f-e67c-46a8-9a34-d2a8d0689035",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XjH7upxvmTi6mfv6kYY63m",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 501,
+      "cache_read_input_tokens": 24559,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 501
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T23:31:49.239Z_
+
+<details><summary>↩ Tool result · `toolu_014cgvxkEqWaXanth6GfQW2q`</summary>
+
+```text
+Error: result (119,911 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "315c82d5-428d-4611-9a50-b73dab2b6e03",
+  "tool_use_result": {
+    "content": "Error: result (119,911 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp64_toxicchat_confidence_analysis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T22:28:42.948Z\", \"updated_at\": \"2026-05-22T22:29:28.485Z\", \"hypothesis\": \"9-class 在 ToxicChat 上的高 FPR 来源于高置信误判（>0.9），而非 borderline 预测，说明 classification DAPT 对 ToxicChat benign 文本产生了系统性的特征偏移而非边界模糊\", \"conclusion\": \"success\", \"metrics\": {\"9class_majority\": {\"total_fp\": 104, \"high_conf_ratio\": 0.7019, \"borderline_ratio\": 0.25, \"mean_conf\": 0.9014, \"median_conf\": 0.9999}, \"jb_mlm_majority\": {\"total_fp\": 34, \"high_conf_ratio\": 0.5882, \"borderline_ratio\": 0.1471, \"mean_conf\": 0.8334, \"median_conf\": 0.9327}, \"9class_per_seed_high_conf_ratio\": {\"seed42\": 0.9691, \"seed123\": 0.9773, \"seed456\": 0.9429}, \"jb_mlm_per_seed_high_conf_ratio\": {\"seed42\": 0.4118, \"seed123\": 0.6897, \"seed456\": 0.5833}}}, \"exp11_tost_equivalence\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T20:55:11.384Z\", \"updated_at\": \"2026-05-22T21:39:39.893Z\", \"hypothesis\": \"Classification-supervised DeBERTa variants (9-class, scrambled, binary) are statistically equivalent on DD OOD (within Δ=5pp margin), formally proving that persuasion label content does not matter — any classification structure on domain text produces equivalent cross-attack generalization.\", \"parent\": \"exp9_bootstrap_ci\", \"conclusion\": \"success\", \"metrics\": {\"dd_ood_full\": {\"9class_vs_scrambled\": {\"mean_diff\": 0, \"ci_90\": [-0.016, 0.016], \"p_tost\": 0.006, \"equivalent\": true, \"ci_within_margin\": true}, \"9class_vs_binary\": {\"mean_diff\": -0.0032, \"ci_90\": [-0.013, 0.006], \"p_tost\": 0.002, \"equivalent\": true, \"ci_within_margin\": true}, \"9class_vs_jb_mlm\": {\"mean_diff\": 0.083, \"ci_90\": [-0.145, 0.311], \"p_tost\": 0.643, \"equivalent\": false, \"ci_within_margin\": false}, \"scrambled_vs_binary\": {\"mean_diff\": -0.0032, \"ci_90\": [-0.013, 0.006], \"p_tost\": 0.002, \"equivalent\": true, \"ci_within_margin\": true}}, \"actorattack_full\": {\"9class_vs_scrambled\": {\"mean_diff\": 0.0209, \"ci_90\": [-0.109, 0.151], \"p_tost\": 0.29, \"equivalent\": false, \"ci_within_margin\": false}, \"9class_vs_binary\": {\"mean_diff\": -0.0185, \"ci_90\": [-0.075, 0.038], \"p_tost\": 0.122, \"equivalent\": false, \"ci_within_margin\": false}, \"9class_vs_jb_mlm\": {\"mean_diff\": 0.0784, \"ci_90\": [-0.109, 0.266], \"p_tost\": 0.65, \"equivalent\": false, \"ci_within_margin\": false}, \"scrambled_vs_binary\": {\"mean_diff\": -0.0394, \"ci_90\": [-0.117, 0.038], \"p_tost\": 0.363, \"equivalent\": false, \"ci_within_margin\": false}}, \"note\": \"DD OOD: 9class≈scrambled≈binary formally equivalent (TOST p<0.05, 90% CI within ±0.05). ActorAttack: inconclusive due to n=3 + higher variance. jb_mlm clearly different from classification variants.\"}}, \"exp46_inference_efficiency\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T06:14:50.840Z\", \"updated_at\": \"2026-05-22T21:29:43.312Z\", \"hypothesis\": \"DisPeD (DeBERTa+BiGRU) achieves 100x+ speedup over LLM-as-judge (Qwen3-8B 3-shot) with comparable or better OOD detection, because the encoder pipeline processes fixed-length embeddings per turn rather than generating full-sequence autoregressive outputs. This quantifies the practical deployment advantage.\", \"conclusion\": \"success\", \"metrics\": {\"disped_latency_ms\": 13.12, \"disped_latency_std\": 1.61, \"disped_throughput_conv_s\": 76.19, \"disped_gpu_mem_MB\": 868, \"disped_params_M\": 186.73, \"qwen3_latency_ms\": 318.53, \"qwen3_latency_std\": 26.8, \"qwen3_throughput_conv_s\": 3.14, \"qwen3_gpu_mem_MB\": 16096, \"qwen3_params_B\": 8.19, \"speedup_factor\": 24.3, \"memory_ratio\": 18.5, \"test_conversations\": 100, \"gpu\": \"RTX PRO 6000 Blackwell\"}}, \"exp63_toxicchat_fpfn\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T18:32:28.699Z\", \"updated_at\": \"2026-05-22T18:33:29.475Z\", \"hypothesis\": \"9-class ToxicChat performance gap vs MLM is dominated by false positives (>70%), because classification DAPT over-encodes synthetic distributional features that trigger on human benign text\", \"conclusion\": \"negative\", \"metrics\": {\"9class_mv_f1\": 0.652, \"9class_mv_fpr\": 0.51, \"9class_mv_precision\": 0.589, \"9class_mv_recall\": 0.73, \"mlm_mv_f1\": 0.853, \"mlm_mv_fpr\": 0.167, \"mlm_mv_precision\": 0.839, \"mlm_mv_recall\": 0.868, \"mlm_correct_9class_wrong_total\": 144, \"mlm_wins_fp_fraction\": 0.646, \"mlm_wins_fn_fraction\": 0.354, \"9class_correct_mlm_wrong_total\": 46}}, \"exp62_topic_diagnosis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T17:26:41.075Z\", \"updated_at\": \"2026-05-22T17:27:19.371Z\", \"hypothesis\": \"Topic DAPT fails because it blurs the jailbreak/benign boundary in embedding space — topic classification teaches features orthogonal to the jailbreak detection task, resulting in lower Fisher separability between jailbreak and benign representations\", \"conclusion\": \"negative\", \"metrics\": {\"vanilla_iid_fisher\": 0.118, \"vanilla_dd_fisher\": 0.401, \"vanilla_aa_fisher\": 0.408, \"9class_iid_fisher\": 0.073, \"9class_dd_fisher\": 0.2, \"9class_aa_fisher\": 0.832, \"topic_iid_fisher\": 0.108, \"topic_dd_fisher\": 0.653, \"topic_aa_fisher\": 0.311, \"finding\": \"9-class DAPT has LOWER Fisher/silhouette than vanilla on IID/DD, not higher — mechanism is richer geometry not simple separability. Topic DAPT failure is not boundary-blurring.\"}}, \"exp61_random_binary_partition\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T17:26:39.121Z\", \"updated_at\": \"2026-05-22T17:27:18.027Z\", \"hypothesis\": \"Random binary partitions of 9 strategy labels will achieve comparable OOD generalization to the original binary label, confirming that DAPT learns domain representations rather than label semantics — any domain-relevant binary partition suffices\", \"conclusion\": \"success\", \"metrics\": {\"iid_f1\": \"1.000±0.000\", \"dd_ood_f1\": \"1.000±0.000\", \"aa_ood_f1\": \"0.964±0.109\", \"n_partitions\": 10, \"n_perfect\": 9, \"outlier_seed\": 7, \"outlier_aa_f1\": 0.636, \"wall_clock_min\": 16.1}}, \"exp60_turncount_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T17:18:23.647Z\", \"updated_at\": \"2026-05-22T17:18:55.596Z\", \"hypothesis\": \"A turn-count-only logistic regression will achieve near-chance F1 on all test sets, confirming that user-turn distributions overlap between jailbreak and benign and that detection is content-driven rather than length-driven\", \"conclusion\": \"success\", \"metrics\": {\"tc_full\": {\"iid\": 0.543, \"dd\": 0.558, \"fitd\": 0.424, \"aa\": 0, \"toxicchat\": 0}, \"tc_k1\": {\"all\": 0}, \"disped_full\": {\"iid\": 1, \"dd\": 0.997, \"fitd\": 1, \"aa\": 0.972, \"toxicchat\": 0.596}}}, \"exp59_resample_350\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T13:31:36.220Z\", \"updated_at\": \"2026-05-22T15:38:50.560Z\", \"hypothesis\": \"Randomly sampling 350 conversations from expanded_1000 will show similar OOD degradation as the full 1000-sample training, confirming that the performance drop is driven by data composition changes (new attack types/benign sources) rather than sample count\", \"conclusion\": \"success\", \"metrics\": {\"dd_ood_f1\": \"0.887±0.086\", \"aa_ood_f1\": \"0.883±0.091\", \"iid_f1\": \"0.998±0.003\", \"dd_seeds\": [0.765, 0.948, 0.948], \"aa_seeds\": [0.758, 0.916, 0.974], \"iid_seeds\": [1, 0.993, 1]}}, \"exp58_truncated_single_turn\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T13:29:58.558Z\", \"updated_at\": \"2026-05-22T14:04:05.534Z\", \"hypothesis\": \"Truncating synthetic multi-turn conversations to the last user turn will show classification DAPT maintaining advantage over MLM, indicating the ToxicChat reversal is driven by multi-turn structural dependence rather than single-turn distributional properties\", \"parent\": \"exp53_llm_judge_prompt_opt\", \"conclusion\": \"success\", \"metrics\": {\"full_avg_delta\": 0.016, \"last_turn_avg_delta\": 0.06, \"9class_last_turn\": {\"iid\": 0.991, \"dd\": 0.942, \"aa\": 0.978, \"fitd\": 1}, \"mlm_last_turn\": {\"iid\": 0.894, \"dd\": 0.924, \"aa\": 0.927, \"fitd\": 0.927}, \"9class_full\": {\"iid\": 1, \"dd\": 0.997, \"aa\": 0.972, \"fitd\": 1}, \"mlm_full\": {\"iid\": 0.983, \"dd\": 0.993, \"aa\": 0.941, \"fitd\": 0.987}, \"interpretation\": \"9-class leads even more in single-turn, ruling out multi-turn structural advantage as cause of ToxicChat reversal\"}}, \"exp57_svd_iid_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T13:28:59.797Z\", \"updated_at\": \"2026-05-22T13:42:35.062Z\", \"hypothesis\": \"SVD directions computed on IID training data only (without OOD test exposure) are sufficient for cross-attack OOD detection via logistic probe, eliminating the data leakage concern in exp54's causal subspace analysis\", \"parent\": \"exp54_causal_probe_subspace\", \"conclusion\": \"success\", \"metrics\": {\"iid_only_top3\": {\"iid\": 1, \"dd\": 1, \"aa\": 0.9474, \"fitd\": 1}, \"all_data_top3\": {\"iid\": 1, \"dd\": 0.9937, \"aa\": 0.9041, \"fitd\": 1}, \"delta_aa_pp\": 4.33, \"subspace_alignment_cos\": 0.9739, \"iid_variance_explained\": 0.9678, \"conclusion_detail\": \"IID-only SVD equal or better than all-data SVD on all OOD sets. Data leakage concern eliminated.\"}}, \"exp53_llm_judge_prompt_opt\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:08:48.075Z\", \"updated_at\": \"2026-05-22T12:53:39.856Z\", \"hypothesis\": \"An optimized CoT prompt with structured reasoning steps and calibrated examples will improve LLM-as-Judge jailbreak detection F1, especially on OOD datasets (DD, AA), compared to the original 3-shot prompt\", \"conclusion\": \"success\"}, \"exp55_5seed_mlm_vs_9class_aa\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T11:11:41.549Z\", \"updated_at\": \"2026-05-22T12:15:56.035Z\", \"hypothesis\": \"9-class persuasion-grounded DeBERTa DAPT produces significantly better OOD generalization than domain-exposure-only MLM DAPT, with the advantage being robust across 5 random seeds (expanding from 3 to address reviewer W2 concern about insufficient seed count)\", \"metrics\": {\"n_seeds\": 5, \"seeds\": [42, 123, 456, 789, 1024], \"9class_aa_ood\": {\"mean\": 0.9735, \"std\": 0.0124}, \"mlm_aa_ood\": {\"mean\": 0.9566, \"std\": 0.0237}, \"9class_iid\": {\"mean\": 1, \"std\": 0}, \"mlm_iid\": {\"mean\": 0.9816, \"std\": 0.0134}, \"9class_dd_ood\": {\"mean\": 0.9924, \"std\": 0.0111}, \"mlm_dd_ood\": {\"mean\": 0.9883, \"std\": 0.0094}, \"9class_fitd_ood\": {\"mean\": 1, \"std\": 0}, \"mlm_fitd_ood\": {\"mean\": 0.9883, \"std\": 0.0094}, \"aa_ood_delta_pp\": 1.69, \"aa_ood_paired_ttest_p\": 0.2461, \"aa_ood_wilcoxon_p\": 0.1875, \"aa_ood_9class_wins\": 4, \"aa_ood_mlm_wins\": 1, \"total_time_min\": 10.5}, \"conclusion\": \"negative\"}, \"exp56_crossllm_10shot_adaptation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T11:59:38.178Z\", \"updated_at\": \"2026-05-22T12:09:21.263Z\", \"hypothesis\": \"10-shot benign adaptation with Llama-origin conversations will reduce cross-LLM FPR from 88-90% to below 10%, extending the two-axis benign adaptation mechanism to cross-LLM distributional shift\", \"parent\": \"exp51_lmsys_benign_ood\", \"metrics\": {\"baseline_fpr\": 0.945, \"baseline_aa_llama_recall\": 0.74, \"adaptation_curve\": {\"n0\": {\"fpr\": 0.945, \"dd_f1\": 1, \"aa_f1\": 0.99, \"fitd_f1\": 1, \"dd_llama_recall\": 1, \"aa_llama_recall\": 0.74, \"fitd_llama_recall\": 1}, \"n5\": {\"fpr\": 0.055, \"dd_f1\": 0.694, \"aa_f1\": 0.841, \"fitd_f1\": 0.99, \"dd_llama_recall\": 0.64, \"aa_llama_recall\": 0.04, \"fitd_llama_recall\": 0.76}, \"n10\": {\"fpr\": 0.03, \"dd_f1\": 0.816, \"aa_f1\": 0.601, \"fitd_f1\": 1, \"dd_llama_recall\": 0.6, \"aa_llama_recall\": 0, \"fitd_llama_recall\": 0.8}, \"n25\": {\"fpr\": 0.005, \"dd_f1\": 0.556, \"aa_f1\": 0.271, \"fitd_f1\": 0.99, \"dd_llama_recall\": 0.08, \"aa_llama_recall\": 0, \"fitd_llama_recall\": 0.52}}}, \"conclusion\": \"negative\"}, \"exp54_causal_probe_subspace\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T11:11:37.342Z\", \"updated_at\": \"2026-05-22T11:44:24.130Z\", \"hypothesis\": \"Classification DAPT compresses representations into few discriminative dimensions that are causally necessary for OOD generalization - projecting onto top-k SVD components preserves detection while random/vanilla projections fail\", \"parent\": \"exp50_layerwise_representation\", \"conclusion\": \"success\", \"metrics\": {\"9class_top3_aa_f1\": 1, \"9class_top3_dd_f1\": 1, \"9class_top3_fitd_f1\": 1, \"9class_rand3_aa_f1\": 0.928, \"scrambled_top3_aa_f1\": 0.962, \"scrambled_rand3_aa_f1\": 0.766, \"mlm_top3_aa_f1\": 0.618, \"mlm_full_aa_f1\": 0.636, \"mlm_rand5_dd_f1\": 0.685, \"mlm_rand5_aa_f1\": 0.584, \"mlm_rand5_fitd_f1\": 0.744}}, \"exp52_oasst2_n25_multiseed\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T10:08:46.884Z\", \"updated_at\": \"2026-05-22T10:16:27.542Z\", \"hypothesis\": \"OASST2 benign adaptation with N=25 yields consistently low FPR (≤5%) across multiple seeds (42, 123, 456), confirming seed 42's FPR=1.5% is not a lucky outlier.\", \"parent\": \"exp51_lmsys_benign_ood\", \"metrics\": {\"seed_42\": {\"oasst2_fpr\": 0.015, \"iid_f1\": 1, \"aa_f1\": 0.953, \"dd_f1\": 1, \"fitd_f1\": 1}, \"seed_123\": {\"oasst2_fpr\": 0.005, \"iid_f1\": 1, \"aa_f1\": 0.917, \"dd_f1\": 1, \"fitd_f1\": 1}, \"seed_456\": {\"oasst2_fpr\": 0.01, \"iid_f1\": 1, \"aa_f1\": 0.99, \"dd_f1\": 1, \"fitd_f1\": 1}, \"fpr_mean\": 0.01, \"fpr_std\": 0.005, \"fpr_range\": \"0.5%-1.5%\"}, \"conclusion\": \"success\"}, \"exp51_lmsys_benign_ood\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T08:58:59.398Z\", \"updated_at\": \"2026-05-22T09:53:42.648Z\", \"hypothesis\": \"The two-axis decomposition (high FPR on OOD benign + 10-shot remediation) generalizes beyond WildChat: LMSYS-Chat-1M benign conversations will show high FPR (>20%) that 10 target-domain conversations can eliminate, confirming benign-side shift is a general phenomenon not specific to WildChat GPT-3.5 users.\", \"parent\": \"exp45_benign_adaptation_curve\", \"conclusion\": \"success\", \"metrics\": {\"baseline_fpr\": 0.575, \"baseline_n\": 200, \"data_source\": \"oasst2 (real crowdsourced human)\", \"adaptation_curve\": {\"n0\": {\"fpr\": 0.575}, \"n10\": {\"fpr\": 0.205, \"dd_f1\": 1, \"aa_f1\": 1, \"fitd_f1\": 1}, \"n25\": {\"fpr\": 0.015, \"dd_f1\": 1, \"aa_f1\": 0.953, \"fitd_f1\": 1}, \"n50\": {\"fpr\": 0.005, \"dd_f1\": 1, \"aa_f1\": 0.99, \"fitd_f1\": 1}}, \"comparison_wildchat\": {\"baseline_fpr\": 0.681, \"n10_fpr\": 0, \"n10_sufficient\": true}}}, \"exp50_layerwise_representation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T08:58:57.759Z\", \"updated_at\": \"2026-05-22T09:21:54.850Z\", \"hypothesis\": \"Discriminative compression from classification DAPT concentrates in DeBERTa's later layers (7-12) rather than early layers (1-6), mechanistically distinguishing it from Maennel et al.'s early-layer label-independent statistics. If PR and Fisher ratio diverge between classification-supervised and MLM/vanilla only in later layers, this confirms compression is a task-specific representation restructuring, not an early-layer phenomenon.\", \"parent\": \"exp49_representation_analysis\", \"conclusion\": \"success\", \"metrics\": {\"fisher_ratio_by_layer\": {\"layers_1_5\": {\"vanilla\": \"0.3-0.8\", \"9class\": \"0.3-0.8\", \"scrambled\": \"0.3-0.8\", \"jb_mlm\": \"0.3-0.8\"}, \"layer_10_peak\": {\"vanilla\": 0.73, \"9class\": 10.92, \"scrambled\": 5.93, \"jb_mlm\": 0.93}, \"layer_12\": {\"vanilla\": 2.83, \"9class\": 6.53, \"scrambled\": 7.91, \"jb_mlm\": 2.61}}, \"finding\": \"Discriminative compression concentrates in layers 8-12 (Fisher 5-11x divergence for classification variants), layers 1-5 label-independent (matching Maennel 2020)\"}}, \"exp45_benign_adaptation_curve\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T06:14:46.955Z\", \"updated_at\": \"2026-05-22T08:56:47.002Z\", \"hypothesis\": \"Adding N WildChat benign samples (N in {0,5,10,25,50,100,150}) to training data will show a monotonic FPR reduction curve, with substantial FPR drop achievable with as few as 10-25 samples while maintaining OOD F1 above 0.95.\", \"parent\": \"exp42_ood_benign_mixed\", \"conclusion\": \"success\", \"metrics\": {\"n10_multiseed\": {\"seeds\": [42, 123, 456], \"wc_fpr\": \"0.000±0.000\", \"iid_f1\": \"1.000±0.000\", \"dd_f1\": \"1.000±0.000\", \"aa_f1\": \"0.981±0.016\", \"fitd_f1\": \"1.000±0.000\"}, \"single_seed_42\": {\"n0_fpr\": 0.653, \"n5_fpr\": 0.163, \"n10_fpr\": 0, \"n25_fpr\": 0, \"n50_fpr\": 0, \"n100_fpr\": 0, \"n150_fpr\": 0}}}, \"exp49_representation_analysis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T07:10:44.086Z\", \"updated_at\": \"2026-05-22T07:33:19.682Z\", \"hypothesis\": \"Classification-based DAPT (9-class, binary, scrambled) produces smaller weight perturbations from pretrained weights and more geometrically uniform representations (higher effective dimensionality) than MLM DAPT, consistent with optimization regularization as the primary mechanism for cross-attack robustness.\", \"parent\": \"exp45_benign_adaptation_curve\", \"conclusion\": \"success\", \"metrics\": {\"weight_norm\": {\"vanilla\": 0, \"wiki_mlm\": 2.924, \"binary\": 3.16, \"jb_mlm\": 3.375, \"scrambled\": 3.74, \"9class\": 3.998, \"topic\": 4.894}, \"svd_participation_ratio\": {\"vanilla\": 31.93, \"wiki_mlm\": 25, \"jb_mlm\": 24.56, \"topic\": 14.46, \"9class\": 9.37, \"scrambled\": 7.82, \"binary\": 3.73}, \"fisher_ratio\": {\"vanilla\": 6.9e-05, \"wiki_mlm\": 0.000284, \"jb_mlm\": 0.000829, \"topic\": 0.012449, \"scrambled\": 2.602778, \"9class\": 4.466274, \"binary\": 19.726283}}}, \"exp48_ensemble_mlm_9class\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T06:14:53.259Z\", \"updated_at\": \"2026-05-22T06:50:17.512Z\", \"hypothesis\": \"Ensembling JB-MLM (strongest on ToxicChat F1=0.837) and 9-class (strongest on synthetic OOD) will outperform either individual model across all benchmarks, because their error patterns are complementary: MLM captures general linguistic anomaly while 9-class captures persuasion-strategy-specific features.\", \"parent\": \"exp42_ood_benign_mixed\", \"conclusion\": \"negative\", \"metrics\": {\"jb_mlm_baseline\": {\"tc_f1\": 0.82, \"wc_fpr\": 0.306, \"dd_f1\": 1, \"aa_f1\": 0.99}, \"9class_baseline\": {\"tc_f1\": 0.596, \"wc_fpr\": 0.755, \"dd_f1\": 1, \"aa_f1\": 0.99}, \"best_vote_and\": {\"tc_f1\": 0.735, \"wc_fpr\": 0.184, \"aa_f1\": 0.962}, \"best_weighted_0.7\": {\"tc_f1\": 0.806, \"wc_fpr\": 0.327, \"aa_f1\": 0.981}, \"pareto_improvement\": false}}, \"exp46\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T06:22:17.344Z\", \"updated_at\": \"2026-05-22T06:23:33.643Z\", \"hypothesis\": \"DisPeD (DeBERTa+BiGRU) achieves significantly lower inference latency than Qwen3-8B LLM-as-judge while maintaining superior accuracy, because the specialized two-stage pipeline avoids autoregressive decoding overhead.\", \"conclusion\": \"success\", \"metrics\": {\"disped_latency_ms\": 13.12, \"disped_throughput\": 76.19, \"disped_gpu_mem_MB\": 868.3, \"disped_params_M\": 186.73, \"qwen3_latency_ms\": 318.53, \"qwen3_throughput\": 3.14, \"qwen3_gpu_mem_MB\": 16095.9, \"qwen3_params_B\": 8.19, \"speedup_factor\": 24.3}}, \"exp44_multi_llm_mixed\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T04:41:45.349Z\", \"updated_at\": \"2026-05-22T06:02:04.365Z\", \"hypothesis\": \"Mixed multi-LLM training (Qwen+Llama jailbreak data) maintains evidence hierarchy and OOD detection on cross-LLM test while preserving Qwen OOD F1 above 0.95, because persuasion strategy patterns are LLM-agnostic features\", \"parent\": \"exp42_ood_benign_mixed\", \"conclusion\": \"success\", \"metrics\": {\"iid_f1\": 1, \"wildchat_fpr\": 0, \"qwen_ood_dd_f1\": 1, \"qwen_ood_aa_f1\": 1, \"qwen_ood_fitd_f1\": 1, \"llama_crescendo_recall\": 1, \"llama_crescendo_n\": 40, \"llama_dd_recall\": 1, \"llama_dd_n\": 10, \"llama_aa_recall\": 1, \"llama_aa_n\": 10, \"llama_fitd_recall\": 1, \"llama_fitd_n\": 10, \"llama_overall_recall\": 1, \"llama_overall_f1\": 1, \"seeds\": [42, 123, 456], \"total_time_min\": 11.2, \"train_composition\": \"175 Qwen jb + 175 Qwen bn + 164 Llama jb + 150 WC bn = 664\"}}, \"exp43_mhj_human_eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T04:12:23.950Z\", \"updated_at\": \"2026-05-22T04:41:09.940Z\", \"hypothesis\": \"9-class DAPT representations encode transferable persuasion signals that generalize to real human multi-turn jailbreak attempts (MHJ dataset), achieving higher detection recall than vanilla DeBERTa because human attackers use similar persuasion strategies as synthetic attacks.\", \"parent\": \"exp42_ood_benign_mixed\", \"conclusion\": \"negative\", \"metrics\": {\"mhj_status\": \"gated_access_required\", \"fallback_dataset\": \"verazuo/jailbreak_llms (exp8)\", \"verazuo_9class_f1\": 0.812, \"verazuo_9class_f1_std\": 0.135, \"verazuo_vanilla_f1\": 0.131, \"verazuo_mlm_f1\": 0.968, \"verazuo_9class_vs_vanilla_pp\": 68, \"verazuo_n_jailbreak\": 666, \"verazuo_n_benign\": 213, \"note\": \"MHJ multi-turn dataset requires HuggingFace gated access application. Existing verazuo single-turn human jailbreak data (exp8) confirms +68pp transfer. No new training performed.\"}}, \"exp42b_balanced_ratio_ablation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T04:17:59.853Z\", \"updated_at\": \"2026-05-22T04:39:13.434Z\", \"hypothesis\": \"exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.\", \"parent\": \"exp42\", \"conclusion\": \"success\", \"metrics\": {\"wildchat_fpr_mean\": 0, \"wildchat_fpr_std\": 0, \"iid_f1_mean\": 1, \"ood_dd_f1_mean\": 1, \"ood_aa_f1_mean\": 0.9905, \"ood_aa_recall_mean\": 0.9875, \"ood_fitd_f1_mean\": 1, \"wildchat_eval_n\": 49, \"train_size\": 350, \"train_composition\": \"175 jailbreak + 87 orig benign + 88 WildChat benign (50:50)\", \"total_time_min\": 4.8}}, \"exp42_ood_benign_mixed\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T03:58:04.544Z\", \"updated_at\": \"2026-05-22T04:10:33.954Z\", \"hypothesis\": \"Including WildChat benign conversations in training data will reduce WildChat FPR from 68.1% to below 30% while maintaining jailbreak OOD detection F1 above 0.95 on DD/AA/FITD, because the current high FPR is driven by benign distribution mismatch (exp14c: 100% from FP explosion), not model architecture limitations. Mixed benign training should expand the model's benign representation space to cover real-world conversational diversity.\", \"parent\": \"exp38_wildcat_calibration\", \"metrics\": {\"wildchat_fpr_mean\": 0, \"wildchat_fpr_std\": 0, \"iid_f1_mean\": 1, \"ood_dd_f1_mean\": 1, \"ood_aa_f1_mean\": 0.956, \"ood_fitd_f1_mean\": 1, \"wildchat_eval_n\": 49, \"data_filtered\": \"27/226 jailbreak patterns removed\", \"train_size\": \"500 (350 orig + 150 WildChat benign)\"}, \"conclusion\": \"success\"}, \"exp41_tost_10seed\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T03:27:38.653Z\", \"updated_at\": \"2026-05-22T03:53:52.977Z\", \"hypothesis\": \"Extending TOST equivalence test from n=5 to n=10 seeds will resolve the inconclusive AA result (p=0.08 at n=5) by providing sufficient statistical power: if scrambled and 9-class are truly equivalent within 5pp margin on ActorAttack, the increased sample size will yield p<0.05, confirming label content irrelevance across all OOD families.\", \"parent\": \"exp39_extra_seeds_tost\", \"metrics\": {\"n_seeds\": 10, \"seeds\": [42, 123, 456, 789, 1000, 2024, 2025, 2026, 314, 628], \"tost_DD\": {\"p\": 2.06e-09, \"equivalent\": true, \"cohens_d\": -0.136}, \"tost_AA\": {\"p\": 0.183, \"equivalent\": false, \"cohens_d\": 0.44}, \"tost_FITD\": {\"p\": 0, \"equivalent\": true, \"cohens_d\": 0}, \"9class_AA_mean\": 0.979, \"scrambled_AA_mean\": 0.949, \"AA_mean_diff_pp\": 3, \"training_time_min\": 16.8}, \"conclusion\": \"negative\"}, \"exp40_llama_guard_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T10:58:50.587Z\", \"updated_at\": \"2026-05-21T12:18:06.703Z\", \"hypothesis\": \"Llama Guard 3 8B（single-turn 安全分类器）在多轮 jailbreak 检测上表现远低于 DisPeD，因为它缺乏多轮对话的时序建模能力和说服策略感知，验证 multi-turn 场景需要专门适配的核心 claim。\", \"metrics\": {\"iid_crescendo\": {\"full\": {\"f1_macro\": 0.4325, \"prec_jb\": 0.8, \"rec_jb\": 0.1053, \"f1_jb\": 0.186}, \"k2\": {\"f1_macro\": 0.4325, \"prec_jb\": 0.8, \"rec_jb\": 0.1053, \"f1_jb\": 0.186}}, \"ood_dd\": {\"full\": {\"f1_macro\": 0.2525, \"prec_jb\": 0.5, \"rec_jb\": 0.0125, \"f1_jb\": 0.0244}, \"k2\": {\"f1_macro\": 0.2525, \"prec_jb\": 0.5, \"rec_jb\": 0.0125, \"f1_jb\": 0.0244}}, \"ood_aa\": {\"full\": {\"f1_macro\": 0.2387, \"prec_jb\": 0, \"rec_jb\": 0, \"f1_jb\": 0}, \"k2\": {\"f1_macro\": 0.2387, \"prec_jb\": 0, \"rec_jb\": 0, \"f1_jb\": 0}}, \"ood_fitd\": {\"full\": {\"f1_macro\": 0.2387, \"prec_jb\": 0, \"rec_jb\": 0, \"f1_jb\": 0}, \"k2\": {\"f1_macro\": 0.2387, \"prec_jb\": 0, \"rec_jb\": 0, \"f1_jb\": 0}}, \"unparseable_rate\": 0}, \"conclusion\": \"success\"}, \"exp40\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T11:02:07.347Z\", \"updated_at\": \"2026-05-21T12:01:44.548Z\", \"hypothesis\": \"Llama Guard 3 8B, as a general-purpose safety classifier, will underperform on multi-turn persuasion-based jailbreak detection compared to our specialized turn-level model, particularly on early detection (K=2) and OOD attack families, because it lacks turn-level persuasion strategy awareness.\", \"metrics\": {\"iid_f1_macro\": 0.4325, \"iid_jailbreak_recall\": 0.1053, \"iid_jailbreak_f1\": 0.186, \"dd_ood_f1_macro\": 0.2525, \"dd_ood_jailbreak_recall\": 0.0125, \"aa_ood_f1_macro\": 0.2387, \"aa_ood_jailbreak_recall\": 0, \"fitd_ood_f1_macro\": 0.2387, \"fitd_ood_jailbreak_recall\": 0, \"k2_identical_to_full\": true}, \"conclusion\": \"success\"}, \"exp39_extra_seeds_tost\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T09:15:07.434Z\", \"updated_at\": \"2026-05-21T09:33:25.262Z\", \"hypothesis\": \"扩展 9-class 和 scrambled 到 5 seeds (新增 789/1000) 将提供足够统计效力支持 TOST 等价性检验：scrambled 在 DD OOD 上与 9-class 等价（差距 &lt;2pp），但在 AA OOD 上显著更低，证明策略标签的正确语义信息对 hard OOD 至关重要。\", \"metrics\": {\"9class_seed789\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 0.9715, \"fitd_ood\": 1}, \"9class_seed1000\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 0.9715, \"fitd_ood\": 0.9904}, \"scrambled_seed789\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 0.9904, \"fitd_ood\": 1}, \"scrambled_seed1000\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 0.9904, \"fitd_ood\": 0.9904}, \"total_time_min\": 7.6}, \"conclusion\": \"success\"}, \"exp38_wildcat_calibration\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T01:32:34.913Z\", \"updated_at\": \"2026-05-21T01:57:36.010Z\", \"hypothesis\": \"少量 WildChat benign 样本 (~50 条) 即可通过阈值校准将 FPR 降至 <25% 且 TPR >90%，证明 domain calibration 是可行的 practical path，WildChat 高 FPR 是阈值问题而非表征能力问题。\", \"parent\": \"exp24_calibration_ece\", \"metrics\": {\"roc_auc\": {\"mean\": 0.7, \"std\": 0.054, \"per_seed\": {\"seed42\": 0.768, \"seed123\": 0.697, \"seed456\": 0.635}}, \"default_t05_fpr\": {\"mean\": 0.791, \"std\": 0.098}, \"threshold_calibration_held_out\": {\"tpr95_fpr\": {\"mean\": 0.627, \"std\": 0.1}, \"tpr90_fpr\": {\"mean\": 0.587, \"std\": 0.091}}, \"temperature_scaling\": {\"learned_T\": \"20-40 (severe overconfidence)\", \"temp_scaled_tpr95_fpr\": 0.627, \"temp_scaled_tpr90_fpr\": 0.583, \"note\": \"Temperature scaling does NOT change FPR because ROC is invariant to monotonic score transforms\"}, \"note\": \"AUC=0.70 is the fundamental ceiling. Threshold calibration drops FPR from 79%→63% (at TPR95), still far from <25% target. WildChat high FPR is genuine domain shift, not calibration artifact.\"}, \"conclusion\": \"negative\"}, \"exp37_length_matched_benign\": {\"status\": \"DONE\", \"created_at\": \"2026-05-21T00:40:14.880Z\", \"updated_at\": \"2026-05-21T00:51:14.395Z\", \"hypothesis\": \"9-class 模型不依赖 turn count 作为检测 shortcut：截断 benign 对话到 jailbreak 匹配长度 (3-10 turns) 后 FPR 不会显著上升，WildChat 短对话 (3-10 turns) 的 FPR 也不高于长对话，因为 DAPT 训练迫使模型学习说服策略内容特征而非 length 统计量。\", \"parent\": \"exp30_length_stratified\", \"metrics\": {\"part1_wildchat_fpr\": {\"short_3_10\": {\"fpr_mean\": 0.77, \"fpr_std\": 0.105, \"n\": 196}, \"medium_11_15\": {\"fpr_mean\": 0.942, \"fpr_std\": 0.054, \"n\": 23}, \"long_16_plus\": {\"fpr_mean\": 0.857, \"fpr_std\": 0.117, \"n\": 7}, \"note\": \"Short bucket FPR LOWER than Medium — length is NOT the driver of WildChat FPR\"}, \"part2_benign_truncation\": {\"original_fpr\": 0, \"K3_fpr\": 0, \"K5_fpr\": 0, \"K8_fpr\": 0, \"K10_fpr\": 0, \"note\": \"FPR=0% at ALL truncation levels including K=3. Model does not use length as shortcut.\"}, \"part3_jailbreak_padding\": {\"DD_original\": 0.996, \"DD_padded\": 0.971, \"DD_delta\": -0.025, \"AA_original\": 0.963, \"AA_padded\": 0.383, \"AA_delta\": -0.579, \"note\": \"DD resilient to padding. AA collapses (-57.9pp). BiGRU attention dilution on subtle attacks.\"}}, \"conclusion\": \"negative\"}, \"exp36\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T20:35:39.385Z\", \"updated_at\": \"2026-05-20T20:37:51.376Z\", \"hypothesis\": \"MLM DAPT encoder produces weaker frozen representations than classification (9-class) DAPT encoder for OOD jailbreak detection, because classification training forces the encoder to learn task-relevant discriminative features while MLM only learns general language patterns.\", \"metrics\": {\"iid_full\": {\"mean\": 0.982, \"std\": 0.016}, \"dd_ood_full\": {\"mean\": 0.993, \"std\": 0.009}, \"aa_ood_full\": {\"mean\": 0.941, \"std\": 0.037}, \"fitd_ood_full\": {\"mean\": 0.987, \"std\": 0.009}, \"dd_ood_k1\": {\"mean\": 0.953, \"std\": 0.027}, \"dd_ood_k2\": {\"mean\": 0.977, \"std\": 0.021}, \"dd_ood_k3\": {\"mean\": 0.987, \"std\": 0.005}, \"dd_ood_k5\": {\"mean\": 0.997, \"std\": 0.005}}, \"conclusion\": \"negative\"}, \"exp36_frozen_mlm_probing\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T20:31:39.154Z\", \"updated_at\": \"2026-05-20T20:31:47.291Z\", \"hypothesis\": \"冻结 MLM DAPT encoder 的 probing 性能将低于冻结 9-class encoder (exp26: DD=0.997, AA=0.972)，因为 classification DAPT 通过显式策略分类迫使编码器学习与攻击意图更直接相关的判别性特征，而 MLM 仅学习通用语言模式，不产生 OOD 泛化所需的攻击-策略对齐表征。\", \"parent\": \"exp26_frozen_probing\"}, \"exp35_cross_seed_ensemble\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T20:12:07.318Z\", \"updated_at\": \"2026-05-20T20:28:58.939Z\", \"hypothesis\": \"3-seed majority vote ensemble 将在所有 OOD 攻击家族上提升检测 F1（尤其减少 AA OOD 上的漏检），9-class ensemble 的提升幅度大于 MLM/vanilla，因为 9-class 各 seed 的错误模式更互补（来自不同的策略表征空间初始化）。\", \"parent\": \"exp23_aa_error_analysis\", \"metrics\": {\"dd_ood\": {\"9class\": {\"ensemble_f1\": 1, \"individual_mean\": 0.9968, \"individual_std\": 0.0045, \"delta\": 0.0032, \"fixed\": 1, \"broke\": 0}, \"jb_mlm\": {\"ensemble_f1\": 1, \"individual_mean\": 0.9138, \"individual_std\": 0.115, \"delta\": 0.0862, \"fixed\": 30, \"broke\": 0}, \"vanilla\": {\"ensemble_f1\": 0.2575, \"individual_mean\": 0.2619, \"individual_std\": 0.017, \"delta\": -0.0044, \"fixed\": 1, \"broke\": 0}}, \"aa_ood\": {\"9class\": {\"ensemble_f1\": 0.9809, \"individual_mean\": 0.9719, \"individual_std\": 0.0261, \"delta\": 0.009, \"fixed\": 5, \"broke\": 0}, \"jb_mlm\": {\"ensemble_f1\": 0.953, \"individual_mean\": 0.8934, \"individual_std\": 0.0799, \"delta\": 0.0596, \"fixed\": 26, \"broke\": 0}, \"vanilla\": {\"ensemble_f1\": 0.2575, \"individual_mean\": 0.2575, \"individual_std\": 0, \"delta\": 0, \"fixed\": 0, \"broke\": 0}}, \"fitd_ood\": {\"9class\": {\"ensemble_f1\": 1, \"individual_mean\": 1, \"individual_std\": 0, \"delta\": 0, \"fixed\": 0, \"broke\": 0}, \"jb_mlm\": {\"ensemble_f1\": 1, \"individual_mean\": 0.9904, \"individual_std\": 0.0078, \"delta\": 0.0096, \"fixed\": 3, \"broke\": 0}, \"vanilla\": {\"ensemble_f1\": 1, \"individual_mean\": 0.9936, \"individual_std\": 0.009, \"delta\": 0.0064, \"fixed\": 2, \"broke\": 0}}, \"note\": \"Ensemble NEVER breaks correct predictions (broke=0 everywhere). jb_mlm benefits most from ensemble (+8.6pp DD, +6.0pp AA). 9class achieves perfect DD/FITD, near-perfect AA (0.981). Vanilla too weak to benefit.\"}, \"conclusion\": \"success\"}, \"exp34_representation_tsne\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T20:12:06.242Z\", \"updated_at\": \"2026-05-20T20:23:58.070Z\", \"hypothesis\": \"9-class DAPT 的 CLS embedding 在 t-SNE/UMAP 2D 投影中将显示 jailbreak/benign 更清晰的分离（尤其在 AA OOD 上），而 vanilla 和 MLM 的表征将呈现更多重叠，因为 9-class 的说服策略预训练迫使编码器学习与攻击意图相关的判别性特征。\", \"metrics\": {\"models\": [\"vanilla\", \"MLM\", \"9-class\"], \"seed\": 42, \"data\": {\"dd_jailbreak\": 80, \"aa_jailbreak\": 80, \"benign\": 38, \"total\": 198}, \"embedding_dim\": 768, \"methods\": [\"t-SNE (perplexity=30)\", \"UMAP (n_neighbors=15, min_dist=0.1)\"], \"output_files\": 15, \"note\": \"6 plots (3 models x 2 methods) + 3 NPZ coordinate files + summary JSON. Colors: jailbreak=red, benign=blue. Markers: DD=circle, AA=square, benign=triangle.\"}, \"conclusion\": \"success\"}, \"exp33_strategy_prediction_plan002\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T20:12:05.342Z\", \"updated_at\": \"2026-05-20T20:20:06.196Z\", \"hypothesis\": \"Plan_002 checkpoints (主管道, AA OOD ~97%) 的策略预测-检测关联将比 exp32 (exp16 mixed-LLM checkpoints) 更强，因为 plan_002 在 AA OOD 上检测率更高，正确检测样本的策略预测准确率与检测概率的相关性也应更显著。\", \"parent\": \"exp32_strategy_prediction\", \"metrics\": {\"dd_ood\": {\"strategy_acc\": \"0.4924±0.0246\", \"jb_strategy_acc\": \"0.2569±0.0357\", \"macro_f1\": \"0.1965±0.0142\", \"strategy_acc_detected\": \"0.2575±0.0352\", \"strategy_acc_missed\": \"0.1000±0.0000\", \"missed_per_seed\": [0, 0, 1], \"detection_rate_rapport_building\": 0.9958, \"per_class_f1_top\": {\"none\": 0.8666, \"rapport_building\": 0.524, \"gradual_escalation\": 0.2619}}, \"aa_ood\": {\"strategy_acc\": \"0.7112±0.0086\", \"jb_strategy_acc\": \"0.5012±0.0159\", \"macro_f1\": \"0.1888±0.0012\", \"strategy_acc_detected\": \"0.5091±0.0239\", \"strategy_acc_missed\": \"0.2833±0.0360\", \"missed_per_seed\": [1, 7, 1], \"detection_rate_authority_appeal\": 0.9617, \"detection_rate_emotional_manipulation\": 0.9524, \"detection_rate_gradual_escalation\": 1, \"detection_rate_logical_reframing\": 0.9333, \"detection_rate_rapport_building\": 1}, \"vs_exp32\": {\"dd_ood_missed_improvement\": \"31/5/26 → 0/0/1\", \"aa_ood_jb_strategy_acc_improvement\": \"0.068 → 0.501 (+43pp)\", \"aa_ood_detection_rate_improvement\": \"authority_appeal 0.28→0.96, emotional_manipulation 0.52→0.95\"}, \"note\": \"plan_002 checkpoints vastly outperform exp16 mixed-LLM checkpoints in both detection and strategy prediction. Near-perfect detection (DD 0/0/1 misses, AA 1/7/1) enables cleaner strategy-detection analysis.\"}, \"conclusion\": \"success\"}, \"exp28c_vanilla_supplement\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T19:49:52.556Z\", \"updated_at\": \"2026-05-20T20:10:19.643Z\", \"hypothesis\": \"Vanilla DeBERTa (no DAPT) baseline at N=50 and N=250 will show substantially lower OOD F1 compared to 9-class DAPT, completing the data efficiency curve and confirming that DAPT benefit persists across all training sizes.\", \"conclusion\": \"success\", \"metrics\": {\"9class_3seed\": {\"N50\": {\"iid\": \"1.000±0.000\", \"dd_ood\": \"1.000±0.000\", \"aa_ood\": \"0.969±0.030\"}, \"N125\": {\"iid\": \"1.000±0.000\", \"dd_ood\": \"1.000±0.000\", \"aa_ood\": \"0.975±0.016\"}, \"N250\": {\"iid\": \"1.000±0.000\", \"dd_ood\": \"1.000±0.000\", \"aa_ood\": \"0.975±0.029\"}, \"N350\": {\"iid\": \"1.000±0.000\", \"dd_ood\": \"0.978±0.024\", \"aa_ood\": \"0.972±0.027\"}}, \"vanilla_seed42\": {\"N50\": {\"iid\": 0.646, \"dd_ood\": 0.529, \"aa_ood\": 0.234}, \"N125\": {\"iid\": 0.532, \"dd_ood\": 0.244, \"aa_ood\": 0.244}, \"N250\": {\"iid\": 0.987, \"dd_ood\": 0.365, \"aa_ood\": 0.502}, \"N350\": {\"iid\": 1, \"dd_ood\": 0.36, \"aa_ood\": 0.489}}, \"note\": \"Complete data efficiency table. 9-class at N=50 (14% data) AA OOD=0.969, vastly outperforming vanilla at N=350 (100%) AA OOD=0.489. Gap: +48pp.\"}}, \"exp32_strategy_prediction\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T15:29:25.369Z\", \"updated_at\": \"2026-05-20T19:40:37.649Z\", \"hypothesis\": \"Correctly detected jailbreak conversations have higher persuasion strategy prediction accuracy than missed ones, and certain strategy types (e.g., rapport_building, emotional_manipulation) are associated with higher detection rates, because the persuasion head's ability to identify strategies is mechanistically linked to the encoder's discriminative power for downstream detection.\", \"metrics\": {\"dd_ood\": {\"strategy_acc\": \"0.4145±0.0173\", \"jb_strategy_acc\": \"0.1431±0.0260\", \"macro_f1\": \"0.1626±0.0238\", \"strategy_acc_detected\": \"0.1634±0.0200\", \"strategy_acc_missed\": \"0.0758±0.0123\", \"missed_per_seed\": [31, 5, 26], \"detection_rate_rapport_building\": 0.7417, \"corr_det_prob_vs_strat_acc\": \"r~0.45, p<0.001\"}, \"aa_ood\": {\"strategy_acc\": \"0.4604±0.0114\", \"jb_strategy_acc\": \"0.0682±0.0192\", \"macro_f1\": \"0.1145±0.0212\", \"strategy_acc_detected\": \"0.1311±0.0375\", \"strategy_acc_missed\": \"0.0393±0.0142\", \"missed_per_seed\": [63, 41, 66], \"detection_rate_authority_appeal\": 0.2841, \"detection_rate_emotional_manipulation\": 0.5238, \"corr_det_prob_vs_strat_acc\": \"r~0.24, p~0.03\"}}, \"conclusion\": \"success\"}, \"exp31_lambda_ablation_aa\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T15:29:23.924Z\", \"updated_at\": \"2026-05-20T19:28:46.306Z\", \"hypothesis\": \"Multi-task persuasion loss weight (lambda) affects OOD generalization in E2E fine-tuning: lambda=0 (intent-only) will underperform on hard OOD (ActorAttack) compared to lambda>0, because the persuasion auxiliary signal provides a regularization effect that preserves OOD-relevant features in the encoder. There exists an optimal lambda that maximizes AA OOD without sacrificing IID performance.\", \"metrics\": {\"lambda_0_aa\": 1, \"lambda_0.1_aa\": 0.9904, \"lambda_0.5_aa\": 0.9809, \"lambda_1.0_aa\": 0.9809, \"lambda_2.0_aa\": 0.9439, \"iid_all\": 1, \"dd_all\": 1, \"fitd_all\": 1, \"note\": \"Higher lambda monotonically hurts AA OOD. lambda=0 (intent-only E2E) achieves perfect AA. Persuasion aux loss acts as a distractor during E2E.\"}, \"conclusion\": \"negative\"}, \"exp28b_data_efficiency_supplement\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T15:40:53.186Z\", \"updated_at\": \"2026-05-20T19:15:30.605Z\", \"hypothesis\": \"9-class DAPT maintains robust OOD performance across different random seeds (model initialization), and vanilla DeBERTa shows poor OOD generalization even at smaller training sizes (N=50, N=250), confirming that the data efficiency advantage of 9-class DAPT is not an artifact of a single seed.\", \"parent\": \"exp28_data_efficiency\", \"metrics\": {\"9class_3seed_N50_aa_ood\": \"0.969±0.037\", \"9class_3seed_N125_aa_ood\": \"0.975±0.019\", \"9class_3seed_N250_aa_ood\": \"0.975±0.035\", \"9class_3seed_N350_aa_ood\": \"0.972±0.033\", \"note\": \"9-class 3-seed complete. Vanilla N=50/250 missing (script crashed float16 dtype in GRU eval). exp28b added seed123+456 for 9-class only.\"}, \"conclusion\": \"success\"}, \"exp29_inference_efficiency\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:40:20.050Z\", \"updated_at\": \"2026-05-20T15:54:20.158Z\", \"hypothesis\": \"DeBERTa+BiGRU achieves orders-of-magnitude faster inference than LLM-based judges while maintaining superior OOD detection accuracy, demonstrating practical deployability for real-time jailbreak detection.\", \"conclusion\": \"success\", \"metrics\": {\"deberta_bigru_latency_ms\": 12.12, \"deberta_bigru_throughput\": 82.48, \"deberta_bigru_params_M\": 186.73, \"deberta_bigru_gpu_mem_MB\": 861.5, \"tfidf_lr_latency_ms\": 0.43, \"tfidf_lr_throughput\": 2344.9, \"speedup_vs_qwen3_8b\": 266.4, \"speedup_vs_gpt4o_low\": 165, \"speedup_vs_gpt4o_high\": 412.5}}, \"exp28_data_efficiency\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:40:19.137Z\", \"updated_at\": \"2026-05-20T15:39:09.564Z\", \"hypothesis\": \"9-class DAPT maintains strong OOD generalization even at 25% training data (n=50-125), outperforming vanilla baseline at 100% data (n=350), demonstrating high sample efficiency of persuasion-grounded representations.\", \"metrics\": {\"9class\": {\"50\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 0.99}, \"125\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 0.99}, \"250\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 1}, \"350\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 1}}, \"vanilla\": {\"125\": {\"iid\": 0.53, \"dd_ood\": 0.24, \"aa_ood\": 0.24}, \"350\": {\"iid\": 1, \"dd_ood\": 0.36, \"aa_ood\": 0.49}}, \"note\": \"9-class at 14% data (50 samples) already achieves DD=1.0, AA=0.99 — outperforming vanilla at 100% by 64pp (DD) and 50pp (AA). Sample efficiency entirely driven by DAPT representation quality.\"}, \"conclusion\": \"success\"}, \"exp30_length_stratified\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:40:20.867Z\", \"updated_at\": \"2026-05-20T15:26:35.605Z\", \"hypothesis\": \"9-class DAPT maintains consistent jailbreak detection performance across different conversation lengths (turn counts), with no systematic degradation in shorter or longer conversations.\", \"conclusion\": \"success\", \"metrics\": {\"structural_finding\": \"Benign (12-20 turns) and jailbreak (DD 6-10, AA 3-8) have non-overlapping length distributions. Per-bin macro F1 impossible; using per-bin recall instead.\", \"9class_jb_recall_by_bin\": {\"dd_ood\": {\"4-6\": {\"mean\": 100, \"std\": 0, \"n\": 20}, \"7-10\": {\"mean\": 99.4, \"std\": 0.8, \"n\": 60}}, \"aa_ood\": {\"1-3\": {\"mean\": 93.3, \"std\": 6.2, \"n\": 20}, \"4-6\": {\"mean\": 95.6, \"std\": 4.5, \"n\": 38}, \"7-10\": {\"mean\": 100, \"std\": 0, \"n\": 22}}}, \"benign_specificity_10plus\": {\"mean\": 100, \"std\": 0, \"n\": 38}, \"mlm_comparison\": {\"aa_ood_7-10\": {\"mean\": 69.7, \"std\": 33.7}, \"dd_ood_7-10\": {\"mean\": 83.9, \"std\": 22.8}}, \"note\": \"9-class ≥93% recall all bins, no degradation. Short AA (1-3 turns) slightly harder (93.3%). MLM unstable on 7-10 turns (std>22%). Vanilla near-0 recall on all bins.\"}}, \"exp27_mean_pooling\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:40:18.175Z\", \"updated_at\": \"2026-05-20T15:10:07.175Z\", \"hypothesis\": \"Mean pooling (no temporal modeling) with end-to-end fine-tuning will match BiGRU E2E on easy OOD (DD) but degrade on hard OOD (ActorAttack), demonstrating that temporal modeling via BiGRU is necessary for detecting multi-turn adaptive attacks.\", \"metrics\": {\"iid_full\": {\"mean\": 1, \"std\": 0}, \"dd_ood_k1\": {\"mean\": 1, \"std\": 0}, \"dd_ood_k2\": {\"mean\": 1, \"std\": 0}, \"dd_ood_k3\": {\"mean\": 1, \"std\": 0}, \"dd_ood_k5\": {\"mean\": 1, \"std\": 0}, \"dd_ood_full\": {\"mean\": 1, \"std\": 0}, \"aa_ood_full\": {\"mean\": 1, \"std\": 0}, \"fitd_ood_full\": {\"mean\": 1, \"std\": 0}, \"metric\": \"f1_macro\", \"seeds\": 3, \"early_stop_epoch\": 4}, \"conclusion\": \"negative\"}, \"exp26_frozen_probing\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:40:17.179Z\", \"updated_at\": \"2026-05-20T15:00:12.774Z\", \"hypothesis\": \"Frozen 9-class DAPT DeBERTa representations alone carry sufficient OOD generalization signal: a randomly-initialized BiGRU trained on these frozen embeddings should achieve comparable OOD F1 to the jointly-trained plan_002 GRU, because the DAPT pre-training encodes persuasion-strategy structure that transfers across attack types.\", \"metrics\": {\"frozen_probing_mean\": {\"iid\": 1, \"dd_ood_k1\": 0.99, \"dd_ood_k2\": 0.981, \"dd_ood_k3\": 0.972, \"dd_ood_k5\": 0.997, \"dd_ood_full\": 0.997, \"aa_ood_full\": 0.972, \"fitd_ood_full\": 1}, \"frozen_probing_std\": {\"iid\": 0, \"dd_ood_k1\": 0.013, \"dd_ood_k2\": 0.013, \"dd_ood_k3\": 0.026, \"dd_ood_k5\": 0.005, \"dd_ood_full\": 0.005, \"aa_ood_full\": 0.026, \"fitd_ood_full\": 0}, \"e2e_reference\": {\"iid\": 1, \"dd_ood_full\": 1, \"aa_ood_full\": 0.997}, \"delta_vs_e2e\": {\"dd_ood_full\": -0.003, \"aa_ood_full\": -0.025}, \"retention_pct\": {\"dd_ood\": 99.7, \"aa_ood\": 97.5}, \"note\": \"Frozen probing retains >97% of E2E OOD performance. DAPT representation quality alone drives cross-attack generalization. AA OOD gap 2.5pp within variance.\"}, \"conclusion\": \"success\"}, \"exp24_calibration_ece\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:18:13.755Z\", \"updated_at\": \"2026-05-20T14:30:49.361Z\", \"hypothesis\": \"The 9-class multi-task model produces better-calibrated confidence scores than vanilla DeBERTa+BiGRU, especially under OOD distribution shift, because persuasion-aware features provide more grounded probability estimates.\", \"conclusion\": \"success\", \"metrics\": {\"9class_iid_ece\": 0, \"9class_dd_ood_ece\": 0.1434, \"9class_dd_ood_ece_std\": 0.053, \"9class_aa_ood_ece\": 0.1158, \"9class_aa_ood_ece_std\": 0.0526, \"vanilla_iid_ece\": 0.0086, \"vanilla_iid_ece_std\": 0.0073, \"vanilla_dd_ood_ece\": 0.6694, \"vanilla_dd_ood_ece_std\": 0.0043, \"vanilla_aa_ood_ece\": 0.5042, \"vanilla_aa_ood_ece_std\": 0.0662}}, \"exp22_aa_early_detection\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:18:12.019Z\", \"updated_at\": \"2026-05-20T14:30:38.661Z\", \"hypothesis\": \"9-class DAPT maintains detection advantage over MLM and vanilla at all prefix lengths (K=1,2,3,5,full) on ActorAttack OOD, with the gap widening at smaller K, demonstrating early detection capability on hard OOD attacks\", \"conclusion\": \"success\", \"metrics\": {\"aa_ood_per_k\": {\"9class\": {\"k1\": {\"mean\": 0.773, \"std\": 0.041}, \"k2\": {\"mean\": 0.855, \"std\": 0.048}, \"k3\": {\"mean\": 0.921, \"std\": 0.046}, \"k5\": {\"mean\": 0.966, \"std\": 0.028}, \"full\": {\"mean\": 0.972, \"std\": 0.026}}, \"mlm\": {\"k1\": {\"mean\": 0.736, \"std\": 0.15}, \"k2\": {\"mean\": 0.909, \"std\": 0.058}, \"k3\": {\"mean\": 0.945, \"std\": 0.039}, \"k5\": {\"mean\": 0.929, \"std\": 0.033}, \"full\": {\"mean\": 0.893, \"std\": 0.08}}, \"vanilla\": {\"k1\": {\"mean\": 0.337, \"std\": 0.049}, \"k2\": {\"mean\": 0.306, \"std\": 0.026}, \"k3\": {\"mean\": 0.284, \"std\": 0.011}, \"k5\": {\"mean\": 0.262, \"std\": 0.006}, \"full\": {\"mean\": 0.258, \"std\": 0}}}, \"fitd_ood_per_k_exp16\": {\"9class\": {\"k1\": 1, \"k2\": 0.997, \"k3\": 1, \"k5\": 1, \"full\": 1}, \"mlm\": {\"k1\": 0.61, \"k2\": 0.598, \"k3\": 0.654, \"k5\": 0.635, \"full\": 0.707}, \"vanilla\": {\"k1\": 0.698, \"k2\": 0.786, \"k3\": 0.791, \"k5\": 0.823, \"full\": 0.882}}, \"note\": \"AA OOD: 9-class monotonically improves K=1→Full (0.773→0.972). Vanilla flat/declining (~0.34→0.26). MLM non-monotonic peaks at K=3 (0.945). FITD per-K uses exp16 checkpoints (different from AA's plan_002), not directly comparable.\"}}, \"exp25_fitd_early_detection\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:23:07.691Z\", \"updated_at\": \"2026-05-20T14:28:39.222Z\", \"hypothesis\": \"9-class persuasion-aware model detects FITD jailbreaks earlier (higher F1 at low K) than MLM and vanilla baselines, similar to the pattern observed on ActorAttack OOD.\", \"metrics\": {\"9class\": {\"k1\": \"1.000±0.000\", \"k2\": \"0.997±0.005\", \"k3\": \"1.000±0.000\", \"k5\": \"1.000±0.000\", \"full\": \"1.000±0.000\"}, \"mlm\": {\"k1\": \"0.610±0.281\", \"k2\": \"0.598±0.256\", \"k3\": \"0.654±0.302\", \"k5\": \"0.635±0.238\", \"full\": \"0.707±0.217\"}, \"vanilla\": {\"k1\": \"0.698±0.038\", \"k2\": \"0.786±0.043\", \"k3\": \"0.791±0.057\", \"k5\": \"0.823±0.040\", \"full\": \"0.882±0.027\"}}, \"conclusion\": \"success\"}, \"exp23_aa_error_analysis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T14:18:12.980Z\", \"updated_at\": \"2026-05-20T14:24:49.518Z\", \"hypothesis\": \"9-class DAPT errors on AA OOD are concentrated in specific topics/strategies, with short-turn conversations being harder to detect\", \"conclusion\": \"success\", \"metrics\": {\"majority_vote_accuracy\": 0.983, \"majority_vote_fn\": 2, \"majority_vote_fp\": 0, \"total_error_samples_any_seed\": 7, \"consistent_errors_all_seeds\": 0, \"error_pattern\": {\"all_errors_are_fn\": true, \"zero_fp\": true, \"seed123_weakest\": \"7 FN vs 1 FN for other seeds\", \"short_dialogues_harder\": \"errors at 3-6 turns, mean 10480 chars vs correct 12788 chars\", \"error_topics\": \"data_privacy(2), digital_privacy(2), identity_verification(2), social_engineering(1)\", \"vanilla_on_error_samples\": \"0/3 votes on all 7 samples\", \"9class_majority_correct\": \"5/7 samples\"}, \"note\": \"Errors are sparse, inconsistent across seeds, and concentrated in short dialogues. No systematic blind spot. DAPT provides clear advantage over vanilla on hard samples.\"}}, \"exp21_cross_checkpoint\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T13:55:11.906Z\", \"updated_at\": \"2026-05-20T14:15:39.963Z\", \"hypothesis\": \"Downstream OOD performance is insensitive to Stage-1 DAPT training variation: different DAPT seeds should yield cross-checkpoint F1 std < 2pp on IID, DD OOD, and AA OOD benchmarks.\", \"conclusion\": \"success\", \"metrics\": {\"cross_checkpoint\": {\"seed42\": {\"iid\": 1, \"dd_ood\": 0.9, \"aa_ood\": 0.926}, \"seed123\": {\"iid\": 1, \"dd_ood\": 0.917, \"aa_ood\": 0.926}, \"seed456\": {\"iid\": 1, \"dd_ood\": 0.962, \"aa_ood\": 0.953}, \"mean\": {\"iid\": 1, \"dd_ood\": 0.926, \"aa_ood\": 0.935}, \"std\": {\"iid\": 0, \"dd_ood\": 0.026, \"aa_ood\": 0.013}}, \"note\": \"Used 3 seeds' best DAPT checkpoints (no intermediate epoch checkpoints saved). IID variance=0pp, AA OOD variance=1.3pp (<2pp), DD OOD variance=2.6pp (slightly above 2pp threshold, driven by seed42=0.900).\"}}, \"exp20_deepcontext_proxy\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T12:46:28.570Z\", \"updated_at\": \"2026-05-20T13:52:58.190Z\", \"hypothesis\": \"BERT-base-uncased + BiGRU (frozen probing, no DAPT) as DeepContext proxy will substantially underperform DeBERTa-v3 9-class on OOD generalization, quantifying the contribution of task-specific DAPT vs generic pre-training and providing a SOTA-comparable baseline for reviewer concern about missing baselines\", \"conclusion\": \"success\", \"metrics\": {\"bert_base_mean\": {\"iid\": 0.996, \"iid_std\": 0.006, \"dd_ood\": 0.318, \"dd_ood_std\": 0.031, \"aa_ood\": 0.275, \"aa_ood_std\": 0.027}, \"comparison\": {\"deberta_vanilla_dd_ood\": 0.312, \"deberta_9class_dd_ood\": 0.994, \"deberta_9class_aa_ood\": 0.939}, \"note\": \"BERT-base vanilla (DD OOD=0.318) ≈ DeBERTa vanilla (0.312). Encoder choice has minimal OOD impact. DAPT is the dominant factor: 9-class boosts DD OOD from 0.31 to 0.99.\"}}, \"exp19_wildchat_fpr\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T12:37:11.207Z\", \"updated_at\": \"2026-05-20T12:45:10.364Z\", \"hypothesis\": \"9-class DAPT classifier maintains FPR < 15% on high-drift real-world benign conversations from WildChat (after excluding jailbreak-contaminated samples), demonstrating external validity beyond synthetic benign data and addressing reviewer concern about deployment false positive rates\", \"conclusion\": \"negative\", \"metrics\": {\"dataset\": \"wildchat_benign_226 (226 filtered multi-turn benign, avg 7.4 turns)\", \"9class_fpr\": {\"seed42\": 0.668, \"seed123\": 0.611, \"seed456\": 0.765, \"mean\": 0.681, \"std\": 0.064}, \"mlm_fpr\": {\"seed42\": 0.367, \"seed123\": 0.646, \"seed456\": 0.323, \"mean\": 0.445, \"std\": 0.143}, \"vanilla_fpr\": {\"seed42\": 0.473, \"seed123\": 0.425, \"seed456\": 0.544, \"mean\": 0.481, \"std\": 0.049}, \"note\": \"NEGATIVE: All variants show extreme FPR on real-world benign. 9-class worst (68.1%). Used exp17 checkpoints (Qwen 1000 scale). Severe distribution shift between synthetic training benign and real WildChat conversations.\"}}, \"exp18_e2e_finetune\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T12:24:17.917Z\", \"updated_at\": \"2026-05-20T12:36:01.458Z\", \"hypothesis\": \"Unfreezing DeBERTa-v3-base encoder for end-to-end fine-tuning (Stage 1 DAPT + Stage 2 GRU joint training) will produce comparable or better OOD F1 vs frozen probing, quantifying the performance gap of the frozen approach and validating probing methodology\", \"conclusion\": \"success\", \"metrics\": {\"e2e_mean\": {\"iid\": 1, \"iid_std\": 0, \"dd_ood\": 1, \"dd_ood_std\": 0, \"aa_ood\": 0.997, \"aa_ood_std\": 0.005}, \"frozen_probing_ref\": {\"iid\": 1, \"dd_ood\": 0.994, \"aa_ood\": 0.939}, \"delta\": {\"iid\": 0, \"dd_ood\": 0.006, \"aa_ood\": 0.058}, \"note\": \"E2E fine-tuning improves AA OOD by +5.8pp (0.939→0.997) and reduces variance (0.047→0.005). Frozen probing validated as competitive methodology.\"}}, \"exp13_meanpool_multiseed\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T23:35:41.779Z\", \"updated_at\": \"2026-05-20T12:24:21.733Z\", \"hypothesis\": \"Mean pooling classifier (without temporal modeling) will perform comparably to BiGRU across 3 seeds on DeBERTa-v3 9-class, confirming that per-turn representations alone drive detection and GRU temporal modeling is unnecessary — cross-validating shuffle ablation results\", \"parent\": \"plan_015_dd_eval\", \"conclusion\": \"success\", \"metrics\": {\"dd_ood\": {\"k1\": {\"mean\": 0.9905, \"std\": 0.0134}, \"k2\": {\"mean\": 0.9936, \"std\": 0.009}, \"k3\": {\"mean\": 0.9842, \"std\": 0.016}, \"k5\": {\"mean\": 0.9968, \"std\": 0.0045}, \"full\": {\"mean\": 0.9905, \"std\": 0.0134}}, \"actorattack\": {\"k1\": {\"mean\": 0.8301, \"std\": 0.0272}, \"k2\": {\"mean\": 0.903, \"std\": 0.0229}, \"k3\": {\"mean\": 0.9622, \"std\": 0.0076}, \"k5\": {\"mean\": 0.9716, \"std\": 0.0153}, \"full\": {\"mean\": 0.9623, \"std\": 0.0151}}, \"metric\": \"f1_macro\", \"classifier\": \"mean_pooling + linear\", \"encoder\": \"9-class DeBERTa-v3-base\", \"note\": \"Mean pooling matches BiGRU on DD OOD (all K ≥0.98). ActorAttack K≥3 also ≥0.96. Confirms temporal modeling not necessary.\"}}, \"exp16_multi_llm\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T20:08:23.368Z\", \"updated_at\": \"2026-05-20T06:31:12.024Z\", \"hypothesis\": \"Training on mixed Qwen+Llama conversations (250+250) eliminates single-LLM confound: the evidence hierarchy (9-class >> MLM >> vanilla) holds on mixed data, and cross-LLM false positive rate drops vs single-source training, proving DAPT generalizes across LLM distributions\", \"conclusion\": \"success\", \"metrics\": {\"note\": \"CORRECTED 2026-05-20: OOD metrics recalculated with attack+benign (118 samples). Old attack-only values deprecated. qwen_test INVALIDATED (35.5% leak). toxicchat_balanced on 408-item balanced set.\", \"9class_mean\": {\"mixed_test\": 0.996, \"dd_ood\": 0.818, \"dd_ood_std\": 0.096, \"aa_ood\": 0.504, \"aa_ood_std\": 0.107, \"fitd_ood\": 0.997, \"fitd_ood_std\": 0.005, \"toxicchat_balanced\": 0.55, \"toxicchat_balanced_std\": 0.052}, \"mlm_mean\": {\"mixed_test\": 0.975, \"dd_ood\": 0.289, \"dd_ood_std\": 0.101, \"aa_ood\": 0.258, \"aa_ood_std\": 0.075, \"fitd_ood\": 0.679, \"fitd_ood_std\": 0.188, \"toxicchat_balanced\": 0.256, \"toxicchat_balanced_std\": 0.053}, \"vanilla_mean\": {\"mixed_test\": 0.802, \"dd_ood\": 0.291, \"dd_ood_std\": 0.065, \"aa_ood\": 0.389, \"aa_ood_std\": 0.073, \"fitd_ood\": 0.867, \"fitd_ood_std\": 0.022, \"toxicchat_balanced\": 0.356, \"toxicchat_balanced_std\": 0.009}, \"deprecated_attack_only\": {\"9class_dd_ood\": 0.422, \"9class_aa_ood\": 0.175}}}, \"exp17_dataset_scale\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T14:23:23.670Z\", \"updated_at\": \"2026-05-20T01:41:52.198Z\", \"hypothesis\": \"Doubling training data from 500 to 1000 conversations (with new topic seeds) will maintain or improve the DAPT evidence hierarchy (9-class >> MLM >> vanilla on OOD), demonstrating that results are not an artifact of small sample size.\", \"conclusion\": \"success\", \"metrics\": {\"9class_mean\": {\"iid\": \"INVALIDATED (71% leak)\", \"dd_ood\": 0.889, \"dd_ood_std\": 0.041, \"aa_ood\": 0.913, \"aa_ood_std\": 0.041, \"toxicchat_balanced\": 0.341, \"toxicchat_balanced_std\": 0.004}, \"note\": \"IID INVALIDATED (71% leak). toxicchat_balanced on 408-item balanced set (204jb/204bn).\"}}, \"exp16b_llama_only_mlm\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T00:11:21.743Z\", \"updated_at\": \"2026-05-20T01:03:23.391Z\", \"hypothesis\": \"MLM DAPT on Llama-only data (250 conversations) will produce stable intermediate performance between vanilla and 9-class on DD OOD and AA OOD, distinguishing whether MLM instability in exp16 mixed training is caused by multi-source data mixing or is inherent to MLM DAPT\", \"parent\": \"exp16_multi_llm\", \"metrics\": {\"s1_mlm_val_loss\": 5.1489, \"s2_gru_val_loss\": 0.3776, \"s2_gru_val_acc\": 0.8514, \"eval_mlm\": {\"llama_only_test_f1\": 0.8441, \"mixed_test_f1\": 0.7212, \"dd_ood_f1\": 0.3327, \"aa_ood_f1\": 0.8152, \"toxicchat_f1\": 0.1626, \"llama_dd_ood_f1\": 0.1905, \"llama_aa_ood_f1\": 0.2903}, \"eval_vanilla_baseline\": {\"llama_only_test_f1\": 0.8556, \"mixed_test_f1\": 0.6491, \"dd_ood_f1\": 0.457, \"aa_ood_f1\": 0.792, \"toxicchat_f1\": 0.2092, \"llama_dd_ood_f1\": 0.1807, \"llama_aa_ood_f1\": 0.4113}, \"note\": \"Llama→Llama OOD: both vanilla and MLM fail catastrophically (recall ~0). MLM does not improve cross-attack generalization on Llama data. AA OOD MLM 0.29 < vanilla 0.41.\"}, \"conclusion\": \"success\", \"notes\": \"Cron 假警报: 训练实际完成 (MLM 4 epochs val_loss=5.1489 + GRU 20 epochs val_acc=0.8514, 日志末尾 \\\"ALL DONE\\\")。失败原因是无 W&B 配置导致 cron 5次检测不到 metrics。Worker worker_code_exp16b-eval_20260520T001556 正在补跑 OOD eval。\"}, \"exp16_9class_train\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T19:58:47.876Z\", \"updated_at\": \"2026-05-19T19:59:27.535Z\"}, \"exp16_vanilla_train\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T19:58:41.601Z\", \"updated_at\": \"2026-05-19T19:59:22.226Z\"}, \"exp17_qwen_benign_gen\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T15:30:21.141Z\", \"updated_at\": \"2026-05-19T15:30:21.141Z\"}, \"exp17_qwen_jailbreak_gen\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T15:30:19.321Z\", \"updated_at\": \"2026-05-19T15:30:19.321Z\"}, \"exp17_dryrun\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T15:27:14.666Z\", \"updated_at\": \"2026-05-19T15:27:14.666Z\"}, \"exp16_llama_benign_gen\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T14:38:16.826Z\", \"updated_at\": \"2026-05-19T15:00:41.999Z\"}, \"exp16_llama_jailbreak_gen\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T14:38:14.703Z\", \"updated_at\": \"2026-05-19T14:38:14.703Z\"}, \"llama_crescendo_dryrun\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T14:33:01.547Z\", \"updated_at\": \"2026-05-19T14:33:01.547Z\"}, \"exp16_multi_llm_training\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T14:23:20.896Z\", \"updated_at\": \"2026-05-19T14:23:20.896Z\", \"hypothesis\": \"Training on mixed-LLM data (Qwen + Llama) will eliminate the single-LLM confound: the model will generalize cross-LLM (Llama OOD F1 from 0.37-0.43 to 0.8+) because mixed benign distribution covers both LLMs' stylistic patterns, resolving the false-positive-driven failure identified in exp14.\"}, \"exp15c_roberta_large_mlm\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T11:24:40.278Z\", \"updated_at\": \"2026-05-19T12:22:54.764Z\", \"hypothesis\": \"MLM-only continued pretraining on RoBERTa-large (without classification head) will NOT cause the same performance regression as 9-class DAPT, because the regression stems from classification fine-tuning conflicting with frozen-encoder GRU evaluation, not from domain adaptation itself.\", \"parent\": \"exp15_roberta_large\", \"metrics\": {\"dd_ood\": {\"mlm\": {\"k1\": 0.876, \"k3\": 0.902, \"full\": 0.884}, \"vanilla_exp15\": {\"k1\": 0.878, \"k3\": 0.915, \"full\": 0.927}, \"9class_exp15\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"mlm\": {\"k1\": 0.876, \"k3\": 0.881, \"full\": 0.874}, \"vanilla_exp15\": {\"k1\": 0.977, \"k3\": 0.99, \"full\": 1}, \"9class_exp15\": {\"k1\": 0.718, \"k3\": 0.881, \"full\": 0.946}}, \"key_finding\": \"MLM DAPT hurts both DD OOD and AA vs vanilla. AA: MLM 0.874 < 9class 0.946 < vanilla 1.000. Representation shift from continued pretraining itself conflicts with frozen-encoder GRU, not classification head interference.\"}, \"conclusion\": \"negative\"}, \"exp14c_prediction_analysis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T08:12:50.774Z\", \"updated_at\": \"2026-05-19T09:25:11.985Z\", \"hypothesis\": \"exp14 cross-LLM failure is driven by high false positive rate on Llama benign (model classifies unfamiliar Llama benign text as jailbreak). exp14b control should show near-zero FP on Qwen benign with maintained TP on Llama jailbreak, confirming benign distribution coverage as the bottleneck.\", \"parent\": \"exp14b_cross_llm_control\", \"conclusion\": \"success\", \"metrics\": {\"dd_full_fp_rate\": {\"exp14_llama_benign\": {\"vanilla\": 0.293, \"jb_mlm\": 0.88, \"9class\": 0.9}, \"exp14b_qwen_benign\": {\"vanilla\": 0, \"jb_mlm\": 0.009, \"9class\": 0}}, \"dd_full_tp_rate\": {\"both_conditions_identical\": {\"vanilla\": 0, \"jb_mlm\": 0.68, \"9class\": 1}}, \"key_finding\": \"TP rates identical across exp14/exp14b. FP rate on Llama benign 88-100% vs Qwen benign 0%. F1 collapse 100% caused by FP explosion, jailbreak detection fully cross-LLM transferable.\"}}, \"exp15b_roberta_large_lr\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T08:59:39.082Z\", \"updated_at\": \"2026-05-19T09:24:43.093Z\", \"hypothesis\": \"exp15 9class underperformance on AA (0.946 vs vanilla 1.000) is caused by catastrophic forgetting from too-high LR (2e-5) for 355M model. Reducing DAPT LR to 1e-5 should preserve pretrained representations while still learning persuasion patterns, recovering AA F1 to match or exceed vanilla.\", \"parent\": \"exp15_roberta_large\", \"conclusion\": \"negative\", \"metrics\": {\"dd_ood\": {\"9class_lr1e5\": {\"k1\": 0.899, \"k3\": 0.851, \"full\": 0.948}, \"9class_lr2e5_exp15\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"9class_lr1e5\": {\"k1\": 0.459, \"k3\": 0.676, \"full\": 0.781}, \"9class_lr2e5_exp15\": {\"k1\": 0.718, \"k3\": 0.881, \"full\": 0.946}}, \"key_finding\": \"LR=1e-5 worse than LR=2e-5 on both DD and AA. Catastrophic forgetting hypothesis falsified. The capacity-DAPT interaction on AA is real, not a hyperparameter artifact.\"}}, \"exp15_roberta_large\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T08:12:49.170Z\", \"updated_at\": \"2026-05-19T08:47:35.066Z\", \"hypothesis\": \"RoBERTa-large (355M) vanilla will still underperform DAPT variants on ActorAttack OOD, demonstrating that DAPT value is independent of model capacity. If RoBERTa-large vanilla matches DAPT performance, then the difficulty threshold is a capacity effect rather than a representation quality effect.\", \"conclusion\": \"negative\", \"metrics\": {\"dd_ood\": {\"roberta_large_vanilla\": {\"k1\": 0.878, \"k3\": 0.915, \"full\": 0.927}, \"roberta_large_9class\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"roberta_large_vanilla\": {\"k1\": 0.977, \"k3\": 0.99, \"full\": 1}, \"roberta_large_9class\": {\"k1\": 0.718, \"k3\": 0.881, \"full\": 0.946}}, \"key_finding\": \"Hypothesis falsified on AA: RoBERTa-large vanilla (1.000) > 9class (0.946). Capacity effect dominates on AA. DD OOD: DAPT still helps (0.987 vs 0.927).\"}}, \"exp14b_cross_llm_control\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T07:19:48.670Z\", \"updated_at\": \"2026-05-19T07:27:01.244Z\", \"hypothesis\": \"exp14 cross-LLM failure is caused by double distribution shift (both jailbreak AND benign from Llama). By pairing Llama jailbreak with Qwen IID benign, we isolate the jailbreak detection component. If F1 recovers significantly, the failure is primarily due to Llama benign misclassification, not inability to detect Llama-style jailbreaks.\", \"parent\": \"exp14_cross_llm_validation\", \"conclusion\": \"success\", \"metrics\": {\"dd_full\": {\"vanilla\": 0.302, \"jb_mlm\": 0.778, \"9class\": 1}, \"aa_full\": {\"vanilla\": 0.302, \"jb_mlm\": 0.903, \"9class\": 0.801}, \"dd_k1\": {\"vanilla\": 0.319, \"jb_mlm\": 0.965, \"9class\": 0.935}, \"dd_k3\": {\"vanilla\": 0.302, \"jb_mlm\": 0.996, \"9class\": 0.977}, \"aa_k1\": {\"vanilla\": 0.443, \"jb_mlm\": 0.927, \"9class\": 0.832}, \"aa_k3\": {\"vanilla\": 0.302, \"jb_mlm\": 0.988, \"9class\": 0.8}, \"recovery_vs_exp14_dd_full\": {\"jb_mlm\": \"+49.6pp\", \"9class\": \"+56.7pp\"}, \"note\": \"jb_mlm DD Full std=0.306 due to seed456 outlier (0.345)\"}}, \"exp14_cross_llm_validation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T05:37:11.541Z\", \"updated_at\": \"2026-05-19T07:17:24.059Z\", \"hypothesis\": \"DAPT advantage (9-class/jb_mlm >> vanilla) is not specific to Qwen3-8B-generated data. If the persuasion-grounded fine-tuning captures generalizable jailbreak patterns rather than Qwen-specific artifacts, the performance gap should persist on Llama-3.1-8B-Instruct-generated multi-turn conversations.\", \"conclusion\": \"negative\", \"metrics\": {\"data_gen\": {\"dd\": 50, \"aa\": 50, \"benign\": 50}, \"llama_dd_full\": {\"vanilla\": 0.261, \"jb_mlm\": 0.282, \"9class\": 0.433}, \"llama_aa_full\": {\"vanilla\": 0.261, \"jb_mlm\": 0.368, \"9class\": 0.321}, \"llama_dd_k1\": {\"vanilla\": 0.17, \"jb_mlm\": 0.332, \"9class\": 0.312}, \"llama_aa_k1\": {\"vanilla\": 0.248, \"jb_mlm\": 0.316, \"9class\": 0.265}, \"qwen_vs_llama_dd_full\": {\"vanilla_gap\": -0.051, \"jb_mlm_gap\": -0.632, \"9class_gap\": -0.564}}}, \"exp12_toxicchat_bootstrap\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T23:34:47.678Z\", \"updated_at\": \"2026-05-18T23:35:04.378Z\", \"hypothesis\": \"BCa bootstrap CIs and paired permutation tests on ToxicChat human data will confirm that jb_mlm significantly outperforms 9-class (24pp gap) and vanilla (42pp gap), providing rigorous statistical support for the evidence hierarchy on human-written jailbreak data.\", \"parent\": \"exp8_mhj_human_data\", \"conclusion\": \"success\", \"metrics\": {\"bootstrap_ci_pooled\": {\"jb_mlm\": {\"f1\": 0.8373, \"ci_95\": [0.8162, 0.8576], \"seed_std\": 0.015}, \"wiki_mlm\": {\"f1\": 0.7969, \"ci_95\": [0.7737, 0.8195], \"seed_std\": 0.114}, \"binary\": {\"f1\": 0.7092, \"ci_95\": [0.6832, 0.7352], \"seed_std\": 0.088}, \"scrambled\": {\"f1\": 0.6174, \"ci_95\": [0.59, 0.6448], \"seed_std\": 0.068}, \"9class\": {\"f1\": 0.5962, \"ci_95\": [0.5685, 0.6235], \"seed_std\": 0.107}, \"topic\": {\"f1\": 0.4975, \"ci_95\": [0.4693, 0.5252], \"seed_std\": 0.051}, \"vanilla\": {\"f1\": 0.4147, \"ci_95\": [0.3896, 0.4429], \"seed_std\": 0.026}}, \"permutation_tests\": {\"jb_mlm_vs_9class\": {\"diff\": 0.2411, \"p\": 0.0001}, \"jb_mlm_vs_vanilla\": {\"diff\": 0.4226, \"p\": 0.0001}, \"wiki_mlm_vs_9class\": {\"diff\": 0.2007, \"p\": 0.0001}}, \"metric\": \"f1_macro\", \"n_resamples\": 10000, \"note\": \"All permutation tests p<0.001. jb_mlm most stable (seed_std=0.015). wiki_mlm vs 9class seed42 marginal (p=0.057) but pooled significant.\"}}, \"exp5_llm_judge_ood\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T10:47:30.630Z\", \"updated_at\": \"2026-05-18T19:23:42.010Z\", \"hypothesis\": \"Zero-shot Qwen3-8B will underperform trained classifiers on OOD data (DD and FITD), establishing that even on unseen attack types, specialized trained detectors outperform general-purpose LLM reasoning\", \"conclusion\": \"success\", \"metrics\": {\"dd_ood\": {\"k1_binary_f1\": 0, \"k2_binary_f1\": 0, \"k3_binary_f1\": 0, \"k5_binary_f1\": 0, \"full_binary_f1\": 0, \"k1_macro_f1\": 0.2436, \"k2_macro_f1\": 0.2436, \"k3_macro_f1\": 0.2436, \"k5_macro_f1\": 0.2436, \"full_macro_f1\": 0.2436, \"accuracy\": 0.322}, \"fitd_ood\": {\"k1_binary_f1\": 0, \"k2_binary_f1\": 0, \"k3_binary_f1\": 0, \"k5_binary_f1\": 0.0247, \"full_binary_f1\": 0.0247, \"k1_macro_f1\": 0.2436, \"k2_macro_f1\": 0.2436, \"k3_macro_f1\": 0.2436, \"k5_macro_f1\": 0.2575, \"full_macro_f1\": 0.2575, \"accuracy\": 0.331}, \"model\": \"Qwen3-8B\", \"mode\": \"zero-shot\", \"n_samples\": 118, \"note\": \"CORRECTED: all macro F1 computed. Both DD and FITD: model predicts almost all-benign. macro_f1 ~0.24-0.26 across all K.\"}}, \"exp9_bootstrap_ci\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:16:19.153Z\", \"updated_at\": \"2026-05-18T17:38:42.488Z\", \"hypothesis\": \"BCa bootstrap CIs and paired permutation tests will confirm that multitask 9-class persuasion pre-training significantly outperforms vanilla (frozen) baseline on OOD jailbreak detection, while the difference against domain-specific pre-training (jb_mlm, scrambled) is not statistically significant, supporting the claim that persuasion-aware representations provide robust detection capabilities.\", \"metrics\": {\"dd_ood_9class_full\": {\"mean\": 0.9968, \"ci\": [0.9426, 1]}, \"dd_ood_vanilla_full\": {\"mean\": 0.2698, \"ci\": [0.2017, 0.3414]}, \"actorattack_9class_full\": {\"mean\": 0.9718, \"ci\": [0.8554, 1]}, \"actorattack_vanilla_full\": {\"mean\": 0.2565, \"ci\": [0.2027, 0.3139]}, \"perm_9class_vs_vanilla_dd_full_p\": 0, \"perm_9class_vs_vanilla_aa_full_p\": 0, \"perm_9class_vs_jb_mlm_dd_full_max_p\": 1, \"perm_9class_vs_scrambled_dd_full_max_p\": 1}, \"conclusion\": \"success\"}, \"exp8_mhj_human_data\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:16:18.419Z\", \"updated_at\": \"2026-05-18T17:37:20.005Z\", \"hypothesis\": \"If the evidence hierarchy (domain-adapted > vanilla) reflects genuine signal learning rather than Qwen3-8B stylistic overfitting, then DeBERTa variants trained on Qwen3-8B data should also outperform vanilla on human-written jailbreak prompts from Reddit/Discord.\", \"conclusion\": \"success\", \"metrics\": {\"toxicchat\": {\"n_jailbreak\": 204, \"n_benign\": 204, \"data_source\": \"ToxicChat (LMSYS)\", \"leakage\": \"none\", \"vanilla_macro_f1\": 0.413, \"vanilla_macro_f1_std\": 0.021, \"9class_macro_f1\": 0.596, \"9class_macro_f1_std\": 0.087, \"binary_macro_f1\": 0.705, \"binary_macro_f1_std\": 0.072, \"scrambled_macro_f1\": 0.616, \"scrambled_macro_f1_std\": 0.056, \"scrambled_per_seed\": {\"seed42\": 0.537, \"seed123\": 0.654, \"seed456\": 0.657}, \"jb_mlm_macro_f1\": 0.837, \"jb_mlm_macro_f1_std\": 0.013, \"wiki_mlm_macro_f1\": 0.791, \"wiki_mlm_macro_f1_std\": 0.093, \"topic_macro_f1\": 0.496, \"topic_macro_f1_std\": 0.042}, \"verazuo\": {\"n_jailbreak\": 666, \"n_benign\": 213, \"data_source\": \"verazuo/jailbreak_llms + plan_002 benign\", \"LEAKAGE_WARNING\": \"78% benign (167/213) from train split\", \"scrambled_macro_f1\": 0.822, \"scrambled_macro_f1_std\": 0.046, \"scrambled_per_seed\": {\"seed42\": 0.818, \"seed123\": 0.88, \"seed456\": 0.768}, \"vanilla_macro_f1\": 0.267, \"9class_macro_f1\": 0.767, \"binary_macro_f1\": 0.883, \"jb_mlm_macro_f1\": 0.937, \"wiki_mlm_macro_f1\": 0.845, \"topic_macro_f1\": 0.669, \"test_only_benign\": {\"n_benign\": 46, \"note\": \"extreme imbalance 666:46\", \"scrambled\": 0.649, \"scrambled_std\": 0.056, \"scrambled_per_seed\": {\"seed42\": 0.64, \"seed123\": 0.722, \"seed456\": 0.585}, \"vanilla\": 0.129, \"9class\": 0.627, \"binary\": 0.738, \"jb_mlm\": 0.852, \"wiki_mlm\": 0.742, \"topic\": 0.503}}, \"note\": \"CORRECTED: all macro F1, scrambled now 3-seed complete. verazuo has data leakage. ToxicChat clean.\"}}, \"exp10_fewshot_llm_judge\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:50:35.003Z\", \"updated_at\": \"2026-05-18T17:14:44.302Z\", \"hypothesis\": \"3-shot in-context examples should significantly improve LLM-as-judge jailbreak detection over zero-shot by providing the model with concrete examples of escalation patterns, but will still underperform trained classifiers because few-shot prompting cannot match fine-tuned feature extraction.\", \"parent\": \"exp5_llm_judge_ood\", \"conclusion\": \"success\", \"metrics\": {\"dd_full_binary_f1\": 0.5405, \"dd_full_macro_f1\": 0.5663, \"dd_full_precision\": 0.9677, \"dd_full_recall\": 0.375, \"aa_full_binary_f1\": 0.6612, \"aa_full_macro_f1\": 0.6523, \"aa_full_precision\": 0.9756, \"aa_full_recall\": 0.5, \"dd_per_k_macro_f1\": {\"k1\": 0.2575, \"k2\": 0.3355, \"k3\": 0.4693, \"k5\": 0.4894, \"full\": 0.5663}, \"aa_per_k_macro_f1\": {\"k1\": 0.4055, \"k2\": 0.4274, \"k3\": 0.5376, \"k5\": 0.6356, \"full\": 0.6523}, \"dd_per_k_binary_f1\": {\"k1\": 0.0247, \"k2\": 0.1609, \"k3\": 0.3838, \"k5\": 0.4158, \"full\": 0.5405}, \"aa_per_k_binary_f1\": {\"k1\": 0.2796, \"k2\": 0.3158, \"k3\": 0.4906, \"k5\": 0.6325, \"full\": 0.6612}, \"unparseable\": 0, \"note\": \"CORRECTED: added macro_f1 alongside binary_f1. macro_f1 is the project-standard metric. Zero-shot exp5 also uses binary F1 and needs correction.\"}}, \"exp7_tfidf_perprefix_actorattack\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:16:17.444Z\", \"updated_at\": \"2026-05-18T16:20:37.976Z\", \"hypothesis\": \"TF-IDF LR baseline per-prefix results on DD OOD and ActorAttack will show the complete performance profile across K values, filling the gap where only Full F1 was reported, and establishing the full comparison surface against neural methods\", \"conclusion\": \"success\", \"metrics\": {\"dd_ood\": {\"k1\": 1, \"k2\": 1, \"k3\": 0.9937, \"k5\": 1, \"full\": 0.961}, \"actorattack\": {\"k1\": 0.6325, \"k2\": 0.7302, \"k3\": 0.5714, \"k5\": 0.2418, \"full\": 0.2609}}}, \"exp6_actorattack_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T13:37:28.933Z\", \"updated_at\": \"2026-05-18T14:59:18.390Z\", \"hypothesis\": \"Classification-supervised variants (9-class/binary/scrambled) will maintain near-zero perturbation degradation on ActorAttack OOD paraphrased data, while vanilla/MLM variants will show significant degradation, extending Claim 3 perturbation robustness from DD to a second OOD attack type\", \"parent\": \"exp4_dd_ood_perturbation\", \"conclusion\": \"negative\", \"metrics\": {\"9class_3seed\": {\"clean_k1\": 0.7728, \"perturbed_k1\": 0.6326, \"delta_k1\": -0.1402, \"clean_k3\": 0.9212, \"perturbed_k3\": 0.7337, \"delta_k3\": -0.1875, \"clean_full\": 0.9719, \"perturbed_full\": 0.7681, \"delta_full\": -0.2038}, \"binary_3seed\": {\"clean_k1\": 0.737, \"perturbed_k1\": 0.6694, \"delta_k1\": -0.0676, \"clean_k3\": 0.9508, \"perturbed_k3\": 0.7035, \"delta_k3\": -0.2473, \"clean_full\": 0.9904, \"perturbed_full\": 0.7405, \"delta_full\": -0.2499}, \"scrambled_3seed\": {\"clean_k1\": 0.7206, \"perturbed_k1\": 0.6164, \"delta_k1\": -0.1042, \"clean_k3\": 0.8931, \"perturbed_k3\": 0.7779, \"delta_k3\": -0.1152, \"clean_full\": 0.9511, \"perturbed_full\": 0.7787, \"delta_full\": -0.1724}, \"jb_mlm_3seed\": {\"clean_k1\": 0.7363, \"perturbed_k1\": 0.6572, \"delta_k1\": -0.079, \"clean_k3\": 0.9446, \"perturbed_k3\": 0.5483, \"delta_k3\": -0.3962, \"clean_full\": 0.8934, \"perturbed_full\": 0.5408, \"delta_full\": -0.3526}, \"wiki_mlm_3seed\": {\"clean_k1\": 0.6559, \"perturbed_k1\": 0.6007, \"delta_k1\": -0.0552, \"clean_k3\": 0.6931, \"perturbed_k3\": 0.5216, \"delta_k3\": -0.1716, \"clean_full\": 0.686, \"perturbed_full\": 0.5454, \"delta_full\": -0.1406}, \"topic_3seed\": {\"clean_k1\": 0.5135, \"perturbed_k1\": 0.5258, \"delta_k1\": 0.0123, \"clean_k3\": 0.5654, \"perturbed_k3\": 0.5413, \"delta_k3\": -0.0241, \"clean_full\": 0.6254, \"perturbed_full\": 0.5767, \"delta_full\": -0.0488}, \"vanilla_3seed\": {\"clean_k1\": 0.3374, \"perturbed_k1\": 0.2694, \"delta_k1\": -0.0681, \"clean_k3\": 0.2844, \"perturbed_k3\": 0.2574, \"delta_k3\": -0.027, \"clean_full\": 0.2575, \"perturbed_full\": 0.2482, \"delta_full\": -0.0093}, \"mcnemar_perturbed_k1\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 2e-05, \"b\": 34, \"c\": 6}, \"seed123\": {\"p\": 1.9e-05, \"b\": 59, \"c\": 20}, \"seed456\": {\"p\": 0, \"b\": 72, \"c\": 19}}}, \"mcnemar_perturbed_full\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 44, \"c\": 0}, \"seed123\": {\"p\": 0, \"b\": 75, \"c\": 4}, \"seed456\": {\"p\": 0, \"b\": 78, \"c\": 24}}}, \"mcnemar_clean_k1\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 52, \"c\": 4}, \"seed123\": {\"p\": 0, \"b\": 42, \"c\": 3}, \"seed456\": {\"p\": 0, \"b\": 53, \"c\": 0}}}, \"mcnemar_clean_full\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 78, \"c\": 0}, \"seed123\": {\"p\": 0, \"b\": 72, \"c\": 0}, \"seed456\": {\"p\": 0, \"b\": 78, \"c\": 0}}}, \"note\": \"CORRECTED 2026-05-18: vanilla seed123/456 GRU checkpoints and binary seed42 DeBERTa+GRU checkpoints were wrong (used different models than exp2). Fixed to match exp2 checkpoints. Clean baselines now consistent with exp2. All variants still degrade under perturbation except topic at K=1. 9class significantly outperforms vanilla on both clean and perturbed (McNemar all p<0.001).\"}}, \"exp2_actorattack_mcnemar\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T13:37:56.702Z\", \"updated_at\": \"2026-05-18T14:34:32.722Z\", \"hypothesis\": \"9-class persuasion-aware encoder significantly outperforms vanilla DeBERTa on ActorAttack OOD data at per-sample level (McNemar test), supporting cross-attack generalization claim.\", \"parent\": \"exp2_actorattack_ood\", \"conclusion\": \"success\", \"metrics\": {\"mcnemar_clean_k1\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 50, \"c\": 3, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}, \"seed123\": {\"p\": 0, \"b\": 42, \"c\": 7, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}, \"seed456\": {\"p\": 0, \"b\": 47, \"c\": 6, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}}}, \"mcnemar_clean_k3\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 65, \"c\": 1, \"direction\": \"A>B\"}, \"seed123\": {\"p\": 0, \"b\": 47, \"c\": 0, \"direction\": \"A>B\"}, \"seed456\": {\"p\": 0, \"b\": 67, \"c\": 0, \"direction\": \"A>B\"}}}, \"mcnemar_clean_full\": {\"9class_vs_vanilla\": {\"seed42\": {\"p\": 0, \"b\": 78, \"c\": 0, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}, \"seed123\": {\"p\": 0, \"b\": 57, \"c\": 0, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}, \"seed456\": {\"p\": 0, \"b\": 67, \"c\": 0, \"direction\": \"A>B\", \"test\": \"mcnemar_chi2\"}}}, \"note\": \"All McNemar tests highly significant (p<0.001), direction consistently 9class > vanilla. On clean ActorAttack data, 9class dramatically outperforms vanilla at all K values.\"}}, \"exp2_actorattack_ood\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T10:41:47.379Z\", \"updated_at\": \"2026-05-18T12:59:16.967Z\", \"hypothesis\": \"Persuasion-grounded DeBERTa will generalize to ActorAttack (a structurally distinct multi-persona attack), extending cross-attack OOD evidence beyond DD and FITD to a third unseen attack type\", \"conclusion\": \"success\", \"metrics\": {\"deberta_9class\": {\"k1\": 0.773, \"k1_std\": 0.041, \"k2\": 0.855, \"k2_std\": 0.048, \"k3\": 0.921, \"k3_std\": 0.046, \"k5\": 0.966, \"k5_std\": 0.028, \"full\": 0.972, \"full_std\": 0.026}, \"deberta_binary\": {\"k1\": 0.737, \"k1_std\": 0.074, \"k2\": 0.89, \"k2_std\": 0.065, \"k3\": 0.951, \"k3_std\": 0.036, \"k5\": 0.987, \"k5_std\": 0.012, \"full\": 0.99, \"full_std\": 0.008, \"note\": \"3-seed complete (seed42+seed123+seed456), seed42 weak outlier at K1=0.636\"}, \"deberta_scrambled\": {\"k1\": 0.721, \"k1_std\": 0.101, \"k2\": 0.828, \"k2_std\": 0.054, \"k3\": 0.893, \"k3_std\": 0.067, \"k5\": 0.937, \"k5_std\": 0.057, \"full\": 0.951, \"full_std\": 0.043, \"per_seed_full\": {\"seed42\": 0.891, \"seed123\": 0.99, \"seed456\": 0.971}, \"per_seed_k1\": {\"seed42\": 0.618, \"seed123\": 0.858, \"seed456\": 0.686}, \"per_seed_k3\": {\"seed42\": 0.808, \"seed123\": 0.972, \"seed456\": 0.9}, \"note\": \"3-seed complete, K2/K5 corrected\"}, \"deberta_mlm\": {\"k1\": 0.736, \"k1_std\": 0.15, \"k2\": 0.909, \"k2_std\": 0.058, \"k3\": 0.945, \"k3_std\": 0.039, \"k5\": 0.929, \"k5_std\": 0.033, \"full\": 0.893, \"full_std\": 0.08}, \"deberta_wiki_mlm\": {\"k1\": 0.656, \"k1_std\": 0.224, \"k2\": 0.672, \"k2_std\": 0.252, \"k3\": 0.693, \"k3_std\": 0.28, \"k5\": 0.689, \"k5_std\": 0.285, \"full\": 0.686, \"full_std\": 0.297}, \"deberta_topic\": {\"k1\": 0.513, \"k1_std\": 0.077, \"k2\": 0.58, \"k2_std\": 0.109, \"k3\": 0.565, \"k3_std\": 0.1, \"k5\": 0.615, \"k5_std\": 0.111, \"full\": 0.625, \"full_std\": 0.141}, \"deberta_vanilla\": {\"k1\": 0.337, \"k1_std\": 0.049, \"k2\": 0.306, \"k2_std\": 0.026, \"k3\": 0.284, \"k3_std\": 0.011, \"k5\": 0.262, \"k5_std\": 0.006, \"full\": 0.258, \"full_std\": 0}, \"roberta_9class\": {\"k1\": 0.738, \"k1_std\": 0.033, \"k2\": 0.805, \"k2_std\": 0.033, \"k3\": 0.884, \"k3_std\": 0.066, \"k5\": 0.925, \"k5_std\": 0.066, \"full\": 0.939, \"full_std\": 0.046}, \"roberta_mlm\": {\"k1\": 0.633, \"k1_std\": 0.133, \"k2\": 0.665, \"k2_std\": 0.15, \"k3\": 0.713, \"k3_std\": 0.174, \"k5\": 0.719, \"k5_std\": 0.184, \"full\": 0.73, \"full_std\": 0.201}, \"roberta_vanilla\": {\"k1\": 0.41, \"k1_std\": 0.126, \"k2\": 0.425, \"k2_std\": 0.143, \"k3\": 0.432, \"k3_std\": 0.144, \"k5\": 0.466, \"k5_std\": 0.144, \"full\": 0.466, \"full_std\": 0.163}, \"n_samples\": 118, \"note\": \"All variants now 3-seed complete. Binary updated from 2-seed to 3-seed (seed42 weak at K1=0.636). Scrambled K2/K5 corrected. Evidence hierarchy: binary ≈ 9class > scrambled >> mlm > wiki_mlm > topic > vanilla\"}}, \"exp4_dd_ood_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T10:47:27.803Z\", \"updated_at\": \"2026-05-18T12:06:21.623Z\", \"hypothesis\": \"Persuasion-grounded DeBERTa variants will maintain near-zero perturbation degradation on DD OOD paraphrased data, while vanilla/wiki-MLM variants will show significant degradation, extending IID perturbation robustness findings to OOD setting\", \"conclusion\": \"success\", \"metrics\": {\"9class_3seed\": {\"clean_k1\": 0.9905, \"perturbed_k1\": 0.9968, \"delta_k1\": 0.0063, \"clean_k3\": 0.9719, \"perturbed_k3\": 0.9936, \"delta_k3\": 0.0217, \"clean_full\": 0.9968, \"perturbed_full\": 1, \"delta_full\": 0.0032}, \"binary_3seed\": {\"clean_k1\": 0.9936, \"perturbed_k1\": 1, \"delta_k1\": 0.0064, \"clean_full\": 0.9968, \"perturbed_full\": 1, \"delta_full\": 0.0032}, \"scrambled_3seed\": {\"clean_k1\": 0.9968, \"perturbed_k1\": 0.9936, \"delta_k1\": -0.0032, \"clean_full\": 0.9968, \"perturbed_full\": 1, \"delta_full\": 0.0032}, \"jb_mlm_3seed\": {\"clean_k1\": 0.9733, \"perturbed_k1\": 0.9733, \"delta_k1\": 0, \"clean_full\": 0.9138, \"perturbed_full\": 0.9409, \"delta_full\": 0.0271}, \"wiki_mlm_3seed\": {\"clean_k1\": 0.9131, \"perturbed_k1\": 0.8808, \"delta_k1\": -0.0323, \"clean_full\": 0.9042, \"perturbed_full\": 0.8715, \"delta_full\": -0.0327}, \"topic_3seed\": {\"clean_k1\": 0.5912, \"perturbed_k1\": 0.617, \"delta_k1\": 0.0259, \"clean_full\": 0.5412, \"perturbed_full\": 0.5765, \"delta_full\": 0.0353}, \"vanilla_3seed\": {\"clean_k1\": 0.6283, \"perturbed_k1\": 0.5602, \"delta_k1\": -0.0681, \"clean_k2\": 0.4824, \"perturbed_k2\": 0.4829, \"delta_k2\": 0.0004, \"clean_full\": 0.3123, \"perturbed_full\": 0.3394, \"delta_full\": 0.0271}, \"mcnemar_perturbed_k1\": {\"9class_vs_vanilla\": {\"all_seeds_p\": \"<0.001\", \"discordant_range\": \"49-56 favoring 9class\"}, \"9class_vs_jb_mlm\": \"n.s. all seeds\", \"9class_vs_scrambled\": \"n.s. all seeds\"}, \"mcnemar_perturbed_full\": {\"9class_vs_vanilla\": {\"all_seeds_p\": \"<0.001\", \"discordant_range\": \"67-78 favoring 9class\"}, \"9class_vs_jb_mlm\": {\"seed42\": \"tie\", \"seed123\": \"n.s.\", \"seed456\": \"p=4e-06 (b=19)\"}, \"9class_vs_scrambled\": \"tie all seeds\"}}}, \"exp3_roberta_probing\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T11:23:53.615Z\", \"updated_at\": \"2026-05-18T11:33:47.894Z\", \"hypothesis\": \"RoBERTa 9-class persuasion encoder encodes richer discourse structure than vanilla/MLM variants (matching DeBERTa pattern), as measured by linear probing accuracy and CKA divergence, confirming findings are encoder-agnostic\", \"conclusion\": \"success\", \"metrics\": {\"linear_probing\": {\"turn_position\": {\"vanilla\": 0.7665, \"mlm\": 0.7526, \"9class\": 0.8294}, \"escalation_level\": {\"vanilla\": 0.7272, \"mlm\": 0.7243, \"9class\": 0.7448}, \"persuasion_presence\": {\"vanilla\": 0.942, \"mlm\": 0.9411, \"9class\": 0.9509}}, \"centered_cka\": {\"iid\": {\"vanilla_vs_mlm\": 0.393, \"vanilla_vs_9class\": 0.592, \"mlm_vs_9class\": 0.351}, \"dd_ood\": {\"vanilla_vs_mlm\": 0.255, \"vanilla_vs_9class\": 0.735, \"mlm_vs_9class\": 0.183}}, \"uncentered_cka\": {\"iid\": {\"vanilla_vs_mlm\": 0.998, \"vanilla_vs_9class\": 0.511, \"mlm_vs_9class\": 0.502}, \"dd_ood\": {\"vanilla_vs_mlm\": 0.998, \"vanilla_vs_9class\": 0.624, \"mlm_vs_9class\": 0.626}}, \"note\": \"Centered CKA confirms MLM reshapes RoBERTa representations (0.39 IID, 0.26 OOD), even more than DeBERTa (0.44 IID). Both encoders show same pattern.\"}}, \"exp3_probing\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T10:41:50.785Z\", \"updated_at\": \"2026-05-18T11:28:57.785Z\", \"hypothesis\": \"9-class persuasion fine-tuned DeBERTa encodes richer discourse structure (turn position, escalation level, persuasion presence) than vanilla/MLM variants, as measured by linear probing accuracy and CKA divergence\", \"conclusion\": \"success\", \"metrics\": {\"linear_probing\": {\"turn_position\": {\"vanilla\": 0.787, \"mlm\": 0.792, \"9class\": 0.828}, \"escalation_level\": {\"vanilla\": 0.732, \"mlm\": 0.732, \"9class\": 0.782}, \"persuasion_presence\": {\"vanilla\": 0.938, \"mlm\": 0.943, \"9class\": 0.949}}, \"centered_cka\": {\"iid\": {\"vanilla_vs_mlm\": 0.442, \"vanilla_vs_9class\": 0.393, \"mlm_vs_9class\": 0.586}, \"dd_ood\": {\"vanilla_vs_mlm\": 0.797, \"vanilla_vs_9class\": 0.649, \"mlm_vs_9class\": 0.773}}, \"uncentered_cka\": {\"iid\": {\"vanilla_vs_mlm\": 0.9999869, \"vanilla_vs_9class\": 0.3668, \"mlm_vs_9class\": 0.3684}, \"dd_ood\": {\"vanilla_vs_mlm\": 1, \"vanilla_vs_9class\": 0.8849, \"mlm_vs_9class\": 0.8847}}, \"layer_divergence\": \"layers 11-12 only, concentrated at final layer\", \"cka_note\": \"CORRECTED: Uncentered CKA=1.0 for vanilla_vs_MLM was misleading. Centered CKA=0.442 shows MLM does change representations. Use centered CKA in paper.\"}}, \"vanilla_multiseed_dd_ood\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T11:26:57.037Z\", \"updated_at\": \"2026-05-18T11:27:25.460Z\", \"hypothesis\": \"DeBERTa vanilla (no Stage-1 fine-tuning) multi-seed DD OOD evaluation will confirm that the 62pp gap (vanilla 0.284 vs treatment 0.997) is not a seed artifact, and centered CKA will correct the misleading uncentered CKA=1.0 for vanilla vs MLM\", \"conclusion\": \"success\", \"metrics\": {\"vanilla_3seed_dd_ood\": {\"k1\": {\"seed42\": 0.575, \"seed123\": 0.658, \"seed456\": 0.652, \"mean\": 0.628, \"std\": 0.038}, \"k2\": {\"seed42\": 0.438, \"seed123\": 0.53, \"seed456\": 0.469, \"mean\": 0.479, \"std\": 0.038}, \"k3\": {\"seed42\": 0.359, \"seed123\": 0.424, \"seed456\": 0.383, \"mean\": 0.389, \"std\": 0.027}, \"k5\": {\"seed42\": 0.311, \"seed123\": 0.383, \"seed456\": 0.36, \"mean\": 0.351, \"std\": 0.03}, \"full\": {\"seed42\": 0.285, \"seed123\": 0.305, \"seed456\": 0.348, \"mean\": 0.312, \"std\": 0.026}}, \"centered_cka_iid\": {\"vanilla_vs_mlm\": 0.442, \"vanilla_vs_9class\": 0.393, \"mlm_vs_9class\": 0.586}, \"centered_cka_dd_ood\": {\"vanilla_vs_mlm\": 0.797, \"vanilla_vs_9class\": 0.649, \"mlm_vs_9class\": 0.773}, \"uncentered_cka_iid\": {\"vanilla_vs_mlm\": 1, \"vanilla_vs_9class\": 0.421, \"mlm_vs_9class\": 0.422}, \"note\": \"Centered CKA reveals MLM DOES change representations (0.44 not 1.0). Uncentered CKA was misleading.\"}}, \"mf1_binary_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T09:11:45.083Z\", \"updated_at\": \"2026-05-18T11:04:38.928Z\", \"hypothesis\": \"Binary persuasion classification (seed=123) will maintain DD OOD F1 comparable to seed=42 (0.990), confirming low variance for binary variant and providing 3-seed statistical support for reviewer MF1\", \"conclusion\": \"success\", \"metrics\": {\"dd_ood_full_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 1, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"iid_full_f1\": 1, \"iid_k1_f1\": 1, \"iid_k2_f1\": 1, \"iid_k3_f1\": 1, \"iid_k5_f1\": 1, \"deberta_val_persuasion_acc\": 1, \"deberta_val_intent_acc\": 1, \"seed\": 123}}, \"exp1_roberta_vanilla\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T10:41:44.985Z\", \"updated_at\": \"2026-05-18T10:45:58.520Z\", \"hypothesis\": \"Off-the-shelf RoBERTa-base without any fine-tuning will show poor DD OOD performance, matching DeBERTa vanilla baseline pattern and confirming encoder-agnostic findings\", \"conclusion\": \"success\", \"metrics\": {\"dd_ood_full_f1_mean\": 0.9813, \"dd_ood_full_f1_std\": 0.0264, \"dd_ood_k1_mean\": 0.9127, \"dd_ood_k1_std\": 0.1028, \"dd_ood_k2_mean\": 0.9003, \"dd_ood_k2_std\": 0.1342, \"dd_ood_k3_mean\": 0.8976, \"dd_ood_k3_std\": 0.1381, \"dd_ood_k5_mean\": 0.9442, \"dd_ood_k5_std\": 0.0789, \"n_seeds\": 3, \"encoder\": \"roberta-base\", \"note\": \"seed42 underperforms (K1=0.77), high variance\"}}, \"exp1_roberta_mlm\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T10:41:42.648Z\", \"updated_at\": \"2026-05-18T10:45:55.269Z\", \"hypothesis\": \"RoBERTa-base with MLM-only continued pretraining will show intermediate DD OOD performance between vanilla and 9-class, matching DeBERTa's evidence hierarchy pattern\", \"conclusion\": \"success\", \"metrics\": {\"dd_ood_full_f1_mean\": 0.9874, \"dd_ood_full_f1_std\": 0.0178, \"dd_ood_k1_mean\": 0.9428, \"dd_ood_k1_std\": 0.0184, \"dd_ood_k2_mean\": 0.9747, \"dd_ood_k2_std\": 0.0232, \"dd_ood_k3_mean\": 0.9747, \"dd_ood_k3_std\": 0.0232, \"dd_ood_k5_mean\": 0.9841, \"dd_ood_k5_std\": 0.016, \"n_seeds\": 3, \"encoder\": \"roberta-base\"}}, \"exp1_roberta_9class\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T10:41:37.022Z\", \"updated_at\": \"2026-05-18T10:44:45.773Z\", \"hypothesis\": \"RoBERTa-base with 9-class persuasion multi-task fine-tuning will reproduce the DeBERTa evidence hierarchy (9-class >> vanilla), proving findings are encoder-agnostic\", \"conclusion\": \"success\", \"metrics\": {\"dd_ood_full_f1_mean\": 0.9936, \"dd_ood_full_f1_std\": 0.0045, \"dd_ood_k1_mean\": 0.9873, \"dd_ood_k1_std\": 0.0119, \"dd_ood_k2_mean\": 0.9505, \"dd_ood_k2_std\": 0.0284, \"dd_ood_k3_mean\": 0.9563, \"dd_ood_k3_std\": 0.0189, \"dd_ood_k5_mean\": 0.9872, \"dd_ood_k5_std\": 0.009, \"iid_full_f1\": 1, \"n_seeds\": 3, \"encoder\": \"roberta-base\"}}, \"mf1_binary_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T09:11:46.513Z\", \"updated_at\": \"2026-05-18T09:55:15.746Z\", \"hypothesis\": \"Binary persuasion DeBERTa+GRU pipeline with seed=456 will produce DD OOD performance consistent with seed=42, confirming reproducibility of the binary collapse approach.\", \"metrics\": {\"dd_ood_full_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 1, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"deberta_val_persuasion_acc\": 1, \"deberta_val_intent_acc\": 1, \"seed\": 456}, \"conclusion\": \"success\"}, \"mf1_scrambled_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T09:11:48.357Z\", \"updated_at\": \"2026-05-18T09:54:48.227Z\", \"hypothesis\": \"Scrambled persuasion labels (seed=123) will degrade DD OOD detection performance compared to original labels, confirming that persuasion strategy grounding is causally necessary for generalization\", \"metrics\": {\"val_persuasion_acc\": 0.6724, \"val_intent_acc\": 1, \"dd_ood_f1_k1\": 1, \"dd_ood_f1_k2\": 1, \"dd_ood_f1_k3\": 1, \"dd_ood_f1_k5\": 1, \"dd_ood_f1_full\": 1}, \"conclusion\": \"success\"}, \"mf1_scrambled_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T09:11:49.552Z\", \"updated_at\": \"2026-05-18T09:54:22.058Z\", \"hypothesis\": \"Scrambled-label classification (seed=456) on plan_002_splits data will show DD OOD F1 comparable to seed=42 (0.990), confirming scrambled variant's performance and variance for reviewer MF1\", \"metrics\": {\"dd_ood_full_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 1, \"dd_ood_k3_f1\": 0.99, \"dd_ood_k5_f1\": 1, \"deberta_val_persuasion_acc\": 0.698, \"seed\": 456}, \"conclusion\": \"success\"}, \"plan_003_scrambled_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T07:07:32.928Z\", \"updated_at\": \"2026-05-18T08:13:07.674Z\", \"hypothesis\": \"Scrambled-label classification (random strategy labels on domain text) will show perturbation degradation between binary (0.000) and MLM (-0.026), testing whether correct label content matters for robustness or if any classification structure suffices\", \"parent\": \"plan_003_scrambled_ablation\", \"conclusion\": \"negative\", \"metrics\": {\"deberta_training\": {\"epochs\": 4, \"best_epoch\": 4, \"val_persuasion_acc\": 0.613, \"val_intent_acc\": 0.967, \"val_loss\": 1.127}, \"iid_test_f1_full\": 1, \"perturbation_delta_full\": 0, \"perturbation_clean_f1_full\": 0.333, \"perturbation_perturbed_f1_full\": 0.333, \"note\": \"Delta=0 is misleading: model predicts all-benign on OOD perturbed test set (F1=0.333), unlike 9-class persuasion which achieves F1=1.0 on both clean and perturbed. Scrambled model overfits to IID distribution.\"}, \"notes\": \"INVALIDATED: 使用了错误数据源 final_v2（v4c benign = user-only独白，结构性 shortcut）。0.333 是数据 bug，非 scrambled control 的真实表现。正确结果见 plan_003_scrambled_fix。\"}, \"plan_003_scrambled_fix\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T07:33:22.415Z\", \"updated_at\": \"2026-05-18T07:39:35.990Z\", \"hypothesis\": \"If correct persuasion strategy labels are the key mechanism for jailbreak detection, then scrambling these labels (while keeping intent labels intact) should significantly degrade detection performance, especially on OOD data.\", \"parent\": \"plan_003_scrambled_perturbation\", \"conclusion\": \"negative\", \"metrics\": {\"deberta\": {\"val_persuasion_acc\": 0.679, \"val_intent_acc\": 1, \"val_loss\": 0.776, \"best_epoch\": 4}, \"iid_test\": {\"full\": 1, \"k1\": 1, \"k2\": 1, \"k3\": 1, \"k5\": 1}, \"dd_ood\": {\"full\": 0.9904, \"k1\": 0.9904, \"k2\": 0.9439, \"k3\": 0.935, \"k5\": 0.9904}, \"perturbation\": {\"clean_full\": 1, \"perturbed_full\": 1, \"delta_full\": 0, \"delta_k1\": 0.0527, \"delta_k2\": 0.0263, \"delta_k3\": 0, \"delta_k5\": 0}}}, \"plan_002_seed456\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T01:12:15.664Z\", \"updated_at\": \"2026-05-18T07:29:36.322Z\", \"hypothesis\": \"Reproduce plan_002 with seed=456 to confirm stability of persuasion-grounded DeBERTa detection advantage over vanilla baseline across random seeds\", \"parent\": \"plan_002_clean_training\", \"conclusion\": \"success\", \"metrics\": {\"treatment_k1_f1\": 1, \"treatment_k2_f1\": 1, \"treatment_k3_f1\": 1, \"treatment_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_k1_f1\": 0.9296, \"baseline_k2_f1\": 0.9589, \"baseline_k3_f1\": 0.9867, \"baseline_k5_f1\": 0.9867, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"deberta_best_epoch\": 2, \"deberta_persuasion_acc\": 0.8593, \"deberta_intent_acc\": 1, \"dd_ood_k1_f1\": 0.9715, \"dd_ood_k2_f1\": 0.9622, \"dd_ood_k3_f1\": 0.935, \"dd_ood_k5_f1\": 0.9904, \"dd_ood_full_f1\": 0.9904}}, \"plan_002_seed123\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T01:13:42.372Z\", \"updated_at\": \"2026-05-18T07:29:32.962Z\", \"hypothesis\": \"9-class persuasion treatment seed=123 achieves same DD OOD performance as seed=42 (F1~1.0), confirming low variance in treatment's cross-attack generalization.\", \"parent\": \"plan_002_clean_training\", \"conclusion\": \"success\", \"metrics\": {\"treatment_k1_f1\": 1, \"treatment_k2_f1\": 1, \"treatment_k3_f1\": 1, \"treatment_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_k1_f1\": 0.987, \"baseline_k2_f1\": 0.987, \"baseline_k3_f1\": 0.987, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"dd_ood_k1_f1\": 1, \"dd_ood_k2_f1\": 0.9904, \"dd_ood_k3_f1\": 0.9904, \"dd_ood_k5_f1\": 1, \"dd_ood_full_f1\": 1}}, \"plan_003_scrambled_retrain\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T07:03:06.735Z\", \"updated_at\": \"2026-05-18T07:03:38.880Z\"}, \"plan_018_wiki_mlm_control\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:56:00.484Z\", \"updated_at\": \"2026-05-18T07:03:28.615Z\", \"hypothesis\": \"If domain-specific text exposure drives OOD generalization (plan_017 showed jailbreak-domain MLM achieves F1=1.0 on DD OOD), then Wikipedia MLM with matched token count should perform significantly worse, proving domain specificity is necessary rather than any continued pretraining.\", \"parent\": \"plan_017_mlm_control\", \"conclusion\": \"success\", \"metrics\": {\"single_seed_42\": {\"dd_ood_full_f1\": 0.7421, \"dd_ood_k1_f1\": 0.8219, \"dd_ood_k2_f1\": 0.815, \"dd_ood_k3_f1\": 0.8492, \"dd_ood_k5_f1\": 0.808, \"iid_full_f1\": 0.9868}, \"three_seed_summary\": {\"seeds\": [42, 123, 456], \"eval_seed\": 42, \"mean_dd_ood_full_f1\": 0.9042, \"std_dd_ood_full_f1\": 0.1147, \"mean_dd_ood_k1_f1\": 0.9131, \"std_dd_ood_k1_f1\": 0.0728, \"mean_dd_ood_k2_f1\": 0.9112, \"std_dd_ood_k2_f1\": 0.0725, \"mean_dd_ood_k3_f1\": 0.9365, \"std_dd_ood_k3_f1\": 0.0623, \"mean_dd_ood_k5_f1\": 0.9228, \"std_dd_ood_k5_f1\": 0.0816, \"mean_iid_full_f1\": 0.978, \"std_iid_full_f1\": 0.0124}, \"per_seed_dd_ood_full_f1\": {\"seed42\": 0.7421, \"seed123\": 0.9902, \"seed456\": 0.9803}}}, \"plan_018_eval_seed456\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T07:02:13.081Z\", \"updated_at\": \"2026-05-18T07:02:13.081Z\"}, \"plan_017_mlm_control\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T04:43:04.262Z\", \"updated_at\": \"2026-05-18T07:02:09.688Z\", \"hypothesis\": \"MLM continued pretraining (no classification labels) on the same training text will NOT achieve DD OOD F1 comparable to persuasion fine-tuning, proving that classification supervision (not just text exposure) is necessary for cross-attack generalization\", \"parent\": \"plan_006_cross_attack_clean\", \"conclusion\": \"negative\", \"metrics\": {\"dd_ood_f1_full\": {\"mean\": 0.9138, \"std\": 0.115, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 0.7512}}, \"dd_ood_f1_k1\": {\"mean\": 0.9734, \"std\": 0.0188, \"seeds\": {\"42\": 1, \"123\": 0.96, \"456\": 0.96}}, \"dd_ood_f1_k2\": {\"mean\": 0.9934, \"std\": 0.0093, \"seeds\": {\"42\": 1, \"123\": 0.9803, \"456\": 1}}, \"dd_ood_f1_k3\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"dd_ood_f1_k5\": {\"mean\": 0.9967, \"std\": 0.0046, \"seeds\": {\"42\": 1, \"123\": 0.9902, \"456\": 1}}, \"iid_f1_full\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k1\": {\"mean\": 0.9254, \"std\": 0.027, \"seeds\": {\"42\": 0.9605, \"123\": 0.8947, \"456\": 0.921}}, \"iid_f1_k2\": {\"mean\": 0.9693, \"std\": 0.0164, \"seeds\": {\"42\": 0.9737, \"123\": 0.9474, \"456\": 0.9868}}, \"iid_f1_k3\": {\"mean\": 0.9781, \"std\": 0.0124, \"seeds\": {\"42\": 0.9868, \"123\": 0.9605, \"456\": 0.9868}}, \"iid_f1_k5\": {\"mean\": 0.9825, \"std\": 0.0164, \"seeds\": {\"42\": 1, \"123\": 0.9605, \"456\": 0.9868}}, \"n_seeds\": 3, \"mlm_val_loss\": {\"seeds\": {\"42\": 2.4727, \"123\": 5.2454, \"456\": 5.3208}}, \"conclusion_note\": \"3-seed validation: DD OOD K=1-5 remain very high (mean>=0.97), but full-turn F1 has high variance (0.91+/-0.12) due to seed=456 GRU instability on long sequences. MLM control still matches persuasion treatment at K>=2.\"}}, \"plan_018_eval_seed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T07:01:23.658Z\", \"updated_at\": \"2026-05-18T07:01:23.658Z\"}, \"plan_018_wiki_mlm_seed456\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:59:27.345Z\", \"updated_at\": \"2026-05-18T06:59:27.345Z\"}, \"plan_018_wiki_mlm_seed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:48:17.310Z\", \"updated_at\": \"2026-05-18T06:57:27.849Z\"}, \"plan_013_binary_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T06:53:26.355Z\", \"updated_at\": \"2026-05-18T06:54:15.000Z\", \"hypothesis\": \"Binary persuasion classification will maintain near-zero perturbation degradation similar to 9-class, proving robustness comes from persuasion-presence detection not fine-grained strategy discrimination\", \"parent\": \"plan_013_none_collapse\", \"conclusion\": \"negative\", \"metrics\": {\"clean_f1_full\": 1, \"clean_f1_k1\": 1, \"clean_f1_k2\": 1, \"clean_f1_k3\": 1, \"clean_f1_k5\": 1, \"perturbed_f1_full\": 1, \"perturbed_f1_k1\": 0.9079, \"perturbed_f1_k2\": 0.9737, \"perturbed_f1_k3\": 1, \"perturbed_f1_k5\": 1, \"delta_f1_full\": 0, \"delta_f1_k1\": -0.0921, \"delta_f1_k2\": -0.0263, \"delta_f1_k3\": 0, \"delta_f1_k5\": 0, \"sample_count\": 76}, \"notes\": \"Hypothesis partially falsified: binary model shows zero perturbation degradation at k>=3 and full (matching 9-class), but degrades at k=1 (-0.092) and k=2 (-0.026), comparable to JB MLM levels. Binary persuasion detection provides robust embeddings for later turns but is more vulnerable than 9-class at very early turns. Fine-grained strategy labels provide additional early-turn perturbation robustness.\"}, \"plan_016v2_topic_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T06:52:43.895Z\", \"updated_at\": \"2026-05-18T06:53:31.443Z\", \"hypothesis\": \"Topic classification model will show significant perturbation degradation comparable to vanilla baseline, as non-aligned classification does not teach lexically-invariant features\", \"parent\": \"plan_016v2_topic_control\", \"metrics\": {\"clean_f1_full\": 1, \"clean_f1_k1\": 0.8947, \"clean_f1_k2\": 0.9473, \"clean_f1_k3\": 0.9605, \"clean_f1_k5\": 0.9868, \"perturbed_f1_full\": 0.9605, \"perturbed_f1_k1\": 0.8676, \"perturbed_f1_k2\": 0.9206, \"perturbed_f1_k3\": 0.9605, \"perturbed_f1_k5\": 0.9605, \"delta_full\": -0.0395, \"delta_k1\": -0.0271, \"delta_k2\": -0.0267, \"delta_k3\": 0, \"delta_k5\": -0.0263}, \"conclusion\": \"negative\"}, \"plan_017_eval_seed456\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:50:55.636Z\", \"updated_at\": \"2026-05-18T06:50:55.636Z\"}, \"plan_017_eval_seed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:40:37.831Z\", \"updated_at\": \"2026-05-18T06:40:37.831Z\"}, \"plan_016v2_topic_control\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T05:24:03.228Z\", \"updated_at\": \"2026-05-18T06:32:46.194Z\", \"hypothesis\": \"Topic classification fine-tuning (without intent head) on the same training text will NOT achieve DD OOD F1 comparable to persuasion fine-tuning, proving that persuasion-specific task (not generic classification) drives cross-attack generalization\", \"parent\": \"plan_006_cross_attack_clean\", \"conclusion\": \"negative\", \"metrics\": {\"dd_ood_f1_full\": {\"mean\": 0.5411, \"std\": 0.2069, \"seeds\": {\"42\": 0.7269, \"123\": 0.2525, \"456\": 0.6441}}, \"dd_ood_f1_k1\": {\"mean\": 0.5912, \"std\": 0.1316, \"seeds\": {\"42\": 0.6971, \"123\": 0.4057, \"456\": 0.6707}}, \"dd_ood_f1_k2\": {\"mean\": 0.5926, \"std\": 0.1655, \"seeds\": {\"42\": 0.7157, \"123\": 0.3587, \"456\": 0.7033}}, \"dd_ood_f1_k3\": {\"mean\": 0.5684, \"std\": 0.1668, \"seeds\": {\"42\": 0.7169, \"123\": 0.3355, \"456\": 0.6529}}, \"dd_ood_f1_k5\": {\"mean\": 0.5728, \"std\": 0.2057, \"seeds\": {\"42\": 0.7502, \"123\": 0.2845, \"456\": 0.6837}}, \"iid_f1_full\": {\"mean\": 0.9736, \"std\": 0.0215, \"seeds\": {\"42\": 1, \"123\": 0.9737, \"456\": 0.9472}}, \"iid_f1_k1\": {\"mean\": 0.8105, \"std\": 0.0618, \"seeds\": {\"42\": 0.8947, \"123\": 0.7889, \"456\": 0.7479}}, \"val_topic_acc\": {\"seeds\": {\"42\": 0.784, \"123\": 0.755, \"456\": 0.822}}, \"n_seeds\": 3}}, \"plan_016v2_topic_eval_seed42\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:31:52.043Z\", \"updated_at\": \"2026-05-18T06:31:52.043Z\"}, \"plan_016v2_topic_eval_seed456\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:31:11.271Z\", \"updated_at\": \"2026-05-18T06:31:11.271Z\"}, \"plan_016v2_topic_eval_seed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:30:35.800Z\", \"updated_at\": \"2026-05-18T06:30:35.800Z\"}, \"plan_017_mlm_seed456\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:30:14.433Z\", \"updated_at\": \"2026-05-18T06:30:14.433Z\"}, \"plan_016v2_topic_seed456\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:28:43.662Z\", \"updated_at\": \"2026-05-18T06:28:43.663Z\"}, \"plan_016v2_topic_seed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:13:44.050Z\", \"updated_at\": \"2026-05-18T06:26:58.468Z\"}, \"plan_018_wiki_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T06:25:52.733Z\", \"updated_at\": \"2026-05-18T06:26:33.520Z\", \"hypothesis\": \"Wikipedia MLM model will show significant perturbation degradation (worse than jailbreak MLM -0.026), as out-of-domain pretraining provides even less robustness to surface-level perturbation\", \"parent\": \"plan_018_wiki_mlm_control\", \"metrics\": {\"clean_f1_full\": 0.9868, \"perturbed_f1_full\": 0.8661, \"delta_f1_full\": -0.1207, \"clean_f1_k1\": 0.9474, \"perturbed_f1_k1\": 0.8238, \"delta_f1_k1\": -0.1236, \"clean_f1_k2\": 0.9341, \"perturbed_f1_k2\": 0.7797, \"delta_f1_k2\": -0.1544, \"clean_f1_k3\": 0.9737, \"perturbed_f1_k3\": 0.7946, \"delta_f1_k3\": -0.1791, \"clean_f1_k5\": 0.9868, \"perturbed_f1_k5\": 0.8381, \"delta_f1_k5\": -0.1487, \"sample_count\": 76}, \"conclusion\": \"success\"}, \"plan_017_mlm_seed123\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:13:41.696Z\", \"updated_at\": \"2026-05-18T06:19:00.777Z\"}, \"plan_018_wiki_mlm_eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T06:18:36.973Z\", \"updated_at\": \"2026-05-18T06:18:36.973Z\"}, \"plan_017_mlm_perturbation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T06:16:45.107Z\", \"updated_at\": \"2026-05-18T06:17:26.327Z\", \"hypothesis\": \"MLM domain-adapted model will maintain robustness under adversarial perturbation (0pp degradation), matching persuasion treatment and confirming domain adaptation (not classification supervision) drives perturbation robustness\", \"parent\": \"plan_017_mlm_control\", \"conclusion\": \"negative\", \"metrics\": {\"clean_full_f1\": 1, \"clean_k1_f1\": 0.9605, \"clean_k2_f1\": 0.9737, \"clean_k3_f1\": 0.9868, \"clean_k5_f1\": 1, \"perturbed_full_f1\": 0.9737, \"perturbed_k1_f1\": 0.8683, \"perturbed_k2_f1\": 0.9341, \"perturbed_k3_f1\": 0.9473, \"perturbed_k5_f1\": 0.9605, \"delta_full\": -0.0263, \"delta_k1\": -0.0922, \"delta_k2\": -0.0396, \"delta_k3\": -0.0395, \"delta_k5\": -0.0395, \"ref_treatment_delta_full\": 0, \"ref_baseline_delta_full\": -0.1176}, \"notes\": \"Hypothesis falsified: MLM model shows moderate perturbation degradation (full F1: 1.0→0.9737, delta=-0.0263), NOT matching treatment's 0pp drop. MLM robustness is intermediate: better than vanilla baseline (-0.1176) but clearly worse than persuasion treatment (0.0). At k=1, MLM drops -0.0922 vs treatment -0.0256. Domain adaptation alone provides partial but insufficient perturbation robustness — classification supervision on persuasion-augmented data is necessary for full robustness.\"}, \"plan_016_sentiment_control\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-18T04:43:03.026Z\", \"updated_at\": \"2026-05-18T05:24:01.725Z\", \"hypothesis\": \"Random-task (sentiment classification) fine-tuning on the same training text will NOT achieve DD OOD F1 comparable to persuasion fine-tuning, proving that persuasion-specific learning (not generic domain-adaptive fine-tuning) drives cross-attack generalization\", \"parent\": \"plan_006_cross_attack_clean\", \"conclusion\": \"failed\"}, \"plan_012_gpt55_judge\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T03:20:47.277Z\", \"updated_at\": \"2026-05-18T03:21:29.028Z\", \"hypothesis\": \"Zero-shot LLM-as-judge (GPT-5.5) will underperform specialized trained classifiers at early jailbreak detection despite being a stronger LLM than Qwen3-8B, establishing that even frontier LLMs cannot match trained detection models\", \"parent\": \"plan_012_llm_judge_qwen\", \"conclusion\": \"success\", \"metrics\": {\"gpt55_k2_f1\": 0.1905, \"gpt55_k3_f1\": 0.2727, \"gpt55_k5_f1\": 0.449, \"gpt55_full_f1\": 0.383, \"gpt55_k2_precision\": 1, \"gpt55_k2_recall\": 0.1053, \"gpt55_k5_precision\": 1, \"gpt55_k5_recall\": 0.2895, \"unparseable_k2\": \"23/76\", \"unparseable_full\": \"36/76\", \"metric\": \"binary_f1_jailbreak_positive\", \"test_set\": \"data/plan_002_splits/test.jsonl\", \"sample_count\": 76, \"conclusion_note\": \"GPT-5.5 >> Qwen3-8B but still far below trained classifier. Perfect precision but very low recall.\"}}, \"plan_015_dd_eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T03:17:34.913Z\", \"updated_at\": \"2026-05-18T03:18:10.969Z\", \"hypothesis\": \"Mean pooling classifier (without temporal modeling) will perform comparably to BiGRU on DD OOD data, proving GRU temporal modeling is not necessary and persuasion embeddings alone drive cross-attack generalization\", \"parent\": \"plan_006_cross_attack_clean\", \"conclusion\": \"success\", \"metrics\": {\"meanpool_treatment_k1_f1\": 1, \"meanpool_treatment_k2_f1\": 1, \"meanpool_treatment_k3_f1\": 0.9937, \"meanpool_treatment_k5_f1\": 1, \"meanpool_treatment_full_f1\": 1, \"meanpool_baseline_k1_f1\": 0.8286, \"meanpool_baseline_k2_f1\": 0.6387, \"meanpool_baseline_k3_f1\": 0.5614, \"meanpool_baseline_k5_f1\": 0.3922, \"meanpool_baseline_full_f1\": 0.2947, \"gru_treatment_k2_f1\": 0.9904, \"gru_treatment_k3_f1\": 0.9904, \"gru_vs_meanpool\": \"comparable\", \"conclusion_note\": \"GRU temporal modeling NOT necessary on DD OOD; persuasion embeddings are the core driver\"}}, \"plan_006_cross_attack_clean\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T00:10:28.564Z\", \"updated_at\": \"2026-05-18T02:44:59.068Z\", \"hypothesis\": \"Persuasion-grounded DeBERTa fine-tuning (trained on Crescendo) produces transferable structural signals that generalize to unseen attack types (FITD/DD), outperforming vanilla DeBERTa baseline especially on structurally different attacks like Deceptive Delight\", \"parent\": \"plan_002_clean_training\", \"conclusion\": \"success\", \"metrics\": {\"dd_treatment_full_f1\": 1, \"dd_baseline_full_f1\": 0.2845, \"dd_treatment_k1_f1\": 1, \"dd_baseline_k1_f1\": 0.5752, \"dd_treatment_k2_f1\": 0.9904, \"dd_baseline_k2_f1\": 0.4381, \"dd_treatment_k3_f1\": 0.9904, \"dd_baseline_k3_f1\": 0.3596, \"dd_treatment_k5_f1\": 1, \"dd_baseline_k5_f1\": 0.3105, \"fitd_treatment_full_f1\": 1, \"fitd_baseline_full_f1\": 1, \"fitd_treatment_k1_f1\": 1, \"fitd_baseline_k1_f1\": 0.9902, \"fitd_treatment_k2_f1\": 1, \"fitd_baseline_k2_f1\": 1, \"tfidf_dd_full_f1\": 0.9439, \"tfidf_fitd_k1_f1\": 1, \"max_dd_delta_pp\": 71.55, \"pass_criteria\": true}}, \"plan_004_perturbation_eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T00:09:52.806Z\", \"updated_at\": \"2026-05-18T02:44:58.735Z\", \"hypothesis\": \"Persuasion-grounded DeBERTa embeddings are robust to adversarial paraphrasing (aggressive user-turn rewriting), while vanilla DeBERTa baseline will show significant F1 degradation, proving treatment relies on structural persuasion signals rather than surface lexical features\", \"conclusion\": \"success\", \"metrics\": {\"treatment_original_f1\": 1, \"treatment_perturbed_f1\": 1, \"treatment_f1_drop\": 0, \"baseline_original_f1\": 1, \"baseline_perturbed_f1\": 0.8824, \"baseline_f1_drop\": -0.1176, \"tfidf_original_f1\": 1, \"tfidf_perturbed_f1\": 0.9867, \"tfidf_f1_drop\": -0.0133, \"bertscore_mean\": 0.92, \"lexical_overlap\": 0.2, \"sample_count\": 76}}, \"plan_013_none_collapse\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T01:12:53.567Z\", \"updated_at\": \"2026-05-18T02:44:57.760Z\", \"hypothesis\": \"Binary persuasion collapse (persuasion-present vs none) will perform comparably to full 9-class persuasion classification, proving the model is fundamentally a persuasion-presence detector rather than relying on fine-grained strategy discrimination\", \"conclusion\": \"success\", \"metrics\": {\"binary_k1_f1\": 1, \"binary_k2_f1\": 1, \"binary_k3_f1\": 1, \"binary_k5_f1\": 1, \"binary_full_f1\": 1, \"ninclass_k1_f1\": 1, \"ninclass_k2_f1\": 1, \"ninclass_k3_f1\": 1, \"ninclass_k5_f1\": 1, \"ninclass_full_f1\": 1, \"baseline_k1_f1\": 0.987, \"baseline_k2_f1\": 0.987, \"baseline_k3_f1\": 0.987, \"baseline_full_f1\": 1, \"dd_binary_k1_f1\": 0.9809, \"dd_binary_k2_f1\": 0.9809, \"dd_binary_k3_f1\": 0.9715, \"dd_binary_k5_f1\": 1, \"dd_binary_full_f1\": 0.9904, \"dd_9class_full_f1\": 1, \"dd_baseline_full_f1\": 0.2845, \"conclusion_note\": \"binary collapse = 9-class IID and OOD, model is persuasion-presence detector\"}}, \"plan_012_llm_judge_qwen\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T23:17:05.101Z\", \"updated_at\": \"2026-05-18T00:32:16.667Z\", \"hypothesis\": \"Zero-shot LLM-as-judge (Qwen3-8B) will underperform specialized trained classifiers at early jailbreak detection, establishing a deployed baseline for comparison\", \"conclusion\": \"success\", \"metrics\": {\"qwen_k2_f1\": 0, \"qwen_k3_f1\": 0.051, \"qwen_k5_f1\": 0.146, \"qwen_full_f1\": 0.1, \"metric\": \"binary_f1_jailbreak_positive\", \"test_set\": \"data/plan_002_splits/test.jsonl\", \"sample_count\": 76, \"model\": \"qwen3-8b\", \"note\": \"rerun with correct test set and binary F1 metric\"}}, \"plan_002_clean_training\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T23:18:30.115Z\", \"updated_at\": \"2026-05-17T23:19:02.467Z\", \"hypothesis\": \"Persuasion-grounded DeBERTa embeddings on topic-anchored data will show significant early detection advantage over vanilla baseline, with Treatment-Baseline gap > 5pp at K=2 or K=3\", \"parent\": \"phase_b_full\", \"conclusion\": \"negative\", \"metrics\": {\"treatment_k1_f1\": 1, \"baseline_k1_f1\": 0.987, \"treatment_k2_f1\": 1, \"baseline_k2_f1\": 0.9867, \"treatment_k3_f1\": 1, \"baseline_k3_f1\": 0.9867, \"treatment_k5_f1\": 1, \"baseline_k5_f1\": 1, \"treatment_full_f1\": 1, \"baseline_full_f1\": 1, \"tfidf_all_k_f1\": 1, \"max_delta_pp\": 1.3, \"pass_criteria_5pp\": false}}, \"plan_003_scrambled_ablation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T22:54:10.521Z\", \"updated_at\": \"2026-05-17T22:54:46.443Z\", \"hypothesis\": \"Scrambling persuasion strategy labels while preserving distribution will significantly degrade detection performance, proving strategy labels carry real signal beyond surface confounds\", \"conclusion\": \"negative\", \"metrics\": {\"scrambled_k1_f1\": 0.9744, \"scrambled_k2_f1\": 1, \"scrambled_k3_f1\": 1, \"scrambled_k5_f1\": 1, \"scrambled_full_f1\": 1, \"proper_k2_f1\": 0.9867, \"proper_k3_f1\": 0.9867, \"baseline_k2_f1\": 0.8788, \"baseline_k3_f1\": 0.9276, \"scrambled_deberta_persuasion_acc\": 0.6437, \"proper_deberta_persuasion_acc\": 0.7963, \"data_version\": \"v4c (NOT plan_002 data)\"}}, \"cross_attack_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T21:15:33.333Z\", \"updated_at\": \"2026-05-17T22:51:51.972Z\", \"hypothesis\": \"Persuasion-grounded DeBERTa embeddings (trained on Crescendo) generalize to unseen attack types (FITD/DD) for early detection, outperforming vanilla DeBERTa baseline especially at low K\", \"parent\": \"phase_b_full\", \"conclusion\": \"negative\", \"metrics\": {\"fitd_treatment_k1_f1\": 0.9812, \"fitd_baseline_k1_f1\": 0.7483, \"fitd_treatment_k2_f1\": 0.975, \"fitd_baseline_k2_f1\": 0.6866, \"fitd_treatment_k3_f1\": 0.9937, \"fitd_baseline_k3_f1\": 0.8465, \"dd_treatment_k1_f1\": 0.9812, \"dd_baseline_k1_f1\": 1, \"dd_treatment_k2_f1\": 0.9875, \"dd_baseline_k2_f1\": 1, \"full_treatment_f1\": 1, \"full_baseline_f1\": 1, \"tfidf_fitd_k2_f1\": 1, \"tfidf_dd_k1_f1\": 1, \"invalidation_reason\": \"v4c benign data TF-IDF=1.0 confound + model trained on confounded data, results not citable\"}}, \"plan_008_strategy_transition\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T22:08:21.409Z\", \"updated_at\": \"2026-05-17T22:09:10.719Z\", \"hypothesis\": \"Crescendo exhibits monotonically escalating strategy sequences (mean index increases over turns) while FITD/DD show distinct transition patterns, supporting the Pragmatic Evasion Asymmetry claim\", \"conclusion\": \"success\", \"metrics\": {\"crescendo_mean_index_start\": 0.86, \"crescendo_mean_index_end\": 5.64, \"crescendo_strategies_used\": 8, \"fitd_strategies_used\": 4, \"dd_strategies_used\": 6, \"crescendo_transitions\": 1818, \"fitd_transitions\": 541, \"dd_transitions\": 565}}, \"plan_007_tfidf_fitd_dd\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T22:08:19.094Z\", \"updated_at\": \"2026-05-17T22:09:05.552Z\", \"hypothesis\": \"TF-IDF classifier on FITD/DD vs v4c benign will achieve F1=1.0, confirming v4c benign has topic/vocabulary confound with all attack types (not just Crescendo)\", \"conclusion\": \"success\", \"metrics\": {\"tfidf_fitd_vs_v4c_f1\": 1, \"tfidf_dd_vs_v4c_f1\": 1}}, \"plan_005_multi_attack_gen\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T21:49:00.605Z\", \"updated_at\": \"2026-05-17T22:08:58.948Z\", \"hypothesis\": \"FITD and Deceptive Delight attack conversations can be generated with prescribed strategy sequences using Qwen3-8B, producing 80+80 conversations with distinct strategy distributions from Crescendo\", \"conclusion\": \"success\", \"metrics\": {\"fitd_count\": 80, \"dd_count\": 80, \"fitd_strategies\": [0, 1, 3, 5], \"dd_strategies\": [0, 2, 3, 4, 5, 6]}}, \"phase_b_full\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T16:46:02.649Z\", \"updated_at\": \"2026-05-17T16:53:30.358Z\", \"hypothesis\": \"Persuasion-grounded DeBERTa embeddings (multi-task fine-tuned on 8-class persuasion + intent) enable significantly earlier detection of Crescendo jailbreak attacks compared to vanilla DeBERTa embeddings, especially at low K (2-3 turns)\", \"parent\": \"pilot_phase_b\", \"conclusion\": \"success\", \"metrics\": {\"deberta_persuasion_acc\": 0.7963, \"deberta_intent_acc\": 0.9514, \"deberta_best_epoch\": 3, \"treatment_full_f1\": 1, \"baseline_full_f1\": 0.987, \"tfidf_full_f1\": 1, \"treatment_k1_f1\": 0.9867, \"baseline_k1_f1\": 0.8615, \"tfidf_k1_f1\": 1, \"treatment_k2_f1\": 0.987, \"baseline_k2_f1\": 0.879, \"tfidf_k2_f1\": 1, \"treatment_k3_f1\": 0.987, \"baseline_k3_f1\": 0.928, \"tfidf_k3_f1\": 1, \"treatment_k5_f1\": 1, \"baseline_k5_f1\": 0.958, \"tfidf_k5_f1\": 1, \"treatment_fpr95tpr_full\": 0, \"baseline_fpr95tpr_full\": 0, \"treatment_fpr95tpr_k2\": 0, \"baseline_fpr95tpr_k2\": 0.057, \"treatment_fpr95tpr_k1\": 0, \"baseline_fpr95tpr_k1\": 0.057, \"balanced_tfidf_cv_f1\": 1, \"test_size\": 72, \"dataset_size\": 480}}, \"pilot_phase_b\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T16:29:35.872Z\", \"updated_at\": \"2026-05-17T16:29:57.108Z\", \"hypothesis\": \"Persuasion-aware DeBERTa embeddings (multi-task fine-tuned) fed to Bi-GRU will outperform vanilla DeBERTa embeddings at early detection (K=2,3,5 turns) of Crescendo-style jailbreak attacks\", \"conclusion\": \"success\", \"metrics\": {\"treatment_full_f1\": 1, \"baseline_full_f1\": 0.737, \"tfidf_full_f1\": 1, \"treatment_k2_f1\": 1, \"baseline_k2_f1\": 0.737, \"tfidf_k2_f1\": 0.894, \"treatment_k3_f1\": 1, \"baseline_k3_f1\": 0.894, \"tfidf_k3_f1\": 0.894, \"treatment_k5_f1\": 1, \"baseline_k5_f1\": 0.894, \"tfidf_k5_f1\": 0.894, \"deberta_persuasion_acc\": 0.718, \"deberta_intent_acc\": 0.984, \"test_size\": 41, \"test_benign\": 3, \"test_jailbreak\": 38}}}, \"count\": 133, \"total\": 133, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7757}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01H7SJrbEq4XDtn8rQXMKDHk`</summary>
+
+```json
+{
+  "description": "Extract registry metrics",
+  "prompt": "I need to extract specific metrics from a registry JSON file for computing dual-OOD F1 scores. The file is at:\n/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\n\nThe file has schema: {result: string} where result is a JSON string.\n\nI need you to find:\n\n1. **9-class attack-side metrics (benign IID condition)**:\n   - DD Full F1 (3-seed mean±std) — should be ~0.994±0.005\n   - AA Full F1 (3-seed mean±std) — should be ~0.972±0.026\n   - Most importantly: **per-seed attack recall** for both DD and AA (not F1, but recall specifically). Look for fields like \"recall\", \"attack_recall\", \"detection_recall\", or similar. If per-seed data exists, extract all seeds.\n\n2. **Benign FPR data**:\n   - exp19: WildChat FPR (should be ~0.681)\n   - exp51: OASST2 FPR (should be ~0.575)\n   - Any experiments with WildChat + 10-shot adaptation FPR (should be ~0)\n   - Any experiments with OASST2 + 25-shot adaptation FPR (should be ~0.010±0.005)\n\n3. **Test set sizes**: DD OOD and AA OOD test set composition (n_attack, n_benign)\n\nSteps:\n1. First probe structure: `jq 'type, length, keys' file`\n2. Parse the result string as JSON\n3. Search through experiments for the above metrics\n4. Report ALL relevant numbers verbatim, including per-seed breakdowns if available\n\nBe thorough — I need exact numbers, not approximations.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "392c6495-7d79-471f-801a-9efa15f3347a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DEUDyZZxrf3ibMB7aKPQnT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 612,
+      "cache_read_input_tokens": 25060,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 612
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 11_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Extract registry metrics",
+  "task_type": "local_agent",
+  "prompt": "I need to extract specific metrics from a registry JSON file for computing dual-OOD F1 scores. The file is at:\n/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\n\nThe file has schema: {result: string} where result is a JSON string.\n\nI need you to find:\n\n1. **9-class attack-side metrics (benign IID condition)**:\n   - DD Full F1 (3-seed mean±std) — should be ~0.994±0.005\n   - AA Full F1 (3-seed mean±std) — should be ~0.972±0.026\n   - Most importantly: **per-seed attack recall** for both DD and AA (not F1, but recall specifically). Look for fields like \"recall\", \"attack_recall\", \"detection_recall\", or similar. If per-seed data exists, extract all seeds.\n\n2. **Benign FPR data**:\n   - exp19: WildChat FPR (should be ~0.681)\n   - exp51: OASST2 FPR (should be ~0.575)\n   - Any experiments with WildChat + 10-shot adaptation FPR (should be ~0)\n   - Any experiments with OASST2 + 25-shot adaptation FPR (should be ~0.010±0.005)\n\n3. **Test set sizes**: DD OOD and AA OOD test set composition (n_attack, n_benign)\n\nSteps:\n1. First probe structure: `jq 'type, length, keys' file`\n2. Parse the result string as JSON\n3. Search through experiments for the above metrics\n4. Report ALL relevant numbers verbatim, including per-seed breakdowns if available\n\nBe thorough — I need exact numbers, not approximations.",
+  "uuid": "13ded3ea-34bc-423d-b530-441e1552eee8",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+## Round 1
+
+117 recorded events
+
+### User
+
+_source line 12 · 2026-05-22T23:32:03.933Z_
+
+I need to extract specific metrics from a registry JSON file for computing dual-OOD F1 scores. The file is at:
+/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt
+
+The file has schema: {result: string} where result is a JSON string.
+
+I need you to find:
+
+1. **9-class attack-side metrics (benign IID condition)**:
+   - DD Full F1 (3-seed mean±std) — should be ~0.994±0.005
+   - AA Full F1 (3-seed mean±std) — should be ~0.972±0.026
+   - Most importantly: **per-seed attack recall** for both DD and AA (not F1, but recall specifically). Look for fields like "recall", "attack_recall", "detection_recall", or similar. If per-seed data exists, extract all seeds.
+
+2. **Benign FPR data**:
+   - exp19: WildChat FPR (should be ~0.681)
+   - exp51: OASST2 FPR (should be ~0.575)
+   - Any experiments with WildChat + 10-shot adaptation FPR (should be ~0)
+   - Any experiments with OASST2 + 25-shot adaptation FPR (should be ~0.010±0.005)
+
+3. **Test set sizes**: DD OOD and AA OOD test set composition (n_attack, n_benign)
+
+Steps:
+1. First probe structure: `jq 'type, length, keys' file`
+2. Parse the result string as JSON
+3. Search through experiments for the above metrics
+4. Report ALL relevant numbers verbatim, including per-seed breakdowns if available
+
+Be thorough — I need exact numbers, not approximations.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "ce7b84d4-a1bb-43de-92f8-7c21ae0240b5"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 13_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Reading ~/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt",
+  "usage": {
+    "total_tokens": 15253,
+    "tool_uses": 1,
+    "duration_ms": 3253
+  },
+  "last_tool_name": "Read",
+  "uuid": "deaa78bb-6a7a-421d-8bdc-d756bafeb573",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016ZF4myaqzX3pZvnkRH3DMX`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt",
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "d947da9a-c2e5-4a9b-bfea-cc7e4df98b42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NUwkv8CSRsusgKAz7BhHtP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15242,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 15242,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T23:32:07.519Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_016ZF4myaqzX3pZvnkRH3DMX`</summary>
+
+```text
+File content (52544 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "6c00b8da-6da3-4018-a939-3d9907abc5f5",
+  "tool_use_result": "Error: File content (52544 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 16_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Check file size",
+  "usage": {
+    "total_tokens": 16332,
+    "tool_uses": 2,
+    "duration_ms": 7837
+  },
+  "last_tool_name": "Bash",
+  "uuid": "df8043a1-ed9b-462e-8758-8d808188f6dc",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01F89KbWTfFgkgtT1R3VQSs9`</summary>
+
+```json
+{
+  "command": "wc -c /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt",
+  "description": "Check file size"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "8b219765-09da-4685-8228-413a8deaac98",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MLXW5Qmdxe279byMGKXmv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1079,
+      "cache_read_input_tokens": 15242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1079,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T23:32:11.946Z_
+
+<details><summary>↩ Tool result · `toolu_01F89KbWTfFgkgtT1R3VQSs9`</summary>
+
+```text
+121207 /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "12589d5e-6051-4242-896c-8a4ff19ec59f"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 19_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Reading ~/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt",
+  "usage": {
+    "total_tokens": 16333,
+    "tool_uses": 3,
+    "duration_ms": 9136
+  },
+  "last_tool_name": "Read",
+  "uuid": "6adc9e3d-52ea-406d-9512-7c195d3f1a9a",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MCUV1BkhFoemGHnKjQvAMc`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt",
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "aa13fc37-30ff-4008-a6c1-7beca94a9aa7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MLXW5Qmdxe279byMGKXmv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1079,
+      "cache_read_input_tokens": 15242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1079,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T23:32:13.356Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01MCUV1BkhFoemGHnKjQvAMc`</summary>
+
+```text
+File content (52544 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "f0f6916d-1df5-41ae-ac95-779387ca1e77",
+  "tool_use_result": "Error: File content (52544 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 22_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Check file beginning structure",
+  "usage": {
+    "total_tokens": 16933,
+    "tool_uses": 4,
+    "duration_ms": 12507
+  },
+  "last_tool_name": "Bash",
+  "uuid": "b149b09d-6393-4e14-ba52-e0f099f54fc1",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DUsZJqUWm8ipXkRjstE87d`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results && head -c 500 mcp-agent-ml-research-read_registry-1779492709211.txt",
+  "description": "Check file beginning structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "7bda0ada-75ca-4a1d-85e6-f35971743d55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9Lc6heT7GK7YPmkKvmG9w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 530,
+      "cache_read_input_tokens": 16321,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 530,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T23:32:16.511Z_
+
+<details><summary>↩ Tool result · `toolu_01DUsZJqUWm8ipXkRjstE87d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp64_toxicchat_confidence_analysis\": {\"status\": \"DONE\", \"created_at\": \"2026-05-22T22:28:42.948Z\", \"updated_at\": \"2026-05-22T22:29:28.485Z\", \"hypothesis\": \"9-class 在 ToxicChat 上的高 FPR 来源于高置信误判（>0.9），而非 borderline 预测，说明 classification DAPT 对 ToxicChat benign 文本产生了系统性的特征偏移而非边界模糊\", \"conclusion\": \"success\", \"metrics\": {\"9class_major
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "7ea98223-1f4c-4033-ba57-a6fbffa73cc7"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 25_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Parse JSON and list all experiments",
+  "usage": {
+    "total_tokens": 17316,
+    "tool_uses": 5,
+    "duration_ms": 18013
+  },
+  "last_tool_name": "Bash",
+  "uuid": "738c6c9f-582e-4c2e-95fd-f469981a3277",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01458SfRzbxMKBT1nWpL2dMN`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\ndata = inner['data']\nprint('Top-level keys:', list(data.keys()))\nexps = data['experiments']\nprint('Number of experiments:', len(exps))\nprint('Experiment names:')\nfor k in sorted(exps.keys()):\n    print(f'  {k}')\n\"",
+  "description": "Parse JSON and list all experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "4013e135-5b9e-430e-8e16-52bd91f9b096",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M9jn1yxJh6LiW8eHuFajNV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 381,
+      "cache_read_input_tokens": 16851,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 381,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-22T23:32:22.049Z_
+
+<details><summary>↩ Tool result · `toolu_01458SfRzbxMKBT1nWpL2dMN`</summary>
+
+```text
+Top-level keys: ['experiments', 'count', 'total', 'baseline']
+Number of experiments: 133
+Experiment names:
+  cross_attack_baseline
+  exp10_fewshot_llm_judge
+  exp11_tost_equivalence
+  exp12_toxicchat_bootstrap
+  exp13_meanpool_multiseed
+  exp14_cross_llm_validation
+  exp14b_cross_llm_control
+  exp14c_prediction_analysis
+  exp15_roberta_large
+  exp15b_roberta_large_lr
+  exp15c_roberta_large_mlm
+  exp16_9class_train
+  exp16_llama_benign_gen
+  exp16_llama_jailbreak_gen
+  exp16_multi_llm
+  exp16_multi_llm_training
+  exp16_vanilla_train
+  exp16b_llama_only_mlm
+  exp17_dataset_scale
+  exp17_dryrun
+  exp17_qwen_benign_gen
+  exp17_qwen_jailbreak_gen
+  exp18_e2e_finetune
+  exp19_wildchat_fpr
+  exp1_roberta_9class
+  exp1_roberta_mlm
+  exp1_roberta_vanilla
+  exp20_deepcontext_proxy
+  exp21_cross_checkpoint
+  exp22_aa_early_detection
+  exp23_aa_error_analysis
+  exp24_calibration_ece
+  exp25_fitd_early_detection
+  exp26_frozen_probing
+  exp27_mean_pooling
+  exp28_data_efficiency
+  exp28b_data_efficiency_supplement
+  exp28c_vanilla_supplement
+  exp29_inference_efficiency
+  exp2_actorattack_mcnemar
+  exp2_actorattack_ood
+  exp30_length_stratified
+  exp31_lambda_ablation_aa
+  exp32_strategy_prediction
+  exp33_strategy_prediction_plan002
+  exp34_representation_tsne
+  exp35_cross_seed_ensemble
+  exp36
+  exp36_frozen_mlm_probing
+  exp37_length_matched_benign
+  exp38_wildcat_calibration
+  exp39_extra_seeds_tost
+  exp3_probing
+  exp3_roberta_probing
+  exp40
+  exp40_llama_guard_baseline
+  exp41_tost_10seed
+  exp42_ood_benign_mixed
+  exp42b_balanced_ratio_ablation
+  exp43_mhj_human_eval
+  exp44_multi_llm_mixed
+  exp45_benign_adaptation_curve
+  exp46
+  exp46_inference_efficiency
+  exp48_ensemble_mlm_9class
+  exp49_representation_analysis
+  exp4_dd_ood_perturbation
+  exp50_layerwise_representation
+  exp51_lmsys_benign_ood
+  exp52_oasst2_n25_multiseed
+  exp53_llm_judge_prompt_opt
+  exp54_causal_probe_subspace
+  exp55_5seed_mlm_vs_9class_aa
+  exp56_crossllm_10shot_adaptation
+  exp57_svd_iid_only
+  exp58_truncated_single_turn
+  exp59_resample_350
+  exp5_llm_judge_ood
+  exp60_turncount_baseline
+  exp61_random_binary_partition
+  exp62_topic_diagnosis
+  exp63_toxicchat_fpfn
+  exp64_toxicchat_confidence_analysis
+  exp6_actorattack_perturbation
+  exp7_tfidf_perprefix_actorattack
+  exp8_mhj_human_data
+  exp9_bootstrap_ci
+  llama_crescendo_dryrun
+  mf1_binary_seed123
+  mf1_binary_seed456
+  mf1_scrambled_seed123
+  mf1_scrambled_seed456
+  phase_b_full
+  pilot_phase_b
+  plan_002_clean_training
+  plan_002_seed123
+  plan_002_seed456
+  plan_003_scrambled_ablation
+  plan_003_scrambled_fix
+  plan_003_scrambled_perturbation
+  plan_003_scrambled_retrain
+  plan_004_perturbation_eval
+  plan_005_multi_attack_gen
+  plan_006_cross_attack_clean
+  plan_007_tfidf_fitd_dd
+  plan_008_strategy_transition
+  plan_012_gpt55_judge
+  plan_012_llm_judge_qwen
+  plan_013_binary_perturbation
+  plan_013_none_collapse
+  plan_015_dd_eval
+  plan_016_sentiment_control
+  plan_016v2_topic_control
+  plan_016v2_topic_eval_seed123
+  plan_016v2_topic_eval_seed42
+  plan_016v2_topic_eval_seed456
+  plan_016v2_topic_perturbation
+  plan_016v2_topic_seed123
+  plan_016v2_topic_seed456
+  plan_017_eval_seed123
+  plan_017_eval_seed456
+  plan_017_mlm_control
+  plan_017_mlm_perturbation
+  plan_017_mlm_seed123
+  plan_017_mlm_seed456
+  plan_018_eval_seed123
+  plan_018_eval_seed456
+  plan_018_wiki_mlm_control
+  plan_018_wiki_mlm_eval
+  plan_018_wiki_mlm_seed123
+  plan_018_wiki_mlm_seed456
+  plan_018_wiki_perturbation
+  vanilla_multiseed_dd_ood
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "430c5b51-55c5-45ca-9ed0-b31c1a7bf100"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 28_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Search for DD/AA metrics in all experiments",
+  "usage": {
+    "total_tokens": 19093,
+    "tool_uses": 6,
+    "duration_ms": 30668
+  },
+  "last_tool_name": "Bash",
+  "uuid": "5e313e28-7d90-467e-810a-44bfb53def2a",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01ShFyiadbfAXVc3KTaJapDC`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Look for experiments with DD/AA full F1, 9-class, benign IID\nkeywords = ['9class', 'dd_full', 'aa_full', 'DD_full', 'AA_full', 'full_f1', 'attack_recall', 'recall']\nfor name, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    metrics_str = json.dumps(metrics)\n    if any(kw in metrics_str.lower() for kw in ['dd_full', 'aa_full', 'dd_ood', 'aa_ood']):\n        print(f'\\\\n=== {name} ===')\n        print(f'  status: {exp.get(\\\"status\\\")}')\n        # Print relevant metric keys\n        for mk, mv in metrics.items():\n            if any(kw in mk.lower() for kw in ['dd', 'aa', 'full', 'ood', 'recall', 'f1', 'attack']):\n                print(f'  {mk}: {json.dumps(mv)}')\n\" 2>&1 | head -200",
+  "description": "Search for DD/AA metrics in all experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "39517345-be94-493e-9a8c-6286d3f0e155",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4Wq24qHcQAwuwVGAggViu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1775,
+      "cache_read_input_tokens": 17232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1775,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T23:32:34.702Z_
+
+<details><summary>↩ Tool result · `toolu_01ShFyiadbfAXVc3KTaJapDC`</summary>
+
+```text
+=== exp10_fewshot_llm_judge ===
+  status: DONE
+  dd_full_binary_f1: 0.5405
+  dd_full_macro_f1: 0.5663
+  dd_full_precision: 0.9677
+  dd_full_recall: 0.375
+  aa_full_binary_f1: 0.6612
+  aa_full_macro_f1: 0.6523
+  aa_full_precision: 0.9756
+  aa_full_recall: 0.5
+  dd_per_k_macro_f1: {"k1": 0.2575, "k2": 0.3355, "k3": 0.4693, "k5": 0.4894, "full": 0.5663}
+  aa_per_k_macro_f1: {"k1": 0.4055, "k2": 0.4274, "k3": 0.5376, "k5": 0.6356, "full": 0.6523}
+  dd_per_k_binary_f1: {"k1": 0.0247, "k2": 0.1609, "k3": 0.3838, "k5": 0.4158, "full": 0.5405}
+  aa_per_k_binary_f1: {"k1": 0.2796, "k2": 0.3158, "k3": 0.4906, "k5": 0.6325, "full": 0.6612}
+
+=== exp11_tost_equivalence ===
+  status: DONE
+  dd_ood_full: {"9class_vs_scrambled": {"mean_diff": 0, "ci_90": [-0.016, 0.016], "p_tost": 0.006, "equivalent": true, "ci_within_margin": true}, "9class_vs_binary": {"mean_diff": -0.0032, "ci_90": [-0.013, 0.006], "p_tost": 0.002, "equivalent": true, "ci_within_margin": true}, "9class_vs_jb_mlm": {"mean_diff": 0.083, "ci_90": [-0.145, 0.311], "p_tost": 0.643, "equivalent": false, "ci_within_margin": false}, "scrambled_vs_binary": {"mean_diff": -0.0032, "ci_90": [-0.013, 0.006], "p_tost": 0.002, "equivalent": true, "ci_within_margin": true}}
+  actorattack_full: {"9class_vs_scrambled": {"mean_diff": 0.0209, "ci_90": [-0.109, 0.151], "p_tost": 0.29, "equivalent": false, "ci_within_margin": false}, "9class_vs_binary": {"mean_diff": -0.0185, "ci_90": [-0.075, 0.038], "p_tost": 0.122, "equivalent": false, "ci_within_margin": false}, "9class_vs_jb_mlm": {"mean_diff": 0.0784, "ci_90": [-0.109, 0.266], "p_tost": 0.65, "equivalent": false, "ci_within_margin": false}, "scrambled_vs_binary": {"mean_diff": -0.0394, "ci_90": [-0.117, 0.038], "p_tost": 0.363, "equivalent": false, "ci_within_margin": false}}
+
+=== exp13_meanpool_multiseed ===
+  status: PREPARING
+  dd_ood: {"k1": {"mean": 0.9905, "std": 0.0134}, "k2": {"mean": 0.9936, "std": 0.009}, "k3": {"mean": 0.9842, "std": 0.016}, "k5": {"mean": 0.9968, "std": 0.0045}, "full": {"mean": 0.9905, "std": 0.0134}}
+  actorattack: {"k1": {"mean": 0.8301, "std": 0.0272}, "k2": {"mean": 0.903, "std": 0.0229}, "k3": {"mean": 0.9622, "std": 0.0076}, "k5": {"mean": 0.9716, "std": 0.0153}, "full": {"mean": 0.9623, "std": 0.0151}}
+
+=== exp14_cross_llm_validation ===
+  status: DONE
+  llama_dd_full: {"vanilla": 0.261, "jb_mlm": 0.282, "9class": 0.433}
+  llama_aa_full: {"vanilla": 0.261, "jb_mlm": 0.368, "9class": 0.321}
+  llama_dd_k1: {"vanilla": 0.17, "jb_mlm": 0.332, "9class": 0.312}
+  llama_aa_k1: {"vanilla": 0.248, "jb_mlm": 0.316, "9class": 0.265}
+  qwen_vs_llama_dd_full: {"vanilla_gap": -0.051, "jb_mlm_gap": -0.632, "9class_gap": -0.564}
+
+=== exp14b_cross_llm_control ===
+  status: DONE
+  dd_full: {"vanilla": 0.302, "jb_mlm": 0.778, "9class": 1}
+  aa_full: {"vanilla": 0.302, "jb_mlm": 0.903, "9class": 0.801}
+  dd_k1: {"vanilla": 0.319, "jb_mlm": 0.965, "9class": 0.935}
+  dd_k3: {"vanilla": 0.302, "jb_mlm": 0.996, "9class": 0.977}
+  aa_k1: {"vanilla": 0.443, "jb_mlm": 0.927, "9class": 0.832}
+  aa_k3: {"vanilla": 0.302, "jb_mlm": 0.988, "9class": 0.8}
+  recovery_vs_exp14_dd_full: {"jb_mlm": "+49.6pp", "9class": "+56.7pp"}
+
+=== exp14c_prediction_analysis ===
+  status: DONE
+  dd_full_fp_rate: {"exp14_llama_benign": {"vanilla": 0.293, "jb_mlm": 0.88, "9class": 0.9}, "exp14b_qwen_benign": {"vanilla": 0, "jb_mlm": 0.009, "9class": 0}}
+  dd_full_tp_rate: {"both_conditions_identical": {"vanilla": 0, "jb_mlm": 0.68, "9class": 1}}
+
+=== exp15_roberta_large ===
+  status: DONE
+  dd_ood: {"roberta_large_vanilla": {"k1": 0.878, "k3": 0.915, "full": 0.927}, "roberta_large_9class": {"k1": 0.965, "k3": 0.96, "full": 0.987}}
+  actorattack: {"roberta_large_vanilla": {"k1": 0.977, "k3": 0.99, "full": 1}, "roberta_large_9class": {"k1": 0.718, "k3": 0.881, "full": 0.946}}
+
+=== exp15b_roberta_large_lr ===
+  status: DONE
+  dd_ood: {"9class_lr1e5": {"k1": 0.899, "k3": 0.851, "full": 0.948}, "9class_lr2e5_exp15": {"k1": 0.965, "k3": 0.96, "full": 0.987}}
+  actorattack: {"9class_lr1e5": {"k1": 0.459, "k3": 0.676, "full": 0.781}, "9class_lr2e5_exp15": {"k1": 0.718, "k3": 0.881, "full": 0.946}}
+
+=== exp15c_roberta_large_mlm ===
+  status: DONE
+  dd_ood: {"mlm": {"k1": 0.876, "k3": 0.902, "full": 0.884}, "vanilla_exp15": {"k1": 0.878, "k3": 0.915, "full": 0.927}, "9class_exp15": {"k1": 0.965, "k3": 0.96, "full": 0.987}}
+  actorattack: {"mlm": {"k1": 0.876, "k3": 0.881, "full": 0.874}, "vanilla_exp15": {"k1": 0.977, "k3": 0.99, "full": 1}, "9class_exp15": {"k1": 0.718, "k3": 0.881, "full": 0.946}}
+
+=== exp16_multi_llm ===
+  status: DONE
+  deprecated_attack_only: {"9class_dd_ood": 0.422, "9class_aa_ood": 0.175}
+
+=== exp16b_llama_only_mlm ===
+  status: DONE
+
+=== exp17_dataset_scale ===
+  status: DONE
+
+=== exp18_e2e_finetune ===
+  status: DONE
+
+=== exp1_roberta_9class ===
+  status: PREPARING
+  dd_ood_full_f1_mean: 0.9936
+  dd_ood_full_f1_std: 0.0045
+  dd_ood_k1_mean: 0.9873
+  dd_ood_k1_std: 0.0119
+  dd_ood_k2_mean: 0.9505
+  dd_ood_k2_std: 0.0284
+  dd_ood_k3_mean: 0.9563
+  dd_ood_k3_std: 0.0189
+  dd_ood_k5_mean: 0.9872
+  dd_ood_k5_std: 0.009
+  iid_full_f1: 1
+
+=== exp1_roberta_mlm ===
+  status: PREPARING
+  dd_ood_full_f1_mean: 0.9874
+  dd_ood_full_f1_std: 0.0178
+  dd_ood_k1_mean: 0.9428
+  dd_ood_k1_std: 0.0184
+  dd_ood_k2_mean: 0.9747
+  dd_ood_k2_std: 0.0232
+  dd_ood_k3_mean: 0.9747
+  dd_ood_k3_std: 0.0232
+  dd_ood_k5_mean: 0.9841
+  dd_ood_k5_std: 0.016
+
+=== exp1_roberta_vanilla ===
+  status: PREPARING
+  dd_ood_full_f1_mean: 0.9813
+  dd_ood_full_f1_std: 0.0264
+  dd_ood_k1_mean: 0.9127
+  dd_ood_k1_std: 0.1028
+  dd_ood_k2_mean: 0.9003
+  dd_ood_k2_std: 0.1342
+  dd_ood_k3_mean: 0.8976
+  dd_ood_k3_std: 0.1381
+  dd_ood_k5_mean: 0.9442
+  dd_ood_k5_std: 0.0789
+
+=== exp20_deepcontext_proxy ===
+  status: DONE
+
+=== exp21_cross_checkpoint ===
+  status: DONE
+
+=== exp22_aa_early_detection ===
+  status: DONE
+  aa_ood_per_k: {"9class": {"k1": {"mean": 0.773, "std": 0.041}, "k2": {"mean": 0.855, "std": 0.048}, "k3": {"mean": 0.921, "std": 0.046}, "k5": {"mean": 0.966, "std": 0.028}, "full": {"mean": 0.972, "std": 0.026}}, "mlm": {"k1": {"mean": 0.736, "std": 0.15}, "k2": {"mean": 0.909, "std": 0.058}, "k3": {"mean": 0.945, "std": 0.039}, "k5": {"mean": 0.929, "std": 0.033}, "full": {"mean": 0.893, "std": 0.08}}, "vanilla": {"k1": {"mean": 0.337, "std": 0.049}, "k2": {"mean": 0.306, "std": 0.026}, "k3": {"mean": 0.284, "std": 0.011}, "k5": {"mean": 0.262, "std": 0.006}, "full": {"mean": 0.258, "std": 0}}}
+  fitd_ood_per_k_exp16: {"9class": {"k1": 1, "k2": 0.997, "k3": 1, "k5": 1, "full": 1}, "mlm": {"k1": 0.61, "k2": 0.598, "k3": 0.654, "k5": 0.635, "full": 0.707}, "vanilla": {"k1": 0.698, "k2": 0.786, "k3": 0.791, "k5": 0.823, "full": 0.882}}
+
+=== exp24_calibration_ece ===
+  status: DONE
+  9class_dd_ood_ece: 0.1434
+  9class_dd_ood_ece_std: 0.053
+  9class_aa_ood_ece: 0.1158
+  9class_aa_ood_ece_std: 0.0526
+  vanilla_dd_ood_ece: 0.6694
+  vanilla_dd_ood_ece_std: 0.0043
+  vanilla_aa_ood_ece: 0.5042
+  vanilla_aa_ood_ece_std: 0.0662
+
+=== exp26_frozen_probing ===
+  status: DONE
+
+=== exp27_mean_pooling ===
+  status: DONE
+  iid_full: {"mean": 1, "std": 0}
+  dd_ood_k1: {"mean": 1, "std": 0}
+  dd_ood_k2: {"mean": 1, "std": 0}
+  dd_ood_k3: {"mean": 1, "std": 0}
+  dd_ood_k5: {"mean": 1, "std": 0}
+  dd_ood_full: {"mean": 1, "std": 0}
+  aa_ood_full: {"mean": 1, "std": 0}
+  fitd_ood_full: {"mean": 1, "std": 0}
+
+=== exp28_data_efficiency ===
+  status: DONE
+
+=== exp28b_data_efficiency_supplement ===
+  status: DONE
+  9class_3seed_N50_aa_ood: "0.969\u00b10.037"
+  9class_3seed_N125_aa_ood: "0.975\u00b10.019"
+  9class_3seed_N250_aa_ood: "0.975\u00b10.035"
+  9class_3seed_N350_aa_ood: "0.972\u00b10.033"
+
+=== exp28c_vanilla_supplement ===
+  status: DONE
+
+=== exp30_length_stratified ===
+  status: DONE
+  9class_jb_recall_by_bin: {"dd_ood": {"4-6": {"mean": 100, "std": 0, "n": 20}, "7-10": {"mean": 99.4, "std": 0.8, "n": 60}}, "aa_ood": {"1-3": {"mean": 93.3, "std": 6.2, "n": 20}, "4-6": {"mean": 95.6, "std": 4.5, "n": 38}, "7-10": {"mean": 100, "std": 0, "n": 22}}}
+
+=== exp32_strategy_prediction ===
+  status: DONE
+  dd_ood: {"strategy_acc": "0.4145\u00b10.0173", "jb_strategy_acc": "0.1431\u00b10.0260", "macro_f1": "0.1626\u00b10.0238", "strategy_acc_detected": "0.1634\u00b10.0200", "strategy_acc_missed": "0.0758\u00b10.0123", "missed_per_seed": [31, 5, 26], "detection_rate_rapport_building": 0.7417, "corr_det_prob_vs_strat_acc": "r~0.45, p<0.001"}
+  aa_ood: {"strategy_acc": "0.4604\u00b10.0114", "jb_strategy_acc": "0.0682\u00b10.0192", "macro_f1": "0.1145\u00b10.0212", "strategy_acc_detected": "0.1311\u00b10.0375", "strategy_acc_missed": "0.0393\u00b10.0142", "missed_per_seed": [63, 41, 66], "detection_rate_authority_appeal": 0.2841, "detection_rate_emotional_manipulation": 0.5238, "corr_det_prob_vs_strat_acc": "r~0.24, p~0.03"}
+
+=== exp33_strategy_prediction_plan002 ===
+  status: DONE
+  dd_ood: {"strategy_acc": "0.4924\u00b10.0246", "jb_strategy_acc": "0.2569\u00b10.0357", "macro_f1": "0.1965\u00b10.0142", "strategy_acc_detected": "0.2575\u00b10.0352", "strategy_acc_missed": "0.1000\u00b10.0000", "missed_per_seed": [0, 0, 1], "detection_rate_rapport_building": 0.9958, "per_class_f1_top": {"none": 0.8666, "rapport_building": 0.524, "gradual_escalation": 0.2619}}
+  aa_ood: {"strategy_acc": "0.7112\u00b10.0086", "jb_strategy_acc": "0.5012\u00b10.0159", "macro_f1": "0.1888\u00b10.0012", "strategy_acc_detected": "0.5091\u00b10.0239", "strategy_acc_missed": "0.2833\u00b10.0360", "missed_per_seed": [1, 7, 1], "detection_rate_authority_appeal": 0.9617, "detection_rate_emotional_manipulation": 0.9524, "detection_rate_gradual_escalation": 1, "detection_rate_logical_reframing": 0.9333, "detection_rate_rapport_building": 1}
+
+=== exp35_cross_seed_ensemble ===
+  status: DONE
+  dd_ood: {"9class": {"ensemble_f1": 1, "individual_mean": 0.9968, "individual_std": 0.0045, "delta": 0.0032, "fixed": 1, "broke": 0}, "jb_mlm": {"ensemble_f1": 1, "individual_mean": 0.9138, "individual_std": 0.115, "delta": 0.0862, "fixed": 30, "broke": 0}, "vanilla": {"ensemble_f1": 0.2575, "individual_mean": 0.2619, "individual_std": 0.017, "delta": -0.0044, "fixed": 1, "broke": 0}}
+  aa_ood: {"9class": {"ensemble_f1": 0.9809, "individual_mean": 0.9719, "individual_std": 0.0261, "delta": 0.009, "fixed": 5, "broke": 0}, "jb_mlm": {"ensemble_f1": 0.953, "individual_mean": 0.8934, "individual_std": 0.0799, "delta": 0.0596, "fixed": 26, "broke": 0}, "vanilla": {"ensemble_f1": 0.2575, "individual_mean": 0.2575, "individual_std": 0, "delta": 0, "fixed": 0, "broke": 0}}
+  fitd_ood: {"9class": {"ensemble_f1": 1, "individual_mean": 1, "individual_std": 0, "delta": 0, "fixed": 0, "broke": 0}, "jb_mlm": {"ensemble_f1": 1, "individual_mean": 0.9904, "individual_std": 0.0078, "delta": 0.0096, "fixed": 3, "broke": 0}, "vanilla": {"ensemble_f1": 1, "individual_mean": 0.9936, "individual_std": 0.009, "delta": 0.0064, "fixed": 2, "broke": 0}}
+
+=== exp36 ===
+  status: DONE
+  iid_full: {"mean": 0.982, "std": 0.016}
+  dd_ood_full: {"mean": 0.993, "std": 0.009}
+  aa_ood_full: {"mean": 0.941, "std": 0.037}
+  fitd_ood_full: {"mean": 0.987, "std": 0.009}
+  dd_ood_k1: {"mean": 0.953, "std": 0.027}
+  dd_ood_k2: {"mean": 0.977, "std": 0.021}
+  dd_ood_k3: {"mean": 0.987, "std": 0.005}
+  dd_ood_k5: {"mean": 0.997, "std": 0.005}
+
+=== exp39_extra_seeds_tost ===
+  status: DONE
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "930ab7f1-547d-4005-8e33-c365e9289e5e"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 31_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Deep dive into key experiments for per-seed and recall data",
+  "usage": {
+    "total_tokens": 25580,
+    "tool_uses": 7,
+    "duration_ms": 46784
+  },
+  "last_tool_name": "Bash",
+  "uuid": "983aafb4-b92e-4e76-8775-cb940af44514",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01By1GU4rtgLRiWtMUPFqZdv`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Deep dive into key experiments: exp1_roberta_9class, exp22, exp9, and multiseed experiments\nkey_exps = ['exp1_roberta_9class', 'exp9_bootstrap_ci', 'exp22_aa_early_detection', \n            'exp35_cross_seed_ensemble', 'exp55_5seed_mlm_vs_9class_aa',\n            'exp2_actorattack_ood', 'exp2_actorattack_mcnemar',\n            'exp30_length_stratified', 'exp36', 'exp36_frozen_mlm_probing']\n\nfor name in key_exps:\n    if name in exps:\n        exp = exps[name]\n        print(f'\\\\n{\\\"=\\\"*60}')\n        print(f'=== {name} ===')\n        print(f'status: {exp.get(\\\"status\\\")}')\n        print(f'hypothesis: {exp.get(\\\"hypothesis\\\", \\\"N/A\\\")[:200]}')\n        print(f'conclusion: {exp.get(\\\"conclusion\\\", \\\"N/A\\\")}')\n        metrics = exp.get('metrics', {})\n        for mk, mv in sorted(metrics.items()):\n            print(f'  {mk}: {json.dumps(mv)}')\n        notes = exp.get('notes', '')\n        if notes:\n            print(f'  NOTES: {notes[:500]}')\n\" 2>&1",
+  "description": "Deep dive into key experiments for per-seed and recall data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "6a87b2ce-5d24-4cb9-a0d8-e0b7850fbc01",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y1AraHhHMSicpwYY42nGxi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6485,
+      "cache_read_input_tokens": 19007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6485,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T23:32:50.824Z_
+
+<details><summary>↩ Tool result · `toolu_01By1GU4rtgLRiWtMUPFqZdv`</summary>
+
+```text
+============================================================
+=== exp1_roberta_9class ===
+status: PREPARING
+hypothesis: RoBERTa-base with 9-class persuasion multi-task fine-tuning will reproduce the DeBERTa evidence hierarchy (9-class >> vanilla), proving findings are encoder-agnostic
+conclusion: success
+  dd_ood_full_f1_mean: 0.9936
+  dd_ood_full_f1_std: 0.0045
+  dd_ood_k1_mean: 0.9873
+  dd_ood_k1_std: 0.0119
+  dd_ood_k2_mean: 0.9505
+  dd_ood_k2_std: 0.0284
+  dd_ood_k3_mean: 0.9563
+  dd_ood_k3_std: 0.0189
+  dd_ood_k5_mean: 0.9872
+  dd_ood_k5_std: 0.009
+  encoder: "roberta-base"
+  iid_full_f1: 1
+  n_seeds: 3
+
+============================================================
+=== exp9_bootstrap_ci ===
+status: DONE
+hypothesis: BCa bootstrap CIs and paired permutation tests will confirm that multitask 9-class persuasion pre-training significantly outperforms vanilla (frozen) baseline on OOD jailbreak detection, while the dif
+conclusion: success
+  actorattack_9class_full: {"mean": 0.9718, "ci": [0.8554, 1]}
+  actorattack_vanilla_full: {"mean": 0.2565, "ci": [0.2027, 0.3139]}
+  dd_ood_9class_full: {"mean": 0.9968, "ci": [0.9426, 1]}
+  dd_ood_vanilla_full: {"mean": 0.2698, "ci": [0.2017, 0.3414]}
+  perm_9class_vs_jb_mlm_dd_full_max_p: 1
+  perm_9class_vs_scrambled_dd_full_max_p: 1
+  perm_9class_vs_vanilla_aa_full_p: 0
+  perm_9class_vs_vanilla_dd_full_p: 0
+
+============================================================
+=== exp22_aa_early_detection ===
+status: DONE
+hypothesis: 9-class DAPT maintains detection advantage over MLM and vanilla at all prefix lengths (K=1,2,3,5,full) on ActorAttack OOD, with the gap widening at smaller K, demonstrating early detection capability 
+conclusion: success
+  aa_ood_per_k: {"9class": {"k1": {"mean": 0.773, "std": 0.041}, "k2": {"mean": 0.855, "std": 0.048}, "k3": {"mean": 0.921, "std": 0.046}, "k5": {"mean": 0.966, "std": 0.028}, "full": {"mean": 0.972, "std": 0.026}}, "mlm": {"k1": {"mean": 0.736, "std": 0.15}, "k2": {"mean": 0.909, "std": 0.058}, "k3": {"mean": 0.945, "std": 0.039}, "k5": {"mean": 0.929, "std": 0.033}, "full": {"mean": 0.893, "std": 0.08}}, "vanilla": {"k1": {"mean": 0.337, "std": 0.049}, "k2": {"mean": 0.306, "std": 0.026}, "k3": {"mean": 0.284, "std": 0.011}, "k5": {"mean": 0.262, "std": 0.006}, "full": {"mean": 0.258, "std": 0}}}
+  fitd_ood_per_k_exp16: {"9class": {"k1": 1, "k2": 0.997, "k3": 1, "k5": 1, "full": 1}, "mlm": {"k1": 0.61, "k2": 0.598, "k3": 0.654, "k5": 0.635, "full": 0.707}, "vanilla": {"k1": 0.698, "k2": 0.786, "k3": 0.791, "k5": 0.823, "full": 0.882}}
+  note: "AA OOD: 9-class monotonically improves K=1\u2192Full (0.773\u21920.972). Vanilla flat/declining (~0.34\u21920.26). MLM non-monotonic peaks at K=3 (0.945). FITD per-K uses exp16 checkpoints (different from AA's plan_002), not directly comparable."
+
+============================================================
+=== exp35_cross_seed_ensemble ===
+status: DONE
+hypothesis: 3-seed majority vote ensemble 将在所有 OOD 攻击家族上提升检测 F1（尤其减少 AA OOD 上的漏检），9-class ensemble 的提升幅度大于 MLM/vanilla，因为 9-class 各 seed 的错误模式更互补（来自不同的策略表征空间初始化）。
+conclusion: success
+  aa_ood: {"9class": {"ensemble_f1": 0.9809, "individual_mean": 0.9719, "individual_std": 0.0261, "delta": 0.009, "fixed": 5, "broke": 0}, "jb_mlm": {"ensemble_f1": 0.953, "individual_mean": 0.8934, "individual_std": 0.0799, "delta": 0.0596, "fixed": 26, "broke": 0}, "vanilla": {"ensemble_f1": 0.2575, "individual_mean": 0.2575, "individual_std": 0, "delta": 0, "fixed": 0, "broke": 0}}
+  dd_ood: {"9class": {"ensemble_f1": 1, "individual_mean": 0.9968, "individual_std": 0.0045, "delta": 0.0032, "fixed": 1, "broke": 0}, "jb_mlm": {"ensemble_f1": 1, "individual_mean": 0.9138, "individual_std": 0.115, "delta": 0.0862, "fixed": 30, "broke": 0}, "vanilla": {"ensemble_f1": 0.2575, "individual_mean": 0.2619, "individual_std": 0.017, "delta": -0.0044, "fixed": 1, "broke": 0}}
+  fitd_ood: {"9class": {"ensemble_f1": 1, "individual_mean": 1, "individual_std": 0, "delta": 0, "fixed": 0, "broke": 0}, "jb_mlm": {"ensemble_f1": 1, "individual_mean": 0.9904, "individual_std": 0.0078, "delta": 0.0096, "fixed": 3, "broke": 0}, "vanilla": {"ensemble_f1": 1, "individual_mean": 0.9936, "individual_std": 0.009, "delta": 0.0064, "fixed": 2, "broke": 0}}
+  note: "Ensemble NEVER breaks correct predictions (broke=0 everywhere). jb_mlm benefits most from ensemble (+8.6pp DD, +6.0pp AA). 9class achieves perfect DD/FITD, near-perfect AA (0.981). Vanilla too weak to benefit."
+
+============================================================
+=== exp55_5seed_mlm_vs_9class_aa ===
+status: DONE
+hypothesis: 9-class persuasion-grounded DeBERTa DAPT produces significantly better OOD generalization than domain-exposure-only MLM DAPT, with the advantage being robust across 5 random seeds (expanding from 3 to
+conclusion: negative
+  9class_aa_ood: {"mean": 0.9735, "std": 0.0124}
+  9class_dd_ood: {"mean": 0.9924, "std": 0.0111}
+  9class_fitd_ood: {"mean": 1, "std": 0}
+  9class_iid: {"mean": 1, "std": 0}
+  aa_ood_9class_wins: 4
+  aa_ood_delta_pp: 1.69
+  aa_ood_mlm_wins: 1
+  aa_ood_paired_ttest_p: 0.2461
+  aa_ood_wilcoxon_p: 0.1875
+  mlm_aa_ood: {"mean": 0.9566, "std": 0.0237}
+  mlm_dd_ood: {"mean": 0.9883, "std": 0.0094}
+  mlm_fitd_ood: {"mean": 0.9883, "std": 0.0094}
+  mlm_iid: {"mean": 0.9816, "std": 0.0134}
+  n_seeds: 5
+  seeds: [42, 123, 456, 789, 1024]
+  total_time_min: 10.5
+
+============================================================
+=== exp2_actorattack_ood ===
+status: DONE
+hypothesis: Persuasion-grounded DeBERTa will generalize to ActorAttack (a structurally distinct multi-persona attack), extending cross-attack OOD evidence beyond DD and FITD to a third unseen attack type
+conclusion: success
+  deberta_9class: {"k1": 0.773, "k1_std": 0.041, "k2": 0.855, "k2_std": 0.048, "k3": 0.921, "k3_std": 0.046, "k5": 0.966, "k5_std": 0.028, "full": 0.972, "full_std": 0.026}
+  deberta_binary: {"k1": 0.737, "k1_std": 0.074, "k2": 0.89, "k2_std": 0.065, "k3": 0.951, "k3_std": 0.036, "k5": 0.987, "k5_std": 0.012, "full": 0.99, "full_std": 0.008, "note": "3-seed complete (seed42+seed123+seed456), seed42 weak outlier at K1=0.636"}
+  deberta_mlm: {"k1": 0.736, "k1_std": 0.15, "k2": 0.909, "k2_std": 0.058, "k3": 0.945, "k3_std": 0.039, "k5": 0.929, "k5_std": 0.033, "full": 0.893, "full_std": 0.08}
+  deberta_scrambled: {"k1": 0.721, "k1_std": 0.101, "k2": 0.828, "k2_std": 0.054, "k3": 0.893, "k3_std": 0.067, "k5": 0.937, "k5_std": 0.057, "full": 0.951, "full_std": 0.043, "per_seed_full": {"seed42": 0.891, "seed123": 0.99, "seed456": 0.971}, "per_seed_k1": {"seed42": 0.618, "seed123": 0.858, "seed456": 0.686}, "per_seed_k3": {"seed42": 0.808, "seed123": 0.972, "seed456": 0.9}, "note": "3-seed complete, K2/K5 corrected"}
+  deberta_topic: {"k1": 0.513, "k1_std": 0.077, "k2": 0.58, "k2_std": 0.109, "k3": 0.565, "k3_std": 0.1, "k5": 0.615, "k5_std": 0.111, "full": 0.625, "full_std": 0.141}
+  deberta_vanilla: {"k1": 0.337, "k1_std": 0.049, "k2": 0.306, "k2_std": 0.026, "k3": 0.284, "k3_std": 0.011, "k5": 0.262, "k5_std": 0.006, "full": 0.258, "full_std": 0}
+  deberta_wiki_mlm: {"k1": 0.656, "k1_std": 0.224, "k2": 0.672, "k2_std": 0.252, "k3": 0.693, "k3_std": 0.28, "k5": 0.689, "k5_std": 0.285, "full": 0.686, "full_std": 0.297}
+  n_samples: 118
+  note: "All variants now 3-seed complete. Binary updated from 2-seed to 3-seed (seed42 weak at K1=0.636). Scrambled K2/K5 corrected. Evidence hierarchy: binary \u2248 9class > scrambled >> mlm > wiki_mlm > topic > vanilla"
+  roberta_9class: {"k1": 0.738, "k1_std": 0.033, "k2": 0.805, "k2_std": 0.033, "k3": 0.884, "k3_std": 0.066, "k5": 0.925, "k5_std": 0.066, "full": 0.939, "full_std": 0.046}
+  roberta_mlm: {"k1": 0.633, "k1_std": 0.133, "k2": 0.665, "k2_std": 0.15, "k3": 0.713, "k3_std": 0.174, "k5": 0.719, "k5_std": 0.184, "full": 0.73, "full_std": 0.201}
+  roberta_vanilla: {"k1": 0.41, "k1_std": 0.126, "k2": 0.425, "k2_std": 0.143, "k3": 0.432, "k3_std": 0.144, "k5": 0.466, "k5_std": 0.144, "full": 0.466, "full_std": 0.163}
+
+============================================================
+=== exp2_actorattack_mcnemar ===
+status: DONE
+hypothesis: 9-class persuasion-aware encoder significantly outperforms vanilla DeBERTa on ActorAttack OOD data at per-sample level (McNemar test), supporting cross-attack generalization claim.
+conclusion: success
+  mcnemar_clean_full: {"9class_vs_vanilla": {"seed42": {"p": 0, "b": 78, "c": 0, "direction": "A>B", "test": "mcnemar_chi2"}, "seed123": {"p": 0, "b": 57, "c": 0, "direction": "A>B", "test": "mcnemar_chi2"}, "seed456": {"p": 0, "b": 67, "c": 0, "direction": "A>B", "test": "mcnemar_chi2"}}}
+  mcnemar_clean_k1: {"9class_vs_vanilla": {"seed42": {"p": 0, "b": 50, "c": 3, "direction": "A>B", "test": "mcnemar_chi2"}, "seed123": {"p": 0, "b": 42, "c": 7, "direction": "A>B", "test": "mcnemar_chi2"}, "seed456": {"p": 0, "b": 47, "c": 6, "direction": "A>B", "test": "mcnemar_chi2"}}}
+  mcnemar_clean_k3: {"9class_vs_vanilla": {"seed42": {"p": 0, "b": 65, "c": 1, "direction": "A>B"}, "seed123": {"p": 0, "b": 47, "c": 0, "direction": "A>B"}, "seed456": {"p": 0, "b": 67, "c": 0, "direction": "A>B"}}}
+  note: "All McNemar tests highly significant (p<0.001), direction consistently 9class > vanilla. On clean ActorAttack data, 9class dramatically outperforms vanilla at all K values."
+
+============================================================
+=== exp30_length_stratified ===
+status: DONE
+hypothesis: 9-class DAPT maintains consistent jailbreak detection performance across different conversation lengths (turn counts), with no systematic degradation in shorter or longer conversations.
+conclusion: success
+  9class_jb_recall_by_bin: {"dd_ood": {"4-6": {"mean": 100, "std": 0, "n": 20}, "7-10": {"mean": 99.4, "std": 0.8, "n": 60}}, "aa_ood": {"1-3": {"mean": 93.3, "std": 6.2, "n": 20}, "4-6": {"mean": 95.6, "std": 4.5, "n": 38}, "7-10": {"mean": 100, "std": 0, "n": 22}}}
+  benign_specificity_10plus: {"mean": 100, "std": 0, "n": 38}
+  mlm_comparison: {"aa_ood_7-10": {"mean": 69.7, "std": 33.7}, "dd_ood_7-10": {"mean": 83.9, "std": 22.8}}
+  note: "9-class \u226593% recall all bins, no degradation. Short AA (1-3 turns) slightly harder (93.3%). MLM unstable on 7-10 turns (std>22%). Vanilla near-0 recall on all bins."
+  structural_finding: "Benign (12-20 turns) and jailbreak (DD 6-10, AA 3-8) have non-overlapping length distributions. Per-bin macro F1 impossible; using per-bin recall instead."
+
+============================================================
+=== exp36 ===
+status: DONE
+hypothesis: MLM DAPT encoder produces weaker frozen representations than classification (9-class) DAPT encoder for OOD jailbreak detection, because classification training forces the encoder to learn task-relevan
+conclusion: negative
+  aa_ood_full: {"mean": 0.941, "std": 0.037}
+  dd_ood_full: {"mean": 0.993, "std": 0.009}
+  dd_ood_k1: {"mean": 0.953, "std": 0.027}
+  dd_ood_k2: {"mean": 0.977, "std": 0.021}
+  dd_ood_k3: {"mean": 0.987, "std": 0.005}
+  dd_ood_k5: {"mean": 0.997, "std": 0.005}
+  fitd_ood_full: {"mean": 0.987, "std": 0.009}
+  iid_full: {"mean": 0.982, "std": 0.016}
+
+============================================================
+=== exp36_frozen_mlm_probing ===
+status: PREPARING
+hypothesis: 冻结 MLM DAPT encoder 的 probing 性能将低于冻结 9-class encoder (exp26: DD=0.997, AA=0.972)，因为 classification DAPT 通过显式策略分类迫使编码器学习与攻击意图更直接相关的判别性特征，而 MLM 仅学习通用语言模式，不产生 OOD 泛化所需的攻击-策略对齐表征。
+conclusion: N/A
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "34f52ecc-4845-4d2e-ad98-bde92a202b9f"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 34_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Search for per-seed and recall metrics",
+  "usage": {
+    "total_tokens": 31353,
+    "tool_uses": 8,
+    "duration_ms": 58795
+  },
+  "last_tool_name": "Bash",
+  "uuid": "f03d8312-3210-4cab-af9f-f9b92fd839e7",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HMs2axgtTjCyys6ThgPRXj`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Search for per-seed data, recall, and any experiment with 'recall' or 'per_seed' in metrics\nfor name, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    metrics_str = json.dumps(metrics)\n    if 'per_seed' in metrics_str or ('recall' in metrics_str.lower() and any(kw in name for kw in ['9class', 'exp1', 'exp2', 'exp22', 'exp55', 'cross_attack', 'phase_b', 'plan_002', 'plan_006'])):\n        print(f'\\\\n=== {name} ===')\n        for mk, mv in sorted(metrics.items()):\n            mk_lower = mk.lower()\n            if 'per_seed' in mk_lower or 'recall' in mk_lower or 'seed42' in json.dumps(mv).lower() or 'seed123' in json.dumps(mv).lower():\n                print(f'  {mk}: {json.dumps(mv)}')\n\" 2>&1 | head -200",
+  "description": "Search for per-seed and recall metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "11f27400-2ca2-4b8e-a104-2295f3838a22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tyq2wsz5xEdVQZy6LHhyEn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5771,
+      "cache_read_input_tokens": 25492,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5771,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T23:33:02.832Z_
+
+<details><summary>↩ Tool result · `toolu_01HMs2axgtTjCyys6ThgPRXj`</summary>
+
+```text
+=== exp10_fewshot_llm_judge ===
+  aa_full_recall: 0.5
+  dd_full_recall: 0.375
+
+=== exp16b_llama_only_mlm ===
+
+=== exp2_actorattack_ood ===
+  deberta_binary: {"k1": 0.737, "k1_std": 0.074, "k2": 0.89, "k2_std": 0.065, "k3": 0.951, "k3_std": 0.036, "k5": 0.987, "k5_std": 0.012, "full": 0.99, "full_std": 0.008, "note": "3-seed complete (seed42+seed123+seed456), seed42 weak outlier at K1=0.636"}
+  deberta_scrambled: {"k1": 0.721, "k1_std": 0.101, "k2": 0.828, "k2_std": 0.054, "k3": 0.893, "k3_std": 0.067, "k5": 0.937, "k5_std": 0.057, "full": 0.951, "full_std": 0.043, "per_seed_full": {"seed42": 0.891, "seed123": 0.99, "seed456": 0.971}, "per_seed_k1": {"seed42": 0.618, "seed123": 0.858, "seed456": 0.686}, "per_seed_k3": {"seed42": 0.808, "seed123": 0.972, "seed456": 0.9}, "note": "3-seed complete, K2/K5 corrected"}
+  note: "All variants now 3-seed complete. Binary updated from 2-seed to 3-seed (seed42 weak at K1=0.636). Scrambled K2/K5 corrected. Evidence hierarchy: binary \u2248 9class > scrambled >> mlm > wiki_mlm > topic > vanilla"
+
+=== exp32_strategy_prediction ===
+
+=== exp33_strategy_prediction_plan002 ===
+
+=== exp38_wildcat_calibration ===
+  roc_auc: {"mean": 0.7, "std": 0.054, "per_seed": {"seed42": 0.768, "seed123": 0.697, "seed456": 0.635}}
+
+=== exp64_toxicchat_confidence_analysis ===
+  9class_per_seed_high_conf_ratio: {"seed42": 0.9691, "seed123": 0.9773, "seed456": 0.9429}
+  jb_mlm_per_seed_high_conf_ratio: {"seed42": 0.4118, "seed123": 0.6897, "seed456": 0.5833}
+
+=== exp8_mhj_human_data ===
+  toxicchat: {"n_jailbreak": 204, "n_benign": 204, "data_source": "ToxicChat (LMSYS)", "leakage": "none", "vanilla_macro_f1": 0.413, "vanilla_macro_f1_std": 0.021, "9class_macro_f1": 0.596, "9class_macro_f1_std": 0.087, "binary_macro_f1": 0.705, "binary_macro_f1_std": 0.072, "scrambled_macro_f1": 0.616, "scrambled_macro_f1_std": 0.056, "scrambled_per_seed": {"seed42": 0.537, "seed123": 0.654, "seed456": 0.657}, "jb_mlm_macro_f1": 0.837, "jb_mlm_macro_f1_std": 0.013, "wiki_mlm_macro_f1": 0.791, "wiki_mlm_macro_f1_std": 0.093, "topic_macro_f1": 0.496, "topic_macro_f1_std": 0.042}
+  verazuo: {"n_jailbreak": 666, "n_benign": 213, "data_source": "verazuo/jailbreak_llms + plan_002 benign", "LEAKAGE_WARNING": "78% benign (167/213) from train split", "scrambled_macro_f1": 0.822, "scrambled_macro_f1_std": 0.046, "scrambled_per_seed": {"seed42": 0.818, "seed123": 0.88, "seed456": 0.768}, "vanilla_macro_f1": 0.267, "9class_macro_f1": 0.767, "binary_macro_f1": 0.883, "jb_mlm_macro_f1": 0.937, "wiki_mlm_macro_f1": 0.845, "topic_macro_f1": 0.669, "test_only_benign": {"n_benign": 46, "note": "extreme imbalance 666:46", "scrambled": 0.649, "scrambled_std": 0.056, "scrambled_per_seed": {"seed42": 0.64, "seed123": 0.722, "seed456": 0.585}, "vanilla": 0.129, "9class": 0.627, "binary": 0.738, "jb_mlm": 0.852, "wiki_mlm": 0.742, "topic": 0.503}}
+
+=== plan_018_wiki_mlm_control ===
+  per_seed_dd_ood_full_f1: {"seed42": 0.7421, "seed123": 0.9902, "seed456": 0.9803}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "46d340e2-f85a-4b6b-8dbc-81c44fcf7337"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 37_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Get benign FPR experiments",
+  "usage": {
+    "total_tokens": 33369,
+    "tool_uses": 9,
+    "duration_ms": 73721
+  },
+  "last_tool_name": "Bash",
+  "uuid": "249abf58-bc97-4719-9028-f6be8657334e",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PhhqYFLfFRQJFxpj1F9MsX`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Get exp19 (wildchat FPR) and exp51 (OASST2 FPR) and any adaptation experiments\nfpr_exps = ['exp19_wildchat_fpr', 'exp51_lmsys_benign_ood', 'exp42_ood_benign_mixed', 'exp42b_balanced_ratio_ablation',\n            'exp45_benign_adaptation_curve', 'exp52_oasst2_n25_multiseed', 'exp56_crossllm_10shot_adaptation',\n            'exp37_length_matched_benign', 'exp38_wildcat_calibration', 'exp63_toxicchat_fpfn', \n            'exp64_toxicchat_confidence_analysis']\n\nfor name in fpr_exps:\n    if name in exps:\n        exp = exps[name]\n        print(f'\\\\n{\\\"=\\\"*60}')\n        print(f'=== {name} ===')\n        print(f'status: {exp.get(\\\"status\\\")}')\n        print(f'hypothesis: {exp.get(\\\"hypothesis\\\", \\\"N/A\\\")[:300]}')\n        print(f'conclusion: {exp.get(\\\"conclusion\\\", \\\"N/A\\\")}')\n        metrics = exp.get('metrics', {})\n        for mk, mv in sorted(metrics.items()):\n            print(f'  {mk}: {json.dumps(mv)}')\n        notes = exp.get('notes', '')\n        if notes:\n            print(f'  NOTES: {notes[:500]}')\n\" 2>&1",
+  "description": "Get benign FPR experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "31b75e47-1c42-4944-8b0b-bce704203ceb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HGGUdMbBaLzykHuYg16HTu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1981,
+      "cache_read_input_tokens": 31263,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1981,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-22T23:33:17.750Z_
+
+<details><summary>↩ Tool result · `toolu_01PhhqYFLfFRQJFxpj1F9MsX`</summary>
+
+```text
+============================================================
+=== exp19_wildchat_fpr ===
+status: DONE
+hypothesis: 9-class DAPT classifier maintains FPR < 15% on high-drift real-world benign conversations from WildChat (after excluding jailbreak-contaminated samples), demonstrating external validity beyond synthetic benign data and addressing reviewer concern about deployment false positive rates
+conclusion: negative
+  9class_fpr: {"seed42": 0.668, "seed123": 0.611, "seed456": 0.765, "mean": 0.681, "std": 0.064}
+  dataset: "wildchat_benign_226 (226 filtered multi-turn benign, avg 7.4 turns)"
+  mlm_fpr: {"seed42": 0.367, "seed123": 0.646, "seed456": 0.323, "mean": 0.445, "std": 0.143}
+  note: "NEGATIVE: All variants show extreme FPR on real-world benign. 9-class worst (68.1%). Used exp17 checkpoints (Qwen 1000 scale). Severe distribution shift between synthetic training benign and real WildChat conversations."
+  vanilla_fpr: {"seed42": 0.473, "seed123": 0.425, "seed456": 0.544, "mean": 0.481, "std": 0.049}
+
+============================================================
+=== exp51_lmsys_benign_ood ===
+status: DONE
+hypothesis: The two-axis decomposition (high FPR on OOD benign + 10-shot remediation) generalizes beyond WildChat: LMSYS-Chat-1M benign conversations will show high FPR (>20%) that 10 target-domain conversations can eliminate, confirming benign-side shift is a general phenomenon not specific to WildChat GPT-3.5
+conclusion: success
+  adaptation_curve: {"n0": {"fpr": 0.575}, "n10": {"fpr": 0.205, "dd_f1": 1, "aa_f1": 1, "fitd_f1": 1}, "n25": {"fpr": 0.015, "dd_f1": 1, "aa_f1": 0.953, "fitd_f1": 1}, "n50": {"fpr": 0.005, "dd_f1": 1, "aa_f1": 0.99, "fitd_f1": 1}}
+  baseline_fpr: 0.575
+  baseline_n: 200
+  comparison_wildchat: {"baseline_fpr": 0.681, "n10_fpr": 0, "n10_sufficient": true}
+  data_source: "oasst2 (real crowdsourced human)"
+
+============================================================
+=== exp42_ood_benign_mixed ===
+status: DONE
+hypothesis: Including WildChat benign conversations in training data will reduce WildChat FPR from 68.1% to below 30% while maintaining jailbreak OOD detection F1 above 0.95 on DD/AA/FITD, because the current high FPR is driven by benign distribution mismatch (exp14c: 100% from FP explosion), not model architec
+conclusion: success
+  data_filtered: "27/226 jailbreak patterns removed"
+  iid_f1_mean: 1
+  ood_aa_f1_mean: 0.956
+  ood_dd_f1_mean: 1
+  ood_fitd_f1_mean: 1
+  train_size: "500 (350 orig + 150 WildChat benign)"
+  wildchat_eval_n: 49
+  wildchat_fpr_mean: 0
+  wildchat_fpr_std: 0
+
+============================================================
+=== exp42b_balanced_ratio_ablation ===
+status: DONE
+hypothesis: exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.
+conclusion: success
+  iid_f1_mean: 1
+  ood_aa_f1_mean: 0.9905
+  ood_aa_recall_mean: 0.9875
+  ood_dd_f1_mean: 1
+  ood_fitd_f1_mean: 1
+  total_time_min: 4.8
+  train_composition: "175 jailbreak + 87 orig benign + 88 WildChat benign (50:50)"
+  train_size: 350
+  wildchat_eval_n: 49
+  wildchat_fpr_mean: 0
+  wildchat_fpr_std: 0
+
+============================================================
+=== exp45_benign_adaptation_curve ===
+status: DONE
+hypothesis: Adding N WildChat benign samples (N in {0,5,10,25,50,100,150}) to training data will show a monotonic FPR reduction curve, with substantial FPR drop achievable with as few as 10-25 samples while maintaining OOD F1 above 0.95.
+conclusion: success
+  n10_multiseed: {"seeds": [42, 123, 456], "wc_fpr": "0.000\u00b10.000", "iid_f1": "1.000\u00b10.000", "dd_f1": "1.000\u00b10.000", "aa_f1": "0.981\u00b10.016", "fitd_f1": "1.000\u00b10.000"}
+  single_seed_42: {"n0_fpr": 0.653, "n5_fpr": 0.163, "n10_fpr": 0, "n25_fpr": 0, "n50_fpr": 0, "n100_fpr": 0, "n150_fpr": 0}
+
+============================================================
+=== exp52_oasst2_n25_multiseed ===
+status: DONE
+hypothesis: OASST2 benign adaptation with N=25 yields consistently low FPR (≤5%) across multiple seeds (42, 123, 456), confirming seed 42's FPR=1.5% is not a lucky outlier.
+conclusion: success
+  fpr_mean: 0.01
+  fpr_range: "0.5%-1.5%"
+  fpr_std: 0.005
+  seed_123: {"oasst2_fpr": 0.005, "iid_f1": 1, "aa_f1": 0.917, "dd_f1": 1, "fitd_f1": 1}
+  seed_42: {"oasst2_fpr": 0.015, "iid_f1": 1, "aa_f1": 0.953, "dd_f1": 1, "fitd_f1": 1}
+  seed_456: {"oasst2_fpr": 0.01, "iid_f1": 1, "aa_f1": 0.99, "dd_f1": 1, "fitd_f1": 1}
+
+============================================================
+=== exp56_crossllm_10shot_adaptation ===
+status: DONE
+hypothesis: 10-shot benign adaptation with Llama-origin conversations will reduce cross-LLM FPR from 88-90% to below 10%, extending the two-axis benign adaptation mechanism to cross-LLM distributional shift
+conclusion: negative
+  adaptation_curve: {"n0": {"fpr": 0.945, "dd_f1": 1, "aa_f1": 0.99, "fitd_f1": 1, "dd_llama_recall": 1, "aa_llama_recall": 0.74, "fitd_llama_recall": 1}, "n5": {"fpr": 0.055, "dd_f1": 0.694, "aa_f1": 0.841, "fitd_f1": 0.99, "dd_llama_recall": 0.64, "aa_llama_recall": 0.04, "fitd_llama_recall": 0.76}, "n10": {"fpr": 0.03, "dd_f1": 0.816, "aa_f1": 0.601, "fitd_f1": 1, "dd_llama_recall": 0.6, "aa_llama_recall": 0, "fitd_llama_recall": 0.8}, "n25": {"fpr": 0.005, "dd_f1": 0.556, "aa_f1": 0.271, "fitd_f1": 0.99, "dd_llama_recall": 0.08, "aa_llama_recall": 0, "fitd_llama_recall": 0.52}}
+  baseline_aa_llama_recall: 0.74
+  baseline_fpr: 0.945
+
+============================================================
+=== exp37_length_matched_benign ===
+status: DONE
+hypothesis: 9-class 模型不依赖 turn count 作为检测 shortcut：截断 benign 对话到 jailbreak 匹配长度 (3-10 turns) 后 FPR 不会显著上升，WildChat 短对话 (3-10 turns) 的 FPR 也不高于长对话，因为 DAPT 训练迫使模型学习说服策略内容特征而非 length 统计量。
+conclusion: negative
+  part1_wildchat_fpr: {"short_3_10": {"fpr_mean": 0.77, "fpr_std": 0.105, "n": 196}, "medium_11_15": {"fpr_mean": 0.942, "fpr_std": 0.054, "n": 23}, "long_16_plus": {"fpr_mean": 0.857, "fpr_std": 0.117, "n": 7}, "note": "Short bucket FPR LOWER than Medium \u2014 length is NOT the driver of WildChat FPR"}
+  part2_benign_truncation: {"original_fpr": 0, "K3_fpr": 0, "K5_fpr": 0, "K8_fpr": 0, "K10_fpr": 0, "note": "FPR=0% at ALL truncation levels including K=3. Model does not use length as shortcut."}
+  part3_jailbreak_padding: {"DD_original": 0.996, "DD_padded": 0.971, "DD_delta": -0.025, "AA_original": 0.963, "AA_padded": 0.383, "AA_delta": -0.579, "note": "DD resilient to padding. AA collapses (-57.9pp). BiGRU attention dilution on subtle attacks."}
+
+============================================================
+=== exp38_wildcat_calibration ===
+status: DONE
+hypothesis: 少量 WildChat benign 样本 (~50 条) 即可通过阈值校准将 FPR 降至 <25% 且 TPR >90%，证明 domain calibration 是可行的 practical path，WildChat 高 FPR 是阈值问题而非表征能力问题。
+conclusion: negative
+  default_t05_fpr: {"mean": 0.791, "std": 0.098}
+  note: "AUC=0.70 is the fundamental ceiling. Threshold calibration drops FPR from 79%\u219263% (at TPR95), still far from <25% target. WildChat high FPR is genuine domain shift, not calibration artifact."
+  roc_auc: {"mean": 0.7, "std": 0.054, "per_seed": {"seed42": 0.768, "seed123": 0.697, "seed456": 0.635}}
+  temperature_scaling: {"learned_T": "20-40 (severe overconfidence)", "temp_scaled_tpr95_fpr": 0.627, "temp_scaled_tpr90_fpr": 0.583, "note": "Temperature scaling does NOT change FPR because ROC is invariant to monotonic score transforms"}
+  threshold_calibration_held_out: {"tpr95_fpr": {"mean": 0.627, "std": 0.1}, "tpr90_fpr": {"mean": 0.587, "std": 0.091}}
+
+============================================================
+=== exp63_toxicchat_fpfn ===
+status: DONE
+hypothesis: 9-class ToxicChat performance gap vs MLM is dominated by false positives (>70%), because classification DAPT over-encodes synthetic distributional features that trigger on human benign text
+conclusion: negative
+  9class_correct_mlm_wrong_total: 46
+  9class_mv_f1: 0.652
+  9class_mv_fpr: 0.51
+  9class_mv_precision: 0.589
+  9class_mv_recall: 0.73
+  mlm_correct_9class_wrong_total: 144
+  mlm_mv_f1: 0.853
+  mlm_mv_fpr: 0.167
+  mlm_mv_precision: 0.839
+  mlm_mv_recall: 0.868
+  mlm_wins_fn_fraction: 0.354
+  mlm_wins_fp_fraction: 0.646
+
+============================================================
+=== exp64_toxicchat_confidence_analysis ===
+status: DONE
+hypothesis: 9-class 在 ToxicChat 上的高 FPR 来源于高置信误判（>0.9），而非 borderline 预测，说明 classification DAPT 对 ToxicChat benign 文本产生了系统性的特征偏移而非边界模糊
+conclusion: success
+  9class_majority: {"total_fp": 104, "high_conf_ratio": 0.7019, "borderline_ratio": 0.25, "mean_conf": 0.9014, "median_conf": 0.9999}
+  9class_per_seed_high_conf_ratio: {"seed42": 0.9691, "seed123": 0.9773, "seed456": 0.9429}
+  jb_mlm_majority: {"total_fp": 34, "high_conf_ratio": 0.5882, "borderline_ratio": 0.1471, "mean_conf": 0.8334, "median_conf": 0.9327}
+  jb_mlm_per_seed_high_conf_ratio: {"seed42": 0.4118, "seed123": 0.6897, "seed456": 0.5833}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "fedcb280-a4c7-4481-8241-b6fdf42b533e"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 40_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Find all per-seed F1/recall data",
+  "usage": {
+    "total_tokens": 37731,
+    "tool_uses": 10,
+    "duration_ms": 85640
+  },
+  "last_tool_name": "Bash",
+  "uuid": "2f73e169-c3a6-455d-9923-37157516c0ec",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017zKV6A6ymrXjSCBUbRRWob`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Look for per-seed F1 data for 9-class DD and AA\n# Check all experiments that have 'per_seed' in any metric value\nprint('=== Experiments with per_seed data ===')\nfor name, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    for mk, mv in metrics.items():\n        mv_str = json.dumps(mv)\n        if 'per_seed' in mv_str or ('seed42' in mv_str and ('f1' in mk.lower() or 'recall' in mk.lower() or 'dd' in mk.lower() or 'aa' in mk.lower())):\n            print(f'\\\\n  {name} -> {mk}: {mv_str[:500]}')\n\" 2>&1",
+  "description": "Find all per-seed F1/recall data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "1c6cbfb5-2393-47c4-814f-0f72b55411a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Zhuj32kpcnQdZhPPCdRrH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4360,
+      "cache_read_input_tokens": 33244,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4360,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T23:33:29.662Z_
+
+<details><summary>↩ Tool result · `toolu_017zKV6A6ymrXjSCBUbRRWob`</summary>
+
+```text
+=== Experiments with per_seed data ===
+
+  exp2_actorattack_ood -> deberta_scrambled: {"k1": 0.721, "k1_std": 0.101, "k2": 0.828, "k2_std": 0.054, "k3": 0.893, "k3_std": 0.067, "k5": 0.937, "k5_std": 0.057, "full": 0.951, "full_std": 0.043, "per_seed_full": {"seed42": 0.891, "seed123": 0.99, "seed456": 0.971}, "per_seed_k1": {"seed42": 0.618, "seed123": 0.858, "seed456": 0.686}, "per_seed_k3": {"seed42": 0.808, "seed123": 0.972, "seed456": 0.9}, "note": "3-seed complete, K2/K5 corrected"}
+
+  exp32_strategy_prediction -> dd_ood: {"strategy_acc": "0.4145\u00b10.0173", "jb_strategy_acc": "0.1431\u00b10.0260", "macro_f1": "0.1626\u00b10.0238", "strategy_acc_detected": "0.1634\u00b10.0200", "strategy_acc_missed": "0.0758\u00b10.0123", "missed_per_seed": [31, 5, 26], "detection_rate_rapport_building": 0.7417, "corr_det_prob_vs_strat_acc": "r~0.45, p<0.001"}
+
+  exp32_strategy_prediction -> aa_ood: {"strategy_acc": "0.4604\u00b10.0114", "jb_strategy_acc": "0.0682\u00b10.0192", "macro_f1": "0.1145\u00b10.0212", "strategy_acc_detected": "0.1311\u00b10.0375", "strategy_acc_missed": "0.0393\u00b10.0142", "missed_per_seed": [63, 41, 66], "detection_rate_authority_appeal": 0.2841, "detection_rate_emotional_manipulation": 0.5238, "corr_det_prob_vs_strat_acc": "r~0.24, p~0.03"}
+
+  exp33_strategy_prediction_plan002 -> dd_ood: {"strategy_acc": "0.4924\u00b10.0246", "jb_strategy_acc": "0.2569\u00b10.0357", "macro_f1": "0.1965\u00b10.0142", "strategy_acc_detected": "0.2575\u00b10.0352", "strategy_acc_missed": "0.1000\u00b10.0000", "missed_per_seed": [0, 0, 1], "detection_rate_rapport_building": 0.9958, "per_class_f1_top": {"none": 0.8666, "rapport_building": 0.524, "gradual_escalation": 0.2619}}
+
+  exp33_strategy_prediction_plan002 -> aa_ood: {"strategy_acc": "0.7112\u00b10.0086", "jb_strategy_acc": "0.5012\u00b10.0159", "macro_f1": "0.1888\u00b10.0012", "strategy_acc_detected": "0.5091\u00b10.0239", "strategy_acc_missed": "0.2833\u00b10.0360", "missed_per_seed": [1, 7, 1], "detection_rate_authority_appeal": 0.9617, "detection_rate_emotional_manipulation": 0.9524, "detection_rate_gradual_escalation": 1, "detection_rate_logical_reframing": 0.9333, "detection_rate_rapport_building": 1}
+
+  exp38_wildcat_calibration -> roc_auc: {"mean": 0.7, "std": 0.054, "per_seed": {"seed42": 0.768, "seed123": 0.697, "seed456": 0.635}}
+
+  exp8_mhj_human_data -> toxicchat: {"n_jailbreak": 204, "n_benign": 204, "data_source": "ToxicChat (LMSYS)", "leakage": "none", "vanilla_macro_f1": 0.413, "vanilla_macro_f1_std": 0.021, "9class_macro_f1": 0.596, "9class_macro_f1_std": 0.087, "binary_macro_f1": 0.705, "binary_macro_f1_std": 0.072, "scrambled_macro_f1": 0.616, "scrambled_macro_f1_std": 0.056, "scrambled_per_seed": {"seed42": 0.537, "seed123": 0.654, "seed456": 0.657}, "jb_mlm_macro_f1": 0.837, "jb_mlm_macro_f1_std": 0.013, "wiki_mlm_macro_f1": 0.791, "wiki_mlm_macr
+
+  exp8_mhj_human_data -> verazuo: {"n_jailbreak": 666, "n_benign": 213, "data_source": "verazuo/jailbreak_llms + plan_002 benign", "LEAKAGE_WARNING": "78% benign (167/213) from train split", "scrambled_macro_f1": 0.822, "scrambled_macro_f1_std": 0.046, "scrambled_per_seed": {"seed42": 0.818, "seed123": 0.88, "seed456": 0.768}, "vanilla_macro_f1": 0.267, "9class_macro_f1": 0.767, "binary_macro_f1": 0.883, "jb_mlm_macro_f1": 0.937, "wiki_mlm_macro_f1": 0.845, "topic_macro_f1": 0.669, "test_only_benign": {"n_benign": 46, "note": "e
+
+  plan_018_wiki_mlm_control -> per_seed_dd_ood_full_f1: {"seed42": 0.7421, "seed123": 0.9902, "seed456": 0.9803}
+
+  vanilla_multiseed_dd_ood -> vanilla_3seed_dd_ood: {"k1": {"seed42": 0.575, "seed123": 0.658, "seed456": 0.652, "mean": 0.628, "std": 0.038}, "k2": {"seed42": 0.438, "seed123": 0.53, "seed456": 0.469, "mean": 0.479, "std": 0.038}, "k3": {"seed42": 0.359, "seed123": 0.424, "seed456": 0.383, "mean": 0.389, "std": 0.027}, "k5": {"seed42": 0.311, "seed123": 0.383, "seed456": 0.36, "mean": 0.351, "std": 0.03}, "full": {"seed42": 0.285, "seed123": 0.305, "seed456": 0.348, "mean": 0.312, "std": 0.026}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "78e97356-534c-49db-aa2d-740fa2449c18"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 43_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Find ALL recall and detection rate metrics",
+  "usage": {
+    "total_tokens": 40148,
+    "tool_uses": 11,
+    "duration_ms": 97363
+  },
+  "last_tool_name": "Bash",
+  "uuid": "329e2df1-cf84-41ca-beab-7e14d96b98fb",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NhjPsASTTZSYZjCxx17kjN`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Comprehensive search: any metric with 'recall' anywhere in key or value\nprint('=== ALL recall-related metrics ===')\nfor name, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    for mk, mv in metrics.items():\n        mv_str = json.dumps(mv)\n        if 'recall' in mk.lower() or 'recall' in mv_str.lower():\n            print(f'  {name} -> {mk}: {mv_str[:300]}')\n\nprint()\nprint('=== ALL TP/FN related metrics ===')\nfor name, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    for mk, mv in metrics.items():\n        mv_str = json.dumps(mv)\n        if any(kw in mk.lower() for kw in ['tp_rate', 'fn_rate', 'true_pos', 'false_neg', 'detection_rate', 'n_attack', 'n_benign', 'n_jailbreak', 'test_size']):\n            print(f'  {name} -> {mk}: {mv_str[:300]}')\n\" 2>&1",
+  "description": "Find ALL recall and detection rate metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "5b13f872-66f6-4933-be42-c11ad26df5bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012e3zx1ZGT7n2ZjoCtqYXxu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2382,
+      "cache_read_input_tokens": 37604,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2382,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-22T23:33:41.407Z_
+
+<details><summary>↩ Tool result · `toolu_01NhjPsASTTZSYZjCxx17kjN`</summary>
+
+```text
+=== ALL recall-related metrics ===
+  exp10_fewshot_llm_judge -> dd_full_recall: 0.375
+  exp10_fewshot_llm_judge -> aa_full_recall: 0.5
+  exp16b_llama_only_mlm -> note: "Llama\u2192Llama OOD: both vanilla and MLM fail catastrophically (recall ~0). MLM does not improve cross-attack generalization on Llama data. AA OOD MLM 0.29 < vanilla 0.41."
+  exp30_length_stratified -> structural_finding: "Benign (12-20 turns) and jailbreak (DD 6-10, AA 3-8) have non-overlapping length distributions. Per-bin macro F1 impossible; using per-bin recall instead."
+  exp30_length_stratified -> 9class_jb_recall_by_bin: {"dd_ood": {"4-6": {"mean": 100, "std": 0, "n": 20}, "7-10": {"mean": 99.4, "std": 0.8, "n": 60}}, "aa_ood": {"1-3": {"mean": 93.3, "std": 6.2, "n": 20}, "4-6": {"mean": 95.6, "std": 4.5, "n": 38}, "7-10": {"mean": 100, "std": 0, "n": 22}}}
+  exp30_length_stratified -> note: "9-class \u226593% recall all bins, no degradation. Short AA (1-3 turns) slightly harder (93.3%). MLM unstable on 7-10 turns (std>22%). Vanilla near-0 recall on all bins."
+  exp40 -> iid_jailbreak_recall: 0.1053
+  exp40 -> dd_ood_jailbreak_recall: 0.0125
+  exp40 -> aa_ood_jailbreak_recall: 0
+  exp40 -> fitd_ood_jailbreak_recall: 0
+  exp42b_balanced_ratio_ablation -> ood_aa_recall_mean: 0.9875
+  exp44_multi_llm_mixed -> llama_crescendo_recall: 1
+  exp44_multi_llm_mixed -> llama_dd_recall: 1
+  exp44_multi_llm_mixed -> llama_aa_recall: 1
+  exp44_multi_llm_mixed -> llama_fitd_recall: 1
+  exp44_multi_llm_mixed -> llama_overall_recall: 1
+  exp56_crossllm_10shot_adaptation -> baseline_aa_llama_recall: 0.74
+  exp56_crossllm_10shot_adaptation -> adaptation_curve: {"n0": {"fpr": 0.945, "dd_f1": 1, "aa_f1": 0.99, "fitd_f1": 1, "dd_llama_recall": 1, "aa_llama_recall": 0.74, "fitd_llama_recall": 1}, "n5": {"fpr": 0.055, "dd_f1": 0.694, "aa_f1": 0.841, "fitd_f1": 0.99, "dd_llama_recall": 0.64, "aa_llama_recall": 0.04, "fitd_llama_recall": 0.76}, "n10": {"fpr": 0.
+  exp63_toxicchat_fpfn -> 9class_mv_recall: 0.73
+  exp63_toxicchat_fpfn -> mlm_mv_recall: 0.868
+  plan_012_gpt55_judge -> gpt55_k2_recall: 0.1053
+  plan_012_gpt55_judge -> gpt55_k5_recall: 0.2895
+  plan_012_gpt55_judge -> conclusion_note: "GPT-5.5 >> Qwen3-8B but still far below trained classifier. Perfect precision but very low recall."
+
+=== ALL TP/FN related metrics ===
+  exp14c_prediction_analysis -> dd_full_tp_rate: {"both_conditions_identical": {"vanilla": 0, "jb_mlm": 0.68, "9class": 1}}
+  exp43_mhj_human_eval -> verazuo_n_jailbreak: 666
+  exp43_mhj_human_eval -> verazuo_n_benign: 213
+  phase_b_full -> test_size: 72
+  pilot_phase_b -> test_size: 41
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "d8e69476-86ab-4fd1-ab0a-103d61f9aef8"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 46_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Find test set composition and baseline data",
+  "usage": {
+    "total_tokens": 41873,
+    "tool_uses": 12,
+    "duration_ms": 111313
+  },
+  "last_tool_name": "Bash",
+  "uuid": "edb371cd-902c-4d64-9e38-03805e5a02ab",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01K967iDfjw1MppnUaYBbPWC`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Look for test set composition / n_attack / n_benign / n_samples\nprint('=== Test set sizes and composition ===')\nfor name, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    for mk, mv in metrics.items():\n        mv_str = json.dumps(mv)\n        if any(kw in mk.lower() for kw in ['n_sample', 'n_attack', 'n_benign', 'n_jailbreak', 'test_size', 'test_n', 'composition', 'dataset_size', 'eval_n', 'train_size']):\n            print(f'  {name} -> {mk}: {mv_str[:300]}')\n        elif any(kw in mv_str.lower() for kw in ['n_attack', 'n_benign', 'n_jailbreak', 'n_test']):\n            print(f'  {name} -> {mk}: {mv_str[:300]}')\n\nprint()\nprint('=== exp2_actorattack_ood n_samples ===')\nexp = exps.get('exp2_actorattack_ood', {})\nprint(json.dumps(exp.get('metrics', {}).get('n_samples', 'NOT FOUND')))\n\n# Look at baseline data too\nprint()\nprint('=== baseline section ===')\nbaseline = inner['data'].get('baseline', {})\nprint(json.dumps(baseline, indent=2)[:2000])\n\" 2>&1",
+  "description": "Find test set composition and baseline data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "c5a8725e-8090-460e-bb5d-fb47262d359a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0185H6GeGUeePDhn1BeSrqEE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1690,
+      "cache_read_input_tokens": 39986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1690,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T23:33:55.350Z_
+
+<details><summary>↩ Tool result · `toolu_01K967iDfjw1MppnUaYBbPWC`</summary>
+
+```text
+=== Test set sizes and composition ===
+  exp14c_prediction_analysis -> dd_full_fp_rate: {"exp14_llama_benign": {"vanilla": 0.293, "jb_mlm": 0.88, "9class": 0.9}, "exp14b_qwen_benign": {"vanilla": 0, "jb_mlm": 0.009, "9class": 0}}
+  exp16_multi_llm -> note: "CORRECTED 2026-05-20: OOD metrics recalculated with attack+benign (118 samples). Old attack-only values deprecated. qwen_test INVALIDATED (35.5% leak). toxicchat_balanced on 408-item balanced set."
+  exp2_actorattack_ood -> n_samples: 118
+  exp42_ood_benign_mixed -> wildchat_eval_n: 49
+  exp42_ood_benign_mixed -> train_size: "500 (350 orig + 150 WildChat benign)"
+  exp42b_balanced_ratio_ablation -> wildchat_eval_n: 49
+  exp42b_balanced_ratio_ablation -> train_size: 350
+  exp42b_balanced_ratio_ablation -> train_composition: "175 jailbreak + 87 orig benign + 88 WildChat benign (50:50)"
+  exp43_mhj_human_eval -> verazuo_n_jailbreak: 666
+  exp43_mhj_human_eval -> verazuo_n_benign: 213
+  exp44_multi_llm_mixed -> train_composition: "175 Qwen jb + 175 Qwen bn + 164 Llama jb + 150 WC bn = 664"
+  exp5_llm_judge_ood -> n_samples: 118
+  exp8_mhj_human_data -> toxicchat: {"n_jailbreak": 204, "n_benign": 204, "data_source": "ToxicChat (LMSYS)", "leakage": "none", "vanilla_macro_f1": 0.413, "vanilla_macro_f1_std": 0.021, "9class_macro_f1": 0.596, "9class_macro_f1_std": 0.087, "binary_macro_f1": 0.705, "binary_macro_f1_std": 0.072, "scrambled_macro_f1": 0.616, "scrambl
+  exp8_mhj_human_data -> verazuo: {"n_jailbreak": 666, "n_benign": 213, "data_source": "verazuo/jailbreak_llms + plan_002 benign", "LEAKAGE_WARNING": "78% benign (167/213) from train split", "scrambled_macro_f1": 0.822, "scrambled_macro_f1_std": 0.046, "scrambled_per_seed": {"seed42": 0.818, "seed123": 0.88, "seed456": 0.768}, "vani
+  phase_b_full -> test_size: 72
+  phase_b_full -> dataset_size: 480
+  pilot_phase_b -> test_size: 41
+
+=== exp2_actorattack_ood n_samples ===
+118
+
+=== baseline section ===
+null
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "0092bdb5-0f0f-4f3a-b557-b92320991442"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 49_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Check DD OOD test set details",
+  "usage": {
+    "total_tokens": 43362,
+    "tool_uses": 13,
+    "duration_ms": 123543
+  },
+  "last_tool_name": "Bash",
+  "uuid": "82623915-efea-4eeb-9100-6dba0383e890",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01GnkqP7LkE5NTH6pgghAZRe`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Look at DD OOD test set composition - check cross_attack_baseline and plan_002 experiments\nkey = ['cross_attack_baseline', 'plan_002_clean_training', 'plan_002_seed123', 'plan_002_seed456',\n       'plan_006_cross_attack_clean', 'plan_015_dd_eval', 'exp4_dd_ood_perturbation',\n       'phase_b_full', 'pilot_phase_b', 'exp59_resample_350']\nfor name in key:\n    if name in exps:\n        exp = exps[name]\n        print(f'\\\\n=== {name} ===')\n        print(f'  status: {exp.get(\\\"status\\\")}')\n        metrics = exp.get('metrics', {})\n        for mk, mv in sorted(metrics.items()):\n            print(f'  {mk}: {json.dumps(mv)[:500]}')\n        notes = exp.get('notes', '')\n        if notes:\n            print(f'  NOTES: {notes[:500]}')\n\" 2>&1",
+  "description": "Check DD OOD test set details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "9c05c048-8c26-43d9-9dc0-60fc76c21827",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B3VvvBkkLgbV7j6FKVbxuz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1453,
+      "cache_read_input_tokens": 41676,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1453,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-22T23:34:07.571Z_
+
+<details><summary>↩ Tool result · `toolu_01GnkqP7LkE5NTH6pgghAZRe`</summary>
+
+```text
+=== cross_attack_baseline ===
+  status: DONE
+  dd_baseline_k1_f1: 1
+  dd_baseline_k2_f1: 1
+  dd_treatment_k1_f1: 0.9812
+  dd_treatment_k2_f1: 0.9875
+  fitd_baseline_k1_f1: 0.7483
+  fitd_baseline_k2_f1: 0.6866
+  fitd_baseline_k3_f1: 0.8465
+  fitd_treatment_k1_f1: 0.9812
+  fitd_treatment_k2_f1: 0.975
+  fitd_treatment_k3_f1: 0.9937
+  full_baseline_f1: 1
+  full_treatment_f1: 1
+  invalidation_reason: "v4c benign data TF-IDF=1.0 confound + model trained on confounded data, results not citable"
+  tfidf_dd_k1_f1: 1
+  tfidf_fitd_k2_f1: 1
+
+=== plan_002_clean_training ===
+  status: DONE
+  baseline_full_f1: 1
+  baseline_k1_f1: 0.987
+  baseline_k2_f1: 0.9867
+  baseline_k3_f1: 0.9867
+  baseline_k5_f1: 1
+  max_delta_pp: 1.3
+  pass_criteria_5pp: false
+  tfidf_all_k_f1: 1
+  treatment_full_f1: 1
+  treatment_k1_f1: 1
+  treatment_k2_f1: 1
+  treatment_k3_f1: 1
+  treatment_k5_f1: 1
+
+=== plan_002_seed123 ===
+  status: DONE
+  baseline_full_f1: 1
+  baseline_k1_f1: 0.987
+  baseline_k2_f1: 0.987
+  baseline_k3_f1: 0.987
+  dd_ood_full_f1: 1
+  dd_ood_k1_f1: 1
+  dd_ood_k2_f1: 0.9904
+  dd_ood_k3_f1: 0.9904
+  dd_ood_k5_f1: 1
+  tfidf_all_k_f1: 1
+  treatment_full_f1: 1
+  treatment_k1_f1: 1
+  treatment_k2_f1: 1
+  treatment_k3_f1: 1
+  treatment_k5_f1: 1
+
+=== plan_002_seed456 ===
+  status: DONE
+  baseline_full_f1: 1
+  baseline_k1_f1: 0.9296
+  baseline_k2_f1: 0.9589
+  baseline_k3_f1: 0.9867
+  baseline_k5_f1: 0.9867
+  dd_ood_full_f1: 0.9904
+  dd_ood_k1_f1: 0.9715
+  dd_ood_k2_f1: 0.9622
+  dd_ood_k3_f1: 0.935
+  dd_ood_k5_f1: 0.9904
+  deberta_best_epoch: 2
+  deberta_intent_acc: 1
+  deberta_persuasion_acc: 0.8593
+  tfidf_all_k_f1: 1
+  treatment_full_f1: 1
+  treatment_k1_f1: 1
+  treatment_k2_f1: 1
+  treatment_k3_f1: 1
+  treatment_k5_f1: 1
+
+=== plan_006_cross_attack_clean ===
+  status: DONE
+  dd_baseline_full_f1: 0.2845
+  dd_baseline_k1_f1: 0.5752
+  dd_baseline_k2_f1: 0.4381
+  dd_baseline_k3_f1: 0.3596
+  dd_baseline_k5_f1: 0.3105
+  dd_treatment_full_f1: 1
+  dd_treatment_k1_f1: 1
+  dd_treatment_k2_f1: 0.9904
+  dd_treatment_k3_f1: 0.9904
+  dd_treatment_k5_f1: 1
+  fitd_baseline_full_f1: 1
+  fitd_baseline_k1_f1: 0.9902
+  fitd_baseline_k2_f1: 1
+  fitd_treatment_full_f1: 1
+  fitd_treatment_k1_f1: 1
+  fitd_treatment_k2_f1: 1
+  max_dd_delta_pp: 71.55
+  pass_criteria: true
+  tfidf_dd_full_f1: 0.9439
+  tfidf_fitd_k1_f1: 1
+
+=== plan_015_dd_eval ===
+  status: DONE
+  conclusion_note: "GRU temporal modeling NOT necessary on DD OOD; persuasion embeddings are the core driver"
+  gru_treatment_k2_f1: 0.9904
+  gru_treatment_k3_f1: 0.9904
+  gru_vs_meanpool: "comparable"
+  meanpool_baseline_full_f1: 0.2947
+  meanpool_baseline_k1_f1: 0.8286
+  meanpool_baseline_k2_f1: 0.6387
+  meanpool_baseline_k3_f1: 0.5614
+  meanpool_baseline_k5_f1: 0.3922
+  meanpool_treatment_full_f1: 1
+  meanpool_treatment_k1_f1: 1
+  meanpool_treatment_k2_f1: 1
+  meanpool_treatment_k3_f1: 0.9937
+  meanpool_treatment_k5_f1: 1
+
+=== exp4_dd_ood_perturbation ===
+  status: DONE
+  9class_3seed: {"clean_k1": 0.9905, "perturbed_k1": 0.9968, "delta_k1": 0.0063, "clean_k3": 0.9719, "perturbed_k3": 0.9936, "delta_k3": 0.0217, "clean_full": 0.9968, "perturbed_full": 1, "delta_full": 0.0032}
+  binary_3seed: {"clean_k1": 0.9936, "perturbed_k1": 1, "delta_k1": 0.0064, "clean_full": 0.9968, "perturbed_full": 1, "delta_full": 0.0032}
+  jb_mlm_3seed: {"clean_k1": 0.9733, "perturbed_k1": 0.9733, "delta_k1": 0, "clean_full": 0.9138, "perturbed_full": 0.9409, "delta_full": 0.0271}
+  mcnemar_perturbed_full: {"9class_vs_vanilla": {"all_seeds_p": "<0.001", "discordant_range": "67-78 favoring 9class"}, "9class_vs_jb_mlm": {"seed42": "tie", "seed123": "n.s.", "seed456": "p=4e-06 (b=19)"}, "9class_vs_scrambled": "tie all seeds"}
+  mcnemar_perturbed_k1: {"9class_vs_vanilla": {"all_seeds_p": "<0.001", "discordant_range": "49-56 favoring 9class"}, "9class_vs_jb_mlm": "n.s. all seeds", "9class_vs_scrambled": "n.s. all seeds"}
+  scrambled_3seed: {"clean_k1": 0.9968, "perturbed_k1": 0.9936, "delta_k1": -0.0032, "clean_full": 0.9968, "perturbed_full": 1, "delta_full": 0.0032}
+  topic_3seed: {"clean_k1": 0.5912, "perturbed_k1": 0.617, "delta_k1": 0.0259, "clean_full": 0.5412, "perturbed_full": 0.5765, "delta_full": 0.0353}
+  vanilla_3seed: {"clean_k1": 0.6283, "perturbed_k1": 0.5602, "delta_k1": -0.0681, "clean_k2": 0.4824, "perturbed_k2": 0.4829, "delta_k2": 0.0004, "clean_full": 0.3123, "perturbed_full": 0.3394, "delta_full": 0.0271}
+  wiki_mlm_3seed: {"clean_k1": 0.9131, "perturbed_k1": 0.8808, "delta_k1": -0.0323, "clean_full": 0.9042, "perturbed_full": 0.8715, "delta_full": -0.0327}
+
+=== phase_b_full ===
+  status: DONE
+  balanced_tfidf_cv_f1: 1
+  baseline_fpr95tpr_full: 0
+  baseline_fpr95tpr_k1: 0.057
+  baseline_fpr95tpr_k2: 0.057
+  baseline_full_f1: 0.987
+  baseline_k1_f1: 0.8615
+  baseline_k2_f1: 0.879
+  baseline_k3_f1: 0.928
+  baseline_k5_f1: 0.958
+  dataset_size: 480
+  deberta_best_epoch: 3
+  deberta_intent_acc: 0.9514
+  deberta_persuasion_acc: 0.7963
+  test_size: 72
+  tfidf_full_f1: 1
+  tfidf_k1_f1: 1
+  tfidf_k2_f1: 1
+  tfidf_k3_f1: 1
+  tfidf_k5_f1: 1
+  treatment_fpr95tpr_full: 0
+  treatment_fpr95tpr_k1: 0
+  treatment_fpr95tpr_k2: 0
+  treatment_full_f1: 1
+  treatment_k1_f1: 0.9867
+  treatment_k2_f1: 0.987
+  treatment_k3_f1: 0.987
+  treatment_k5_f1: 1
+
+=== pilot_phase_b ===
+  status: DONE
+  baseline_full_f1: 0.737
+  baseline_k2_f1: 0.737
+  baseline_k3_f1: 0.894
+  baseline_k5_f1: 0.894
+  deberta_intent_acc: 0.984
+  deberta_persuasion_acc: 0.718
+  test_benign: 3
+  test_jailbreak: 38
+  test_size: 41
+  tfidf_full_f1: 1
+  tfidf_k2_f1: 0.894
+  tfidf_k3_f1: 0.894
+  tfidf_k5_f1: 0.894
+  treatment_full_f1: 1
+  treatment_k2_f1: 1
+  treatment_k3_f1: 1
+  treatment_k5_f1: 1
+
+=== exp59_resample_350 ===
+  status: DONE
+  aa_ood_f1: "0.883\u00b10.091"
+  aa_seeds: [0.758, 0.916, 0.974]
+  dd_ood_f1: "0.887\u00b10.086"
+  dd_seeds: [0.765, 0.948, 0.948]
+  iid_f1: "0.998\u00b10.003"
+  iid_seeds: [1, 0.993, 1]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "36fd0283-8b97-4252-b3fe-1d9c9e7853d7"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 52_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Get full exp55 and exp9 details for per-seed data",
+  "usage": {
+    "total_tokens": 47150,
+    "tool_uses": 14,
+    "duration_ms": 137321
+  },
+  "last_tool_name": "Bash",
+  "uuid": "8787a3ab-60e6-458a-a232-5c1e567542ba",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012UTELXxEtjNJZUhC3SZt6h`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Get full details of exp55 (5-seed)\nprint('=== exp55_5seed_mlm_vs_9class_aa (FULL) ===')\nexp = exps['exp55_5seed_mlm_vs_9class_aa']\nfor k,v in sorted(exp.items()):\n    print(f'  {k}: {json.dumps(v)[:500]}')\n\n# Also check exp4_dd_ood_perturbation for per-seed 9class DD F1\nprint()\nprint('=== exp4 9class per-seed (from clean_full) ===')\nexp4 = exps['exp4_dd_ood_perturbation']\nprint(json.dumps(exp4['metrics'].get('9class_3seed', {}), indent=2))\n\n# Check exp9 for DD per-seed\nprint()\nprint('=== exp9_bootstrap_ci (FULL) ===')\nexp9 = exps['exp9_bootstrap_ci']\nfor k,v in sorted(exp9.items()):\n    if k == 'metrics':\n        for mk, mv in sorted(v.items()):\n            print(f'  {mk}: {json.dumps(mv)}')\n\" 2>&1",
+  "description": "Get full exp55 and exp9 details for per-seed data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "d8201f16-3986-445d-bf59-6494231d7f7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0126m2jQbLU1Yh7YBcrKob4T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3780,
+      "cache_read_input_tokens": 43129,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3780,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T23:34:21.361Z_
+
+<details><summary>↩ Tool result · `toolu_012UTELXxEtjNJZUhC3SZt6h`</summary>
+
+```text
+=== exp55_5seed_mlm_vs_9class_aa (FULL) ===
+  conclusion: "negative"
+  created_at: "2026-05-22T11:11:41.549Z"
+  hypothesis: "9-class persuasion-grounded DeBERTa DAPT produces significantly better OOD generalization than domain-exposure-only MLM DAPT, with the advantage being robust across 5 random seeds (expanding from 3 to address reviewer W2 concern about insufficient seed count)"
+  metrics: {"n_seeds": 5, "seeds": [42, 123, 456, 789, 1024], "9class_aa_ood": {"mean": 0.9735, "std": 0.0124}, "mlm_aa_ood": {"mean": 0.9566, "std": 0.0237}, "9class_iid": {"mean": 1, "std": 0}, "mlm_iid": {"mean": 0.9816, "std": 0.0134}, "9class_dd_ood": {"mean": 0.9924, "std": 0.0111}, "mlm_dd_ood": {"mean": 0.9883, "std": 0.0094}, "9class_fitd_ood": {"mean": 1, "std": 0}, "mlm_fitd_ood": {"mean": 0.9883, "std": 0.0094}, "aa_ood_delta_pp": 1.69, "aa_ood_paired_ttest_p": 0.2461, "aa_ood_wilcoxon_p": 0.18
+  status: "DONE"
+  updated_at: "2026-05-22T12:15:56.035Z"
+
+=== exp4 9class per-seed (from clean_full) ===
+{
+  "clean_k1": 0.9905,
+  "perturbed_k1": 0.9968,
+  "delta_k1": 0.0063,
+  "clean_k3": 0.9719,
+  "perturbed_k3": 0.9936,
+  "delta_k3": 0.0217,
+  "clean_full": 0.9968,
+  "perturbed_full": 1,
+  "delta_full": 0.0032
+}
+
+=== exp9_bootstrap_ci (FULL) ===
+  actorattack_9class_full: {"mean": 0.9718, "ci": [0.8554, 1]}
+  actorattack_vanilla_full: {"mean": 0.2565, "ci": [0.2027, 0.3139]}
+  dd_ood_9class_full: {"mean": 0.9968, "ci": [0.9426, 1]}
+  dd_ood_vanilla_full: {"mean": 0.2698, "ci": [0.2017, 0.3414]}
+  perm_9class_vs_jb_mlm_dd_full_max_p: 1
+  perm_9class_vs_scrambled_dd_full_max_p: 1
+  perm_9class_vs_vanilla_aa_full_p: 0
+  perm_9class_vs_vanilla_dd_full_p: 0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "56bd1706-3f8f-4a08-8242-85625e6ec1e1"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 55_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Full dump of exp55 metrics",
+  "usage": {
+    "total_tokens": 48587,
+    "tool_uses": 15,
+    "duration_ms": 146093
+  },
+  "last_tool_name": "Bash",
+  "uuid": "5a82d5d6-c982-4d4a-8aba-64d5771d075a",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Rm9zGJw8yC5cVGCofh4TWS`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Look for per-seed DD and AA F1 values directly\n# Check exp55 for per-seed breakdown\nprint('=== exp55 full metrics dump ===')\nexp55 = exps['exp55_5seed_mlm_vs_9class_aa']\nprint(json.dumps(exp55['metrics'], indent=2))\n\" 2>&1",
+  "description": "Full dump of exp55 metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "520d45d9-4004-4993-a564-796eeea1c4ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C96dDeMLENCi2cQNSBvHBm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1401,
+      "cache_read_input_tokens": 46909,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1401,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-22T23:34:30.115Z_
+
+<details><summary>↩ Tool result · `toolu_01Rm9zGJw8yC5cVGCofh4TWS`</summary>
+
+```text
+=== exp55 full metrics dump ===
+{
+  "n_seeds": 5,
+  "seeds": [
+    42,
+    123,
+    456,
+    789,
+    1024
+  ],
+  "9class_aa_ood": {
+    "mean": 0.9735,
+    "std": 0.0124
+  },
+  "mlm_aa_ood": {
+    "mean": 0.9566,
+    "std": 0.0237
+  },
+  "9class_iid": {
+    "mean": 1,
+    "std": 0
+  },
+  "mlm_iid": {
+    "mean": 0.9816,
+    "std": 0.0134
+  },
+  "9class_dd_ood": {
+    "mean": 0.9924,
+    "std": 0.0111
+  },
+  "mlm_dd_ood": {
+    "mean": 0.9883,
+    "std": 0.0094
+  },
+  "9class_fitd_ood": {
+    "mean": 1,
+    "std": 0
+  },
+  "mlm_fitd_ood": {
+    "mean": 0.9883,
+    "std": 0.0094
+  },
+  "aa_ood_delta_pp": 1.69,
+  "aa_ood_paired_ttest_p": 0.2461,
+  "aa_ood_wilcoxon_p": 0.1875,
+  "aa_ood_9class_wins": 4,
+  "aa_ood_mlm_wins": 1,
+  "total_time_min": 10.5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "f76d6ac3-cfa6-4526-a088-85ceb92db9de"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 58_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Extract per-seed DD OOD F1 from plan_002 experiments",
+  "usage": {
+    "total_tokens": 49408,
+    "tool_uses": 16,
+    "duration_ms": 157636
+  },
+  "last_tool_name": "Bash",
+  "uuid": "45895809-595e-4050-9dca-ea15d5d7984e",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DCYGs9sBRH71uNar4C3qQB`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Check plan_002 seeds for per-seed DD F1\n# seed42 = plan_002_clean_training, seed123 = plan_002_seed123, seed456 = plan_002_seed456\nprint('=== 9-class DD OOD per-seed F1 (from plan_002 experiments) ===')\nprint('seed42 (plan_002_clean_training):')\ne = exps['plan_002_clean_training']['metrics']\nprint(f'  dd_ood_full_f1: {e.get(\\\"dd_ood_full_f1\\\", e.get(\\\"treatment_full_f1\\\", \\\"N/A\\\"))}')\n# check all keys\nfor k,v in sorted(e.items()):\n    if 'dd_ood' in k.lower():\n        print(f'  {k}: {v}')\n\nprint()\nprint('seed123 (plan_002_seed123):')\ne = exps['plan_002_seed123']['metrics']\nfor k,v in sorted(e.items()):\n    if 'dd_ood' in k.lower():\n        print(f'  {k}: {v}')\n\nprint()\nprint('seed456 (plan_002_seed456):')\ne = exps['plan_002_seed456']['metrics']\nfor k,v in sorted(e.items()):\n    if 'dd_ood' in k.lower():\n        print(f'  {k}: {v}')\n\n# Now check mf1_binary and mf1_scrambled for per-seed data\nprint()\nprint('=== mf1 seeds ===')\nfor name in ['mf1_binary_seed123', 'mf1_binary_seed456', 'mf1_scrambled_seed123', 'mf1_scrambled_seed456']:\n    if name in exps:\n        print(f'{name}:')\n        for k,v in sorted(exps[name]['metrics'].items()):\n            if 'dd_ood' in k.lower() or 'aa_ood' in k.lower() or 'actorattack' in k.lower():\n                print(f'  {k}: {v}')\n\" 2>&1",
+  "description": "Extract per-seed DD OOD F1 from plan_002 experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "d5364267-4540-4d4a-91ac-8a9680a7c1f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7ySBVYHQvqwXd1ZN3zCKt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 748,
+      "cache_read_input_tokens": 48310,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 748,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T23:34:41.663Z_
+
+<details><summary>↩ Tool result · `toolu_01DCYGs9sBRH71uNar4C3qQB`</summary>
+
+```text
+=== 9-class DD OOD per-seed F1 (from plan_002 experiments) ===
+seed42 (plan_002_clean_training):
+  dd_ood_full_f1: 1
+
+seed123 (plan_002_seed123):
+  dd_ood_full_f1: 1
+  dd_ood_k1_f1: 1
+  dd_ood_k2_f1: 0.9904
+  dd_ood_k3_f1: 0.9904
+  dd_ood_k5_f1: 1
+
+seed456 (plan_002_seed456):
+  dd_ood_full_f1: 0.9904
+  dd_ood_k1_f1: 0.9715
+  dd_ood_k2_f1: 0.9622
+  dd_ood_k3_f1: 0.935
+  dd_ood_k5_f1: 0.9904
+
+=== mf1 seeds ===
+mf1_binary_seed123:
+  dd_ood_full_f1: 1
+  dd_ood_k1_f1: 1
+  dd_ood_k2_f1: 1
+  dd_ood_k3_f1: 0.9904
+  dd_ood_k5_f1: 1
+mf1_binary_seed456:
+  dd_ood_full_f1: 1
+  dd_ood_k1_f1: 1
+  dd_ood_k2_f1: 1
+  dd_ood_k3_f1: 0.9904
+  dd_ood_k5_f1: 1
+mf1_scrambled_seed123:
+  dd_ood_f1_full: 1
+  dd_ood_f1_k1: 1
+  dd_ood_f1_k2: 1
+  dd_ood_f1_k3: 1
+  dd_ood_f1_k5: 1
+mf1_scrambled_seed456:
+  dd_ood_full_f1: 1
+  dd_ood_k1_f1: 1
+  dd_ood_k2_f1: 1
+  dd_ood_k3_f1: 0.99
+  dd_ood_k5_f1: 1
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "9942a8e8-8de3-4924-ae00-cdace699b6ae"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 61_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Get 9-class AA per-seed data and error analysis",
+  "usage": {
+    "total_tokens": 50833,
+    "tool_uses": 17,
+    "duration_ms": 173216
+  },
+  "last_tool_name": "Bash",
+  "uuid": "b917d42d-2dab-43be-b96c-fcd1742712f3",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01D3MX58PmD5cmNq49BcWfGf`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Now I need per-seed AA OOD F1 for 9-class. Check exp2_actorattack_ood for deberta_9class per_seed\nprint('=== exp2_actorattack_ood deberta_9class (all details) ===')\nd = exps['exp2_actorattack_ood']['metrics']['deberta_9class']\nprint(json.dumps(d, indent=2))\n\n# Also check exp6_actorattack_perturbation\nprint()\nprint('=== exp6_actorattack_perturbation ===')\nif 'exp6_actorattack_perturbation' in exps:\n    for k,v in sorted(exps['exp6_actorattack_perturbation']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:500]}')\n\n# Check exp31_lambda_ablation_aa\nprint()\nprint('=== exp31_lambda_ablation_aa ===')\nif 'exp31_lambda_ablation_aa' in exps:\n    for k,v in sorted(exps['exp31_lambda_ablation_aa']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:500]}')\n\n# Check exp23_aa_error_analysis\nprint()\nprint('=== exp23_aa_error_analysis ===')\nif 'exp23_aa_error_analysis' in exps:\n    for k,v in sorted(exps['exp23_aa_error_analysis']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:500]}')\n\" 2>&1",
+  "description": "Get 9-class AA per-seed data and error analysis"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "565a82f8-4590-4629-9aa8-3c278370a412",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E9sAgzZJ3oYmUXMU9u4wxs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1390,
+      "cache_read_input_tokens": 49058,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1390,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-22T23:34:57.253Z_
+
+<details><summary>↩ Tool result · `toolu_01D3MX58PmD5cmNq49BcWfGf`</summary>
+
+```text
+=== exp2_actorattack_ood deberta_9class (all details) ===
+{
+  "k1": 0.773,
+  "k1_std": 0.041,
+  "k2": 0.855,
+  "k2_std": 0.048,
+  "k3": 0.921,
+  "k3_std": 0.046,
+  "k5": 0.966,
+  "k5_std": 0.028,
+  "full": 0.972,
+  "full_std": 0.026
+}
+
+=== exp6_actorattack_perturbation ===
+  9class_3seed: {"clean_k1": 0.7728, "perturbed_k1": 0.6326, "delta_k1": -0.1402, "clean_k3": 0.9212, "perturbed_k3": 0.7337, "delta_k3": -0.1875, "clean_full": 0.9719, "perturbed_full": 0.7681, "delta_full": -0.2038}
+  binary_3seed: {"clean_k1": 0.737, "perturbed_k1": 0.6694, "delta_k1": -0.0676, "clean_k3": 0.9508, "perturbed_k3": 0.7035, "delta_k3": -0.2473, "clean_full": 0.9904, "perturbed_full": 0.7405, "delta_full": -0.2499}
+  jb_mlm_3seed: {"clean_k1": 0.7363, "perturbed_k1": 0.6572, "delta_k1": -0.079, "clean_k3": 0.9446, "perturbed_k3": 0.5483, "delta_k3": -0.3962, "clean_full": 0.8934, "perturbed_full": 0.5408, "delta_full": -0.3526}
+  mcnemar_clean_full: {"9class_vs_vanilla": {"seed42": {"p": 0, "b": 78, "c": 0}, "seed123": {"p": 0, "b": 72, "c": 0}, "seed456": {"p": 0, "b": 78, "c": 0}}}
+  mcnemar_clean_k1: {"9class_vs_vanilla": {"seed42": {"p": 0, "b": 52, "c": 4}, "seed123": {"p": 0, "b": 42, "c": 3}, "seed456": {"p": 0, "b": 53, "c": 0}}}
+  mcnemar_perturbed_full: {"9class_vs_vanilla": {"seed42": {"p": 0, "b": 44, "c": 0}, "seed123": {"p": 0, "b": 75, "c": 4}, "seed456": {"p": 0, "b": 78, "c": 24}}}
+  mcnemar_perturbed_k1: {"9class_vs_vanilla": {"seed42": {"p": 2e-05, "b": 34, "c": 6}, "seed123": {"p": 1.9e-05, "b": 59, "c": 20}, "seed456": {"p": 0, "b": 72, "c": 19}}}
+  note: "CORRECTED 2026-05-18: vanilla seed123/456 GRU checkpoints and binary seed42 DeBERTa+GRU checkpoints were wrong (used different models than exp2). Fixed to match exp2 checkpoints. Clean baselines now consistent with exp2. All variants still degrade under perturbation except topic at K=1. 9class significantly outperforms vanilla on both clean and perturbed (McNemar all p<0.001)."
+  scrambled_3seed: {"clean_k1": 0.7206, "perturbed_k1": 0.6164, "delta_k1": -0.1042, "clean_k3": 0.8931, "perturbed_k3": 0.7779, "delta_k3": -0.1152, "clean_full": 0.9511, "perturbed_full": 0.7787, "delta_full": -0.1724}
+  topic_3seed: {"clean_k1": 0.5135, "perturbed_k1": 0.5258, "delta_k1": 0.0123, "clean_k3": 0.5654, "perturbed_k3": 0.5413, "delta_k3": -0.0241, "clean_full": 0.6254, "perturbed_full": 0.5767, "delta_full": -0.0488}
+  vanilla_3seed: {"clean_k1": 0.3374, "perturbed_k1": 0.2694, "delta_k1": -0.0681, "clean_k3": 0.2844, "perturbed_k3": 0.2574, "delta_k3": -0.027, "clean_full": 0.2575, "perturbed_full": 0.2482, "delta_full": -0.0093}
+  wiki_mlm_3seed: {"clean_k1": 0.6559, "perturbed_k1": 0.6007, "delta_k1": -0.0552, "clean_k3": 0.6931, "perturbed_k3": 0.5216, "delta_k3": -0.1716, "clean_full": 0.686, "perturbed_full": 0.5454, "delta_full": -0.1406}
+
+=== exp31_lambda_ablation_aa ===
+  dd_all: 1
+  fitd_all: 1
+  iid_all: 1
+  lambda_0.1_aa: 0.9904
+  lambda_0.5_aa: 0.9809
+  lambda_0_aa: 1
+  lambda_1.0_aa: 0.9809
+  lambda_2.0_aa: 0.9439
+  note: "Higher lambda monotonically hurts AA OOD. lambda=0 (intent-only E2E) achieves perfect AA. Persuasion aux loss acts as a distractor during E2E."
+
+=== exp23_aa_error_analysis ===
+  consistent_errors_all_seeds: 0
+  error_pattern: {"all_errors_are_fn": true, "zero_fp": true, "seed123_weakest": "7 FN vs 1 FN for other seeds", "short_dialogues_harder": "errors at 3-6 turns, mean 10480 chars vs correct 12788 chars", "error_topics": "data_privacy(2), digital_privacy(2), identity_verification(2), social_engineering(1)", "vanilla_on_error_samples": "0/3 votes on all 7 samples", "9class_majority_correct": "5/7 samples"}
+  majority_vote_accuracy: 0.983
+  majority_vote_fn: 2
+  majority_vote_fp: 0
+  note: "Errors are sparse, inconsistent across seeds, and concentrated in short dialogues. No systematic blind spot. DAPT provides clear advantage over vanilla on hard samples."
+  total_error_samples_any_seed: 7
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "9cd6e8c0-412c-4a10-ad02-ddc862aa3d85"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 64_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Find dataset composition details",
+  "usage": {
+    "total_tokens": 53392,
+    "tool_uses": 18,
+    "duration_ms": 186355
+  },
+  "last_tool_name": "Bash",
+  "uuid": "26a37a38-5589-45fd-a87d-791d773f32dd",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01REeYW9sTUZdaoSM4JWcWWd`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Now get the DD OOD and AA OOD test composition (n_attack, n_benign)\n# Check exp16_9class_train and exp16_multi_llm for dataset details\nprint('=== exp16_9class_train ===')\nif 'exp16_9class_train' in exps:\n    for k,v in sorted(exps['exp16_9class_train'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\nprint()\nprint('=== exp17_dataset_scale ===')\nif 'exp17_dataset_scale' in exps:\n    for k,v in sorted(exps['exp17_dataset_scale'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\n# Check exp28_data_efficiency for dataset details\nprint()\nprint('=== exp28_data_efficiency ===')\nif 'exp28_data_efficiency' in exps:\n    for k,v in sorted(exps['exp28_data_efficiency']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\n# exp16_vanilla_train  \nprint()\nprint('=== exp16_vanilla_train ===')\nif 'exp16_vanilla_train' in exps:\n    for k,v in sorted(exps['exp16_vanilla_train']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\" 2>&1",
+  "description": "Find dataset composition details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "1a739e63-1e09-448f-b641-8f1001a13a80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CKHBX2ejRekW2QrPfteuLc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2523,
+      "cache_read_input_tokens": 50448,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2523,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T23:35:10.497Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01REeYW9sTUZdaoSM4JWcWWd`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 32, in &lt;module>
+    for k,v in sorted(exps['exp16_vanilla_train']['metrics'].items()):
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'metrics'
+=== exp16_9class_train ===
+  created_at: "2026-05-19T19:58:47.876Z"
+  status: "PREPARING"
+  updated_at: "2026-05-19T19:59:27.535Z"
+
+=== exp17_dataset_scale ===
+  conclusion: "success"
+  created_at: "2026-05-19T14:23:23.670Z"
+  hypothesis: "Doubling training data from 500 to 1000 conversations (with new topic seeds) will maintain or improve the DAPT evidence hierarchy (9-class >> MLM >> vanilla on OOD), demonstrating that results are not an artifact of small sample size."
+  metrics: {"9class_mean": {"iid": "INVALIDATED (71% leak)", "dd_ood": 0.889, "dd_ood_std": 0.041, "aa_ood": 0.913, "aa_ood_std": 0.041, "toxicchat_balanced": 0.341, "toxicchat_balanced_std": 0.004}, "note": "IID INVALIDATED (71% leak). toxicchat_balanced on 408-item balanced set (204jb/204bn)."}
+  status: "DONE"
+  updated_at: "2026-05-20T01:41:52.198Z"
+
+=== exp28_data_efficiency ===
+  9class: {"50": {"iid": 1, "dd_ood": 1, "aa_ood": 0.99}, "125": {"iid": 1, "dd_ood": 1, "aa_ood": 0.99}, "250": {"iid": 1, "dd_ood": 1, "aa_ood": 1}, "350": {"iid": 1, "dd_ood": 1, "aa_ood": 1}}
+  note: "9-class at 14% data (50 samples) already achieves DD=1.0, AA=0.99 \u2014 outperforming vanilla at 100% by 64pp (DD) and 50pp (AA). Sample efficiency entirely driven by DAPT representation quality."
+  vanilla: {"125": {"iid": 0.53, "dd_ood": 0.24, "aa_ood": 0.24}, "350": {"iid": 1, "dd_ood": 0.36, "aa_ood": 0.49}}
+
+=== exp16_vanilla_train ===
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "803aca2d-dd33-4350-8b1a-99be151391e9",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 32, in &lt;module>\n    for k,v in sorted(exps['exp16_vanilla_train']['metrics'].items()):\n                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\nKeyError: 'metrics'\n=== exp16_9class_train ===\n  created_at: \"2026-05-19T19:58:47.876Z\"\n  status: \"PREPARING\"\n  updated_at: \"2026-05-19T19:59:27.535Z\"\n\n=== exp17_dataset_scale ===\n  conclusion: \"success\"\n  created_at: \"2026-05-19T14:23:23.670Z\"\n  hypothesis: \"Doubling training data from 500 to 1000 conversations (with new topic seeds) will maintain or improve the DAPT evidence hierarchy (9-class >> MLM >> vanilla on OOD), demonstrating that results are not an artifact of small sample size.\"\n  metrics: {\"9class_mean\": {\"iid\": \"INVALIDATED (71% leak)\", \"dd_ood\": 0.889, \"dd_ood_std\": 0.041, \"aa_ood\": 0.913, \"aa_ood_std\": 0.041, \"toxicchat_balanced\": 0.341, \"toxicchat_balanced_std\": 0.004}, \"note\": \"IID INVALIDATED (71% leak). toxicchat_balanced on 408-item balanced set (204jb/204bn).\"}\n  status: \"DONE\"\n  updated_at: \"2026-05-20T01:41:52.198Z\"\n\n=== exp28_data_efficiency ===\n  9class: {\"50\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 0.99}, \"125\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 0.99}, \"250\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 1}, \"350\": {\"iid\": 1, \"dd_ood\": 1, \"aa_ood\": 1}}\n  note: \"9-class at 14% data (50 samples) already achieves DD=1.0, AA=0.99 \\u2014 outperforming vanilla at 100% by 64pp (DD) and 50pp (AA). Sample efficiency entirely driven by DAPT representation quality.\"\n  vanilla: {\"125\": {\"iid\": 0.53, \"dd_ood\": 0.24, \"aa_ood\": 0.24}, \"350\": {\"iid\": 1, \"dd_ood\": 0.36, \"aa_ood\": 0.49}}\n\n=== exp16_vanilla_train ==="
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 67_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Find test set sizes and F1 type",
+  "usage": {
+    "total_tokens": 54735,
+    "tool_uses": 19,
+    "duration_ms": 220233
+  },
+  "last_tool_name": "Bash",
+  "uuid": "287b8f24-b3c1-45ba-aed5-a491d64a9a4a",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01StuahVshkaPRNh49AiHT91`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Search for n_attack, n_benign, test_n, or similar in ALL experiments\n# Also search for 'n_samples' key across all experiments\nprint('=== ALL experiments with n_samples or composition-related metrics ===')\nfor name, exp in sorted(exps.items()):\n    metrics = exp.get('metrics', {})\n    ms = json.dumps(metrics)\n    if any(kw in ms.lower() for kw in ['n_attack', 'n_benign', 'n_jailbreak', '\\\"118\\\"', 'test_set', 'composition']):\n        print(f'{name}: ')\n        for mk, mv in metrics.items():\n            if any(kw in mk.lower() or kw in json.dumps(mv).lower() for kw in ['n_attack', 'n_benign', 'n_jailbreak', 'n_sample', 'composition', 'test_set']):\n                print(f'  {mk}: {json.dumps(mv)[:300]}')\n\n# exp2 has n_samples=118 - what's the split? Check hypothesis/notes\nprint()\nprint('=== exp2 hypothesis/notes ===')\ne2 = exps['exp2_actorattack_ood']\nprint(f'hypothesis: {e2.get(\\\"hypothesis\\\", \\\"\\\")}')\nprint(f'note: {e2.get(\\\"metrics\\\", {}).get(\\\"note\\\", \\\"\\\")}')\n\n# Check phase_b_full for DD composition\nprint()\nprint('=== DD OOD dataset composition ===')\n# DD OOD = DangerousDialogues, test split\n# Check exp4 notes\ne4 = exps['exp4_dd_ood_perturbation']\nprint(f'hypothesis: {e4.get(\\\"hypothesis\\\", \\\"\\\")}')\nprint()\n\n# Lets look at the actual test F1 calculation:\n# DD OOD full F1 mean = 0.9936 (3-seed), with per-seed: seed42=1, seed123=1, seed456=0.9904\n# The F1=0.9904 from seed456 implies some misses. In a balanced set of ~50+50, F1=0.9904 ~= 1 FN\n\n# For AA OOD: n_samples=118, F1 mean=0.972, std=0.026\n# From exp23 error analysis: majority_vote_fn=2, total_error_samples_any_seed=7\n# seed123 has 7 FN, other seeds 1 FN each\n\n# DD OOD: from plan_006 treatment_full_f1=1 (seed42), plan_002_seed123 dd_ood_full_f1=1, plan_002_seed456=0.9904\n# Let's compute what F1=0.9904 means for n_attack\nprint('Reverse-engineering test set sizes from F1 values:')\nprint()\n# For DD OOD: if F1=0.9904 with 0 FP (exp23 says zero_fp=true for AA, but DD may be different)\n# 0.9904 = 2*TP/(2*TP + FP + FN). If FP=0, F1 = 2*TP/(2*TP + FN)\n# If FN=1: F1 = 2*TP/(2*TP+1). F1=0.9904 => TP = 0.9904/(2-2*0.9904) = 0.9904/0.0192 = 51.58 => ~52 attacks\n# But F1 is macro F1 (binary jailbreak F1), so need to be careful\n\n# Check what kind of F1 these are (macro vs binary)\nprint('=== exp1_roberta_9class - what type of F1? ===')\nprint('Full exp1 metrics:')\nfor k,v in sorted(exps['exp1_roberta_9class']['metrics'].items()):\n    print(f'  {k}: {json.dumps(v)}')\n\" 2>&1",
+  "description": "Find test set sizes and F1 type"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "b33bc8f8-dd4a-4d97-956e-3e776d477982",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q7Yeanbv8s5MU4v4SzGSTx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1307,
+      "cache_read_input_tokens": 52971,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1307,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-22T23:35:44.306Z_
+
+<details><summary>↩ Tool result · `toolu_01StuahVshkaPRNh49AiHT91`</summary>
+
+```text
+=== ALL experiments with n_samples or composition-related metrics ===
+exp14c_prediction_analysis: 
+  dd_full_fp_rate: {"exp14_llama_benign": {"vanilla": 0.293, "jb_mlm": 0.88, "9class": 0.9}, "exp14b_qwen_benign": {"vanilla": 0, "jb_mlm": 0.009, "9class": 0}}
+exp42b_balanced_ratio_ablation: 
+  train_composition: "175 jailbreak + 87 orig benign + 88 WildChat benign (50:50)"
+exp43_mhj_human_eval: 
+  verazuo_n_jailbreak: 666
+  verazuo_n_benign: 213
+exp44_multi_llm_mixed: 
+  train_composition: "175 Qwen jb + 175 Qwen bn + 164 Llama jb + 150 WC bn = 664"
+exp8_mhj_human_data: 
+  toxicchat: {"n_jailbreak": 204, "n_benign": 204, "data_source": "ToxicChat (LMSYS)", "leakage": "none", "vanilla_macro_f1": 0.413, "vanilla_macro_f1_std": 0.021, "9class_macro_f1": 0.596, "9class_macro_f1_std": 0.087, "binary_macro_f1": 0.705, "binary_macro_f1_std": 0.072, "scrambled_macro_f1": 0.616, "scrambl
+  verazuo: {"n_jailbreak": 666, "n_benign": 213, "data_source": "verazuo/jailbreak_llms + plan_002 benign", "LEAKAGE_WARNING": "78% benign (167/213) from train split", "scrambled_macro_f1": 0.822, "scrambled_macro_f1_std": 0.046, "scrambled_per_seed": {"seed42": 0.818, "seed123": 0.88, "seed456": 0.768}, "vani
+plan_012_gpt55_judge: 
+  test_set: "data/plan_002_splits/test.jsonl"
+plan_012_llm_judge_qwen: 
+  test_set: "data/plan_002_splits/test.jsonl"
+
+=== exp2 hypothesis/notes ===
+hypothesis: Persuasion-grounded DeBERTa will generalize to ActorAttack (a structurally distinct multi-persona attack), extending cross-attack OOD evidence beyond DD and FITD to a third unseen attack type
+note: All variants now 3-seed complete. Binary updated from 2-seed to 3-seed (seed42 weak at K1=0.636). Scrambled K2/K5 corrected. Evidence hierarchy: binary ≈ 9class > scrambled >> mlm > wiki_mlm > topic > vanilla
+
+=== DD OOD dataset composition ===
+hypothesis: Persuasion-grounded DeBERTa variants will maintain near-zero perturbation degradation on DD OOD paraphrased data, while vanilla/wiki-MLM variants will show significant degradation, extending IID perturbation robustness findings to OOD setting
+
+Reverse-engineering test set sizes from F1 values:
+
+=== exp1_roberta_9class - what type of F1? ===
+Full exp1 metrics:
+  dd_ood_full_f1_mean: 0.9936
+  dd_ood_full_f1_std: 0.0045
+  dd_ood_k1_mean: 0.9873
+  dd_ood_k1_std: 0.0119
+  dd_ood_k2_mean: 0.9505
+  dd_ood_k2_std: 0.0284
+  dd_ood_k3_mean: 0.9563
+  dd_ood_k3_std: 0.0189
+  dd_ood_k5_mean: 0.9872
+  dd_ood_k5_std: 0.009
+  encoder: "roberta-base"
+  iid_full_f1: 1
+  n_seeds: 3
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "c9a180e9-4b22-4f08-adc2-0844179e5417"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 70_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Get dataset details from related experiments",
+  "usage": {
+    "total_tokens": 57105,
+    "tool_uses": 20,
+    "duration_ms": 233655
+  },
+  "last_tool_name": "Bash",
+  "uuid": "c44f470a-560e-4716-bbcc-310cc8c56c52",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01UNcQUEhycEDh49DKm6SDTL`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Check exp16_multi_llm for dataset details - it mentions 118 samples \nprint('=== exp16_multi_llm FULL ===')\ne = exps['exp16_multi_llm']\nfor k,v in sorted(e.items()):\n    print(f'  {k}: {json.dumps(v)[:400]}')\n\n# Check exp25_fitd_early_detection for FITD data\nprint()\nprint('=== exp25_fitd_early_detection ===')\nif 'exp25_fitd_early_detection' in exps:\n    for k,v in sorted(exps['exp25_fitd_early_detection']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\n# Check exp58_truncated_single_turn and exp60_turncount_baseline for dataset info\nprint()\nprint('=== exp58_truncated_single_turn ===')\nif 'exp58_truncated_single_turn' in exps:\n    for k,v in sorted(exps['exp58_truncated_single_turn']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\nprint()\nprint('=== exp60_turncount_baseline ===')\nif 'exp60_turncount_baseline' in exps:\n    for k,v in sorted(exps['exp60_turncount_baseline']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\" 2>&1",
+  "description": "Get dataset details from related experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "f7e2b760-7fc4-40ae-8ba6-e21379a218b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQCYNToeHapjjQ7UFC2rPa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2334,
+      "cache_read_input_tokens": 54278,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2334,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-22T23:35:57.678Z_
+
+<details><summary>↩ Tool result · `toolu_01UNcQUEhycEDh49DKm6SDTL`</summary>
+
+```text
+=== exp16_multi_llm FULL ===
+  conclusion: "success"
+  created_at: "2026-05-19T20:08:23.368Z"
+  hypothesis: "Training on mixed Qwen+Llama conversations (250+250) eliminates single-LLM confound: the evidence hierarchy (9-class >> MLM >> vanilla) holds on mixed data, and cross-LLM false positive rate drops vs single-source training, proving DAPT generalizes across LLM distributions"
+  metrics: {"note": "CORRECTED 2026-05-20: OOD metrics recalculated with attack+benign (118 samples). Old attack-only values deprecated. qwen_test INVALIDATED (35.5% leak). toxicchat_balanced on 408-item balanced set.", "9class_mean": {"mixed_test": 0.996, "dd_ood": 0.818, "dd_ood_std": 0.096, "aa_ood": 0.504, "aa_ood_std": 0.107, "fitd_ood": 0.997, "fitd_ood_std": 0.005, "toxicchat_balanced": 0.55, "toxicch
+  status: "DONE"
+  updated_at: "2026-05-20T06:31:12.024Z"
+
+=== exp25_fitd_early_detection ===
+  9class: {"k1": "1.000\u00b10.000", "k2": "0.997\u00b10.005", "k3": "1.000\u00b10.000", "k5": "1.000\u00b10.000", "full": "1.000\u00b10.000"}
+  mlm: {"k1": "0.610\u00b10.281", "k2": "0.598\u00b10.256", "k3": "0.654\u00b10.302", "k5": "0.635\u00b10.238", "full": "0.707\u00b10.217"}
+  vanilla: {"k1": "0.698\u00b10.038", "k2": "0.786\u00b10.043", "k3": "0.791\u00b10.057", "k5": "0.823\u00b10.040", "full": "0.882\u00b10.027"}
+
+=== exp58_truncated_single_turn ===
+  9class_full: {"iid": 1, "dd": 0.997, "aa": 0.972, "fitd": 1}
+  9class_last_turn: {"iid": 0.991, "dd": 0.942, "aa": 0.978, "fitd": 1}
+  full_avg_delta: 0.016
+  interpretation: "9-class leads even more in single-turn, ruling out multi-turn structural advantage as cause of ToxicChat reversal"
+  last_turn_avg_delta: 0.06
+  mlm_full: {"iid": 0.983, "dd": 0.993, "aa": 0.941, "fitd": 0.987}
+  mlm_last_turn: {"iid": 0.894, "dd": 0.924, "aa": 0.927, "fitd": 0.927}
+
+=== exp60_turncount_baseline ===
+  disped_full: {"iid": 1, "dd": 0.997, "fitd": 1, "aa": 0.972, "toxicchat": 0.596}
+  tc_full: {"iid": 0.543, "dd": 0.558, "fitd": 0.424, "aa": 0, "toxicchat": 0}
+  tc_k1: {"all": 0}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "769d7257-6dc6-417a-a028-47c9bae1baf5"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 73_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Find DD and AA test split sizes",
+  "usage": {
+    "total_tokens": 58704,
+    "tool_uses": 21,
+    "duration_ms": 259943
+  },
+  "last_tool_name": "Bash",
+  "uuid": "cf8b24b9-ff8e-4c25-b175-b22b6adb2f0a",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014xz7L9N5wv35oTbmAYMdvX`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Let's look for DD OOD test size from phase_b experiments\n# phase_b_full has test_size=72 (IID test), dataset_size=480\n# DD OOD test comes from a separate dataset - check if there's info about DD OOD n\n# exp4 has 9class dd_ood clean_full=0.9968, which is the same as exp9's dd_ood mean\n# exp35 ensemble has 'fixed:1' meaning 1 sample was fixed by ensemble on DD - so small error count\n\n# For DD OOD (DangerousDialogues): \n# From exp35: 9class individual_mean=0.9968, individual_std=0.0045\n# From plan_002_seed456: dd_ood_full_f1=0.9904\n# From exp4: clean_full=0.9968 (3-seed mean), per seed: 1.0, 1.0, 0.9904\n# F1=0.9904 with 0 FP -> 2*TP/(2*TP+FN) = 0.9904, FN=1 -> TP = 0.9904*1/(2-2*0.9904) = ~51.58\n# But this is for the whole dataset including benign. Macro F1 could mean different things.\n\n# For AA OOD: n_samples=118\n# exp23 says 7 total error samples, all FN (zero FP)\n# seed123 has 7 FN, other seeds 1 FN each\n# So n_attack in AA can be inferred: if FN=1 and F1 depends on balanced/unbalanced\n\n# Let's search for any mention of '80' or '160' or similar DD/AA test set sizes\nfor name, exp in sorted(exps.items()):\n    ms = json.dumps(exp)\n    # Look for test size indicators\n    for pattern in ['test_jailbreak', 'test_attack', 'attack_n', 'jailbreak_n', 'n_test_jailbreak', 'n_test_attack']:\n        if pattern in ms.lower():\n            print(f'{name}: contains \\\"{pattern}\\\"')\n            for mk, mv in exp.get('metrics', {}).items():\n                if pattern in mk.lower() or pattern in json.dumps(mv).lower():\n                    print(f'  {mk}: {json.dumps(mv)[:200]}')\n\n# pilot has test_jailbreak=38\nprint()\nprint('pilot_phase_b test_jailbreak:', exps['pilot_phase_b']['metrics'].get('test_jailbreak'))\n\n# The AA OOD has n_samples=118. From exp5_llm_judge_ood:\nprint()\nprint('=== exp5_llm_judge_ood ===')\nif 'exp5_llm_judge_ood' in exps:\n    for k,v in sorted(exps['exp5_llm_judge_ood']['metrics'].items()):\n        print(f'  {k}: {json.dumps(v)[:300]}')\n\" 2>&1",
+  "description": "Find DD and AA test split sizes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "e1fe5e03-3d09-4729-afb9-560125630c41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ga8ZkxnkNjXnuia44HZZka",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1564,
+      "cache_read_input_tokens": 56612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1564,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-22T23:36:24.010Z_
+
+<details><summary>↩ Tool result · `toolu_014xz7L9N5wv35oTbmAYMdvX`</summary>
+
+```text
+pilot_phase_b: contains "test_jailbreak"
+  test_jailbreak: 38
+
+pilot_phase_b test_jailbreak: 38
+
+=== exp5_llm_judge_ood ===
+  dd_ood: {"k1_binary_f1": 0, "k2_binary_f1": 0, "k3_binary_f1": 0, "k5_binary_f1": 0, "full_binary_f1": 0, "k1_macro_f1": 0.2436, "k2_macro_f1": 0.2436, "k3_macro_f1": 0.2436, "k5_macro_f1": 0.2436, "full_macro_f1": 0.2436, "accuracy": 0.322}
+  fitd_ood: {"k1_binary_f1": 0, "k2_binary_f1": 0, "k3_binary_f1": 0, "k5_binary_f1": 0.0247, "full_binary_f1": 0.0247, "k1_macro_f1": 0.2436, "k2_macro_f1": 0.2436, "k3_macro_f1": 0.2436, "k5_macro_f1": 0.2575, "full_macro_f1": 0.2575, "accuracy": 0.331}
+  mode: "zero-shot"
+  model: "Qwen3-8B"
+  n_samples: 118
+  note: "CORRECTED: all macro F1 computed. Both DD and FITD: model predicts almost all-benign. macro_f1 ~0.24-0.26 across all K."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "6cd72dd2-448d-4dc1-a4f3-d5fd3d4c2c0d"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 76_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Compute test set composition from F1 values",
+  "usage": {
+    "total_tokens": 60176,
+    "tool_uses": 22,
+    "duration_ms": 317198
+  },
+  "last_tool_name": "Bash",
+  "uuid": "20ec8314-57cb-435e-9acf-500aa5fdf164",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CRKEfytRtn9AkPte4n3Qrp`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# exp5 has n_samples=118 for BOTH dd_ood and fitd_ood \n# exp2 has n_samples=118 for AA OOD\n# So dd_ood and aa_ood both have 118 samples\n\n# From exp5: dd_ood accuracy=0.322 when predicting all-benign\n# If all predicted benign: accuracy = n_benign / total = 0.322\n# n_benign = 0.322 * 118 = 38.0 => 38 benign, 80 attack\n\n# For AA OOD: exp5 doesn't show AA, but exp2 has n_samples=118\n# From exp23: total_error_samples=7 (all FN, zero FP)\n# If we assume 118 total for AA too, let's check\n\n# Wait - exp5 n_samples=118 is for DD+FITD. Let's check if AA has different n.\n# exp2 says n_samples=118 - that's AA OOD total\n\n# For DD OOD: accuracy = 0.322 for all-benign prediction => 38 benign, 80 jailbreak\n# For FITD: accuracy = 0.331 for mostly-benign => ~39 benign, 79 jailbreak (close to DD)\n\n# Let's verify: DD OOD test set\n# F1=0.9904 (seed456) with 0 FP. Binary F1 for jailbreak class:\n# precision=TP/(TP+FP)=1.0 (no FP), recall=TP/(TP+FN)\n# F1 = 2*P*R/(P+R) = 2*R/(1+R) = 0.9904 => R = 0.9904/(2-0.9904) = 0.9806\n# If n_attack=80, FN = 80*(1-0.9806) = 1.55 ~ 2\n# But wait, F1 could be macro F1 not binary F1.\n\n# From exp5, it distinguishes binary_f1 and macro_f1\n# The registry uses 'f1' without qualifier in most cases. Let's check what the main F1 metric is.\n\n# exp5: macro_f1=0.2436 when all predicted benign, binary_f1=0 (bc no positive predictions)\n# macro_f1 with all-benign prediction: (benign_f1 + jailbreak_f1)/2 = (2*38/118 + 0)/2 = 0.322/2 ≈ 0.161? \n# That's not 0.2436. Let me recalc.\n\n# Actually for all-benign prediction:\n# benign class: TP=38, FP=80, FN=0 -> P=38/118=0.322, R=1.0, F1=2*0.322/(1.322)=0.4872\n# jailbreak class: TP=0, FP=0, FN=80 -> P=0, R=0, F1=0\n# macro_f1 = (0.4872+0)/2 = 0.2436 ✓ Confirmed!\n\n# So DD OOD: 38 benign + 80 jailbreak = 118 total\n\n# For AA OOD: similar check\n# Need to find the benign/jailbreak split. Let's use exp23 data.\n# exp23: majority_vote_fn=2, but individual seed errors:\n# seed123_weakest: 7 FN vs 1 FN for other seeds\n# total error_samples_any_seed=7\n# These are individual samples that ANY seed got wrong\n\n# If n_attack varies, let's check FITD accuracy too\n# FITD: accuracy=0.331 with mostly-benign => ~39 benign? \n# Actually FITD macro_f1=0.2575 (full), which means benign_f1 = 2*39/118/(1+39/118) = 0.497? \n# macro_f1 = 0.497/2 = 0.249 - not quite 0.2575\n\n# Let me try 40 benign: benign_f1 = 2*40/118 / (1+40/118) = 80/118 / 158/118 = 80/158 = 0.5063\n# macro_f1 = 0.2532. Not right either.\n\n# FITD n_samples could differ. Let's see if there's info about FITD OOD test size\n\n# From exp22 fitd_ood_per_k_exp16: 9class full=1.0\n# These might come from different dataset\n\nprint('DD OOD composition: 38 benign + 80 jailbreak = 118 total')\nprint('  (verified: macro F1 = 0.2436 when all-benign prediction matches exactly)')\n\n# For AA OOD split, from McNemar data in exp2_actorattack_mcnemar:\n# 9class_vs_vanilla at full: b ranges 57-78 (9class correct, vanilla wrong)\n# vanilla gets everything wrong at full (F1~0.258 which is ~macro with all-benign)\n# vanilla_full = 0.258, so same formula: benign_f1 = 2*n_b/118 / (1+n_b/118)\n# 0.258*2 = 0.516 = benign_f1\n# 0.516 = 2*n_b/118 / (1+n_b/118) => 0.516*(1+n_b/118) = 2*n_b/118\n# 0.516 + 0.516*n_b/118 = 2*n_b/118\n# 0.516 = n_b/118 * (2 - 0.516) = n_b/118 * 1.484\n# n_b/118 = 0.516/1.484 = 0.3477 => n_b = 41.03 ~ 41? \n# But exp2 vanilla full=0.258 with std=0\n\n# Actually wait. The metric could be binary F1 not macro F1. \n# vanilla at full=0.258: if this is macro F1:\n# For all-benign: macro = benign_f1/2\n# benign_f1 = 0.516\n# 0.516 = 2*P*R/(P+R) where P = n_b/n_total, R = 1\n# 0.516 = 2*(n_b/118)/(1 + n_b/118) => solve for n_b\n# Let x = n_b/118: 0.516 = 2x/(1+x), 0.516+0.516x = 2x, 0.516 = 1.484x, x=0.3477\n# n_b = 41.0 => ~41 benign => 77 jailbreak\n\n# But vanilla doesn't predict all-benign. It has F1=0.258±0 (all 3 seeds identical)\n# The notes say 'Vanilla too weak to benefit' from ensemble\n# Let me check vanilla predictions more carefully\n\n# Actually from exp2 deberta_vanilla: full=0.258, std=0 - exact same across all seeds\n# This is suspicious. Let's check if vanilla always predicts same class.\n# From McNemar clean_full: b=78, c=0 for seed42 (9class correct, vanilla wrong, never other way)\n# b=57 for seed123, b=67 for seed456. If vanilla got 0 correct on jailbreaks: \n# total = 118, if 9class gets ~78 jailbreaks right and vanilla gets 0, \n# c=0 means vanilla never outperforms on any sample\n\n# Actually, McNemar b = #samples where 9class correct AND vanilla wrong\n# c = #samples where vanilla correct AND 9class wrong\n# The fact that c=0 means 9class is always >= vanilla\n\n# Vanilla with F1=0.258 (not varying with k) - likely predicts benign for everything\n# Binary F1 = 0 (no positive predictions), macro F1 = benign_f1/2\n# But 0.258*2 = 0.516 = benign_f1 \n# Using same math: n_b = ~41\n\n# But wait - vanilla std=0 for full, meaning all 3 seeds give identical F1=0.258\n# AND the values decrease with k (k1=0.337, k2=0.306 etc.)\n# This suggests vanilla IS making some predictions, not all-benign\n\n# Let me just report what we know for certain about AA:\nprint()\nprint('AA OOD total: 118 samples (confirmed in exp2_actorattack_ood n_samples)')\nprint('AA OOD n_benign: ~38-41 (inferred from vanilla F1 pattern)')\nprint()\n\n# Let's look for explicit split info in any experiment\nfor name, exp in sorted(exps.items()):\n    ms = json.dumps(exp).lower()\n    if 'n_benign' in ms and ('dd_ood' in ms or 'aa_ood' in ms or 'actorattack' in ms):\n        print(f'{name} may have split info')\n\" 2>&1",
+  "description": "Compute test set composition from F1 values"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "3590bf98-7649-4bef-9275-bb18c7d5eee0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Es4tunuCQdKHLN9ycwy8Cn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1437,
+      "cache_read_input_tokens": 58176,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1437,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-22T23:37:21.255Z_
+
+<details><summary>↩ Tool result · `toolu_01CRKEfytRtn9AkPte4n3Qrp`</summary>
+
+```text
+DD OOD composition: 38 benign + 80 jailbreak = 118 total
+  (verified: macro F1 = 0.2436 when all-benign prediction matches exactly)
+
+AA OOD total: 118 samples (confirmed in exp2_actorattack_ood n_samples)
+AA OOD n_benign: ~38-41 (inferred from vanilla F1 pattern)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "af6cf25a-5cfc-4252-939b-561eabaa8dc4"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 79_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Compute per-seed attack recall from F1 and error analysis",
+  "usage": {
+    "total_tokens": 62998,
+    "tool_uses": 23,
+    "duration_ms": 354448
+  },
+  "last_tool_name": "Bash",
+  "uuid": "53a95d4b-a555-4312-a918-6642a3fea4de",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01YHo9v8mqWzjzZVunTWrkfr`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Check exp30_length_stratified for AA OOD n counts\n# aa_ood: 1-3 turns: n=20, 4-6 turns: n=38, 7-10 turns: n=22\n# Total attack samples: 20+38+22 = 80\n# So AA OOD has 80 jailbreak + 38 benign = 118 total\nprint('AA OOD from exp30 length_stratified:')\nprint('  jailbreak samples by bin: 1-3 turns=20, 4-6 turns=38, 7-10 turns=22')\nprint('  total jailbreak: 80')\nprint('  total benign: 118-80 = 38')\nprint()\n\n# Similarly DD OOD:\n# dd_ood: 4-6 turns: n=20, 7-10 turns: n=60\n# Total attack: 20+60 = 80\nprint('DD OOD from exp30 length_stratified:')\nprint('  jailbreak samples by bin: 4-6 turns=20, 7-10 turns=60')\nprint('  total jailbreak: 80')\nprint('  total benign: 118-80 = 38')\nprint()\n\n# So both DD OOD and AA OOD: 80 jailbreak + 38 benign = 118 total\n# The benign samples are shared (IID test benign)\n\n# Now let's compute per-seed attack recall for DD OOD\n# DD per-seed F1: seed42=1.0, seed123=1.0, seed456=0.9904\n# If F1 is macro F1 with n_attack=80, n_benign=38:\n# For seed42 & seed123: F1=1.0 -> perfect, recall=1.0\n# For seed456: F1=0.9904\n# From exp23: all errors are FN, zero FP\n# So precision=1.0 for all seeds on attack class\n# macro F1 = (benign_f1 + attack_f1) / 2\n# If 0 FP: benign precision = n_benign_correct / n_benign_correct = 1.0 (all correct)\n# benign recall = 38/38 = 1.0 (no FP means all benign correctly classified)\n# benign F1 = 1.0\n# attack F1 = 2*P*R/(P+R) where P=1.0 (no FP)\n# attack F1 = 2*R/(1+R)\n# macro F1 = (1.0 + 2R/(1+R)) / 2 = 0.9904\n# 1.0 + 2R/(1+R) = 1.9808\n# 2R/(1+R) = 0.9808\n# 2R = 0.9808 + 0.9808R\n# R(2-0.9808) = 0.9808\n# R = 0.9808/1.0192 = 0.9623\n# Attack recall = 0.9623 for seed456 => FN = 80*(1-0.9623) = 3.016 ~ 3\n\n# Wait but exp23 is about AA OOD errors, not DD OOD. Let me re-check.\nprint('=== DD OOD per-seed attack recall (computed from macro F1, assuming 0 FP) ===')\ndd_seeds_f1 = {'seed42': 1.0, 'seed123': 1.0, 'seed456': 0.9904}\nfor seed, f1 in dd_seeds_f1.items():\n    if f1 == 1.0:\n        print(f'  {seed}: F1={f1}, attack_recall=1.000 (FN=0)')\n    else:\n        # macro F1 = (benign_f1 + attack_f1)/2\n        # If 0 FP: benign_f1 = 1.0, attack_precision = 1.0\n        # attack_f1 = 2R/(1+R)\n        # macro = (1 + 2R/(1+R))/2 = f1\n        # 2R/(1+R) = 2*f1 - 1\n        attack_f1 = 2*f1 - 1\n        # attack_f1 = 2R/(1+R) => R = attack_f1/(2-attack_f1)\n        R = attack_f1 / (2 - attack_f1)\n        FN = round(80 * (1 - R))\n        print(f'  {seed}: F1={f1}, attack_f1={attack_f1:.4f}, attack_recall={R:.4f} (FN~{FN})')\n\nprint()\nprint('DD OOD 3-seed mean: F1={:.4f}+/-{:.4f}'.format(\n    sum(dd_seeds_f1.values())/3,\n    (sum((v - sum(dd_seeds_f1.values())/3)**2 for v in dd_seeds_f1.values())/3)**0.5\n))\n\nprint()\nprint('=== AA OOD per-seed attack recall ===')\n# From exp23: seed123 has 7 FN, other seeds 1 FN each, ALL errors are FN\n# attack recall: seed42 = (80-1)/80 = 0.9875, seed123 = (80-7)/80 = 0.9125, seed456 = (80-1)/80 = 0.9875\n# But wait - the error_pattern says 'seed123_weakest: 7 FN vs 1 FN for other seeds'\n# It also says 'total error_samples_any_seed: 7' - this means 7 unique samples that ANY seed got wrong\n\n# But it also says 'consistent_errors_all_seeds: 0' and '9class_majority_correct: 5/7'\n# majority_vote_fn = 2. So 5 of 7 error samples have at least 2/3 seeds correct.\n\n# Hmm, the 'seed123_weakest: 7 FN' seems odd if total unique errors = 7\n# Let me re-read exp23 carefully\nprint('exp23 raw error data:')\ne23 = exps['exp23_aa_error_analysis']['metrics']\nprint(json.dumps(e23, indent=2))\n\" 2>&1",
+  "description": "Compute per-seed attack recall from F1 and error analysis"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "dc753608-a232-4c4a-b457-d96e041a738f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QwvAs64B3fgYsFfhgaUajT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2787,
+      "cache_read_input_tokens": 59613,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2787,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-22T23:37:58.502Z_
+
+<details><summary>↩ Tool result · `toolu_01YHo9v8mqWzjzZVunTWrkfr`</summary>
+
+```text
+AA OOD from exp30 length_stratified:
+  jailbreak samples by bin: 1-3 turns=20, 4-6 turns=38, 7-10 turns=22
+  total jailbreak: 80
+  total benign: 118-80 = 38
+
+DD OOD from exp30 length_stratified:
+  jailbreak samples by bin: 4-6 turns=20, 7-10 turns=60
+  total jailbreak: 80
+  total benign: 118-80 = 38
+
+=== DD OOD per-seed attack recall (computed from macro F1, assuming 0 FP) ===
+  seed42: F1=1.0, attack_recall=1.000 (FN=0)
+  seed123: F1=1.0, attack_recall=1.000 (FN=0)
+  seed456: F1=0.9904, attack_f1=0.9808, attack_recall=0.9623 (FN~3)
+
+DD OOD 3-seed mean: F1=0.9968+/-0.0045
+
+=== AA OOD per-seed attack recall ===
+exp23 raw error data:
+{
+  "majority_vote_accuracy": 0.983,
+  "majority_vote_fn": 2,
+  "majority_vote_fp": 0,
+  "total_error_samples_any_seed": 7,
+  "consistent_errors_all_seeds": 0,
+  "error_pattern": {
+    "all_errors_are_fn": true,
+    "zero_fp": true,
+    "seed123_weakest": "7 FN vs 1 FN for other seeds",
+    "short_dialogues_harder": "errors at 3-6 turns, mean 10480 chars vs correct 12788 chars",
+    "error_topics": "data_privacy(2), digital_privacy(2), identity_verification(2), social_engineering(1)",
+    "vanilla_on_error_samples": "0/3 votes on all 7 samples",
+    "9class_majority_correct": "5/7 samples"
+  },
+  "note": "Errors are sparse, inconsistent across seeds, and concentrated in short dialogues. No systematic blind spot. DAPT provides clear advantage over vanilla on hard samples."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "321d410c-7fb5-4901-9baf-1d53f02d0927"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 82_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Compute all per-seed attack recall values",
+  "usage": {
+    "total_tokens": 65476,
+    "tool_uses": 24,
+    "duration_ms": 389774
+  },
+  "last_tool_name": "Bash",
+  "uuid": "52377ce9-5423-46e7-bdc9-731b3e2186af",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NRcRtceimE13HB2ujjzrCX`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# exp23 says:\n# - total_error_samples_any_seed: 7 (7 unique samples that at least 1 seed missed)\n# - consistent_errors_all_seeds: 0 (no sample missed by all 3 seeds)\n# - seed123_weakest: '7 FN vs 1 FN for other seeds'\n# - majority_correct: 5/7 (5 samples correct by >=2 seeds, 2 wrong by >=2 seeds)\n# - majority_vote_fn: 2\n\n# So per-seed FN counts: seed42=1, seed123=7, seed456=1\n# Per-seed attack recall: \n# seed42: (80-1)/80 = 79/80 = 0.9875\n# seed123: (80-7)/80 = 73/80 = 0.9125  \n# seed456: (80-1)/80 = 79/80 = 0.9875\n\n# Verify with AA F1 mean:\n# macro F1 per seed (assuming 0 FP, benign_f1=1.0):\n# attack_f1 = 2*R/(1+R)\n# macro = (1 + attack_f1) / 2\n\nimport statistics\n\naa_recall = {'seed42': 79/80, 'seed123': 73/80, 'seed456': 79/80}\naa_f1_per_seed = {}\nfor seed, R in aa_recall.items():\n    attack_f1 = 2*R/(1+R)\n    macro_f1 = (1 + attack_f1) / 2\n    aa_f1_per_seed[seed] = macro_f1\n    print(f'AA OOD {seed}: recall={R:.4f}, attack_F1={attack_f1:.4f}, macro_F1={macro_f1:.4f}')\n\nvals = list(aa_f1_per_seed.values())\nmean = statistics.mean(vals)\nstd = statistics.stdev(vals)\nprint(f'AA OOD mean macro F1: {mean:.4f} +/- {std:.4f}')\nprint()\n\n# Compare with exp22: aa_ood full 9class mean=0.972, std=0.026\n# My computed: mean ~0.972, std ~0.026 - should match!\n\nprint('Registry values: mean=0.972, std=0.026')\nprint()\n\n# Now let's also get DD OOD per-seed recall\n# From plan_002 data: seed42 dd_ood_full=1.0 (via plan_002_clean_training treatment)\n# But wait - plan_002_clean_training has dd_ood_full_f1=1.0 and treatment_full_f1=1.0\n# Actually plan_002_clean_training treatment_full_f1 is IID, dd_ood_full_f1 is DD OOD\n\n# Let me re-derive. The 3-seed mean DD OOD F1 is:\n# From exp4: 9class_3seed clean_full = 0.9968\n# From exp35: 9class dd_ood individual_mean = 0.9968, std = 0.0045\n# Per seed: 1.0, 1.0, 0.9904\n\n# Actually, 3 values with mean 0.9968 and std 0.0045:\n# mean = (a+b+c)/3 = 0.9968\n# Could be 1.0, 1.0, 0.9904: mean = 2.9904/3 = 0.9968 ✓\n# std = sqrt(((1-0.9968)^2 + (1-0.9968)^2 + (0.9904-0.9968)^2)/3) = sqrt((0.0032^2*2+0.0064^2)/3) \nimport math\nvals = [1.0, 1.0, 0.9904]\nm = sum(vals)/3\ns = math.sqrt(sum((v-m)**2 for v in vals)/3)  # population std\nprint(f'DD per-seed F1: {vals}, mean={m:.4f}, pop_std={s:.4f}')\ns2 = math.sqrt(sum((v-m)**2 for v in vals)/2)  # sample std\nprint(f'DD per-seed F1: sample_std={s2:.4f}')\n\n# Registry says std=0.0045 - let's check which std\n# pop_std: sqrt((0.0032^2+0.0032^2+0.0064^2)/3) = sqrt((0.00001024+0.00001024+0.00004096)/3)\n# = sqrt(0.00006144/3) = sqrt(0.00002048) = 0.004526 ≈ 0.0045 ✓\n\nprint()\nprint('=== DD OOD per-seed attack recall (0 FP assumption) ===')\ndd_f1_seeds = [1.0, 1.0, 0.9904]\nfor i, f1 in enumerate(dd_f1_seeds):\n    seed = ['seed42', 'seed123', 'seed456'][i]\n    if f1 == 1.0:\n        R = 1.0\n        FN = 0\n    else:\n        attack_f1 = 2*f1 - 1\n        R = attack_f1 / (2 - attack_f1)\n        FN = round(80 * (1-R))\n    print(f'  {seed}: macro_F1={f1:.4f}, attack_recall={R:.4f}, FN={FN}')\n\nmean_r = statistics.mean([1.0, 1.0, 0.9623])\nprint(f'DD OOD attack recall mean: {mean_r:.4f}')\n\" 2>&1",
+  "description": "Compute all per-seed attack recall values"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "a33d138d-feff-4c03-ace2-9c664c1b2241",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LkD82K2noaNLGdrPHcrLv8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2442,
+      "cache_read_input_tokens": 62400,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2442,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-22T23:38:33.836Z_
+
+<details><summary>↩ Tool result · `toolu_01NRcRtceimE13HB2ujjzrCX`</summary>
+
+```text
+AA OOD seed42: recall=0.9875, attack_F1=0.9937, macro_F1=0.9969
+AA OOD seed123: recall=0.9125, attack_F1=0.9542, macro_F1=0.9771
+AA OOD seed456: recall=0.9875, attack_F1=0.9937, macro_F1=0.9969
+AA OOD mean macro F1: 0.9903 +/- 0.0114
+
+Registry values: mean=0.972, std=0.026
+
+DD per-seed F1: [1.0, 1.0, 0.9904], mean=0.9968, pop_std=0.0045
+DD per-seed F1: sample_std=0.0055
+
+=== DD OOD per-seed attack recall (0 FP assumption) ===
+  seed42: macro_F1=1.0000, attack_recall=1.0000, FN=0
+  seed123: macro_F1=1.0000, attack_recall=1.0000, FN=0
+  seed456: macro_F1=0.9904, attack_recall=0.9623, FN=3
+DD OOD attack recall mean: 0.9874
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "32a27767-eac1-491c-95c0-dd55e058553e"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 85_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Investigate F1 type (binary vs macro) and reconcile numbers",
+  "usage": {
+    "total_tokens": 67546,
+    "tool_uses": 25,
+    "duration_ms": 433639
+  },
+  "last_tool_name": "Bash",
+  "uuid": "bc75acaf-4685-436a-be00-c71e5c54a957",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01616deLwFfeXDXoAgYW75tW`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json, statistics\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# The discrepancy: my computed AA OOD mean macro F1 = 0.990 but registry says 0.972\n# This means my assumption that these are macro F1 may be WRONG.\n# Or the F1 reported is BINARY F1 (jailbreak-class F1), not macro F1.\n\n# If F1 = binary F1 (jailbreak class only):\n# With 0 FP: precision = 1.0\n# F1 = 2*1*R/(1+R) = 2R/(1+R)\n# For AA OOD:\n# seed42: FN=1, R=79/80=0.9875, F1=2*0.9875/1.9875 = 0.9937\n# seed123: FN=7, R=73/80=0.9125, F1=2*0.9125/1.9125 = 0.9542\n# seed456: FN=1, R=79/80=0.9875, F1=2*0.9875/1.9875 = 0.9937\n# mean = 0.9805, std = 0.0228\n# Still doesn't match 0.972\n\n# Maybe the FN counts aren't exactly 1/7/1. Let me work backwards from F1=0.972:\n# If F1 is binary jailbreak F1 with P=1:\n# mean F1 = 0.972, so mean(2R/(1+R)) = 0.972\n# This doesn't simply give us recall directly\n\n# Let me try: what per-seed binary F1 values give mean=0.972, std=0.026?\n# exp2 deberta_9class: full=0.972, full_std=0.026\n# If these are binary F1 values with P=1:\n# Try seed42=1.0, seed123=0.93, seed456=0.986:\nvals_try = [1.0, 0.93, 0.986]\nm = sum(vals_try)/3\nimport math\ns = math.sqrt(sum((v-m)**2 for v in vals_try)/3)\nprint(f'Try: {vals_try}, mean={m:.4f}, std={s:.4f}')\n\n# Try with FN counts. Binary F1 = 2*TP/(2*TP+FN) when FP=0\n# n_attack = 80\n# FN=0: F1 = 160/160 = 1.0\n# FN=1: F1 = 158/159 = 0.9937  \n# FN=2: F1 = 156/158 = 0.9873\n# FN=3: F1 = 154/157 = 0.9809\n# FN=4: F1 = 152/156 = 0.9744\n# FN=5: F1 = 150/155 = 0.9677\n# FN=6: F1 = 148/154 = 0.9610\n# FN=7: F1 = 146/153 = 0.9542\n\nprint()\nprint('Binary F1 for various FN counts (n_attack=80, FP=0):')\nfor fn in range(11):\n    tp = 80 - fn\n    f1 = 2*tp/(2*tp+fn)\n    recall = tp/80\n    print(f'  FN={fn}: F1={f1:.4f}, recall={recall:.4f}')\n\n# Now find combination with mean=0.972, std=0.026\n# Try FN = [1, 5, 1]: F1 = [0.9937, 0.9677, 0.9937], mean=0.9850, std=0.015 - too high\n# Try FN = [0, 7, 1]: F1 = [1.0, 0.9542, 0.9937], mean=0.9826, std=0.020 - still too high\n\n# What if n_attack is not 80? Let me check AA differently.\n# exp30 shows attack bins: 1-3=20, 4-6=38, 7-10=22, total=80\n# But these n values are PER-SEED averages? Or fixed counts?\n# 'n' in exp30 means number of samples in that bin, not per seed\n\n# Let me try: what if the F1 metric in exp2 is NOT binary but macro?\n# With macro F1: (benign_f1 + attack_f1)/2\n# benign_f1 with 0 FP = 1.0 (perfect benign classification)\n# macro = (1 + attack_f1)/2\n# mean macro = 0.972 => mean attack_f1 = 0.944\n# attack_f1 with P=1: F1 = 2R/(1+R)\n# 0.944 = 2R/(1+R) => R = 0.944/1.056 = 0.8939\n# That seems too low given exp23 says only 7 total error samples\n\n# OR: benign_f1 is NOT 1.0 because there ARE some FP (contrary to exp23)?\n# exp23 says zero_fp=true, so benign_f1 should be 1.0\n\n# Hmm, but exp23 is 'error analysis' - maybe it only counted attack-side errors?\n# 'all_errors_are_fn': true just means among errors, they're all FN (no FP)\n\n# Actually maybe the issue is that F1 is computed including benign in macro average\n# and the benign F1 < 1 because there ARE false positives\n# But exp23 says zero_fp explicitly. \n\n# Let me try a different approach: use exp35 ensemble data\n# 9class AA OOD: individual_mean=0.9719, individual_std=0.0261\n# 0.9719 matches 0.972 (rounding). \n# ensemble fixed=5 (5 samples fixed by ensemble), broke=0\n# If ensemble fixed 5 AA samples that individual seeds got wrong:\n# Total individual wrong = some number, ensemble fixed 5 of them\n\n# Wait - I bet these are NOT macro F1. They might be the 'macro_f1' as computed by \n# sklearn or they could be 'binary_f1'. Let me check if there's any experiment\n# that explicitly uses both binary and macro on the same data.\n\n# exp5_llm_judge_ood distinguishes binary_f1 and macro_f1\n# exp10_fewshot_llm_judge has both binary_f1 and macro_f1 for DD and AA\n\n# The main experiments (exp2, exp4, etc.) don't specify. \n# Let me check exp10:\nprint()\nprint('=== exp10 comparison ===')\ne10 = exps['exp10_fewshot_llm_judge']['metrics']\nfor k,v in sorted(e10.items()):\n    print(f'  {k}: {v}')\n\" 2>&1",
+  "description": "Investigate F1 type (binary vs macro) and reconcile numbers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "b5b7d287-60c7-4c20-a53e-7d1cebc154c4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DfrBAqdxWaEShKXe4MAR3v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2034,
+      "cache_read_input_tokens": 64842,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2034,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-22T23:39:17.676Z_
+
+<details><summary>↩ Tool result · `toolu_01616deLwFfeXDXoAgYW75tW`</summary>
+
+```text
+Try: [1.0, 0.93, 0.986], mean=0.9720, std=0.0302
+
+Binary F1 for various FN counts (n_attack=80, FP=0):
+  FN=0: F1=1.0000, recall=1.0000
+  FN=1: F1=0.9937, recall=0.9875
+  FN=2: F1=0.9873, recall=0.9750
+  FN=3: F1=0.9809, recall=0.9625
+  FN=4: F1=0.9744, recall=0.9500
+  FN=5: F1=0.9677, recall=0.9375
+  FN=6: F1=0.9610, recall=0.9250
+  FN=7: F1=0.9542, recall=0.9125
+  FN=8: F1=0.9474, recall=0.9000
+  FN=9: F1=0.9404, recall=0.8875
+  FN=10: F1=0.9333, recall=0.8750
+
+=== exp10 comparison ===
+  aa_full_binary_f1: 0.6612
+  aa_full_macro_f1: 0.6523
+  aa_full_precision: 0.9756
+  aa_full_recall: 0.5
+  aa_per_k_binary_f1: {'k1': 0.2796, 'k2': 0.3158, 'k3': 0.4906, 'k5': 0.6325, 'full': 0.6612}
+  aa_per_k_macro_f1: {'k1': 0.4055, 'k2': 0.4274, 'k3': 0.5376, 'k5': 0.6356, 'full': 0.6523}
+  dd_full_binary_f1: 0.5405
+  dd_full_macro_f1: 0.5663
+  dd_full_precision: 0.9677
+  dd_full_recall: 0.375
+  dd_per_k_binary_f1: {'k1': 0.0247, 'k2': 0.1609, 'k3': 0.3838, 'k5': 0.4158, 'full': 0.5405}
+  dd_per_k_macro_f1: {'k1': 0.2575, 'k2': 0.3355, 'k3': 0.4693, 'k5': 0.4894, 'full': 0.5663}
+  note: CORRECTED: added macro_f1 alongside binary_f1. macro_f1 is the project-standard metric. Zero-shot exp5 also uses binary F1 and needs correction.
+  unparseable: 0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "1b920353-2362-4652-8e17-6c98ec786c7e"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 88_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Investigate AA OOD test composition discrepancy",
+  "usage": {
+    "total_tokens": 70303,
+    "tool_uses": 26,
+    "duration_ms": 476919
+  },
+  "last_tool_name": "Bash",
+  "uuid": "4b40d495-c1da-4a16-aa50-590b37faf893",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017SU1SKj32VUgi3UYxHJThk`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json, math\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# exp10 note: 'macro_f1 is the project-standard metric'\n# So all F1 values in exp2, exp4 etc are MACRO F1\n\n# For AA OOD with macro F1 = (benign_f1 + attack_f1)/2\n# With 0 FP, 0 FN for benign: benign_f1 = 1.0\n# macro = (1 + 2R/(1+R))/2\n# 0.972 = (1 + 2R/(1+R))/2\n# 1.944 = 1 + 2R/(1+R) \n# 0.944 = 2R/(1+R)\n# 0.944 + 0.944R = 2R\n# 0.944 = 1.056R\n# R = 0.8939 -- mean recall\n\n# But exp23 says only 7 samples were missed by ANY seed.\n# With 80 attacks, recall of 0.8939 means ~8.5 missed per seed on average\n# But '1 FN for other seeds' and '7 FN for seed123'?\n# mean FN = (1+7+1)/3 = 3, mean recall = 77/80 = 0.9625\n# That gives mean attack_f1 = 2*0.9625/(1.9625) = 0.9809\n# macro = (1+0.9809)/2 = 0.9905 != 0.972\n\n# There's a discrepancy. Let me check if maybe benign side has some FP too.\n# Or maybe n_attack is NOT 80 for AA.\n\n# Let me check: AA OOD has 118 samples. But maybe the attack/benign split differs.\n# exp2 n_samples=118. Let me check the vanilla F1 for AA.\n# exp2 deberta_vanilla full=0.258, std=0\n# If vanilla predicts all-benign: \n# benign: P=n_b/118, R=1, F1=2*(n_b/118)/(1+n_b/118) = 2*n_b/(118+n_b)\n# attack: P=undef, R=0, F1=0\n# macro = F1_benign/2\n\n# 0.258 = F1_benign/2 => F1_benign = 0.516\n# 0.516 = 2*n_b/(118+n_b) => 0.516*(118+n_b) = 2*n_b => 60.888 + 0.516*n_b = 2*n_b\n# 60.888 = 1.484*n_b => n_b = 41.03\n\n# So AA OOD: 41 benign, 77 attack = 118\n# NOT 80/38 like DD OOD!\n\n# Let's verify with exp30 length_stratified:\n# AA: 1-3=20, 4-6=38, 7-10=22 = 80 -- but these are JAILBREAK samples only\n# Hmm, that says 80 jailbreak\n\n# BUT wait - maybe vanilla doesn't predict ALL benign. \n# vanilla_std = 0 means all 3 seeds give F1=0.258 exactly\n# From exp2 McNemar: 9class_vs_vanilla AA full: b=78, c=0 (seed42)\n# b=78 means 78 samples where 9class correct and vanilla wrong\n# If 9class gets ~all correct (only 1 FN for seed42):\n# 9class correct: 118-1 = 117\n# vanilla wrong: we know at least 78 are wrong (where 9class is right)\n# vanilla could also be wrong on the 1 that 9class missed\n\n# Actually if c=0, vanilla never gets a sample right that 9class gets wrong\n# So vanilla_correct is a subset of 9class_correct\n# 9class_correct = 117, 9class_wrong = 1\n# vanilla_correct = 117 - 78 = 39\n# If vanilla only gets 39 samples correct out of 118:\n# Those 39 are likely the benign samples (predicted benign = correct)\n\n# BUT for seed123: b=57\n# 9class_correct = 118-7 = 111 (7 FN)\n# vanilla_correct = 111-57 = 54?? \n# That's more than 38 or 41 benign samples...\n\n# Unless vanilla does make SOME jailbreak predictions\n# Let me check if b = correct_jailbreak predictions by 9class that vanilla misses\n\n# Actually McNemar: b = 9class=correct, vanilla=wrong; c = vanilla=correct, 9class=wrong\n# From exp2_actorattack_mcnemar (separate experiment):\n# mcnemar_clean_full 9class_vs_vanilla:\n# seed42: b=78, c=0\n# seed123: b=57, c=0  \n# seed456: b=67, c=0\n\n# For seed42: 78 samples where 9class right and vanilla wrong\n# 0 samples where vanilla right and 9class wrong\n# 9class: TP+TN = ? (depends on FP/FN)\n# 9class FN = 1, FP = 0: correct = 117\n# vanilla correct = 117 - 78 = 39\n# n_benign could be 38, and vanilla gets 39 correct means it gets 1 jailbreak right too??\n# Or n_benign=41 and vanilla misses 2 benign\n\n# For seed123: 9class correct = 111, vanilla correct = 111-57 = 54\n# That means vanilla gets 54 correct - if n_benign=38, vanilla gets 16 jailbreaks right??\n# That conflicts with vanilla F1=0.258 with std=0\n\n# I think the McNemar results in exp6 may be from a different experiment version.\n# Let me look at exp2_actorattack_mcnemar directly again\nprint('=== exp2_actorattack_mcnemar full ===')\ne = exps['exp2_actorattack_mcnemar']['metrics']\nprint(json.dumps(e, indent=2))\n\" 2>&1",
+  "description": "Investigate AA OOD test composition discrepancy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "c6fccf89-86e5-4258-890b-5200798784d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HaGzQtYfqBueZoL8VWSgxE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2722,
+      "cache_read_input_tokens": 66876,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2722,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-22T23:40:00.960Z_
+
+<details><summary>↩ Tool result · `toolu_017SU1SKj32VUgi3UYxHJThk`</summary>
+
+```text
+=== exp2_actorattack_mcnemar full ===
+{
+  "mcnemar_clean_k1": {
+    "9class_vs_vanilla": {
+      "seed42": {
+        "p": 0,
+        "b": 50,
+        "c": 3,
+        "direction": "A>B",
+        "test": "mcnemar_chi2"
+      },
+      "seed123": {
+        "p": 0,
+        "b": 42,
+        "c": 7,
+        "direction": "A>B",
+        "test": "mcnemar_chi2"
+      },
+      "seed456": {
+        "p": 0,
+        "b": 47,
+        "c": 6,
+        "direction": "A>B",
+        "test": "mcnemar_chi2"
+      }
+    }
+  },
+  "mcnemar_clean_k3": {
+    "9class_vs_vanilla": {
+      "seed42": {
+        "p": 0,
+        "b": 65,
+        "c": 1,
+        "direction": "A>B"
+      },
+      "seed123": {
+        "p": 0,
+        "b": 47,
+        "c": 0,
+        "direction": "A>B"
+      },
+      "seed456": {
+        "p": 0,
+        "b": 67,
+        "c": 0,
+        "direction": "A>B"
+      }
+    }
+  },
+  "mcnemar_clean_full": {
+    "9class_vs_vanilla": {
+      "seed42": {
+        "p": 0,
+        "b": 78,
+        "c": 0,
+        "direction": "A>B",
+        "test": "mcnemar_chi2"
+      },
+      "seed123": {
+        "p": 0,
+        "b": 57,
+        "c": 0,
+        "direction": "A>B",
+        "test": "mcnemar_chi2"
+      },
+      "seed456": {
+        "p": 0,
+        "b": 67,
+        "c": 0,
+        "direction": "A>B",
+        "test": "mcnemar_chi2"
+      }
+    }
+  },
+  "note": "All McNemar tests highly significant (p<0.001), direction consistently 9class > vanilla. On clean ActorAttack data, 9class dramatically outperforms vanilla at all K values."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "ea99bced-809a-436e-9ef4-74f28ce1ba2b"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 91_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Final comprehensive summary of all benign FPR data",
+  "usage": {
+    "total_tokens": 72777,
+    "tool_uses": 27,
+    "duration_ms": 505770
+  },
+  "last_tool_name": "Bash",
+  "uuid": "ced442f8-16f6-4e23-a988-052c7d4b7e41",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01U2JERjpS9kJ2bbwm1KRnuN`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json, math\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# The McNemar data for AA OOD full:\n# seed42: b=78 (9class correct, vanilla wrong)\n# seed123: b=57\n# seed456: b=67\n# All c=0\n\n# For DD OOD, we don't have separate McNemar - exp2_actorattack_mcnemar is AA only\n\n# The varying b values (57-78) across seeds while maintaining same vanilla F1 (0.258)\n# suggests vanilla is making DIFFERENT predictions per seed (despite getting same macro F1)\n# OR that 9class has different accuracy across seeds\n\n# For seed42: 9class FN=1, so 9class_correct=117, vanilla_correct=117-78=39\n# For seed123: 9class FN=7, so 9class_correct=111, vanilla_correct=111-57=54\n# For seed456: 9class FN=1, so 9class_correct=117, vanilla_correct=117-67=50\n\n# Vanilla correct = 39, 54, 50 across seeds - not constant!\n# But vanilla macro F1 = 0.258 constant across all seeds (std=0)\n\n# This means vanilla F1=0.258 is being rounded or it's not exactly constant\n# OR the metric values are from a different evaluation context\n\n# Actually std=0 with 3 values means they're identical to reported precision\n# 0.258 rounds differently from 0.258000...\n\n# Let me just accept the data as-is and check if AA uses the same test set as DD.\n# Maybe the test set for AA is different (AA has its own attack samples + benign)\n\n# For the original question, let me also check exp51_lmsys_benign_ood adaptation\n# to get WildChat + 10-shot and OASST2 + 25-shot\n\nprint('=== Benign FPR Summary ===')\nprint()\nprint('exp19 WildChat FPR (baseline, no adaptation):')\ne19 = exps['exp19_wildchat_fpr']['metrics']\nprint(f'  9class: mean={e19[\\\"9class_fpr\\\"][\\\"mean\\\"]}, std={e19[\\\"9class_fpr\\\"][\\\"std\\\"]}')\nprint(f'  per-seed: seed42={e19[\\\"9class_fpr\\\"][\\\"seed42\\\"]}, seed123={e19[\\\"9class_fpr\\\"][\\\"seed123\\\"]}, seed456={e19[\\\"9class_fpr\\\"][\\\"seed456\\\"]}')\nprint(f'  n=226 (wildchat_benign_226)')\nprint()\n\nprint('exp51 OASST2 FPR (baseline, no adaptation):')\ne51 = exps['exp51_lmsys_benign_ood']['metrics']\nprint(f'  baseline_fpr: {e51[\\\"baseline_fpr\\\"]}')\nprint(f'  baseline_n: {e51[\\\"baseline_n\\\"]}')\nprint(f'  data_source: {e51[\\\"data_source\\\"]}')\nprint()\n\nprint('exp51 adaptation curve:')\ncurve = e51['adaptation_curve']\nfor n, vals in sorted(curve.items(), key=lambda x: int(x[0][1:])):\n    print(f'  {n}: {json.dumps(vals)}')\nprint()\n\nprint('exp45 WildChat 10-shot adaptation (multiseed):')\ne45 = exps['exp45_benign_adaptation_curve']['metrics']\nprint(f'  n10_multiseed: {json.dumps(e45[\\\"n10_multiseed\\\"])}')\nprint(f'  single_seed_42 curve: {json.dumps(e45[\\\"single_seed_42\\\"])}')\nprint()\n\nprint('exp51 WildChat comparison:')\nprint(f'  WildChat baseline FPR: {e51[\\\"comparison_wildchat\\\"][\\\"baseline_fpr\\\"]}')\nprint(f'  WildChat n10 FPR: {e51[\\\"comparison_wildchat\\\"][\\\"n10_fpr\\\"]}')\nprint()\n\nprint('exp52 OASST2 n=25 multiseed:')\ne52 = exps['exp52_oasst2_n25_multiseed']['metrics']\nprint(f'  fpr_mean: {e52[\\\"fpr_mean\\\"]}')\nprint(f'  fpr_std: {e52[\\\"fpr_std\\\"]}')\nprint(f'  fpr_range: {e52[\\\"fpr_range\\\"]}')\nprint(f'  seed_42: {json.dumps(e52[\\\"seed_42\\\"])}')\nprint(f'  seed_123: {json.dumps(e52[\\\"seed_123\\\"])}')\nprint(f'  seed_456: {json.dumps(e52[\\\"seed_456\\\"])}')\n\" 2>&1",
+  "description": "Final comprehensive summary of all benign FPR data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "1eae960e-f036-4d25-8448-19a6eb5145ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HdBsS8qsRj1VqjQV3Scqjs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2438,
+      "cache_read_input_tokens": 69598,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2438,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-22T23:40:29.823Z_
+
+<details><summary>↩ Tool result · `toolu_01U2JERjpS9kJ2bbwm1KRnuN`</summary>
+
+```text
+=== Benign FPR Summary ===
+
+exp19 WildChat FPR (baseline, no adaptation):
+  9class: mean=0.681, std=0.064
+  per-seed: seed42=0.668, seed123=0.611, seed456=0.765
+  n=226 (wildchat_benign_226)
+
+exp51 OASST2 FPR (baseline, no adaptation):
+  baseline_fpr: 0.575
+  baseline_n: 200
+  data_source: oasst2 (real crowdsourced human)
+
+exp51 adaptation curve:
+  n0: {"fpr": 0.575}
+  n10: {"fpr": 0.205, "dd_f1": 1, "aa_f1": 1, "fitd_f1": 1}
+  n25: {"fpr": 0.015, "dd_f1": 1, "aa_f1": 0.953, "fitd_f1": 1}
+  n50: {"fpr": 0.005, "dd_f1": 1, "aa_f1": 0.99, "fitd_f1": 1}
+
+exp45 WildChat 10-shot adaptation (multiseed):
+  n10_multiseed: {"seeds": [42, 123, 456], "wc_fpr": "0.000\u00b10.000", "iid_f1": "1.000\u00b10.000", "dd_f1": "1.000\u00b10.000", "aa_f1": "0.981\u00b10.016", "fitd_f1": "1.000\u00b10.000"}
+  single_seed_42 curve: {"n0_fpr": 0.653, "n5_fpr": 0.163, "n10_fpr": 0, "n25_fpr": 0, "n50_fpr": 0, "n100_fpr": 0, "n150_fpr": 0}
+
+exp51 WildChat comparison:
+  WildChat baseline FPR: 0.681
+  WildChat n10 FPR: 0
+
+exp52 OASST2 n=25 multiseed:
+  fpr_mean: 0.01
+  fpr_std: 0.005
+  fpr_range: 0.5%-1.5%
+  seed_42: {"oasst2_fpr": 0.015, "iid_f1": 1, "aa_f1": 0.953, "dd_f1": 1, "fitd_f1": 1}
+  seed_123: {"oasst2_fpr": 0.005, "iid_f1": 1, "aa_f1": 0.917, "dd_f1": 1, "fitd_f1": 1}
+  seed_456: {"oasst2_fpr": 0.01, "iid_f1": 1, "aa_f1": 0.99, "dd_f1": 1, "fitd_f1": 1}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "6824d3bf-10dc-41db-84e6-6f5435fa91ca"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 94_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Final verification of all metrics with derivations",
+  "usage": {
+    "total_tokens": 75032,
+    "tool_uses": 28,
+    "duration_ms": 538561
+  },
+  "last_tool_name": "Bash",
+  "uuid": "0f02ac13-f5a6-42b8-8b32-73fe7cec0255",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0164VnRDzmBSk59F8Na5uEeZ`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# Now let me verify the DD OOD F1 mean = 0.9936 vs 0.9968\n# exp1_roberta_9class: dd_ood_full_f1_mean=0.9936  (RoBERTa)\n# exp35: 9class dd_ood individual_mean=0.9968 (DeBERTa)\n# exp4: 9class_3seed clean_full=0.9968 (DeBERTa)\n# exp9: dd_ood_9class_full mean=0.9968 (DeBERTa)\n\n# So DeBERTa DD OOD F1 = 0.9968±0.0045 (not 0.994±0.005 as user suggested)\n# But user said ~0.994±0.005 - maybe they were thinking of something else\n\n# For AA OOD: exp22 says 0.972±0.026 (DeBERTa 9-class)\n# exp2: full=0.972, full_std=0.026\n# exp35: individual_mean=0.9719, individual_std=0.0261\n\n# Let me also verify with exp55 (5-seed):\n# 9class_dd_ood mean=0.9924, std=0.0111 (5 seeds)\n# 9class_aa_ood mean=0.9735, std=0.0124 (5 seeds)\n\nprint('=== Summary: 9-class DeBERTa attack-side F1 (benign IID) ===')\nprint()\nprint('DD OOD Full F1 (3-seed):')\nprint('  mean: 0.9968, std: 0.0045 (pop std)')\nprint('  sources: exp4, exp9, exp35')\nprint('  per-seed: seed42=1.0, seed123=1.0, seed456=0.9904')\nprint()\nprint('DD OOD Full F1 (5-seed):')\nprint('  mean: 0.9924, std: 0.0111')\nprint('  source: exp55')\nprint()\nprint('AA OOD Full F1 (3-seed):')\nprint('  mean: 0.972, std: 0.026')\nprint('  sources: exp2, exp22, exp35')\nprint()\nprint('AA OOD Full F1 (5-seed):')\nprint('  mean: 0.9735, std: 0.0124')\nprint('  source: exp55')\nprint()\n\n# Now the key question: per-seed attack recall\n# We need to work backwards from F1 to recall\n# But we need to know if these F1 values are binary or macro\n\n# From exp10 note: 'macro_f1 is the project-standard metric'\n# So all unnamed F1 values are macro F1\n\n# For DD OOD per-seed recall (macro F1 with 0 FP, assuming benign_f1=1.0):\n# macro_f1 = (1 + attack_f1)/2 => attack_f1 = 2*macro - 1\n# attack_f1 = 2*P*R/(P+R) with P=1 => attack_f1 = 2R/(1+R)\n# R = attack_f1 / (2 - attack_f1)\n\nprint('=== Per-seed Attack Recall (derived from macro F1, assuming FP=0) ===')\nprint()\nprint('DD OOD (n_attack=80):')\ndd_f1 = {'seed42': 1.0, 'seed123': 1.0, 'seed456': 0.9904}\nfor seed, f1 in dd_f1.items():\n    if f1 == 1.0:\n        recall = 1.0\n        fn = 0\n    else:\n        atk_f1 = 2*f1 - 1\n        recall = atk_f1 / (2 - atk_f1)\n        fn = round(80*(1-recall))\n    print(f'  {seed}: macro_F1={f1:.4f}, attack_recall={recall:.4f}, FN={fn}')\n\nprint()\nprint('AA OOD (from exp23 error analysis):')\nprint('  Total unique error samples (any seed): 7')\nprint('  All errors are FN (zero FP)')\nprint('  Per-seed FN counts: seed42=1, seed123=7, seed456=1')\nprint('  Per-seed attack recall:')\nfor seed, fn in [('seed42', 1), ('seed123', 7), ('seed456', 1)]:\n    recall = (80-fn)/80\n    atk_f1 = 2*recall/(1+recall)\n    macro = (1+atk_f1)/2\n    print(f'    {seed}: FN={fn}, attack_recall={recall:.4f}, attack_F1={atk_f1:.4f}, macro_F1={macro:.4f}')\n\n# The computed macro F1 values (0.9969, 0.9771, 0.9969) don't match the reported 0.972±0.026\n# So either FN counts are different or FP is not zero or n_attack != 80\n\" 2>&1",
+  "description": "Final verification of all metrics with derivations"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "609a473e-c073-4532-b249-bdd2c0d0a650",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UQj1brCui2PfRfmhmFbqCe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2220,
+      "cache_read_input_tokens": 72036,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2220,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-22T23:41:02.611Z_
+
+<details><summary>↩ Tool result · `toolu_0164VnRDzmBSk59F8Na5uEeZ`</summary>
+
+```text
+=== Summary: 9-class DeBERTa attack-side F1 (benign IID) ===
+
+DD OOD Full F1 (3-seed):
+  mean: 0.9968, std: 0.0045 (pop std)
+  sources: exp4, exp9, exp35
+  per-seed: seed42=1.0, seed123=1.0, seed456=0.9904
+
+DD OOD Full F1 (5-seed):
+  mean: 0.9924, std: 0.0111
+  source: exp55
+
+AA OOD Full F1 (3-seed):
+  mean: 0.972, std: 0.026
+  sources: exp2, exp22, exp35
+
+AA OOD Full F1 (5-seed):
+  mean: 0.9735, std: 0.0124
+  source: exp55
+
+=== Per-seed Attack Recall (derived from macro F1, assuming FP=0) ===
+
+DD OOD (n_attack=80):
+  seed42: macro_F1=1.0000, attack_recall=1.0000, FN=0
+  seed123: macro_F1=1.0000, attack_recall=1.0000, FN=0
+  seed456: macro_F1=0.9904, attack_recall=0.9623, FN=3
+
+AA OOD (from exp23 error analysis):
+  Total unique error samples (any seed): 7
+  All errors are FN (zero FP)
+  Per-seed FN counts: seed42=1, seed123=7, seed456=1
+  Per-seed attack recall:
+    seed42: FN=1, attack_recall=0.9875, attack_F1=0.9937, macro_F1=0.9969
+    seed123: FN=7, attack_recall=0.9125, attack_F1=0.9542, macro_F1=0.9771
+    seed456: FN=1, attack_recall=0.9875, attack_F1=0.9937, macro_F1=0.9969
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "219ecbb3-ed75-403d-a636-758ea9e21eef"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 97_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Try to reconcile AA F1 with FN counts",
+  "usage": {
+    "total_tokens": 77138,
+    "tool_uses": 29,
+    "duration_ms": 571044
+  },
+  "last_tool_name": "Bash",
+  "uuid": "5b544fdc-a4ab-48f8-98a6-f072cf046258",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012oqmUqQrja14yeTQG2ozyA`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\"\npython3 -c \"\nimport json, math\nwith open('$FILE') as f:\n    outer = json.load(f)\ninner = json.loads(outer['result'])\nexps = inner['data']['experiments']\n\n# The computed AA macro F1 from FN counts (0.9969, 0.9771, 0.9969) \n# mean = 0.990, std = 0.0114\n# BUT registry says mean=0.972, std=0.026\n# This means either:\n# 1. n_attack != 80 for AA OOD\n# 2. There ARE some FP (despite exp23 saying zero_fp)\n# 3. The FN counts from exp23 are wrong\n# 4. The F1 is computed differently\n\n# Let me try to find per-seed F1 for AA OOD from the registry\n# exp35 gives individual_mean=0.9719, std=0.0261 - so per-seed F1 values\n# average to 0.9719 with std 0.0261\n\n# Possible per-seed F1: if mean=0.972, std=0.026 (pop), what values work?\n# Try: 0.990, 0.945, 0.981\nvals = [0.990, 0.945, 0.981]\nm = sum(vals)/3\ns = math.sqrt(sum((v-m)**2 for v in vals)/3)\nprint(f'Try {vals}: mean={m:.4f}, std={s:.4f}')\n\n# Try: 1.0, 0.935, 0.981\nvals = [1.0, 0.935, 0.981]\nm = sum(vals)/3\ns = math.sqrt(sum((v-m)**2 for v in vals)/3)\nprint(f'Try {vals}: mean={m:.4f}, std={s:.4f}')\n\n# Try: 0.990, 0.946, 0.981\nvals = [0.990, 0.946, 0.981]\nm = sum(vals)/3\ns = math.sqrt(sum((v-m)**2 for v in vals)/3)\nprint(f'Try {vals}: mean={m:.4f}, std={s:.4f}')\n\n# Try: the exp31_lambda_ablation_aa has per-lambda AA F1\n# lambda_0.5_aa: 0.9809, lambda_1.0_aa: 0.9809\n# These could give us hints about per-seed values\n# lambda_0.1_aa: 0.9904 - these look like single-seed or specific F1 values\n\n# Actually let me try the hypothesis that F1 is BINARY (jailbreak-class) F1:\n# Binary F1 = 2*P*R/(P+R)\n# If FP=0: P=1, Binary F1 = 2R/(1+R)\n# For AA OOD with FN from exp23:\n# seed42: FN=1, R=79/80, F1=2*79/80/(1+79/80) = 158/159 = 0.9937\n# seed123: FN=7, R=73/80, F1=2*73/80/(1+73/80) = 146/153 = 0.9542\n# seed456: FN=1, F1=0.9937\n# mean = 0.9805, std = 0.0228 -- still not 0.972\n\n# What if AA OOD n_attack = 80 but there ARE some FP?\n# From exp23 majority_vote_fp=0 means majority vote has 0 FP\n# But individual seeds could have FP\n\n# Let me try: what FN values give mean binary F1 = 0.972?\n# F1_i = 2*(80-FN_i) / (2*(80-FN_i) + FN_i) = (160-2*FN_i)/(160-FN_i)\n# mean of 3 such = 0.972\n# And the pattern has one seed much worse\n\n# FN = [2, 6, 2]: F1 = [156/158, 148/154, 156/158] = [0.9873, 0.9610, 0.9873]\nvals = [0.9873, 0.9610, 0.9873]\nm = sum(vals)/3; s = math.sqrt(sum((v-m)**2 for v in vals)/3)\nprint(f'FN=[2,6,2]: {vals}, mean={m:.4f}, std={s:.4f}')\n\n# FN = [1, 9, 1]: F1 = [158/159, 142/151, 158/159] = [0.9937, 0.9404, 0.9937]\nvals = [0.9937, 0.9404, 0.9937]\nm = sum(vals)/3; s = math.sqrt(sum((v-m)**2 for v in vals)/3)\nprint(f'FN=[1,9,1]: {vals}, mean={m:.4f}, std={s:.4f}')\n\n# FN = [2, 8, 1]: \nfor fn_combo in [(1,8,2), (2,7,2), (1,7,3), (2,8,1), (0,8,3), (0,9,2), (1,10,0), (2,6,3)]:\n    vals = [(160-2*fn)/(160-fn) for fn in fn_combo]\n    m = sum(vals)/3; s = math.sqrt(sum((v-m)**2 for v in vals)/3)\n    if abs(m - 0.972) < 0.002 and abs(s - 0.026) < 0.005:\n        recalls = [(80-fn)/80 for fn in fn_combo]\n        print(f'FN={fn_combo}: F1={[round(v,4) for v in vals]}, mean={m:.4f}, std={s:.4f}, recalls={[round(r,4) for r in recalls]}')\n\" 2>&1",
+  "description": "Try to reconcile AA F1 with FN counts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "44244ca9-1350-47e8-a9bb-786d88039ca3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WyZ8N1x3D9d8f5THMDEGSw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2070,
+      "cache_read_input_tokens": 74256,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2070,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-22T23:41:35.079Z_
+
+<details><summary>↩ Tool result · `toolu_012oqmUqQrja14yeTQG2ozyA`</summary>
+
+```text
+Try [0.99, 0.945, 0.981]: mean=0.9720, std=0.0194
+Try [1.0, 0.935, 0.981]: mean=0.9720, std=0.0273
+Try [0.99, 0.946, 0.981]: mean=0.9723, std=0.0190
+FN=[2,6,2]: [0.9873, 0.961, 0.9873], mean=0.9785, std=0.0124
+FN=[1,9,1]: [0.9937, 0.9404, 0.9937], mean=0.9759, std=0.0251
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "e9a85d28-872c-4741-b7d3-dfc849311417"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 100_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Reverse-engineer exact per-seed metrics from AA F1",
+  "usage": {
+    "total_tokens": 79069,
+    "tool_uses": 30,
+    "duration_ms": 591962
+  },
+  "last_tool_name": "Bash",
+  "uuid": "8f2cb64a-e236-4e2b-aee4-42c491d78068",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 101_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018RHqVCLmKu99PvBGUseq6y`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport math\n\n# Let me try n_attack != 80. Maybe AA has fewer attack samples.\n# exp30 says AA OOD attack bins: 1-3=20, 4-6=38, 7-10=22 = 80\n# But those are RECALL evaluation bins. \n\n# Let me try with different n_attack values and find which gives mean=0.972, std=0.026\n# for FN = [1, 7, 1]\n\nfor n_atk in range(50, 100):\n    fns = [1, 7, 1]\n    vals = [(2*(n_atk-fn))/(2*(n_atk-fn)+fn) for fn in fns]\n    m = sum(vals)/3\n    s = math.sqrt(sum((v-m)**2 for v in vals)/3)\n    if abs(m - 0.972) < 0.001:\n        recalls = [(n_atk-fn)/n_atk for fn in fns]\n        print(f'n_atk={n_atk}: FN=[1,7,1], binary_F1={[round(v,4) for v in vals]}, mean={m:.4f}, std={s:.4f}, recalls={[round(r,4) for r in recalls]}')\n\n# Also try macro F1 with benign FP > 0\nprint()\nprint('=== Trying with FP > 0 for benign class ===')\n# If there are some FP (benign classified as jailbreak):\n# For AA OOD with n_benign = 38, n_attack = 80\n# FP = benign predicted as jailbreak\n# FN = jailbreak predicted as benign\n# benign: P = TN/(TN+FN), R = TN/(TN+FP) = (38-FP)/38\n# attack: P = TP/(TP+FP) = (80-FN)/(80-FN+FP), R = (80-FN)/80\n\n# Let me try FN=[1,7,1], FP=[2,2,2] (constant small FP)\nfor fp in range(0, 6):\n    fns = [1, 7, 1]\n    vals = []\n    for fn in fns:\n        tp = 80 - fn\n        tn = 38 - fp\n        att_p = tp/(tp+fp) if (tp+fp)>0 else 0\n        att_r = tp/80\n        att_f1 = 2*att_p*att_r/(att_p+att_r) if (att_p+att_r)>0 else 0\n        ben_p = tn/(tn+fn) if (tn+fn)>0 else 0\n        ben_r = tn/38 if 38>0 else 0\n        ben_f1 = 2*ben_p*ben_r/(ben_p+ben_r) if (ben_p+ben_r)>0 else 0\n        macro = (att_f1 + ben_f1)/2\n        vals.append(macro)\n    m = sum(vals)/3\n    s = math.sqrt(sum((v-m)**2 for v in vals)/3)\n    if abs(m - 0.972) < 0.003:\n        recalls = [(80-fn)/80 for fn in fns]\n        print(f'FP={fp}, FN=[1,7,1]: macro_F1={[round(v,4) for v in vals]}, mean={m:.4f}, std={s:.4f}, recalls={recalls}')\n\n# Try with different FP per seed\nprint()\nfor fp1 in range(0, 5):\n    for fp2 in range(0, 5):\n        for fp3 in range(0, 5):\n            fns = [1, 7, 1]\n            fps = [fp1, fp2, fp3]\n            vals = []\n            for fn, fp in zip(fns, fps):\n                tp = 80 - fn\n                tn = 38 - fp\n                att_p = tp/(tp+fp) if (tp+fp)>0 else 0\n                att_r = tp/80\n                att_f1 = 2*att_p*att_r/(att_p+att_r) if (att_p+att_r)>0 else 0\n                ben_p = tn/(tn+fn) if (tn+fn)>0 else 0\n                ben_r = tn/38 if 38>0 else 0\n                ben_f1 = 2*ben_p*ben_r/(ben_p+ben_r) if (ben_p+ben_r)>0 else 0\n                macro = (att_f1 + ben_f1)/2\n                vals.append(macro)\n            m = sum(vals)/3\n            s = math.sqrt(sum((v-m)**2 for v in vals)/3)\n            if abs(m - 0.972) < 0.001 and abs(s - 0.026) < 0.005:\n                recalls = [(80-fn)/80 for fn in fns]\n                print(f'FP={fps}, FN={fns}: macro_F1={[round(v,4) for v in vals]}, mean={m:.4f}, std={s:.4f}, recalls={recalls}')\n\" 2>&1",
+  "description": "Reverse-engineer exact per-seed metrics from AA F1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "b1388597-82f4-4866-af05-4c527459e2b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176xDLsCgiFPF8YQKRH2MY7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1884,
+      "cache_read_input_tokens": 76326,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1884,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-22T23:41:55.984Z_
+
+<details><summary>↩ Tool result · `toolu_018RHqVCLmKu99PvBGUseq6y`</summary>
+
+```text
+n_atk=55: FN=[1,7,1], binary_F1=[0.9908, 0.932, 0.9908], mean=0.9712, std=0.0277, recalls=[0.9818, 0.8727, 0.9818]
+n_atk=56: FN=[1,7,1], binary_F1=[0.991, 0.9333, 0.991], mean=0.9718, std=0.0272, recalls=[0.9821, 0.875, 0.9821]
+n_atk=57: FN=[1,7,1], binary_F1=[0.9912, 0.9346, 0.9912], mean=0.9723, std=0.0267, recalls=[0.9825, 0.8772, 0.9825]
+n_atk=58: FN=[1,7,1], binary_F1=[0.9913, 0.9358, 0.9913], mean=0.9728, std=0.0262, recalls=[0.9828, 0.8793, 0.9828]
+
+=== Trying with FP > 0 for benign class ===
+FP=0, FN=[1,7,1]: macro_F1=[0.9904, 0.935, 0.9904], mean=0.9719, std=0.0261, recalls=[0.9875, 0.9125, 0.9875]
+
+FP=[0, 0, 0], FN=[1, 7, 1]: macro_F1=[0.9904, 0.935, 0.9904], mean=0.9719, std=0.0261, recalls=[0.9875, 0.9125, 0.9875]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "1aa78e1b-0c9e-492b-b781-1228446a996b"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 103_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "description": "Running Final verified summary with all exact numbers",
+  "usage": {
+    "total_tokens": 80965,
+    "tool_uses": 31,
+    "duration_ms": 621612
+  },
+  "last_tool_name": "Bash",
+  "uuid": "dfaa1cf3-4838-4eb2-b8b5-7e84999b5dda",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 104_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JXFDMwWFS3mzEjzSk3hDi4`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport math\n\n# CONFIRMED: With n_attack=80, n_benign=38, FP=0, FN=[1,7,1]:\n# macro_F1 = [0.9904, 0.9350, 0.9904]\n# mean = 0.9719, std = 0.0261 (pop std)\n# Registry says: mean=0.972, std=0.026 -- MATCHES after rounding!\n\n# So the per-seed data for AA OOD:\n# seed42: FN=1, FP=0, attack_recall = 79/80 = 0.9875, macro_F1 = 0.9904\n# seed123: FN=7, FP=0, attack_recall = 73/80 = 0.9125, macro_F1 = 0.9350\n# seed456: FN=1, FP=0, attack_recall = 79/80 = 0.9875, macro_F1 = 0.9904\n\n# For DD OOD: n_attack=80, n_benign=38\n# seed42: FN=0, FP=0, attack_recall = 1.0, macro_F1 = 1.0\n# seed123: FN=0, FP=0, attack_recall = 1.0, macro_F1 = 1.0\n# seed456: FN=?, FP=0, macro_F1 = 0.9904\n# macro_F1 = 0.9904 means: (1.0 + attack_f1)/2 = 0.9904\n# attack_f1 = 0.9808 = 2R/(1+R) => R = 0.9808/1.0192 = 0.9623\n# FN = 80*(1-0.9623) = 3.016 ~3\n# attack_recall = 77/80 = 0.9625, attack_f1 = 2*77/157 = 154/157 = 0.9809\n# macro = (1 + 0.9809)/2 = 0.9905 -- not exactly 0.9904\n\n# Let me try FN=3 exactly:\nfn = 3; tp = 77; tn = 38\natt_f1 = 2*tp/(2*tp+fn)  # with FP=0\nprint(f'DD seed456 FN=3: attack_F1 = {2*tp/(2*tp+fn):.4f} = {2*tp}/{2*tp+fn}')\nmacro = (1 + att_f1)/2\nprint(f'  macro_F1 = {macro:.4f}')\n\n# 154/157 = 0.98089... rounds to 0.9809\n# (1 + 0.9809)/2 = 0.9905 -- but registry says 0.9904\n\n# Maybe it's rounded at a different precision. The DD seed456 dd_ood_full_f1 = 0.9904\n# Let me check: 0.9904 = (1 + x)/2 => x = 0.9808\n# x = 2R/(1+R) => R = 0.9808/(2-0.9808) = 0.9808/1.0192 \n# = 0.96232... \n# FN = 80 * (1-0.96232) = 3.014 => 3 FN\n\n# Actually 77*2 = 154, 77*2+3 = 157\n# 154/157 = 0.98089...\n# (1+0.98089)/2 = 0.99045... rounds to 0.9904 ✓\n\nprint()\nprint('=== FINAL VERIFIED RESULTS ===')\nprint()\nprint('TEST SET SIZES:')\nprint('  DD OOD: 80 jailbreak + 38 benign = 118 total')\nprint('  AA OOD: 80 jailbreak + 38 benign = 118 total')\nprint('  (verified via exp5 accuracy=0.322 => 38/118 benign; exp30 attack bins sum to 80)')\nprint()\nprint('9-CLASS DD OOD (3-seed, benign IID):')\nprint('  Macro F1: mean=0.9968, std=0.0045')\nprint('  Per-seed macro F1: seed42=1.0000, seed123=1.0000, seed456=0.9904')\nprint('  Per-seed attack recall: seed42=1.0 (FN=0), seed123=1.0 (FN=0), seed456=0.9625 (FN=3)')\nprint('  Per-seed FP: 0 for all seeds')\nprint()\nprint('9-CLASS AA OOD (3-seed, benign IID):')\nprint('  Macro F1: mean=0.972, std=0.026')\nprint('  Per-seed macro F1: seed42=0.9904, seed123=0.9350, seed456=0.9904')\nprint('  Per-seed attack recall: seed42=0.9875 (FN=1), seed123=0.9125 (FN=7), seed456=0.9875 (FN=1)')\nprint('  Per-seed FP: 0 for all seeds')\nprint('  Source: exp23 error analysis (FN counts directly stated)')\nprint()\nprint('BENIGN FPR:')\nprint('  exp19 WildChat baseline: FPR=0.681±0.064 (seed42=0.668, seed123=0.611, seed456=0.765), n=226')\nprint('  exp51 OASST2 baseline: FPR=0.575, n=200')\nprint('  exp45 WildChat+10shot: FPR=0.000±0.000 (3-seed)')\nprint('  exp52 OASST2+25shot: FPR=0.010±0.005 (seed42=0.015, seed123=0.005, seed456=0.010)')\nprint()\nprint('ADDITIONAL (5-seed from exp55):')\nprint('  DD OOD F1: 0.9924±0.0111')\nprint('  AA OOD F1: 0.9735±0.0124')\n\"",
+  "description": "Final verified summary with all exact numbers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "f47e202f-622a-486e-bd79-78d774544011",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iuNhz3kzyMNGoJe7zBiaG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1892,
+      "cache_read_input_tokens": 78210,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1892,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-22T23:42:25.627Z_
+
+<details><summary>↩ Tool result · `toolu_01JXFDMwWFS3mzEjzSk3hDi4`</summary>
+
+```text
+DD seed456 FN=3: attack_F1 = 0.9809 = 154/157
+  macro_F1 = 0.9904
+
+=== FINAL VERIFIED RESULTS ===
+
+TEST SET SIZES:
+  DD OOD: 80 jailbreak + 38 benign = 118 total
+  AA OOD: 80 jailbreak + 38 benign = 118 total
+  (verified via exp5 accuracy=0.322 => 38/118 benign; exp30 attack bins sum to 80)
+
+9-CLASS DD OOD (3-seed, benign IID):
+  Macro F1: mean=0.9968, std=0.0045
+  Per-seed macro F1: seed42=1.0000, seed123=1.0000, seed456=0.9904
+  Per-seed attack recall: seed42=1.0 (FN=0), seed123=1.0 (FN=0), seed456=0.9625 (FN=3)
+  Per-seed FP: 0 for all seeds
+
+9-CLASS AA OOD (3-seed, benign IID):
+  Macro F1: mean=0.972, std=0.026
+  Per-seed macro F1: seed42=0.9904, seed123=0.9350, seed456=0.9904
+  Per-seed attack recall: seed42=0.9875 (FN=1), seed123=0.9125 (FN=7), seed456=0.9875 (FN=1)
+  Per-seed FP: 0 for all seeds
+  Source: exp23 error analysis (FN counts directly stated)
+
+BENIGN FPR:
+  exp19 WildChat baseline: FPR=0.681±0.064 (seed42=0.668, seed123=0.611, seed456=0.765), n=226
+  exp51 OASST2 baseline: FPR=0.575, n=200
+  exp45 WildChat+10shot: FPR=0.000±0.000 (3-seed)
+  exp52 OASST2+25shot: FPR=0.010±0.005 (seed42=0.015, seed123=0.005, seed456=0.010)
+
+ADDITIONAL (5-seed from exp55):
+  DD OOD F1: 0.9924±0.0111
+  AA OOD F1: 0.9735±0.0124
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "81a928c6-02dc-4366-a176-8a043badc4d1"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 106_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "a13a872389ab08f0d",
+  "tool_use_id": "toolu_01H7SJrbEq4XDtn8rQXMKDHk",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Extract registry metrics",
+  "usage": {
+    "total_tokens": 83393,
+    "tool_uses": 31,
+    "duration_ms": 647779
+  },
+  "uuid": "829c875e-b71c-4600-b511-7c1074145e31",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-22T23:42:51.720Z_
+
+<details><summary>↩ Tool result · `toolu_01H7SJrbEq4XDtn8rQXMKDHk`</summary>
+
+```text
+Here are the exact numbers extracted from the registry.
+
+---
+
+## 1. 9-Class Attack-Side Metrics (Benign IID Condition)
+
+### DD OOD Full F1 (3-seed)
+- **Mean: 0.9968, std: 0.0045** (population std)
+- Per-seed macro F1: seed42=1.0000, seed123=1.0000, seed456=0.9904
+- Sources: exp4, exp9, exp35 (all consistent)
+
+### AA OOD Full F1 (3-seed)
+- **Mean: 0.972, std: 0.026**
+- Per-seed macro F1: seed42=0.9904, seed123=0.9350, seed456=0.9904
+- Sources: exp2, exp22, exp35 (all consistent)
+
+### Per-Seed Attack Recall (derived + directly stated)
+
+**DD OOD** (n_attack=80, FP=0 for all seeds):
+| Seed | Macro F1 | Attack Recall | FN |
+|------|----------|---------------|-----|
+| 42 | 1.0000 | 1.0000 | 0 |
+| 123 | 1.0000 | 1.0000 | 0 |
+| 456 | 0.9904 | 0.9625 | 3 |
+
+**AA OOD** (n_attack=80, FP=0 for all seeds, from exp23 error analysis):
+| Seed | Macro F1 | Attack Recall | FN |
+|------|----------|---------------|-----|
+| 42 | 0.9904 | 0.9875 | 1 |
+| 123 | 0.9350 | 0.9125 | 7 |
+| 456 | 0.9904 | 0.9875 | 1 |
+
+exp23 directly states: "all_errors_are_fn: true, zero_fp: true, seed123_weakest: 7 FN vs 1 FN for other seeds". Total unique error samples across any seed: 7. Majority vote FN: 2, FP: 0.
+
+### 5-seed results (exp55)
+- DD OOD F1: 0.9924 +/- 0.0111 (seeds: 42, 123, 456, 789, 1024)
+- AA OOD F1: 0.9735 +/- 0.0124
+
+---
+
+## 2. Benign FPR Data
+
+**exp19 -- WildChat baseline FPR (no adaptation):**
+- 9class FPR: mean=0.681, std=0.064
+- Per-seed: seed42=0.668, seed123=0.611, seed456=0.765
+- n=226 filtered multi-turn benign conversations
+
+**exp51 -- OASST2 baseline FPR (no adaptation):**
+- FPR: 0.575, n=200, source: "oasst2 (real crowdsourced human)"
+
+**exp45 -- WildChat + 10-shot adaptation FPR (3-seed):**
+- WC FPR: 0.000 +/- 0.000
+- While maintaining: DD F1=1.000+/-0.000, AA F1=0.981+/-0.016, FITD F1=1.000+/-0.000
+- Single-seed-42 curve: n0=0.653, n5=0.163, n10=0, n25=0, n50=0
+
+**exp52 -- OASST2 + 25-shot adaptation FPR (3-seed):**
+- FPR mean: 0.010, std: 0.005, range: 0.5%-1.5%
+- seed42: oasst2_fpr=0.015, AA F1=0.953
+- seed123: oasst2_fpr=0.005, AA F1=0.917
+- seed456: oasst2_fpr=0.010, AA F1=0.990
+
+**exp51 -- OASST2 adaptation curve (single seed):**
+- n0: FPR=0.575
+- n10: FPR=0.205, DD/AA/FITD F1=1.0/1.0/1.0
+- n25: FPR=0.015, DD/FITD F1=1.0, AA F1=0.953
+- n50: FPR=0.005, DD/FITD F1=1.0, AA F1=0.990
+
+---
+
+## 3. Test Set Sizes
+
+Both DD OOD and AA OOD share the same structure:
+- **80 jailbreak + 38 benign = 118 total**
+- Verified via: exp5 all-benign-prediction accuracy = 0.322 = 38/118; exp30 length-stratified attack bin sums = 80
+
+DD OOD attack length bins (from exp30): 4-6 turns (n=20), 7-10 turns (n=60)
+AA OOD attack length bins (from exp30): 1-3 turns (n=20), 4-6 turns (n=38), 7-10 turns (n=22)
+
+All F1 values in the registry are **macro F1** (confirmed by exp10 note: "macro_f1 is the project-standard metric").
+
+agentId: a13a872389ab08f0d (use SendMessage with to: 'a13a872389ab08f0d' to continue this agent)
+&lt;usage>total_tokens: 83886
+tool_uses: 31
+duration_ms: 647785&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "da7b14ff-fdb2-4904-b2ff-c149d320aa62",
+  "tool_use_result": {
+    "status": "completed",
+    "prompt": "I need to extract specific metrics from a registry JSON file for computing dual-OOD F1 scores. The file is at:\n/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/bb7e9be3-fc76-4770-9e67-226fb3753ce3/tool-results/mcp-agent-ml-research-read_registry-1779492709211.txt\n\nThe file has schema: {result: string} where result is a JSON string.\n\nI need you to find:\n\n1. **9-class attack-side metrics (benign IID condition)**:\n   - DD Full F1 (3-seed mean±std) — should be ~0.994±0.005\n   - AA Full F1 (3-seed mean±std) — should be ~0.972±0.026\n   - Most importantly: **per-seed attack recall** for both DD and AA (not F1, but recall specifically). Look for fields like \"recall\", \"attack_recall\", \"detection_recall\", or similar. If per-seed data exists, extract all seeds.\n\n2. **Benign FPR data**:\n   - exp19: WildChat FPR (should be ~0.681)\n   - exp51: OASST2 FPR (should be ~0.575)\n   - Any experiments with WildChat + 10-shot adaptation FPR (should be ~0)\n   - Any experiments with OASST2 + 25-shot adaptation FPR (should be ~0.010±0.005)\n\n3. **Test set sizes**: DD OOD and AA OOD test set composition (n_attack, n_benign)\n\nSteps:\n1. First probe structure: `jq 'type, length, keys' file`\n2. Parse the result string as JSON\n3. Search through experiments for the above metrics\n4. Report ALL relevant numbers verbatim, including per-seed breakdowns if available\n\nBe thorough — I need exact numbers, not approximations.",
+    "agentId": "a13a872389ab08f0d",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are the exact numbers extracted from the registry.\n\n---\n\n## 1. 9-Class Attack-Side Metrics (Benign IID Condition)\n\n### DD OOD Full F1 (3-seed)\n- **Mean: 0.9968, std: 0.0045** (population std)\n- Per-seed macro F1: seed42=1.0000, seed123=1.0000, seed456=0.9904\n- Sources: exp4, exp9, exp35 (all consistent)\n\n### AA OOD Full F1 (3-seed)\n- **Mean: 0.972, std: 0.026**\n- Per-seed macro F1: seed42=0.9904, seed123=0.9350, seed456=0.9904\n- Sources: exp2, exp22, exp35 (all consistent)\n\n### Per-Seed Attack Recall (derived + directly stated)\n\n**DD OOD** (n_attack=80, FP=0 for all seeds):\n| Seed | Macro F1 | Attack Recall | FN |\n|------|----------|---------------|-----|\n| 42 | 1.0000 | 1.0000 | 0 |\n| 123 | 1.0000 | 1.0000 | 0 |\n| 456 | 0.9904 | 0.9625 | 3 |\n\n**AA OOD** (n_attack=80, FP=0 for all seeds, from exp23 error analysis):\n| Seed | Macro F1 | Attack Recall | FN |\n|------|----------|---------------|-----|\n| 42 | 0.9904 | 0.9875 | 1 |\n| 123 | 0.9350 | 0.9125 | 7 |\n| 456 | 0.9904 | 0.9875 | 1 |\n\nexp23 directly states: \"all_errors_are_fn: true, zero_fp: true, seed123_weakest: 7 FN vs 1 FN for other seeds\". Total unique error samples across any seed: 7. Majority vote FN: 2, FP: 0.\n\n### 5-seed results (exp55)\n- DD OOD F1: 0.9924 +/- 0.0111 (seeds: 42, 123, 456, 789, 1024)\n- AA OOD F1: 0.9735 +/- 0.0124\n\n---\n\n## 2. Benign FPR Data\n\n**exp19 -- WildChat baseline FPR (no adaptation):**\n- 9class FPR: mean=0.681, std=0.064\n- Per-seed: seed42=0.668, seed123=0.611, seed456=0.765\n- n=226 filtered multi-turn benign conversations\n\n**exp51 -- OASST2 baseline FPR (no adaptation):**\n- FPR: 0.575, n=200, source: \"oasst2 (real crowdsourced human)\"\n\n**exp45 -- WildChat + 10-shot adaptation FPR (3-seed):**\n- WC FPR: 0.000 +/- 0.000\n- While maintaining: DD F1=1.000+/-0.000, AA F1=0.981+/-0.016, FITD F1=1.000+/-0.000\n- Single-seed-42 curve: n0=0.653, n5=0.163, n10=0, n25=0, n50=0\n\n**exp52 -- OASST2 + 25-shot adaptation FPR (3-seed):**\n- FPR mean: 0.010, std: 0.005, range: 0.5%-1.5%\n- seed42: oasst2_fpr=0.015, AA F1=0.953\n- seed123: oasst2_fpr=0.005, AA F1=0.917\n- seed456: oasst2_fpr=0.010, AA F1=0.990\n\n**exp51 -- OASST2 adaptation curve (single seed):**\n- n0: FPR=0.575\n- n10: FPR=0.205, DD/AA/FITD F1=1.0/1.0/1.0\n- n25: FPR=0.015, DD/FITD F1=1.0, AA F1=0.953\n- n50: FPR=0.005, DD/FITD F1=1.0, AA F1=0.990\n\n---\n\n## 3. Test Set Sizes\n\nBoth DD OOD and AA OOD share the same structure:\n- **80 jailbreak + 38 benign = 118 total**\n- Verified via: exp5 all-benign-prediction accuracy = 0.322 = 38/118; exp30 length-stratified attack bin sums = 80\n\nDD OOD attack length bins (from exp30): 4-6 turns (n=20), 7-10 turns (n=60)\nAA OOD attack length bins (from exp30): 1-3 turns (n=20), 4-6 turns (n=38), 7-10 turns (n=22)\n\nAll F1 values in the registry are **macro F1** (confirmed by exp10 note: \"macro_f1 is the project-standard metric\")."
+      }
+    ],
+    "totalDurationMs": 647785,
+    "totalTokens": 83886,
+    "totalToolUseCount": 31,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2427,
+      "cache_read_input_tokens": 80102,
+      "output_tokens": 1356,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2427
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1356,
+          "cache_read_input_tokens": 80102,
+          "cache_creation_input_tokens": 2427,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2427,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 2,
+      "searchCount": 0,
+      "bashCount": 29,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 108_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me compute the dual-OOD F1 values.
+
+Key data:
+- DD OOD: n_attack=80, n_benign=38
+- AA OOD: n_attack=80, n_benign=38
+
+Per-seed attack recall:
+- DD: seed42=1.0, seed123=1.0, seed456=0.9625
+- AA: seed42=0.9875, seed123=0.9125, seed456=0.9875
+
+
+- 
+I'm looking at the benign false positive rates across different conditions. The IID baseline has zero FP, while the unadapted WildChat and OASST2 conditions show much higher FPR values around 0.68 and 0.58 respectively. The adapted versions with few-shot prompting dramatically reduce these rates, with WildChat dropping to zero and OASST2 to near-zero. Now I'll calculate the F1 scores for each condition.
+
+For each seed, I'm computing the confusion matrix values using the attack recall and benign FPR to get true positives, false positives, false negatives, and true negatives. Then I'll derive precision and F1 from those values. Actually, I need to clarify whether the task is asking for the binary detection F1 (attack vs benign) or the 9-class macro F1 that was reported earlier—the phrasing "dual-OOD F1" suggests it's the binary case, which is different from the existing 9-class metrics. I see the distinction now—the task is asking for binary F1 for jailbreak detection under dual-OOD conditions (both attack and benign out-of-distribution), not the 9-class macro F1 I was looking at. The computation uses attack recall and benign FPR to calculate precision and F1, which should match the IID baseline when FPR is zero. I see—they want me to compute binary detection F1 scores where attack recall stays fixed from the experiments, but benign false positive rate varies by condition. For the IID baseline with zero false positives, I'm calculating the mean F1 across seeds by taking the harmonic mean of recall and precision for each seed, then averaging those results. I'm realizing the cleaner approach is to compute binary detection F1 consistently across all conditions using the provided formula, which means the IID values will differ slightly from the existing 9-class macro F1 scores since IID has FPR=0. Now I'm computing the binary F1 scores for each condition using the actual attack recall values from the registry. For DD OOD with 80 attacks and 38 benign samples, the per-seed attack recalls are [1.0, 1.0, 0.9625], which gives me perfect precision and recall for the first two seeds and 0.9810 F1 for the third, averaging to 0.9937. Moving into WildChat without adaptation, I'm calculating the false positive rates across seeds to determine the corresponding F1 values. Looking at the WildChat FPR values per seed from the earlier experiment, I need to pair them correctly with the attack recall data—using matching seeds when available. For OASST2, I only have a single FPR value of 0.575 for the no-adaptation case, but the 25-shot variant gives me per-seed breakdowns. The key insight is that the task assumes attack recall stays constant regardless of benign conditions, so I should match seeds consistently across both metrics when computing the dual-OOD scenario.
+
+Let me write a script to systematically compute F1 scores for each seed by combining the appropriate attack recall with its corresponding FPR value, then aggregate across seeds to get the mean and standard deviation. I'm noticing that the observed AA F1 values from exp52 with adaptation might differ from what the formula predicts, since adaptation could change attack recall too—not just the benign FPR. The formula assumes attack recall stays constant, so I'll write a Python script to compute everything cleanly per-seed and report mean±std, then verify the exp52 FPR values match what I need.
+
+Writing computation script... Computing F1 scores...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "78ba8e18-5edb-452b-a68e-57891095dfa7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EC13yfyj4s2GGiYWxMJFCR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2020,
+      "cache_read_input_tokens": 25672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2020
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109_
+
+数据齐全了。现在用 Python 计算所有 dual-OOD F1 值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "16ce4d7f-2085-43a2-b0dd-a0becdf8de27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EC13yfyj4s2GGiYWxMJFCR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2020,
+      "cache_read_input_tokens": 25672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2020
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LXsA4NBH92rQLn9t5X8MWa`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport numpy as np\n\nn_attack = 80\nn_benign = 38\n\n# Per-seed attack recall (seeds 42, 123, 456)\ndd_recall = [1.0, 1.0, 0.9625]\naa_recall = [0.9875, 0.9125, 0.9875]\n\n# Benign FPR per seed for each condition\nconditions = {\n    \"IID (current)\":        [0.0, 0.0, 0.0],\n    \"WildChat (no adapt)\":  [0.668, 0.611, 0.765],\n    \"OASST2 (no adapt)\":    [0.575, 0.575, 0.575],\n    \"WildChat + 10-shot\":   [0.0, 0.0, 0.0],\n    \"OASST2 + 25-shot\":     [0.015, 0.005, 0.010],\n}\n\ndef compute_f1(attack_recall, benign_fpr):\n    TP = attack_recall * n_attack\n    FP = benign_fpr * n_benign\n    FN = (1 - attack_recall) * n_attack\n    if TP + FP == 0:\n        precision = 1.0\n    else:\n        precision = TP / (TP + FP)\n    recall = attack_recall\n    if precision + recall == 0:\n        return 0.0\n    return 2 * precision * recall / (precision + recall)\n\nprint(f\"{'Condition':<25} {'DD F1 (mean±std)':<20} {'AA F1 (mean±std)':<20}\")\nprint(\"-\" * 65)\n\nfor cond, fprs in conditions.items():\n    dd_f1s = [compute_f1(r, f) for r, f in zip(dd_recall, fprs)]\n    aa_f1s = [compute_f1(r, f) for r, f in zip(aa_recall, fprs)]\n    dd_mean, dd_std = np.mean(dd_f1s), np.std(dd_f1s)\n    aa_mean, aa_std = np.mean(aa_f1s), np.std(aa_f1s)\n    print(f\"{cond:<25} {dd_mean:.3f}±{dd_std:.3f}              {aa_mean:.3f}±{aa_std:.3f}\")\n    \n    # Also print per-seed for verification\n    for i, seed in enumerate([42, 123, 456]):\n        print(f\"  seed{seed}: DD_recall={dd_recall[i]:.4f}, FPR={fprs[i]:.3f} -> DD_F1={dd_f1s[i]:.4f} | AA_recall={aa_recall[i]:.4f}, FPR={fprs[i]:.3f} -> AA_F1={aa_f1s[i]:.4f}\")\n\nPYEOF\n",
+  "description": "Compute dual-OOD F1 for all conditions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "eb6c037f-ea31-42ac-94f2-2c212b8c5761",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EC13yfyj4s2GGiYWxMJFCR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2020,
+      "cache_read_input_tokens": 25672,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2020
+      },
+      "output_tokens": 11,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-22T23:44:13.566Z_
+
+<details><summary>↩ Tool result · `toolu_01LXsA4NBH92rQLn9t5X8MWa`</summary>
+
+```text
+Condition                 DD F1 (mean±std)     AA F1 (mean±std)    
+-----------------------------------------------------------------
+IID (current)             0.994±0.009              0.981±0.019
+  seed42: DD_recall=1.0000, FPR=0.000 -> DD_F1=1.0000 | AA_recall=0.9875, FPR=0.000 -> AA_F1=0.9937
+  seed123: DD_recall=1.0000, FPR=0.000 -> DD_F1=1.0000 | AA_recall=0.9125, FPR=0.000 -> AA_F1=0.9542
+  seed456: DD_recall=0.9625, FPR=0.000 -> DD_F1=0.9809 | AA_recall=0.9875, FPR=0.000 -> AA_F1=0.9937
+WildChat (no adapt)       0.855±0.020              0.842±0.012
+  seed42: DD_recall=1.0000, FPR=0.668 -> DD_F1=0.8631 | AA_recall=0.9875, FPR=0.668 -> AA_F1=0.8569
+  seed123: DD_recall=1.0000, FPR=0.611 -> DD_F1=0.8733 | AA_recall=0.9125, FPR=0.611 -> AA_F1=0.8285
+  seed456: DD_recall=0.9625, FPR=0.765 -> DD_F1=0.8276 | AA_recall=0.9875, FPR=0.765 -> AA_F1=0.8401
+OASST2 (no adapt)         0.874±0.009              0.861±0.018
+  seed42: DD_recall=1.0000, FPR=0.575 -> DD_F1=0.8798 | AA_recall=0.9875, FPR=0.575 -> AA_F1=0.8737
+  seed123: DD_recall=1.0000, FPR=0.575 -> DD_F1=0.8798 | AA_recall=0.9125, FPR=0.575 -> AA_F1=0.8350
+  seed456: DD_recall=0.9625, FPR=0.575 -> DD_F1=0.8611 | AA_recall=0.9875, FPR=0.575 -> AA_F1=0.8737
+WildChat + 10-shot        0.994±0.009              0.981±0.019
+  seed42: DD_recall=1.0000, FPR=0.000 -> DD_F1=1.0000 | AA_recall=0.9875, FPR=0.000 -> AA_F1=0.9937
+  seed123: DD_recall=1.0000, FPR=0.000 -> DD_F1=1.0000 | AA_recall=0.9125, FPR=0.000 -> AA_F1=0.9542
+  seed456: DD_recall=0.9625, FPR=0.000 -> DD_F1=0.9809 | AA_recall=0.9875, FPR=0.000 -> AA_F1=0.9937
+OASST2 + 25-shot          0.991±0.009              0.978±0.018
+  seed42: DD_recall=1.0000, FPR=0.015 -> DD_F1=0.9965 | AA_recall=0.9875, FPR=0.015 -> AA_F1=0.9902
+  seed123: DD_recall=1.0000, FPR=0.005 -> DD_F1=0.9988 | AA_recall=0.9125, FPR=0.005 -> AA_F1=0.9531
+  seed456: DD_recall=0.9625, FPR=0.010 -> DD_F1=0.9785 | AA_recall=0.9875, FPR=0.010 -> AA_F1=0.9913
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "d83f3002-c76d-470f-b34a-fdfc6ea9fc28",
+  "tool_use_result": {
+    "stdout": "Condition                 DD F1 (mean±std)     AA F1 (mean±std)    \n-----------------------------------------------------------------\nIID (current)             0.994±0.009              0.981±0.019\n  seed42: DD_recall=1.0000, FPR=0.000 -> DD_F1=1.0000 | AA_recall=0.9875, FPR=0.000 -> AA_F1=0.9937\n  seed123: DD_recall=1.0000, FPR=0.000 -> DD_F1=1.0000 | AA_recall=0.9125, FPR=0.000 -> AA_F1=0.9542\n  seed456: DD_recall=0.9625, FPR=0.000 -> DD_F1=0.9809 | AA_recall=0.9875, FPR=0.000 -> AA_F1=0.9937\nWildChat (no adapt)       0.855±0.020              0.842±0.012\n  seed42: DD_recall=1.0000, FPR=0.668 -> DD_F1=0.8631 | AA_recall=0.9875, FPR=0.668 -> AA_F1=0.8569\n  seed123: DD_recall=1.0000, FPR=0.611 -> DD_F1=0.8733 | AA_recall=0.9125, FPR=0.611 -> AA_F1=0.8285\n  seed456: DD_recall=0.9625, FPR=0.765 -> DD_F1=0.8276 | AA_recall=0.9875, FPR=0.765 -> AA_F1=0.8401\nOASST2 (no adapt)         0.874±0.009              0.861±0.018\n  seed42: DD_recall=1.0000, FPR=0.575 -> DD_F1=0.8798 | AA_recall=0.9875, FPR=0.575 -> AA_F1=0.8737\n  seed123: DD_recall=1.0000, FPR=0.575 -> DD_F1=0.8798 | AA_recall=0.9125, FPR=0.575 -> AA_F1=0.8350\n  seed456: DD_recall=0.9625, FPR=0.575 -> DD_F1=0.8611 | AA_recall=0.9875, FPR=0.575 -> AA_F1=0.8737\nWildChat + 10-shot        0.994±0.009              0.981±0.019\n  seed42: DD_recall=1.0000, FPR=0.000 -> DD_F1=1.0000 | AA_recall=0.9875, FPR=0.000 -> AA_F1=0.9937\n  seed123: DD_recall=1.0000, FPR=0.000 -> DD_F1=1.0000 | AA_recall=0.9125, FPR=0.000 -> AA_F1=0.9542\n  seed456: DD_recall=0.9625, FPR=0.000 -> DD_F1=0.9809 | AA_recall=0.9875, FPR=0.000 -> AA_F1=0.9937\nOASST2 + 25-shot          0.991±0.009              0.978±0.018\n  seed42: DD_recall=1.0000, FPR=0.015 -> DD_F1=0.9965 | AA_recall=0.9875, FPR=0.015 -> AA_F1=0.9902\n  seed123: DD_recall=1.0000, FPR=0.005 -> DD_F1=0.9988 | AA_recall=0.9125, FPR=0.005 -> AA_F1=0.9531\n  seed456: DD_recall=0.9625, FPR=0.010 -> DD_F1=0.9785 | AA_recall=0.9875, FPR=0.010 -> AA_F1=0.9913",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 112_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now I have all the computed values. Let me note:
+
+- IID binary F1: DD=0.994±0.009, AA=0.981±0.019 (close to the 9-class macro F1 of 0.997±0.005 and 0.972±0.026)
+- The task says IID should be 0.994 and 0.972. The binary F1 gives 0.994 and 0.981. The 0.972 is the 9-class macro F1 for AA. So there's a discrepancy for AA.
+
+
+- The gap comes down to how the metrics are computed: the 9-class macro F1 averages across all attack classes where some may perform worse, while binary F1 just measures jailbreak detection. I should stick with the binary F1 formula since that's what the task actually specifies. The 9-class macro F1 scores are consistently lower than binary detection F1 because misclassifications between attack classes reduce the per-class scores even when overall attack detection remains strong. For consistency in the paper, I should either report 9-class macro F1 across all rows or switch to binary detection F1 throughout, rather than mixing the two metrics. about what's the right thing to do...
+
+The task says to compute using the binary F1 formula. And the IID row says "0.994" and "0.972". I'll use the formula-computed values for IID (0.994 and 0.981) but wait, the task explicitly says "IID (current) | 0.994 | 0.972" in the template table. 
+
+Let me just present the table with the binary F1 values for all rows (computed consistently using the formula), and note the IID binary F1 values (0.994 and 0.981) are slightly different from the 9-class macro F1 (0.997 and 0.972) because the binary metric doesn't penalize inter-class misclassification among attack types.
+
+Actually, I think the right approach is to present the 9-class macro F1 as the primary metric since that's what we report everywhere else, but we can't directly compute it under different benign FPR conditions without the full confusion matrix. The binary detection F1 is what we can actually compute with just attack recall and benign FPR, so I'll frame it as "binary jailbreak detection F1" and note that the IID binary F1 values (0.994 DD, 0.981 AA) serve as an upper bound for the 9-class F1.
+
+Let me step back and reread the task more carefully to make sure I'm approaching this correctly. I'm settling on using binary detection F1 consistently across all rows to tell a clearer story about how performance degrades with out-of-distribution benign examples. Now I need to pull the appendix file and add the subsection.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "67b5405f-3ce7-4637-a3a5-c3d0902e0991",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GdnSH9kohU23JG1GokniWs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5790,
+      "cache_read_input_tokens": 27692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5790
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 113_
+
+计算完成。现在读取 appendix.tex 找到插入位置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "ed885ffd-745c-4cd3-8152-9a79f30e3d83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GdnSH9kohU23JG1GokniWs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5790,
+      "cache_read_input_tokens": 27692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5790
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01JJBX1PToSbHWUPEvLNBzaG`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "08523b0e-609f-4a4e-8091-3843fc468215",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GdnSH9kohU23JG1GokniWs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5790,
+      "cache_read_input_tokens": 27692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5790
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-22T23:44:49.326Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01JJBX1PToSbHWUPEvLNBzaG`</summary>
+
+```text
+File content (27133 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "cb101ede-a58b-4e90-a706-9274ca941de6",
+  "tool_use_result": "Error: File content (27133 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01FPZoptoQb4MYe1vViMJyuf`</summary>
+
+```json
+{
+  "pattern": "\\\\label\\{app:oasst2\\}",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "0e904608-29b3-483a-92e3-fcda842c28c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D5qmTthG7YNNC8QcNNqMWz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1573,
+      "cache_read_input_tokens": 33482,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1573
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-22T23:44:52.721Z_
+
+<details><summary>↩ Tool result · `toolu_01FPZoptoQb4MYe1vViMJyuf`</summary>
+
+```text
+546:\label{app:oasst2}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "28e8ae03-f46e-4481-b6e3-01f77832b63e",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "546:\\label{app:oasst2}",
+    "numLines": 1
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011e8ah6F4LNbuzeKGQscAuA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+  "offset": 546
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "c72eb1a3-75c3-45da-a932-f317743d38db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PasN4Gq5uf9sq1V1mGPRsS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 179,
+      "cache_read_input_tokens": 35055,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 179
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-22T23:44:56.668Z_
+
+<details><summary>↩ Tool result · `toolu_011e8ah6F4LNbuzeKGQscAuA`</summary>
+
+```text
+546	\label{app:oasst2}
+547	
+548	To test whether benign-side shift generalizes beyond WildChat, we evaluate on 200 benign multi-turn conversations from OpenAssistant OASST2~\citep{kopf2023openassistant}---a crowdsourced dataset of real human conversations, distinct from WildChat (GPT-3.5 user logs) in both authorship and topic distribution.
+549	
+550	\begin{table}[ht]
+551	\centering
+552	\footnotesize
+553	\caption{OASST2 benign adaptation curve: FPR on 200 OASST2 benign conversations and OOD jailbreak detection F1 as a function of $N$ OASST2 conversations added to training. $N$\,=\,25 confirmed across 3 seeds (mean$\pm$std); other rows seed 42. Compare WildChat (Table~\ref{tab:benign_curve}): FPR reaches 0\% at $N$\,=\,10.}
+554	\label{tab:oasst2_curve}
+555	\begin{tabular}{@{}rccccc@{}}
+556	\toprule
+557	$N$ & FPR (\%) & IID F1 & DD F1 & AA F1 & FITD F1 \\
+558	\midrule
+559	0 & 57.5 & -- & -- & -- & -- \\
+560	10 & 20.5 & 1.000 & 1.000 & 1.000 & 1.000 \\
+561	25 & \textbf{1.0$\pm$0.5} & 1.000 & 1.000 & 0.953$\pm$.037 & 1.000 \\
+562	50 & \textbf{0.5} & 1.000 & 1.000 & 0.990 & 1.000 \\
+563	\bottomrule
+564	\end{tabular}
+565	\end{table}
+566	
+567	Baseline FPR on OASST2 (57.5\%) is comparable to WildChat (68.1\%), confirming that benign-side shift is not source-specific but a general consequence of synthetic-only benign training. The adaptation curve follows the same pattern---monotonic FPR reduction with preserved OOD detection---but requires more samples: 25 conversations reduce FPR to 1.0\%$\pm$0.5\% across 3 seeds (vs.\ 0\% at $N$\,=\,10 for WildChat), and 50 conversations reach 0.5\%. The slower convergence likely reflects greater distributional distance between crowdsourced OASST2 conversations and the synthetic training distribution compared to WildChat's GPT-3.5 user logs.
+568	
+569	\begin{table}[ht]
+570	\centering
+571	\footnotesize
+572	\caption{Benign-side adaptation summary across two independent sources. Both achieve deployment-level FPR ($\leq$1.5\%) with no degradation in OOD jailbreak detection. 3 seeds each.}
+573	\label{tab:benign_summary}
+574	\begin{tabular}{@{}lrcrc@{}}
+575	\toprule
+576	Source & $N$ & FPR (mean$\pm$std) & Seeds & Eval $n$ \\
+577	\midrule
+578	WildChat & 10 & 0.0\%$\pm$0.0\% & 3 & 49 \\
+579	OASST2 & 25 & 1.0\%$\pm$0.5\% & 3 & 200 \\
+580	\bottomrule
+581	\end{tabular}
+582	\end{table}
+583	
+584	\section{BERT-base Proxy Baseline}
+585	\label{app:bert_proxy}
+586	
+587	\begin{table}[ht]
+588	\centering
+589	\footnotesize
+590	\caption{BERT-base-uncased (110M) frozen probing without DAPT, matching DeepContext's encoder family~\citep{deepcontext2026}. 3-seed mean$\pm$std. DeBERTa-v3 results from Table~\ref{tab:cross_encoder} for comparison.}
+591	\label{tab:bert_proxy}
+592	\begin{tabular}{@{}lccc@{}}
+593	\toprule
+594	\textbf{Encoder} & IID & DD OOD & AA OOD \\
+595	\midrule
+596	BERT-base (110M), no DAPT & .996$\pm$.006 & .318$\pm$.031 & .275$\pm$.027 \\
+597	DeBERTa-v3 (184M), no DAPT & 1.000$\pm$.000 & .312$\pm$.043 & .258$\pm$.000 \\
+598	DeBERTa-v3 (184M), 9-class & 1.000$\pm$.000 & .994$\pm$.005 & .939$\pm$.047 \\
+599	\bottomrule
+600	\end{tabular}
+601	\end{table}
+602	
+603	Table~\ref{tab:bert_proxy} compares BERT-base-uncased (110M parameters, matching DeepContext's encoder) against DeBERTa-v3-base (184M), both without domain-adaptive pretraining. The two vanilla encoders achieve comparable OOD performance (DD: 0.318 vs.\ 0.312; AA: 0.275 vs.\ 0.258), despite a 1.7$\times$ parameter difference and different pretraining procedures. Both collapse on OOD evaluation while 9-class DAPT recovers to 0.994 (DD) and 0.939 (AA). This confirms that cross-attack generalization is driven by domain adaptation, not encoder architecture or capacity at this scale.
+604	
+605	\section{Confidence Calibration}
+606	\label{app:calibration}
+607	
+608	\begin{table}[ht]
+609	\centering
+610	\footnotesize
+611	\caption{Expected calibration error (ECE, 10 bins) for 9-class and vanilla on IID and OOD evaluation (3-seed mean$\pm$std). Lower is better.}
+612	\label{tab:calibration}
+613	\begin{tabular}{@{}lccc@{}}
+614	\toprule
+615	\textbf{Variant} & IID & DD OOD & AA OOD \\
+616	\midrule
+617	9-class & $\approx$0.000 & 0.143$\pm$0.053 & 0.116$\pm$0.053 \\
+618	Vanilla & 0.009$\pm$0.007 & 0.669$\pm$0.004 & 0.504$\pm$0.066 \\
+619	\bottomrule
+620	\end{tabular}
+621	\end{table}
+622	
+623	The 9-class model achieves substantially lower ECE than vanilla on OOD data (0.12--0.14 vs.\ 0.50--0.67), indicating that domain adaptation improves not only discriminative performance but also confidence calibration. IID calibration is near-perfect for both variants. The residual OOD ECE (0.12--0.14) suggests that temperature scaling could further improve deployment reliability.
+624	
+625	\subsection{ToxicChat False Positive Confidence}
+626	\label{app:confidence}
+627	
+628	On ToxicChat, 9-class false positives are overwhelmingly high-confidence: 70.2\% of majority-vote FPs exceed $p > 0.9$ (median 0.999), compared to 58.8\% for JB-MLM (median 0.933). Per-seed analysis is more extreme---94--98\% of single-model 9-class FPs are high-confidence (median 1.0), with the borderline fraction (25\%) in majority vote arising from cross-seed disagreement rather than individual model uncertainty. This confirms that the 9-class ToxicChat FPR reflects systematic feature misalignment---classification DAPT shifts benign text into the jailbreak region with high confidence---rather than boundary ambiguity.
+629	
+630	\section{Frozen Probing Verification}
+631	\label{app:frozen_verify}
+632	
+633	\begin{table}[ht]
+634	\centering
+635	\footnotesize
+636	\caption{Frozen probing vs.\ end-to-end (E2E) fine-tuning (3-seed mean$\pm$std). 9-class: plan\_002 checkpoints; MLM: plan\_017\_mlm\_control (matched training). Frozen probing trains only BiGRU+MLP on frozen DAPT embeddings.}
+637	\label{tab:frozen_verify}
+638	\begin{tabular}{@{}lcccc@{}}
+639	\toprule
+640	\textbf{Config} & IID & DD OOD & AA OOD & FITD OOD \\
+641	\midrule
+642	Frozen 9-class & 1.000$\pm$.000 & .997$\pm$.005 & .972$\pm$.026 & 1.000$\pm$.000 \\
+643	Frozen MLM & .982$\pm$.016 & .993$\pm$.009 & .941$\pm$.037 & .987$\pm$.009 \\
+644	E2E 9-class & 1.000$\pm$.000 & 1.000$\pm$.000 & .997$\pm$.005 & --- \\
+645	\bottomrule
+646	\end{tabular}
+647	\end{table}
+648	
+649	Table~\ref{tab:frozen_verify} compares frozen probing across DAPT objectives and against end-to-end fine-tuning. On easy OOD (DD, FITD), frozen MLM and frozen 9-class representations perform comparably ($\Delta \leq 1.3$\,pp). On hard OOD (ActorAttack), 9-class retains a modest advantage (0.972 vs.\ 0.941, $\Delta$\,=\,3.1\,pp) with lower variance ($\sigma$\,=\,0.026 vs.\ 0.037). Both far exceed vanilla encoders ($\leq$0.318; Table~\ref{tab:bert_proxy}). The E2E advantage over frozen 9-class is $\leq$2.5\,pp, confirming that Stage-1 representation quality is the primary source of OOD generalization.
+650	
+651	A striking asymmetry emerges when comparing frozen probing to the full pipeline (Table~\ref{tab:evidence_hierarchy}): MLM frozen representations \emph{outperform} the full MLM pipeline on AA OOD (0.941 vs.\ 0.893), while 9-class frozen exactly matches its full pipeline (0.972 vs.\ 0.972). This indicates that MLM's cross-seed instability originates in Stage-2 BiGRU training rather than Stage-1 DAPT---the MLM encoder produces adequate representations that are then degraded by unstable downstream optimization. Classification DAPT, by contrast, produces representations that remain robust through Stage-2 training, explaining its consistently lower variance (Table~\ref{tab:evidence_hierarchy}).
+652	
+653	This two-level structure---DAPT vs.\ no-DAPT producing a representation quality leap (+70\,pp), classification vs.\ MLM DAPT producing a stability difference---is consistent with two further observations: $\lambda$=0 matches $\lambda > 0$ during E2E fine-tuning (Table~\ref{tab:lambda}), and mean pooling matches BiGRU under E2E (Table~\ref{tab:temporal}). Once DAPT representations are strong, downstream configuration details have minimal impact.
+654	
+655	\paragraph{Representation geometry analysis.}
+656	\label{app:representation}
+657	
+658	To characterize the mechanism behind classification DAPT's robustness, we analyze Stage-1 representations across all seven DeBERTa-v3-base variants (seed 42). We extract \texttt{[CLS]} embeddings from 150 test conversations (50 IID + 50 DD OOD + 50 AA OOD) and compute three metrics.
+659	
+660	\begin{table}[ht]
+661	\centering
+662	\footnotesize
+663	\caption{Representation geometry and class separability across Stage-1 variants. PR: participation ratio (effective dimensionality of the embedding space). Fisher ratio: inter-class distance$^2$ / sum of intra-class variances. Weight $\Delta$: L2 distance from pretrained weights (relative to pretrained norm).}
+664	\label{tab:representation}
+665	\begin{tabular}{@{}lccc@{}}
+666	\toprule
+667	\textbf{Variant} & \textbf{PR} & \textbf{Fisher} & \textbf{Wt.\ $\Delta$ (\%)} \\
+668	\midrule
+669	Vanilla & 31.9 & $<$0.001 & 0.000 \\
+670	Wiki-MLM & 25.0 & $<$0.001 & 0.221 \\
+671	JB-MLM & 24.6 & $<$0.001 & 0.256 \\
+672	Topic & 14.5 & 0.012 & 0.371 \\
+673	Scrambled & 7.8 & 2.60 & 0.283 \\
+674	9-class & 9.4 & 4.47 & 0.303 \\
+675	Binary & 3.7 & 19.7 & 0.239 \\
+676	\bottomrule
+677	\end{tabular}
+678	\end{table}
+679	
+680	Classification variants compress representations into 2--9 effective dimensions (vs.\ 25--32 for MLM/vanilla) while increasing Fisher ratio by 3--5 orders of magnitude. Weight distances from pretrained are comparable across all variants ($\sim$0.2--0.4\%), indicating that the mechanism is representational restructuring rather than parameter-space regularization. Scrambled labels produce similar compression (PR\,=\,7.8, Fisher\,=\,2.6), confirming that the classification objective structure---not label semantics---drives discriminative compression.
+681	
+682	\paragraph{Layer-wise localization.}
+683	\label{app:layerwise}
+684	
+685	To determine \emph{where} discriminative compression occurs, we compute PR and Fisher ratio at every DeBERTa-v3-base layer (0--12) for four variants (9-class, scrambled, JB-MLM, vanilla) using the same 236-sample evaluation set (seed 42).
+686	
+687	\begin{figure}[ht]
+688	\centering
+689	\includegraphics[width=\columnwidth]{figures/paper/fig_layerwise_representation.pdf}
+690	\caption{Layer-wise representation analysis. (a)~Participation ratio: classification variants (9-class, scrambled) show sharp dimensional collapse at layers 9--10 (PR\,$\approx$\,1.5--2.9) while vanilla/JB-MLM maintain high dimensionality (PR\,$\approx$\,7--10). (b)~Fisher ratio (log scale): class separability diverges from layer 8, with 9-class peaking at 10.9 (layer 10) vs.\ vanilla 0.73 (15$\times$).}
+691	\label{fig:layerwise}
+692	\end{figure}
+693	
+694	Layers 0--7 show no systematic divergence across variants (Fisher\,$<$\,2.1 for all; PR tracks similar oscillation patterns), consistent with \citet{maennel2020random}'s finding that early layers learn label-independent features. From layer 8 onward, classification-supervised variants diverge sharply: 9-class Fisher rises from 3.2 (layer 8) to 10.9 (layer 10, peak), while vanilla remains below 1.5 throughout. Simultaneously, 9-class PR drops from 3.4 to 1.5 at layer 10---a 6.6$\times$ compression relative to vanilla (PR\,=\,9.7). JB-MLM tracks vanilla across all layers (Fisher\,$\leq$\,3.3, PR\,$\geq$\,1.4), confirming that MLM does not induce discriminative restructuring. Scrambled labels exhibit the same late-layer pattern (Fisher peaks at 7.9, layer 12; PR drops to 1.5, layer 12), reinforcing that any classification signal---regardless of label semantics---triggers late-layer compression.
+695	
+696	\paragraph{Discriminative subspace probe.}
+697	\label{app:discriminative_probe}
+698	
+699	To test whether the compressed subspace is \emph{sufficient} for OOD detection, we project layer-10 \texttt{[CLS]} representations onto the top-$k$ SVD components and train a logistic regression probe (3 seeds, sklearn default). Controls: random $k$-dimensional projections (10 random bases, mean reported) and vanilla/MLM models under identical projection.
+700	
+701	\begin{table}[ht]
+702	\centering
+703	\footnotesize
+704	\caption{Discriminative subspace probe: OOD F1 when projecting layer-10 representations onto top-$k$ SVD components vs.\ random $k$-dimensional projections. 9-class top-3 achieves perfect AA detection with 3/768 dimensions; MLM fails even with all 768.}
+705	\label{tab:discriminative_probe}
+706	\begin{tabular}{@{}llccc@{}}
+707	\toprule
+708	\textbf{Model} & \textbf{Projection} & DD & AA & FITD \\
+709	\midrule
+710	9-class & top-3 & 1.000 & \textbf{1.000} & 1.000 \\
+711	9-class & top-5 & 1.000 & 1.000 & 1.000 \\
+712	9-class & random-3 & 1.000 & 0.928$\pm$.129 & 1.000 \\
+713	9-class & random-5 & 1.000 & 0.952 & 1.000 \\
+714	9-class & full-768 & 1.000 & 1.000 & 1.000 \\
+715	\midrule
+716	scrambled & top-3 & 1.000 & 0.962 & 1.000 \\
+717	scrambled & random-3 & 0.981 & 0.766 & 0.987 \\
+718	\midrule
+719	JB-MLM & top-3 & 1.000 & 0.618 & 1.000 \\
+720	JB-MLM & full-768 & 1.000 & 0.636 & 1.000 \\
+721	JB-MLM & random-5 & 0.685 & 0.584 & 0.744 \\
+722	\bottomrule
+723	\end{tabular}
+724	\end{table}
+725	
+726	Three findings establish a link between compression and generalization (Table~\ref{tab:discriminative_probe}). First, 9-class top-3 achieves perfect ActorAttack detection (F1\,=\,1.000) using only 3 of 768 dimensions---all discriminative information resides in the compressed subspace. Second, random 3-dimensional projections degrade to 0.928 on AA, confirming that the specific SVD directions matter. Third, JB-MLM reaches only 0.636 on AA even with all 768 dimensions, demonstrating that without classification-induced compression, the representation lacks the structure needed for cross-attack generalization. DD and FITD are near-ceiling for all models, making ActorAttack the critical test.
+727	To verify SVD directions are not influenced by OOD test data, we repeated the analysis computing SVD only on IID training data ($n$\,=\,350). IID-only top-3 performance equaled or exceeded all-data SVD across all OOD conditions (top-3 subspace cosine similarity\,=\,0.974), confirming the discriminative subspace is identified from training data alone.
+728	
+729	\section{Temporal Aggregation Comparison}
+730	\label{app:temporal}
+731	
+732	\begin{table}[ht]
+733	\centering
+734	\footnotesize
+735	\caption{Temporal aggregation comparison: mean pooling vs.\ BiGRU under frozen and end-to-end (E2E) settings (3-seed mean$\pm$std). Plan\_002 9-class checkpoints.}
+736	\label{tab:temporal}
+737	\begin{tabular}{@{}llccc@{}}
+738	\toprule
+739	\textbf{Setting} & \textbf{Aggregator} & DD OOD & AA OOD \\
+740	\midrule
+741	\multirow{2}{*}{Frozen} & BiGRU & .997$\pm$.005 & .972$\pm$.026 \\
+742	& Mean pooling & .991$\pm$.013 & .962$\pm$.015 \\
+743	\midrule
+744	\multirow{2}{*}{E2E} & BiGRU & 1.000$\pm$.000 & .997$\pm$.005 \\
+745	& Mean pooling & 1.000$\pm$.000 & 1.000$\pm$.000 \\
+746	\bottomrule
+747	\end{tabular}
+748	\end{table}
+749	
+750	Table~\ref{tab:temporal} compares BiGRU and mean pooling under both frozen and E2E settings. Under frozen probing (the main paper's pipeline), BiGRU provides a marginal advantage on ActorAttack (+1.0\,pp) with overlapping confidence intervals, consistent with the main text finding that temporal order is not a core detection factor ($|\Delta| < 1$\,pp under turn shuffling; Section~\ref{sec:decomposition}). Under E2E fine-tuning, the difference vanishes entirely: mean pooling saturates all benchmarks at F1\,=\,1.000. The choice of frozen BiGRU in the main pipeline reflects a design trade-off: it enables representation-level analysis (CKA, t-SNE) that E2E would confound, while sacrificing $\leq$1\,pp on the hardest OOD set.
+751	
+752	\section{Length Stratification Analysis}
+753	\label{app:length}
+754	
+755	\begin{table}[ht]
+756	\centering
+757	\footnotesize
+758	\caption{Jailbreak recall by conversation length bin on OOD evaluation (3-seed majority vote). Benign conversations span 12--20 total turns (6--10 user turns); jailbreak conversations span 3--10 total turns. Bins refer to total (user+assistant) turns.}
+759	\label{tab:length}
+760	\begin{tabular}{@{}llccc@{}}
+761	\toprule
+762	\textbf{Dataset} & \textbf{Variant} & 1--3 turns & 4--6 turns & 7--10 turns \\
+763	\midrule
+764	\multirow{2}{*}{DD OOD} & 9-class & --- & 100.0\% & 99.4\% \\
+765	& Vanilla & --- & $\leq$2.6\% & $\leq$1.7\% \\
+766	\midrule
+767	\multirow{2}{*}{AA OOD} & 9-class & 93.3\% & 95.6\% & 100.0\% \\
+768	& Vanilla & 0.0\% & $\leq$2.6\% & 0.0\% \\
+769	\bottomrule
+770	\end{tabular}
+771	\end{table}
+772	
+773	Table~\ref{tab:length} stratifies jailbreak recall by conversation length. The 9-class model shows no systematic degradation: ActorAttack recall increases monotonically from 93.3\% (1--3 turns) to 100\% (7--10 turns), and DD recall is near-perfect across all bins.
+774	
+775	\paragraph{Length confound.}
+776	While total turn counts differ between benign (12--20) and jailbreak (3--10) conversations, the model processes only user turns. User-turn distributions overlap substantially: IID jailbreak 8.7$\pm$2.1 vs.\ benign 7.9$\pm$1.5, DD 8.1$\pm$1.5 vs.\ 7.9$\pm$1.5, FITD 7.8$\pm$1.4 vs.\ 7.9$\pm$1.5; only ActorAttack shows partial separation (5.1$\pm$1.7 vs.\ 7.9$\pm$1.5). A turn-count-only logistic regression trained on user-turn count achieves F1\,=\,0.54 (IID), 0.56 (DD), 0.42 (FITD), 0.00 (AA), and 0.00 (ToxicChat)---near chance on overlapping distributions and zero on ActorAttack despite partial separation---confirming that detection is content-driven rather than length-driven.
+777	
+778	\paragraph{Direct empirical verification.}
+779	\label{app:length_independence}
+780	
+781	\begin{table}[ht]
+782	\centering
+783	\footnotesize
+784	\caption{Turn-count independence verification (9-class, plan\_002 checkpoints, 3 seeds). Part~A: FPR on test benign truncated to $K$ user turns (all seeds FPR\,=\,0). Part~B: WildChat FPR by turn-count bucket (mean$\pm$std). Part~C: jailbreak detection (F1) after padding with benign turns to 15+ total turns (mean$\pm$std where available).}
+785	\label{tab:length_independence}
+786	\begin{tabular}{@{}llcc@{}}
+787	\toprule
+788	& \textbf{Condition} & \textbf{FPR / F1} & $n$ \\
+789	\midrule
+790	\multicolumn{4}{l}{\textit{Part A: Benign truncation (test set)}} \\[2pt]
+791	& Original (12--20 total; 6--10 user turns) & FPR = .000 & 38 \\
+792	& Truncated $K$=3 & FPR = .000 & 38 \\
+793	& Truncated $K$=5 & FPR = .000 & 38 \\
+794	& Truncated $K$=8 & FPR = .000 & 38 \\
+795	& Truncated $K$=10$^{*}$ & FPR = .000 & 38 \\
+796	\midrule
+797	\multicolumn{4}{l}{\textit{Part B: WildChat FPR by turn count}} \\[2pt]
+798	& Short (3--10 turns) & FPR = .770$\pm$.105 & 196 \\
+799	& Medium (11--15 turns) & FPR = .942$\pm$.054 & 23 \\
+800	& Long (16+ turns) & FPR = .857$\pm$.117 & 7 \\
+801	\midrule
+802	\multicolumn{4}{l}{\textit{Part C: Jailbreak padding to 15+ turns}} \\[2pt]
+803	& DD original & F1 = .996 & 80 \\
+804	& DD padded & F1 = .971 ($\Delta$=$-$2.5\,pp) & 80 \\
+805	& AA original & F1 = .963 & 80 \\
+806	& AA padded & F1 = .383$\pm$.261 ($\Delta$=$-$57.9\,pp) & 80 \\
+807	\bottomrule
+808	\end{tabular}
+809	\vspace{-2pt}
+810	{\footnotesize $^{*}$$K$=10 did not truncate any conversation (test benign max $\sim$8 user turns).}
+811	\end{table}
+812	
+813	Truncating benign conversations to match jailbreak turn counts (Part~A) produces zero false positives across all truncation levels and all 3 seeds, directly confirming that the model does not use conversation length as a detection shortcut. $K$=3 and $K$=5 are the effective control conditions where all 38 conversations were truncated; $K$=10 exceeds the maximum test benign length and serves as a no-op control.
+814	
+815	WildChat FPR by turn count (Part~B) provides complementary evidence: short conversations (3--10 turns, $n$=196) have \emph{lower} FPR than medium-length ones (11--15 turns, $n$=23), inconsistent with a ``short\,=\,jailbreak'' shortcut. Medium and long buckets have limited sample sizes and should be interpreted as directional evidence only.
+816	
+817	Padding jailbreak conversations with benign turns (Part~C) reveals an asymmetry: DD detection is resilient ($\Delta$=$-$2.5\,pp), but ActorAttack collapses ($\Delta$=$-$57.9\,pp). Padding experiments append benign turns \emph{after} the complete attack sequence; in practice, adversaries would not dilute their own successful attacks. The collapse nonetheless exposes BiGRU temporal aggregation as vulnerable to attention dilution on subtle attack signals, a limitation discussed in Section~\ref{sec:limitations}.
+818	
+819	\section{Efficiency}
+820	\label{app:efficiency}
+821	
+822	\begin{table}[ht]
+823	\centering
+824	\footnotesize
+825	\caption{Inference efficiency comparison on 100 conversations (50 IID + 50 DD OOD), same GPU (RTX PRO 6000). All methods measured under identical conditions.$^{\dagger}$}
+826	\label{tab:efficiency}
+827	\begin{tabular}{@{}lrcr@{}}
+828	\toprule
+829	\textbf{Method} & Latency (ms) & Params & VRAM \\
+830	\midrule
+831	DeBERTa+BiGRU (ours) & 13.1$\pm$1.6 & 186.7M & 868\,MB \\
+832	Qwen3-8B 3-shot & 318.5$\pm$26.8 & 8.2B & 16.1\,GB \\
+833	\bottomrule
+834	\end{tabular}
+835	\vspace{-2pt}
+836	{\footnotesize $^{\dagger}$LLM inference speed varies significantly across GPU generations; same-hardware comparison ensures a fair speedup estimate.}
+837	\end{table}
+838	
+839	Table~\ref{tab:efficiency} compares inference cost under identical conditions. DeBERTa+BiGRU processes a conversation in 13.1\,ms, 24.3$\times$ faster than Qwen3-8B 3-shot (318.5\,ms) while achieving substantially higher OOD detection (DD\,=\,0.566, AA\,=\,0.652 for Qwen3-8B; Table~\ref{tab:llm_judge}). The encoder pipeline requires 868\,MB GPU memory (18.5$\times$ less than the LLM), enabling deployment on consumer hardware.
+840	
+841	\subsection{Data Efficiency}
+842	\label{app:data_efficiency}
+843	
+844	\begin{table}[ht]
+845	\centering
+846	\footnotesize
+847	\caption{Data efficiency of 9-class DAPT (3-seed mean$\pm$std, sample std with $n{-}1$ divisor) and vanilla baseline (seed 42 only). $N$ = total training conversations (balanced jailbreak/benign).}
+848	\label{tab:data_efficiency}
+849	\begin{tabular}{@{}rlccc@{}}
+850	\toprule
+851	$N$ & \textbf{Variant} & IID & DD OOD & AA OOD \\
+852	\midrule
+853	50 & 9-class & 1.000$\pm$.000 & 1.000$\pm$.000 & .969$\pm$.037 \\
+854	125 & 9-class & 1.000$\pm$.000 & 1.000$\pm$.000 & .975$\pm$.019 \\
+855	250 & 9-class & 1.000$\pm$.000 & 1.000$\pm$.000 & .975$\pm$.035 \\
+856	350 & 9-class & 1.000$\pm$.000 & .978$\pm$.030 & .972$\pm$.033 \\
+857	\midrule
+858	50 & Vanilla & .646 & .529 & .234 \\
+859	125 & Vanilla & .532 & .244 & .244 \\
+860	250 & Vanilla & .987 & .365 & .502 \\
+861	350 & Vanilla & 1.000 & .360 & .489 \\
+862	\bottomrule
+863	\end{tabular}
+864	\end{table}
+865	
+866	Table~\ref{tab:data_efficiency} shows that 9-class DAPT reaches near-saturation performance with as few as 50 conversations (25 jailbreak + 25 benign): AA OOD F1\,=\,0.969$\pm$0.037, already surpassing vanilla at full training size ($N$=350, AA\,=\,0.489) by 48\,pp using only 14\% of the data. DD OOD is perfectly solved at all training sizes. Vanilla performance is noisy across $N$ (single seed); the consistent pattern is that vanilla never exceeds DD\,=\,0.53 or AA\,=\,0.50 regardless of training size, while 9-class maintains AA\,$\geq$\,0.969 at all $N$. Seed 456 is systematically lower across all $N$ values, contributing most of the cross-seed variance; this is consistent with the initialization sensitivity observed in the main results.
+867	
+868	\section{Auxiliary Loss Weight Ablation}
+869	\label{app:lambda}
+870	
+871	\begin{table}[ht]
+872	\centering
+873	\footnotesize
+874	\caption{Effect of auxiliary persuasion loss weight $\lambda$ during Stage-2 E2E fine-tuning (seed 42). Stage-1 DAPT encoder is identical across all rows; only the Stage-2 loss $L = L_{\text{binary}} + \lambda \cdot L_{\text{strategy}}$ varies.}
+875	\label{tab:lambda}
+876	\begin{tabular}{@{}rcccc@{}}
+877	\toprule
+878	$\lambda$ & IID & DD OOD & FITD OOD & AA OOD \\
+879	\midrule
+880	0 & 1.000 & 1.000 & 1.000 & 1.000 \\
+881	0.1 & 1.000 & 1.000 & 1.000 & .990 \\
+882	0.5 & 1.000 & 1.000 & 1.000 & .981 \\
+883	1.0 & 1.000 & 1.000 & 1.000 & .981 \\
+884	2.0 & 1.000 & 1.000 & 1.000 & .944 \\
+885	\bottomrule
+886	\end{tabular}
+887	\end{table}
+888	
+889	During Stage-2 E2E fine-tuning, the auxiliary persuasion loss weight $\lambda$ has limited impact on detection (Table~\ref{tab:lambda}): the maximum AA OOD gap across all $\lambda$ values is 5.6\,pp (single seed), comparable to the cross-seed variance ($\sim$6\,pp) observed in the main results. All configurations converge to perfect validation F1 within epoch 1, indicating that DAPT representations already encode sufficient discriminative features for downstream classification (Section~\ref{app:frozen_verify}). The value of persuasion strategy classification lies in Stage-1 DAPT---where it shapes encoder representations that transfer across attack families---not in the Stage-2 auxiliary loss.
+890	
+891	\section{OOD Strategy Prediction Analysis}
+892	\label{app:strategy_pred}
+893	
+894	\begin{table}[ht]
+895	\centering
+896	\footnotesize
+897	\caption{OOD strategy prediction accuracy (jailbreak turns only) and detection rate for the 9-class model (3-seed mean). $r$: Pearson correlation between per-strategy prediction accuracy and per-strategy detection rate.}
+898	\label{tab:strategy_pred}
+899	\begin{tabular}{@{}lcccc@{}}
+900	\toprule
+901	\textbf{Dataset} & Strat.\ Acc.\ & Det.\ Rate & Missed (per seed) & $r$ \\
+902	\midrule
+903	DD OOD & 50.1\% & 99.6\% & 0 / 0 / 1 & $\sim$0.45 \\
+904	AA OOD & 50.1\% & 96.2\% & 1 / 7 / 1 & $\sim$0.24 \\
+905	\bottomrule
+906	\end{tabular}
+907	\end{table}
+908	
+909	Table~\ref{tab:strategy_pred} reports OOD strategy prediction accuracy alongside detection rates. Strategy prediction accuracy is substantially above random (50.1\% vs.\ 11.1\% chance for 9 classes) and positively correlated with detection success ($r \approx 0.24$--0.45), but strategy prediction is not the detection mechanism: frozen probing with a randomly initialized strategy head (Appendix~\ref{app:frozen_verify}) achieves 97.2\% AA OOD detection, and $\lambda$=0 (no strategy loss) matches or exceeds $\lambda > 0$ during E2E fine-tuning (Table~\ref{tab:lambda}). The classification objective shapes representations during Stage-1 DAPT training; at inference, strategy predictions are a byproduct of those representations, not a driver of detection.
+910	
+911	\section{Cross-Seed Ensemble and Seed-Level F1 Comparisons}
+912	\label{app:ensemble}
+913	\label{app:seed_level}
+914	
+915	\begin{table}[ht]
+916	\centering
+917	\footnotesize
+918	\caption{Majority vote ensemble (3 seeds) vs.\ single-seed mean on OOD Full. ``Fixed'' = samples corrected by ensemble; ``Broke'' = samples corrupted by ensemble.}
+919	\label{tab:ensemble}
+920	\begin{tabular}{@{}lcccc@{}}
+921	\toprule
+922	\textbf{Variant} & DD single$\to$ens. & AA single$\to$ens. & Fixed & Broke \\
+923	\midrule
+924	9-class & .997$\to$\textbf{1.000} & .972$\to$\textbf{.981} & 5 & 0 \\
+925	MLM & .914$\to$\textbf{1.000} & .897$\to$\textbf{.953} & 26 & 0 \\
+926	Vanilla & .258$\to$.258 & .258$\to$.258 & 0 & 0 \\
+927	\bottomrule
+928	\end{tabular}
+929	\end{table}
+930	
+931	Table~\ref{tab:ensemble} shows that majority vote never corrupts correct predictions (Broke\,=\,0 for all variants). MLM benefits most from ensembling (+8.6\,pp DD, +6.0\,pp AA), because its per-seed errors are complementary---each seed fails on different samples, and the majority corrects these. This further exposes MLM's seed instability: its individual seeds are unreliable, but their errors are uncorrelated. By contrast, 9-class seeds are already highly consistent (std\,$\leq$\,0.026), leaving minimal room for ensemble improvement (+0.3--0.9\,pp). Vanilla errors are systematic (all seeds fail on the same OOD samples), so ensembling provides no benefit.
+932	
+933	To verify that cross-seed pooling does not mask inconsistent pairwise orderings, Table~\ref{tab:seed_level} reports per-seed F1 for all variants on OOD DD and ActorAttack at full conversation length. The relative ordering of variants is consistent across all three seeds: classification-supervised variants (9-class, binary, scrambled) dominate MLM and vanilla at every seed, and no seed reverses the hierarchy established by the pooled analysis. Table~\ref{tab:tost_5seed} extends the comparison between 9-class and scrambled to 5 seeds for TOST analysis.
+934	
+935	\begin{table}[h]
+936	\centering
+937	\caption{Per-seed OOD F1 (Full) for all variants across three attack families (seeds 42, 123, 456). Cohen's $d$ for 9-class vs.\ scrambled: DD\,=\,$-$0.003 (negligible), AA\,=\,0.587 (medium; CI crosses 0 at $n$=3).}
+938	\label{tab:seed_level}
+939	\resizebox{\columnwidth}{!}{
+940	\begin{tabular}{@{}lccccccccc@{}}
+941	\toprule
+942	& \multicolumn{3}{c}{DD} & \multicolumn{3}{c}{ActorAttack} & \multicolumn{3}{c}{FITD} \\
+943	\cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10}
+944	\textbf{Variant} & s42 & s123 & s456 & s42 & s123 & s456 & s42 & s123 & s456 \\
+945	\midrule
+946	9-class   & 1.000 & 1.000 & .990 & .990 & .935 & .990 & 1.000 & 1.000 & 1.000 \\
+947	Binary    & 1.000 & 1.000 & 1.000 & .981 & .990 & 1.000 & 1.000 & 1.000 & 1.000 \\
+948	Scrambled & .990 & 1.000 & 1.000 & .891 & .990 & .971 & 1.000 & 1.000 & 1.000 \\
+949	MLM+cls   & 1.000 & .990 & .751 & .971 & .925 & .784 & .961 & .432 & .729 \\
+950	Topic     & .727 & .252 & .644 & .686 & .431 & .759 & .990 & .774 & .909 \\
+951	Vanilla   & .284 & .305 & .348 & .258 & .258 & .258 & .871 & .855 & .919 \\
+952	\bottomrule
+953	\end{tabular}}
+954	\vspace{-2pt}
+955	{\footnotesize Benign recall\,=\,1.000 for all DAPT variants across all seeds and OOD conditions (IID benign); OOD F1 variation is driven entirely by attack recall. Classification-supervised variants (9-class, binary, scrambled) achieve perfect or near-perfect F1 on FITD, confirming its non-discriminative nature.}
+956	\end{table}
+957	
+958	\begin{table}[h]
+959	\centering
+960	\caption{5-seed OOD F1 (Full) for 9-class vs.\ scrambled (seeds 42, 123, 456, 789, 1000). At $n$\,=\,10 (5 additional seeds; see text), TOST ($\delta$=5\,pp): DD $p < 10^{-8}$ \checkmark; FITD $p < 10^{-8}$ \checkmark; AA $p$\,=\,0.183 (non-equivalent). Cohen's $d$ at $n$\,=\,10: DD\,$\approx$\,0; AA\,=\,0.44 (medium).}
+961	\label{tab:tost_5seed}
+962	\resizebox{\columnwidth}{!}{
+963	\begin{tabular}{@{}llcccccc@{}}
+964	\toprule
+965	\textbf{Attack} & \textbf{Variant} & s42 & s123 & s456 & s789 & s1000 & Mean$\pm$SD \\
+966	\midrule
+967	DD & 9-class   & 1.000 & 1.000 & .990 & 1.000 & 1.000 & .998$\pm$.004 \\
+968	DD & Scrambled  & .990 & 1.000 & 1.000 & 1.000 & 1.000 & .998$\pm$.004 \\
+969	\midrule
+970	AA & 9-class   & .990 & .935 & .990 & .972 & .972 & .972$\pm$.021 \\
+971	AA & Scrambled  & .891 & .990 & .971 & .990 & .990 & .966$\pm$.040 \\
+972	\bottomrule
+973	\end{tabular}}
+974	\end{table}
+975	
+976	\paragraph{Cross-hardware replication.}
+977	To assess hardware sensitivity, we independently retrained 9-class and JB-MLM from scratch on a different GPU (RTX PRO 6000 Blackwell, 5 seeds each). Table~\ref{tab:cross_hw} reports OOD F1 on all three attack families. IID and FITD results are perfectly consistent (9-class: 5/5 seeds = 1.000 on both). On ActorAttack, 9-class outperforms MLM directionally ($\Delta$\,=\,+1.7\,pp) but the difference is not statistically significant (paired $t$-test $p$\,=\,0.246), reflecting the higher variance inherent to this structurally complex attack family; this is consistent with the complexity-dependent boundary reported in Section~\ref{sec:decomposition}.
+978	
+979	\begin{table}[h]
+980	\centering
+981	\caption{Cross-hardware 5-seed replication (RTX PRO 6000 Blackwell). OOD F1 (Full) for 9-class vs.\ JB-MLM across three attack families.}
+982	\label{tab:cross_hw}
+983	\resizebox{\columnwidth}{!}{
+984	\begin{tabular}{@{}llcccccc@{}}
+985	\toprule
+986	\textbf{Attack} & \textbf{Variant} & s42 & s123 & s456 & s789 & s1000 & Mean$\pm$SD \\
+987	\midrule
+988	IID & 9-class & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\pm$.000 \\
+989	IID & JB-MLM  & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\pm$.000 \\
+990	\midrule
+991	DD & 9-class  & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\pm$.000 \\
+992	DD & JB-MLM   & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\pm$.000 \\
+993	\midrule
+994	FITD & 9-class & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\pm$.000 \\
+995	FITD & JB-MLM  & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\pm$.000 \\
+996	\midrule
+997	AA & 9-class   & .990 & .943 & .972 & .972 & .972 & .970$\pm$.016 \\
+998	AA & JB-MLM    & .857 & .751 & .906 & .916 & .943 & .875$\pm$.074 \\
+999	\bottomrule
+1000	\end{tabular}}
+1001	\vspace{-2pt}
+1002	{\footnotesize AA difference is directionally consistent ($\Delta$\,=\,+9.5\,pp mean) but reflects high MLM variance; paired $t$-test $p$\,=\,0.246. Template attacks (DD, FITD) show perfect agreement across all seeds and both variants.}
+1003	\end{table}
+1004	
+1005	\subsection{Single-Turn Truncation Analysis}
+1006	\label{app:truncated}
+1007	
+1008	To isolate whether the ToxicChat evidence-hierarchy reversal (Section~\ref{sec:discussion}) reflects multi-turn structural dependence, we truncate each synthetic test conversation to its last user turn and re-evaluate both 9-class and JB-MLM models (3-seed mean).
+1009	
+1010	\begin{table}[h]
+1011	\centering
+1012	\caption{Full-conversation vs.\ last-turn-only F1 (3-seed mean). Truncation widens the 9-class advantage, ruling out multi-turn structure as the driver of the ToxicChat reversal.}
+1013	\label{tab:truncated}
+1014	\begin{tabular}{@{}llcc@{}}
+1015	\toprule
+1016	\textbf{Dataset} & \textbf{Mode} & \textbf{9-class} & \textbf{JB-MLM} \\
+1017	\midrule
+1018	IID & Full & 1.000 & .983 \\
+1019	IID & Last turn & .991 & .894 \\
+1020	\midrule
+1021	DD OOD & Full & .997 & .993 \\
+1022	DD OOD & Last turn & .942 & .924 \\
+1023	\midrule
+1024	AA OOD & Full & .972 & .941 \\
+1025	AA OOD & Last turn & .978 & .927 \\
+1026	\midrule
+1027	FITD OOD & Full & 1.000 & .987 \\
+1028	FITD OOD & Last turn & 1.000 & .927 \\
+1029	\bottomrule
+1030	\end{tabular}
+1031	\vspace{-2pt}
+1032	{\footnotesize Mean $\Delta$ (9-class $-$ MLM): Full +1.6\,pp, Last turn +6.0\,pp. 9-class advantage widens under truncation across all families, indicating the reversal on ToxicChat is driven by distributional differences between synthetic and human text, not by multi-turn structural dependence.}
+1033	\end{table}
+1034	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "4685b208-33d8-44af-8f52-2300d6101c0e",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+      "content": "\\label{app:oasst2}\n\nTo test whether benign-side shift generalizes beyond WildChat, we evaluate on 200 benign multi-turn conversations from OpenAssistant OASST2~\\citep{kopf2023openassistant}---a crowdsourced dataset of real human conversations, distinct from WildChat (GPT-3.5 user logs) in both authorship and topic distribution.\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{OASST2 benign adaptation curve: FPR on 200 OASST2 benign conversations and OOD jailbreak detection F1 as a function of $N$ OASST2 conversations added to training. $N$\\,=\\,25 confirmed across 3 seeds (mean$\\pm$std); other rows seed 42. Compare WildChat (Table~\\ref{tab:benign_curve}): FPR reaches 0\\% at $N$\\,=\\,10.}\n\\label{tab:oasst2_curve}\n\\begin{tabular}{@{}rccccc@{}}\n\\toprule\n$N$ & FPR (\\%) & IID F1 & DD F1 & AA F1 & FITD F1 \\\\\n\\midrule\n0 & 57.5 & -- & -- & -- & -- \\\\\n10 & 20.5 & 1.000 & 1.000 & 1.000 & 1.000 \\\\\n25 & \\textbf{1.0$\\pm$0.5} & 1.000 & 1.000 & 0.953$\\pm$.037 & 1.000 \\\\\n50 & \\textbf{0.5} & 1.000 & 1.000 & 0.990 & 1.000 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nBaseline FPR on OASST2 (57.5\\%) is comparable to WildChat (68.1\\%), confirming that benign-side shift is not source-specific but a general consequence of synthetic-only benign training. The adaptation curve follows the same pattern---monotonic FPR reduction with preserved OOD detection---but requires more samples: 25 conversations reduce FPR to 1.0\\%$\\pm$0.5\\% across 3 seeds (vs.\\ 0\\% at $N$\\,=\\,10 for WildChat), and 50 conversations reach 0.5\\%. The slower convergence likely reflects greater distributional distance between crowdsourced OASST2 conversations and the synthetic training distribution compared to WildChat's GPT-3.5 user logs.\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Benign-side adaptation summary across two independent sources. Both achieve deployment-level FPR ($\\leq$1.5\\%) with no degradation in OOD jailbreak detection. 3 seeds each.}\n\\label{tab:benign_summary}\n\\begin{tabular}{@{}lrcrc@{}}\n\\toprule\nSource & $N$ & FPR (mean$\\pm$std) & Seeds & Eval $n$ \\\\\n\\midrule\nWildChat & 10 & 0.0\\%$\\pm$0.0\\% & 3 & 49 \\\\\nOASST2 & 25 & 1.0\\%$\\pm$0.5\\% & 3 & 200 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{BERT-base Proxy Baseline}\n\\label{app:bert_proxy}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{BERT-base-uncased (110M) frozen probing without DAPT, matching DeepContext's encoder family~\\citep{deepcontext2026}. 3-seed mean$\\pm$std. DeBERTa-v3 results from Table~\\ref{tab:cross_encoder} for comparison.}\n\\label{tab:bert_proxy}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n\\textbf{Encoder} & IID & DD OOD & AA OOD \\\\\n\\midrule\nBERT-base (110M), no DAPT & .996$\\pm$.006 & .318$\\pm$.031 & .275$\\pm$.027 \\\\\nDeBERTa-v3 (184M), no DAPT & 1.000$\\pm$.000 & .312$\\pm$.043 & .258$\\pm$.000 \\\\\nDeBERTa-v3 (184M), 9-class & 1.000$\\pm$.000 & .994$\\pm$.005 & .939$\\pm$.047 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:bert_proxy} compares BERT-base-uncased (110M parameters, matching DeepContext's encoder) against DeBERTa-v3-base (184M), both without domain-adaptive pretraining. The two vanilla encoders achieve comparable OOD performance (DD: 0.318 vs.\\ 0.312; AA: 0.275 vs.\\ 0.258), despite a 1.7$\\times$ parameter difference and different pretraining procedures. Both collapse on OOD evaluation while 9-class DAPT recovers to 0.994 (DD) and 0.939 (AA). This confirms that cross-attack generalization is driven by domain adaptation, not encoder architecture or capacity at this scale.\n\n\\section{Confidence Calibration}\n\\label{app:calibration}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Expected calibration error (ECE, 10 bins) for 9-class and vanilla on IID and OOD evaluation (3-seed mean$\\pm$std). Lower is better.}\n\\label{tab:calibration}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n\\textbf{Variant} & IID & DD OOD & AA OOD \\\\\n\\midrule\n9-class & $\\approx$0.000 & 0.143$\\pm$0.053 & 0.116$\\pm$0.053 \\\\\nVanilla & 0.009$\\pm$0.007 & 0.669$\\pm$0.004 & 0.504$\\pm$0.066 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe 9-class model achieves substantially lower ECE than vanilla on OOD data (0.12--0.14 vs.\\ 0.50--0.67), indicating that domain adaptation improves not only discriminative performance but also confidence calibration. IID calibration is near-perfect for both variants. The residual OOD ECE (0.12--0.14) suggests that temperature scaling could further improve deployment reliability.\n\n\\subsection{ToxicChat False Positive Confidence}\n\\label{app:confidence}\n\nOn ToxicChat, 9-class false positives are overwhelmingly high-confidence: 70.2\\% of majority-vote FPs exceed $p > 0.9$ (median 0.999), compared to 58.8\\% for JB-MLM (median 0.933). Per-seed analysis is more extreme---94--98\\% of single-model 9-class FPs are high-confidence (median 1.0), with the borderline fraction (25\\%) in majority vote arising from cross-seed disagreement rather than individual model uncertainty. This confirms that the 9-class ToxicChat FPR reflects systematic feature misalignment---classification DAPT shifts benign text into the jailbreak region with high confidence---rather than boundary ambiguity.\n\n\\section{Frozen Probing Verification}\n\\label{app:frozen_verify}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Frozen probing vs.\\ end-to-end (E2E) fine-tuning (3-seed mean$\\pm$std). 9-class: plan\\_002 checkpoints; MLM: plan\\_017\\_mlm\\_control (matched training). Frozen probing trains only BiGRU+MLP on frozen DAPT embeddings.}\n\\label{tab:frozen_verify}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Config} & IID & DD OOD & AA OOD & FITD OOD \\\\\n\\midrule\nFrozen 9-class & 1.000$\\pm$.000 & .997$\\pm$.005 & .972$\\pm$.026 & 1.000$\\pm$.000 \\\\\nFrozen MLM & .982$\\pm$.016 & .993$\\pm$.009 & .941$\\pm$.037 & .987$\\pm$.009 \\\\\nE2E 9-class & 1.000$\\pm$.000 & 1.000$\\pm$.000 & .997$\\pm$.005 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:frozen_verify} compares frozen probing across DAPT objectives and against end-to-end fine-tuning. On easy OOD (DD, FITD), frozen MLM and frozen 9-class representations perform comparably ($\\Delta \\leq 1.3$\\,pp). On hard OOD (ActorAttack), 9-class retains a modest advantage (0.972 vs.\\ 0.941, $\\Delta$\\,=\\,3.1\\,pp) with lower variance ($\\sigma$\\,=\\,0.026 vs.\\ 0.037). Both far exceed vanilla encoders ($\\leq$0.318; Table~\\ref{tab:bert_proxy}). The E2E advantage over frozen 9-class is $\\leq$2.5\\,pp, confirming that Stage-1 representation quality is the primary source of OOD generalization.\n\nA striking asymmetry emerges when comparing frozen probing to the full pipeline (Table~\\ref{tab:evidence_hierarchy}): MLM frozen representations \\emph{outperform} the full MLM pipeline on AA OOD (0.941 vs.\\ 0.893), while 9-class frozen exactly matches its full pipeline (0.972 vs.\\ 0.972). This indicates that MLM's cross-seed instability originates in Stage-2 BiGRU training rather than Stage-1 DAPT---the MLM encoder produces adequate representations that are then degraded by unstable downstream optimization. Classification DAPT, by contrast, produces representations that remain robust through Stage-2 training, explaining its consistently lower variance (Table~\\ref{tab:evidence_hierarchy}).\n\nThis two-level structure---DAPT vs.\\ no-DAPT producing a representation quality leap (+70\\,pp), classification vs.\\ MLM DAPT producing a stability difference---is consistent with two further observations: $\\lambda$=0 matches $\\lambda > 0$ during E2E fine-tuning (Table~\\ref{tab:lambda}), and mean pooling matches BiGRU under E2E (Table~\\ref{tab:temporal}). Once DAPT representations are strong, downstream configuration details have minimal impact.\n\n\\paragraph{Representation geometry analysis.}\n\\label{app:representation}\n\nTo characterize the mechanism behind classification DAPT's robustness, we analyze Stage-1 representations across all seven DeBERTa-v3-base variants (seed 42). We extract \\texttt{[CLS]} embeddings from 150 test conversations (50 IID + 50 DD OOD + 50 AA OOD) and compute three metrics.\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Representation geometry and class separability across Stage-1 variants. PR: participation ratio (effective dimensionality of the embedding space). Fisher ratio: inter-class distance$^2$ / sum of intra-class variances. Weight $\\Delta$: L2 distance from pretrained weights (relative to pretrained norm).}\n\\label{tab:representation}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n\\textbf{Variant} & \\textbf{PR} & \\textbf{Fisher} & \\textbf{Wt.\\ $\\Delta$ (\\%)} \\\\\n\\midrule\nVanilla & 31.9 & $<$0.001 & 0.000 \\\\\nWiki-MLM & 25.0 & $<$0.001 & 0.221 \\\\\nJB-MLM & 24.6 & $<$0.001 & 0.256 \\\\\nTopic & 14.5 & 0.012 & 0.371 \\\\\nScrambled & 7.8 & 2.60 & 0.283 \\\\\n9-class & 9.4 & 4.47 & 0.303 \\\\\nBinary & 3.7 & 19.7 & 0.239 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nClassification variants compress representations into 2--9 effective dimensions (vs.\\ 25--32 for MLM/vanilla) while increasing Fisher ratio by 3--5 orders of magnitude. Weight distances from pretrained are comparable across all variants ($\\sim$0.2--0.4\\%), indicating that the mechanism is representational restructuring rather than parameter-space regularization. Scrambled labels produce similar compression (PR\\,=\\,7.8, Fisher\\,=\\,2.6), confirming that the classification objective structure---not label semantics---drives discriminative compression.\n\n\\paragraph{Layer-wise localization.}\n\\label{app:layerwise}\n\nTo determine \\emph{where} discriminative compression occurs, we compute PR and Fisher ratio at every DeBERTa-v3-base layer (0--12) for four variants (9-class, scrambled, JB-MLM, vanilla) using the same 236-sample evaluation set (seed 42).\n\n\\begin{figure}[ht]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig_layerwise_representation.pdf}\n\\caption{Layer-wise representation analysis. (a)~Participation ratio: classification variants (9-class, scrambled) show sharp dimensional collapse at layers 9--10 (PR\\,$\\approx$\\,1.5--2.9) while vanilla/JB-MLM maintain high dimensionality (PR\\,$\\approx$\\,7--10). (b)~Fisher ratio (log scale): class separability diverges from layer 8, with 9-class peaking at 10.9 (layer 10) vs.\\ vanilla 0.73 (15$\\times$).}\n\\label{fig:layerwise}\n\\end{figure}\n\nLayers 0--7 show no systematic divergence across variants (Fisher\\,$<$\\,2.1 for all; PR tracks similar oscillation patterns), consistent with \\citet{maennel2020random}'s finding that early layers learn label-independent features. From layer 8 onward, classification-supervised variants diverge sharply: 9-class Fisher rises from 3.2 (layer 8) to 10.9 (layer 10, peak), while vanilla remains below 1.5 throughout. Simultaneously, 9-class PR drops from 3.4 to 1.5 at layer 10---a 6.6$\\times$ compression relative to vanilla (PR\\,=\\,9.7). JB-MLM tracks vanilla across all layers (Fisher\\,$\\leq$\\,3.3, PR\\,$\\geq$\\,1.4), confirming that MLM does not induce discriminative restructuring. Scrambled labels exhibit the same late-layer pattern (Fisher peaks at 7.9, layer 12; PR drops to 1.5, layer 12), reinforcing that any classification signal---regardless of label semantics---triggers late-layer compression.\n\n\\paragraph{Discriminative subspace probe.}\n\\label{app:discriminative_probe}\n\nTo test whether the compressed subspace is \\emph{sufficient} for OOD detection, we project layer-10 \\texttt{[CLS]} representations onto the top-$k$ SVD components and train a logistic regression probe (3 seeds, sklearn default). Controls: random $k$-dimensional projections (10 random bases, mean reported) and vanilla/MLM models under identical projection.\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Discriminative subspace probe: OOD F1 when projecting layer-10 representations onto top-$k$ SVD components vs.\\ random $k$-dimensional projections. 9-class top-3 achieves perfect AA detection with 3/768 dimensions; MLM fails even with all 768.}\n\\label{tab:discriminative_probe}\n\\begin{tabular}{@{}llccc@{}}\n\\toprule\n\\textbf{Model} & \\textbf{Projection} & DD & AA & FITD \\\\\n\\midrule\n9-class & top-3 & 1.000 & \\textbf{1.000} & 1.000 \\\\\n9-class & top-5 & 1.000 & 1.000 & 1.000 \\\\\n9-class & random-3 & 1.000 & 0.928$\\pm$.129 & 1.000 \\\\\n9-class & random-5 & 1.000 & 0.952 & 1.000 \\\\\n9-class & full-768 & 1.000 & 1.000 & 1.000 \\\\\n\\midrule\nscrambled & top-3 & 1.000 & 0.962 & 1.000 \\\\\nscrambled & random-3 & 0.981 & 0.766 & 0.987 \\\\\n\\midrule\nJB-MLM & top-3 & 1.000 & 0.618 & 1.000 \\\\\nJB-MLM & full-768 & 1.000 & 0.636 & 1.000 \\\\\nJB-MLM & random-5 & 0.685 & 0.584 & 0.744 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThree findings establish a link between compression and generalization (Table~\\ref{tab:discriminative_probe}). First, 9-class top-3 achieves perfect ActorAttack detection (F1\\,=\\,1.000) using only 3 of 768 dimensions---all discriminative information resides in the compressed subspace. Second, random 3-dimensional projections degrade to 0.928 on AA, confirming that the specific SVD directions matter. Third, JB-MLM reaches only 0.636 on AA even with all 768 dimensions, demonstrating that without classification-induced compression, the representation lacks the structure needed for cross-attack generalization. DD and FITD are near-ceiling for all models, making ActorAttack the critical test.\nTo verify SVD directions are not influenced by OOD test data, we repeated the analysis computing SVD only on IID training data ($n$\\,=\\,350). IID-only top-3 performance equaled or exceeded all-data SVD across all OOD conditions (top-3 subspace cosine similarity\\,=\\,0.974), confirming the discriminative subspace is identified from training data alone.\n\n\\section{Temporal Aggregation Comparison}\n\\label{app:temporal}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Temporal aggregation comparison: mean pooling vs.\\ BiGRU under frozen and end-to-end (E2E) settings (3-seed mean$\\pm$std). Plan\\_002 9-class checkpoints.}\n\\label{tab:temporal}\n\\begin{tabular}{@{}llccc@{}}\n\\toprule\n\\textbf{Setting} & \\textbf{Aggregator} & DD OOD & AA OOD \\\\\n\\midrule\n\\multirow{2}{*}{Frozen} & BiGRU & .997$\\pm$.005 & .972$\\pm$.026 \\\\\n& Mean pooling & .991$\\pm$.013 & .962$\\pm$.015 \\\\\n\\midrule\n\\multirow{2}{*}{E2E} & BiGRU & 1.000$\\pm$.000 & .997$\\pm$.005 \\\\\n& Mean pooling & 1.000$\\pm$.000 & 1.000$\\pm$.000 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:temporal} compares BiGRU and mean pooling under both frozen and E2E settings. Under frozen probing (the main paper's pipeline), BiGRU provides a marginal advantage on ActorAttack (+1.0\\,pp) with overlapping confidence intervals, consistent with the main text finding that temporal order is not a core detection factor ($|\\Delta| < 1$\\,pp under turn shuffling; Section~\\ref{sec:decomposition}). Under E2E fine-tuning, the difference vanishes entirely: mean pooling saturates all benchmarks at F1\\,=\\,1.000. The choice of frozen BiGRU in the main pipeline reflects a design trade-off: it enables representation-level analysis (CKA, t-SNE) that E2E would confound, while sacrificing $\\leq$1\\,pp on the hardest OOD set.\n\n\\section{Length Stratification Analysis}\n\\label{app:length}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Jailbreak recall by conversation length bin on OOD evaluation (3-seed majority vote). Benign conversations span 12--20 total turns (6--10 user turns); jailbreak conversations span 3--10 total turns. Bins refer to total (user+assistant) turns.}\n\\label{tab:length}\n\\begin{tabular}{@{}llccc@{}}\n\\toprule\n\\textbf{Dataset} & \\textbf{Variant} & 1--3 turns & 4--6 turns & 7--10 turns \\\\\n\\midrule\n\\multirow{2}{*}{DD OOD} & 9-class & --- & 100.0\\% & 99.4\\% \\\\\n& Vanilla & --- & $\\leq$2.6\\% & $\\leq$1.7\\% \\\\\n\\midrule\n\\multirow{2}{*}{AA OOD} & 9-class & 93.3\\% & 95.6\\% & 100.0\\% \\\\\n& Vanilla & 0.0\\% & $\\leq$2.6\\% & 0.0\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:length} stratifies jailbreak recall by conversation length. The 9-class model shows no systematic degradation: ActorAttack recall increases monotonically from 93.3\\% (1--3 turns) to 100\\% (7--10 turns), and DD recall is near-perfect across all bins.\n\n\\paragraph{Length confound.}\nWhile total turn counts differ between benign (12--20) and jailbreak (3--10) conversations, the model processes only user turns. User-turn distributions overlap substantially: IID jailbreak 8.7$\\pm$2.1 vs.\\ benign 7.9$\\pm$1.5, DD 8.1$\\pm$1.5 vs.\\ 7.9$\\pm$1.5, FITD 7.8$\\pm$1.4 vs.\\ 7.9$\\pm$1.5; only ActorAttack shows partial separation (5.1$\\pm$1.7 vs.\\ 7.9$\\pm$1.5). A turn-count-only logistic regression trained on user-turn count achieves F1\\,=\\,0.54 (IID), 0.56 (DD), 0.42 (FITD), 0.00 (AA), and 0.00 (ToxicChat)---near chance on overlapping distributions and zero on ActorAttack despite partial separation---confirming that detection is content-driven rather than length-driven.\n\n\\paragraph{Direct empirical verification.}\n\\label{app:length_independence}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Turn-count independence verification (9-class, plan\\_002 checkpoints, 3 seeds). Part~A: FPR on test benign truncated to $K$ user turns (all seeds FPR\\,=\\,0). Part~B: WildChat FPR by turn-count bucket (mean$\\pm$std). Part~C: jailbreak detection (F1) after padding with benign turns to 15+ total turns (mean$\\pm$std where available).}\n\\label{tab:length_independence}\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\n& \\textbf{Condition} & \\textbf{FPR / F1} & $n$ \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Part A: Benign truncation (test set)}} \\\\[2pt]\n& Original (12--20 total; 6--10 user turns) & FPR = .000 & 38 \\\\\n& Truncated $K$=3 & FPR = .000 & 38 \\\\\n& Truncated $K$=5 & FPR = .000 & 38 \\\\\n& Truncated $K$=8 & FPR = .000 & 38 \\\\\n& Truncated $K$=10$^{*}$ & FPR = .000 & 38 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Part B: WildChat FPR by turn count}} \\\\[2pt]\n& Short (3--10 turns) & FPR = .770$\\pm$.105 & 196 \\\\\n& Medium (11--15 turns) & FPR = .942$\\pm$.054 & 23 \\\\\n& Long (16+ turns) & FPR = .857$\\pm$.117 & 7 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Part C: Jailbreak padding to 15+ turns}} \\\\[2pt]\n& DD original & F1 = .996 & 80 \\\\\n& DD padded & F1 = .971 ($\\Delta$=$-$2.5\\,pp) & 80 \\\\\n& AA original & F1 = .963 & 80 \\\\\n& AA padded & F1 = .383$\\pm$.261 ($\\Delta$=$-$57.9\\,pp) & 80 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{-2pt}\n{\\footnotesize $^{*}$$K$=10 did not truncate any conversation (test benign max $\\sim$8 user turns).}\n\\end{table}\n\nTruncating benign conversations to match jailbreak turn counts (Part~A) produces zero false positives across all truncation levels and all 3 seeds, directly confirming that the model does not use conversation length as a detection shortcut. $K$=3 and $K$=5 are the effective control conditions where all 38 conversations were truncated; $K$=10 exceeds the maximum test benign length and serves as a no-op control.\n\nWildChat FPR by turn count (Part~B) provides complementary evidence: short conversations (3--10 turns, $n$=196) have \\emph{lower} FPR than medium-length ones (11--15 turns, $n$=23), inconsistent with a ``short\\,=\\,jailbreak'' shortcut. Medium and long buckets have limited sample sizes and should be interpreted as directional evidence only.\n\nPadding jailbreak conversations with benign turns (Part~C) reveals an asymmetry: DD detection is resilient ($\\Delta$=$-$2.5\\,pp), but ActorAttack collapses ($\\Delta$=$-$57.9\\,pp). Padding experiments append benign turns \\emph{after} the complete attack sequence; in practice, adversaries would not dilute their own successful attacks. The collapse nonetheless exposes BiGRU temporal aggregation as vulnerable to attention dilution on subtle attack signals, a limitation discussed in Section~\\ref{sec:limitations}.\n\n\\section{Efficiency}\n\\label{app:efficiency}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Inference efficiency comparison on 100 conversations (50 IID + 50 DD OOD), same GPU (RTX PRO 6000). All methods measured under identical conditions.$^{\\dagger}$}\n\\label{tab:efficiency}\n\\begin{tabular}{@{}lrcr@{}}\n\\toprule\n\\textbf{Method} & Latency (ms) & Params & VRAM \\\\\n\\midrule\nDeBERTa+BiGRU (ours) & 13.1$\\pm$1.6 & 186.7M & 868\\,MB \\\\\nQwen3-8B 3-shot & 318.5$\\pm$26.8 & 8.2B & 16.1\\,GB \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{-2pt}\n{\\footnotesize $^{\\dagger}$LLM inference speed varies significantly across GPU generations; same-hardware comparison ensures a fair speedup estimate.}\n\\end{table}\n\nTable~\\ref{tab:efficiency} compares inference cost under identical conditions. DeBERTa+BiGRU processes a conversation in 13.1\\,ms, 24.3$\\times$ faster than Qwen3-8B 3-shot (318.5\\,ms) while achieving substantially higher OOD detection (DD\\,=\\,0.566, AA\\,=\\,0.652 for Qwen3-8B; Table~\\ref{tab:llm_judge}). The encoder pipeline requires 868\\,MB GPU memory (18.5$\\times$ less than the LLM), enabling deployment on consumer hardware.\n\n\\subsection{Data Efficiency}\n\\label{app:data_efficiency}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Data efficiency of 9-class DAPT (3-seed mean$\\pm$std, sample std with $n{-}1$ divisor) and vanilla baseline (seed 42 only). $N$ = total training conversations (balanced jailbreak/benign).}\n\\label{tab:data_efficiency}\n\\begin{tabular}{@{}rlccc@{}}\n\\toprule\n$N$ & \\textbf{Variant} & IID & DD OOD & AA OOD \\\\\n\\midrule\n50 & 9-class & 1.000$\\pm$.000 & 1.000$\\pm$.000 & .969$\\pm$.037 \\\\\n125 & 9-class & 1.000$\\pm$.000 & 1.000$\\pm$.000 & .975$\\pm$.019 \\\\\n250 & 9-class & 1.000$\\pm$.000 & 1.000$\\pm$.000 & .975$\\pm$.035 \\\\\n350 & 9-class & 1.000$\\pm$.000 & .978$\\pm$.030 & .972$\\pm$.033 \\\\\n\\midrule\n50 & Vanilla & .646 & .529 & .234 \\\\\n125 & Vanilla & .532 & .244 & .244 \\\\\n250 & Vanilla & .987 & .365 & .502 \\\\\n350 & Vanilla & 1.000 & .360 & .489 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:data_efficiency} shows that 9-class DAPT reaches near-saturation performance with as few as 50 conversations (25 jailbreak + 25 benign): AA OOD F1\\,=\\,0.969$\\pm$0.037, already surpassing vanilla at full training size ($N$=350, AA\\,=\\,0.489) by 48\\,pp using only 14\\% of the data. DD OOD is perfectly solved at all training sizes. Vanilla performance is noisy across $N$ (single seed); the consistent pattern is that vanilla never exceeds DD\\,=\\,0.53 or AA\\,=\\,0.50 regardless of training size, while 9-class maintains AA\\,$\\geq$\\,0.969 at all $N$. Seed 456 is systematically lower across all $N$ values, contributing most of the cross-seed variance; this is consistent with the initialization sensitivity observed in the main results.\n\n\\section{Auxiliary Loss Weight Ablation}\n\\label{app:lambda}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Effect of auxiliary persuasion loss weight $\\lambda$ during Stage-2 E2E fine-tuning (seed 42). Stage-1 DAPT encoder is identical across all rows; only the Stage-2 loss $L = L_{\\text{binary}} + \\lambda \\cdot L_{\\text{strategy}}$ varies.}\n\\label{tab:lambda}\n\\begin{tabular}{@{}rcccc@{}}\n\\toprule\n$\\lambda$ & IID & DD OOD & FITD OOD & AA OOD \\\\\n\\midrule\n0 & 1.000 & 1.000 & 1.000 & 1.000 \\\\\n0.1 & 1.000 & 1.000 & 1.000 & .990 \\\\\n0.5 & 1.000 & 1.000 & 1.000 & .981 \\\\\n1.0 & 1.000 & 1.000 & 1.000 & .981 \\\\\n2.0 & 1.000 & 1.000 & 1.000 & .944 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nDuring Stage-2 E2E fine-tuning, the auxiliary persuasion loss weight $\\lambda$ has limited impact on detection (Table~\\ref{tab:lambda}): the maximum AA OOD gap across all $\\lambda$ values is 5.6\\,pp (single seed), comparable to the cross-seed variance ($\\sim$6\\,pp) observed in the main results. All configurations converge to perfect validation F1 within epoch 1, indicating that DAPT representations already encode sufficient discriminative features for downstream classification (Section~\\ref{app:frozen_verify}). The value of persuasion strategy classification lies in Stage-1 DAPT---where it shapes encoder representations that transfer across attack families---not in the Stage-2 auxiliary loss.\n\n\\section{OOD Strategy Prediction Analysis}\n\\label{app:strategy_pred}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{OOD strategy prediction accuracy (jailbreak turns only) and detection rate for the 9-class model (3-seed mean). $r$: Pearson correlation between per-strategy prediction accuracy and per-strategy detection rate.}\n\\label{tab:strategy_pred}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Dataset} & Strat.\\ Acc.\\ & Det.\\ Rate & Missed (per seed) & $r$ \\\\\n\\midrule\nDD OOD & 50.1\\% & 99.6\\% & 0 / 0 / 1 & $\\sim$0.45 \\\\\nAA OOD & 50.1\\% & 96.2\\% & 1 / 7 / 1 & $\\sim$0.24 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:strategy_pred} reports OOD strategy prediction accuracy alongside detection rates. Strategy prediction accuracy is substantially above random (50.1\\% vs.\\ 11.1\\% chance for 9 classes) and positively correlated with detection success ($r \\approx 0.24$--0.45), but strategy prediction is not the detection mechanism: frozen probing with a randomly initialized strategy head (Appendix~\\ref{app:frozen_verify}) achieves 97.2\\% AA OOD detection, and $\\lambda$=0 (no strategy loss) matches or exceeds $\\lambda > 0$ during E2E fine-tuning (Table~\\ref{tab:lambda}). The classification objective shapes representations during Stage-1 DAPT training; at inference, strategy predictions are a byproduct of those representations, not a driver of detection.\n\n\\section{Cross-Seed Ensemble and Seed-Level F1 Comparisons}\n\\label{app:ensemble}\n\\label{app:seed_level}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Majority vote ensemble (3 seeds) vs.\\ single-seed mean on OOD Full. ``Fixed'' = samples corrected by ensemble; ``Broke'' = samples corrupted by ensemble.}\n\\label{tab:ensemble}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Variant} & DD single$\\to$ens. & AA single$\\to$ens. & Fixed & Broke \\\\\n\\midrule\n9-class & .997$\\to$\\textbf{1.000} & .972$\\to$\\textbf{.981} & 5 & 0 \\\\\nMLM & .914$\\to$\\textbf{1.000} & .897$\\to$\\textbf{.953} & 26 & 0 \\\\\nVanilla & .258$\\to$.258 & .258$\\to$.258 & 0 & 0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:ensemble} shows that majority vote never corrupts correct predictions (Broke\\,=\\,0 for all variants). MLM benefits most from ensembling (+8.6\\,pp DD, +6.0\\,pp AA), because its per-seed errors are complementary---each seed fails on different samples, and the majority corrects these. This further exposes MLM's seed instability: its individual seeds are unreliable, but their errors are uncorrelated. By contrast, 9-class seeds are already highly consistent (std\\,$\\leq$\\,0.026), leaving minimal room for ensemble improvement (+0.3--0.9\\,pp). Vanilla errors are systematic (all seeds fail on the same OOD samples), so ensembling provides no benefit.\n\nTo verify that cross-seed pooling does not mask inconsistent pairwise orderings, Table~\\ref{tab:seed_level} reports per-seed F1 for all variants on OOD DD and ActorAttack at full conversation length. The relative ordering of variants is consistent across all three seeds: classification-supervised variants (9-class, binary, scrambled) dominate MLM and vanilla at every seed, and no seed reverses the hierarchy established by the pooled analysis. Table~\\ref{tab:tost_5seed} extends the comparison between 9-class and scrambled to 5 seeds for TOST analysis.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-seed OOD F1 (Full) for all variants across three attack families (seeds 42, 123, 456). Cohen's $d$ for 9-class vs.\\ scrambled: DD\\,=\\,$-$0.003 (negligible), AA\\,=\\,0.587 (medium; CI crosses 0 at $n$=3).}\n\\label{tab:seed_level}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{@{}lccccccccc@{}}\n\\toprule\n& \\multicolumn{3}{c}{DD} & \\multicolumn{3}{c}{ActorAttack} & \\multicolumn{3}{c}{FITD} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7} \\cmidrule(lr){8-10}\n\\textbf{Variant} & s42 & s123 & s456 & s42 & s123 & s456 & s42 & s123 & s456 \\\\\n\\midrule\n9-class   & 1.000 & 1.000 & .990 & .990 & .935 & .990 & 1.000 & 1.000 & 1.000 \\\\\nBinary    & 1.000 & 1.000 & 1.000 & .981 & .990 & 1.000 & 1.000 & 1.000 & 1.000 \\\\\nScrambled & .990 & 1.000 & 1.000 & .891 & .990 & .971 & 1.000 & 1.000 & 1.000 \\\\\nMLM+cls   & 1.000 & .990 & .751 & .971 & .925 & .784 & .961 & .432 & .729 \\\\\nTopic     & .727 & .252 & .644 & .686 & .431 & .759 & .990 & .774 & .909 \\\\\nVanilla   & .284 & .305 & .348 & .258 & .258 & .258 & .871 & .855 & .919 \\\\\n\\bottomrule\n\\end{tabular}}\n\\vspace{-2pt}\n{\\footnotesize Benign recall\\,=\\,1.000 for all DAPT variants across all seeds and OOD conditions (IID benign); OOD F1 variation is driven entirely by attack recall. Classification-supervised variants (9-class, binary, scrambled) achieve perfect or near-perfect F1 on FITD, confirming its non-discriminative nature.}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\caption{5-seed OOD F1 (Full) for 9-class vs.\\ scrambled (seeds 42, 123, 456, 789, 1000). At $n$\\,=\\,10 (5 additional seeds; see text), TOST ($\\delta$=5\\,pp): DD $p < 10^{-8}$ \\checkmark; FITD $p < 10^{-8}$ \\checkmark; AA $p$\\,=\\,0.183 (non-equivalent). Cohen's $d$ at $n$\\,=\\,10: DD\\,$\\approx$\\,0; AA\\,=\\,0.44 (medium).}\n\\label{tab:tost_5seed}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{@{}llcccccc@{}}\n\\toprule\n\\textbf{Attack} & \\textbf{Variant} & s42 & s123 & s456 & s789 & s1000 & Mean$\\pm$SD \\\\\n\\midrule\nDD & 9-class   & 1.000 & 1.000 & .990 & 1.000 & 1.000 & .998$\\pm$.004 \\\\\nDD & Scrambled  & .990 & 1.000 & 1.000 & 1.000 & 1.000 & .998$\\pm$.004 \\\\\n\\midrule\nAA & 9-class   & .990 & .935 & .990 & .972 & .972 & .972$\\pm$.021 \\\\\nAA & Scrambled  & .891 & .990 & .971 & .990 & .990 & .966$\\pm$.040 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Cross-hardware replication.}\nTo assess hardware sensitivity, we independently retrained 9-class and JB-MLM from scratch on a different GPU (RTX PRO 6000 Blackwell, 5 seeds each). Table~\\ref{tab:cross_hw} reports OOD F1 on all three attack families. IID and FITD results are perfectly consistent (9-class: 5/5 seeds = 1.000 on both). On ActorAttack, 9-class outperforms MLM directionally ($\\Delta$\\,=\\,+1.7\\,pp) but the difference is not statistically significant (paired $t$-test $p$\\,=\\,0.246), reflecting the higher variance inherent to this structurally complex attack family; this is consistent with the complexity-dependent boundary reported in Section~\\ref{sec:decomposition}.\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-hardware 5-seed replication (RTX PRO 6000 Blackwell). OOD F1 (Full) for 9-class vs.\\ JB-MLM across three attack families.}\n\\label{tab:cross_hw}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{@{}llcccccc@{}}\n\\toprule\n\\textbf{Attack} & \\textbf{Variant} & s42 & s123 & s456 & s789 & s1000 & Mean$\\pm$SD \\\\\n\\midrule\nIID & 9-class & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\nIID & JB-MLM  & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\n\\midrule\nDD & 9-class  & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\nDD & JB-MLM   & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\n\\midrule\nFITD & 9-class & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\nFITD & JB-MLM  & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\n\\midrule\nAA & 9-class   & .990 & .943 & .972 & .972 & .972 & .970$\\pm$.016 \\\\\nAA & JB-MLM    & .857 & .751 & .906 & .916 & .943 & .875$\\pm$.074 \\\\\n\\bottomrule\n\\end{tabular}}\n\\vspace{-2pt}\n{\\footnotesize AA difference is directionally consistent ($\\Delta$\\,=\\,+9.5\\,pp mean) but reflects high MLM variance; paired $t$-test $p$\\,=\\,0.246. Template attacks (DD, FITD) show perfect agreement across all seeds and both variants.}\n\\end{table}\n\n\\subsection{Single-Turn Truncation Analysis}\n\\label{app:truncated}\n\nTo isolate whether the ToxicChat evidence-hierarchy reversal (Section~\\ref{sec:discussion}) reflects multi-turn structural dependence, we truncate each synthetic test conversation to its last user turn and re-evaluate both 9-class and JB-MLM models (3-seed mean).\n\n\\begin{table}[h]\n\\centering\n\\caption{Full-conversation vs.\\ last-turn-only F1 (3-seed mean). Truncation widens the 9-class advantage, ruling out multi-turn structure as the driver of the ToxicChat reversal.}\n\\label{tab:truncated}\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\n\\textbf{Dataset} & \\textbf{Mode} & \\textbf{9-class} & \\textbf{JB-MLM} \\\\\n\\midrule\nIID & Full & 1.000 & .983 \\\\\nIID & Last turn & .991 & .894 \\\\\n\\midrule\nDD OOD & Full & .997 & .993 \\\\\nDD OOD & Last turn & .942 & .924 \\\\\n\\midrule\nAA OOD & Full & .972 & .941 \\\\\nAA OOD & Last turn & .978 & .927 \\\\\n\\midrule\nFITD OOD & Full & 1.000 & .987 \\\\\nFITD OOD & Last turn & 1.000 & .927 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{-2pt}\n{\\footnotesize Mean $\\Delta$ (9-class $-$ MLM): Full +1.6\\,pp, Last turn +6.0\\,pp. 9-class advantage widens under truncation across all families, indicating the reversal on ToxicChat is driven by distributional differences between synthetic and human text, not by multi-turn structural dependence.}\n\\end{table}\n",
+      "numLines": 489,
+      "startLine": 546,
+      "totalLines": 1034
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 120_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to see the rest of the file to find where the OASST2 section ends, to know where to insert the new subsection. Let me read more.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "a74fc781-bb75-40c1-ad90-585391aa9249",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNcw8kNcaGtov8XF6iNjVL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13690,
+      "cache_read_input_tokens": 35234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13690
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 121_
+
+I found the appendix structure. The `\label{app:oasst2}` section starts at line 546 and its content runs through line 582 (ending with the benign summary table). I need to insert the new subsection after line 582 (after `\end{table}` of `tab:benign_summary`) and before line 584 (`\section{BERT-base Proxy Baseline}`).
+
+Let me also check what's right around line 567 to 583 to confirm the exact insertion point.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "4efc8b36-78ba-4e3a-81df-b51aca5be4b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNcw8kNcaGtov8XF6iNjVL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13690,
+      "cache_read_input_tokens": 35234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13690
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 122_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012YiPZXmuV54Kns54TnGH8Z`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+  "offset": 567,
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "919e9111-e630-487f-a76f-2f1374b7560f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNcw8kNcaGtov8XF6iNjVL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13690,
+      "cache_read_input_tokens": 35234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13690
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 123 · 2026-05-22T23:45:05.393Z_
+
+<details><summary>↩ Tool result · `toolu_012YiPZXmuV54Kns54TnGH8Z`</summary>
+
+```text
+567	Baseline FPR on OASST2 (57.5\%) is comparable to WildChat (68.1\%), confirming that benign-side shift is not source-specific but a general consequence of synthetic-only benign training. The adaptation curve follows the same pattern---monotonic FPR reduction with preserved OOD detection---but requires more samples: 25 conversations reduce FPR to 1.0\%$\pm$0.5\% across 3 seeds (vs.\ 0\% at $N$\,=\,10 for WildChat), and 50 conversations reach 0.5\%. The slower convergence likely reflects greater distributional distance between crowdsourced OASST2 conversations and the synthetic training distribution compared to WildChat's GPT-3.5 user logs.
+568	
+569	\begin{table}[ht]
+570	\centering
+571	\footnotesize
+572	\caption{Benign-side adaptation summary across two independent sources. Both achieve deployment-level FPR ($\leq$1.5\%) with no degradation in OOD jailbreak detection. 3 seeds each.}
+573	\label{tab:benign_summary}
+574	\begin{tabular}{@{}lrcrc@{}}
+575	\toprule
+576	Source & $N$ & FPR (mean$\pm$std) & Seeds & Eval $n$ \\
+577	\midrule
+578	WildChat & 10 & 0.0\%$\pm$0.0\% & 3 & 49 \\
+579	OASST2 & 25 & 1.0\%$\pm$0.5\% & 3 & 200 \\
+580	\bottomrule
+581	\end{tabular}
+582	\end{table}
+583	
+584	\section{BERT-base Proxy Baseline}
+585	\label{app:bert_proxy}
+586	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "308beb02-b364-4d8f-97a7-3a6a2522261a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+      "content": "Baseline FPR on OASST2 (57.5\\%) is comparable to WildChat (68.1\\%), confirming that benign-side shift is not source-specific but a general consequence of synthetic-only benign training. The adaptation curve follows the same pattern---monotonic FPR reduction with preserved OOD detection---but requires more samples: 25 conversations reduce FPR to 1.0\\%$\\pm$0.5\\% across 3 seeds (vs.\\ 0\\% at $N$\\,=\\,10 for WildChat), and 50 conversations reach 0.5\\%. The slower convergence likely reflects greater distributional distance between crowdsourced OASST2 conversations and the synthetic training distribution compared to WildChat's GPT-3.5 user logs.\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Benign-side adaptation summary across two independent sources. Both achieve deployment-level FPR ($\\leq$1.5\\%) with no degradation in OOD jailbreak detection. 3 seeds each.}\n\\label{tab:benign_summary}\n\\begin{tabular}{@{}lrcrc@{}}\n\\toprule\nSource & $N$ & FPR (mean$\\pm$std) & Seeds & Eval $n$ \\\\\n\\midrule\nWildChat & 10 & 0.0\\%$\\pm$0.0\\% & 3 & 49 \\\\\nOASST2 & 25 & 1.0\\%$\\pm$0.5\\% & 3 & 200 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{BERT-base Proxy Baseline}\n\\label{app:bert_proxy}\n",
+      "numLines": 20,
+      "startLine": 567,
+      "totalLines": 1034
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 124_
+
+Now I'll insert the new subsection between line 582 and line 584.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "918d433b-db05-48f2-bcfb-77504e6587c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AeML4ErKq19yTUPFVSiZbL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 794,
+      "cache_read_input_tokens": 48924,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 794
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_016MEr2ympfML8jqkgKN5nde`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+  "old_string": "\\end{table}\n\n\\section{BERT-base Proxy Baseline}\n\\label{app:bert_proxy}",
+  "new_string": "\\end{table}\n\n\\subsection{Estimated Dual-OOD Detection Performance}\n\\label{app:dual_ood}\n\nThe OOD detection F1 reported in the main paper evaluates attack-side OOD with IID benign examples (FPR\\,=\\,0), providing an upper bound. To estimate performance when \\emph{both} attack and benign inputs are OOD, we combine per-seed attack recall (from OOD evaluation) with per-seed benign FPR (from WildChat/OASST2 experiments), assuming independence between attack detection and benign false positives. For each seed, we compute binary detection F1 from the resulting TP, FP, FN counts on the OOD test composition (80 jailbreak + 38 benign).\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Estimated dual-OOD binary detection F1 under different benign conditions (3-seed mean$\\pm$std). Attack recall held fixed from OOD evaluation; only benign FPR varies. IID row corresponds to the benign-IID upper bound (FPR\\,=\\,0).}\n\\label{tab:dual_ood}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Benign condition} & DD OOD F1 & AA OOD F1 \\\\\n\\midrule\nIID (FPR\\,=\\,0) & .994$\\pm$.009 & .981$\\pm$.019 \\\\\nWildChat, no adapt & .855$\\pm$.020 & .842$\\pm$.012 \\\\\nOASST2, no adapt & .874$\\pm$.009 & .861$\\pm$.018 \\\\\nWildChat + 10-shot & .994$\\pm$.009 & .981$\\pm$.019 \\\\\nOASST2 + 25-shot & .991$\\pm$.009 & .978$\\pm$.018 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nWithout benign adaptation, dual-OOD F1 drops by 12--14\\,pp (DD: $.994 \\to .855$; AA: $.981 \\to .842$), driven entirely by false positives on OOD benign inputs. After few-shot adaptation---10 WildChat or 25 OASST2 conversations---dual-OOD F1 recovers to within 0.3\\,pp of the IID upper bound, confirming that the lightweight adaptation procedure (Section~\\ref{sec:benign}) effectively closes the benign distribution gap without compromising attack-side performance.\n\n\\section{BERT-base Proxy Baseline}\n\\label{app:bert_proxy}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "0d54a1de-7302-4277-8631-45e29f57cef6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AeML4ErKq19yTUPFVSiZbL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 794,
+      "cache_read_input_tokens": 48924,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 794
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-22T23:45:22.572Z_
+
+<details><summary>↩ Tool result · `toolu_016MEr2ympfML8jqkgKN5nde`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "6470bb1d-996e-45f4-b5e6-f7739e811ab0",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+    "oldString": "\\end{table}\n\n\\section{BERT-base Proxy Baseline}\n\\label{app:bert_proxy}",
+    "newString": "\\end{table}\n\n\\subsection{Estimated Dual-OOD Detection Performance}\n\\label{app:dual_ood}\n\nThe OOD detection F1 reported in the main paper evaluates attack-side OOD with IID benign examples (FPR\\,=\\,0), providing an upper bound. To estimate performance when \\emph{both} attack and benign inputs are OOD, we combine per-seed attack recall (from OOD evaluation) with per-seed benign FPR (from WildChat/OASST2 experiments), assuming independence between attack detection and benign false positives. For each seed, we compute binary detection F1 from the resulting TP, FP, FN counts on the OOD test composition (80 jailbreak + 38 benign).\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Estimated dual-OOD binary detection F1 under different benign conditions (3-seed mean$\\pm$std). Attack recall held fixed from OOD evaluation; only benign FPR varies. IID row corresponds to the benign-IID upper bound (FPR\\,=\\,0).}\n\\label{tab:dual_ood}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Benign condition} & DD OOD F1 & AA OOD F1 \\\\\n\\midrule\nIID (FPR\\,=\\,0) & .994$\\pm$.009 & .981$\\pm$.019 \\\\\nWildChat, no adapt & .855$\\pm$.020 & .842$\\pm$.012 \\\\\nOASST2, no adapt & .874$\\pm$.009 & .861$\\pm$.018 \\\\\nWildChat + 10-shot & .994$\\pm$.009 & .981$\\pm$.019 \\\\\nOASST2 + 25-shot & .991$\\pm$.009 & .978$\\pm$.018 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nWithout benign adaptation, dual-OOD F1 drops by 12--14\\,pp (DD: $.994 \\to .855$; AA: $.981 \\to .842$), driven entirely by false positives on OOD benign inputs. After few-shot adaptation---10 WildChat or 25 OASST2 conversations---dual-OOD F1 recovers to within 0.3\\,pp of the IID upper bound, confirming that the lightweight adaptation procedure (Section~\\ref{sec:benign}) effectively closes the benign distribution gap without compromising attack-side performance.\n\n\\section{BERT-base Proxy Baseline}\n\\label{app:bert_proxy}",
+    "originalFile": "% appendix.tex — Supplementary material\n\n\\appendix\n\n\\section{LLM-as-Judge Baseline}\n\\label{sec:llm_judge}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{LLM-as-judge jailbreak detection. IID: binary F1 (Crescendo test set); OOD: macro F1 (DD = Deceptive Delight, AA = ActorAttack). GPT-5.5 F1 values exclude unparseable responses and represent upper bounds.}\n\\label{tab:llm_judge}\n\\begin{tabular}{@{}lcccr@{}}\n\\toprule\n\\textbf{Method} & DD & AA & IID & Unparse. \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{Zero-shot}} \\\\[2pt]\nGPT-5.5 & -- & -- & .383 & 30--47\\% \\\\\nQwen3-8B & .244 & .244 & .100 & 0\\% \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{3-shot}} \\\\[2pt]\nQwen3-8B & .566 & .652 & -- & 0\\% \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{Trained classifier}} \\\\[2pt]\n9-class (ours) & \\textbf{.994} & \\textbf{.972} & \\textbf{1.000} & 0\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:llm_judge} reports LLM-as-judge performance on IID and OOD data.\nOn IID Crescendo, GPT-5.5 achieves precision of 1.0 at all turn prefixes but recall ranges from only 0.105 to 0.290, resulting in F1 = 0.383 on full conversations; 30--47\\% of responses are unparseable.\nQwen3-8B performs worse (IID F1 = 0.100).\nOn OOD data, zero-shot Qwen3-8B achieves macro F1 = 0.244 on both DD and ActorAttack by predicting nearly all conversations as benign.\nEven with 3-shot prompting, Qwen3-8B reaches only 0.566 (DD) and 0.652 (AA), while DisPeD maintains macro F1 $\\geq$ 0.972.\nThe prompts follow a standard format: system instruction defining the task as multi-turn jailbreak detection, followed by the full conversation with role labels, and a binary classification request.\n\n\\paragraph{Prompt optimization.}\n\\label{app:prompt_opt}\n\nTo test whether prompt design inflates DisPeD's perceived advantage, we compare the baseline prompt against an optimized variant adding chain-of-thought reasoning, a persuasion pattern taxonomy (rapport building, escalation, reframing, emotional manipulation, authority appeal), and structured output format. Table~\\ref{tab:prompt_opt} reports results under identical conditions (Qwen3-8B, full conversations).\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{LLM-as-judge prompt optimization (Qwen3-8B, full conversations). CoT adds chain-of-thought + persuasion taxonomy + structured reasoning. IID unparseable: 15.8\\% (baseline) / 17.1\\% (CoT); OOD: 0\\%.}\n\\label{tab:prompt_opt}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Prompt} & DD & AA & FITD & IID \\\\\n\\midrule\nBaseline & .449 & .627 & .394 & .670 \\\\\nCoT-optimized & .851 & .885 & .729 & .700 \\\\\n\\midrule\nDAPT 9-class & 1.000 & .953 & 1.000 & 1.000 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nCoT prompting substantially improves OOD detection (+40.2\\,pp DD, +25.8\\,pp AA, +33.5\\,pp FITD) but does not close the gap with encoder-based detection: DAPT retains +14.9\\,pp on DD and +27.1\\,pp on FITD. The AA gap narrows to 6.8\\,pp, suggesting ActorAttack's explicit adversarial patterns are partially accessible to LLM reasoning. CoT increases latency to $\\sim$1.1\\,s/conversation ($84\\times$ slower than DisPeD).\n\n\\section{Full Cross-Attack Results by Prefix}\n\\label{sec:full_prefix}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Full cross-attack generalization results (F1) at all prefix lengths. 3-seed mean$\\pm$std where available. ``--'' indicates insufficient conversation length for that prefix (FITD conversations contain 2--3 turns).}\n\\label{tab:full_prefix}\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\n\\textbf{Method} & $K$=1 & $K$=2 & $K$=3 & $K$=5 & Full \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{IID (Crescendo)}} \\\\[2pt]\n9-class (ours) & 1.000$\\pm$.000 & 1.000$\\pm$.000 & 1.000$\\pm$.000 & 1.000$\\pm$.000 & 1.000$\\pm$.000 \\\\\nMLM-only & .960 & .974 & .987 & 1.000 & 1.000 \\\\\nVanilla DeBERTa & .968$\\pm$.033 & .978$\\pm$.016 & .987$\\pm$.000 & .982$\\pm$.014 & 1.000$\\pm$.000 \\\\\nTF-IDF LR & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{OOD (Deceptive Delight)}} \\\\[2pt]\n9-class (ours) & .990$\\pm$.013 & .981$\\pm$.013 & .972$\\pm$.026 & .997$\\pm$.005 & .994$\\pm$.005 \\\\\nBinary & .994$\\pm$.009 & .994$\\pm$.009 & .984$\\pm$.008 & 1.000$\\pm$.000 & 1.000$\\pm$.000 \\\\\nScrambled & .997$\\pm$.005 & .981$\\pm$.026 & .975$\\pm$.029 & .997$\\pm$.005 & .994$\\pm$.005 \\\\\nMLM-only & .973$\\pm$.019 & .993$\\pm$.009 & .997$\\pm$.005 & .997$\\pm$.005 & .914$\\pm$.115 \\\\\nVanilla DeBERTa & .628$\\pm$.038 & .479$\\pm$.038 & .389$\\pm$.027 & .351$\\pm$.030 & .312$\\pm$.026 \\\\\nTF-IDF LR & 1.000 & 1.000 & .994 & 1.000 & .961 \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{OOD (FITD)}} \\\\[2pt]\n9-class (ours) & 1.000 & 1.000 & -- & -- & 1.000 \\\\\nVanilla DeBERTa & .990 & 1.000 & -- & -- & 1.000 \\\\\nTF-IDF LR & 1.000 & -- & -- & -- & 1.000 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\section{ActorAttack Full Results}\n\\label{sec:actorattack_full}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Full ActorAttack OOD results (F1) at all prefix lengths. 3-seed mean$\\pm$std (Binary per-$K$ reports $n$=2; Full is 3-seed).}\n\\label{tab:actorattack_full}\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\n\\textbf{Method} & $K$=1 & $K$=2 & $K$=3 & $K$=5 & Full \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{DeBERTa-v3}} \\\\[2pt]\nBinary & .788$\\pm$.020 & \\textbf{.935$\\pm$.018} & \\textbf{.976$\\pm$.005} & \\textbf{.995$\\pm$.005} & \\textbf{.990$\\pm$.008} \\\\\n9-class & .773$\\pm$.041 & .855$\\pm$.048 & .921$\\pm$.046 & .966$\\pm$.028 & .972$\\pm$.026 \\\\\nScrambled & .652$\\pm$.034 & .804$\\pm$.053 & .854$\\pm$.046 & .910$\\pm$.052 & .951$\\pm$.043 \\\\\nMLM-only & .736$\\pm$.150 & .909$\\pm$.058 & .945$\\pm$.039 & .929$\\pm$.033 & .893$\\pm$.080 \\\\\nWiki MLM & .656$\\pm$.224 & .672$\\pm$.252 & .693$\\pm$.280 & .689$\\pm$.285 & .686$\\pm$.297 \\\\\nTopic & .513$\\pm$.077 & .580$\\pm$.109 & .565$\\pm$.100 & .615$\\pm$.111 & .625$\\pm$.141 \\\\\nVanilla & .337$\\pm$.049 & .306$\\pm$.026 & .284$\\pm$.011 & .262$\\pm$.006 & .258$\\pm$.000 \\\\\nTF-IDF LR & .633 & .730 & .571 & .242 & .261 \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{RoBERTa}} \\\\[2pt]\n9-class & \\textbf{.738$\\pm$.033} & .805$\\pm$.033 & .884$\\pm$.066 & .925$\\pm$.066 & .939$\\pm$.046 \\\\\nMLM & .633$\\pm$.133 & .665$\\pm$.150 & .713$\\pm$.174 & .719$\\pm$.184 & .730$\\pm$.201 \\\\\nVanilla & .410$\\pm$.126 & .425$\\pm$.143 & .432$\\pm$.144 & .466$\\pm$.144 & .466$\\pm$.163 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nTable~\\ref{tab:actorattack_full} reveals three distinct prefix-length patterns. The 9-class model improves monotonically from $K$=1 to Full (+20\\,pp), consistent with cumulative evidence accumulation across turns. Vanilla DeBERTa \\emph{decreases} with more turns (0.337 at $K$=1 to 0.258 at Full), suggesting that additional attack turns push representations further into benign embedding regions. MLM peaks at $K$=3 (0.945) then declines to 0.893 at Full, indicating that unsupervised domain exposure captures early-turn patterns but is unstable under extended sequences.\n\n\\subsection{Error Analysis}\n\\label{app:aa_error}\n\nPer-sample majority vote across 3 seeds yields 98.3\\% accuracy on ActorAttack OOD (2 false negatives, 0 false positives). No sample is misclassified by all three seeds; all 7 seed-specific errors are false negatives concentrated in shorter conversations (3--6 turns). On these 7 error samples, vanilla achieves 0/3 correct votes per sample, while 9-class majority vote correctly classifies 5/7, confirming that domain adaptation provides robust per-sample coverage even where individual seeds fail.\n\n\\section{Perturbation Robustness}\n\\label{sec:perturbation_full}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Perturbation behavior under adversarial paraphrasing on IID Crescendo ($n$=76). $\\Delta$: F1 degradation (pp). Classification-supervised variants achieve zero degradation at full length; this pattern does not generalize to ActorAttack.}\n\\label{tab:perturbation}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Method} & $\\Delta$ Full & $\\Delta$ $K$=1 & $\\Delta$ $K$=2 & $\\Delta$ $K$=3 \\\\\n\\midrule\n9-class (ours) & \\textbf{0.0} & \\textbf{$-$2.6} & \\textbf{0.0} & \\textbf{0.0} \\\\\nScrambled & \\textbf{0.0} & $-$5.3 & $-$2.6 & \\textbf{0.0} \\\\\nBinary & \\textbf{0.0} & $-$9.2 & $-$2.6 & \\textbf{0.0} \\\\\n\\midrule\nTF-IDF LR & $-$1.3 & $-$9.6 & $-$4.1 & $-$1.3 \\\\\nMLM-only & $-$2.6 & $-$9.2 & $-$4.0 & $-$4.0 \\\\\nTopic (seed 42) & $-$4.0 & $-$2.7 & $-$2.7 & \\textbf{0.0} \\\\\n\\midrule\nWikipedia MLM & $-$12.1 & $-$12.4 & $-$15.4 & $-$17.9 \\\\\nVanilla DeBERTa & $-$11.8 & $-$14.6 & $-$12.1 & $-$13.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:perturbation} shows perturbation behavior on IID data.\nClassification-supervised variants (9-class, binary, scrambled) achieve zero degradation at full conversation length regardless of label correctness.\nModels without jailbreak-domain exposure (Wikipedia MLM, vanilla) degrade by $\\sim$12\\,pp.\nMcNemar's test finds no significant pairwise differences among classification-supervised variants (all $p > 0.13$), though with $\\leq$7 discordant pairs, statistical power is limited.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Perturbation robustness on OOD Deceptive Delight ($n$=118). $\\Delta$: F1 change (pp) from clean to paraphrased. 3-seed mean$\\pm$std where available.}\n\\label{tab:ood_perturbation}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Variant} & Clean Full & Pert.\\ Full & $\\Delta$ Full & $\\Delta$ $K$=1 \\\\\n\\midrule\n9-class & .994$\\pm$.005 & 1.000$\\pm$.000 & +0.6 & +0.6 \\\\\nBinary & 1.000$\\pm$.000 & 1.000$\\pm$.000 & 0.0 & +0.6 \\\\\nScrambled & .994$\\pm$.005 & 1.000$\\pm$.000 & +0.6 & $-$0.3 \\\\\n\\midrule\nJB MLM & .914$\\pm$.115 & .941 & +2.7 & 0.0 \\\\\nWiki MLM$^{*}$ & .904$\\pm$.115 & .872 & $-$3.3 & $-$3.2 \\\\\nVanilla$^{\\dagger}$ & .312$\\pm$.026 & .339$\\pm$.055 & +2.7 & $-$6.8$\\pm$1.1 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{-2pt}\n{\\footnotesize $^{*}$Wiki MLM degradation is seed-driven: seed 42 accounts for $-$9.8\\,pp; other seeds show 0.0\\,pp change.\\\\$^{\\dagger}$Vanilla $\\Delta$ Full = +2.7\\,pp reflects floor-effect noise (baseline 0.312, std 0.055), not meaningful improvement.}\n\\end{table}\n\nOn OOD DD, the IID pattern replicates: classification-supervised variants show zero degradation while McNemar's test confirms 9-class vs.\\ vanilla significance ($p < 0.001$, 49--78 discordant pairs).\nOn OOD ActorAttack, domain-adapted variants degrade substantially (9-class $\\Delta$\\,=\\,$-$20.4$\\pm$13.5\\,pp, MLM $-$35.3\\,pp), but perturbation narrows rather than closes the adapted vs.\\ non-adapted gap: 9-class perturbed F1 = 0.768 vs.\\ vanilla 0.248 (McNemar $p < 0.001$).\nDomain specificity also manifests: Wikipedia MLM degrades by $\\sim$12\\,pp while jailbreak-domain MLM degrades by only 2.6\\,pp.\n\n\\section{Strategy Trajectory Analysis}\n\\label{sec:strategy_full}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/paper/fig3_strategy_heatmap.pdf}\n\\caption{Persuasion strategy transition count matrices for three attack families, based on ground-truth intended strategy labels. Strategy labels validated on $n$=50 samples with a single annotator ($\\kappa$=0.78); fine-grained trajectory patterns should be interpreted with this limitation. Crescendo exhibits broad coverage across all strategy categories, while FITD and DD concentrate transitions in smaller subsets. Row $i$, column $j$ counts transitions from strategy $i$ at turn $t$ to strategy $j$ at turn $t+1$.}\n\\label{fig:strategy_heatmap}\n\\end{figure*}\n\nFigure~\\ref{fig:strategy_heatmap} shows transition count matrices for three attack families.\nCrescendo conversations exhibit broad transition coverage across all nine strategy categories (1,818 total transitions), with the highest concentration in Role Assignment self-transitions (545); this reflects its gradual escalation design.\nFITD conversations show a markedly sparser pattern (541 transitions), with Role$\\to$Obfuscation (161) as the dominant transition, consistent with FITD's commitment-consistency exploitation~\\citep{cialdini2001influence}.\nDD conversations span 5 active source strategies (565 transitions), with Emotion$\\to$Obfuscation (129) as the dominant transition, aligning with DD's design of embedding harmful content within emotionally engaging contexts~\\citep{deceptivedelight2024}.\n\n\\section{Centered CKA Heatmaps}\n\\label{sec:cka_heatmap}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/cka_heatmap.pdf}\n\\caption{Centered CKA similarity~\\citep{kornblith2019cka} between encoder variants on IID and OOD data for DeBERTa-v3 and RoBERTa. Low off-diagonal values (vanilla vs.\\ adapted variants) confirm that continued pretraining substantially reshapes representations; the MLM vs.\\ 9-class block shows distinct geometries (CKA $\\leq$ 0.2 on RoBERTa OOD).}\n\\label{fig:cka_heatmap}\n\\end{figure}\n\n\\section{Embedding Space Visualization}\n\\label{app:tsne}\n\nFigure~\\ref{fig:tsne} visualizes mean-pooled \\texttt{[CLS]} embeddings via t-SNE for three representative variants (Vanilla, JB-MLM, 9-Class) on DD OOD and ActorAttack. Vanilla embeddings show dispersed jailbreak clusters with ambiguous decision boundaries, while domain-adapted variants (JB-MLM, 9-Class) produce tighter, more separable clusters. JB-MLM achieves the clearest bimodal separation on both evaluation sets, consistent with its superior detection performance.\n\n\\begin{figure}[ht]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/embedding_tsne.pdf}\n\\caption{t-SNE visualization of mean-pooled \\texttt{[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak).}\n\\label{fig:tsne}\n\\end{figure}\n\n\\section{Cross-LLM Validation}\n\\label{app:cross_llm}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Cross-LLM validation (F1, full conversation). All models are trained on Qwen3-8B data; conditions vary the source of jailbreak (JB) and benign (ben.) conversations at inference. Values are evaluated under a matched 50-sample subset protocol and differ from Table~\\ref{tab:evidence_hierarchy}, which uses the full evaluation set.}\n\\label{tab:cross_llm}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\n& \\multicolumn{3}{c}{\\textit{DD Full}} & \\multicolumn{3}{c}{\\textit{AA Full}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n\\textbf{Condition} & Van. & MLM & 9-cl. & Van. & MLM & 9-cl. \\\\\n\\midrule\nQwen JB + Qwen ben. & .312 & .914 & .997 & .258 & .893 & .972 \\\\\nLlama JB + Llama ben. & .261 & .282 & .433 & .261 & .368 & .321 \\\\\nLlama JB + Qwen ben. & .302 & .778$^{*}$ & 1.000 & .302 & .903 & .801 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{-2pt}\n{\\footnotesize $^{*}$High seed variance (std = 0.306): seed 456 outlier (F1 = 0.345); remaining two seeds achieve F1 $\\geq$ 0.97.}\n\\end{table}\n\nTable~\\ref{tab:cross_llm} shows three inference conditions. When both jailbreak and benign text come from Llama (row~2), all variants collapse (F1 = 0.26--0.43), but this conflates two sources of distribution shift: unfamiliar jailbreak patterns and unfamiliar benign text. Row~3 isolates jailbreak transferability by pairing Llama jailbreaks with the original Qwen benign distribution. Under this condition, 9-class recovers to F1 = 1.000 on DD and 0.801 on ActorAttack, and JB-MLM reaches 0.903 on ActorAttack. The contrast between rows~2 and~3 shows that the dominant failure mode in row~2 is benign distribution mismatch (false positives from unfamiliar benign text), not inability to recognize cross-LLM jailbreak patterns. Vanilla remains at 0.26--0.31 across all conditions, further confirming that encoders without DAPT lack OOD detection capability regardless of the LLM source. The residual degradation on ActorAttack (0.801 vs.\\ 0.972) reflects genuine cross-LLM variation in structurally complex attack patterns.\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Error decomposition for DD Full cross-LLM conditions (matched 50-sample subsets). TP rate is identical across benign conditions; the F1 collapse in the Llama-only condition (Table~\\ref{tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text.}\n\\label{tab:cross_llm_error}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n\\textbf{Metric} & Van. & MLM & 9-cl. \\\\\n\\midrule\nTP rate (Llama JB) & 0.0\\% & 68.0\\% & 100.0\\% \\\\\nFP rate (Llama ben.) & 29.3\\% & 88.0\\% & 90.0\\% \\\\\nFP rate (Qwen ben.) & 0.0\\% & 0.9\\% & 0.0\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:cross_llm_error} decomposes DD Full F1 into true positive and false positive rates. TP rates are identical regardless of the benign source: domain-adapted models detect Llama-generated jailbreaks at the same rate whether evaluated against Qwen or Llama benign text. The F1 collapse in the full Llama condition (Table~\\ref{tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text (FP rate: 88--90\\% on Llama vs.\\ 0--0.9\\% on Qwen for adapted variants). The model implicitly treats non-Qwen text style as a jailbreak indicator, a spurious correlation from single-LLM training data. This failure reflects a data diversity limitation, not a methodological one; mixed-LLM training (Table~\\ref{tab:mixed_llm}) partially addresses this confound.\n\n\\section{Mixed-LLM Training Results}\n\\label{app:mixed_llm}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Mixed-LLM training (250 Qwen + 250 Llama conversations, 3-seed mean$\\pm$std where available). ToxicChat evaluated on balanced set (408 conversations).}\n\\label{tab:mixed_llm}\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\n\\textbf{Variant} & Mixed & DD OOD & AA OOD & FITD OOD & ToxicChat \\\\\n\\midrule\n9-class & \\textbf{.996$\\pm$.006} & \\textbf{.818$\\pm$.096} & \\textbf{.504$\\pm$.107} & \\textbf{.997$\\pm$.005} & \\textbf{.550$\\pm$.052} \\\\\nMLM & .681$\\pm$.226 & .289$\\pm$.101 & .258$\\pm$.075 & .679$\\pm$.188 & .256$\\pm$.053 \\\\\nVanilla & .802$\\pm$.010 & .291$\\pm$.065 & .389$\\pm$.073 & .867$\\pm$.022 & .356$\\pm$.009 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:mixed_llm} reports detection performance when training on a mixed corpus of Qwen3-8B and Llama-3.1-8B conversations. On synthetic multi-turn data, classification-based DAPT (9-class) maintains the strongest DD OOD performance (0.818$\\pm$0.096), outperforming both vanilla (0.291$\\pm$0.065) and MLM (0.289$\\pm$0.101) by 53\\,pp. ActorAttack remains challenging under mixed-LLM conditions (9-class F1\\,=\\,0.504$\\pm$0.107), suggesting structurally complex attacks require larger or more diverse training data. ToxicChat performance shows no significant improvement over single-source training (0.550$\\pm$0.052 vs.\\ 0.596$\\pm$0.087; Section~\\ref{sec:human_data}), consistent with ToxicChat being zero-shot single-turn transfer rather than a standard OOD benchmark.\n\n\\paragraph{Cross-LLM training pilot.}\nTo test whether mixed-source training preserves Qwen OOD detection while enabling cross-LLM transfer, we train 9-class DAPT on a combined corpus: 175 Qwen jailbreak + 175 Qwen benign + 164 Llama-3.1-8B-Instruct jailbreak + 150 WildChat benign ($n$\\,=\\,664 total; 3-seed mean). Qwen OOD detection is fully preserved (DD/AA/FITD F1\\,=\\,1.000 across all families), and WildChat FPR remains 0\\%. On held-out Llama-generated conversations, Crescendo recall reaches 100\\% ($n$\\,=\\,40; 95\\% CI lower bound 91.2\\%). Llama DD, AA, and FITD each achieve 100\\% recall, but with only $n$\\,=\\,10 per family the 95\\% CI lower bound is 72.2\\%, limiting the strength of this evidence. These results are preliminary: they confirm that mixed-LLM training does not degrade existing detection and provide initial evidence of cross-LLM transfer, but definitive conclusions require larger Llama-generated test sets.\n\n\\section{Dataset Scale Validation}\n\\label{app:scale_validation}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Dataset composition validation (1{,}000 conversations from a different generation run with different topic seeds and attack composition than the 500-conversation training set; no sample overlap). IID results omitted due to train/test overlap (71\\% of original test set present in expanded data). Note: the expanded corpus uses different benign sources (LLM-synthetic vs.\\ WildChat-anchored) and excludes cipher-based attack variants present in the original; performance differences may reflect composition changes rather than scale effects.}\n\\label{tab:scale_validation}\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\n\\textbf{Corpus} & \\textbf{Variant} & DD OOD & AA OOD \\\\\n\\midrule\n\\multirow{3}{*}{Expanded (1{,}000)} & 9-class & .889$\\pm$.041 & .913$\\pm$.041 \\\\\n& MLM & .338$\\pm$.010 & .351$\\pm$.018 \\\\\n& Vanilla & .326$\\pm$.000 & .508$\\pm$.085 \\\\\n\\midrule\nResample (350) & 9-class & .887$\\pm$.086 & .883$\\pm$.091 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:scale_validation} compares the original 500-conversation training set with a separately generated 1{,}000-conversation corpus. The hierarchy 9-class $\\gg$ MLM $\\approx$ vanilla is preserved, but the 5--10\\,pp OOD degradation relative to the original (9-class DD: 0.889 vs.\\ 0.994) likely reflects corpus composition differences---the expanded set uses different benign generation sources and excludes cipher-based attack variants---rather than a scale effect.\n\nTo isolate scale from composition, we randomly sample 350 conversations from the expanded 1{,}000-conversation corpus and retrain 9-class DAPT (3 seeds). Resample-350 yields DD F1\\,=\\,0.887$\\pm$0.086 and AA F1\\,=\\,0.883$\\pm$0.091, matching the full expanded corpus (DD 0.889, AA 0.913) rather than the original 349-conversation training set (DD 0.994, AA 0.972). Reducing the expanded corpus to the original sample count does not recover original performance, confirming that dataset composition---not sample count---is the primary determinant of detection quality.\n\n\\section{RoBERTa-large DAPT Learning Rate Control}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{RoBERTa-large (355M) DAPT learning rate control on OOD Full (3-seed mean$\\pm$std). Reducing the learning rate worsens both DD and AA, ruling out over-adaptation as the cause of the regression in Table~\\ref{tab:cross_encoder}.}\n\\label{tab:roberta_large_lr}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Config} & DD Full & AA Full \\\\\n\\midrule\nVanilla (no DAPT) & .927$\\pm$.036 & 1.000$\\pm$.000 \\\\\n9-class, LR=$2 \\times 10^{-5}$ & .987$\\pm$.004 & .946$\\pm$.057 \\\\\n9-class, LR=$1 \\times 10^{-5}$ & .948$\\pm$.034 & .781$\\pm$.054 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nReducing the DAPT learning rate from $2 \\times 10^{-5}$ to $1 \\times 10^{-5}$ worsens both DD and AA performance, which rules out over-adaptation as the cause of the regression observed in Table~\\ref{tab:cross_encoder}. An MLM-only variant (without classification) produces the same pattern (AA Full = 0.874$\\pm$0.014); representation drift from continued pretraining, not classification-specific bias, is the underlying cause. Domain-adaptive fine-tuning narrows the representation space of a sufficiently large encoder and reduces its inherent OOD generalization ability.\n\n\\section{TOST Equivalence Sensitivity Analysis}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{TOST equivalence test sensitivity to margin $\\delta$ (scrambled vs.\\ 9-class). Rows grouped by seed count: $n$=3 (42, 123, 456), $n$=5 (+789, 1000), $n$=10 (+2024, 2025, 2026, 314, 628). $p$-values from two one-sided $t$-tests; $p < 0.05$ confirms equivalence within $\\pm\\delta$.}\n\\label{tab:tost_sensitivity}\n\\begin{tabular}{@{}llccc@{}}\n\\toprule\n\\textbf{Dataset} & $n$ & $\\delta$=5\\,pp & $\\delta$=3\\,pp & $\\delta$=2\\,pp \\\\\n\\midrule\nDD OOD & 3 & .006 \\checkmark & .016 \\checkmark & .035 \\checkmark \\\\\nDD OOD & 5 & ${<}.001$ \\checkmark & ${<}.001$ \\checkmark & .002 \\checkmark \\\\\nDD OOD & 10 & ${<}10^{-8}$ \\checkmark & ${<}10^{-8}$ \\checkmark & ${<}10^{-8}$ \\checkmark \\\\\n\\midrule\nFITD OOD & 10 & ${<}10^{-8}$ \\checkmark & ${<}10^{-8}$ \\checkmark & ${<}10^{-8}$ \\checkmark \\\\\n\\midrule\nActorAttack & 3 & .290 & .428 & .507 \\\\\nActorAttack & 5 & .080 & .200 & .310 \\\\\nActorAttack & 10 & .183 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nOn DD, TOST confirms scrambled $\\approx$ correct labels even at $\\delta$=2\\,pp ($p$=0.035 at $n$=3), demonstrating that label correctness is not a detection factor; the DD equivalence conclusion is robust to both margin choice and seed count ($p < 10^{-8}$ at $n$=10). On FITD, equivalence is similarly confirmed ($p < 10^{-8}$, $d \\approx 0$ at $n$=10). On ActorAttack, extending from $n$=5 to $n$=10 reveals a moderate effect: Cohen's $d$ increases from 0.09 to 0.44 (medium), with 9-class outperforming scrambled by 3\\,pp (0.979 vs.\\ 0.949). TOST remains inconclusive ($p$\\,=\\,0.183 at $\\delta$=5\\,pp), and variance is driven by seed 314 (scrambled F1\\,=\\,0.833). Label correctness is thus attack-complexity-dependent: negligible on template-based families (DD, FITD) but moderate on structurally complex attacks (ActorAttack).\n\n\\section{Partition Robustness and Topic Failure Analysis}\n\\label{app:random_partition}\n\\label{app:topic_failure}\n\n\\subsection{Random Binary Partition Robustness}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{OOD F1 for 10 random binary partitions of the 9 strategy labels (each partition randomly assigns strategies to group A or B). All partitions use identical Stage-1 DAPT and Stage-2 GRU training; only the binary label mapping differs. Seed 42 (3 runs).}\n\\label{tab:random_partition}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Partition} & \\textbf{Group A} & \\textbf{IID} & \\textbf{DD OOD} & \\textbf{AA OOD} \\\\\n\\midrule\n0 & \\{0,2,4,5,7\\} & 1.000 & 1.000 & 1.000 \\\\\n1 & \\{1,3,5,6,8\\} & 1.000 & 1.000 & 1.000 \\\\\n2 & \\{0,1,3,7,8\\} & 1.000 & 1.000 & 1.000 \\\\\n3 & \\{2,4,5,6,7\\} & 1.000 & 1.000 & 1.000 \\\\\n4 & \\{0,1,2,6,8\\} & 1.000 & 1.000 & 1.000 \\\\\n5 & \\{0,3,4,7,8\\} & 1.000 & 1.000 & 1.000 \\\\\n6 & \\{1,2,3,5,6\\} & 1.000 & 1.000 & 1.000 \\\\\n7 & \\{1,4,6,7\\}   & 1.000 & 1.000 & 0.636 \\\\\n8 & \\{0,2,3,4,8\\} & 1.000 & 1.000 & 1.000 \\\\\n9 & \\{0,1,5,7,8\\} & 1.000 & 1.000 & 1.000 \\\\\n\\midrule\nMean$\\pm$Std &  & 1.000$\\pm$.000 & 1.000$\\pm$.000 & 0.964$\\pm$.109 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAll 10 partitions achieve perfect IID and DD OOD detection regardless of how the 9 strategy labels are split into two groups. On ActorAttack, 9/10 partitions achieve F1\\,=\\,1.000; the sole outlier (partition~7, AA F1\\,=\\,0.636) uses a 4/5 split that isolates a specific strategy cluster. The near-universal success confirms that domain-relevant binary classification---not specific label semantics---drives cross-attack generalization on template attacks. The AA outlier is consistent with the complexity-dependent boundary observed in Section~\\ref{sec:decomposition}: structurally complex attacks are sensitive to specific partition choices while template attacks are not.\n\n\\subsection{Topic Classification Failure Analysis}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Per-turn Fisher ratio (mean across all dimensions) and silhouette score between jailbreak and benign turn embeddings (\\texttt{[CLS]} representations). Higher values indicate greater per-turn separability.}\n\\label{tab:topic_failure}\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\n\\textbf{Model} & \\textbf{Dataset} & \\textbf{Fisher (mean)} & \\textbf{Silhouette} \\\\\n\\midrule\nVanilla  & IID test & 0.118 & 0.034 \\\\\nVanilla  & DD OOD  & 0.401 & 0.411 \\\\\nVanilla  & AA OOD  & 0.408 & 0.330 \\\\\n\\midrule\n9-class DAPT & IID test & 0.073 & 0.048 \\\\\n9-class DAPT & DD OOD  & 0.200 & 0.079 \\\\\n9-class DAPT & AA OOD  & 0.832 & 0.301 \\\\\n\\midrule\nTopic DAPT & IID test & 0.108 & 0.076 \\\\\nTopic DAPT & DD OOD  & 0.653 & 0.274 \\\\\nTopic DAPT & AA OOD  & 0.311 & 0.141 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTopic DAPT achieves \\emph{higher} per-turn Fisher separability than 9-class DAPT on IID and DD (0.653 vs.\\ 0.200 on DD) yet produces far worse conversation-level detection (F1\\,=\\,0.541 vs.\\ 0.994). This rules out per-turn separability destruction as the failure mechanism. The 9-class model instead greatly expands the embedding space (centroid $L_2$ distance 7.5--27.6 vs.\\ 0.9--1.1 for vanilla) while distributing both classes broadly, creating richer representation geometry that the downstream GRU exploits over the turn sequence. Topic classification teaches features that separate turns individually but are temporally inconsistent across a conversation---high per-turn separability does not guarantee that the GRU can learn a stable conversation-level decision boundary.\n\n\\section{Reproducibility Details}\n\\label{sec:reproducibility}\n\n\\paragraph{Stage-1 training.}\nAll variants use DeBERTa-v3-base (184M parameters) with learning rate $2 \\times 10^{-5}$, AdamW optimizer ($\\beta_1$=0.9, $\\beta_2$=0.999, weight decay 0.01), linear warmup over the first 10\\% of steps, batch size 16, and 4 epochs. MLM variants use 15\\% random token masking. Training takes approximately 30 minutes per variant on a single NVIDIA A100 (40GB).\n\n\\paragraph{Stage-2 training.}\nThe BiGRU has hidden dimension 256, 2 layers, and dropout 0.3 (bidirectional, so output dimension 512). The MLP classifier has layers $512 \\to 256 \\to 2$ with ReLU activation. Training uses learning rate $1 \\times 10^{-3}$, Adam optimizer, batch size 32, and 20 epochs with early stopping (patience 5) on validation F1. Stage-2 training completes in under 5 minutes per variant.\n\n\\paragraph{Data generation.}\nJailbreak conversations are generated using Qwen3-8B with attack-specific prompt templates. Crescendo conversations follow a 5--8 turn gradual escalation structure. FITD conversations use a 2--3 turn commitment-consistency structure. Deceptive Delight conversations embed harmful content within emotionally engaging 3--5 turn sequences. Benign conversations are generated with topic-anchored prompts across five domains (technology, health, finance, education, general) with matched turn counts.\n\n\\paragraph{Strategy annotation.}\nEach user turn is annotated by Qwen3-8B using a structured prompt that provides definitions and two examples for each of the nine strategy categories. The prompt instructs the model to output a single category label. We plan to release all generation and annotation prompts, the full dataset, and training code upon acceptance.\n\n\\paragraph{Adversarial paraphrasing.}\nThe paraphrased test set is generated by instructing Qwen3-8B to rephrase each user turn while preserving the communicative intent. The resulting paraphrases have mean BERTScore 0.92 and mean lexical overlap 0.20 with the originals. These metrics confirm substantial surface-level variation.\n\n\\paragraph{Cross-checkpoint variance.}\nTo disentangle Stage-1 from Stage-2 variance, we evaluate three independently trained 9-class DAPT checkpoints (seeds 42, 123, 456) with a fixed downstream BiGRU seed (42). Results: IID F1\\,=\\,1.000$\\pm$0.000, DD OOD\\,=\\,0.926$\\pm$0.026, AA OOD\\,=\\,0.935$\\pm$0.013. Stage-1 training is stable (OOD std\\,$\\leq$\\,2.6\\,pp), confirming that the variance reported in the main paper is not dominated by Stage-1 initialization.\n\n\\section{End-to-End Fine-Tuning Upper Bound}\n\\label{app:e2e}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Frozen probing vs.\\ end-to-end (E2E) fine-tuning for DeBERTa-v3-base 9-class (3-seed mean$\\pm$std). E2E unfreezes the Stage-1 encoder during Stage-2 training. Frozen values use main-experiment checkpoints (matching Tables~\\ref{tab:main_results}--\\ref{tab:evidence_hierarchy}); Table~\\ref{tab:frozen_verify} uses plan\\_002 checkpoints, yielding higher frozen accuracy (DD\\,=\\,.997, AA\\,=\\,.972) and a narrower E2E gap ($\\leq$2.5\\,pp).}\n\\label{tab:e2e}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n\\textbf{Config} & IID & DD OOD & AA OOD \\\\\n\\midrule\nFrozen probing & 1.000$\\pm$.000 & .994$\\pm$.005 & .939$\\pm$.047 \\\\\nE2E fine-tuning & 1.000$\\pm$.000 & 1.000$\\pm$.000 & \\textbf{.997$\\pm$.005} \\\\\n\\midrule\n$\\Delta$ & .000 & +.006 & +.058 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nEnd-to-end fine-tuning unfreezes the Stage-1 encoder during Stage-2 BiGRU training, allowing gradient flow through the full pipeline. On IID and OOD DD, the two configurations are indistinguishable; on structurally complex ActorAttack, E2E recovers +5.8\\,pp (error rate 6.1\\%\\,$\\rightarrow$\\,0.3\\%, a substantial relative reduction). Frozen probing captures the vast majority of discriminative information from Stage-1 DAPT; the remaining gap reflects downstream optimization constraints rather than missing representational capacity.\n\n\\section{Real-World False Positive Rate}\n\\label{app:wildchat_fpr}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{False positive rate (\\%) on 226 WildChat benign multi-turn conversations (GPT-3.5 users, avg 7.4 turns per conversation). All models trained on synthetic Qwen3-8B data (1{,}000-conversation scale). 3-seed mean$\\pm$std.}\n\\label{tab:wildchat_fpr}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Variant} & Seed 42 & Seed 123 & Seed 456 & Mean$\\pm$Std \\\\\n\\midrule\n9-class & 66.8 & 61.1 & 76.5 & 68.1$\\pm$6.4 \\\\\nMLM & 36.7 & 64.6 & 32.3 & 44.5$\\pm$14.3 \\\\\nVanilla & 47.3 & 42.5 & 54.4 & 48.1$\\pm$4.9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:wildchat_fpr} evaluates false positive rates on 226 WildChat benign multi-turn conversations from real GPT-3.5 users (avg 7.4 turns). All variants produce FPR far exceeding deployable thresholds: 9-class is worst at 68.1\\%, followed by vanilla (48.1\\%) and MLM (44.5\\%). Domain adaptation \\emph{increases} FPR relative to vanilla (+20\\,pp for 9-class), indicating that continued pretraining amplifies dependence on the training benign distribution. This is consistent with the cross-LLM false positive spike (Table~\\ref{tab:cross_llm_error}): models trained on synthetic Qwen3-8B benign text implicitly treat unfamiliar conversational styles as jailbreak indicators. High MLM seed variance (std\\,=\\,14.3\\%) suggests that unsupervised pretraining is particularly unstable under benign distribution shift. Deployment requires per-domain benign calibration or mixed-source benign training data.\n\n\\paragraph{Post-hoc calibration.}\nROC AUC\\,=\\,0.700$\\pm$0.054 indicates insufficient discrimination between WildChat benign and jailbreak conversations at the representation level. At TPR$\\geq$95\\%, the optimal threshold still yields FPR\\,=\\,62.7\\%---far above deployable levels. Temperature scaling cannot improve this trade-off, as ROC curves are invariant to monotonic score transforms. The AUC ceiling reflects genuine domain shift: WildChat benign and jailbreak representations overlap substantially, and no post-hoc calibration can overcome this; in-domain benign adaptation is required.\n\n\\section{Benign Distribution Diversification Pilot}\n\\label{app:benign_mixed}\n\nTo test whether the high WildChat FPR (Section~\\ref{app:wildchat_fpr}) reflects a fundamental limitation or a remediable distribution mismatch, we conduct a pilot retraining experiment mixing 150 WildChat benign conversations into the training set. We filter 27 of 226 WildChat conversations containing jailbreak-indicative patterns, use 150 for training and 49 for held-out evaluation. Both training and evaluation WildChat samples are drawn from the same source (GPT-3.5 users); this is therefore an IID evaluation of benign coverage, not an OOD generalization test.\n\n\\paragraph{Class ratio shift.} Adding 150 WildChat benign to the original 350-conversation training set (175 jailbreak + 175 synthetic benign) shifts the benign-to-jailbreak ratio from 50:50 to approximately 65:35 (325 benign vs.\\ 175 jailbreak). To control for this confound, we downsample WildChat benign to 88 conversations (175 jailbreak : 88 WildChat benign + 87 original benign $\\approx$ 50:50, $n$\\,=\\,350). This balanced variant achieves identical WildChat FPR (0\\%, same CI) while maintaining OOD detection (AA F1\\,=\\,0.991, FITD/DD F1\\,=\\,1.000), confirming that class ratio is not the driver of FPR reduction.\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Effect of benign distribution diversification on WildChat FPR and OOD jailbreak detection. Mixed training adds 150 WildChat benign to the original 350 synthetic conversations. 3-seed mean (seeds 42, 123, 456). WildChat evaluation is IID (same source as training WildChat).}\n\\label{tab:benign_mixed}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Metric} & \\textbf{Original} & \\textbf{Mixed} \\\\\n\\midrule\nWildChat FPR (\\%) & 68.1 & \\textbf{0.0} \\\\\nIID F1 & 1.000 & 1.000 \\\\\nDD OOD F1 & 1.000 & 1.000 \\\\\nAA OOD F1 & $\\sim$0.960 & 0.956 \\\\\nFITD OOD F1 & 1.000 & 1.000 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nMixed benign training reduces WildChat FPR from 68.1\\% to 0\\% (exact binomial 95\\% CI upper bound: 6.1\\%, $n$\\,=\\,49) with no degradation in cross-attack detection (ActorAttack F1\\,=\\,0.956, within 0.4\\,pp of original). This confirms the diagnosis from Section~\\ref{app:wildchat_fpr}: when representative benign data is available, the high FPR is remediable without sacrificing detection performance. The evaluation set is small ($n$\\,=\\,49) and IID with respect to the training WildChat distribution, so the result should be interpreted as evidence that benign distribution mismatch---not model capacity---is the bottleneck; validation on larger and independently sourced OOD benign corpora is needed to establish deployment-ready FPR bounds.\n\n\\paragraph{Benign adaptation curve.}\n\\label{para:benign_curve}\nTo quantify how many OOD benign samples suffice, we vary the number of WildChat benign conversations added to training ($N \\in \\{0, 5, 10, 25, 50, 100, 150\\}$) and retrain the full pipeline (9-class DAPT + BiGRU) for each $N$ (seed 42).\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Benign adaptation curve: WildChat FPR and OOD detection F1 as a function of $N$ WildChat benign conversations added to the 350-conversation training set. Seed 42 (single-seed curve); $N$\\,=\\,10 confirmed across 3 seeds (FPR\\,=\\,0\\% for all). WildChat evaluation $n$\\,=\\,49.}\n\\label{tab:benign_curve}\n\\begin{tabular}{@{}rcccccc@{}}\n\\toprule\n$N$ & Train & FPR (\\%) & DD F1 & AA F1 & FITD F1 \\\\\n\\midrule\n0 & 350 & 65.3 & 1.000 & 0.981 & 1.000 \\\\\n5 & 355 & 16.3 & 0.990 & 0.981 & 1.000 \\\\\n10 & 360 & \\textbf{0.0} & 1.000 & 1.000 & 1.000 \\\\\n25 & 375 & 0.0 & 1.000 & 0.953 & 1.000 \\\\\n50 & 400 & 0.0 & 1.000 & 1.000 & 1.000 \\\\\n100 & 450 & 0.0 & 1.000 & 1.000 & 1.000 \\\\\n150 & 500 & 0.0 & 1.000 & 0.981 & 1.000 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nFPR drops sharply from 65.3\\% ($N$\\,=\\,0) to 16.3\\% ($N$\\,=\\,5) to 0\\% ($N$\\,=\\,10), remaining at 0\\% for all $N \\geq 10$. OOD detection is preserved throughout: all F1 scores $\\geq$\\,0.953 (minor ActorAttack variation at $N$\\,=\\,25 is within seed noise). This demonstrates that benign distribution mismatch is addressable with minimal annotation effort---10 conversations from the target domain suffice to eliminate false positives entirely (95\\% CI upper bound: 6.1\\% at $n$\\,=\\,49). IID F1 remains 1.000 for all $N$. Multi-seed validation at $N$\\,=\\,10 (seeds 42, 123, 456) confirms robustness: FPR\\,=\\,0.0\\% for all seeds, DD/FITD F1\\,=\\,1.000$\\pm$0.000, AA F1\\,=\\,0.981$\\pm$0.016.\n\n\\paragraph{Second benign source: OASST2.}\n\\label{app:oasst2}\n\nTo test whether benign-side shift generalizes beyond WildChat, we evaluate on 200 benign multi-turn conversations from OpenAssistant OASST2~\\citep{kopf2023openassistant}---a crowdsourced dataset of real human conversations, distinct from WildChat (GPT-3.5 user logs) in both authorship and topic distribution.\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{OASST2 benign adaptation curve: FPR on 200 OASST2 benign conversations and OOD jailbreak detection F1 as a function of $N$ OASST2 conversations added to training. $N$\\,=\\,25 confirmed across 3 seeds (mean$\\pm$std); other rows seed 42. Compare WildChat (Table~\\ref{tab:benign_curve}): FPR reaches 0\\% at $N$\\,=\\,10.}\n\\label{tab:oasst2_curve}\n\\begin{tabular}{@{}rccccc@{}}\n\\toprule\n$N$ & FPR (\\%) & IID F1 & DD F1 & AA F1 & FITD F1 \\\\\n\\midrule\n0 & 57.5 & -- & -- & -- & -- \\\\\n10 & 20.5 & 1.000 & 1.000 & 1.000 & 1.000 \\\\\n25 & \\textbf{1.0$\\pm$0.5} & 1.000 & 1.000 & 0.953$\\pm$.037 & 1.000 \\\\\n50 & \\textbf{0.5} & 1.000 & 1.000 & 0.990 & 1.000 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nBaseline FPR on OASST2 (57.5\\%) is comparable to WildChat (68.1\\%), confirming that benign-side shift is not source-specific but a general consequence of synthetic-only benign training. The adaptation curve follows the same pattern---monotonic FPR reduction with preserved OOD detection---but requires more samples: 25 conversations reduce FPR to 1.0\\%$\\pm$0.5\\% across 3 seeds (vs.\\ 0\\% at $N$\\,=\\,10 for WildChat), and 50 conversations reach 0.5\\%. The slower convergence likely reflects greater distributional distance between crowdsourced OASST2 conversations and the synthetic training distribution compared to WildChat's GPT-3.5 user logs.\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Benign-side adaptation summary across two independent sources. Both achieve deployment-level FPR ($\\leq$1.5\\%) with no degradation in OOD jailbreak detection. 3 seeds each.}\n\\label{tab:benign_summary}\n\\begin{tabular}{@{}lrcrc@{}}\n\\toprule\nSource & $N$ & FPR (mean$\\pm$std) & Seeds & Eval $n$ \\\\\n\\midrule\nWildChat & 10 & 0.0\\%$\\pm$0.0\\% & 3 & 49 \\\\\nOASST2 & 25 & 1.0\\%$\\pm$0.5\\% & 3 & 200 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{BERT-base Proxy Baseline}\n\\label{app:bert_proxy}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{BERT-base-uncased (110M) frozen probing without DAPT, matching DeepContext's encoder family~\\citep{deepcontext2026}. 3-seed mean$\\pm$std. DeBERTa-v3 results from Table~\\ref{tab:cross_encoder} for comparison.}\n\\label{tab:bert_proxy}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n\\textbf{Encoder} & IID & DD OOD & AA OOD \\\\\n\\midrule\nBERT-base (110M), no DAPT & .996$\\pm$.006 & .318$\\pm$.031 & .275$\\pm$.027 \\\\\nDeBERTa-v3 (184M), no DAPT & 1.000$\\pm$.000 & .312$\\pm$.043 & .258$\\pm$.000 \\\\\nDeBERTa-v3 (184M), 9-class & 1.000$\\pm$.000 & .994$\\pm$.005 & .939$\\pm$.047 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:bert_proxy} compares BERT-base-uncased (110M parameters, matching DeepContext's encoder) against DeBERTa-v3-base (184M), both without domain-adaptive pretraining. The two vanilla encoders achieve comparable OOD performance (DD: 0.318 vs.\\ 0.312; AA: 0.275 vs.\\ 0.258), despite a 1.7$\\times$ parameter difference and different pretraining procedures. Both collapse on OOD evaluation while 9-class DAPT recovers to 0.994 (DD) and 0.939 (AA). This confirms that cross-attack generalization is driven by domain adaptation, not encoder architecture or capacity at this scale.\n\n\\section{Confidence Calibration}\n\\label{app:calibration}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Expected calibration error (ECE, 10 bins) for 9-class and vanilla on IID and OOD evaluation (3-seed mean$\\pm$std). Lower is better.}\n\\label{tab:calibration}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n\\textbf{Variant} & IID & DD OOD & AA OOD \\\\\n\\midrule\n9-class & $\\approx$0.000 & 0.143$\\pm$0.053 & 0.116$\\pm$0.053 \\\\\nVanilla & 0.009$\\pm$0.007 & 0.669$\\pm$0.004 & 0.504$\\pm$0.066 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe 9-class model achieves substantially lower ECE than vanilla on OOD data (0.12--0.14 vs.\\ 0.50--0.67), indicating that domain adaptation improves not only discriminative performance but also confidence calibration. IID calibration is near-perfect for both variants. The residual OOD ECE (0.12--0.14) suggests that temperature scaling could further improve deployment reliability.\n\n\\subsection{ToxicChat False Positive Confidence}\n\\label{app:confidence}\n\nOn ToxicChat, 9-class false positives are overwhelmingly high-confidence: 70.2\\% of majority-vote FPs exceed $p > 0.9$ (median 0.999), compared to 58.8\\% for JB-MLM (median 0.933). Per-seed analysis is more extreme---94--98\\% of single-model 9-class FPs are high-confidence (median 1.0), with the borderline fraction (25\\%) in majority vote arising from cross-seed disagreement rather than individual model uncertainty. This confirms that the 9-class ToxicChat FPR reflects systematic feature misalignment---classification DAPT shifts benign text into the jailbreak region with high confidence---rather than boundary ambiguity.\n\n\\section{Frozen Probing Verification}\n\\label{app:frozen_verify}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Frozen probing vs.\\ end-to-end (E2E) fine-tuning (3-seed mean$\\pm$std). 9-class: plan\\_002 checkpoints; MLM: plan\\_017\\_mlm\\_control (matched training). Frozen probing trains only BiGRU+MLP on frozen DAPT embeddings.}\n\\label{tab:frozen_verify}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Config} & IID & DD OOD & AA OOD & FITD OOD \\\\\n\\midrule\nFrozen 9-class & 1.000$\\pm$.000 & .997$\\pm$.005 & .972$\\pm$.026 & 1.000$\\pm$.000 \\\\\nFrozen MLM & .982$\\pm$.016 & .993$\\pm$.009 & .941$\\pm$.037 & .987$\\pm$.009 \\\\\nE2E 9-class & 1.000$\\pm$.000 & 1.000$\\pm$.000 & .997$\\pm$.005 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:frozen_verify} compares frozen probing across DAPT objectives and against end-to-end fine-tuning. On easy OOD (DD, FITD), frozen MLM and frozen 9-class representations perform comparably ($\\Delta \\leq 1.3$\\,pp). On hard OOD (ActorAttack), 9-class retains a modest advantage (0.972 vs.\\ 0.941, $\\Delta$\\,=\\,3.1\\,pp) with lower variance ($\\sigma$\\,=\\,0.026 vs.\\ 0.037). Both far exceed vanilla encoders ($\\leq$0.318; Table~\\ref{tab:bert_proxy}). The E2E advantage over frozen 9-class is $\\leq$2.5\\,pp, confirming that Stage-1 representation quality is the primary source of OOD generalization.\n\nA striking asymmetry emerges when comparing frozen probing to the full pipeline (Table~\\ref{tab:evidence_hierarchy}): MLM frozen representations \\emph{outperform} the full MLM pipeline on AA OOD (0.941 vs.\\ 0.893), while 9-class frozen exactly matches its full pipeline (0.972 vs.\\ 0.972). This indicates that MLM's cross-seed instability originates in Stage-2 BiGRU training rather than Stage-1 DAPT---the MLM encoder produces adequate representations that are then degraded by unstable downstream optimization. Classification DAPT, by contrast, produces representations that remain robust through Stage-2 training, explaining its consistently lower variance (Table~\\ref{tab:evidence_hierarchy}).\n\nThis two-level structure---DAPT vs.\\ no-DAPT producing a representation quality leap (+70\\,pp), classification vs.\\ MLM DAPT producing a stability difference---is consistent with two further observations: $\\lambda$=0 matches $\\lambda > 0$ during E2E fine-tuning (Table~\\ref{tab:lambda}), and mean pooling matches BiGRU under E2E (Table~\\ref{tab:temporal}). Once DAPT representations are strong, downstream configuration details have minimal impact.\n\n\\paragraph{Representation geometry analysis.}\n\\label{app:representation}\n\nTo characterize the mechanism behind classification DAPT's robustness, we analyze Stage-1 representations across all seven DeBERTa-v3-base variants (seed 42). We extract \\texttt{[CLS]} embeddings from 150 test conversations (50 IID + 50 DD OOD + 50 AA OOD) and compute three metrics.\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Representation geometry and class separability across Stage-1 variants. PR: participation ratio (effective dimensionality of the embedding space). Fisher ratio: inter-class distance$^2$ / sum of intra-class variances. Weight $\\Delta$: L2 distance from pretrained weights (relative to pretrained norm).}\n\\label{tab:representation}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n\\textbf{Variant} & \\textbf{PR} & \\textbf{Fisher} & \\textbf{Wt.\\ $\\Delta$ (\\%)} \\\\\n\\midrule\nVanilla & 31.9 & $<$0.001 & 0.000 \\\\\nWiki-MLM & 25.0 & $<$0.001 & 0.221 \\\\\nJB-MLM & 24.6 & $<$0.001 & 0.256 \\\\\nTopic & 14.5 & 0.012 & 0.371 \\\\\nScrambled & 7.8 & 2.60 & 0.283 \\\\\n9-class & 9.4 & 4.47 & 0.303 \\\\\nBinary & 3.7 & 19.7 & 0.239 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nClassification variants compress representations into 2--9 effective dimensions (vs.\\ 25--32 for MLM/vanilla) while increasing Fisher ratio by 3--5 orders of magnitude. Weight distances from pretrained are comparable across all variants ($\\sim$0.2--0.4\\%), indicating that the mechanism is representational restructuring rather than parameter-space regularization. Scrambled labels produce similar compression (PR\\,=\\,7.8, Fisher\\,=\\,2.6), confirming that the classification objective structure---not label semantics---drives discriminative compression.\n\n\\paragraph{Layer-wise localization.}\n\\label{app:layerwise}\n\nTo determine \\emph{where} discriminative compression occurs, we compute PR and Fisher ratio at every DeBERTa-v3-base layer (0--12) for four variants (9-class, scrambled, JB-MLM, vanilla) using the same 236-sample evaluation set (seed 42).\n\n\\begin{figure}[ht]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig_layerwise_representation.pdf}\n\\caption{Layer-wise representation analysis. (a)~Participation ratio: classification variants (9-class, scrambled) show sharp dimensional collapse at layers 9--10 (PR\\,$\\approx$\\,1.5--2.9) while vanilla/JB-MLM maintain high dimensionality (PR\\,$\\approx$\\,7--10). (b)~Fisher ratio (log scale): class separability diverges from layer 8, with 9-class peaking at 10.9 (layer 10) vs.\\ vanilla 0.73 (15$\\times$).}\n\\label{fig:layerwise}\n\\end{figure}\n\nLayers 0--7 show no systematic divergence across variants (Fisher\\,$<$\\,2.1 for all; PR tracks similar oscillation patterns), consistent with \\citet{maennel2020random}'s finding that early layers learn label-independent features. From layer 8 onward, classification-supervised variants diverge sharply: 9-class Fisher rises from 3.2 (layer 8) to 10.9 (layer 10, peak), while vanilla remains below 1.5 throughout. Simultaneously, 9-class PR drops from 3.4 to 1.5 at layer 10---a 6.6$\\times$ compression relative to vanilla (PR\\,=\\,9.7). JB-MLM tracks vanilla across all layers (Fisher\\,$\\leq$\\,3.3, PR\\,$\\geq$\\,1.4), confirming that MLM does not induce discriminative restructuring. Scrambled labels exhibit the same late-layer pattern (Fisher peaks at 7.9, layer 12; PR drops to 1.5, layer 12), reinforcing that any classification signal---regardless of label semantics---triggers late-layer compression.\n\n\\paragraph{Discriminative subspace probe.}\n\\label{app:discriminative_probe}\n\nTo test whether the compressed subspace is \\emph{sufficient} for OOD detection, we project layer-10 \\texttt{[CLS]} representations onto the top-$k$ SVD components and train a logistic regression probe (3 seeds, sklearn default). Controls: random $k$-dimensional projections (10 random bases, mean reported) and vanilla/MLM models under identical projection.\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Discriminative subspace probe: OOD F1 when projecting layer-10 representations onto top-$k$ SVD components vs.\\ random $k$-dimensional projections. 9-class top-3 achieves perfect AA detection with 3/768 dimensions; MLM fails even with all 768.}\n\\label{tab:discriminative_probe}\n\\begin{tabular}{@{}llccc@{}}\n\\toprule\n\\textbf{Model} & \\textbf{Projection} & DD & AA & FITD \\\\\n\\midrule\n9-class & top-3 & 1.000 & \\textbf{1.000} & 1.000 \\\\\n9-class & top-5 & 1.000 & 1.000 & 1.000 \\\\\n9-class & random-3 & 1.000 & 0.928$\\pm$.129 & 1.000 \\\\\n9-class & random-5 & 1.000 & 0.952 & 1.000 \\\\\n9-class & full-768 & 1.000 & 1.000 & 1.000 \\\\\n\\midrule\nscrambled & top-3 & 1.000 & 0.962 & 1.000 \\\\\nscrambled & random-3 & 0.981 & 0.766 & 0.987 \\\\\n\\midrule\nJB-MLM & top-3 & 1.000 & 0.618 & 1.000 \\\\\nJB-MLM & full-768 & 1.000 & 0.636 & 1.000 \\\\\nJB-MLM & random-5 & 0.685 & 0.584 & 0.744 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThree findings establish a link between compression and generalization (Table~\\ref{tab:discriminative_probe}). First, 9-class top-3 achieves perfect ActorAttack detection (F1\\,=\\,1.000) using only 3 of 768 dimensions---all discriminative information resides in the compressed subspace. Second, random 3-dimensional projections degrade to 0.928 on AA, confirming that the specific SVD directions matter. Third, JB-MLM reaches only 0.636 on AA even with all 768 dimensions, demonstrating that without classification-induced compression, the representation lacks the structure needed for cross-attack generalization. DD and FITD are near-ceiling for all models, making ActorAttack the critical test.\nTo verify SVD directions are not influenced by OOD test data, we repeated the analysis computing SVD only on IID training data ($n$\\,=\\,350). IID-only top-3 performance equaled or exceeded all-data SVD across all OOD conditions (top-3 subspace cosine similarity\\,=\\,0.974), confirming the discriminative subspace is identified from training data alone.\n\n\\section{Temporal Aggregation Comparison}\n\\label{app:temporal}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Temporal aggregation comparison: mean pooling vs.\\ BiGRU under frozen and end-to-end (E2E) settings (3-seed mean$\\pm$std). Plan\\_002 9-class checkpoints.}\n\\label{tab:temporal}\n\\begin{tabular}{@{}llccc@{}}\n\\toprule\n\\textbf{Setting} & \\textbf{Aggregator} & DD OOD & AA OOD \\\\\n\\midrule\n\\multirow{2}{*}{Frozen} & BiGRU & .997$\\pm$.005 & .972$\\pm$.026 \\\\\n& Mean pooling & .991$\\pm$.013 & .962$\\pm$.015 \\\\\n\\midrule\n\\multirow{2}{*}{E2E} & BiGRU & 1.000$\\pm$.000 & .997$\\pm$.005 \\\\\n& Mean pooling & 1.000$\\pm$.000 & 1.000$\\pm$.000 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:temporal} compares BiGRU and mean pooling under both frozen and E2E settings. Under frozen probing (the main paper's pipeline), BiGRU provides a marginal advantage on ActorAttack (+1.0\\,pp) with overlapping confidence intervals, consistent with the main text finding that temporal order is not a core detection factor ($|\\Delta| < 1$\\,pp under turn shuffling; Section~\\ref{sec:decomposition}). Under E2E fine-tuning, the difference vanishes entirely: mean pooling saturates all benchmarks at F1\\,=\\,1.000. The choice of frozen BiGRU in the main pipeline reflects a design trade-off: it enables representation-level analysis (CKA, t-SNE) that E2E would confound, while sacrificing $\\leq$1\\,pp on the hardest OOD set.\n\n\\section{Length Stratification Analysis}\n\\label{app:length}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Jailbreak recall by conversation length bin on OOD evaluation (3-seed majority vote). Benign conversations span 12--20 total turns (6--10 user turns); jailbreak conversations span 3--10 total turns. Bins refer to total (user+assistant) turns.}\n\\label{tab:length}\n\\begin{tabular}{@{}llccc@{}}\n\\toprule\n\\textbf{Dataset} & \\textbf{Variant} & 1--3 turns & 4--6 turns & 7--10 turns \\\\\n\\midrule\n\\multirow{2}{*}{DD OOD} & 9-class & --- & 100.0\\% & 99.4\\% \\\\\n& Vanilla & --- & $\\leq$2.6\\% & $\\leq$1.7\\% \\\\\n\\midrule\n\\multirow{2}{*}{AA OOD} & 9-class & 93.3\\% & 95.6\\% & 100.0\\% \\\\\n& Vanilla & 0.0\\% & $\\leq$2.6\\% & 0.0\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:length} stratifies jailbreak recall by conversation length. The 9-class model shows no systematic degradation: ActorAttack recall increases monotonically from 93.3\\% (1--3 turns) to 100\\% (7--10 turns), and DD recall is near-perfect across all bins.\n\n\\paragraph{Length confound.}\nWhile total turn counts differ between benign (12--20) and jailbreak (3--10) conversations, the model processes only user turns. User-turn distributions overlap substantially: IID jailbreak 8.7$\\pm$2.1 vs.\\ benign 7.9$\\pm$1.5, DD 8.1$\\pm$1.5 vs.\\ 7.9$\\pm$1.5, FITD 7.8$\\pm$1.4 vs.\\ 7.9$\\pm$1.5; only ActorAttack shows partial separation (5.1$\\pm$1.7 vs.\\ 7.9$\\pm$1.5). A turn-count-only logistic regression trained on user-turn count achieves F1\\,=\\,0.54 (IID), 0.56 (DD), 0.42 (FITD), 0.00 (AA), and 0.00 (ToxicChat)---near chance on overlapping distributions and zero on ActorAttack despite partial separation---confirming that detection is content-driven rather than length-driven.\n\n\\paragraph{Direct empirical verification.}\n\\label{app:length_independence}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Turn-count independence verification (9-class, plan\\_002 checkpoints, 3 seeds). Part~A: FPR on test benign truncated to $K$ user turns (all seeds FPR\\,=\\,0). Part~B: WildChat FPR by turn-count bucket (mean$\\pm$std). Part~C: jailbreak detection (F1) after padding with benign turns to 15+ total turns (mean$\\pm$std where available).}\n\\label{tab:length_independence}\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\n& \\textbf{Condition} & \\textbf{FPR / F1} & $n$ \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Part A: Benign truncation (test set)}} \\\\[2pt]\n& Original (12--20 total; 6--10 user turns) & FPR = .000 & 38 \\\\\n& Truncated $K$=3 & FPR = .000 & 38 \\\\\n& Truncated $K$=5 & FPR = .000 & 38 \\\\\n& Truncated $K$=8 & FPR = .000 & 38 \\\\\n& Truncated $K$=10$^{*}$ & FPR = .000 & 38 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Part B: WildChat FPR by turn count}} \\\\[2pt]\n& Short (3--10 turns) & FPR = .770$\\pm$.105 & 196 \\\\\n& Medium (11--15 turns) & FPR = .942$\\pm$.054 & 23 \\\\\n& Long (16+ turns) & FPR = .857$\\pm$.117 & 7 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Part C: Jailbreak padding to 15+ turns}} \\\\[2pt]\n& DD original & F1 = .996 & 80 \\\\\n& DD padded & F1 = .971 ($\\Delta$=$-$2.5\\,pp) & 80 \\\\\n& AA original & F1 = .963 & 80 \\\\\n& AA padded & F1 = .383$\\pm$.261 ($\\Delta$=$-$57.9\\,pp) & 80 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{-2pt}\n{\\footnotesize $^{*}$$K$=10 did not truncate any conversation (test benign max $\\sim$8 user turns).}\n\\end{table}\n\nTruncating benign conversations to match jailbreak turn counts (Part~A) produces zero false positives across all truncation levels and all 3 seeds, directly confirming that the model does not use conversation length as a detection shortcut. $K$=3 and $K$=5 are the effective control conditions where all 38 conversations were truncated; $K$=10 exceeds the maximum test benign length and serves as a no-op control.\n\nWildChat FPR by turn count (Part~B) provides complementary evidence: short conversations (3--10 turns, $n$=196) have \\emph{lower} FPR than medium-length ones (11--15 turns, $n$=23), inconsistent with a ``short\\,=\\,jailbreak'' shortcut. Medium and long buckets have limited sample sizes and should be interpreted as directional evidence only.\n\nPadding jailbreak conversations with benign turns (Part~C) reveals an asymmetry: DD detection is resilient ($\\Delta$=$-$2.5\\,pp), but ActorAttack collapses ($\\Delta$=$-$57.9\\,pp). Padding experiments append benign turns \\emph{after} the complete attack sequence; in practice, adversaries would not dilute their own successful attacks. The collapse nonetheless exposes BiGRU temporal aggregation as vulnerable to attention dilution on subtle attack signals, a limitation discussed in Section~\\ref{sec:limitations}.\n\n\\section{Efficiency}\n\\label{app:efficiency}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Inference efficiency comparison on 100 conversations (50 IID + 50 DD OOD), same GPU (RTX PRO 6000). All methods measured under identical conditions.$^{\\dagger}$}\n\\label{tab:efficiency}\n\\begin{tabular}{@{}lrcr@{}}\n\\toprule\n\\textbf{Method} & Latency (ms) & Params & VRAM \\\\\n\\midrule\nDeBERTa+BiGRU (ours) & 13.1$\\pm$1.6 & 186.7M & 868\\,MB \\\\\nQwen3-8B 3-shot & 318.5$\\pm$26.8 & 8.2B & 16.1\\,GB \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{-2pt}\n{\\footnotesize $^{\\dagger}$LLM inference speed varies significantly across GPU generations; same-hardware comparison ensures a fair speedup estimate.}\n\\end{table}\n\nTable~\\ref{tab:efficiency} compares inference cost under identical conditions. DeBERTa+BiGRU processes a conversation in 13.1\\,ms, 24.3$\\times$ faster than Qwen3-8B 3-shot (318.5\\,ms) while achieving substantially higher OOD detection (DD\\,=\\,0.566, AA\\,=\\,0.652 for Qwen3-8B; Table~\\ref{tab:llm_judge}). The encoder pipeline requires 868\\,MB GPU memory (18.5$\\times$ less than the LLM), enabling deployment on consumer hardware.\n\n\\subsection{Data Efficiency}\n\\label{app:data_efficiency}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Data efficiency of 9-class DAPT (3-seed mean$\\pm$std, sample std with $n{-}1$ divisor) and vanilla baseline (seed 42 only). $N$ = total training conversations (balanced jailbreak/benign).}\n\\label{tab:data_efficiency}\n\\begin{tabular}{@{}rlccc@{}}\n\\toprule\n$N$ & \\textbf{Variant} & IID & DD OOD & AA OOD \\\\\n\\midrule\n50 & 9-class & 1.000$\\pm$.000 & 1.000$\\pm$.000 & .969$\\pm$.037 \\\\\n125 & 9-class & 1.000$\\pm$.000 & 1.000$\\pm$.000 & .975$\\pm$.019 \\\\\n250 & 9-class & 1.000$\\pm$.000 & 1.000$\\pm$.000 & .975$\\pm$.035 \\\\\n350 & 9-class & 1.000$\\pm$.000 & .978$\\pm$.030 & .972$\\pm$.033 \\\\\n\\midrule\n50 & Vanilla & .646 & .529 & .234 \\\\\n125 & Vanilla & .532 & .244 & .244 \\\\\n250 & Vanilla & .987 & .365 & .502 \\\\\n350 & Vanilla & 1.000 & .360 & .489 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:data_efficiency} shows that 9-class DAPT reaches near-saturation performance with as few as 50 conversations (25 jailbreak + 25 benign): AA OOD F1\\,=\\,0.969$\\pm$0.037, already surpassing vanilla at full training size ($N$=350, AA\\,=\\,0.489) by 48\\,pp using only 14\\% of the data. DD OOD is perfectly solved at all training sizes. Vanilla performance is noisy across $N$ (single seed); the consistent pattern is that vanilla never exceeds DD\\,=\\,0.53 or AA\\,=\\,0.50 regardless of training size, while 9-class maintains AA\\,$\\geq$\\,0.969 at all $N$. Seed 456 is systematically lower across all $N$ values, contributing most of the cross-seed variance; this is consistent with the initialization sensitivity observed in the main results.\n\n\\section{Auxiliary Loss Weight Ablation}\n\\label{app:lambda}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Effect of auxiliary persuasion loss weight $\\lambda$ during Stage-2 E2E fine-tuning (seed 42). Stage-1 DAPT encoder is identical across all rows; only the Stage-2 loss $L = L_{\\text{binary}} + \\lambda \\cdot L_{\\text{strategy}}$ varies.}\n\\label{tab:lambda}\n\\begin{tabular}{@{}rcccc@{}}\n\\toprule\n$\\lambda$ & IID & DD OOD & FITD OOD & AA OOD \\\\\n\\midrule\n0 & 1.000 & 1.000 & 1.000 & 1.000 \\\\\n0.1 & 1.000 & 1.000 & 1.000 & .990 \\\\\n0.5 & 1.000 & 1.000 & 1.000 & .981 \\\\\n1.0 & 1.000 & 1.000 & 1.000 & .981 \\\\\n2.0 & 1.000 & 1.000 & 1.000 & .944 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nDuring Stage-2 E2E fine-tuning, the auxiliary persuasion loss weight $\\lambda$ has limited impact on detection (Table~\\ref{tab:lambda}): the maximum AA OOD gap across all $\\lambda$ values is 5.6\\,pp (single seed), comparable to the cross-seed variance ($\\sim$6\\,pp) observed in the main results. All configurations converge to perfect validation F1 within epoch 1, indicating that DAPT representations already encode sufficient discriminative features for downstream classification (Section~\\ref{app:frozen_verify}). The value of persuasion strategy classification lies in Stage-1 DAPT---where it shapes encoder representations that transfer across attack families---not in the Stage-2 auxiliary loss.\n\n\\section{OOD Strategy Prediction Analysis}\n\\label{app:strategy_pred}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{OOD strategy prediction accuracy (jailbreak turns only) and detection rate for the 9-class model (3-seed mean). $r$: Pearson correlation between per-strategy prediction accuracy and per-strategy detection rate.}\n\\label{tab:strategy_pred}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Dataset} & Strat.\\ Acc.\\ & Det.\\ Rate & Missed (per seed) & $r$ \\\\\n\\midrule\nDD OOD & 50.1\\% & 99.6\\% & 0 / 0 / 1 & $\\sim$0.45 \\\\\nAA OOD & 50.1\\% & 96.2\\% & 1 / 7 / 1 & $\\sim$0.24 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:strategy_pred} reports OOD strategy prediction accuracy alongside detection rates. Strategy prediction accuracy is substantially above random (50.1\\% vs.\\ 11.1\\% chance for 9 classes) and positively correlated with detection success ($r \\approx 0.24$--0.45), but strategy prediction is not the detection mechanism: frozen probing with a randomly initialized strategy head (Appendix~\\ref{app:frozen_verify}) achieves 97.2\\% AA OOD detection, and $\\lambda$=0 (no strategy loss) matches or exceeds $\\lambda > 0$ during E2E fine-tuning (Table~\\ref{tab:lambda}). The classification objective shapes representations during Stage-1 DAPT training; at inference, strategy predictions are a byproduct of those representations, not a driver of detection.\n\n\\section{Cross-Seed Ensemble and Seed-Level F1 Comparisons}\n\\label{app:ensemble}\n\\label{app:seed_level}\n\n\\begin{table}[ht]\n\\centering\n\\footnotesize\n\\caption{Majority vote ensemble (3 seeds) vs.\\ single-seed mean on OOD Full. ``Fixed'' = samples corrected by ensemble; ``Broke'' = samples corrupted by ensemble.}\n\\label{tab:ensemble}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Variant} & DD single$\\to$ens. & AA single$\\to$ens. & Fixed & Broke \\\\\n\\midrule\n9-class & .997$\\to$\\textbf{1.000} & .972$\\to$\\textbf{.981} & 5 & 0 \\\\\nMLM & .914$\\to$\\textbf{1.000} & .897$\\to$\\textbf{.953} & 26 & 0 \\\\\nVanilla & .258$\\to$.258 & .258$\\to$.258 & 0 & 0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:ensemble} shows that majority vote never corrupts correct predictions (Broke\\,=\\,0 for all variants). MLM benefits most from ensembling (+8.6\\,pp DD, +6.0\\,pp AA), because its per-seed errors are complementary---each seed fails on different samples, and the majority corrects these. This further exposes MLM's seed instability: its individual seeds are unreliable, but their errors are uncorrelated. By contrast, 9-class seeds are already highly consistent (std\\,$\\leq$\\,0.026), leaving minimal room for ensemble improvement (+0.3--0.9\\,pp). Vanilla errors are systematic (all seeds fail on the same OOD samples), so ensembling provides no benefit.\n\nTo verify that cross-seed pooling does not mask inconsistent pairwise orderings, Table~\\ref{tab:seed_level} reports per-seed F1 for all variants on OOD DD and ActorAttack at full conversation length. The relative ordering of variants is consistent across all three seeds: classification-supervised variants (9-class, binary, scrambled) dominate MLM and vanilla at every seed, and no seed reverses the hierarchy established by the pooled analysis. Table~\\ref{tab:tost_5seed} extends the comparison between 9-class and scrambled to 5 seeds for TOST analysis.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-seed OOD F1 (Full) for all variants across three attack families (seeds 42, 123, 456). Cohen's $d$ for 9-class vs.\\ scrambled: DD\\,=\\,$-$0.003 (negligible), AA\\,=\\,0.587 (medium; CI crosses 0 at $n$=3).}\n\\label{tab:seed_level}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{@{}lccccccccc@{}}\n\\toprule\n& \\multicolumn{3}{c}{DD} & \\multicolumn{3}{c}{ActorAttack} & \\multicolumn{3}{c}{FITD} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7} \\cmidrule(lr){8-10}\n\\textbf{Variant} & s42 & s123 & s456 & s42 & s123 & s456 & s42 & s123 & s456 \\\\\n\\midrule\n9-class   & 1.000 & 1.000 & .990 & .990 & .935 & .990 & 1.000 & 1.000 & 1.000 \\\\\nBinary    & 1.000 & 1.000 & 1.000 & .981 & .990 & 1.000 & 1.000 & 1.000 & 1.000 \\\\\nScrambled & .990 & 1.000 & 1.000 & .891 & .990 & .971 & 1.000 & 1.000 & 1.000 \\\\\nMLM+cls   & 1.000 & .990 & .751 & .971 & .925 & .784 & .961 & .432 & .729 \\\\\nTopic     & .727 & .252 & .644 & .686 & .431 & .759 & .990 & .774 & .909 \\\\\nVanilla   & .284 & .305 & .348 & .258 & .258 & .258 & .871 & .855 & .919 \\\\\n\\bottomrule\n\\end{tabular}}\n\\vspace{-2pt}\n{\\footnotesize Benign recall\\,=\\,1.000 for all DAPT variants across all seeds and OOD conditions (IID benign); OOD F1 variation is driven entirely by attack recall. Classification-supervised variants (9-class, binary, scrambled) achieve perfect or near-perfect F1 on FITD, confirming its non-discriminative nature.}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\caption{5-seed OOD F1 (Full) for 9-class vs.\\ scrambled (seeds 42, 123, 456, 789, 1000). At $n$\\,=\\,10 (5 additional seeds; see text), TOST ($\\delta$=5\\,pp): DD $p < 10^{-8}$ \\checkmark; FITD $p < 10^{-8}$ \\checkmark; AA $p$\\,=\\,0.183 (non-equivalent). Cohen's $d$ at $n$\\,=\\,10: DD\\,$\\approx$\\,0; AA\\,=\\,0.44 (medium).}\n\\label{tab:tost_5seed}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{@{}llcccccc@{}}\n\\toprule\n\\textbf{Attack} & \\textbf{Variant} & s42 & s123 & s456 & s789 & s1000 & Mean$\\pm$SD \\\\\n\\midrule\nDD & 9-class   & 1.000 & 1.000 & .990 & 1.000 & 1.000 & .998$\\pm$.004 \\\\\nDD & Scrambled  & .990 & 1.000 & 1.000 & 1.000 & 1.000 & .998$\\pm$.004 \\\\\n\\midrule\nAA & 9-class   & .990 & .935 & .990 & .972 & .972 & .972$\\pm$.021 \\\\\nAA & Scrambled  & .891 & .990 & .971 & .990 & .990 & .966$\\pm$.040 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Cross-hardware replication.}\nTo assess hardware sensitivity, we independently retrained 9-class and JB-MLM from scratch on a different GPU (RTX PRO 6000 Blackwell, 5 seeds each). Table~\\ref{tab:cross_hw} reports OOD F1 on all three attack families. IID and FITD results are perfectly consistent (9-class: 5/5 seeds = 1.000 on both). On ActorAttack, 9-class outperforms MLM directionally ($\\Delta$\\,=\\,+1.7\\,pp) but the difference is not statistically significant (paired $t$-test $p$\\,=\\,0.246), reflecting the higher variance inherent to this structurally complex attack family; this is consistent with the complexity-dependent boundary reported in Section~\\ref{sec:decomposition}.\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-hardware 5-seed replication (RTX PRO 6000 Blackwell). OOD F1 (Full) for 9-class vs.\\ JB-MLM across three attack families.}\n\\label{tab:cross_hw}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{@{}llcccccc@{}}\n\\toprule\n\\textbf{Attack} & \\textbf{Variant} & s42 & s123 & s456 & s789 & s1000 & Mean$\\pm$SD \\\\\n\\midrule\nIID & 9-class & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\nIID & JB-MLM  & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\n\\midrule\nDD & 9-class  & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\nDD & JB-MLM   & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\n\\midrule\nFITD & 9-class & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\nFITD & JB-MLM  & 1.000 & 1.000 & 1.000 & 1.000 & 1.000 & 1.000$\\pm$.000 \\\\\n\\midrule\nAA & 9-class   & .990 & .943 & .972 & .972 & .972 & .970$\\pm$.016 \\\\\nAA & JB-MLM    & .857 & .751 & .906 & .916 & .943 & .875$\\pm$.074 \\\\\n\\bottomrule\n\\end{tabular}}\n\\vspace{-2pt}\n{\\footnotesize AA difference is directionally consistent ($\\Delta$\\,=\\,+9.5\\,pp mean) but reflects high MLM variance; paired $t$-test $p$\\,=\\,0.246. Template attacks (DD, FITD) show perfect agreement across all seeds and both variants.}\n\\end{table}\n\n\\subsection{Single-Turn Truncation Analysis}\n\\label{app:truncated}\n\nTo isolate whether the ToxicChat evidence-hierarchy reversal (Section~\\ref{sec:discussion}) reflects multi-turn structural dependence, we truncate each synthetic test conversation to its last user turn and re-evaluate both 9-class and JB-MLM models (3-seed mean).\n\n\\begin{table}[h]\n\\centering\n\\caption{Full-conversation vs.\\ last-turn-only F1 (3-seed mean). Truncation widens the 9-class advantage, ruling out multi-turn structure as the driver of the ToxicChat reversal.}\n\\label{tab:truncated}\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\n\\textbf{Dataset} & \\textbf{Mode} & \\textbf{9-class} & \\textbf{JB-MLM} \\\\\n\\midrule\nIID & Full & 1.000 & .983 \\\\\nIID & Last turn & .991 & .894 \\\\\n\\midrule\nDD OOD & Full & .997 & .993 \\\\\nDD OOD & Last turn & .942 & .924 \\\\\n\\midrule\nAA OOD & Full & .972 & .941 \\\\\nAA OOD & Last turn & .978 & .927 \\\\\n\\midrule\nFITD OOD & Full & 1.000 & .987 \\\\\nFITD OOD & Last turn & 1.000 & .927 \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{-2pt}\n{\\footnotesize Mean $\\Delta$ (9-class $-$ MLM): Full +1.6\\,pp, Last turn +6.0\\,pp. 9-class advantage widens under truncation across all families, indicating the reversal on ToxicChat is driven by distributional differences between synthetic and human text, not by multi-turn structural dependence.}\n\\end{table}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 581,
+        "oldLines": 6,
+        "newStart": 581,
+        "newLines": 31,
+        "lines": [
+          " \\end{tabular}",
+          " \\end{table}",
+          " ",
+          "+\\subsection{Estimated Dual-OOD Detection Performance}",
+          "+\\label{app:dual_ood}",
+          "+",
+          "+The OOD detection F1 reported in the main paper evaluates attack-side OOD with IID benign examples (FPR\\,=\\,0), providing an upper bound. To estimate performance when \\emph{both} attack and benign inputs are OOD, we combine per-seed attack recall (from OOD evaluation) with per-seed benign FPR (from WildChat/OASST2 experiments), assuming independence between attack detection and benign false positives. For each seed, we compute binary detection F1 from the resulting TP, FP, FN counts on the OOD test composition (80 jailbreak + 38 benign).",
+          "+",
+          "+\\begin{table}[ht]",
+          "+\\centering",
+          "+\\footnotesize",
+          "+\\caption{Estimated dual-OOD binary detection F1 under different benign conditions (3-seed mean$\\pm$std). Attack recall held fixed from OOD evaluation; only benign FPR varies. IID row corresponds to the benign-IID upper bound (FPR\\,=\\,0).}",
+          "+\\label{tab:dual_ood}",
+          "+\\begin{tabular}{@{}lcc@{}}",
+          "+\\toprule",
+          "+\\textbf{Benign condition} & DD OOD F1 & AA OOD F1 \\\\",
+          "+\\midrule",
+          "+IID (FPR\\,=\\,0) & .994$\\pm$.009 & .981$\\pm$.019 \\\\",
+          "+WildChat, no adapt & .855$\\pm$.020 & .842$\\pm$.012 \\\\",
+          "+OASST2, no adapt & .874$\\pm$.009 & .861$\\pm$.018 \\\\",
+          "+WildChat + 10-shot & .994$\\pm$.009 & .981$\\pm$.019 \\\\",
+          "+OASST2 + 25-shot & .991$\\pm$.009 & .978$\\pm$.018 \\\\",
+          "+\\bottomrule",
+          "+\\end{tabular}",
+          "+\\end{table}",
+          "+",
+          "+Without benign adaptation, dual-OOD F1 drops by 12--14\\,pp (DD: $.994 \\to .855$; AA: $.981 \\to .842$), driven entirely by false positives on OOD benign inputs. After few-shot adaptation---10 WildChat or 25 OASST2 conversations---dual-OOD F1 recovers to within 0.3\\,pp of the IID upper bound, confirming that the lightweight adaptation procedure (Section~\\ref{sec:benign}) effectively closes the benign distribution gap without compromising attack-side performance.",
+          "+",
+          " \\section{BERT-base Proxy Baseline}",
+          " \\label{app:bert_proxy}",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 127_
+
+已完成。在 `appendix.tex` 的 `\label{app:oasst2}` section 末尾（`tab:benign_summary` 之后）插入了 `\subsection{Estimated Dual-OOD Detection Performance}`（`\label{tab:dual_ood}`），包含：
+
+| Benign condition | DD OOD F1 | AA OOD F1 |
+|---|---|---|
+| IID (FPR=0) | .994±.009 | .981±.019 |
+| WildChat, no adapt | .855±.020 | .842±.012 |
+| OASST2, no adapt | .874±.009 | .861±.018 |
+| WildChat + 10-shot | .994±.009 | .981±.019 |
+| OASST2 + 25-shot | .991±.009 | .978±.018 |
+
+核心结论：无 adaptation 时 dual-OOD F1 下降 12-14pp（由 benign FP 驱动），few-shot adaptation 后恢复到 IID upper bound 的 0.3pp 以内。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "uuid": "c4b07deb-1cbd-4155-bd66-b16f40e284c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C8LECe9Y8ymYckP8skPFUz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 49718,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 934
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 128_
+
+已完成。在 `appendix.tex` 的 `\label{app:oasst2}` section 末尾（`tab:benign_summary` 之后）插入了 `\subsection{Estimated Dual-OOD Detection Performance}`（`\label{tab:dual_ood}`），包含：
+
+| Benign condition | DD OOD F1 | AA OOD F1 |
+|---|---|---|
+| IID (FPR=0) | .994±.009 | .981±.019 |
+| WildChat, no adapt | .855±.020 | .842±.012 |
+| OASST2, no adapt | .874±.009 | .861±.018 |
+| WildChat + 10-shot | .994±.009 | .981±.019 |
+| OASST2 + 25-shot | .991±.009 | .978±.018 |
+
+核心结论：无 adaptation 时 dual-OOD F1 下降 12-14pp（由 benign FP 驱动），few-shot adaptation 后恢复到 IID upper bound 的 0.3pp 以内。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 837535,
+  "duration_api_ms": 835288,
+  "num_turns": 10,
+  "stop_reason": "end_turn",
+  "session_id": "bb7e9be3-fc76-4770-9e67-226fb3753ce3",
+  "total_cost_usd": 2.6202785000000004,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 38811,
+    "cache_read_input_tokens": 317237,
+    "output_tokens": 8779,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 38811,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 304,
+        "cache_read_input_tokens": 49718,
+        "cache_creation_input_tokens": 934,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 934
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1886,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001991,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 47,
+      "outputTokens": 38881,
+      "cacheReadInputTokens": 1775305,
+      "cacheCreationInputTokens": 121340,
+      "webSearchRequests": 0,
+      "costUSD": 2.6182875000000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "926f08eb-3b0c-4e83-a384-84f1dba527d1"
+}
+```
+
+</details>
+
+---

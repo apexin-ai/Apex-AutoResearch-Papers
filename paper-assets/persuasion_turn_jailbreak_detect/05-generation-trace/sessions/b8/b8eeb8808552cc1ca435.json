@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8eeb8808552cc1ca435",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp23 aa error analysis",
+  "task_key": "worker_code_exp23-aa-error-analysis_20260520T141908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp23-aa-error-analysis_20260520T141908_result.json",
+    "occurrence": 1,
+    "bytes": 1378,
+    "sha256": "fd083107d1ed073ea0c11831b9744e5d7c155ab57380ee530c0f2cf25e251b00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出：`results/exp23_aa_error_analysis.json` + `scripts/exp23_aa_error_analysis.py`\n\n## 结果摘要\n\n**整体表现极强，错误稀疏且不一致：**\n\n| Metric | Value |\n|--------|-------|\n| Majority vote accuracy | 98.3% |\n| Majority vote FN / FP | 2 / 0 |\n| Total error samples (any seed) | 7 / 118 |\n| Consistent errors (all 3 seeds) | **0** |\n\n**FN/FP 比例**：所有错误均为 FN（漏检 jailbreak），零 FP。模型从不误判 benign。\n\n**Seed 差异**：seed 123 明显弱于其他两个（7 FN vs 各 1 FN），是主要噪声源。\n\n**Error pattern：**\n- **Turn 数**：错误集中在短对话（3-6 turns），7-8 turn 无错误。错误样本平均 10,480 chars vs 正确样本 12,788 chars——短对话更难检测。\n- **Topic**：data privacy (2/8)、digital privacy (2/8)、identity verification (2/8)、social engineering (1/8)，其余 6 topic 零错误。\n- **k-turn 诊断**：最难的两个样本（idx=20, idx=33）在所有 k-turn 截断下都几乎无法检测（0-1/3 votes）；其余 5 个样本在 k3/k5 时大多已能正确检测（2/3 votes），说明问题出在 seed 123 的模型不稳定性而非系统性盲区。\n- **Cross-variant**：vanilla 模型对这 7 个样本全部检测失败（0/3 votes），9-class 在 5/7 样本上仍有 2/3 majority 正确——DAPT 的优势明显。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp23-aa-error-analysis.md"
+}

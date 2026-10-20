@@ -1,0 +1,50 @@
+{
+  "exp_id": "plan_017_mlm_perturbation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:16:45.107Z",
+    "updated_at": "2026-05-18T06:17:26.327Z",
+    "hypothesis": "MLM domain-adapted model will maintain robustness under adversarial perturbation (0pp degradation), matching persuasion treatment and confirming domain adaptation (not classification supervision) drives perturbation robustness",
+    "parent": "plan_017_mlm_control",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python src/plan_017_perturbed_eval.py",
+      "server": "westd-33183",
+      "data_path": "results/plan_004_perturbed_test.jsonl",
+      "data_count": 76,
+      "model_name": "plan_017_mlm_deberta+bigru",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/plan_017_mlm/best + checkpoints/plan_017_mlm/gru/best.pt",
+      "eval_data": "plan_004_perturbed_test.jsonl (76 samples, 38 jailbreak + 38 benign)"
+    },
+    "checkpoint_path": "checkpoints/plan_017_mlm/best + checkpoints/plan_017_mlm/gru/best.pt",
+    "log_path": "results/plan_017_mlm_perturbation.json",
+    "conclusion": "negative",
+    "metrics": {
+      "clean_full_f1": 1,
+      "clean_k1_f1": 0.9605,
+      "clean_k2_f1": 0.9737,
+      "clean_k3_f1": 0.9868,
+      "clean_k5_f1": 1,
+      "perturbed_full_f1": 0.9737,
+      "perturbed_k1_f1": 0.8683,
+      "perturbed_k2_f1": 0.9341,
+      "perturbed_k3_f1": 0.9473,
+      "perturbed_k5_f1": 0.9605,
+      "delta_full": -0.0263,
+      "delta_k1": -0.0922,
+      "delta_k2": -0.0396,
+      "delta_k3": -0.0395,
+      "delta_k5": -0.0395,
+      "ref_treatment_delta_full": 0,
+      "ref_baseline_delta_full": -0.1176
+    },
+    "notes": "Hypothesis falsified: MLM model shows moderate perturbation degradation (full F1: 1.0→0.9737, delta=-0.0263), NOT matching treatment's 0pp drop. MLM robustness is intermediate: better than vanilla baseline (-0.1176) but clearly worse than persuasion treatment (0.0). At k=1, MLM drops -0.0922 vs treatment -0.0256. Domain adaptation alone provides partial but insufficient perturbation robustness — classification supervision on persuasion-augmented data is necessary for full robustness.",
+    "completed_at": "2026-05-18T06:17:26.327Z"
+  },
+  "timestamp": "2026-05-18T06:17:26.374124+00:00",
+  "trigger": "update_registry"
+}

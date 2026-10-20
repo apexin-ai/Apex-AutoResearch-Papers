@@ -1,0 +1,73 @@
+{
+  "exp_id": "exp33_strategy_prediction_plan002",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:12:05.342Z",
+    "updated_at": "2026-05-20T20:20:06.196Z",
+    "hypothesis": "Plan_002 checkpoints (主管道, AA OOD ~97%) 的策略预测-检测关联将比 exp32 (exp16 mixed-LLM checkpoints) 更强，因为 plan_002 在 AA OOD 上检测率更高，正确检测样本的策略预测准确率与检测概率的相关性也应更显著。",
+    "parent": "exp32_strategy_prediction",
+    "spec": {
+      "command": "python scripts/exp33_strategy_prediction_plan002.py",
+      "server": "westd-33183",
+      "data_path": "data/generated/deceptive_delight_all.jsonl + data/actorattack_ood/actorattack_all.jsonl + data/plan_002_splits/test.jsonl",
+      "data_count": 198,
+      "model_name": "plan_002_9class_deberta+bigru",
+      "seed": "42,123,456",
+      "checkpoint_source": "plan_002 9-class DAPT checkpoints at /root/autodl-tmp/.../checkpoints_archive/plan_002*/",
+      "eval_data": "DD OOD 80 jb + AA OOD 80 jb + test benign 38"
+    },
+    "metrics": {
+      "dd_ood": {
+        "strategy_acc": "0.4924±0.0246",
+        "jb_strategy_acc": "0.2569±0.0357",
+        "macro_f1": "0.1965±0.0142",
+        "strategy_acc_detected": "0.2575±0.0352",
+        "strategy_acc_missed": "0.1000±0.0000",
+        "missed_per_seed": [
+          0,
+          0,
+          1
+        ],
+        "detection_rate_rapport_building": 0.9958,
+        "per_class_f1_top": {
+          "none": 0.8666,
+          "rapport_building": 0.524,
+          "gradual_escalation": 0.2619
+        }
+      },
+      "aa_ood": {
+        "strategy_acc": "0.7112±0.0086",
+        "jb_strategy_acc": "0.5012±0.0159",
+        "macro_f1": "0.1888±0.0012",
+        "strategy_acc_detected": "0.5091±0.0239",
+        "strategy_acc_missed": "0.2833±0.0360",
+        "missed_per_seed": [
+          1,
+          7,
+          1
+        ],
+        "detection_rate_authority_appeal": 0.9617,
+        "detection_rate_emotional_manipulation": 0.9524,
+        "detection_rate_gradual_escalation": 1,
+        "detection_rate_logical_reframing": 0.9333,
+        "detection_rate_rapport_building": 1
+      },
+      "vs_exp32": {
+        "dd_ood_missed_improvement": "31/5/26 → 0/0/1",
+        "aa_ood_jb_strategy_acc_improvement": "0.068 → 0.501 (+43pp)",
+        "aa_ood_detection_rate_improvement": "authority_appeal 0.28→0.96, emotional_manipulation 0.52→0.95"
+      },
+      "note": "plan_002 checkpoints vastly outperform exp16 mixed-LLM checkpoints in both detection and strategy prediction. Near-perfect detection (DD 0/0/1 misses, AA 1/7/1) enables cleaner strategy-detection analysis."
+    },
+    "checkpoint_path": "/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints_archive/plan_002*/",
+    "log_path": "results/exp33_strategy_prediction_plan002.json",
+    "conclusion": "success",
+    "completed_at": "2026-05-20T20:20:06.196Z"
+  },
+  "timestamp": "2026-05-20T20:20:06.369760+00:00",
+  "trigger": "update_registry"
+}

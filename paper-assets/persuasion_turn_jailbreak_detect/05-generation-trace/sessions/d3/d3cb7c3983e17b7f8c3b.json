@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3cb7c3983e17b7f8c3b",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "verify v4 balanced sanity",
+  "task_key": "worker_verify_v4-balanced-sanity_20260517T160313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_v4-balanced-sanity_20260517T160313_result.json",
+    "occurrence": 1,
+    "bytes": 973,
+    "sha256": "62c7fb8a7ff00ba48920b0ad42b5b90866d33c071a846a42a33fa14aa5636a06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| Metric | Score | Target | Result |\n|--------|-------|--------|--------|\n| TF-IDF F1 | 0.924 ± 0.062 | ≤ 0.75 | **FAIL** |\n| DeBERTa F1 | 0.789 ± 0.068 | 0.70–0.85 | **PASS** |\n\n**OVERALL: FAIL — need iteration**\n\nDeBERTa 语义层面通过 (0.789)，说明对话内容的语义区分度在合理范围。但 TF-IDF 严重超标 (0.924)，说明 iter2 benign 数据存在明显的词汇/风格 shortcut：\n\n- **Benign 特征词泄露**: `detection`, `training`, `systems`, `model`, `drug`, `handle` — 这些是 topic-level shortcut，benign 对话在讨论技术/专业话题时用了大量领域术语\n- **Jailbreak 特征词**: `just`, `hey`, `him`, `trying`, `ve`, `re` — 口语化、非正式语气\n\n结论：v4b iter2 的 benign 数据话题分布与 crescendo jailbreak 差异过大，TF-IDF 能轻松区分。需要进一步迭代，让 benign 对话的话题/词汇分布更接近 jailbreak 的口语化风格。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-v4-balanced-sanity.md"
+}

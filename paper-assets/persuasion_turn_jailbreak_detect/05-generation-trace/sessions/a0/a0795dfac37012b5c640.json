@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0795dfac37012b5c640",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code shuffle encoder verify",
+  "task_key": "worker_code_shuffle-encoder-verify_20260520T092537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_shuffle-encoder-verify_20260520T092537_result.json",
+    "occurrence": 1,
+    "bytes": 1013,
+    "sha256": "5a2a3f9917b026367f944a5e6085e04c932776285c0112aed89410636fd54a9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论明确：\n\n## Shuffle 实验使用的是 RoBERTa-large（exp15），不是 DeBERTa-v3-base\n\n**证据：**\n\n1. **脚本文档字符串**（`turn_shuffle_ablation.py` 第1行）：`\"Uses exp15 (RoBERTa-large) checkpoints\"`\n\n2. **Checkpoint 路径**：\n   - 9-class: `checkpoints/exp15_roberta_large_9class_seed{42,123,456}/`\n   - vanilla: `checkpoints/exp15_roberta_large_vanilla_seed{42,123,456}/`\n\n3. **Encoder 来源**：`ROBERTA_LARGE = \"/root/autodl-tmp/roberta-large-local\"`，tokenizer 和 encoder 均从此路径加载（hidden_size=1024）\n\n4. **数值匹配**：结果中 9-class DD OOD original 均值 ≈ 0.987、vanilla DD OOD original 均值 ≈ 0.927，精确匹配 exp15 RoBERTa-large baseline，与 exp1 DeBERTa-v3 的 0.997 / 0.312 不符\n\n**Reviewer 的怀疑是对的**——论文如果声称 shuffle ablation 用的是 DeBERTa-v3（exp1），那就是报错了。实际用的是 exp15 RoBERTa-large 的 checkpoint。需要在论文中修正这一点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-shuffle-encoder-verify.md"
+}

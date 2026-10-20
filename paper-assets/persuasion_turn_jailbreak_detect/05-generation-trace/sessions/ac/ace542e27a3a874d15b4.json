@@ -1,0 +1,859 @@
+{
+  "schema_version": "1.0",
+  "id": "ace542e27a3a874d15b4",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "paper writing introduction d019",
+  "task_key": "worker_paper_writing_introduction_d019_20260518T061518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_d019_20260518T061518.log",
+    "occurrence": 1,
+    "bytes": 72316,
+    "sha256": "48e67bd40172d770bab4e94f34b375119ed63083b2d38664b41a82e716a97919"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 4,
+      "tool_result": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+                "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__bootstrap_provenance",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__overleaf_init",
+                  "mcp__agent-ml-research__overleaf_pull",
+                  "mcp__agent-ml-research__overleaf_push",
+                  "mcp__agent-ml-research__overleaf_status",
+                  "mcp__agent-ml-research__overleaf_sync",
+                  "mcp__agent-ml-research__paper_agent_post_to_director",
+                  "mcp__agent-ml-research__paper_agent_request_review",
+                  "mcp__agent-ml-research__paper_compile_and_check",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "16c0905d-87c9-4ad6-a0aa-728556ace761",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779100200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "52c31dda-9298-468c-9fc1-8844864c5fce",
+                "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the current introduction.tex to understand the existing structure before rewriting."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591",
+            "uuid": "80ced87c-b24a-4c3b-896c-0172f6c45b48",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M3eSUdbfnuME5vAyS6oco6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14868,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14868
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NQVoJH9dEQA3qnbUaTBPT5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591",
+            "uuid": "26167ca8-3c42-4531-aad1-ecb717a43610",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M3eSUdbfnuME5vAyS6oco6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14868,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14868
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T06:15:29.236Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NQVoJH9dEQA3qnbUaTBPT5",
+              "type": "tool_result",
+              "content": "1\t% introduction.tex -- DisPeD Introduction Section\n2\t\n3\t\\section{Introduction}\n4\t\\label{sec:introduction}\n5\t\n6\tMulti-turn jailbreak attacks pose a qualitatively different threat to large language model (LLM) safety than their single-turn counterparts. Attacks such as Crescendo~\\citep{russinovich2024crescendo}, Foot-in-the-Door (FITD)~\\citep{fitd2024}, and Deceptive Delight~\\citep{deceptivedelight2024} achieve high attack success rates by distributing adversarial intent across a sequence of individually benign turns. No single turn contains an explicit harmful request; instead, the attacker gradually steers the conversation toward a forbidden goal through rapport building, logical reframing, and incremental escalation. A Crescendo attacker, for instance, might begin with a factual question about historical chemistry, follow up with a request for ``educational'' synthesis procedures, and only in the final turn request instructions for producing a controlled substance. Each intermediate turn is indistinguishable from a legitimate query. Representation engineering analyses confirm that individual attack turns occupy the same embedding region as genuinely benign text in pretrained encoders~\\citep{bullwinkel2025repeng}, rendering per-turn safety filters ineffective. The common mechanism underlying these attacks is \\emph{persuasion}: each attack type implements a distinct but systematic strategy for manipulating the model's compliance over multiple conversational exchanges~\\citep{li2024mhj}. Detecting these attacks therefore requires moving beyond content-level analysis to capture the pragmatic dynamics of the conversation.\n7\t\n8\tCurrent defenses fail to address this challenge along two axes: granularity and representation. Production safety classifiers such as Llama Guard~\\citep{inan2023llamaguard}, WildGuard~\\citep{han2024wildguard}, and ShieldGemma~\\citep{zeng2024shieldgemma} operate on individual turns and cannot model manipulation trajectories that unfold across multiple exchanges. These systems are designed to detect overtly harmful content in isolation and are fundamentally blind to the distributed nature of multi-turn attacks, where the adversarial intent only becomes apparent through the cumulative progression of turns. The natural alternative is to encode full conversations with a pretrained language model and track semantic drift over turns. This approach, exemplified by temporal aggregation over generic embeddings (the ``DeepContext'' paradigm~\\citep{deepcontext2026}), performs well when the test distribution matches training: all methods we evaluate, including bag-of-words baselines, achieve near-perfect F1 on in-distribution Crescendo conversations. The critical failure emerges on unseen attack types. A vanilla DeBERTa encoder with the same temporal aggregation pipeline collapses from F1 = 1.000 on in-distribution data to F1 = 0.284 on out-of-distribution (OOD) Deceptive Delight conversations. This collapse worsens as more turns are observed (F1 drops from 0.575 at turn 1 to 0.284 on the full conversation), consistent with the finding that each additional attack turn supplies misleading ``benign'' evidence to the generic encoder~\\citep{bullwinkel2025repeng}. LLM-as-judge approaches fare no better: GPT-5.5 achieves F1 of only 0.191 to 0.449 on Crescendo detection, with 30 to 47\\% of responses unparseable, confirming that content-level reasoning cannot detect adversarial intent distributed across benign turns. The gap is clear: no existing method uses persuasion-grounded representations, and methods that rely on surface semantics or content-level reasoning fail to generalize across attack families.\n9\t\n10\tThe key observation motivating our approach is that persuasion in jailbreak attacks is both \\emph{systematic} and \\emph{extractable}. \\citet{zeng2024pap} identify 40 persuasion techniques across jailbreak attacks through their Persuasion Attack Paradigm (PAP), and \\citet{hagendorff2026reasoning} find identifiable persuasion strategies in 97\\% of successful attacks. These findings establish that multi-turn attacks are not ad hoc manipulation but structured persuasion campaigns that follow recognizable patterns. On the extraction side, recent work on LLM persuasion demonstrates that these pragmatic dynamics leave detectable traces in turn-level representations~\\citep{jaipersaud2025howdollmspersuade}, and that the persuasion literature offers well-established taxonomies (e.g., Cialdini's six principles of influence~\\citep{cialdini2001influence}) to categorize these strategies. If persuasion is systematic (attacks follow identifiable strategy patterns) and extractable (representations can encode these patterns), then fine-tuning an encoder on persuasion-related text should teach it to attend to pragmatic features rather than topical content. The resulting representations would capture the functional structure of manipulation, a structure shared across attack types regardless of their surface realization. This is not a new theoretical claim but an operationalization of observations already established in the literature: our contribution is to demonstrate that this operationalization produces measurable gains in cross-attack generalization.\n11\t\n12\tWe propose \\textbf{DisPeD} (Discourse-level Persuasion Detection), a two-stage framework that implements this idea. In Stage~1, we fine-tune a DeBERTa-v3-base encoder~\\citep{he2021deberta} with a multi-task objective that combines 9-class persuasion strategy classification and binary jailbreak-intent classification at the turn level. The 9-class taxonomy is grounded in PAP~\\citep{zeng2024pap} and Cialdini's principles of influence~\\citep{cialdini2001influence}, covering strategies from rapport building and authority appeal to gradual escalation and direct request. The persuasion classification task forces the encoder to learn representations that distinguish between pragmatic strategies, while the intent task anchors these representations to the detection objective. In Stage~2, we aggregate turn-level [CLS] embeddings via a bidirectional GRU (BiGRU) and train a lightweight MLP for conversation-level binary classification. The full architecture is shown in Figure~\\ref{fig:architecture}. The design is deliberately simple: the ablation study (Section~\\ref{sec:ablation}) confirms that replacing BiGRU with orderless mean pooling yields identical performance, and that even scrambled persuasion labels reduce OOD detection by only 1 percentage point relative to the full taxonomy, while vanilla DeBERTa without fine-tuning trails by over 70 percentage points. The fine-tuning process on persuasion-related text, not label accuracy or temporal modeling, is the critical ingredient for cross-attack generalization. This finding indicates that exposure to in-domain text reshapes the encoder's feature space even when the supervision signal is noisy or coarse. In our setting, multi-task training on persuasion-annotated conversations teaches the encoder to attend to pragmatic cues (implicit requests, escalation markers, rapport-building patterns) that transfer across attack families.\n13\t\n14\tOur contributions are:\n15\t\\begin{itemize}[leftmargin=*, itemsep=2pt, topsep=4pt]\n16\t  \\item \\textbf{Cross-attack generalization through persuasion-aware fine-tuning.} DisPeD achieves F1 = 1.000 on unseen Deceptive Delight conversations, a +72 percentage point improvement over vanilla DeBERTa (F1 = 0.284) trained on the same Crescendo data. Ablation experiments show that scrambled strategy labels reduce OOD F1 by only 1 percentage point, confirming that fine-tuning on persuasion-domain text is the mechanism that bridges the cross-attack generalization gap (Section~\\ref{sec:cross_attack}, Section~\\ref{sec:ablation}).\n17\t\n18\t  \\item \\textbf{Interpretable detection through persuasion strategy trajectories.} The 9-class persuasion taxonomy provides native interpretability: different attack types exhibit distinct strategy signatures that security analysts can inspect. Crescendo exhibits broad transition coverage across all strategy categories; FITD concentrates transitions in 4 active strategies with a dominant role-assignment-to-obfuscation pattern. These trajectories explain detection decisions without requiring post-hoc interpretability methods (Section~\\ref{sec:strategy}).\n19\t\n20\t  \\item \\textbf{Robustness to adversarial perturbation.} DisPeD maintains zero degradation (0 percentage points) under adversarial paraphrasing, while vanilla DeBERTa degrades by 11.8 percentage points and TF-IDF by 1.3 percentage points. Combined with cross-attack robustness, this confirms that persuasion-aware representations are invariant to both surface variation and attack-type shift (Section~\\ref{sec:perturbation}).\n21\t\\end{itemize}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591",
+            "uuid": "d1dc2474-376c-439d-8b29-96fcac0438bf",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex",
+                "content": "% introduction.tex -- DisPeD Introduction Section\n\n\\section{Introduction}\n\\label{sec:introduction}\n\nMulti-turn jailbreak attacks pose a qualitatively different threat to large language model (LLM) safety than their single-turn counterparts. Attacks such as Crescendo~\\citep{russinovich2024crescendo}, Foot-in-the-Door (FITD)~\\citep{fitd2024}, and Deceptive Delight~\\citep{deceptivedelight2024} achieve high attack success rates by distributing adversarial intent across a sequence of individually benign turns. No single turn contains an explicit harmful request; instead, the attacker gradually steers the conversation toward a forbidden goal through rapport building, logical reframing, and incremental escalation. A Crescendo attacker, for instance, might begin with a factual question about historical chemistry, follow up with a request for ``educational'' synthesis procedures, and only in the final turn request instructions for producing a controlled substance. Each intermediate turn is indistinguishable from a legitimate query. Representation engineering analyses confirm that individual attack turns occupy the same embedding region as genuinely benign text in pretrained encoders~\\citep{bullwinkel2025repeng}, rendering per-turn safety filters ineffective. The common mechanism underlying these attacks is \\emph{persuasion}: each attack type implements a distinct but systematic strategy for manipulating the model's compliance over multiple conversational exchanges~\\citep{li2024mhj}. Detecting these attacks therefore requires moving beyond content-level analysis to capture the pragmatic dynamics of the conversation.\n\nCurrent defenses fail to address this challenge along two axes: granularity and representation. Production safety classifiers such as Llama Guard~\\citep{inan2023llamaguard}, WildGuard~\\citep{han2024wildguard}, and ShieldGemma~\\citep{zeng2024shieldgemma} operate on individual turns and cannot model manipulation trajectories that unfold across multiple exchanges. These systems are designed to detect overtly harmful content in isolation and are fundamentally blind to the distributed nature of multi-turn attacks, where the adversarial intent only becomes apparent through the cumulative progression of turns. The natural alternative is to encode full conversations with a pretrained language model and track semantic drift over turns. This approach, exemplified by temporal aggregation over generic embeddings (the ``DeepContext'' paradigm~\\citep{deepcontext2026}), performs well when the test distribution matches training: all methods we evaluate, including bag-of-words baselines, achieve near-perfect F1 on in-distribution Crescendo conversations. The critical failure emerges on unseen attack types. A vanilla DeBERTa encoder with the same temporal aggregation pipeline collapses from F1 = 1.000 on in-distribution data to F1 = 0.284 on out-of-distribution (OOD) Deceptive Delight conversations. This collapse worsens as more turns are observed (F1 drops from 0.575 at turn 1 to 0.284 on the full conversation), consistent with the finding that each additional attack turn supplies misleading ``benign'' evidence to the generic encoder~\\citep{bullwinkel2025repeng}. LLM-as-judge approaches fare no better: GPT-5.5 achieves F1 of only 0.191 to 0.449 on Crescendo detection, with 30 to 47\\% of responses unparseable, confirming that content-level reasoning cannot detect adversarial intent distributed across benign turns. The gap is clear: no existing method uses persuasion-grounded representations, and methods that rely on surface semantics or content-level reasoning fail to generalize across attack families.\n\nThe key observation motivating our approach is that persuasion in jailbreak attacks is both \\emph{systematic} and \\emph{extractable}. \\citet{zeng2024pap} identify 40 persuasion techniques across jailbreak attacks through their Persuasion Attack Paradigm (PAP), and \\citet{hagendorff2026reasoning} find identifiable persuasion strategies in 97\\% of successful attacks. These findings establish that multi-turn attacks are not ad hoc manipulation but structured persuasion campaigns that follow recognizable patterns. On the extraction side, recent work on LLM persuasion demonstrates that these pragmatic dynamics leave detectable traces in turn-level representations~\\citep{jaipersaud2025howdollmspersuade}, and that the persuasion literature offers well-established taxonomies (e.g., Cialdini's six principles of influence~\\citep{cialdini2001influence}) to categorize these strategies. If persuasion is systematic (attacks follow identifiable strategy patterns) and extractable (representations can encode these patterns), then fine-tuning an encoder on persuasion-related text should teach it to attend to pragmatic features rather than topical content. The resulting representations would capture the functional structure of manipulation, a structure shared across attack types regardless of their surface realization. This is not a new theoretical claim but an operationalization of observations already established in the literature: our contribution is to demonstrate that this operationalization produces measurable gains in cross-attack generalization.\n\nWe propose \\textbf{DisPeD} (Discourse-level Persuasion Detection), a two-stage framework that implements this idea. In Stage~1, we fine-tune a DeBERTa-v3-base encoder~\\citep{he2021deberta} with a multi-task objective that combines 9-class persuasion strategy classification and binary jailbreak-intent classification at the turn level. The 9-class taxonomy is grounded in PAP~\\citep{zeng2024pap} and Cialdini's principles of influence~\\citep{cialdini2001influence}, covering strategies from rapport building and authority appeal to gradual escalation and direct request. The persuasion classification task forces the encoder to learn representations that distinguish between pragmatic strategies, while the intent task anchors these representations to the detection objective. In Stage~2, we aggregate turn-level [CLS] embeddings via a bidirectional GRU (BiGRU) and train a lightweight MLP for conversation-level binary classification. The full architecture is shown in Figure~\\ref{fig:architecture}. The design is deliberately simple: the ablation study (Section~\\ref{sec:ablation}) confirms that replacing BiGRU with orderless mean pooling yields identical performance, and that even scrambled persuasion labels reduce OOD detection by only 1 percentage point relative to the full taxonomy, while vanilla DeBERTa without fine-tuning trails by over 70 percentage points. The fine-tuning process on persuasion-related text, not label accuracy or temporal modeling, is the critical ingredient for cross-attack generalization. This finding indicates that exposure to in-domain text reshapes the encoder's feature space even when the supervision signal is noisy or coarse. In our setting, multi-task training on persuasion-annotated conversations teaches the encoder to attend to pragmatic cues (implicit requests, escalation markers, rapport-building patterns) that transfer across attack families.\n\nOur contributions are:\n\\begin{itemize}[leftmargin=*, itemsep=2pt, topsep=4pt]\n  \\item \\textbf{Cross-attack generalization through persuasion-aware fine-tuning.} DisPeD achieves F1 = 1.000 on unseen Deceptive Delight conversations, a +72 percentage point improvement over vanilla DeBERTa (F1 = 0.284) trained on the same Crescendo data. Ablation experiments show that scrambled strategy labels reduce OOD F1 by only 1 percentage point, confirming that fine-tuning on persuasion-domain text is the mechanism that bridges the cross-attack generalization gap (Section~\\ref{sec:cross_attack}, Section~\\ref{sec:ablation}).\n\n  \\item \\textbf{Interpretable detection through persuasion strategy trajectories.} The 9-class persuasion taxonomy provides native interpretability: different attack types exhibit distinct strategy signatures that security analysts can inspect. Crescendo exhibits broad transition coverage across all strategy categories; FITD concentrates transitions in 4 active strategies with a dominant role-assignment-to-obfuscation pattern. These trajectories explain detection decisions without requiring post-hoc interpretability methods (Section~\\ref{sec:strategy}).\n\n  \\item \\textbf{Robustness to adversarial perturbation.} DisPeD maintains zero degradation (0 percentage points) under adversarial paraphrasing, while vanilla DeBERTa degrades by 11.8 percentage points and TF-IDF by 1.3 percentage points. Combined with cross-attack robustness, this confirms that persuasion-aware representations are invariant to both surface variation and attack-type shift (Section~\\ref{sec:perturbation}).\n\\end{itemize}",
+                "numLines": 21,
+                "startLine": 1,
+                "totalLines": 21
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016NsyFXoWtHqPc4Hdzm21Dh",
+              "name": "Glob",
+              "input": {
+                "pattern": "docs/paper/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591",
+            "uuid": "a00690f1-5524-46b8-b6a6-36be78de3d02",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M3eSUdbfnuME5vAyS6oco6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14868,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14868
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T06:15:29.925Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016NsyFXoWtHqPc4Hdzm21Dh",
+              "type": "tool_result",
+              "content": "docs/paper/abstract.tex\ndocs/paper/conclusion.tex\ndocs/paper/introduction.tex\ndocs/paper/related_work.tex\ndocs/paper/experiments.tex\ndocs/paper/method.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591",
+            "uuid": "2f6ac599-31c0-4422-8531-a013f46284b2",
+            "tool_use_result": {
+              "filenames": [
+                "docs/paper/abstract.tex",
+                "docs/paper/conclusion.tex",
+                "docs/paper/introduction.tex",
+                "docs/paper/related_work.tex",
+                "docs/paper/experiments.tex",
+                "docs/paper/method.tex"
+              ],
+              "durationMs": 14,
+              "numFiles": 6,
+              "truncated": false
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the current introduction.tex. I need to rewrite it according to the D019 Reframe. The key change is shifting from \"persuasion-aware classification is the key mechanism\" to \"domain exposure (continued pretraining on jailbreak text) is the mechanism, and the MLM control experiment proved this.\"\n\nLet me write the new introduction following the detailed structure provided in the task.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591",
+            "uuid": "0e7ef9c1-7145-4d08-8a99-518418f7e207",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A6tJNM6Gw8XD3UUkvAERUs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2422,
+                "cache_read_input_tokens": 26709,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2422
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll write the reframed introduction."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591",
+            "uuid": "07169259-6711-40ab-8890-d85c5adf9d0c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A6tJNM6Gw8XD3UUkvAERUs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2422,
+                "cache_read_input_tokens": 26709,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2422
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gx67TA25HmcJ5z8rNtfzFd",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex",
+                "content": "% introduction.tex — D019 Reframe\n\n\\section{Introduction}\n\\label{sec:introduction}\n\nMulti-turn jailbreak attacks pose a qualitatively different threat to large language model (LLM) safety than their single-turn counterparts. Attacks such as Crescendo~\\citep{russinovich2024crescendo}, Foot-in-the-Door (FITD)~\\citep{fitd2024}, and Deceptive Delight~\\citep{deceptivedelight2024} achieve high attack success rates by distributing adversarial intent across a sequence of individually benign turns. No single turn contains an explicit harmful request; instead, the attacker gradually steers the conversation toward a forbidden goal through rapport building, logical reframing, and incremental escalation. Persuasion is the common mechanism underlying these attacks: \\citet{zeng2024pap} catalogue 40 persuasion techniques across jailbreak families, and \\citet{hagendorff2026reasoning} find identifiable persuasion strategies in 97\\% of successful attacks. Representation engineering analyses confirm that individual attack turns occupy the same embedding region as genuinely benign text~\\citep{bullwinkel2025repeng}, rendering per-turn safety filters fundamentally blind to distributed intent. Production safety classifiers such as Llama Guard~\\citep{inan2023llamaguard}, WildGuard~\\citep{han2024wildguard}, and ShieldGemma~\\citep{zeng2024shieldgemma} operate on individual turns and cannot model manipulation trajectories that unfold across multiple exchanges. Detecting these attacks therefore requires conversation-level representations that capture pragmatic dynamics rather than surface content.\n\nThe natural response is to encode full conversations with a pretrained language model and track semantic drift over turns. This approach performs well when the test distribution matches training: all methods we evaluate, including bag-of-words baselines, achieve near-perfect F1 on in-distribution Crescendo conversations. The critical failure emerges on unseen attack types. A vanilla DeBERTa encoder~\\citep{he2021deberta} with temporal aggregation collapses from F1\\,=\\,1.000 on in-distribution data to F1\\,=\\,0.284 on out-of-distribution (OOD) Deceptive Delight conversations. The collapse \\emph{worsens} as more turns are observed (F1 drops from 0.575 at turn~1 to 0.284 on the full conversation), consistent with the finding that each additional attack turn supplies misleading ``benign'' evidence to the generic encoder~\\citep{bullwinkel2025repeng}. LLM-as-judge approaches fare no better: GPT-5.5 achieves F1 of only 0.191 to 0.449 on in-distribution Crescendo detection, with 30 to 47\\% of responses unparseable (Section~\\ref{sec:llm_judge}). Content-level reasoning is insufficient for this task. The open question is: \\emph{what representation properties enable cross-attack generalization?}\n\nWe hypothesized that persuasion-specific classification would be the key ingredient. To test this rigorously, we built \\textbf{DisPeD} (Discourse-level Persuasion Detection), a two-stage framework: Stage~1 adapts a DeBERTa-v3-base encoder on jailbreak conversation text, and Stage~2 aggregates turn-level embeddings via a bidirectional GRU (BiGRU) and MLP for conversation-level classification (Figure~\\ref{fig:architecture}). We designed five Stage~1 variants that systematically decompose the mechanism: 9-class persuasion strategy classification grounded in PAP~\\citep{zeng2024pap} and Cialdini's principles~\\citep{cialdini2001influence}, binary jailbreak-intent classification, scrambled (randomly permuted) persuasion labels, masked language modeling (MLM) only (15\\% token masking, no classification head), and vanilla (unfine-tuned control).\n\nThe result \\emph{falsified} our original hypothesis. The MLM-only variant, which uses no classification labels at all, achieves F1\\,=\\,1.000 on unseen Deceptive Delight, matching the full 9-class model. The evidence hierarchy across OOD evaluation is:\n\n\\vspace{2pt}\n\\noindent\\hspace{1em}vanilla (0.28) $\\ll$ MLM (1.00) = scrambled (0.99) = binary (0.99) = 9-class (1.00)\n\\vspace{2pt}\n\n\\noindent The entire +72 percentage point OOD gap lies between vanilla and \\emph{any} form of continued training, not between MLM and classification variants (Section~\\ref{sec:decomposition}). This finding connects directly to the domain-adaptive pretraining literature~\\citep{gururangan2020dontstop}: continued training on jailbreak conversation text shifts the encoder's representations to encode domain-specific pragmatic features, regardless of the training objective. Recent work showing that persuasion dynamics leave detectable traces in turn-level representations~\\citep{jaipersaud2025howdollmspersuade} helps explain \\emph{why} domain exposure suffices: the pragmatic structure of multi-turn manipulation is latent in the text itself, and continued pretraining is enough to make it accessible to downstream aggregation.\n\nAlthough the 9-class persuasion taxonomy does not drive detection accuracy, it provides interpretability that pure MLM cannot offer. Predicted strategy labels reveal distinct persuasion fingerprints per attack type: Crescendo exhibits broad transition coverage across all strategy categories; FITD concentrates transitions in a dominant role-assignment-to-obfuscation pattern; Deceptive Delight centers on emotion-to-obfuscation transitions (Section~\\ref{sec:strategy}). These trajectory signatures allow security analysts to inspect \\emph{why} conversations are flagged, a capability absent from the MLM-only and binary variants.\n\nOur contributions are:\n\\begin{itemize}[leftmargin=*, itemsep=2pt, topsep=4pt]\n  \\item \\textbf{Systematic decomposition identifying domain exposure as the mechanism for cross-attack generalization.} Five controlled Stage~1 variants establish that domain-adaptive continued pretraining on jailbreak conversation text (including MLM without labels) bridges the entire +72 percentage point OOD gap (vanilla F1\\,=\\,0.284 $\\to$ adapted F1\\,$\\geq$\\,0.99). Classification supervision, label quality, label granularity, and temporal modeling are all non-factors (Section~\\ref{sec:decomposition}).\n\n  \\item \\textbf{MLM continued pretraining as the definitive causal test.} The MLM-only variant achieves F1\\,=\\,1.000 on unseen Deceptive Delight without any classification labels, establishing that unsupervised domain exposure alone suffices for cross-attack generalization (Section~\\ref{sec:cross_attack}, Section~\\ref{sec:decomposition}).\n\n  \\item \\textbf{Persuasion taxonomy repositioned as interpretability layer.} The 9-class taxonomy does not improve detection over MLM but provides distinct strategy trajectory signatures per attack type that make detection decisions human-interpretable (Section~\\ref{sec:strategy}).\n\\end{itemize}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591",
+            "uuid": "6cd17a0c-6eef-4149-8e63-7b32c99e6e49",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A6tJNM6Gw8XD3UUkvAERUs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2422,
+                "cache_read_input_tokens": 26709,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2422
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T06:16:18.339Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gx67TA25HmcJ5z8rNtfzFd",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591",
+            "uuid": "58a23986-6056-48c4-9642-98aa870eb970",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex",
+              "content": "% introduction.tex — D019 Reframe\n\n\\section{Introduction}\n\\label{sec:introduction}\n\nMulti-turn jailbreak attacks pose a qualitatively different threat to large language model (LLM) safety than their single-turn counterparts. Attacks such as Crescendo~\\citep{russinovich2024crescendo}, Foot-in-the-Door (FITD)~\\citep{fitd2024}, and Deceptive Delight~\\citep{deceptivedelight2024} achieve high attack success rates by distributing adversarial intent across a sequence of individually benign turns. No single turn contains an explicit harmful request; instead, the attacker gradually steers the conversation toward a forbidden goal through rapport building, logical reframing, and incremental escalation. Persuasion is the common mechanism underlying these attacks: \\citet{zeng2024pap} catalogue 40 persuasion techniques across jailbreak families, and \\citet{hagendorff2026reasoning} find identifiable persuasion strategies in 97\\% of successful attacks. Representation engineering analyses confirm that individual attack turns occupy the same embedding region as genuinely benign text~\\citep{bullwinkel2025repeng}, rendering per-turn safety filters fundamentally blind to distributed intent. Production safety classifiers such as Llama Guard~\\citep{inan2023llamaguard}, WildGuard~\\citep{han2024wildguard}, and ShieldGemma~\\citep{zeng2024shieldgemma} operate on individual turns and cannot model manipulation trajectories that unfold across multiple exchanges. Detecting these attacks therefore requires conversation-level representations that capture pragmatic dynamics rather than surface content.\n\nThe natural response is to encode full conversations with a pretrained language model and track semantic drift over turns. This approach performs well when the test distribution matches training: all methods we evaluate, including bag-of-words baselines, achieve near-perfect F1 on in-distribution Crescendo conversations. The critical failure emerges on unseen attack types. A vanilla DeBERTa encoder~\\citep{he2021deberta} with temporal aggregation collapses from F1\\,=\\,1.000 on in-distribution data to F1\\,=\\,0.284 on out-of-distribution (OOD) Deceptive Delight conversations. The collapse \\emph{worsens} as more turns are observed (F1 drops from 0.575 at turn~1 to 0.284 on the full conversation), consistent with the finding that each additional attack turn supplies misleading ``benign'' evidence to the generic encoder~\\citep{bullwinkel2025repeng}. LLM-as-judge approaches fare no better: GPT-5.5 achieves F1 of only 0.191 to 0.449 on in-distribution Crescendo detection, with 30 to 47\\% of responses unparseable (Section~\\ref{sec:llm_judge}). Content-level reasoning is insufficient for this task. The open question is: \\emph{what representation properties enable cross-attack generalization?}\n\nWe hypothesized that persuasion-specific classification would be the key ingredient. To test this rigorously, we built \\textbf{DisPeD} (Discourse-level Persuasion Detection), a two-stage framework: Stage~1 adapts a DeBERTa-v3-base encoder on jailbreak conversation text, and Stage~2 aggregates turn-level embeddings via a bidirectional GRU (BiGRU) and MLP for conversation-level classification (Figure~\\ref{fig:architecture}). We designed five Stage~1 variants that systematically decompose the mechanism: 9-class persuasion strategy classification grounded in PAP~\\citep{zeng2024pap} and Cialdini's principles~\\citep{cialdini2001influence}, binary jailbreak-intent classification, scrambled (randomly permuted) persuasion labels, masked language modeling (MLM) only (15\\% token masking, no classification head), and vanilla (unfine-tuned control).\n\nThe result \\emph{falsified} our original hypothesis. The MLM-only variant, which uses no classification labels at all, achieves F1\\,=\\,1.000 on unseen Deceptive Delight, matching the full 9-class model. The evidence hierarchy across OOD evaluation is:\n\n\\vspace{2pt}\n\\noindent\\hspace{1em}vanilla (0.28) $\\ll$ MLM (1.00) = scrambled (0.99) = binary (0.99) = 9-class (1.00)\n\\vspace{2pt}\n\n\\noindent The entire +72 percentage point OOD gap lies between vanilla and \\emph{any} form of continued training, not between MLM and classification variants (Section~\\ref{sec:decomposition}). This finding connects directly to the domain-adaptive pretraining literature~\\citep{gururangan2020dontstop}: continued training on jailbreak conversation text shifts the encoder's representations to encode domain-specific pragmatic features, regardless of the training objective. Recent work showing that persuasion dynamics leave detectable traces in turn-level representations~\\citep{jaipersaud2025howdollmspersuade} helps explain \\emph{why} domain exposure suffices: the pragmatic structure of multi-turn manipulation is latent in the text itself, and continued pretraining is enough to make it accessible to downstream aggregation.\n\nAlthough the 9-class persuasion taxonomy does not drive detection accuracy, it provides interpretability that pure MLM cannot offer. Predicted strategy labels reveal distinct persuasion fingerprints per attack type: Crescendo exhibits broad transition coverage across all strategy categories; FITD concentrates transitions in a dominant role-assignment-to-obfuscation pattern; Deceptive Delight centers on emotion-to-obfuscation transitions (Section~\\ref{sec:strategy}). These trajectory signatures allow security analysts to inspect \\emph{why} conversations are flagged, a capability absent from the MLM-only and binary variants.\n\nOur contributions are:\n\\begin{itemize}[leftmargin=*, itemsep=2pt, topsep=4pt]\n  \\item \\textbf{Systematic decomposition identifying domain exposure as the mechanism for cross-attack generalization.} Five controlled Stage~1 variants establish that domain-adaptive continued pretraining on jailbreak conversation text (including MLM without labels) bridges the entire +72 percentage point OOD gap (vanilla F1\\,=\\,0.284 $\\to$ adapted F1\\,$\\geq$\\,0.99). Classification supervision, label quality, label granularity, and temporal modeling are all non-factors (Section~\\ref{sec:decomposition}).\n\n  \\item \\textbf{MLM continued pretraining as the definitive causal test.} The MLM-only variant achieves F1\\,=\\,1.000 on unseen Deceptive Delight without any classification labels, establishing that unsupervised domain exposure alone suffices for cross-attack generalization (Section~\\ref{sec:cross_attack}, Section~\\ref{sec:decomposition}).\n\n  \\item \\textbf{Persuasion taxonomy repositioned as interpretability layer.} The 9-class taxonomy does not improve detection over MLM but provides distinct strategy trajectory signatures per attack type that make detection decisions human-interpretable (Section~\\ref{sec:strategy}).\n\\end{itemize}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 21,
+                  "newStart": 1,
+                  "newLines": 29,
+                  "lines": [
+                    "-% introduction.tex -- DisPeD Introduction Section",
+                    "+% introduction.tex — D019 Reframe",
+                    " ",
+                    " \\section{Introduction}",
+                    " \\label{sec:introduction}",
+                    " ",
+                    "-Multi-turn jailbreak attacks pose a qualitatively different threat to large language model (LLM) safety than their single-turn counterparts. Attacks such as Crescendo~\\citep{russinovich2024crescendo}, Foot-in-the-Door (FITD)~\\citep{fitd2024}, and Deceptive Delight~\\citep{deceptivedelight2024} achieve high attack success rates by distributing adversarial intent across a sequence of individually benign turns. No single turn contains an explicit harmful request; instead, the attacker gradually steers the conversation toward a forbidden goal through rapport building, logical reframing, and incremental escalation. A Crescendo attacker, for instance, might begin with a factual question about historical chemistry, follow up with a request for ``educational'' synthesis procedures, and only in the final turn request instructions for producing a controlled substance. Each intermediate turn is indistinguishable from a legitimate query. Representation engineering analyses confirm that individual attack turns occupy the same embedding region as genuinely benign text in pretrained encoders~\\citep{bullwinkel2025repeng}, rendering per-turn safety filters ineffective. The common mechanism underlying these attacks is \\emph{persuasion}: each attack type implements a distinct but systematic strategy for manipulating the model's compliance over multiple conversational exchanges~\\citep{li2024mhj}. Detecting these attacks therefore requires moving beyond content-level analysis to capture the pragmatic dynamics of the conversation.",
+                    "+Multi-turn jailbreak attacks pose a qualitatively different threat to large language model (LLM) safety than their single-turn counterparts. Attacks such as Crescendo~\\citep{russinovich2024crescendo}, Foot-in-the-Door (FITD)~\\citep{fitd2024}, and Deceptive Delight~\\citep{deceptivedelight2024} achieve high attack success rates by distributing adversarial intent across a sequence of individually benign turns. No single turn contains an explicit harmful request; instead, the attacker gradually steers the conversation toward a forbidden goal through rapport building, logical reframing, and incremental escalation. Persuasion is the common mechanism underlying these attacks: \\citet{zeng2024pap} catalogue 40 persuasion techniques across jailbreak families, and \\citet{hagendorff2026reasoning} find identifiable persuasion strategies in 97\\% of successful attacks. Representation engineering analyses confirm that individual attack turns occupy the same embedding region as genuinely benign text~\\citep{bullwinkel2025repeng}, rendering per-turn safety filters fundamentally blind to distributed intent. Production safety classifiers such as Llama Guard~\\citep{inan2023llamaguard}, WildGuard~\\citep{han2024wildguard}, and ShieldGemma~\\citep{zeng2024shieldgemma} operate on individual turns and cannot model manipulation trajectories that unfold across multiple exchanges. Detecting these attacks therefore requires conversation-level representations that capture pragmatic dynamics rather than surface content.",
+                    " ",
+                    "-Current defenses fail to address this challenge along two axes: granularity and representation. Production safety classifiers such as Llama Guard~\\citep{inan2023llamaguard}, WildGuard~\\citep{han2024wildguard}, and ShieldGemma~\\citep{zeng2024shieldgemma} operate on individual turns and cannot model manipulation trajectories that unfold across multiple exchanges. These systems are designed to detect overtly harmful content in isolation and are fundamentally blind to the distributed nature of multi-turn attacks, where the adversarial intent only becomes apparent through the cumulative progression of turns. The natural alternative is to encode full conversations with a pretrained language model and track semantic drift over turns. This approach, exemplified by temporal aggregation over generic embeddings (the ``DeepContext'' paradigm~\\citep{deepcontext2026}), performs well when the test distribution matches training: all methods we evaluate, including bag-of-words baselines, achieve near-perfect F1 on in-distribution Crescendo conversations. The critical failure emerges on unseen attack types. A vanilla DeBERTa encoder with the same temporal aggregation pipeline collapses from F1 = 1.000 on in-distribution data to F1 = 0.284 on out-of-distribution (OOD) Deceptive Delight conversations. This collapse worsens as more turns are observed (F1 drops from 0.575 at turn 1 to 0.284 on the full conversation), consistent with the finding that each additional attack turn supplies misleading ``benign'' evidence to the generic encoder~\\citep{bullwinkel2025repeng}. LLM-as-judge approaches fare no better: GPT-5.5 achieves F1 of only 0.191 to 0.449 on Crescendo detection, with 30 to 47\\% of responses unparseable, confirming that content-level reasoning cannot detect adversarial intent distributed across benign turns. The gap is clear: no existing method uses persuasion-grounded representations, and methods that rely on surface semantics or content-level reasoning fail to generalize across attack families.",
+                    "+The natural response is to encode full conversations with a pretrained language model and track semantic drift over turns. This approach performs well when the test distribution matches training: all methods we evaluate, including bag-of-words baselines, achieve near-perfect F1 on in-distribution Crescendo conversations. The critical failure emerges on unseen attack types. A vanilla DeBERTa encoder~\\citep{he2021deberta} with temporal aggregation collapses from F1\\,=\\,1.000 on in-distribution data to F1\\,=\\,0.284 on out-of-distribution (OOD) Deceptive Delight conversations. The collapse \\emph{worsens} as more turns are observed (F1 drops from 0.575 at turn~1 to 0.284 on the full conversation), consistent with the finding that each additional attack turn supplies misleading ``benign'' evidence to the generic encoder~\\citep{bullwinkel2025repeng}. LLM-as-judge approaches fare no better: GPT-5.5 achieves F1 of only 0.191 to 0.449 on in-distribution Crescendo detection, with 30 to 47\\% of responses unparseable (Section~\\ref{sec:llm_judge}). Content-level reasoning is insufficient for this task. The open question is: \\emph{what representation properties enable cross-attack generalization?}",
+                    " ",
+                    "-The key observation motivating our approach is that persuasion in jailbreak attacks is both \\emph{systematic} and \\emph{extractable}. \\citet{zeng2024pap} identify 40 persuasion techniques across jailbreak attacks through their Persuasion Attack Paradigm (PAP), and \\citet{hagendorff2026reasoning} find identifiable persuasion strategies in 97\\% of successful attacks. These findings establish that multi-turn attacks are not ad hoc manipulation but structured persuasion campaigns that follow recognizable patterns. On the extraction side, recent work on LLM persuasion demonstrates that these pragmatic dynamics leave detectable traces in turn-level representations~\\citep{jaipersaud2025howdollmspersuade}, and that the persuasion literature offers well-established taxonomies (e.g., Cialdini's six principles of influence~\\citep{cialdini2001influence}) to categorize these strategies. If persuasion is systematic (attacks follow identifiable strategy patterns) and extractable (representations can encode these patterns), then fine-tuning an encoder on persuasion-related text should teach it to attend to pragmatic features rather than topical content. The resulting representations would capture the functional structure of manipulation, a structure shared across attack types regardless of their surface realization. This is not a new theoretical claim but an operationalization of observations already established in the literature: our contribution is to demonstrate that this operationalization produces measurable gains in cross-attack generalization.",
+                    "+We hypothesized that persuasion-specific classification would be the key ingredient. To test this rigorously, we built \\textbf{DisPeD} (Discourse-level Persuasion Detection), a two-stage framework: Stage~1 adapts a DeBERTa-v3-base encoder on jailbreak conversation text, and Stage~2 aggregates turn-level embeddings via a bidirectional GRU (BiGRU) and MLP for conversation-level classification (Figure~\\ref{fig:architecture}). We designed five Stage~1 variants that systematically decompose the mechanism: 9-class persuasion strategy classification grounded in PAP~\\citep{zeng2024pap} and Cialdini's principles~\\citep{cialdini2001influence}, binary jailbreak-intent classification, scrambled (randomly permuted) persuasion labels, masked language modeling (MLM) only (15\\% token masking, no classification head), and vanilla (unfine-tuned control).",
+                    " ",
+                    "-We propose \\textbf{DisPeD} (Discourse-level Persuasion Detection), a two-stage framework that implements this idea. In Stage~1, we fine-tune a DeBERTa-v3-base encoder~\\citep{he2021deberta} with a multi-task objective that combines 9-class persuasion strategy classification and binary jailbreak-intent classification at the turn level. The 9-class taxonomy is grounded in PAP~\\citep{zeng2024pap} and Cialdini's principles of influence~\\citep{cialdini2001influence}, covering strategies from rapport building and authority appeal to gradual escalation and direct request. The persuasion classification task forces the encoder to learn representations that distinguish between pragmatic strategies, while the intent task anchors these representations to the detection objective. In Stage~2, we aggregate turn-level [CLS] embeddings via a bidirectional GRU (BiGRU) and train a lightweight MLP for conversation-level binary classification. The full architecture is shown in Figure~\\ref{fig:architecture}. The design is deliberately simple: the ablation study (Section~\\ref{sec:ablation}) confirms that replacing BiGRU with orderless mean pooling yields identical performance, and that even scrambled persuasion labels reduce OOD detection by only 1 percentage point relative to the full taxonomy, while vanilla DeBERTa without fine-tuning trails by over 70 percentage points. The fine-tuning process on persuasion-related text, not label accuracy or temporal modeling, is the critical ingredient for cross-attack generalization. This finding indicates that exposure to in-domain text reshapes the encoder's feature space even when the supervision signal is noisy or coarse. In our setting, multi-task training on persuasion-annotated conversations teaches the encoder to attend to pragmatic cues (implicit requests, escalation markers, rapport-building patterns) that transfer across attack families.",
+                    "+The result \\emph{falsified} our original hypothesis. The MLM-only variant, which uses no classification labels at all, achieves F1\\,=\\,1.000 on unseen Deceptive Delight, matching the full 9-class model. The evidence hierarchy across OOD evaluation is:",
+                    " ",
+                    "+\\vspace{2pt}",
+                    "+\\noindent\\hspace{1em}vanilla (0.28) $\\ll$ MLM (1.00) = scrambled (0.99) = binary (0.99) = 9-class (1.00)",
+                    "+\\vspace{2pt}",
+                    "+",
+                    "+\\noindent The entire +72 percentage point OOD gap lies between vanilla and \\emph{any} form of continued training, not between MLM and classification variants (Section~\\ref{sec:decomposition}). This finding connects directly to the domain-adaptive pretraining literature~\\citep{gururangan2020dontstop}: continued training on jailbreak conversation text shifts the encoder's representations to encode domain-specific pragmatic features, regardless of the training objective. Recent work showing that persuasion dynamics leave detectable traces in turn-level representations~\\citep{jaipersaud2025howdollmspersuade} helps explain \\emph{why} domain exposure suffices: the pragmatic structure of multi-turn manipulation is latent in the text itself, and continued pretraining is enough to make it accessible to downstream aggregation.",
+                    "+",
+                    "+Although the 9-class persuasion taxonomy does not drive detection accuracy, it provides interpretability that pure MLM cannot offer. Predicted strategy labels reveal distinct persuasion fingerprints per attack type: Crescendo exhibits broad transition coverage across all strategy categories; FITD concentrates transitions in a dominant role-assignment-to-obfuscation pattern; Deceptive Delight centers on emotion-to-obfuscation transitions (Section~\\ref{sec:strategy}). These trajectory signatures allow security analysts to inspect \\emph{why} conversations are flagged, a capability absent from the MLM-only and binary variants.",
+                    "+",
+                    " Our contributions are:",
+                    " \\begin{itemize}[leftmargin=*, itemsep=2pt, topsep=4pt]",
+                    "-  \\item \\textbf{Cross-attack generalization through persuasion-aware fine-tuning.} DisPeD achieves F1 = 1.000 on unseen Deceptive Delight conversations, a +72 percentage point improvement over vanilla DeBERTa (F1 = 0.284) trained on the same Crescendo data. Ablation experiments show that scrambled strategy labels reduce OOD F1 by only 1 percentage point, confirming that fine-tuning on persuasion-domain text is the mechanism that bridges the cross-attack generalization gap (Section~\\ref{sec:cross_attack}, Section~\\ref{sec:ablation}).",
+                    "+  \\item \\textbf{Systematic decomposition identifying domain exposure as the mechanism for cross-attack generalization.} Five controlled Stage~1 variants establish that domain-adaptive continued pretraining on jailbreak conversation text (including MLM without labels) bridges the entire +72 percentage point OOD gap (vanilla F1\\,=\\,0.284 $\\to$ adapted F1\\,$\\geq$\\,0.99). Classification supervision, label quality, label granularity, and temporal modeling are all non-factors (Section~\\ref{sec:decomposition}).",
+                    " ",
+                    "-  \\item \\textbf{Interpretable detection through persuasion strategy trajectories.} The 9-class persuasion taxonomy provides native interpretability: different attack types exhibit distinct strategy signatures that security analysts can inspect. Crescendo exhibits broad transition coverage across all strategy categories; FITD concentrates transitions in 4 active strategies with a dominant role-assignment-to-obfuscation pattern. These trajectories explain detection decisions without requiring post-hoc interpretability methods (Section~\\ref{sec:strategy}).",
+                    "+  \\item \\textbf{MLM continued pretraining as the definitive causal test.} The MLM-only variant achieves F1\\,=\\,1.000 on unseen Deceptive Delight without any classification labels, establishing that unsupervised domain exposure alone suffices for cross-attack generalization (Section~\\ref{sec:cross_attack}, Section~\\ref{sec:decomposition}).",
+                    " ",
+                    "-  \\item \\textbf{Robustness to adversarial perturbation.} DisPeD maintains zero degradation (0 percentage points) under adversarial paraphrasing, while vanilla DeBERTa degrades by 11.8 percentage points and TF-IDF by 1.3 percentage points. Combined with cross-attack robustness, this confirms that persuasion-aware representations are invariant to both surface variation and attack-type shift (Section~\\ref{sec:perturbation}).",
+                    "-\\end{itemize}",
+                    "\\ No newline at end of file",
+                    "+  \\item \\textbf{Persuasion taxonomy repositioned as interpretability layer.} The 9-class taxonomy does not improve detection over MLM but provides distinct strategy trajectory signatures per attack type that make detection decisions human-interpretable (Section~\\ref{sec:strategy}).",
+                    "+\\end{itemize}"
+                  ]
+                }
+              ],
+              "originalFile": "% introduction.tex -- DisPeD Introduction Section\n\n\\section{Introduction}\n\\label{sec:introduction}\n\nMulti-turn jailbreak attacks pose a qualitatively different threat to large language model (LLM) safety than their single-turn counterparts. Attacks such as Crescendo~\\citep{russinovich2024crescendo}, Foot-in-the-Door (FITD)~\\citep{fitd2024}, and Deceptive Delight~\\citep{deceptivedelight2024} achieve high attack success rates by distributing adversarial intent across a sequence of individually benign turns. No single turn contains an explicit harmful request; instead, the attacker gradually steers the conversation toward a forbidden goal through rapport building, logical reframing, and incremental escalation. A Crescendo attacker, for instance, might begin with a factual question about historical chemistry, follow up with a request for ``educational'' synthesis procedures, and only in the final turn request instructions for producing a controlled substance. Each intermediate turn is indistinguishable from a legitimate query. Representation engineering analyses confirm that individual attack turns occupy the same embedding region as genuinely benign text in pretrained encoders~\\citep{bullwinkel2025repeng}, rendering per-turn safety filters ineffective. The common mechanism underlying these attacks is \\emph{persuasion}: each attack type implements a distinct but systematic strategy for manipulating the model's compliance over multiple conversational exchanges~\\citep{li2024mhj}. Detecting these attacks therefore requires moving beyond content-level analysis to capture the pragmatic dynamics of the conversation.\n\nCurrent defenses fail to address this challenge along two axes: granularity and representation. Production safety classifiers such as Llama Guard~\\citep{inan2023llamaguard}, WildGuard~\\citep{han2024wildguard}, and ShieldGemma~\\citep{zeng2024shieldgemma} operate on individual turns and cannot model manipulation trajectories that unfold across multiple exchanges. These systems are designed to detect overtly harmful content in isolation and are fundamentally blind to the distributed nature of multi-turn attacks, where the adversarial intent only becomes apparent through the cumulative progression of turns. The natural alternative is to encode full conversations with a pretrained language model and track semantic drift over turns. This approach, exemplified by temporal aggregation over generic embeddings (the ``DeepContext'' paradigm~\\citep{deepcontext2026}), performs well when the test distribution matches training: all methods we evaluate, including bag-of-words baselines, achieve near-perfect F1 on in-distribution Crescendo conversations. The critical failure emerges on unseen attack types. A vanilla DeBERTa encoder with the same temporal aggregation pipeline collapses from F1 = 1.000 on in-distribution data to F1 = 0.284 on out-of-distribution (OOD) Deceptive Delight conversations. This collapse worsens as more turns are observed (F1 drops from 0.575 at turn 1 to 0.284 on the full conversation), consistent with the finding that each additional attack turn supplies misleading ``benign'' evidence to the generic encoder~\\citep{bullwinkel2025repeng}. LLM-as-judge approaches fare no better: GPT-5.5 achieves F1 of only 0.191 to 0.449 on Crescendo detection, with 30 to 47\\% of responses unparseable, confirming that content-level reasoning cannot detect adversarial intent distributed across benign turns. The gap is clear: no existing method uses persuasion-grounded representations, and methods that rely on surface semantics or content-level reasoning fail to generalize across attack families.\n\nThe key observation motivating our approach is that persuasion in jailbreak attacks is both \\emph{systematic} and \\emph{extractable}. \\citet{zeng2024pap} identify 40 persuasion techniques across jailbreak attacks through their Persuasion Attack Paradigm (PAP), and \\citet{hagendorff2026reasoning} find identifiable persuasion strategies in 97\\% of successful attacks. These findings establish that multi-turn attacks are not ad hoc manipulation but structured persuasion campaigns that follow recognizable patterns. On the extraction side, recent work on LLM persuasion demonstrates that these pragmatic dynamics leave detectable traces in turn-level representations~\\citep{jaipersaud2025howdollmspersuade}, and that the persuasion literature offers well-established taxonomies (e.g., Cialdini's six principles of influence~\\citep{cialdini2001influence}) to categorize these strategies. If persuasion is systematic (attacks follow identifiable strategy patterns) and extractable (representations can encode these patterns), then fine-tuning an encoder on persuasion-related text should teach it to attend to pragmatic features rather than topical content. The resulting representations would capture the functional structure of manipulation, a structure shared across attack types regardless of their surface realization. This is not a new theoretical claim but an operationalization of observations already established in the literature: our contribution is to demonstrate that this operationalization produces measurable gains in cross-attack generalization.\n\nWe propose \\textbf{DisPeD} (Discourse-level Persuasion Detection), a two-stage framework that implements this idea. In Stage~1, we fine-tune a DeBERTa-v3-base encoder~\\citep{he2021deberta} with a multi-task objective that combines 9-class persuasion strategy classification and binary jailbreak-intent classification at the turn level. The 9-class taxonomy is grounded in PAP~\\citep{zeng2024pap} and Cialdini's principles of influence~\\citep{cialdini2001influence}, covering strategies from rapport building and authority appeal to gradual escalation and direct request. The persuasion classification task forces the encoder to learn representations that distinguish between pragmatic strategies, while the intent task anchors these representations to the detection objective. In Stage~2, we aggregate turn-level [CLS] embeddings via a bidirectional GRU (BiGRU) and train a lightweight MLP for conversation-level binary classification. The full architecture is shown in Figure~\\ref{fig:architecture}. The design is deliberately simple: the ablation study (Section~\\ref{sec:ablation}) confirms that replacing BiGRU with orderless mean pooling yields identical performance, and that even scrambled persuasion labels reduce OOD detection by only 1 percentage point relative to the full taxonomy, while vanilla DeBERTa without fine-tuning trails by over 70 percentage points. The fine-tuning process on persuasion-related text, not label accuracy or temporal modeling, is the critical ingredient for cross-attack generalization. This finding indicates that exposure to in-domain text reshapes the encoder's feature space even when the supervision signal is noisy or coarse. In our setting, multi-task training on persuasion-annotated conversations teaches the encoder to attend to pragmatic cues (implicit requests, escalation markers, rapport-building patterns) that transfer across attack families.\n\nOur contributions are:\n\\begin{itemize}[leftmargin=*, itemsep=2pt, topsep=4pt]\n  \\item \\textbf{Cross-attack generalization through persuasion-aware fine-tuning.} DisPeD achieves F1 = 1.000 on unseen Deceptive Delight conversations, a +72 percentage point improvement over vanilla DeBERTa (F1 = 0.284) trained on the same Crescendo data. Ablation experiments show that scrambled strategy labels reduce OOD F1 by only 1 percentage point, confirming that fine-tuning on persuasion-domain text is the mechanism that bridges the cross-attack generalization gap (Section~\\ref{sec:cross_attack}, Section~\\ref{sec:ablation}).\n\n  \\item \\textbf{Interpretable detection through persuasion strategy trajectories.} The 9-class persuasion taxonomy provides native interpretability: different attack types exhibit distinct strategy signatures that security analysts can inspect. Crescendo exhibits broad transition coverage across all strategy categories; FITD concentrates transitions in 4 active strategies with a dominant role-assignment-to-obfuscation pattern. These trajectories explain detection decisions without requiring post-hoc interpretability methods (Section~\\ref{sec:strategy}).\n\n  \\item \\textbf{Robustness to adversarial perturbation.} DisPeD maintains zero degradation (0 percentage points) under adversarial paraphrasing, while vanilla DeBERTa degrades by 11.8 percentage points and TF-IDF by 1.3 percentage points. Combined with cross-attack robustness, this confirms that persuasion-aware representations are invariant to both surface variation and attack-type shift (Section~\\ref{sec:perturbation}).\n\\end{itemize}",
+              "userModified": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify the output against the writing rules."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591",
+            "uuid": "252ba3b4-5c36-4168-9800-16eb492d3fcd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018UyFR8gtHd3yZG9T4S6zex",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2031,
+                "cache_read_input_tokens": 29131,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2031
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WuYwLPrGzMKLAuBJ619896",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper && echo \"=== Em-dash check ===\" && grep -n \"—\" introduction.tex; echo \"=== Explanatory en-dash check ===\" && grep -n \" – \" introduction.tex; echo \"=== Trailing -ing phrases ===\" && grep -n \"ing\\.\\.\\.\" introduction.tex; grep -n \", highlighting\" introduction.tex; grep -n \", demonstrating\" introduction.tex; grep -n \", enabling\" introduction.tex; echo \"=== Banned transitions ===\" && grep -in \"Furthermore\\|Moreover\\|Additionally\" introduction.tex; echo \"=== Banned words ===\" && grep -in \"delve\\|leverage\\|utilize\\|facilitate\\|notably\\|worth noting\" introduction.tex; echo \"=== Word count ===\" && wc -w introduction.tex",
+                "description": "Check writing rules compliance"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591",
+            "uuid": "8dcfe573-91de-4173-8db4-8b33b4e34bb7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018UyFR8gtHd3yZG9T4S6zex",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2031,
+                "cache_read_input_tokens": 29131,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2031
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T06:16:25.760Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WuYwLPrGzMKLAuBJ619896",
+              "type": "tool_result",
+              "content": "=== Em-dash check ===\n1:% introduction.tex — D019 Reframe\n=== Explanatory en-dash check ===\n=== Trailing -ing phrases ===\n=== Banned transitions ===\n=== Banned words ===\n=== Word count ===\n756 introduction.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591",
+            "uuid": "a33b8c09-75ec-4437-af61-b70a9b9509ac",
+            "tool_use_result": {
+              "stdout": "=== Em-dash check ===\n1:% introduction.tex — D019 Reframe\n=== Explanatory en-dash check ===\n=== Trailing -ing phrases ===\n=== Banned transitions ===\n=== Banned words ===\n=== Word count ===\n756 introduction.tex",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The em-dash in line 1 is only in the comment, not in prose. All writing rules pass: no em-dashes, no explanatory en-dashes, no trailing -ing phrases, no banned transitions or words.\n\nWord count is 756 (LaTeX markup included). The prose content follows the 5-paragraph + contributions structure as specified. The narrative arc proceeds: threat → failure of existing approaches → hypothesis + DisPeD design → MLM falsification (the surprise) → taxonomy as interpretability → rewritten contributions."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591",
+            "uuid": "10c9a207-dc81-4280-9566-a37b011dd1d5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018c3zcrFnMGPxFbednCFmxn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 385,
+                "cache_read_input_tokens": 31162,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 385
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The em-dash in line 1 is only in the comment, not in prose. All writing rules pass: no em-dashes, no explanatory en-dashes, no trailing -ing phrases, no banned transitions or words.\n\nWord count is 756 (LaTeX markup included). The prose content follows the 5-paragraph + contributions structure as specified. The narrative arc proceeds: threat → failure of existing approaches → hypothesis + DisPeD design → MLM falsification (the surprise) → taxonomy as interpretability → rewritten contributions."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 66170,
+            "duration_api_ms": 66878,
+            "num_turns": 5,
+            "stop_reason": "end_turn",
+            "session_id": "da6c8b32-7b8f-44ba-9222-46a8da16b591",
+            "total_cost_usd": 0.24053799999999997,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 19706,
+              "cache_read_input_tokens": 98843,
+              "output_tokens": 2592,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 19706,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 119,
+                  "cache_read_input_tokens": 31162,
+                  "cache_creation_input_tokens": 385,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 385
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 3024,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0031290000000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5,
+                "outputTokens": 2592,
+                "cacheReadInputTokens": 98843,
+                "cacheCreationInputTokens": 19706,
+                "webSearchRequests": 0,
+                "costUSD": 0.23740899999999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "083f9c59-aa41-4ea1-83fd-fc941f5cef27"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-writing-introduction-d019.md"
+}

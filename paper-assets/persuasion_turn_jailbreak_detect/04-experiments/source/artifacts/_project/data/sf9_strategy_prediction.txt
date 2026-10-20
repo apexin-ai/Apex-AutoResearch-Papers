@@ -1,0 +1,17 @@
+SF9 Strategy Prediction Results
+================================
+Model: plan_002_deberta_multitask_seed42
+OOD Data: deceptive_delight_all.jsonl (80 conversations, 645 user turns)
+
+Overall Accuracy: 0.307
+Cohen's Kappa: 0.1257
+
+Per-class metrics (only classes with support>0):
+  rapport_building:       P=0.408 R=0.881 F1=0.557 (n=160)
+  emotional_manipulation: P=0.000 R=0.000 F1=0.000 (n=20)
+  logical_reframing:      P=0.321 R=0.121 F1=0.176 (n=140)
+  role_assignment:        P=0.000 R=0.000 F1=0.000 (n=36)
+  gradual_escalation:     P=0.233 R=0.310 F1=0.266 (n=129)
+  obfuscation:            P=0.000 R=0.000 F1=0.000 (n=160)
+
+Full results JSON at server: /root/persuasion_turn_jailbreak_detect/results/sf9_strategy_prediction.json

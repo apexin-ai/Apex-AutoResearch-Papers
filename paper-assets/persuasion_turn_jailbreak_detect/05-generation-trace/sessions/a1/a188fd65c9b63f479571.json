@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a188fd65c9b63f479571",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "paper p1 edits",
+  "task_key": "worker_paper_p1_edits_20260522T073205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p1_edits_20260522T073205.log",
+    "occurrence": 1,
+    "bytes": 844370,
+    "sha256": "7a3e98d64e90865042211ad8c01eb23fa0cf792e0b9b328fc9922340b6c4af0d"
+  },
+  "statistics": {
+    "messages": 145,
+    "user_turns": 0,
+    "tool_calls": 55,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 55,
+      "tool_result": 55,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 145,
+      "chunks": [
+        {
+          "path": "a188fd65c9b63f479571-part-0001.json",
+          "message_count": 80
+        },
+        {
+          "path": "a188fd65c9b63f479571-part-0002.json",
+          "message_count": 65
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-p1-edits.md"
+}

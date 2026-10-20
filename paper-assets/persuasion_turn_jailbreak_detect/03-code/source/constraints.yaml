@@ -1,0 +1,8 @@
+_next_id: 2
+constraints:
+- id: C001
+  added: 2026-05-17 06:29 UTC
+  summary: GPU 使用严格限制在 cuda:0, cuda:1, cuda:2, cuda:3（westd-33183 共 9 张卡，本项目只分配前 4
+    张）。训练脚本必须设置 CUDA_VISIBLE_DEVICES=0,1,2,3。
+  scope: all
+  reason: 服务器共 9 GPU，Manager 只分配 4 张给本项目。L1 红线：禁止使用白名单外 GPU。

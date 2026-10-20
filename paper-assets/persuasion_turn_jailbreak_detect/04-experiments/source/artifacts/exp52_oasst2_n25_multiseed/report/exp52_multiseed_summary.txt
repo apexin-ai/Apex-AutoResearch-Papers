@@ -1,0 +1,13 @@
+exp52 OASST2 N=25 Multi-seed Validation Results
+
+Seed  | OASST2 FPR | FP count | IID F1 | DD F1  | AA F1  | FITD F1 | Time
+------|------------|----------|--------|--------|--------|---------|------
+42    | 1.50%      | 3/200    | 1.000  | 1.000  | 0.953  | 1.000   | (exp51)
+123   | 0.50%      | 1/200    | 1.000  | 1.000  | 0.917  | 1.000   | 1.8min
+456   | 1.00%      | 2/200    | 1.000  | 1.000  | 0.990  | 1.000   | 1.7min
+------|------------|----------|--------|--------|--------|---------|------
+Mean  | 1.00%      | 2.0/200  | 1.000  | 1.000  | 0.953  | 1.000   |
+Std   | 0.50%      |          | 0.000  | 0.000  | 0.037  | 0.000   |
+
+Conclusion: N=25 OASST2 benign adaptation reliably reduces FPR to ~1% (range 0.5-1.5%).
+Hypothesis confirmed: result is NOT a lucky seed artifact.

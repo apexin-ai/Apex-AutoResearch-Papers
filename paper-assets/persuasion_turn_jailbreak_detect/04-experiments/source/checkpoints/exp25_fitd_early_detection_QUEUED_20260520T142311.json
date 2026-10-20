@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp25_fitd_early_detection",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:23:07.691Z",
+    "updated_at": "2026-05-20T14:23:11.251Z",
+    "hypothesis": "9-class persuasion-aware model detects FITD jailbreaks earlier (higher F1 at low K) than MLM and vanilla baselines, similar to the pattern observed on ActorAttack OOD."
+  },
+  "timestamp": "2026-05-20T14:23:11.427036+00:00",
+  "trigger": "update_registry"
+}

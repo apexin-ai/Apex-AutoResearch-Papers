@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90fad29219c1ee95f016",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper reframe b1b2",
+  "task_key": "worker_paper_reframe_b1b2_20260522T071201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reframe_b1b2_20260522T071201_result.json",
+    "occurrence": 1,
+    "bytes": 2034,
+    "sha256": "3ec5179ac9c00176a1bb15483e9d291d198e3b41b5e21d8afbd2c8339a7b2d85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，页面合规。以下是修改摘要：\n\n### Diff 摘要\n\n**abstract.tex** — +2 sentences (替换最后 1 sentence)\n- 新增 benign distribution shift 描述（WildChat FPR 68.1%, 10-shot → 0%）\n- 结尾句从 \"optimization regularization, not semantic learning\" 重写为两轴分解框架总结，含 24.3× speedup\n\n**introduction.tex L20 段** — 两轴框架替换单轴描述\n- \"shows that classification-based adaptation is the most robust variant\" → 分解为 *attack side*（vanilla 0.28–0.31 → DAPT 0.97–1.0）和 *benign side*（WildChat FPR 68.1% → 10-shot 消除）\n- 保留 RoBERTa-large 和 variance 观察不变\n\n**introduction.tex Contributions** — 3 点全部重写\n- C1: \"Systematic decomposition\" + old \"Architecture/scale\" → **Two-axis generalization decomposition**（attack-side + benign-side）\n- C2: old C3 mechanistic interpretation → **Condition-dependent effectiveness + constraining negative results**（MLM collapse, 3 negative results）\n- C3: 新增 **Practical deployment recipe**（24.3× + 10-shot, no target-domain attack data）\n\n**conclusion.tex Discussion** — 段落标题 + 内容升级\n- \"Benign distribution as the remaining bottleneck\" → **\"Two-axis generalization: attack-side vs. benign-side\"**\n- 新增开头句明确 OOD F1 = attack-side under IID benign，结尾从 \"confirming benign mismatch as primary bottleneck\" → \"the two axes are orthogonal and independently addressable\"\n\n**conclusion.tex Conclusion** — 两轴结构同步\n- 开头从 \"On synthetic multi-turn evaluations\" → \"Controlled ablation decomposes ... into two orthogonal axes\"\n- 新增 benign-side 句（10-shot, FPR 68.1%→0%）\n- 结尾从 \"offering a practical alternative given matched benign distributions\" → \"two-axis decomposition yields a practical deployment recipe that requires no target-domain attack data\"\n\n### 编译验证\n- Discussion: page 8\n- Conclusion: page 8\n- Limitations: page 9"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reframe-b1b2.md"
+}

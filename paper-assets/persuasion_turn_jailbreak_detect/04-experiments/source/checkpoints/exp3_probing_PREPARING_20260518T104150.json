@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp3_probing",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:41:50.785Z",
+    "updated_at": "2026-05-18T10:41:50.785Z"
+  },
+  "timestamp": "2026-05-18T10:41:50.853966+00:00",
+  "trigger": "update_registry"
+}

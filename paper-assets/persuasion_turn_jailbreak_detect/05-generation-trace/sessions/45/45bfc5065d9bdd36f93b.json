@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45bfc5065d9bdd36f93b",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "figure fig2 cross attack bar",
+  "task_key": "worker_figure_fig2-cross-attack-bar_20260518T082023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig2-cross-attack-bar_20260518T082023_result.json",
+    "occurrence": 1,
+    "bytes": 135,
+    "sha256": "366aa45ec4d664bef14067eb55ffe4eceb288a057588680e4a548137dfd6b143"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 生成完成，19KB，路径 `/root/persuasion_turn_jailbreak_detect/figures/paper/fig2_cross_attack_bar.pdf`。DONE"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig2-cross-attack-bar.md"
+}

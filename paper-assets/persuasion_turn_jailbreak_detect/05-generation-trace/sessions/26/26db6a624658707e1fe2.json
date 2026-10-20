@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26db6a624658707e1fe2",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp20 deepcontext proxy",
+  "task_key": "worker_code_exp20-deepcontext-proxy_20260520T133408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp20-deepcontext-proxy_20260520T133408_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "bdb47616c02a653182d6159700fe461ceef88b5e7c6e2681e2b7241c83ff0725"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练完成。结果如下：\n\n```\nexp20 DeepContext Proxy (BERT-base + BiGRU) Results:\n\nBERT-base (no DAPT):\n  seed42:  IID=1.000  DD_OOD=0.285  AA_OOD=0.244\n  seed123: IID=0.987  DD_OOD=0.310  AA_OOD=0.271\n  seed456: IID=1.000  DD_OOD=0.360  AA_OOD=0.310\n  mean:    IID=0.996±0.006  DD_OOD=0.318±0.031  AA_OOD=0.275±0.027\n\n对比 DeBERTa-v3 (exp1):\n  BERT-base (no DAPT):    IID=0.996±0.006  DD_OOD=0.318±0.031  AA_OOD=0.275±0.027\n  DeBERTa vanilla:        IID=1.000±0.000  DD_OOD=0.312±0.043  AA_OOD=???\n  DeBERTa 9-class:        IID=1.000±0.000  DD_OOD=0.994±0.005  AA_OOD=0.939±0.047\n```\n\n关键发现：\n- BERT-base vanilla（DD_OOD=0.318）与 DeBERTa vanilla（DD_OOD=0.312）OOD 性能几乎相同，说明 **encoder 选择本身对 OOD 性能影响极小**\n- DeBERTa 9-class 相比两个 vanilla baseline 有巨大提升（DD_OOD: 0.31→0.99, AA_OOD: 0.27→0.94），进一步确认 **DAPT（而非 encoder capacity）是驱动 OOD 泛化的核心因素**\n- Checkpoints 保存在 `checkpoints/exp20_bert_base_seed{42,123,456}/best.pt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp20-deepcontext-proxy.md"
+}

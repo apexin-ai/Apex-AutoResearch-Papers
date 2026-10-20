@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e13486f76c32c8faa203",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp52 oasst2 multiseed",
+  "task_key": "worker_code_exp52_oasst2_multiseed_20260522T100929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp52_oasst2_multiseed_20260522T100929_result.json",
+    "occurrence": 1,
+    "bytes": 647,
+    "sha256": "1b63a80294c356614f97184e9d8824610509a37878ec96e5696498f7f30768fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp52 complete. Results:\n\n| Seed | OASST2 FPR | IID F1 | DD F1 | AA F1 | FITD F1 |\n|------|-----------|--------|-------|-------|---------|\n| 42   | 1.50%     | 1.000  | 1.000 | 0.953 | 1.000   |\n| 123  | **0.50%** | 1.000  | 1.000 | 0.917 | 1.000   |\n| 456  | 1.00%     | 1.000  | 1.000 | 0.990 | 1.000   |\n| **Mean±Std** | **1.0%±0.5%** | 1.000 | 1.000 | 0.953±0.037 | 1.000 |\n\nMulti-seed confirms N=25 OASST2 adaptation is robust — FPR consistently in 0.5-1.5% range across all 3 seeds. IID F1 and most OOD F1 metrics are perfect. Only AA F1 shows minor seed variance (0.917-0.990). Registry updated to DONE/success."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp52-oasst2-multiseed.md"
+}

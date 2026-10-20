@@ -1,0 +1,100 @@
+paper_key: "An Attention-Aware GNN-Based Input Defender Against Multi-Turn Jailbreak on LLMs"
+title: "Attention-Aware GNN-based Input Defense against Multi-Turn LLM Jailbreak"
+venue: "arXiv preprint 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "ChatGPT-4o (native defense)"
+    - "Llama Guard 3 8B"
+    - "WildGuard"
+    - "G-Guard w/o Augmentation (ablation)"
+  metrics:
+    - {name: "Accuracy", direction: "higher_better"}
+    - {name: "Precision", direction: "higher_better"}
+    - {name: "Recall", direction: "higher_better"}
+  datasets:
+    - {name: "HarmBench", size: "400 single-turn (100 benign + 300 harmful) expanded to 1515 multi-turn"}
+    - {name: "JailbreakBench", size: "same expansion as HarmBench"}
+    - {name: "ChatGPT-4o-generated", size: "600 single-turn (300 benign + 300 harmful) expanded to 3000 multi-turn"}
+  ablation_dimensions:
+    - "attention-aware augmentation (with/without labeled node retrieval)"
+    - "subgraph selection (effect on inference speed vs accuracy)"
+    - "conversation length scalability (5-10 turns)"
+  training_recipe:
+    optimizer: "not specified"
+    lr: "not specified"
+    hardware: "not specified"
+  method_family: "GNN-based input classifier (graph construction + attention-aware augmentation + subgraph selection)"
+
+positioning:
+  core_claim: "利用 GNN 对多轮对话构建实体图并跨轮次捕获语义依赖，结合 attention-aware 机制从标注单轮查询库中检索相似样本作为参考节点增强分类，实现多轮越狱攻击的输入级检测"
+  key_results: "HarmBench 上 accuracy=1.0, recall=1.0（完美检测）；ChatGPT-generated 数据集上 accuracy=0.96, precision=1.0, recall=0.96；JailbreakBench 上 accuracy=0.76（baseline 最高 0.50）；Llama Guard 和 WildGuard 在所有数据集上 recall 接近 0"
+  limitations:
+    - "极长对话的可扩展性问题：subgraph selection 的激进剪枝可能丢失重要上下文信息"
+    - "对新型攻击策略的泛化能力不足：依赖训练数据中的已知模式，面对 zero-day 攻击可能失效"
+    - "需要预构建标注单轮查询数据库，增加部署成本"
+    - "论文未报告训练超参数和硬件细节，可复现性存疑"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "以 ChatGPT-4o 上的真实多轮越狱案例开篇：攻击者从看似无害的'Yahoo 数据泄露'问题开始，逐步引导到请求未授权访问技术，展示多轮攻击的渐进式策略"
+  tension: "现有防御（包括 ChatGPT-4o 原生防御、Llama Guard、WildGuard）都是基于单轮分析，无法捕获跨轮次的语义依赖和意图演变；实验数据证实这些 baseline 在多轮场景 recall 接近 0"
+  key_insight: "将多轮对话建模为实体图（entity graph），用 GNN 捕获跨轮次的语义关系——这是将图神经网络引入 LLM 安全领域的跨界迁移；attention-aware 机制通过检索相似的标注单轮样本作为'锚点'增强泛化"
+  argument_chain: "multi-turn jailbreak exploits cross-turn semantic dependencies → existing defenses analyze turns independently → model conversation as entity graph to capture cross-turn relations → add attention-aware augmentation with labeled single-turn retrieval → subgraph selection for scalability → GNN classifies current query as harmful/benign → validated on 3 datasets outperforming all baselines"
+  contribution_framing: "三条创新：(1) graph-based modeling 捕获跨轮次关系，(2) attention-aware augmentation 增强泛化，(3) subgraph selection 保证可扩展性"
+  intro_structure: "约 4-5 段：P1 LLM 安全背景和多轮攻击威胁 → P2 现有防御的单轮局限 → P3 图建模的核心思路 → P4 贡献列表"
+  notable_technique: "用 Figure 1 的真实 ChatGPT-4o 对话截图作为 motivation，展示攻击从'Yahoo breach'到'unauthorized access'的渐进过程，让读者直观体验多轮攻击的隐蔽性"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "motivation"
+    description: "ChatGPT-4o 上的真实多轮越狱攻击案例：从关于 Yahoo 数据泄露的无害问题开始，逐步升级到请求未授权访问技术的有害查询"
+    narrative_role: "建立问题动机——展示即使是最先进的 ChatGPT-4o 也无法防御多轮越狱攻击，为提出 G-Guard 做铺垫"
+    design_elements: ["多轮对话流程展示", "攻击升级标注", "有害内容高亮"]
+    visual_style: "对话截图/示意图格式，展示多轮对话的渐进式攻击过程"
+  result_figures:
+    - figure_id: "Figure 4a"
+      viz_type: "line_plot"
+      what_compared: "G-Guard 在不同对话长度（5-10 轮）下的 accuracy, precision, recall 变化"
+      how_gain_highlighted: "三条指标线随对话长度增加保持相对稳定，展示方法的鲁棒性"
+      design_note: "line plot 展示随对话长度的变化趋势，直接回应 scalability 质疑"
+    - figure_id: "Figure 4b"
+      viz_type: "line_plot"
+      what_compared: "有/无 subgraph selection 时的推理速度随查询数量（>500）的变化"
+      how_gain_highlighted: "无 selection 时速度急剧下降，有 selection 时保持平稳，差距随查询数增大而扩大"
+      design_note: "直接展示工程优化的效果，增强方法的实用性论证"
+  ablation_figures:
+    - figure_id: "Figure 4a"
+      viz_type: "line_plot"
+      dimensions_varied: ["conversation length (5-10 turns)"]
+      design_note: "消融对话长度的影响，展示方法在不同轮次下的稳定性"
+    - figure_id: "Figure 4b"
+      viz_type: "line_plot"
+      dimensions_varied: ["subgraph selection on/off", "query count scalability"]
+      design_note: "消融 subgraph selection 组件对推理效率的影响"
+  figure_narrative_role: "Figure 1 (motivation: 真实多轮攻击案例) → Figure 2 (method overview: G-Guard 完整 pipeline) → Figure 3 (method detail: subgraph selection 机制) → Figure 4 (analysis: scalability + efficiency)"
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 1 + Table 2 + Table 3"
+    row_axis: "datasets"
+    col_axis: "methods"
+    row_organization: "by_dataset"
+    col_organization: "flat"
+    highlight_strategy: "best values implicitly highlighted by comparison"
+    statistical_reporting: "single run values (0-1 scale)"
+    num_baselines: 3
+    design_note: "将 accuracy/precision/recall 拆成三张独立表格，每张表的行是数据集、列是方法；这种拆分让每个指标的对比更清晰，但增加了读者来回查看的负担；G-Guard w/o Aug 作为消融变体也放在主表中，省去单独的消融表"
+  ablation_tables:
+    - table_id: "Tables 1-3 (G-Guard w/o Aug. column)"
+      what_varied: ["attention-aware augmentation (with/without)"]
+      variation_style: "full_numbers"
+      design_note: "消融变体直接嵌入主结果表作为一列，而非单独成表；这种做法节省空间但降低了消融分析的独立性"
+  supplementary_tables:
+    in_appendix: false
+    content: "论文未提供附录表格"
+    reason: "所有结果集中在 3 张主表中（按指标拆分），数据量不大无需附录"

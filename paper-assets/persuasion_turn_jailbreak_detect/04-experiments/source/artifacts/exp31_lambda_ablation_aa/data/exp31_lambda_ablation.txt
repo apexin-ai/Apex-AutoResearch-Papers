@@ -1,0 +1,8 @@
+Lambda | IID | DD_OOD | AA_OOD | FITD_OOD
+0.0    | 1.0 | 1.0    | 1.0    | 1.0
+0.1    | 1.0 | 1.0    | 0.9904 | 1.0
+0.5    | 1.0 | 1.0    | 0.9809 | 1.0
+1.0    | 1.0 | 1.0    | 0.9809 | 1.0
+2.0    | 1.0 | 1.0    | 0.9439 | 1.0
+
+Server path: /root/persuasion_turn_jailbreak_detect/results/exp31_lambda_ablation.json

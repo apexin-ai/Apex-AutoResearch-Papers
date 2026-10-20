@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9915988c1a5550d388fe",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp10 fewshot llm judge",
+  "task_key": "worker_eval_exp10-fewshot-llm-judge_20260518T165106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp10-fewshot-llm-judge_20260518T165106_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "bc42ce95892f4c2861621985b15e4b541b15b5f2ac2111a4fcbcd65f9db20bae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。汇总：\n\n```\n            | DD OOD                      | ActorAttack\n            | F1     | Prec   | Rec      | F1     | Prec   | Rec\nZero-shot   | 0.000  | 0.000  | 0.000    | 0.000  | 0.000  | 0.000\n3-shot      | 0.5405 | 0.9677 | 0.375    | 0.6612 | 0.9756 | 0.500\n9-class     | 0.997  | 1.000  | 0.994    | 0.970  | ~1.00  | ~0.94\n```\n\n**K 值变化（3-shot）**：\n\n| K    | DD F1  | AA F1  |\n|------|--------|--------|\n| k1   | 0.025  | 0.280  |\n| k2   | 0.161  | 0.316  |\n| k3   | 0.384  | 0.491  |\n| k5   | 0.416  | 0.633  |\n| full | 0.541  | 0.661  |\n\n关键发现：\n- 3-shot 大幅优于 zero-shot（从 0.0 到 0.54/0.66），但仍远低于 trained 9-class classifier\n- Precision 近乎完美（~0.97-1.0），但 recall 只有 0.375-0.5（漏检 50-60% 的 jailbreak）\n- 0 个 unparseable（few-shot examples 帮助模型遵循输出格式）\n- ActorAttack 比 DD 更容易被检测到（F1 0.66 vs 0.54）\n- 结果保存至 `results/exp10_fewshot_llm_judge.json`，registry 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp10-fewshot-llm-judge.md"
+}

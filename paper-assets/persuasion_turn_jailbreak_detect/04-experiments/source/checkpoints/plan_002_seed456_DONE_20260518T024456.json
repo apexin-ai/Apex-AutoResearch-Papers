@@ -1,0 +1,45 @@
+{
+  "exp_id": "plan_002_seed456",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T01:12:15.664Z",
+    "updated_at": "2026-05-18T02:44:56.819Z",
+    "hypothesis": "Reproduce plan_002 with seed=456 to confirm stability of persuasion-grounded DeBERTa detection advantage over vanilla baseline across random seeds",
+    "parent": "plan_002_clean_training",
+    "spec": {
+      "command": "python src/train_deberta.py + train_classifier.py + eval_early_detection.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/",
+      "data_count": 500,
+      "model_name": "DeBERTa-v3-base + BiGRU",
+      "seed": 456,
+      "checkpoint_source": "checkpoints/plan_002_seed456/",
+      "eval_data": "data/plan_002_splits/test.jsonl"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "treatment_k1_f1": 1,
+      "treatment_k2_f1": 1,
+      "treatment_k3_f1": 1,
+      "treatment_k5_f1": 1,
+      "treatment_full_f1": 1,
+      "baseline_k1_f1": 0.9296,
+      "baseline_k2_f1": 0.9589,
+      "baseline_k3_f1": 0.9867,
+      "baseline_k5_f1": 0.9867,
+      "baseline_full_f1": 1,
+      "tfidf_all_k_f1": 1,
+      "deberta_best_epoch": 2,
+      "deberta_persuasion_acc": 0.8593,
+      "deberta_intent_acc": 1
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "completed_at": "2026-05-18T02:11:24.081Z"
+  },
+  "timestamp": "2026-05-18T02:44:56.847933+00:00",
+  "trigger": "update_registry"
+}

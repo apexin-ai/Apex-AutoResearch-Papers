@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp7_tfidf_perprefix_actorattack",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:16:17.444Z",
+    "updated_at": "2026-05-18T16:20:29.501Z",
+    "hypothesis": "TF-IDF LR baseline per-prefix results on DD OOD and ActorAttack will show the complete performance profile across K values, filling the gap where only Full F1 was reported, and establishing the full comparison surface against neural methods",
+    "spec": {
+      "command": "/root/miniconda3/bin/python src/exp7_tfidf_perprefix.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/train.jsonl",
+      "data_count": 350,
+      "model_name": "TF-IDF + LogisticRegression",
+      "seed": 42,
+      "checkpoint_source": "N/A",
+      "eval_data": "DD OOD (118) + ActorAttack (118)",
+      "checkpoint_path": "results/exp7_tfidf_perprefix.json",
+      "log_path": "results/exp7_tfidf_perprefix.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T16:20:29.600751+00:00",
+  "trigger": "update_registry"
+}

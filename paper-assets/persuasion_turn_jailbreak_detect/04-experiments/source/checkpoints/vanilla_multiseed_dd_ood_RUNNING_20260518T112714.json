@@ -1,0 +1,26 @@
+{
+  "exp_id": "vanilla_multiseed_dd_ood",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T11:26:57.037Z",
+    "updated_at": "2026-05-18T11:27:14.298Z",
+    "hypothesis": "DeBERTa vanilla (no Stage-1 fine-tuning) multi-seed DD OOD evaluation will confirm that the 62pp gap (vanilla 0.284 vs treatment 0.997) is not a seed artifact, and centered CKA will correct the misleading uncentered CKA=1.0 for vanilla vs MLM",
+    "spec": {
+      "command": "train_gru.py + evaluate_gru.py (vanilla, seed123/456) + centered_cka.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits + data/dd_ood",
+      "data_count": 118,
+      "model_name": "DeBERTa-v3-base (vanilla, no Stage-1)",
+      "seed": "123,456",
+      "checkpoint_path": "checkpoints/vanilla_seed123/, checkpoints/vanilla_seed456/",
+      "log_path": "results/vanilla_multiseed_dd_ood.json, results/centered_cka.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T11:27:14.375728+00:00",
+  "trigger": "update_registry"
+}

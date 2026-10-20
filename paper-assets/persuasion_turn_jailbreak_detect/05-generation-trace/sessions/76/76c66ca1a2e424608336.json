@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76c66ca1a2e424608336",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp53 llm judge fulleval",
+  "task_key": "worker_code_exp53_llm_judge_fulleval_20260522T102836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp53_llm_judge_fulleval_20260522T102836_result.json",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "c6ef8d3ff75bfb3e5d5a7b392bd60f1edff7d99e8747b9e4aab0764f00f89347"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job running, monitoring set up.\n\n**Status:**\n- exp53 LLM-as-Judge evaluation launched in tmux `exp53` on westd-33183 (cuda:0)\n- Model (Qwen3-8B) loaded successfully from cache, already evaluating `original` prompt on IID\n- Registry updated to RUNNING\n- Cron job `d3a608ea` checking every 10 min — will auto-report results when done (~62 min expected)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp53-llm-judge-fulleval.md"
+}

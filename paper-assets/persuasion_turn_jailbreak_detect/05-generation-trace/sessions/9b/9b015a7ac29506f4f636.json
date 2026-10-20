@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b015a7ac29506f4f636",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval plan002 seed123 dd ood",
+  "task_key": "worker_eval_plan002-seed123-dd-ood_20260518T070812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan002-seed123-dd-ood_20260518T070812_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "6f19a9480ee062565c6f720886b072e4e57f9d5e923f1fa789d288bc1b2b20f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果**：plan_002 seed=123 DD OOD 与 seed=42 **完全一致**：\n\n| K | seed=42 | seed=123 |\n|---|---------|----------|\n| 1 | 1.0 | 1.0 |\n| 2 | 0.9904 | 0.9904 |\n| 3 | 0.9904 | 0.9904 |\n| 5 | 1.0 | 1.0 |\n| full | 1.0 | 1.0 |\n\n9-class persuasion treatment 跨 seed 方差 = 0，与 control variants（MLM std=0.115, topic std=0.207）形成鲜明对比。核心 claim 安全——persuasion treatment 的 DD OOD 泛化是稳定的，不是 seed lottery。\n\nRegistry 和 artifact 均已更新。还需要 seed=456 的 DD OOD 来完成 3-seed 全貌。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan002-seed123-dd-ood.md"
+}

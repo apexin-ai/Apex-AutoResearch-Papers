@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_003_scrambled_ablation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T22:54:10.521Z",
+    "updated_at": "2026-05-17T22:54:17.514Z",
+    "hypothesis": "Scrambling persuasion strategy labels while preserving distribution will significantly degrade detection performance, proving strategy labels carry real signal beyond surface confounds"
+  },
+  "timestamp": "2026-05-17T22:54:17.555851+00:00",
+  "trigger": "update_registry"
+}

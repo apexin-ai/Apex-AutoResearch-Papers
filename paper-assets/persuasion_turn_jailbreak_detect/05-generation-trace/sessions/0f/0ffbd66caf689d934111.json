@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "0ffbd66caf689d934111",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "train plan016v2 topic control",
+  "task_key": "worker_train_plan016v2-topic-control_20260518T054507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan016v2-topic-control_20260518T054507.log",
+    "occurrence": 1,
+    "bytes": 874241,
+    "sha256": "4db07e6450b0d35a86b8af3b84b32627107be575f7dae313f23485f81ba2eeb4"
+  },
+  "statistics": {
+    "messages": 399,
+    "user_turns": 1,
+    "tool_calls": 137,
+    "roles": {
+      "log": 1,
+      "system": 49,
+      "record": 1,
+      "assistant": 72,
+      "tool_call": 137,
+      "user": 1,
+      "tool_result": 137,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "0ffbd66caf689d934111-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 392,
+      "chunks": [
+        {
+          "path": "0ffbd66caf689d934111-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "0ffbd66caf689d934111-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0ffbd66caf689d934111-part-0003.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-plan016v2-topic-control.md"
+}

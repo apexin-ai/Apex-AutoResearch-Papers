@@ -1,0 +1,12 @@
+exp18 End-to-end Fine-tuning Results (F1 macro):
+
+9-class E2E:
+  seed42:  IID=1.000  DD_OOD=1.000  AA_OOD=1.000
+  seed123: IID=1.000  DD_OOD=1.000  AA_OOD=0.990
+  seed456: IID=1.000  DD_OOD=1.000  AA_OOD=1.000
+  mean:    IID=1.000±0.000  DD_OOD=1.000±0.000  AA_OOD=0.997±0.005
+
+Frozen probing (exp1):
+  frozen:  IID=1.000±0.000  DD_OOD=0.994±0.005  AA_OOD=0.939±0.047
+  e2e:     IID=1.000±0.000  DD_OOD=1.000±0.000  AA_OOD=0.997±0.005
+  delta:   IID=+0.000       DD_OOD=+0.006        AA_OOD=+0.058

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1bd1be98e6f0a824c24",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp27 mean pooling",
+  "task_key": "worker_code_exp27-mean-pooling_20260520T150040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp27-mean-pooling_20260520T150040_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "4ea796c288cedb525497f63b67a9c5470f096e28536399bdf049db0050a1de56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp27 完成。\n\n## 结果\n\n**假设被拒绝。** Mean pooling E2E 在所有指标、所有 seed 上均获得 **1.0 F1**，零方差。\n\n| 方法 | IID | DD OOD full | AA OOD full | FITD |\n|------|-----|-------------|-------------|------|\n| **exp27 MeanPool E2E** | **1.000** | **1.000** | **1.000** | **1.000** |\n| exp18 BiGRU E2E | 1.000 | 1.000 | 0.997 | - |\n| exp26 BiGRU Frozen | 1.000 | 0.997 | 0.972 | 1.000 |\n| exp13 MeanPool Frozen | - | 0.990 | 0.962 | - |\n\n**关键发现**：Temporal modeling（BiGRU）在 E2E 设置下不是必要的。End-to-end fine-tuning 才是决定性因素——解冻 encoder 后，即使最简单的 mean pooling 也能在所有当前 OOD 基准上达到满分。BiGRU 在 E2E 设置中相比 mean pooling 没有任何增益。\n\n产出：\n- 结果文件：`results/exp27_mean_pooling.json`（服务器端）\n- Checkpoints：`checkpoints/exp27_mean_pooling/seed{42,123,456}/`\n- Registry：`exp27_mean_pooling` → DONE (negative)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp27-mean-pooling.md"
+}

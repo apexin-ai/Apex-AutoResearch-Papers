@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp51_lmsys_benign_ood",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T08:58:59.398Z",
+    "updated_at": "2026-05-22T09:43:53.294Z",
+    "hypothesis": "The two-axis decomposition (high FPR on OOD benign + 10-shot remediation) generalizes beyond WildChat: LMSYS-Chat-1M benign conversations will show high FPR (>20%) that 10 target-domain conversations can eliminate, confirming benign-side shift is a general phenomenon not specific to WildChat GPT-3.5 users.",
+    "parent": "exp45_benign_adaptation_curve",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T09:43:53.502496+00:00",
+  "trigger": "update_registry"
+}

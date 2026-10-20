@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "0ef1f7ddc3f2ee3262c4",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp16 merge train v2",
+  "task_key": "worker_code_exp16-merge-train-v2_20260519T194753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-merge-train-v2_20260519T194753.log",
+    "occurrence": 1,
+    "bytes": 555835,
+    "sha256": "41ad51d0602231f4b37c9354200f26ff2ab3a42ad761552b151308fb29398e09"
+  },
+  "statistics": {
+    "messages": 442,
+    "user_turns": 0,
+    "tool_calls": 188,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 188,
+      "tool_result": 188,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 442,
+      "chunks": [
+        {
+          "path": "0ef1f7ddc3f2ee3262c4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0ef1f7ddc3f2ee3262c4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0ef1f7ddc3f2ee3262c4-part-0003.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp16-merge-train-v2.md"
+}

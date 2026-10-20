@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "044b87e540c89629272f",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "data crescendo generation v2",
+  "task_key": "worker_data_crescendo-generation-v2_20260517T081541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_crescendo-generation-v2_20260517T081541_result.json",
+    "occurrence": 1,
+    "bytes": 1240,
+    "sha256": "5ae571766ceb36ba7099968a6629a6540926ed90ad02a0fb01a2619e5327c834"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Generation is proceeding steadily. Summary of current status:\n\n**Running:**\n- `screen -S crescendo` with auto-restart wrapper (`run_with_restart.sh`)\n- Script: `generate_crescendo_v2.py` (resumable, saves after each conversation)\n- PID 33800 on GPUs 0+1\n\n**Progress:**\n- 4/250 conversations completed\n- Avg ~88s per conversation (range: 25-137s depending on turn count)\n- ETA: ~363 minutes (~6 hours) from now\n- Each conversation is immediately saved to `crescendo_progress.jsonl`\n\n**Resilience:**\n- Per-conversation saving with `fsync` \n- Auto-restart wrapper retries up to 50 times with 10s delay between restarts\n- Resume from checkpoint on restart (skips already-generated conv_ids)\n- Competing `generate_worker.py` and `generate_parallel.py` have been disabled\n\nThe generation will complete autonomously. When it finishes (or when you want to check later), the output files will be at:\n- `data/generated/crescendo_progress.jsonl` (incremental)\n- `data/generated/crescendo_full.jsonl` (final, written when all 250 done)\n- `data/generated/crescendo_user_only.jsonl` (user turns only, for sanity check)\n\nThe sanity check script (`scripts/sanity_check.py`) is ready to run after generation completes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-crescendo-generation-v2.md"
+}

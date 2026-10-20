@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f12eee8f32f10d48ca8c",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "eval exp3 roberta probing",
+  "task_key": "worker_eval_exp3-roberta-probing_20260518T105923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp3-roberta-probing_20260518T105923.log",
+    "occurrence": 1,
+    "bytes": 572366,
+    "sha256": "ea10fb460d43a7643c9265c248984de32fb2ab115e3827101013f17161d67dbe"
+  },
+  "statistics": {
+    "messages": 211,
+    "user_turns": 0,
+    "tool_calls": 80,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 80,
+      "tool_result": 80,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 211,
+      "chunks": [
+        {
+          "path": "f12eee8f32f10d48ca8c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f12eee8f32f10d48ca8c-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-exp3-roberta-probing.md"
+}

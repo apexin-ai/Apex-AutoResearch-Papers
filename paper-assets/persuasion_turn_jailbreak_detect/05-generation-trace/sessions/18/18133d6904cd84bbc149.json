@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18133d6904cd84bbc149",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "figure fig4 svd subspace",
+  "task_key": "worker_figure_fig4-svd-subspace_20260523T125455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig4-svd-subspace_20260523T125455_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "e51a8446202b7f7596d05fa0a88f6fa449a0307462e0074a1b497eed0dc491b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fig 4 完成。\n\n- **(a) Vanilla**: 两类充分混杂，vanilla encoder 的 top-2 SVD 方向不具备判别性\n- **(b) 9-Class DAPT**: benign 紧聚在 dim 1 ≈ 40，jailbreak 分布在 -20~0，类间清晰分离\n\nDAPT 的第一奇异值 (295.63) 远超第二个 (39.78)，说明 adaptation 在表示空间中雕刻出一个强主导方向。Vanilla 的奇异值谱则平坦得多 (8.48, 0.99, 0.70...)。\n\n输出文件：\n- `docs/paper/figures/paper/fig4_svd_subspace.pdf` (32K)\n- `docs/paper/figures/paper/fig4_svd_subspace.png` (64K)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig4-svd-subspace.md"
+}

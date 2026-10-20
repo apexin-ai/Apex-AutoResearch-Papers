@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp31_lambda_ablation_aa",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:29:23.924Z",
+    "updated_at": "2026-05-20T19:28:17.810Z",
+    "hypothesis": "Multi-task persuasion loss weight (lambda) affects OOD generalization in E2E fine-tuning: lambda=0 (intent-only) will underperform on hard OOD (ActorAttack) compared to lambda>0, because the persuasion auxiliary signal provides a regularization effect that preserves OOD-relevant features in the encoder. There exists an optimal lambda that maximizes AA OOD without sacrificing IID performance.",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/persuasion_turn_jailbreak_detect && python scripts/exp31_lambda_ablation.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/",
+      "data_count": 350,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": 42,
+      "checkpoint_source": "plan_002 DAPT seed42",
+      "eval_data": "IID test + DD OOD + AA OOD + FITD OOD",
+      "checkpoint_path": "checkpoints/exp31_lambda*_seed42/best.pt",
+      "log_path": "/tmp/exp31.log",
+      "lambdas": [
+        0,
+        0.1,
+        0.5,
+        1,
+        2
+      ],
+      "pid": 84095
+    },
+    "metrics": {
+      "lambda_0_aa": 1,
+      "lambda_0.1_aa": 0.9904,
+      "lambda_0.5_aa": 0.9809,
+      "lambda_1.0_aa": 0.9809,
+      "lambda_2.0_aa": 0.9439,
+      "iid_all": 1,
+      "dd_all": 1,
+      "fitd_all": 1,
+      "note": "Higher lambda monotonically hurts AA OOD. lambda=0 (intent-only E2E) achieves perfect AA. Persuasion aux loss acts as a distractor during E2E."
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-20T19:28:17.975067+00:00",
+  "trigger": "update_registry"
+}

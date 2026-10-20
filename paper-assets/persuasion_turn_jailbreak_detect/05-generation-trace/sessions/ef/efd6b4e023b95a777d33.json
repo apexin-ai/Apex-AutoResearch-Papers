@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efd6b4e023b95a777d33",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp28 data efficiency",
+  "task_key": "worker_code_exp28-data-efficiency_20260520T152040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp28-data-efficiency_20260520T152040_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "2112c1b11c9b93def91ddd09921cd788d0e748037af9e53b0d00f98bd36f4837"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp28 完成。**\n\n结果汇总（macro F1）：\n\n| Condition | N | IID | DD OOD | AA OOD |\n|-----------|----:|:----:|:------:|:------:|\n| **9class** | 50 | 1.00 | 1.00 | 0.99 |\n| **9class** | 125 | 1.00 | 1.00 | 0.99 |\n| **9class** | 250 | 1.00 | 1.00 | 1.00 |\n| **9class** | 350 | 1.00 | 1.00 | 1.00 |\n| vanilla | 125 | 0.53 | 0.24 | 0.24 |\n| vanilla | 350 | 1.00 | 0.36 | 0.49 |\n\n核心发现：\n- **9class DAPT 仅需 50 条数据（14%）就达到 DD OOD=1.0, AA OOD=0.99**，比 vanilla 用全量 350 条数据（DD=0.36, AA=0.49）高出 64pp 和 50pp\n- OOD 泛化优势完全来自 persuasion-grounded representation 本身，而非数据量\n- 训练集扩大到 250+ 后 AA OOD 从 0.99 提升到 1.00，但即使最小子集也已接近上限\n- Vanilla baseline 即使在 IID 上表现完美（n=350 时 IID=1.0），OOD 仍然严重衰退"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp28-data-efficiency.md"
+}

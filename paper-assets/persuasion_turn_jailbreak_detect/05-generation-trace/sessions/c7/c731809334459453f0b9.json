@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c731809334459453f0b9",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "ops s3 backup",
+  "task_key": "worker_ops_s3-backup_20260525T210436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s3-backup_20260525T210436_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "9e9f3da663b3a0cbbd62140cda4c3d213457d4129d8bb9cdee0622f105266d3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 备份完成\n\n| 项目 | 详情 |\n|------|------|\n| **(a) Tarball** | `/home/ubuntu/tmp_backup/persuasion_turn_jailbreak_detect-final-20260525T210505Z.tar.gz` — **13G (12,559 MB)** (已清理) |\n| **(b) S3 URI** | `s3://agent-ml-manager-backups-emnlp/manager-backup/backends/persuasion_turn_jailbreak_detect/project-archive/persuasion_turn_jailbreak_detect-final-20260525T210505Z.tar.gz` |\n| **(c) 上传速率** | 88.6s, **141.7 MB/s** |\n| **(d) 备份内容** | 完整归档，**包含 checkpoints**。`-h` 解引用了所有符号链接，归档了实际文件内容 |\n| **(e) Checkpoints** | 已包含（BE 根分区有 52G 可用空间，足够容纳 13G 压缩包） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-s3-backup.md"
+}

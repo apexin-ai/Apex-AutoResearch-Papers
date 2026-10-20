@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d11990c5d0fc03afcf62",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan003 scrambled fix data",
+  "task_key": "worker_train_plan003-scrambled-fix-data_20260518T073310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan003-scrambled-fix-data_20260518T073310_result.json",
+    "occurrence": 1,
+    "bytes": 1245,
+    "sha256": "d5d33cb980a54c85fc1e36b4dc6a68788d39e7631aaacfad88be01a051417fd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## 实验结果总结\n\n**plan_003_scrambled_fix** 全部完成，使用正确数据源 `data/plan_002_splits/`。\n\n| 指标 | 值 |\n|---|---|\n| **DeBERTa** val_persuasion_acc | 0.679 (scrambled 导致下降) |\n| **DeBERTa** val_intent_acc | 1.0 (未受影响) |\n| **IID Test F1 (full)** | 1.0000 |\n| **DD OOD F1 (full)** | 0.9904 |\n| **DD OOD F1 (k=2)** | 0.9439 |\n| **DD OOD F1 (k=3)** | 0.9350 |\n| **Perturbation delta (full)** | 0.0000 |\n| **Perturbation delta (k=1)** | +0.0527 |\n\n**结论 (negative)**: DD OOD F1 = 0.9904，远非预期的 0.333（全预测 benign）。Scrambled persuasion labels 未显著降低检测性能。原因：intent classification head（binary jailbreak/benign）的标签未被打乱，DeBERTa 微调通过 intent 信号即可学到足够的 jailbreak 表征。正确的 persuasion strategy 标签不是检测的核心机制。\n\n产出：\n- 结果 JSON: `results/plan_003_scrambled_fix.json`\n- DeBERTa checkpoint: `checkpoints/plan_003_scrambled_fix/deberta_multitask/best/`\n- GRU checkpoint: `checkpoints/plan_003_scrambled_fix/gru/best.pt`\n- 训练日志: `results/plan_003_scrambled_fix_stage1.log`, `results/plan_003_scrambled_fix_stage2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan003-scrambled-fix-data.md"
+}

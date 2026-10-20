@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6183b4c9d070c7460d4f",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code treatment dryrun",
+  "task_key": "worker_code_treatment-dryrun_20260517T074833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_treatment-dryrun_20260517T074833_result.json",
+    "occurrence": 1,
+    "bytes": 1438,
+    "sha256": "46ad24cd61cf298f55056e53c43fb1a06fd48078b0119535565ca8d84fd15938"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 结果汇报\n\n### Pipeline 状态：端到端通过\n\n**训练输出（dry-run, 2 batches）：**\n- Train Loss: 2.7549（初始值合理，8-class CE 理论值 ln(8)≈2.08，加上 0.3×intent loss 约 2.7 符合预期）\n- Val Loss: 2.6540\n- Val Persuasion Acc: 0.0000（mock 数据全标 class 7，dry-run 2 batch 不足以学到）\n- Val Intent Acc: 0.5000（随机水平，符合预期）\n\n**完整 1-epoch（250 user turns）：**\n- Train Loss: 2.0448，Val Loss: 1.2419\n- Val Persuasion Acc: 1.0000（全标同一类，1 epoch 即可学到）\n- 耗时：**14.1 秒**\n\n**GPU 显存（batch_size=16, max_length=256）：**\n- 峰值 allocated：6,742.7 MiB\n- 峰值 reserved：7,256.0 MiB\n- nvidia-smi 报告：7,925 MiB / 97,887 MiB（利用率 ~8%）\n- GPU：NVIDIA RTX PRO 6000 Blackwell Server Edition（98GB）\n- 显存充裕，batch_size 可大幅提升\n\n**发现的问题：**\n- 无 bug。DeBERTa 加载时有 UNEXPECTED keys 警告（`mask_predictions.*`, `lm_predictions.*`），这是正常的，因为加载的是 pretrained MLM 权重，这些 head 不被 `AutoModel` 使用\n- `train_deberta.py` 无 `--device` 和 `--num_classes` 参数（使用 `Accelerator` 控制设备，model 默认 8 classes）\n\n**正式训练时间估算：**\n- 250 turns / 1 epoch = 14s → 按真实数据 ~1,500 user turns 估算约 84s/epoch\n- 5 epochs ≈ 7 分钟（单卡 RTX PRO 6000）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-treatment-dryrun.md"
+}

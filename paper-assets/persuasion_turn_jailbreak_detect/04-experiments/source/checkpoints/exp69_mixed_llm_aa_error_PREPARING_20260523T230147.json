@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp69_mixed_llm_aa_error",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:01:47.727Z",
+    "updated_at": "2026-05-23T23:01:47.727Z"
+  },
+  "timestamp": "2026-05-23T23:01:47.957633+00:00",
+  "trigger": "update_registry"
+}

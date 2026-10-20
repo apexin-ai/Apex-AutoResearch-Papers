@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f63c273e3dbcc9661f3",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper rebuttal evidence matrix",
+  "task_key": "worker_paper_rebuttal-evidence-matrix_20260518T232848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_rebuttal-evidence-matrix_20260518T232848_result.json",
+    "occurrence": 1,
+    "bytes": 929,
+    "sha256": "beaf9412094451d4e8786c37bc7ae655fb84294406e936db6b68f08516de81d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Rebuttal evidence matrix written and registered (`art_20260518_0a9c4d`).\n\n**Coverage summary**:\n- **11 Must-Fix issues** (R2 N1-N7 + R3 N1-N5): 9 resolved, 2 partial (novelty framing, baseline comparison)\n- **16 Should-Fix issues**: 10 resolved, 6 partial\n- **8 Minor issues**: all resolved\n\n**Remaining gaps** (no new experiments needed, but paper text adjustments pending):\n1. **Novelty (MF2)** — framing adjustment in progress; defense relies on negative findings being unpredictable from \"Don't Stop Pretraining\"\n2. **Baseline comparison (MF5)** — no direct DeepContext reproduction; mitigated by analysis paper positioning + LLM judge baseline\n3. **Capacity caveat (SF9)** — needs to propagate from Discussion into Contribution 2 and Abstract\n4. **Analysis depth (SF14)** — CKA heatmap added but no t-SNE/UMAP\n\nAll metrics are sourced from registry with experiment IDs cross-referenced."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-rebuttal-evidence-matrix.md"
+}

@@ -1,0 +1,3322 @@
+# train mf1 scrambled seed123
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 111
+- **Recorded user turns:** 0
+- **Tool calls:** 55
+- **Original source:** `logs/chats/worker_train_mf1-scrambled-seed123_20260518T091249.jsonl`
+- **Structured JSON:** [`73ceaca30459d4e6e143.json`](../../sessions/73/73ceaca30459d4e6e143.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+111 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T09:21:09.202724+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T09:21:09.203131+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T09:21:09.203307+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'exp_id': 'plan_003_scrambled_fix'}",
+  "project": "persuasion_turn_jailbreak_detect",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'exp_id': 'plan_003_scrambled_fix'}",
+    "project": "persuasion_turn_jailbreak_detect",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-18T09:21:09.203449+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1283}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T09:21:09.203598+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/plan_003_scrambled_fix/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/plan_003_scrambled_fix/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-18T09:21:09.203729+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T09:21:09.203853+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"deberta_multitask\\ngru\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-18T09:21:09.203970+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T09:21:09.204090+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"test.jsonl\\ntrain.jsonl\\ntrain_scrambled.jsonl\\nval.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T09:21:09.204368+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adversarial_perturbation_results.json\\nbinary_perturbation.json\\ncross_attack_eval.json\\nfig3_preview.jpg\\nfig3_preview.png\\nfig3_preview_b64.txt\\nfig3_small.png\\nfig3_small_b64.txt\\nfig3_strategy_heatmap.pdf\\nfig3_strategy_heatmap.png\\nfig3_tiny_b64.txt\\nperturbation_quality_report.json\\nphase_b_full_results.json\\nphase_b_supplement.json\\npilot_baseline.json\\npilot_results.json\\npilot_tfidf.json\\npilot_treatment.json\\nplan001_results.json\\nplan_002_eval.json\\nplan_002_nohup.log\\nplan_002_seed123_dd_ood.json\\nplan_002_seed123_eval.json\\nplan_002_seed123_stage1.log\\nplan_002_seed123_stage2.log\\nplan_002_seed123_stage3.log\\nplan_002_seed123_stage4.log\\nplan_002_seed456_dd_ood.json\\nplan_002_seed456_eval.json\\nplan_002_training.log\\nplan_003_scrambled_eval.json\\nplan_003_scrambled_fix.json\\nplan_003_scrambled_fix_stage1.log\\nplan_003_scrambled_fix_stage2.log\\nplan_003_scrambled_perturbation.json\\nplan_003_v2_deberta.log\\nplan_003_v2_eval.json\\nplan_004_eval_run.log\\nplan_004_perturbation_eval.json\\nplan_004_perturbed_test.jsonl\\nplan_004_run.log\\nplan_006_cross_attack_eval.json\\nplan_006_run.log\\nplan_006_scrambled_dd_eval.json\\nplan_012_gpt55_judge.json\\nplan_012_llm_judge_qwen3.json\\nplan_012_rerun.log\\nplan_012_rerun_correct.json\\nplan_012_run.log\\nplan_013_dd_crossattack_eval.json\\nplan_013_none_collapse_eval.json\\nplan_014_lambda_ablation.json\\nplan_014_run.log\\nplan_015_dd_eval.json\\nplan_015_dd_nohup.log\\nplan_015_mean_pooling_eval.json\\nplan_015_nohup.log\\nplan_016_sentiment_control.json\\nplan_016v2_topic_3seed_summary.json\\nplan_016v2_topic_control.json\\nplan_016v2_topic_perturbation.json\\nplan_016v2_topic_seed123.json\\nplan_016v2_topic_seed42.json\\nplan_016v2_topic_seed456.json\\nplan_017_mlm_3seed_summary.json\\nplan_017_mlm_control.json\\nplan_017_mlm_perturbation.json\\nplan_017_mlm_seed123.json\\nplan_017_mlm_seed456.json\\nplan_018_wiki_
+…[truncated 387 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T09:21:09.204714+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/results/plan_003_scrambled_fix.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/results/plan_003_scrambled_fix.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T09:21:09.204996+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"plan_003_scrambled_fix\\\",\\n  \\\"description\\\": \\\"Scrambled-label control using plan_002_splits data (NOT final_v2)\\\",\\n  \\\"data_source\\\": \\\"data/plan_002_splits/\\\",\\n  \\\"seed\\\": 42,\\n  \\\"deberta_metrics\\\": {\\n    \\\"best_epoch\\\": 4,\\n    \\\"val_persuasion_acc\\\": 0.6792452830188679,\\n    \\\"val_intent_acc\\\": 1.0,\\n    \\\"val_loss\\\": 0.7760585379355673\\n  },\\n  \\\"iid_test_results\\\": {\\n    \\\"full\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=1\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=2\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=3\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=5\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    }\\n  },\\n  \\\"dd_ood_results\\\": {\\n    \\\"full\\\": {\\n      \\\"f1_macro\\\": 0.9904,\\n      \\\"precision\\\": 0.9872,\\n      \\\"recall\\\": 0.9938,\\n      \\\"accuracy\\\": 0.9915\\n    },\\n    \\\"k=1\\\": {\\n      \\\"f1_macro\\\": 0.9904,\\n      \\\"precision\\\": 0.9872,\\n      \\\"recall\\\": 0.9938,\\n      \\\"accuracy\\\": 0.9915\\n    },\\n    \\\"k=2\\\": {\\n      \\\"f1_macro\\\": 0.9439,\\n      \\\"precision\\\": 0.9318,\\n      \\\"recall\\\": 0.9625,\\n      \\\"accuracy\\\": 0.9492\\n    },\\n    \\\"k=3\\\": {\\n      \\\"f1_macro\\\": 0.935,\\n      \\\"precision\\\": 0.9222,\\n      \\\"recall\\\": 0.9563,\\n      \\\"accuracy\\\": 0.9407\\n    },\\n    \\\"k=5\\\": {\\n 
+…[truncated 2367 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T09:21:09.205189+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "head -5 /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/train.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "head -5 /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/train.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T09:21:09.205478+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"conversation_id\\\": \\\"benign_ta_018\\\", \\\"turns\\\": [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Could you help me with the best practices for safely storing household chemicals like cleaning agents and pesticides? I want to make sure my home is safe for my family, especially my young child.\\\", \\\"persuasion_strategy\\\": 0}, {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": \\\"Absolutely! Safely storing household chemicals is essential to protect your family, especially young children, from accidental poisoning or exposure. Here are some best practices to ensure safe storage of cleaning agents and pesticides:\\\\n\\\\n---\\\\n\\\\n### ✅ **1. Store in a Secure, Designated Area**\\\\n- **Use a locked cabinet or storage unit**: Keep chemicals in a locked cabinet or a high, secure location that children cannot reach.\\\\n- **Avoid using kitchen cabinets**: These are common areas where children access items. Use a dedicated storage area like a basement, garage, or a separate storage room.\\\\n- **Keep away from food and drinks**: Store chemicals in a separate area from food, medications, and other household items.\\\\n\\\\n---\\\\n\\\\n### ✅ **2. Use Original Containers or Proper Labeled Containers**\\\\n- **Use the original containers**: These are designed for safe storage and have important safety information.\\\\n- **Label containers clearly**: If you transfer chemicals to another container, label it clearly with the name and contents.\\\\n- **Never use food or drink containers**: These can be mistaken for something safe.\\\\n\\\\n---\\\\n\\\\n### ✅ **3. Keep the Area Clean and Dry**\\\\n- **Store in a cool, dry place**: Avoid direct sunlight and extreme temperatures.\\\\n- **Check for leaks or spills**: Ensure containers are sealed properly and inspect regularly for damage.\\\\n\\\\n---\\\\n\\\\n### ✅ **4. Keep Out of Reach and Sight**\\\\n- **Store out of reach**: Keep chemicals at least
+…[truncated 6937 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T09:21:09.205684+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "head -5 /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/train_scrambled.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "head -5 /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/train_scrambled.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-18T09:21:09.205832+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/src/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T09:21:09.206093+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"conversation_id\\\": \\\"benign_ta_018\\\", \\\"turns\\\": [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Could you help me with the best practices for safely storing household chemicals like cleaning agents and pesticides? I want to make sure my home is safe for my family, especially my young child.\\\", \\\"persuasion_strategy\\\": 0}, {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": \\\"Absolutely! Safely storing household chemicals is essential to protect your family, especially young children, from accidental poisoning or exposure. Here are some best practices to ensure safe storage of cleaning agents and pesticides:\\\\n\\\\n---\\\\n\\\\n### \\\\u2705 **1. Store in a Secure, Designated Area**\\\\n- **Use a locked cabinet or storage unit**: Keep chemicals in a locked cabinet or a high, secure location that children cannot reach.\\\\n- **Avoid using kitchen cabinets**: These are common areas where children access items. Use a dedicated storage area like a basement, garage, or a separate storage room.\\\\n- **Keep away from food and drinks**: Store chemicals in a separate area from food, medications, and other household items.\\\\n\\\\n---\\\\n\\\\n### \\\\u2705 **2. Use Original Containers or Proper Labeled Containers**\\\\n- **Use the original containers**: These are designed for safe storage and have important safety information.\\\\n- **Label containers clearly**: If you transfer chemicals to another container, label it clearly with the name and contents.\\\\n- **Never use food or drink containers**: These can be mistaken for something safe.\\\\n\\\\n---\\\\n\\\\n### \\\\u2705 **3. Keep the Area Clean and Dry**\\\\n- **Store in a cool, dry place**: Avoid direct sunlight and extreme temperatures.\\\\n- **Check for leaks or spills**: Ensure containers are sealed properly and inspect regularly for damage.\\\\n\\\\n---\\\\n\\\\n### \\\\u2705 **4. Keep Out of Reach and Sight**\\\\n- **Store out of 
+…[truncated 7039 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T09:21:09.206301+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nadversarial_perturbation.py\\nbinary_perturbed_eval.py\\ncross_attack_eval.py\\ndata\\neval_early_detection.py\\neval_plan_013.py\\nevaluate.py\\ngenerate_topic_anchored_benign.py\\ngenerate_topic_anchored_benign_v3.py\\nlabel_topics.py\\nllm_judge_baseline.py\\nllm_judge_gpt41.py\\nllm_judge_gpt55.py\\nllm_judge_rerun.py\\nmerge_and_split.py\\nmerge_benign_parts.py\\nmodels\\nphase_b_supplement_eval.py\\nplan_002_seed123_dd_eval.py\\nplan_002_seed456_dd_eval.py\\nplan_003_scrambled_fix.py\\nplan_003_scrambled_gru_and_perturbed_eval.py\\nplan_006_cross_attack_eval.py\\nplan_006_scrambled_dd_eval.py\\nplan_013_dd_crossattack_eval.py\\nplan_015_dd_eval.py\\nplan_016_dd_eval.py\\nplan_016v2_dd_eval.py\\nplan_016v2_dd_eval_seed.py\\nplan_016v2_perturbed_eval.py\\nplan_017_dd_eval.py\\nplan_017_dd_eval_seed.py\\nplan_017_perturbed_eval.py\\nplan_018_wiki_dd_eval.py\\nplan_018_wiki_eval_seed.py\\nplan_018_wiki_perturbed_eval.py\\nplot_strategy_heatmap.py\\nprepare_wiki_mlm_data.py\\nregister_normalize.py\\nscramble_labels.py\\ntfidf_baseline.py\\ntfidf_gate_check.py\\ntfidf_sanity_check.py\\ntfidf_topic_anchored_check.py\\ntrain_classifier.py\\ntrain_classifier_binary.py\\ntrain_classifier_meanpool.py\\ntrain_deberta.py\\ntrain_deberta_binary.py\\ntrain_deberta_mlm.py\\ntrain_deberta_mlm_wiki.py\\ntrain_deberta_sentiment.py\\ntrain_deberta_topic.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T09:21:09.206498+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/src/scramble_labels.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/src/scramble_labels.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-18T09:21:09.206674+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/src/plan_003_scrambled_fix.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/src/plan_003_scrambled_fix.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T09:21:09.206841+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nScrambled-label ablation for DisPeD.\\nRandomly permutes persuasion_strategy labels within jailbreak conversations,\\npreserving the label distribution but breaking turn-strategy correspondence.\\n\\nUsage:\\n    python src/scramble_labels.py --input data/final_v2/train.jsonl --output data/final_v2/train_scrambled.jsonl --seed 42\\n\\\"\\\"\\\"\\nimport json, argparse, random\\n\\n\\ndef scramble_strategies(conversations, seed=42):\\n    rng = random.Random(seed)\\n    result = []\\n\\n    for conv in conversations:\\n        conv_copy = json.loads(json.dumps(conv))\\n\\n        if conv_copy.get('label') == 'jailbreak':\\n            strategies = []\\n            for turn in conv_copy['turns']:\\n                if turn.get('role') == 'user':\\n                    s = turn.get('persuasion_label', turn.get('persuasion_strategy', 0))\\n                    strategies.append(s)\\n\\n            rng.shuffle(strategies)\\n\\n            idx = 0\\n            for turn in conv_copy['turns']:\\n                if turn.get('role') == 'user':\\n                    if 'persuasion_label' in turn:\\n                        turn['persuasion_label'] = strategies[idx]\\n                    if 'persuasion_strategy' in turn:\\n                        turn['persuasion_strategy'] = strategies[idx]\\n                    idx += 1\\n\\n        result.append(conv_copy)\\n\\n    return result\\n\\n\\nif __name__ == '__main__':\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument('--input', required=True)\\n    parser.add_argument('--output', required=True)\\n    parser.add_argument('--seed', type=int, default=42)\\n    args = parser.parse_args()\\n\\n    with open(args.input) as f:\\n        data = [json.loads(l) for l in f]\\n\\n    scrambled = scramble_strategies(data, args.seed)\\n\\n    with open(args.output, 'w') as f:\\n        for item in scrambled:\\n            f.write(json.dumps(item) + '\\\\n')\\n
+…[truncated 365 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T09:21:09.207318+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Plan 003 scrambled fix: GRU training + IID/DD OOD/Perturbation eval.\\nUses plan_002_splits data with scrambled DeBERTa from plan_003_scrambled_fix.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport sys\\nimport json\\nimport random\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom pathlib import Path\\nfrom sklearn.metrics import f1_score, precision_score, recall_score, roc_curve\\n\\nsys.path.insert(0, \\\"/root/persuasion_turn_jailbreak_detect\\\")\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\nfrom src.models.gru_classifier import GRUClassifier\\nfrom transformers import AutoTokenizer\\n\\nPROJ = Path(\\\"/root/persuasion_turn_jailbreak_detect\\\")\\nDEVICE = torch.device(\\\"cuda:0\\\")\\nLOCAL_MODEL = \\\"/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\\\"\\nMAX_LENGTH = 256\\nSEED = 42\\nGRU_HIDDEN = 256\\nGRU_LAYERS = 2\\nGRU_DROPOUT = 0.3\\nGRU_LR = 1e-3\\nGRU_EPOCHS = 20\\nGRU_BATCH = 32\\n\\nSCRAMBLED_CKPT = PROJ / \\\"checkpoints/plan_003_scrambled_fix/deberta_multitask/best\\\"\\nGRU_OUT = PROJ / \\\"checkpoints/plan_003_scrambled_fix/gru\\\"\\n\\nrandom.seed(SEED)\\nnp.random.seed(SEED)\\ntorch.manual_seed(SEED)\\ntorch.cuda.manual_seed_all(SEED)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef extract_user_turns(conv, use_original=False):\\n    turns = []\\n    for t in conv[\\\"turns\\\"]:\\n        if t[\\\"role\\\"] == \\\"user\\\":\\n            if use_original and \\\"original_content\\\" in t:\\n                turns.append(t[\\\"original_content\\\"])\\n            else:\\n                turns.append(t[\\\"content\\\"])\\n    return turns\\n\\n\\ndef get_label(conv):\\n    return 1 if conv[\\\"label\\\"] == 
+…[truncated 7213 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T09:21:09.207597+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/src/train_deberta.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/src/train_deberta.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T09:21:09.207885+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Stage 1: DeBERTa multi-task fine-tuning.\\n\\nInput: JSONL with per-turn persuasion labels\\nOutput: fine-tuned DeBERTa checkpoint producing persuasion-grounded embeddings\\nTasks: 9-class persuasion strategy (0=none + 8 strategies) + binary jailbreak intent (auxiliary)\\nLoss: L = L_persuasion + alpha * L_intent\\n\\\"\\\"\\\"\\n\\nimport os\\nimport sys\\nimport argparse\\nimport json\\nfrom pathlib import Path\\n\\nimport torch\\nfrom torch.utils.data import DataLoader\\nfrom transformers import AutoTokenizer, get_linear_schedule_with_warmup\\nfrom accelerate import Accelerator\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\nfrom src.data.dataset import TurnDataset\\nfrom src.data.collator import TurnCollator\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\n\\n\\ndef parse_args():\\n    parser = argparse.ArgumentParser(description=\\\"Stage 1: DeBERTa multi-task fine-tuning\\\")\\n    parser.add_argument(\\\"--train_data\\\", type=str, required=True, help=\\\"Path to train JSONL\\\")\\n    parser.add_argument(\\\"--val_data\\\", type=str, required=True, help=\\\"Path to val JSONL\\\")\\n    parser.add_argument(\\\"--model_name\\\", type=str, default=\\\"microsoft/deberta-v3-base\\\")\\n    parser.add_argument(\\\"--output_dir\\\", type=str, default=\\\"checkpoints/deberta_multitask\\\")\\n    parser.add_argument(\\\"--max_length\\\", type=int, default=256)\\n    parser.add_argument(\\\"--batch_size\\\", type=int, default=16)\\n    parser.add_argument(\\\"--lr\\\", type=float, default=2e-5)\\n    parser.add_argument(\\\"--epochs\\\", type=int, default=5)\\n    parser.add_argument(\\\"--warmup_ratio\\\", type=float, default=0.1)\\n    parser.add_argument(\\\"--weight_decay\\\", type=float, default=0.01)\\n    parser.add_argument(\\\"--alpha\\\", type=float, default=0.3, help=\\\"Weight for intent loss\\\")\\n    parser.add_argument(\\\"--gradient_accumulation_ste
+…[truncated 6700 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T09:21:09.208060+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/src/models/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/src/models/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T09:21:09.208199+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nbaseline.py\\ndeberta_multitask.py\\ndeberta_sentiment.py\\ndeberta_topic.py\\ngru_classifier.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T09:21:09.208351+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/src/models/deberta_multitask.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/src/models/deberta_multitask.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-18T09:21:09.209432+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "df -h /root",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "df -h /root",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T09:21:09.210068+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"DeBERTa multi-task model for persuasion strategy + jailbreak intent classification.\\n\\nInput: tokenized user turn\\nOutput: persuasion logits (9-class), intent logits (binary), CLS embedding\\n\\\"\\\"\\\"\\n\\nimport torch\\nimport torch.nn as nn\\nfrom transformers import AutoModel, AutoConfig\\n\\n\\nclass DeBERTaMultiTask(nn.Module):\\n    \\\"\\\"\\\"DeBERTa-v3-base with two classification heads.\\n\\n    Head A: 9-class persuasion strategy (0=none + 8 strategies)\\n    Head B: binary jailbreak intent per turn\\n    \\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        model_name: str = \\\"microsoft/deberta-v3-base\\\",\\n        num_persuasion_classes: int = 9,\\n        dropout: float = 0.1,\\n    ):\\n        super().__init__()\\n        self.config = AutoConfig.from_pretrained(model_name)\\n        self.deberta = AutoModel.from_pretrained(model_name, dtype=torch.float32)\\n        hidden_size = self.config.hidden_size\\n\\n        self.dropout = nn.Dropout(dropout)\\n        self.persuasion_head = nn.Linear(hidden_size, num_persuasion_classes)\\n        self.intent_head = nn.Linear(hidden_size, 2)\\n\\n    def forward(\\n        self,\\n        input_ids: torch.Tensor,\\n        attention_mask: torch.Tensor,\\n        persuasion_labels: torch.Tensor = None,\\n        intent_labels: torch.Tensor = None,\\n        alpha: float = 0.3,\\n    ):\\n        outputs = self.deberta(input_ids=input_ids, attention_mask=attention_mask)\\n        cls_emb = outputs.last_hidden_state[:, 0, :]  # CLS token\\n        cls_emb = self.dropout(cls_emb)\\n\\n        persuasion_logits = self.persuasion_head(cls_emb)\\n        intent_logits = self.intent_head(cls_emb)\\n\\n        loss = None\\n        if persuasion_labels is not None and intent_labels is not None:\\n            ce = nn.CrossEntropyLoss()\\n            loss_persuasion = ce(persuasion_logits, persuasion_labels)\\n            loss_intent 
+…[truncated 787 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T09:21:09.210264+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\noverlay          30G   30G  801M  98% /\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T09:21:09.210428+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "df -h /root/autodl-tmp",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "df -h /root/autodl-tmp",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T09:21:09.210585+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        350G   51G  300G  15% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T09:21:09.210740+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T09:21:09.210987+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"8ccc9b6f36199bec6961081d44eb72fb3f7353f3\\nde19fe7db5162df5f3d8f0b41321c0267288fd74\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T09:21:09.211187+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "du -sh /root/persuasion_turn_jailbreak_detect/checkpoints/plan_003_scrambled_fix/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "du -sh /root/persuasion_turn_jailbreak_detect/checkpoints/plan_003_scrambled_fix/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T09:21:09.211326+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"721M\\t/root/persuasion_turn_jailbreak_detect/checkpoints/plan_003_scrambled_fix/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-18T09:21:09.211623+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader | head -4",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader | head -4",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-18T09:21:09.211808+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 MiB, 97887 MiB, 0 %\\n1, 0 MiB, 97887 MiB, 0 %\\n2, 0 MiB, 97887 MiB, 0 %\\n3, 0 MiB, 97887 MiB, 0 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-18T09:21:09.211970+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "mkdir -p /root/autodl-tmp/checkpoints/mf1_scrambled_seed123/deberta_multitask /root/autodl-tmp/checkpoints/mf1_scrambled_seed123/gru && ln -sfn /root/autodl-tmp/checkpoints/mf1_scrambled_seed123 /root/persuasion_turn_jailbreak_detect/checkpoints/mf1_scrambled_seed123",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "mkdir -p /root/autodl-tmp/checkpoints/mf1_scrambled_seed123/deberta_multitask /root/autodl-tmp/checkpoints/mf1_scrambled_seed123/gru && ln -sfn /root/autodl-tmp/checkpoints/mf1_scrambled_seed123 /root/persuasion_turn_jailbreak_detect/checkpoints/mf1_scrambled_seed123",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-18T09:21:09.212124+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-18T09:21:09.212274+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && python src/scramble_labels.py --input data/plan_002_splits/train.jsonl --output data/plan_002_splits/train_scrambled_seed123.jsonl --seed 123",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && python src/scramble_labels.py --input data/plan_002_splits/train.jsonl --output data/plan_002_splits/train_scrambled_seed123.jsonl --seed 123",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T09:21:09.212478+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Processed 350 conversations\\n  Jailbreak (scrambled): 175\\n  Benign (unchanged): 175\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-18T09:21:09.212676+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python src/train_deberta.py \\\n  --train_data data/plan_002_splits/train_scrambled_seed123.jsonl \\\n  --val_data data/plan_002_splits/val.jsonl \\\n  --model_name /root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3 \\\n  --output_dir checkpoints/mf1_scrambled_seed123/deberta_multitask \\\n  --batch_size 16 \\\n  --lr 2e-5 \\\n  --epochs 4 \\\n  --alpha 0.3 \\\n  --seed 123",
+  "account": "root",
+  "timeout": "600"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python src/train_deberta.py \\\n  --train_data data/plan_002_splits/train_scrambled_seed123.jsonl \\\n  --val_data data/plan_002_splits/val.jsonl \\\n  --model_name /root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3 \\\n  --output_dir checkpoints/mf1_scrambled_seed123/deberta_multitask \\\n  --batch_size 16 \\\n  --lr 2e-5 \\\n  --epochs 4 \\\n  --alpha 0.3 \\\n  --seed 123",
+    "account": "root",
+    "timeout": "600"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T09:21:09.212833+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python src/train_deberta.py \\\\\\\\\\\\n  --train_data data/plan_002_splits/train_scrambled_seed123.jsonl \\\\\\\\\\\\n  --val_data data/plan_002_splits/val.jsonl \\\\\\\\\\\\n  --model_name /root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3 \\\\\\\\\\\\n  --output_dir checkpoints/mf1_scrambled_seed123/deberta_multitask \\\\\\\\\\\\n  --batch_size 16 \\\\\\\\\\\\n  --lr 2e-5 \\\\\\\\\\\\n  --epochs 4 \\\\\\\\\\\\n  --alpha 0.3 \\\\\\\\\\\\n  --seed 123'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nmask_predictions.classifier.weight      | UNEXPECTED |  | \\nmask_predictions.classifier.bias        | UNEXPECTED |  | \\nmask_predictions.LayerNorm.bias         | UNEXPECTED |  | \\nmask_predictions.dense.bias             | UNEXPECTED |  | \\nlm_predictions.lm_head.dense.bias       | UNEXPECTED |  | \\nmask_predictions.dense.weight           | UNEXPECTED |  | \\nlm_predictions.lm_head.bias             | UNEXPECTED |  | \\n\\nNotes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T09:21:09.213003+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && nohup bash -c 'source /root/miniconda3/bin/activate && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python src/train_deberta.py \\\n  --train_data data/plan_002_splits/train_scrambled_seed123.jsonl \\\n  --val_data data/plan_002_splits/val.jsonl \\\n  --model_name /root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3 \\\n  --output_dir checkpoints/mf1_scrambled_seed123/deberta_multitask \\\n  --batch_size 16 \\\n  --lr 2e-5 \\\n  --epochs 4 \\\n  --alpha 0.3 \\\n  --seed 123' > results/mf1_scrambled_seed123_stage1.log 2>&1 &\necho \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && nohup bash -c 'source /root/miniconda3/bin/activate && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python src/train_deberta.py \\\n  --train_data data/plan_002_splits/train_scrambled_seed123.jsonl \\\n  --val_data data/plan_002_splits/val.jsonl \\\n  --model_name /root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3 \\\n  --output_dir checkpoints/mf1_scrambled_seed123/deberta_multitask \\\n  --batch_size 16 \\\n  --lr 2e-5 \\\n  --epochs 4 \\\n  --alpha 0.3 \\\n  --seed 123' > results/mf1_scrambled_seed123_stage1.log 2>&1 &\necho \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T09:21:09.213140+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=47006\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T09:21:09.213302+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -20 /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123_stage1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -20 /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123_stage1.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-18T09:21:09.213453+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[transformers] The tokenizer you are loading from '/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\n\\rLoading weights:   0%|          | 0/198 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 198/198 [00:00<00:00, 2959.80it/s]\\n[transformers] \\u001b[1mDebertaV2Model LOAD REPORT\\u001b[0m from: /root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\\nKey                                     | Status     |  | \\n----------------------------------------+------------+--+-\\nmask_predictions.dense.weight           | UNEXPECTED |  | \\nlm_predictions.lm_head.bias             | UNEXPECTED |  | \\nlm_predictions.lm_head.dense.weight     | UNEXPECTED |  | \\nmask_predictions.dense.bias             | UNEXPECTED |  | \\nlm_predictions.lm_head.LayerNorm.weight | UNEXPECTED |  | \\nmask_predictions.LayerNorm.weight       | UNEXPECTED |  | \\nmask_predictions.classifier.bias        | UNEXPECTED |  | \\nlm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED |  | \\nlm_predictions.lm_head.dense.bias       | UNEXPECTED |  | \\nmask_predictions.LayerNorm.bias         | UNEXPECTED |  | \\nmask_predictions.classifier.weight      | UNEXPECTED |  | \\n\\nNotes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-18T09:21:09.213651+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/src/models/gru_classifier.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/src/models/gru_classifier.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T09:21:09.213827+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"GRU sequence classifier for conversation-level jailbreak detection.\\n\\nInput: sequence of turn embeddings (from DeBERTa CLS), variable length\\nOutput: binary classification (jailbreak vs benign)\\nArchitecture: Bidirectional GRU -> attention pooling -> MLP -> sigmoid\\n\\\"\\\"\\\"\\n\\nimport torch\\nimport torch.nn as nn\\nimport torch.nn.functional as F\\n\\n\\nclass AttentionPooling(nn.Module):\\n    \\\"\\\"\\\"Learned attention pooling over GRU hidden states.\\\"\\\"\\\"\\n\\n    def __init__(self, hidden_dim: int):\\n        super().__init__()\\n        self.attention = nn.Linear(hidden_dim, 1)\\n\\n    def forward(self, hidden_states: torch.Tensor, lengths: torch.Tensor):\\n        \\\"\\\"\\\"\\n        Args:\\n            hidden_states: (batch, max_seq, hidden_dim)\\n            lengths: (batch,) actual lengths\\n        Returns:\\n            pooled: (batch, hidden_dim)\\n        \\\"\\\"\\\"\\n        scores = self.attention(hidden_states).squeeze(-1)  # (batch, max_seq)\\n        mask = torch.arange(hidden_states.size(1), device=hidden_states.device)\\n        mask = mask.unsqueeze(0) < lengths.unsqueeze(1)  # (batch, max_seq)\\n        scores = scores.masked_fill(~mask, float(\\\"-inf\\\"))\\n        weights = F.softmax(scores, dim=1).unsqueeze(-1)  # (batch, max_seq, 1)\\n        pooled = (hidden_states * weights).sum(dim=1)  # (batch, hidden_dim)\\n        return pooled\\n\\n\\nclass GRUClassifier(nn.Module):\\n    \\\"\\\"\\\"Bidirectional GRU with attention pooling for binary classification.\\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        input_dim: int = 768,\\n        hidden_dim: int = 256,\\n        num_layers: int = 2,\\n        dropout: float = 0.3,\\n        num_classes: int = 2,\\n    ):\\n        super().__init__()\\n        self.gru = nn.GRU(\\n            input_size=input_dim,\\n            hidden_size=hidden_dim,\\n            num_layers=num_layers,\\n   
+…[truncated 1250 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T09:21:09.213992+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "wc -l /root/persuasion_turn_jailbreak_detect/data/generated/deceptive_delight_all.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "wc -l /root/persuasion_turn_jailbreak_detect/data/generated/deceptive_delight_all.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T09:21:09.214126+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"80 /root/persuasion_turn_jailbreak_detect/data/generated/deceptive_delight_all.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-18T09:21:09.214295+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat > /root/persuasion_turn_jailbreak_detect/src/mf1_scrambled_seed123_gru_eval.py << 'PYEOF'\n\"\"\"MF1 Scrambled seed=123: GRU training + DD OOD eval.\nUses plan_002_splits data with scrambled DeBERTa from mf1_scrambled_seed123.\n\"\"\"\n\nimport os\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n\nimport sys\nimport json\nimport random\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom pathlib import Path\nfrom sklearn.metrics import f1_score, precision_score, recall_score\n\nsys.path.insert(0, \"/root/persuasion_turn_jailbreak_detect\")\nfrom src.models.deberta_multitask import DeBERTaMultiTask\nfrom src.models.gru_classifier import GRUClassifier\nfrom transformers import AutoTokenizer\n\nPROJ = Path(\"/root/persuasion_turn_jailbreak_detect\")\nDEVICE = torch.device(\"cuda:0\")\nLOCAL_MODEL = \"/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\"\nMAX_LENGTH = 256\nSEED = 123\nGRU_HIDDEN = 256\nGRU_LAYERS = 2\nGRU_DROPOUT = 0.3\nGRU_LR = 1e-3\nGRU_EPOCHS = 20\nGRU_BATCH = 32\n\nSCRAMBLED_CKPT = PROJ / \"checkpoints/mf1_scrambled_seed123/deberta_multitask/best\"\nGRU_OUT = PROJ / \"checkpoints/mf1_scrambled_seed123/gru\"\n\nrandom.seed(SEED)\nnp.random.seed(SEED)\ntorch.manual_seed(SEED)\ntorch.cuda.manual_seed_all(SEED)\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(l) for l in f if l.strip()]\n\n\ndef extract_user_turns(conv, use_original=False):\n    turns = []\n    for t in conv[\"turns\"]:\n        if t[\"role\"] == \"user\":\n            if use_original and \"original_content\" in t:\n                turns.append(t[\"original_content\"])\n            else:\n                turns.append(t[\"content\"])\n    return turns\n\n\ndef get_label(conv):\n    return 1 if conv[\"label\"] == \"jailbreak\" else 0\n\n\ndef load_scrambled_encoder():\n    model = DeBERTaMultiTask(model_name=LOCAL_MODEL, num_persuasion_classes=9)\n    sd = torch.load(SCRAMBLED_CKPT / \"model.pt\", map_location=\"cpu\")\n    model.load_state_dict(sd)\n    enc = model.deberta.to(DEVICE).eval()\n    for p in enc.parameters():\n        p.requires_grad = False\n    return enc\n\n\ndef embed_turns(encoder, tokenizer, turns, k=None):\n    t = turns[:k] if k is not None else turns\n    if len(t) == 0:\n        t = [\"\"]\n    enc = tokenizer(t, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\"pt\").to(DEVICE)\n    with torch.no_grad():\n        out = encoder(input_ids=enc[\"input_ids\"], attention_mask=enc[\"attention_mask\"])\n        return out.last_hidden_state[:, 0, :]\n\n\ndef embed_dataset(encoder, tokenizer, data):\n    all_embs, all_labels, all_lengths = [], [], []\n    for conv in data:\n        turns = extract_user_turns(conv)\n        embs = embed_turns(encoder, tokenizer, turns)\n        all_embs.append(embs.cpu())\n        all_labels.append(get_label(conv))\n        all_lengths.append(embs.size(0))\n    return all_embs, all_labels, all_lengths\n\n\ndef pad_batch(embs_list, labels, lengths):\n    max_len = max(lengths)\n    dim = embs_list[0].size(1)\n    padded = torch.zeros(len(embs_list), max_len, dim)\n    for i, e in enumerate(embs_list):\n        padded[i, :e.size(0), :] = e\n    return padded, torch.tensor(labels, dtype=torch.long), torch.tensor(lengths, dtype=torch.long)\n\n\ndef train_gru(train_embs, train_labels, train_lengths, val_embs, val_labels, val_lengths, embed_dim):\n    print(\"\\n=== Training GRU ===\", flush=True)\n    gru = GRUClassifier(\n        input_dim=embed_dim, hidden_dim=GRU_HIDDEN,\n        num_layers=GRU_LAYERS, dropout=GRU_DROPOUT\n    ).to(DEVICE)\n\n    optimizer = torch.optim.Adam(gru.parameters(), lr=GRU_LR)\n    criterion = nn.CrossEntropyLoss()\n\n    train_padded, train_lab, train_len = pad_batch(train_embs, train_labels, train_lengths)\n    val_padded, val_lab, val_len = pad_batch(val_embs, val_labels, val_lengths)\n\n    best_val_loss = float(\"inf\")\n    GRU_OUT.mkdir(parents=True, exist_ok=True)\n\n    n_train = len(train_labels)\n    indices = list(range(n_train))\n\n    for epoch in range(GRU_EPOCHS):\n        gru.train()\n        random.shuffle(indices)\n        epoch_loss = 0.0\n        n_batches = 0\n\n        for start in range(0, n_train, GRU_BATCH):\n            batch_idx = indices[start:start + GRU_BATCH]\n            b_embs = train_padded[batch_idx].to(DEVICE)\n            b_labels = train_lab[batch_idx].to(DEVICE)\n            b_lengths = train_len[batch_idx]\n\n            logits = gru(b_embs, b_lengths)\n            loss = criterion(logits, b_labels)\n\n            optimizer.zero_grad()\n            loss.backward()\n            optimizer.step()\n\n            epoch_loss += loss.item()\n            n_batches += 1\n\n        gru.eval()\n        with torch.no_grad():\n            val_logits = gru(val_padded.to(DEVICE), val_len)\n            val_loss = criterion(val_logits, val_lab.to(DEVICE)).item()\n            val_preds = val_logits.argmax(-1).cpu()\n            val_acc = (val_preds == val_lab).float().mean().item()\n\n        avg_train = epoch_loss / max(n_batches, 1)\n        print(f\"  Epoch {epoch+1}/{GRU_EPOCHS} | Train: {avg_train:.4f} | Val: {val_loss:.4f} | Acc: {val_acc:.4f}\", flush=True)\n\n        if val_loss < best_val_loss:\n            best_val_loss = val_loss\n            torch.save(gru.state_dict(), GRU_OUT / \"best.pt\")\n            print(f\"    -> Best GRU saved (val_loss={best_val_loss:.4f})\", flush=True)\n\n    best_gru = GRUClassifier(\n        input_dim=embed_dim, hidden_dim=GRU_HIDDEN,\n        num_layers=GRU_LAYERS, dropout=GRU_DROPOUT\n    ).to(DEVICE)\n    best_gru.load_state_dict(torch.load(GRU_OUT / \"best.pt\", map_location=DEVICE))\n    best_gru.eval()\n    return best_gru\n\n\ndef eval_set(encoder, gru, tokenizer, data, k=None, use_original=False):\n    gru.eval()\n    all_preds, all_labels = [], []\n    for conv in data:\n        turns = extract_user_turns(conv, use_original=use_original)\n        embs = embed_turns(encoder, tokenizer, turns, k=k)\n        embs_padded = embs.unsqueeze(0)\n        length = torch.tensor([embs.size(0)], dtype=torch.long)\n        with torch.no_grad():\n            logits = gru(embs_padded, length)\n        pred = logits.argmax(-1).item()\n        all_preds.append(pred)\n        all_labels.append(get_label(conv))\n\n    f1 = round(f1_score(all_labels, all_preds, average=\"macro\"), 4)\n    prec = round(precision_score(all_labels, all_preds, average=\"macro\", zero_division=0), 4)\n    rec = round(recall_score(all_labels, all_preds, average=\"macro\", zero_division=0), 4)\n    acc = round(sum(p == l for p, l in zip(all_preds, all_labels)) / len(all_labels), 4)\n    return {\"f1_macro\": f1, \"precision\": prec, \"recall\": rec, \"accuracy\": acc}\n\n\ndef main():\n    print(\"Loading tokenizer...\", flush=True)\n    tokenizer = AutoTokenizer.from_pretrained(LOCAL_MODEL)\n\n    print(\"Loading scrambled DeBERTa encoder...\", flush=True)\n    encoder = load_scrambled_encoder()\n\n    train_data = load_jsonl(PROJ / \"data/plan_002_splits/train.jsonl\")\n    val_data = load_jsonl(PROJ / \"data/plan_002_splits/val.jsonl\")\n    test_data = load_jsonl(PROJ / \"data/plan_002_splits/test.jsonl\")\n\n    print(f\"Data: train={len(train_data)}, val={len(val_data)}, test={len(test_data)}\", flush=True)\n\n    print(\"\\nEmbedding train set...\", flush=True)\n    train_embs, train_labels, train_lengths = embed_dataset(encoder, tokenizer, train_data)\n    print(\"Embedding val set...\", flush=True)\n    val_embs, val_labels, val_lengths = embed_dataset(encoder, tokenizer, val_data)\n\n    embed_dim = train_embs[0].size(1)\n    gru = train_gru(train_embs, train_labels, train_lengths, val_embs, val_labels, val_lengths, embed_dim)\n\n    k_values = [1, 2, 3, 5]\n\n    print(\"\\n=== IID Test Eval ===\", flush=True)\n    iid_results = {}\n    for k_label, k_val in [(\"full\", None)] + [(f\"k={k}\", k) for k in k_values]:\n        r = eval_set(encoder, gru, tokenizer, test_data, k=k_val)\n        iid_results[k_label] = r\n        print(f\"  {k_label}: F1={r['f1_macro']:.4f} P={r['precision']:.4f} R={r['recall']:.4f}\", flush=True)\n\n    print(\"\\n=== DD OOD Test Eval ===\", flush=True)\n    dd_data = load_jsonl(PROJ / \"data/generated/deceptive_delight_all.jsonl\")\n    benign_test = [c for c in test_data if c[\"label\"] == \"benign\"]\n    dd_test_convs = dd_data + benign_test\n    print(f\"  DD: {len(dd_data)} jailbreak + {len(benign_test)} benign = {len(dd_test_convs)} total\", flush=True)\n\n    dd_results = {}\n    for k_label, k_val in [(\"full\", None)] + [(f\"k={k}\", k) for k in k_values]:\n        r = eval_set(encoder, gru, tokenizer, dd_test_convs, k=k_val)\n        dd_results[k_label] = r\n        print(f\"  {k_label}: F1={r['f1_macro']:.4f} P={r['precision']:.4f} R={r['recall']:.4f}\", flush=True)\n\n    deberta_metrics = {}\n    metrics_path = SCRAMBLED_CKPT / \"training_metrics.json\"\n    if metrics_path.exists():\n        with open(metrics_path) as f:\n            deberta_metrics = json.load(f)\n        print(f\"\\nDeBERTa metrics: {deberta_metrics}\", flush=True)\n\n    output = {\n        \"experiment\": \"mf1_scrambled_seed123\",\n        \"description\": \"Scrambled-label control (seed=123) using plan_002_splits data\",\n        \"data_source\": \"data/plan_002_splits/\",\n        \"seed\": SEED,\n        \"deberta_metrics\": deberta_metrics,\n        \"iid_test_results\": iid_results,\n        \"dd_ood_results\": dd_results,\n        \"sample_counts\": {\n            \"train\": len(train_data),\n            \"val\": len(val_data),\n            \"test_iid\": len(test_data),\n            \"test_dd_ood\": len(dd_test_convs),\n        },\n    }\n    out_path = PROJ / \"results/mf1_scrambled_seed123.json\"\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\", flush=True)\n\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"SUMMARY\", flush=True)\n    print(\"=\" * 70, flush=True)\n    print(f\"IID Full F1:       {iid_results['full']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD Full F1:    {dd_results['full']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=1 F1:     {dd_results['k=1']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=2 F1:     {dd_results['k=2']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=3 F1:     {dd_results['k=3']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=5 F1:     {dd_results['k=5']['f1_macro']:.4f}\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat > /root/persuasion_turn_jailbreak_detect/src/mf1_scrambled_seed123_gru_eval.py << 'PYEOF'\n\"\"\"MF1 Scrambled seed=123: GRU training + DD OOD eval.\nUses plan_002_splits data with scrambled DeBERTa from mf1_scrambled_seed123.\n\"\"\"\n\nimport os\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n\nimport sys\nimport json\nimport random\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom pathlib import Path\nfrom sklearn.metrics import f1_score, precision_score, recall_score\n\nsys.path.insert(0, \"/root/persuasion_turn_jailbreak_detect\")\nfrom src.models.deberta_multitask import DeBERTaMultiTask\nfrom src.models.gru_classifier import GRUClassifier\nfrom transformers import AutoTokenizer\n\nPROJ = Path(\"/root/persuasion_turn_jailbreak_detect\")\nDEVICE = torch.device(\"cuda:0\")\nLOCAL_MODEL = \"/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\"\nMAX_LENGTH = 256\nSEED = 123\nGRU_HIDDEN = 256\nGRU_LAYERS = 2\nGRU_DROPOUT = 0.3\nGRU_LR = 1e-3\nGRU_EPOCHS = 20\nGRU_BATCH = 32\n\nSCRAMBLED_CKPT = PROJ / \"checkpoints/mf1_scrambled_seed123/deberta_multitask/best\"\nGRU_OUT = PROJ / \"checkpoints/mf1_scrambled_seed123/gru\"\n\nrandom.seed(SEED)\nnp.random.seed(SEED)\ntorch.manual_seed(SEED)\ntorch.cuda.manual_seed_all(SEED)\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(l) for l in f if l.strip()]\n\n\ndef extract_user_turns(conv, use_original=False):\n    turns = []\n    for t in conv[\"turns\"]:\n        if t[\"role\"] == \"user\":\n            if use_original and \"original_content\" in t:\n                turns.append(t[\"original_content\"])\n            else:\n                turns.append(t[\"content\"])\n    return turns\n\n\ndef get_label(conv):\n    return 1 if conv[\"label\"] == \"jailbreak\" else 0\n\n\ndef load_scrambled_encoder():\n    model = DeBERTaMultiTask(model_name=LOCAL_MODEL, num_persuasion_classes=9)\n    sd = torch.load(SCRAMBLED_CKPT / \"model.pt\", map_location=\"cpu\")\n    model.load_state_dict(sd)\n    enc = model.deberta.to(DEVICE).eval()\n    for p in enc.parameters():\n        p.requires_grad = False\n    return enc\n\n\ndef embed_turns(encoder, tokenizer, turns, k=None):\n    t = turns[:k] if k is not None else turns\n    if len(t) == 0:\n        t = [\"\"]\n    enc = tokenizer(t, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\"pt\").to(DEVICE)\n    with torch.no_grad():\n        out = encoder(input_ids=enc[\"input_ids\"], attention_mask=enc[\"attention_mask\"])\n        return out.last_hidden_state[:, 0, :]\n\n\ndef embed_dataset(encoder, tokenizer, data):\n    all_embs, all_labels, all_lengths = [], [], []\n    for conv in data:\n        turns = extract_user_turns(conv)\n        embs = embed_turns(encoder, tokenizer, turns)\n        all_embs.append(embs.cpu())\n        all_labels.append(get_label(conv))\n        all_lengths.append(embs.size(0))\n    return all_embs, all_labels, all_lengths\n\n\ndef pad_batch(embs_list, labels, lengths):\n    max_len = max(lengths)\n    dim = embs_list[0].size(1)\n    padded = torch.zeros(len(embs_list), max_len, dim)\n    for i, e in enumerate(embs_list):\n        padded[i, :e.size(0), :] = e\n    return padded, torch.tensor(labels, dtype=torch.long), torch.tensor(lengths, dtype=torch.long)\n\n\ndef train_gru(train_embs, train_labels, train_lengths, val_embs, val_labels, val_lengths, embed_dim):\n    print(\"\\n=== Training GRU ===\", flush=True)\n    gru = GRUClassifier(\n        input_dim=embed_dim, hidden_dim=GRU_HIDDEN,\n        num_layers=GRU_LAYERS, dropout=GRU_DROPOUT\n    ).to(DEVICE)\n\n    optimizer = torch.optim.Adam(gru.parameters(), lr=GRU_LR)\n    criterion = nn.CrossEntropyLoss()\n\n    train_padded, train_lab, train_len = pad_batch(train_embs, train_labels, train_lengths)\n    val_padded, val_lab, val_len = pad_batch(val_embs, val_labels, val_lengths)\n\n    best_val_loss = float(\"inf\")\n    GRU_OUT.mkdir(parents=True, exist_ok=True)\n\n    n_train = len(train_labels)\n    indices = list(range(n_train))\n\n    for epoch in range(GRU_EPOCHS):\n        gru.train()\n        random.shuffle(indices)\n        epoch_loss = 0.0\n        n_batches = 0\n\n        for start in range(0, n_train, GRU_BATCH):\n            batch_idx = indices[start:start + GRU_BATCH]\n            b_embs = train_padded[batch_idx].to(DEVICE)\n            b_labels = train_lab[batch_idx].to(DEVICE)\n            b_lengths = train_len[batch_idx]\n\n            logits = gru(b_embs, b_lengths)\n            loss = criterion(logits, b_labels)\n\n            optimizer.zero_grad()\n            loss.backward()\n            optimizer.step()\n\n            epoch_loss += loss.item()\n            n_batches += 1\n\n        gru.eval()\n        with torch.no_grad():\n            val_logits = gru(val_padded.to(DEVICE), val_len)\n            val_loss = criterion(val_logits, val_lab.to(DEVICE)).item()\n            val_preds = val_logits.argmax(-1).cpu()\n            val_acc = (val_preds == val_lab).float().mean().item()\n\n        avg_train = epoch_loss / max(n_batches, 1)\n        print(f\"  Epoch {epoch+1}/{GRU_EPOCHS} | Train: {avg_train:.4f} | Val: {val_loss:.4f} | Acc: {val_acc:.4f}\", flush=True)\n\n        if val_loss < best_val_loss:\n            best_val_loss = val_loss\n            torch.save(gru.state_dict(), GRU_OUT / \"best.pt\")\n            print(f\"    -> Best GRU saved (val_loss={best_val_loss:.4f})\", flush=True)\n\n    best_gru = GRUClassifier(\n        input_dim=embed_dim, hidden_dim=GRU_HIDDEN,\n        num_layers=GRU_LAYERS, dropout=GRU_DROPOUT\n    ).to(DEVICE)\n    best_gru.load_state_dict(torch.load(GRU_OUT / \"best.pt\", map_location=DEVICE))\n    best_gru.eval()\n    return best_gru\n\n\ndef eval_set(encoder, gru, tokenizer, data, k=None, use_original=False):\n    gru.eval()\n    all_preds, all_labels = [], []\n    for conv in data:\n        turns = extract_user_turns(conv, use_original=use_original)\n        embs = embed_turns(encoder, tokenizer, turns, k=k)\n        embs_padded = embs.unsqueeze(0)\n        length = torch.tensor([embs.size(0)], dtype=torch.long)\n        with torch.no_grad():\n            logits = gru(embs_padded, length)\n        pred = logits.argmax(-1).item()\n        all_preds.append(pred)\n        all_labels.append(get_label(conv))\n\n    f1 = round(f1_score(all_labels, all_preds, average=\"macro\"), 4)\n    prec = round(precision_score(all_labels, all_preds, average=\"macro\", zero_division=0), 4)\n    rec = round(recall_score(all_labels, all_preds, average=\"macro\", zero_division=0), 4)\n    acc = round(sum(p == l for p, l in zip(all_preds, all_labels)) / len(all_labels), 4)\n    return {\"f1_macro\": f1, \"precision\": prec, \"recall\": rec, \"accuracy\": acc}\n\n\ndef main():\n    print(\"Loading tokenizer...\", flush=True)\n    tokenizer = AutoTokenizer.from_pretrained(LOCAL_MODEL)\n\n    print(\"Loading scrambled DeBERTa encoder...\", flush=True)\n    encoder = load_scrambled_encoder()\n\n    train_data = load_jsonl(PROJ / \"data/plan_002_splits/train.jsonl\")\n    val_data = load_jsonl(PROJ / \"data/plan_002_splits/val.jsonl\")\n    test_data = load_jsonl(PROJ / \"data/plan_002_splits/test.jsonl\")\n\n    print(f\"Data: train={len(train_data)}, val={len(val_data)}, test={len(test_data)}\", flush=True)\n\n    print(\"\\nEmbedding train set...\", flush=True)\n    train_embs, train_labels, train_lengths = embed_dataset(encoder, tokenizer, train_data)\n    print(\"Embedding val set...\", flush=True)\n    val_embs, val_labels, val_lengths = embed_dataset(encoder, tokenizer, val_data)\n\n    embed_dim = train_embs[0].size(1)\n    gru = train_gru(train_embs, train_labels, train_lengths, val_embs, val_labels, val_lengths, embed_dim)\n\n    k_values = [1, 2, 3, 5]\n\n    print(\"\\n=== IID Test Eval ===\", flush=True)\n    iid_results = {}\n    for k_label, k_val in [(\"full\", None)] + [(f\"k={k}\", k) for k in k_values]:\n        r = eval_set(encoder, gru, tokenizer, test_data, k=k_val)\n        iid_results[k_label] = r\n        print(f\"  {k_label}: F1={r['f1_macro']:.4f} P={r['precision']:.4f} R={r['recall']:.4f}\", flush=True)\n\n    print(\"\\n=== DD OOD Test Eval ===\", flush=True)\n    dd_data = load_jsonl(PROJ / \"data/generated/deceptive_delight_all.jsonl\")\n    benign_test = [c for c in test_data if c[\"label\"] == \"benign\"]\n    dd_test_convs = dd_data + benign_test\n    print(f\"  DD: {len(dd_data)} jailbreak + {len(benign_test)} benign = {len(dd_test_convs)} total\", flush=True)\n\n    dd_results = {}\n    for k_label, k_val in [(\"full\", None)] + [(f\"k={k}\", k) for k in k_values]:\n        r = eval_set(encoder, gru, tokenizer, dd_test_convs, k=k_val)\n        dd_results[k_label] = r\n        print(f\"  {k_label}: F1={r['f1_macro']:.4f} P={r['precision']:.4f} R={r['recall']:.4f}\", flush=True)\n\n    deberta_metrics = {}\n    metrics_path = SCRAMBLED_CKPT / \"training_metrics.json\"\n    if metrics_path.exists():\n        with open(metrics_path) as f:\n            deberta_metrics = json.load(f)\n        print(f\"\\nDeBERTa metrics: {deberta_metrics}\", flush=True)\n\n    output = {\n        \"experiment\": \"mf1_scrambled_seed123\",\n        \"description\": \"Scrambled-label control (seed=123) using plan_002_splits data\",\n        \"data_source\": \"data/plan_002_splits/\",\n        \"seed\": SEED,\n        \"deberta_metrics\": deberta_metrics,\n        \"iid_test_results\": iid_results,\n        \"dd_ood_results\": dd_results,\n        \"sample_counts\": {\n            \"train\": len(train_data),\n            \"val\": len(val_data),\n            \"test_iid\": len(test_data),\n            \"test_dd_ood\": len(dd_test_convs),\n        },\n    }\n    out_path = PROJ / \"results/mf1_scrambled_seed123.json\"\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\", flush=True)\n\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"SUMMARY\", flush=True)\n    print(\"=\" * 70, flush=True)\n    print(f\"IID Full F1:       {iid_results['full']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD Full F1:    {dd_results['full']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=1 F1:     {dd_results['k=1']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=2 F1:     {dd_results['k=2']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=3 F1:     {dd_results['k=3']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=5 F1:     {dd_results['k=5']['f1_macro']:.4f}\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-18T09:21:09.214514+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-18T09:21:09.214686+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -10 /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123_stage1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -10 /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123_stage1.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T09:21:09.214839+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"lm_predictions.lm_head.LayerNorm.weight | UNEXPECTED |  | \\nmask_predictions.LayerNorm.weight       | UNEXPECTED |  | \\nmask_predictions.classifier.bias        | UNEXPECTED |  | \\nlm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED |  | \\nlm_predictions.lm_head.dense.bias       | UNEXPECTED |  | \\nmask_predictions.LayerNorm.bias         | UNEXPECTED |  | \\nmask_predictions.classifier.weight      | UNEXPECTED |  | \\n\\nNotes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T09:21:09.215020+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ps aux | grep train_deberta | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ps aux | grep train_deberta | grep -v grep",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T09:21:09.215155+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T09:21:09.215278+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ps aux | grep train_deberta | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ps aux | grep train_deberta | grep -v grep",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T09:21:09.215425+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root      47006  0.0  0.0   4364  1836 ?        S    17:15   0:00 bash -c cd /root/persuasion_turn_jailbreak_detect && nohup bash -c 'source /root/miniconda3/bin/activate && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python src/train_deberta.py \\\\   --train_data data/plan_002_splits/train_scrambled_seed123.jsonl \\\\   --val_data data/plan_002_splits/val.jsonl \\\\   --model_name /root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3 \\\\   --output_dir checkpoints/mf1_scrambled_seed123/deberta_multitask \\\\   --batch_size 16 \\\\   --lr 2e-5 \\\\   --epochs 4 \\\\   --alpha 0.3 \\\\   --seed 123' > results/mf1_scrambled_seed123_stage1.log 2>&1 & echo \\\"PID=$!\\\"\\nroot      47007  118  0.1 57135168 2043868 ?    Sl   17:15   2:06 python src/train_deberta.py --train_data data/plan_002_splits/train_scrambled_seed123.jsonl --val_data data/plan_002_splits/val.jsonl --model_name /root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3 --output_dir checkpoints/mf1_scrambled_seed123/deberta_multitask --batch_size 16 --lr 2e-5 --epochs 4 --alpha 0.3 --seed 123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-18T09:21:09.215600+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -5 /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123_stage1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -5 /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123_stage1.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-18T09:21:09.215737+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"mask_predictions.LayerNorm.bias         | UNEXPECTED |  | \\nmask_predictions.classifier.weight      | UNEXPECTED |  | \\n\\nNotes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.2}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-18T09:21:09.215981+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mf1_scrambled_seed123",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "persuasion_turn_jailbreak_detect",
+  "spec": "{'command': 'python src/train_deberta.py + mf1_scrambled_seed123_gru_eval.py', 'server': 'westd-33183', 'data_path': 'data/plan_002_splits/', 'data_count': 350, 'model_name': 'microsoft/deberta-v3-base', 'seed': 123}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mf1_scrambled_seed123",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "persuasion_turn_jailbreak_detect",
+    "spec": "{'command': 'python src/train_deberta.py + mf1_scrambled_seed123_gru_eval.py', 'server': 'westd-33183', 'data_path': 'data/plan_002_splits/', 'data_count': 350, 'model_name': 'microsoft/deberta-v3-base', 'seed': 123}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T09:21:09.216178+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1109}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-18T09:21:09.216318+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mf1_scrambled_seed123",
+  "field": "hypothesis",
+  "value": "Scrambled persuasion labels (seed=123) will degrade DD OOD detection performance compared to original labels, confirming that persuasion strategy grounding is causally necessary for generalization",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mf1_scrambled_seed123",
+    "field": "hypothesis",
+    "value": "Scrambled persuasion labels (seed=123) will degrade DD OOD detection performance compared to original labels, confirming that persuasion strategy grounding is causally necessary for generalization",
+    "project": "persuasion_turn_jailbreak_detect"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T09:21:09.216453+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mf1_scrambled_seed123\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T09:11:48.357Z\", \"updated_at\": \"2026-05-18T09:17:14.550Z\", \"hypothesis\": \"Scrambled persuasion labels (seed=123) will degrade DD OOD detection performance compared to original labels, confirming that persuasion strategy grounding is causally necessary for generalization\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3585}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-18T09:21:09.216597+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mf1_scrambled_seed123",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mf1_scrambled_seed123",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "persuasion_turn_jailbreak_detect"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-18T09:21:09.216880+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mf1_scrambled_seed123\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T09:11:48.357Z\", \"updated_at\": \"2026-05-18T09:17:18.060Z\", \"hypothesis\": \"Scrambled persuasion labels (seed=123) will degrade DD OOD detection performance compared to original labels, confirming that persuasion strategy grounding is causally necessary for generalization\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4459}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-18T09:21:09.217021+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mf1_scrambled_seed123",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "persuasion_turn_jailbreak_detect",
+  "spec": "{'command': 'python src/train_deberta.py + mf1_scrambled_seed123_gru_eval.py', 'server': 'westd-33183', 'data_path': 'data/plan_002_splits/', 'data_count': 350, 'model_name': 'microsoft/deberta-v3-base', 'seed': 123}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mf1_scrambled_seed123",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "persuasion_turn_jailbreak_detect",
+    "spec": "{'command': 'python src/train_deberta.py + mf1_scrambled_seed123_gru_eval.py', 'server': 'westd-33183', 'data_path': 'data/plan_002_splits/', 'data_count': 350, 'model_name': 'microsoft/deberta-v3-base', 'seed': 123}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-18T09:21:09.217162+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mf1_scrambled_seed123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T09:11:48.357Z\", \"updated_at\": \"2026-05-18T09:17:23.182Z\", \"hypothesis\": \"Scrambled persuasion labels (seed=123) will degrade DD OOD detection performance compared to original labels, confirming that persuasion strategy grounding is causally necessary for generalization\", \"spec\": {\"command\": \"python src/train_deberta.py + mf1_scrambled_seed123_gru_eval.py\", \"server\": \"westd-33183\", \"data_path\": \"data/plan_002_splits/\", \"data_count\": 350, \"model_name\": \"microsoft/deberta-v3-base\", \"seed\": 123}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3698}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-18T09:21:09.217298+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -10 /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123_stage1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -10 /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123_stage1.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-18T09:21:09.217425+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Notes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\nEpoch 1/4 | Train Loss: 1.3901 | Val Loss: 0.9539 | Val Persuasion Acc: 0.6621 | Val Intent Acc: 0.9983\\n  -> Best model saved (val_loss=0.9539)\\nEpoch 2/4 | Train Loss: 0.9090 | Val Loss: 0.8362 | Val Persuasion Acc: 0.6861 | Val Intent Acc: 1.0000\\n  -> Best model saved (val_loss=0.8362)\\nEpoch 3/4 | Train Loss: 0.8412 | Val Loss: 0.7932 | Val Persuasion Acc: 0.6792 | Val Intent Acc: 1.0000\\n  -> Best model saved (val_loss=0.7932)\\nEpoch 4/4 | Train Loss: 0.8006 | Val Loss: 0.7906 | Val Persuasion Acc: 0.6724 | Val Intent Acc: 1.0000\\n  -> Best model saved (val_loss=0.7906)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-18T09:21:09.217590+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && nohup bash -c 'source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python src/mf1_scrambled_seed123_gru_eval.py' > results/mf1_scrambled_seed123_stage2.log 2>&1 &\necho \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && nohup bash -c 'source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python src/mf1_scrambled_seed123_gru_eval.py' > results/mf1_scrambled_seed123_stage2.log 2>&1 &\necho \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-18T09:21:09.217742+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=50401\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 12.34}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-18T09:21:09.217877+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -20 /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123_stage2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -20 /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123_stage2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-18T09:21:09.218014+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"             ^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1773, in _wrapped_call_impl\\n    return self._call_impl(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1784, in _call_impl\\n    return forward_call(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/persuasion_turn_jailbreak_detect/src/models/gru_classifier.py\\\", line 79, in forward\\n    pooled = self.attention(gru_out, lengths)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1773, in _wrapped_call_impl\\n    return self._call_impl(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1784, in _call_impl\\n    return forward_call(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/persuasion_turn_jailbreak_detect/src/models/gru_classifier.py\\\", line 30, in forward\\n    mask = mask.unsqueeze(0) < lengths.unsqueeze(1)  # (batch, max_seq)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\nRuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-18T09:21:09.218221+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat > /root/persuasion_turn_jailbreak_detect/src/mf1_scrambled_seed123_gru_eval.py << 'PYEOF'\n\"\"\"MF1 Scrambled seed=123: GRU training + DD OOD eval.\"\"\"\n\nimport os\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n\nimport sys\nimport json\nimport random\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom pathlib import Path\nfrom sklearn.metrics import f1_score, precision_score, recall_score\n\nsys.path.insert(0, \"/root/persuasion_turn_jailbreak_detect\")\nfrom src.models.deberta_multitask import DeBERTaMultiTask\nfrom src.models.gru_classifier import GRUClassifier\nfrom transformers import AutoTokenizer\n\nPROJ = Path(\"/root/persuasion_turn_jailbreak_detect\")\nDEVICE = torch.device(\"cuda:0\")\nLOCAL_MODEL = \"/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\"\nMAX_LENGTH = 256\nSEED = 123\nGRU_HIDDEN = 256\nGRU_LAYERS = 2\nGRU_DROPOUT = 0.3\nGRU_LR = 1e-3\nGRU_EPOCHS = 20\nGRU_BATCH = 32\n\nSCRAMBLED_CKPT = PROJ / \"checkpoints/mf1_scrambled_seed123/deberta_multitask/best\"\nGRU_OUT = PROJ / \"checkpoints/mf1_scrambled_seed123/gru\"\n\nrandom.seed(SEED)\nnp.random.seed(SEED)\ntorch.manual_seed(SEED)\ntorch.cuda.manual_seed_all(SEED)\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(l) for l in f if l.strip()]\n\n\ndef extract_user_turns(conv, use_original=False):\n    turns = []\n    for t in conv[\"turns\"]:\n        if t[\"role\"] == \"user\":\n            if use_original and \"original_content\" in t:\n                turns.append(t[\"original_content\"])\n            else:\n                turns.append(t[\"content\"])\n    return turns\n\n\ndef get_label(conv):\n    return 1 if conv[\"label\"] == \"jailbreak\" else 0\n\n\ndef load_scrambled_encoder():\n    model = DeBERTaMultiTask(model_name=LOCAL_MODEL, num_persuasion_classes=9)\n    sd = torch.load(SCRAMBLED_CKPT / \"model.pt\", map_location=\"cpu\")\n    model.load_state_dict(sd)\n    enc = model.deberta.to(DEVICE).eval()\n    for p in enc.parameters():\n        p.requires_grad = False\n    return enc\n\n\ndef embed_turns(encoder, tokenizer, turns, k=None):\n    t = turns[:k] if k is not None else turns\n    if len(t) == 0:\n        t = [\"\"]\n    enc = tokenizer(t, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\"pt\").to(DEVICE)\n    with torch.no_grad():\n        out = encoder(input_ids=enc[\"input_ids\"], attention_mask=enc[\"attention_mask\"])\n        return out.last_hidden_state[:, 0, :]\n\n\ndef embed_dataset(encoder, tokenizer, data):\n    all_embs, all_labels, all_lengths = [], [], []\n    for conv in data:\n        turns = extract_user_turns(conv)\n        embs = embed_turns(encoder, tokenizer, turns)\n        all_embs.append(embs.cpu())\n        all_labels.append(get_label(conv))\n        all_lengths.append(embs.size(0))\n    return all_embs, all_labels, all_lengths\n\n\ndef pad_batch(embs_list, labels, lengths):\n    max_len = max(lengths)\n    dim = embs_list[0].size(1)\n    padded = torch.zeros(len(embs_list), max_len, dim)\n    for i, e in enumerate(embs_list):\n        padded[i, :e.size(0), :] = e\n    return padded, torch.tensor(labels, dtype=torch.long), torch.tensor(lengths, dtype=torch.long)\n\n\ndef train_gru(train_embs, train_labels, train_lengths, val_embs, val_labels, val_lengths, embed_dim):\n    print(\"\\n=== Training GRU ===\", flush=True)\n    gru = GRUClassifier(\n        input_dim=embed_dim, hidden_dim=GRU_HIDDEN,\n        num_layers=GRU_LAYERS, dropout=GRU_DROPOUT\n    ).to(DEVICE)\n\n    optimizer = torch.optim.Adam(gru.parameters(), lr=GRU_LR)\n    criterion = nn.CrossEntropyLoss()\n\n    train_padded, train_lab, train_len = pad_batch(train_embs, train_labels, train_lengths)\n    val_padded, val_lab, val_len = pad_batch(val_embs, val_labels, val_lengths)\n\n    best_val_loss = float(\"inf\")\n    GRU_OUT.mkdir(parents=True, exist_ok=True)\n\n    n_train = len(train_labels)\n    indices = list(range(n_train))\n\n    for epoch in range(GRU_EPOCHS):\n        gru.train()\n        random.shuffle(indices)\n        epoch_loss = 0.0\n        n_batches = 0\n\n        for start in range(0, n_train, GRU_BATCH):\n            batch_idx = indices[start:start + GRU_BATCH]\n            b_embs = train_padded[batch_idx].to(DEVICE)\n            b_labels = train_lab[batch_idx].to(DEVICE)\n            b_lengths = train_len[batch_idx].to(DEVICE)\n\n            logits = gru(b_embs, b_lengths)\n            loss = criterion(logits, b_labels)\n\n            optimizer.zero_grad()\n            loss.backward()\n            optimizer.step()\n\n            epoch_loss += loss.item()\n            n_batches += 1\n\n        gru.eval()\n        with torch.no_grad():\n            val_logits = gru(val_padded.to(DEVICE), val_len.to(DEVICE))\n            val_loss = criterion(val_logits, val_lab.to(DEVICE)).item()\n            val_preds = val_logits.argmax(-1).cpu()\n            val_acc = (val_preds == val_lab).float().mean().item()\n\n        avg_train = epoch_loss / max(n_batches, 1)\n        print(f\"  Epoch {epoch+1}/{GRU_EPOCHS} | Train: {avg_train:.4f} | Val: {val_loss:.4f} | Acc: {val_acc:.4f}\", flush=True)\n\n        if val_loss < best_val_loss:\n            best_val_loss = val_loss\n            torch.save(gru.state_dict(), GRU_OUT / \"best.pt\")\n            print(f\"    -> Best GRU saved (val_loss={best_val_loss:.4f})\", flush=True)\n\n    best_gru = GRUClassifier(\n        input_dim=embed_dim, hidden_dim=GRU_HIDDEN,\n        num_layers=GRU_LAYERS, dropout=GRU_DROPOUT\n    ).to(DEVICE)\n    best_gru.load_state_dict(torch.load(GRU_OUT / \"best.pt\", map_location=DEVICE))\n    best_gru.eval()\n    return best_gru\n\n\ndef eval_set(encoder, gru, tokenizer, data, k=None, use_original=False):\n    gru.eval()\n    all_preds, all_labels = [], []\n    for conv in data:\n        turns = extract_user_turns(conv, use_original=use_original)\n        embs = embed_turns(encoder, tokenizer, turns, k=k)\n        embs_padded = embs.unsqueeze(0)\n        length = torch.tensor([embs.size(0)], dtype=torch.long, device=DEVICE)\n        with torch.no_grad():\n            logits = gru(embs_padded, length)\n        pred = logits.argmax(-1).item()\n        all_preds.append(pred)\n        all_labels.append(get_label(conv))\n\n    f1 = round(f1_score(all_labels, all_preds, average=\"macro\"), 4)\n    prec = round(precision_score(all_labels, all_preds, average=\"macro\", zero_division=0), 4)\n    rec = round(recall_score(all_labels, all_preds, average=\"macro\", zero_division=0), 4)\n    acc = round(sum(p == l for p, l in zip(all_preds, all_labels)) / len(all_labels), 4)\n    return {\"f1_macro\": f1, \"precision\": prec, \"recall\": rec, \"accuracy\": acc}\n\n\ndef main():\n    print(\"Loading tokenizer...\", flush=True)\n    tokenizer = AutoTokenizer.from_pretrained(LOCAL_MODEL)\n\n    print(\"Loading scrambled DeBERTa encoder...\", flush=True)\n    encoder = load_scrambled_encoder()\n\n    train_data = load_jsonl(PROJ / \"data/plan_002_splits/train.jsonl\")\n    val_data = load_jsonl(PROJ / \"data/plan_002_splits/val.jsonl\")\n    test_data = load_jsonl(PROJ / \"data/plan_002_splits/test.jsonl\")\n\n    print(f\"Data: train={len(train_data)}, val={len(val_data)}, test={len(test_data)}\", flush=True)\n\n    print(\"\\nEmbedding train set...\", flush=True)\n    train_embs, train_labels, train_lengths = embed_dataset(encoder, tokenizer, train_data)\n    print(\"Embedding val set...\", flush=True)\n    val_embs, val_labels, val_lengths = embed_dataset(encoder, tokenizer, val_data)\n\n    embed_dim = train_embs[0].size(1)\n    gru = train_gru(train_embs, train_labels, train_lengths, val_embs, val_labels, val_lengths, embed_dim)\n\n    k_values = [1, 2, 3, 5]\n\n    print(\"\\n=== IID Test Eval ===\", flush=True)\n    iid_results = {}\n    for k_label, k_val in [(\"full\", None)] + [(f\"k={k}\", k) for k in k_values]:\n        r = eval_set(encoder, gru, tokenizer, test_data, k=k_val)\n        iid_results[k_label] = r\n        print(f\"  {k_label}: F1={r['f1_macro']:.4f} P={r['precision']:.4f} R={r['recall']:.4f}\", flush=True)\n\n    print(\"\\n=== DD OOD Test Eval ===\", flush=True)\n    dd_data = load_jsonl(PROJ / \"data/generated/deceptive_delight_all.jsonl\")\n    benign_test = [c for c in test_data if c[\"label\"] == \"benign\"]\n    dd_test_convs = dd_data + benign_test\n    print(f\"  DD: {len(dd_data)} jailbreak + {len(benign_test)} benign = {len(dd_test_convs)} total\", flush=True)\n\n    dd_results = {}\n    for k_label, k_val in [(\"full\", None)] + [(f\"k={k}\", k) for k in k_values]:\n        r = eval_set(encoder, gru, tokenizer, dd_test_convs, k=k_val)\n        dd_results[k_label] = r\n        print(f\"  {k_label}: F1={r['f1_macro']:.4f} P={r['precision']:.4f} R={r['recall']:.4f}\", flush=True)\n\n    deberta_metrics = {}\n    metrics_path = SCRAMBLED_CKPT / \"training_metrics.json\"\n    if metrics_path.exists():\n        with open(metrics_path) as f:\n            deberta_metrics = json.load(f)\n        print(f\"\\nDeBERTa metrics: {deberta_metrics}\", flush=True)\n\n    output = {\n        \"experiment\": \"mf1_scrambled_seed123\",\n        \"description\": \"Scrambled-label control (seed=123) using plan_002_splits data\",\n        \"data_source\": \"data/plan_002_splits/\",\n        \"seed\": SEED,\n        \"deberta_metrics\": deberta_metrics,\n        \"iid_test_results\": iid_results,\n        \"dd_ood_results\": dd_results,\n        \"sample_counts\": {\n            \"train\": len(train_data),\n            \"val\": len(val_data),\n            \"test_iid\": len(test_data),\n            \"test_dd_ood\": len(dd_test_convs),\n        },\n    }\n    out_path = PROJ / \"results/mf1_scrambled_seed123.json\"\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\", flush=True)\n\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"SUMMARY\", flush=True)\n    print(\"=\" * 70, flush=True)\n    print(f\"IID Full F1:       {iid_results['full']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD Full F1:    {dd_results['full']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=1 F1:     {dd_results['k=1']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=2 F1:     {dd_results['k=2']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=3 F1:     {dd_results['k=3']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=5 F1:     {dd_results['k=5']['f1_macro']:.4f}\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script updated\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat > /root/persuasion_turn_jailbreak_detect/src/mf1_scrambled_seed123_gru_eval.py << 'PYEOF'\n\"\"\"MF1 Scrambled seed=123: GRU training + DD OOD eval.\"\"\"\n\nimport os\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n\nimport sys\nimport json\nimport random\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom pathlib import Path\nfrom sklearn.metrics import f1_score, precision_score, recall_score\n\nsys.path.insert(0, \"/root/persuasion_turn_jailbreak_detect\")\nfrom src.models.deberta_multitask import DeBERTaMultiTask\nfrom src.models.gru_classifier import GRUClassifier\nfrom transformers import AutoTokenizer\n\nPROJ = Path(\"/root/persuasion_turn_jailbreak_detect\")\nDEVICE = torch.device(\"cuda:0\")\nLOCAL_MODEL = \"/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\"\nMAX_LENGTH = 256\nSEED = 123\nGRU_HIDDEN = 256\nGRU_LAYERS = 2\nGRU_DROPOUT = 0.3\nGRU_LR = 1e-3\nGRU_EPOCHS = 20\nGRU_BATCH = 32\n\nSCRAMBLED_CKPT = PROJ / \"checkpoints/mf1_scrambled_seed123/deberta_multitask/best\"\nGRU_OUT = PROJ / \"checkpoints/mf1_scrambled_seed123/gru\"\n\nrandom.seed(SEED)\nnp.random.seed(SEED)\ntorch.manual_seed(SEED)\ntorch.cuda.manual_seed_all(SEED)\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(l) for l in f if l.strip()]\n\n\ndef extract_user_turns(conv, use_original=False):\n    turns = []\n    for t in conv[\"turns\"]:\n        if t[\"role\"] == \"user\":\n            if use_original and \"original_content\" in t:\n                turns.append(t[\"original_content\"])\n            else:\n                turns.append(t[\"content\"])\n    return turns\n\n\ndef get_label(conv):\n    return 1 if conv[\"label\"] == \"jailbreak\" else 0\n\n\ndef load_scrambled_encoder():\n    model = DeBERTaMultiTask(model_name=LOCAL_MODEL, num_persuasion_classes=9)\n    sd = torch.load(SCRAMBLED_CKPT / \"model.pt\", map_location=\"cpu\")\n    model.load_state_dict(sd)\n    enc = model.deberta.to(DEVICE).eval()\n    for p in enc.parameters():\n        p.requires_grad = False\n    return enc\n\n\ndef embed_turns(encoder, tokenizer, turns, k=None):\n    t = turns[:k] if k is not None else turns\n    if len(t) == 0:\n        t = [\"\"]\n    enc = tokenizer(t, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\"pt\").to(DEVICE)\n    with torch.no_grad():\n        out = encoder(input_ids=enc[\"input_ids\"], attention_mask=enc[\"attention_mask\"])\n        return out.last_hidden_state[:, 0, :]\n\n\ndef embed_dataset(encoder, tokenizer, data):\n    all_embs, all_labels, all_lengths = [], [], []\n    for conv in data:\n        turns = extract_user_turns(conv)\n        embs = embed_turns(encoder, tokenizer, turns)\n        all_embs.append(embs.cpu())\n        all_labels.append(get_label(conv))\n        all_lengths.append(embs.size(0))\n    return all_embs, all_labels, all_lengths\n\n\ndef pad_batch(embs_list, labels, lengths):\n    max_len = max(lengths)\n    dim = embs_list[0].size(1)\n    padded = torch.zeros(len(embs_list), max_len, dim)\n    for i, e in enumerate(embs_list):\n        padded[i, :e.size(0), :] = e\n    return padded, torch.tensor(labels, dtype=torch.long), torch.tensor(lengths, dtype=torch.long)\n\n\ndef train_gru(train_embs, train_labels, train_lengths, val_embs, val_labels, val_lengths, embed_dim):\n    print(\"\\n=== Training GRU ===\", flush=True)\n    gru = GRUClassifier(\n        input_dim=embed_dim, hidden_dim=GRU_HIDDEN,\n        num_layers=GRU_LAYERS, dropout=GRU_DROPOUT\n    ).to(DEVICE)\n\n    optimizer = torch.optim.Adam(gru.parameters(), lr=GRU_LR)\n    criterion = nn.CrossEntropyLoss()\n\n    train_padded, train_lab, train_len = pad_batch(train_embs, train_labels, train_lengths)\n    val_padded, val_lab, val_len = pad_batch(val_embs, val_labels, val_lengths)\n\n    best_val_loss = float(\"inf\")\n    GRU_OUT.mkdir(parents=True, exist_ok=True)\n\n    n_train = len(train_labels)\n    indices = list(range(n_train))\n\n    for epoch in range(GRU_EPOCHS):\n        gru.train()\n        random.shuffle(indices)\n        epoch_loss = 0.0\n        n_batches = 0\n\n        for start in range(0, n_train, GRU_BATCH):\n            batch_idx = indices[start:start + GRU_BATCH]\n            b_embs = train_padded[batch_idx].to(DEVICE)\n            b_labels = train_lab[batch_idx].to(DEVICE)\n            b_lengths = train_len[batch_idx].to(DEVICE)\n\n            logits = gru(b_embs, b_lengths)\n            loss = criterion(logits, b_labels)\n\n            optimizer.zero_grad()\n            loss.backward()\n            optimizer.step()\n\n            epoch_loss += loss.item()\n            n_batches += 1\n\n        gru.eval()\n        with torch.no_grad():\n            val_logits = gru(val_padded.to(DEVICE), val_len.to(DEVICE))\n            val_loss = criterion(val_logits, val_lab.to(DEVICE)).item()\n            val_preds = val_logits.argmax(-1).cpu()\n            val_acc = (val_preds == val_lab).float().mean().item()\n\n        avg_train = epoch_loss / max(n_batches, 1)\n        print(f\"  Epoch {epoch+1}/{GRU_EPOCHS} | Train: {avg_train:.4f} | Val: {val_loss:.4f} | Acc: {val_acc:.4f}\", flush=True)\n\n        if val_loss < best_val_loss:\n            best_val_loss = val_loss\n            torch.save(gru.state_dict(), GRU_OUT / \"best.pt\")\n            print(f\"    -> Best GRU saved (val_loss={best_val_loss:.4f})\", flush=True)\n\n    best_gru = GRUClassifier(\n        input_dim=embed_dim, hidden_dim=GRU_HIDDEN,\n        num_layers=GRU_LAYERS, dropout=GRU_DROPOUT\n    ).to(DEVICE)\n    best_gru.load_state_dict(torch.load(GRU_OUT / \"best.pt\", map_location=DEVICE))\n    best_gru.eval()\n    return best_gru\n\n\ndef eval_set(encoder, gru, tokenizer, data, k=None, use_original=False):\n    gru.eval()\n    all_preds, all_labels = [], []\n    for conv in data:\n        turns = extract_user_turns(conv, use_original=use_original)\n        embs = embed_turns(encoder, tokenizer, turns, k=k)\n        embs_padded = embs.unsqueeze(0)\n        length = torch.tensor([embs.size(0)], dtype=torch.long, device=DEVICE)\n        with torch.no_grad():\n            logits = gru(embs_padded, length)\n        pred = logits.argmax(-1).item()\n        all_preds.append(pred)\n        all_labels.append(get_label(conv))\n\n    f1 = round(f1_score(all_labels, all_preds, average=\"macro\"), 4)\n    prec = round(precision_score(all_labels, all_preds, average=\"macro\", zero_division=0), 4)\n    rec = round(recall_score(all_labels, all_preds, average=\"macro\", zero_division=0), 4)\n    acc = round(sum(p == l for p, l in zip(all_preds, all_labels)) / len(all_labels), 4)\n    return {\"f1_macro\": f1, \"precision\": prec, \"recall\": rec, \"accuracy\": acc}\n\n\ndef main():\n    print(\"Loading tokenizer...\", flush=True)\n    tokenizer = AutoTokenizer.from_pretrained(LOCAL_MODEL)\n\n    print(\"Loading scrambled DeBERTa encoder...\", flush=True)\n    encoder = load_scrambled_encoder()\n\n    train_data = load_jsonl(PROJ / \"data/plan_002_splits/train.jsonl\")\n    val_data = load_jsonl(PROJ / \"data/plan_002_splits/val.jsonl\")\n    test_data = load_jsonl(PROJ / \"data/plan_002_splits/test.jsonl\")\n\n    print(f\"Data: train={len(train_data)}, val={len(val_data)}, test={len(test_data)}\", flush=True)\n\n    print(\"\\nEmbedding train set...\", flush=True)\n    train_embs, train_labels, train_lengths = embed_dataset(encoder, tokenizer, train_data)\n    print(\"Embedding val set...\", flush=True)\n    val_embs, val_labels, val_lengths = embed_dataset(encoder, tokenizer, val_data)\n\n    embed_dim = train_embs[0].size(1)\n    gru = train_gru(train_embs, train_labels, train_lengths, val_embs, val_labels, val_lengths, embed_dim)\n\n    k_values = [1, 2, 3, 5]\n\n    print(\"\\n=== IID Test Eval ===\", flush=True)\n    iid_results = {}\n    for k_label, k_val in [(\"full\", None)] + [(f\"k={k}\", k) for k in k_values]:\n        r = eval_set(encoder, gru, tokenizer, test_data, k=k_val)\n        iid_results[k_label] = r\n        print(f\"  {k_label}: F1={r['f1_macro']:.4f} P={r['precision']:.4f} R={r['recall']:.4f}\", flush=True)\n\n    print(\"\\n=== DD OOD Test Eval ===\", flush=True)\n    dd_data = load_jsonl(PROJ / \"data/generated/deceptive_delight_all.jsonl\")\n    benign_test = [c for c in test_data if c[\"label\"] == \"benign\"]\n    dd_test_convs = dd_data + benign_test\n    print(f\"  DD: {len(dd_data)} jailbreak + {len(benign_test)} benign = {len(dd_test_convs)} total\", flush=True)\n\n    dd_results = {}\n    for k_label, k_val in [(\"full\", None)] + [(f\"k={k}\", k) for k in k_values]:\n        r = eval_set(encoder, gru, tokenizer, dd_test_convs, k=k_val)\n        dd_results[k_label] = r\n        print(f\"  {k_label}: F1={r['f1_macro']:.4f} P={r['precision']:.4f} R={r['recall']:.4f}\", flush=True)\n\n    deberta_metrics = {}\n    metrics_path = SCRAMBLED_CKPT / \"training_metrics.json\"\n    if metrics_path.exists():\n        with open(metrics_path) as f:\n            deberta_metrics = json.load(f)\n        print(f\"\\nDeBERTa metrics: {deberta_metrics}\", flush=True)\n\n    output = {\n        \"experiment\": \"mf1_scrambled_seed123\",\n        \"description\": \"Scrambled-label control (seed=123) using plan_002_splits data\",\n        \"data_source\": \"data/plan_002_splits/\",\n        \"seed\": SEED,\n        \"deberta_metrics\": deberta_metrics,\n        \"iid_test_results\": iid_results,\n        \"dd_ood_results\": dd_results,\n        \"sample_counts\": {\n            \"train\": len(train_data),\n            \"val\": len(val_data),\n            \"test_iid\": len(test_data),\n            \"test_dd_ood\": len(dd_test_convs),\n        },\n    }\n    out_path = PROJ / \"results/mf1_scrambled_seed123.json\"\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\", flush=True)\n\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"SUMMARY\", flush=True)\n    print(\"=\" * 70, flush=True)\n    print(f\"IID Full F1:       {iid_results['full']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD Full F1:    {dd_results['full']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=1 F1:     {dd_results['k=1']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=2 F1:     {dd_results['k=2']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=3 F1:     {dd_results['k=3']['f1_macro']:.4f}\", flush=True)\n    print(f\"DD OOD K=5 F1:     {dd_results['k=5']['f1_macro']:.4f}\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script updated\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-18T09:21:09.218453+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script updated\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-18T09:21:09.218632+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && nohup bash -c 'source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python src/mf1_scrambled_seed123_gru_eval.py' > results/mf1_scrambled_seed123_stage2.log 2>&1 &\necho \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && nohup bash -c 'source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python src/mf1_scrambled_seed123_gru_eval.py' > results/mf1_scrambled_seed123_stage2.log 2>&1 &\necho \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-18T09:21:09.218770+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=52648\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 24.79}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-18T09:21:09.218911+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -20 /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123_stage2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -20 /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123_stage2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-18T09:21:09.219065+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  full: F1=1.0000 P=1.0000 R=1.0000\\n  k=1: F1=1.0000 P=1.0000 R=1.0000\\n  k=2: F1=1.0000 P=1.0000 R=1.0000\\n  k=3: F1=1.0000 P=1.0000 R=1.0000\\n  k=5: F1=1.0000 P=1.0000 R=1.0000\\n\\nDeBERTa metrics: {'best_epoch': 4, 'val_persuasion_acc': 0.6723842195540308, 'val_intent_acc': 1.0, 'val_loss': 0.7905979230458805}\\n\\nResults saved to /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123.json\\n\\n======================================================================\\nSUMMARY\\n======================================================================\\nIID Full F1:       1.0000\\nDD OOD Full F1:    1.0000\\nDD OOD K=1 F1:     1.0000\\nDD OOD K=2 F1:     1.0000\\nDD OOD K=3 F1:     1.0000\\nDD OOD K=5 F1:     1.0000\\n======================================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-18T09:21:09.219571+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123_stage2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123_stage2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-18T09:21:09.219903+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading tokenizer...\\n[transformers] The tokenizer you are loading from '/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\nLoading scrambled DeBERTa encoder...\\n\\rLoading weights:   0%|          | 0/198 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 198/198 [00:00<00:00, 3406.69it/s]\\n[transformers] \\u001b[1mDebertaV2Model LOAD REPORT\\u001b[0m from: /root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\\nKey                                     | Status     |  | \\n----------------------------------------+------------+--+-\\nlm_predictions.lm_head.bias             | UNEXPECTED |  | \\nmask_predictions.dense.weight           | UNEXPECTED |  | \\nmask_predictions.LayerNorm.weight       | UNEXPECTED |  | \\nlm_predictions.lm_head.LayerNorm.weight | UNEXPECTED |  | \\nmask_predictions.classifier.bias        | UNEXPECTED |  | \\nmask_predictions.classifier.weight      | UNEXPECTED |  | \\nlm_predictions.lm_head.dense.weight     | UNEXPECTED |  | \\nlm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED |  | \\nmask_predictions.dense.bias             | UNEXPECTED |  | \\nlm_predictions.lm_head.dense.bias       | UNEXPECTED |  | \\nmask_predictions.LayerNorm.bias         | UNEXPECTED |  | \\n\\nNotes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\nData: train=350, val=74, test=76\\n\\nEmbedding train set...\\nEmbedding val set...\\n\\n=== Training GRU ===\\n  Epoch 1/20 | Train: 0.0906 | Val: 0.0000 | Acc: 1.0000\\n    -> Best GRU sav
+…[truncated 2534 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-18T09:21:09.220142+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-18T09:21:09.220353+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"mf1_scrambled_seed123\\\",\\n  \\\"description\\\": \\\"Scrambled-label control (seed=123) using plan_002_splits data\\\",\\n  \\\"data_source\\\": \\\"data/plan_002_splits/\\\",\\n  \\\"seed\\\": 123,\\n  \\\"deberta_metrics\\\": {\\n    \\\"best_epoch\\\": 4,\\n    \\\"val_persuasion_acc\\\": 0.6723842195540308,\\n    \\\"val_intent_acc\\\": 1.0,\\n    \\\"val_loss\\\": 0.7905979230458805\\n  },\\n  \\\"iid_test_results\\\": {\\n    \\\"full\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=1\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=2\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=3\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=5\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    }\\n  },\\n  \\\"dd_ood_results\\\": {\\n    \\\"full\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=1\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=2\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=3\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=5\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\
+…[truncated 333 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-18T09:21:09.220523+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls -la /root/persuasion_turn_jailbreak_detect/checkpoints/mf1_scrambled_seed123/deberta_multitask/best/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls -la /root/persuasion_turn_jailbreak_detect/checkpoints/mf1_scrambled_seed123/deberta_multitask/best/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-18T09:21:09.220694+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls -la /root/persuasion_turn_jailbreak_detect/checkpoints/mf1_scrambled_seed123/gru/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls -la /root/persuasion_turn_jailbreak_detect/checkpoints/mf1_scrambled_seed123/gru/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-18T09:21:09.221191+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 726352\\ndrwxr-xr-x 2 root root       122 May 18 17:14 .\\ndrwxr-xr-x 3 root root        26 May 18 17:14 ..\\n-rw-r--r-- 1 root root 735431691 May 18 17:17 model.pt\\n-rw-r--r-- 1 root root   8340141 May 18 17:17 tokenizer.json\\n-rw-r--r-- 1 root root       536 May 18 17:17 tokenizer_config.json\\n-rw-r--r-- 1 root root       124 May 18 17:17 training_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-18T09:21:09.221381+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 11300\\ndrwxr-xr-x 2 root root       29 May 18 17:19 .\\ndrwxr-xr-x 4 root root       54 May 18 17:14 ..\\n-rw-r--r-- 1 root root 11568618 May 18 17:19 best.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-18T09:21:09.221532+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mf1_scrambled_seed123",
+  "field": "checkpoint_path",
+  "value": "checkpoints/mf1_scrambled_seed123/",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mf1_scrambled_seed123",
+    "field": "checkpoint_path",
+    "value": "checkpoints/mf1_scrambled_seed123/",
+    "project": "persuasion_turn_jailbreak_detect"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-18T09:21:09.221709+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mf1_scrambled_seed123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T09:11:48.357Z\", \"updated_at\": \"2026-05-18T09:20:12.687Z\", \"hypothesis\": \"Scrambled persuasion labels (seed=123) will degrade DD OOD detection performance compared to original labels, confirming that persuasion strategy grounding is causally necessary for generalization\", \"spec\": {\"command\": \"python src/train_deberta.py + mf1_scrambled_seed123_gru_eval.py\", \"server\": \"westd-33183\", \"data_path\": \"data/plan_002_splits/\", \"data_count\": 350, \"model_name\": \"microsoft/deberta-v3-base\", \"seed\": 123}, \"checkpoint_path\": \"checkpoints/mf1_scrambled_seed123/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1935}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-18T09:21:09.221842+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mf1_scrambled_seed123",
+  "field": "log_path",
+  "value": "results/mf1_scrambled_seed123_stage1.log, results/mf1_scrambled_seed123_stage2.log",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mf1_scrambled_seed123",
+    "field": "log_path",
+    "value": "results/mf1_scrambled_seed123_stage1.log, results/mf1_scrambled_seed123_stage2.log",
+    "project": "persuasion_turn_jailbreak_detect"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-18T09:21:09.222070+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mf1_scrambled_seed123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T09:11:48.357Z\", \"updated_at\": \"2026-05-18T09:20:13.800Z\", \"hypothesis\": \"Scrambled persuasion labels (seed=123) will degrade DD OOD detection performance compared to original labels, confirming that persuasion strategy grounding is causally necessary for generalization\", \"spec\": {\"command\": \"python src/train_deberta.py + mf1_scrambled_seed123_gru_eval.py\", \"server\": \"westd-33183\", \"data_path\": \"data/plan_002_splits/\", \"data_count\": 350, \"model_name\": \"microsoft/deberta-v3-base\", \"seed\": 123}, \"checkpoint_path\": \"checkpoints/mf1_scrambled_seed123/\", \"log_path\": \"results/mf1_scrambled_seed123_stage1.log, results/mf1_scrambled_seed123_stage2.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.172}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-18T09:21:09.222248+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mf1_scrambled_seed123",
+  "field": "metrics",
+  "value": "{'val_persuasion_acc': 0.6724, 'val_intent_acc': 1, 'dd_ood_f1_k1': 1, 'dd_ood_f1_k2': 1, 'dd_ood_f1_k3': 1, 'dd_ood_f1_k5': 1, 'dd_ood_f1_full': 1}",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mf1_scrambled_seed123",
+    "field": "metrics",
+    "value": "{'val_persuasion_acc': 0.6724, 'val_intent_acc': 1, 'dd_ood_f1_k1': 1, 'dd_ood_f1_k2': 1, 'dd_ood_f1_k3': 1, 'dd_ood_f1_k5': 1, 'dd_ood_f1_full': 1}",
+    "project": "persuasion_turn_jailbreak_detect"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-18T09:21:09.222407+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mf1_scrambled_seed123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T09:11:48.357Z\", \"updated_at\": \"2026-05-18T09:20:18.928Z\", \"hypothesis\": \"Scrambled persuasion labels (seed=123) will degrade DD OOD detection performance compared to original labels, confirming that persuasion strategy grounding is causally necessary for generalization\", \"spec\": {\"command\": \"python src/train_deberta.py + mf1_scrambled_seed123_gru_eval.py\", \"server\": \"westd-33183\", \"data_path\": \"data/plan_002_splits/\", \"data_count\": 350, \"model_name\": \"microsoft/deberta-v3-base\", \"seed\": 123}, \"checkpoint_path\": \"checkpoints/mf1_scrambled_seed123/\", \"log_path\": \"results/mf1_scrambled_seed123_stage1.log, results/mf1_scrambled_seed123_stage2.log\", \"metrics\": {\"val_persuasion_acc\": 0.6724, \"val_intent_acc\": 1, \"dd_ood_f1_k1\": 1, \"dd_ood_f1_k2\": 1, \"dd_ood_f1_k3\": 1, \"dd_ood_f1_k5\": 1, \"dd_ood_f1_full\": 1}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2225}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-18T09:21:09.222558+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mf1_scrambled_seed123",
+  "field": "conclusion",
+  "value": "Scrambled seed=123 achieves perfect DD OOD F1=1.0 at all K values, slightly higher than seed=42 (0.99). DeBERTa val_persuasion_acc=0.6724 (vs seed42=0.6792), intent_acc=1.0. The scrambled model still detects jailbreaks perfectly because the intent classification head provides sufficient signal despite broken persuasion label-text correspondence.",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mf1_scrambled_seed123",
+    "field": "conclusion",
+    "value": "Scrambled seed=123 achieves perfect DD OOD F1=1.0 at all K values, slightly higher than seed=42 (0.99). DeBERTa val_persuasion_acc=0.6724 (vs seed42=0.6792), intent_acc=1.0. The scrambled model still detects jailbreaks perfectly because the intent classification head provides sufficient signal despite broken persuasion label-text correspondence.",
+    "project": "persuasion_turn_jailbreak_detect"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-18T09:21:09.223166+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'Scrambled seed=123 achieves perfect DD OOD F1=1.0 at all K values, slightly higher than seed=42 (0.99). DeBERTa val_persuasion_acc=0.6724 (vs seed42=0.6792), intent_acc=1.0. The scrambled model still detects jailbreaks perfectly because the intent classification head provides sufficient signal despite broken persuasion label-text correspondence.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.1235}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-18T09:21:09.223354+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mf1_scrambled_seed123",
+  "field": "conclusion",
+  "value": "success",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mf1_scrambled_seed123",
+    "field": "conclusion",
+    "value": "success",
+    "project": "persuasion_turn_jailbreak_detect"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-18T09:21:09.223511+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mf1_scrambled_seed123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T09:11:48.357Z\", \"updated_at\": \"2026-05-18T09:20:28.404Z\", \"hypothesis\": \"Scrambled persuasion labels (seed=123) will degrade DD OOD detection performance compared to original labels, confirming that persuasion strategy grounding is causally necessary for generalization\", \"spec\": {\"command\": \"python src/train_deberta.py + mf1_scrambled_seed123_gru_eval.py\", \"server\": \"westd-33183\", \"data_path\": \"data/plan_002_splits/\", \"data_count\": 350, \"model_name\": \"microsoft/deberta-v3-base\", \"seed\": 123}, \"checkpoint_path\": \"checkpoints/mf1_scrambled_seed123/\", \"log_path\": \"results/mf1_scrambled_seed123_stage1.log, results/mf1_scrambled_seed123_stage2.log\", \"metrics\": {\"val_persuasion_acc\": 0.6724, \"val_intent_acc\": 1, \"dd_ood_f1_k1\": 1, \"dd_ood_f1_k2\": 1, \"dd_ood_f1_k3\": 1, \"dd_ood_f1_k5\": 1, \"dd_ood_f1_full\": 1}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3032}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-18T09:21:09.223664+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "mf1_scrambled_seed123",
+  "field": "status",
+  "value": "DONE",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "mf1_scrambled_seed123",
+    "field": "status",
+    "value": "DONE",
+    "project": "persuasion_turn_jailbreak_detect"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-18T09:21:09.223827+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mf1_scrambled_seed123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T09:11:48.357Z\", \"updated_at\": \"2026-05-18T09:20:32.092Z\", \"hypothesis\": \"Scrambled persuasion labels (seed=123) will degrade DD OOD detection performance compared to original labels, confirming that persuasion strategy grounding is causally necessary for generalization\", \"spec\": {\"command\": \"python src/train_deberta.py + mf1_scrambled_seed123_gru_eval.py\", \"server\": \"westd-33183\", \"data_path\": \"data/plan_002_splits/\", \"data_count\": 350, \"model_name\": \"microsoft/deberta-v3-base\", \"seed\": 123}, \"checkpoint_path\": \"checkpoints/mf1_scrambled_seed123/\", \"log_path\": \"results/mf1_scrambled_seed123_stage1.log, results/mf1_scrambled_seed123_stage2.log\", \"metrics\": {\"val_persuasion_acc\": 0.6724, \"val_intent_acc\": 1, \"dd_ood_f1_k1\": 1, \"dd_ood_f1_k2\": 1, \"dd_ood_f1_k3\": 1, \"dd_ood_f1_k5\": 1, \"dd_ood_f1_full\": 1}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T09:20:32.092Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.739}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-18T09:21:09.223981+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "mf1_scrambled_seed123_results",
+  "type": "data",
+  "description": "Scrambled-label ablation (seed=123) full pipeline results: DeBERTa + GRU + DD OOD eval",
+  "project": "persuasion_turn_jailbreak_detect",
+  "exp_id": "mf1_scrambled_seed123",
+  "source_path": "/root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "mf1_scrambled_seed123_results",
+    "type": "data",
+    "description": "Scrambled-label ablation (seed=123) full pipeline results: DeBERTa + GRU + DD OOD eval",
+    "project": "persuasion_turn_jailbreak_detect",
+    "exp_id": "mf1_scrambled_seed123",
+    "source_path": "/root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-18T09:21:09.224117+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-18T09:21:09.224257+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "mf1_scrambled_seed123_results",
+  "type": "data",
+  "description": "Scrambled-label ablation (seed=123) full pipeline results: DeBERTa + GRU + DD OOD eval. DD OOD F1=1.0 at all K. Remote path: results/mf1_scrambled_seed123.json",
+  "project": "persuasion_turn_jailbreak_detect",
+  "exp_id": "mf1_scrambled_seed123",
+  "content": "{\"experiment\": \"mf1_scrambled_seed123\", \"description\": \"Scrambled-label control (seed=123) using plan_002_splits data\", \"data_source\": \"data/plan_002_splits/\", \"seed\": 123, \"deberta_metrics\": {\"best_epoch\": 4, \"val_persuasion_acc\": 0.6724, \"val_intent_acc\": 1.0, \"val_loss\": 0.7906}, \"iid_test_results\": {\"full\": {\"f1_macro\": 1.0}, \"k=1\": {\"f1_macro\": 1.0}, \"k=2\": {\"f1_macro\": 1.0}, \"k=3\": {\"f1_macro\": 1.0}, \"k=5\": {\"f1_macro\": 1.0}}, \"dd_ood_results\": {\"full\": {\"f1_macro\": 1.0}, \"k=1\": {\"f1_macro\": 1.0}, \"k=2\": {\"f1_macro\": 1.0}, \"k=3\": {\"f1_macro\": 1.0}, \"k=5\": {\"f1_macro\": 1.0}}}",
+  "content_filename": "mf1_scrambled_seed123_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "mf1_scrambled_seed123_results",
+    "type": "data",
+    "description": "Scrambled-label ablation (seed=123) full pipeline results: DeBERTa + GRU + DD OOD eval. DD OOD F1=1.0 at all K. Remote path: results/mf1_scrambled_seed123.json",
+    "project": "persuasion_turn_jailbreak_detect",
+    "exp_id": "mf1_scrambled_seed123",
+    "content": "{\"experiment\": \"mf1_scrambled_seed123\", \"description\": \"Scrambled-label control (seed=123) using plan_002_splits data\", \"data_source\": \"data/plan_002_splits/\", \"seed\": 123, \"deberta_metrics\": {\"best_epoch\": 4, \"val_persuasion_acc\": 0.6724, \"val_intent_acc\": 1.0, \"val_loss\": 0.7906}, \"iid_test_results\": {\"full\": {\"f1_macro\": 1.0}, \"k=1\": {\"f1_macro\": 1.0}, \"k=2\": {\"f1_macro\": 1.0}, \"k=3\": {\"f1_macro\": 1.0}, \"k=5\": {\"f1_macro\": 1.0}}, \"dd_ood_results\": {\"full\": {\"f1_macro\": 1.0}, \"k=1\": {\"f1_macro\": 1.0}, \"k=2\": {\"f1_macro\": 1.0}, \"k=3\": {\"f1_macro\": 1.0}, \"k=5\": {\"f1_macro\": 1.0}}}",
+    "content_filename": "mf1_scrambled_seed123_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-18T09:21:09.224386+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'experiment': 'mf1_scram...=5': {'f1_macro': 1.0}}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-18T09:21:09.224509+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "mf1_scrambled_seed123_results",
+  "type": "data",
+  "description": "Scrambled-label ablation (seed=123) full pipeline results: DeBERTa + GRU + DD OOD eval. DD OOD F1=1.0 at all K. Remote path: results/mf1_scrambled_seed123.json",
+  "project": "persuasion_turn_jailbreak_detect",
+  "exp_id": "mf1_scrambled_seed123",
+  "content": "{\"experiment\": \"mf1_scrambled_seed123\", \"seed\": 123, \"deberta_metrics\": {\"best_epoch\": 4, \"val_persuasion_acc\": 0.6724, \"val_intent_acc\": 1.0, \"val_loss\": 0.7906}, \"dd_ood_results\": {\"full\": 1.0, \"k=1\": 1.0, \"k=2\": 1.0, \"k=3\": 1.0, \"k=5\": 1.0}, \"iid_test_results\": {\"full\": 1.0, \"k=1\": 1.0, \"k=2\": 1.0, \"k=3\": 1.0, \"k=5\": 1.0}}",
+  "content_filename": "mf1_scrambled_seed123_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "mf1_scrambled_seed123_results",
+    "type": "data",
+    "description": "Scrambled-label ablation (seed=123) full pipeline results: DeBERTa + GRU + DD OOD eval. DD OOD F1=1.0 at all K. Remote path: results/mf1_scrambled_seed123.json",
+    "project": "persuasion_turn_jailbreak_detect",
+    "exp_id": "mf1_scrambled_seed123",
+    "content": "{\"experiment\": \"mf1_scrambled_seed123\", \"seed\": 123, \"deberta_metrics\": {\"best_epoch\": 4, \"val_persuasion_acc\": 0.6724, \"val_intent_acc\": 1.0, \"val_loss\": 0.7906}, \"dd_ood_results\": {\"full\": 1.0, \"k=1\": 1.0, \"k=2\": 1.0, \"k=3\": 1.0, \"k=5\": 1.0}, \"iid_test_results\": {\"full\": 1.0, \"k=1\": 1.0, \"k=2\": 1.0, \"k=3\": 1.0, \"k=5\": 1.0}}",
+    "content_filename": "mf1_scrambled_seed123_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-18T09:21:09.224769+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'experiment': 'mf1_scram...'k=3': 1.0, 'k=5': 1.0}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-18T09:21:09.224905+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "mf1_scrambled_seed123_results",
+  "type": "data",
+  "description": "Scrambled-label ablation (seed=123) full pipeline results. Remote: results/mf1_scrambled_seed123.json",
+  "project": "persuasion_turn_jailbreak_detect",
+  "exp_id": "mf1_scrambled_seed123",
+  "content": "Scrambled seed=123 results. DeBERTa: best_epoch=4, val_persuasion_acc=0.6724, val_intent_acc=1.0, val_loss=0.7906. DD OOD F1: full=1.0, k1=1.0, k2=1.0, k3=1.0, k5=1.0. IID F1: all 1.0. Remote path: /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123.json",
+  "content_filename": "mf1_scrambled_seed123_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "mf1_scrambled_seed123_results",
+    "type": "data",
+    "description": "Scrambled-label ablation (seed=123) full pipeline results. Remote: results/mf1_scrambled_seed123.json",
+    "project": "persuasion_turn_jailbreak_detect",
+    "exp_id": "mf1_scrambled_seed123",
+    "content": "Scrambled seed=123 results. DeBERTa: best_epoch=4, val_persuasion_acc=0.6724, val_intent_acc=1.0, val_loss=0.7906. DD OOD F1: full=1.0, k1=1.0, k2=1.0, k3=1.0, k5=1.0. IID F1: all 1.0. Remote path: /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123.json",
+    "content_filename": "mf1_scrambled_seed123_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-18T09:21:09.225059+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_f6e8a1\", \"name\": \"mf1_scrambled_seed123_results\", \"type\": \"data\", \"description\": \"Scrambled-label ablation (seed=123) full pipeline results. Remote: results/mf1_scrambled_seed123.json\", \"path\": \"projects/persuasion_turn_jailbreak_detect/artifacts/mf1_scrambled_seed123/data/mf1_scrambled_seed123_results.json\", \"url\": null, \"project\": \"persuasion_turn_jailbreak_detect\", \"exp_id\": \"mf1_scrambled_seed123\", \"skill\": \"\", \"created_at\": \"2026-05-18T09:21:00.051313+00:00\", \"tags\": []}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111 · 2026-05-18T09:21:09.225231+00:00_
+
+MF1 pipeline complete. Summary:
+
+**MF1 Scrambled Labels seed=123 — Results**
+
+| Stage | Metric | Value |
+|-------|--------|-------|
+| DeBERTa | val_persuasion_acc | 0.6724 |
+| DeBERTa | val_intent_acc | 1.0 |
+| DeBERTa | val_loss | 0.7906 |
+| DD OOD | F1 @ K=1 | 1.0 |
+| DD OOD | F1 @ K=2 | 1.0 |
+| DD OOD | F1 @ K=3 | 1.0 |
+| DD OOD | F1 @ K=5 | 1.0 |
+| DD OOD | F1 Full | 1.0 |
+
+**Artifacts on server:**
+- Scrambled data: `data/plan_002_splits/train_scrambled_seed123.jsonl`
+- DeBERTa checkpoint: `checkpoints/mf1_scrambled_seed123/deberta_multitask/best/`
+- GRU checkpoint: `checkpoints/mf1_scrambled_seed123/gru/best.pt`
+- Results JSON: `results/mf1_scrambled_seed123.json`
+
+**Comparison with seed=42:** DeBERTa persuasion acc similar (0.6724 vs 0.6792). DD OOD F1 slightly higher (1.0 vs 0.9904 for seed=42). Both seeds show that the scrambled model retains strong jailbreak detection because the intent classification head (val_intent_acc=1.0) provides sufficient signal for the GRU classifier.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_train_mf1-scrambled-seed123_20260518T091249"
+}
+```
+
+</details>
+
+---

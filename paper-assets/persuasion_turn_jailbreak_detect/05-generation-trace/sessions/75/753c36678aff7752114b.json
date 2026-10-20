@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "753c36678aff7752114b",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp24 calibration ece",
+  "task_key": "worker_code_exp24-calibration-ece_20260520T141925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp24-calibration-ece_20260520T141925_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "79a72c96bee4255a2e3f925763410dca67530602dfb91cc177f91c061ed9e890"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp24 完成。结果：\n\n| Variant | IID ECE | DD OOD ECE | AA OOD ECE |\n|---------|---------|------------|------------|\n| 9class  | ≈0.000  | 0.143±0.053 | 0.116±0.053 |\n| vanilla | 0.009±0.007 | 0.669±0.004 | 0.504±0.066 |\n\n9-class 在所有数据集上校准都显著优于 vanilla。OOD 场景差异尤其明显——vanilla 的 DD OOD ECE 高达 0.67（jailbreak 样本被高置信度误判为 benign），而 9-class 仅 0.14。\n\n产出：\n- `results/exp24_calibration_ece.json`（含 per-bin reliability diagram 数据）\n- artifact 已注册，registry 已更新为 DONE"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp24-calibration-ece.md"
+}

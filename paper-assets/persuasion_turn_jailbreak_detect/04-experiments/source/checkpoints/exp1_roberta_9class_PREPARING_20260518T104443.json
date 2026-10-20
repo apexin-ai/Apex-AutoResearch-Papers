@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp1_roberta_9class",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:41:37.022Z",
+    "updated_at": "2026-05-18T10:44:43.072Z",
+    "hypothesis": "RoBERTa-base with 9-class persuasion multi-task fine-tuning will reproduce the DeBERTa evidence hierarchy (9-class >> vanilla), proving findings are encoder-agnostic",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T10:44:43.183251+00:00",
+  "trigger": "update_registry"
+}

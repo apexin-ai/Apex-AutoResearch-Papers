@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab398511afdeb6dcf391",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp51 oasst2 eval",
+  "task_key": "worker_code_exp51_oasst2_eval_20260522T092833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp51_oasst2_eval_20260522T092833_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "d557a8e672096a6dca8e8198bd6158d83d66832fa4566ce27255f2de0eae7793"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job exp51 正在运行 (PID 99480)。\n\n- **Phase 1**: 对 200 条 oasst2 benign 评估 baseline 9-class FPR (用 exp45_n0_seed42 checkpoint)\n- **Phase 2**: 如果 FPR > 20%，用 10 条 oasst2 benign 做 adaptation 后重新评估\n\n当前在下载 deberta-v3-base 模型缓存。预计总运行时间 5-10 分钟（取决于是否触发 Phase 2）。3 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp51-oasst2-eval.md"
+}

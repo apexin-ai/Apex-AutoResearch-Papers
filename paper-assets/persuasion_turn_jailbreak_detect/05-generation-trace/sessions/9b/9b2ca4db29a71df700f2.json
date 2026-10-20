@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b2ca4db29a71df700f2",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "util kill zombie processes",
+  "task_key": "worker_util_kill-zombie-processes_20260519T092902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_util_kill-zombie-processes_20260519T092902_result.json",
+    "occurrence": 1,
+    "bytes": 340,
+    "sha256": "07063fdde84e7264efc30cfcdbe99e8389d591430671adf9a27c8bdab7c08530"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n| PID | 进程 | kill 结果 |\n|-----|------|-----------|\n| 27231 | `python -c ...` (DeBERTaTopic 模型加载) | `kill` 正常终止 |\n| 27437 | `python -u src/binary_perturbed_eval.py` | `kill` 正常终止 |\n\nnvidia-smi 最终状态：cuda:0~3 全部 0 MiB 占用、0% 利用率，4 张卡完全释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/util-kill-zombie-processes.md"
+}

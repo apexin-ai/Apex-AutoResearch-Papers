@@ -1,0 +1,17 @@
+{
+  "exp_id": "plan_016v2_topic_control",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T05:24:03.228Z",
+    "updated_at": "2026-05-18T06:02:42.859Z",
+    "hypothesis": "Topic classification fine-tuning (without intent head) on the same training text will NOT achieve DD OOD F1 comparable to persuasion fine-tuning, proving that persuasion-specific task (not generic classification) drives cross-attack generalization",
+    "parent": "plan_006_cross_attack_clean",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T06:02:42.988263+00:00",
+  "trigger": "update_registry"
+}

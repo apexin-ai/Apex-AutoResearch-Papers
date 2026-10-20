@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "313cb7452795ec5d58fd",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp66 sharegpt benign",
+  "task_key": "worker_code_exp66_sharegpt_benign_20260523T083405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp66_sharegpt_benign_20260523T083405.log",
+    "occurrence": 1,
+    "bytes": 654223,
+    "sha256": "119a8e94dc2e95a4e22d02a2a63c92dc0903a3e7a5cceefe92e3a2efe5c19263"
+  },
+  "statistics": {
+    "messages": 251,
+    "user_turns": 0,
+    "tool_calls": 88,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 71,
+      "tool_call": 88,
+      "tool_result": 88,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 251,
+      "chunks": [
+        {
+          "path": "313cb7452795ec5d58fd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "313cb7452795ec5d58fd-part-0002.json",
+          "message_count": 71
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp66-sharegpt-benign.md"
+}

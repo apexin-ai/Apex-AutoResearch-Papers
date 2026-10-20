@@ -1,0 +1,1 @@
+Results file at /root/persuasion_turn_jailbreak_detect/results/exp10_fewshot_llm_judge.json. DD OOD full: F1=0.5405 P=0.9677 R=0.375. ActorAttack full: F1=0.6612 P=0.9756 R=0.5. Zero unparseable. All K values: k1/k2/k3/k5/full evaluated for both datasets.

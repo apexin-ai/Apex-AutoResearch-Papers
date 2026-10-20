@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c771a746b6e8d1dd088",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "analysis mf2 statistical tests v3",
+  "task_key": "worker_analysis_mf2-statistical-tests-v3_20260518T093330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mf2-statistical-tests-v3_20260518T093330_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "553854cf3162c3aa413535fb5813f0ba3eff49c2e76dd06b7702f13652db9d9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**McNemar's test (DD OOD, n=118)**\n\n| 比较对 | K=1 | K=2 |\n|--------|-----|-----|\n| 9class vs scrambled | p=1.0 (b=1,c=0) | p=0.1306 (b=6,c=1) |\n| 9class vs binary | p=1.0 (b=0,c=0) | p=1.0 (b=0,c=1) |\n| scrambled vs binary | p=1.0 (b=0,c=1) | **p=0.0412** (b=0,c=6) |\n\nK=2 时 scrambled vs binary 差异显著 (p<0.05): binary 正确了 6 个 scrambled 错误的样本，反向为 0。其余对比均不显著。\n\n**Bootstrap 95% CI for F1**\n\n| Variant | K=1 | K=2 | K=3 | K=5 | Full |\n|---------|-----|-----|-----|-----|------|\n| 9class | 1.0 [1.0, 1.0] | 0.994 [0.980, 1.0] | 0.994 [0.980, 1.0] | 1.0 [1.0, 1.0] | 1.0 [1.0, 1.0] |\n| scrambled | 0.994 [0.980, 1.0] | 0.961 [0.925, 0.988] | 0.954 [0.917, 0.985] | 0.994 [0.979, 1.0] | 0.994 [0.979, 1.0] |\n| binary | 1.0 [1.0, 1.0] | 1.0 [1.0, 1.0] | 0.994 [0.980, 1.0] | 1.0 [1.0, 1.0] | 1.0 [1.0, 1.0] |\n\nscrambled 在 K=2,3 的 CI 明显偏低且不包含 1.0，与 9class/binary 的 CI 存在分离。\n\n注意：binary 使用的是 `mf1_binary_seed456` (seed=456)，因为 `plan_013_binary` (seed=42) 的 checkpoint 已被删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mf2-statistical-tests-v3.md"
+}

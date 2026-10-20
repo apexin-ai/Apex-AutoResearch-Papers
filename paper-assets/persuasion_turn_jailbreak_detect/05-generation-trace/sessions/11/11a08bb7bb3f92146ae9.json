@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "11a08bb7bb3f92146ae9",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "paper seed level fill",
+  "task_key": "worker_paper_seed_level_fill_20260523T053412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_seed_level_fill_20260523T053412.log",
+    "occurrence": 1,
+    "bytes": 983295,
+    "sha256": "898fb266e8ca9699babfc0d5a9b88839ae1dc3c2e67e311ed98a3abd6a30de2f"
+  },
+  "statistics": {
+    "messages": 184,
+    "user_turns": 1,
+    "tool_calls": 59,
+    "roles": {
+      "log": 1,
+      "system": 39,
+      "record": 1,
+      "assistant": 23,
+      "tool_call": 59,
+      "tool_result": 59,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 61,
+      "chunks": [
+        {
+          "path": "11a08bb7bb3f92146ae9-part-0001.json",
+          "message_count": 61
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 123,
+      "chunks": [
+        {
+          "path": "11a08bb7bb3f92146ae9-part-0001.json",
+          "message_count": 44
+        },
+        {
+          "path": "11a08bb7bb3f92146ae9-part-0002.json",
+          "message_count": 79
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-seed-level-fill.md"
+}

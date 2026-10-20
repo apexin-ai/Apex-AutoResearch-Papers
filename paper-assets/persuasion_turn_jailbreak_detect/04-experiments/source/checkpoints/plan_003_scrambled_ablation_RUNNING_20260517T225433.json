@@ -1,0 +1,24 @@
+{
+  "exp_id": "plan_003_scrambled_ablation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T22:54:10.521Z",
+    "updated_at": "2026-05-17T22:54:33.575Z",
+    "hypothesis": "Scrambling persuasion strategy labels while preserving distribution will significantly degrade detection performance, proving strategy labels carry real signal beyond surface confounds",
+    "spec": {
+      "command": "scramble_labels.py + train_deberta.py + train_classifier.py",
+      "server": "westd-33183",
+      "data_path": "data/final_v2/ (v4c, 480 conditions)",
+      "data_count": 480,
+      "model_name": "DeBERTa-v3-base (scrambled labels)",
+      "seed": 42,
+      "note": "Run on v4c data NOT plan_002 data - needs rerun on plan_002 splits for fair comparison"
+    }
+  },
+  "timestamp": "2026-05-17T22:54:33.605468+00:00",
+  "trigger": "update_registry"
+}

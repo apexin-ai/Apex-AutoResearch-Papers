@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6c9a604f72d4ac0c20c",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "data preprocess fix",
+  "task_key": "worker_data_preprocess-fix_20260517T060832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_preprocess-fix_20260517T060832_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "b4fdec47436cb36f92bc88ab8434cb6b2c4225313c9f74384714ca7a482c45df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 preprocessing tasks completed successfully:\n\n1. **SafeMTData placeholder removal**: Assistant `[Model response]` turns removed (avg turns: 10 → 5)\n2. **attack_type field added**: cipher-based (115), persuasion-based (135), benign (250)\n3. **Stratified split**: Train 350 / Val 75 / Test 75, max stratification deviation 1.0%\n\nOutput files:\n- `artifacts/data/processed/conversations.jsonl` (updated with attack_type, placeholders removed)\n- `artifacts/data/processed/train.jsonl`\n- `artifacts/data/processed/val.jsonl`\n- `artifacts/data/processed/test.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-preprocess-fix.md"
+}

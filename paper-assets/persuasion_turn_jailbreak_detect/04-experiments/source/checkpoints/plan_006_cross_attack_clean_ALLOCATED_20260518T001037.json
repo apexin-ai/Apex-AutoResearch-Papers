@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_006_cross_attack_clean",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T00:10:28.564Z",
+    "updated_at": "2026-05-18T00:10:37.778Z",
+    "hypothesis": "Persuasion-grounded DeBERTa fine-tuning (trained on Crescendo) produces transferable structural signals that generalize to unseen attack types (FITD/DD), outperforming vanilla DeBERTa baseline especially on structurally different attacks like Deceptive Delight",
+    "parent": "plan_002_clean_training"
+  },
+  "timestamp": "2026-05-18T00:10:37.800684+00:00",
+  "trigger": "update_registry"
+}

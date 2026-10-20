@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c2002ad685716dd90693",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code fitd perseed inference",
+  "task_key": "worker_code_fitd-perseed-inference_20260521T082224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fitd-perseed-inference_20260521T082224.log",
+    "occurrence": 1,
+    "bytes": 665496,
+    "sha256": "a564093719fc7b87f03752c5758a0602ef0836e12c35325eef4bcca208abe637"
+  },
+  "statistics": {
+    "messages": 235,
+    "user_turns": 0,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 90,
+      "tool_result": 90,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 235,
+      "chunks": [
+        {
+          "path": "c2002ad685716dd90693-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c2002ad685716dd90693-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fitd-perseed-inference.md"
+}

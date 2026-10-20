@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7d271ce615ec4cef3f5c",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "paper p3 should fix",
+  "task_key": "worker_paper_p3-should-fix_20260523T115155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p3-should-fix_20260523T115155.log",
+    "occurrence": 1,
+    "bytes": 704755,
+    "sha256": "7d20b84c36dd00c44a701e74a604a3a241bcd228fcc2c32e58e81390bb3867c2"
+  },
+  "statistics": {
+    "messages": 169,
+    "user_turns": 0,
+    "tool_calls": 60,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 60,
+      "tool_result": 60,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 169,
+      "chunks": [
+        {
+          "path": "7d271ce615ec4cef3f5c-part-0001.json",
+          "message_count": 122
+        },
+        {
+          "path": "7d271ce615ec4cef3f5c-part-0002.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-p3-should-fix.md"
+}

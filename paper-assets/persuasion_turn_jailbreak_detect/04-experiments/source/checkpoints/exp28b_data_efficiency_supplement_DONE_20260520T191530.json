@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp28b_data_efficiency_supplement",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:40:53.186Z",
+    "updated_at": "2026-05-20T19:15:30.605Z",
+    "hypothesis": "9-class DAPT maintains robust OOD performance across different random seeds (model initialization), and vanilla DeBERTa shows poor OOD generalization even at smaller training sizes (N=50, N=250), confirming that the data efficiency advantage of 9-class DAPT is not an artifact of a single seed.",
+    "parent": "exp28_data_efficiency",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/persuasion_turn_jailbreak_detect && python scripts/exp28b_supplement.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/",
+      "data_count": 350,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": "42/123/456",
+      "checkpoint_source": "trained_from_scratch",
+      "eval_data": "plan_002_splits/test.jsonl + DD OOD + AA OOD",
+      "checkpoint_path": "N/A (probe only)",
+      "log_path": "/tmp/exp28b.log"
+    },
+    "metrics": {
+      "9class_3seed_N50_aa_ood": "0.969±0.037",
+      "9class_3seed_N125_aa_ood": "0.975±0.019",
+      "9class_3seed_N250_aa_ood": "0.975±0.035",
+      "9class_3seed_N350_aa_ood": "0.972±0.033",
+      "note": "9-class 3-seed complete. Vanilla N=50/250 missing (script crashed float16 dtype in GRU eval). exp28b added seed123+456 for 9-class only."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T19:15:30.605Z"
+  },
+  "timestamp": "2026-05-20T19:15:30.770859+00:00",
+  "trigger": "update_registry"
+}

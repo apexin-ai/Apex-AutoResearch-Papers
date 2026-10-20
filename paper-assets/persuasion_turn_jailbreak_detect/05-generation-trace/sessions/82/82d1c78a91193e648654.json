@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "82d1c78a91193e648654",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "train plan018 wiki mlm multiseed",
+  "task_key": "worker_train_plan018-wiki-mlm-multiseed_20260518T064551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan018-wiki-mlm-multiseed_20260518T064551.log",
+    "occurrence": 1,
+    "bytes": 521415,
+    "sha256": "2531049a3e98a0c7a50c33f215df3415a0ee2257a21bac1645246bf7b290cc8b"
+  },
+  "statistics": {
+    "messages": 274,
+    "user_turns": 0,
+    "tool_calls": 97,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 97,
+      "tool_result": 97,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 274,
+      "chunks": [
+        {
+          "path": "82d1c78a91193e648654-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "82d1c78a91193e648654-part-0002.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-plan018-wiki-mlm-multiseed.md"
+}

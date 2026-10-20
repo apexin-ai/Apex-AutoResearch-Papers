@@ -1,0 +1,2059 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{russinovich2024crescendo}
+\citation{fitd2024}
+\citation{deceptivedelight2024}
+\citation{zeng2024pap}
+\citation{hagendorff2026reasoning}
+\citation{bullwinkel2025repeng}
+\citation{inan2023llamaguard}
+\citation{han2024wildguard}
+\citation{zeng2024shieldgemma}
+\citation{deepcontext2026}
+\citation{tong2025biid}
+\citation{gguard2025}
+\citation{he2023debertav3}
+\citation{deepcontext2026}
+\citation{liu2019roberta}
+\citation{gururangan2020dontstop}
+\citation{ren2024actorattack}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN@col{2}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\citation{zhang2021understanding}
+\citation{zeng2024pap,hagendorff2026reasoning,li2024mhj}
+\citation{russinovich2024crescendo}
+\citation{fitd2024}
+\citation{deceptivedelight2024}
+\citation{ren2024actorattack}
+\citation{alobaid2026echochamber}
+\citation{chao2023pair,mehrotra2024tap}
+\citation{perez2022redteaming}
+\citation{wei2023jailbroken}
+\citation{mazeika2024harmbench,chao2024jailbreakbench,jiang2024redqueen,song2026multibreak}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces DisPeD architecture. Stage~1 adapts a DeBERTa encoder on jailbreak conversation text (seven variant objectives). Stage~2 aggregates frozen \texttt  {[CLS]} embeddings via BiGRU for conversation-level jailbreak detection. Only user turns are processed.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:architecture}{{1}{2}{DisPeD architecture. Stage~1 adapts a DeBERTa encoder on jailbreak conversation text (seven variant objectives). Stage~2 aggregates frozen \texttt {[CLS]} embeddings via BiGRU for conversation-level jailbreak detection. Only user turns are processed}{figure.caption.1}{}}
+\@LN@col{1}
+\@LN{77}{1}
+\@LN{78}{1}
+\@LN{79}{1}
+\@LN{80}{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN@col{2}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn jailbreak attacks.}{2}{section*.2}\protected@file@percent }
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\citation{deepcontext2026,tong2025biid,gguard2025,safedream2026}
+\citation{lu2025xboundary,zhang2025jbshield,xie2024gradsafe,zou2024circuitbreakers,wu2025safeint,shen2024jailbreakantidote,yousefpour2025repbend,kulkarni2026latentadversarial,kadali2025internallayers,kadali2026trace,hua2026rcs}
+\citation{derya2026revisitingjbshield}
+\citation{inan2023llamaguard,metallamaguard3_2024,zeng2024shieldgemma,han2024wildguard,anthropic2025constitutional}
+\citation{markov2023holistic}
+\citation{robey2024smoothllm}
+\citation{xu2024safedecoding}
+\citation{mann1988rst,prasad2008pdtb,stolcke2000dialogueact,austin1962speechacts,searle1969speechacts}
+\citation{cialdini2001influence}
+\citation{zeng2024pap}
+\citation{hagendorff2026reasoning}
+\citation{dasanmartino2019fine,dasanmartino2020semeval}
+\citation{wang2019persuasion}
+\citation{gururangan2020dontstop,lee2020biobert,beltagy2019scibert,howard2018ulmfit}
+\citation{phang2018stilts}
+\citation{caruana1997multitask,liu2019mtdnn}
+\citation{gururangan2018artifacts,niven2019probing}
+\citation{jin2020textfooler,li2020bertattack,nasr2025attackermovessecond,andriushchenko2024adaptive}
+\citation{conneau2018probing,hewitt2019structural}
+\citation{he2023debertav3}
+\citation{zeng2024pap}
+\citation{cialdini2001influence}
+\@LN@col{1}
+\@LN{131}{2}
+\@LN{132}{2}
+\@LN{133}{2}
+\@LN{134}{2}
+\@LN{135}{2}
+\@LN{136}{2}
+\@LN{137}{2}
+\@LN{138}{2}
+\@LN{139}{2}
+\@LN{140}{2}
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn defenses and production safety.}{3}{section*.3}\protected@file@percent }
+\@LN{141}{2}
+\@LN{142}{2}
+\@LN{143}{2}
+\@LN{144}{2}
+\@LN{145}{2}
+\@LN{146}{2}
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@writefile{toc}{\contentsline {paragraph}{Computational persuasion and discourse.}{3}{section*.4}\protected@file@percent }
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {paragraph}{Domain-adaptive pretraining.}{3}{section*.5}\protected@file@percent }
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\@LN{208}{2}
+\@LN{209}{2}
+\@LN{210}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\@LN{211}{2}
+\@LN{212}{2}
+\@LN{213}{2}
+\@LN{214}{2}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 1: Turn-Level Encoder Adaptation}{3}{subsection.3.2}\protected@file@percent }
+\@LN{219}{2}
+\@LN{220}{2}
+\@LN{221}{2}
+\@LN{222}{2}
+\@LN{223}{2}
+\@LN{224}{2}
+\@LN{225}{2}
+\@LN{226}{2}
+\@LN{227}{2}
+\@LN{228}{2}
+\@LN{229}{2}
+\citation{gururangan2020dontstop}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Stage-1 encoder variants. All operate on the same training conversations except Wikipedia MLM (matched token count on Wikipedia text).}}{4}{table.caption.6}\protected@file@percent }
+\newlabel{tab:variants}{{1}{4}{Stage-1 encoder variants. All operate on the same training conversations except Wikipedia MLM (matched token count on Wikipedia text)}{table.caption.6}{}}
+\@LN{230}{3}
+\@LN{231}{3}
+\@LN{232}{3}
+\@LN{233}{3}
+\@LN{234}{3}
+\@LN{235}{3}
+\@LN{236}{3}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Evidence hierarchy across evaluation conditions. Classification-based DAPT outperforms MLM and vanilla on synthetic OOD attacks (DD, AA), but the hierarchy reverses on human-authored single-turn data (ToxicChat), where JB-MLM leads.}}{4}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:evidence_hierarchy}{{2}{4}{Evidence hierarchy across evaluation conditions. Classification-based DAPT outperforms MLM and vanilla on synthetic OOD attacks (DD, AA), but the hierarchy reverses on human-authored single-turn data (ToxicChat), where JB-MLM leads}{figure.caption.7}{}}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stage 2: Conversation-Level Classification}{4}{subsection.3.3}\protected@file@percent }
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\@LN{281}{3}
+\@LN{282}{3}
+\@LN{283}{3}
+\@LN{284}{3}
+\@LN{285}{3}
+\@LN{286}{3}
+\@LN{287}{3}
+\@LN{288}{3}
+\@LN{289}{3}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Terminology.}{4}{section*.8}\protected@file@percent }
+\@LN{290}{3}
+\@LN{291}{3}
+\@LN{292}{3}
+\@LN{293}{3}
+\@LN{294}{3}
+\@LN{295}{3}
+\citation{qwen3_2025}
+\citation{russinovich2024crescendo}
+\citation{fitd2024}
+\citation{deceptivedelight2024}
+\citation{ren2024actorattack}
+\citation{lin2023toxicchat}
+\citation{deepcontext2026}
+\citation{liu2019roberta}
+\citation{metallamaguard3_2024}
+\citation{bullwinkel2025repeng}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-attack generalization (F1) at $K$=2 and full conversation length. IID: Crescendo; OOD: Deceptive Delight (DD). 3-seed mean$\pm $std where noted; full per-$K$ in Appendix~\ref {sec:full_prefix}.}}{5}{table.caption.9}\protected@file@percent }
+\newlabel{tab:main_results}{{2}{5}{Cross-attack generalization (F1) at $K$=2 and full conversation length. IID: Crescendo; OOD: Deceptive Delight (DD). 3-seed mean$\pm $std where noted; full per-$K$ in Appendix~\ref {sec:full_prefix}}{table.caption.9}{}}
+\@LN{296}{4}
+\@LN{297}{4}
+\@LN{298}{4}
+\@LN{299}{4}
+\@LN{300}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{5}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data.}{5}{section*.10}\protected@file@percent }
+\@LN{301}{4}
+\@LN{302}{4}
+\@LN{303}{4}
+\@LN{304}{4}
+\@LN{305}{4}
+\@LN{306}{4}
+\@LN{307}{4}
+\@LN{308}{4}
+\@LN{309}{4}
+\@LN{310}{4}
+\@LN{311}{4}
+\@LN{312}{4}
+\@LN{313}{4}
+\@LN{314}{4}
+\@LN{315}{4}
+\@LN{316}{4}
+\@writefile{toc}{\contentsline {paragraph}{Models.}{5}{section*.11}\protected@file@percent }
+\@LN{317}{4}
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Cross-attack overview (F1 at full conversation length). DisPeD (9-class) maintains near-perfect detection across IID and both OOD families; vanilla collapses on OOD DD. FITD is non-discriminative for all methods.}}{5}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:cross_attack_bar}{{3}{5}{Cross-attack overview (F1 at full conversation length). DisPeD (9-class) maintains near-perfect detection across IID and both OOD families; vanilla collapses on OOD DD. FITD is non-discriminative for all methods}{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{5}{section*.12}\protected@file@percent }
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN{340}{4}
+\@LN{341}{4}
+\@writefile{toc}{\contentsline {paragraph}{Training.}{5}{section*.13}\protected@file@percent }
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Attack Generalization}{5}{subsection.4.2}\protected@file@percent }
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN{355}{4}
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\@LN{359}{4}
+\@LN{360}{4}
+\@LN{361}{4}
+\@LN{362}{4}
+\@LN{363}{4}
+\@LN{364}{4}
+\@LN{365}{4}
+\@LN{366}{4}
+\citation{gururangan2020dontstop}
+\citation{ren2024actorattack}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Evidence hierarchy on OOD DD and ActorAttack (AA) at full conversation length (3-seed mean$\pm $std where available). OOD F1 reflects attack-side generalization only; benign samples are IID from training distribution (benign-side shift evaluated in Section~\ref {sec:benign_shift}). Bold indicates best per column. All variants share the same Stage-2 pipeline. Full per-prefix results in Appendix Tables~\ref {tab:full_prefix} and~\ref {tab:actorattack_full}. Bottom rows: full dual-OOD evaluation with WildChat benign replacing IID benign (Appendix~\ref {app:dual_ood}).}}{6}{table.caption.15}\protected@file@percent }
+\newlabel{tab:evidence_hierarchy}{{3}{6}{Evidence hierarchy on OOD DD and ActorAttack (AA) at full conversation length (3-seed mean$\pm $std where available). OOD F1 reflects attack-side generalization only; benign samples are IID from training distribution (benign-side shift evaluated in Section~\ref {sec:benign_shift}). Bold indicates best per column. All variants share the same Stage-2 pipeline. Full per-prefix results in Appendix Tables~\ref {tab:full_prefix} and~\ref {tab:actorattack_full}. Bottom rows: full dual-OOD evaluation with WildChat benign replacing IID benign (Appendix~\ref {app:dual_ood})}{table.caption.15}{}}
+\@LN{367}{5}
+\@LN{368}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Decomposing the Detection Mechanism}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:decomposition}{{4.3}{6}{Decomposing the Detection Mechanism}{subsection.4.3}{}}
+\@LN{369}{5}
+\@LN{370}{5}
+\@LN{371}{5}
+\@LN{372}{5}
+\@LN{373}{5}
+\@writefile{toc}{\contentsline {paragraph}{Domain exposure is the primary observed factor.}{6}{section*.16}\protected@file@percent }
+\@LN{374}{5}
+\@LN{375}{5}
+\@LN{376}{5}
+\@LN{377}{5}
+\@LN{378}{5}
+\@LN{379}{5}
+\@LN{380}{5}
+\@LN{381}{5}
+\@LN{382}{5}
+\@LN{383}{5}
+\@LN{384}{5}
+\@LN{385}{5}
+\@LN{386}{5}
+\@LN{387}{5}
+\@LN{388}{5}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-encoder comparison on OOD Full (3-seed mean$\pm $std). DD = Deceptive Delight, AA = ActorAttack. Bold indicates best per encoder group.}}{6}{table.caption.17}\protected@file@percent }
+\newlabel{tab:cross_encoder}{{4}{6}{Cross-encoder comparison on OOD Full (3-seed mean$\pm $std). DD = Deceptive Delight, AA = ActorAttack. Bold indicates best per encoder group}{table.caption.17}{}}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@writefile{toc}{\contentsline {paragraph}{Domain specificity is marginal at full length but meaningful for early detection.}{6}{section*.18}\protected@file@percent }
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@writefile{toc}{\contentsline {paragraph}{Misaligned supervision destabilizes generalization.}{6}{section*.19}\protected@file@percent }
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
+\@LN{416}{5}
+\@LN{417}{5}
+\@writefile{toc}{\contentsline {paragraph}{Evidence hierarchy on strategy-diverse attacks.}{6}{section*.20}\protected@file@percent }
+\@LN{418}{5}
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\@LN{422}{5}
+\@LN{423}{5}
+\citation{liu2019roberta}
+\citation{lin2023toxicchat}
+\citation{lin2023toxicchat}
+\citation{lin2023toxicchat}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Condition-specific evidence hierarchy. On synthetic OOD (DD), classification DAPT dominates; on human-authored ToxicChat, unsupervised MLM leads, and rank positions reverse entirely.}}{7}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:hierarchy_reversal}{{4}{7}{Condition-specific evidence hierarchy. On synthetic OOD (DD), classification DAPT dominates; on human-authored ToxicChat, unsupervised MLM leads, and rank positions reverse entirely}{figure.caption.22}{}}
+\@writefile{toc}{\contentsline {paragraph}{Temporal modeling.}{7}{section*.21}\protected@file@percent }
+\@LN{424}{6}
+\@LN{425}{6}
+\@LN{426}{6}
+\@LN{427}{6}
+\@LN{428}{6}
+\@LN{429}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Encoder Validation}{7}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:cross_encoder}{{4.4}{7}{Cross-Encoder Validation}{subsection.4.4}{}}
+\@LN{430}{6}
+\@LN{431}{6}
+\@LN{432}{6}
+\@LN{433}{6}
+\@LN{434}{6}
+\@LN{435}{6}
+\@LN{436}{6}
+\@LN{437}{6}
+\@LN{438}{6}
+\@LN{439}{6}
+\@LN{440}{6}
+\@LN{441}{6}
+\@LN{442}{6}
+\@LN{443}{6}
+\@LN{444}{6}
+\@LN{445}{6}
+\@LN{446}{6}
+\@LN{447}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Mixed-LLM Training}{7}{subsection.4.5}\protected@file@percent }
+\@LN{448}{6}
+\@LN{449}{6}
+\@LN{450}{6}
+\@LN{451}{6}
+\@LN{452}{6}
+\@LN{453}{6}
+\@LN{454}{6}
+\@LN{455}{6}
+\@LN{456}{6}
+\@LN{457}{6}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Human data validation on ToxicChat~\citep  {lin2023toxicchat} (macro F1, 3-seed mean$\pm $std). Bold indicates best. Single-turn data from real LMSYS user interactions, independent of Qwen3-8B.}}{7}{table.caption.23}\protected@file@percent }
+\newlabel{tab:human_data}{{5}{7}{Human data validation on ToxicChat~\citep {lin2023toxicchat} (macro F1, 3-seed mean$\pm $std). Bold indicates best. Single-turn data from real LMSYS user interactions, independent of Qwen3-8B}{table.caption.23}{}}
+\@LN{458}{6}
+\@LN{459}{6}
+\@LN{460}{6}
+\@LN{461}{6}
+\@LN{462}{6}
+\@LN{463}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Human Data Validation}{7}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:human_data}{{4.6}{7}{Human Data Validation}{subsection.4.6}{}}
+\@LN{464}{6}
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\@LN{468}{6}
+\@LN{469}{6}
+\@LN{470}{6}
+\@LN{471}{6}
+\@LN{472}{6}
+\@LN{473}{6}
+\@LN{474}{6}
+\@LN{475}{6}
+\@LN{476}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Robustness and Strategy Analysis}{7}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:perturbation}{{4.7}{7}{Robustness and Strategy Analysis}{subsection.4.7}{}}
+\@LN{477}{6}
+\@LN{478}{6}
+\@LN{479}{6}
+\@LN{480}{6}
+\@LN{481}{6}
+\@LN{482}{6}
+\@LN{483}{6}
+\@LN{484}{6}
+\@LN{485}{6}
+\@LN{486}{6}
+\@LN{487}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Benign Distribution Shift}{7}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:benign_shift}{{4.8}{7}{Benign Distribution Shift}{subsection.4.8}{}}
+\@LN{488}{6}
+\@LN{489}{6}
+\@LN{490}{6}
+\@LN{491}{6}
+\@LN{492}{6}
+\@LN{493}{6}
+\citation{zhang2021understanding}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Few-shot benign adaptation reduces FPR below the 5\% deployment threshold with 10--25 conversations across three platforms.}}{8}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:fpr_adaptation}{{5}{8}{Few-shot benign adaptation reduces FPR below the 5\% deployment threshold with 10--25 conversations across three platforms}{figure.caption.24}{}}
+\@LN{494}{7}
+\@LN{495}{7}
+\@LN{496}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{8}{Discussion}{section.5}{}}
+\@LN{497}{7}
+\@writefile{toc}{\contentsline {paragraph}{Discriminative compression and label equivalence.}{8}{section*.25}\protected@file@percent }
+\@LN{498}{7}
+\@LN{499}{7}
+\@LN{500}{7}
+\@LN{501}{7}
+\@LN{502}{7}
+\@LN{503}{7}
+\@LN{504}{7}
+\@LN{505}{7}
+\@LN{506}{7}
+\@LN{507}{7}
+\@LN{508}{7}
+\@LN{509}{7}
+\@writefile{toc}{\contentsline {paragraph}{Cross-condition transfer and boundaries.}{8}{section*.26}\protected@file@percent }
+\@LN{510}{7}
+\@LN{511}{7}
+\@LN{512}{7}
+\@LN{513}{7}
+\@LN{514}{7}
+\@LN{515}{7}
+\@LN{516}{7}
+\@LN{517}{7}
+\@LN{518}{7}
+\@LN{519}{7}
+\@LN{520}{7}
+\@LN{521}{7}
+\@LN{522}{7}
+\@LN{523}{7}
+\@LN{524}{7}
+\@LN{525}{7}
+\@LN{526}{7}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Test representations projected onto top-2 SVD directions. 9-class DAPT produces clear cluster separation absent in vanilla.}}{8}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:svd_subspace}{{6}{8}{Test representations projected onto top-2 SVD directions. 9-class DAPT produces clear cluster separation absent in vanilla}{figure.caption.27}{}}
+\@writefile{toc}{\contentsline {paragraph}{Deployment implications.}{8}{section*.28}\protected@file@percent }
+\@LN{527}{7}
+\@LN{528}{7}
+\@LN{529}{7}
+\@LN{530}{7}
+\@LN{531}{7}
+\@LN{532}{7}
+\@LN{533}{7}
+\@LN{534}{7}
+\@LN{535}{7}
+\@LN{536}{7}
+\@LN{537}{7}
+\@LN{538}{7}
+\@LN{539}{7}
+\@LN{540}{7}
+\@LN{541}{7}
+\@LN{542}{7}
+\@LN{543}{7}
+\@LN{544}{7}
+\@LN{545}{7}
+\@LN{546}{7}
+\@LN{547}{7}
+\@LN{548}{7}
+\@LN{549}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\@LN{550}{7}
+\@LN{551}{7}
+\@LN{552}{7}
+\@LN{553}{7}
+\@LN{554}{7}
+\@LN{555}{7}
+\@LN{556}{7}
+\@LN{557}{7}
+\@LN{558}{7}
+\@LN{559}{7}
+\@LN{560}{7}
+\@LN{561}{7}
+\bibdata{references}
+\bibcite{deepcontext2026}{{1}{2026}{{Albrethsen et~al.}}{{Albrethsen, Datta, Kumar, and Rajasekar}}}
+\bibcite{alobaid2026echochamber}{{2}{2026}{{Alobaid et~al.}}{{}}}
+\bibcite{andriushchenko2024adaptive}{{3}{2025}{{Andriushchenko et~al.}}{{Andriushchenko, Croce, and Flammarion}}}
+\bibcite{austin1962speechacts}{{4}{1962}{{Austin}}{{}}}
+\bibcite{beltagy2019scibert}{{5}{2019}{{Beltagy et~al.}}{{Beltagy, Lo, and Cohan}}}
+\bibcite{bullwinkel2025repeng}{{6}{2025}{{Bullwinkel et~al.}}{{Bullwinkel, Russinovich, Salem, Zanella-Beguelin, Jones, Severi, Kim, Hines, Minnich, Zunger, and Kumar}}}
+\bibcite{caruana1997multitask}{{7}{1997}{{Caruana}}{{}}}
+\bibcite{chao2024jailbreakbench}{{8}{2024}{{Chao et~al.}}{{Chao, Robey, Dobriban, Hassani, Pappas, and Wong}}}
+\bibcite{chao2023pair}{{9}{2025}{{Chao et~al.}}{{Chao, Robey, Dobriban, Hassani, Pappas, and Wong}}}
+\bibcite{cialdini2001influence}{{10}{2001}{{Cialdini}}{{}}}
+\bibcite{conneau2018probing}{{11}{2018}{{Conneau et~al.}}{{Conneau, Kruszewski, Lample, Barrault, and Baroni}}}
+\bibcite{dasanmartino2020semeval}{{12}{2020}{{Da~San~Martino et~al.}}{{Da~San~Martino, Barr\'{o}n-Cede\~{n}o, Wachsmuth, Petrov, and Nakov}}}
+\bibcite{dasanmartino2019fine}{{13}{2019}{{Da~San~Martino et~al.}}{{Da~San~Martino, Yu, Barr\'{o}n-Cede\~{n}o, Petrov, and Nakov}}}
+\bibcite{derya2026revisitingjbshield}{{14}{2026}{{Derya and Sunar}}{{}}}
+\bibcite{metallamaguard3_2024}{{15}{2024}{{Grattafiori et~al.}}{{Grattafiori, Dubey, Jauhri et~al.}}}
+\bibcite{gururangan2020dontstop}{{16}{2020}{{Gururangan et~al.}}{{Gururangan, Marasovi{\'c}, Swayamdipta, Lo, Beltagy, Downey, and Smith}}}
+\bibcite{gururangan2018artifacts}{{17}{2018}{{Gururangan et~al.}}{{Gururangan, Swayamdipta, Levy, Schwartz, Bowman, and Smith}}}
+\bibcite{hagendorff2026reasoning}{{18}{2026}{{Hagendorff et~al.}}{{Hagendorff, Derner, and Oliver}}}
+\@LN@col{1}
+\@LN{562}{8}
+\newlabel{sec:limitations}{{6}{9}{Limitations}{section*.29}{}}
+\@LN{563}{8}
+\@LN{564}{8}
+\@LN{565}{8}
+\@LN{566}{8}
+\@LN{567}{8}
+\@LN{568}{8}
+\@LN{569}{8}
+\@LN{570}{8}
+\@LN{571}{8}
+\@LN{572}{8}
+\@LN{573}{8}
+\@LN{574}{8}
+\@LN{575}{8}
+\@LN{576}{8}
+\@LN{577}{8}
+\@LN{578}{8}
+\@LN{579}{8}
+\@LN{580}{8}
+\@LN{581}{8}
+\@LN{582}{8}
+\@LN{583}{8}
+\@LN{584}{8}
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN@col{2}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\@LN{623}{8}
+\@LN{624}{8}
+\@LN{625}{8}
+\@LN{626}{8}
+\@LN{627}{8}
+\@LN{628}{8}
+\@LN{629}{8}
+\@LN{630}{8}
+\@LN{631}{8}
+\@LN{632}{8}
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\@LN{639}{8}
+\@LN{640}{8}
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@LN{655}{8}
+\@LN{656}{8}
+\@LN{657}{8}
+\@LN{658}{8}
+\@LN{659}{8}
+\@LN{660}{8}
+\@LN{661}{8}
+\@LN{662}{8}
+\@LN{663}{8}
+\@LN{664}{8}
+\@LN{665}{8}
+\bibcite{han2024wildguard}{{19}{2024}{{Han et~al.}}{{Han, Rao, Ettinger, Jiang, Lin, Lambert, Choi, and Dziri}}}
+\bibcite{he2023debertav3}{{20}{2023}{{He et~al.}}{{He, Gao, and Chen}}}
+\bibcite{hewitt2019structural}{{21}{2019}{{Hewitt and Manning}}{{}}}
+\bibcite{howard2018ulmfit}{{22}{2018}{{Howard and Ruder}}{{}}}
+\bibcite{hua2026rcs}{{23}{2026}{{Hua et~al.}}{{Hua, Li, Shi, Yu, and Zhang}}}
+\bibcite{gguard2025}{{24}{2025}{{Huang et~al.}}{{Huang, Huang, Yin, He, Zhen, Yuan, and Shao}}}
+\bibcite{inan2023llamaguard}{{25}{2023}{{Inan et~al.}}{{Inan, Upasani, Chi, Rungta, Iyer, Mao, Tontchev, Hu, Fuller, Testuggine, and Khabsa}}}
+\bibcite{jiang2024redqueen}{{26}{2025}{{Jiang et~al.}}{{Jiang, Aggarwal, Laud, Munir, Pujara, and Mukherjee}}}
+\bibcite{jin2020textfooler}{{27}{2020}{{Jin et~al.}}{{Jin, Jin, Zhou, and Szolovits}}}
+\bibcite{kadali2025internallayers}{{28}{2025}{{Kadali and Papalexakis}}{{}}}
+\bibcite{kadali2026trace}{{29}{2026}{{Kadali and Papalexakis}}{{}}}
+\bibcite{kopf2023openassistant}{{30}{2023}{{K{\"o}pf et~al.}}{{K{\"o}pf, Kilcher, von R{\"u}tte, Anagnostidis, Tam, Stevens, Barhoum, Nguyen, Stanley, Nagyfi et~al.}}}
+\bibcite{kornblith2019cka}{{31}{2019}{{Kornblith et~al.}}{{Kornblith, Norouzi, Lee, and Hinton}}}
+\bibcite{kulkarni2026latentadversarial}{{32}{2026}{{Kulkarni}}{{}}}
+\bibcite{lee2020biobert}{{33}{2020}{{Lee et~al.}}{{Lee, Yoon, Kim, Kim, Kim, So, and Kang}}}
+\bibcite{li2020bertattack}{{34}{2020}{{Li et~al.}}{{Li, Ma, Guo, Xue, and Qiu}}}
+\bibcite{li2024mhj}{{35}{2024}{{Li et~al.}}{{Li, Han, Steneker, Primack, Goodside, Zhang, Wang, Menghini, and Yue}}}
+\bibcite{lin2023toxicchat}{{36}{2023}{{Lin et~al.}}{{Lin, Wang, Tong, Wang, Guo, Wang, and Shang}}}
+\bibcite{liu2019mtdnn}{{37}{2019{a}}{{Liu et~al.}}{{Liu, He, Chen, and Gao}}}
+\bibcite{liu2019roberta}{{38}{2019{b}}{{Liu et~al.}}{{Liu, Ott, Goyal, Du, Joshi, Chen, Levy, Lewis, Zettlemoyer, and Stoyanov}}}
+\bibcite{lu2025xboundary}{{39}{2025}{{Lu et~al.}}{{Lu, Liu, Yu, Xu, and Shao}}}
+\bibcite{maennel2020random}{{40}{2020}{{Maennel et~al.}}{{Maennel, Alabdulmohsin, Tolstikhin, Baldock, Bousquet, Gelly, and Keysers}}}
+\@LN@col{1}
+\@LN{666}{9}
+\@LN{667}{9}
+\@LN{668}{9}
+\@LN{669}{9}
+\@LN{670}{9}
+\@LN{671}{9}
+\@LN{672}{9}
+\@LN{673}{9}
+\@LN{674}{9}
+\@LN{675}{9}
+\@LN{676}{9}
+\@LN{677}{9}
+\@LN{678}{9}
+\@LN{679}{9}
+\@LN{680}{9}
+\@LN{681}{9}
+\@LN{682}{9}
+\@LN{683}{9}
+\@LN{684}{9}
+\@LN{685}{9}
+\@LN{686}{9}
+\@LN{687}{9}
+\@LN{688}{9}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN@col{2}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\@LN{731}{9}
+\@LN{732}{9}
+\@LN{733}{9}
+\@LN{734}{9}
+\@LN{735}{9}
+\@LN{736}{9}
+\@LN{737}{9}
+\@LN{738}{9}
+\@LN{739}{9}
+\@LN{740}{9}
+\@LN{741}{9}
+\@LN{742}{9}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN{745}{9}
+\@LN{746}{9}
+\@LN{747}{9}
+\@LN{748}{9}
+\@LN{749}{9}
+\@LN{750}{9}
+\@LN{751}{9}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\@LN{755}{9}
+\@LN{756}{9}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN{759}{9}
+\@LN{760}{9}
+\@LN{761}{9}
+\@LN{762}{9}
+\@LN{763}{9}
+\@LN{764}{9}
+\@LN{765}{9}
+\@LN{766}{9}
+\@LN{767}{9}
+\@LN{768}{9}
+\@LN{769}{9}
+\@LN{770}{9}
+\@LN{771}{9}
+\@LN{772}{9}
+\@LN{773}{9}
+\@LN{774}{9}
+\@LN{775}{9}
+\bibcite{mann1988rst}{{41}{1988}{{Mann and Thompson}}{{}}}
+\bibcite{markov2023holistic}{{42}{2023}{{Markov et~al.}}{{Markov, Zhang, Agarwal, Eloundou, Lee, Adler, Jiang, and Weng}}}
+\bibcite{mazeika2024harmbench}{{43}{2024}{{Mazeika et~al.}}{{Mazeika, Phan, Yin, Zou, Wang, Mu, Sakhaee, Li, Basart, Li, Forsyth, and Hendrycks}}}
+\bibcite{mehrotra2024tap}{{44}{2024}{{Mehrotra et~al.}}{{Mehrotra, Zampetakis, Kassianik, Nelson, Anderson, Singer, and Karbasi}}}
+\bibcite{nasr2025attackermovessecond}{{45}{2025}{{Nasr et~al.}}{{Nasr, Carlini, Sitawarin, Schulhoff, Hayes, Ilie, Pluto, Song, Chaudhari, Shumailov, Thakurta, Xiao, Terzis, and Tram{\`e}r}}}
+\bibcite{niven2019probing}{{46}{2019}{{Niven and Kao}}{{}}}
+\bibcite{deceptivedelight2024}{{47}{2024}{{Palo Alto Networks Unit 42}}{{}}}
+\bibcite{perez2022redteaming}{{48}{2022}{{Perez et~al.}}{{Perez, Huang, Song, Cai, Ring, Aslanides, Glaese, McAleese, and Irving}}}
+\bibcite{phang2018stilts}{{49}{2018}{{Phang et~al.}}{{Phang, F{\'e}vry, and Bowman}}}
+\bibcite{prasad2008pdtb}{{50}{2008}{{Prasad et~al.}}{{Prasad, Dinesh, Lee, Miltsakaki, Robaldo, Joshi, and Webber}}}
+\bibcite{ren2024actorattack}{{51}{2024}{{Ren et~al.}}{{Ren, Li, Liu, Xie, Lu, Qiao, Sha, Yan, Ma, and Shao}}}
+\bibcite{robey2024smoothllm}{{52}{2025}{{Robey et~al.}}{{Robey, Wong, Hassani, and Pappas}}}
+\bibcite{russinovich2024crescendo}{{53}{2025}{{Russinovich et~al.}}{{Russinovich, Salem, and Eldan}}}
+\bibcite{searle1969speechacts}{{54}{1969}{{Searle}}{{}}}
+\bibcite{anthropic2025constitutional}{{55}{2025}{{Sharma et~al.}}{{Sharma, Tong, Mu, Wei et~al.}}}
+\bibcite{shen2024jailbreakantidote}{{56}{2024}{{Shen et~al.}}{{Shen, Zhao, Dong, He, and Zeng}}}
+\bibcite{song2026multibreak}{{57}{2026}{{Song et~al.}}{{Song, Liu, Yang, Chen, Feng, Zhu, and Gao}}}
+\bibcite{stolcke2000dialogueact}{{58}{2000}{{Stolcke et~al.}}{{Stolcke, Ries, Coccaro, Shriberg, Bates, Jurafsky, Taylor, Martin, Van Ess-Dykema, and Meteer}}}
+\bibcite{tong2025biid}{{59}{2025}{{Tong et~al.}}{{Tong, Zhao, Shen, He, Lin, Zhao, and Zeng}}}
+\bibcite{wang2019persuasion}{{60}{2019}{{Wang et~al.}}{{Wang, Shi, Kim, Oh, Yang, Zhang, and Yu}}}
+\bibcite{fitd2024}{{61}{2024}{{Wang et~al.}}{{Wang, Xie, Wang, Wang, Gui, Ma, and Chen}}}
+\bibcite{wei2023jailbroken}{{62}{2023}{{Wei et~al.}}{{Wei, Haghtalab, and Steinhardt}}}
+\bibcite{wu2025safeint}{{63}{2025}{{Wu et~al.}}{{Wu, Chen, Hou, and Yuan}}}
+\@LN@col{1}
+\@LN{776}{10}
+\@LN{777}{10}
+\@LN{778}{10}
+\@LN{779}{10}
+\@LN{780}{10}
+\@LN{781}{10}
+\@LN{782}{10}
+\@LN{783}{10}
+\@LN{784}{10}
+\@LN{785}{10}
+\@LN{786}{10}
+\@LN{787}{10}
+\@LN{788}{10}
+\@LN{789}{10}
+\@LN{790}{10}
+\@LN{791}{10}
+\@LN{792}{10}
+\@LN{793}{10}
+\@LN{794}{10}
+\@LN{795}{10}
+\@LN{796}{10}
+\@LN{797}{10}
+\@LN{798}{10}
+\@LN{799}{10}
+\@LN{800}{10}
+\@LN{801}{10}
+\@LN{802}{10}
+\@LN{803}{10}
+\@LN{804}{10}
+\@LN{805}{10}
+\@LN{806}{10}
+\@LN{807}{10}
+\@LN{808}{10}
+\@LN{809}{10}
+\@LN{810}{10}
+\@LN{811}{10}
+\@LN{812}{10}
+\@LN{813}{10}
+\@LN{814}{10}
+\@LN{815}{10}
+\@LN{816}{10}
+\@LN{817}{10}
+\@LN{818}{10}
+\@LN{819}{10}
+\@LN{820}{10}
+\@LN{821}{10}
+\@LN{822}{10}
+\@LN{823}{10}
+\@LN{824}{10}
+\@LN{825}{10}
+\@LN{826}{10}
+\@LN{827}{10}
+\@LN{828}{10}
+\@LN{829}{10}
+\@LN{830}{10}
+\@LN{831}{10}
+\@LN{832}{10}
+\@LN@col{2}
+\@LN{833}{10}
+\@LN{834}{10}
+\@LN{835}{10}
+\@LN{836}{10}
+\@LN{837}{10}
+\@LN{838}{10}
+\@LN{839}{10}
+\@LN{840}{10}
+\@LN{841}{10}
+\@LN{842}{10}
+\@LN{843}{10}
+\@LN{844}{10}
+\@LN{845}{10}
+\@LN{846}{10}
+\@LN{847}{10}
+\@LN{848}{10}
+\@LN{849}{10}
+\@LN{850}{10}
+\@LN{851}{10}
+\@LN{852}{10}
+\@LN{853}{10}
+\@LN{854}{10}
+\@LN{855}{10}
+\@LN{856}{10}
+\@LN{857}{10}
+\@LN{858}{10}
+\@LN{859}{10}
+\@LN{860}{10}
+\@LN{861}{10}
+\@LN{862}{10}
+\@LN{863}{10}
+\@LN{864}{10}
+\@LN{865}{10}
+\@LN{866}{10}
+\@LN{867}{10}
+\@LN{868}{10}
+\@LN{869}{10}
+\@LN{870}{10}
+\@LN{871}{10}
+\@LN{872}{10}
+\@LN{873}{10}
+\@LN{874}{10}
+\@LN{875}{10}
+\@LN{876}{10}
+\@LN{877}{10}
+\@LN{878}{10}
+\@LN{879}{10}
+\@LN{880}{10}
+\@LN{881}{10}
+\@LN{882}{10}
+\@LN{883}{10}
+\@LN{884}{10}
+\@LN{885}{10}
+\@LN{886}{10}
+\bibcite{xie2024gradsafe}{{64}{2024}{{Xie et~al.}}{{Xie, Fang, Pi, and Gong}}}
+\bibcite{xu2024safedecoding}{{65}{2024}{{Xu et~al.}}{{Xu, Jiang, Niu, Jia, Lin, and Poovendran}}}
+\bibcite{safedream2026}{{66}{2026}{{Yan et~al.}}{{Yan, Lin, Zhu, and Wang}}}
+\bibcite{qwen3_2025}{{67}{2025}{{Yang et~al.}}{{Yang, Li, Yang, Zhang, Hui, Zheng et~al.}}}
+\bibcite{yousefpour2025repbend}{{68}{2025}{{Yousefpour et~al.}}{{}}}
+\bibcite{zeng2024shieldgemma}{{69}{2024{a}}{{Zeng et~al.}}{{Zeng, Liu, Mullins, Peran, Fernandez, Harkous, Narasimhan, Proud, Kumar, Radharapu, Sturman, and Wahltinez}}}
+\bibcite{zeng2024pap}{{70}{2024{b}}{{Zeng et~al.}}{{Zeng, Lin, Zhang, Yang, Jia, and Shi}}}
+\bibcite{zhang2021understanding}{{71}{2021}{{Zhang et~al.}}{{Zhang, Bengio, Hardt, Recht, and Vinyals}}}
+\bibcite{zhang2025jbshield}{{72}{2025}{{Zhang et~al.}}{{Zhang, Zhai, Guo, Hu, Guo, Fang, Zhao, Shen, Wang, and Wang}}}
+\bibcite{zou2024circuitbreakers}{{73}{2024}{{Zou et~al.}}{{Zou, Phan, Wang, Duenas, Lin, Andriushchenko, Wang, Kolter, Fredrikson, and Hendrycks}}}
+\@LN@col{1}
+\@LN{887}{11}
+\@LN{888}{11}
+\@LN{889}{11}
+\@LN{890}{11}
+\@LN{891}{11}
+\@LN{892}{11}
+\@LN{893}{11}
+\@LN{894}{11}
+\@LN{895}{11}
+\@LN{896}{11}
+\@LN{897}{11}
+\@LN{898}{11}
+\@LN{899}{11}
+\@LN{900}{11}
+\@LN{901}{11}
+\@LN{902}{11}
+\@LN{903}{11}
+\@LN{904}{11}
+\@LN{905}{11}
+\@LN{906}{11}
+\@LN{907}{11}
+\@LN{908}{11}
+\@LN{909}{11}
+\@LN{910}{11}
+\@LN{911}{11}
+\@LN{912}{11}
+\@LN{913}{11}
+\@LN{914}{11}
+\@LN{915}{11}
+\@LN{916}{11}
+\@LN{917}{11}
+\@LN{918}{11}
+\@LN{919}{11}
+\@LN{920}{11}
+\@LN{921}{11}
+\@LN{922}{11}
+\@LN{923}{11}
+\@LN{924}{11}
+\@LN{925}{11}
+\@LN{926}{11}
+\@LN{927}{11}
+\@LN{928}{11}
+\@LN{929}{11}
+\@LN{930}{11}
+\@LN{931}{11}
+\@LN{932}{11}
+\@LN{933}{11}
+\@LN{934}{11}
+\@LN{935}{11}
+\@LN{936}{11}
+\@LN{937}{11}
+\@LN{938}{11}
+\@LN{939}{11}
+\@LN@col{2}
+\citation{cialdini2001influence}
+\citation{deceptivedelight2024}
+\citation{kornblith2019cka}
+\citation{kornblith2019cka}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces LLM-as-judge jailbreak detection. IID: binary F1 (Crescendo test set); OOD: macro F1 (DD = Deceptive Delight, AA = ActorAttack). GPT-5.5 F1 values exclude unparseable responses and represent upper bounds.}}{13}{table.caption.32}\protected@file@percent }
+\newlabel{tab:llm_judge}{{6}{13}{LLM-as-judge jailbreak detection. IID: binary F1 (Crescendo test set); OOD: macro F1 (DD = Deceptive Delight, AA = ActorAttack). GPT-5.5 F1 values exclude unparseable responses and represent upper bounds}{table.caption.32}{}}
+\@LN{940}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {A}LLM-as-Judge Baseline}{13}{appendix.A}\protected@file@percent }
+\newlabel{sec:llm_judge}{{A}{13}{LLM-as-Judge Baseline}{appendix.A}{}}
+\@LN{941}{12}
+\@LN{942}{12}
+\@LN{943}{12}
+\@LN{944}{12}
+\@LN{945}{12}
+\@LN{946}{12}
+\@LN{947}{12}
+\@LN{948}{12}
+\@LN{949}{12}
+\@LN{950}{12}
+\@LN{951}{12}
+\@LN{952}{12}
+\@LN{953}{12}
+\@LN{954}{12}
+\@LN{955}{12}
+\@LN{956}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Full Cross-Attack Results by Prefix}{13}{appendix.B}\protected@file@percent }
+\newlabel{sec:full_prefix}{{B}{13}{Full Cross-Attack Results by Prefix}{appendix.B}{}}
+\@LN{957}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {C}ActorAttack Full Results}{13}{appendix.C}\protected@file@percent }
+\newlabel{sec:actorattack_full}{{C}{13}{ActorAttack Full Results}{appendix.C}{}}
+\@LN{958}{12}
+\@LN{959}{12}
+\@LN{960}{12}
+\@LN{961}{12}
+\@LN{962}{12}
+\@LN{963}{12}
+\@LN{964}{12}
+\@LN{965}{12}
+\@LN{966}{12}
+\@LN{967}{12}
+\@LN{968}{12}
+\@LN{969}{12}
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.1}Error Analysis}{13}{subsection.C.1}\protected@file@percent }
+\newlabel{app:aa_error}{{C.1}{13}{Error Analysis}{subsection.C.1}{}}
+\@LN{970}{12}
+\@LN{971}{12}
+\@LN{972}{12}
+\@LN{973}{12}
+\@LN@col{2}
+\@LN{974}{12}
+\@LN{975}{12}
+\@LN{976}{12}
+\@LN{977}{12}
+\@LN{978}{12}
+\@LN{979}{12}
+\@LN{980}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Perturbation Robustness}{13}{appendix.D}\protected@file@percent }
+\newlabel{sec:perturbation_full}{{D}{13}{Perturbation Robustness}{appendix.D}{}}
+\@LN{981}{12}
+\@LN{982}{12}
+\@LN{983}{12}
+\@LN{984}{12}
+\@LN{985}{12}
+\@LN{986}{12}
+\@LN{987}{12}
+\@LN{988}{12}
+\@LN{989}{12}
+\@LN{990}{12}
+\@LN{991}{12}
+\@LN{992}{12}
+\@LN{993}{12}
+\@LN{994}{12}
+\@LN{995}{12}
+\@LN{996}{12}
+\@LN{997}{12}
+\@LN{998}{12}
+\@LN{999}{12}
+\@LN{1000}{12}
+\@LN{1001}{12}
+\@LN{1002}{12}
+\@LN{1003}{12}
+\@LN{1004}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Strategy Trajectory Analysis}{13}{appendix.E}\protected@file@percent }
+\newlabel{sec:strategy_full}{{E}{13}{Strategy Trajectory Analysis}{appendix.E}{}}
+\@LN{1005}{12}
+\@LN{1006}{12}
+\@LN{1007}{12}
+\@LN{1008}{12}
+\@LN{1009}{12}
+\@LN{1010}{12}
+\@LN{1011}{12}
+\@LN{1012}{12}
+\@LN{1013}{12}
+\@LN{1014}{12}
+\@LN{1015}{12}
+\@LN{1016}{12}
+\@LN{1017}{12}
+\@LN{1018}{12}
+\@LN{1019}{12}
+\@LN{1020}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Full cross-attack generalization results (F1) at all prefix lengths. 3-seed mean$\pm $std where available. ``--'' indicates insufficient conversation length for that prefix (FITD conversations contain 2--3 turns).}}{14}{table.caption.33}\protected@file@percent }
+\newlabel{tab:full_prefix}{{7}{14}{Full cross-attack generalization results (F1) at all prefix lengths. 3-seed mean$\pm $std where available. ``--'' indicates insufficient conversation length for that prefix (FITD conversations contain 2--3 turns)}{table.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Full ActorAttack OOD results (F1) at all prefix lengths. 3-seed mean$\pm $std (Binary per-$K$ reports $n$=2; Full is 3-seed).}}{14}{table.caption.34}\protected@file@percent }
+\newlabel{tab:actorattack_full}{{8}{14}{Full ActorAttack OOD results (F1) at all prefix lengths. 3-seed mean$\pm $std (Binary per-$K$ reports $n$=2; Full is 3-seed)}{table.caption.34}{}}
+\@LN@col{1}
+\@LN{1021}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Centered CKA Heatmaps}{14}{appendix.F}\protected@file@percent }
+\newlabel{sec:cka_heatmap}{{F}{14}{Centered CKA Heatmaps}{appendix.F}{}}
+\@LN{1022}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Embedding Space Visualization}{14}{appendix.G}\protected@file@percent }
+\newlabel{app:tsne}{{G}{14}{Embedding Space Visualization}{appendix.G}{}}
+\@LN{1023}{13}
+\@LN{1024}{13}
+\@LN{1025}{13}
+\@LN{1026}{13}
+\@LN{1027}{13}
+\@LN{1028}{13}
+\@LN{1029}{13}
+\@LN{1030}{13}
+\@LN{1031}{13}
+\@LN{1032}{13}
+\@LN{1033}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Cross-LLM Validation}{14}{appendix.H}\protected@file@percent }
+\newlabel{app:cross_llm}{{H}{14}{Cross-LLM Validation}{appendix.H}{}}
+\@LN{1034}{13}
+\@LN{1035}{13}
+\@LN@col{2}
+\@LN{1036}{13}
+\@LN{1037}{13}
+\@LN{1038}{13}
+\@LN{1039}{13}
+\@LN{1040}{13}
+\@LN{1041}{13}
+\@LN{1042}{13}
+\@LN{1043}{13}
+\@LN{1044}{13}
+\@LN{1045}{13}
+\@LN{1046}{13}
+\@LN{1047}{13}
+\@LN{1048}{13}
+\@LN{1049}{13}
+\@LN{1050}{13}
+\@LN{1051}{13}
+\@LN{1052}{13}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Persuasion strategy transition count matrices for three attack families, based on ground-truth intended strategy labels. Strategy labels validated on $n$=50 samples with a single annotator ($\kappa $=0.78); fine-grained trajectory patterns should be interpreted with this limitation. Crescendo exhibits broad coverage across all strategy categories, while FITD and DD concentrate transitions in smaller subsets. Row $i$, column $j$ counts transitions from strategy $i$ at turn $t$ to strategy $j$ at turn $t+1$.}}{15}{figure.caption.37}\protected@file@percent }
+\newlabel{fig:strategy_heatmap}{{7}{15}{Persuasion strategy transition count matrices for three attack families, based on ground-truth intended strategy labels. Strategy labels validated on $n$=50 samples with a single annotator ($\kappa $=0.78); fine-grained trajectory patterns should be interpreted with this limitation. Crescendo exhibits broad coverage across all strategy categories, while FITD and DD concentrate transitions in smaller subsets. Row $i$, column $j$ counts transitions from strategy $i$ at turn $t$ to strategy $j$ at turn $t+1$}{figure.caption.37}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Perturbation behavior under adversarial paraphrasing on IID Crescendo ($n$=76). $\Delta $: F1 degradation (pp). Classification-supervised variants achieve zero degradation at full length; this pattern does not generalize to ActorAttack.}}{15}{table.caption.35}\protected@file@percent }
+\newlabel{tab:perturbation}{{9}{15}{Perturbation behavior under adversarial paraphrasing on IID Crescendo ($n$=76). $\Delta $: F1 degradation (pp). Classification-supervised variants achieve zero degradation at full length; this pattern does not generalize to ActorAttack}{table.caption.35}{}}
+\@LN{1053}{14}
+\@LN{1054}{14}
+\@LN{1055}{14}
+\@LN{1056}{14}
+\@LN{1057}{14}
+\@LN{1058}{14}
+\@LN{1059}{14}
+\@LN{1060}{14}
+\@LN{1061}{14}
+\@LN{1062}{14}
+\@LN{1063}{14}
+\@LN{1064}{14}
+\@LN{1065}{14}
+\@LN{1066}{14}
+\@LN{1067}{14}
+\@LN{1068}{14}
+\@LN{1069}{14}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Perturbation robustness on OOD Deceptive Delight ($n$=118). $\Delta $: F1 change (pp) from clean to paraphrased. 3-seed mean$\pm $std where available.}}{15}{table.caption.36}\protected@file@percent }
+\newlabel{tab:ood_perturbation}{{10}{15}{Perturbation robustness on OOD Deceptive Delight ($n$=118). $\Delta $: F1 change (pp) from clean to paraphrased. 3-seed mean$\pm $std where available}{table.caption.36}{}}
+\@LN{1070}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Mixed-LLM Training Results}{15}{appendix.I}\protected@file@percent }
+\newlabel{app:mixed_llm}{{I}{15}{Mixed-LLM Training Results}{appendix.I}{}}
+\@LN{1071}{14}
+\@LN{1072}{14}
+\@LN{1073}{14}
+\@LN{1074}{14}
+\@LN{1075}{14}
+\@LN{1076}{14}
+\@LN{1077}{14}
+\@LN{1078}{14}
+\@LN{1079}{14}
+\@LN{1080}{14}
+\@LN{1081}{14}
+\@LN{1082}{14}
+\@LN{1083}{14}
+\@LN{1084}{14}
+\@LN{1085}{14}
+\@LN{1086}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {J}Dataset Scale Validation}{15}{appendix.J}\protected@file@percent }
+\newlabel{app:scale_validation}{{J}{15}{Dataset Scale Validation}{appendix.J}{}}
+\@LN{1087}{14}
+\@LN{1088}{14}
+\@LN{1089}{14}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Centered CKA similarity~\citep  {kornblith2019cka} between encoder variants on IID and OOD data for DeBERTa-v3 and RoBERTa. Low off-diagonal values (vanilla vs.\ adapted variants) confirm that continued pretraining substantially reshapes representations; the MLM vs.\ 9-class block shows distinct geometries (CKA $\leq $ 0.2 on RoBERTa OOD).}}{16}{figure.caption.38}\protected@file@percent }
+\newlabel{fig:cka_heatmap}{{8}{16}{Centered CKA similarity~\citep {kornblith2019cka} between encoder variants on IID and OOD data for DeBERTa-v3 and RoBERTa. Low off-diagonal values (vanilla vs.\ adapted variants) confirm that continued pretraining substantially reshapes representations; the MLM vs.\ 9-class block shows distinct geometries (CKA $\leq $ 0.2 on RoBERTa OOD)}{figure.caption.38}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Cross-LLM validation (F1, full conversation). All models are trained on Qwen3-8B data; conditions vary the source of jailbreak (JB) and benign (ben.) conversations at inference. Values are evaluated under a matched 50-sample subset protocol and differ from Table~\ref {tab:evidence_hierarchy}, which uses the full evaluation set.}}{16}{table.caption.40}\protected@file@percent }
+\newlabel{tab:cross_llm}{{11}{16}{Cross-LLM validation (F1, full conversation). All models are trained on Qwen3-8B data; conditions vary the source of jailbreak (JB) and benign (ben.) conversations at inference. Values are evaluated under a matched 50-sample subset protocol and differ from Table~\ref {tab:evidence_hierarchy}, which uses the full evaluation set}{table.caption.40}{}}
+\@LN{1090}{15}
+\@LN{1091}{15}
+\@LN{1092}{15}
+\@LN{1093}{15}
+\@LN{1094}{15}
+\@LN{1095}{15}
+\@LN{1096}{15}
+\@LN{1097}{15}
+\@LN{1098}{15}
+\@LN{1099}{15}
+\@LN{1100}{15}
+\@LN{1101}{15}
+\@LN{1102}{15}
+\@LN{1103}{15}
+\@LN{1104}{15}
+\@LN{1105}{15}
+\@LN{1106}{15}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces t-SNE visualization of mean-pooled \texttt  {[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak).}}{16}{figure.caption.39}\protected@file@percent }
+\newlabel{fig:tsne}{{9}{16}{t-SNE visualization of mean-pooled \texttt {[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak)}{figure.caption.39}{}}
+\@LN{1107}{15}
+\@LN{1108}{15}
+\@LN{1109}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {K}RoBERTa-large DAPT Learning Rate Control}{16}{appendix.K}\protected@file@percent }
+\@LN{1110}{15}
+\@LN{1111}{15}
+\@LN{1112}{15}
+\@LN{1113}{15}
+\@LN{1114}{15}
+\@LN{1115}{15}
+\@LN{1116}{15}
+\@LN{1117}{15}
+\@LN{1118}{15}
+\@LN{1119}{15}
+\@LN{1120}{15}
+\@LN{1121}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {L}TOST Equivalence Sensitivity Analysis}{16}{appendix.L}\protected@file@percent }
+\@LN{1122}{15}
+\@LN{1123}{15}
+\@LN{1124}{15}
+\@LN{1125}{15}
+\@LN{1126}{15}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Error decomposition for DD Full cross-LLM conditions (matched 50-sample subsets). TP rate is identical across benign conditions; the F1 collapse in the Llama-only condition (Table~\ref {tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text.}}{17}{table.caption.41}\protected@file@percent }
+\newlabel{tab:cross_llm_error}{{12}{17}{Error decomposition for DD Full cross-LLM conditions (matched 50-sample subsets). TP rate is identical across benign conditions; the F1 collapse in the Llama-only condition (Table~\ref {tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text}{table.caption.41}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Mixed-LLM training (250 Qwen + 250 Llama conversations, 3-seed mean$\pm $std where available). ToxicChat evaluated on balanced set (408 conversations).}}{17}{table.caption.42}\protected@file@percent }
+\newlabel{tab:mixed_llm}{{13}{17}{Mixed-LLM training (250 Qwen + 250 Llama conversations, 3-seed mean$\pm $std where available). ToxicChat evaluated on balanced set (408 conversations)}{table.caption.42}{}}
+\@LN{1127}{16}
+\@LN{1128}{16}
+\@LN{1129}{16}
+\@LN{1130}{16}
+\@LN{1131}{16}
+\@LN{1132}{16}
+\@LN{1133}{16}
+\@LN{1134}{16}
+\@LN{1135}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {M}Partition Robustness and Topic Failure Analysis}{17}{appendix.M}\protected@file@percent }
+\newlabel{app:random_partition}{{M}{17}{Partition Robustness and Topic Failure Analysis}{appendix.M}{}}
+\newlabel{app:topic_failure}{{M}{17}{Partition Robustness and Topic Failure Analysis}{appendix.M}{}}
+\@LN{1136}{16}
+\@writefile{toc}{\contentsline {subsection}{\numberline {M.1}Random Binary Partition Robustness}{17}{subsection.M.1}\protected@file@percent }
+\@LN{1137}{16}
+\@LN{1138}{16}
+\@LN{1139}{16}
+\@LN{1140}{16}
+\@LN{1141}{16}
+\@LN{1142}{16}
+\@LN{1143}{16}
+\@LN{1144}{16}
+\@LN{1145}{16}
+\@LN{1146}{16}
+\@LN{1147}{16}
+\@LN{1148}{16}
+\@LN{1149}{16}
+\@LN{1150}{16}
+\@LN{1151}{16}
+\@writefile{toc}{\contentsline {subsection}{\numberline {M.2}Topic Classification Failure Analysis}{17}{subsection.M.2}\protected@file@percent }
+\@LN{1152}{16}
+\@LN{1153}{16}
+\@LN{1154}{16}
+\@LN{1155}{16}
+\@LN{1156}{16}
+\@LN{1157}{16}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Dataset scale validation (1{,}000 Qwen conversations, 3-seed mean$\pm $std). IID results omitted due to train/test overlap (71\% of original test set present in expanded training data).}}{17}{table.caption.43}\protected@file@percent }
+\newlabel{tab:scale_validation}{{14}{17}{Dataset scale validation (1{,}000 Qwen conversations, 3-seed mean$\pm $std). IID results omitted due to train/test overlap (71\% of original test set present in expanded training data)}{table.caption.43}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces RoBERTa-large (355M) DAPT learning rate control on OOD Full (3-seed mean$\pm $std). Reducing the learning rate worsens both DD and AA, ruling out over-adaptation as the cause of the regression in Table~\ref {tab:cross_encoder}.}}{17}{table.caption.44}\protected@file@percent }
+\newlabel{tab:roberta_large_lr}{{15}{17}{RoBERTa-large (355M) DAPT learning rate control on OOD Full (3-seed mean$\pm $std). Reducing the learning rate worsens both DD and AA, ruling out over-adaptation as the cause of the regression in Table~\ref {tab:cross_encoder}}{table.caption.44}{}}
+\@LN{1158}{16}
+\@LN{1159}{16}
+\@LN{1160}{16}
+\@LN{1161}{16}
+\@LN{1162}{16}
+\@LN{1163}{16}
+\@LN{1164}{16}
+\@LN{1165}{16}
+\@LN{1166}{16}
+\@LN{1167}{16}
+\@LN{1168}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {N}Reproducibility Details}{17}{appendix.N}\protected@file@percent }
+\newlabel{sec:reproducibility}{{N}{17}{Reproducibility Details}{appendix.N}{}}
+\@writefile{toc}{\contentsline {paragraph}{Stage-1 training.}{17}{section*.48}\protected@file@percent }
+\@LN{1169}{16}
+\@LN{1170}{16}
+\@LN{1171}{16}
+\@LN{1172}{16}
+\@LN{1173}{16}
+\@LN{1174}{16}
+\@LN{1175}{16}
+\@LN{1176}{16}
+\@writefile{toc}{\contentsline {paragraph}{Stage-2 training.}{17}{section*.49}\protected@file@percent }
+\@LN{1177}{16}
+\@LN{1178}{16}
+\@LN{1179}{16}
+\@LN{1180}{16}
+\@LN{1181}{16}
+\@LN{1182}{16}
+\@LN{1183}{16}
+\@LN{1184}{16}
+\@writefile{toc}{\contentsline {paragraph}{Data generation.}{17}{section*.50}\protected@file@percent }
+\@LN{1185}{16}
+\@LN{1186}{16}
+\@LN{1187}{16}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces TOST equivalence test (scrambled vs.\ 9-class, $\delta $=5\,pp, 10 seeds). $p < 0.05$ confirms equivalence within $\pm \delta $.}}{18}{table.caption.45}\protected@file@percent }
+\newlabel{tab:tost_sensitivity}{{16}{18}{TOST equivalence test (scrambled vs.\ 9-class, $\delta $=5\,pp, 10 seeds). $p < 0.05$ confirms equivalence within $\pm \delta $}{table.caption.45}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces OOD F1 for 10 random binary partitions of the 9 strategy labels (each partition randomly assigns strategies to group A or B). All partitions use identical Stage-1 DAPT and Stage-2 GRU training; only the binary label mapping differs. Seed 42 (3 runs).}}{18}{table.caption.46}\protected@file@percent }
+\newlabel{tab:random_partition}{{17}{18}{OOD F1 for 10 random binary partitions of the 9 strategy labels (each partition randomly assigns strategies to group A or B). All partitions use identical Stage-1 DAPT and Stage-2 GRU training; only the binary label mapping differs. Seed 42 (3 runs)}{table.caption.46}{}}
+\@LN{1188}{17}
+\@LN{1189}{17}
+\@LN{1190}{17}
+\@LN{1191}{17}
+\@LN{1192}{17}
+\@LN{1193}{17}
+\@LN{1194}{17}
+\@LN{1195}{17}
+\@writefile{toc}{\contentsline {paragraph}{Strategy annotation.}{18}{section*.51}\protected@file@percent }
+\@LN{1196}{17}
+\@LN{1197}{17}
+\@LN{1198}{17}
+\@LN{1199}{17}
+\@LN{1200}{17}
+\@LN{1201}{17}
+\@LN{1202}{17}
+\@LN{1203}{17}
+\@LN{1204}{17}
+\@writefile{toc}{\contentsline {paragraph}{Adversarial paraphrasing.}{18}{section*.52}\protected@file@percent }
+\@LN{1205}{17}
+\@LN{1206}{17}
+\@LN{1207}{17}
+\@LN{1208}{17}
+\@LN{1209}{17}
+\@LN{1210}{17}
+\@LN{1211}{17}
+\@writefile{toc}{\contentsline {paragraph}{Cross-checkpoint variance.}{18}{section*.53}\protected@file@percent }
+\@LN{1212}{17}
+\@LN{1213}{17}
+\@LN{1214}{17}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Per-turn Fisher ratio (mean across all dimensions) and silhouette score between jailbreak and benign turn embeddings (\texttt  {[CLS]} representations). Higher values indicate greater per-turn separability.}}{18}{table.caption.47}\protected@file@percent }
+\newlabel{tab:topic_failure}{{18}{18}{Per-turn Fisher ratio (mean across all dimensions) and silhouette score between jailbreak and benign turn embeddings (\texttt {[CLS]} representations). Higher values indicate greater per-turn separability}{table.caption.47}{}}
+\@LN{1215}{17}
+\@LN{1216}{17}
+\@LN{1217}{17}
+\@LN{1218}{17}
+\@LN{1219}{17}
+\@LN{1220}{17}
+\@LN{1221}{17}
+\@LN{1222}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {O}End-to-End Fine-Tuning Upper Bound}{18}{appendix.O}\protected@file@percent }
+\newlabel{app:e2e}{{O}{18}{End-to-End Fine-Tuning Upper Bound}{appendix.O}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Frozen probing vs.\ end-to-end (E2E) fine-tuning for DeBERTa-v3-base 9-class (3-seed mean$\pm $std). E2E unfreezes the Stage-1 encoder during Stage-2 training. Frozen values use main-experiment checkpoints (matching Tables~\ref {tab:main_results}--\ref {tab:evidence_hierarchy}). Table~\ref {tab:frozen_verify} independently verifies these values.}}{18}{table.caption.54}\protected@file@percent }
+\newlabel{tab:e2e}{{19}{18}{Frozen probing vs.\ end-to-end (E2E) fine-tuning for DeBERTa-v3-base 9-class (3-seed mean$\pm $std). E2E unfreezes the Stage-1 encoder during Stage-2 training. Frozen values use main-experiment checkpoints (matching Tables~\ref {tab:main_results}--\ref {tab:evidence_hierarchy}). Table~\ref {tab:frozen_verify} independently verifies these values}{table.caption.54}{}}
+\@LN{1223}{17}
+\@LN{1224}{17}
+\@LN{1225}{17}
+\@LN{1226}{17}
+\@LN{1227}{17}
+\@LN{1228}{17}
+\@LN{1229}{17}
+\@LN{1230}{17}
+\@LN{1231}{17}
+\@LN{1232}{17}
+\@LN{1233}{17}
+\@LN{1234}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {P}Real-World False Positive Rate}{18}{appendix.P}\protected@file@percent }
+\newlabel{app:wildchat_fpr}{{P}{18}{Real-World False Positive Rate}{appendix.P}{}}
+\@LN{1235}{17}
+\@LN{1236}{17}
+\citation{kopf2023openassistant}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces False positive rate (\%) on 226 WildChat benign multi-turn conversations (GPT-3.5 users, avg 7.4 turns per conversation). All models trained on synthetic Qwen3-8B data (1{,}000-conversation scale). 3-seed mean$\pm $std.}}{19}{table.caption.55}\protected@file@percent }
+\newlabel{tab:wildchat_fpr}{{20}{19}{False positive rate (\%) on 226 WildChat benign multi-turn conversations (GPT-3.5 users, avg 7.4 turns per conversation). All models trained on synthetic Qwen3-8B data (1{,}000-conversation scale). 3-seed mean$\pm $std}{table.caption.55}{}}
+\@LN{1237}{18}
+\@LN{1238}{18}
+\@LN{1239}{18}
+\@LN{1240}{18}
+\@LN{1241}{18}
+\@LN{1242}{18}
+\@LN{1243}{18}
+\@LN{1244}{18}
+\@LN{1245}{18}
+\@LN{1246}{18}
+\@LN{1247}{18}
+\@LN{1248}{18}
+\@LN{1249}{18}
+\@LN{1250}{18}
+\@LN{1251}{18}
+\@LN{1252}{18}
+\@writefile{toc}{\contentsline {paragraph}{Post-hoc calibration.}{19}{section*.56}\protected@file@percent }
+\@LN{1253}{18}
+\@LN{1254}{18}
+\@LN{1255}{18}
+\@LN{1256}{18}
+\@LN{1257}{18}
+\@LN{1258}{18}
+\@LN{1259}{18}
+\@LN{1260}{18}
+\@LN{1261}{18}
+\@LN{1262}{18}
+\@LN{1263}{18}
+\@LN{1264}{18}
+\newlabel{app:oasst2}{{P}{19}{Second benign source: OASST2}{section*.57}{}}
+\@writefile{toc}{\contentsline {paragraph}{Second benign source: OASST2.}{19}{section*.57}\protected@file@percent }
+\@LN{1265}{18}
+\@LN{1266}{18}
+\@LN{1267}{18}
+\@LN{1268}{18}
+\@LN{1269}{18}
+\@LN{1270}{18}
+\@LN{1271}{18}
+\@LN{1272}{18}
+\@LN{1273}{18}
+\@LN{1274}{18}
+\@LN{1275}{18}
+\@LN{1276}{18}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces OASST2 benign adaptation curve: FPR on 200 OASST2 benign conversations and OOD jailbreak detection F1 as a function of $N$ OASST2 conversations added to training. Seed 42. Compare WildChat (Table~\ref {tab:wildchat_fpr}): FPR reaches 0\% at $N$\,=\,10.}}{19}{table.caption.58}\protected@file@percent }
+\newlabel{tab:oasst2_curve}{{21}{19}{OASST2 benign adaptation curve: FPR on 200 OASST2 benign conversations and OOD jailbreak detection F1 as a function of $N$ OASST2 conversations added to training. Seed 42. Compare WildChat (Table~\ref {tab:wildchat_fpr}): FPR reaches 0\% at $N$\,=\,10}{table.caption.58}{}}
+\@LN{1277}{18}
+\@LN{1278}{18}
+\@LN{1279}{18}
+\@LN{1280}{18}
+\@LN{1281}{18}
+\@LN{1282}{18}
+\@LN{1283}{18}
+\@LN{1284}{18}
+\@LN{1285}{18}
+\@LN{1286}{18}
+\@writefile{toc}{\contentsline {subsection}{\numberline {P.1}Estimated Dual-OOD Detection Performance}{19}{subsection.P.1}\protected@file@percent }
+\newlabel{app:dual_ood}{{P.1}{19}{Estimated Dual-OOD Detection Performance}{subsection.P.1}{}}
+\@LN{1287}{18}
+\@LN{1288}{18}
+\@LN{1289}{18}
+\@LN{1290}{18}
+\@LN{1291}{18}
+\@LN{1292}{18}
+\@LN{1293}{18}
+\@LN{1294}{18}
+\@LN{1295}{18}
+\@LN{1296}{18}
+\@LN{1297}{18}
+\@LN{1298}{18}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Estimated dual-OOD binary detection F1 under different benign conditions (3-seed mean$\pm $std). Attack recall held fixed from OOD evaluation; only benign FPR varies. IID row corresponds to the benign-IID upper bound (FPR\,=\,0).}}{19}{table.caption.59}\protected@file@percent }
+\newlabel{tab:dual_ood}{{22}{19}{Estimated dual-OOD binary detection F1 under different benign conditions (3-seed mean$\pm $std). Attack recall held fixed from OOD evaluation; only benign FPR varies. IID row corresponds to the benign-IID upper bound (FPR\,=\,0)}{table.caption.59}{}}
+\@LN{1299}{18}
+\@LN{1300}{18}
+\@LN{1301}{18}
+\@LN{1302}{18}
+\@LN{1303}{18}
+\citation{deepcontext2026}
+\citation{deepcontext2026}
+\@LN@col{1}
+\@LN{1304}{19}
+\@LN{1305}{19}
+\@LN{1306}{19}
+\@LN{1307}{19}
+\@LN{1308}{19}
+\@LN{1309}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {Q}BERT-base Proxy Baseline}{20}{appendix.Q}\protected@file@percent }
+\newlabel{app:bert_proxy}{{Q}{20}{BERT-base Proxy Baseline}{appendix.Q}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces BERT-base-uncased (110M) frozen probing without DAPT, matching DeepContext's encoder family~\citep  {deepcontext2026}. 3-seed mean$\pm $std. DeBERTa-v3 results from Table~\ref {tab:cross_encoder} for comparison.}}{20}{table.caption.60}\protected@file@percent }
+\newlabel{tab:bert_proxy}{{23}{20}{BERT-base-uncased (110M) frozen probing without DAPT, matching DeepContext's encoder family~\citep {deepcontext2026}. 3-seed mean$\pm $std. DeBERTa-v3 results from Table~\ref {tab:cross_encoder} for comparison}{table.caption.60}{}}
+\@LN{1310}{19}
+\@LN{1311}{19}
+\@LN{1312}{19}
+\@LN{1313}{19}
+\@LN{1314}{19}
+\@LN{1315}{19}
+\@LN{1316}{19}
+\@LN{1317}{19}
+\@LN{1318}{19}
+\@LN{1319}{19}
+\@LN{1320}{19}
+\@LN{1321}{19}
+\@LN{1322}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {R}Confidence Calibration}{20}{appendix.R}\protected@file@percent }
+\newlabel{app:calibration}{{R}{20}{Confidence Calibration}{appendix.R}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Expected calibration error (ECE, 10 bins) for 9-class and vanilla on IID and OOD evaluation (3-seed mean$\pm $std). Lower is better.}}{20}{table.caption.61}\protected@file@percent }
+\newlabel{tab:calibration}{{24}{20}{Expected calibration error (ECE, 10 bins) for 9-class and vanilla on IID and OOD evaluation (3-seed mean$\pm $std). Lower is better}{table.caption.61}{}}
+\@LN{1323}{19}
+\@LN{1324}{19}
+\@LN{1325}{19}
+\@LN{1326}{19}
+\@LN{1327}{19}
+\@LN{1328}{19}
+\@LN{1329}{19}
+\@LN{1330}{19}
+\@LN{1331}{19}
+\@writefile{toc}{\contentsline {subsection}{\numberline {R.1}ToxicChat False Positive Confidence}{20}{subsection.R.1}\protected@file@percent }
+\newlabel{app:confidence}{{R.1}{20}{ToxicChat False Positive Confidence}{subsection.R.1}{}}
+\@LN{1332}{19}
+\@LN{1333}{19}
+\@LN{1334}{19}
+\@LN@col{2}
+\@LN{1335}{19}
+\@LN{1336}{19}
+\@LN{1337}{19}
+\@LN{1338}{19}
+\@LN{1339}{19}
+\@LN{1340}{19}
+\@LN{1341}{19}
+\@LN{1342}{19}
+\@LN{1343}{19}
+\@LN{1344}{19}
+\@LN{1345}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {S}Frozen Probing Verification}{20}{appendix.S}\protected@file@percent }
+\newlabel{app:frozen_verify}{{S}{20}{Frozen Probing Verification}{appendix.S}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces Frozen probing vs.\ end-to-end (E2E) fine-tuning (3-seed mean$\pm $std). 9-class: primary DAPT checkpoints; MLM: matched MLM control checkpoints. Frozen probing trains only BiGRU+MLP on frozen DAPT embeddings.}}{20}{table.caption.62}\protected@file@percent }
+\newlabel{tab:frozen_verify}{{25}{20}{Frozen probing vs.\ end-to-end (E2E) fine-tuning (3-seed mean$\pm $std). 9-class: primary DAPT checkpoints; MLM: matched MLM control checkpoints. Frozen probing trains only BiGRU+MLP on frozen DAPT embeddings}{table.caption.62}{}}
+\@LN{1346}{19}
+\@LN{1347}{19}
+\@LN{1348}{19}
+\@LN{1349}{19}
+\@LN{1350}{19}
+\@LN{1351}{19}
+\@LN{1352}{19}
+\@LN{1353}{19}
+\@LN{1354}{19}
+\@LN{1355}{19}
+\@LN{1356}{19}
+\@LN{1357}{19}
+\@LN{1358}{19}
+\@LN{1359}{19}
+\@LN{1360}{19}
+\@LN{1361}{19}
+\@LN{1362}{19}
+\@LN{1363}{19}
+\@LN{1364}{19}
+\@LN{1365}{19}
+\@LN{1366}{19}
+\@LN{1367}{19}
+\@LN{1368}{19}
+\@LN{1369}{19}
+\@LN{1370}{19}
+\@LN{1371}{19}
+\@LN{1372}{19}
+\@LN{1373}{19}
+\@LN{1374}{19}
+\@LN{1375}{19}
+\citation{maennel2020random}
+\@LN@col{1}
+\@LN{1376}{20}
+\@LN{1377}{20}
+\@LN{1378}{20}
+\@LN{1379}{20}
+\@LN{1380}{20}
+\@writefile{toc}{\contentsline {subsection}{\numberline {S.1}Single-Turn Truncation Analysis}{21}{subsection.S.1}\protected@file@percent }
+\newlabel{app:truncated}{{S.1}{21}{Single-Turn Truncation Analysis}{subsection.S.1}{}}
+\@LN{1381}{20}
+\@LN{1382}{20}
+\@LN{1383}{20}
+\@LN{1384}{20}
+\@LN{1385}{20}
+\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces Full-conversation vs.\ last-turn-only F1 (3-seed mean). Truncation widens the 9-class advantage, ruling out multi-turn structure as the driver of the ToxicChat reversal.}}{21}{table.caption.63}\protected@file@percent }
+\newlabel{tab:truncated}{{26}{21}{Full-conversation vs.\ last-turn-only F1 (3-seed mean). Truncation widens the 9-class advantage, ruling out multi-turn structure as the driver of the ToxicChat reversal}{table.caption.63}{}}
+\newlabel{app:representation}{{S.1}{21}{Representation geometry analysis}{section*.64}{}}
+\@writefile{toc}{\contentsline {paragraph}{Representation geometry analysis.}{21}{section*.64}\protected@file@percent }
+\@LN{1386}{20}
+\@LN{1387}{20}
+\@LN{1388}{20}
+\@LN{1389}{20}
+\@LN{1390}{20}
+\@LN{1391}{20}
+\@LN{1392}{20}
+\@LN{1393}{20}
+\@LN{1394}{20}
+\@LN{1395}{20}
+\@LN{1396}{20}
+\@LN{1397}{20}
+\@LN{1398}{20}
+\@LN{1399}{20}
+\@LN{1400}{20}
+\@LN{1401}{20}
+\@LN{1402}{20}
+\@LN{1403}{20}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {27}{\ignorespaces Representation geometry and class separability across Stage-1 variants. PR: participation ratio (effective dimensionality of the embedding space). Fisher ratio: inter-class distance$^2$ / sum of intra-class variances. Weight $\Delta $: L2 distance from pretrained weights (relative to pretrained norm).}}{21}{table.caption.65}\protected@file@percent }
+\newlabel{tab:representation}{{27}{21}{Representation geometry and class separability across Stage-1 variants. PR: participation ratio (effective dimensionality of the embedding space). Fisher ratio: inter-class distance$^2$ / sum of intra-class variances. Weight $\Delta $: L2 distance from pretrained weights (relative to pretrained norm)}{table.caption.65}{}}
+\newlabel{app:layerwise}{{S.1}{21}{Layer-wise localization}{section*.66}{}}
+\@writefile{toc}{\contentsline {paragraph}{Layer-wise localization.}{21}{section*.66}\protected@file@percent }
+\@LN{1404}{20}
+\@LN{1405}{20}
+\@LN{1406}{20}
+\@LN{1407}{20}
+\@LN{1408}{20}
+\@LN{1409}{20}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Layer-wise representation analysis. (a)~Participation ratio: classification variants (9-class, scrambled) show sharp dimensional collapse at layers 9--10 (PR\,$\approx $\,1.5--2.9) while vanilla/JB-MLM maintain high dimensionality (PR\,$\approx $\,7--10). (b)~Fisher ratio (log scale): class separability diverges from layer 8, with 9-class peaking at 10.9 (layer 10) vs.\ vanilla 0.73 (15$\times $).}}{21}{figure.caption.67}\protected@file@percent }
+\newlabel{fig:layerwise}{{10}{21}{Layer-wise representation analysis. (a)~Participation ratio: classification variants (9-class, scrambled) show sharp dimensional collapse at layers 9--10 (PR\,$\approx $\,1.5--2.9) while vanilla/JB-MLM maintain high dimensionality (PR\,$\approx $\,7--10). (b)~Fisher ratio (log scale): class separability diverges from layer 8, with 9-class peaking at 10.9 (layer 10) vs.\ vanilla 0.73 (15$\times $)}{figure.caption.67}{}}
+\@LN{1410}{20}
+\@LN{1411}{20}
+\@LN{1412}{20}
+\@LN{1413}{20}
+\@LN{1414}{20}
+\@LN{1415}{20}
+\@LN{1416}{20}
+\@LN{1417}{20}
+\@LN{1418}{20}
+\@LN{1419}{20}
+\@LN{1420}{20}
+\@LN{1421}{20}
+\@LN{1422}{20}
+\@LN{1423}{20}
+\@LN{1424}{20}
+\@LN{1425}{20}
+\@LN{1426}{20}
+\@LN@col{1}
+\@LN{1427}{21}
+\newlabel{app:discriminative_probe}{{S.1}{22}{Discriminative subspace probe}{section*.68}{}}
+\@writefile{toc}{\contentsline {paragraph}{Discriminative subspace probe.}{22}{section*.68}\protected@file@percent }
+\@LN{1428}{21}
+\@LN{1429}{21}
+\@LN{1430}{21}
+\@LN{1431}{21}
+\@LN{1432}{21}
+\@LN{1433}{21}
+\@LN{1434}{21}
+\@LN{1435}{21}
+\@writefile{lot}{\contentsline {table}{\numberline {28}{\ignorespaces Discriminative subspace probe: OOD F1 when projecting layer-10 representations onto top-$k$ SVD components vs.\ random $k$-dimensional projections. 9-class top-3 achieves perfect AA detection with 3/768 dimensions; MLM fails even with all 768.}}{22}{table.caption.69}\protected@file@percent }
+\newlabel{tab:discriminative_probe}{{28}{22}{Discriminative subspace probe: OOD F1 when projecting layer-10 representations onto top-$k$ SVD components vs.\ random $k$-dimensional projections. 9-class top-3 achieves perfect AA detection with 3/768 dimensions; MLM fails even with all 768}{table.caption.69}{}}
+\@LN{1436}{21}
+\@LN{1437}{21}
+\@LN{1438}{21}
+\@LN{1439}{21}
+\@LN{1440}{21}
+\@LN{1441}{21}
+\@LN{1442}{21}
+\@LN{1443}{21}
+\@LN{1444}{21}
+\@LN{1445}{21}
+\@LN{1446}{21}
+\@LN{1447}{21}
+\@LN{1448}{21}
+\@LN{1449}{21}
+\@LN{1450}{21}
+\@LN{1451}{21}
+\@LN{1452}{21}
+\@LN{1453}{21}
+\@LN{1454}{21}
+\newlabel{app:svd_necessity}{{S.1}{22}{SVD necessity ablation}{section*.70}{}}
+\@writefile{toc}{\contentsline {paragraph}{SVD necessity ablation.}{22}{section*.70}\protected@file@percent }
+\@LN{1455}{21}
+\@LN{1456}{21}
+\@LN{1457}{21}
+\@LN{1458}{21}
+\@LN{1459}{21}
+\@LN{1460}{21}
+\@LN@col{2}
+\@LN{1461}{21}
+\@LN{1462}{21}
+\@LN{1463}{21}
+\@writefile{lot}{\contentsline {table}{\numberline {29}{\ignorespaces SVD necessity ablation: OOD F1 after projecting out top-3 vs.\ random-3 SVD directions from 9-class layer-10 embeddings (3-seed mean$\pm $std).}}{22}{table.caption.71}\protected@file@percent }
+\newlabel{tab:svd_necessity}{{29}{22}{SVD necessity ablation: OOD F1 after projecting out top-3 vs.\ random-3 SVD directions from 9-class layer-10 embeddings (3-seed mean$\pm $std)}{table.caption.71}{}}
+\@LN{1464}{21}
+\@LN{1465}{21}
+\@LN{1466}{21}
+\@LN{1467}{21}
+\@LN{1468}{21}
+\@LN{1469}{21}
+\@LN{1470}{21}
+\@LN{1471}{21}
+\@LN{1472}{21}
+\@LN{1473}{21}
+\@LN{1474}{21}
+\@writefile{toc}{\contentsline {section}{\numberline {T}Temporal Aggregation Comparison}{22}{appendix.T}\protected@file@percent }
+\newlabel{app:temporal}{{T}{22}{Temporal Aggregation Comparison}{appendix.T}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {30}{\ignorespaces Temporal aggregation comparison: mean pooling vs.\ BiGRU under frozen and end-to-end (E2E) settings (3-seed mean$\pm $std). Primary 9-class DAPT checkpoints.}}{22}{table.caption.72}\protected@file@percent }
+\newlabel{tab:temporal}{{30}{22}{Temporal aggregation comparison: mean pooling vs.\ BiGRU under frozen and end-to-end (E2E) settings (3-seed mean$\pm $std). Primary 9-class DAPT checkpoints}{table.caption.72}{}}
+\@LN{1475}{21}
+\@LN{1476}{21}
+\@LN{1477}{21}
+\@LN{1478}{21}
+\@LN{1479}{21}
+\@LN{1480}{21}
+\@LN{1481}{21}
+\@LN{1482}{21}
+\@LN{1483}{21}
+\@LN{1484}{21}
+\@LN{1485}{21}
+\@LN{1486}{21}
+\@LN{1487}{21}
+\@LN{1488}{21}
+\@LN{1489}{21}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {31}{\ignorespaces Jailbreak recall by conversation length bin on OOD evaluation (3-seed majority vote). Benign conversations span 12--20 turns; jailbreak conversations span 3--10 turns.}}{23}{table.caption.73}\protected@file@percent }
+\newlabel{tab:length}{{31}{23}{Jailbreak recall by conversation length bin on OOD evaluation (3-seed majority vote). Benign conversations span 12--20 turns; jailbreak conversations span 3--10 turns}{table.caption.73}{}}
+\@LN{1490}{22}
+\@writefile{toc}{\contentsline {section}{\numberline {U}Length Stratification Analysis}{23}{appendix.U}\protected@file@percent }
+\newlabel{app:length}{{U}{23}{Length Stratification Analysis}{appendix.U}{}}
+\@LN{1491}{22}
+\@LN{1492}{22}
+\@LN{1493}{22}
+\@LN{1494}{22}
+\@LN{1495}{22}
+\@writefile{toc}{\contentsline {paragraph}{Length confound.}{23}{section*.74}\protected@file@percent }
+\@LN{1496}{22}
+\@LN{1497}{22}
+\@LN{1498}{22}
+\@LN{1499}{22}
+\@LN{1500}{22}
+\@LN{1501}{22}
+\@LN{1502}{22}
+\@LN{1503}{22}
+\@LN{1504}{22}
+\@LN{1505}{22}
+\@LN{1506}{22}
+\@LN{1507}{22}
+\@LN{1508}{22}
+\@LN{1509}{22}
+\@LN{1510}{22}
+\@LN{1511}{22}
+\@LN{1512}{22}
+\@LN{1513}{22}
+\newlabel{app:length_independence}{{U}{23}{Direct empirical verification}{section*.75}{}}
+\@writefile{toc}{\contentsline {paragraph}{Direct empirical verification.}{23}{table.caption.76}\protected@file@percent }
+\@LN{1514}{22}
+\@LN{1515}{22}
+\@LN{1516}{22}
+\@LN{1517}{22}
+\@LN{1518}{22}
+\@LN{1519}{22}
+\@LN{1520}{22}
+\@LN{1521}{22}
+\@LN{1522}{22}
+\@LN{1523}{22}
+\@LN{1524}{22}
+\@LN{1525}{22}
+\@LN{1526}{22}
+\@LN{1527}{22}
+\@LN{1528}{22}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {32}{\ignorespaces Turn-count independence verification (9-class DeBERTa-v3-base, same checkpoint as Table~\ref {tab:main_results}, 3 seeds). Evaluated on the full OOD test set (80 jailbreak + 75 benign conversations) rather than the balanced subset used in Table~\ref {tab:main_results}. Part~A: FPR on test benign truncated to $K$ user turns (all seeds FPR\,=\,0). Part~B: WildChat FPR by turn-count bucket (mean$\pm $std). Part~C: jailbreak detection (F1) after padding with benign turns to 15+ total turns (mean$\pm $std where available).}}{23}{table.caption.76}\protected@file@percent }
+\newlabel{tab:length_independence}{{32}{23}{Turn-count independence verification (9-class DeBERTa-v3-base, same checkpoint as Table~\ref {tab:main_results}, 3 seeds). Evaluated on the full OOD test set (80 jailbreak + 75 benign conversations) rather than the balanced subset used in Table~\ref {tab:main_results}. Part~A: FPR on test benign truncated to $K$ user turns (all seeds FPR\,=\,0). Part~B: WildChat FPR by turn-count bucket (mean$\pm $std). Part~C: jailbreak detection (F1) after padding with benign turns to 15+ total turns (mean$\pm $std where available)}{table.caption.76}{}}
+\@LN{1529}{22}
+\@LN{1530}{22}
+\@LN{1531}{22}
+\@LN{1532}{22}
+\@LN{1533}{22}
+\@LN{1534}{22}
+\@LN{1535}{22}
+\@LN{1536}{22}
+\@LN{1537}{22}
+\@LN{1538}{22}
+\@LN{1539}{22}
+\@LN{1540}{22}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Inference Efficiency}{23}{appendix.V}\protected@file@percent }
+\newlabel{app:efficiency}{{V}{23}{Inference Efficiency}{appendix.V}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {33}{\ignorespaces Inference efficiency comparison. DeBERTa+BiGRU and TF-IDF+LR measured on IID test (76 conversations, avg 8.3 turns, single A100). LLM latency from separate OOD evaluation (118 conversations); cross-condition comparison is indicative only.}}{23}{table.caption.77}\protected@file@percent }
+\newlabel{tab:efficiency}{{33}{23}{Inference efficiency comparison. DeBERTa+BiGRU and TF-IDF+LR measured on IID test (76 conversations, avg 8.3 turns, single A100). LLM latency from separate OOD evaluation (118 conversations); cross-condition comparison is indicative only}{table.caption.77}{}}
+\@LN{1541}{22}
+\@LN{1542}{22}
+\@LN@col{1}
+\@LN{1543}{23}
+\@LN{1544}{23}
+\@LN{1545}{23}
+\@LN{1546}{23}
+\@LN{1547}{23}
+\@LN{1548}{23}
+\@LN{1549}{23}
+\@LN{1550}{23}
+\@LN{1551}{23}
+\@LN{1552}{23}
+\@LN{1553}{23}
+\@LN{1554}{23}
+\@LN{1555}{23}
+\@LN{1556}{23}
+\@LN{1557}{23}
+\@LN{1558}{23}
+\@LN{1559}{23}
+\@LN{1560}{23}
+\@writefile{toc}{\contentsline {section}{\numberline {W}Data Efficiency}{24}{appendix.W}\protected@file@percent }
+\newlabel{app:data_efficiency}{{W}{24}{Data Efficiency}{appendix.W}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {34}{\ignorespaces Data efficiency of 9-class DAPT (3-seed mean$\pm $std, sample std with $n{-}1$ divisor) and vanilla baseline (seed 42 only). $N$ = total training conversations (balanced jailbreak/benign).}}{24}{table.caption.78}\protected@file@percent }
+\newlabel{tab:data_efficiency}{{34}{24}{Data efficiency of 9-class DAPT (3-seed mean$\pm $std, sample std with $n{-}1$ divisor) and vanilla baseline (seed 42 only). $N$ = total training conversations (balanced jailbreak/benign)}{table.caption.78}{}}
+\@LN{1561}{23}
+\@LN{1562}{23}
+\@LN{1563}{23}
+\@LN{1564}{23}
+\@LN{1565}{23}
+\@LN{1566}{23}
+\@LN{1567}{23}
+\@LN{1568}{23}
+\@LN{1569}{23}
+\@LN{1570}{23}
+\@LN{1571}{23}
+\@LN{1572}{23}
+\@LN{1573}{23}
+\@LN{1574}{23}
+\@LN{1575}{23}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {35}{\ignorespaces Effect of auxiliary persuasion loss weight $\lambda $ during Stage-2 E2E fine-tuning (seed 42). Stage-1 DAPT encoder is identical across all rows; only the Stage-2 loss $L = L_{\text  {binary}} + \lambda \cdot L_{\text  {strategy}}$ varies.}}{24}{table.caption.79}\protected@file@percent }
+\newlabel{tab:lambda}{{35}{24}{Effect of auxiliary persuasion loss weight $\lambda $ during Stage-2 E2E fine-tuning (seed 42). Stage-1 DAPT encoder is identical across all rows; only the Stage-2 loss $L = L_{\text {binary}} + \lambda \cdot L_{\text {strategy}}$ varies}{table.caption.79}{}}
+\@LN{1576}{23}
+\@writefile{toc}{\contentsline {section}{\numberline {X}Auxiliary Loss Weight Ablation}{24}{appendix.X}\protected@file@percent }
+\newlabel{app:lambda}{{X}{24}{Auxiliary Loss Weight Ablation}{appendix.X}{}}
+\@LN{1577}{23}
+\@LN{1578}{23}
+\@LN{1579}{23}
+\@LN{1580}{23}
+\@LN{1581}{23}
+\@LN{1582}{23}
+\@LN{1583}{23}
+\@LN{1584}{23}
+\@LN{1585}{23}
+\@LN{1586}{23}
+\@LN{1587}{23}
+\@LN{1588}{23}
+\@LN{1589}{23}
+\@LN{1590}{23}
+\@writefile{toc}{\contentsline {section}{\numberline {Y}OOD Strategy Prediction Analysis}{24}{appendix.Y}\protected@file@percent }
+\newlabel{app:strategy_pred}{{Y}{24}{OOD Strategy Prediction Analysis}{appendix.Y}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {36}{\ignorespaces OOD strategy prediction accuracy (jailbreak turns only) and detection rate for the 9-class model (3-seed mean). $r$: Pearson correlation between per-strategy prediction accuracy and per-strategy detection rate.}}{24}{table.caption.80}\protected@file@percent }
+\newlabel{tab:strategy_pred}{{36}{24}{OOD strategy prediction accuracy (jailbreak turns only) and detection rate for the 9-class model (3-seed mean). $r$: Pearson correlation between per-strategy prediction accuracy and per-strategy detection rate}{table.caption.80}{}}
+\@LN{1591}{23}
+\@LN{1592}{23}
+\@LN{1593}{23}
+\@LN{1594}{23}
+\@LN{1595}{23}
+\@LN{1596}{23}
+\@LN{1597}{23}
+\@LN{1598}{23}
+\@LN{1599}{23}
+\@LN{1600}{23}
+\@LN{1601}{23}
+\@LN{1602}{23}
+\@LN{1603}{23}
+\@LN{1604}{23}
+\@LN@col{1}
+\@LN{1605}{24}
+\@writefile{toc}{\contentsline {section}{\numberline {Z}Cross-Seed Ensemble}{25}{appendix.Z}\protected@file@percent }
+\newlabel{app:ensemble}{{Z}{25}{Cross-Seed Ensemble}{appendix.Z}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {37}{\ignorespaces Majority vote ensemble (3 seeds) vs.\ single-seed mean on OOD Full. ``Fixed'' = samples corrected by ensemble; ``Broke'' = samples corrupted by ensemble.}}{25}{table.caption.81}\protected@file@percent }
+\newlabel{tab:ensemble}{{37}{25}{Majority vote ensemble (3 seeds) vs.\ single-seed mean on OOD Full. ``Fixed'' = samples corrected by ensemble; ``Broke'' = samples corrupted by ensemble}{table.caption.81}{}}
+\@LN{1606}{24}
+\@LN{1607}{24}
+\@LN{1608}{24}
+\@LN{1609}{24}
+\@LN{1610}{24}
+\@LN{1611}{24}
+\@LN{1612}{24}
+\@LN{1613}{24}
+\@LN{1614}{24}
+\@LN{1615}{24}
+\@LN{1616}{24}
+\@LN{1617}{24}
+\@LN{1618}{24}
+\@LN{1619}{24}
+\@writefile{toc}{\contentsline {subsection}{\numberline {Z.1}Seed-Level F1 Comparisons}{25}{subsection.Z.1}\protected@file@percent }
+\newlabel{app:seed_level}{{Z.1}{25}{Seed-Level F1 Comparisons}{subsection.Z.1}{}}
+\@LN{1620}{24}
+\@LN{1621}{24}
+\@LN{1622}{24}
+\@LN{1623}{24}
+\@LN{1624}{24}
+\@LN{1625}{24}
+\@LN{1626}{24}
+\@LN{1627}{24}
+\@writefile{lot}{\contentsline {table}{\numberline {38}{\ignorespaces Per-seed F1 on OOD Full for key variants (seeds 42, 123, 456). The relative ordering is consistent across seeds.}}{25}{table.caption.82}\protected@file@percent }
+\newlabel{tab:seed_level}{{38}{25}{Per-seed F1 on OOD Full for key variants (seeds 42, 123, 456). The relative ordering is consistent across seeds}{table.caption.82}{}}
+\@LN{1628}{24}
+\@LN{1629}{24}
+\@LN{1630}{24}
+\@LN@col{2}
+\gdef \@abspage@last{25}

@@ -1,0 +1,15 @@
+exp45 Benign Adaptation Curve Results
+
+| N | Train Size | WildChat FPR | IID F1 | DD F1 | AA F1 | FITD F1 |
+|---|-----------|-------------|--------|-------|-------|---------|
+| 0 | 350 | 65.3% | 1.0 | 1.0 | 0.981 | 1.0 |
+| 5 | 355 | 16.3% | 1.0 | 0.990 | 0.981 | 1.0 |
+| 10 | 360 | 0% | 1.0 | 1.0 | 1.0 | 1.0 |
+| 25 | 375 | 0% | 1.0 | 1.0 | 0.953 | 1.0 |
+| 50 | 400 | 0% | 1.0 | 1.0 | 1.0 | 1.0 |
+| 100 | 450 | 0% | 1.0 | 1.0 | 0.990 | 1.0 |
+| 150 | 500 | 0% | 1.0 | 1.0 | 0.981 | 1.0 |
+
+Key finding: As few as 10 OOD benign conversations eliminates FPR entirely while maintaining OOD detection.
+Server: westd-33183, GPU: cuda:0, Seed: 42, Eval: 49 WildChat + 80 per OOD family
+JSON: /root/persuasion_turn_jailbreak_detect/results/exp45_benign_adaptation_curve.json

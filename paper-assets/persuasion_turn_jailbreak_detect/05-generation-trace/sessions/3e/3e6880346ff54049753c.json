@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "3e6880346ff54049753c",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp44 multi llm resume",
+  "task_key": "worker_code_exp44_multi_llm_resume_20260522T050323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp44_multi_llm_resume_20260522T050323.log",
+    "occurrence": 1,
+    "bytes": 1308008,
+    "sha256": "61a868917854aee22dee0b4a07ba0e279f438e4cfb76392b9370bb972b8c782e"
+  },
+  "statistics": {
+    "messages": 668,
+    "user_turns": 1,
+    "tool_calls": 292,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 292,
+      "tool_result": 292,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 648,
+      "chunks": [
+        {
+          "path": "3e6880346ff54049753c-part-0001.json",
+          "message_count": 109
+        },
+        {
+          "path": "3e6880346ff54049753c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e6880346ff54049753c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e6880346ff54049753c-part-0004.json",
+          "message_count": 179
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "3e6880346ff54049753c-part-0004.json",
+          "message_count": 1
+        },
+        {
+          "path": "3e6880346ff54049753c-part-0005.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp44-multi-llm-resume.md"
+}

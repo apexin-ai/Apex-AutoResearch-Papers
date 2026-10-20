@@ -1,0 +1,162 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{russinovich2024crescendo,jiang2024fitd}
+\citation{zeng2024persuasion,hagendorff2026persuasion}
+\citation{su2026deepcontext}
+\citation{inan2023llamaguard}
+\citation{han2024wildguard}
+\citation{zeng2024shieldgemma}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{gururangan2018annotation,niven2019probing}
+\citation{russinovich2024crescendo}
+\citation{jiang2024fitd}
+\citation{decdelight2024}
+\citation{chao2023pair}
+\citation{wei2024jailbroken}
+\citation{mazeika2024harmbench}
+\citation{perez2022red}
+\citation{ganguli2022red}
+\citation{inan2023llamaguard}
+\citation{han2024wildguard}
+\citation{zeng2024shieldgemma}
+\citation{anthropic2024constitutional}
+\citation{su2026deepcontext}
+\citation{biid2025}
+\citation{gguard2025}
+\citation{safedream2025}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn jailbreak attacks.}{2}{section*.1}\protected@file@percent }
+\citation{zeng2024persuasion}
+\citation{hagendorff2026persuasion}
+\citation{howdollms2025}
+\citation{habernal2016argumentation}
+\citation{tan2016winning}
+\citation{bullwinkel2025}
+\citation{austin1962,searle1969}
+\citation{mann1988rst}
+\citation{stolcke2000dialogue}
+\citation{gururangan2018annotation}
+\citation{niven2019probing}
+\citation{poliak2018hypothesis}
+\citation{russinovich2024crescendo}
+\citation{zeng2024persuasion}
+\citation{hagendorff2026persuasion}
+\citation{jiang2024fitd}
+\citation{decdelight2024}
+\citation{zhao2024wildchat}
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn safety detection.}{3}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Persuasion in adversarial contexts.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Discourse analysis foundations.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataset artifacts and spurious correlations.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Data}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training data.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{OOD evaluation data.}{3}{section*.7}\protected@file@percent }
+\citation{he2021debertav3}
+\citation{su2026deepcontext}
+\@writefile{toc}{\contentsline {paragraph}{Real-world evaluation.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Models}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Lexical baseline (TF-IDF + LR).}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Vanilla semantic baseline.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Persuasion-aware model (Treatment).}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DeepContext proxy.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-judge.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Evaluation Protocol}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Finding 1: Lexical Separability Dominates In-Distribution Detection}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces In-distribution detection performance (Crescendo, 3-seed mean $\pm $ std). All methods converge to F1 = 1.0 at full conversation length. TF-IDF matches neural methods at all prefix lengths.}}{5}{table.caption.14}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:iid}{{1}{5}{In-distribution detection performance (Crescendo, 3-seed mean $\pm $ std). All methods converge to F1 = 1.0 at full conversation length. TF-IDF matches neural methods at all prefix lengths}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces TF-IDF + LR performance across data sources. Near-perfect performance across all settings indicates strong lexical artifacts in current jailbreak data.}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:tfidf}{{2}{5}{TF-IDF + LR performance across data sources. Near-perfect performance across all settings indicates strong lexical artifacts in current jailbreak data}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Finding 2: Vanilla Semantic Modeling Fails Catastrophically OOD}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Finding 3: Domain Exposure, Not Annotation Precision, Drives OOD Recovery}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scrambled labels (Table~\ref {tab:scrambled}).}{5}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Label granularity (Table~\ref {tab:granularity}).}{5}{section*.19}\protected@file@percent }
+\citation{nasr2025adaptive}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-attack generalization (trained on Crescendo, evaluated OOD). Vanilla DeBERTa collapses on Deceptive Delight (F1 = 0.284) while persuasion-aware fine-tuning maintains F1 = 1.0.}}{6}{table.caption.16}\protected@file@percent }
+\newlabel{tab:cross_attack}{{3}{6}{Cross-attack generalization (trained on Crescendo, evaluated OOD). Vanilla DeBERTa collapses on Deceptive Delight (F1 = 0.284) while persuasion-aware fine-tuning maintains F1 = 1.0}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Scrambled-label ablation (IID). Randomizing strategy labels minimally affects detection, indicating domain exposure rather than label semantics drives performance.}}{6}{table.caption.18}\protected@file@percent }
+\newlabel{tab:scrambled}{{4}{6}{Scrambled-label ablation (IID). Randomizing strategy labels minimally affects detection, indicating domain exposure rather than label semantics drives performance}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {paragraph}{Temporal modeling (Table~\ref {tab:temporal}).}{6}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Summary.}{6}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Finding 4: Perturbation Robustness Varies by Signal Type}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Finding 5: LLM-as-Judge Baselines Underperform}{6}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Label granularity ablation. Binary fine-tuning matches 8-class performance, confirming that persuasion-presence detection, not strategy classification, is sufficient.}}{7}{table.caption.20}\protected@file@percent }
+\newlabel{tab:granularity}{{5}{7}{Label granularity ablation. Binary fine-tuning matches 8-class performance, confirming that persuasion-presence detection, not strategy classification, is sufficient}{table.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Temporal modeling ablation. Mean pooling matches Bi-GRU, indicating detection does not rely on turn ordering.}}{7}{table.caption.22}\protected@file@percent }
+\newlabel{tab:temporal}{{6}{7}{Temporal modeling ablation. Mean pooling matches Bi-GRU, indicating detection does not rely on turn ordering}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Descriptive Analysis: Persuasion Strategy Trajectories}{7}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Real-World False Positive Analysis}{7}{subsection.4.7}\protected@file@percent }
+\citation{su2026deepcontext}
+\citation{gururangan2018annotation}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Adversarial perturbation robustness (IID, full conversation). Treatment shows zero degradation; vanilla baseline degrades 11.8pp.}}{8}{table.caption.24}\protected@file@percent }
+\newlabel{tab:perturbation}{{7}{8}{Adversarial perturbation robustness (IID, full conversation). Treatment shows zero degradation; vanilla baseline degrades 11.8pp}{table.caption.24}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces LLM-as-judge baseline on Crescendo conversations. Unparseable rates of 30--47\% and low recall limit zero-shot LLM detection.}}{8}{table.caption.25}\protected@file@percent }
+\newlabel{tab:llm_judge}{{8}{8}{LLM-as-judge baseline on Crescendo conversations. Unparseable rates of 30--47\% and low recall limit zero-shot LLM detection}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Supplementary Ablations}{8}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-task weight (Table~\ref {tab:lambda}).}{8}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Checkpoint variance (Table~\ref {tab:checkpoint}).}{8}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Encoder comparison (Table~\ref {tab:deepcontext}).}{8}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The effective method is simpler than presented.}{8}{section*.34}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Persuasion strategy usage patterns by attack type. Trajectories are descriptive, not detection-driving (cf. Table~\ref {tab:temporal}).}}{9}{table.caption.26}\protected@file@percent }
+\newlabel{tab:trajectories}{{9}{9}{Persuasion strategy usage patterns by attack type. Trajectories are descriptive, not detection-driving (cf. Table~\ref {tab:temporal})}{table.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces False positive rates on WildChat high-drift benign conversations ($n$ = 200, 15\% estimated contamination).}}{9}{table.caption.27}\protected@file@percent }
+\newlabel{tab:wildchat}{{10}{9}{False positive rates on WildChat high-drift benign conversations ($n$ = 200, 15\% estimated contamination)}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {paragraph}{Lexical artifacts dominate current benchmarks.}{9}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When does lexical detection fail?}{9}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The vanilla semantic collapse is the strongest finding.}{9}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for benchmark design.}{9}{section*.38}\protected@file@percent }
+\citation{nasr2025adaptive}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Lambda ablation. All values produce identical performance, including $\lambda = 0$ (no intent head), confirming the multi-task framework is unnecessary.}}{10}{table.caption.29}\protected@file@percent }
+\newlabel{tab:lambda}{{11}{10}{Lambda ablation. All values produce identical performance, including $\lambda = 0$ (no intent head), confirming the multi-task framework is unnecessary}{table.caption.29}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Cross-checkpoint variance. Performance is stable across training epochs.}}{10}{table.caption.31}\protected@file@percent }
+\newlabel{tab:checkpoint}{{12}{10}{Cross-checkpoint variance. Performance is stable across training epochs}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Limitations}{10}{section.6}\protected@file@percent }
+\newlabel{sec:limitations}{{6}{10}{Limitations}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Synthetic OOD data.}{10}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale.}{10}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Missing controls.}{10}{section*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adversarial evaluation.}{10}{section*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-judge comparison.}{10}{section*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contamination.}{10}{section*.44}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{austin1962}{{1}{1962}{{Austin}}{{}}}
+\bibcite{anthropic2024constitutional}{{2}{2024}{{Anthropic}}{{}}}
+\bibcite{bullwinkel2025}{{3}{2025}{{Bullwinkel et~al.}}{{}}}
+\bibcite{chao2023pair}{{4}{2023}{{Chao et~al.}}{{}}}
+\bibcite{decdelight2024}{{5}{2024}{{Deceptive Delight}}{{}}}
+\bibcite{ganguli2022red}{{6}{2022}{{Ganguli et~al.}}{{}}}
+\bibcite{gururangan2018annotation}{{7}{2018}{{Gururangan et~al.}}{{}}}
+\bibcite{habernal2016argumentation}{{8}{2016}{{Habernal and Gurevych}}{{}}}
+\bibcite{hagendorff2026persuasion}{{9}{2026}{{Hagendorff}}{{}}}
+\bibcite{han2024wildguard}{{10}{2024}{{Han et~al.}}{{}}}
+\bibcite{he2021debertav3}{{11}{2021}{{He et~al.}}{{}}}
+\bibcite{howdollms2025}{{12}{2025}{{How Do LLMs Persuade}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Encoder comparison. OOD collapse is consistent across encoders; fine-tuning is the critical factor.}}{11}{table.caption.33}\protected@file@percent }
+\newlabel{tab:deepcontext}{{13}{11}{Encoder comparison. OOD collapse is consistent across encoders; fine-tuning is the critical factor}{table.caption.33}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{11}{section.7}\protected@file@percent }
+\bibcite{inan2023llamaguard}{{13}{2023}{{Inan et~al.}}{{}}}
+\bibcite{jiang2024fitd}{{14}{2024}{{Jiang et~al.}}{{}}}
+\bibcite{mann1988rst}{{15}{1988}{{Mann and Thompson}}{{}}}
+\bibcite{mazeika2024harmbench}{{16}{2024}{{Mazeika et~al.}}{{}}}
+\bibcite{nasr2025adaptive}{{17}{2025}{{Nasr and Carlini}}{{}}}
+\bibcite{niven2019probing}{{18}{2019}{{Niven and Kao}}{{}}}
+\bibcite{perez2022red}{{19}{2022}{{Perez et~al.}}{{}}}
+\bibcite{poliak2018hypothesis}{{20}{2018}{{Poliak et~al.}}{{}}}
+\bibcite{russinovich2024crescendo}{{21}{2024}{{Russinovich et~al.}}{{}}}
+\bibcite{searle1969}{{22}{1969}{{Searle}}{{}}}
+\bibcite{stolcke2000dialogue}{{23}{2000}{{Stolcke et~al.}}{{}}}
+\bibcite{su2026deepcontext}{{24}{2026}{{Su et~al.}}{{}}}
+\bibcite{tan2016winning}{{25}{2016}{{Tan et~al.}}{{}}}
+\bibcite{wei2024jailbroken}{{26}{2024}{{Wei et~al.}}{{}}}
+\bibcite{zeng2024persuasion}{{27}{2024a}{{Zeng et~al.}}{{}}}
+\bibcite{zeng2024shieldgemma}{{28}{2024b}{{Zeng et~al.}}{{}}}
+\bibcite{zhao2024wildchat}{{29}{2024}{{Zhao et~al.}}{{}}}
+\bibcite{biid2025}{{30}{2025}{{BIID}}{{}}}
+\bibcite{gguard2025}{{31}{2025}{{G-Guard}}{{}}}
+\bibcite{safedream2025}{{32}{2025}{{SafeDream}}{{}}}
+\gdef \@abspage@last{12}

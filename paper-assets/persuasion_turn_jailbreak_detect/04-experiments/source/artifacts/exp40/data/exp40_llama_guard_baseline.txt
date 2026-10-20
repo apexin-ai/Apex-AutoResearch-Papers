@@ -1,0 +1,26 @@
+Exp40 Llama Guard 3 8B Baseline Results
+========================================
+Model: /root/autodl-tmp/.hf_cache/LLM-Research/Llama-Guard-3-8B
+Server: westd-33183
+K values: [2]
+
+IID (n=76):
+  Full: F1-macro=0.4325, Precision(J)=0.80, Recall(J)=0.1053, F1(J)=0.186
+  K=2:  F1-macro=0.4325, Precision(J)=0.80, Recall(J)=0.1053, F1(J)=0.186
+
+DD OOD (n=118):
+  Full: F1-macro=0.2525, Precision(J)=0.50, Recall(J)=0.0125, F1(J)=0.0244
+  K=2:  F1-macro=0.2525, Precision(J)=0.50, Recall(J)=0.0125, F1(J)=0.0244
+
+AA OOD (n=118):
+  Full: F1-macro=0.2387, Precision(J)=0.00, Recall(J)=0.00, F1(J)=0.00
+  K=2:  F1-macro=0.2387, Precision(J)=0.00, Recall(J)=0.00, F1(J)=0.00
+
+FITD OOD (n=118):
+  Full: F1-macro=0.2387, Precision(J)=0.00, Recall(J)=0.00, F1(J)=0.00
+  K=2:  F1-macro=0.2387, Precision(J)=0.00, Recall(J)=0.00, F1(J)=0.00
+
+All unparseable outputs: 0
+K=2 results identical to full conversation across all datasets.
+
+Full per-sample JSON: /root/persuasion_turn_jailbreak_detect/results/exp40_llama_guard_baseline.json

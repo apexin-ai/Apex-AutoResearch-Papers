@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7fe8ae861a53cf3075a",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "analysis mf2 statistical tests v4",
+  "task_key": "worker_analysis_mf2-statistical-tests-v4_20260518T100104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mf2-statistical-tests-v4_20260518T100104_result.json",
+    "occurrence": 1,
+    "bytes": 1519,
+    "sha256": "df8d0dba07a5f7ff30363c476b9627d57c777c42ae441a789729d32413c767d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n### n=118 诊断\n80 DD jailbreak + 38 test benign = 118。不是 bug，是评估需要两个 class。\n\n### Checkpoint 覆盖\n| Seed | 9class | Scrambled | Binary |\n|------|--------|-----------|--------|\n| 42   | ✓      | ✓         | ✗ (deleted) |\n| 123  | ✓      | ✗ (never trained) | ✓ |\n| 456  | ✓      | ✓         | ✓      |\n\n### McNemar 结果：所有对比均不显著 (p>0.05)\n\n| 对比 | Seed | K | b | c | p |\n|------|------|---|---|---|---|\n| 9class vs scrambled | 42 | 1 | 1 | 0 | 1.0 |\n| 9class vs scrambled | 42 | 2 | 6 | 1 | 0.131 |\n| 9class vs binary | 123 | 1 | 0 | 0 | 1.0 |\n| 9class vs binary | 123 | 2 | 0 | 1 | 1.0 |\n| 9class vs scrambled | 456 | 2 | 0 | 4 | 0.134 |\n| 9class vs binary | 456 | 2 | 0 | 4 | 0.134 |\n| scrambled vs binary | 456 | 1,2 | 0 | 0 | 1.0 |\n\n### Bootstrap 95% CI\n- 所有 variant 在 k=1 时 F1 ≥ 0.98，大部分达到 1.0\n- seed456 的 9class 略低（k2: 0.974 [0.946, 0.994]），但 scrambled/binary 在同 seed 下均为 1.0\n- 9class vs scrambled 方向在 seed 间不一致（seed42 偏 9class，seed456 偏 scrambled），说明差异来自随机波动\n\n### 结论\n三种 variant 在 DD OOD 上**无统计显著差异**。discordant pair 数量极少（最多 b+c=7），McNemar 检验 power 不足以检出差异。\n\n结果已保存至：\n- 服务器：`/root/persuasion_turn_jailbreak_detect/results/matched_seed_stats.json`\n- 本地：`artifacts/matched_seed_stats.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mf2-statistical-tests-v4.md"
+}

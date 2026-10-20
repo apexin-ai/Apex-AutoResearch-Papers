@@ -1,0 +1,122 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:15:50.414510+00:00",
+  "completed_at": "2026-05-25T21:20:33.125825+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Title/Abstract/Author 排版整洁专业，双栏格式规范，匿名 ACL submission header 正确。脚注含匿名化代码/数据链接。Abstract 长度目测接近 200 词上限，建议人工复核精确词数确保不超限。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1（架构图）在第 2 页顶部全宽展示，作为视觉锚点效果佳——审稿人打开前两页即可锚定方法核心（两阶段 pipeline）。Caption 自包含，颜色编码（黄/绿/粉）清晰区分组件。Title-Abstract-Figure 1 讲述一致的故事。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "纯文本页（Related Work + Method 开头），但仅一页，不构成连续纯文本问题。Section 3.1 引入数学符号，提供了视觉变化。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Table 1 + Figure 2 组合良好，text/table/figure 三重奏节奏回归。Figure 2 分组柱状图颜色可区分（ID/DD/AA/OOD 四类），legend 字号尚可。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Table 2 + Figure 3 继续保持良好密度。Figure 3 与 Figure 2 使用一致的颜色方案（跨图颜色语义一致），专业。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "两个表格（Table 3 + Table 4）密集但可读。表格使用 booktabs 风格（无竖线），最优结果加粗，小数精度一致。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 4（双面板柱状图）+ Table 5。Figure 4 左面板标注 \"Reversal\" 箭头是有效的视觉叙事手段。Sections 4.4-4.8 共 5 个子节挤在一页，密度高但未溢出。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 8",
+      "message": "Figure 5 的坐标轴标签（\"FPR (%)\"、\"Benign conversations (N)\"）和图内注释文字（\"64.5%\"、\"OASST2 sample seed\"）字号偏小，灰度打印时线条可能难以区分。建议增大标注字号至正文 70% 以上。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 8",
+      "message": "Figure 6（SVD 可视化）尺寸较小（约 1/4 column），散点和颜色标签在打印时可能不够清晰。若此图支撑核心 claim，建议放大或移至全宽。若仅为补充，当前尺寸可接受。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "主正文在第 8 页结束（Discussion + Conclusion），符合 EMNLP 2026 的 8 页正文限制。页面利用率高，无异常空白。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9",
+      "message": "Limitations 节简洁（3 个要点），符合 EMNLP 2026 要求。位于正文之后、References 之前，placement 正确。Appendix 中未见重复的 Limitations 节。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 9-12",
+      "message": "References 格式统一（ACL 风格），未见 [?] 未解析引用或编号跳号。Page 12 底部约 40% 空白为 references 自然结尾，不构成问题。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 13",
+      "message": "Appendix 开始。Table 6（LLM-as-judge baseline）格式正确。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 14-15",
+      "message": "Appendix 表格密集（Tables 7-10），格式一致，booktabs + bold best。Table 7 和 Table 8 含大量行列但未溢出 margin。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 16",
+      "message": "单页包含 3 个 figure（Figure 8 CKA heatmaps、Figure 9 t-SNE、Figure 10 bar chart）+ 1 个 table，视觉密度极高。Figure 8 的 3 个 CKA heatmap 并排排列，单个 heatmap 尺寸约 1/6 column，轴标签（层编号）非常小，打印时几乎不可读。建议考虑放大 heatmap 或至少加大轴标签字号。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 17-24",
+      "message": "Appendix 表格（Tables 12-36）持续高密度，单页最多 4 个表格。格式全部一致，未见溢出或对齐问题。Reproducibility Details（Section N, page 17）内容完整。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 21",
+      "message": "Figure 10（layer-wise regression analysis，双面板）在 appendix 中提供了额外分析图表。散点图 + 回归线清晰可读。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 25",
+      "message": "最后一页约 60% 填充，包含 Tables 37-38 和 \"Use of AI Assistants\" 声明。作为 appendix 末页，空白量可接受。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "主正文 display items 统计：6 figures + 5 tables = 11 个 display items / 8 页 ≈ 1.4/页。对实证为主的论文，密度充足且分布均匀，无连续 2 页以上纯文本或纯图表。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "所有表格最优结果均加粗标注，部分表格含 ± std 标注，精度在同列内一致。未见遗漏加粗的情况。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "Float 位置合理——所有 figure/table 在首次引用附近出现，未见被推到论文末尾的 float。Figure 1 使用 figure*（全宽），其余 figure 为单栏，选择合理。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "未检测到公式渲染错误、LaTeX 残留、margin 溢出或 section heading 孤悬页底。"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 3,
+    "info": 19
+  }
+}

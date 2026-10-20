@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8410ddc0f8258b3529de",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp70 deberta large scale",
+  "task_key": "worker_code_exp70_deberta_large_scale_20260523T235132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp70_deberta_large_scale_20260523T235132_result.json",
+    "occurrence": 1,
+    "bytes": 1268,
+    "sha256": "4abc757ca74190fb382f4598b681cce2376ab4ebabaf5319dcf61f3f3049a59f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp70_deberta_large_scale** is running successfully on westd-33183. Here's the summary:\n\n**What's running:**\n- tmux session `exp70` on cuda:0 (~16GB VRAM)\n- Script: `scripts/exp70_deberta_large_scale.py` (adapted from exp15_roberta_large.py)\n- Log: `logs/exp70_deberta_large_scale.log`\n\n**Pipeline:**\n1. **Stage 1 DAPT** — 3 seeds × 5 epochs of 9-class multitask training on DeBERTa-v3-large (currently on seed 42, epoch 2/5 done, val_acc=0.8388)\n2. **Stage 2** — For each variant (vanilla + 9-class) × 3 seeds: train BiGRU classifier, evaluate DD OOD + AA OOD\n3. Results saved to `results/rebuttal/deberta_large_scale/exp70_deberta_large_scale.json`\n\n**Data:** Same as exp15 (plan_002_splits for train/val/test, generated/deceptive_delight_all.jsonl for DD, generated/actorattack_all.jsonl for AA)\n\n**Registry:** `exp70_deberta_large_scale` set to RUNNING with hypothesis about scale effect vs architecture specificity.\n\n**Estimated runtime:** ~3-5h total (Stage 1: ~1h per seed × 3 = 3h + Stage 2 + eval ~1-2h).\n\n**Key issues resolved:**\n- Server needs `source /etc/network_turbo` for HuggingFace access\n- Set `HF_HUB_DISABLE_XET=1` for reliable downloads\n- Set `TRANSFORMERS_OFFLINE=1` for runtime to avoid network hangs"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp70-deberta-large-scale.md"
+}

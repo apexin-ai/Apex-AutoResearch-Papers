@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "33be874b2896502681d3",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp71 mixed llm disentangle",
+  "task_key": "worker_code_exp71_mixed_llm_disentangle_20260524T025756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp71_mixed_llm_disentangle_20260524T025756.log",
+    "occurrence": 1,
+    "bytes": 729437,
+    "sha256": "7a9ed8f7ab78e9c160986d40edb1c545aaff0a72f7d4430c42694445c245004f"
+  },
+  "statistics": {
+    "messages": 199,
+    "user_turns": 0,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 72,
+      "tool_result": 72,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 199,
+      "chunks": [
+        {
+          "path": "33be874b2896502681d3-part-0001.json",
+          "message_count": 133
+        },
+        {
+          "path": "33be874b2896502681d3-part-0002.json",
+          "message_count": 66
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp71-mixed-llm-disentangle.md"
+}

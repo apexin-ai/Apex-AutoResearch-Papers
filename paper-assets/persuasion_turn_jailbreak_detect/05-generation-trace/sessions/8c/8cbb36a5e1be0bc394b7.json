@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8cbb36a5e1be0bc394b7",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "paper text rewording p4 p5 p6 p7 p8 p10",
+  "task_key": "worker_paper_text_rewording_p4_p5_p6_p7_p8_p10_20260522T134314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_text_rewording_p4_p5_p6_p7_p8_p10_20260522T134314.log",
+    "occurrence": 1,
+    "bytes": 827433,
+    "sha256": "b5f687e89dc37178748dac208f8448badd47826b142db2cb0b75f3408dacd367"
+  },
+  "statistics": {
+    "messages": 131,
+    "user_turns": 0,
+    "tool_calls": 49,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 49,
+      "tool_result": 49,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 131,
+      "chunks": [
+        {
+          "path": "8cbb36a5e1be0bc394b7-part-0001.json",
+          "message_count": 79
+        },
+        {
+          "path": "8cbb36a5e1be0bc394b7-part-0002.json",
+          "message_count": 52
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-text-rewording-p4-p5-p6-p7-p8-p10.md"
+}

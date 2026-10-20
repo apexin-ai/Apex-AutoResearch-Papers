@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb07c3141491aceaaec4",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "data topic anchored benign v3",
+  "task_key": "worker_data_topic-anchored-benign-v3_20260517T221500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_topic-anchored-benign-v3_20260517T221500_result.json",
+    "occurrence": 1,
+    "bytes": 1750,
+    "sha256": "bad8876168a2200c4a4a409682d1ed259bc66cae0018d29e1aadbc63444c0e97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## HARD STOP: TF-IDF Gate FAIL\n\n**F1 = 0.9900** (threshold: < 0.80 to pass)\n\n### Top 10 Discriminative Features Analysis\n\n| Feature | Coef | Class | Type |\n|---------|------|-------|------|\n| `so was` | -1.07 | Benign | B - template pattern (\"so I was reading...\") |\n| `or` | -0.86 | Benign | B - option-seeking pattern |\n| `you` | +0.83 | Jailbreak | neither - direct address |\n| `was thinking` | -0.67 | Benign | B - hedging template |\n| `so` | -0.62 | Benign | B - discourse marker |\n| `do they` | -0.61 | Benign | B - third-person questions |\n| `what if` | +0.50 | Jailbreak | A - hypothetical framing |\n| `could` | +0.48 | Jailbreak | neither - modal verb |\n| `been` | +0.47 | Jailbreak | neither - narrative past |\n| `guess` | -0.56 | Benign | B - hedging template |\n\n**A-type escalation markers: 0, B-type generic request markers: 0** (none of the predefined markers hit, but the separation is from a different axis)\n\n### Root Cause Analysis\n\nV3 casual prompt created a **new register gap** instead of fixing the old one:\n1. **V3 benign is TOO uniformly hedging**: \"so I was thinking...\", \"I wonder if...\", \"not sure about...\", \"I guess...\" appear in nearly every conversation\n2. **Crescendo uses direct 2nd-person engagement**: \"you\", \"have you\", \"what if we\", \"someone who\" - collaborative/hypothetical framing\n3. **V3 focuses on 3rd parties**: \"do they\", \"does that\", \"they\" vs Crescendo's \"you/we\" pronouns\n\nThe casual style instructions are being followed too consistently - the model learned a single \"casual template\" instead of genuine diversity. The core issue isn't formality alone; it's that the user simulator produces monolithic register regardless of prompt."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-topic-anchored-benign-v3.md"
+}

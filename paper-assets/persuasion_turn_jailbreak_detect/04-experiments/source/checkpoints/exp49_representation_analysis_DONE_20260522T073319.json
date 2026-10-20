@@ -1,0 +1,57 @@
+{
+  "exp_id": "exp49_representation_analysis",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T07:10:44.086Z",
+    "updated_at": "2026-05-22T07:33:19.682Z",
+    "hypothesis": "Classification-based DAPT (9-class, binary, scrambled) produces smaller weight perturbations from pretrained weights and more geometrically uniform representations (higher effective dimensionality) than MLM DAPT, consistent with optimization regularization as the primary mechanism for cross-attack robustness.",
+    "parent": "exp45_benign_adaptation_curve",
+    "conclusion": "success",
+    "metrics": {
+      "weight_norm": {
+        "vanilla": 0,
+        "wiki_mlm": 2.924,
+        "binary": 3.16,
+        "jb_mlm": 3.375,
+        "scrambled": 3.74,
+        "9class": 3.998,
+        "topic": 4.894
+      },
+      "svd_participation_ratio": {
+        "vanilla": 31.93,
+        "wiki_mlm": 25,
+        "jb_mlm": 24.56,
+        "topic": 14.46,
+        "9class": 9.37,
+        "scrambled": 7.82,
+        "binary": 3.73
+      },
+      "fisher_ratio": {
+        "vanilla": 6.9e-05,
+        "wiki_mlm": 0.000284,
+        "jb_mlm": 0.000829,
+        "topic": 0.012449,
+        "scrambled": 2.602778,
+        "9class": 4.466274,
+        "binary": 19.726283
+      }
+    },
+    "spec": {
+      "command": "python /root/persuasion_turn_jailbreak_detect/scripts/exp49_representation_analysis.py",
+      "server": "westd-33183",
+      "data_path": "/root/persuasion_turn_jailbreak_detect/data/",
+      "data_count": "IID test + DD OOD + AA OOD (50 each)",
+      "model_name": "7 Stage-1 DeBERTa-v3-base variants",
+      "seed": 42,
+      "checkpoint_path": "N/A (analysis only)",
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/exp49_representation_analysis.json"
+    },
+    "completed_at": "2026-05-22T07:33:19.682Z"
+  },
+  "timestamp": "2026-05-22T07:33:19.889488+00:00",
+  "trigger": "update_registry"
+}

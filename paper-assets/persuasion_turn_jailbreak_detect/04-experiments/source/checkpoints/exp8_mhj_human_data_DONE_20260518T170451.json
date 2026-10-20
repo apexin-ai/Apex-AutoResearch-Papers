@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp8_mhj_human_data",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:16:18.419Z",
+    "updated_at": "2026-05-18T17:04:51.231Z",
+    "hypothesis": "If the evidence hierarchy (domain-adapted > vanilla) reflects genuine signal learning rather than Qwen3-8B stylistic overfitting, then DeBERTa variants trained on Qwen3-8B data should also outperform vanilla on human-written jailbreak prompts from Reddit/Discord.",
+    "spec": {
+      "command": "python scripts/exp8_mhj_human_eval.py",
+      "server": "westd-33183",
+      "data_path": "data/mhj/toxicchat_eval.jsonl",
+      "data_count": 408,
+      "model_name": "deberta-v3-base + GRU",
+      "seed": "42,123,456",
+      "checkpoint_source": "plan_002,plan_017_mlm,plan_003_scrambled_fix",
+      "eval_data": "ToxicChat (LMSYS) human jailbreak data",
+      "checkpoint_path": "checkpoints/",
+      "log_path": "results/exp8_run.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T16:49:56.060Z",
+    "metrics": {
+      "verazuo_vanilla_f1": 0.131,
+      "verazuo_9class_f1": 0.812,
+      "verazuo_binary_f1": 0.929,
+      "verazuo_scrambled_f1": 0.861,
+      "verazuo_jb_mlm_f1": 0.968,
+      "verazuo_wiki_mlm_f1": 0.897,
+      "verazuo_topic_f1": 0.758,
+      "verazuo_n_jailbreak": 666,
+      "verazuo_n_benign": 213,
+      "data_source": "verazuo/jailbreak_llms + plan_002 benign",
+      "toxicchat_vanilla_f1": 0.221,
+      "toxicchat_9class_f1": 0.654,
+      "toxicchat_jb_mlm_f1": 0.842,
+      "toxicchat_scrambled_f1": 0.667
+    }
+  },
+  "timestamp": "2026-05-18T17:04:51.338536+00:00",
+  "trigger": "update_registry"
+}

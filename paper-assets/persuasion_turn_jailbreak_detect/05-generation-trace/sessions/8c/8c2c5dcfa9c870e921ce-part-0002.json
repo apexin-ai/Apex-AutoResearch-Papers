@@ -1,0 +1,893 @@
+{
+  "schema_version": "1.0",
+  "session_id": "8c2c5dcfa9c870e921ce",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V4Sok7KVZWGWnnsBMQ8HJe",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "mixed_llm_aa_error_analysis",
+                "type": "report",
+                "description": "Mixed-LLM 9-class ActorAttack error analysis: FP/FN decomposition, cross-OOD comparison, root cause hypothesis. F1=0.504 is recall-limited (29% recall, 98% precision). Files at results/rebuttal/mixed_llm_error_analysis/ on westd-33183.",
+                "project": "persuasion_turn_jailbreak_detect",
+                "exp_id": "exp69_mixed_llm_aa_error",
+                "content": "See results/rebuttal/mixed_llm_error_analysis/error_analysis.json and analysis_summary.md on westd-33183",
+                "content_filename": "artifact_pointer.txt",
+                "tags": [
+                  "rebuttal",
+                  "error-analysis",
+                  "mixed-llm",
+                  "actorattack"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "4d05c24a-46e7-456f-b665-80641e04231c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VLYKiufvZNPR5p6stnVFBi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4517,
+                "cache_read_input_tokens": 110108,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4517
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-23T23:13:44.769Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V4Sok7KVZWGWnnsBMQ8HJe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_f1d580\\\", \\\"name\\\": \\\"mixed_llm_aa_error_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Mixed-LLM 9-class ActorAttack error analysis: FP/FN decomposition, cross-OOD comparison, root cause hypothesis. F1=0.504 is recall-limited (29% recall, 98% precision). Files at results/rebuttal/mixed_llm_error_analysis/ on westd-33183.\\\", \\\"path\\\": \\\"projects/persuasion_turn_jailbreak_detect/artifacts/exp69_mixed_llm_aa_error/report/artifact_pointer.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"persuasion_turn_jailbreak_detect\\\", \\\"exp_id\\\": \\\"exp69_mixed_llm_aa_error\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T23:13:44.533192+00:00\\\", \\\"tags\\\": [\\\"rebuttal\\\", \\\"error-analysis\\\", \\\"mixed-llm\\\", \\\"actorattack\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "8c647cf1-5dbd-41a9-8e73-a597ae710d24",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_f1d580\\\", \\\"name\\\": \\\"mixed_llm_aa_error_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Mixed-LLM 9-class ActorAttack error analysis: FP/FN decomposition, cross-OOD comparison, root cause hypothesis. F1=0.504 is recall-limited (29% recall, 98% precision). Files at results/rebuttal/mixed_llm_error_analysis/ on westd-33183.\\\", \\\"path\\\": \\\"projects/persuasion_turn_jailbreak_detect/artifacts/exp69_mixed_llm_aa_error/report/artifact_pointer.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"persuasion_turn_jailbreak_detect\\\", \\\"exp_id\\\": \\\"exp69_mixed_llm_aa_error\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T23:13:44.533192+00:00\\\", \\\"tags\\\": [\\\"rebuttal\\\", \\\"error-analysis\\\", \\\"mixed-llm\\\", \\\"actorattack\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260523_f1d580\", \"name\": \"mixed_llm_aa_error_analysis\", \"type\": \"report\", \"description\": \"Mixed-LLM 9-class ActorAttack error analysis: FP/FN decomposition, cross-OOD comparison, root cause hypothesis. F1=0.504 is recall-limited (29% recall, 98% precision). Files at results/rebuttal/mixed_llm_error_analysis/ on westd-33183.\", \"path\": \"projects/persuasion_turn_jailbreak_detect/artifacts/exp69_mixed_llm_aa_error/report/artifact_pointer.txt\", \"url\": null, \"project\": \"persuasion_turn_jailbreak_detect\", \"exp_id\": \"exp69_mixed_llm_aa_error\", \"skill\": \"\", \"created_at\": \"2026-05-23T23:13:44.533192+00:00\", \"tags\": [\"rebuttal\", \"error-analysis\", \"mixed-llm\", \"actorattack\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now update the registry to DONE."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "f160f23f-517c-4acc-8d47-305f9bb6c05a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X3AnhyoaKJWftNHpz8VFJV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 758,
+                "cache_read_input_tokens": 114625,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 758
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UJffSgHkD7tHsyqDfp1oEa",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp69_mixed_llm_aa_error",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "persuasion_turn_jailbreak_detect",
+                "spec": {
+                  "command": "error_analysis_script",
+                  "server": "westd-33183",
+                  "data_path": "/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json",
+                  "data_count": 118,
+                  "model_name": "mixed-LLM-9class",
+                  "seed": "42,123,456"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "a53fb9f6-a4ec-4b8f-ab8b-4013a6c55249",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X3AnhyoaKJWftNHpz8VFJV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 758,
+                "cache_read_input_tokens": 114625,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 758
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-23T23:13:51.412Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UJffSgHkD7tHsyqDfp1oEa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp69_mixed_llm_aa_error\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T23:01:47.727Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:13:50.524Z\\\", \\\"hypothesis\\\": \\\"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"error_analysis_script\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"mixed-LLM-9class\\\", \\\"seed\\\": \\\"42,123,456\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.279}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "27c6115b-75f3-4a3d-89a9-8472b64e3493",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp69_mixed_llm_aa_error\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T23:01:47.727Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:13:50.524Z\\\", \\\"hypothesis\\\": \\\"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"error_analysis_script\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"mixed-LLM-9class\\\", \\\"seed\\\": \\\"42,123,456\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.279}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp69_mixed_llm_aa_error\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:01:47.727Z\", \"updated_at\": \"2026-05-23T23:13:50.524Z\", \"hypothesis\": \"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\", \"spec\": {\"command\": \"error_analysis_script\", \"server\": \"westd-33183\", \"data_path\": \"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\", \"data_count\": 118, \"model_name\": \"mixed-LLM-9class\", \"seed\": \"42,123,456\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.279}}"
+              }
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UtHEDcH3WnFEs7nacLgzyy",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp69_mixed_llm_aa_error",
+                "field": "conclusion",
+                "value": "F1=0.504 is overwhelmingly recall-limited: avg 56.7 FN vs 0.3 FP per seed. Jailbreak precision 98% but recall only 29% (17-49% across seeds). Mixed-LLM 9-class on AA behaves like single-source VANILLA (not 9-class), suggesting strategy supervision is neutralized by LLM distributional noise. FITD unaffected (F1=0.997), DD moderately impacted (F1=0.818). Delta vs single-source: -0.468 F1.",
+                "project": "persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "7be0b7dd-1945-488c-b8a2-9b71447df68d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SJjESjUJPwm7JfypWxWCMy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 591,
+                "cache_read_input_tokens": 115383,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 591
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-23T23:13:59.415Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UtHEDcH3WnFEs7nacLgzyy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'F1=0.504 is overwhelmingly recall-limited: avg 56.7 FN vs 0.3 FP per seed. Jailbreak precision 98% but recall only 29% (17-49% across seeds). Mixed-LLM 9-class on AA behaves like single-source VANILLA (not 9-class), suggesting strategy supervision is neutralized by LLM distributional noise. FITD unaffected (F1=0.997), DD moderately impacted (F1=0.818). Delta vs single-source: -0.468 F1.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3907}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "2a4e298b-65b5-4ef8-99ea-e06dd94ea215",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'F1=0.504 is overwhelmingly recall-limited: avg 56.7 FN vs 0.3 FP per seed. Jailbreak precision 98% but recall only 29% (17-49% across seeds). Mixed-LLM 9-class on AA behaves like single-source VANILLA (not 9-class), suggesting strategy supervision is neutralized by LLM distributional noise. FITD unaffected (F1=0.997), DD moderately impacted (F1=0.818). Delta vs single-source: -0.468 F1.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3907}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'F1=0.504 is overwhelmingly recall-limited: avg 56.7 FN vs 0.3 FP per seed. Jailbreak precision 98% but recall only 29% (17-49% across seeds). Mixed-LLM 9-class on AA behaves like single-source VANILLA (not 9-class), suggesting strategy supervision is neutralized by LLM distributional noise. FITD unaffected (F1=0.997), DD moderately impacted (F1=0.818). Delta vs single-source: -0.468 F1.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.3907}}"
+              }
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QVuot8ESkmfSMCYNijdvDW",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp69_mixed_llm_aa_error",
+                "field": "conclusion",
+                "value": "success",
+                "project": "persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "b391fe3d-c6b9-4146-a459-4f3a915f5360",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BFUK4Wopp4Yym6HpcNvfSA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 482,
+                "cache_read_input_tokens": 115974,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 482
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-23T23:14:02.686Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QVuot8ESkmfSMCYNijdvDW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp69_mixed_llm_aa_error\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T23:01:47.727Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:14:02.438Z\\\", \\\"hypothesis\\\": \\\"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"error_analysis_script\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"mixed-LLM-9class\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5984}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "51ecaf53-e780-4923-a574-32d8f85bc40c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp69_mixed_llm_aa_error\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T23:01:47.727Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:14:02.438Z\\\", \\\"hypothesis\\\": \\\"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"error_analysis_script\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"mixed-LLM-9class\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5984}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp69_mixed_llm_aa_error\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:01:47.727Z\", \"updated_at\": \"2026-05-23T23:14:02.438Z\", \"hypothesis\": \"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\", \"spec\": {\"command\": \"error_analysis_script\", \"server\": \"westd-33183\", \"data_path\": \"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\", \"data_count\": 118, \"model_name\": \"mixed-LLM-9class\", \"seed\": \"42,123,456\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5984}}"
+              }
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VggrCq5e1FZVLspHzAhTnm",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp69_mixed_llm_aa_error",
+                "field": "metrics",
+                "value": {
+                  "mixed_llm_9class_aa_f1": 0.504,
+                  "mixed_llm_9class_aa_f1_std": 0.107,
+                  "avg_jb_recall": 0.292,
+                  "avg_jb_precision": 0.978,
+                  "avg_FN": 56.7,
+                  "avg_FP": 0.3,
+                  "delta_vs_single_source": -0.468,
+                  "mixed_llm_9class_dd_f1": 0.818,
+                  "mixed_llm_9class_fitd_f1": 0.997
+                },
+                "project": "persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "a4a72f6d-5872-4f2b-9a8b-660cbc6fb2a0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JgWTDHgj54mYV2Vd9cSNeK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 486,
+                "cache_read_input_tokens": 116456,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 486
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-23T23:14:08.564Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VggrCq5e1FZVLspHzAhTnm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp69_mixed_llm_aa_error\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T23:01:47.727Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:14:08.321Z\\\", \\\"hypothesis\\\": \\\"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"error_analysis_script\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"mixed-LLM-9class\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mixed_llm_9class_aa_f1\\\": 0.504, \\\"mixed_llm_9class_aa_f1_std\\\": 0.107, \\\"avg_jb_recall\\\": 0.292, \\\"avg_jb_precision\\\": 0.978, \\\"avg_FN\\\": 56.7, \\\"avg_FP\\\": 0.3, \\\"delta_vs_single_source\\\": -0.468, \\\"mixed_llm_9class_dd_f1\\\": 0.818, \\\"mixed_llm_9class_fitd_f1\\\": 0.997}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.628}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "82be4cd2-a030-497f-97ce-f48646bdecb4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp69_mixed_llm_aa_error\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T23:01:47.727Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:14:08.321Z\\\", \\\"hypothesis\\\": \\\"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"error_analysis_script\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"mixed-LLM-9class\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mixed_llm_9class_aa_f1\\\": 0.504, \\\"mixed_llm_9class_aa_f1_std\\\": 0.107, \\\"avg_jb_recall\\\": 0.292, \\\"avg_jb_precision\\\": 0.978, \\\"avg_FN\\\": 56.7, \\\"avg_FP\\\": 0.3, \\\"delta_vs_single_source\\\": -0.468, \\\"mixed_llm_9class_dd_f1\\\": 0.818, \\\"mixed_llm_9class_fitd_f1\\\": 0.997}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.628}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp69_mixed_llm_aa_error\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:01:47.727Z\", \"updated_at\": \"2026-05-23T23:14:08.321Z\", \"hypothesis\": \"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\", \"spec\": {\"command\": \"error_analysis_script\", \"server\": \"westd-33183\", \"data_path\": \"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\", \"data_count\": 118, \"model_name\": \"mixed-LLM-9class\", \"seed\": \"42,123,456\"}, \"conclusion\": \"success\", \"metrics\": {\"mixed_llm_9class_aa_f1\": 0.504, \"mixed_llm_9class_aa_f1_std\": 0.107, \"avg_jb_recall\": 0.292, \"avg_jb_precision\": 0.978, \"avg_FN\": 56.7, \"avg_FP\": 0.3, \"delta_vs_single_source\": -0.468, \"mixed_llm_9class_dd_f1\": 0.818, \"mixed_llm_9class_fitd_f1\": 0.997}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.628}}"
+              }
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AvZwrCxgEprwrBL3mCko4y",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp69_mixed_llm_aa_error",
+                "field": "status",
+                "value": "DONE",
+                "project": "persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "af719cfa-a619-4c59-8007-3dabd1b557dc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N6HDh4wUkVj34ccTKnmdEs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 779,
+                "cache_read_input_tokens": 116942,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 779
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-23T23:14:14.756Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AvZwrCxgEprwrBL3mCko4y",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3645}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "d15854b1-1693-400e-b357-a0eaa5f5d3d6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3645}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path', 'log_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.3645}}"
+              }
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CA78HN5V2oqehqVDwtP7Cy",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp69_mixed_llm_aa_error",
+                "field": "checkpoint_path",
+                "value": "N/A (analysis-only experiment)",
+                "project": "persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "92771731-678d-4851-851d-c4dd2880325f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BRnxcXG7ayLvGbtaYxLDPp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 219,
+                "cache_read_input_tokens": 117721,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 219
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-23T23:14:22.790Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CA78HN5V2oqehqVDwtP7Cy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp69_mixed_llm_aa_error\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T23:01:47.727Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:14:22.522Z\\\", \\\"hypothesis\\\": \\\"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"error_analysis_script\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"mixed-LLM-9class\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mixed_llm_9class_aa_f1\\\": 0.504, \\\"mixed_llm_9class_aa_f1_std\\\": 0.107, \\\"avg_jb_recall\\\": 0.292, \\\"avg_jb_precision\\\": 0.978, \\\"avg_FN\\\": 56.7, \\\"avg_FP\\\": 0.3, \\\"delta_vs_single_source\\\": -0.468, \\\"mixed_llm_9class_dd_f1\\\": 0.818, \\\"mixed_llm_9class_fitd_f1\\\": 0.997}, \\\"checkpoint_path\\\": \\\"N/A (analysis-only experiment)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6255}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "045ab367-f7b4-413e-b859-d67ab79f0ba6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp69_mixed_llm_aa_error\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T23:01:47.727Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:14:22.522Z\\\", \\\"hypothesis\\\": \\\"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"error_analysis_script\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"mixed-LLM-9class\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mixed_llm_9class_aa_f1\\\": 0.504, \\\"mixed_llm_9class_aa_f1_std\\\": 0.107, \\\"avg_jb_recall\\\": 0.292, \\\"avg_jb_precision\\\": 0.978, \\\"avg_FN\\\": 56.7, \\\"avg_FP\\\": 0.3, \\\"delta_vs_single_source\\\": -0.468, \\\"mixed_llm_9class_dd_f1\\\": 0.818, \\\"mixed_llm_9class_fitd_f1\\\": 0.997}, \\\"checkpoint_path\\\": \\\"N/A (analysis-only experiment)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6255}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp69_mixed_llm_aa_error\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:01:47.727Z\", \"updated_at\": \"2026-05-23T23:14:22.522Z\", \"hypothesis\": \"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\", \"spec\": {\"command\": \"error_analysis_script\", \"server\": \"westd-33183\", \"data_path\": \"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\", \"data_count\": 118, \"model_name\": \"mixed-LLM-9class\", \"seed\": \"42,123,456\"}, \"conclusion\": \"success\", \"metrics\": {\"mixed_llm_9class_aa_f1\": 0.504, \"mixed_llm_9class_aa_f1_std\": 0.107, \"avg_jb_recall\": 0.292, \"avg_jb_precision\": 0.978, \"avg_FN\": 56.7, \"avg_FP\": 0.3, \"delta_vs_single_source\": -0.468, \"mixed_llm_9class_dd_f1\": 0.818, \"mixed_llm_9class_fitd_f1\": 0.997}, \"checkpoint_path\": \"N/A (analysis-only experiment)\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6255}}"
+              }
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018MBW9tDJcddV8WXaUb74Cp",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp69_mixed_llm_aa_error",
+                "field": "log_path",
+                "value": "/root/persuasion_turn_jailbreak_detect/results/rebuttal/mixed_llm_error_analysis/",
+                "project": "persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "be719c70-d848-4740-9f8d-38563b948a9d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BRnxcXG7ayLvGbtaYxLDPp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 219,
+                "cache_read_input_tokens": 117721,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 219
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-23T23:14:23.978Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018MBW9tDJcddV8WXaUb74Cp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp69_mixed_llm_aa_error\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T23:01:47.727Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:14:23.738Z\\\", \\\"hypothesis\\\": \\\"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"error_analysis_script\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"mixed-LLM-9class\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mixed_llm_9class_aa_f1\\\": 0.504, \\\"mixed_llm_9class_aa_f1_std\\\": 0.107, \\\"avg_jb_recall\\\": 0.292, \\\"avg_jb_precision\\\": 0.978, \\\"avg_FN\\\": 56.7, \\\"avg_FP\\\": 0.3, \\\"delta_vs_single_source\\\": -0.468, \\\"mixed_llm_9class_dd_f1\\\": 0.818, \\\"mixed_llm_9class_fitd_f1\\\": 0.997}, \\\"checkpoint_path\\\": \\\"N/A (analysis-only experiment)\\\", \\\"log_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/rebuttal/mixed_llm_error_analysis/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5985}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "7385c231-6e84-4d9b-abc6-b7d60f971018",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp69_mixed_llm_aa_error\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T23:01:47.727Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:14:23.738Z\\\", \\\"hypothesis\\\": \\\"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"error_analysis_script\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"mixed-LLM-9class\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mixed_llm_9class_aa_f1\\\": 0.504, \\\"mixed_llm_9class_aa_f1_std\\\": 0.107, \\\"avg_jb_recall\\\": 0.292, \\\"avg_jb_precision\\\": 0.978, \\\"avg_FN\\\": 56.7, \\\"avg_FP\\\": 0.3, \\\"delta_vs_single_source\\\": -0.468, \\\"mixed_llm_9class_dd_f1\\\": 0.818, \\\"mixed_llm_9class_fitd_f1\\\": 0.997}, \\\"checkpoint_path\\\": \\\"N/A (analysis-only experiment)\\\", \\\"log_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/rebuttal/mixed_llm_error_analysis/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5985}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp69_mixed_llm_aa_error\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:01:47.727Z\", \"updated_at\": \"2026-05-23T23:14:23.738Z\", \"hypothesis\": \"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\", \"spec\": {\"command\": \"error_analysis_script\", \"server\": \"westd-33183\", \"data_path\": \"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\", \"data_count\": 118, \"model_name\": \"mixed-LLM-9class\", \"seed\": \"42,123,456\"}, \"conclusion\": \"success\", \"metrics\": {\"mixed_llm_9class_aa_f1\": 0.504, \"mixed_llm_9class_aa_f1_std\": 0.107, \"avg_jb_recall\": 0.292, \"avg_jb_precision\": 0.978, \"avg_FN\": 56.7, \"avg_FP\": 0.3, \"delta_vs_single_source\": -0.468, \"mixed_llm_9class_dd_f1\": 0.818, \"mixed_llm_9class_fitd_f1\": 0.997}, \"checkpoint_path\": \"N/A (analysis-only experiment)\", \"log_path\": \"/root/persuasion_turn_jailbreak_detect/results/rebuttal/mixed_llm_error_analysis/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5985}}"
+              }
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PFA84T27UzVKP2iVFhJWNb",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp69_mixed_llm_aa_error",
+                "field": "status",
+                "value": "DONE",
+                "project": "persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "5edf7e41-61a3-43f6-8bb7-bbdef6a6648a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R8vGH7tg2aidXZdSX1WoBn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1538,
+                "cache_read_input_tokens": 117940,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1538
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-23T23:14:28.504Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PFA84T27UzVKP2iVFhJWNb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp69_mixed_llm_aa_error\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T23:01:47.727Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:14:27.457Z\\\", \\\"hypothesis\\\": \\\"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"error_analysis_script\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"mixed-LLM-9class\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mixed_llm_9class_aa_f1\\\": 0.504, \\\"mixed_llm_9class_aa_f1_std\\\": 0.107, \\\"avg_jb_recall\\\": 0.292, \\\"avg_jb_precision\\\": 0.978, \\\"avg_FN\\\": 56.7, \\\"avg_FP\\\": 0.3, \\\"delta_vs_single_source\\\": -0.468, \\\"mixed_llm_9class_dd_f1\\\": 0.818, \\\"mixed_llm_9class_fitd_f1\\\": 0.997}, \\\"checkpoint_path\\\": \\\"N/A (analysis-only experiment)\\\", \\\"log_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/rebuttal/mixed_llm_error_analysis/\\\", \\\"completed_at\\\": \\\"2026-05-23T23:14:27.457Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4089}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "9d9742fa-d2f3-4cc0-b308-af68af0b2489",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp69_mixed_llm_aa_error\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T23:01:47.727Z\\\", \\\"updated_at\\\": \\\"2026-05-23T23:14:27.457Z\\\", \\\"hypothesis\\\": \\\"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"error_analysis_script\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\\\", \\\"data_count\\\": 118, \\\"model_name\\\": \\\"mixed-LLM-9class\\\", \\\"seed\\\": \\\"42,123,456\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mixed_llm_9class_aa_f1\\\": 0.504, \\\"mixed_llm_9class_aa_f1_std\\\": 0.107, \\\"avg_jb_recall\\\": 0.292, \\\"avg_jb_precision\\\": 0.978, \\\"avg_FN\\\": 56.7, \\\"avg_FP\\\": 0.3, \\\"delta_vs_single_source\\\": -0.468, \\\"mixed_llm_9class_dd_f1\\\": 0.818, \\\"mixed_llm_9class_fitd_f1\\\": 0.997}, \\\"checkpoint_path\\\": \\\"N/A (analysis-only experiment)\\\", \\\"log_path\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/rebuttal/mixed_llm_error_analysis/\\\", \\\"completed_at\\\": \\\"2026-05-23T23:14:27.457Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4089}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp69_mixed_llm_aa_error\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T23:01:47.727Z\", \"updated_at\": \"2026-05-23T23:14:27.457Z\", \"hypothesis\": \"Mixed-LLM 9-class ActorAttack F1=0.504±0.107 is primarily driven by false negatives on strategy-diverse attack subtypes rather than false positives, with per-strategy recall varying significantly—revealing that distributional heterogeneity from mixed-LLM training erodes the model's ability to generalize to diverse conversational strategies while preserving template-attack detection.\", \"spec\": {\"command\": \"error_analysis_script\", \"server\": \"westd-33183\", \"data_path\": \"/root/persuasion_turn_jailbreak_detect/results/exp16_balanced_ood_reeval.json\", \"data_count\": 118, \"model_name\": \"mixed-LLM-9class\", \"seed\": \"42,123,456\"}, \"conclusion\": \"success\", \"metrics\": {\"mixed_llm_9class_aa_f1\": 0.504, \"mixed_llm_9class_aa_f1_std\": 0.107, \"avg_jb_recall\": 0.292, \"avg_jb_precision\": 0.978, \"avg_FN\": 56.7, \"avg_FP\": 0.3, \"delta_vs_single_source\": -0.468, \"mixed_llm_9class_dd_f1\": 0.818, \"mixed_llm_9class_fitd_f1\": 0.997}, \"checkpoint_path\": \"N/A (analysis-only experiment)\", \"log_path\": \"/root/persuasion_turn_jailbreak_detect/results/rebuttal/mixed_llm_error_analysis/\", \"completed_at\": \"2026-05-23T23:14:27.457Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4089}}"
+              }
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇总：\n\n## exp69 Mixed-LLM ActorAttack Error Analysis 结论\n\n**F1=0.504 的根因是 recall 极低，不是 precision 问题：**\n\n| | Precision | Recall | Avg FP | Avg FN |\n|---|---|---|---|---|\n| Jailbreak | 97.8% | **29.2%** | 0.3 | **56.7** |\n\n- 几乎所有错误都是 **FN（漏检 jailbreak）**，FP 接近于零\n- Recall 在 seed 间差异巨大（17.5% ~ 48.8%），模型行为不稳定\n\n**关键对比：**\n- 单源 9-class AA F1 = 0.972（recall ~96%）→ 混合训练后 F1 = 0.504（recall ~29%），**delta = -0.468**\n- 混合训练的 9-class 在 AA 上的 recall 水平（29%）接近于单源 **vanilla**（无策略监督）的水平（1.3%），说明策略监督的增益被混合训练大幅削弱\n- 跨 OOD 对比：FITD 不受影响（F1=0.997），DD 中等影响（F1=0.818），**AA 受损最严重**\n\n**根因假设：**\nActorAttack 依赖 role-play 和 persona-switching 等风格化策略模式，这些模式在不同 LLM 之间表达差异大。混合训练引入的分布噪声破坏了模型对这些策略的判别能力。FITD 的 false information injection 模式更依赖内容而非风格，因此对 LLM 来源不敏感。\n\n输出文件在服务器 `results/rebuttal/mixed_llm_error_analysis/`（error_analysis.json + analysis_summary.md）。Registry 已更新为 DONE。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "uuid": "f5b7dc95-d9c1-4a36-9b49-0ca63e081614",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019wbYiQZxvJgeewuh8uJLf8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 755,
+                "cache_read_input_tokens": 119478,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 755
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇总：\n\n## exp69 Mixed-LLM ActorAttack Error Analysis 结论\n\n**F1=0.504 的根因是 recall 极低，不是 precision 问题：**\n\n| | Precision | Recall | Avg FP | Avg FN |\n|---|---|---|---|---|\n| Jailbreak | 97.8% | **29.2%** | 0.3 | **56.7** |\n\n- 几乎所有错误都是 **FN（漏检 jailbreak）**，FP 接近于零\n- Recall 在 seed 间差异巨大（17.5% ~ 48.8%），模型行为不稳定\n\n**关键对比：**\n- 单源 9-class AA F1 = 0.972（recall ~96%）→ 混合训练后 F1 = 0.504（recall ~29%），**delta = -0.468**\n- 混合训练的 9-class 在 AA 上的 recall 水平（29%）接近于单源 **vanilla**（无策略监督）的水平（1.3%），说明策略监督的增益被混合训练大幅削弱\n- 跨 OOD 对比：FITD 不受影响（F1=0.997），DD 中等影响（F1=0.818），**AA 受损最严重**\n\n**根因假设：**\nActorAttack 依赖 role-play 和 persona-switching 等风格化策略模式，这些模式在不同 LLM 之间表达差异大。混合训练引入的分布噪声破坏了模型对这些策略的判别能力。FITD 的 false information injection 模式更依赖内容而非风格，因此对 LLM 来源不敏感。\n\n输出文件在服务器 `results/rebuttal/mixed_llm_error_analysis/`（error_analysis.json + analysis_summary.md）。Registry 已更新为 DONE。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 705398,
+            "duration_api_ms": 686145,
+            "num_turns": 72,
+            "stop_reason": "end_turn",
+            "session_id": "45a9c279-8437-4ed0-b4aa-ed4816ba94ff",
+            "total_cost_usd": 3.1214954999999995,
+            "usage": {
+              "input_tokens": 52,
+              "cache_creation_input_tokens": 108392,
+              "cache_read_input_tokens": 3328001,
+              "output_tokens": 31109,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 108392,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 551,
+                  "cache_read_input_tokens": 119478,
+                  "cache_creation_input_tokens": 755,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 755
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1955,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00206,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 52,
+                "outputTokens": 31109,
+                "cacheReadInputTokens": 3328001,
+                "cacheCreationInputTokens": 108392,
+                "webSearchRequests": 0,
+                "costUSD": 3.1194355000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "5b784f40-3f40-43ee-a65d-ea3b15ad9e27"
+          },
+          "id": "event-000194"
+        }
+      ]
+    }
+  ]
+}

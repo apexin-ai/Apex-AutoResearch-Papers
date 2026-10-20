@@ -1,0 +1,28 @@
+paper_key: "Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology"
+title: "Foot In The Door: Understanding Large Language Model Jailbreaking via Cognitive Psychology"
+venue: "arXiv 2024"
+full_text_available: false
+analysis_level: "abstract_only"
+
+research:
+  baselines:
+    - 8 advanced LLMs (specific models unspecified in abstract)
+    - existing jailbreak techniques (implied)
+  metrics:
+    - {name: "jailbreak success rate", direction: "higher_better"}
+  datasets:
+    - {name: "harmful question set for 8 LLMs", size: "unknown"}
+  ablation_dimensions:
+    - cognitive consistency mechanisms
+    - progressive (multi-step) vs direct jailbreak
+    - Foot-in-the-Door technique stages
+  training_recipe: {info_available: false}
+  method_family: "cognitive psychology-inspired multi-turn jailbreak"
+
+positioning:
+  core_claim: "Multi-step jailbreaking inspired by the Foot-in-the-Door cognitive psychology technique achieves ~84% success rate across 8 LLMs by progressively guiding models toward cognitive coordination in an erroneous direction."
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

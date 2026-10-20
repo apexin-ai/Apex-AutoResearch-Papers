@@ -1,0 +1,9 @@
+Results at: westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp66_sharegpt_benign_adaptation.json
+
+Summary:
+N=0:  FPR=0.390, IID_F1=1.00, DD=1.00, AA=0.97, FITD=1.00
+N=5:  FPR=0.210, IID_F1=1.00, DD=0.95, AA=0.89, FITD=1.00
+N=10: FPR=0.075/0.155/0.085 (seeds 42/123/456), IID_F1=0.99, FITD=1.00
+N=15: FPR=0.095, IID_F1=1.00, DD=0.92, AA=0.87, FITD=1.00
+N=20: FPR=0.100, IID_F1=1.00, DD=0.93, AA=0.86, FITD=1.00
+N=25: FPR=0.01/0.01/0.06 (seeds 42/123/456), IID_F1>=0.99, FITD=1.00

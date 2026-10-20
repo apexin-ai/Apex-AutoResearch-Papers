@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "a661bfb43812a8d635a5",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "data topic matched benign",
+  "task_key": "worker_data_topic-matched-benign_20260517T125057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_topic-matched-benign_20260517T125057.log",
+    "occurrence": 1,
+    "bytes": 749671,
+    "sha256": "6cb9ad09078b580cf95681adb5688acb9e8260ecafdcc96ffa073d00f4299bdd"
+  },
+  "statistics": {
+    "messages": 490,
+    "user_turns": 0,
+    "tool_calls": 194,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 99,
+      "tool_call": 194,
+      "tool_result": 194
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 490,
+      "chunks": [
+        {
+          "path": "a661bfb43812a8d635a5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a661bfb43812a8d635a5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a661bfb43812a8d635a5-part-0003.json",
+          "message_count": 130
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-topic-matched-benign.md"
+}

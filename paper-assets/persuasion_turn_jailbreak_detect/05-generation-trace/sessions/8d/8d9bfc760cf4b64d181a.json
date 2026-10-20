@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d9bfc760cf4b64d181a",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper figure fig1 architecture",
+  "task_key": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_architecture_20260518T033455_result.json",
+    "occurrence": 1,
+    "bytes": 540,
+    "sha256": "4f0a916cc118a3932114de94bf922ad69903327f2ad8c6efe2a67c708938fc19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成完成。\n\n输出文件：\n- **PDF**: `figures/paper/fig1_architecture.pdf`\n- **PNG**: `figures/paper/fig1_architecture.png`\n- **生成脚本**: `figures/paper/gen_fig1_architecture.py`\n\n图表展示了 DisPeD 两阶段架构：上方 Treatment Pipeline（蓝色系，Persuasion-Aware DeBERTa + 8-class persuasion 橙色头 + jailbreak intent 绿色头），下方 Baseline Pipeline（灰色系，Vanilla DeBERTa），共享 Stage 2 的 Mean Pooling + Binary Classifier。两个 Stage 用虚线框分隔标注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-architecture.md"
+}

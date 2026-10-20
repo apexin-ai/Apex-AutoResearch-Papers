@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp15_roberta_large",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T08:12:49.170Z",
+    "updated_at": "2026-05-19T08:47:27.528Z",
+    "hypothesis": "RoBERTa-large (355M) vanilla will still underperform DAPT variants on ActorAttack OOD, demonstrating that DAPT value is independent of model capacity. If RoBERTa-large vanilla matches DAPT performance, then the difficulty threshold is a capacity effect rather than a representation quality effect.",
+    "spec": {
+      "command": "scripts/train_roberta_large_dapt.py + scripts/train_gru_roberta_large.py + scripts/eval_roberta_large.py",
+      "server": "westd-33183",
+      "data_path": "/root/persuasion_turn_jailbreak_detect/data/",
+      "data_count": "same as RoBERTa-base pipeline",
+      "model_name": "roberta-large (355M)",
+      "seed": "42, 123, 456",
+      "checkpoint_path": "checkpoints/roberta_large_*/",
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/exp15_roberta_large.json"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-19T08:47:27.701093+00:00",
+  "trigger": "update_registry"
+}

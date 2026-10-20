@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "0c8c9f1ac78ecab33578",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "data plan005 multi attack gen",
+  "task_key": "worker_data_plan005-multi-attack-gen_20260517T170605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_plan005-multi-attack-gen_20260517T170605.log",
+    "occurrence": 1,
+    "bytes": 948082,
+    "sha256": "20d4475b53fa4deb2e68c4e23d97d58ae31d61e775d3a87f220409bec17f7f10"
+  },
+  "statistics": {
+    "messages": 497,
+    "user_turns": 0,
+    "tool_calls": 203,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 203,
+      "tool_result": 203,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 497,
+      "chunks": [
+        {
+          "path": "0c8c9f1ac78ecab33578-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c8c9f1ac78ecab33578-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c8c9f1ac78ecab33578-part-0003.json",
+          "message_count": 137
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-plan005-multi-attack-gen.md"
+}

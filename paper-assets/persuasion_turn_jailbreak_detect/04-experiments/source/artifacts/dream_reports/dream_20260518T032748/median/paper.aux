@@ -1,0 +1,139 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{russinovich2024}
+\citation{decdelight2024}
+\citation{bullwinkel2025}
+\citation{llamaguard2024}
+\citation{wildguard2024}
+\citation{shieldgemma2024}
+\citation{su2026deepcontext}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{zeng2024pap}
+\citation{hagendorff2026}
+\citation{xiao2025howdollms}
+\citation{russinovich2024}
+\citation{decdelight2024}
+\citation{wei2024jailbroken}
+\citation{chao2023pair}
+\citation{bullwinkel2025}
+\citation{llamaguard2024}
+\citation{wildguard2024}
+\citation{shieldgemma2024}
+\citation{anthropic2024constitutional}
+\citation{su2026deepcontext}
+\citation{biid2025}
+\citation{gguard2025}
+\citation{safedream2025}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn jailbreak attacks.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Production safety classifiers.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Conversation-level detection.}{2}{section*.3}\protected@file@percent }
+\citation{habernal2016}
+\citation{tan2016winning}
+\citation{zeng2024pap}
+\citation{hagendorff2026}
+\citation{xiao2025howdollms}
+\citation{mann1988rst}
+\citation{pdtb2008}
+\citation{stolcke2000dialogue}
+\citation{perez2022red}
+\citation{ganguli2022red}
+\citation{mazeika2024harmbench}
+\citation{nasr2025adaptive}
+\citation{gururangan2018annotation}
+\citation{niven2019probing}
+\citation{poliak2018hypothesis}
+\citation{he2021debertav3}
+\@writefile{toc}{\contentsline {paragraph}{Computational persuasion and discourse analysis.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Red-teaming and evaluation.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Annotation artifacts.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Stage 1: Multi-Task Persuasion Fine-Tuning}{3}{subsection.3.1}\protected@file@percent }
+\citation{zhao2024wildchat}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 2: Conversation-Level Aggregation}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Early Detection}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Datasets}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training data.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Synthetic OOD attacks.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{WildChat hard negatives.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Baselines}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces TF-IDF + Logistic Regression performance. The lexical baseline achieves near-perfect detection across data sources, confirming inherent lexical separability between jailbreak and benign conversations. DisPeD{}'s value lies in dimensions where bag-of-words methods cannot follow: perturbation robustness and interpretability.}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:tfidf}{{1}{5}{TF-IDF + Logistic Regression performance. The lexical baseline achieves near-perfect detection across data sources, confirming inherent lexical separability between jailbreak and benign conversations. \ours {}'s value lies in dimensions where bag-of-words methods cannot follow: perturbation robustness and interpretability}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces IID detection performance (3-seed mean). DisPeD{} treatment shows zero variance across seeds; Baseline K=1 variance is $\pm $0.033. All methods converge at $K \geq 3$, confirming IID is a sanity check, not a differentiating evaluation.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:iid}{{2}{5}{IID detection performance (3-seed mean). \ours {} treatment shows zero variance across seeds; Baseline K=1 variance is $\pm $0.033. All methods converge at $K \geq 3$, confirming IID is a sanity check, not a differentiating evaluation}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Evaluation Protocol}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Lexical Baseline and IID Performance}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cross-Attack Zero-Shot Generalization}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:cross_attack}{{5.2}{5}{Cross-Attack Zero-Shot Generalization}{subsection.5.2}{}}
+\citation{gururangan2018annotation}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-attack zero-shot generalization. Models trained on Crescendo, evaluated on Deceptive Delight (DD) and FITD without retraining. The vanilla baseline collapses on DD (F1=0.28) while DisPeD{} maintains F1=1.0 (+72pp). FITD shows saturation for all methods, limiting generalization claims to attack types sufficiently different from training data.}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:cross}{{3}{6}{Cross-attack zero-shot generalization. Models trained on Crescendo, evaluated on Deceptive Delight (DD) and FITD without retraining. The vanilla baseline collapses on DD (F1=0.28) while \ours {} maintains F1=1.0 (+72pp). FITD shows saturation for all methods, limiting generalization claims to attack types sufficiently different from training data}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Ablation on label quality. Scrambled labels reduce DeBERTa persuasion accuracy from 79.6\% to 64.4\% (near chance for 9 classes) but downstream detection drops only 1.3pp IID and 6.5pp OOD. Binary persuasion-presence labels match the full 9-class model within 1pp. Both far exceed the vanilla baseline, confirming that persuasion-domain fine-tuning, not label precision, drives cross-attack robustness.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:ablation_labels}{{4}{6}{Ablation on label quality. Scrambled labels reduce DeBERTa persuasion accuracy from 79.6\% to 64.4\% (near chance for 9 classes) but downstream detection drops only 1.3pp IID and 6.5pp OOD. Binary persuasion-presence labels match the full 9-class model within 1pp. Both far exceed the vanilla baseline, confirming that persuasion-domain fine-tuning, not label precision, drives cross-attack robustness}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Ablation Studies}{6}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:ablations}{{5.3}{6}{Ablation Studies}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Scrambled-label control.}{6}{table.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Lambda sensitivity.}{6}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Temporal modeling.}{6}{section*.12}\protected@file@percent }
+\citation{nasr2025adaptive}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Robustness under adversarial perturbation (synonym substitution, restructuring, register shifting; BERTScore=0.92, lexical overlap=0.20). At full conversation, DisPeD{} shows zero degradation while the baseline drops 11.8pp. The TF-IDF gap is small at full conversation (1.3pp) but widens at K=1 early detection: DisPeD{} loses 2.6pp vs.\ 9.6pp for TF-IDF, a 7pp advantage.}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:perturbation}{{5}{7}{Robustness under adversarial perturbation (synonym substitution, restructuring, register shifting; BERTScore=0.92, lexical overlap=0.20). At full conversation, \ours {} shows zero degradation while the baseline drops 11.8pp. The TF-IDF gap is small at full conversation (1.3pp) but widens at K=1 early detection: \ours {} loses 2.6pp vs.\ 9.6pp for TF-IDF, a 7pp advantage}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Checkpoint sensitivity.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Adversarial Perturbation Robustness}{7}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Persuasion Strategy Trajectory Analysis}{7}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:trajectories}{{5.5}{7}{Persuasion Strategy Trajectory Analysis}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Strategy trajectory statistics. Crescendo exhibits monotonic escalation (mean strategy index 0.86$\to $5.64) with high slope (0.68) across all 8 strategy types. Benign conversations lack structured escalation (slope 0.12). FITD uses fewer strategies (4) reflecting its simpler escalation pattern.}}{8}{table.6}\protected@file@percent }
+\newlabel{tab:trajectories}{{6}{8}{Strategy trajectory statistics. Crescendo exhibits monotonic escalation (mean strategy index 0.86$\to $5.64) with high slope (0.68) across all 8 strategy types. Benign conversations lack structured escalation (slope 0.12). FITD uses fewer strategies (4) reflecting its simpler escalation pattern}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces False positive rate on WildChat hard negatives (high-drift benign conversations). DisPeD{} achieves lower FPR than the vanilla baseline but higher than TF-IDF. Some false positives arise from benign conversations with persuasion-like pragmatic patterns (persistent requests, escalating emotional language).}}{8}{table.7}\protected@file@percent }
+\newlabel{tab:wildchat}{{7}{8}{False positive rate on WildChat hard negatives (high-drift benign conversations). \ours {} achieves lower FPR than the vanilla baseline but higher than TF-IDF. Some false positives arise from benign conversations with persuasion-like pragmatic patterns (persistent requests, escalating emotional language)}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}False Positive Analysis}{8}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}DeepContext Proxy and LLM-as-Judge}{8}{subsection.5.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces DeepContext proxy comparison. BERT and DeBERTa vanilla encoders both collapse on OOD DD data (F1=0.26--0.28), confirming the gap is due to absence of persuasion fine-tuning, not encoder architecture. We could not reproduce DeepContext (no public code) and report a controlled proxy.}}{9}{table.8}\protected@file@percent }
+\newlabel{tab:deepcontext}{{8}{9}{DeepContext proxy comparison. BERT and DeBERTa vanilla encoders both collapse on OOD DD data (F1=0.26--0.28), confirming the gap is due to absence of persuasion fine-tuning, not encoder architecture. We could not reproduce DeepContext (no public code) and report a controlled proxy}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces LLM-as-judge zero-shot jailbreak detection. GPT-5.5 achieves perfect precision but very low recall ($\leq $29\%), with unparseable response rates of 30--47\%. Even under a charitable correction assuming all unparseable responses would have been correct, estimated F1 reaches 0.7--0.8, still well below DisPeD{} (F1=1.0). Single zero-shot prompt; chain-of-thought or few-shot prompting was not tested.}}{9}{table.9}\protected@file@percent }
+\newlabel{tab:llm_judge}{{9}{9}{LLM-as-judge zero-shot jailbreak detection. GPT-5.5 achieves perfect precision but very low recall ($\leq $29\%), with unparseable response rates of 30--47\%. Even under a charitable correction assuming all unparseable responses would have been correct, estimated F1 reaches 0.7--0.8, still well below \ours {} (F1=1.0). Single zero-shot prompt; chain-of-thought or few-shot prompting was not tested}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion and Limitations}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{What the method actually learns.}{9}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Synthetic OOD data.}{9}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{False positive rate.}{9}{section*.16}\protected@file@percent }
+\bibcite{russinovich2024}{{1}{2024}{{Russinovich et al.}}{{}}}
+\bibcite{decdelight2024}{{2}{2024}{{Deceptive Delight}}{{}}}
+\bibcite{bullwinkel2025}{{3}{2025}{{Bullwinkel et al.}}{{}}}
+\bibcite{su2026deepcontext}{{4}{2026}{{Su et al.}}{{}}}
+\bibcite{zeng2024pap}{{5}{2024}{{Zeng et al.}}{{}}}
+\bibcite{hagendorff2026}{{6}{2026}{{Hagendorff}}{{}}}
+\bibcite{xiao2025howdollms}{{7}{2025}{{Xiao et al.}}{{}}}
+\bibcite{he2021debertav3}{{8}{2021}{{He et al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Limited attack coverage.}{10}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Annotation artifact concern.}{10}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpretability validation.}{10}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{10}{section.7}\protected@file@percent }
+\bibcite{llamaguard2024}{{9}{2024}{{Llama Guard}}{{}}}
+\bibcite{wildguard2024}{{10}{2024}{{Han et al.}}{{}}}
+\bibcite{shieldgemma2024}{{11}{2024}{{Zellers et al.}}{{}}}
+\bibcite{anthropic2024constitutional}{{12}{2024}{{Anthropic}}{{}}}
+\bibcite{wei2024jailbroken}{{13}{2024}{{Wei et al.}}{{}}}
+\bibcite{chao2023pair}{{14}{2023}{{Chao et al.}}{{}}}
+\bibcite{habernal2016}{{15}{2016}{{Habernal and Gurevych}}{{}}}
+\bibcite{tan2016winning}{{16}{2016}{{Tan et al.}}{{}}}
+\bibcite{mann1988rst}{{17}{1988}{{Mann and Thompson}}{{}}}
+\bibcite{pdtb2008}{{18}{2008}{{Prasad et al.}}{{}}}
+\bibcite{stolcke2000dialogue}{{19}{2000}{{Stolcke et al.}}{{}}}
+\bibcite{perez2022red}{{20}{2022}{{Perez et al.}}{{}}}
+\bibcite{ganguli2022red}{{21}{2022}{{Ganguli et al.}}{{}}}
+\bibcite{mazeika2024harmbench}{{22}{2024}{{Mazeika et al.}}{{}}}
+\bibcite{nasr2025adaptive}{{23}{2025}{{Nasr et al.}}{{}}}
+\bibcite{gururangan2018annotation}{{24}{2018}{{Gururangan et al.}}{{}}}
+\bibcite{niven2019probing}{{25}{2019}{{Niven and Kao}}{{}}}
+\bibcite{poliak2018hypothesis}{{26}{2018}{{Poliak et al.}}{{}}}
+\bibcite{zhao2024wildchat}{{27}{2024}{{Zhao et al.}}{{}}}
+\bibcite{austin1962}{{28}{1962}{{Austin}}{{}}}
+\bibcite{searle1969}{{29}{1969}{{Searle}}{{}}}
+\bibcite{biid2025}{{30}{2025}{{BIID}}{{}}}
+\bibcite{gguard2025}{{31}{2025}{{G-Guard}}{{}}}
+\bibcite{safedream2025}{{32}{2025}{{SafeDream}}{{}}}
+\gdef \@abspage@last{12}

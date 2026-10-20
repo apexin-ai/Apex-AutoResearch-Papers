@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2836b4ed19743e0a9d43",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp45 benign curve",
+  "task_key": "worker_code_exp45_benign_curve_20260522T061525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp45_benign_curve_20260522T061525_result.json",
+    "occurrence": 1,
+    "bytes": 138,
+    "sha256": "fda855f2a23f208dc37786ad38b00e98ca6c456ee4d4116bc6773de6c2d76a3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training is running on westd-33183 (PID 40289, cuda:0). N=0 stage 1 (DeBERTa) has started. Will check back in ~4.5 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp45-benign-curve.md"
+}

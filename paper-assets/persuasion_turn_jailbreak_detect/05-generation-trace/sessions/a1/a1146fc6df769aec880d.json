@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1146fc6df769aec880d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp63 toxicchat fpfn",
+  "task_key": "worker_code_exp63_toxicchat_fpfn_20260522T181539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp63_toxicchat_fpfn_20260522T181539_result.json",
+    "occurrence": 1,
+    "bytes": 630,
+    "sha256": "1cd23a7bf20c0d23040df147aa27ed34463c2407285ad26b190129c853af82ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp63 完成，已注册。结论：**negative**。\n\n**核心数据：**\n- 9-class (MV): F1=0.652, FPR=0.510, P=0.589, R=0.730\n- MLM (MV): F1=0.853, FPR=0.167, P=0.839, R=0.868\n- MLM 正确 ∩ 9-class 错误：144 样本，其中 FP 占 64.6%（93/144），FN 占 35.4%（51/144）\n- 9-class 正确 ∩ MLM 错误：46 样本，FP/FN 各占 50%\n\n9-class 的 FPR 极高（0.510），FP 确实是更大的错误来源（64.6%），但未达到 >70% 的假设阈值——FN（35.4%）也是显著的错误贡献者，说明 9-class DAPT 的性能退化是 FP 和 FN 的混合问题，而非单一 FP 主导。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp63-toxicchat-fpfn.md"
+}

@@ -1,0 +1,1 @@
+DisPeD: 13.12±1.61ms, 76.19 conv/s, 868MB, 186.73M params. Qwen3-8B 3-shot: 318.53±26.80ms, 3.14 conv/s, 16096MB, 8.19B params. Speedup: 24.3x. Server results at /root/persuasion_turn_jailbreak_detect/results/exp46_inference_efficiency.json

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "3c40c7395e5fcfba5862",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "eval exp8 mhj human data v2",
+  "task_key": "worker_eval_exp8-mhj-human-data-v2_20260518T162824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp8-mhj-human-data-v2_20260518T162824.log",
+    "occurrence": 1,
+    "bytes": 883371,
+    "sha256": "7df65087cf9d5e7d803dc2047c5f95f14c66c082a11b0ab314874a8f51741b3c"
+  },
+  "statistics": {
+    "messages": 388,
+    "user_turns": 0,
+    "tool_calls": 143,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 98,
+      "tool_call": 143,
+      "tool_result": 143,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 388,
+      "chunks": [
+        {
+          "path": "3c40c7395e5fcfba5862-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3c40c7395e5fcfba5862-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3c40c7395e5fcfba5862-part-0003.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-exp8-mhj-human-data-v2.md"
+}

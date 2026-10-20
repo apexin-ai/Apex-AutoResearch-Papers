@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "847947162934970157b6",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp15c disk fix rerun",
+  "task_key": "worker_code_exp15c-disk-fix-rerun_20260519T113115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp15c-disk-fix-rerun_20260519T113115_result.json",
+    "occurrence": 1,
+    "bytes": 652,
+    "sha256": "75794ce81c5bd6edea0e4b785ce6d744adcbceee0adba462127c699c34300ec7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n1. **释放空间**：将 15G 旧 checkpoint（exp1/mf1/plan 系列等）移到 `/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints_archive/`，删除 exp15c 失败残留。根分区从 100% → 47%（16G 可用）。\n2. **修改脚本**：`CKPT_ROOT` 改为 `/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/`，MLM encoder 和 GRU checkpoint 均写入新路径，结果 JSON 仍存原路径。\n3. **重跑**：已通过 `submit_training_job` 提交，tmux session `exp15c_roberta_large_mlm`，cuda:0。\n4. **Registry**：已更新 spec（含新 checkpoint_path）和 hypothesis。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp15c-disk-fix-rerun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6debfa2ea3b10307db3e",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "ops data archive",
+  "task_key": "worker_ops_data-archive_20260525T204422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_data-archive_20260525T204422_result.json",
+    "occurrence": 1,
+    "bytes": 1659,
+    "sha256": "9ad5f9c93087a2de3a7e719faccabfbb0848a19a8c09545f77d8d7ee023adf82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`du -shL` 对 data/paper/results 返回 0，因为它们指向的是已被 code/project 统计过的同一目录。这是正确的——`du` 默认不重复统计已计数的 inode。逻辑数据量是对的。\n\n归档完成。汇报如下：\n\n---\n\n## 归档结果\n\n**归档路径**: `/root/persuasion_turn_jailbreak_detect_archive/`\n\n**目录结构**（全部符号链接，磁盘新增 ≈ 0）:\n\n| 子目录 | 链接目标 | 逻辑大小 |\n|--------|---------|----------|\n| `code/project` | 整个项目目录 | 17G |\n| `checkpoints/all_checkpoints` | 24 个实验 checkpoint（exp26/27/36/59/70/lora/mixed/plan_016v2） | 17G |\n| `results/experiment_results` | ~200+ 实验结果文件 (json/txt/log) | 13M |\n| `results/logs` | 训练日志 | 1.2M |\n| `data/project_data` | 自定义数据集（train/val/test splits, exp42-52 数据等） | 554M |\n| `paper/latex_source` | LaTeX 源码 + main.pdf + .bib | 1.3M |\n| `paper/figures_root` | figures/paper/ 下的图表 PDF/PNG | 1.1M |\n| `paper/figure_scripts/` | 3 个绘图脚本（plot_fig2, exp50_figure_beautify, fig4_svd） | ~20K |\n\n**归档总大小**: 0（纯符号链接，无额外磁盘占用）\n\n**磁盘现状**: 30G 总量，26G 已用，**4.2G 剩余**\n\n**tar.gz 可行性**: 不可行。项目实际 17G（checkpoints 占 17G），即使压缩后也远超 4.2G 剩余空间。如需打包归档，建议：\n1. 只打包非 checkpoint 部分（~570M，压缩后约 200-300M），checkpoint 单独处理\n2. 或挂载外部存储后再 tar\n\n**其他说明**:\n- 无 wandb 本地目录\n- 无 .git 目录\n- 无 .npy 文件\n- 绘图脚本已包含"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-data-archive.md"
+}

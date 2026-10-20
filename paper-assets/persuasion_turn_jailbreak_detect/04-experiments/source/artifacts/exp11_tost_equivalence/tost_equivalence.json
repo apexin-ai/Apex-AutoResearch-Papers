@@ -1,0 +1,177 @@
+{
+  "method": "TOST equivalence test (paired, seed-level macro F1)",
+  "delta": 0.05,
+  "seeds": [
+    "42",
+    "123",
+    "456"
+  ],
+  "per_seed_f1": {
+    "DD OOD Full": {
+      "9class": {
+        "42": 1.0,
+        "123": 1.0,
+        "456": 0.9903618394184432
+      },
+      "binary": {
+        "42": 1.0,
+        "123": 1.0,
+        "456": 1.0
+      },
+      "scrambled": {
+        "42": 0.9903618394184432,
+        "123": 1.0,
+        "456": 1.0
+      },
+      "jb_mlm": {
+        "42": 1.0,
+        "123": 0.9902277432712215,
+        "456": 0.7512177390039985
+      }
+    },
+    "ActorAttack Full": {
+      "9class": {
+        "42": 0.9903618394184432,
+        "123": 0.9349555083077408,
+        "456": 0.9903618394184432
+      },
+      "binary": {
+        "42": 0.9808503732554366,
+        "123": 0.9903618394184432,
+        "456": 1.0
+      },
+      "scrambled": {
+        "42": 0.8912776412776413,
+        "123": 0.9903618394184432,
+        "456": 0.9714585181004596
+      },
+      "jb_mlm": {
+        "42": 0.9714585181004596,
+        "123": 0.9252454862210959,
+        "456": 0.7836450311697836
+      }
+    }
+  },
+  "tost_results": [
+    {
+      "comparison": "9class vs scrambled",
+      "dataset": "DD OOD Full",
+      "mean_diff": 0.0,
+      "se": 0.005564594606254632,
+      "p_lower": 0.006080209802161003,
+      "p_upper": 0.006080209802161003,
+      "p_tost": 0.006080209802161003,
+      "ci_90": [
+        -0.016248536010777637,
+        0.016248536010777637
+      ],
+      "equivalent": true,
+      "ci_within_margin": true
+    },
+    {
+      "comparison": "9class vs scrambled",
+      "dataset": "ActorAttack Full",
+      "mean_diff": 0.020860396116027708,
+      "se": 0.044608308319662976,
+      "p_lower": 0.1265536272318002,
+      "p_upper": 0.29033366957428863,
+      "p_tost": 0.29033366957428863,
+      "ci_90": [
+        -0.10939522094136127,
+        0.1511160131734167
+      ],
+      "equivalent": false,
+      "ci_within_margin": false
+    },
+    {
+      "comparison": "9class vs binary",
+      "dataset": "DD OOD Full",
+      "mean_diff": -0.003212720193852251,
+      "se": 0.0032127201938522516,
+      "p_lower": 0.0023410021200917803,
+      "p_upper": 0.0018126676653486568,
+      "p_tost": 0.0023410021200917803,
+      "ci_90": [
+        -0.012593816833612046,
+        0.006168376445907545
+      ],
+      "equivalent": true,
+      "ci_within_margin": true
+    },
+    {
+      "comparison": "9class vs binary",
+      "dataset": "ActorAttack Full",
+      "mean_diff": -0.018511008509750848,
+      "se": 0.01925812100115381,
+      "p_lower": 0.12182657560267518,
+      "p_upper": 0.03536677099845299,
+      "p_tost": 0.12182657560267518,
+      "ci_90": [
+        -0.0747444441378272,
+        0.037722427118325505
+      ],
+      "equivalent": false,
+      "ci_within_margin": false
+    },
+    {
+      "comparison": "9class vs jb_mlm",
+      "dataset": "DD OOD Full",
+      "mean_diff": 0.08297211904774109,
+      "se": 0.07813693124550607,
+      "p_lower": 0.11545195767775332,
+      "p_upper": 0.6429634415730396,
+      "p_tost": 0.6429634415730396,
+      "ci_90": [
+        -0.145186593482227,
+        0.31113083157770915
+      ],
+      "equivalent": false,
+      "ci_within_margin": false
+    },
+    {
+      "comparison": "9class vs jb_mlm",
+      "dataset": "ActorAttack Full",
+      "mean_diff": 0.0784433838844294,
+      "se": 0.06419159533844407,
+      "p_lower": 0.09168793624258294,
+      "p_upper": 0.6494938850620909,
+      "p_tost": 0.6494938850620909,
+      "ci_90": [
+        -0.10899514888372863,
+        0.2658819166525874
+      ],
+      "equivalent": false,
+      "ci_within_margin": false
+    },
+    {
+      "comparison": "scrambled vs binary",
+      "dataset": "DD OOD Full",
+      "mean_diff": -0.003212720193852251,
+      "se": 0.0032127201938522516,
+      "p_lower": 0.0023410021200917803,
+      "p_upper": 0.0018126676653486568,
+      "p_tost": 0.0023410021200917803,
+      "ci_90": [
+        -0.012593816833612046,
+        0.006168376445907545
+      ],
+      "equivalent": true,
+      "ci_within_margin": true
+    },
+    {
+      "comparison": "scrambled vs binary",
+      "dataset": "ActorAttack Full",
+      "mean_diff": -0.03937140462577856,
+      "se": 0.026418326960550846,
+      "p_lower": 0.36318720197999554,
+      "p_upper": 0.03868739250365467,
+      "p_tost": 0.36318720197999554,
+      "ci_90": [
+        -0.11651253840765707,
+        0.03776972915609995
+      ],
+      "equivalent": false,
+      "ci_within_margin": false
+    }
+  ]
+}

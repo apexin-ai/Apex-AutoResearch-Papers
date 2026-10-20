@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb3f801522266a8b8fa1",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval cross llm check and eval",
+  "task_key": "worker_eval_cross-llm-check-and-eval_20260519T071226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cross-llm-check-and-eval_20260519T071226_result.json",
+    "occurrence": 1,
+    "bytes": 1732,
+    "sha256": "87c207929568992235c7eb5c75ff11056c19c3162e186256c8b62e75b0031605"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。结果如下：\n\n## 跨 LLM 验证结果\n\n### 数据生成统计\n| 数据集 | 总数 | 格式 |\n|--------|------|------|\n| DD jailbreak (Llama) | 50 | 多轮对话 JSONL |\n| AA jailbreak (Llama) | 50 | 多轮对话 JSONL |\n| Benign (Llama) | 50 | 多轮对话 JSONL |\n\n### 推理结果（Macro F1, mean±std, 3 seeds）\n\n| Variant | DD K=1 | DD K=3 | DD Full | AA K=1 | AA K=3 | AA Full |\n|---------|--------|--------|---------|--------|--------|---------|\n| vanilla | .170±.047 | .242±.037 | .261±.018 | .248±.017 | .242±.037 | .261±.018 |\n| jb_mlm | .332±.002 | .333±.000 | .282±.073 | .316±.011 | .330±.002 | .368±.049 |\n| 9class | .312±.021 | .351±.018 | .433±.057 | .265±.019 | .266±.036 | .321±.050 |\n\n### Qwen vs Llama 对比（DD Full）\n\n| Variant | Qwen DD Full | Llama DD Full | Gap |\n|---------|-------------|---------------|-----|\n| vanilla | 0.312 | 0.261 | **-0.051** |\n| jb_mlm | 0.914 | 0.282 | **-0.632** |\n| 9class | 0.997 | 0.433 | **-0.564** |\n\n### 结论\n\n**DAPT 优势在 Llama 数据上完全崩溃。** \n\n- 所有 variant 在 Llama 数据上的 F1 都接近 0.333（即全预测同一类别，等同随机水平）\n- jb_mlm 从 Qwen 上的 0.914 暴跌至 0.282（-0.632），9class 从 0.997 跌至 0.433（-0.564）\n- 说明在 Qwen 数据上训练的检测器严重过拟合了 Qwen 的生成风格，无法泛化到 Llama 的文本分布\n- 这对论文是重要发现：当前方法的跨 LLM 泛化能力极弱，DAPT 带来的增益几乎全来自对训练时 LLM 文本风格的记忆，而非学到了攻击的语义结构\n\n结果已保存至 `/root/persuasion_turn_jailbreak_detect/results/cross_llm_eval.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cross-llm-check-and-eval.md"
+}

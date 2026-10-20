@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9fa165606ecc04fa9df",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp45 multiseed n10",
+  "task_key": "worker_code_exp45_multiseed_n10_20260522T083802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp45_multiseed_n10_20260522T083802_result.json",
+    "occurrence": 1,
+    "bytes": 860,
+    "sha256": "60bc2223205c1053f59709f6fca43c4de1c2515c229d448f586341dad75d75a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。**三 seed N=10 汇总：**\n\n| Metric | Seed 42 | Seed 123 | Seed 456 | Mean ± Std |\n|--------|---------|----------|----------|------------|\n| WC FPR | 0.000 | 0.000 | 0.000 | **0.000 ± 0.000** |\n| IID F1 | 1.000 | 1.000 | 1.000 | **1.000 ± 0.000** |\n| DD F1 | 1.000 | 1.000 | 1.000 | **1.000 ± 0.000** |\n| AA F1 | 1.000 | 0.971 | 0.971 | **0.981 ± 0.016** |\n| FITD F1 | 1.000 | 1.000 | 1.000 | **1.000 ± 0.000** |\n\n结论：N=10 结果 multi-seed 稳健。FPR 三个 seed 均为 0%，DD/FITD F1 均为完美 1.0。唯一的微小波动在 AA F1（seed 123/456 各漏检 3 个 ActorAttack 样本，AA recall=96.25%），但 F1 仍 >0.97。\n\n产出文件：\n- 服务器：`results/exp45_benign_n10_seed{123,456}.json` + `results/exp45_benign_n10_multiseed_summary.json`\n- 本地 artifact：`art_20260522_29ae86`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp45-multiseed-n10.md"
+}

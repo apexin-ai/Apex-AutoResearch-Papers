@@ -1,0 +1,220 @@
+meta:
+  venue: EMNLP 2026
+  track: LLM Security / Discourse and Pragmatics
+  submission_system: ARR May 2026 cycle
+  template: acl2023
+  template_note: "EMNLP 2026 uses ARR; ACL 2023+ style files apply."
+  page_limit: 8
+  deadline: "2026-05-25"
+  core_claim: >
+    Systematic ablation reveals that domain-adaptive continued pretraining on
+    jailbreak conversation text (even MLM without classification labels) bridges
+    the entire +72pp OOD gap (vanilla F1=0.28 → MLM F1=1.0). Classification
+    supervision, label quality, label granularity, temporal modeling, and loss
+    weighting are all non-factors. The persuasion taxonomy's sole surviving
+    value is interpretability via strategy trajectory analysis.
+  created_at: "2026-05-18T00:00:00Z"
+  updated_at: "2026-05-18T00:00:00Z"
+  reframe: "D019 — MLM control falsified persuasion-aware claim"
+  title: "What Makes Multi-Turn Jailbreaks Detectable? Domain Exposure Bridges the Cross-Attack Gap"
+
+paper_outline:
+  - section: abstract
+    word_budget: 220
+    core_bullets:
+      - "Problem: Multi-turn jailbreaks distribute adversarial intent across benign turns; vanilla semantic temporal modeling collapses on unseen attack types (F1=0.28 on DD)"
+      - "Approach: Systematic ablation decomposing what enables cross-attack generalization — we expected persuasion-specific classification to be key"
+      - "Surprise finding: MLM continued pretraining on jailbreak conversation text (no classification labels) bridges the entire +72pp OOD gap (F1=1.0)"
+      - "Evidence hierarchy: vanilla (0.28) < MLM-only (1.0) = scrambled (0.99) = binary (0.99) = 9-class (1.0)"
+      - "Persuasion taxonomy repositioned as interpretability tool (distinct strategy trajectories per attack type), not detection driver"
+      - "Additional: zero perturbation degradation, GPT-5.5 judge F1=0.19-0.45"
+    dependencies: [experiments, method, introduction]
+
+  - section: introduction
+    word_budget: 1200
+    core_bullets:
+      - "Hook: Multi-turn jailbreaks distribute adversarial intent across benign turns, defeating per-turn safety filters and content-level reasoning"
+      - "Gap: What representation properties enable cross-attack generalization? Vanilla encoders fail catastrophically (F1=0.28 on unseen DD). LLM judges (GPT-5.5 F1=0.19-0.45) cannot detect process-level manipulation. No work systematically decomposes what makes the OOD gap bridgeable."
+      - "Our angle: We hypothesized persuasion-specific classification would be key. Systematic ablation falsified this: MLM continued pretraining without any labels achieves F1=1.0 on unseen attacks. Domain exposure, not task-specific supervision, is the mechanism."
+      - "Evidence hierarchy: vanilla (0.28) < MLM-only (1.0) = scrambled (0.99) = binary (0.99) = 9-class (1.0)"
+      - "Contributions rewritten: (1) Systematic decomposition identifying domain exposure as mechanism, (2) MLM control as definitive causal test, (3) Persuasion taxonomy repositioned as interpretability layer"
+    dependencies: [experiments]
+    citation_hints:
+      - "Li et al. 2024 (multi-turn human jailbreaks)"
+      - "Bullwinkel et al. 2025 (representation engineering)"
+      - "Gururangan et al. 2020 (DAPT)"
+      - "DeepContext 2026"
+    figures: [fig1_architecture]
+    registry_refs: [plan_006_cross_attack_clean, plan_017_mlm_control, plan_004_perturbation_eval, plan_012_gpt55_judge]
+
+  - section: related_work
+    word_budget: 1000
+    core_bullets:
+      - "Multi-turn jailbreak attacks: Crescendo, FITD, DD, ActorAttack, PAIR. Persuasion is systematic (PAP, Hagendorff). Wei et al. taxonomy."
+      - "Multi-turn defenses: DeepContext, BIID, G-Guard, SafeDream. All lack grounding in what makes representations transfer."
+      - "Production safety systems: Llama Guard, ShieldGemma, WildGuard, Constitutional Classifiers. Per-turn, no trajectory modeling."
+      - "Domain-adaptive pretraining and multi-task learning: Gururangan 2020 DAPT, Phang 2018 STILTs, Caruana 1997 MTL, Liu 2019 MT-DNN, Howard & Ruder 2018 ULMFiT. DisPeD's fine-tuning as domain-adaptive approach — MLM control confirms this framing."
+      - "Discourse and persuasion: RST, PDTB, dialogue acts, Speech Act Theory, computational persuasion."
+      - "Dataset artifacts and adaptive attacks."
+    dependencies: [introduction]
+
+  - section: method
+    word_budget: 1400
+    core_bullets:
+      - "Problem formulation: binary classification over user turn prefixes"
+      - "Base pipeline: DeBERTa-v3-base encoder → BiGRU aggregation → MLP classifier"
+      - "Variant 1 (full model): Multi-task fine-tuning with 9-class persuasion + binary intent. L = L_strategy + 0.3 * L_intent"
+      - "Variant 2 (scrambled): Same architecture, randomly permuted strategy labels"
+      - "Variant 3 (binary): Collapse 9-class to persuasion-present/absent"
+      - "Variant 4 (MLM): Continued pretraining with 15% masking on same training conversations, no classification heads"
+      - "Variant 5 (vanilla): Unfine-tuned DeBERTa encoder (control)"
+      - "Design rationale: ablation-centric structure — progressively strip components to isolate mechanism"
+      - "9-class taxonomy description retained for interpretability analysis"
+    dependencies: []
+    figures: [fig1_architecture]
+
+  - section: experiments
+    word_budget: 2800
+    core_bullets:
+      - "Setup: 250 Crescendo + 250 benign (train), 80 FITD + 80 DD (OOD), 76 IID test, 76 perturbed"
+      - "NEW main comparison table: Evidence hierarchy — vanilla, MLM, scrambled, binary, 9-class × K values. Core story: vanilla (0.28) < MLM (1.0) = all classification variants"
+      - "Cross-attack generalization: MLM F1=1.0 on DD across all K, matching 9-class. Vanilla collapses to 0.28. TF-IDF=0.944."
+      - "Ablation reframed: NOT 'which component matters' but 'systematic decomposition reveals domain exposure as mechanism'"
+      - "MLM IID results: K1=0.96, K2=0.974, K3=0.987, K5=1.0, Full=1.0 (slightly below 9-class at early K, but matches at K≥5)"
+      - "Perturbation robustness: Treatment 0pp, Baseline -11.8pp, TF-IDF -1.3pp"
+      - "LLM judge: GPT-5.5 F1=0.19-0.45, Qwen3-8B F1=0.0-0.15"
+      - "Strategy trajectory analysis: interpretability contribution, NOT detection mechanism"
+      - "Honest acknowledgments: TF-IDF=0.944, MLM perturbation robustness not yet tested"
+    dependencies: []
+    registry_refs:
+      - plan_017_mlm_control
+      - plan_006_cross_attack_clean
+      - plan_002_clean_training
+      - plan_002_seed456
+      - plan_002_seed123
+      - plan_004_perturbation_eval
+      - plan_013_none_collapse
+      - plan_015_dd_eval
+      - plan_003_scrambled_ablation
+      - plan_012_gpt55_judge
+      - plan_012_llm_judge_qwen
+      - plan_008_strategy_transition
+    tables: [tab1_evidence_hierarchy, tab2_cross_attack, tab3_perturbation, tab4_llm_judge]
+    figures: [fig2_cross_attack_bar, fig3_strategy_heatmap]
+
+  - section: conclusion
+    word_budget: 400
+    core_bullets:
+      - "Core takeaway: Domain exposure, not task-specific supervision, bridges the cross-attack gap"
+      - "MLM continued pretraining on jailbreak conversation text is sufficient (F1=1.0 on unseen DD)"
+      - "Persuasion taxonomy → interpretability tool providing distinct strategy trajectories, not detection mechanism"
+      - "Limitations: (1) Small dataset, (2) LLM-generated conversations, (3) Only tested jailbreak-domain MLM — unclear if arbitrary-domain MLM works, (4) MLM perturbation robustness not tested, (5) Only persuasion-mediated attacks in scope"
+      - "Future: test cross-domain MLM, larger datasets, human-authored attacks, integration with production systems"
+    dependencies: [experiments, method]
+
+visualization_plan:
+  - fig_id: fig1_architecture
+    type: conceptual
+    tool: matplotlib
+    description: "Pipeline showing 5 variants: full model (9-class+intent), scrambled, binary, MLM-only, vanilla. Highlight that MLM (no classification) matches full model on OOD."
+    placement: method
+    aspect_ratio: "16:9"
+    data_source: "manual"
+    narrative_intent: "Show that the pipeline is identical across variants except the Stage-1 training objective, making the comparison controlled"
+    design_notes: "Consider side-by-side or stacked layout showing shared BiGRU+MLP stage and varying Stage-1"
+
+  - fig_id: fig2_cross_attack_bar
+    type: statistical
+    tool: matplotlib
+    description: "Grouped bar chart: F1 for all 5 variants + TF-IDF across IID and DD-OOD. Key visual: vanilla collapse (0.28) vs MLM=9-class=1.0."
+    placement: experiments
+    aspect_ratio: "4:3"
+    data_source: "registry: plan_006_cross_attack_clean, plan_017_mlm_control, plan_002_clean_training"
+    narrative_intent: "Visually demonstrate the evidence hierarchy and that MLM matches classification variants"
+
+  - fig_id: fig3_strategy_heatmap
+    type: statistical
+    tool: matplotlib
+    description: "3-panel strategy transition heatmaps. Repositioned as interpretability contribution."
+    placement: experiments
+    aspect_ratio: "3:1"
+    data_source: "registry: plan_008_strategy_transition"
+    narrative_intent: "Show that persuasion taxonomy provides interpretable strategy signatures even though it does not drive detection"
+
+table_plan:
+  - table_id: tab1_evidence_hierarchy
+    caption: "Evidence hierarchy for cross-attack generalization. All variants use the same Stage-2 pipeline (BiGRU + MLP). MLM continued pretraining without classification labels matches the full 9-class model, establishing domain exposure as the mechanism."
+    placement: experiments
+    type: ablation
+    columns: [Variant, DD-K1, DD-K2, DD-K3, DD-K5, DD-Full, IID-Full]
+    rows: ["9-class (full model)", "Binary (2-class)", "Scrambled labels", "MLM-only (no labels)", "Vanilla DeBERTa"]
+    data_source: "registry: plan_006, plan_013, plan_003, plan_017, plan_015"
+    notes: "Order rows by DD-Full descending. Bold MLM row to highlight key finding."
+
+  - table_id: tab2_cross_attack
+    caption: "Cross-attack generalization (F1) at multiple prefix lengths. IID: 3-seed mean±std. OOD: seed 42."
+    placement: experiments
+    type: comparison
+    columns: [Method, K1, K2, K3, K5, Full]
+    rows: ["9-class (ours)", "MLM-only", "Vanilla DeBERTa", "TF-IDF LR"]
+    data_source: "registry: plan_006, plan_017, plan_002"
+
+  - table_id: tab3_perturbation
+    caption: "Robustness under adversarial paraphrasing."
+    placement: experiments
+    type: comparison
+    columns: [Method, Original, Perturbed, "Delta (pp)"]
+    data_source: "registry: plan_004"
+    notes: "MLM perturbation not yet tested — note in text"
+
+  - table_id: tab4_llm_judge
+    caption: "LLM-as-judge zero-shot detection."
+    placement: experiments
+    type: comparison
+    columns: [Method, K2, K3, K5, Full, Unparseable]
+    data_source: "registry: plan_012_gpt55_judge, plan_012_llm_judge_qwen"
+
+literature_strategy:
+  citation_budget: 43
+  note: "Add Howard & Ruder 2018 ULMFiT to DAPT cluster. Existing 39+ entries remain."
+  micro_clusters:
+    - cluster_name: production_safety_systems
+      target_count: 5
+      verified_count: 5
+    - cluster_name: multi_turn_defenses
+      target_count: 5
+      verified_count: 5
+    - cluster_name: discourse_analysis
+      target_count: 5
+      verified_count: 5
+    - cluster_name: computational_persuasion
+      target_count: 4
+      verified_count: 4
+    - cluster_name: jailbreak_attacks_taxonomies
+      target_count: 9
+      verified_count: 9
+    - cluster_name: red_teaming
+      target_count: 4
+      verified_count: 4
+    - cluster_name: annotation_artifacts
+      target_count: 4
+      verified_count: 4
+    - cluster_name: adaptive_attacks
+      target_count: 2
+      verified_count: 2
+    - cluster_name: technical_foundation
+      target_count: 1
+      verified_count: 1
+    - cluster_name: domain_adaptive_pretraining
+      target_count: 5
+      verified_count: 4
+      must_cite: ["gururangan2020dontstop", "caruana1997multitask", "phang2018stilts", "liu2019mtdnn", "howard2018ulmfit"]
+      gap_note: "Need to add Howard & Ruder 2018 ULMFiT"
+
+writing_order:
+  - experiments
+  - method
+  - introduction
+  - related_work
+  - abstract
+  - conclusion

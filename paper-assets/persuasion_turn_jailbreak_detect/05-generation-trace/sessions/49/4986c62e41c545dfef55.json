@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4986c62e41c545dfef55",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "verify crescendo status check",
+  "task_key": "worker_verify_crescendo-status-check_20260517T124535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_crescendo-status-check_20260517T124535_result.json",
+    "occurrence": 1,
+    "bytes": 1542,
+    "sha256": "ecc2f91e235fd22a3ef086f45edb885862635ef4c9a81f0ab73447ca1646c4a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### Crescendo 生成状态：已完成 ✓\n\n| 指标 | 结果 |\n|------|------|\n| **进度** | 250/250 (part1: 128, part2: 122) |\n| **GPU** | 4x H800 全部空闲 (0% util, 0 MiB) |\n| **Screen sessions** | 无（进程已正常退出） |\n| **合并文件** | `crescendo_all.jsonl` (250 行) |\n\n### 策略分布\n\n| Playbook | 数量 |\n|----------|------|\n| Academic Disguise | 32 |\n| Emotional Path | 32 |\n| DAN Variant | 32 |\n| Classic Crescendo | 32 |\n| Obfuscation Path | 31 |\n| Mixed Emotional | 31 |\n| Full Spectrum | 30 |\n| Role + Obfuscation | 30 |\n\n- **平均 user turns**: 8.3（范围 5-12）\n- **质量问题**: 0（无 `<think>` 泄漏，无空 turn）\n\n### Sanity Check (DeBERTa + LogReg)\n\n- **F1 = 0.987 ± 0.004**\n- 状态: **INVESTIGATE** — 远超目标范围 0.70-0.85\n\nF1 过高说明 crescendo 对话与 benign 对话在表面特征上太容易区分（可能是 topic/style 差异过大，而非检测到了真正的 persuasion patterns）。这意味着：\n\n1. **benign 数据与 jailbreak 数据的 topic 分布不匹配** — WildChat 日常对话 vs 安全相关 topic，DeBERTa 可能只是在做 topic classification\n2. 需要更 hard 的 negative 样本（如正常安全讨论、红队研究讨论等）来让任务有意义\n\n**建议下一步**: 检查是否需要构建 topic-matched benign 数据（如从 WildChat 中筛选涉及安全/技术话题的正常对话），或者直接用 turn-level 特征而非全对话嵌入来做 sanity check。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-crescendo-status-check.md"
+}

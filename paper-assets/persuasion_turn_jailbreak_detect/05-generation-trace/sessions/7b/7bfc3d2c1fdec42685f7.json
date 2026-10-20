@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "7bfc3d2c1fdec42685f7",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code cross llm datagen",
+  "task_key": "worker_code_cross-llm-datagen_20260519T053747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross-llm-datagen_20260519T053747.log",
+    "occurrence": 1,
+    "bytes": 1016734,
+    "sha256": "e9a4ba475ed551435cf22ce327d203cd3f6f924c1f298704dae793e45820823d"
+  },
+  "statistics": {
+    "messages": 550,
+    "user_turns": 0,
+    "tool_calls": 218,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 106,
+      "tool_call": 218,
+      "tool_result": 218,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 550,
+      "chunks": [
+        {
+          "path": "7bfc3d2c1fdec42685f7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7bfc3d2c1fdec42685f7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7bfc3d2c1fdec42685f7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7bfc3d2c1fdec42685f7-part-0004.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-cross-llm-datagen.md"
+}

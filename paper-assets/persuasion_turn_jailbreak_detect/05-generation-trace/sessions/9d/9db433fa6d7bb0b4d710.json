@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9db433fa6d7bb0b4d710",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan014 lambda continue",
+  "task_key": "worker_train_plan014-lambda-continue_20260518T013853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan014-lambda-continue_20260518T013853_result.json",
+    "occurrence": 1,
+    "bytes": 1288,
+    "sha256": "61b9e25a10adc9b131ea8a257109fe69c6336c3cd704eab27bf38be70fd098ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan_014 已全部完成。** 上一个 Worker 已跑完所有 3 个 alpha 值的完整 pipeline（DeBERTa → embeddings → GRU → eval），结果已保存在 `results/plan_014_lambda_ablation.json`。\n\n汇总结果：\n\n| alpha | k1_f1 | k2_f1 | k3_f1 | k5_f1 | full_f1 | deberta_persuasion_acc | deberta_intent_acc |\n|-------|-------|-------|-------|-------|---------|----------------------|-------------------|\n| 0     | 1.0   | 1.0   | 1.0   | 1.0   | 1.0     | 0.8439               | 0.4014             |\n| 0.5   | 1.0   | 1.0   | 1.0   | 1.0   | 1.0     | 0.8353               | 1.0                |\n| 1.0   | 1.0   | 1.0   | 1.0   | 1.0   | 1.0     | 0.8285               | 1.0                |\n| 2.0   | 1.0   | 1.0   | 1.0   | 1.0   | 1.0     | 0.8508               | 1.0                |\n\n关键发现：\n- **端到端 jailbreak 检测 F1 = 1.0**，不受 alpha 值影响，说明 GRU 对 DeBERTa embedding 变化非常鲁棒\n- alpha=0 时 intent_acc 降至 0.40（因为没有 intent loss），但 persuasion_acc 反而略高（0.844 vs 0.829）\n- alpha=2.0 的 persuasion_acc 最高（0.851），说明加重 intent loss 不会损害 persuasion 分类\n- 所有 alpha≥0.5 的 intent_acc 都是 1.0\n\n无需额外操作，任务已完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan014-lambda-continue.md"
+}

@@ -1,0 +1,1033 @@
+{
+  "schema_version": "1.0",
+  "id": "9b77f22f60c1397bfc4e",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "conversation",
+  "title": "audit table registry traceability",
+  "task_key": "worker_audit_table-registry-traceability_20260523T191641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_audit_table-registry-traceability_20260523T191641.jsonl",
+    "occurrence": 1,
+    "bytes": 72056,
+    "sha256": "2fa3d3733a6b2b7c150e8c5462c504bcb2c02fd9a4e91f006dda796a8510cbe3"
+  },
+  "statistics": {
+    "messages": 51,
+    "user_turns": 0,
+    "tool_calls": 25,
+    "roles": {
+      "tool_call": 25,
+      "tool_result": 25,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T19:31:19.283688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T19:31:19.284035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T19:31:19.284213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "persuasion_turn_jailbreak_detect",
+              "fields": "['*']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T19:31:19.285264+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (205,256 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/mcp-agent-ml-research-read_registry-1779563817327.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/mcp-agent-ml-research-read_registry-1779563817327.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/mcp-agent-ml-research-read_registry-1779563817327.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T19:31:19.285492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T19:31:19.285651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/checklist.tex\ndocs/paper/main.tex\ndocs/paper/introduction.tex\ndocs/paper/abstract.tex\ndocs/paper/method.tex\ndocs/paper/related_work.tex\ndocs/paper/experiments.tex\ndocs/paper/conclusion.tex\ndocs/paper/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T19:31:19.285779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T19:31:19.285966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 1672\ndrwxr-xr-x 86 ubuntu ubuntu  12288 May 23 15:08 .\ndrwxr-xr-x 12 ubuntu ubuntu   4096 May 23 18:48 ..\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 18 12:19 EXP-2\ndrwxr-xr-x  7 ubuntu ubuntu   4096 May 18 04:24 _project\n-rw-r--r--  1 ubuntu ubuntu  12939 May 23 10:50 audit_appendix.md\n-rw-r--r--  1 ubuntu ubuntu  18868 May 23 10:40 audit_experiments.md\n-rw-r--r--  1 ubuntu ubuntu   9723 May 23 10:28 audit_main_text.md\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 17 07:59 data\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 18 04:17 dream_reports\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 19 00:01 embedding_tsne\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 18 10:40 exp1\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 18 17:10 exp10_fewshot_llm_judge\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 18 23:44 exp11_tost_equivalence\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 18 23:42 exp12_toxicchat_bootstrap\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 18 23:43 exp13_meanpool_multiseed\n-rw-r--r--  1 ubuntu ubuntu   5006 May 19 23:52 exp17_diagnosis.md\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 20 12:35 exp18_e2e_finetune\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 20 12:43 exp19_wildchat_fpr\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 18 10:23 exp1_roberta_9class\n-rw-r--r--  1 ubuntu ubuntu   2088 May 18 10:23 exp1_roberta_9class_results.json\n-rw-r--r--  1 ubuntu ubuntu   1064 May 18 10:40 exp1_roberta_mlm_results.json\n-rw-r--r--  1 ubuntu ubuntu   1041 May 18 10:40 exp1_roberta_vanilla_results.json\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 20 13:51 exp20_deepcontext_proxy\n-rw-r--r--  1 ubuntu ubuntu  12228 May 20 13:50 exp20_deepcontext_proxy.py\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 20 14:14 exp21_cross_checkpoint\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 20 14:29 exp22_aa_early_detection\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 20 14:29 exp24_calibration_ece\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 20 14:29 exp25_fitd_early_detection\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 20 14:51 exp26_frozen_probing\n-rw-r--r--  1 ubuntu ubuntu  13602 May \n…[truncated 7388 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T19:31:19.286146+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T19:31:19.286394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% experiments.tex\n2\t\n3\t\\section{Experiments}\n4\t\n5\t\\paragraph{Terminology.}\n6\t\\emph{Cross-attack OOD}: evaluation on attack families unseen during training; benign distribution remains IID throughout (OOD reflects attack-side shift only). $K$: prefix length (number of conversation turns retained). \\emph{DAPT}: all Stage-1 adaptations; we extend \\citet{gururangan2020dontstop} to supervised variants. \\emph{Evidence hierarchy} (on synthetic data): vanilla $<$ MLM $<$ classification (Section~\\ref{sec:decomposition}).\n7\t\n8\t\\subsection{Setup}\n9\t\n10\t\\paragraph{Data.}\n11\tAll synthetic data is generated by Qwen3-8B~\\citep{qwen3_2025}.\n12\tThe IID dataset contains 250 Crescendo~\\citep{russinovich2024crescendo} jailbreak and 250 topic-anchored benign conversations, split into training (350), validation (74), and test (76) sets with balanced class ratios (e.g., test = 38 jailbreak + 38 benign).\n13\tStage~1 (DAPT) uses training + validation conversations; Stage~2 (BiGRU) trains on training, early-stops on validation, and evaluates on test.\n14\tOOD evaluation pairs attack-specific jailbreak conversations with the 38 IID-test benign conversations: 80 FITD~\\citep{fitd2024} (non-discriminative; Section~\\ref{sec:decomposition}) + 38 benign = 118 total, 80 Deceptive Delight (DD)~\\citep{deceptivedelight2024} + 38 benign = 118 total, and 80 ActorAttack~\\citep{ren2024actorattack} + 38 benign = 118 total.\n15\tNo overlap exists in attack templates across families; benign is IID (same generation pipeline).\n16\tA paraphrased version of the IID test set (BERTScore 0.92, lexical overlap 0.20) serves as the adversarial robustness benchmark (Section~\\ref{sec:perturbation}).\n17\tFor human data validation, we use ToxicChat~\\citep{lin2023toxicchat} (204 jailbreak + 204 benign from real LMSYS user interactions), entirely independent of Qwen3-8B generation.\n18\t\n19\t\\paragraph{Models.}\n20\tSeven DeBERTa-v3 variants share the same Stage-2 pipeline and differ only in Stage-1 training (Section~\\ref{sec:method})\n…[truncated 16188 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T19:31:19.286613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/mcp-agent-ml-research-read_registry-1779563817327.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = data['result']\n# The result is likely a JSON string itself\nexps = json.loads(result) if isinstance(result, str) else result\nprint(f'Type: {type(exps).__name__}')\nif isinstance(exps, list):\n    print(f'Count: {len(exps)}')\n    if exps:\n        print(f'Keys: {list(exps[0].keys())}')\n        # Print all exp_ids\n        for e in exps:\n            eid = e.get('exp_id', 'N/A')\n            status = e.get('status', 'N/A')\n            metrics = e.get('metrics', {})\n            print(f'{eid} | {status} | metrics_keys={list(metrics.keys()) if metrics else \\\"none\\\"}')\nelif isinstance(exps, dict):\n    print(f'Keys: {list(exps.keys())}')\n\" 2>&1 | head -200",
+              "description": "Probe registry structure and list all experiments"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T19:31:19.286761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Type: dict\nKeys: ['success', 'data', 'error', 'metadata']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T19:31:19.286902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/mcp-agent-ml-research-read_registry-1779563817327.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = data['result']\nparsed = json.loads(result) if isinstance(result, str) else result\nexperiments = parsed.get('data', parsed)\nprint(f'Type of data: {type(experiments).__name__}')\nif isinstance(experiments, list):\n    print(f'Count: {len(experiments)}')\n    for e in experiments:\n        eid = e.get('exp_id', 'N/A')\n        status = e.get('status', 'N/A')\n        metrics = e.get('metrics', {})\n        conclusion = e.get('conclusion', '')[:80] if e.get('conclusion') else ''\n        mkeys = list(metrics.keys()) if metrics else []\n        print(f'  {eid} | {status} | conclusion={conclusion} | metrics_keys={mkeys}')\nelif isinstance(experiments, dict):\n    print(f'Keys: {list(experiments.keys())[:20]}')\n    # Maybe it's keyed by exp_id\n    for k, v in list(experiments.items())[:3]:\n        print(f'  {k}: {type(v).__name__}')\n\" 2>&1",
+              "description": "Explore registry data structure"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T19:31:19.287033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Type of data: dict\nKeys: ['experiments', 'count', 'total', 'baseline']\n  experiments: dict\n  count: int\n  total: int"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T19:31:19.287154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/mcp-agent-ml-research-read_registry-1779563817327.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = data['result']\nparsed = json.loads(result) if isinstance(result, str) else result\nexperiments = parsed['data']['experiments']\nprint(f'Total experiments: {len(experiments)}')\nprint()\nfor eid, exp in experiments.items():\n    status = exp.get('status', 'N/A')\n    metrics = exp.get('metrics', {})\n    conclusion = (exp.get('conclusion') or '')[:120]\n    mkeys = list(metrics.keys()) if metrics else []\n    print(f'{eid} | {status} | metrics={mkeys}')\n    if conclusion:\n        print(f'  conclusion: {conclusion}')\n\" 2>&1",
+              "description": "List all experiment IDs and their metrics keys"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T19:31:19.287390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total experiments: 136\n\nexp67_length_matching | DONE | metrics=['dd_ood', 'aa_ood']\n  conclusion: success\nexp66_sharegpt_benign_adaptation | DONE | metrics=['baseline_fpr', 'baseline_n', 'data_source', 'adaptation_curve', 'comparison']\n  conclusion: negative\nexp65_svd_necessity_ablation | DONE | metrics=['original', 'remove_top3_svd', 'remove_random3']\n  conclusion: success\nexp64_toxicchat_confidence_analysis | DONE | metrics=['9class_majority', 'jb_mlm_majority', '9class_per_seed_high_conf_ratio', 'jb_mlm_per_seed_high_conf_ratio']\n  conclusion: success\nexp11_tost_equivalence | DONE | metrics=['dd_ood_full', 'actorattack_full', 'note']\n  conclusion: success\nexp46_inference_efficiency | DONE | metrics=['disped_latency_ms', 'disped_latency_std', 'disped_throughput_conv_s', 'disped_gpu_mem_MB', 'disped_params_M', 'qwen3_latency_ms', 'qwen3_latency_std', 'qwen3_throughput_conv_s', 'qwen3_gpu_mem_MB', 'qwen3_params_B', 'speedup_factor', 'memory_ratio', 'test_conversations', 'gpu']\n  conclusion: success\nexp63_toxicchat_fpfn | DONE | metrics=['9class_mv_f1', '9class_mv_fpr', '9class_mv_precision', '9class_mv_recall', 'mlm_mv_f1', 'mlm_mv_fpr', 'mlm_mv_precision', 'mlm_mv_recall', 'mlm_correct_9class_wrong_total', 'mlm_wins_fp_fraction', 'mlm_wins_fn_fraction', '9class_correct_mlm_wrong_total']\n  conclusion: negative\nexp62_topic_diagnosis | DONE | metrics=['vanilla_iid_fisher', 'vanilla_dd_fisher', 'vanilla_aa_fisher', '9class_iid_fisher', '9class_dd_fisher', '9class_aa_fisher', 'topic_iid_fisher', 'topic_dd_fisher', 'topic_aa_fisher', 'finding']\n  conclusion: negative\nexp61_random_binary_partition | DONE | metrics=['iid_f1', 'dd_ood_f1', 'aa_ood_f1', 'n_partitions', 'n_perfect', 'outlier_seed', 'outlier_aa_f1', 'wall_clock_min']\n  conclusion: success\nexp60_turncount_baseline | DONE | metrics=['tc_full', 'tc_k1', 'disped_full']\n  conclusion: success\nexp59_resample_350 | DONE | metrics=['dd_ood_f1', 'aa_ood_f1', 'iid_f1', 'dd_seeds', 'aa_seeds', 'iid_seeds']\n  conclusion: s\n…[truncated 22011 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T19:31:19.287606+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "tab:mixed_llm|tab:ood_perturbation",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T19:31:19.287766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/appendix.tex:143:\\label{tab:ood_perturbation}\ndocs/paper/appendix.tex:243:[Omitted long matching line]\ndocs/paper/appendix.tex:252:\\label{tab:mixed_llm}\ndocs/paper/appendix.tex:264:[Omitted long matching line]\ndocs/paper/experiments.tex:174:All preceding experiments use single-source (Qwen3-8B) data. To test whether the evidence hierarchy transfers when training data mixes LLM sources, we train on 250 Qwen + 250 Llama-3.1-8B conversations (Table~\\ref{tab:mixed_llm}).\ndocs/paper/experiments.tex:211:[Omitted long matching line]\ndocs/paper/main.aux:1357:\\newlabel{tab:ood_perturbation}{{10}{14}{Perturbation robustness on OOD Deceptive Delight ($n$=118). $\\Delta $: F1 change (pp) from clean to paraphrased. 3-seed mean$\\pm $std where available}{table.caption.32}{}}\ndocs/paper/main.aux:1454:\\newlabel{tab:mixed_llm}{{13}{15}{Mixed-LLM training (250 Qwen + 250 Llama conversations, 3-seed mean$\\pm $std where available). ToxicChat evaluated on balanced set (408 conversations)}{table.caption.38}{}}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T19:31:19.287915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "REGFILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/mcp-agent-ml-research-read_registry-1779563817327.txt\"\n\n# Extract detailed metrics for key experiments\npython3 -c \"\nimport json, sys\n\nwith open('$REGFILE') as f:\n    data = json.load(f)\nresult = data['result']\nparsed = json.loads(result) if isinstance(result, str) else result\nexperiments = parsed['data']['experiments']\n\n# Key experiments for Table 2 (main_results): 9-class, MLM, vanilla on IID and DD OOD\n# Key experiments for Table 3 (evidence_hierarchy): all variants on DD, AA\n# Key experiments for Table 4 (cross_encoder): RoBERTa variants\n# Key experiments for Table 5 (mixed_llm): exp16 or exp44\n# Key experiments for Table 6 (human_data): exp8_mhj_human_data\n# Key experiments for Table 7 (ood_perturbation): exp4, exp6\n\nimportant_ids = [\n    # Main results / evidence hierarchy\n    'plan_002_clean_training', 'plan_002_seed123', 'plan_002_seed456',\n    'plan_006_cross_attack_clean', 'phase_b_full',\n    'vanilla_multiseed_dd_ood',\n    'plan_017_mlm_control', 'plan_017_mlm_perturbation',\n    'plan_018_wiki_mlm_control', 'plan_018_wiki_perturbation',\n    'plan_016v2_topic_control', 'plan_016v2_topic_perturbation',\n    'plan_013_none_collapse', 'plan_013_binary_perturbation',\n    'mf1_binary_seed123', 'mf1_binary_seed456',\n    'mf1_scrambled_seed123', 'mf1_scrambled_seed456',\n    'plan_003_scrambled_ablation',\n    # ActorAttack\n    'exp2_actorattack_ood', 'exp2_actorattack_mcnemar',\n    # Perturbation\n    'exp4_dd_ood_perturbation', 'exp6_actorattack_perturbation',\n    # Cross-encoder\n    'exp1_roberta_9class', 'exp1_roberta_mlm', 'exp1_roberta_vanilla',\n    'exp15_roberta_large', 'exp15b_roberta_large_lr', 'exp15c_roberta_large_mlm',\n    # Mixed LLM\n    'exp16_multi_llm', 'exp44_multi_llm_mixed',\n    # Human data\n    'exp8_mhj_human_data',\n    # TF-IDF\n    'exp7_tfidf_perprefix_actorattack',\n    # Bootstrap CI\n    'exp9_bootstrap_ci',\n    # TOST\n    'exp11_tost_equivalence', 'exp41_tost_10seed',\n    # Mean pooling\n    'exp27_mean_pooling', 'exp13_meanpool_multiseed',\n    # LLM judge\n    'exp5_llm_judge_ood', 'exp10_fewshot_llm_judge',\n    # Llama Guard\n    'exp40_llama_guard_baseline',\n    # Wildchat FPR\n    'exp19_wildchat_fpr',\n    # Benign adaptation\n    'exp45_benign_adaptation_curve',\n    'exp52_oasst2_n25_multiseed',\n    # ToxicChat bootstrap\n    'exp12_toxicchat_bootstrap',\n    # 5-seed expansion\n    'exp55_5seed_mlm_vs_9class_aa',\n    # Deep context proxy\n    'exp20_deepcontext_proxy',\n    # Frozen probing\n    'exp26_frozen_probing',\n    # Data efficiency\n    'exp28_data_efficiency', 'exp28b_data_efficiency_supplement', 'exp28c_vanilla_supplement',\n    # Inference efficiency\n    'exp29_inference_efficiency', 'exp46_inference_efficiency',\n    # TOST 10-seed\n    'exp41_tost_10seed',\n    # Dual-OOD\n    'exp42_ood_benign_mixed', 'exp42b_balanced_ratio_ablation',\n    'exp51_lmsys_benign_ood',\n    # Random binary partition\n    'exp61_random_binary_partition',\n    # 9class per-prefix\n    'exp22_aa_early_detection', 'exp25_fitd_early_detection',\n    # Strategy prediction\n    'exp32_strategy_prediction', 'exp33_strategy_prediction_plan002',\n    # Exp59\n    'exp59_resample_350',\n]\n\nfor eid in important_ids:\n    if eid in experiments:\n        exp = experiments[eid]\n        metrics = exp.get('metrics', {})\n        conclusion = exp.get('conclusion', '')\n        print(f'=== {eid} (conclusion={conclusion}) ===')\n        print(json.dumps(metrics, indent=2, default=str))\n        print()\n    else:\n        print(f'=== {eid}: NOT FOUND ===')\n        print()\n\" 2>&1",
+              "description": "Extract detailed metrics for all key experiments",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T19:31:19.288267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (50.8KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/b1rll3za1.txt\n\nPreview (first 2KB):\n=== plan_002_clean_training (conclusion=negative) ===\n{\n  \"treatment_k1_f1\": 1,\n  \"baseline_k1_f1\": 0.987,\n  \"treatment_k2_f1\": 1,\n  \"baseline_k2_f1\": 0.9867,\n  \"treatment_k3_f1\": 1,\n  \"baseline_k3_f1\": 0.9867,\n  \"treatment_k5_f1\": 1,\n  \"baseline_k5_f1\": 1,\n  \"treatment_full_f1\": 1,\n  \"baseline_full_f1\": 1,\n  \"tfidf_all_k_f1\": 1,\n  \"max_delta_pp\": 1.3,\n  \"pass_criteria_5pp\": false\n}\n\n=== plan_002_seed123 (conclusion=success) ===\n{\n  \"treatment_k1_f1\": 1,\n  \"treatment_k2_f1\": 1,\n  \"treatment_k3_f1\": 1,\n  \"treatment_k5_f1\": 1,\n  \"treatment_full_f1\": 1,\n  \"baseline_k1_f1\": 0.987,\n  \"baseline_k2_f1\": 0.987,\n  \"baseline_k3_f1\": 0.987,\n  \"baseline_full_f1\": 1,\n  \"tfidf_all_k_f1\": 1,\n  \"dd_ood_k1_f1\": 1,\n  \"dd_ood_k2_f1\": 0.9904,\n  \"dd_ood_k3_f1\": 0.9904,\n  \"dd_ood_k5_f1\": 1,\n  \"dd_ood_full_f1\": 1\n}\n\n=== plan_002_seed456 (conclusion=success) ===\n{\n  \"treatment_k1_f1\": 1,\n  \"treatment_k2_f1\": 1,\n  \"treatment_k3_f1\": 1,\n  \"treatment_k5_f1\": 1,\n  \"treatment_full_f1\": 1,\n  \"baseline_k1_f1\": 0.9296,\n  \"baseline_k2_f1\": 0.9589,\n  \"baseline_k3_f1\": 0.9867,\n  \"baseline_k5_f1\": 0.9867,\n  \"baseline_full_f1\": 1,\n  \"tfidf_all_k_f1\": 1,\n  \"deberta_best_epoch\": 2,\n  \"deberta_persuasion_acc\": 0.8593,\n  \"deberta_intent_acc\": 1,\n  \"dd_ood_k1_f1\": 0.9715,\n  \"dd_ood_k2_f1\": 0.9622,\n  \"dd_ood_k3_f1\": 0.935,\n  \"dd_ood_k5_f1\": 0.9904,\n  \"dd_ood_full_f1\": 0.9904\n}\n\n=== plan_006_cross_attack_clean (conclusion=success) ===\n{\n  \"dd_treatment_full_f1\": 1,\n  \"dd_baseline_full_f1\": 0.2845,\n  \"dd_treatment_k1_f1\": 1,\n  \"dd_baseline_k1_f1\": 0.5752,\n  \"dd_treatment_k2_f1\": 0.9904,\n  \"dd_baseline_k2_f1\": 0.4381,\n  \"dd_treatment_k3_f1\": 0.9904,\n  \"dd_baseline_k3_f1\": 0.3596,\n  \"dd_treatment_k5_f1\": 1,\n  \"dd_baseline_k5_f1\": 0.3\n…[truncated 291 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T19:31:19.288452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/appendix.tex",
+              "offset": "125",
+              "limit": "160"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T19:31:19.288687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "125\tMLM-only & $-$2.6 & $-$9.2 & $-$4.0 & $-$4.0 \\\\\n126\tTopic (seed 42) & $-$4.0 & $-$2.7 & $-$2.7 & \\textbf{0.0} \\\\\n127\t\\midrule\n128\tWikipedia MLM & $-$12.1 & $-$12.4 & $-$15.4 & $-$17.9 \\\\\n129\tVanilla DeBERTa & $-$11.8 & $-$14.6 & $-$12.1 & $-$13.8 \\\\\n130\t\\bottomrule\n131\t\\end{tabular}\n132\t\\end{table}\n133\t\n134\tTable~\\ref{tab:perturbation} shows perturbation behavior on IID data.\n135\tClassification-supervised variants (9-class, binary, scrambled) achieve zero degradation at full conversation length regardless of label correctness.\n136\tModels without jailbreak-domain exposure (Wikipedia MLM, vanilla) degrade by $\\sim$12\\,pp.\n137\tMcNemar's test finds no significant pairwise differences among classification-supervised variants (all $p > 0.13$), though with $\\leq$7 discordant pairs, statistical power is limited.\n138\t\n139\t\\begin{table}[t]\n140\t\\centering\n141\t\\small\n142\t\\caption{Perturbation robustness on OOD Deceptive Delight ($n$=118). $\\Delta$: F1 change (pp) from clean to paraphrased. 3-seed mean$\\pm$std where available.}\n143\t\\label{tab:ood_perturbation}\n144\t\\begin{tabular}{@{}lcccc@{}}\n145\t\\toprule\n146\t\\textbf{Variant} & Clean Full & Pert.\\ Full & $\\Delta$ Full & $\\Delta$ $K$=1 \\\\\n147\t\\midrule\n148\t9-class & .994$\\pm$.005 & 1.000$\\pm$.000 & +0.6 & +0.6 \\\\\n149\tBinary & 1.000$\\pm$.000 & 1.000$\\pm$.000 & 0.0 & +0.6 \\\\\n150\tScrambled & .994$\\pm$.005 & 1.000$\\pm$.000 & +0.6 & $-$0.3 \\\\\n151\t\\midrule\n152\tJB MLM & .914$\\pm$.115 & .941 & +2.7 & 0.0 \\\\\n153\tWiki MLM$^{*}$ & .904$\\pm$.115 & .872 & $-$3.3 & $-$3.2 \\\\\n154\tVanilla$^{\\dagger}$ & .312$\\pm$.026 & .339$\\pm$.055 & +2.7 & $-$6.8$\\pm$1.1 \\\\\n155\t\\bottomrule\n156\t\\end{tabular}\n157\t\\vspace{-2pt}\n158\t{\\footnotesize $^{*}$Wiki MLM degradation is seed-driven: seed 42 accounts for $-$9.8\\,pp; other seeds show 0.0\\,pp change.\\\\$^{\\dagger}$Vanilla $\\Delta$ Full = +2.7\\,pp reflects floor-effect noise (baseline 0.312, std 0.055), not meaningful improvement.}\n159\t\\end{table}\n160\t\n161\tOn OOD DD, the IID pattern replicates: classification-\n…[truncated 9609 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T19:31:19.288853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/b1rll3za1.txt"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T19:31:19.288977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (26464 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T19:31:19.289107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/b1rll3za1.txt",
+              "limit": "500"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T19:31:19.289368+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t=== plan_002_clean_training (conclusion=negative) ===\n2\t{\n3\t  \"treatment_k1_f1\": 1,\n4\t  \"baseline_k1_f1\": 0.987,\n5\t  \"treatment_k2_f1\": 1,\n6\t  \"baseline_k2_f1\": 0.9867,\n7\t  \"treatment_k3_f1\": 1,\n8\t  \"baseline_k3_f1\": 0.9867,\n9\t  \"treatment_k5_f1\": 1,\n10\t  \"baseline_k5_f1\": 1,\n11\t  \"treatment_full_f1\": 1,\n12\t  \"baseline_full_f1\": 1,\n13\t  \"tfidf_all_k_f1\": 1,\n14\t  \"max_delta_pp\": 1.3,\n15\t  \"pass_criteria_5pp\": false\n16\t}\n17\t\n18\t=== plan_002_seed123 (conclusion=success) ===\n19\t{\n20\t  \"treatment_k1_f1\": 1,\n21\t  \"treatment_k2_f1\": 1,\n22\t  \"treatment_k3_f1\": 1,\n23\t  \"treatment_k5_f1\": 1,\n24\t  \"treatment_full_f1\": 1,\n25\t  \"baseline_k1_f1\": 0.987,\n26\t  \"baseline_k2_f1\": 0.987,\n27\t  \"baseline_k3_f1\": 0.987,\n28\t  \"baseline_full_f1\": 1,\n29\t  \"tfidf_all_k_f1\": 1,\n30\t  \"dd_ood_k1_f1\": 1,\n31\t  \"dd_ood_k2_f1\": 0.9904,\n32\t  \"dd_ood_k3_f1\": 0.9904,\n33\t  \"dd_ood_k5_f1\": 1,\n34\t  \"dd_ood_full_f1\": 1\n35\t}\n36\t\n37\t=== plan_002_seed456 (conclusion=success) ===\n38\t{\n39\t  \"treatment_k1_f1\": 1,\n40\t  \"treatment_k2_f1\": 1,\n41\t  \"treatment_k3_f1\": 1,\n42\t  \"treatment_k5_f1\": 1,\n43\t  \"treatment_full_f1\": 1,\n44\t  \"baseline_k1_f1\": 0.9296,\n45\t  \"baseline_k2_f1\": 0.9589,\n46\t  \"baseline_k3_f1\": 0.9867,\n47\t  \"baseline_k5_f1\": 0.9867,\n48\t  \"baseline_full_f1\": 1,\n49\t  \"tfidf_all_k_f1\": 1,\n50\t  \"deberta_best_epoch\": 2,\n51\t  \"deberta_persuasion_acc\": 0.8593,\n52\t  \"deberta_intent_acc\": 1,\n53\t  \"dd_ood_k1_f1\": 0.9715,\n54\t  \"dd_ood_k2_f1\": 0.9622,\n55\t  \"dd_ood_k3_f1\": 0.935,\n56\t  \"dd_ood_k5_f1\": 0.9904,\n57\t  \"dd_ood_full_f1\": 0.9904\n58\t}\n59\t\n60\t=== plan_006_cross_attack_clean (conclusion=success) ===\n61\t{\n62\t  \"dd_treatment_full_f1\": 1,\n63\t  \"dd_baseline_full_f1\": 0.2845,\n64\t  \"dd_treatment_k1_f1\": 1,\n65\t  \"dd_baseline_k1_f1\": 0.5752,\n66\t  \"dd_treatment_k2_f1\": 0.9904,\n67\t  \"dd_baseline_k2_f1\": 0.4381,\n68\t  \"dd_treatment_k3_f1\": 0.9904,\n69\t  \"dd_baseline_k3_f1\": 0.3596,\n70\t  \"dd_treatment_k5_f1\": 1,\n71\t  \"dd_baseline_k5_f1\": 0.3105,\n72\t  \"fitd_treatment_full_f1\": 1,\n73\t  \"fitd_baseline_full_f1\": 1,\n74\t  \"fi\n…[truncated 10487 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T19:31:19.289525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/b1rll3za1.txt",
+              "offset": "500",
+              "limit": "500"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T19:31:19.289817+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "500\t  \"iid_full_f1\": 1,\n501\t  \"iid_k1_f1\": 1,\n502\t  \"iid_k2_f1\": 1,\n503\t  \"iid_k3_f1\": 1,\n504\t  \"iid_k5_f1\": 1,\n505\t  \"deberta_val_persuasion_acc\": 1,\n506\t  \"deberta_val_intent_acc\": 1,\n507\t  \"seed\": 123\n508\t}\n509\t\n510\t=== mf1_binary_seed456 (conclusion=success) ===\n511\t{\n512\t  \"dd_ood_full_f1\": 1,\n513\t  \"dd_ood_k1_f1\": 1,\n514\t  \"dd_ood_k2_f1\": 1,\n515\t  \"dd_ood_k3_f1\": 0.9904,\n516\t  \"dd_ood_k5_f1\": 1,\n517\t  \"deberta_val_persuasion_acc\": 1,\n518\t  \"deberta_val_intent_acc\": 1,\n519\t  \"seed\": 456\n520\t}\n521\t\n522\t=== mf1_scrambled_seed123 (conclusion=success) ===\n523\t{\n524\t  \"val_persuasion_acc\": 0.6724,\n525\t  \"val_intent_acc\": 1,\n526\t  \"dd_ood_f1_k1\": 1,\n527\t  \"dd_ood_f1_k2\": 1,\n528\t  \"dd_ood_f1_k3\": 1,\n529\t  \"dd_ood_f1_k5\": 1,\n530\t  \"dd_ood_f1_full\": 1\n531\t}\n532\t\n533\t=== mf1_scrambled_seed456 (conclusion=success) ===\n534\t{\n535\t  \"dd_ood_full_f1\": 1,\n536\t  \"dd_ood_k1_f1\": 1,\n537\t  \"dd_ood_k2_f1\": 1,\n538\t  \"dd_ood_k3_f1\": 0.99,\n539\t  \"dd_ood_k5_f1\": 1,\n540\t  \"deberta_val_persuasion_acc\": 0.698,\n541\t  \"seed\": 456\n542\t}\n543\t\n544\t=== plan_003_scrambled_ablation (conclusion=negative) ===\n545\t{\n546\t  \"scrambled_k1_f1\": 0.9744,\n547\t  \"scrambled_k2_f1\": 1,\n548\t  \"scrambled_k3_f1\": 1,\n549\t  \"scrambled_k5_f1\": 1,\n550\t  \"scrambled_full_f1\": 1,\n551\t  \"proper_k2_f1\": 0.9867,\n552\t  \"proper_k3_f1\": 0.9867,\n553\t  \"baseline_k2_f1\": 0.8788,\n554\t  \"baseline_k3_f1\": 0.9276,\n555\t  \"scrambled_deberta_persuasion_acc\": 0.6437,\n556\t  \"proper_deberta_persuasion_acc\": 0.7963,\n557\t  \"data_version\": \"v4c (NOT plan_002 data)\"\n558\t}\n559\t\n560\t=== exp2_actorattack_ood (conclusion=success) ===\n561\t{\n562\t  \"deberta_9class\": {\n563\t    \"k1\": 0.773,\n564\t    \"k1_std\": 0.041,\n565\t    \"k2\": 0.855,\n566\t    \"k2_std\": 0.048,\n567\t    \"k3\": 0.921,\n568\t    \"k3_std\": 0.046,\n569\t    \"k5\": 0.966,\n570\t    \"k5_std\": 0.028,\n571\t    \"full\": 0.972,\n572\t    \"full_std\": 0.026\n573\t  },\n574\t  \"deberta_binary\": {\n575\t    \"k1\": 0.737,\n576\t    \"k1_std\": 0.074,\n577\t    \"k2\": 0.89,\n578\t    \"k2_std\": 0.065,\n579\t    \"k3\": 0.951,\n580\t   \n…[truncated 10530 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T19:31:19.289971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/b1rll3za1.txt",
+              "offset": "1000",
+              "limit": "500"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T19:31:19.290261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1000\t    }\n1001\t  },\n1002\t  \"mcnemar_clean_full\": {\n1003\t    \"9class_vs_vanilla\": {\n1004\t      \"seed42\": {\n1005\t        \"p\": 0,\n1006\t        \"b\": 78,\n1007\t        \"c\": 0\n1008\t      },\n1009\t      \"seed123\": {\n1010\t        \"p\": 0,\n1011\t        \"b\": 72,\n1012\t        \"c\": 0\n1013\t      },\n1014\t      \"seed456\": {\n1015\t        \"p\": 0,\n1016\t        \"b\": 78,\n1017\t        \"c\": 0\n1018\t      }\n1019\t    }\n1020\t  },\n1021\t  \"note\": \"CORRECTED 2026-05-18: vanilla seed123/456 GRU checkpoints and binary seed42 DeBERTa+GRU checkpoints were wrong (used different models than exp2). Fixed to match exp2 checkpoints. Clean baselines now consistent with exp2. All variants still degrade under perturbation except topic at K=1. 9class significantly outperforms vanilla on both clean and perturbed (McNemar all p<0.001).\"\n1022\t}\n1023\t\n1024\t=== exp1_roberta_9class (conclusion=success) ===\n1025\t{\n1026\t  \"dd_ood_full_f1_mean\": 0.9936,\n1027\t  \"dd_ood_full_f1_std\": 0.0045,\n1028\t  \"dd_ood_k1_mean\": 0.9873,\n1029\t  \"dd_ood_k1_std\": 0.0119,\n1030\t  \"dd_ood_k2_mean\": 0.9505,\n1031\t  \"dd_ood_k2_std\": 0.0284,\n1032\t  \"dd_ood_k3_mean\": 0.9563,\n1033\t  \"dd_ood_k3_std\": 0.0189,\n1034\t  \"dd_ood_k5_mean\": 0.9872,\n1035\t  \"dd_ood_k5_std\": 0.009,\n1036\t  \"iid_full_f1\": 1,\n1037\t  \"n_seeds\": 3,\n1038\t  \"encoder\": \"roberta-base\"\n1039\t}\n1040\t\n1041\t=== exp1_roberta_mlm (conclusion=success) ===\n1042\t{\n1043\t  \"dd_ood_full_f1_mean\": 0.9874,\n1044\t  \"dd_ood_full_f1_std\": 0.0178,\n1045\t  \"dd_ood_k1_mean\": 0.9428,\n1046\t  \"dd_ood_k1_std\": 0.0184,\n1047\t  \"dd_ood_k2_mean\": 0.9747,\n1048\t  \"dd_ood_k2_std\": 0.0232,\n1049\t  \"dd_ood_k3_mean\": 0.9747,\n1050\t  \"dd_ood_k3_std\": 0.0232,\n1051\t  \"dd_ood_k5_mean\": 0.9841,\n1052\t  \"dd_ood_k5_std\": 0.016,\n1053\t  \"n_seeds\": 3,\n1054\t  \"encoder\": \"roberta-base\"\n1055\t}\n1056\t\n1057\t=== exp1_roberta_vanilla (conclusion=success) ===\n1058\t{\n1059\t  \"dd_ood_full_f1_mean\": 0.9813,\n1060\t  \"dd_ood_full_f1_std\": 0.0264,\n1061\t  \"dd_ood_k1_mean\": 0.9127,\n1062\t  \"dd_ood_k1_std\": 0.1028,\n1063\t  \"dd_ood_k2_mean\": 0.9003,\n106\n…[truncated 11618 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T19:31:19.290419+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/b1rll3za1.txt",
+              "offset": "1500",
+              "limit": "500"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T19:31:19.290701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1500\t    \"std\": 0\n1501\t  },\n1502\t  \"dd_ood_k5\": {\n1503\t    \"mean\": 1,\n1504\t    \"std\": 0\n1505\t  },\n1506\t  \"dd_ood_full\": {\n1507\t    \"mean\": 1,\n1508\t    \"std\": 0\n1509\t  },\n1510\t  \"aa_ood_full\": {\n1511\t    \"mean\": 1,\n1512\t    \"std\": 0\n1513\t  },\n1514\t  \"fitd_ood_full\": {\n1515\t    \"mean\": 1,\n1516\t    \"std\": 0\n1517\t  },\n1518\t  \"metric\": \"f1_macro\",\n1519\t  \"seeds\": 3,\n1520\t  \"early_stop_epoch\": 4\n1521\t}\n1522\t\n1523\t=== exp13_meanpool_multiseed (conclusion=success) ===\n1524\t{\n1525\t  \"dd_ood\": {\n1526\t    \"k1\": {\n1527\t      \"mean\": 0.9905,\n1528\t      \"std\": 0.0134\n1529\t    },\n1530\t    \"k2\": {\n1531\t      \"mean\": 0.9936,\n1532\t      \"std\": 0.009\n1533\t    },\n1534\t    \"k3\": {\n1535\t      \"mean\": 0.9842,\n1536\t      \"std\": 0.016\n1537\t    },\n1538\t    \"k5\": {\n1539\t      \"mean\": 0.9968,\n1540\t      \"std\": 0.0045\n1541\t    },\n1542\t    \"full\": {\n1543\t      \"mean\": 0.9905,\n1544\t      \"std\": 0.0134\n1545\t    }\n1546\t  },\n1547\t  \"actorattack\": {\n1548\t    \"k1\": {\n1549\t      \"mean\": 0.8301,\n1550\t      \"std\": 0.0272\n1551\t    },\n1552\t    \"k2\": {\n1553\t      \"mean\": 0.903,\n1554\t      \"std\": 0.0229\n1555\t    },\n1556\t    \"k3\": {\n1557\t      \"mean\": 0.9622,\n1558\t      \"std\": 0.0076\n1559\t    },\n1560\t    \"k5\": {\n1561\t      \"mean\": 0.9716,\n1562\t      \"std\": 0.0153\n1563\t    },\n1564\t    \"full\": {\n1565\t      \"mean\": 0.9623,\n1566\t      \"std\": 0.0151\n1567\t    }\n1568\t  },\n1569\t  \"metric\": \"f1_macro\",\n1570\t  \"classifier\": \"mean_pooling + linear\",\n1571\t  \"encoder\": \"9-class DeBERTa-v3-base\",\n1572\t  \"note\": \"Mean pooling matches BiGRU on DD OOD (all K \\u22650.98). ActorAttack K\\u22653 also \\u22650.96. Confirms temporal modeling not necessary.\"\n1573\t}\n1574\t\n1575\t=== exp5_llm_judge_ood (conclusion=success) ===\n1576\t{\n1577\t  \"dd_ood\": {\n1578\t    \"k1_binary_f1\": 0,\n1579\t    \"k2_binary_f1\": 0,\n1580\t    \"k3_binary_f1\": 0,\n1581\t    \"k5_binary_f1\": 0,\n1582\t    \"full_binary_f1\": 0,\n1583\t    \"k1_macro_f1\": 0.2436,\n1584\t    \"k2_macro_f1\": 0.2436,\n1585\t    \"k3_macro_f1\": 0.2436,\n1586\t    \"k5_macro_f1\": 0.2436,\n1587\t    \"full_macro\n…[truncated 10256 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T19:31:19.290900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/b1rll3za1.txt",
+              "offset": "2000",
+              "limit": "500"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T19:31:19.291182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2000\t  },\n2001\t  \"vanilla\": {\n2002\t    \"125\": {\n2003\t      \"iid\": 0.53,\n2004\t      \"dd_ood\": 0.24,\n2005\t      \"aa_ood\": 0.24\n2006\t    },\n2007\t    \"350\": {\n2008\t      \"iid\": 1,\n2009\t      \"dd_ood\": 0.36,\n2010\t      \"aa_ood\": 0.49\n2011\t    }\n2012\t  },\n2013\t  \"note\": \"9-class at 14% data (50 samples) already achieves DD=1.0, AA=0.99 \\u2014 outperforming vanilla at 100% by 64pp (DD) and 50pp (AA). Sample efficiency entirely driven by DAPT representation quality.\"\n2014\t}\n2015\t\n2016\t=== exp28b_data_efficiency_supplement (conclusion=success) ===\n2017\t{\n2018\t  \"9class_3seed_N50_aa_ood\": \"0.969\\u00b10.037\",\n2019\t  \"9class_3seed_N125_aa_ood\": \"0.975\\u00b10.019\",\n2020\t  \"9class_3seed_N250_aa_ood\": \"0.975\\u00b10.035\",\n2021\t  \"9class_3seed_N350_aa_ood\": \"0.972\\u00b10.033\",\n2022\t  \"note\": \"9-class 3-seed complete. Vanilla N=50/250 missing (script crashed float16 dtype in GRU eval). exp28b added seed123+456 for 9-class only.\"\n2023\t}\n2024\t\n2025\t=== exp28c_vanilla_supplement (conclusion=success) ===\n2026\t{\n2027\t  \"9class_3seed\": {\n2028\t    \"N50\": {\n2029\t      \"iid\": \"1.000\\u00b10.000\",\n2030\t      \"dd_ood\": \"1.000\\u00b10.000\",\n2031\t      \"aa_ood\": \"0.969\\u00b10.030\"\n2032\t    },\n2033\t    \"N125\": {\n2034\t      \"iid\": \"1.000\\u00b10.000\",\n2035\t      \"dd_ood\": \"1.000\\u00b10.000\",\n2036\t      \"aa_ood\": \"0.975\\u00b10.016\"\n2037\t    },\n2038\t    \"N250\": {\n2039\t      \"iid\": \"1.000\\u00b10.000\",\n2040\t      \"dd_ood\": \"1.000\\u00b10.000\",\n2041\t      \"aa_ood\": \"0.975\\u00b10.029\"\n2042\t    },\n2043\t    \"N350\": {\n2044\t      \"iid\": \"1.000\\u00b10.000\",\n2045\t      \"dd_ood\": \"0.978\\u00b10.024\",\n2046\t      \"aa_ood\": \"0.972\\u00b10.027\"\n2047\t    }\n2048\t  },\n2049\t  \"vanilla_seed42\": {\n2050\t    \"N50\": {\n2051\t      \"iid\": 0.646,\n2052\t      \"dd_ood\": 0.529,\n2053\t      \"aa_ood\": 0.234\n2054\t    },\n2055\t    \"N125\": {\n2056\t      \"iid\": 0.532,\n2057\t      \"dd_ood\": 0.244,\n2058\t      \"aa_ood\": 0.244\n2059\t    },\n2060\t    \"N250\": {\n2061\t      \"iid\": 0.987,\n2062\t      \"dd_ood\": 0.365,\n2063\t      \"aa_ood\": 0.502\n2064\t    },\n206\n…[truncated 10246 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T19:31:19.291565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "REGFILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/mcp-agent-ml-research-read_registry-1779563817327.txt\"\n\npython3 -c \"\nimport json\nwith open('$REGFILE') as f:\n    data = json.load(f)\nresult = data['result']\nparsed = json.loads(result) if isinstance(result, str) else result\nexperiments = parsed['data']['experiments']\n\n# Search for any roberta_large 3-seed or multiseed experiments\nfor eid, exp in experiments.items():\n    if 'roberta' in eid.lower() and 'large' in eid.lower():\n        print(f'=== {eid} ===')\n        print(json.dumps(exp.get('metrics', {}), indent=2, default=str))\n        print()\n    # Also check for dual_ood\n    if 'dual' in eid.lower() or ('ood' in eid.lower() and 'benign' in eid.lower()):\n        print(f'=== {eid} ===')\n        m = exp.get('metrics', {})\n        print(json.dumps(m, indent=2, default=str))\n        print()\n\" 2>&1",
+              "description": "Search for RoBERTa-large multiseed and dual-OOD experiments"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T19:31:19.291775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== exp51_lmsys_benign_ood ===\n{\n  \"baseline_fpr\": 0.575,\n  \"baseline_n\": 200,\n  \"data_source\": \"oasst2 (real crowdsourced human)\",\n  \"adaptation_curve\": {\n    \"n0\": {\n      \"fpr\": 0.575\n    },\n    \"n10\": {\n      \"fpr\": 0.205,\n      \"dd_f1\": 1,\n      \"aa_f1\": 1,\n      \"fitd_f1\": 1\n    },\n    \"n25\": {\n      \"fpr\": 0.015,\n      \"dd_f1\": 1,\n      \"aa_f1\": 0.953,\n      \"fitd_f1\": 1\n    },\n    \"n50\": {\n      \"fpr\": 0.005,\n      \"dd_f1\": 1,\n      \"aa_f1\": 0.99,\n      \"fitd_f1\": 1\n    }\n  },\n  \"comparison_wildchat\": {\n    \"baseline_fpr\": 0.681,\n    \"n10_fpr\": 0,\n    \"n10_sufficient\": true\n  }\n}\n\n=== exp42_ood_benign_mixed ===\n{\n  \"wildchat_fpr_mean\": 0,\n  \"wildchat_fpr_std\": 0,\n  \"iid_f1_mean\": 1,\n  \"ood_dd_f1_mean\": 1,\n  \"ood_aa_f1_mean\": 0.956,\n  \"ood_fitd_f1_mean\": 1,\n  \"wildchat_eval_n\": 49,\n  \"data_filtered\": \"27/226 jailbreak patterns removed\",\n  \"train_size\": \"500 (350 orig + 150 WildChat benign)\"\n}\n\n=== exp15c_roberta_large_mlm ===\n{\n  \"dd_ood\": {\n    \"mlm\": {\n      \"k1\": 0.876,\n      \"k3\": 0.902,\n      \"full\": 0.884\n    },\n    \"vanilla_exp15\": {\n      \"k1\": 0.878,\n      \"k3\": 0.915,\n      \"full\": 0.927\n    },\n    \"9class_exp15\": {\n      \"k1\": 0.965,\n      \"k3\": 0.96,\n      \"full\": 0.987\n    }\n  },\n  \"actorattack\": {\n    \"mlm\": {\n      \"k1\": 0.876,\n      \"k3\": 0.881,\n      \"full\": 0.874\n    },\n    \"vanilla_exp15\": {\n      \"k1\": 0.977,\n      \"k3\": 0.99,\n      \"full\": 1\n    },\n    \"9class_exp15\": {\n      \"k1\": 0.718,\n      \"k3\": 0.881,\n      \"full\": 0.946\n    }\n  },\n  \"key_finding\": \"MLM DAPT hurts both DD OOD and AA vs vanilla. AA: MLM 0.874 < 9class 0.946 < vanilla 1.000. Representation shift from continued pretraining itself conflicts with frozen-encoder GRU, not classification head interference.\"\n}\n\n=== exp15b_roberta_large_lr ===\n{\n  \"dd_ood\": {\n    \"9class_lr1e5\": {\n      \"k1\": 0.899,\n      \"k3\": 0.851,\n      \"full\": 0.948\n    },\n    \"9class_lr2e5_exp15\": {\n      \"k1\": 0.965,\n      \"k3\": 0.96,\n      \"full\": 0.987\n    }\n  },\n  \"actorattack\": {\n    \"9class_lr1e5\"\n…[truncated 975 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T19:31:19.291932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp15* 2>/dev/null\nls /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/ | grep -i 'roberta_large\\|dual_ood\\|roberta-large'",
+              "description": "Search for RoBERTa-large artifact files"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T19:31:19.292076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T19:31:19.292218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/ | grep -iE 'dual|wildchat|benign_adapt|adapt_curve|roberta.large'",
+              "description": "Search for dual-OOD and RoBERTa-large artifacts"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T19:31:19.292339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp19_wildchat_fpr\nexp45_benign_adaptation_curve\nexp51_adapt_curve\nexp66_sharegpt_benign_adaptation"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-23T19:31:19.292459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "REGFILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/mcp-agent-ml-research-read_registry-1779563817327.txt\"\npython3 -c \"\nimport json\nwith open('$REGFILE') as f:\n    data = json.load(f)\nresult = data['result']\nparsed = json.loads(result) if isinstance(result, str) else result\nexps = parsed['data']['experiments']\n\n# Search for exp with roberta large 3-seed or std values\nfor eid, exp in exps.items():\n    m = exp.get('metrics', {})\n    ms = json.dumps(m)\n    # Find any experiment with 'roberta' and 'large' and 'std' or '3seed' or multiple seeds\n    if 'roberta' in eid.lower() and 'large' in eid.lower():\n        print(f'{eid}: {ms[:200]}')\n    # Or any exp with roberta_large in metrics\n    if 'roberta_large' in ms.lower() or 'roberta-large' in ms.lower():\n        print(f'{eid}: {ms[:200]}')\n\nprint('---')\n# Check exp40 for Llama Guard pooled recall\nexp40 = exps.get('exp40_llama_guard_baseline', {})\nm40 = exp40.get('metrics', {})\n# Calculate pooled recall\ndd_rec = m40.get('ood_dd', {}).get('full', {}).get('rec_jb', 0)\naa_rec = m40.get('ood_aa', {}).get('full', {}).get('rec_jb', 0)\nfitd_rec = m40.get('ood_fitd', {}).get('full', {}).get('rec_jb', 0)\niid_rec = m40.get('iid_crescendo', {}).get('full', {}).get('rec_jb', 0)\nprint(f'Llama Guard recalls: DD={dd_rec}, AA={aa_rec}, FITD={fitd_rec}, IID={iid_rec}')\n# Pooled: total correct / total jailbreak\ntotal_correct = int(dd_rec*80) + int(aa_rec*80) + int(fitd_rec*80) + int(iid_rec*38)\ntotal_jb = 80 + 80 + 80 + 38\nprint(f'Pooled recall: {total_correct}/{total_jb} = {total_correct/total_jb:.3f} ({total_correct/total_jb*100:.1f}%)')\n\" 2>&1",
+              "description": "Search for RoBERTa-large 3-seed data and check Llama Guard pooled recall"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-23T19:31:19.292624+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp15c_roberta_large_mlm: {\"dd_ood\": {\"mlm\": {\"k1\": 0.876, \"k3\": 0.902, \"full\": 0.884}, \"vanilla_exp15\": {\"k1\": 0.878, \"k3\": 0.915, \"full\": 0.927}, \"9class_exp15\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"ml\nexp15b_roberta_large_lr: {\"dd_ood\": {\"9class_lr1e5\": {\"k1\": 0.899, \"k3\": 0.851, \"full\": 0.948}, \"9class_lr2e5_exp15\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"9class_lr1e5\": {\"k1\": 0.459, \"k3\": 0.676, \"full\nexp15_roberta_large: {\"dd_ood\": {\"roberta_large_vanilla\": {\"k1\": 0.878, \"k3\": 0.915, \"full\": 0.927}, \"roberta_large_9class\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"roberta_large_vanilla\": {\"k1\": 0.977\nexp15_roberta_large: {\"dd_ood\": {\"roberta_large_vanilla\": {\"k1\": 0.878, \"k3\": 0.915, \"full\": 0.927}, \"roberta_large_9class\": {\"k1\": 0.965, \"k3\": 0.96, \"full\": 0.987}}, \"actorattack\": {\"roberta_large_vanilla\": {\"k1\": 0.977\n---\nLlama Guard recalls: DD=0.0125, AA=0, FITD=0, IID=0.1053\nPooled recall: 5/278 = 0.018 (1.8%)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-23T19:31:19.292789+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "REGFILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/a3b0276b-76a8-455b-9a2e-91310c9bfe46/tool-results/mcp-agent-ml-research-read_registry-1779563817327.txt\"\npython3 -c \"\nimport json\nwith open('$REGFILE') as f:\n    data = json.load(f)\nresult = data['result']\nparsed = json.loads(result) if isinstance(result, str) else result\nexps = parsed['data']['experiments']\n\n# Check exp51_adapt_curve and exp56 for dual-OOD values\nfor eid in ['exp51_adapt_curve', 'exp56_crossllm_10shot', 'exp56_crossllm_10shot_adaptation', 'exp66_sharegpt_benign_adaptation', 'exp45', 'exp67_length_matching']:\n    if eid in exps:\n        exp = exps[eid]\n        print(f'=== {eid} ===')\n        print(json.dumps(exp.get('metrics', {}), indent=2, default=str)[:800])\n        print()\n    else:\n        print(f'{eid}: NOT FOUND')\n\" 2>&1",
+              "description": "Check adapt curve and dual-OOD experiments"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-23T19:31:19.292953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp51_adapt_curve: NOT FOUND\nexp56_crossllm_10shot: NOT FOUND\n=== exp56_crossllm_10shot_adaptation ===\n{\n  \"baseline_fpr\": 0.945,\n  \"baseline_aa_llama_recall\": 0.74,\n  \"adaptation_curve\": {\n    \"n0\": {\n      \"fpr\": 0.945,\n      \"dd_f1\": 1,\n      \"aa_f1\": 0.99,\n      \"fitd_f1\": 1,\n      \"dd_llama_recall\": 1,\n      \"aa_llama_recall\": 0.74,\n      \"fitd_llama_recall\": 1\n    },\n    \"n5\": {\n      \"fpr\": 0.055,\n      \"dd_f1\": 0.694,\n      \"aa_f1\": 0.841,\n      \"fitd_f1\": 0.99,\n      \"dd_llama_recall\": 0.64,\n      \"aa_llama_recall\": 0.04,\n      \"fitd_llama_recall\": 0.76\n    },\n    \"n10\": {\n      \"fpr\": 0.03,\n      \"dd_f1\": 0.816,\n      \"aa_f1\": 0.601,\n      \"fitd_f1\": 1,\n      \"dd_llama_recall\": 0.6,\n      \"aa_llama_recall\": 0,\n      \"fitd_llama_recall\": 0.8\n    },\n    \"n25\": {\n      \"fpr\": 0.005,\n      \"dd_f1\": 0.556,\n      \"aa_f1\": 0.271,\n      \"fitd_f1\": 0.99,\n      \"dd_llama_recall\": 0.08,\n    \n\n=== exp66_sharegpt_benign_adaptation ===\n{\n  \"baseline_fpr\": 0.39,\n  \"baseline_n\": 200,\n  \"data_source\": \"ShareGPT (real user-ChatGPT conversations)\",\n  \"adaptation_curve\": {\n    \"n0\": {\n      \"fpr\": 0.39\n    },\n    \"n5\": {\n      \"fpr\": 0.21,\n      \"iid_f1\": 1,\n      \"dd_f1\": 0.953,\n      \"aa_f1\": 0.891,\n      \"fitd_f1\": 1\n    },\n    \"n10\": {\n      \"fpr_mean\": 0.105,\n      \"fpr_seeds\": [\n        0.075,\n        0.155,\n        0.085\n      ],\n      \"iid_f1\": 0.987,\n      \"dd_f1_mean\": 0.906,\n      \"aa_f1_mean\": 0.852,\n      \"fitd_f1\": 1\n    },\n    \"n15\": {\n      \"fpr\": 0.095,\n      \"iid_f1\": 1,\n      \"dd_f1\": 0.917,\n      \"aa_f1\": 0.874,\n      \"fitd_f1\": 1\n    },\n    \"n20\": {\n      \"fpr\": 0.1,\n      \"iid_f1\": 1,\n      \"dd_f1\": 0.926,\n      \"aa_f1\": 0.858,\n      \"fitd_f1\": 1\n    },\n    \"n25\": {\n      \"fpr_mean\": 0.027,\n      \"fpr_see\n\nexp45: NOT FOUND\n=== exp67_length_matching ===\n{\n  \"dd_ood\": {\n    \"full_set_f1\": 0.887,\n    \"full_set_std\": 0.086,\n    \"range_matched_f1\": 0.88,\n    \"range_matched_std\": 0.094,\n    \"range_matched_delta\": -0.008,\n    \"bucket_matched_f1\": 0.913,\n    \"bu\n…[truncated 521 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-23T19:31:19.293122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/ -name \"*.json\" | xargs grep -l \"0.855\\|dual.ood\\|no.adapt\" 2>/dev/null | head -5",
+              "description": "Search for dual-OOD result files"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-23T19:31:19.293248+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp2_actorattack_ood.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp12_toxicchat_bootstrap/exp12_toxicchat_bootstrap.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/EXP-2/data/exp2_actorattack_ood.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-23T19:31:19.293367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/ -name \"*.json\" -path \"*exp45*\" -o -name \"*.json\" -path \"*exp51*\" -o -name \"*.json\" -path \"*dual*\" -o -name \"*.json\" -path \"*wildchat*\" 2>/dev/null | head -10",
+              "description": "Find wildchat/dual-OOD JSON files in artifacts"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-23T19:31:19.293484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp45/data/multiseed_n10_summary.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp45_benign_adaptation_curve/multiseed_n10_summary.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp51_adapt_curve/data/exp51_oasst2_adapt_curve.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-23T19:31:19.293623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/exp45_benign_adaptation_curve/multiseed_n10_summary.json"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-23T19:31:19.293767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"experiment\": \"exp45_benign_adaptation_curve\",\n3\t  \"description\": \"Multi-seed robustness check for N=10 benign adaptation\",\n4\t  \"n\": 10,\n5\t  \"seeds\": [42, 123, 456],\n6\t  \"per_seed\": {\n7\t    \"42\": {\n8\t      \"wildchat_fpr\": 0.0,\n9\t      \"iid_f1_macro\": 1.0,\n10\t      \"ood_dd_f1\": 1.0,\n11\t      \"ood_aa_f1\": 1.0,\n12\t      \"ood_fitd_f1\": 1.0,\n13\t      \"ood_aa_recall\": 1.0\n14\t    },\n15\t    \"123\": {\n16\t      \"wildchat_fpr\": 0.0,\n17\t      \"iid_f1_macro\": 1.0,\n18\t      \"ood_dd_f1\": 1.0,\n19\t      \"ood_aa_f1\": 0.9715,\n20\t      \"ood_fitd_f1\": 1.0,\n21\t      \"ood_aa_recall\": 0.9625\n22\t    },\n23\t    \"456\": {\n24\t      \"wildchat_fpr\": 0.0,\n25\t      \"iid_f1_macro\": 1.0,\n26\t      \"ood_dd_f1\": 1.0,\n27\t      \"ood_aa_f1\": 0.9715,\n28\t      \"ood_fitd_f1\": 1.0,\n29\t      \"ood_aa_recall\": 0.9625\n30\t    }\n31\t  },\n32\t  \"aggregated_mean_std\": {\n33\t    \"wildchat_fpr\": \"0.000 ± 0.000\",\n34\t    \"iid_f1_macro\": \"1.000 ± 0.000\",\n35\t    \"ood_dd_f1\": \"1.000 ± 0.000\",\n36\t    \"ood_aa_f1\": \"0.981 ± 0.016\",\n37\t    \"ood_fitd_f1\": \"1.000 ± 0.000\"\n38\t  }\n39\t}\n40\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-23T19:31:19.294056+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have all the data needed. Let me write the comprehensive traceability report.\n\n## Table 数据溯源报告\n\n### Table 2 (main_results) — Cross-attack generalization, IID (Crescendo) / OOD (DD)\n\n| Cell | 论文值 | Registry exp_id | Registry 值 | 一致? |\n|------|--------|----------------|-------------|-------|\n| 9-class IID K=2 | 1.000±.000 | plan_002_* (treatment_k2_f1) | 1.000, 1.000, 1.000 → 1.000±.000 | ✅ |\n| 9-class IID Full | 1.000±.000 | plan_002_* (treatment_full_f1) | 1.000, 1.000, 1.000 → 1.000±.000 | ✅ |\n| 9-class OOD K=2 | .981±.013 | plan_006 + plan_002_{123,456} (dd_ood_k2) | 0.9904, 0.9904, 0.9622 → 0.981±.013 | ✅ |\n| 9-class OOD Full | .997±.005 | plan_006 + plan_002_{123,456} (dd_ood_full) | 1.000, 1.000, 0.9904 → 0.997±.005 | ✅ |\n| MLM IID K=2 | .974 | plan_017_mlm_control (iid_f1_k2 seed42) | 0.9737 → .974 | ✅ |\n| MLM IID Full | 1.000 | plan_017_mlm_control (iid_f1_full seed42) | 1.000 | ✅ |\n| MLM OOD K=2 | .993±.009 | plan_017_mlm_control (dd_ood_f1_k2) | mean=0.9934, std=0.0093 | ✅ |\n| MLM OOD Full | .914±.115 | plan_017_mlm_control (dd_ood_f1_full) | mean=0.9138, std=0.115 | ✅ |\n| Vanilla IID K=2 | .978±.016 | plan_002_* (baseline_k2) | 0.9867, 0.987, 0.9589 → mean=.978 | ⚠️ std |\n| Vanilla IID Full | 1.000±.000 | plan_002_* (baseline_full) | 1.000, 1.000, 1.000 | ✅ |\n| Vanilla OOD K=2 | .479±.038 | vanilla_multiseed_dd_ood (k2) | mean=0.479, std=0.038 | ✅ |\n| Vanilla OOD Full | .312±.026 | vanilla_multiseed_dd_ood (full) | mean=0.312, std=0.026 | ✅ |\n| TF-IDF IID K=2 | 1.000 | plan_002 (tfidf_all_k_f1) | 1.000 | ✅ |\n| TF-IDF IID Full | 1.000 | plan_002 (tfidf_all_k_f1) | 1.000 | ✅ |\n| TF-IDF OOD K=2 | 1.000 | exp7 (dd_ood k2) | 1.000 | ✅ |\n| TF-IDF OOD Full | .961 | exp7 (dd_ood full) | 0.961 | ✅ |\n\n---\n\n### Table 3 (evidence_hierarchy) — DD-Full, AA-Full, DD-K=2\n\n| Cell | 论文值 | Registry exp_id | Registry 值 | 一致? |\n|------|--------|----------------|-------------|-------|\n| 9-class DD-Full | .997±.005 | plan_006/plan_002 | 1.000, 1.000, 0.990 → .997±.005 | ✅ |\n| 9-class AA-Full | .972±.026 | exp2_actorattack_ood (deberta_9class) | full=0.972, std=0.026 | ✅ |\n| 9-class DD-K=2 | .981±.013 | plan_006/plan_002 | 0.990, 0.990, 0.962 → .981±.013 | ✅ |\n| Binary DD-Full | 1.000±.000 | mf1_binary_{123,456} + plan_013 (seed42) | seed123=1.000, seed456=1.000, seed42=0.990 → .997±.005 | ⚠️ 见下 |\n| Binary AA-Full | .990±.008 | exp2_actorattack_ood (deberta_binary) | full=0.990, std=0.008 | ✅ |\n| Binary DD-K=2 | .994±.009 | mf1_binary seeds k2 | seed123=1.000, seed456=1.000 | ⚠️ seed42缺失 |\n| Scrambled DD-Full | .997±.005 | mf1_scrambled_{123,456} | seed123=1.000, seed456=1.000 | ⚠️ seed42缺失 |\n| Scrambled AA-Full | .951±.043 | exp2_actorattack_ood (deberta_scrambled) | full=0.951, std=0.043 | ✅ |\n| Scrambled DD-K=2 | .981±.026 | mf1_scrambled seeds k2 | seed123=1.000, seed456=1.000 | ⚠️ seed42缺失 |\n| MLM DD-Full | .914±.115 | plan_017_mlm_control | mean=0.914, std=0.115 | ✅ |\n| MLM AA-Full | .893±.080 | exp2_actorattack_ood (deberta_mlm) | full=0.893, std=0.080 | ✅ |\n| MLM DD-K=2 | .993±.009 | plan_017_mlm_control | mean=0.993, std=0.009 | ✅ |\n| Mean pooling DD-Full | .991±.013 | exp13_meanpool_multiseed (dd_ood.full) | mean=0.9905, std=0.0134 | ✅ |\n| Mean pooling AA-Full | .962±.015 | exp13_meanpool_multiseed (actorattack.full) | mean=0.9623, std=0.0151 | ✅ |\n| Mean pooling DD-K=2 | **1.000** | exp27_mean_pooling (dd_ood_k2) | 1.000±0 | ⚠️ 见下 |\n| Topic DD-Full | .541±.207 | plan_016v2_topic_control | mean=0.5411, std=0.2069 | ✅ |\n| Topic AA-Full | .625±.141 | exp2_actorattack_ood (deberta_topic) | full=0.625, std=0.141 | ✅ |\n| Topic DD-K=2 | .593±.166 | plan_016v2_topic_control (k2) | mean=0.5926, std=0.1655 | ✅ |\n| Wiki-MLM DD-Full | .904±.115 | plan_018_wiki_mlm_control | mean=0.904, std=0.115 | ✅ |\n| Wiki-MLM AA-Full | .686±.297 | exp2_actorattack_ood (deberta_wiki_mlm) | full=0.686, std=0.297 | ✅ |\n| Wiki-MLM DD-K=2 | .911±.073 | plan_018_wiki_mlm_control (k2) | mean=0.911, std=0.073 | ✅ |\n| Vanilla DD-Full | .312±.026 | vanilla_multiseed_dd_ood | mean=0.312, std=0.026 | ✅ |\n| Vanilla AA-Full | .258±.000 | exp2_actorattack_ood (deberta_vanilla) | full=0.258, std=0 | ✅ |\n| Vanilla DD-K=2 | .479±.038 | vanilla_multiseed_dd_ood (k2) | mean=0.479, std=0.038 | ✅ |\n| TF-IDF DD-Full | .961 | exp7 (dd_ood full) | 0.961 | ✅ |\n| TF-IDF AA-Full | .261 | exp7 (actorattack full) | 0.2609 → .261 | ✅ |\n| TF-IDF DD-K=2 | 1.000 | exp7 (dd_ood k2) | 1.000 | ✅ |\n| Llama Guard DD-Full | .025 | exp40_llama_guard_baseline (ood_dd.full) | f1_jb=0.0244 → .025 | ⚠️ 指标不一致 |\n| Llama Guard AA-Full | .000 | exp40_llama_guard_baseline (ood_aa.full) | f1_jb=0 | ⚠️ 指标不一致 |\n| Dual-OOD no adapt DD | .855 | — | — | ❌ 无法溯源 |\n| Dual-OOD no adapt AA | .842 | — | — | ❌ 无法溯源 |\n| Dual-OOD +10-shot DD | .994 | — | — | ❌ 无法溯源 |\n| Dual-OOD +10-shot AA | .981 | exp45 (aa_f1 n10 multiseed) | 0.981±0.016 | ⚠️ 部分匹配 |\n\n---\n\n### Table 4 (cross_encoder) — DD / AA Full, 3-seed\n\n| Cell | 论文值 | Registry exp_id | Registry 值 | 一致? |\n|------|--------|----------------|-------------|-------|\n| DeBERTa Vanilla DD | .312±.026 | vanilla_multiseed_dd_ood | mean=0.312, std=0.026 | ✅ |\n| DeBERTa Vanilla AA | .258±.000 | exp2 (deberta_vanilla) | full=0.258, std=0 | ✅ |\n| DeBERTa MLM DD | .914±.115 | plan_017_mlm_control | mean=0.914, std=0.115 | ✅ |\n| DeBERTa MLM AA | .893±.080 | exp2 (deberta_mlm) | full=0.893, std=0.080 | ✅ |\n| DeBERTa 9-class DD | .997±.005 | plan_006/plan_002 | mean=0.997, std=0.005 | ✅ |\n| DeBERTa 9-class AA | .972±.026 | exp2 (deberta_9class) | full=0.972, std=0.026 | ✅ |\n| RoBERTa-base Vanilla DD | .981±.026 | exp1_roberta_vanilla | mean=0.9813, std=0.0264 | ✅ |\n| RoBERTa-base Vanilla AA | .466±.163 | exp2 (roberta_vanilla) | full=0.466, std=0.163 | ✅ |\n| RoBERTa-base MLM DD | .987±.018 | exp1_roberta_mlm | mean=0.9874, std=0.0178 | ✅ |\n| RoBERTa-base MLM AA | .730±.201 | exp2 (roberta_mlm) | full=0.730, std=0.201 | ✅ |\n| RoBERTa-base 9-class DD | .994±.005 | exp1_roberta_9class | mean=0.9936, std=0.0045 | ✅ |\n| RoBERTa-base 9-class AA | .939±.046 | exp2 (roberta_9class) | full=0.939, std=0.046 | ✅ |\n| RoBERTa-large Vanilla DD | .927±.036 | exp15 (roberta_large_vanilla) | full=0.927 (single seed) | ⚠️ 无std来源 |\n| RoBERTa-large Vanilla AA | 1.000±.000 | exp15 (roberta_large_vanilla) | full=1.000 (single seed) | ⚠️ 无std来源 |\n| RoBERTa-large MLM DD | .884±.065 | exp15c (mlm) | full=0.884 (single seed) | ⚠️ 无std来源 |\n| RoBERTa-large MLM AA | .874±.014 | exp15c (mlm) | full=0.874 (single seed) | ⚠️ 无std来源 |\n| RoBERTa-large 9-class DD | .987±.004 | exp15 (roberta_large_9class) | full=0.987 (single seed) | ⚠️ 无std来源 |\n| RoBERTa-large 9-class AA | .946±.057 | exp15 (roberta_large_9class) | full=0.946 (single seed) | ⚠️ 无std来源 |\n\n---\n\n### Table 5 (mixed_llm) — 250 Qwen + 250 Llama\n\n| Cell | 论文值 | Registry exp_id | Registry 值 | 一致? |\n|------|--------|----------------|-------------|-------|\n| 9-class Mixed | .996±.006 | exp16 (9class_mean.mixed_test) | 0.996 | ⚠️ std无来源 |\n| 9-class DD OOD | .818±.096 | exp16 (9class_mean.dd_ood) | 0.818, std=0.096 | ✅ |\n| 9-class AA OOD | .504±.107 | exp16 (9class_mean.aa_ood) | 0.504, std=0.107 | ✅ |\n| 9-class FITD OOD | .997±.005 | exp16 (9class_mean.fitd_ood) | 0.997, std=0.005 | ✅ |\n| 9-class ToxicChat | .550±.052 | exp16 (9class_mean.toxicchat_balanced) | 0.55, std=0.052 | ✅ |\n| MLM Mixed | .681±.226 | exp16 (mlm_mean.mixed_test) | **0.975** | ❌ 不一致 |\n| MLM DD OOD | .289±.101 | exp16 (mlm_mean.dd_ood) | 0.289, std=0.101 | ✅ |\n| MLM AA OOD | .258±.075 | exp16 (mlm_mean.aa_ood) | 0.258, std=0.075 | ✅ |\n| MLM FITD OOD | .679±.188 | exp16 (mlm_mean.fitd_ood) | 0.679, std=0.188 | ✅ |\n| MLM ToxicChat | .256±.053 | exp16 (mlm_mean.toxicchat_balanced) | 0.256, std=0.053 | ✅ |\n| Vanilla Mixed | .802±.010 | exp16 (vanilla_mean.mixed_test) | 0.802 | ⚠️ std无来源 |\n| Vanilla DD OOD | .291±.065 | exp16 (vanilla_mean.dd_ood) | 0.291, std=0.065 | ✅ |\n| Vanilla AA OOD | .389±.073 | exp16 (vanilla_mean.aa_ood) | 0.389, std=0.073 | ✅ |\n| Vanilla FITD OOD | .867±.022 | exp16 (vanilla_mean.fitd_ood) | 0.867, std=0.022 | ✅ |\n| Vanilla ToxicChat | .356±.009 | exp16 (vanilla_mean.toxicchat_balanced) | 0.356, std=0.009 | ✅ |\n\n---\n\n### Table 6 (human_data) — ToxicChat macro F1\n\n| Cell | 论文值 | Registry exp_id | Registry 值 | 一致? |\n|------|--------|----------------|-------------|-------|\n| JB-MLM | .837±.013 | exp8 (jb_mlm_macro_f1) | 0.837, std=0.013 | ✅ |\n| Wiki-MLM | .791±.093 | exp8 (wiki_mlm_macro_f1) | 0.791, std=0.093 | ✅ |\n| Binary | .705±.072 | exp8 (binary_macro_f1) | 0.705, std=0.072 | ✅ |\n| Scrambled | .616±.056 | exp8 (scrambled_macro_f1) | 0.616, std=0.056 | ✅ |\n| 9-class | .596±.087 | exp8 (9class_macro_f1) | 0.596, std=0.087 | ✅ |\n| Topic | .496±.042 | exp8 (topic_macro_f1) | 0.496, std=0.042 | ✅ |\n| Vanilla | .413±.021 | exp8 (vanilla_macro_f1) | 0.413, std=0.021 | ✅ |\n\n**Table 6 完全一致 ✅**\n\n---\n\n### Table 7 (ood_perturbation) — OOD DD, Clean/Perturbed Full, Δ\n\n| Cell | 论文值 | Registry exp_id | Registry 值 | 一致? |\n|------|--------|----------------|-------------|-------|\n| 9-class Clean Full | .994±.005 | exp4 (9class_3seed.clean_full) | 0.9968 (pooled) | ⚠️ .997 vs .994 |\n| 9-class Pert Full | 1.000±.000 | exp4 (9class_3seed.perturbed_full) | 1.000 | ✅ |\n| 9-class Δ Full | +0.6 | exp4 (delta_full) | +0.0032 → +0.3pp | ⚠️ +0.6 vs +0.3 |\n| 9-class Δ K=1 | +0.6 | exp4 (delta_k1) | +0.0063 → +0.6pp | ✅ |\n| Binary Clean Full | 1.000±.000 | exp4 (binary_3seed.clean_full) | 0.9968 | ⚠️ .997 vs 1.000 |\n| Binary Pert Full | 1.000±.000 | exp4 (binary_3seed.perturbed_full) | 1.000 | ✅ |\n| Binary Δ Full | 0.0 | exp4 | +0.0032 → +0.3pp | ⚠️ 0.0 vs +0.3 |\n| Binary Δ K=1 | +0.6 | exp4 (delta_k1) | +0.0064 → +0.6pp | ✅ |\n| Scrambled Clean Full | .994±.005 | exp4 (scrambled_3seed.clean_full) | 0.9968 | ⚠️ .997 vs .994 |\n| Scrambled Pert Full | 1.000±.000 | exp4 (perturbed_full) | 1.000 | ✅ |\n| JB MLM Clean Full | .914±.115 | exp4 (jb_mlm_3seed.clean_full) | 0.9138 | ✅ |\n| JB MLM Pert Full | .941 | exp4 (jb_mlm_3seed.perturbed_full) | 0.9409 → .941 | ✅ |\n| JB MLM Δ Full | +2.7 | exp4 (delta_full) | +0.0271 → +2.7pp | ✅ |\n| Wiki MLM Clean Full | .904±.115 | exp4 (wiki_mlm_3seed.clean_full) | 0.9042 | ✅ |\n| Wiki MLM Pert Full | .872 | exp4 (perturbed_full) | 0.8715 → .872 | ✅ |\n| Wiki MLM Δ Full | −3.3 | exp4 (delta_full) | −0.0327 → −3.3pp | ✅ |\n| Vanilla Clean Full | .312±.026 | exp4 (vanilla_3seed.clean_full) | 0.3123 → .312 | ✅ |\n| Vanilla Pert Full | .339±.055 | exp4 (perturbed_full) | 0.3394 → .339 | ✅ |\n| Vanilla Δ Full | +2.7 | exp4 (delta_full) | +0.0271 → +2.7pp | ✅ |\n| Vanilla Δ K=1 | −6.8±1.1 | exp4 (delta_k1) | −0.0681 → −6.8pp | ✅ |\n\n---\n\n### ⚠️ 不一致（需修复或解释）\n\n1. **Table 2 Vanilla IID K=2 std**: 论文 .016, 计算得 .013 (pop std, n=3). 论文声明使用 pop std (n divisor), 但 .016 匹配 Bessel-corrected std (n−1 divisor). 轻微不一致。\n\n2. **Table 3 Binary DD-Full**: 论文 1.000±.000, 但 registry seed42 (plan_013_none_collapse) dd_binary_full_f1=0.9904. 如果 seed42 确实为 0.990, 则 3-seed mean=.997±.005, 不是 1.000±.000。\n\n3. **Table 3 Mean pooling DD-K=2**: 论文 1.000, 但 exp13_meanpool_multiseed 报告 dd_ood.k2 mean=0.994±.009。论文使用了 exp27 (1.000±.000) 的值而非 exp13 的值, 两个实验结果不同 — 应统一使用同一组实验。\n\n4. **Table 3 Llama Guard 指标不一致**: 论文显示 DD=.025 / AA=.000, 这是 **jailbreak-class F1** (f1_jb), 而其他所有行使用 **macro F1**。如果使用 macro F1, Llama Guard DD 应为 .253。虽然 Llama Guard 几乎不检测任何 jailbreak, 但表内指标不统一。\n\n5. **Table 5 MLM Mixed**: 论文 .681±.226, registry exp16 mixed_test=0.975。差异巨大。可能原因: registry 存储的是 Qwen-only test 性能 (note 标注 \"qwen_test INVALIDATED\" 因 35.5% 数据泄漏), 而论文使用正确的 Qwen+Llama 混合测试集。但 registry 对应字段未更新。\n\n6. **Table 7 Clean Full vs Table 2/3**: 9-class clean DD-Full 在 Table 7 为 .994, 在 Table 2/3 为 .997。两表应评估同一模型在同一数据上的结果, 差异 0.003 表明可能使用了不同的 checkpoint 或不同的评估代码。Binary 同理 (Table 7=1.000 vs 实际应为 .997)。\n\n7. **Table 7 Δ Full 与 clean/pert 不一致**: 9-class clean=.994, pert=1.000, Δ 应为 +0.6pp; 但 exp4 pooled clean=0.9968 → per-seed 计算给出 Δ=+0.32pp, 不是 +0.6pp。Binary clean=1.000, pert=1.000, Δ 应为 0.0; exp4 pooled clean=0.9968 → Δ=+0.32pp。论文的 Δ 值基于四舍五入后的 .994 和 1.000 计算, 而非原始精度值。\n\n---\n\n### ❌ 无法溯源\n\n1. **Table 3 Dual-OOD \"no adapt\" DD=.855, AA=.842** — 未找到对应 registry 实验。这些值来自将 WildChat benign 替换 IID benign 进行测试, 但该评估结果未注册。\n\n2. **Table 3 Dual-OOD \"+10-shot\" DD=.994** — exp45 报告适配后 dd_f1=1.000 (使用 IID benign 测试), 与论文 .994 不符。.994 应来自以 WildChat benign 替换测试集的 dual-OOD 评估, 但该计算未注册。AA=.981 与 exp45 的 aa_f1=0.981 匹配, 但 DD 值不匹配。\n\n3. **Table 4 RoBERTa-large 所有 std 值** — registry 仅有单 seed 值 (exp15/15b/15c), 无 3-seed 数据。论文标题声明 \"3-seed mean±std\", mean 值与 registry 单 seed 值完全吻合, 但 std 来源不明 (未注册为 registry 实验)。\n\n4. **Table 3 Binary/Scrambled DD seed42** — mf1_binary 和 mf1_scrambled 系列仅有 seed123 和 seed456 数据。seed42 的 DD OOD 值需从 plan_013_none_collapse (binary) 推断, 但该实验可能使用不同数据版本 (v4c)。\n\n5. **Table 5 Mixed/Vanilla Mixed 列 std 值** — registry exp16 仅存储 mean, 无 std。论文的 .006 (9-class) 和 .010 (vanilla) 无 registry 来源。\n\n---\n\n### 总结\n\n- **完全一致**: Table 6 (human_data) 全部 7 行 ✅; Table 4 DeBERTa 和 RoBERTa-base 行 (12 cells) ✅; Table 2 大部分 cells ✅; Table 3 大部分 cells ✅\n- **轻微不一致**: 主要是 pop std vs Bessel std (Table 2 vanilla IID K=2), 以及 Table 7 的 clean baseline 与 Table 2/3 相差 0.003 (可能来自不同评估 pipeline)\n- **显著不一致**: Table 5 MLM Mixed (.681 vs registry 0.975); Table 3 Binary DD-Full (1.000 vs 计算应为 .997); Mean pooling DD-K=2 混用两组实验数据\n- **无法溯源**: RoBERTa-large 的全部 std 值; Dual-OOD 的 4 个 cells; Table 5 Mixed 列的 std 值"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_table-registry-traceability_20260523T191641"
+          },
+          "id": "event-000051"
+        }
+      ],
+      "message_count": 51
+    }
+  ],
+  "readable_path": "readable/conversations/audit-table-registry-traceability.md"
+}

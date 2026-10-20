@@ -1,0 +1,35 @@
+{
+  "exp_id": "mf1_scrambled_seed123",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T09:11:48.357Z",
+    "updated_at": "2026-05-18T09:20:28.404Z",
+    "hypothesis": "Scrambled persuasion labels (seed=123) will degrade DD OOD detection performance compared to original labels, confirming that persuasion strategy grounding is causally necessary for generalization",
+    "spec": {
+      "command": "python src/train_deberta.py + mf1_scrambled_seed123_gru_eval.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/",
+      "data_count": 350,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": 123
+    },
+    "checkpoint_path": "checkpoints/mf1_scrambled_seed123/",
+    "log_path": "results/mf1_scrambled_seed123_stage1.log, results/mf1_scrambled_seed123_stage2.log",
+    "metrics": {
+      "val_persuasion_acc": 0.6724,
+      "val_intent_acc": 1,
+      "dd_ood_f1_k1": 1,
+      "dd_ood_f1_k2": 1,
+      "dd_ood_f1_k3": 1,
+      "dd_ood_f1_k5": 1,
+      "dd_ood_f1_full": 1
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T09:20:28.516339+00:00",
+  "trigger": "update_registry"
+}

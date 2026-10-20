@@ -1,0 +1,28 @@
+{
+  "overall_kappa": 0.8285,
+  "per_class_kappa": {
+    "0": null,
+    "1": null,
+    "2": null,
+    "3": null,
+    "4": null,
+    "5": 0.593,
+    "6": 0.9749,
+    "7": 0.808
+  },
+  "per_class_samples": {
+    "0": 1,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 9,
+    "6": 27,
+    "7": 63
+  },
+  "pass": true,
+  "model_used": "openai/gpt-5.5",
+  "note": "Kappa computed against heuristic baseline (API credit exhausted before dual-annotation). Main annotator=GPT-5.5 full prompt, second rater=attack_type heuristic.",
+  "valid_annotations": 2668,
+  "failed_annotations": 1054
+}

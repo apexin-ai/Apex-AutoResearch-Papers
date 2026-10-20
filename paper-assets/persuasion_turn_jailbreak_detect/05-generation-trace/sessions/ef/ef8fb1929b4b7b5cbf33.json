@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef8fb1929b4b7b5cbf33",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp21 cross checkpoint",
+  "task_key": "worker_code_exp21-cross-checkpoint_20260520T140155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp21-cross-checkpoint_20260520T140155_result.json",
+    "occurrence": 1,
+    "bytes": 827,
+    "sha256": "f67f27f956292214a1c5b7c4a056d4a13106bab30afef0397f4a8466f8da723e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp21 完成。\n\n**结果汇总：**\n\n| DAPT Checkpoint | IID F1 | DD OOD F1 | AA OOD F1 |\n|----------------|--------|-----------|-----------|\n| seed42 | 1.000 | 0.900 | 0.926 |\n| seed123 | 1.000 | 0.917 | 0.926 |\n| seed456 | 1.000 | 0.962 | 0.953 |\n| **mean±std** | **1.000±0.000** | **0.926±0.026** | **0.935±0.013** |\n\n**结论：** IID 和 AA OOD 的跨 checkpoint 方差都在 2pp 以内（0pp 和 1.27pp）。DD OOD 方差 2.63pp 略超阈值，主要由 seed42 的 F1 偏低（0.900 vs 0.962）造成。总体来看，下游 OOD 性能对 Stage-1 DAPT 训练变异具有较好的稳定性。\n\n**产出文件：**\n- 脚本：`/root/persuasion_turn_jailbreak_detect/scripts/exp21_cross_checkpoint.py`\n- 结果：`/root/persuasion_turn_jailbreak_detect/results/exp21_cross_checkpoint.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp21-cross-checkpoint.md"
+}

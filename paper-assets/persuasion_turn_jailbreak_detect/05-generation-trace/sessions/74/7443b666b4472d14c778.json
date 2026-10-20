@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7443b666b4472d14c778",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "sync cka heatmap to local",
+  "task_key": "worker_sync_cka-heatmap-to-local_20260518T193215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_cka-heatmap-to-local_20260518T193215_result.json",
+    "occurrence": 1,
+    "bytes": 374,
+    "sha256": "9cc8f2cadadaa185d76a4e71370fba317e30f5af4852fe6e3458d91620c1db74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个文件全部同步完成，文件大小与远程一致，格式验证通过：\n\n| 文件 | 大小 | 类型 |\n|------|------|------|\n| cka_heatmap.pdf | 18,835 B | PDF 1.4, 1 page |\n| cka_heatmap.png | 138,953 B | PNG 1054×970 RGBA |\n| fig1_architecture.pdf | 43,882 B | PDF 1.4, 1 page |\n| fig1_architecture.png | 116,235 B | PNG 785×1069 RGBA |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-cka-heatmap-to-local.md"
+}

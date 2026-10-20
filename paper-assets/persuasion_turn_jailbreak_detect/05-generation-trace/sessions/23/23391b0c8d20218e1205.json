@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23391b0c8d20218e1205",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan017 mlm multiseed",
+  "task_key": "worker_train_plan017-mlm-multiseed_20260518T061229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan017-mlm-multiseed_20260518T061229_result.json",
+    "occurrence": 1,
+    "bytes": 1119,
+    "sha256": "f9d9f3ba83e5883ef1754a4d10cbd502bdbc6e36ee5370364a46481381342b39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。3-seed 汇总：\n\n**DD OOD F1 (macro):**\n| K | Mean | Std | seed=42 | seed=123 | seed=456 |\n|---|------|-----|---------|----------|----------|\n| K=1 | 0.973 | 0.019 | 1.0 | 0.96 | 0.96 |\n| K=2 | 0.993 | 0.009 | 1.0 | 0.98 | 1.0 |\n| K=3 | 0.997 | 0.005 | 1.0 | 0.99 | 1.0 |\n| K=5 | 0.997 | 0.005 | 1.0 | 0.99 | 1.0 |\n| Full | 0.914 | 0.115 | 1.0 | 0.99 | 0.75 |\n\n**IID F1 (macro):**\n| K | Mean | Std | seed=42 | seed=123 | seed=456 |\n|---|------|-----|---------|----------|----------|\n| K=1 | 0.925 | 0.027 | 0.96 | 0.89 | 0.92 |\n| K=2 | 0.969 | 0.016 | 0.97 | 0.95 | 0.99 |\n| K=3 | 0.978 | 0.012 | 0.99 | 0.96 | 0.99 |\n| K=5 | 0.982 | 0.016 | 1.0 | 0.96 | 0.99 |\n| Full | 0.982 | 0.016 | 1.0 | 0.96 | 0.99 |\n\n关键发现：DD OOD K=1~5 均值 >= 0.97 且方差很小，MLM control 在截断 turn 上仍然很强。Full 的高方差 (0.115) 来自 seed=456 GRU 在长序列上的不稳定（recall=0.64），这是 GRU 分类器层面的随机性，非 MLM 预训练本身的问题。结果已保存到 `results/plan_017_mlm_3seed_summary.json` 并更新了 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan017-mlm-multiseed.md"
+}

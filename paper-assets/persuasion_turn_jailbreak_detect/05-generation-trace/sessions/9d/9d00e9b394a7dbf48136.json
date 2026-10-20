@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d00e9b394a7dbf48136",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "infra westd49690 env setup",
+  "task_key": "worker_infra_westd49690_env_setup_20260522T111328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd49690_env_setup_20260522T111328_result.json",
+    "occurrence": 1,
+    "bytes": 1107,
+    "sha256": "3781129fcfbf4af0072dfa36f139c84ced23cae68cc555d8e4132ee5ea0853e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Setup complete. Report:\n\n### westd-49690 Environment Report\n\n| Item | Status |\n|------|--------|\n| **GPUs** | 2× NVIDIA RTX PRO 6000 Blackwell Server Edition (94GB each) |\n| **CUDA** | 12.8 (nvcc V12.8.93) |\n| **Python** | 3.12.3 (conda base) |\n| **PyTorch** | 2.8.0+cu128 |\n| **Transformers** | 5.9.0 |\n| **Other ML** | datasets 4.8.5, accelerate 1.13.0, wandb 0.27.0, sklearn 1.8.0, pandas 3.0.3, einops 0.8.2 |\n\n**Project code**: Synced to `/root/persuasion_turn_jailbreak_detect/` (412MB — src/, data/, scripts/, paper/, docs/)\n\n**Checkpoints**: All 33 checkpoints synced to `/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints_archive/` (15GB), including:\n- plan_002 (9-class, 3 seeds), plan_017_mlm (MLM, 3 seeds), plan_018_wiki_mlm (3 seeds)\n- exp1_roberta variants (9 checkpoints), mf1_binary (3 seeds)\n- GRU checkpoints (subset_baseline, vanilla seeds)\n\n**Disk**: root 29GB free, data disk 236GB free\n\n**Config**: `.bashrc` configured with conda activation, `HF_HOME=/root/autodl-tmp/.hf_cache`, `HF_HUB_DISABLE_XET=1`\n\n**No issues encountered.**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd49690-env-setup.md"
+}

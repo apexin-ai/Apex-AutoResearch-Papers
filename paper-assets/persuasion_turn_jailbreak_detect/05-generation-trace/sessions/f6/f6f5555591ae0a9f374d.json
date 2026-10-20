@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6f5555591ae0a9f374d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval tost equivalence test",
+  "task_key": "worker_eval_tost-equivalence-test_20260518T203518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_tost-equivalence-test_20260518T203518_result.json",
+    "occurrence": 1,
+    "bytes": 2208,
+    "sha256": "9ce0c3105a0ab17dd9cfe7c971714a56cb5066930137e96725f68b6a1f7b8eea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `results/tost_equivalence.json`。\n\n### Per-seed Macro F1\n\n| Dataset | Variant | Seed 42 | Seed 123 | Seed 456 | Mean |\n|---------|---------|---------|----------|----------|------|\n| DD OOD Full | 9class | 1.0000 | 1.0000 | 0.9904 | 0.9968 |\n| DD OOD Full | binary | 1.0000 | 1.0000 | 1.0000 | 1.0000 |\n| DD OOD Full | scrambled | 0.9904 | 1.0000 | 1.0000 | 0.9968 |\n| DD OOD Full | jb_mlm | 1.0000 | 0.9902 | 0.7512 | 0.9138 |\n| ActorAttack Full | 9class | 0.9904 | 0.9350 | 0.9904 | 0.9719 |\n| ActorAttack Full | binary | 0.9809 | 0.9904 | 1.0000 | 0.9904 |\n| ActorAttack Full | scrambled | 0.8913 | 0.9904 | 0.9715 | 0.9510 |\n| ActorAttack Full | jb_mlm | 0.9715 | 0.9252 | 0.7836 | 0.8934 |\n\n### TOST Equivalence Results (Δ=0.05)\n\n| Comparison | Dataset | Mean Diff | 90% CI | p_TOST | CI within ±0.05? |\n|---|---|---|---|---|---|\n| 9class vs scrambled | DD OOD Full | +0.0000 | [-0.016, +0.016] | 0.006 | **Yes** |\n| 9class vs scrambled | ActorAttack Full | +0.0209 | [-0.109, +0.151] | 0.290 | No |\n| 9class vs binary | DD OOD Full | -0.0032 | [-0.013, +0.006] | 0.002 | **Yes** |\n| 9class vs binary | ActorAttack Full | -0.0185 | [-0.075, +0.038] | 0.122 | No |\n| 9class vs jb_mlm | DD OOD Full | +0.0830 | [-0.145, +0.311] | 0.643 | No |\n| 9class vs jb_mlm | ActorAttack Full | +0.0784 | [-0.109, +0.266] | 0.650 | No |\n| scrambled vs binary | DD OOD Full | -0.0032 | [-0.013, +0.006] | 0.002 | **Yes** |\n| scrambled vs binary | ActorAttack Full | -0.0394 | [-0.117, +0.038] | 0.363 | No |\n\n### 解读\n\n**DD OOD Full**: 9class vs scrambled、9class vs binary、scrambled vs binary 三对均通过 TOST (p<0.05) 且 90% CI 完全落在 ±0.05 内——正面证明等价。\n\n**ActorAttack Full**: 所有对比对 TOST 均未达显著，90% CI 也超出 margin。这主要是 n=3 seeds 加上 ActorAttack 上 variance 较大（scrambled seed 42 仅 0.891，9class seed 123 仅 0.935）导致 power 不足。不能断言等价，但也不能断言差异——属于 inconclusive。\n\n**jb_mlm 对比**: 两个数据集上均远离等价（mean diff ~0.08，CI 跨零且远超 ±0.05），符合预期——jb_mlm 确实性能更低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-tost-equivalence-test.md"
+}

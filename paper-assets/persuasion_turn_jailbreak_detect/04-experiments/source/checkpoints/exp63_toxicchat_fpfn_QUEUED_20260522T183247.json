@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp63_toxicchat_fpfn",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:32:28.699Z",
+    "updated_at": "2026-05-22T18:32:47.569Z",
+    "hypothesis": "9-class ToxicChat performance gap vs MLM is dominated by false positives (>70%), because classification DAPT over-encodes synthetic distributional features that trigger on human benign text"
+  },
+  "timestamp": "2026-05-22T18:32:47.821253+00:00",
+  "trigger": "update_registry"
+}

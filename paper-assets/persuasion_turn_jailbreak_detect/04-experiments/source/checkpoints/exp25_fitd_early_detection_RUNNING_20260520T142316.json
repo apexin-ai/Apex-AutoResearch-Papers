@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp25_fitd_early_detection",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:23:07.691Z",
+    "updated_at": "2026-05-20T14:23:16.292Z",
+    "hypothesis": "9-class persuasion-aware model detects FITD jailbreaks earlier (higher F1 at low K) than MLM and vanilla baselines, similar to the pattern observed on ActorAttack OOD.",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/persuasion_turn_jailbreak_detect && CUDA_VISIBLE_DEVICES=0 python scripts/exp25_fitd_early_detection.py --gpu 0",
+      "server": "westd-33183",
+      "data_path": "/root/persuasion_turn_jailbreak_detect/data/generated/fitd_all.jsonl",
+      "data_count": 118,
+      "model_name": "deberta-v3-base + BiGRU (9class/mlm/vanilla)",
+      "seed": "42,123,456"
+    }
+  },
+  "timestamp": "2026-05-20T14:23:16.443617+00:00",
+  "trigger": "update_registry"
+}

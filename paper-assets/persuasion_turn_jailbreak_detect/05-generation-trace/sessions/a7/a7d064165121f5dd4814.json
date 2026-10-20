@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7d064165121f5dd4814",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval plan004 perturbation monitor",
+  "task_key": "worker_eval_plan004-perturbation-monitor_20260517T232442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan004-perturbation-monitor_20260517T232442_result.json",
+    "occurrence": 1,
+    "bytes": 94,
+    "sha256": "aa5aec746de529d795c0da2a43239318c3cacfda6796ae5428cbf3fbdef5da1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正在运行中（21/76完成），已设置90秒后再次检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan004-perturbation-monitor.md"
+}

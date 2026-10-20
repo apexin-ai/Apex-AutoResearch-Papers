@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp49_representation_analysis",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T07:10:44.086Z",
+    "updated_at": "2026-05-22T07:33:05.672Z",
+    "hypothesis": "Classification-based DAPT (9-class, binary, scrambled) produces smaller weight perturbations from pretrained weights and more geometrically uniform representations (higher effective dimensionality) than MLM DAPT, consistent with optimization regularization as the primary mechanism for cross-attack robustness.",
+    "parent": "exp45_benign_adaptation_curve",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T07:33:05.901429+00:00",
+  "trigger": "update_registry"
+}

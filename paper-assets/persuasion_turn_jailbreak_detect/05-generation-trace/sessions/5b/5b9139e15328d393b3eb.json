@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b9139e15328d393b3eb",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan016 sentiment control",
+  "task_key": "worker_train_plan016-sentiment-control_20260518T044342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan016-sentiment-control_20260518T044342_result.json",
+    "occurrence": 1,
+    "bytes": 1254,
+    "sha256": "807e6f4e3ee536a881e34c0a18d9b80440a1e968e4c58c802e14d54ca28d66a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan 016 实验完成。完整结果：\n\n| K | Sentiment Control | Persuasion (006) | Vanilla Baseline (006) |\n|---|---|---|---|\n| 1 | **1.000** | 1.000 | 0.575 |\n| 2 | **1.000** | 0.990 | 0.438 |\n| 3 | **1.000** | 0.990 | N/A |\n| 5 | **1.000** | 1.000 | N/A |\n| full | **1.000** | 1.000 | 0.285 |\n\n**结论**: Sentiment control 在 DD OOD 上 F1=1.0，与 persuasion treatment 完全持平，远超 vanilla baseline。这表明 cross-attack 泛化**不是**由 persuasion-specific learning 驱动的——任何对 DeBERTa 进行 domain-adaptive fine-tuning（即使辅助任务与 persuasion 无关）都足以让 BiGRU 在 OOD 攻击上泛化。\n\n**关键发现**: sentiment 标注（0=jailbreak, 1/2=benign 随机分半）与 intent 标签高度相关。模型通过 sentiment + intent 双重监督学到了 jailbreak/benign 的区分特征，这些特征足以泛化到 DD。persuasion strategy 的 9-class 细粒度信息对 DD 检测没有额外贡献。\n\n**产出文件**:\n- 训练脚本: `src/train_deberta_sentiment.py`\n- 模型: `src/models/deberta_sentiment.py`\n- 评估脚本: `src/plan_016_dd_eval.py`\n- Checkpoint: `checkpoints/plan_016_sentiment/best/`\n- 结果: `results/plan_016_sentiment_control.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan016-sentiment-control.md"
+}

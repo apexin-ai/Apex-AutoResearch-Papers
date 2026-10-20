@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp42b_balanced_ratio_ablation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:17:59.853Z",
+    "updated_at": "2026-05-22T04:39:13.434Z",
+    "hypothesis": "exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.",
+    "parent": "exp42",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python scripts/exp42b_balanced_ratio_ablation.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/train.jsonl + data/wildchat_benign_226.jsonl",
+      "data_count": 350,
+      "model_name": "deberta-v3-base + GRU",
+      "seed": "42,123,456",
+      "checkpoint_source": "trained from scratch (ablation of exp42)",
+      "eval_data": "wildchat_eval(49) + IID test + OOD DD/AA/FITD"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "wildchat_fpr_mean": 0,
+      "wildchat_fpr_std": 0,
+      "iid_f1_mean": 1,
+      "ood_dd_f1_mean": 1,
+      "ood_aa_f1_mean": 0.9905,
+      "ood_aa_recall_mean": 0.9875,
+      "ood_fitd_f1_mean": 1,
+      "wildchat_eval_n": 49,
+      "train_size": 350,
+      "train_composition": "175 jailbreak + 87 orig benign + 88 WildChat benign (50:50)",
+      "total_time_min": 4.8
+    },
+    "checkpoint_path": "/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp42b_balanced_seed{42,123,456}/",
+    "log_path": "/tmp/exp42b.log",
+    "completed_at": "2026-05-22T04:39:13.434Z"
+  },
+  "timestamp": "2026-05-22T04:39:13.652016+00:00",
+  "trigger": "update_registry"
+}

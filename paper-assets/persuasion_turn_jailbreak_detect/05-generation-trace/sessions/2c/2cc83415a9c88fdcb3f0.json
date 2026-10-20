@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2cc83415a9c88fdcb3f0",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp26 frozen probing",
+  "task_key": "worker_code_exp26-frozen-probing_20260520T144105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp26-frozen-probing_20260520T144105.log",
+    "occurrence": 1,
+    "bytes": 710090,
+    "sha256": "caf8427c455f8756face5648ce5c41a0d0960f1db934328cf7d763a2f2f344fd"
+  },
+  "statistics": {
+    "messages": 236,
+    "user_turns": 0,
+    "tool_calls": 89,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 89,
+      "tool_result": 89,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 236,
+      "chunks": [
+        {
+          "path": "2cc83415a9c88fdcb3f0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2cc83415a9c88fdcb3f0-part-0002.json",
+          "message_count": 56
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp26-frozen-probing.md"
+}

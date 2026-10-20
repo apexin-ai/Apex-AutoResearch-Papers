@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49a631fa03cba76c3e9e",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper figure fig3 real heatmap",
+  "task_key": "worker_paper_figure_fig3_real_heatmap_20260518T040215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig3_real_heatmap_20260518T040215_result.json",
+    "occurrence": 1,
+    "bytes": 2383,
+    "sha256": "1027ac80ca079478b282d5ba14fc9679a6443aedb0fcd20daf5edde52aa49411"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报如下：\n\n---\n\n## 执行结果\n\n### 1. 真实数据的稀疏模式\n\n三种攻击类型的转移矩阵稀疏程度差异极大：\n\n| 攻击类型 | 非零 cell | 稀疏率 | 总转移次数 | 最大值 | 使用策略数 |\n|----------|----------|--------|-----------|--------|-----------|\n| **Crescendo** | 29/81 | 35.8% | 1818 | 545 | 8/9 |\n| **FITD** | 6/81 | 7.4% | 541 | 161 | 4/9 |\n| **Deceptive Delight** | 8/81 | 9.9% | 565 | 129 | 6/9 |\n\n**Crescendo** 策略多样性最高，使用了 8 种策略，转移路径分散。主导模式是 `role_assignment→role_assignment`（545 次，占 30%），`obfuscation→obfuscation`（173 次）也很突出，表现为后期策略锁定。\n\n**FITD** 极度稀疏，仅使用 4 种策略（none/rapport/emotion/role），形成一条近乎线性的路径：`none→role_assignment→rapport_building→emotional_manipulation→role_assignment`（循环），`role_assignment` 自环 161 次。\n\n**Deceptive Delight** 使用 6 种策略但转移集中在少数路径：`emotional_manipulation→role_assignment`（129）是最强跨策略转移，`none→gradual_escalation→emotional_manipulation` 形成固定开局序列。\n\n### 2. 图的视觉效果\n\n- 300 DPI，4026x1330px，适合双栏论文格式\n- 使用 `SymLogNorm` 处理极端值（role→role=545 vs 大量 20-80 的值），保持视觉可辨识性\n- YlOrRd colormap，0 值显示为白色/极浅色，稀疏性一目了然\n- 每个 cell 标注实际数值，审稿人可直接验证\n- 每个子图标注总转移次数\n\n### 3. 与伪造数据的主要差异\n\n真实数据的核心特征是**高度稀疏**和**策略锁定**：\n- FITD 和 DD 仅激活 4-6 种策略（而非 9 种全覆盖），大量 cell 为零\n- 自环（同策略持续）在所有攻击中占主导地位，尤其是 `role_assignment` 自环\n- Crescendo 相对丰富，但仍然有明显的稀疏区域（`direct_request` 完全未使用）\n- 这种模式反映了真实攻击的结构性特征：每种攻击有固定的策略序列模板，而非随机组合\n\n### 产出文件\n\n- 远程：`src/plot_strategy_heatmap.py`（脚本）、`results/fig3_strategy_heatmap.pdf`、`results/fig3_strategy_heatmap.png`\n- Artifact 已注册：`fig3_strategy_heatmap_pdf`、`fig3_strategy_heatmap_png`、`plot_strategy_heatmap_script`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3-real-heatmap.md"
+}

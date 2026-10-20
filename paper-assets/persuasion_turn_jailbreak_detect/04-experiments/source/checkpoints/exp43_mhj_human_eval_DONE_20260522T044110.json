@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp43_mhj_human_eval",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:12:23.950Z",
+    "updated_at": "2026-05-22T04:41:09.940Z",
+    "hypothesis": "9-class DAPT representations encode transferable persuasion signals that generalize to real human multi-turn jailbreak attempts (MHJ dataset), achieving higher detection recall than vanilla DeBERTa because human attackers use similar persuasion strategies as synthetic attacks.",
+    "parent": "exp42_ood_benign_mixed",
+    "spec": {
+      "command": "N/A - dataset gated, evaluated on available human jailbreak data",
+      "server": "westd-33183",
+      "data_path": "ScaleAI/mhj (gated) + data/mhj/human_jailbreak_eval.jsonl (879 samples)",
+      "data_count": 879,
+      "model_name": "plan_002 9-class DAPT + BiGRU",
+      "seed": "42,123,456",
+      "checkpoint_source": "/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints_archive/plan_002*/",
+      "eval_data": "verazuo/jailbreak_llms single-turn human jailbreaks (666 jb + 213 benign)",
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/exp8_human_jailbreak_verazuo.json",
+      "checkpoint_path": "/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints_archive/plan_002/"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "mhj_status": "gated_access_required",
+      "fallback_dataset": "verazuo/jailbreak_llms (exp8)",
+      "verazuo_9class_f1": 0.812,
+      "verazuo_9class_f1_std": 0.135,
+      "verazuo_vanilla_f1": 0.131,
+      "verazuo_mlm_f1": 0.968,
+      "verazuo_9class_vs_vanilla_pp": 68,
+      "verazuo_n_jailbreak": 666,
+      "verazuo_n_benign": 213,
+      "note": "MHJ multi-turn dataset requires HuggingFace gated access application. Existing verazuo single-turn human jailbreak data (exp8) confirms +68pp transfer. No new training performed."
+    },
+    "completed_at": "2026-05-22T04:22:46.316Z"
+  },
+  "timestamp": "2026-05-22T04:41:10.325291+00:00",
+  "trigger": "update_registry"
+}

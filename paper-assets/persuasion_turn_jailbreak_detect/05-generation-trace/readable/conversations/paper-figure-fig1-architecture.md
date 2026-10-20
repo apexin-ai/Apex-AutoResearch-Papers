@@ -1,0 +1,1069 @@
+# paper figure fig1 architecture
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/chats/worker_paper_figure_fig1_architecture_20260518T033455.jsonl`
+- **Structured JSON:** [`44a94c5760b65af21ce1.json`](../../sessions/44/44a94c5760b65af21ce1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+37 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T03:40:42.444003+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+  "description": "Check if figures/paper directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+    "description": "Check if figures/paper directory exists"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T03:40:42.444398+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T03:40:42.444585+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper",
+  "description": "Create figures/paper directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper",
+    "description": "Create figures/paper directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-18T03:40:42.444728+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T03:40:42.444937+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+  "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport matplotlib.patheffects as path_effects\nimport numpy as np\nimport os\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\n# Okabe-Ito palette\nC_BLUE = '#0072B2'\nC_BLUE_LIGHT = '#56B4E9'\nC_BLUE_BG = '#D6EAF8'\nC_ORANGE = '#E69F00'\nC_ORANGE_BG = '#FFF3CD'\nC_GREEN = '#009E73'\nC_GREEN_BG = '#D5F5E3'\nC_GRAY = '#999999'\nC_GRAY_LIGHT = '#CCCCCC'\nC_GRAY_BG = '#F0F0F0'\nC_WHITE = '#FFFFFF'\nC_BLACK = '#333333'\nC_RED = '#D55E00'\n\nfig, ax = plt.subplots(1, 1, figsize=(16, 9))\nax.set_xlim(0, 16)\nax.set_ylim(0, 9)\nax.set_aspect('equal')\nax.axis('off')\n\ndef draw_box(ax, x, y, w, h, label, facecolor, edgecolor, fontsize=10,\n             fontweight='normal', text_color=C_BLACK, linewidth=1.5,\n             linestyle='-', sublabel=None, sublabel_size=8, zorder=2,\n             alpha=1.0, boxstyle='round,pad=0.15'):\n    box = FancyBboxPatch((x, y), w, h, boxstyle=boxstyle,\n                         facecolor=facecolor, edgecolor=edgecolor,\n                         linewidth=linewidth, linestyle=linestyle,\n                         zorder=zorder, alpha=alpha)\n    ax.add_patch(box)\n    if sublabel:\n        ax.text(x + w/2, y + h/2 + 0.15, label, ha='center', va='center',\n                fontsize=fontsize, fontweight=fontweight, color=text_color, zorder=zorder+1)\n        ax.text(x + w/2, y + h/2 - 0.2, sublabel, ha='center', va='center',\n                fontsize=sublabel_size, color=C_GRAY, zorder=zorder+1, style='italic')\n    else:\n        ax.text(x + w/2, y + h/2, label, ha='center', va='center',\n                fontsize=fontsize, fontweight=fontweight, color=text_color, zorder=zorder+1)\n    return box\n\ndef draw_arrow(ax, x1, y1, x2, y2, color=C_BLACK, linewidth=1.5,\n               style='->', zorder=3, connectionstyle='arc3,rad=0'):\n    arrow = FancyArrowPatch((x1, y1), (x2, y2),\n                            arrowstyle=style, color=color,\n                            linewidth=linewidth, zorder=zorder,\n                            connectionstyle=connectionstyle,\n                            mutation_scale=15)\n    ax.add_patch(arrow)\n    return arrow\n\ndef draw_dashed_region(ax, x, y, w, h, label, label_pos='top', color=C_GRAY):\n    rect = FancyBboxPatch((x, y), w, h, boxstyle='round,pad=0.1',\n                          facecolor='none', edgecolor=color,\n                          linewidth=1.2, linestyle='--', zorder=1)\n    ax.add_patch(rect)\n    if label_pos == 'top':\n        ax.text(x + w/2, y + h + 0.15, label, ha='center', va='bottom',\n                fontsize=11, fontweight='bold', color=color, zorder=5)\n    elif label_pos == 'bottom':\n        ax.text(x + w/2, y - 0.15, label, ha='center', va='top',\n                fontsize=11, fontweight='bold', color=color, zorder=5)\n\n# ============================================================\n# Layout constants\n# ============================================================\n# Y positions: Treatment pipeline upper, Baseline lower\nTREAT_Y = 5.2\nBASE_Y = 1.6\n\n# X positions for stages\nINPUT_X = 0.6\nTURN_X = 2.8\nDEBERTA_X = 6.0\nHEAD_X = 9.2\nAGG_X = 11.8\nOUTPUT_X = 14.0\n\n# Box dimensions\nTURN_W, TURN_H = 1.6, 0.7\nDEB_W, DEB_H = 2.2, 1.2\nHEAD_W, HEAD_H = 1.8, 0.55\nAGG_W, AGG_H = 1.6, 0.7\nOUT_W, OUT_H = 1.2, 0.7\n\n# ============================================================\n# Stage dashed regions\n# ============================================================\ndraw_dashed_region(ax, 2.3, 1.0, 9.0, 7.2,\n                   'Stage 1: Turn-Level Encoding', label_pos='top', color='#555555')\ndraw_dashed_region(ax, 11.5, 1.0, 4.0, 7.2,\n                   'Stage 2: Conversation-Level Classification', label_pos='top', color='#555555')\n\n# ============================================================\n# Input block (shared)\n# ============================================================\ninp_y_center = (TREAT_Y + BASE_Y) / 2 + 0.35\ninp_h = 3.6\ndraw_box(ax, INPUT_X, inp_y_center - inp_h/2, 1.6, inp_h,\n         '', C_WHITE, C_BLACK, fontsize=10, linewidth=1.8,\n         boxstyle='round,pad=0.2')\n\nax.text(INPUT_X + 0.8, inp_y_center + 1.35, 'Multi-turn', ha='center', va='center',\n        fontsize=10, fontweight='bold', color=C_BLACK)\nax.text(INPUT_X + 0.8, inp_y_center + 1.0, 'Conversation', ha='center', va='center',\n        fontsize=10, fontweight='bold', color=C_BLACK)\n\nturn_labels = ['Turn 1', 'Turn 2', '...', 'Turn K']\nturn_spacing = 0.55\nstart_y = inp_y_center + 0.4\nfor i, tl in enumerate(turn_labels):\n    ty = start_y - i * turn_spacing\n    tw, th = 1.1, 0.38\n    fc = C_BLUE_BG if i < 2 or i == 3 else C_WHITE\n    ec = C_BLUE if i < 2 or i == 3 else C_GRAY\n    fs = 9\n    fw = 'normal'\n    if tl == '...':\n        ax.text(INPUT_X + 0.8, ty + th/2 - 0.02, '...', ha='center', va='center',\n                fontsize=12, color=C_GRAY, zorder=5)\n    else:\n        draw_box(ax, INPUT_X + 0.25, ty, tw, th, tl, fc, ec, fontsize=fs,\n                 fontweight=fw, linewidth=1.0, boxstyle='round,pad=0.08')\n\n# ============================================================\n# Treatment Pipeline\n# ============================================================\ntreat_label_y = TREAT_Y + DEB_H + 0.7\nax.text((TURN_X + HEAD_X + HEAD_W) / 2, treat_label_y + 0.15,\n        'Treatment Pipeline', ha='center', va='center',\n        fontsize=12, fontweight='bold', color=C_BLUE,\n        bbox=dict(boxstyle='round,pad=0.3', facecolor=C_BLUE_BG,\n                  edgecolor=C_BLUE, linewidth=1.0, alpha=0.8))\n\n# Turn embedding boxes (Treatment)\nturn_box_labels = ['Turn 1\\nembedding', 'Turn 2\\nembedding', '...\\n', 'Turn K\\nembedding']\nturn_small_w, turn_small_h = 1.3, 0.55\nturn_start_y = TREAT_Y + DEB_H/2 - (len(turn_box_labels) * (turn_small_h + 0.08)) / 2 + 0.1\n\n# DeBERTa (Treatment) - main block\ndraw_box(ax, DEBERTA_X, TREAT_Y, DEB_W, DEB_H,\n         'DeBERTa-v3', C_BLUE_BG, C_BLUE, fontsize=11, fontweight='bold',\n         linewidth=2.0)\nax.text(DEBERTA_X + DEB_W/2, TREAT_Y - 0.22, 'Multi-task Fine-tuned',\n        ha='center', va='center', fontsize=8.5, fontweight='bold',\n        color=C_BLUE, style='italic')\n\n# Arrows from input to DeBERTa (Treatment)\ndraw_arrow(ax, INPUT_X + 1.6, inp_y_center + 0.6,\n           DEBERTA_X, TREAT_Y + DEB_H/2,\n           color=C_BLUE, linewidth=1.5, connectionstyle='arc3,rad=-0.15')\n\n# Multi-task heads (Treatment)\n# Head 1: Persuasion strategy classification\nhead1_y = TREAT_Y + DEB_H/2 + 0.15\ndraw_box(ax, HEAD_X, head1_y, HEAD_W, HEAD_H,\n         '8-Class Persuasion', C_ORANGE_BG, C_ORANGE, fontsize=9,\n         fontweight='bold', linewidth=1.5)\n\n# Head 2: Binary jailbreak intent\nhead2_y = TREAT_Y + DEB_H/2 - HEAD_H - 0.15\ndraw_box(ax, HEAD_X, head2_y, HEAD_W, HEAD_H,\n         'Jailbreak Intent', C_GREEN_BG, C_GREEN, fontsize=9,\n         fontweight='bold', linewidth=1.5)\n\n# Head labels\nax.text(HEAD_X + HEAD_W + 0.05, head1_y + HEAD_H/2, '(auxiliary)',\n        ha='left', va='center', fontsize=7.5, color=C_ORANGE, style='italic')\nax.text(HEAD_X + HEAD_W + 0.05, head2_y + HEAD_H/2, '(auxiliary)',\n        ha='left', va='center', fontsize=7.5, color=C_GREEN, style='italic')\n\n# Arrows DeBERTa → heads\ndraw_arrow(ax, DEBERTA_X + DEB_W, TREAT_Y + DEB_H/2 + 0.15,\n           HEAD_X, head1_y + HEAD_H/2,\n           color=C_ORANGE, linewidth=1.3)\ndraw_arrow(ax, DEBERTA_X + DEB_W, TREAT_Y + DEB_H/2 - 0.15,\n           HEAD_X, head2_y + HEAD_H/2,\n           color=C_GREEN, linewidth=1.3)\n\n# [CLS] embedding output arrow\ncls_y = TREAT_Y + DEB_H/2\nax.text(DEBERTA_X + DEB_W/2, TREAT_Y + DEB_H + 0.15,\n        '[CLS] embeddings', ha='center', va='bottom',\n        fontsize=8.5, color=C_BLUE, style='italic')\n\n# ============================================================\n# Baseline Pipeline\n# ============================================================\nbase_label_y = BASE_Y - 0.55\nax.text((TURN_X + HEAD_X + HEAD_W) / 2, base_label_y,\n        'Baseline Pipeline', ha='center', va='center',\n        fontsize=12, fontweight='bold', color=C_GRAY,\n        bbox=dict(boxstyle='round,pad=0.3', facecolor=C_GRAY_BG,\n                  edgecolor=C_GRAY, linewidth=1.0, alpha=0.8))\n\n# DeBERTa (Baseline)\ndraw_box(ax, DEBERTA_X, BASE_Y, DEB_W, DEB_H,\n         'DeBERTa-v3', C_GRAY_BG, C_GRAY, fontsize=11, fontweight='bold',\n         linewidth=2.0, text_color='#666666')\nax.text(DEBERTA_X + DEB_W/2, BASE_Y - 0.22, 'Frozen / No Fine-tuning',\n        ha='center', va='center', fontsize=8.5, fontweight='bold',\n        color=C_GRAY, style='italic')\n\n# [CLS] from baseline\nax.text(DEBERTA_X + DEB_W/2, BASE_Y + DEB_H + 0.15,\n        '[CLS] embeddings', ha='center', va='bottom',\n        fontsize=8.5, color=C_GRAY, style='italic')\n\n# Arrow from input to DeBERTa (Baseline)\ndraw_arrow(ax, INPUT_X + 1.6, inp_y_center - 0.6,\n           DEBERTA_X, BASE_Y + DEB_H/2,\n           color=C_GRAY, linewidth=1.5, connectionstyle='arc3,rad=0.15')\n\n# No task heads for baseline, just direct [CLS]\nax.text(HEAD_X + HEAD_W/2, BASE_Y + DEB_H/2,\n        'No task heads\\n(raw features)', ha='center', va='center',\n        fontsize=9, color=C_GRAY, style='italic')\n\n# ============================================================\n# Stage 2: Shared aggregation + classifier\n# ============================================================\n# Mean Pooling\npool_y_center = (TREAT_Y + BASE_Y) / 2 + DEB_H / 2\npool_h = 1.0\ndraw_box(ax, AGG_X, pool_y_center - pool_h/2, AGG_W, pool_h,\n         'Mean\\nPooling', C_WHITE, C_BLACK, fontsize=10, fontweight='bold',\n         linewidth=1.5)\n\n# Arrow Treatment → Pooling\ndraw_arrow(ax, DEBERTA_X + DEB_W, TREAT_Y + DEB_H/2,\n           AGG_X, pool_y_center + 0.15,\n           color=C_BLUE, linewidth=1.8,\n           connectionstyle='arc3,rad=-0.1')\n\n# Arrow Baseline → Pooling\ndraw_arrow(ax, DEBERTA_X + DEB_W, BASE_Y + DEB_H/2,\n           AGG_X, pool_y_center - 0.15,\n           color=C_GRAY, linewidth=1.5, style='-|>',\n           connectionstyle='arc3,rad=0.1')\n\n# Binary Classifier\nclf_h = 0.9\ndraw_box(ax, OUTPUT_X, pool_y_center - clf_h/2, OUT_W, clf_h,\n         'Binary\\nClassifier', C_WHITE, C_BLACK, fontsize=10, fontweight='bold',\n         linewidth=1.5)\n\n# Arrow Pooling → Classifier\ndraw_arrow(ax, AGG_X + AGG_W, pool_y_center,\n           OUTPUT_X, pool_y_center,\n           color=C_BLACK, linewidth=1.5)\n\n# Output labels\nout_x = OUTPUT_X + OUT_W + 0.15\ndraw_box(ax, out_x, pool_y_center + 0.15, 1.0, 0.35,\n         'Jailbreak', '#FADBD8', C_RED, fontsize=9, fontweight='bold',\n         text_color=C_RED, linewidth=1.2, boxstyle='round,pad=0.08')\ndraw_box(ax, out_x, pool_y_center - 0.5, 1.0, 0.35,\n         'Benign', '#D5F5E3', C_GREEN, fontsize=9, fontweight='bold',\n         text_color=C_GREEN, linewidth=1.2, boxstyle='round,pad=0.08')\n\n# Arrows classifier → outputs\ndraw_arrow(ax, OUTPUT_X + OUT_W, pool_y_center + 0.1,\n           out_x, pool_y_center + 0.32,\n           color=C_RED, linewidth=1.2)\ndraw_arrow(ax, OUTPUT_X + OUT_W, pool_y_center - 0.1,\n           out_x, pool_y_center - 0.33,\n           color=C_GREEN, linewidth=1.2)\n\n# ============================================================\n# Persuasion strategy labels (small, in Treatment area)\n# ============================================================\nstrategies = [\n    'Evidence-based Persuasion',\n    'Logical Appeal',\n    'Authority Endorsement',\n    'Social Proof',\n    'Expert Endorsement',\n    'Emotional Manipulation',\n    'False Pretense',\n    'Misrepresentation',\n]\n\nstrat_x = HEAD_X - 0.1\nstrat_start_y = TREAT_Y + DEB_H + 1.05\nstrat_spacing = 0.23\n\nfor i, s in enumerate(strategies):\n    col_offset = 0 if i < 4 else 2.2\n    row = i % 4\n    sy = strat_start_y - row * strat_spacing\n    sx = strat_x + col_offset\n    ax.plot(sx - 0.08, sy, 's', color=C_ORANGE, markersize=3.5, zorder=5)\n    ax.text(sx, sy, s, ha='left', va='center', fontsize=7, color='#555555', zorder=5)\n\n# ============================================================\n# \"vs\" indicator between pipelines\n# ============================================================\nvs_y = (TREAT_Y + BASE_Y + DEB_H) / 2\nax.text(DEBERTA_X + DEB_W/2, vs_y, 'vs.', ha='center', va='center',\n        fontsize=14, fontweight='bold', color='#888888',\n        bbox=dict(boxstyle='round,pad=0.15', facecolor=C_WHITE,\n                  edgecolor='#BBBBBB', linewidth=0.8))\n\n# ============================================================\n# Title\n# ============================================================\nax.text(8, 8.7, 'DisPeD: Two-Stage Persuasion-Aware Jailbreak Detection',\n        ha='center', va='center', fontsize=14, fontweight='bold', color=C_BLACK)\n\n# ============================================================\n# Save\n# ============================================================\nout_dir = os.path.dirname(os.path.abspath(__file__))\npdf_path = os.path.join(out_dir, 'fig1_architecture.pdf')\npng_path = os.path.join(out_dir, 'fig1_architecture.png')\n\nfig.savefig(pdf_path, format='pdf')\nfig.savefig(png_path, format='png')\nplt.close(fig)\n\nprint(f\"Saved: {pdf_path}\")\nprint(f\"Saved: {png_path}\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+    "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport matplotlib.patheffects as path_effects\nimport numpy as np\nimport os\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\n# Okabe-Ito palette\nC_BLUE = '#0072B2'\nC_BLUE_LIGHT = '#56B4E9'\nC_BLUE_BG = '#D6EAF8'\nC_ORANGE = '#E69F00'\nC_ORANGE_BG = '#FFF3CD'\nC_GREEN = '#009E73'\nC_GREEN_BG = '#D5F5E3'\nC_GRAY = '#999999'\nC_GRAY_LIGHT = '#CCCCCC'\nC_GRAY_BG = '#F0F0F0'\nC_WHITE = '#FFFFFF'\nC_BLACK = '#333333'\nC_RED = '#D55E00'\n\nfig, ax = plt.subplots(1, 1, figsize=(16, 9))\nax.set_xlim(0, 16)\nax.set_ylim(0, 9)\nax.set_aspect('equal')\nax.axis('off')\n\ndef draw_box(ax, x, y, w, h, label, facecolor, edgecolor, fontsize=10,\n             fontweight='normal', text_color=C_BLACK, linewidth=1.5,\n             linestyle='-', sublabel=None, sublabel_size=8, zorder=2,\n             alpha=1.0, boxstyle='round,pad=0.15'):\n    box = FancyBboxPatch((x, y), w, h, boxstyle=boxstyle,\n                         facecolor=facecolor, edgecolor=edgecolor,\n                         linewidth=linewidth, linestyle=linestyle,\n                         zorder=zorder, alpha=alpha)\n    ax.add_patch(box)\n    if sublabel:\n        ax.text(x + w/2, y + h/2 + 0.15, label, ha='center', va='center',\n                fontsize=fontsize, fontweight=fontweight, color=text_color, zorder=zorder+1)\n        ax.text(x + w/2, y + h/2 - 0.2, sublabel, ha='center', va='center',\n                fontsize=sublabel_size, color=C_GRAY, zorder=zorder+1, style='italic')\n    else:\n        ax.text(x + w/2, y + h/2, label, ha='center', va='center',\n                fontsize=fontsize, fontweight=fontweight, color=text_color, zorder=zorder+1)\n    return box\n\ndef draw_arrow(ax, x1, y1, x2, y2, color=C_BLACK, linewidth=1.5,\n               style='->', zorder=3, connectionstyle='arc3,rad=0'):\n    arrow = FancyArrowPatch((x1, y1), (x2, y2),\n                            arrowstyle=style, color=color,\n                            linewidth=linewidth, zorder=zorder,\n                            connectionstyle=connectionstyle,\n                            mutation_scale=15)\n    ax.add_patch(arrow)\n    return arrow\n\ndef draw_dashed_region(ax, x, y, w, h, label, label_pos='top', color=C_GRAY):\n    rect = FancyBboxPatch((x, y), w, h, boxstyle='round,pad=0.1',\n                          facecolor='none', edgecolor=color,\n                          linewidth=1.2, linestyle='--', zorder=1)\n    ax.add_patch(rect)\n    if label_pos == 'top':\n        ax.text(x + w/2, y + h + 0.15, label, ha='center', va='bottom',\n                fontsize=11, fontweight='bold', color=color, zorder=5)\n    elif label_pos == 'bottom':\n        ax.text(x + w/2, y - 0.15, label, ha='center', va='top',\n                fontsize=11, fontweight='bold', color=color, zorder=5)\n\n# ============================================================\n# Layout constants\n# ============================================================\n# Y positions: Treatment pipeline upper, Baseline lower\nTREAT_Y = 5.2\nBASE_Y = 1.6\n\n# X positions for stages\nINPUT_X = 0.6\nTURN_X = 2.8\nDEBERTA_X = 6.0\nHEAD_X = 9.2\nAGG_X = 11.8\nOUTPUT_X = 14.0\n\n# Box dimensions\nTURN_W, TURN_H = 1.6, 0.7\nDEB_W, DEB_H = 2.2, 1.2\nHEAD_W, HEAD_H = 1.8, 0.55\nAGG_W, AGG_H = 1.6, 0.7\nOUT_W, OUT_H = 1.2, 0.7\n\n# ============================================================\n# Stage dashed regions\n# ============================================================\ndraw_dashed_region(ax, 2.3, 1.0, 9.0, 7.2,\n                   'Stage 1: Turn-Level Encoding', label_pos='top', color='#555555')\ndraw_dashed_region(ax, 11.5, 1.0, 4.0, 7.2,\n                   'Stage 2: Conversation-Level Classification', label_pos='top', color='#555555')\n\n# ============================================================\n# Input block (shared)\n# ============================================================\ninp_y_center = (TREAT_Y + BASE_Y) / 2 + 0.35\ninp_h = 3.6\ndraw_box(ax, INPUT_X, inp_y_center - inp_h/2, 1.6, inp_h,\n         '', C_WHITE, C_BLACK, fontsize=10, linewidth=1.8,\n         boxstyle='round,pad=0.2')\n\nax.text(INPUT_X + 0.8, inp_y_center + 1.35, 'Multi-turn', ha='center', va='center',\n        fontsize=10, fontweight='bold', color=C_BLACK)\nax.text(INPUT_X + 0.8, inp_y_center + 1.0, 'Conversation', ha='center', va='center',\n        fontsize=10, fontweight='bold', color=C_BLACK)\n\nturn_labels = ['Turn 1', 'Turn 2', '...', 'Turn K']\nturn_spacing = 0.55\nstart_y = inp_y_center + 0.4\nfor i, tl in enumerate(turn_labels):\n    ty = start_y - i * turn_spacing\n    tw, th = 1.1, 0.38\n    fc = C_BLUE_BG if i < 2 or i == 3 else C_WHITE\n    ec = C_BLUE if i < 2 or i == 3 else C_GRAY\n    fs = 9\n    fw = 'normal'\n    if tl == '...':\n        ax.text(INPUT_X + 0.8, ty + th/2 - 0.02, '...', ha='center', va='center',\n                fontsize=12, color=C_GRAY, zorder=5)\n    else:\n        draw_box(ax, INPUT_X + 0.25, ty, tw, th, tl, fc, ec, fontsize=fs,\n                 fontweight=fw, linewidth=1.0, boxstyle='round,pad=0.08')\n\n# ============================================================\n# Treatment Pipeline\n# ============================================================\ntreat_label_y = TREAT_Y + DEB_H + 0.7\nax.text((TURN_X + HEAD_X + HEAD_W) / 2, treat_label_y + 0.15,\n        'Treatment Pipeline', ha='center', va='center',\n        fontsize=12, fontweight='bold', color=C_BLUE,\n        bbox=dict(boxstyle='round,pad=0.3', facecolor=C_BLUE_BG,\n                  edgecolor=C_BLUE, linewidth=1.0, alpha=0.8))\n\n# Turn embedding boxes (Treatment)\nturn_box_labels = ['Turn 1\\nembedding', 'Turn 2\\nembedding', '...\\n', 'Turn K\\nembedding']\nturn_small_w, turn_small_h = 1.3, 0.55\nturn_start_y = TREAT_Y + DEB_H/2 - (len(turn_box_labels) * (turn_small_h + 0.08)) / 2 + 0.1\n\n# DeBERTa (Treatment) - main block\ndraw_box(ax, DEBERTA_X, TREAT_Y, DEB_W, DEB_H,\n         'DeBERTa-v3', C_BLUE_BG, C_BLUE, fontsize=11, fontweight='bold',\n         linewidth=2.0)\nax.text(DEBERTA_X + DEB_W/2, TREAT_Y - 0.22, 'Multi-task Fine-tuned',\n        ha='center', va='center', fontsize=8.5, fontweight='bold',\n        color=C_BLUE, style='italic')\n\n# Arrows from input to DeBERTa (Treatment)\ndraw_arrow(ax, INPUT_X + 1.6, inp_y_center + 0.6,\n           DEBERTA_X, TREAT_Y + DEB_H/2,\n           color=C_BLUE, linewidth=1.5, connectionstyle='arc3,rad=-0.15')\n\n# Multi-task heads (Treatment)\n# Head 1: Persuasion strategy classification\nhead1_y = TREAT_Y + DEB_H/2 + 0.15\ndraw_box(ax, HEAD_X, head1_y, HEAD_W, HEAD_H,\n         '8-Class Persuasion', C_ORANGE_BG, C_ORANGE, fontsize=9,\n         fontweight='bold', linewidth=1.5)\n\n# Head 2: Binary jailbreak intent\nhead2_y = TREAT_Y + DEB_H/2 - HEAD_H - 0.15\ndraw_box(ax, HEAD_X, head2_y, HEAD_W, HEAD_H,\n         'Jailbreak Intent', C_GREEN_BG, C_GREEN, fontsize=9,\n         fontweight='bold', linewidth=1.5)\n\n# Head labels\nax.text(HEAD_X + HEAD_W + 0.05, head1_y + HEAD_H/2, '(auxiliary)',\n        ha='left', va='center', fontsize=7.5, color=C_ORANGE, style='italic')\nax.text(HEAD_X + HEAD_W + 0.05, head2_y + HEAD_H/2, '(auxiliary)',\n        ha='left', va='center', fontsize=7.5, color=C_GREEN, style='italic')\n\n# Arrows DeBERTa → heads\ndraw_arrow(ax, DEBERTA_X + DEB_W, TREAT_Y + DEB_H/2 + 0.15,\n           HEAD_X, head1_y + HEAD_H/2,\n           color=C_ORANGE, linewidth=1.3)\ndraw_arrow(ax, DEBERTA_X + DEB_W, TREAT_Y + DEB_H/2 - 0.15,\n           HEAD_X, head2_y + HEAD_H/2,\n           color=C_GREEN, linewidth=1.3)\n\n# [CLS] embedding output arrow\ncls_y = TREAT_Y + DEB_H/2\nax.text(DEBERTA_X + DEB_W/2, TREAT_Y + DEB_H + 0.15,\n        '[CLS] embeddings', ha='center', va='bottom',\n        fontsize=8.5, color=C_BLUE, style='italic')\n\n# ============================================================\n# Baseline Pipeline\n# ============================================================\nbase_label_y = BASE_Y - 0.55\nax.text((TURN_X + HEAD_X + HEAD_W) / 2, base_label_y,\n        'Baseline Pipeline', ha='center', va='center',\n        fontsize=12, fontweight='bold', color=C_GRAY,\n        bbox=dict(boxstyle='round,pad=0.3', facecolor=C_GRAY_BG,\n                  edgecolor=C_GRAY, linewidth=1.0, alpha=0.8))\n\n# DeBERTa (Baseline)\ndraw_box(ax, DEBERTA_X, BASE_Y, DEB_W, DEB_H,\n         'DeBERTa-v3', C_GRAY_BG, C_GRAY, fontsize=11, fontweight='bold',\n         linewidth=2.0, text_color='#666666')\nax.text(DEBERTA_X + DEB_W/2, BASE_Y - 0.22, 'Frozen / No Fine-tuning',\n        ha='center', va='center', fontsize=8.5, fontweight='bold',\n        color=C_GRAY, style='italic')\n\n# [CLS] from baseline\nax.text(DEBERTA_X + DEB_W/2, BASE_Y + DEB_H + 0.15,\n        '[CLS] embeddings', ha='center', va='bottom',\n        fontsize=8.5, color=C_GRAY, style='italic')\n\n# Arrow from input to DeBERTa (Baseline)\ndraw_arrow(ax, INPUT_X + 1.6, inp_y_center - 0.6,\n           DEBERTA_X, BASE_Y + DEB_H/2,\n           color=C_GRAY, linewidth=1.5, connectionstyle='arc3,rad=0.15')\n\n# No task heads for baseline, just direct [CLS]\nax.text(HEAD_X + HEAD_W/2, BASE_Y + DEB_H/2,\n        'No task heads\\n(raw features)', ha='center', va='center',\n        fontsize=9, color=C_GRAY, style='italic')\n\n# ============================================================\n# Stage 2: Shared aggregation + classifier\n# ============================================================\n# Mean Pooling\npool_y_center = (TREAT_Y + BASE_Y) / 2 + DEB_H / 2\npool_h = 1.0\ndraw_box(ax, AGG_X, pool_y_center - pool_h/2, AGG_W, pool_h,\n         'Mean\\nPooling', C_WHITE, C_BLACK, fontsize=10, fontweight='bold',\n         linewidth=1.5)\n\n# Arrow Treatment → Pooling\ndraw_arrow(ax, DEBERTA_X + DEB_W, TREAT_Y + DEB_H/2,\n           AGG_X, pool_y_center + 0.15,\n           color=C_BLUE, linewidth=1.8,\n           connectionstyle='arc3,rad=-0.1')\n\n# Arrow Baseline → Pooling\ndraw_arrow(ax, DEBERTA_X + DEB_W, BASE_Y + DEB_H/2,\n           AGG_X, pool_y_center - 0.15,\n           color=C_GRAY, linewidth=1.5, style='-|>',\n           connectionstyle='arc3,rad=0.1')\n\n# Binary Classifier\nclf_h = 0.9\ndraw_box(ax, OUTPUT_X, pool_y_center - clf_h/2, OUT_W, clf_h,\n         'Binary\\nClassifier', C_WHITE, C_BLACK, fontsize=10, fontweight='bold',\n         linewidth=1.5)\n\n# Arrow Pooling → Classifier\ndraw_arrow(ax, AGG_X + AGG_W, pool_y_center,\n           OUTPUT_X, pool_y_center,\n           color=C_BLACK, linewidth=1.5)\n\n# Output labels\nout_x = OUTPUT_X + OUT_W + 0.15\ndraw_box(ax, out_x, pool_y_center + 0.15, 1.0, 0.35,\n         'Jailbreak', '#FADBD8', C_RED, fontsize=9, fontweight='bold',\n         text_color=C_RED, linewidth=1.2, boxstyle='round,pad=0.08')\ndraw_box(ax, out_x, pool_y_center - 0.5, 1.0, 0.35,\n         'Benign', '#D5F5E3', C_GREEN, fontsize=9, fontweight='bold',\n         text_color=C_GREEN, linewidth=1.2, boxstyle='round,pad=0.08')\n\n# Arrows classifier → outputs\ndraw_arrow(ax, OUTPUT_X + OUT_W, pool_y_center + 0.1,\n           out_x, pool_y_center + 0.32,\n           color=C_RED, linewidth=1.2)\ndraw_arrow(ax, OUTPUT_X + OUT_W, pool_y_center - 0.1,\n           out_x, pool_y_center - 0.33,\n           color=C_GREEN, linewidth=1.2)\n\n# ============================================================\n# Persuasion strategy labels (small, in Treatment area)\n# ============================================================\nstrategies = [\n    'Evidence-based Persuasion',\n    'Logical Appeal',\n    'Authority Endorsement',\n    'Social Proof',\n    'Expert Endorsement',\n    'Emotional Manipulation',\n    'False Pretense',\n    'Misrepresentation',\n]\n\nstrat_x = HEAD_X - 0.1\nstrat_start_y = TREAT_Y + DEB_H + 1.05\nstrat_spacing = 0.23\n\nfor i, s in enumerate(strategies):\n    col_offset = 0 if i < 4 else 2.2\n    row = i % 4\n    sy = strat_start_y - row * strat_spacing\n    sx = strat_x + col_offset\n    ax.plot(sx - 0.08, sy, 's', color=C_ORANGE, markersize=3.5, zorder=5)\n    ax.text(sx, sy, s, ha='left', va='center', fontsize=7, color='#555555', zorder=5)\n\n# ============================================================\n# \"vs\" indicator between pipelines\n# ============================================================\nvs_y = (TREAT_Y + BASE_Y + DEB_H) / 2\nax.text(DEBERTA_X + DEB_W/2, vs_y, 'vs.', ha='center', va='center',\n        fontsize=14, fontweight='bold', color='#888888',\n        bbox=dict(boxstyle='round,pad=0.15', facecolor=C_WHITE,\n                  edgecolor='#BBBBBB', linewidth=0.8))\n\n# ============================================================\n# Title\n# ============================================================\nax.text(8, 8.7, 'DisPeD: Two-Stage Persuasion-Aware Jailbreak Detection',\n        ha='center', va='center', fontsize=14, fontweight='bold', color=C_BLACK)\n\n# ============================================================\n# Save\n# ============================================================\nout_dir = os.path.dirname(os.path.abspath(__file__))\npdf_path = os.path.join(out_dir, 'fig1_architecture.pdf')\npng_path = os.path.join(out_dir, 'fig1_architecture.png')\n\nfig.savefig(pdf_path, format='pdf')\nfig.savefig(png_path, format='png')\nplt.close(fig)\n\nprint(f\"Saved: {pdf_path}\")\nprint(f\"Saved: {png_path}\")\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T03:40:42.445297+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T03:40:42.445440+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper && python gen_fig1_architecture.py",
+  "description": "Generate the architecture figure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper && python gen_fig1_architecture.py",
+    "description": "Generate the architecture figure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T03:40:42.445582+00:00_
+
+Exit code 127
+/bin/bash: line 1: python: command not found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T03:40:42.445706+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "which python3 && python3 /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+  "description": "Generate the architecture figure with python3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "which python3 && python3 /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+    "description": "Generate the architecture figure with python3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T03:40:42.445832+00:00_
+
+/usr/bin/python3
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.pdf
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T03:40:42.445962+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T03:40:42.446743+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T03:40:42.447039+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+  "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport os\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\nC_BLUE = '#0072B2'\nC_BLUE_LIGHT = '#56B4E9'\nC_BLUE_BG = '#DAEDF8'\nC_ORANGE = '#E69F00'\nC_ORANGE_BG = '#FFF3CD'\nC_GREEN = '#009E73'\nC_GREEN_BG = '#D5F5E3'\nC_GRAY = '#888888'\nC_GRAY_LIGHT = '#BBBBBB'\nC_GRAY_BG = '#EDEDED'\nC_WHITE = '#FFFFFF'\nC_BLACK = '#333333'\nC_RED = '#D55E00'\nC_RED_BG = '#FADBD8'\n\nfig, ax = plt.subplots(1, 1, figsize=(16, 9))\nax.set_xlim(0, 16)\nax.set_ylim(0, 9)\nax.set_aspect('equal')\nax.axis('off')\n\n\ndef rounded_box(ax, x, y, w, h, label='', fc=C_WHITE, ec=C_BLACK, lw=1.5,\n                ls='-', fs=10, fw='normal', tc=C_BLACK, zorder=3,\n                pad=0.15, label2=None, label2_fs=8, label2_color=C_GRAY):\n    box = FancyBboxPatch((x, y), w, h,\n                         boxstyle=f'round,pad={pad}',\n                         facecolor=fc, edgecolor=ec,\n                         linewidth=lw, linestyle=ls, zorder=zorder)\n    ax.add_patch(box)\n    if label:\n        cy = y + h / 2\n        if label2:\n            cy += 0.13\n        ax.text(x + w / 2, cy, label, ha='center', va='center',\n                fontsize=fs, fontweight=fw, color=tc, zorder=zorder + 1)\n        if label2:\n            ax.text(x + w / 2, cy - 0.32, label2, ha='center', va='center',\n                    fontsize=label2_fs, color=label2_color, style='italic',\n                    zorder=zorder + 1)\n    return box\n\n\ndef arrow(ax, x1, y1, x2, y2, color=C_BLACK, lw=1.5, style='->',\n          rad=0, zorder=4, mutation_scale=14):\n    conn = f'arc3,rad={rad}' if rad != 0 else 'arc3,rad=0'\n    a = FancyArrowPatch((x1, y1), (x2, y2),\n                        arrowstyle=style, color=color,\n                        linewidth=lw, zorder=zorder,\n                        connectionstyle=conn,\n                        mutation_scale=mutation_scale)\n    ax.add_patch(a)\n\n\n# ============================================================\n# LAYOUT\n# ============================================================\n# Treatment pipeline: y_center = 6.2\n# Baseline pipeline:  y_center = 2.5\n# Shared Stage 2:     y_center = 4.35\n\nTREAT_CY = 6.2\nBASE_CY = 2.5\nSTAGE2_CY = 4.35\n\n# X positions\nX_INPUT = 0.4\nX_DEBERTA = 4.5\nX_HEADS = 8.0\nX_POOL = 11.5\nX_CLF = 13.3\nX_OUT = 15.0\n\n# ============================================================\n# TITLE\n# ============================================================\nax.text(8, 8.65, 'DisPeD: Two-Stage Persuasion-Aware Jailbreak Detection',\n        ha='center', va='center', fontsize=14, fontweight='bold', color=C_BLACK)\n\n# ============================================================\n# STAGE DASHED REGIONS\n# ============================================================\n# Stage 1 region\ns1_box = FancyBboxPatch((3.2, 0.7), 8.0, 7.5,\n                        boxstyle='round,pad=0.15',\n                        facecolor='none', edgecolor='#777777',\n                        linewidth=1.2, linestyle=(0, (5, 4)), zorder=1)\nax.add_patch(s1_box)\nax.text(7.2, 8.35, 'Stage 1: Turn-Level Encoding',\n        ha='center', va='bottom', fontsize=11, fontweight='bold', color='#555555')\n\n# Stage 2 region\ns2_box = FancyBboxPatch((11.2, 0.7), 4.5, 7.5,\n                        boxstyle='round,pad=0.15',\n                        facecolor='none', edgecolor='#777777',\n                        linewidth=1.2, linestyle=(0, (5, 4)), zorder=1)\nax.add_patch(s2_box)\nax.text(13.45, 8.35, 'Stage 2: Conversation-Level\\nClassification',\n        ha='center', va='bottom', fontsize=11, fontweight='bold', color='#555555')\n\n# ============================================================\n# INPUT: Multi-turn Conversation\n# ============================================================\ninp_w, inp_h = 2.0, 4.6\ninp_x = X_INPUT\ninp_cy = (TREAT_CY + BASE_CY) / 2\ninp_y = inp_cy - inp_h / 2\n\nrounded_box(ax, inp_x, inp_y, inp_w, inp_h, fc=C_WHITE, ec=C_BLACK, lw=1.8,\n            pad=0.2, zorder=2)\n\nax.text(inp_x + inp_w / 2, inp_y + inp_h - 0.35, 'Multi-turn',\n        ha='center', va='center', fontsize=11, fontweight='bold', color=C_BLACK,\n        zorder=5)\nax.text(inp_x + inp_w / 2, inp_y + inp_h - 0.7, 'Conversation',\n        ha='center', va='center', fontsize=11, fontweight='bold', color=C_BLACK,\n        zorder=5)\n\nturns = ['Turn 1', 'Turn 2', '...', 'Turn K']\nty_start = inp_y + inp_h - 1.3\nfor i, t in enumerate(turns):\n    ty = ty_start - i * 0.7\n    if t == '...':\n        ax.text(inp_x + inp_w / 2, ty + 0.2, '⋮', ha='center', va='center',\n                fontsize=16, color=C_GRAY, zorder=5)\n    else:\n        tw, th = 1.4, 0.45\n        tx = inp_x + (inp_w - tw) / 2\n        rounded_box(ax, tx, ty, tw, th, t, fc=C_BLUE_BG, ec=C_BLUE_LIGHT,\n                    lw=1.0, fs=9, fw='normal', tc=C_BLACK, pad=0.08)\n        ax.text(tx + tw / 2, ty - 0.12, 'user + assistant',\n                ha='center', va='top', fontsize=6.5, color=C_GRAY, zorder=5)\n\n# ============================================================\n# TREATMENT PIPELINE LABEL\n# ============================================================\nax.text(6.3, 7.65, 'Treatment Pipeline',\n        ha='center', va='center', fontsize=12, fontweight='bold', color=C_BLUE,\n        bbox=dict(boxstyle='round,pad=0.3', facecolor=C_BLUE_BG,\n                  edgecolor=C_BLUE, linewidth=1.2, alpha=0.9),\n        zorder=5)\n\n# Treatment DeBERTa\ndeb_w, deb_h = 2.6, 1.4\ndeb_x = X_DEBERTA\ndeb_ty = TREAT_CY - deb_h / 2\n\nrounded_box(ax, deb_x, deb_ty, deb_w, deb_h,\n            'Persuasion-Aware\\nDeBERTa-v3-base', fc=C_BLUE_BG, ec=C_BLUE,\n            lw=2.0, fs=10.5, fw='bold', tc=C_BLUE, pad=0.18)\nax.text(deb_x + deb_w / 2, deb_ty - 0.2, 'Multi-task Fine-tuned',\n        ha='center', va='center', fontsize=8.5, fontweight='bold',\n        color=C_BLUE, style='italic', zorder=5)\n\n# Arrow input → Treatment DeBERTa\narrow(ax, inp_x + inp_w, inp_cy + 0.8,\n      deb_x - 0.05, TREAT_CY,\n      color=C_BLUE, lw=1.8, rad=-0.2)\n\n# Treatment Head 1: Persuasion classification\nh1_w, h1_h = 2.0, 0.6\nh1_x = X_HEADS\nh1_y = TREAT_CY + 0.2\n\nrounded_box(ax, h1_x, h1_y, h1_w, h1_h,\n            '8-Class Persuasion', fc=C_ORANGE_BG, ec=C_ORANGE,\n            lw=1.5, fs=9.5, fw='bold', tc='#7A5800', pad=0.1)\nax.text(h1_x + h1_w + 0.08, h1_y + h1_h / 2, '(aux)',\n        ha='left', va='center', fontsize=7.5, color=C_ORANGE, style='italic',\n        zorder=5)\n\n# Treatment Head 2: Jailbreak intent\nh2_y = TREAT_CY - 0.2 - h1_h\n\nrounded_box(ax, h1_x, h2_y, h1_w, h1_h,\n            'Jailbreak Intent', fc=C_GREEN_BG, ec=C_GREEN,\n            lw=1.5, fs=9.5, fw='bold', tc='#005740', pad=0.1)\nax.text(h1_x + h1_w + 0.08, h2_y + h1_h / 2, '(aux)',\n        ha='left', va='center', fontsize=7.5, color=C_GREEN, style='italic',\n        zorder=5)\n\n# Arrows DeBERTa → heads\narrow(ax, deb_x + deb_w, TREAT_CY + 0.2,\n      h1_x, h1_y + h1_h / 2, color=C_ORANGE, lw=1.3, rad=-0.05)\narrow(ax, deb_x + deb_w, TREAT_CY - 0.2,\n      h1_x, h2_y + h1_h / 2, color=C_GREEN, lw=1.3, rad=0.05)\n\n# [CLS] label between DeBERTa and heads\nax.text(deb_x + deb_w + 0.15, TREAT_CY + 0.65, '[CLS]',\n        ha='left', va='center', fontsize=8, color=C_BLUE,\n        fontweight='bold', style='italic', zorder=5)\n\n# Persuasion strategy list (compact, two columns)\nstrategies_l = ['Evidence-based', 'Logical Appeal',\n                'Authority Endors.', 'Social Proof']\nstrategies_r = ['Expert Endors.', 'Emotional Manip.',\n                'False Pretense', 'Misrepresentation']\n\nfor i, s in enumerate(strategies_l):\n    sy = h1_y + h1_h + 0.15 + (3 - i) * 0.22\n    ax.plot(h1_x - 0.02, sy, 's', color=C_ORANGE, markersize=3, zorder=5)\n    ax.text(h1_x + 0.1, sy, s, ha='left', va='center', fontsize=6.5,\n            color='#666666', zorder=5)\n\nfor i, s in enumerate(strategies_r):\n    sy = h1_y + h1_h + 0.15 + (3 - i) * 0.22\n    ax.plot(h1_x + 1.05, sy, 's', color=C_ORANGE, markersize=3, zorder=5)\n    ax.text(h1_x + 1.17, sy, s, ha='left', va='center', fontsize=6.5,\n            color='#666666', zorder=5)\n\n# ============================================================\n# BASELINE PIPELINE LABEL\n# ============================================================\nax.text(6.3, BASE_CY - 1.25, 'Baseline Pipeline',\n        ha='center', va='center', fontsize=12, fontweight='bold', color=C_GRAY,\n        bbox=dict(boxstyle='round,pad=0.3', facecolor=C_GRAY_BG,\n                  edgecolor=C_GRAY, linewidth=1.2, alpha=0.9),\n        zorder=5)\n\n# Baseline DeBERTa\ndeb_by = BASE_CY - deb_h / 2\n\nrounded_box(ax, deb_x, deb_by, deb_w, deb_h,\n            'Vanilla\\nDeBERTa-v3-base', fc=C_GRAY_BG, ec=C_GRAY,\n            lw=2.0, fs=10.5, fw='bold', tc='#555555', pad=0.18)\nax.text(deb_x + deb_w / 2, deb_by - 0.2, 'Frozen / No Fine-tuning',\n        ha='center', va='center', fontsize=8.5, fontweight='bold',\n        color=C_GRAY, style='italic', zorder=5)\n\n# Arrow input → Baseline DeBERTa\narrow(ax, inp_x + inp_w, inp_cy - 0.8,\n      deb_x - 0.05, BASE_CY,\n      color=C_GRAY, lw=1.5, rad=0.2)\n\n# Baseline: no task heads, just raw [CLS]\nax.text(h1_x + h1_w / 2, BASE_CY,\n        'No task heads\\n(raw [CLS] features)',\n        ha='center', va='center', fontsize=9, color='#888888',\n        style='italic', zorder=5)\n\n# ============================================================\n# \"vs.\" between pipelines\n# ============================================================\nvs_y = (TREAT_CY + BASE_CY) / 2\nax.text(deb_x + deb_w / 2, vs_y, 'vs.',\n        ha='center', va='center', fontsize=15, fontweight='bold', color='#999999',\n        bbox=dict(boxstyle='round,pad=0.2', facecolor=C_WHITE,\n                  edgecolor=C_GRAY_LIGHT, linewidth=0.8),\n        zorder=6)\n\n# ============================================================\n# STAGE 2: Mean Pooling\n# ============================================================\npool_w, pool_h = 1.4, 1.1\npool_x = X_POOL\npool_y = STAGE2_CY - pool_h / 2\n\nrounded_box(ax, pool_x, pool_y, pool_w, pool_h,\n            'Mean\\nPooling', fc=C_WHITE, ec=C_BLACK,\n            lw=1.8, fs=10.5, fw='bold', pad=0.15)\n\n# Arrow Treatment DeBERTa → Mean Pooling (main flow, bold blue)\narrow(ax, deb_x + deb_w, TREAT_CY,\n      pool_x - 0.05, STAGE2_CY + 0.15,\n      color=C_BLUE, lw=2.0, rad=-0.25,\n      style='-|>', mutation_scale=16)\n\n# Arrow Baseline DeBERTa → Mean Pooling\narrow(ax, deb_x + deb_w, BASE_CY,\n      pool_x - 0.05, STAGE2_CY - 0.15,\n      color=C_GRAY, lw=1.5, rad=0.25,\n      style='-|>', mutation_scale=14)\n\n# Label on the treatment arrow\nax.text(10.0, STAGE2_CY + 1.2, 'turn [CLS]\\nembeddings',\n        ha='center', va='center', fontsize=8, color=C_BLUE,\n        style='italic', fontweight='bold', zorder=5,\n        bbox=dict(boxstyle='round,pad=0.15', facecolor=C_WHITE,\n                  edgecolor=C_BLUE_LIGHT, linewidth=0.6, alpha=0.85))\n\n# ============================================================\n# STAGE 2: Binary Classifier\n# ============================================================\nclf_w, clf_h = 1.3, 1.0\nclf_x = X_CLF\nclf_y = STAGE2_CY - clf_h / 2\n\nrounded_box(ax, clf_x, clf_y, clf_w, clf_h,\n            'Binary\\nClassifier', fc=C_WHITE, ec=C_BLACK,\n            lw=1.8, fs=10.5, fw='bold', pad=0.15)\n\n# Arrow Mean Pooling → Classifier\narrow(ax, pool_x + pool_w, STAGE2_CY,\n      clf_x - 0.05, STAGE2_CY,\n      color=C_BLACK, lw=1.5)\n\n# ============================================================\n# OUTPUT LABELS\n# ============================================================\nout_w, out_h = 0.95, 0.42\nout_x = X_OUT\n\nrounded_box(ax, out_x, STAGE2_CY + 0.12, out_w, out_h,\n            'Jailbreak', fc=C_RED_BG, ec=C_RED,\n            lw=1.3, fs=9.5, fw='bold', tc=C_RED, pad=0.08)\nrounded_box(ax, out_x, STAGE2_CY - 0.12 - out_h, out_w, out_h,\n            'Benign', fc=C_GREEN_BG, ec=C_GREEN,\n            lw=1.3, fs=9.5, fw='bold', tc=C_GREEN, pad=0.08)\n\narrow(ax, clf_x + clf_w, STAGE2_CY + 0.15,\n      out_x - 0.05, STAGE2_CY + 0.12 + out_h / 2,\n      color=C_RED, lw=1.2)\narrow(ax, clf_x + clf_w, STAGE2_CY - 0.15,\n      out_x - 0.05, STAGE2_CY - 0.12 - out_h / 2,\n      color=C_GREEN, lw=1.2)\n\n# ============================================================\n# SAVE\n# ============================================================\nout_dir = os.path.dirname(os.path.abspath(__file__))\npdf_path = os.path.join(out_dir, 'fig1_architecture.pdf')\npng_path = os.path.join(out_dir, 'fig1_architecture.png')\n\nfig.savefig(pdf_path, format='pdf')\nfig.savefig(png_path, format='png')\nplt.close(fig)\nprint(f\"Saved: {pdf_path}\")\nprint(f\"Saved: {png_path}\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+    "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport os\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\nC_BLUE = '#0072B2'\nC_BLUE_LIGHT = '#56B4E9'\nC_BLUE_BG = '#DAEDF8'\nC_ORANGE = '#E69F00'\nC_ORANGE_BG = '#FFF3CD'\nC_GREEN = '#009E73'\nC_GREEN_BG = '#D5F5E3'\nC_GRAY = '#888888'\nC_GRAY_LIGHT = '#BBBBBB'\nC_GRAY_BG = '#EDEDED'\nC_WHITE = '#FFFFFF'\nC_BLACK = '#333333'\nC_RED = '#D55E00'\nC_RED_BG = '#FADBD8'\n\nfig, ax = plt.subplots(1, 1, figsize=(16, 9))\nax.set_xlim(0, 16)\nax.set_ylim(0, 9)\nax.set_aspect('equal')\nax.axis('off')\n\n\ndef rounded_box(ax, x, y, w, h, label='', fc=C_WHITE, ec=C_BLACK, lw=1.5,\n                ls='-', fs=10, fw='normal', tc=C_BLACK, zorder=3,\n                pad=0.15, label2=None, label2_fs=8, label2_color=C_GRAY):\n    box = FancyBboxPatch((x, y), w, h,\n                         boxstyle=f'round,pad={pad}',\n                         facecolor=fc, edgecolor=ec,\n                         linewidth=lw, linestyle=ls, zorder=zorder)\n    ax.add_patch(box)\n    if label:\n        cy = y + h / 2\n        if label2:\n            cy += 0.13\n        ax.text(x + w / 2, cy, label, ha='center', va='center',\n                fontsize=fs, fontweight=fw, color=tc, zorder=zorder + 1)\n        if label2:\n            ax.text(x + w / 2, cy - 0.32, label2, ha='center', va='center',\n                    fontsize=label2_fs, color=label2_color, style='italic',\n                    zorder=zorder + 1)\n    return box\n\n\ndef arrow(ax, x1, y1, x2, y2, color=C_BLACK, lw=1.5, style='->',\n          rad=0, zorder=4, mutation_scale=14):\n    conn = f'arc3,rad={rad}' if rad != 0 else 'arc3,rad=0'\n    a = FancyArrowPatch((x1, y1), (x2, y2),\n                        arrowstyle=style, color=color,\n                        linewidth=lw, zorder=zorder,\n                        connectionstyle=conn,\n                        mutation_scale=mutation_scale)\n    ax.add_patch(a)\n\n\n# ============================================================\n# LAYOUT\n# ============================================================\n# Treatment pipeline: y_center = 6.2\n# Baseline pipeline:  y_center = 2.5\n# Shared Stage 2:     y_center = 4.35\n\nTREAT_CY = 6.2\nBASE_CY = 2.5\nSTAGE2_CY = 4.35\n\n# X positions\nX_INPUT = 0.4\nX_DEBERTA = 4.5\nX_HEADS = 8.0\nX_POOL = 11.5\nX_CLF = 13.3\nX_OUT = 15.0\n\n# ============================================================\n# TITLE\n# ============================================================\nax.text(8, 8.65, 'DisPeD: Two-Stage Persuasion-Aware Jailbreak Detection',\n        ha='center', va='center', fontsize=14, fontweight='bold', color=C_BLACK)\n\n# ============================================================\n# STAGE DASHED REGIONS\n# ============================================================\n# Stage 1 region\ns1_box = FancyBboxPatch((3.2, 0.7), 8.0, 7.5,\n                        boxstyle='round,pad=0.15',\n                        facecolor='none', edgecolor='#777777',\n                        linewidth=1.2, linestyle=(0, (5, 4)), zorder=1)\nax.add_patch(s1_box)\nax.text(7.2, 8.35, 'Stage 1: Turn-Level Encoding',\n        ha='center', va='bottom', fontsize=11, fontweight='bold', color='#555555')\n\n# Stage 2 region\ns2_box = FancyBboxPatch((11.2, 0.7), 4.5, 7.5,\n                        boxstyle='round,pad=0.15',\n                        facecolor='none', edgecolor='#777777',\n                        linewidth=1.2, linestyle=(0, (5, 4)), zorder=1)\nax.add_patch(s2_box)\nax.text(13.45, 8.35, 'Stage 2: Conversation-Level\\nClassification',\n        ha='center', va='bottom', fontsize=11, fontweight='bold', color='#555555')\n\n# ============================================================\n# INPUT: Multi-turn Conversation\n# ============================================================\ninp_w, inp_h = 2.0, 4.6\ninp_x = X_INPUT\ninp_cy = (TREAT_CY + BASE_CY) / 2\ninp_y = inp_cy - inp_h / 2\n\nrounded_box(ax, inp_x, inp_y, inp_w, inp_h, fc=C_WHITE, ec=C_BLACK, lw=1.8,\n            pad=0.2, zorder=2)\n\nax.text(inp_x + inp_w / 2, inp_y + inp_h - 0.35, 'Multi-turn',\n        ha='center', va='center', fontsize=11, fontweight='bold', color=C_BLACK,\n        zorder=5)\nax.text(inp_x + inp_w / 2, inp_y + inp_h - 0.7, 'Conversation',\n        ha='center', va='center', fontsize=11, fontweight='bold', color=C_BLACK,\n        zorder=5)\n\nturns = ['Turn 1', 'Turn 2', '...', 'Turn K']\nty_start = inp_y + inp_h - 1.3\nfor i, t in enumerate(turns):\n    ty = ty_start - i * 0.7\n    if t == '...':\n        ax.text(inp_x + inp_w / 2, ty + 0.2, '⋮', ha='center', va='center',\n                fontsize=16, color=C_GRAY, zorder=5)\n    else:\n        tw, th = 1.4, 0.45\n        tx = inp_x + (inp_w - tw) / 2\n        rounded_box(ax, tx, ty, tw, th, t, fc=C_BLUE_BG, ec=C_BLUE_LIGHT,\n                    lw=1.0, fs=9, fw='normal', tc=C_BLACK, pad=0.08)\n        ax.text(tx + tw / 2, ty - 0.12, 'user + assistant',\n                ha='center', va='top', fontsize=6.5, color=C_GRAY, zorder=5)\n\n# ============================================================\n# TREATMENT PIPELINE LABEL\n# ============================================================\nax.text(6.3, 7.65, 'Treatment Pipeline',\n        ha='center', va='center', fontsize=12, fontweight='bold', color=C_BLUE,\n        bbox=dict(boxstyle='round,pad=0.3', facecolor=C_BLUE_BG,\n                  edgecolor=C_BLUE, linewidth=1.2, alpha=0.9),\n        zorder=5)\n\n# Treatment DeBERTa\ndeb_w, deb_h = 2.6, 1.4\ndeb_x = X_DEBERTA\ndeb_ty = TREAT_CY - deb_h / 2\n\nrounded_box(ax, deb_x, deb_ty, deb_w, deb_h,\n            'Persuasion-Aware\\nDeBERTa-v3-base', fc=C_BLUE_BG, ec=C_BLUE,\n            lw=2.0, fs=10.5, fw='bold', tc=C_BLUE, pad=0.18)\nax.text(deb_x + deb_w / 2, deb_ty - 0.2, 'Multi-task Fine-tuned',\n        ha='center', va='center', fontsize=8.5, fontweight='bold',\n        color=C_BLUE, style='italic', zorder=5)\n\n# Arrow input → Treatment DeBERTa\narrow(ax, inp_x + inp_w, inp_cy + 0.8,\n      deb_x - 0.05, TREAT_CY,\n      color=C_BLUE, lw=1.8, rad=-0.2)\n\n# Treatment Head 1: Persuasion classification\nh1_w, h1_h = 2.0, 0.6\nh1_x = X_HEADS\nh1_y = TREAT_CY + 0.2\n\nrounded_box(ax, h1_x, h1_y, h1_w, h1_h,\n            '8-Class Persuasion', fc=C_ORANGE_BG, ec=C_ORANGE,\n            lw=1.5, fs=9.5, fw='bold', tc='#7A5800', pad=0.1)\nax.text(h1_x + h1_w + 0.08, h1_y + h1_h / 2, '(aux)',\n        ha='left', va='center', fontsize=7.5, color=C_ORANGE, style='italic',\n        zorder=5)\n\n# Treatment Head 2: Jailbreak intent\nh2_y = TREAT_CY - 0.2 - h1_h\n\nrounded_box(ax, h1_x, h2_y, h1_w, h1_h,\n            'Jailbreak Intent', fc=C_GREEN_BG, ec=C_GREEN,\n            lw=1.5, fs=9.5, fw='bold', tc='#005740', pad=0.1)\nax.text(h1_x + h1_w + 0.08, h2_y + h1_h / 2, '(aux)',\n        ha='left', va='center', fontsize=7.5, color=C_GREEN, style='italic',\n        zorder=5)\n\n# Arrows DeBERTa → heads\narrow(ax, deb_x + deb_w, TREAT_CY + 0.2,\n      h1_x, h1_y + h1_h / 2, color=C_ORANGE, lw=1.3, rad=-0.05)\narrow(ax, deb_x + deb_w, TREAT_CY - 0.2,\n      h1_x, h2_y + h1_h / 2, color=C_GREEN, lw=1.3, rad=0.05)\n\n# [CLS] label between DeBERTa and heads\nax.text(deb_x + deb_w + 0.15, TREAT_CY + 0.65, '[CLS]',\n        ha='left', va='center', fontsize=8, color=C_BLUE,\n        fontweight='bold', style='italic', zorder=5)\n\n# Persuasion strategy list (compact, two columns)\nstrategies_l = ['Evidence-based', 'Logical Appeal',\n                'Authority Endors.', 'Social Proof']\nstrategies_r = ['Expert Endors.', 'Emotional Manip.',\n                'False Pretense', 'Misrepresentation']\n\nfor i, s in enumerate(strategies_l):\n    sy = h1_y + h1_h + 0.15 + (3 - i) * 0.22\n    ax.plot(h1_x - 0.02, sy, 's', color=C_ORANGE, markersize=3, zorder=5)\n    ax.text(h1_x + 0.1, sy, s, ha='left', va='center', fontsize=6.5,\n            color='#666666', zorder=5)\n\nfor i, s in enumerate(strategies_r):\n    sy = h1_y + h1_h + 0.15 + (3 - i) * 0.22\n    ax.plot(h1_x + 1.05, sy, 's', color=C_ORANGE, markersize=3, zorder=5)\n    ax.text(h1_x + 1.17, sy, s, ha='left', va='center', fontsize=6.5,\n            color='#666666', zorder=5)\n\n# ============================================================\n# BASELINE PIPELINE LABEL\n# ============================================================\nax.text(6.3, BASE_CY - 1.25, 'Baseline Pipeline',\n        ha='center', va='center', fontsize=12, fontweight='bold', color=C_GRAY,\n        bbox=dict(boxstyle='round,pad=0.3', facecolor=C_GRAY_BG,\n                  edgecolor=C_GRAY, linewidth=1.2, alpha=0.9),\n        zorder=5)\n\n# Baseline DeBERTa\ndeb_by = BASE_CY - deb_h / 2\n\nrounded_box(ax, deb_x, deb_by, deb_w, deb_h,\n            'Vanilla\\nDeBERTa-v3-base', fc=C_GRAY_BG, ec=C_GRAY,\n            lw=2.0, fs=10.5, fw='bold', tc='#555555', pad=0.18)\nax.text(deb_x + deb_w / 2, deb_by - 0.2, 'Frozen / No Fine-tuning',\n        ha='center', va='center', fontsize=8.5, fontweight='bold',\n        color=C_GRAY, style='italic', zorder=5)\n\n# Arrow input → Baseline DeBERTa\narrow(ax, inp_x + inp_w, inp_cy - 0.8,\n      deb_x - 0.05, BASE_CY,\n      color=C_GRAY, lw=1.5, rad=0.2)\n\n# Baseline: no task heads, just raw [CLS]\nax.text(h1_x + h1_w / 2, BASE_CY,\n        'No task heads\\n(raw [CLS] features)',\n        ha='center', va='center', fontsize=9, color='#888888',\n        style='italic', zorder=5)\n\n# ============================================================\n# \"vs.\" between pipelines\n# ============================================================\nvs_y = (TREAT_CY + BASE_CY) / 2\nax.text(deb_x + deb_w / 2, vs_y, 'vs.',\n        ha='center', va='center', fontsize=15, fontweight='bold', color='#999999',\n        bbox=dict(boxstyle='round,pad=0.2', facecolor=C_WHITE,\n                  edgecolor=C_GRAY_LIGHT, linewidth=0.8),\n        zorder=6)\n\n# ============================================================\n# STAGE 2: Mean Pooling\n# ============================================================\npool_w, pool_h = 1.4, 1.1\npool_x = X_POOL\npool_y = STAGE2_CY - pool_h / 2\n\nrounded_box(ax, pool_x, pool_y, pool_w, pool_h,\n            'Mean\\nPooling', fc=C_WHITE, ec=C_BLACK,\n            lw=1.8, fs=10.5, fw='bold', pad=0.15)\n\n# Arrow Treatment DeBERTa → Mean Pooling (main flow, bold blue)\narrow(ax, deb_x + deb_w, TREAT_CY,\n      pool_x - 0.05, STAGE2_CY + 0.15,\n      color=C_BLUE, lw=2.0, rad=-0.25,\n      style='-|>', mutation_scale=16)\n\n# Arrow Baseline DeBERTa → Mean Pooling\narrow(ax, deb_x + deb_w, BASE_CY,\n      pool_x - 0.05, STAGE2_CY - 0.15,\n      color=C_GRAY, lw=1.5, rad=0.25,\n      style='-|>', mutation_scale=14)\n\n# Label on the treatment arrow\nax.text(10.0, STAGE2_CY + 1.2, 'turn [CLS]\\nembeddings',\n        ha='center', va='center', fontsize=8, color=C_BLUE,\n        style='italic', fontweight='bold', zorder=5,\n        bbox=dict(boxstyle='round,pad=0.15', facecolor=C_WHITE,\n                  edgecolor=C_BLUE_LIGHT, linewidth=0.6, alpha=0.85))\n\n# ============================================================\n# STAGE 2: Binary Classifier\n# ============================================================\nclf_w, clf_h = 1.3, 1.0\nclf_x = X_CLF\nclf_y = STAGE2_CY - clf_h / 2\n\nrounded_box(ax, clf_x, clf_y, clf_w, clf_h,\n            'Binary\\nClassifier', fc=C_WHITE, ec=C_BLACK,\n            lw=1.8, fs=10.5, fw='bold', pad=0.15)\n\n# Arrow Mean Pooling → Classifier\narrow(ax, pool_x + pool_w, STAGE2_CY,\n      clf_x - 0.05, STAGE2_CY,\n      color=C_BLACK, lw=1.5)\n\n# ============================================================\n# OUTPUT LABELS\n# ============================================================\nout_w, out_h = 0.95, 0.42\nout_x = X_OUT\n\nrounded_box(ax, out_x, STAGE2_CY + 0.12, out_w, out_h,\n            'Jailbreak', fc=C_RED_BG, ec=C_RED,\n            lw=1.3, fs=9.5, fw='bold', tc=C_RED, pad=0.08)\nrounded_box(ax, out_x, STAGE2_CY - 0.12 - out_h, out_w, out_h,\n            'Benign', fc=C_GREEN_BG, ec=C_GREEN,\n            lw=1.3, fs=9.5, fw='bold', tc=C_GREEN, pad=0.08)\n\narrow(ax, clf_x + clf_w, STAGE2_CY + 0.15,\n      out_x - 0.05, STAGE2_CY + 0.12 + out_h / 2,\n      color=C_RED, lw=1.2)\narrow(ax, clf_x + clf_w, STAGE2_CY - 0.15,\n      out_x - 0.05, STAGE2_CY - 0.12 - out_h / 2,\n      color=C_GREEN, lw=1.2)\n\n# ============================================================\n# SAVE\n# ============================================================\nout_dir = os.path.dirname(os.path.abspath(__file__))\npdf_path = os.path.join(out_dir, 'fig1_architecture.pdf')\npng_path = os.path.join(out_dir, 'fig1_architecture.png')\n\nfig.savefig(pdf_path, format='pdf')\nfig.savefig(png_path, format='png')\nplt.close(fig)\nprint(f\"Saved: {pdf_path}\")\nprint(f\"Saved: {png_path}\")\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T03:40:42.447579+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T03:40:42.447761+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+  "description": "Regenerate the architecture figure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+    "description": "Regenerate the architecture figure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T03:40:42.447894+00:00_
+
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.pdf
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T03:40:42.448017+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T03:40:42.448704+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T03:40:42.448970+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+  "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport os\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\nC_BLUE = '#0072B2'\nC_BLUE_LIGHT = '#56B4E9'\nC_BLUE_BG = '#DAEDF8'\nC_ORANGE = '#E69F00'\nC_ORANGE_BG = '#FFF3CD'\nC_GREEN = '#009E73'\nC_GREEN_BG = '#D5F5E3'\nC_GRAY = '#888888'\nC_GRAY_LIGHT = '#BBBBBB'\nC_GRAY_BG = '#EDEDED'\nC_WHITE = '#FFFFFF'\nC_BLACK = '#333333'\nC_RED = '#D55E00'\nC_RED_BG = '#FADBD8'\n\nfig, ax = plt.subplots(1, 1, figsize=(18, 10))\nax.set_xlim(0, 18)\nax.set_ylim(0, 10)\nax.set_aspect('equal')\nax.axis('off')\n\n\ndef rbox(x, y, w, h, label='', fc=C_WHITE, ec=C_BLACK, lw=1.5,\n         fs=10, fw='normal', tc=C_BLACK, zorder=3, pad=0.15,\n         ls='-'):\n    box = FancyBboxPatch((x, y), w, h,\n                         boxstyle=f'round,pad={pad}',\n                         facecolor=fc, edgecolor=ec,\n                         linewidth=lw, linestyle=ls, zorder=zorder)\n    ax.add_patch(box)\n    if label:\n        lines = label.split('\\n')\n        if len(lines) == 1:\n            ax.text(x + w / 2, y + h / 2, label, ha='center', va='center',\n                    fontsize=fs, fontweight=fw, color=tc, zorder=zorder + 1)\n        else:\n            total_h = (len(lines) - 1) * 0.3\n            for i, line in enumerate(lines):\n                ly = y + h / 2 + total_h / 2 - i * 0.3\n                ax.text(x + w / 2, ly, line, ha='center', va='center',\n                        fontsize=fs, fontweight=fw, color=tc, zorder=zorder + 1)\n\n\ndef arr(x1, y1, x2, y2, color=C_BLACK, lw=1.5, style='-|>',\n        rad=0, zorder=4, ms=14):\n    conn = f'arc3,rad={rad}'\n    a = FancyArrowPatch((x1, y1), (x2, y2),\n                        arrowstyle=style, color=color,\n                        linewidth=lw, zorder=zorder,\n                        connectionstyle=conn,\n                        mutation_scale=ms)\n    ax.add_patch(a)\n\n\n# ============================================================\n# Y coordinates\n# ============================================================\nTREAT_CY = 6.8    # treatment pipeline center\nBASE_CY = 2.6     # baseline pipeline center\nSTAGE2_CY = 4.7   # shared stage 2 center\n\n# ============================================================\n# TITLE\n# ============================================================\nax.text(9, 9.65, 'DisPeD: Two-Stage Persuasion-Aware Jailbreak Detection',\n        ha='center', va='center', fontsize=15, fontweight='bold', color=C_BLACK)\n\n# ============================================================\n# STAGE DASHED REGIONS\n# ============================================================\ns1 = FancyBboxPatch((3.5, 0.6), 8.5, 8.5,\n                    boxstyle='round,pad=0.15',\n                    facecolor='none', edgecolor='#777777',\n                    linewidth=1.2, linestyle=(0, (6, 4)), zorder=1)\nax.add_patch(s1)\nax.text(7.75, 9.25, 'Stage 1: Turn-Level Encoding',\n        ha='center', va='bottom', fontsize=11.5, fontweight='bold',\n        color='#555555')\n\ns2 = FancyBboxPatch((12.2, 0.6), 5.3, 8.5,\n                    boxstyle='round,pad=0.15',\n                    facecolor='none', edgecolor='#777777',\n                    linewidth=1.2, linestyle=(0, (6, 4)), zorder=1)\nax.add_patch(s2)\nax.text(14.85, 9.25, 'Stage 2: Conversation-Level Classification',\n        ha='center', va='bottom', fontsize=11.5, fontweight='bold',\n        color='#555555')\n\n# ============================================================\n# INPUT: Multi-turn Conversation\n# ============================================================\ninp_x, inp_w = 0.3, 2.4\ninp_cy = (TREAT_CY + BASE_CY) / 2\ninp_h = 5.5\ninp_y = inp_cy - inp_h / 2\n\nrbox(inp_x, inp_y, inp_w, inp_h, fc=C_WHITE, ec=C_BLACK, lw=1.8, pad=0.2)\n\nax.text(inp_x + inp_w / 2, inp_y + inp_h - 0.35, 'Multi-turn',\n        ha='center', va='center', fontsize=12, fontweight='bold',\n        color=C_BLACK, zorder=5)\nax.text(inp_x + inp_w / 2, inp_y + inp_h - 0.7, 'Conversation',\n        ha='center', va='center', fontsize=12, fontweight='bold',\n        color=C_BLACK, zorder=5)\n\nturns = ['Turn 1', 'Turn 2', '...', 'Turn K']\nty_start = inp_y + inp_h - 1.4\nfor i, t in enumerate(turns):\n    ty = ty_start - i * 0.95\n    if t == '...':\n        ax.text(inp_x + inp_w / 2, ty + 0.25, '⋮', ha='center', va='center',\n                fontsize=18, color=C_GRAY, zorder=5)\n    else:\n        tw, th = 1.7, 0.55\n        tx = inp_x + (inp_w - tw) / 2\n        rbox(tx, ty, tw, th, t, fc=C_BLUE_BG, ec=C_BLUE_LIGHT,\n             lw=1.0, fs=10, tc=C_BLACK, pad=0.08)\n        ax.text(tx + tw / 2, ty - 0.13, 'user + assistant',\n                ha='center', va='top', fontsize=7, color=C_GRAY, zorder=5)\n\n# ============================================================\n# TREATMENT PIPELINE\n# ============================================================\n# Label\nax.text(7.5, 8.75, 'Treatment Pipeline',\n        ha='center', va='center', fontsize=12, fontweight='bold', color=C_BLUE,\n        bbox=dict(boxstyle='round,pad=0.25', facecolor=C_BLUE_BG,\n                  edgecolor=C_BLUE, linewidth=1.2, alpha=0.9),\n        zorder=6)\n\n# DeBERTa Treatment\ndeb_w, deb_h = 2.8, 1.5\ndeb_x = 4.2\ndeb_ty = TREAT_CY - deb_h / 2\n\nrbox(deb_x, deb_ty, deb_w, deb_h,\n     'Persuasion-Aware\\nDeBERTa-v3-base',\n     fc=C_BLUE_BG, ec=C_BLUE, lw=2.2, fs=11, fw='bold', tc=C_BLUE, pad=0.2)\n\nax.text(deb_x + deb_w / 2, deb_ty - 0.22,\n        'Multi-task Fine-tuned',\n        ha='center', va='center', fontsize=9, fontweight='bold',\n        color=C_BLUE, style='italic', zorder=5)\n\n# Arrow input → Treatment DeBERTa\narr(inp_x + inp_w, inp_cy + 1.0,\n    deb_x - 0.08, TREAT_CY,\n    color=C_BLUE, lw=2.0, rad=-0.15)\n\n# Task heads - positioned to the right of DeBERTa, branching UP and DOWN\nhead_x = 8.2\nhead_w = 2.2\nhead_h = 0.65\n\n# Head 1: Persuasion (branches UP from DeBERTa top-right)\nh1_y = TREAT_CY + 0.55\nrbox(head_x, h1_y, head_w, head_h,\n     '8-Class Persuasion', fc=C_ORANGE_BG, ec=C_ORANGE,\n     lw=1.5, fs=10, fw='bold', tc='#7A5800', pad=0.1)\nax.text(head_x + head_w / 2, h1_y + head_h + 0.12, 'auxiliary head',\n        ha='center', va='bottom', fontsize=7.5, color=C_ORANGE,\n        style='italic', zorder=5)\n\n# Head 2: Jailbreak intent (branches DOWN from DeBERTa bottom-right)\nh2_y = TREAT_CY - 0.55 - head_h\nrbox(head_x, h2_y, head_w, head_h,\n     'Jailbreak Intent', fc=C_GREEN_BG, ec=C_GREEN,\n     lw=1.5, fs=10, fw='bold', tc='#005740', pad=0.1)\nax.text(head_x + head_w / 2, h2_y - 0.12, 'auxiliary head',\n        ha='center', va='top', fontsize=7.5, color=C_GREEN,\n        style='italic', zorder=5)\n\n# Arrows DeBERTa → heads (branching off)\narr(deb_x + deb_w, TREAT_CY + 0.35,\n    head_x - 0.05, h1_y + head_h / 2,\n    color=C_ORANGE, lw=1.5, rad=-0.12)\narr(deb_x + deb_w, TREAT_CY - 0.35,\n    head_x - 0.05, h2_y + head_h / 2,\n    color=C_GREEN, lw=1.5, rad=0.12)\n\n# Persuasion strategy labels\nstrats_l = ['Evidence-based', 'Logical Appeal', 'Authority Endors.', 'Social Proof']\nstrats_r = ['Expert Endors.', 'Emotional Manip.', 'False Pretense', 'Misrepresentation']\nfor i, s in enumerate(strats_l):\n    sy = h1_y + head_h + 0.35 + (3 - i) * 0.24\n    ax.plot(head_x + 0.02, sy, 's', color=C_ORANGE, markersize=3, zorder=5)\n    ax.text(head_x + 0.14, sy, s, ha='left', va='center', fontsize=7,\n            color='#666666', zorder=5)\nfor i, s in enumerate(strats_r):\n    sy = h1_y + head_h + 0.35 + (3 - i) * 0.24\n    ax.plot(head_x + 1.15, sy, 's', color=C_ORANGE, markersize=3, zorder=5)\n    ax.text(head_x + 1.27, sy, s, ha='left', va='center', fontsize=7,\n            color='#666666', zorder=5)\n\n# ============================================================\n# BASELINE PIPELINE\n# ============================================================\n# Label\nax.text(7.5, BASE_CY - 1.55, 'Baseline Pipeline',\n        ha='center', va='center', fontsize=12, fontweight='bold', color=C_GRAY,\n        bbox=dict(boxstyle='round,pad=0.25', facecolor=C_GRAY_BG,\n                  edgecolor=C_GRAY, linewidth=1.2, alpha=0.9),\n        zorder=6)\n\n# DeBERTa Baseline\ndeb_by = BASE_CY - deb_h / 2\n\nrbox(deb_x, deb_by, deb_w, deb_h,\n     'Vanilla\\nDeBERTa-v3-base',\n     fc=C_GRAY_BG, ec=C_GRAY, lw=2.0, fs=11, fw='bold', tc='#555555', pad=0.2)\n\nax.text(deb_x + deb_w / 2, deb_by - 0.22,\n        'Frozen / No Fine-tuning',\n        ha='center', va='center', fontsize=9, fontweight='bold',\n        color=C_GRAY, style='italic', zorder=5)\n\n# Arrow input → Baseline DeBERTa\narr(inp_x + inp_w, inp_cy - 1.0,\n    deb_x - 0.08, BASE_CY,\n    color=C_GRAY, lw=1.5, rad=0.15)\n\n# No task heads text\nax.text(head_x + head_w / 2, BASE_CY,\n        'No task heads\\n(raw [CLS] features)',\n        ha='center', va='center', fontsize=9.5, color='#999999',\n        style='italic', zorder=5)\n\n# ============================================================\n# \"vs.\" between pipelines\n# ============================================================\nvs_y = (TREAT_CY + BASE_CY) / 2\nax.text(deb_x + deb_w / 2, vs_y, 'vs.',\n        ha='center', va='center', fontsize=16, fontweight='bold', color='#AAAAAA',\n        bbox=dict(boxstyle='round,pad=0.2', facecolor=C_WHITE,\n                  edgecolor=C_GRAY_LIGHT, linewidth=0.8),\n        zorder=6)\n\n# ============================================================\n# STAGE 2: Mean Pooling\n# ============================================================\npool_w, pool_h = 1.6, 1.2\npool_x = 12.6\npool_y = STAGE2_CY - pool_h / 2\n\nrbox(pool_x, pool_y, pool_w, pool_h,\n     'Mean\\nPooling', fc=C_WHITE, ec=C_BLACK, lw=1.8, fs=11, fw='bold', pad=0.15)\n\n# Main flow: Treatment DeBERTa → Mean Pooling\n# This arrow represents the [CLS] embeddings being passed\narr(deb_x + deb_w, TREAT_CY,\n    pool_x - 0.08, STAGE2_CY + 0.2,\n    color=C_BLUE, lw=2.2, rad=-0.35, ms=16)\n\n# Label on treatment flow arrow\nax.text(10.8, STAGE2_CY + 1.55, 'turn-level [CLS]\\nembeddings',\n        ha='center', va='center', fontsize=8.5, color=C_BLUE,\n        style='italic', fontweight='bold', zorder=5,\n        bbox=dict(boxstyle='round,pad=0.15', facecolor=C_WHITE,\n                  edgecolor=C_BLUE_LIGHT, linewidth=0.6, alpha=0.9))\n\n# Baseline DeBERTa → Mean Pooling\narr(deb_x + deb_w, BASE_CY,\n    pool_x - 0.08, STAGE2_CY - 0.2,\n    color=C_GRAY, lw=1.5, rad=0.35, ms=14)\n\n# ============================================================\n# STAGE 2: Binary Classifier\n# ============================================================\nclf_w, clf_h = 1.5, 1.1\nclf_x = 14.6\nclf_y = STAGE2_CY - clf_h / 2\n\nrbox(clf_x, clf_y, clf_w, clf_h,\n     'Binary\\nClassifier', fc=C_WHITE, ec=C_BLACK, lw=1.8, fs=11, fw='bold', pad=0.15)\n\narr(pool_x + pool_w, STAGE2_CY,\n    clf_x - 0.05, STAGE2_CY,\n    color=C_BLACK, lw=1.5)\n\n# ============================================================\n# OUTPUT\n# ============================================================\nout_w, out_h = 1.1, 0.48\nout_x = 16.4\n\nrbox(out_x, STAGE2_CY + 0.15, out_w, out_h,\n     'Jailbreak', fc=C_RED_BG, ec=C_RED,\n     lw=1.3, fs=10, fw='bold', tc=C_RED, pad=0.08)\nrbox(out_x, STAGE2_CY - 0.15 - out_h, out_w, out_h,\n     'Benign', fc=C_GREEN_BG, ec=C_GREEN,\n     lw=1.3, fs=10, fw='bold', tc=C_GREEN, pad=0.08)\n\narr(clf_x + clf_w, STAGE2_CY + 0.15,\n    out_x - 0.05, STAGE2_CY + 0.15 + out_h / 2,\n    color=C_RED, lw=1.3)\narr(clf_x + clf_w, STAGE2_CY - 0.15,\n    out_x - 0.05, STAGE2_CY - 0.15 - out_h / 2,\n    color=C_GREEN, lw=1.3)\n\n# ============================================================\n# SAVE\n# ============================================================\nout_dir = os.path.dirname(os.path.abspath(__file__))\npdf_path = os.path.join(out_dir, 'fig1_architecture.pdf')\npng_path = os.path.join(out_dir, 'fig1_architecture.png')\n\nfig.savefig(pdf_path, format='pdf')\nfig.savefig(png_path, format='png')\nplt.close(fig)\nprint(f\"Saved: {pdf_path}\")\nprint(f\"Saved: {png_path}\")\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+    "content": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport os\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\nC_BLUE = '#0072B2'\nC_BLUE_LIGHT = '#56B4E9'\nC_BLUE_BG = '#DAEDF8'\nC_ORANGE = '#E69F00'\nC_ORANGE_BG = '#FFF3CD'\nC_GREEN = '#009E73'\nC_GREEN_BG = '#D5F5E3'\nC_GRAY = '#888888'\nC_GRAY_LIGHT = '#BBBBBB'\nC_GRAY_BG = '#EDEDED'\nC_WHITE = '#FFFFFF'\nC_BLACK = '#333333'\nC_RED = '#D55E00'\nC_RED_BG = '#FADBD8'\n\nfig, ax = plt.subplots(1, 1, figsize=(18, 10))\nax.set_xlim(0, 18)\nax.set_ylim(0, 10)\nax.set_aspect('equal')\nax.axis('off')\n\n\ndef rbox(x, y, w, h, label='', fc=C_WHITE, ec=C_BLACK, lw=1.5,\n         fs=10, fw='normal', tc=C_BLACK, zorder=3, pad=0.15,\n         ls='-'):\n    box = FancyBboxPatch((x, y), w, h,\n                         boxstyle=f'round,pad={pad}',\n                         facecolor=fc, edgecolor=ec,\n                         linewidth=lw, linestyle=ls, zorder=zorder)\n    ax.add_patch(box)\n    if label:\n        lines = label.split('\\n')\n        if len(lines) == 1:\n            ax.text(x + w / 2, y + h / 2, label, ha='center', va='center',\n                    fontsize=fs, fontweight=fw, color=tc, zorder=zorder + 1)\n        else:\n            total_h = (len(lines) - 1) * 0.3\n            for i, line in enumerate(lines):\n                ly = y + h / 2 + total_h / 2 - i * 0.3\n                ax.text(x + w / 2, ly, line, ha='center', va='center',\n                        fontsize=fs, fontweight=fw, color=tc, zorder=zorder + 1)\n\n\ndef arr(x1, y1, x2, y2, color=C_BLACK, lw=1.5, style='-|>',\n        rad=0, zorder=4, ms=14):\n    conn = f'arc3,rad={rad}'\n    a = FancyArrowPatch((x1, y1), (x2, y2),\n                        arrowstyle=style, color=color,\n                        linewidth=lw, zorder=zorder,\n                        connectionstyle=conn,\n                        mutation_scale=ms)\n    ax.add_patch(a)\n\n\n# ============================================================\n# Y coordinates\n# ============================================================\nTREAT_CY = 6.8    # treatment pipeline center\nBASE_CY = 2.6     # baseline pipeline center\nSTAGE2_CY = 4.7   # shared stage 2 center\n\n# ============================================================\n# TITLE\n# ============================================================\nax.text(9, 9.65, 'DisPeD: Two-Stage Persuasion-Aware Jailbreak Detection',\n        ha='center', va='center', fontsize=15, fontweight='bold', color=C_BLACK)\n\n# ============================================================\n# STAGE DASHED REGIONS\n# ============================================================\ns1 = FancyBboxPatch((3.5, 0.6), 8.5, 8.5,\n                    boxstyle='round,pad=0.15',\n                    facecolor='none', edgecolor='#777777',\n                    linewidth=1.2, linestyle=(0, (6, 4)), zorder=1)\nax.add_patch(s1)\nax.text(7.75, 9.25, 'Stage 1: Turn-Level Encoding',\n        ha='center', va='bottom', fontsize=11.5, fontweight='bold',\n        color='#555555')\n\ns2 = FancyBboxPatch((12.2, 0.6), 5.3, 8.5,\n                    boxstyle='round,pad=0.15',\n                    facecolor='none', edgecolor='#777777',\n                    linewidth=1.2, linestyle=(0, (6, 4)), zorder=1)\nax.add_patch(s2)\nax.text(14.85, 9.25, 'Stage 2: Conversation-Level Classification',\n        ha='center', va='bottom', fontsize=11.5, fontweight='bold',\n        color='#555555')\n\n# ============================================================\n# INPUT: Multi-turn Conversation\n# ============================================================\ninp_x, inp_w = 0.3, 2.4\ninp_cy = (TREAT_CY + BASE_CY) / 2\ninp_h = 5.5\ninp_y = inp_cy - inp_h / 2\n\nrbox(inp_x, inp_y, inp_w, inp_h, fc=C_WHITE, ec=C_BLACK, lw=1.8, pad=0.2)\n\nax.text(inp_x + inp_w / 2, inp_y + inp_h - 0.35, 'Multi-turn',\n        ha='center', va='center', fontsize=12, fontweight='bold',\n        color=C_BLACK, zorder=5)\nax.text(inp_x + inp_w / 2, inp_y + inp_h - 0.7, 'Conversation',\n        ha='center', va='center', fontsize=12, fontweight='bold',\n        color=C_BLACK, zorder=5)\n\nturns = ['Turn 1', 'Turn 2', '...', 'Turn K']\nty_start = inp_y + inp_h - 1.4\nfor i, t in enumerate(turns):\n    ty = ty_start - i * 0.95\n    if t == '...':\n        ax.text(inp_x + inp_w / 2, ty + 0.25, '⋮', ha='center', va='center',\n                fontsize=18, color=C_GRAY, zorder=5)\n    else:\n        tw, th = 1.7, 0.55\n        tx = inp_x + (inp_w - tw) / 2\n        rbox(tx, ty, tw, th, t, fc=C_BLUE_BG, ec=C_BLUE_LIGHT,\n             lw=1.0, fs=10, tc=C_BLACK, pad=0.08)\n        ax.text(tx + tw / 2, ty - 0.13, 'user + assistant',\n                ha='center', va='top', fontsize=7, color=C_GRAY, zorder=5)\n\n# ============================================================\n# TREATMENT PIPELINE\n# ============================================================\n# Label\nax.text(7.5, 8.75, 'Treatment Pipeline',\n        ha='center', va='center', fontsize=12, fontweight='bold', color=C_BLUE,\n        bbox=dict(boxstyle='round,pad=0.25', facecolor=C_BLUE_BG,\n                  edgecolor=C_BLUE, linewidth=1.2, alpha=0.9),\n        zorder=6)\n\n# DeBERTa Treatment\ndeb_w, deb_h = 2.8, 1.5\ndeb_x = 4.2\ndeb_ty = TREAT_CY - deb_h / 2\n\nrbox(deb_x, deb_ty, deb_w, deb_h,\n     'Persuasion-Aware\\nDeBERTa-v3-base',\n     fc=C_BLUE_BG, ec=C_BLUE, lw=2.2, fs=11, fw='bold', tc=C_BLUE, pad=0.2)\n\nax.text(deb_x + deb_w / 2, deb_ty - 0.22,\n        'Multi-task Fine-tuned',\n        ha='center', va='center', fontsize=9, fontweight='bold',\n        color=C_BLUE, style='italic', zorder=5)\n\n# Arrow input → Treatment DeBERTa\narr(inp_x + inp_w, inp_cy + 1.0,\n    deb_x - 0.08, TREAT_CY,\n    color=C_BLUE, lw=2.0, rad=-0.15)\n\n# Task heads - positioned to the right of DeBERTa, branching UP and DOWN\nhead_x = 8.2\nhead_w = 2.2\nhead_h = 0.65\n\n# Head 1: Persuasion (branches UP from DeBERTa top-right)\nh1_y = TREAT_CY + 0.55\nrbox(head_x, h1_y, head_w, head_h,\n     '8-Class Persuasion', fc=C_ORANGE_BG, ec=C_ORANGE,\n     lw=1.5, fs=10, fw='bold', tc='#7A5800', pad=0.1)\nax.text(head_x + head_w / 2, h1_y + head_h + 0.12, 'auxiliary head',\n        ha='center', va='bottom', fontsize=7.5, color=C_ORANGE,\n        style='italic', zorder=5)\n\n# Head 2: Jailbreak intent (branches DOWN from DeBERTa bottom-right)\nh2_y = TREAT_CY - 0.55 - head_h\nrbox(head_x, h2_y, head_w, head_h,\n     'Jailbreak Intent', fc=C_GREEN_BG, ec=C_GREEN,\n     lw=1.5, fs=10, fw='bold', tc='#005740', pad=0.1)\nax.text(head_x + head_w / 2, h2_y - 0.12, 'auxiliary head',\n        ha='center', va='top', fontsize=7.5, color=C_GREEN,\n        style='italic', zorder=5)\n\n# Arrows DeBERTa → heads (branching off)\narr(deb_x + deb_w, TREAT_CY + 0.35,\n    head_x - 0.05, h1_y + head_h / 2,\n    color=C_ORANGE, lw=1.5, rad=-0.12)\narr(deb_x + deb_w, TREAT_CY - 0.35,\n    head_x - 0.05, h2_y + head_h / 2,\n    color=C_GREEN, lw=1.5, rad=0.12)\n\n# Persuasion strategy labels\nstrats_l = ['Evidence-based', 'Logical Appeal', 'Authority Endors.', 'Social Proof']\nstrats_r = ['Expert Endors.', 'Emotional Manip.', 'False Pretense', 'Misrepresentation']\nfor i, s in enumerate(strats_l):\n    sy = h1_y + head_h + 0.35 + (3 - i) * 0.24\n    ax.plot(head_x + 0.02, sy, 's', color=C_ORANGE, markersize=3, zorder=5)\n    ax.text(head_x + 0.14, sy, s, ha='left', va='center', fontsize=7,\n            color='#666666', zorder=5)\nfor i, s in enumerate(strats_r):\n    sy = h1_y + head_h + 0.35 + (3 - i) * 0.24\n    ax.plot(head_x + 1.15, sy, 's', color=C_ORANGE, markersize=3, zorder=5)\n    ax.text(head_x + 1.27, sy, s, ha='left', va='center', fontsize=7,\n            color='#666666', zorder=5)\n\n# ============================================================\n# BASELINE PIPELINE\n# ============================================================\n# Label\nax.text(7.5, BASE_CY - 1.55, 'Baseline Pipeline',\n        ha='center', va='center', fontsize=12, fontweight='bold', color=C_GRAY,\n        bbox=dict(boxstyle='round,pad=0.25', facecolor=C_GRAY_BG,\n                  edgecolor=C_GRAY, linewidth=1.2, alpha=0.9),\n        zorder=6)\n\n# DeBERTa Baseline\ndeb_by = BASE_CY - deb_h / 2\n\nrbox(deb_x, deb_by, deb_w, deb_h,\n     'Vanilla\\nDeBERTa-v3-base',\n     fc=C_GRAY_BG, ec=C_GRAY, lw=2.0, fs=11, fw='bold', tc='#555555', pad=0.2)\n\nax.text(deb_x + deb_w / 2, deb_by - 0.22,\n        'Frozen / No Fine-tuning',\n        ha='center', va='center', fontsize=9, fontweight='bold',\n        color=C_GRAY, style='italic', zorder=5)\n\n# Arrow input → Baseline DeBERTa\narr(inp_x + inp_w, inp_cy - 1.0,\n    deb_x - 0.08, BASE_CY,\n    color=C_GRAY, lw=1.5, rad=0.15)\n\n# No task heads text\nax.text(head_x + head_w / 2, BASE_CY,\n        'No task heads\\n(raw [CLS] features)',\n        ha='center', va='center', fontsize=9.5, color='#999999',\n        style='italic', zorder=5)\n\n# ============================================================\n# \"vs.\" between pipelines\n# ============================================================\nvs_y = (TREAT_CY + BASE_CY) / 2\nax.text(deb_x + deb_w / 2, vs_y, 'vs.',\n        ha='center', va='center', fontsize=16, fontweight='bold', color='#AAAAAA',\n        bbox=dict(boxstyle='round,pad=0.2', facecolor=C_WHITE,\n                  edgecolor=C_GRAY_LIGHT, linewidth=0.8),\n        zorder=6)\n\n# ============================================================\n# STAGE 2: Mean Pooling\n# ============================================================\npool_w, pool_h = 1.6, 1.2\npool_x = 12.6\npool_y = STAGE2_CY - pool_h / 2\n\nrbox(pool_x, pool_y, pool_w, pool_h,\n     'Mean\\nPooling', fc=C_WHITE, ec=C_BLACK, lw=1.8, fs=11, fw='bold', pad=0.15)\n\n# Main flow: Treatment DeBERTa → Mean Pooling\n# This arrow represents the [CLS] embeddings being passed\narr(deb_x + deb_w, TREAT_CY,\n    pool_x - 0.08, STAGE2_CY + 0.2,\n    color=C_BLUE, lw=2.2, rad=-0.35, ms=16)\n\n# Label on treatment flow arrow\nax.text(10.8, STAGE2_CY + 1.55, 'turn-level [CLS]\\nembeddings',\n        ha='center', va='center', fontsize=8.5, color=C_BLUE,\n        style='italic', fontweight='bold', zorder=5,\n        bbox=dict(boxstyle='round,pad=0.15', facecolor=C_WHITE,\n                  edgecolor=C_BLUE_LIGHT, linewidth=0.6, alpha=0.9))\n\n# Baseline DeBERTa → Mean Pooling\narr(deb_x + deb_w, BASE_CY,\n    pool_x - 0.08, STAGE2_CY - 0.2,\n    color=C_GRAY, lw=1.5, rad=0.35, ms=14)\n\n# ============================================================\n# STAGE 2: Binary Classifier\n# ============================================================\nclf_w, clf_h = 1.5, 1.1\nclf_x = 14.6\nclf_y = STAGE2_CY - clf_h / 2\n\nrbox(clf_x, clf_y, clf_w, clf_h,\n     'Binary\\nClassifier', fc=C_WHITE, ec=C_BLACK, lw=1.8, fs=11, fw='bold', pad=0.15)\n\narr(pool_x + pool_w, STAGE2_CY,\n    clf_x - 0.05, STAGE2_CY,\n    color=C_BLACK, lw=1.5)\n\n# ============================================================\n# OUTPUT\n# ============================================================\nout_w, out_h = 1.1, 0.48\nout_x = 16.4\n\nrbox(out_x, STAGE2_CY + 0.15, out_w, out_h,\n     'Jailbreak', fc=C_RED_BG, ec=C_RED,\n     lw=1.3, fs=10, fw='bold', tc=C_RED, pad=0.08)\nrbox(out_x, STAGE2_CY - 0.15 - out_h, out_w, out_h,\n     'Benign', fc=C_GREEN_BG, ec=C_GREEN,\n     lw=1.3, fs=10, fw='bold', tc=C_GREEN, pad=0.08)\n\narr(clf_x + clf_w, STAGE2_CY + 0.15,\n    out_x - 0.05, STAGE2_CY + 0.15 + out_h / 2,\n    color=C_RED, lw=1.3)\narr(clf_x + clf_w, STAGE2_CY - 0.15,\n    out_x - 0.05, STAGE2_CY - 0.15 - out_h / 2,\n    color=C_GREEN, lw=1.3)\n\n# ============================================================\n# SAVE\n# ============================================================\nout_dir = os.path.dirname(os.path.abspath(__file__))\npdf_path = os.path.join(out_dir, 'fig1_architecture.pdf')\npng_path = os.path.join(out_dir, 'fig1_architecture.png')\n\nfig.savefig(pdf_path, format='pdf')\nfig.savefig(png_path, format='png')\nplt.close(fig)\nprint(f\"Saved: {pdf_path}\")\nprint(f\"Saved: {png_path}\")\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T03:40:42.449463+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T03:40:42.449839+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+  "description": "Regenerate the architecture figure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+    "description": "Regenerate the architecture figure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T03:40:42.450123+00:00_
+
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.pdf
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T03:40:42.450355+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T03:40:42.451730+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Read",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T03:40:42.452052+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+  "old_string": "# Label on treatment flow arrow\nax.text(10.8, STAGE2_CY + 1.55, 'turn-level [CLS]\\nembeddings',\n        ha='center', va='center', fontsize=8.5, color=C_BLUE,\n        style='italic', fontweight='bold', zorder=5,\n        bbox=dict(boxstyle='round,pad=0.15', facecolor=C_WHITE,\n                  edgecolor=C_BLUE_LIGHT, linewidth=0.6, alpha=0.9))",
+  "new_string": "# Label on treatment flow arrow\nax.text(11.6, STAGE2_CY + 1.8, 'turn-level [CLS]\\nembeddings',\n        ha='center', va='center', fontsize=8.5, color=C_BLUE,\n        style='italic', fontweight='bold', zorder=5,\n        bbox=dict(boxstyle='round,pad=0.15', facecolor=C_WHITE,\n                  edgecolor=C_BLUE_LIGHT, linewidth=0.6, alpha=0.9))"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+    "old_string": "# Label on treatment flow arrow\nax.text(10.8, STAGE2_CY + 1.55, 'turn-level [CLS]\\nembeddings',\n        ha='center', va='center', fontsize=8.5, color=C_BLUE,\n        style='italic', fontweight='bold', zorder=5,\n        bbox=dict(boxstyle='round,pad=0.15', facecolor=C_WHITE,\n                  edgecolor=C_BLUE_LIGHT, linewidth=0.6, alpha=0.9))",
+    "new_string": "# Label on treatment flow arrow\nax.text(11.6, STAGE2_CY + 1.8, 'turn-level [CLS]\\nembeddings',\n        ha='center', va='center', fontsize=8.5, color=C_BLUE,\n        style='italic', fontweight='bold', zorder=5,\n        bbox=dict(boxstyle='round,pad=0.15', facecolor=C_WHITE,\n                  edgecolor=C_BLUE_LIGHT, linewidth=0.6, alpha=0.9))"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T03:40:42.452386+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T03:40:42.452647+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+  "old_string": "# Persuasion strategy labels\nstrats_l = ['Evidence-based', 'Logical Appeal', 'Authority Endors.', 'Social Proof']\nstrats_r = ['Expert Endors.', 'Emotional Manip.', 'False Pretense', 'Misrepresentation']\nfor i, s in enumerate(strats_l):\n    sy = h1_y + head_h + 0.35 + (3 - i) * 0.24\n    ax.plot(head_x + 0.02, sy, 's', color=C_ORANGE, markersize=3, zorder=5)\n    ax.text(head_x + 0.14, sy, s, ha='left', va='center', fontsize=7,\n            color='#666666', zorder=5)\nfor i, s in enumerate(strats_r):\n    sy = h1_y + head_h + 0.35 + (3 - i) * 0.24\n    ax.plot(head_x + 1.15, sy, 's', color=C_ORANGE, markersize=3, zorder=5)\n    ax.text(head_x + 1.27, sy, s, ha='left', va='center', fontsize=7,\n            color='#666666', zorder=5)",
+  "new_string": "# Persuasion strategy labels (compact, positioned to the right of the head)\nstrats_l = ['Evidence-based', 'Logical Appeal', 'Authority Endors.', 'Social Proof']\nstrats_r = ['Expert Endors.', 'Emotional Manip.', 'False Pretense', 'Misrepresentation']\nstrat_base_y = h1_y + head_h + 0.25\nfor i, s in enumerate(strats_l):\n    sy = strat_base_y + (3 - i) * 0.22\n    ax.plot(head_x + 0.05, sy, 's', color=C_ORANGE, markersize=2.8, zorder=5)\n    ax.text(head_x + 0.17, sy, s, ha='left', va='center', fontsize=6.5,\n            color='#666666', zorder=5)\nfor i, s in enumerate(strats_r):\n    sy = strat_base_y + (3 - i) * 0.22\n    ax.plot(head_x + 1.18, sy, 's', color=C_ORANGE, markersize=2.8, zorder=5)\n    ax.text(head_x + 1.30, sy, s, ha='left', va='center', fontsize=6.5,\n            color='#666666', zorder=5)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+    "old_string": "# Persuasion strategy labels\nstrats_l = ['Evidence-based', 'Logical Appeal', 'Authority Endors.', 'Social Proof']\nstrats_r = ['Expert Endors.', 'Emotional Manip.', 'False Pretense', 'Misrepresentation']\nfor i, s in enumerate(strats_l):\n    sy = h1_y + head_h + 0.35 + (3 - i) * 0.24\n    ax.plot(head_x + 0.02, sy, 's', color=C_ORANGE, markersize=3, zorder=5)\n    ax.text(head_x + 0.14, sy, s, ha='left', va='center', fontsize=7,\n            color='#666666', zorder=5)\nfor i, s in enumerate(strats_r):\n    sy = h1_y + head_h + 0.35 + (3 - i) * 0.24\n    ax.plot(head_x + 1.15, sy, 's', color=C_ORANGE, markersize=3, zorder=5)\n    ax.text(head_x + 1.27, sy, s, ha='left', va='center', fontsize=7,\n            color='#666666', zorder=5)",
+    "new_string": "# Persuasion strategy labels (compact, positioned to the right of the head)\nstrats_l = ['Evidence-based', 'Logical Appeal', 'Authority Endors.', 'Social Proof']\nstrats_r = ['Expert Endors.', 'Emotional Manip.', 'False Pretense', 'Misrepresentation']\nstrat_base_y = h1_y + head_h + 0.25\nfor i, s in enumerate(strats_l):\n    sy = strat_base_y + (3 - i) * 0.22\n    ax.plot(head_x + 0.05, sy, 's', color=C_ORANGE, markersize=2.8, zorder=5)\n    ax.text(head_x + 0.17, sy, s, ha='left', va='center', fontsize=6.5,\n            color='#666666', zorder=5)\nfor i, s in enumerate(strats_r):\n    sy = strat_base_y + (3 - i) * 0.22\n    ax.plot(head_x + 1.18, sy, 's', color=C_ORANGE, markersize=2.8, zorder=5)\n    ax.text(head_x + 1.30, sy, s, ha='left', va='center', fontsize=6.5,\n            color='#666666', zorder=5)"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T03:40:42.453012+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T03:40:42.453260+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+  "description": "Regenerate with refinements"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/gen_fig1_architecture.py",
+    "description": "Regenerate with refinements"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T03:40:42.453474+00:00_
+
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.pdf
+Saved: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T03:40:42.453703+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T03:40:42.455026+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "Read",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T03:40:42.455325+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T03:40:42.455563+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T03:40:42.455771+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "fig1_architecture",
+  "type": "chart",
+  "description": "DisPeD two-stage system architecture conceptual diagram: Treatment (Persuasion-Aware DeBERTa with multi-task heads) vs Baseline pipeline, for Method section",
+  "project": "persuasion_turn_jailbreak_detect",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.pdf",
+  "tags": "['paper', 'method', 'architecture', 'conceptual']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "fig1_architecture",
+    "type": "chart",
+    "description": "DisPeD two-stage system architecture conceptual diagram: Treatment (Persuasion-Aware DeBERTa with multi-task heads) vs Baseline pipeline, for Method section",
+    "project": "persuasion_turn_jailbreak_detect",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.pdf",
+    "tags": "['paper', 'method', 'architecture', 'conceptual']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-18T03:40:42.456010+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_151677\", \"name\": \"fig1_architecture\", \"type\": \"chart\", \"description\": \"DisPeD two-stage system architecture conceptual diagram: Treatment (Persuasion-Aware DeBERTa with multi-task heads) vs Baseline pipeline, for Method section\", \"path\": \"projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/fig1_architecture.pdf\", \"url\": null, \"project\": \"persuasion_turn_jailbreak_detect\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T03:40:35.843594+00:00\", \"tags\": [\"paper\", \"method\", \"architecture\", \"conceptual\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-18T03:40:42.456298+00:00_
+
+生成完成。
+
+输出文件：
+- **PDF**: `figures/paper/fig1_architecture.pdf`
+- **PNG**: `figures/paper/fig1_architecture.png`
+- **生成脚本**: `figures/paper/gen_fig1_architecture.py`
+
+图表展示了 DisPeD 两阶段架构：上方 Treatment Pipeline（蓝色系，Persuasion-Aware DeBERTa + 8-class persuasion 橙色头 + jailbreak intent 绿色头），下方 Baseline Pipeline（灰色系，Vanilla DeBERTa），共享 Stage 2 的 Mean Pooling + Binary Classifier。两个 Stage 用虚线框分隔标注。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_figure_fig1_architecture_20260518T033455"
+}
+```
+
+</details>
+
+---

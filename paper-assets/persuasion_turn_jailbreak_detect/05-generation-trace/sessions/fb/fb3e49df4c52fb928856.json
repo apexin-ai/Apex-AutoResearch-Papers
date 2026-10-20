@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fb3e49df4c52fb928856",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp46 efficiency",
+  "task_key": "worker_code_exp46_efficiency_20260522T061556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp46_efficiency_20260522T061556.log",
+    "occurrence": 1,
+    "bytes": 576439,
+    "sha256": "823ef58671f93aef1b818f519e39d36937843638e55a78d934d45e7d49ead8e5"
+  },
+  "statistics": {
+    "messages": 192,
+    "user_turns": 0,
+    "tool_calls": 79,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 79,
+      "tool_result": 79,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 192,
+      "chunks": [
+        {
+          "path": "fb3e49df4c52fb928856-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fb3e49df4c52fb928856-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp46-efficiency.md"
+}

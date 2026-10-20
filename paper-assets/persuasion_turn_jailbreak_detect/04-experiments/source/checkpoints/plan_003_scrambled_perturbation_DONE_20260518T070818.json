@@ -1,0 +1,44 @@
+{
+  "exp_id": "plan_003_scrambled_perturbation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T07:07:32.928Z",
+    "updated_at": "2026-05-18T07:08:18.365Z",
+    "hypothesis": "Scrambled-label classification (random strategy labels on domain text) will show perturbation degradation between binary (0.000) and MLM (-0.026), testing whether correct label content matters for robustness or if any classification structure suffices",
+    "parent": "plan_003_scrambled_ablation",
+    "spec": {
+      "command": "python src/plan_003_scrambled_gru_and_perturbed_eval.py",
+      "server": "westd-33183",
+      "data_path": "data/final_v2/train_scrambled.jsonl",
+      "data_count": 336,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/plan_003_scrambled_retrain/deberta_multitask/best",
+      "eval_data": "results/plan_004_perturbed_test.jsonl",
+      "checkpoint_path": "checkpoints/plan_003_scrambled_retrain",
+      "log_path": "runs/persuasion_turn_jailbreak_detect/plan_003_scrambled_retrain.log"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "deberta_training": {
+        "epochs": 4,
+        "best_epoch": 4,
+        "val_persuasion_acc": 0.613,
+        "val_intent_acc": 0.967,
+        "val_loss": 1.127
+      },
+      "iid_test_f1_full": 1,
+      "perturbation_delta_full": 0,
+      "perturbation_clean_f1_full": 0.333,
+      "perturbation_perturbed_f1_full": 0.333,
+      "note": "Delta=0 is misleading: model predicts all-benign on OOD perturbed test set (F1=0.333), unlike 9-class persuasion which achieves F1=1.0 on both clean and perturbed. Scrambled model overfits to IID distribution."
+    },
+    "completed_at": "2026-05-18T07:08:18.366Z"
+  },
+  "timestamp": "2026-05-18T07:08:18.561894+00:00",
+  "trigger": "update_registry"
+}

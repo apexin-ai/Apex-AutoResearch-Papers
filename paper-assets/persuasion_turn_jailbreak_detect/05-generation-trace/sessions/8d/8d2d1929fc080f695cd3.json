@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d2d1929fc080f695cd3",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "sync tsne to local",
+  "task_key": "worker_sync_tsne-to-local_20260519T000025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_tsne-to-local_20260519T000025_result.json",
+    "occurrence": 1,
+    "bytes": 101,
+    "sha256": "e35fa3ac08a2a1305b717451d64d5e49dd6908f3f4a3ac072295abb4b51f40fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。文件大小与远程一致：PDF 29,687 字节，PNG 265,487 字节。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-tsne-to-local.md"
+}

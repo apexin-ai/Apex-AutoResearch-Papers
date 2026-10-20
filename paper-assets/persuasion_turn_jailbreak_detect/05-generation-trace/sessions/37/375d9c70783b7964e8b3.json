@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "375d9c70783b7964e8b3",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp55 5seed mlm 9class",
+  "task_key": "worker_code_exp55_5seed_mlm_9class_20260522T113202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp55_5seed_mlm_9class_20260522T113202.log",
+    "occurrence": 1,
+    "bytes": 1917714,
+    "sha256": "59f136324fc0cf7a4648b12d8fb02d487c9fef546ce5c7358c00dc93584f533c"
+  },
+  "statistics": {
+    "messages": 969,
+    "user_turns": 2,
+    "tool_calls": 382,
+    "roles": {
+      "log": 1,
+      "system": 46,
+      "record": 1,
+      "assistant": 154,
+      "tool_call": 382,
+      "tool_result": 382,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 394,
+      "chunks": [
+        {
+          "path": "375d9c70783b7964e8b3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "375d9c70783b7964e8b3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "375d9c70783b7964e8b3-part-0003.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 292,
+      "chunks": [
+        {
+          "path": "375d9c70783b7964e8b3-part-0003.json",
+          "message_count": 146
+        },
+        {
+          "path": "375d9c70783b7964e8b3-part-0004.json",
+          "message_count": 146
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 283,
+      "chunks": [
+        {
+          "path": "375d9c70783b7964e8b3-part-0004.json",
+          "message_count": 34
+        },
+        {
+          "path": "375d9c70783b7964e8b3-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "375d9c70783b7964e8b3-part-0006.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp55-5seed-mlm-9class.md"
+}

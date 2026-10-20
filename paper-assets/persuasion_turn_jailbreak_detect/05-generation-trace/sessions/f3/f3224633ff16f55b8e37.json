@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3224633ff16f55b8e37",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp44 monitor training",
+  "task_key": "worker_code_exp44_monitor_training_20260522T055043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp44_monitor_training_20260522T055043_result.json",
+    "occurrence": 1,
+    "bytes": 400,
+    "sha256": "917a74f47a3a9d444dca69dfd967dae90cc7aa79f94a124fe8a5e998c2e1003d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp44 status:\n- **PID 31463**: running, GPU 0 at 75% / 5519 MiB\n- **Stage 1 (DeBERTa)**: done for seed=123 — train_loss dropped 1.009→0.349, best val_loss=0.4633\n- **Stage 2 (GRU)**: started, extracting train embeddings now\n- Checkpoint saved: `/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp44_mixed_seed123/deberta_best.pt`\n\nWill check back in ~3 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp44-monitor-training.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79916d10b13a80082ad7",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp59 resample 350",
+  "task_key": "worker_code_exp59_resample_350_20260522T132529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp59_resample_350_20260522T132529_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "00d4f93d73dbf1b88d5a18c28b1af3a32da9ede4ea9241ef20e02ee49c2ddd5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交到 westd-33183 的 cuda:0，3 个 seed (42, 123, 456) 依次运行。每个 seed 包含：\n- Stage 1: DeBERTa 9-class DAPT (5 epochs, ~350 samples)\n- Stage 2: GRU treatment (20 epochs)\n- Stage 3: DD OOD + AA OOD 评估\n\n**已知对比基准：**\n\n| 配置 | DD OOD F1 | AA OOD F1 |\n|------|-----------|-----------|\n| original_349 (plan_002) | ~0.42 avg* | ~0.22 avg* |\n| expanded_1000 (exp17) | 0.889 ± 0.04 | 0.913 ± 0.04 |\n| resample_350 (exp59) | *running...* | *running...* |\n\n*\\*exp16 的 DD/AA OOD 评估格式不同（不含 benign），数据不完全可比*\n\n3 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp59-resample-350.md"
+}

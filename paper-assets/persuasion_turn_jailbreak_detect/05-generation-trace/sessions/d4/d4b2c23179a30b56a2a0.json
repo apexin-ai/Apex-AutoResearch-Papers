@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4b2c23179a30b56a2a0",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp17 qwen datagen v2",
+  "task_key": "worker_code_exp17-qwen-datagen-v2_20260519T151849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp17-qwen-datagen-v2_20260519T151849_result.json",
+    "occurrence": 1,
+    "bytes": 1211,
+    "sha256": "960110fa7509afa7949db553865b5780ed57ff9dda0016ad21980be81c095f73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张 GPU 全部在使用：\n- GPU 0: Llama jailbreak gen (exp16)\n- GPU 1: Llama benign gen (exp16)  \n- GPU 2: **Qwen3-8B jailbreak gen (exp17)** — 19GB\n- GPU 3: **Qwen3-8B benign gen (exp17)** — 19GB\n\n汇报：\n\n**脚本**: `scripts/generate_crescendo_expanded.py` (598行)\n- 基于 Llama 版脚本改造，适配 Qwen3-8B（`enable_thinking=False` 禁用思考模式）\n- 30 个新 harmful goals + 25 个新 benign scenarios，全部不与原始数据重复\n- 支持 `--mode jailbreak/benign`、`--num_conversations`、断点续传\n- 输出格式与现有数据一致（`conversation_id`, `label`, `source`, `strategy_sequence`, `metadata`）\n- `conversation_id` 格式: `crescendo_exp_XXXX`\n\n**Dry-run**: 2 条 jailbreak 对话验证通过，每条约 105 秒\n\n**已提交 jobs**:\n| Job | exp_id | GPU | 输出文件 |\n|-----|--------|-----|---------|\n| Jailbreak 250 | `exp17_qwen_jailbreak_gen` | cuda:2 | `data/expanded_conversations/crescendo_jailbreak_expanded.jsonl` |\n| Benign 250 | `exp17_qwen_benign_gen` | cuda:3 | `data/expanded_conversations/crescendo_benign_expanded.jsonl` |\n\n**预计完成时间**: 约 7-8 小时（每条对话 ~105 秒 × 250 条）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp17-qwen-datagen-v2.md"
+}

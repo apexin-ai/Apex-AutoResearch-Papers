@@ -1,0 +1,56 @@
+{
+  "exp_id": "exp15b_roberta_large_lr",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T08:59:39.082Z",
+    "updated_at": "2026-05-19T09:24:37.379Z",
+    "hypothesis": "exp15 9class underperformance on AA (0.946 vs vanilla 1.000) is caused by catastrophic forgetting from too-high LR (2e-5) for 355M model. Reducing DAPT LR to 1e-5 should preserve pretrained representations while still learning persuasion patterns, recovering AA F1 to match or exceed vanilla.",
+    "parent": "exp15_roberta_large",
+    "spec": {
+      "command": "python scripts/exp15b_roberta_large_lr1e5.py",
+      "server": "westd-33183",
+      "data_path": "/root/persuasion_turn_jailbreak_detect/data/",
+      "data_count": "same as exp15",
+      "model_name": "roberta-large (355M), DAPT LR=1e-5",
+      "seed": "42, 123, 456",
+      "checkpoint_source": "exp15_roberta_large (vanilla reused, 9class retrained with LR=1e-5)",
+      "eval_data": "DD OOD + ActorAttack (same as exp15)",
+      "checkpoint_path": "/root/persuasion_turn_jailbreak_detect/checkpoints/roberta_large_9class_lr1e5/",
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/exp15b_roberta_large_lr1e5.json"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "dd_ood": {
+        "9class_lr1e5": {
+          "k1": 0.899,
+          "k3": 0.851,
+          "full": 0.948
+        },
+        "9class_lr2e5_exp15": {
+          "k1": 0.965,
+          "k3": 0.96,
+          "full": 0.987
+        }
+      },
+      "actorattack": {
+        "9class_lr1e5": {
+          "k1": 0.459,
+          "k3": 0.676,
+          "full": 0.781
+        },
+        "9class_lr2e5_exp15": {
+          "k1": 0.718,
+          "k3": 0.881,
+          "full": 0.946
+        }
+      },
+      "key_finding": "LR=1e-5 worse than LR=2e-5 on both DD and AA. Catastrophic forgetting hypothesis falsified. The capacity-DAPT interaction on AA is real, not a hyperparameter artifact."
+    }
+  },
+  "timestamp": "2026-05-19T09:24:37.518874+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,5726 @@
+# eval vanilla multiseed dd ood
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 195
+- **Recorded user turns:** 0
+- **Tool calls:** 97
+- **Original source:** `logs/chats/worker_eval_vanilla-multiseed-dd-ood_20260518T110133.jsonl`
+- **Structured JSON:** [`bdd7eb18d4ac161670a7.json`](../../sessions/bd/bdd7eb18d4ac161670a7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+195 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T11:14:21.966993+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T11:14:21.967351+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T11:14:21.967530+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/persuasion_turn_jailbreak_detect/checkpoints/ -path \"*baseline*\" -name \"best*\" -o -path \"*vanilla*\" -name \"best*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "find /root/persuasion_turn_jailbreak_detect/checkpoints/ -path \"*baseline*\" -name \"best*\" -o -path \"*vanilla*\" -name \"best*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-18T11:14:21.967794+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T11:14:21.967953+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/plan_002_clean/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/plan_002_clean/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T11:14:21.968085+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T11:14:21.968205+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/persuasion_turn_jailbreak_detect/checkpoints/plan_017*/ -name \"best*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "find /root/persuasion_turn_jailbreak_detect/checkpoints/plan_017*/ -name \"best*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T11:14:21.968339+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T11:14:21.968461+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/persuasion_turn_jailbreak_detect/ -name \"*cka*\" -o -name \"*prob*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "find /root/persuasion_turn_jailbreak_detect/ -name \"*cka*\" -o -name \"*prob*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T11:14:21.968669+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T11:14:21.968806+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T11:14:21.968928+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T11:14:21.969045+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "head -80 /root/persuasion_turn_jailbreak_detect/train_gru.py 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "head -80 /root/persuasion_turn_jailbreak_detect/train_gru.py 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T11:14:21.969161+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T11:14:21.969296+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-18T11:14:21.969410+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T11:14:21.969521+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "head -100 /root/persuasion_turn_jailbreak_detect/train_gru.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "head -100 /root/persuasion_turn_jailbreak_detect/train_gru.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T11:14:21.969677+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp1_roberta_9class_seed123\\nexp1_roberta_9class_seed42\\nexp1_roberta_9class_seed456\\nexp1_roberta_mlm_seed123\\nexp1_roberta_mlm_seed42\\nexp1_roberta_mlm_seed456\\nexp1_roberta_vanilla_seed123\\nexp1_roberta_vanilla_seed42\\nexp1_roberta_vanilla_seed456\\nmf1_binary_seed123\\nmf1_binary_seed456\\nmf1_scrambled_seed123\\nmf1_scrambled_seed456\\nplan_002\\nplan_002_seed123\\nplan_002_seed456\\nplan_003_scrambled_fix\\nplan_003_scrambled_retrain\\nplan_004_baseline\\nplan_004_treatment\\nplan_015_meanpool\\nplan_016v2_topic\\nplan_016v2_topic_seed123\\nplan_016v2_topic_seed456\\nplan_017_mlm\\nplan_017_mlm_seed123\\nplan_017_mlm_seed456\\nplan_018_wiki_mlm\\nplan_018_wiki_mlm_seed123\\nplan_018_wiki_mlm_seed456\\nsubset_baseline_gru\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T11:14:21.969811+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"checkpoints\\ncount_tokens.py\\ndata\\ndownload_roberta.py\\neval_stratified.py\\nfigures\\nlogs\\nresults\\nrun_mf1_binary_seed123.sh\\nrun_mf1_binary_seed456.sh\\nrun_plan003.sh\\nrun_plan003_eval.sh\\nrun_plan003_step3.sh\\nrun_v3_phase1.sh\\nscripts\\nsrc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T11:14:21.969939+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/persuasion_turn_jailbreak_detect/train_gru.py' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T11:14:21.970068+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/scripts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T11:14:21.970200+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\ncompute_baseline_embeddings.py\\nevaluate_actorattack_ood.py\\nexp3_probing.py\\ngen_transition_matrix.py\\ngenerate_actorattack.py\\ngenerate_benign_v4.py\\ngenerate_benign_v4b.py\\ngenerate_benign_v4c.py\\ngenerate_benign_v4c_full.py\\ngenerate_benign_v4d.py\\ngenerate_crescendo.py\\ngenerate_crescendo_part.py\\ngenerate_crescendo_transformers.py\\ngenerate_crescendo_v2.py\\ngenerate_deceptive_delight.py\\ngenerate_fitd.py\\ngenerate_parallel.py.disabled\\ngenerate_worker.py.disabled\\nmatched_seed_stats.py\\nmerge_and_split.py\\nplan002_retrain_eval.py\\nplan002_retrain_v2.py\\nprepare_pilot.py\\nprepare_wildchat_benign.py\\nrun_crescendo_part.sh\\nrun_generate.sh\\nrun_generate_screen.sh\\nrun_plan_002.sh\\nrun_plan_014.py\\nrun_with_restart.sh\\nsanity_check.py\\nsanity_check_v4b.py\\nstatistical_tests.py\\nstep1_wildchat_filter.py\\nstep2_generate_benign.py\\nstep2b_generate_casual.py\\nstep2c_generate_fewshot.py\\nstep2d_rewrite_benign.py\\nstep3_sanity_check.py\\ntest_fix.py\\ntrain_baseline_gru.py\\ntrain_subset_baseline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T11:14:21.970318+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/src/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/src/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-18T11:14:21.970431+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/persuasion_turn_jailbreak_detect/ -name \"*gru*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "find /root/persuasion_turn_jailbreak_detect/ -name \"*gru*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-18T11:14:21.970582+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nadversarial_perturbation.py\\nbinary_perturbed_eval.py\\ncross_attack_eval.py\\ndata\\neval_early_detection.py\\neval_plan_013.py\\nevaluate.py\\nexp1_roberta_mlm_pipeline.py\\nexp1_roberta_pipeline.py\\nexp4_dd_ood_perturbation.py\\ngenerate_topic_anchored_benign.py\\ngenerate_topic_anchored_benign_v3.py\\nlabel_topics.py\\nllm_judge_baseline.py\\nllm_judge_gpt41.py\\nllm_judge_gpt55.py\\nllm_judge_ood.py\\nllm_judge_rerun.py\\nmerge_and_split.py\\nmerge_benign_parts.py\\nmf1_binary_seed123_dd_eval.py\\nmf1_binary_seed456_dd_eval.py\\nmf1_scrambled_seed123_gru_eval.py\\nmf1_scrambled_seed456_pipeline.py\\nmf1_scrambled_seed456_stage2_3.py\\nmodels\\nphase_b_supplement_eval.py\\nplan_002_seed123_dd_eval.py\\nplan_002_seed456_dd_eval.py\\nplan_003_scrambled_fix.py\\nplan_003_scrambled_gru_and_perturbed_eval.py\\nplan_006_cross_attack_eval.py\\nplan_006_scrambled_dd_eval.py\\nplan_013_dd_crossattack_eval.py\\nplan_015_dd_eval.py\\nplan_016_dd_eval.py\\nplan_016v2_dd_eval.py\\nplan_016v2_dd_eval_seed.py\\nplan_016v2_perturbed_eval.py\\nplan_017_dd_eval.py\\nplan_017_dd_eval_seed.py\\nplan_017_perturbed_eval.py\\nplan_018_wiki_dd_eval.py\\nplan_018_wiki_eval_seed.py\\nplan_018_wiki_perturbed_eval.py\\nplot_strategy_heatmap.py\\nprepare_wiki_mlm_data.py\\nregister_normalize.py\\nscramble_labels.py\\nsf9_strategy_prediction.py\\ntfidf_baseline.py\\ntfidf_gate_check.py\\ntfidf_sanity_check.py\\ntfidf_topic_anchored_check.py\\ntrain_classifier.py\\ntrain_classifier_binary.py\\ntrain_classifier_meanpool.py\\ntrain_deberta.py\\ntrain_deberta_binary.py\\ntrain_deberta_mlm.py\\ntrain_deberta_mlm_wiki.py\\ntrain_deberta_sentiment.py\\ntrain_deberta_topic.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T11:14:21.970736+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/src/models/gru_classifier.py\\n/root/persuasion_turn_jailbreak_detect/src/models/__pycache__/gru_classifier.cpython-312.pyc\\n/root/persuasion_turn_jailbreak_detect/src/plan_003_scrambled_gru_and_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/mf1_scrambled_seed123_gru_eval.py\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_016v2_topic/gru_reseed42/gru_best.pt\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_018_wiki_mlm/gru/best_gru.pt\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_017_mlm_seed123/gru/best_gru.pt\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_016v2_topic_seed123/gru/gru_best.pt\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_016v2_topic_seed456/gru/gru_best.pt\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_017_mlm_seed456/gru/best_gru.pt\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_018_wiki_mlm_seed123/gru/best_gru.pt\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_018_wiki_mlm_seed456/gru/best_gru.pt\\n/root/persuasion_turn_jailbreak_detect/scripts/train_baseline_gru.py\\n/root/persuasion_turn_jailbreak_detect/logs/phase_b_gru_treatment.log\\n/root/persuasion_turn_jailbreak_detect/logs/phase_b_gru_baseline.log\\n/root/persuasion_turn_jailbreak_detect/logs/plan002_gru_treatment.log\\n/root/persuasion_turn_jailbreak_detect/logs/plan002_gru_baseline.log\\n/root/persuasion_turn_jailbreak_detect/logs/plan_013_gru.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T11:14:21.970863+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/persuasion_turn_jailbreak_detect/ -name \"*cka*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "find /root/persuasion_turn_jailbreak_detect/ -name \"*cka*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T11:14:21.971047+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T11:14:21.971234+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/persuasion_turn_jailbreak_detect/ -name \"*eval*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "find /root/persuasion_turn_jailbreak_detect/ -name \"*eval*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T11:14:21.971410+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/src/evaluate.py\\n/root/persuasion_turn_jailbreak_detect/src/__pycache__/eval_early_detection.cpython-312.pyc\\n/root/persuasion_turn_jailbreak_detect/src/eval_early_detection.py\\n/root/persuasion_turn_jailbreak_detect/src/phase_b_supplement_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/cross_attack_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_006_cross_attack_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_006_scrambled_dd_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/eval_plan_013.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_013_dd_crossattack_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_015_dd_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_016_dd_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_017_dd_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_016v2_dd_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_018_wiki_dd_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_016v2_dd_eval_seed.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_017_dd_eval_seed.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_017_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_018_wiki_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_016v2_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/binary_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_018_wiki_eval_seed.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_003_scrambled_gru_and_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_002_seed123_dd_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_002_seed456_dd_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/mf1_scrambled_seed123_gru_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/mf1_binary_seed456_dd_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/mf1_binary_seed123_dd_eva
+…[truncated 1851 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T11:14:21.971569+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/persuasion_turn_jailbreak_detect/ -name \"*prob*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "find /root/persuasion_turn_jailbreak_detect/ -name \"*prob*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T11:14:21.971701+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/scripts/exp3_probing.py\\n/root/persuasion_turn_jailbreak_detect/logs/exp3_probing.log\\n/root/persuasion_turn_jailbreak_detect/results/exp3_probing.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T11:14:21.971844+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/scripts/train_baseline_gru.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/scripts/train_baseline_gru.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-18T11:14:21.971963+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/src/models/gru_classifier.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/src/models/gru_classifier.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-18T11:14:21.972076+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/src/plan_002_seed123_dd_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/src/plan_002_seed123_dd_eval.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-18T11:14:21.972186+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/scripts/exp3_probing.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/scripts/exp3_probing.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-18T11:14:21.972403+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Train baseline GRU classifier from pre-computed embeddings.\\n\\nLoads .pt embedding files and trains a GRU sequence classifier.\\nReports F1, accuracy, and FPR@95TPR on test set.\\n\\\"\\\"\\\"\\n\\nimport os\\nimport sys\\nimport argparse\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom pathlib import Path\\nfrom torch.utils.data import Dataset, DataLoader\\nfrom sklearn.metrics import f1_score, accuracy_score, roc_curve\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\nfrom src.models.gru_classifier import GRUClassifier\\n\\n\\nclass EmbeddingDataset(Dataset):\\n    def __init__(self, pt_path):\\n        self.data = torch.load(pt_path, weights_only=False)\\n\\n    def __len__(self):\\n        return len(self.data)\\n\\n    def __getitem__(self, idx):\\n        item = self.data[idx]\\n        return {\\n            \\\"embeddings\\\": item[\\\"embeddings\\\"],\\n            \\\"label\\\": item[\\\"label\\\"],\\n            \\\"length\\\": item[\\\"embeddings\\\"].shape[0],\\n        }\\n\\n\\ndef collate_fn(batch):\\n    max_len = max(b[\\\"length\\\"] for b in batch)\\n    embed_dim = batch[0][\\\"embeddings\\\"].shape[1]\\n\\n    padded = torch.zeros(len(batch), max_len, embed_dim)\\n    lengths = torch.zeros(len(batch), dtype=torch.long)\\n    labels = torch.zeros(len(batch), dtype=torch.long)\\n\\n    for i, b in enumerate(batch):\\n        seq_len = b[\\\"length\\\"]\\n        padded[i, :seq_len] = b[\\\"embeddings\\\"]\\n        lengths[i] = seq_len\\n        labels[i] = b[\\\"label\\\"]\\n\\n    return {\\\"embeddings\\\": padded, \\\"lengths\\\": lengths, \\\"labels\\\": labels}\\n\\n\\ndef evaluate(model, loader, criterion, device):\\n    model.eval()\\n    total_loss = 0.0\\n    all_preds = []\\n    all_labels = []\\n    all_probs = []\\n\\n    with torch.no_grad():\\n        for batch in loader:\\n            embs = batch[\\\"embeddings\\\"].to(dev
+…[truncated 5853 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-18T11:14:21.972583+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T11:14:21.972759+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"GRU sequence classifier for conversation-level jailbreak detection.\\n\\nInput: sequence of turn embeddings (from DeBERTa CLS), variable length\\nOutput: binary classification (jailbreak vs benign)\\nArchitecture: Bidirectional GRU -> attention pooling -> MLP -> sigmoid\\n\\\"\\\"\\\"\\n\\nimport torch\\nimport torch.nn as nn\\nimport torch.nn.functional as F\\n\\n\\nclass AttentionPooling(nn.Module):\\n    \\\"\\\"\\\"Learned attention pooling over GRU hidden states.\\\"\\\"\\\"\\n\\n    def __init__(self, hidden_dim: int):\\n        super().__init__()\\n        self.attention = nn.Linear(hidden_dim, 1)\\n\\n    def forward(self, hidden_states: torch.Tensor, lengths: torch.Tensor):\\n        \\\"\\\"\\\"\\n        Args:\\n            hidden_states: (batch, max_seq, hidden_dim)\\n            lengths: (batch,) actual lengths\\n        Returns:\\n            pooled: (batch, hidden_dim)\\n        \\\"\\\"\\\"\\n        scores = self.attention(hidden_states).squeeze(-1)  # (batch, max_seq)\\n        mask = torch.arange(hidden_states.size(1), device=hidden_states.device)\\n        mask = mask.unsqueeze(0) < lengths.unsqueeze(1)  # (batch, max_seq)\\n        scores = scores.masked_fill(~mask, float(\\\"-inf\\\"))\\n        weights = F.softmax(scores, dim=1).unsqueeze(-1)  # (batch, max_seq, 1)\\n        pooled = (hidden_states * weights).sum(dim=1)  # (batch, hidden_dim)\\n        return pooled\\n\\n\\nclass GRUClassifier(nn.Module):\\n    \\\"\\\"\\\"Bidirectional GRU with attention pooling for binary classification.\\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        input_dim: int = 768,\\n        hidden_dim: int = 256,\\n        num_layers: int = 2,\\n        dropout: float = 0.3,\\n        num_classes: int = 2,\\n    ):\\n        super().__init__()\\n        self.gru = nn.GRU(\\n            input_size=input_dim,\\n            hidden_size=hidden_dim,\\n            num_layers=num_layers,\\n   
+…[truncated 1250 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-18T11:14:21.972907+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/subset_baseline_gru/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/subset_baseline_gru/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-18T11:14:21.973116+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/hf_cache\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport sys\\nimport json\\nimport random\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom sklearn.metrics import f1_score, precision_score, recall_score\\n\\nsys.path.insert(0, \\\"/root/persuasion_turn_jailbreak_detect\\\")\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\nfrom src.models.gru_classifier import GRUClassifier\\n\\nPROJ = Path(\\\"/root/persuasion_turn_jailbreak_detect\\\")\\nDEVICE = torch.device(\\\"cuda:0\\\")\\nMODEL_NAME = \\\"microsoft/deberta-v3-base\\\"\\nMAX_LENGTH = 256\\nSEED = 123\\n\\nrandom.seed(SEED)\\nnp.random.seed(SEED)\\ntorch.manual_seed(SEED)\\n\\nDEBERTA_CKPT = PROJ / \\\"checkpoints/plan_002_seed123/deberta_multitask/best/model.pt\\\"\\nGRU_CKPT = PROJ / \\\"checkpoints/plan_002_seed123/gru/treatment/best.pt\\\"\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef extract_user_turns(conv):\\n    return [t[\\\"content\\\"] for t in conv[\\\"turns\\\"] if t[\\\"role\\\"] == \\\"user\\\"]\\n\\n\\ndef get_label(conv):\\n    return 1 if conv[\\\"label\\\"] == \\\"jailbreak\\\" else 0\\n\\n\\ndef load_treatment_encoder():\\n    model = DeBERTaMultiTask(model_name=MODEL_NAME, num_persuasion_classes=9)\\n    sd = torch.load(DEBERTA_CKPT, map_location=\\\"cpu\\\")\\n    model.load_state_dict(sd)\\n    enc = model.deberta.to(DEVICE).eval()\\n    for p in enc.parameters():\\n        p.requires_grad = False\\n    return enc\\n\\n\\ndef load_gru(path, embed_dim=768):\\n    gru = GRUClassifier(input_dim=embed_dim, hidden_dim=256, num_layers=2, dropout=0.3)\\n    gru.load_state_dict(torch.load(path, map_location=\\\"cpu\\\"))\\n    gru.to(DEVICE).eval()\\n    return gru\\n\\n\\ndef embed_turns(encoder, tokenizer, turns, k=None):\\n    from transforme
+…[truncated 4291 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-18T11:14:21.973432+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Exp3: Linear Probing + CKA Analysis on DeBERTa checkpoints.\\\"\\\"\\\"\\n\\nimport json\\nimport sys\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom collections import defaultdict\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.preprocessing import StandardScaler\\nfrom sklearn.pipeline import make_pipeline\\nfrom sklearn.model_selection import cross_val_score\\nfrom transformers import AutoModel, AutoTokenizer\\n\\nsys.path.insert(0, \\\"/root/persuasion_turn_jailbreak_detect\\\")\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\n\\nPROJ = Path(\\\"/root/persuasion_turn_jailbreak_detect\\\")\\nDEVICE = torch.device(\\\"cuda:0\\\")\\nMAX_LENGTH = 256\\nBATCH_SIZE = 64\\n\\nENCODERS = {\\n    \\\"vanilla\\\": {\\\"type\\\": \\\"hf\\\", \\\"path\\\": \\\"microsoft/deberta-v3-base\\\"},\\n    \\\"mlm\\\": {\\\"type\\\": \\\"hf\\\", \\\"path\\\": str(PROJ / \\\"checkpoints/plan_017_mlm/best\\\")},\\n    \\\"9class\\\": {\\\"type\\\": \\\"multitask\\\", \\\"path\\\": str(PROJ / \\\"checkpoints/plan_002/deberta_multitask/best/model.pt\\\")},\\n}\\n\\nIID_TRAIN = PROJ / \\\"data/plan_002_splits/train.jsonl\\\"\\nIID_TEST = PROJ / \\\"data/plan_002_splits/test.jsonl\\\"\\nDD_OOD = PROJ / \\\"data/generated/deceptive_delight_all.jsonl\\\"\\n\\n\\ndef load_conversations(path):\\n    convos = []\\n    with open(path) as f:\\n        for line in f:\\n            convos.append(json.loads(line.strip()))\\n    return convos\\n\\n\\ndef load_encoder(name, info):\\n    tokenizer = AutoTokenizer.from_pretrained(\\\"microsoft/deberta-v3-base\\\")\\n    if info[\\\"type\\\"] == \\\"hf\\\":\\n        model = AutoModel.from_pretrained(info[\\\"path\\\"], torch_dtype=torch.float32)\\n    else:\\n        mt = DeBERTaMultiTask(model_name=\\\"microsoft/deberta-v3-base\\\")\\n        state_dict = torch.load(info[\\\"path\\\"], map_location=\\\"cpu\\\", weights_only=False
+…[truncated 7246 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-18T11:14:21.973630+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dd_ood_perturbed\\nembeddings\\nfinal\\nfinal_v2\\ngenerated\\nplan_002_splits\\nplan_003_v2\\nplan_016v2_train_topics.jsonl\\nplan_016v2_val_topics.jsonl\\nplan_018_wiki_mlm\\ntest.jsonl\\ntrain.jsonl\\nval.jsonl\\nwildchat_benign_226.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-18T11:14:21.973767+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"best.pt\\ntest_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-18T11:14:21.973908+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/scripts/compute_baseline_embeddings.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/scripts/compute_baseline_embeddings.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-18T11:14:21.974085+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Pre-compute baseline embeddings using pretrained DeBERTa-v3-base.\\n\\nFor each conversation, encode each user turn -> take [CLS] token embedding (768-dim).\\nSaves per-split .pt files.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport torch\\nfrom pathlib import Path\\nfrom transformers import AutoTokenizer, AutoModel\\nfrom tqdm import tqdm\\n\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nDATA_DIR = Path(\\\"/root/persuasion_turn_jailbreak_detect/data\\\")\\nOUTPUT_DIR = DATA_DIR / \\\"embeddings\\\"\\nOUTPUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\nDEVICE = \\\"cuda:0\\\"\\nMODEL_NAME = \\\"microsoft/deberta-v3-base\\\"\\nMAX_LENGTH = 256\\nBATCH_SIZE = 64\\n\\n\\ndef load_conversations(path):\\n    conversations = []\\n    with open(path) as f:\\n        for line in f:\\n            conv = json.loads(line.strip())\\n            user_turns = [t[\\\"content\\\"] for t in conv[\\\"turns\\\"] if t[\\\"role\\\"] == \\\"user\\\"]\\n            conversations.append({\\n                \\\"conversation_id\\\": conv[\\\"conversation_id\\\"],\\n                \\\"turns\\\": user_turns,\\n                \\\"label\\\": 1 if conv[\\\"label\\\"] == \\\"jailbreak\\\" else 0,\\n                \\\"attack_type\\\": conv.get(\\\"attack_type\\\", \\\"unknown\\\"),\\n            })\\n    return conversations\\n\\n\\ndef compute_embeddings(conversations, tokenizer, model, device, batch_size=64):\\n    results = []\\n    for conv in tqdm(conversations, desc=\\\"Computing embeddings\\\"):\\n        turns = conv[\\\"turns\\\"]\\n        if len(turns) == 0:\\n            emb = torch.zeros(1, 768)\\n        else:\\n            all_embs = []\\n            for i in range(0, len(turns), batch_size):\\n                batch_turns = turns[i:i + batch_size]\\n                enc = tokenizer(\\n                    batch_turns,\\n                    max_length=MAX_LENGTH,\\n                    pa
+…[truncated 2051 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-18T11:14:21.974238+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/plan_004_baseline/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/plan_004_baseline/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-18T11:14:21.974364+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"gru\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-18T11:14:21.974479+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/results/exp3_probing.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/results/exp3_probing.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-18T11:14:21.974699+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"linear_probing\\\": {\\n    \\\"turn_position\\\": {\\n      \\\"vanilla\\\": {\\n        \\\"accuracy\\\": 0.7867,\\n        \\\"std\\\": 0.0339,\\n        \\\"cv_folds\\\": 5\\n      },\\n      \\\"mlm\\\": {\\n        \\\"accuracy\\\": 0.7915,\\n        \\\"std\\\": 0.0609,\\n        \\\"cv_folds\\\": 5\\n      },\\n      \\\"9class\\\": {\\n        \\\"accuracy\\\": 0.828,\\n        \\\"std\\\": 0.0987,\\n        \\\"cv_folds\\\": 5\\n      }\\n    },\\n    \\\"escalation_level\\\": {\\n      \\\"vanilla\\\": {\\n        \\\"accuracy\\\": 0.7319,\\n        \\\"std\\\": 0.0226,\\n        \\\"cv_folds\\\": 5\\n      },\\n      \\\"mlm\\\": {\\n        \\\"accuracy\\\": 0.7315,\\n        \\\"std\\\": 0.0262,\\n        \\\"cv_folds\\\": 5\\n      },\\n      \\\"9class\\\": {\\n        \\\"accuracy\\\": 0.7817,\\n        \\\"std\\\": 0.0267,\\n        \\\"cv_folds\\\": 5\\n      }\\n    },\\n    \\\"persuasion_presence\\\": {\\n      \\\"vanilla\\\": {\\n        \\\"accuracy\\\": 0.9377,\\n        \\\"std\\\": 0.0854,\\n        \\\"cv_folds\\\": 5\\n      },\\n      \\\"mlm\\\": {\\n        \\\"accuracy\\\": 0.9429,\\n        \\\"std\\\": 0.0873,\\n        \\\"cv_folds\\\": 5\\n      },\\n      \\\"9class\\\": {\\n        \\\"accuracy\\\": 0.9494,\\n        \\\"std\\\": 0.0926,\\n        \\\"cv_folds\\\": 5\\n      }\\n    }\\n  },\\n  \\\"cka\\\": {\\n    \\\"iid\\\": {\\n      \\\"vanilla_vs_mlm\\\": 1.0,\\n      \\\"vanilla_vs_9class\\\": 0.3668,\\n      \\\"mlm_vs_9class\\\": 0.3684\\n    },\\n    \\\"dd_ood\\\": {\\n      \\\"vanilla_vs_mlm\\\": 1.0,\\n      \\\"vanilla_vs_9class\\\": 0.8849,\\n      \\\"mlm_vs_9class\\\": 0.8847\\n    }\\n  },\\n  \\\"layerwise_cka\\\": {\\n    \\\"iid\\\": {\\n      \\\"vanilla_vs_mlm\\\": {\\n        \\\"layer_0\\\": 1.0,\\n        \\\"layer_1\\\": 1.0,\\n        \\\"layer_2\\\": 1.0,\\n        \\\"layer_3\\\": 1.0,\\n        \\\"layer_4\\\": 1.0,\\n        \\\
+…[truncated 2757 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-18T11:14:21.974858+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/data/embeddings/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/data/embeddings/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-18T11:14:21.975026+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"subset_baseline_test.pt\\nsubset_baseline_train.pt\\nsubset_baseline_val.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-18T11:14:21.975189+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/plan_002/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/plan_002/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-18T11:14:21.975318+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"deberta_multitask\\ngru\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-18T11:14:21.975435+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/checkpoints/subset_baseline_gru/test_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/checkpoints/subset_baseline_gru/test_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-18T11:14:21.975576+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"accuracy\\\": 1.0,\\n  \\\"f1_macro\\\": 1.0,\\n  \\\"precision_benign\\\": 1.0,\\n  \\\"recall_benign\\\": 1.0,\\n  \\\"f1_benign\\\": 1.0,\\n  \\\"precision_jailbreak\\\": 1.0,\\n  \\\"recall_jailbreak\\\": 1.0,\\n  \\\"f1_jailbreak\\\": 1.0,\\n  \\\"fpr_at_95tpr\\\": 0.0\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-18T11:14:21.975736+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/plan_004_baseline/gru/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/plan_004_baseline/gru/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-18T11:14:21.975861+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"best.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-18T11:14:21.975976+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/persuasion_turn_jailbreak_detect/results/ -name \"*vanilla*\" -o -name \"*baseline*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "find /root/persuasion_turn_jailbreak_detect/results/ -name \"*vanilla*\" -o -name \"*baseline*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-18T11:14:21.976101+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/results/pilot_baseline.json\\n/root/persuasion_turn_jailbreak_detect/results/exp1_roberta_vanilla.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-18T11:14:21.976216+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-18T11:14:21.976364+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adversarial_perturbation_results.json\\nbinary_perturbation.json\\ncross_attack_eval.json\\nexp1_roberta_9class.json\\nexp1_roberta_9class_interim.json\\nexp1_roberta_mlm.json\\nexp1_roberta_mlm_interim.json\\nexp1_roberta_vanilla.json\\nexp3_probing.json\\nexp5_ood_run.log\\nfig3_preview.jpg\\nfig3_preview.png\\nfig3_preview_b64.txt\\nfig3_small.png\\nfig3_small_b64.txt\\nfig3_strategy_heatmap.pdf\\nfig3_strategy_heatmap.png\\nfig3_tiny_b64.txt\\nmatched_seed_stats.json\\nmf1_binary_seed123.json\\nmf1_binary_seed456.json\\nmf1_scrambled_seed123.json\\nmf1_scrambled_seed123_stage1.log\\nmf1_scrambled_seed123_stage2.log\\nmf1_scrambled_seed456.json\\nmf1_scrambled_seed456_run.log\\nmf1_scrambled_seed456_stage2_3.log\\nperturbation_quality_report.json\\nphase_b_full_results.json\\nphase_b_supplement.json\\npilot_baseline.json\\npilot_results.json\\npilot_tfidf.json\\npilot_treatment.json\\nplan001_results.json\\nplan_002_eval.json\\nplan_002_nohup.log\\nplan_002_seed123_dd_ood.json\\nplan_002_seed123_eval.json\\nplan_002_seed123_stage1.log\\nplan_002_seed123_stage2.log\\nplan_002_seed123_stage3.log\\nplan_002_seed123_stage4.log\\nplan_002_seed456_dd_ood.json\\nplan_002_seed456_eval.json\\nplan_002_training.log\\nplan_003_scrambled_eval.json\\nplan_003_scrambled_fix.json\\nplan_003_scrambled_fix_stage1.log\\nplan_003_scrambled_fix_stage2.log\\nplan_003_scrambled_perturbation.json\\nplan_003_v2_deberta.log\\nplan_003_v2_eval.json\\nplan_004_eval_run.log\\nplan_004_perturbation_eval.json\\nplan_004_perturbed_test.jsonl\\nplan_004_run.log\\nplan_006_cross_attack_eval.json\\nplan_006_run.log\\nplan_006_scrambled_dd_eval.json\\nplan_012_gpt55_judge.json\\nplan_012_llm_judge_qwen3.json\\nplan_012_rerun.log\\nplan_012_rerun_correct.json\\nplan_012_run.log\\nplan_013_dd_crossattack_eval.json\\nplan_013_none_collapse_eval.json\\nplan_014_lambda_ablation.json\\nplan_014_run.log\\nplan_015_dd_eval.json\\nplan_015_dd_nohup.lo
+…[truncated 931 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-18T11:14:21.976498+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-18T11:14:21.976641+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"test.jsonl\\ntrain.jsonl\\ntrain_scrambled.jsonl\\ntrain_scrambled_seed123.jsonl\\ntrain_scrambled_seed456.jsonl\\nval.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-18T11:14:21.976781+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/data/generated/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/data/generated/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-18T11:14:21.976992+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"actorattack_all.jsonl\\nbalanced_sanity_v4_results.json\\nbenign_ta_v2_gpu0.jsonl\\nbenign_ta_v2_gpu1.jsonl\\nbenign_ta_v2_sample10.jsonl\\nbenign_topic_anchored_v2.jsonl\\nbenign_topic_anchored_v3_phase1.jsonl\\nbenign_topic_matched.jsonl\\nbenign_topic_matched_stats.json\\nbenign_v3_gpu0.jsonl\\nbenign_v3_gpu1.jsonl\\nbenign_v3_gpu2.jsonl\\nbenign_v3_gpu3.jsonl\\nbenign_v4_test20.jsonl\\nbenign_v4c_full_gpu0.jsonl\\nbenign_v4c_full_gpu2.jsonl\\nbenign_v4c_test20.jsonl\\nbenign_v4d_test20.jsonl\\ncrescendo_all.jsonl\\ncrescendo_normalized.jsonl\\ncrescendo_normalized_sample5.jsonl\\ncrescendo_part1.jsonl\\ncrescendo_part2.jsonl\\ncrescendo_sample50.jsonl\\ndeceptive_delight_all.jsonl\\ndeceptive_delight_all.jsonl.bak\\nfitd_all.jsonl\\nfitd_all.jsonl.bak\\ngeneration_stats.json\\nsanity_v4b_results.json\\ntfidf_v3_phase1_results.json\\nwildchat_benign.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-18T11:14:21.977218+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/results/plan_017_mlm_control.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/results/plan_017_mlm_control.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-18T11:14:21.977396+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/results/plan_004_perturbation_eval.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/results/plan_004_perturbation_eval.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-18T11:14:21.977667+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"plan_017_mlm_control\\\",\\n  \\\"description\\\": \\\"MLM continued pretraining (no classification labels) as control\\\",\\n  \\\"dd_ood_results\\\": {\\n    \\\"full\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=1\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=2\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=3\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=5\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    }\\n  },\\n  \\\"iid_results\\\": {\\n    \\\"full\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    },\\n    \\\"k=1\\\": {\\n      \\\"f1_macro\\\": 0.9604647130223687,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 0.9210526315789473,\\n      \\\"accuracy\\\": 0.9605263157894737\\n    },\\n    \\\"k=2\\\": {\\n      \\\"f1_macro\\\": 0.9736659736659736,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 0.9473684210526315,\\n      \\\"accuracy\\\": 0.9736842105263158\\n    },\\n    \\\"k=3\\\": {\\n      \\\"f1_macro\\\": 0.9868398268398269,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 0.9736842105263158,\\n      \\\"accuracy\\\": 0.9868421052631579\\n    },\\n    \\\"k=5\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"precision\\\": 1.0,\\n      \\\"recall\\\": 1.0,\\n      \\\"accuracy\\\": 1.0\\n    }\\n  },\\n  \\\"reference_plan006_treatment\\\": {\\n    \\\"k=1\\\": 1.
+…[truncated 341 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-18T11:14:21.977958+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"treatment_original_f1\\\": 1.0,\\n  \\\"treatment_perturbed_f1\\\": 1.0,\\n  \\\"treatment_f1_drop\\\": 0.0,\\n  \\\"baseline_original_f1\\\": 1.0,\\n  \\\"baseline_perturbed_f1\\\": 0.8824,\\n  \\\"baseline_f1_drop\\\": -0.1176,\\n  \\\"tfidf_original_f1\\\": 1.0,\\n  \\\"tfidf_perturbed_f1\\\": 0.9867,\\n  \\\"tfidf_f1_drop\\\": -0.0133,\\n  \\\"bertscore_mean\\\": 0.9237,\\n  \\\"sample_count\\\": 76,\\n  \\\"per_k_results\\\": {\\n    \\\"1\\\": {\\n      \\\"treatment\\\": {\\\"original_f1\\\": 1.0, \\\"perturbed_f1\\\": 0.9744, \\\"delta\\\": -0.0256},\\n      \\\"baseline\\\": {\\\"original_f1\\\": 0.987, \\\"perturbed_f1\\\": 0.8406, \\\"delta\\\": -0.1464},\\n      \\\"tfidf\\\": {\\\"original_f1\\\": 1.0, \\\"perturbed_f1\\\": 0.9041, \\\"delta\\\": -0.0959}\\n    },\\n    \\\"2\\\": {\\n      \\\"treatment\\\": {\\\"original_f1\\\": 1.0, \\\"perturbed_f1\\\": 1.0, \\\"delta\\\": 0.0},\\n      \\\"baseline\\\": {\\\"original_f1\\\": 0.9867, \\\"perturbed_f1\\\": 0.8657, \\\"delta\\\": -0.121},\\n      \\\"tfidf\\\": {\\\"original_f1\\\": 1.0, \\\"perturbed_f1\\\": 0.9589, \\\"delta\\\": -0.0411}\\n    },\\n    \\\"3\\\": {\\n      \\\"treatment\\\": {\\\"original_f1\\\": 1.0, \\\"perturbed_f1\\\": 1.0, \\\"delta\\\": 0.0},\\n      \\\"baseline\\\": {\\\"original_f1\\\": 0.9867, \\\"perturbed_f1\\\": 0.8485, \\\"delta\\\": -0.1382},\\n      \\\"tfidf\\\": {\\\"original_f1\\\": 1.0, \\\"perturbed_f1\\\": 0.9867, \\\"delta\\\": -0.0133}\\n    },\\n    \\\"full\\\": {\\n      \\\"treatment\\\": {\\\"original_f1\\\": 1.0, \\\"perturbed_f1\\\": 1.0, \\\"delta\\\": 0.0},\\n      \\\"baseline\\\": {\\\"original_f1\\\": 1.0, \\\"perturbed_f1\\\": 0.8824, \\\"delta\\\": -0.1176},\\n      \\\"tfidf\\\": {\\\"original_f1\\\": 1.0, \\\"perturbed_f1\\\": 0.9867, \\\"delta\\\": -0.0133}\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}
+…[truncated 3 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-18T11:14:21.978187+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/persuasion_turn_jailbreak_detect/ -name \"*.py\" -path \"*/src/*\" -newer /root/persuasion_turn_jailbreak_detect/src/plan_017_dd_eval.py -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "find /root/persuasion_turn_jailbreak_detect/ -name \"*.py\" -path \"*/src/*\" -newer /root/persuasion_turn_jailbreak_detect/src/plan_017_dd_eval.py -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-18T11:14:21.978403+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/src/models/deberta_topic.py\\n/root/persuasion_turn_jailbreak_detect/src/train_deberta_mlm.py\\n/root/persuasion_turn_jailbreak_detect/src/label_topics.py\\n/root/persuasion_turn_jailbreak_detect/src/train_deberta_topic.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_016v2_dd_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/prepare_wiki_mlm_data.py\\n/root/persuasion_turn_jailbreak_detect/src/train_deberta_mlm_wiki.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_018_wiki_dd_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_016v2_dd_eval_seed.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_017_dd_eval_seed.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_017_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_018_wiki_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_016v2_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/binary_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_018_wiki_eval_seed.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_003_scrambled_gru_and_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_002_seed123_dd_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_002_seed456_dd_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_003_scrambled_fix.py\\n/root/persuasion_turn_jailbreak_detect/src/sf9_strategy_prediction.py\\n/root/persuasion_turn_jailbreak_detect/src/mf1_scrambled_seed456_pipeline.py\\n/root/persuasion_turn_jailbreak_detect/src/mf1_scrambled_seed123_gru_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/mf1_scrambled_seed456_stage2_3.py\\n/root/persuasion_turn_jailbreak_detect/src/mf1_binary_seed456_dd_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/mf1_binary_seed123_dd_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/exp1_roberta_pipeline.py\\n/root/persuasion_turn_jailbreak_detect/src/exp1_roberta_mlm
+…[truncated 254 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-18T11:14:21.978627+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/src/plan_015_dd_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/src/plan_015_dd_eval.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-18T11:14:21.979050+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Plan 015: Mean Pooling DD OOD evaluation.\\nCompares treatment (persuasion DeBERTa + mean pool) vs baseline (vanilla DeBERTa + mean pool)\\non Deceptive Delight data, then compares with GRU results.\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/hf_cache\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport sys\\nimport json\\nimport random\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom pathlib import Path\\nfrom sklearn.metrics import f1_score, precision_score, recall_score\\nfrom transformers import AutoTokenizer, AutoModel, DebertaV2Config, DebertaV2Model\\n\\nsys.path.insert(0, \\\"/root/persuasion_turn_jailbreak_detect\\\")\\n\\nPROJ = Path(\\\"/root/persuasion_turn_jailbreak_detect\\\")\\nDEVICE = torch.device(\\\"cuda:0\\\")\\nMODEL_NAME = \\\"microsoft/deberta-v3-base\\\"\\nTREATMENT_CKPT = PROJ / \\\"checkpoints/plan_002/deberta_multitask/best\\\"\\nMAX_LENGTH = 256\\nSEED = 42\\n\\nrandom.seed(SEED)\\nnp.random.seed(SEED)\\ntorch.manual_seed(SEED)\\n\\n\\ndef get_deberta_config():\\n    return DebertaV2Config(\\n        model_type='deberta-v2',\\n        hidden_size=768,\\n        num_hidden_layers=12,\\n        num_attention_heads=12,\\n        intermediate_size=3072,\\n        hidden_act='gelu',\\n        hidden_dropout_prob=0.1,\\n        attention_probs_dropout_prob=0.1,\\n        max_position_embeddings=512,\\n        type_vocab_size=0,\\n        initializer_range=0.02,\\n        layer_norm_eps=1e-7,\\n        relative_attention=True,\\n        max_relative_positions=-1,\\n        position_buckets=256,\\n        norm_rel_ebd='layer_norm',\\n        position_biased_input=False,\\n        share_att_key=True,\\n        pos_att_type=['p2c', 'c2p'],\\n        pooler_dropout=0,\\n        pooler_hidden_act='gelu',\\n        vocab_size=128100,\\n    )\\n\\n\\nclass MeanPoolClassifier(nn.Module):\\n    def __init__(self, 
+…[truncated 7257 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-18T11:14:21.979326+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/persuasion_turn_jailbreak_detect/checkpoints/plan_004_baseline/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "find /root/persuasion_turn_jailbreak_detect/checkpoints/plan_004_baseline/ -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-18T11:14:21.979516+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-18T11:14:21.979733+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/results/plan_004_run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/results/plan_004_run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-18T11:14:21.979998+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n============================================================\\nStep 1: Aggressive paraphrasing of user turns\\n============================================================\\nLoading Qwen3-8B from /root/autodl-tmp/hf_cache/Qwen/Qwen3-8B...\\n\\rLoading weights:   0%|          | 0/399 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/399 [00:00<02:59,  2.21it/s]\\rLoading weights:   1%|          | 2/399 [00:00<01:44,  3.81it/s]\\rLoading weights:   6%|▌         | 23/399 [00:00<00:06, 53.81it/s]\\rLoading weights:  10%|▉         | 38/399 [00:00<00:04, 77.80it/s]\\rLoading weights:  15%|█▍        | 59/399 [00:00<00:03, 112.05it/s]\\rLoading weights:  19%|█▉        | 76/399 [00:01<00:02, 112.56it/s]\\rLoading weights:  23%|██▎       | 92/399 [00:01<00:02, 122.11it/s]\\rLoading weights:  29%|██▊       | 114/399 [00:01<00:01, 142.94it/s]\\rLoading weights:  33%|███▎      | 133/399 [00:01<00:01, 147.73it/s]\\rLoading weights:  37%|███▋      | 149/399 [00:01<00:01, 147.70it/s]\\rLoading weights:  42%|████▏     | 169/399 [00:01<00:01, 157.66it/s]\\rLoading weights:  47%|████▋     | 188/399 [00:01<00:01, 159.66it/s]\\rLoading weights:  51%|█████▏    | 205/399 [00:01<00:01, 160.68it/s]\\rLoading weights:  56%|█████▌    | 222/399 [00:01<00:01, 155.34it/s]\\rLoading weights:  60%|█████▉    | 238/399 [00:02<00:01, 145.39it/s]\\rLoading weights:  64%|██████▍   | 255/399 [00:02<00:00, 151.94it/s]\\rLoading weights:  68%|██████▊   | 271/399 [00:02<00:00, 145.37it/s]\\rLoading weights:  72%|███████▏  | 286/399 [00:02<00:00, 130.74it/s]\\rLoading weights:  76%|███████▌  | 302/399 [00:02<00:00, 133.72it/s]\\rLoading weights:  79%|███████▉  | 316/399 [00:02<00:00, 115.54it/s]\\rLoading weights:  84%|████████▍ | 335/399 [00:02<00:00, 129.60it/s]\\rLoading weights:  89%|█████��██▉ | 356/399 [00:02<00:00, 144.25it/s]\\rLoading weights:  93%|█████████▎| 371/399 [00:
+…[truncated 5044 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-18T11:14:21.980218+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/src/plan_017_dd_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/src/plan_017_dd_eval.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-18T11:14:21.980576+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Plan 017: Train BiGRU on MLM-pretrained DeBERTa embeddings, evaluate DD OOD + IID.\\n# Compares against plan_006 persuasion treatment and vanilla baseline results.\\n\\nimport sys\\nimport json\\nimport random\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom pathlib import Path\\nfrom sklearn.metrics import f1_score, precision_score, recall_score\\n\\nsys.path.insert(0, \\\"/root/persuasion_turn_jailbreak_detect\\\")\\nfrom src.models.gru_classifier import GRUClassifier\\nfrom transformers import AutoTokenizer, AutoModel\\n\\nPROJ = Path(\\\"/root/persuasion_turn_jailbreak_detect\\\")\\nDEVICE = torch.device(\\\"cuda:0\\\")\\nMODEL_NAME = \\\"microsoft/deberta-v3-base\\\"\\nMAX_LENGTH = 256\\nSEED = 42\\nGRU_HIDDEN = 256\\nGRU_LAYERS = 2\\nGRU_DROPOUT = 0.3\\nGRU_LR = 1e-3\\nGRU_EPOCHS = 20\\nGRU_BATCH = 32\\n\\nrandom.seed(SEED)\\nnp.random.seed(SEED)\\ntorch.manual_seed(SEED)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef extract_user_turns(conv):\\n    return [t[\\\"content\\\"] for t in conv[\\\"turns\\\"] if t[\\\"role\\\"] == \\\"user\\\"]\\n\\n\\ndef get_label(conv):\\n    return 1 if conv[\\\"label\\\"] == \\\"jailbreak\\\" else 0\\n\\n\\ndef load_mlm_encoder(ckpt_path):\\n    model = AutoModel.from_pretrained(ckpt_path)\\n    enc = model.to(DEVICE).eval()\\n    for p in enc.parameters():\\n        p.requires_grad = False\\n    return enc\\n\\n\\ndef embed_turns(encoder, tokenizer, turns, k=None):\\n    t = turns[:k] if k is not None else turns\\n    if len(t) == 0:\\n        t = [\\\"\\\"]\\n    enc = tokenizer(t, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\\\"pt\\\").to(DEVICE)\\n    with torch.no_grad():\\n        out = encoder(input_ids=enc[\\\"input_ids\\\"], attention_mask=enc[\\\"attention_mask\\\"])\\n        return out.last_hidden_state[:, 0, :]\\n\\n\\ndef precompute_co
+…[truncated 7182 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-18T11:14:21.980805+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/src/evaluate.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/src/evaluate.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-18T11:14:21.981040+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluation script for jailbreak detection.\\n\\nMetrics:\\n- F1 (macro + per-class)\\n- Early detection: accuracy using only first K turns (K=1,2,3,5)\\n- FPR at 95% TPR\\n- Per attack_type breakdown\\n\\\"\\\"\\\"\\n\\nimport os\\nimport sys\\nimport argparse\\nimport json\\nfrom pathlib import Path\\nfrom collections import defaultdict\\n\\nimport numpy as np\\nimport torch\\nfrom torch.utils.data import DataLoader\\nfrom transformers import AutoTokenizer, AutoModel\\nfrom sklearn.metrics import (\\n    f1_score,\\n    classification_report,\\n    roc_curve,\\n    accuracy_score,\\n    confusion_matrix,\\n)\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\nfrom src.data.dataset import ConversationDataset\\nfrom src.models.gru_classifier import GRUClassifier\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\n\\n\\ndef parse_args():\\n    parser = argparse.ArgumentParser(description=\\\"Evaluate jailbreak detection model\\\")\\n    parser.add_argument(\\\"--test_data\\\", type=str, required=True, help=\\\"Path to test JSONL\\\")\\n    parser.add_argument(\\\"--mode\\\", type=str, choices=[\\\"baseline\\\", \\\"treatment\\\"], required=True)\\n    parser.add_argument(\\\"--gru_checkpoint\\\", type=str, required=True, help=\\\"Path to GRU .pt\\\")\\n    parser.add_argument(\\\"--deberta_checkpoint\\\", type=str, default=None,\\n                        help=\\\"Fine-tuned DeBERTa dir (treatment mode)\\\")\\n    parser.add_argument(\\\"--model_name\\\", type=str, default=\\\"microsoft/deberta-v3-base\\\")\\n    parser.add_argument(\\\"--max_length\\\", type=int, default=256)\\n    parser.add_argument(\\\"--hidden_dim\\\", type=int, default=256)\\n    parser.add_argument(\\\"--num_layers\\\", type=int, default=2)\\n    parser.add_argument(\\\"--dropout\\\", type=float, default=0.3)\\n    parser.add_argument(\\\"--output_file\\\", type=str, default=None, help=\\\"Save resul
+…[truncated 5747 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-18T11:14:21.981195+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -r \"plan_004\" /root/persuasion_turn_jailbreak_detect/src/ --include=\"*.py\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "grep -r \"plan_004\" /root/persuasion_turn_jailbreak_detect/src/ --include=\"*.py\" -l",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-18T11:14:21.981330+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/src/plan_017_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_018_wiki_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_016v2_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/binary_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_003_scrambled_gru_and_perturbed_eval.py\\n/root/persuasion_turn_jailbreak_detect/src/plan_003_scrambled_fix.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-18T11:14:21.981462+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/scripts/plan002_retrain_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/scripts/plan002_retrain_eval.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-18T11:14:21.981776+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import sys, json, torch, os\\nimport numpy as np\\nfrom pathlib import Path\\nfrom sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score\\nfrom sklearn.feature_extraction.text import TfidfVectorizer\\nfrom sklearn.linear_model import LogisticRegression\\nfrom transformers import AutoTokenizer, AutoModel\\n\\nsys.path.insert(0, '/root/persuasion_turn_jailbreak_detect')\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\nfrom src.models.gru_classifier import GRUClassifier\\nfrom src.data.dataset import ConversationDataset\\n\\ndevice = torch.device('cuda:0')\\ntokenizer = AutoTokenizer.from_pretrained('microsoft/deberta-v3-base')\\n\\n# Load treatment encoder\\nprint(\\\"Loading treatment DeBERTa...\\\")\\nmodel = DeBERTaMultiTask(model_name='microsoft/deberta-v3-base')\\nstate = torch.load('checkpoints/plan_002/deberta_multitask/best/model.pt', map_location='cpu')\\nmodel.load_state_dict(state)\\ntreatment_enc = model.deberta.to(device).eval()\\nfor p in treatment_enc.parameters():\\n    p.requires_grad = False\\n\\n# Load baseline encoder\\nprint(\\\"Loading baseline DeBERTa...\\\")\\nbaseline_enc = AutoModel.from_pretrained('microsoft/deberta-v3-base').to(device).eval()\\nfor p in baseline_enc.parameters():\\n    p.requires_grad = False\\n\\nembed_dim = treatment_enc.config.hidden_size\\n\\n# Precompute embeddings\\ndef precompute_all(dataset, encoder, max_length=256):\\n    all_embs, all_labels, all_lengths = [], [], []\\n    for conv in dataset.conversations:\\n        turns = conv[\\\"turns\\\"]\\n        if not turns:\\n            turns = [\\\"\\\"]\\n        enc = tokenizer(turns, max_length=max_length, padding=True, truncation=True, return_tensors=\\\"pt\\\").to(device)\\n        with torch.no_grad():\\n            out = encoder(input_ids=enc[\\\"input_ids\\\"], attention_mask=enc[\\\"attention_mask\\\"])\\n            embs = out.last_hidden_state[:, 0, :].cpu()\\n    
+…[truncated 6991 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-18T11:14:21.981976+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/plan_002/gru/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/plan_002/gru/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-18T11:14:21.982112+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"baseline\\ntreatment\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-18T11:14:21.982251+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/results/plan_002_eval.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/results/plan_002_eval.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-18T11:14:21.982451+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"early_detection\\\": {\\n    \\\"1\\\": {\\n      \\\"treatment\\\": {\\n        \\\"f1\\\": 1.0,\\n        \\\"precision\\\": 1.0,\\n        \\\"recall\\\": 1.0,\\n        \\\"accuracy\\\": 1.0,\\n        \\\"fpr_at_95tpr\\\": 0.0\\n      },\\n      \\\"baseline\\\": {\\n        \\\"f1\\\": 0.987012987012987,\\n        \\\"precision\\\": 0.9743589743589743,\\n        \\\"recall\\\": 1.0,\\n        \\\"accuracy\\\": 0.9868421052631579,\\n        \\\"fpr_at_95tpr\\\": 0.02631578947368421\\n      },\\n      \\\"tfidf\\\": {\\n        \\\"f1\\\": 1.0,\\n        \\\"precision\\\": 1.0,\\n        \\\"recall\\\": 1.0,\\n        \\\"accuracy\\\": 1.0,\\n        \\\"fpr_at_95tpr\\\": 0.0\\n      }\\n    },\\n    \\\"2\\\": {\\n      \\\"treatment\\\": {\\n        \\\"f1\\\": 1.0,\\n        \\\"precision\\\": 1.0,\\n        \\\"recall\\\": 1.0,\\n        \\\"accuracy\\\": 1.0,\\n        \\\"fpr_at_95tpr\\\": 0.0\\n      },\\n      \\\"baseline\\\": {\\n        \\\"f1\\\": 0.9866666666666667,\\n        \\\"precision\\\": 1.0,\\n        \\\"recall\\\": 0.9736842105263158,\\n        \\\"accuracy\\\": 0.9868421052631579,\\n        \\\"fpr_at_95tpr\\\": 0.0\\n      },\\n      \\\"tfidf\\\": {\\n        \\\"f1\\\": 1.0,\\n        \\\"precision\\\": 1.0,\\n        \\\"recall\\\": 1.0,\\n        \\\"accuracy\\\": 1.0,\\n        \\\"fpr_at_95tpr\\\": 0.0\\n      }\\n    },\\n    \\\"3\\\": {\\n      \\\"treatment\\\": {\\n        \\\"f1\\\": 1.0,\\n        \\\"precision\\\": 1.0,\\n        \\\"recall\\\": 1.0,\\n        \\\"accuracy\\\": 1.0,\\n        \\\"fpr_at_95tpr\\\": 0.0\\n      },\\n      \\\"baseline\\\": {\\n        \\\"f1\\\": 0.9866666666666667,\\n        \\\"precision\\\": 1.0,\\n        \\\"recall\\\": 0.9736842105263158,\\n        \\\"accuracy\\\": 0.9868421052631579,\\n        \\\"fpr_at_95tpr\\\": 0.0\\n      },\\n      \\\"tfidf\\\": {\\n        \\\"f1\\\": 1.0,\\n        \\\"precision\\\": 1.0,\\n   
+…[truncated 1592 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-18T11:14:21.982623+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/src/plan_006_cross_attack_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/src/plan_006_cross_attack_eval.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-18T11:14:21.982926+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Plan 006: Cross-attack generalization evaluation.\\nTreatment (Crescendo-trained) vs Baseline on unseen attacks (FITD / DD).\\n\\\"\\\"\\\"\\n\\nimport sys\\nimport json\\nimport random\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom sklearn.feature_extraction.text import TfidfVectorizer\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.metrics import f1_score, precision_score, recall_score, roc_curve\\n\\nsys.path.insert(0, \\\"/root/persuasion_turn_jailbreak_detect\\\")\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\nfrom src.models.gru_classifier import GRUClassifier\\nfrom transformers import AutoTokenizer, AutoModel\\n\\nPROJ = Path(\\\"/root/persuasion_turn_jailbreak_detect\\\")\\nDEVICE_T = torch.device(\\\"cuda:0\\\")\\nDEVICE_B = torch.device(\\\"cuda:1\\\")\\nMODEL_NAME = \\\"microsoft/deberta-v3-base\\\"\\nMAX_LENGTH = 256\\nSEED = 42\\n\\nrandom.seed(SEED)\\nnp.random.seed(SEED)\\ntorch.manual_seed(SEED)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef extract_user_turns(conv):\\n    return [t[\\\"content\\\"] for t in conv[\\\"turns\\\"] if t[\\\"role\\\"] == \\\"user\\\"]\\n\\n\\ndef get_label(conv):\\n    return 1 if conv[\\\"label\\\"] == \\\"jailbreak\\\" else 0\\n\\n\\ndef load_treatment_encoder():\\n    model = DeBERTaMultiTask(model_name=MODEL_NAME, num_persuasion_classes=9)\\n    sd = torch.load(PROJ / \\\"checkpoints/plan_002/deberta_multitask/best/model.pt\\\", map_location=\\\"cpu\\\")\\n    model.load_state_dict(sd)\\n    enc = model.deberta.to(DEVICE_T).eval()\\n    for p in enc.parameters():\\n        p.requires_grad = False\\n    return enc\\n\\n\\ndef load_baseline_encoder():\\n    enc = AutoModel.from_pretrained(MODEL_NAME, torch_dtype=torch.float32).to(DEVICE_B).eval()\\n    for p in enc.parameters():\\n        p.requires_grad = False\\n 
+…[truncated 7100 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-18T11:14:21.983170+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/results/plan_006_cross_attack_eval.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/results/plan_006_cross_attack_eval.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-18T11:14:21.983309+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/plan_002/gru/baseline/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/persuasion_turn_jailbreak_detect/checkpoints/plan_002/gru/baseline/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-18T11:14:21.983669+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"fitd\\\": {\\n    \\\"full\\\": {\\n      \\\"treatment\\\": {\\n        \\\"f1_macro\\\": 1.0,\\n        \\\"precision\\\": 1.0,\\n        \\\"recall\\\": 1.0,\\n        \\\"accuracy\\\": 1.0,\\n        \\\"fpr_at_95tpr\\\": 0.0\\n      },\\n      \\\"baseline\\\": {\\n        \\\"f1_macro\\\": 1.0,\\n        \\\"precision\\\": 1.0,\\n        \\\"recall\\\": 1.0,\\n        \\\"accuracy\\\": 1.0,\\n        \\\"fpr_at_95tpr\\\": 0.0\\n      },\\n      \\\"tfidf\\\": {\\n        \\\"f1_macro\\\": 1.0,\\n        \\\"precision\\\": 1.0,\\n        \\\"recall\\\": 1.0,\\n        \\\"accuracy\\\": 1.0,\\n        \\\"fpr_at_95tpr\\\": 0.0\\n      }\\n    },\\n    \\\"early_detection\\\": {\\n      \\\"k=1\\\": {\\n        \\\"treatment\\\": {\\n          \\\"f1_macro\\\": 1.0,\\n          \\\"precision\\\": 1.0,\\n          \\\"recall\\\": 1.0,\\n          \\\"accuracy\\\": 1.0,\\n          \\\"fpr_at_95tpr\\\": 0.0\\n        },\\n        \\\"baseline\\\": {\\n          \\\"f1_macro\\\": 0.9902277432712215,\\n          \\\"precision\\\": 0.9876543209876543,\\n          \\\"recall\\\": 1.0,\\n          \\\"accuracy\\\": 0.9915254237288136,\\n          \\\"fpr_at_95tpr\\\": 0.0\\n        },\\n        \\\"tfidf\\\": {\\n          \\\"f1_macro\\\": 1.0,\\n          \\\"precision\\\": 1.0,\\n          \\\"recall\\\": 1.0,\\n          \\\"accuracy\\\": 1.0,\\n          \\\"fpr_at_95tpr\\\": 0.0\\n        }\\n      },\\n      \\\"k=2\\\": {\\n        \\\"treatment\\\": {\\n          \\\"f1_macro\\\": 1.0,\\n          \\\"precision\\\": 1.0,\\n          \\\"recall\\\": 1.0,\\n          \\\"accuracy\\\": 1.0,\\n          \\\"fpr_at_95tpr\\\": 0.0\\n        },\\n        \\\"baseline\\\": {\\n          \\\"f1_macro\\\": 1.0,\\n          \\\"precision\\\": 1.0,\\n          \\\"recall\\\": 1.0,\\n          \\\"accuracy\\\": 1.0,\\n          \\\"fpr_at_95tpr\\\": 0.0\\n        },\\n        \\\"tfidf\\\": {\\n          \\\"
+…[truncated 8441 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-18T11:14:21.983848+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"best.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-18T11:14:21.984009+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-18T11:14:21.984139+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 18997 MiB, 97887 MiB\\n1, 3 MiB, 97887 MiB\\n2, 19003 MiB, 97887 MiB\\n3, 3 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-18T11:14:21.984326+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat > /root/persuasion_turn_jailbreak_detect/scripts/vanilla_multiseed_dd_ood.py << 'PYEOF'\n\"\"\"Vanilla DeBERTa multi-seed DD OOD evaluation.\nTrains BiGRU on vanilla (frozen) DeBERTa embeddings for seed=123,456, evaluates on DD OOD.\n\"\"\"\nimport sys\nimport json\nimport random\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom pathlib import Path\n\nsys.path.insert(0, \"/root/persuasion_turn_jailbreak_detect\")\nfrom src.models.gru_classifier import GRUClassifier\nfrom transformers import AutoTokenizer, AutoModel\n\nPROJ = Path(\"/root/persuasion_turn_jailbreak_detect\")\nDEVICE = torch.device(\"cuda:1\")\nMODEL_NAME = \"microsoft/deberta-v3-base\"\nMAX_LENGTH = 256\nGRU_HIDDEN = 256\nGRU_LAYERS = 2\nGRU_DROPOUT = 0.3\nGRU_LR = 1e-3\nGRU_EPOCHS = 20\nGRU_BATCH = 32\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(l) for l in f if l.strip()]\n\n\ndef extract_user_turns(conv):\n    return [t[\"content\"] for t in conv[\"turns\"] if t[\"role\"] == \"user\"]\n\n\ndef get_label(conv):\n    return 1 if conv[\"label\"] == \"jailbreak\" else 0\n\n\ndef embed_turns(encoder, tokenizer, turns, k=None):\n    t = turns[:k] if k is not None else turns\n    if len(t) == 0:\n        t = [\"\"]\n    enc = tokenizer(t, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\"pt\").to(DEVICE)\n    with torch.no_grad():\n        out = encoder(input_ids=enc[\"input_ids\"], attention_mask=enc[\"attention_mask\"])\n        return out.last_hidden_state[:, 0, :]\n\n\ndef precompute_conv_embeddings(encoder, tokenizer, convs):\n    all_embs, all_labels, all_lengths = [], [], []\n    for c in convs:\n        turns = extract_user_turns(c)\n        embs = embed_turns(encoder, tokenizer, turns)\n        all_embs.append(embs.cpu())\n        all_labels.append(get_label(c))\n        all_lengths.append(embs.size(0))\n    return all_embs, all_labels, all_lengths\n\n\ndef pad_embeddings(embs_list, labels, lengths):\n    max_len = max(lengths)\n    dim = embs_list[0].size(1)\n    padded = torch.zeros(len(embs_list), max_len, dim)\n    for i, e in enumerate(embs_list):\n        padded[i, :e.size(0), :] = e\n    return padded, torch.tensor(labels, dtype=torch.long), torch.tensor(lengths, dtype=torch.long)\n\n\ndef train_gru(train_embs, train_labels, train_lengths, val_embs, val_labels, val_lengths, save_dir, seed):\n    torch.manual_seed(seed)\n    np.random.seed(seed)\n    random.seed(seed)\n\n    embed_dim = train_embs[0].size(1)\n    tr_padded, tr_labels, tr_lens = pad_embeddings(train_embs, train_labels, train_lengths)\n    vl_padded, vl_labels, vl_lens = pad_embeddings(val_embs, val_labels, val_lengths)\n\n    model = GRUClassifier(input_dim=embed_dim, hidden_dim=GRU_HIDDEN, num_layers=GRU_LAYERS, dropout=GRU_DROPOUT)\n    model.to(DEVICE)\n    optimizer = torch.optim.Adam(model.parameters(), lr=GRU_LR)\n    criterion = nn.CrossEntropyLoss()\n\n    best_val_f1 = 0.0\n    save_dir = Path(save_dir)\n    save_dir.mkdir(parents=True, exist_ok=True)\n\n    for epoch in range(GRU_EPOCHS):\n        model.train()\n        indices = torch.randperm(tr_padded.size(0))\n        epoch_loss, steps = 0.0, 0\n        for start in range(0, tr_padded.size(0), GRU_BATCH):\n            idx = indices[start:start + GRU_BATCH]\n            embs = tr_padded[idx].to(DEVICE)\n            lens = tr_lens[idx].to(DEVICE)\n            labs = tr_labels[idx].to(DEVICE)\n            logits = model(embs, lens)\n            loss = criterion(logits, labs)\n            optimizer.zero_grad()\n            loss.backward()\n            optimizer.step()\n            epoch_loss += loss.item()\n            steps += 1\n\n        model.eval()\n        all_preds, all_labels_v = [], []\n        with torch.no_grad():\n            for start in range(0, vl_padded.size(0), GRU_BATCH):\n                embs = vl_padded[start:start + GRU_BATCH].to(DEVICE)\n                lens = vl_lens[start:start + GRU_BATCH].to(DEVICE)\n                logits = model(embs, lens)\n                preds = logits.argmax(dim=-1).cpu().tolist()\n                all_preds.extend(preds)\n                all_labels_v.extend(vl_labels[start:start + GRU_BATCH].tolist())\n\n        from sklearn.metrics import f1_score as sk_f1\n        val_f1 = sk_f1(all_labels_v, all_preds, average=\"macro\")\n        print(f\"  Epoch {epoch+1:2d}/{GRU_EPOCHS} | Train Loss: {epoch_loss/max(steps,1):.4f} | Val F1: {val_f1:.4f}\")\n\n        if val_f1 > best_val_f1:\n            best_val_f1 = val_f1\n            torch.save(model.state_dict(), save_dir / \"best.pt\")\n\n    model.load_state_dict(torch.load(save_dir / \"best.pt\", map_location=DEVICE, weights_only=True))\n    model.eval()\n    return model\n\n\ndef eval_set(encoder, gru, tokenizer, convs, k=None):\n    from sklearn.metrics import f1_score, precision_score, recall_score\n    all_preds, all_labels = [], []\n    for c in convs:\n        turns = extract_user_turns(c)\n        embs = embed_turns(encoder, tokenizer, turns, k=k)\n        embs_batch = embs.unsqueeze(0)\n        lengths = torch.tensor([embs.size(0)], dtype=torch.long).to(DEVICE)\n        with torch.no_grad():\n            logits = gru(embs_batch, lengths)\n        pred = logits.argmax(dim=1).item()\n        all_preds.append(pred)\n        all_labels.append(get_label(c))\n    return {\n        \"f1_macro\": float(f1_score(all_labels, all_preds, average=\"macro\")),\n        \"precision\": float(precision_score(all_labels, all_preds, zero_division=0)),\n        \"recall\": float(recall_score(all_labels, all_preds, zero_division=0)),\n        \"accuracy\": float(sum(p == l for p, l in zip(all_preds, all_labels)) / len(all_labels)),\n    }\n\n\ndef main():\n    print(\"Loading vanilla DeBERTa encoder...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)\n    encoder = AutoModel.from_pretrained(MODEL_NAME, torch_dtype=torch.float32).to(DEVICE).eval()\n    for p in encoder.parameters():\n        p.requires_grad = False\n    print(\"Encoder loaded.\")\n\n    print(\"\\nPre-computing train embeddings...\")\n    train_data = load_jsonl(PROJ / \"data/plan_002_splits/train.jsonl\")\n    train_embs, train_labels, train_lengths = precompute_conv_embeddings(encoder, tokenizer, train_data)\n    print(f\"  {len(train_data)} conversations\")\n\n    print(\"Pre-computing val embeddings...\")\n    val_data = load_jsonl(PROJ / \"data/plan_002_splits/val.jsonl\")\n    val_embs, val_labels, val_lengths = precompute_conv_embeddings(encoder, tokenizer, val_data)\n    print(f\"  {len(val_data)} conversations\")\n\n    print(\"\\nLoading DD OOD test data...\")\n    dd_convs = load_jsonl(PROJ / \"data/generated/deceptive_delight_all.jsonl\")\n    test_data = load_jsonl(PROJ / \"data/plan_002_splits/test.jsonl\")\n    test_benign = [c for c in test_data if c[\"label\"] == \"benign\"]\n    dd_test = dd_convs + test_benign\n    print(f\"  DD jailbreak: {len(dd_convs)}, Test benign: {len(test_benign)}, Total: {len(dd_test)}\")\n\n    all_results = {}\n    k_values = [1, 2, 3, 5]\n\n    for seed in [123, 456]:\n        print(f\"\\n{'='*60}\")\n        print(f\"SEED = {seed}\")\n        print(f\"{'='*60}\")\n\n        save_dir = PROJ / f\"checkpoints/vanilla_seed{seed}_gru\"\n        gru = train_gru(train_embs, train_labels, train_lengths,\n                        val_embs, val_labels, val_lengths,\n                        save_dir, seed)\n\n        seed_results = {}\n        print(f\"\\n  === DD OOD Evaluation (seed={seed}) ===\")\n        r_full = eval_set(encoder, gru, tokenizer, dd_test)\n        print(f\"    Full: F1={r_full['f1_macro']:.4f}\")\n        seed_results[\"full\"] = round(r_full[\"f1_macro\"], 4)\n        for k in k_values:\n            r_k = eval_set(encoder, gru, tokenizer, dd_test, k=k)\n            print(f\"    K={k}: F1={r_k['f1_macro']:.4f}\")\n            seed_results[f\"k{k}\"] = round(r_k[\"f1_macro\"], 4)\n\n        all_results[f\"seed{seed}\"] = seed_results\n\n    seed42_ref = {\"k1\": 0.5752, \"k2\": 0.4381, \"k3\": 0.3594, \"k5\": 0.3105, \"full\": 0.2845}\n    all_results[\"seed42\"] = seed42_ref\n\n    mean_std = {}\n    for k_label in [\"k1\", \"k2\", \"k3\", \"k5\", \"full\"]:\n        vals = [all_results[f\"seed{s}\"][k_label] for s in [42, 123, 456]]\n        mean_std[k_label] = {\n            \"mean\": round(float(np.mean(vals)), 4),\n            \"std\": round(float(np.std(vals)), 4)\n        }\n    all_results[\"mean_std\"] = mean_std\n\n    print(\"\\n\" + \"=\"*60)\n    print(\"SUMMARY: Vanilla DeBERTa DD OOD (3 seeds)\")\n    print(\"=\"*60)\n    print(f\"{'K':<6} {'Seed42':>8} {'Seed123':>8} {'Seed456':>8} {'Mean':>8} {'Std':>8}\")\n    print(\"-\"*48)\n    for k_label in [\"k1\", \"k2\", \"k3\", \"k5\", \"full\"]:\n        s42 = all_results[\"seed42\"][k_label]\n        s123 = all_results[\"seed123\"][k_label]\n        s456 = all_results[\"seed456\"][k_label]\n        m = mean_std[k_label][\"mean\"]\n        s = mean_std[k_label][\"std\"]\n        print(f\"{k_label:<6} {s42:>8.4f} {s123:>8.4f} {s456:>8.4f} {m:>8.4f} {s:>8.4f}\")\n\n    out_path = PROJ / \"results/vanilla_multiseed_dd_ood.json\"\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Part A script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat > /root/persuasion_turn_jailbreak_detect/scripts/vanilla_multiseed_dd_ood.py << 'PYEOF'\n\"\"\"Vanilla DeBERTa multi-seed DD OOD evaluation.\nTrains BiGRU on vanilla (frozen) DeBERTa embeddings for seed=123,456, evaluates on DD OOD.\n\"\"\"\nimport sys\nimport json\nimport random\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom pathlib import Path\n\nsys.path.insert(0, \"/root/persuasion_turn_jailbreak_detect\")\nfrom src.models.gru_classifier import GRUClassifier\nfrom transformers import AutoTokenizer, AutoModel\n\nPROJ = Path(\"/root/persuasion_turn_jailbreak_detect\")\nDEVICE = torch.device(\"cuda:1\")\nMODEL_NAME = \"microsoft/deberta-v3-base\"\nMAX_LENGTH = 256\nGRU_HIDDEN = 256\nGRU_LAYERS = 2\nGRU_DROPOUT = 0.3\nGRU_LR = 1e-3\nGRU_EPOCHS = 20\nGRU_BATCH = 32\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(l) for l in f if l.strip()]\n\n\ndef extract_user_turns(conv):\n    return [t[\"content\"] for t in conv[\"turns\"] if t[\"role\"] == \"user\"]\n\n\ndef get_label(conv):\n    return 1 if conv[\"label\"] == \"jailbreak\" else 0\n\n\ndef embed_turns(encoder, tokenizer, turns, k=None):\n    t = turns[:k] if k is not None else turns\n    if len(t) == 0:\n        t = [\"\"]\n    enc = tokenizer(t, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\"pt\").to(DEVICE)\n    with torch.no_grad():\n        out = encoder(input_ids=enc[\"input_ids\"], attention_mask=enc[\"attention_mask\"])\n        return out.last_hidden_state[:, 0, :]\n\n\ndef precompute_conv_embeddings(encoder, tokenizer, convs):\n    all_embs, all_labels, all_lengths = [], [], []\n    for c in convs:\n        turns = extract_user_turns(c)\n        embs = embed_turns(encoder, tokenizer, turns)\n        all_embs.append(embs.cpu())\n        all_labels.append(get_label(c))\n        all_lengths.append(embs.size(0))\n    return all_embs, all_labels, all_lengths\n\n\ndef pad_embeddings(embs_list, labels, lengths):\n    max_len = max(lengths)\n    dim = embs_list[0].size(1)\n    padded = torch.zeros(len(embs_list), max_len, dim)\n    for i, e in enumerate(embs_list):\n        padded[i, :e.size(0), :] = e\n    return padded, torch.tensor(labels, dtype=torch.long), torch.tensor(lengths, dtype=torch.long)\n\n\ndef train_gru(train_embs, train_labels, train_lengths, val_embs, val_labels, val_lengths, save_dir, seed):\n    torch.manual_seed(seed)\n    np.random.seed(seed)\n    random.seed(seed)\n\n    embed_dim = train_embs[0].size(1)\n    tr_padded, tr_labels, tr_lens = pad_embeddings(train_embs, train_labels, train_lengths)\n    vl_padded, vl_labels, vl_lens = pad_embeddings(val_embs, val_labels, val_lengths)\n\n    model = GRUClassifier(input_dim=embed_dim, hidden_dim=GRU_HIDDEN, num_layers=GRU_LAYERS, dropout=GRU_DROPOUT)\n    model.to(DEVICE)\n    optimizer = torch.optim.Adam(model.parameters(), lr=GRU_LR)\n    criterion = nn.CrossEntropyLoss()\n\n    best_val_f1 = 0.0\n    save_dir = Path(save_dir)\n    save_dir.mkdir(parents=True, exist_ok=True)\n\n    for epoch in range(GRU_EPOCHS):\n        model.train()\n        indices = torch.randperm(tr_padded.size(0))\n        epoch_loss, steps = 0.0, 0\n        for start in range(0, tr_padded.size(0), GRU_BATCH):\n            idx = indices[start:start + GRU_BATCH]\n            embs = tr_padded[idx].to(DEVICE)\n            lens = tr_lens[idx].to(DEVICE)\n            labs = tr_labels[idx].to(DEVICE)\n            logits = model(embs, lens)\n            loss = criterion(logits, labs)\n            optimizer.zero_grad()\n            loss.backward()\n            optimizer.step()\n            epoch_loss += loss.item()\n            steps += 1\n\n        model.eval()\n        all_preds, all_labels_v = [], []\n        with torch.no_grad():\n            for start in range(0, vl_padded.size(0), GRU_BATCH):\n                embs = vl_padded[start:start + GRU_BATCH].to(DEVICE)\n                lens = vl_lens[start:start + GRU_BATCH].to(DEVICE)\n                logits = model(embs, lens)\n                preds = logits.argmax(dim=-1).cpu().tolist()\n                all_preds.extend(preds)\n                all_labels_v.extend(vl_labels[start:start + GRU_BATCH].tolist())\n\n        from sklearn.metrics import f1_score as sk_f1\n        val_f1 = sk_f1(all_labels_v, all_preds, average=\"macro\")\n        print(f\"  Epoch {epoch+1:2d}/{GRU_EPOCHS} | Train Loss: {epoch_loss/max(steps,1):.4f} | Val F1: {val_f1:.4f}\")\n\n        if val_f1 > best_val_f1:\n            best_val_f1 = val_f1\n            torch.save(model.state_dict(), save_dir / \"best.pt\")\n\n    model.load_state_dict(torch.load(save_dir / \"best.pt\", map_location=DEVICE, weights_only=True))\n    model.eval()\n    return model\n\n\ndef eval_set(encoder, gru, tokenizer, convs, k=None):\n    from sklearn.metrics import f1_score, precision_score, recall_score\n    all_preds, all_labels = [], []\n    for c in convs:\n        turns = extract_user_turns(c)\n        embs = embed_turns(encoder, tokenizer, turns, k=k)\n        embs_batch = embs.unsqueeze(0)\n        lengths = torch.tensor([embs.size(0)], dtype=torch.long).to(DEVICE)\n        with torch.no_grad():\n            logits = gru(embs_batch, lengths)\n        pred = logits.argmax(dim=1).item()\n        all_preds.append(pred)\n        all_labels.append(get_label(c))\n    return {\n        \"f1_macro\": float(f1_score(all_labels, all_preds, average=\"macro\")),\n        \"precision\": float(precision_score(all_labels, all_preds, zero_division=0)),\n        \"recall\": float(recall_score(all_labels, all_preds, zero_division=0)),\n        \"accuracy\": float(sum(p == l for p, l in zip(all_preds, all_labels)) / len(all_labels)),\n    }\n\n\ndef main():\n    print(\"Loading vanilla DeBERTa encoder...\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)\n    encoder = AutoModel.from_pretrained(MODEL_NAME, torch_dtype=torch.float32).to(DEVICE).eval()\n    for p in encoder.parameters():\n        p.requires_grad = False\n    print(\"Encoder loaded.\")\n\n    print(\"\\nPre-computing train embeddings...\")\n    train_data = load_jsonl(PROJ / \"data/plan_002_splits/train.jsonl\")\n    train_embs, train_labels, train_lengths = precompute_conv_embeddings(encoder, tokenizer, train_data)\n    print(f\"  {len(train_data)} conversations\")\n\n    print(\"Pre-computing val embeddings...\")\n    val_data = load_jsonl(PROJ / \"data/plan_002_splits/val.jsonl\")\n    val_embs, val_labels, val_lengths = precompute_conv_embeddings(encoder, tokenizer, val_data)\n    print(f\"  {len(val_data)} conversations\")\n\n    print(\"\\nLoading DD OOD test data...\")\n    dd_convs = load_jsonl(PROJ / \"data/generated/deceptive_delight_all.jsonl\")\n    test_data = load_jsonl(PROJ / \"data/plan_002_splits/test.jsonl\")\n    test_benign = [c for c in test_data if c[\"label\"] == \"benign\"]\n    dd_test = dd_convs + test_benign\n    print(f\"  DD jailbreak: {len(dd_convs)}, Test benign: {len(test_benign)}, Total: {len(dd_test)}\")\n\n    all_results = {}\n    k_values = [1, 2, 3, 5]\n\n    for seed in [123, 456]:\n        print(f\"\\n{'='*60}\")\n        print(f\"SEED = {seed}\")\n        print(f\"{'='*60}\")\n\n        save_dir = PROJ / f\"checkpoints/vanilla_seed{seed}_gru\"\n        gru = train_gru(train_embs, train_labels, train_lengths,\n                        val_embs, val_labels, val_lengths,\n                        save_dir, seed)\n\n        seed_results = {}\n        print(f\"\\n  === DD OOD Evaluation (seed={seed}) ===\")\n        r_full = eval_set(encoder, gru, tokenizer, dd_test)\n        print(f\"    Full: F1={r_full['f1_macro']:.4f}\")\n        seed_results[\"full\"] = round(r_full[\"f1_macro\"], 4)\n        for k in k_values:\n            r_k = eval_set(encoder, gru, tokenizer, dd_test, k=k)\n            print(f\"    K={k}: F1={r_k['f1_macro']:.4f}\")\n            seed_results[f\"k{k}\"] = round(r_k[\"f1_macro\"], 4)\n\n        all_results[f\"seed{seed}\"] = seed_results\n\n    seed42_ref = {\"k1\": 0.5752, \"k2\": 0.4381, \"k3\": 0.3594, \"k5\": 0.3105, \"full\": 0.2845}\n    all_results[\"seed42\"] = seed42_ref\n\n    mean_std = {}\n    for k_label in [\"k1\", \"k2\", \"k3\", \"k5\", \"full\"]:\n        vals = [all_results[f\"seed{s}\"][k_label] for s in [42, 123, 456]]\n        mean_std[k_label] = {\n            \"mean\": round(float(np.mean(vals)), 4),\n            \"std\": round(float(np.std(vals)), 4)\n        }\n    all_results[\"mean_std\"] = mean_std\n\n    print(\"\\n\" + \"=\"*60)\n    print(\"SUMMARY: Vanilla DeBERTa DD OOD (3 seeds)\")\n    print(\"=\"*60)\n    print(f\"{'K':<6} {'Seed42':>8} {'Seed123':>8} {'Seed456':>8} {'Mean':>8} {'Std':>8}\")\n    print(\"-\"*48)\n    for k_label in [\"k1\", \"k2\", \"k3\", \"k5\", \"full\"]:\n        s42 = all_results[\"seed42\"][k_label]\n        s123 = all_results[\"seed123\"][k_label]\n        s456 = all_results[\"seed456\"][k_label]\n        m = mean_std[k_label][\"mean\"]\n        s = mean_std[k_label][\"std\"]\n        print(f\"{k_label:<6} {s42:>8.4f} {s123:>8.4f} {s456:>8.4f} {m:>8.4f} {s:>8.4f}\")\n\n    out_path = PROJ / \"results/vanilla_multiseed_dd_ood.json\"\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Part A script written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-18T11:14:21.984566+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Part A script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-18T11:14:21.984740+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat > /root/persuasion_turn_jailbreak_detect/scripts/centered_cka.py << 'PYEOF'\n\"\"\"Centered Linear CKA for DeBERTa checkpoints (vanilla, MLM, 9-class).\"\"\"\nimport sys\nimport json\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom collections import defaultdict\nfrom transformers import AutoModel, AutoTokenizer\n\nsys.path.insert(0, \"/root/persuasion_turn_jailbreak_detect\")\nfrom src.models.deberta_multitask import DeBERTaMultiTask\n\nPROJ = Path(\"/root/persuasion_turn_jailbreak_detect\")\nDEVICE = torch.device(\"cuda:3\")\nMAX_LENGTH = 256\nBATCH_SIZE = 64\n\nENCODERS = {\n    \"vanilla\": {\"type\": \"hf\", \"path\": \"microsoft/deberta-v3-base\"},\n    \"mlm\": {\"type\": \"hf\", \"path\": str(PROJ / \"checkpoints/plan_017_mlm/best\")},\n    \"9class\": {\"type\": \"multitask\", \"path\": str(PROJ / \"checkpoints/plan_002/deberta_multitask/best/model.pt\")},\n}\n\nIID_TEST = PROJ / \"data/plan_002_splits/test.jsonl\"\nDD_OOD = PROJ / \"data/generated/deceptive_delight_all.jsonl\"\n\n\ndef load_conversations(path):\n    convos = []\n    with open(path) as f:\n        for line in f:\n            convos.append(json.loads(line.strip()))\n    return convos\n\n\ndef load_encoder(name, info):\n    tokenizer = AutoTokenizer.from_pretrained(\"microsoft/deberta-v3-base\")\n    if info[\"type\"] == \"hf\":\n        model = AutoModel.from_pretrained(info[\"path\"], torch_dtype=torch.float32)\n    else:\n        mt = DeBERTaMultiTask(model_name=\"microsoft/deberta-v3-base\", num_persuasion_classes=9)\n        state_dict = torch.load(info[\"path\"], map_location=\"cpu\", weights_only=False)\n        mt.load_state_dict(state_dict)\n        model = mt.deberta\n    model = model.to(DEVICE).float().eval()\n    return model, tokenizer\n\n\ndef extract_cls_embeddings(model, tokenizer, texts):\n    all_embs = []\n    for i in range(0, len(texts), BATCH_SIZE):\n        batch_texts = texts[i:i + BATCH_SIZE]\n        enc = tokenizer(\n            batch_texts, max_length=MAX_LENGTH, padding=True,\n            truncation=True, return_tensors=\"pt\"\n        )\n        enc = {k: v.to(DEVICE) for k, v in enc.items()}\n        with torch.no_grad():\n            out = model(**enc)\n            cls = out.last_hidden_state[:, 0, :].float().cpu().numpy()\n        all_embs.append(cls)\n    return np.concatenate(all_embs, axis=0).astype(np.float64)\n\n\ndef extract_layerwise_embeddings(model, tokenizer, texts):\n    layer_embs = defaultdict(list)\n    for i in range(0, len(texts), BATCH_SIZE):\n        batch_texts = texts[i:i + BATCH_SIZE]\n        enc = tokenizer(\n            batch_texts, max_length=MAX_LENGTH, padding=True,\n            truncation=True, return_tensors=\"pt\"\n        )\n        enc = {k: v.to(DEVICE) for k, v in enc.items()}\n        with torch.no_grad():\n            out = model(**enc, output_hidden_states=True)\n            for layer_idx, hs in enumerate(out.hidden_states):\n                cls = hs[:, 0, :].float().cpu().numpy()\n                layer_embs[layer_idx].append(cls)\n    return {k: np.concatenate(v, axis=0).astype(np.float64) for k, v in layer_embs.items()}\n\n\ndef centered_linear_CKA(X, Y):\n    X = X.astype(np.float64)\n    Y = Y.astype(np.float64)\n    X = X - X.mean(axis=0)\n    Y = Y - Y.mean(axis=0)\n    XtX = X.T @ X\n    YtY = Y.T @ Y\n    XtY = X.T @ Y\n    hsic_xy = np.linalg.norm(XtY, 'fro') ** 2\n    hsic_xx = np.linalg.norm(XtX, 'fro') ** 2\n    hsic_yy = np.linalg.norm(YtY, 'fro') ** 2\n    denom = np.sqrt(hsic_xx * hsic_yy)\n    if denom == 0:\n        return 0.0\n    return float(hsic_xy / denom)\n\n\ndef uncentered_linear_CKA(X, Y):\n    X = X.astype(np.float64)\n    Y = Y.astype(np.float64)\n    XtX = X.T @ X\n    YtY = Y.T @ Y\n    XtY = X.T @ Y\n    hsic_xy = np.linalg.norm(XtY, 'fro') ** 2\n    hsic_xx = np.linalg.norm(XtX, 'fro') ** 2\n    hsic_yy = np.linalg.norm(YtY, 'fro') ** 2\n    denom = np.sqrt(hsic_xx * hsic_yy)\n    if denom == 0:\n        return 0.0\n    return float(hsic_xy / denom)\n\n\ndef main():\n    print(\"Preparing data...\")\n    iid_test = load_conversations(IID_TEST)\n    dd_convs = load_conversations(DD_OOD)\n    test_benign = [c for c in iid_test if c[\"label\"] == \"benign\"]\n    dd_test = dd_convs + test_benign\n\n    def get_first_user_turn(conv):\n        for t in conv[\"turns\"]:\n            if t[\"role\"] == \"user\":\n                return t[\"content\"]\n        return \"\"\n\n    iid_texts = [get_first_user_turn(c) for c in iid_test]\n    dd_texts = [get_first_user_turn(c) for c in dd_test]\n    print(f\"  IID test: {len(iid_texts)} texts, DD OOD: {len(dd_texts)} texts\")\n\n    encoder_embeddings = {}\n    encoder_layer_embeddings_iid = {}\n    encoder_layer_embeddings_dd = {}\n\n    for enc_name, enc_info in ENCODERS.items():\n        print(f\"\\nLoading encoder: {enc_name}\")\n        model, tokenizer = load_encoder(enc_name, enc_info)\n\n        print(\"  Extracting CLS embeddings (IID + DD)...\")\n        iid_embs = extract_cls_embeddings(model, tokenizer, iid_texts)\n        dd_embs = extract_cls_embeddings(model, tokenizer, dd_texts)\n        encoder_embeddings[enc_name] = {\"iid\": iid_embs, \"dd\": dd_embs}\n        print(f\"    IID shape={iid_embs.shape}, DD shape={dd_embs.shape}\")\n\n        print(\"  Extracting layer-wise embeddings...\")\n        iid_layer = extract_layerwise_embeddings(model, tokenizer, iid_texts)\n        dd_layer = extract_layerwise_embeddings(model, tokenizer, dd_texts)\n        encoder_layer_embeddings_iid[enc_name] = iid_layer\n        encoder_layer_embeddings_dd[enc_name] = dd_layer\n\n        del model\n        torch.cuda.empty_cache()\n\n    results = {\n        \"centered_cka\": {\"iid\": {}, \"dd_ood\": {}},\n        \"uncentered_cka\": {\"iid\": {}, \"dd_ood\": {}},\n        \"layerwise_centered_cka\": {\"iid\": {}, \"dd_ood\": {}},\n        \"layerwise_uncentered_cka\": {\"iid\": {}, \"dd_ood\": {}},\n    }\n\n    pairs = [(\"vanilla\", \"mlm\"), (\"vanilla\", \"9class\"), (\"mlm\", \"9class\")]\n    print(\"\\n=== CKA Analysis (last layer CLS) ===\")\n    for a, b in pairs:\n        pair_key = f\"{a}_vs_{b}\"\n        for split, key in [(\"iid\", \"iid\"), (\"dd\", \"dd_ood\")]:\n            X = encoder_embeddings[a][split]\n            Y = encoder_embeddings[b][split]\n            cka_c = centered_linear_CKA(X, Y)\n            cka_u = uncentered_linear_CKA(X, Y)\n            results[\"centered_cka\"][key][pair_key] = round(cka_c, 6)\n            results[\"uncentered_cka\"][key][pair_key] = round(cka_u, 6)\n            print(f\"  {pair_key} ({key}): centered={cka_c:.6f}, uncentered={cka_u:.6f}\")\n\n    print(\"\\n=== Layer-wise CKA ===\")\n    num_layers = len(encoder_layer_embeddings_iid[\"vanilla\"])\n    print(f\"  Layers (including embedding): {num_layers}\")\n\n    for a, b in pairs:\n        pair_key = f\"{a}_vs_{b}\"\n        results[\"layerwise_centered_cka\"][\"iid\"][pair_key] = {}\n        results[\"layerwise_centered_cka\"][\"dd_ood\"][pair_key] = {}\n        results[\"layerwise_uncentered_cka\"][\"iid\"][pair_key] = {}\n        results[\"layerwise_uncentered_cka\"][\"dd_ood\"][pair_key] = {}\n        for layer_idx in range(num_layers):\n            for split, layer_a, layer_b, rkey in [\n                (\"iid\", encoder_layer_embeddings_iid[a], encoder_layer_embeddings_iid[b], \"iid\"),\n                (\"dd\", encoder_layer_embeddings_dd[a], encoder_layer_embeddings_dd[b], \"dd_ood\"),\n            ]:\n                X = layer_a[layer_idx]\n                Y = layer_b[layer_idx]\n                cka_c = centered_linear_CKA(X, Y)\n                cka_u = uncentered_linear_CKA(X, Y)\n                results[\"layerwise_centered_cka\"][rkey][pair_key][f\"layer_{layer_idx}\"] = round(cka_c, 6)\n                results[\"layerwise_uncentered_cka\"][rkey][pair_key][f\"layer_{layer_idx}\"] = round(cka_u, 6)\n\n        iid_c = [results[\"layerwise_centered_cka\"][\"iid\"][pair_key][f\"layer_{i}\"] for i in range(num_layers)]\n        dd_c = [results[\"layerwise_centered_cka\"][\"dd_ood\"][pair_key][f\"layer_{i}\"] for i in range(num_layers)]\n        print(f\"  {pair_key} IID centered: {[f'{v:.4f}' for v in iid_c]}\")\n        print(f\"  {pair_key} DD  centered: {[f'{v:.4f}' for v in dd_c]}\")\n\n    out_path = PROJ / \"results/centered_cka.json\"\n    out_path.parent.mkdir(exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n    print(\"\\n=== Summary: Centered vs Uncentered CKA (last layer) ===\")\n    print(f\"{'Pair':<25} {'Split':<8} {'Centered':>10} {'Uncentered':>12} {'Delta':>8}\")\n    print(\"-\" * 65)\n    for key in [\"iid\", \"dd_ood\"]:\n        for pair_key in results[\"centered_cka\"][key]:\n            c = results[\"centered_cka\"][key][pair_key]\n            u = results[\"uncentered_cka\"][key][pair_key]\n            delta = c - u\n            print(f\"{pair_key:<25} {key:<8} {c:>10.6f} {u:>12.6f} {delta:>+8.6f}\")\n\n    print(\"\\nDone.\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Part B script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat > /root/persuasion_turn_jailbreak_detect/scripts/centered_cka.py << 'PYEOF'\n\"\"\"Centered Linear CKA for DeBERTa checkpoints (vanilla, MLM, 9-class).\"\"\"\nimport sys\nimport json\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom collections import defaultdict\nfrom transformers import AutoModel, AutoTokenizer\n\nsys.path.insert(0, \"/root/persuasion_turn_jailbreak_detect\")\nfrom src.models.deberta_multitask import DeBERTaMultiTask\n\nPROJ = Path(\"/root/persuasion_turn_jailbreak_detect\")\nDEVICE = torch.device(\"cuda:3\")\nMAX_LENGTH = 256\nBATCH_SIZE = 64\n\nENCODERS = {\n    \"vanilla\": {\"type\": \"hf\", \"path\": \"microsoft/deberta-v3-base\"},\n    \"mlm\": {\"type\": \"hf\", \"path\": str(PROJ / \"checkpoints/plan_017_mlm/best\")},\n    \"9class\": {\"type\": \"multitask\", \"path\": str(PROJ / \"checkpoints/plan_002/deberta_multitask/best/model.pt\")},\n}\n\nIID_TEST = PROJ / \"data/plan_002_splits/test.jsonl\"\nDD_OOD = PROJ / \"data/generated/deceptive_delight_all.jsonl\"\n\n\ndef load_conversations(path):\n    convos = []\n    with open(path) as f:\n        for line in f:\n            convos.append(json.loads(line.strip()))\n    return convos\n\n\ndef load_encoder(name, info):\n    tokenizer = AutoTokenizer.from_pretrained(\"microsoft/deberta-v3-base\")\n    if info[\"type\"] == \"hf\":\n        model = AutoModel.from_pretrained(info[\"path\"], torch_dtype=torch.float32)\n    else:\n        mt = DeBERTaMultiTask(model_name=\"microsoft/deberta-v3-base\", num_persuasion_classes=9)\n        state_dict = torch.load(info[\"path\"], map_location=\"cpu\", weights_only=False)\n        mt.load_state_dict(state_dict)\n        model = mt.deberta\n    model = model.to(DEVICE).float().eval()\n    return model, tokenizer\n\n\ndef extract_cls_embeddings(model, tokenizer, texts):\n    all_embs = []\n    for i in range(0, len(texts), BATCH_SIZE):\n        batch_texts = texts[i:i + BATCH_SIZE]\n        enc = tokenizer(\n            batch_texts, max_length=MAX_LENGTH, padding=True,\n            truncation=True, return_tensors=\"pt\"\n        )\n        enc = {k: v.to(DEVICE) for k, v in enc.items()}\n        with torch.no_grad():\n            out = model(**enc)\n            cls = out.last_hidden_state[:, 0, :].float().cpu().numpy()\n        all_embs.append(cls)\n    return np.concatenate(all_embs, axis=0).astype(np.float64)\n\n\ndef extract_layerwise_embeddings(model, tokenizer, texts):\n    layer_embs = defaultdict(list)\n    for i in range(0, len(texts), BATCH_SIZE):\n        batch_texts = texts[i:i + BATCH_SIZE]\n        enc = tokenizer(\n            batch_texts, max_length=MAX_LENGTH, padding=True,\n            truncation=True, return_tensors=\"pt\"\n        )\n        enc = {k: v.to(DEVICE) for k, v in enc.items()}\n        with torch.no_grad():\n            out = model(**enc, output_hidden_states=True)\n            for layer_idx, hs in enumerate(out.hidden_states):\n                cls = hs[:, 0, :].float().cpu().numpy()\n                layer_embs[layer_idx].append(cls)\n    return {k: np.concatenate(v, axis=0).astype(np.float64) for k, v in layer_embs.items()}\n\n\ndef centered_linear_CKA(X, Y):\n    X = X.astype(np.float64)\n    Y = Y.astype(np.float64)\n    X = X - X.mean(axis=0)\n    Y = Y - Y.mean(axis=0)\n    XtX = X.T @ X\n    YtY = Y.T @ Y\n    XtY = X.T @ Y\n    hsic_xy = np.linalg.norm(XtY, 'fro') ** 2\n    hsic_xx = np.linalg.norm(XtX, 'fro') ** 2\n    hsic_yy = np.linalg.norm(YtY, 'fro') ** 2\n    denom = np.sqrt(hsic_xx * hsic_yy)\n    if denom == 0:\n        return 0.0\n    return float(hsic_xy / denom)\n\n\ndef uncentered_linear_CKA(X, Y):\n    X = X.astype(np.float64)\n    Y = Y.astype(np.float64)\n    XtX = X.T @ X\n    YtY = Y.T @ Y\n    XtY = X.T @ Y\n    hsic_xy = np.linalg.norm(XtY, 'fro') ** 2\n    hsic_xx = np.linalg.norm(XtX, 'fro') ** 2\n    hsic_yy = np.linalg.norm(YtY, 'fro') ** 2\n    denom = np.sqrt(hsic_xx * hsic_yy)\n    if denom == 0:\n        return 0.0\n    return float(hsic_xy / denom)\n\n\ndef main():\n    print(\"Preparing data...\")\n    iid_test = load_conversations(IID_TEST)\n    dd_convs = load_conversations(DD_OOD)\n    test_benign = [c for c in iid_test if c[\"label\"] == \"benign\"]\n    dd_test = dd_convs + test_benign\n\n    def get_first_user_turn(conv):\n        for t in conv[\"turns\"]:\n            if t[\"role\"] == \"user\":\n                return t[\"content\"]\n        return \"\"\n\n    iid_texts = [get_first_user_turn(c) for c in iid_test]\n    dd_texts = [get_first_user_turn(c) for c in dd_test]\n    print(f\"  IID test: {len(iid_texts)} texts, DD OOD: {len(dd_texts)} texts\")\n\n    encoder_embeddings = {}\n    encoder_layer_embeddings_iid = {}\n    encoder_layer_embeddings_dd = {}\n\n    for enc_name, enc_info in ENCODERS.items():\n        print(f\"\\nLoading encoder: {enc_name}\")\n        model, tokenizer = load_encoder(enc_name, enc_info)\n\n        print(\"  Extracting CLS embeddings (IID + DD)...\")\n        iid_embs = extract_cls_embeddings(model, tokenizer, iid_texts)\n        dd_embs = extract_cls_embeddings(model, tokenizer, dd_texts)\n        encoder_embeddings[enc_name] = {\"iid\": iid_embs, \"dd\": dd_embs}\n        print(f\"    IID shape={iid_embs.shape}, DD shape={dd_embs.shape}\")\n\n        print(\"  Extracting layer-wise embeddings...\")\n        iid_layer = extract_layerwise_embeddings(model, tokenizer, iid_texts)\n        dd_layer = extract_layerwise_embeddings(model, tokenizer, dd_texts)\n        encoder_layer_embeddings_iid[enc_name] = iid_layer\n        encoder_layer_embeddings_dd[enc_name] = dd_layer\n\n        del model\n        torch.cuda.empty_cache()\n\n    results = {\n        \"centered_cka\": {\"iid\": {}, \"dd_ood\": {}},\n        \"uncentered_cka\": {\"iid\": {}, \"dd_ood\": {}},\n        \"layerwise_centered_cka\": {\"iid\": {}, \"dd_ood\": {}},\n        \"layerwise_uncentered_cka\": {\"iid\": {}, \"dd_ood\": {}},\n    }\n\n    pairs = [(\"vanilla\", \"mlm\"), (\"vanilla\", \"9class\"), (\"mlm\", \"9class\")]\n    print(\"\\n=== CKA Analysis (last layer CLS) ===\")\n    for a, b in pairs:\n        pair_key = f\"{a}_vs_{b}\"\n        for split, key in [(\"iid\", \"iid\"), (\"dd\", \"dd_ood\")]:\n            X = encoder_embeddings[a][split]\n            Y = encoder_embeddings[b][split]\n            cka_c = centered_linear_CKA(X, Y)\n            cka_u = uncentered_linear_CKA(X, Y)\n            results[\"centered_cka\"][key][pair_key] = round(cka_c, 6)\n            results[\"uncentered_cka\"][key][pair_key] = round(cka_u, 6)\n            print(f\"  {pair_key} ({key}): centered={cka_c:.6f}, uncentered={cka_u:.6f}\")\n\n    print(\"\\n=== Layer-wise CKA ===\")\n    num_layers = len(encoder_layer_embeddings_iid[\"vanilla\"])\n    print(f\"  Layers (including embedding): {num_layers}\")\n\n    for a, b in pairs:\n        pair_key = f\"{a}_vs_{b}\"\n        results[\"layerwise_centered_cka\"][\"iid\"][pair_key] = {}\n        results[\"layerwise_centered_cka\"][\"dd_ood\"][pair_key] = {}\n        results[\"layerwise_uncentered_cka\"][\"iid\"][pair_key] = {}\n        results[\"layerwise_uncentered_cka\"][\"dd_ood\"][pair_key] = {}\n        for layer_idx in range(num_layers):\n            for split, layer_a, layer_b, rkey in [\n                (\"iid\", encoder_layer_embeddings_iid[a], encoder_layer_embeddings_iid[b], \"iid\"),\n                (\"dd\", encoder_layer_embeddings_dd[a], encoder_layer_embeddings_dd[b], \"dd_ood\"),\n            ]:\n                X = layer_a[layer_idx]\n                Y = layer_b[layer_idx]\n                cka_c = centered_linear_CKA(X, Y)\n                cka_u = uncentered_linear_CKA(X, Y)\n                results[\"layerwise_centered_cka\"][rkey][pair_key][f\"layer_{layer_idx}\"] = round(cka_c, 6)\n                results[\"layerwise_uncentered_cka\"][rkey][pair_key][f\"layer_{layer_idx}\"] = round(cka_u, 6)\n\n        iid_c = [results[\"layerwise_centered_cka\"][\"iid\"][pair_key][f\"layer_{i}\"] for i in range(num_layers)]\n        dd_c = [results[\"layerwise_centered_cka\"][\"dd_ood\"][pair_key][f\"layer_{i}\"] for i in range(num_layers)]\n        print(f\"  {pair_key} IID centered: {[f'{v:.4f}' for v in iid_c]}\")\n        print(f\"  {pair_key} DD  centered: {[f'{v:.4f}' for v in dd_c]}\")\n\n    out_path = PROJ / \"results/centered_cka.json\"\n    out_path.parent.mkdir(exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n    print(\"\\n=== Summary: Centered vs Uncentered CKA (last layer) ===\")\n    print(f\"{'Pair':<25} {'Split':<8} {'Centered':>10} {'Uncentered':>12} {'Delta':>8}\")\n    print(\"-\" * 65)\n    for key in [\"iid\", \"dd_ood\"]:\n        for pair_key in results[\"centered_cka\"][key]:\n            c = results[\"centered_cka\"][key][pair_key]\n            u = results[\"uncentered_cka\"][key][pair_key]\n            delta = c - u\n            print(f\"{pair_key:<25} {key:<8} {c:>10.6f} {u:>12.6f} {delta:>+8.6f}\")\n\n    print(\"\\nDone.\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Part B script written.\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-18T11:14:21.984946+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Part B script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-18T11:14:21.985095+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 nohup python scripts/vanilla_multiseed_dd_ood.py > logs/vanilla_multiseed.log 2>&1 &\necho \"PID: $!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 nohup python scripts/vanilla_multiseed_dd_ood.py > logs/vanilla_multiseed.log 2>&1 &\necho \"PID: $!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104 · 2026-05-18T11:14:21.985217+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 nohup python scripts/centered_cka.py > logs/centered_cka.log 2>&1 &\necho \"PID: $!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 nohup python scripts/centered_cka.py > logs/centered_cka.log 2>&1 &\necho \"PID: $!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-18T11:14:21.985342+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 nohup python scripts/vanilla_multiseed_dd_ood.py > logs/vanilla_multiseed.log 2>&1 &\\\\necho \\\"PID: $!\\\"'\\n\\nStdout:\\n\\nPID: 78369\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-18T11:14:21.985460+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID: 78889\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.97}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-18T11:14:21.985624+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -30 /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -30 /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-18T11:14:21.985751+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-18T11:14:21.985863+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -30 /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -30 /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-18T11:14:21.985977+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-18T11:14:21.986099+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ps aux --no-header -p 78369,78889",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ps aux --no-header -p 78369,78889",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-18T11:14:21.986261+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  3284 ?        Ss   13:22   0:00 bash /init/boot/boot.sh\\nroot        916  2.6  0.0 718496 19992 ?        Sl   13:22   9:19 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        931  0.1  0.0 6599108 100020 ?      Sl   13:22   0:40 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        936  0.0  0.0 4146956 77652 ?       Sl   13:22   0:20 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        939  0.0  0.0 2499312 18696 ?       Sl   13:22   0:04 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        941  0.0  0.0  15444  9368 ?        S    13:22   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        943  0.0  0.0 2573556 21688 ?       Sl   13:22   0:16 proxy -c /init/proxy/proxy.ini\\nroot        944  0.0  0.0 187608 100624 ?       S    13:22   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1048  0.0  0.0 28341068 12332 ?      Sl   13:22   0:20 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_nibpdts1/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_nibpdts1/startup_error\\nroot       1504  0.0  0.0  16692 10672 ?        Ss   13:22   0:01 sshd: root@notty\\nroot      27230  0.0  0.0   4364  3260 ?        Ss   14:50   0:00 bash -c cd /root/persuasion_turn_jailbreak_detect && CUDA_VISIBLE_DEVICES=3 PYTHONUNBUFFERED=1 /root/miniconda3/bin/python -c \\\" import sys, time sys.path.insert(0, '.') import torch from src.models.deberta_topic import DeBERTaTopic from pathlib import Path  PROJ = Path('/root/persuasion_turn_jailbreak_detect') ckpt_path = PROJ / 'checkpoints/plan_016v2_topic/best'  t0 = time.time() print
+…[truncated 5269 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-18T11:14:21.986433+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -40 /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -40 /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-18T11:14:21.986575+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-18T11:14:21.986699+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -40 /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -40 /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-18T11:14:21.986816+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-18T11:14:21.986972+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls -la /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls -la /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-18T11:14:21.987161+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 0 May 18 19:07 /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log\\n-rw-r--r-- 1 root root 0 May 18 19:06 /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-18T11:14:21.987318+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "kill 78374 78894 2>/dev/null; sleep 1; cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 nohup python scripts/vanilla_multiseed_dd_ood.py > logs/vanilla_multiseed.log 2>&1 &\necho \"PID: $!\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "kill 78374 78894 2>/dev/null; sleep 1; cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 nohup python scripts/vanilla_multiseed_dd_ood.py > logs/vanilla_multiseed.log 2>&1 &\necho \"PID: $!\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-18T11:14:21.987452+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 78374 78894 2>/dev/null; sleep 1; cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 nohup python scripts/vanilla_multiseed_dd_ood.py > logs/vanilla_multiseed.log 2>&1 &\\\\necho \\\"PID: $!\\\"'\\n\\nStdout:\\n\\nPID: 79492\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-18T11:14:21.987600+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 PYTHONUNBUFFERED=1 nohup python scripts/centered_cka.py > logs/centered_cka.log 2>&1 &\necho \"PID: $!\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 PYTHONUNBUFFERED=1 nohup python scripts/centered_cka.py > logs/centered_cka.log 2>&1 &\necho \"PID: $!\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-18T11:14:21.987731+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID: 79714\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-18T11:14:21.987862+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-18T11:14:21.987983+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 18997 MiB, 97887 MiB\\n1, 3 MiB, 97887 MiB\\n2, 19003 MiB, 97887 MiB\\n3, 3 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-18T11:14:21.988112+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -30 /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -30 /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126 · 2026-05-18T11:14:21.988226+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -30 /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -30 /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-18T11:14:21.988341+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading vanilla DeBERTa encoder...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-18T11:14:21.988456+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Preparing data...\\n  IID test: 76 texts, DD OOD: 118 texts\\n\\nLoading encoder: vanilla\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-18T11:14:21.988605+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -40 /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -40 /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130 · 2026-05-18T11:14:21.988731+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -40 /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -40 /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 131 · 2026-05-18T11:14:21.988849+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading vanilla DeBERTa encoder...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-18T11:14:21.988963+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Preparing data...\\n  IID test: 76 texts, DD OOD: 118 texts\\n\\nLoading encoder: vanilla\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-18T11:14:21.989088+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -50 /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -50 /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-18T11:14:21.989203+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading vanilla DeBERTa encoder...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-18T11:14:21.989311+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -50 /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -50 /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-18T11:14:21.989423+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Preparing data...\\n  IID test: 76 texts, DD OOD: 118 texts\\n\\nLoading encoder: vanilla\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-18T11:14:21.989561+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/autodl-tmp/hf_cache/models--microsoft--deberta-v3-base/snapshots/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/autodl-tmp/hf_cache/models--microsoft--deberta-v3-base/snapshots/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-18T11:14:21.989684+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/hf_cache/models--microsoft--deberta-v3-base/snapshots/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-18T11:14:21.989801+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/.cache/huggingface/hub/models--microsoft--deberta-v3-base/snapshots/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "ls /root/.cache/huggingface/hub/models--microsoft--deberta-v3-base/snapshots/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-18T11:14:21.989915+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-18T11:14:21.990024+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/.cache/huggingface/hub/ -maxdepth 1 -name \"models--microsoft--deberta*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "find /root/.cache/huggingface/hub/ -maxdepth 1 -name \"models--microsoft--deberta*\" -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-18T11:14:21.990137+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/.cache/huggingface/hub/models--microsoft--deberta-v3-base\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-18T11:14:21.990245+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/autodl-tmp/hf_cache/ -maxdepth 1 -name \"*deberta*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "find /root/autodl-tmp/hf_cache/ -maxdepth 1 -name \"*deberta*\" -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-18T11:14:21.990356+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-18T11:14:21.990500+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "kill 79492 79714 2>/dev/null; sleep 1; echo \"killed\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "kill 79492 79714 2>/dev/null; sleep 1; echo \"killed\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-18T11:14:21.990641+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"killed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 147 · 2026-05-18T11:14:21.990755+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "kill -9 $(pgrep -f vanilla_multiseed_dd_ood) $(pgrep -f centered_cka.py) 2>/dev/null; echo \"cleanup done\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "kill -9 $(pgrep -f vanilla_multiseed_dd_ood) $(pgrep -f centered_cka.py) 2>/dev/null; echo \"cleanup done\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 148 · 2026-05-18T11:14:21.990870+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": -1}, \"error\": \"exit code -1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 149 · 2026-05-18T11:14:21.991048+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && head -5 scripts/vanilla_multiseed_dd_ood.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && head -5 scripts/vanilla_multiseed_dd_ood.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 150 · 2026-05-18T11:14:21.991182+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Vanilla DeBERTa multi-seed DD OOD evaluation.\\nTrains BiGRU on vanilla (frozen) DeBERTa embeddings for seed=123,456, evaluates on DD OOD.\\n\\\"\\\"\\\"\\nimport sys\\nimport json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 151 · 2026-05-18T11:14:21.991298+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && sed -i '1,3!b; /^import sys/i import os\\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\\n' scripts/vanilla_multiseed_dd_ood.py && sed -i '1,3!b; /^import sys/i import os\\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\\n' scripts/centered_cka.py && head -8 scripts/vanilla_multiseed_dd_ood.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && sed -i '1,3!b; /^import sys/i import os\\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\\n' scripts/vanilla_multiseed_dd_ood.py && sed -i '1,3!b; /^import sys/i import os\\nos.environ[\"HF_ENDPOINT\"] = \"https://hf-mirror.com\"\\n' scripts/centered_cka.py && head -8 scripts/vanilla_multiseed_dd_ood.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 152 · 2026-05-18T11:14:21.991420+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Vanilla DeBERTa multi-seed DD OOD evaluation.\\nTrains BiGRU on vanilla (frozen) DeBERTa embeddings for seed=123,456, evaluates on DD OOD.\\n\\\"\\\"\\\"\\nimport sys\\nimport json\\nimport random\\nimport numpy as np\\nimport torch\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153 · 2026-05-18T11:14:21.991568+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nfor fname in ['scripts/vanilla_multiseed_dd_ood.py', 'scripts/centered_cka.py']:\n    with open(fname, 'r') as f:\n        content = f.read()\n    header = '''import os\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\n'''\n    if 'HF_ENDPOINT' not in content:\n        # Insert after the docstring\n        idx = content.find('\\\"\\\"\\\"', content.find('\\\"\\\"\\\"') + 3) + 3\n        content = content[:idx] + '\\n' + header + content[idx:]\n        with open(fname, 'w') as f:\n            f.write(content)\n        print(f'Fixed {fname}')\n    else:\n        print(f'{fname} already has HF_ENDPOINT')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nfor fname in ['scripts/vanilla_multiseed_dd_ood.py', 'scripts/centered_cka.py']:\n    with open(fname, 'r') as f:\n        content = f.read()\n    header = '''import os\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\n'''\n    if 'HF_ENDPOINT' not in content:\n        # Insert after the docstring\n        idx = content.find('\\\"\\\"\\\"', content.find('\\\"\\\"\\\"') + 3) + 3\n        content = content[:idx] + '\\n' + header + content[idx:]\n        with open(fname, 'w') as f:\n            f.write(content)\n        print(f'Fixed {fname}')\n    else:\n        print(f'{fname} already has HF_ENDPOINT')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 154 · 2026-05-18T11:14:21.991723+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/persuasion_turn_jailbreak_detect && python3 -c \\\"\\\\nfor fname in [\\\\'scripts/vanilla_multiseed_dd_ood.py\\\\', \\\\'scripts/centered_cka.py\\\\']:\\\\n    with open(fname, \\\\'r\\\\') as f:\\\\n        content = f.read()\\\\n    header = \\\\'\\\\'\\\\'import os\\\\nos.environ[\\\\\\\\\\\"HF_ENDPOINT\\\\\\\\\\\"] = \\\\\\\\\\\"https://hf-mirror.com\\\\\\\\\\\"\\\\n\\\\'\\\\'\\\\'\\\\n    if \\\\'HF_ENDPOINT\\\\' not in content:\\\\n        # Insert after the docstring\\\\n        idx = content.find(\\\\'\\\\\\\\\\\"\\\\\\\\\\\"\\\\\\\\\\\"\\\\', content.find(\\\\'\\\\\\\\\\\"\\\\\\\\\\\"\\\\\\\\\\\"\\\\') + 3) + 3\\\\n        content = content[:idx] + \\\\'\\\\\\\\n\\\\' + header + content[idx:]\\\\n        with open(fname, \\\\'w\\\\') as f:\\\\n            f.write(content)\\\\n        print(f\\\\'Fixed {fname}\\\\')\\\\n    else:\\\\n        print(f\\\\'{fname} already has HF_ENDPOINT\\\\')\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 155 · 2026-05-18T11:14:21.991857+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && python -c \"\nfor fname in ['scripts/vanilla_multiseed_dd_ood.py', 'scripts/centered_cka.py']:\n    with open(fname, 'r') as f:\n        content = f.read()\n    if 'HF_ENDPOINT' not in content:\n        lines = content.split('\\n')\n        # Find first import line\n        for i, line in enumerate(lines):\n            if line.startswith('import ') or line.startswith('from '):\n                break\n        new_lines = lines[:i] + ['import os', 'os.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"', ''] + lines[i:]\n        with open(fname, 'w') as f:\n            f.write('\\n'.join(new_lines))\n        print(f'Fixed {fname}')\n    else:\n        print(f'{fname} already has HF_ENDPOINT')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && python -c \"\nfor fname in ['scripts/vanilla_multiseed_dd_ood.py', 'scripts/centered_cka.py']:\n    with open(fname, 'r') as f:\n        content = f.read()\n    if 'HF_ENDPOINT' not in content:\n        lines = content.split('\\n')\n        # Find first import line\n        for i, line in enumerate(lines):\n            if line.startswith('import ') or line.startswith('from '):\n                break\n        new_lines = lines[:i] + ['import os', 'os.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"', ''] + lines[i:]\n        with open(fname, 'w') as f:\n            f.write('\\n'.join(new_lines))\n        print(f'Fixed {fname}')\n    else:\n        print(f'{fname} already has HF_ENDPOINT')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 156 · 2026-05-18T11:14:21.991985+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fixed scripts/vanilla_multiseed_dd_ood.py\\nscripts/centered_cka.py already has HF_ENDPOINT\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 157 · 2026-05-18T11:14:21.992110+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "head -10 /root/persuasion_turn_jailbreak_detect/scripts/vanilla_multiseed_dd_ood.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "head -10 /root/persuasion_turn_jailbreak_detect/scripts/vanilla_multiseed_dd_ood.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 158 · 2026-05-18T11:14:21.992232+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Vanilla DeBERTa multi-seed DD OOD evaluation.\\nTrains BiGRU on vanilla (frozen) DeBERTa embeddings for seed=123,456, evaluates on DD OOD.\\n\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport sys\\nimport json\\nimport random\\nimport numpy as np\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 159 · 2026-05-18T11:14:21.992346+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "head -10 /root/persuasion_turn_jailbreak_detect/scripts/centered_cka.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "head -10 /root/persuasion_turn_jailbreak_detect/scripts/centered_cka.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 160 · 2026-05-18T11:14:21.992471+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Centered Linear CKA for DeBERTa checkpoints (vanilla, MLM, 9-class).\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"HF_ENDPOINT\\\"] = \\\"https://hf-mirror.com\\\"\\n\\nimport sys\\nimport json\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom collections import defaultdict\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 161 · 2026-05-18T11:14:21.992620+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 nohup python scripts/vanilla_multiseed_dd_ood.py > logs/vanilla_multiseed.log 2>&1 &\necho \"PID_A: $!\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 nohup python scripts/vanilla_multiseed_dd_ood.py > logs/vanilla_multiseed.log 2>&1 &\necho \"PID_A: $!\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 162 · 2026-05-18T11:14:21.992740+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 PYTHONUNBUFFERED=1 nohup python scripts/centered_cka.py > logs/centered_cka.log 2>&1 &\necho \"PID_B: $!\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 PYTHONUNBUFFERED=1 nohup python scripts/centered_cka.py > logs/centered_cka.log 2>&1 &\necho \"PID_B: $!\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 163 · 2026-05-18T11:14:21.992878+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID_A: 80555\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 15.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 164 · 2026-05-18T11:14:21.993062+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID_B: 81128\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 12.6}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 165 · 2026-05-18T11:14:21.993238+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -20 /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -20 /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 166 · 2026-05-18T11:14:21.993413+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -20 /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -20 /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 167 · 2026-05-18T11:14:21.993629+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    return super().to(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1369, in to\\n    return self._apply(convert)\\n           ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 928, in _apply\\n    module._apply(fn)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 928, in _apply\\n    module._apply(fn)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 955, in _apply\\n    param_applied = fn(param)\\n                    ^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1355, in convert\\n    return t.to(\\n           ^^^^^\\ntorch.AcceleratorError: CUDA error: invalid device ordinal\\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 168 · 2026-05-18T11:14:21.993858+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    return super().to(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1369, in to\\n    return self._apply(convert)\\n           ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 928, in _apply\\n    module._apply(fn)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 928, in _apply\\n    module._apply(fn)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 955, in _apply\\n    param_applied = fn(param)\\n                    ^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1355, in convert\\n    return t.to(\\n           ^^^^^\\ntorch.AcceleratorError: CUDA error: invalid device ordinal\\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 169 · 2026-05-18T11:14:21.994092+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && python -c \"\nfor fname, old_dev, new_dev in [\n    ('scripts/vanilla_multiseed_dd_ood.py', 'cuda:1', 'cuda:0'),\n    ('scripts/centered_cka.py', 'cuda:3', 'cuda:0'),\n]:\n    with open(fname, 'r') as f:\n        content = f.read()\n    content = content.replace(old_dev, new_dev)\n    with open(fname, 'w') as f:\n        f.write(content)\n    print(f'Fixed {fname}: {old_dev} -> {new_dev}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && python -c \"\nfor fname, old_dev, new_dev in [\n    ('scripts/vanilla_multiseed_dd_ood.py', 'cuda:1', 'cuda:0'),\n    ('scripts/centered_cka.py', 'cuda:3', 'cuda:0'),\n]:\n    with open(fname, 'r') as f:\n        content = f.read()\n    content = content.replace(old_dev, new_dev)\n    with open(fname, 'w') as f:\n        f.write(content)\n    print(f'Fixed {fname}: {old_dev} -> {new_dev}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 170 · 2026-05-18T11:14:21.994282+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fixed scripts/vanilla_multiseed_dd_ood.py: cuda:1 -> cuda:0\\nFixed scripts/centered_cka.py: cuda:3 -> cuda:0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 171 · 2026-05-18T11:14:21.994463+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 nohup python scripts/vanilla_multiseed_dd_ood.py > logs/vanilla_multiseed.log 2>&1 &\necho \"PID_A: $!\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 nohup python scripts/vanilla_multiseed_dd_ood.py > logs/vanilla_multiseed.log 2>&1 &\necho \"PID_A: $!\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 172 · 2026-05-18T11:14:21.994671+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 PYTHONUNBUFFERED=1 nohup python scripts/centered_cka.py > logs/centered_cka.log 2>&1 &\necho \"PID_B: $!\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=3 PYTHONUNBUFFERED=1 nohup python scripts/centered_cka.py > logs/centered_cka.log 2>&1 &\necho \"PID_B: $!\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 173 · 2026-05-18T11:14:21.994864+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 nohup python scripts/vanilla_multiseed_dd_ood.py > logs/vanilla_multiseed.log 2>&1 &\\\\necho \\\"PID_A: $!\\\"'\\n\\nStdout:\\n\\nPID_A: 81733\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 174 · 2026-05-18T11:14:21.995063+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID_B: 82513\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 29.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 175 · 2026-05-18T11:14:21.995230+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -10 /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -10 /root/persuasion_turn_jailbreak_detect/logs/vanilla_multiseed.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 176 · 2026-05-18T11:14:21.995394+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -10 /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "tail -10 /root/persuasion_turn_jailbreak_detect/logs/centered_cka.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 177 · 2026-05-18T11:14:21.995591+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nK        Seed42  Seed123  Seed456     Mean      Std\\n------------------------------------------------\\nk1       0.5752   0.6575   0.6523   0.6283   0.0376\\nk2       0.4381   0.5298   0.4693   0.4791   0.0381\\nk3       0.3594   0.4241   0.3829   0.3888   0.0267\\nk5       0.3105   0.3829   0.3596   0.3510   0.0302\\nfull     0.2845   0.3048   0.3477   0.3123   0.0263\\n\\nResults saved to /root/persuasion_turn_jailbreak_detect/results/vanilla_multiseed_dd_ood.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 178 · 2026-05-18T11:14:21.995808+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Pair                      Split      Centered   Uncentered    Delta\\n-----------------------------------------------------------------\\nvanilla_vs_mlm            iid        0.442136     0.999987 -0.557851\\nvanilla_vs_9class         iid        0.392865     0.420627 -0.027762\\nmlm_vs_9class             iid        0.585814     0.422119 +0.163695\\nvanilla_vs_mlm            dd_ood     0.797107     0.999993 -0.202886\\nvanilla_vs_9class         dd_ood     0.648811     0.523343 +0.125468\\nmlm_vs_9class             dd_ood     0.773282     0.523185 +0.250097\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 179 · 2026-05-18T11:14:21.996039+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/results/vanilla_multiseed_dd_ood.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/results/vanilla_multiseed_dd_ood.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 180 · 2026-05-18T11:14:21.996203+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/results/centered_cka.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cat /root/persuasion_turn_jailbreak_detect/results/centered_cka.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 181 · 2026-05-18T11:14:21.996418+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"seed123\\\": {\\n    \\\"full\\\": 0.3048,\\n    \\\"k1\\\": 0.6575,\\n    \\\"k2\\\": 0.5298,\\n    \\\"k3\\\": 0.4241,\\n    \\\"k5\\\": 0.3829\\n  },\\n  \\\"seed456\\\": {\\n    \\\"full\\\": 0.3477,\\n    \\\"k1\\\": 0.6523,\\n    \\\"k2\\\": 0.4693,\\n    \\\"k3\\\": 0.3829,\\n    \\\"k5\\\": 0.3596\\n  },\\n  \\\"seed42\\\": {\\n    \\\"k1\\\": 0.5752,\\n    \\\"k2\\\": 0.4381,\\n    \\\"k3\\\": 0.3594,\\n    \\\"k5\\\": 0.3105,\\n    \\\"full\\\": 0.2845\\n  },\\n  \\\"mean_std\\\": {\\n    \\\"k1\\\": {\\n      \\\"mean\\\": 0.6283,\\n      \\\"std\\\": 0.0376\\n    },\\n    \\\"k2\\\": {\\n      \\\"mean\\\": 0.4791,\\n      \\\"std\\\": 0.0381\\n    },\\n    \\\"k3\\\": {\\n      \\\"mean\\\": 0.3888,\\n      \\\"std\\\": 0.0267\\n    },\\n    \\\"k5\\\": {\\n      \\\"mean\\\": 0.351,\\n      \\\"std\\\": 0.0302\\n    },\\n    \\\"full\\\": {\\n      \\\"mean\\\": 0.3123,\\n      \\\"std\\\": 0.0263\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 182 · 2026-05-18T11:14:21.996728+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"centered_cka\\\": {\\n    \\\"iid\\\": {\\n      \\\"vanilla_vs_mlm\\\": 0.442136,\\n      \\\"vanilla_vs_9class\\\": 0.392865,\\n      \\\"mlm_vs_9class\\\": 0.585814\\n    },\\n    \\\"dd_ood\\\": {\\n      \\\"vanilla_vs_mlm\\\": 0.797107,\\n      \\\"vanilla_vs_9class\\\": 0.648811,\\n      \\\"mlm_vs_9class\\\": 0.773282\\n    }\\n  },\\n  \\\"uncentered_cka\\\": {\\n    \\\"iid\\\": {\\n      \\\"vanilla_vs_mlm\\\": 0.999987,\\n      \\\"vanilla_vs_9class\\\": 0.420627,\\n      \\\"mlm_vs_9class\\\": 0.422119\\n    },\\n    \\\"dd_ood\\\": {\\n      \\\"vanilla_vs_mlm\\\": 0.999993,\\n      \\\"vanilla_vs_9class\\\": 0.523343,\\n      \\\"mlm_vs_9class\\\": 0.523185\\n    }\\n  },\\n  \\\"layerwise_centered_cka\\\": {\\n    \\\"iid\\\": {\\n      \\\"vanilla_vs_mlm\\\": {\\n        \\\"layer_0\\\": 0.0,\\n        \\\"layer_1\\\": 0.999321,\\n        \\\"layer_2\\\": 0.998567,\\n        \\\"layer_3\\\": 0.998053,\\n        \\\"layer_4\\\": 0.987357,\\n        \\\"layer_5\\\": 0.972959,\\n        \\\"layer_6\\\": 0.932789,\\n        \\\"layer_7\\\": 0.975683,\\n        \\\"layer_8\\\": 0.981397,\\n        \\\"layer_9\\\": 0.939958,\\n        \\\"layer_10\\\": 0.955386,\\n        \\\"layer_11\\\": 0.500355,\\n        \\\"layer_12\\\": 0.442136\\n      },\\n      \\\"vanilla_vs_9class\\\": {\\n        \\\"layer_0\\\": 0.0,\\n        \\\"layer_1\\\": 0.99135,\\n        \\\"layer_2\\\": 0.993835,\\n        \\\"layer_3\\\": 0.988278,\\n        \\\"layer_4\\\": 0.988018,\\n        \\\"layer_5\\\": 0.887381,\\n        \\\"layer_6\\\": 0.645634,\\n        \\\"layer_7\\\": 0.723451,\\n        \\\"layer_8\\\": 0.589173,\\n        \\\"layer_9\\\": 0.535624,\\n        \\\"layer_10\\\": 0.732783,\\n        \\\"layer_11\\\": 0.265077,\\n        \\\"layer_12\\\": 0.392865\\n      },\\n      \\\"mlm_vs_9class\\\": {\\n        \\\"layer_0\\\": 0.0,\\n        \\\"layer_1\\\": 0.990267,\\n        \\\"layer_2\\\": 0.
+…[truncated 5059 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 183 · 2026-05-18T11:14:21.996956+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 184 · 2026-05-18T11:14:21.997091+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 185 · 2026-05-18T11:14:21.997214+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Run vanilla multi-seed GRU training + DD OOD eval (seed=123,456)', 'status': 'completed', 'activeForm': 'Running vanilla multi-seed GRU training + DD OOD eval'}, {'content': 'Run centered CKA computation for 3 encoders', 'status': 'completed', 'activeForm': 'Running centered CKA computation'}, {'content': 'Create combined artifact JSON and save locally + register', 'status': 'in_progress', 'activeForm': 'Creating combined artifact JSON'}, {'content': 'Save results copy on server', 'status': 'pending', 'activeForm': 'Saving results copy on server'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Run vanilla multi-seed GRU training + DD OOD eval (seed=123,456)', 'status': 'completed', 'activeForm': 'Running vanilla multi-seed GRU training + DD OOD eval'}, {'content': 'Run centered CKA computation for 3 encoders', 'status': 'completed', 'activeForm': 'Running centered CKA computation'}, {'content': 'Create combined artifact JSON and save locally + register', 'status': 'in_progress', 'activeForm': 'Creating combined artifact JSON'}, {'content': 'Save results copy on server', 'status': 'pending', 'activeForm': 'Saving results copy on server'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 186 · 2026-05-18T11:14:21.997350+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 187 · 2026-05-18T11:14:21.997497+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/vanilla_multiseed_dd_ood.json",
+  "content": "{\n  \"vanilla_dd_ood\": {\n    \"seed42\": {\"k1\": 0.5752, \"k2\": 0.4381, \"k3\": 0.3594, \"k5\": 0.3105, \"full\": 0.2845},\n    \"seed123\": {\"k1\": 0.6575, \"k2\": 0.5298, \"k3\": 0.4241, \"k5\": 0.3829, \"full\": 0.3048},\n    \"seed456\": {\"k1\": 0.6523, \"k2\": 0.4693, \"k3\": 0.3829, \"k5\": 0.3596, \"full\": 0.3477},\n    \"mean_std\": {\n      \"k1\": {\"mean\": 0.6283, \"std\": 0.0376},\n      \"k2\": {\"mean\": 0.4791, \"std\": 0.0381},\n      \"k3\": {\"mean\": 0.3888, \"std\": 0.0267},\n      \"k5\": {\"mean\": 0.3510, \"std\": 0.0302},\n      \"full\": {\"mean\": 0.3123, \"std\": 0.0263}\n    }\n  },\n  \"centered_cka\": {\n    \"iid\": {\"vanilla_vs_mlm\": 0.4421, \"vanilla_vs_9class\": 0.3929, \"mlm_vs_9class\": 0.5858},\n    \"dd_ood\": {\"vanilla_vs_mlm\": 0.7971, \"vanilla_vs_9class\": 0.6488, \"mlm_vs_9class\": 0.7733}\n  },\n  \"uncentered_cka_reference\": {\n    \"iid\": {\"vanilla_vs_mlm\": 1.0000, \"vanilla_vs_9class\": 0.4206, \"mlm_vs_9class\": 0.4221},\n    \"dd_ood\": {\"vanilla_vs_mlm\": 1.0000, \"vanilla_vs_9class\": 0.5233, \"mlm_vs_9class\": 0.5232}\n  },\n  \"layerwise_centered_cka\": {\n    \"iid\": {\n      \"vanilla_vs_mlm\": [0.0, 0.9993, 0.9986, 0.9981, 0.9874, 0.9730, 0.9328, 0.9757, 0.9814, 0.9400, 0.9554, 0.5004, 0.4421],\n      \"vanilla_vs_9class\": [0.0, 0.9914, 0.9938, 0.9883, 0.9880, 0.8874, 0.6456, 0.7235, 0.5892, 0.5356, 0.7328, 0.2651, 0.3929],\n      \"mlm_vs_9class\": [0.0, 0.9903, 0.9903, 0.9864, 0.9719, 0.9402, 0.5924, 0.6541, 0.5853, 0.6367, 0.7662, 0.4451, 0.5858]\n    },\n    \"dd_ood\": {\n      \"vanilla_vs_mlm\": [0.0, 0.9989, 0.9982, 0.9976, 0.9889, 0.9965, 0.9715, 0.9909, 0.9927, 0.9730, 0.9910, 0.7164, 0.7971],\n      \"vanilla_vs_9class\": [0.0, 0.9891, 0.9942, 0.9878, 0.9842, 0.9864, 0.7709, 0.8500, 0.8584, 0.8383, 0.8539, 0.5036, 0.6488],\n      \"mlm_vs_9class\": [0.0, 0.9907, 0.9907, 0.9808, 0.9689, 0.9878, 0.7958, 0.8173, 0.8548, 0.8643, 0.8651, 0.7222, 0.7733]\n    }\n  },\n  \"notes\": {\n    \"vanilla_encoder\": \"microsoft/deberta-v3-base (original weights, frozen)\",\n    \"gru_config\": \"hidden=256, layers=2, bidirectional, attention pooling, dropout=0.3, lr=1e-3, batch=32, epochs=20\",\n    \"train_data\": \"data/plan_002_splits/{train,val}.jsonl\",\n    \"dd_ood_data\": \"data/generated/deceptive_delight_all.jsonl + test benign\",\n    \"std_type\": \"population std (np.std, ddof=0)\",\n    \"cka_layer0_note\": \"Layer 0 (embedding) shows CKA=0.0 because CLS embeddings have near-zero variance after centering, causing degenerate 0/0\",\n    \"cka_centering_impact\": \"vanilla_vs_mlm CKA dropped from ~1.0 (uncentered) to 0.44 IID / 0.80 DD_OOD after centering, confirming the original bug\"\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/vanilla_multiseed_dd_ood.json",
+    "content": "{\n  \"vanilla_dd_ood\": {\n    \"seed42\": {\"k1\": 0.5752, \"k2\": 0.4381, \"k3\": 0.3594, \"k5\": 0.3105, \"full\": 0.2845},\n    \"seed123\": {\"k1\": 0.6575, \"k2\": 0.5298, \"k3\": 0.4241, \"k5\": 0.3829, \"full\": 0.3048},\n    \"seed456\": {\"k1\": 0.6523, \"k2\": 0.4693, \"k3\": 0.3829, \"k5\": 0.3596, \"full\": 0.3477},\n    \"mean_std\": {\n      \"k1\": {\"mean\": 0.6283, \"std\": 0.0376},\n      \"k2\": {\"mean\": 0.4791, \"std\": 0.0381},\n      \"k3\": {\"mean\": 0.3888, \"std\": 0.0267},\n      \"k5\": {\"mean\": 0.3510, \"std\": 0.0302},\n      \"full\": {\"mean\": 0.3123, \"std\": 0.0263}\n    }\n  },\n  \"centered_cka\": {\n    \"iid\": {\"vanilla_vs_mlm\": 0.4421, \"vanilla_vs_9class\": 0.3929, \"mlm_vs_9class\": 0.5858},\n    \"dd_ood\": {\"vanilla_vs_mlm\": 0.7971, \"vanilla_vs_9class\": 0.6488, \"mlm_vs_9class\": 0.7733}\n  },\n  \"uncentered_cka_reference\": {\n    \"iid\": {\"vanilla_vs_mlm\": 1.0000, \"vanilla_vs_9class\": 0.4206, \"mlm_vs_9class\": 0.4221},\n    \"dd_ood\": {\"vanilla_vs_mlm\": 1.0000, \"vanilla_vs_9class\": 0.5233, \"mlm_vs_9class\": 0.5232}\n  },\n  \"layerwise_centered_cka\": {\n    \"iid\": {\n      \"vanilla_vs_mlm\": [0.0, 0.9993, 0.9986, 0.9981, 0.9874, 0.9730, 0.9328, 0.9757, 0.9814, 0.9400, 0.9554, 0.5004, 0.4421],\n      \"vanilla_vs_9class\": [0.0, 0.9914, 0.9938, 0.9883, 0.9880, 0.8874, 0.6456, 0.7235, 0.5892, 0.5356, 0.7328, 0.2651, 0.3929],\n      \"mlm_vs_9class\": [0.0, 0.9903, 0.9903, 0.9864, 0.9719, 0.9402, 0.5924, 0.6541, 0.5853, 0.6367, 0.7662, 0.4451, 0.5858]\n    },\n    \"dd_ood\": {\n      \"vanilla_vs_mlm\": [0.0, 0.9989, 0.9982, 0.9976, 0.9889, 0.9965, 0.9715, 0.9909, 0.9927, 0.9730, 0.9910, 0.7164, 0.7971],\n      \"vanilla_vs_9class\": [0.0, 0.9891, 0.9942, 0.9878, 0.9842, 0.9864, 0.7709, 0.8500, 0.8584, 0.8383, 0.8539, 0.5036, 0.6488],\n      \"mlm_vs_9class\": [0.0, 0.9907, 0.9907, 0.9808, 0.9689, 0.9878, 0.7958, 0.8173, 0.8548, 0.8643, 0.8651, 0.7222, 0.7733]\n    }\n  },\n  \"notes\": {\n    \"vanilla_encoder\": \"microsoft/deberta-v3-base (original weights, frozen)\",\n    \"gru_config\": \"hidden=256, layers=2, bidirectional, attention pooling, dropout=0.3, lr=1e-3, batch=32, epochs=20\",\n    \"train_data\": \"data/plan_002_splits/{train,val}.jsonl\",\n    \"dd_ood_data\": \"data/generated/deceptive_delight_all.jsonl + test benign\",\n    \"std_type\": \"population std (np.std, ddof=0)\",\n    \"cka_layer0_note\": \"Layer 0 (embedding) shows CKA=0.0 because CLS embeddings have near-zero variance after centering, causing degenerate 0/0\",\n    \"cka_centering_impact\": \"vanilla_vs_mlm CKA dropped from ~1.0 (uncentered) to 0.44 IID / 0.80 DD_OOD after centering, confirming the original bug\"\n  }\n}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 188 · 2026-05-18T11:14:21.997731+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/vanilla_multiseed_dd_ood.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 189 · 2026-05-18T11:14:21.997877+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && python -c \"\nimport json\n\n# Load both result files\nwith open('results/vanilla_multiseed_dd_ood.json') as f:\n    vanilla = json.load(f)\nwith open('results/centered_cka.json') as f:\n    cka = json.load(f)\n\n# Create combined output\ncombined = {\n    'vanilla_dd_ood': vanilla,\n    'centered_cka': cka['centered_cka'],\n    'uncentered_cka_reference': cka['uncentered_cka'],\n    'layerwise_centered_cka': cka['layerwise_centered_cka'],\n}\n\nwith open('results/vanilla_multiseed_dd_ood_combined.json', 'w') as f:\n    json.dump(combined, f, indent=2)\nprint('Saved combined results.')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/bin/activate && python -c \"\nimport json\n\n# Load both result files\nwith open('results/vanilla_multiseed_dd_ood.json') as f:\n    vanilla = json.load(f)\nwith open('results/centered_cka.json') as f:\n    cka = json.load(f)\n\n# Create combined output\ncombined = {\n    'vanilla_dd_ood': vanilla,\n    'centered_cka': cka['centered_cka'],\n    'uncentered_cka_reference': cka['uncentered_cka'],\n    'layerwise_centered_cka': cka['layerwise_centered_cka'],\n}\n\nwith open('results/vanilla_multiseed_dd_ood_combined.json', 'w') as f:\n    json.dump(combined, f, indent=2)\nprint('Saved combined results.')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 190 · 2026-05-18T11:14:21.998010+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved combined results.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 191 · 2026-05-18T11:14:21.998136+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "vanilla_multiseed_dd_ood",
+  "type": "data",
+  "description": "Vanilla DeBERTa 3-seed DD OOD F1 results + centered CKA (vanilla/MLM/9class) with layer-wise breakdown",
+  "project": "persuasion_turn_jailbreak_detect",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/vanilla_multiseed_dd_ood.json",
+  "tags": "['vanilla', 'dd_ood', 'multi-seed', 'cka', 'centered']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "vanilla_multiseed_dd_ood",
+    "type": "data",
+    "description": "Vanilla DeBERTa 3-seed DD OOD F1 results + centered CKA (vanilla/MLM/9class) with layer-wise breakdown",
+    "project": "persuasion_turn_jailbreak_detect",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/vanilla_multiseed_dd_ood.json",
+    "tags": "['vanilla', 'dd_ood', 'multi-seed', 'cka', 'centered']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 192 · 2026-05-18T11:14:21.998279+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_c8bb60\", \"name\": \"vanilla_multiseed_dd_ood\", \"type\": \"data\", \"description\": \"Vanilla DeBERTa 3-seed DD OOD F1 results + centered CKA (vanilla/MLM/9class) with layer-wise breakdown\", \"path\": \"projects/persuasion_turn_jailbreak_detect/artifacts/_project/data/vanilla_multiseed_dd_ood.json\", \"url\": null, \"project\": \"persuasion_turn_jailbreak_detect\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T11:14:05.556940+00:00\", \"tags\": [\"vanilla\", \"dd_ood\", \"multi-seed\", \"cka\", \"centered\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 193 · 2026-05-18T11:14:21.998408+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Run vanilla multi-seed GRU training + DD OOD eval (seed=123,456)', 'status': 'completed', 'activeForm': 'Running vanilla multi-seed GRU training + DD OOD eval'}, {'content': 'Run centered CKA computation for 3 encoders', 'status': 'completed', 'activeForm': 'Running centered CKA computation'}, {'content': 'Create combined artifact JSON and save locally + register', 'status': 'completed', 'activeForm': 'Creating combined artifact JSON'}, {'content': 'Save results copy on server', 'status': 'completed', 'activeForm': 'Saving results copy on server'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Run vanilla multi-seed GRU training + DD OOD eval (seed=123,456)', 'status': 'completed', 'activeForm': 'Running vanilla multi-seed GRU training + DD OOD eval'}, {'content': 'Run centered CKA computation for 3 encoders', 'status': 'completed', 'activeForm': 'Running centered CKA computation'}, {'content': 'Create combined artifact JSON and save locally + register', 'status': 'completed', 'activeForm': 'Creating combined artifact JSON'}, {'content': 'Save results copy on server', 'status': 'completed', 'activeForm': 'Saving results copy on server'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 194 · 2026-05-18T11:14:21.998596+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 195 · 2026-05-18T11:14:21.998785+00:00_
+
+All done. Summary:
+
+## Part A: Vanilla DeBERTa DD OOD (3 seeds)
+
+| K | Seed42 | Seed123 | Seed456 | Mean±Std |
+|---|--------|---------|---------|----------|
+| k1 | 0.575 | 0.658 | 0.652 | **0.628±0.038** |
+| k2 | 0.438 | 0.530 | 0.469 | **0.479±0.038** |
+| k3 | 0.359 | 0.424 | 0.383 | **0.389±0.027** |
+| k5 | 0.311 | 0.383 | 0.360 | **0.351±0.030** |
+| full | 0.285 | 0.305 | 0.348 | **0.312±0.026** |
+
+Seed 42 was the worst of the three. Multi-seed mean is slightly higher than the single-seed estimate.
+
+## Part B: Centered CKA Fix
+
+**Last-layer CLS (centered vs uncentered):**
+
+| Pair | Split | Centered | Uncentered |
+|------|-------|----------|------------|
+| vanilla vs MLM | IID | **0.442** | 1.000 |
+| vanilla vs 9class | IID | **0.393** | 0.421 |
+| MLM vs 9class | IID | **0.586** | 0.422 |
+| vanilla vs MLM | DD OOD | **0.797** | 1.000 |
+| vanilla vs 9class | DD OOD | **0.649** | 0.523 |
+| MLM vs 9class | DD OOD | **0.773** | 0.523 |
+
+The vanilla\_vs\_MLM CKA=1.0 was indeed a centering bug. After centering: 0.44 (IID), 0.80 (DD OOD). MLM does change the representation space meaningfully. Layer-wise CKA shows divergence starts around layer 6 and accelerates in layers 11-12.
+
+All results saved to:
+- Server: `results/vanilla_multiseed_dd_ood.json`, `results/centered_cka.json`, `results/vanilla_multiseed_dd_ood_combined.json`
+- Local artifact: `artifacts/vanilla_multiseed_dd_ood.json` (registered as `art_20260518_c8bb60`)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133"
+}
+```
+
+</details>
+
+---

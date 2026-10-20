@@ -1,0 +1,72 @@
+# reviewer / loop_6.md
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_6.md`
+- **Structured JSON:** [`bc1c3c0abbcf52940ef6.json`](../../sessions/bc/bc1c3c0abbcf52940ef6.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 6
+reason: max_wall_time
+updated: '2026-05-22T18:27:40+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 westd-33183 cuda:0（`execution.gpu_ids=[0]`）。westd-49690 是辅助服务器（HoneyLovessu 账号），仅用于 CPU 任务或明确授权的 GPU 任务
+- **论文目录双重性**：`docs/paper/` 是 ACTIVE 目录（所有修改都在这里），`paper/` 是 STALE 残留（May 21 版本）。**永远只读/验证 `docs/paper/`**。之前因读错目录发了 CRITICAL 误报后紧急撤回
+- EMNLP 2026 ARR DDL 2026-05-25，主文 8 页硬限（Limitations/Ethics 不算页数）
+- Worker phantom changes 是已知系统性问题：Worker 报告 "已修改" 但文件未变。每次 Worker 完成后必须 grep 验证实际文件内容
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-33183 (root)，工作目录 `/root/persuasion_turn_jailbreak_detect`
+- 辅助：westd-49690 (HoneyLovessu)，同路径
+- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/`
+- 论文源文件：本地 `docs/paper/*.tex`
+- 实验结果：远程 `results/exp*.json`
+- Checkpoints：远程 `checkpoints/` + westd-49690 `/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/`
+- ToxicChat 数据：远程 `data/mhj/toxicchat_eval.jsonl`（204 jailbreak + 204 benign，全标记为 `human_jailbreak`，无子类）
+- 活跃进程：无（registry 0 RUNNING）
+- GPU：westd-33183 cuda:0 空闲
+
+### 3. 📊 当前状态
+刚完成 R17 审稿结果 + D080 进度的独立审查并已 post 给 Director。
+
+**R17 结果**：Overall 3.0（R1: 3.0 ↓从3.5, R2: 3.0）。R1 降分是因为 R16 新增的实验/hedging 开辟了新攻击面（n=3 variance, TOST margin, abstract 矛盾）。
+
+**D080 Action Matrix 状态**：
+- W-1/W-2/W-5/W-6/W-7/W-9 写作修改：✅ 已落地（abstract/intro/conclusion 已更新，18:15-18:20 UTC）
+- EXP-D（ToxicChat FP/FN decomposition）：⏳ 未开始，registry 无 RUNNING
+- W-12（EXP-D 结果整合）：⏳ 依赖 EXP-D
+
+Registry 总计 131 实验，97 有结论（70 success / 27 negative / 0 failed）。
+
+### 4. 📋 待办
+- EXP-D 完成通知 → 验证 FP/FN 分解数据合理性（ToxicChat 无子类标签，只能做整体 FP/FN 而非 per-category）→ 确认 W-12 整合到 `docs/paper/conclusion.tex` Discussion 段落
+- D080 全部 W-1~W-12 完成 → 对 `docs/paper/` 全文做最终一致性检查：Abstract 数字 = 正文数字 = Conclusion 数字
+- R18 提交后 → 审稿结果审查
+- 如收到 `paper_agent_request_review` → 按 §5.3 模板做维度评分（Originality/Clarity/Soundness/Significance/Presentation + Overall）
+
+### 5. 🎯 战略上下文
+- **分数天花板在 3.0-3.5（Findings 级）**：17 轮 97 实验后 Overall 始终 3.0。根因是结构性的：(1) ToxicChat 反转——classification DAPT 优势不适用于 human data；(2) novelty 是 Gururangan 2020 + Zhang 2021 在新 domain 的应用；(3) RoBERTa-large 不需要 DAPT。这些不可通过写作修改解决
+- **R1 降分趋势**：R16→R17 从 3.5 降到 3.0。D080 继续用 hedging 策略可能继续开辟攻击面。但 3 天内无更好替代方案
+- **最易判断错的事**：不要因为 D080 修改了很多措辞就预期分数提升。分数提升需要审稿人接受 "condition-dependent effectiveness map" 这个 framing，这取决于审稿人偏好而非论文修改量
+- **关键决策链**：D072（discriminative compression 机制确立）→ D073（Phase 2 framing）→ D077（R16 Action Matrix）→ D078（turn count 非 confound）→ D080（R17 修复 + condition-dependency reframing）
+- **ssh_read_only 限制**：不支持 `|`（pipe），不支持 `python3 -c` 中的 `open()`。用 grep/cat/head/tail 替代
+
+
+---

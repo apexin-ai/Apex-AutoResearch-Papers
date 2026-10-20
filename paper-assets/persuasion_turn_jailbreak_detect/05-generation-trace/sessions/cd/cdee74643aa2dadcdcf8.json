@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "cdee74643aa2dadcdcf8",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "paper embedding tsne",
+  "task_key": "worker_paper_embedding-tsne_20260518T232830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_embedding-tsne_20260518T232830.log",
+    "occurrence": 1,
+    "bytes": 565452,
+    "sha256": "d9086d2a29d0bc7dbab512356ee056ea9af750e902fa0d6cace38df4628a3aca"
+  },
+  "statistics": {
+    "messages": 278,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 278,
+      "chunks": [
+        {
+          "path": "cdee74643aa2dadcdcf8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "cdee74643aa2dadcdcf8-part-0002.json",
+          "message_count": 98
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-embedding-tsne.md"
+}

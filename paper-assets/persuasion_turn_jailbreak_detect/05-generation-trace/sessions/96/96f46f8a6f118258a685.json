@@ -1,0 +1,1116 @@
+{
+  "schema_version": "1.0",
+  "id": "96f46f8a6f118258a685",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "conversation",
+  "title": "eval plan002 seed456 dd ood",
+  "task_key": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_plan002-seed456-dd-ood_20260518T070820.jsonl",
+    "occurrence": 1,
+    "bytes": 53153,
+    "sha256": "5095cafa9e4259afc677ac19b8a838417475f666392c362ee9bb5395c06dfabb"
+  },
+  "statistics": {
+    "messages": 53,
+    "user_turns": 0,
+    "tool_calls": 26,
+    "roles": {
+      "tool_call": 26,
+      "tool_result": 26,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T07:12:03.263766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T07:12:03.264211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T07:12:03.265819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "which python",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T07:12:03.266088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T07:12:03.266247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "find /root/persuasion_turn_jailbreak_detect/checkpoints/ -path \"*seed456*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T07:12:03.266382+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "find /root/persuasion_turn_jailbreak_detect/ -name \"*seed456*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T07:12:03.266524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/checkpoints/plan_002_seed456\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_002_seed456/deberta_multitask\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_002_seed456/deberta_multitask/best\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_002_seed456/gru\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_002_seed456/gru/treatment\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_002_seed456/gru/baseline\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_016v2_topic_seed456\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_016v2_topic_seed456/best\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_016v2_topic_seed456/gru\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_017_mlm_seed456\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_017_mlm_seed456/best\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_017_mlm_seed456/gru\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_018_wiki_mlm_seed456\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_018_wiki_mlm_seed456/best\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_018_wiki_mlm_seed456/gru\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T07:12:03.266694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/checkpoints/plan_002_seed456\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_016v2_topic_seed456\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_017_mlm_seed456\\\\n/root/persuasion_turn_jailbreak_detect/checkpoints/plan_018_wiki_mlm_seed456\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T07:12:03.266838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "find /root/persuasion_turn_jailbreak_detect/data/ -name \"*dd*\" -o -name \"*deceptive*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T07:12:03.267066+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'plan_002_seed456'}",
+              "project": "persuasion_turn_jailbreak_detect",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T07:12:03.267210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/data/embeddings\\\\n/root/persuasion_turn_jailbreak_detect/data/generated/deceptive_delight_all.jsonl\\\\n/root/persuasion_turn_jailbreak_detect/data/generated/deceptive_delight_all.jsonl.bak\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T07:12:03.267338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1033}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T07:12:03.268112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "ls -la /root/persuasion_turn_jailbreak_detect/checkpoints/plan_002_seed456/deberta_multitask/best/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T07:12:03.268283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 726348\\\\ndrwxr-xr-x 2 root root        89 May 18 08:56 .\\\\ndrwxr-xr-x 3 root root        26 May 18 08:56 ..\\\\n-rw-r--r-- 1 root root 735431691 May 18 08:56 model.pt\\\\n-rw-r--r-- 1 root root   8340141 May 18 08:56 tokenizer.json\\\\n-rw-r--r-- 1 root root       537 May 18 08:56 tokenizer_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T07:12:03.268413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "ls -la /root/persuasion_turn_jailbreak_detect/checkpoints/plan_002_seed456/gru/treatment/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T07:12:03.268567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 11300\\\\ndrwxr-xr-x 2 root root       29 May 18 08:58 .\\\\ndrwxr-xr-x 4 root root       51 May 18 08:59 ..\\\\n-rw-r--r-- 1 root root 11568618 May 18 08:58 best.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T07:12:03.268716+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "ls /root/persuasion_turn_jailbreak_detect/src/plan_017_dd_eval.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T07:12:03.268846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/src/plan_017_dd_eval.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T07:12:03.268968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "find /root/persuasion_turn_jailbreak_detect/src/ -name \"*dd*\" -o -name \"*cross*\" -o -name \"*ood*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T07:12:03.269088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "persuasion_turn_jailbreak_detect",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T07:12:03.269220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/src/cross_attack_eval.py\\\\n/root/persuasion_turn_jailbreak_detect/src/plan_006_cross_attack_eval.py\\\\n/root/persuasion_turn_jailbreak_detect/src/plan_006_scrambled_dd_eval.py\\\\n/root/persuasion_turn_jailbreak_detect/src/plan_013_dd_crossattack_eval.py\\\\n/root/persuasion_turn_jailbreak_detect/src/plan_015_dd_eval.py\\\\n/root/persuasion_turn_jailbreak_detect/src/plan_016_dd_eval.py\\\\n/root/persuasion_turn_jailbreak_detect/src/plan_017_dd_eval.py\\\\n/root/persuasion_turn_jailbreak_detect/src/plan_016v2_dd_eval.py\\\\n/root/persuasion_turn_jailbreak_detect/src/plan_018_wiki_dd_eval.py\\\\n/root/persuasion_turn_jailbreak_detect/src/plan_016v2_dd_eval_seed.py\\\\n/root/persuasion_turn_jailbreak_detect/src/plan_017_dd_eval_seed.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T07:12:03.269893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (49.4KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/cc49dd1d-bf50-4d51-acc2-c57ed957eb4f/tool-results/toolu_01R3Sku5nxi5UnHx1MyFfwMC.txt\n\nPreview (first 2KB):\n{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_003_scrambled_perturbation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T07:07:32.928Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:08:18.365Z\\\", \\\"hypothesis\\\": \\\"Scrambled-label classification (random strategy labels on domain text) will show perturbation degradation between binary (0.000) and MLM (-0.026), testing whether correct label content matters for robustness or if any classification structure suffices\\\", \\\"parent\\\": \\\"plan_003_scrambled_ablation\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/plan_003_scrambled_gru_and_perturbed_eval.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/final_v2/train_scrambled.jsonl\\\", \\\"data_count\\\": 336, \\\"model_name\\\": \\\"microsoft/deberta-v3-base\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/plan_003_scrambled_retrain/deberta_multitask/best\\\", \\\"eval_data\\\": \\\"results/plan_004_perturbed_test.jsonl\\\", \\\"checkpoint_path\\\": \\\"checkpoints/plan_003_scrambled_retrain\\\", \\\"log_path\\\": \\\"runs/persuasion_turn_jailbreak_detect/plan_003_scrambled_retrain.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"deberta_training\\\": {\\\"epochs\\\": 4, \\\"best_epoch\\\": 4, \\\"val_persuasion_acc\\\": 0.613, \\\"val_intent_acc\\\": 0.967, \\\"val_loss\\\": 1.127}, \\\"iid_test_f1_full\\\": 1, \\\"perturbation_delta_full\\\": 0, \\\"perturbation_clean_f1_full\\\": 0.333, \\\"perturbation_perturbed_f1_full\\\": 0.333, \\\"note\\\": \\\"Delta=0 is misleading: model predicts all-benign on OOD perturbed test set (F1=0.333), unlike 9-class persuasion which achieves F1=1.0 on both clean and perturbed. Scrambled model overfits to IID distribution.\\\"}, \\\"completed_at\\\": \\\"2026-05-18T07:08:18.366Z\\\n…[truncated 329 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T07:12:03.270129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "cat /root/persuasion_turn_jailbreak_detect/src/plan_017_dd_eval.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T07:12:03.270414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Plan 017: Train BiGRU on MLM-pretrained DeBERTa embeddings, evaluate DD OOD + IID.\\\\n# Compares against plan_006 persuasion treatment and vanilla baseline results.\\\\n\\\\nimport sys\\\\nimport json\\\\nimport random\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom pathlib import Path\\\\nfrom sklearn.metrics import f1_score, precision_score, recall_score\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/persuasion_turn_jailbreak_detect\\\\\\\")\\\\nfrom src.models.gru_classifier import GRUClassifier\\\\nfrom transformers import AutoTokenizer, AutoModel\\\\n\\\\nPROJ = Path(\\\\\\\"/root/persuasion_turn_jailbreak_detect\\\\\\\")\\\\nDEVICE = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\nMODEL_NAME = \\\\\\\"microsoft/deberta-v3-base\\\\\\\"\\\\nMAX_LENGTH = 256\\\\nSEED = 42\\\\nGRU_HIDDEN = 256\\\\nGRU_LAYERS = 2\\\\nGRU_DROPOUT = 0.3\\\\nGRU_LR = 1e-3\\\\nGRU_EPOCHS = 20\\\\nGRU_BATCH = 32\\\\n\\\\nrandom.seed(SEED)\\\\nnp.random.seed(SEED)\\\\ntorch.manual_seed(SEED)\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(l) for l in f if l.strip()]\\\\n\\\\n\\\\ndef extract_user_turns(conv):\\\\n    return [t[\\\\\\\"content\\\\\\\"] for t in conv[\\\\\\\"turns\\\\\\\"] if t[\\\\\\\"role\\\\\\\"] == \\\\\\\"user\\\\\\\"]\\\\n\\\\n\\\\ndef get_label(conv):\\\\n    return 1 if conv[\\\\\\\"label\\\\\\\"] == \\\\\\\"jailbreak\\\\\\\" else 0\\\\n\\\\n\\\\ndef load_mlm_encoder(ckpt_path):\\\\n    model = AutoModel.from_pretrained(ckpt_path)\\\\n    enc = model.to(DEVICE).eval()\\\\n    for p in enc.parameters():\\\\n        p.requires_grad = False\\\\n    return enc\\\\n\\\\n\\\\ndef embed_turns(encoder, tokenizer, turns, k=None):\\\\n    t = turns[:k] if k is not None else turns\\\\n    if len(t) == 0:\\\\n        t = [\\\\\\\"\\\\\\\"]\\\\n    enc = tokenizer(t, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\\\\\\\"pt\\\\\\\").to(DEVICE)\\\\n    with torch.no_grad():\\\\n        out = encoder(input_ids=enc[\\\\\\\"input_ids\\\\\\\"], attention_mask=enc[\\\\\\\"attention_mask\\\\\\\"])\\\\n        return out.last_hidden_state[:, 0, :]\\\\n\\\\n\\\\ndef precompute_co\n…[truncated 7182 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T07:12:03.270623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "cat /root/persuasion_turn_jailbreak_detect/src/plan_017_dd_eval_seed.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T07:12:03.271705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Plan 017: Parameterized eval for multi-seed MLM control experiments.\\\\n# Usage: python plan_017_dd_eval_seed.py --seed 123 --mlm_ckpt checkpoints/plan_017_mlm_seed123/best\\\\n\\\\nimport sys\\\\nimport json\\\\nimport random\\\\nimport argparse\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom pathlib import Path\\\\nfrom sklearn.metrics import f1_score, precision_score, recall_score\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/persuasion_turn_jailbreak_detect\\\\\\\")\\\\nfrom src.models.gru_classifier import GRUClassifier\\\\nfrom transformers import AutoTokenizer, AutoModel\\\\n\\\\nPROJ = Path(\\\\\\\"/root/persuasion_turn_jailbreak_detect\\\\\\\")\\\\nDEVICE = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\nMODEL_NAME = \\\\\\\"microsoft/deberta-v3-base\\\\\\\"\\\\nMAX_LENGTH = 256\\\\nGRU_HIDDEN = 256\\\\nGRU_LAYERS = 2\\\\nGRU_DROPOUT = 0.3\\\\nGRU_LR = 1e-3\\\\nGRU_EPOCHS = 20\\\\nGRU_BATCH = 32\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser()\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, required=True)\\\\n    p.add_argument(\\\\\\\"--mlm_ckpt\\\\\\\", type=str, required=True)\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=None)\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(l) for l in f if l.strip()]\\\\n\\\\n\\\\ndef extract_user_turns(conv):\\\\n    return [t[\\\\\\\"content\\\\\\\"] for t in conv[\\\\\\\"turns\\\\\\\"] if t[\\\\\\\"role\\\\\\\"] == \\\\\\\"user\\\\\\\"]\\\\n\\\\n\\\\ndef get_label(conv):\\\\n    return 1 if conv[\\\\\\\"label\\\\\\\"] == \\\\\\\"jailbreak\\\\\\\" else 0\\\\n\\\\n\\\\ndef load_mlm_encoder(ckpt_path):\\\\n    model = AutoModel.from_pretrained(ckpt_path)\\\\n    enc = model.to(DEVICE).eval()\\\\n    for p in enc.parameters():\\\\n        p.requires_grad = False\\\\n    return enc\\\\n\\\\n\\\\ndef embed_turns(encoder, tokenizer, turns, k=None):\\\\n    t = turns[:k] if k is not None else turns\\\\n    if len(t) == 0:\\\\n        t = [\\\\\\\"\\\\\\\"]\\\\n    enc = tokenizer(t, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\\\\\\\n…[truncated 7079 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T07:12:03.271952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/cc49dd1d-bf50-4d51-acc2-c57ed957eb4f/tool-results/toolu_01R3Sku5nxi5UnHx1MyFfwMC.txt",
+              "limit": "200"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T07:12:03.274501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_003_scrambled_perturbation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T07:07:32.928Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:08:18.365Z\\\", \\\"hypothesis\\\": \\\"Scrambled-label classification (random strategy labels on domain text) will show perturbation degradation between binary (0.000) and MLM (-0.026), testing whether correct label content matters for robustness or if any classification structure suffices\\\", \\\"parent\\\": \\\"plan_003_scrambled_ablation\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/plan_003_scrambled_gru_and_perturbed_eval.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/final_v2/train_scrambled.jsonl\\\", \\\"data_count\\\": 336, \\\"model_name\\\": \\\"microsoft/deberta-v3-base\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/plan_003_scrambled_retrain/deberta_multitask/best\\\", \\\"eval_data\\\": \\\"results/plan_004_perturbed_test.jsonl\\\", \\\"checkpoint_path\\\": \\\"checkpoints/plan_003_scrambled_retrain\\\", \\\"log_path\\\": \\\"runs/persuasion_turn_jailbreak_detect/plan_003_scrambled_retrain.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"deberta_training\\\": {\\\"epochs\\\": 4, \\\"best_epoch\\\": 4, \\\"val_persuasion_acc\\\": 0.613, \\\"val_intent_acc\\\": 0.967, \\\"val_loss\\\": 1.127}, \\\"iid_test_f1_full\\\": 1, \\\"perturbation_delta_full\\\": 0, \\\"perturbation_clean_f1_full\\\": 0.333, \\\"perturbation_perturbed_f1_full\\\": 0.333, \\\"note\\\": \\\"Delta=0 is misleading: model predicts all-benign on OOD perturbed test set (F1=0.333), unlike 9-class persuasion which achieves F1=1.0 on both clean and perturbed. Scrambled model overfits to IID distribution.\\\"}, \\\"completed_at\\\": \\\"2026-05-18T07:08:18.366Z\\\"}, \\\"plan_003_scrambled_retrain\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T07:03:06.735Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:03:38.880Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate base && cd /root/persuasion_turn_jailbreak_detect &&\n…[truncated 48576 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "Read",
+            "elapsed_ms": 2
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T07:12:03.274866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "cat /root/persuasion_turn_jailbreak_detect/src/plan_006_cross_attack_eval.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T07:12:03.275464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Plan 006: Cross-attack generalization evaluation.\\\\nTreatment (Crescendo-trained) vs Baseline on unseen attacks (FITD / DD).\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport sys\\\\nimport json\\\\nimport random\\\\nimport numpy as np\\\\nimport torch\\\\nfrom pathlib import Path\\\\nfrom sklearn.feature_extraction.text import TfidfVectorizer\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.metrics import f1_score, precision_score, recall_score, roc_curve\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/persuasion_turn_jailbreak_detect\\\\\\\")\\\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\\\nfrom src.models.gru_classifier import GRUClassifier\\\\nfrom transformers import AutoTokenizer, AutoModel\\\\n\\\\nPROJ = Path(\\\\\\\"/root/persuasion_turn_jailbreak_detect\\\\\\\")\\\\nDEVICE_T = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\nDEVICE_B = torch.device(\\\\\\\"cuda:1\\\\\\\")\\\\nMODEL_NAME = \\\\\\\"microsoft/deberta-v3-base\\\\\\\"\\\\nMAX_LENGTH = 256\\\\nSEED = 42\\\\n\\\\nrandom.seed(SEED)\\\\nnp.random.seed(SEED)\\\\ntorch.manual_seed(SEED)\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(l) for l in f if l.strip()]\\\\n\\\\n\\\\ndef extract_user_turns(conv):\\\\n    return [t[\\\\\\\"content\\\\\\\"] for t in conv[\\\\\\\"turns\\\\\\\"] if t[\\\\\\\"role\\\\\\\"] == \\\\\\\"user\\\\\\\"]\\\\n\\\\n\\\\ndef get_label(conv):\\\\n    return 1 if conv[\\\\\\\"label\\\\\\\"] == \\\\\\\"jailbreak\\\\\\\" else 0\\\\n\\\\n\\\\ndef load_treatment_encoder():\\\\n    model = DeBERTaMultiTask(model_name=MODEL_NAME, num_persuasion_classes=9)\\\\n    sd = torch.load(PROJ / \\\\\\\"checkpoints/plan_002/deberta_multitask/best/model.pt\\\\\\\", map_location=\\\\\\\"cpu\\\\\\\")\\\\n    model.load_state_dict(sd)\\\\n    enc = model.deberta.to(DEVICE_T).eval()\\\\n    for p in enc.parameters():\\\\n        p.requires_grad = False\\\\n    return enc\\\\n\\\\n\\\\ndef load_baseline_encoder():\\\\n    enc = AutoModel.from_pretrained(MODEL_NAME, torch_dtype=torch.float32).to(DEVICE_B).eval()\\\\n    for p in enc.parameters():\\\\n        p.requires_grad = False\\\\n \n…[truncated 7100 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T07:12:03.275712+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "ls /root/persuasion_turn_jailbreak_detect/src/models/",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T07:12:03.275867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\nbaseline.py\\\\ndeberta_multitask.py\\\\ndeberta_sentiment.py\\\\ndeberta_topic.py\\\\ngru_classifier.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T07:12:03.276212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "cat /root/persuasion_turn_jailbreak_detect/src/models/deberta_multitask.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T07:12:03.276403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"DeBERTa multi-task model for persuasion strategy + jailbreak intent classification.\\\\n\\\\nInput: tokenized user turn\\\\nOutput: persuasion logits (9-class), intent logits (binary), CLS embedding\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom transformers import AutoModel, AutoConfig\\\\n\\\\n\\\\nclass DeBERTaMultiTask(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"DeBERTa-v3-base with two classification heads.\\\\n\\\\n    Head A: 9-class persuasion strategy (0=none + 8 strategies)\\\\n    Head B: binary jailbreak intent per turn\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(\\\\n        self,\\\\n        model_name: str = \\\\\\\"microsoft/deberta-v3-base\\\\\\\",\\\\n        num_persuasion_classes: int = 9,\\\\n        dropout: float = 0.1,\\\\n    ):\\\\n        super().__init__()\\\\n        self.config = AutoConfig.from_pretrained(model_name)\\\\n        self.deberta = AutoModel.from_pretrained(model_name, dtype=torch.float32)\\\\n        hidden_size = self.config.hidden_size\\\\n\\\\n        self.dropout = nn.Dropout(dropout)\\\\n        self.persuasion_head = nn.Linear(hidden_size, num_persuasion_classes)\\\\n        self.intent_head = nn.Linear(hidden_size, 2)\\\\n\\\\n    def forward(\\\\n        self,\\\\n        input_ids: torch.Tensor,\\\\n        attention_mask: torch.Tensor,\\\\n        persuasion_labels: torch.Tensor = None,\\\\n        intent_labels: torch.Tensor = None,\\\\n        alpha: float = 0.3,\\\\n    ):\\\\n        outputs = self.deberta(input_ids=input_ids, attention_mask=attention_mask)\\\\n        cls_emb = outputs.last_hidden_state[:, 0, :]  # CLS token\\\\n        cls_emb = self.dropout(cls_emb)\\\\n\\\\n        persuasion_logits = self.persuasion_head(cls_emb)\\\\n        intent_logits = self.intent_head(cls_emb)\\\\n\\\\n        loss = None\\\\n        if persuasion_labels is not None and intent_labels is not None:\\\\n            ce = nn.CrossEntropyLoss()\\\\n            loss_persuasion = ce(persuasion_logits, persuasion_labels)\\\\n            loss_intent \n…[truncated 787 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T07:12:03.276678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-33183",
+              "account": "root",
+              "command": "cat > /root/persuasion_turn_jailbreak_detect/src/plan_002_seed456_dd_eval.py << 'SCRIPT_EOF'\n\"\"\"Plan 002 seed=456: DD OOD evaluation for persuasion treatment model.\"\"\"\n\nimport sys\nimport json\nimport random\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom sklearn.metrics import f1_score, precision_score, recall_score\n\nsys.path.insert(0, \"/root/persuasion_turn_jailbreak_detect\")\nfrom src.models.deberta_multitask import DeBERTaMultiTask\nfrom src.models.gru_classifier import GRUClassifier\nfrom transformers import AutoTokenizer\n\nPROJ = Path(\"/root/persuasion_turn_jailbreak_detect\")\nDEVICE = torch.device(\"cuda:0\")\nMODEL_NAME = \"microsoft/deberta-v3-base\"\nMAX_LENGTH = 256\nSEED = 456\nEVAL_SEED = 42\n\nrandom.seed(EVAL_SEED)\nnp.random.seed(EVAL_SEED)\ntorch.manual_seed(EVAL_SEED)\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(l) for l in f if l.strip()]\n\n\ndef extract_user_turns(conv):\n    return [t[\"content\"] for t in conv[\"turns\"] if t[\"role\"] == \"user\"]\n\n\ndef get_label(conv):\n    return 1 if conv[\"label\"] == \"jailbreak\" else 0\n\n\ndef load_treatment_encoder(ckpt_path):\n    model = DeBERTaMultiTask(model_name=MODEL_NAME, num_persuasion_classes=9)\n    sd = torch.load(ckpt_path, map_location=\"cpu\")\n    model.load_state_dict(sd)\n    enc = model.deberta.to(DEVICE).eval()\n    for p in enc.parameters():\n        p.requires_grad = False\n    return enc\n\n\ndef load_gru(path, embed_dim=768):\n    gru = GRUClassifier(input_dim=embed_dim, hidden_dim=256, num_layers=2, dropout=0.3)\n    gru.load_state_dict(torch.load(path, map_location=\"cpu\"))\n    gru.to(DEVICE).eval()\n    return gru\n\n\ndef embed_turns(encoder, tokenizer, turns, k=None):\n    t = turns[:k] if k is not None else turns\n    if len(t) == 0:\n        t = [\"\"]\n    enc = tokenizer(t, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\"pt\").to(DEVICE)\n    with torch.no_grad():\n        out = encoder(input_ids=enc[\"input_ids\"], attention_mask=enc[\"attention_mask\"])\n        return out.last_hidden_state[:, 0, :]\n\n\ndef eval_set(encoder, gru, tokenizer, convs, k=None):\n    all_preds, all_labels = [], []\n    for c in convs:\n        turns = extract_user_turns(c)\n        embs = embed_turns(encoder, tokenizer, turns, k=k)\n        embs_batch = embs.unsqueeze(0)\n        lens = torch.tensor([embs.size(0)], device=DEVICE)\n        with torch.no_grad():\n            logits = gru(embs_batch, lens)\n        pred = logits.argmax(dim=1).item()\n        all_preds.append(pred)\n        all_labels.append(get_label(c))\n    return {\n        \"f1_macro\": float(f1_score(all_labels, all_preds, average=\"macro\")),\n        \"precision\": float(precision_score(all_labels, all_preds, zero_division=0)),\n        \"recall\": float(recall_score(all_labels, all_preds, zero_division=0)),\n        \"accuracy\": float(sum(p == l for p, l in zip(all_preds, all_labels)) / len(all_labels)),\n    }\n\n\ndef main():\n    ckpt_dir = PROJ / \"checkpoints/plan_002_seed456\"\n    deberta_ckpt = ckpt_dir / \"deberta_multitask/best/model.pt\"\n    gru_ckpt = ckpt_dir / \"gru/treatment/best.pt\"\n\n    print(f\"Plan 002 seed={SEED} DD OOD Evaluation\")\n    print(f\"DeBERTa: {deberta_ckpt}\")\n    print(f\"GRU: {gru_ckpt}\")\n\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)\n    encoder = load_treatment_encoder(str(deberta_ckpt))\n    gru = load_gru(str(gru_ckpt))\n\n    dd_convs = load_jsonl(PROJ / \"data/generated/deceptive_delight_all.jsonl\")\n    test_data = load_jsonl(PROJ / \"data/plan_002_splits/test.jsonl\")\n    test_benign = [c for c in test_data if c[\"label\"] == \"benign\"]\n    dd_test = dd_convs + test_benign\n    print(f\"\\nDD OOD: {len(dd_convs)} jailbreak + {len(test_benign)} benign = {len(dd_test)}\")\n\n    results = {\"dd_ood\": {}, \"iid\": {}}\n    k_values = [1, 2, 3, 5]\n\n    print(\"\\n=== DD OOD Evaluation ===\")\n    r_full = eval_set(encoder, gru, tokenizer, dd_test)\n    print(f\"  Full: F1={r_full['f1_macro']:.4f} P={r_full['precision']:.4f} R={r_full['recall']:.4f}\")\n    results[\"dd_ood\"][\"full\"] = r_full\n    for k in k_values:\n        r_k = eval_set(encoder, gru, tokenizer, dd_test, k=k)\n        print(f\"  K={k}: F1={r_k['f1_macro']:.4f} P={r_k['precision']:.4f} R={r_k['recall']:.4f}\")\n        results[\"dd_ood\"][f\"k={k}\"] = r_k\n\n    print(\"\\n=== IID Evaluation (sanity check) ===\")\n    r_iid = eval_set(encoder, gru, tokenizer, test_data)\n    print(f\"  Full: F1={r_iid['f1_macro']:.4f} P={r_iid['precision']:.4f} R={r_iid['recall']:.4f}\")\n    results[\"iid\"][\"full\"] = r_iid\n    for k in k_values:\n        r_k = eval_set(encoder, gru, tokenizer, test_data, k=k)\n        print(f\"  K={k}: F1={r_k['f1_macro']:.4f} P={r_k['precision']:.4f} R={r_k['recall']:.4f}\")\n        results[\"iid\"][f\"k={k}\"] = r_k\n\n    ref_seed42 = {\"k=1\": 1.0, \"k=2\": 0.9904, \"k=3\": 0.9904, \"k=5\": 1.0, \"full\": 1.0}\n\n    print(\"\\n\" + \"=\" * 60)\n    print(f\"SUMMARY: plan_002 seed={SEED} vs seed=42 (DD OOD)\")\n    print(\"=\" * 60)\n    print(f\"{'K':<6} {'seed456':>10} {'seed42':>10}\")\n    print(\"-\" * 30)\n    for k_label in [\"k=1\", \"k=2\", \"k=3\", \"k=5\", \"full\"]:\n        f1_456 = results[\"dd_ood\"][k_label][\"f1_macro\"]\n        f1_42 = ref_seed42.get(k_label, \"N/A\")\n        print(f\"{k_label:<6} {f1_456:>10.4f} {f1_42:>10.4f}\")\n\n    out = {\n        \"experiment\": \"plan_002_seed456_dd_ood\",\n        \"seed\": SEED,\n        \"eval_seed\": EVAL_SEED,\n        \"dd_ood_results\": results[\"dd_ood\"],\n        \"iid_results\": results[\"iid\"],\n        \"reference_seed42\": ref_seed42,\n    }\n    out_path = PROJ / \"results/plan_002_seed456_dd_ood.json\"\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(out_path, \"w\") as f:\n        json.dump(out, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script created successfully\""
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-18T07:12:03.276884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script created successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-18T07:12:03.277039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-33183",
+              "account": "root",
+              "command": "cd /root/persuasion_turn_jailbreak_detect && PYTHONUNBUFFERED=1 CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/hf_cache HF_HUB_OFFLINE=1 /root/miniconda3/bin/python -u src/plan_002_seed456_dd_eval.py",
+              "warn": "True"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-18T07:12:03.277269+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Plan 002 seed=456 DD OOD Evaluation\\\\nDeBERTa: /root/persuasion_turn_jailbreak_detect/checkpoints/plan_002_seed456/deberta_multitask/best/model.pt\\\\nGRU: /root/persuasion_turn_jailbreak_detect/checkpoints/plan_002_seed456/gru/treatment/best.pt\\\\n\\\\nDD OOD: 80 jailbreak + 38 benign = 118\\\\n\\\\n=== DD OOD Evaluation ===\\\\n  Full: F1=0.9904 P=1.0000 R=0.9875\\\\n  K=1: F1=0.9715 P=1.0000 R=0.9625\\\\n  K=2: F1=0.9622 P=1.0000 R=0.9500\\\\n  K=3: F1=0.9350 P=1.0000 R=0.9125\\\\n  K=5: F1=0.9904 P=1.0000 R=0.9875\\\\n\\\\n=== IID Evaluation (sanity check) ===\\\\n  Full: F1=1.0000 P=1.0000 R=1.0000\\\\n  K=1: F1=1.0000 P=1.0000 R=1.0000\\\\n  K=2: F1=1.0000 P=1.0000 R=1.0000\\\\n  K=3: F1=1.0000 P=1.0000 R=1.0000\\\\n  K=5: F1=1.0000 P=1.0000 R=1.0000\\\\n\\\\n============================================================\\\\nSUMMARY: plan_002 seed=456 vs seed=42 (DD OOD)\\\\n============================================================\\\\nK         seed456     seed42\\\\n------------------------------\\\\nk=1        0.9715     1.0000\\\\nk=2        0.9622     0.9904\\\\nk=3        0.9350     0.9904\\\\nk=5        0.9904     1.0000\\\\nfull       0.9904     1.0000\\\\n\\\\nResults saved to /root/persuasion_turn_jailbreak_detect/results/plan_002_seed456_dd_ood.json\\\\n\\\", \\\"stderr\\\": \\\"[transformers] The tokenizer you are loading from 'microsoft/deberta-v3-base' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\\\n\\\\rLoading weights:   0%|          | 0/198 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 198/198 [00:00<00:00, 3515.82it/s]\\\\n[transformers] \\\\u001b[1mDebertaV2Model LOAD REPORT\\\\u001b[0m from: microsoft/deberta-v3-base\\\\nKey                                     | Status     |  | \\\\n----------------------------------------+---\n…[truncated 903 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-18T07:12:03.277569+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan_002_seed456",
+              "field": "metrics",
+              "value": "{'treatment_k1_f1': 1, 'treatment_k2_f1': 1, 'treatment_k3_f1': 1, 'treatment_k5_f1': 1, 'treatment_full_f1': 1, 'baseline_k1_f1': 0.9296, 'baseline_k2_f1': 0.9589, 'baseline_k3_f1': 0.9867, 'baseline_k5_f1': 0.9867, 'baseline_full_f1': 1, 'tfidf_all_k_f1': 1, 'deberta_best_epoch': 2, 'deberta_persuasion_acc': 0.8593, 'deberta_intent_acc': 1, 'dd_ood_full_f1': 0.9904, 'dd_ood_k1_f1': 0.9715, 'dd_ood_k2_f1': 0.9622, 'dd_ood_k3_f1': 0.935, 'dd_ood_k5_f1': 0.9904, 'dd_ood_precision_all_k': 1, 'dd_ood_recall_full': 0.9875, 'dd_ood_recall_k1': 0.9625, 'dd_ood_recall_k2': 0.95, 'dd_ood_recall_k3': 0.9125, 'dd_ood_recall_k5': 0.9875, 'iid_sanity_all_f1': 1}",
+              "project": "persuasion_turn_jailbreak_detect"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-18T07:12:03.277880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_002_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T01:12:15.664Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:11:07.071Z\\\", \\\"hypothesis\\\": \\\"Reproduce plan_002 with seed=456 to confirm stability of persuasion-grounded DeBERTa detection advantage over vanilla baseline across random seeds\\\", \\\"parent\\\": \\\"plan_002_clean_training\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/train_deberta.py + train_classifier.py + eval_early_detection.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/plan_002_splits/\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"DeBERTa-v3-base + BiGRU\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"checkpoints/plan_002_seed456/\\\", \\\"eval_data\\\": \\\"data/plan_002_splits/test.jsonl\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"treatment_k1_f1\\\": 1, \\\"treatment_k2_f1\\\": 1, \\\"treatment_k3_f1\\\": 1, \\\"treatment_k5_f1\\\": 1, \\\"treatment_full_f1\\\": 1, \\\"baseline_k1_f1\\\": 0.9296, \\\"baseline_k2_f1\\\": 0.9589, \\\"baseline_k3_f1\\\": 0.9867, \\\"baseline_k5_f1\\\": 0.9867, \\\"baseline_full_f1\\\": 1, \\\"tfidf_all_k_f1\\\": 1, \\\"deberta_best_epoch\\\": 2, \\\"deberta_persuasion_acc\\\": 0.8593, \\\"deberta_intent_acc\\\": 1, \\\"dd_ood_full_f1\\\": 0.9904, \\\"dd_ood_k1_f1\\\": 0.9715, \\\"dd_ood_k2_f1\\\": 0.9622, \\\"dd_ood_k3_f1\\\": 0.935, \\\"dd_ood_k5_f1\\\": 0.9904, \\\"dd_ood_precision_all_k\\\": 1, \\\"dd_ood_recall_full\\\": 0.9875, \\\"dd_ood_recall_k1\\\": 0.9625, \\\"dd_ood_recall_k2\\\": 0.95, \\\"dd_ood_recall_k3\\\": 0.9125, \\\"dd_ood_recall_k5\\\": 0.9875, \\\"iid_sanity_all_f1\\\": 1}, \\\"failure_reason\\\": \\\"startup recovery: RUNNING with no cron and no server/pid info\\\", \\\"completed_at\\\": \\\"2026-05-18T02:11:24.081Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2967}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-18T07:12:03.278090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "plan_002_seed456_dd_ood",
+              "type": "data",
+              "description": "DD OOD evaluation results for plan_002 seed=456 persuasion treatment model",
+              "project": "persuasion_turn_jailbreak_detect",
+              "exp_id": "plan_002_seed456",
+              "source_path": "/root/persuasion_turn_jailbreak_detect/results/plan_002_seed456_dd_ood.json",
+              "tags": "['dd_ood', 'seed456', 'plan_002', 'evaluation']"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-18T07:12:03.278654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/persuasion_turn_jailbreak_detect/results/plan_002_seed456_dd_ood.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-18T07:12:03.278830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-33183",
+              "command": "cat /root/persuasion_turn_jailbreak_detect/results/plan_002_seed456_dd_ood.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-18T07:12:03.279357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"plan_002_seed456_dd_ood\\\\\\\",\\\\n  \\\\\\\"seed\\\\\\\": 456,\\\\n  \\\\\\\"eval_seed\\\\\\\": 42,\\\\n  \\\\\\\"dd_ood_results\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"f1_macro\\\\\\\": 0.9903618394184432,\\\\n      \\\\\\\"precision\\\\\\\": 1.0,\\\\n      \\\\\\\"recall\\\\\\\": 0.9875,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.9915254237288136\\\\n    },\\\\n    \\\\\\\"k=1\\\\\\\": {\\\\n      \\\\\\\"f1_macro\\\\\\\": 0.9714585181004596,\\\\n      \\\\\\\"precision\\\\\\\": 1.0,\\\\n      \\\\\\\"recall\\\\\\\": 0.9625,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.9745762711864406\\\\n    },\\\\n    \\\\\\\"k=2\\\\\\\": {\\\\n      \\\\\\\"f1_macro\\\\\\\": 0.9621794871794871,\\\\n      \\\\\\\"precision\\\\\\\": 1.0,\\\\n      \\\\\\\"recall\\\\\\\": 0.95,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.9661016949152542\\\\n    },\\\\n    \\\\\\\"k=3\\\\\\\": {\\\\n      \\\\\\\"f1_macro\\\\\\\": 0.9349555083077408,\\\\n      \\\\\\\"precision\\\\\\\": 1.0,\\\\n      \\\\\\\"recall\\\\\\\": 0.9125,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.940677966101695\\\\n    },\\\\n    \\\\\\\"k=5\\\\\\\": {\\\\n      \\\\\\\"f1_macro\\\\\\\": 0.9903618394184432,\\\\n      \\\\\\\"precision\\\\\\\": 1.0,\\\\n      \\\\\\\"recall\\\\\\\": 0.9875,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.9915254237288136\\\\n    }\\\\n  },\\\\n  \\\\\\\"iid_results\\\\\\\": {\\\\n    \\\\\\\"full\\\\\\\": {\\\\n      \\\\\\\"f1_macro\\\\\\\": 1.0,\\\\n      \\\\\\\"precision\\\\\\\": 1.0,\\\\n      \\\\\\\"recall\\\\\\\": 1.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"k=1\\\\\\\": {\\\\n      \\\\\\\"f1_macro\\\\\\\": 1.0,\\\\n      \\\\\\\"precision\\\\\\\": 1.0,\\\\n      \\\\\\\"recall\\\\\\\": 1.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"k=2\\\\\\\": {\\\\n      \\\\\\\"f1_macro\\\\\\\": 1.0,\\\\n      \\\\\\\"precision\\\\\\\": 1.0,\\\\n      \\\\\\\"recall\\\\\\\": 1.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"k=3\\\\\\\": {\\\\n      \\\\\\\"f1_macro\\\\\\\": 1.0,\\\\n      \\\\\\\"precision\\\\\\\": 1.0,\\\\n      \\\\\\\"recall\\\\\\\": 1.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"k=5\\\\\\\": {\\\\n      \\\\\\\"f1_macro\\\\\\\": 1.0,\\\\n      \\\\\\\"precision\\\\\\\": 1.0,\\\\n      \\\\\\\"recall\\\\\\\": 1.0,\\\\n      \\\\\\\"accuracy\\\\\\\": 1.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"reference_seed42\\\\\\\": {\\\\n    \\\\\\\"k=1\\\\\\\": 1.0,\\\\n    \\\\\\\"k=2\\\\\\\": 0.9904,\n…[truncated 189 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-18T07:12:03.280293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "plan_002_seed456_dd_ood",
+              "type": "data",
+              "description": "DD OOD evaluation results for plan_002 seed=456 persuasion treatment model",
+              "project": "persuasion_turn_jailbreak_detect",
+              "exp_id": "plan_002_seed456",
+              "content": "{\"experiment\": \"plan_002_seed456_dd_ood\", \"seed\": 456, \"eval_seed\": 42, \"dd_ood_results\": {\"full\": {\"f1_macro\": 0.9904, \"precision\": 1.0, \"recall\": 0.9875, \"accuracy\": 0.9915}, \"k=1\": {\"f1_macro\": 0.9715, \"precision\": 1.0, \"recall\": 0.9625, \"accuracy\": 0.9746}, \"k=2\": {\"f1_macro\": 0.9622, \"precision\": 1.0, \"recall\": 0.95, \"accuracy\": 0.9661}, \"k=3\": {\"f1_macro\": 0.935, \"precision\": 1.0, \"recall\": 0.9125, \"accuracy\": 0.9407}, \"k=5\": {\"f1_macro\": 0.9904, \"precision\": 1.0, \"recall\": 0.9875, \"accuracy\": 0.9915}}, \"iid_results\": {\"full\": {\"f1_macro\": 1.0}, \"k=1\": {\"f1_macro\": 1.0}, \"k=2\": {\"f1_macro\": 1.0}, \"k=3\": {\"f1_macro\": 1.0}, \"k=5\": {\"f1_macro\": 1.0}}, \"reference_seed42\": {\"k=1\": 1.0, \"k=2\": 0.9904, \"k=3\": 0.9904, \"k=5\": 1.0, \"full\": 1.0}}",
+              "content_filename": "plan_002_seed456_dd_ood.json",
+              "tags": "['dd_ood', 'seed456', 'plan_002', 'evaluation']"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-18T07:12:03.280527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment': 'plan_002_...k=5': 1.0, 'full': 1.0}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-18T07:12:03.281383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "plan_002_seed456_dd_ood",
+              "type": "data",
+              "description": "DD OOD evaluation results for plan_002 seed=456 persuasion treatment model. Full F1=0.9904, K1=0.9715, K2=0.9622, K3=0.935, K5=0.9904. Precision=1.0 across all K.",
+              "project": "persuasion_turn_jailbreak_detect",
+              "exp_id": "plan_002_seed456",
+              "content": "{\n  \"experiment\": \"plan_002_seed456_dd_ood\",\n  \"seed\": 456,\n  \"eval_seed\": 42,\n  \"dd_ood_full_f1\": 0.9904,\n  \"dd_ood_k1_f1\": 0.9715,\n  \"dd_ood_k2_f1\": 0.9622,\n  \"dd_ood_k3_f1\": 0.935,\n  \"dd_ood_k5_f1\": 0.9904,\n  \"precision_all_k\": 1.0,\n  \"iid_all_f1\": 1.0,\n  \"ref_seed42_full\": 1.0,\n  \"results_path\": \"/root/persuasion_turn_jailbreak_detect/results/plan_002_seed456_dd_ood.json\"\n}",
+              "content_filename": "plan_002_seed456_dd_ood.json",
+              "tags": "['dd_ood', 'seed456', 'plan_002', 'evaluation']"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-18T07:12:03.281965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment': 'plan_002_...02_seed456_dd_ood.json'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-18T07:12:03.282146+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "plan_002_seed456_dd_ood",
+              "type": "data",
+              "description": "DD OOD evaluation results for plan_002 seed=456 persuasion treatment model. Full F1=0.9904, K1=0.9715, K2=0.9622, K3=0.935, K5=0.9904.",
+              "project": "persuasion_turn_jailbreak_detect",
+              "exp_id": "plan_002_seed456",
+              "content": "{\"experiment\":\"plan_002_seed456_dd_ood\",\"seed\":456,\"eval_seed\":42,\"dd_ood_full_f1\":0.9904,\"dd_ood_k1_f1\":0.9715,\"dd_ood_k2_f1\":0.9622,\"dd_ood_k3_f1\":0.935,\"dd_ood_k5_f1\":0.9904,\"precision_all_k\":1.0,\"iid_all_f1\":1.0}",
+              "content_filename": "plan_002_seed456_dd_ood.json",
+              "tags": "['dd_ood', 'seed456', 'plan_002', 'evaluation']"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-18T07:12:03.282294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment': 'plan_002_... 1.0, 'iid_all_f1': 1.0}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-18T07:12:03.282440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "plan_002_seed456_dd_ood_results",
+              "type": "data",
+              "description": "DD OOD evaluation results for plan_002 seed=456 persuasion treatment model. Full F1=0.9904, K1=0.9715, K2=0.9622, K3=0.935, K5=0.9904.",
+              "project": "persuasion_turn_jailbreak_detect",
+              "exp_id": "plan_002_seed456",
+              "tags": "['dd_ood', 'seed456', 'plan_002', 'evaluation']",
+              "url": "file:///root/persuasion_turn_jailbreak_detect/results/plan_002_seed456_dd_ood.json"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-18T07:12:03.284041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_689cf7\\\", \\\"name\\\": \\\"plan_002_seed456_dd_ood_results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"DD OOD evaluation results for plan_002 seed=456 persuasion treatment model. Full F1=0.9904, K1=0.9715, K2=0.9622, K3=0.935, K5=0.9904.\\\", \\\"path\\\": null, \\\"url\\\": \\\"file:///root/persuasion_turn_jailbreak_detect/results/plan_002_seed456_dd_ood.json\\\", \\\"project\\\": \\\"persuasion_turn_jailbreak_detect\\\", \\\"exp_id\\\": \\\"plan_002_seed456\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T07:11:52.976830+00:00\\\", \\\"tags\\\": [\\\"dd_ood\\\", \\\"seed456\\\", \\\"plan_002\\\", \\\"evaluation\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 1
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-18T07:12:03.284297+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**结果汇总 — plan_002 9-class persuasion treatment DD OOD (2 seeds)**:\n\n| K | seed=42 | seed=456 |\n|---|---------|----------|\n| k=1 | 1.0000 | 0.9715 |\n| k=2 | 0.9904 | 0.9622 |\n| k=3 | 0.9904 | 0.9350 |\n| k=5 | 1.0000 | 0.9904 |\n| full | 1.0000 | 0.9904 |\n\n**核心发现**：\n- seed=456 DD OOD F1 全面 >0.93，precision=1.0（无误报），仅有少量漏检\n- 与 seed=42 的 F1=1.0 相比确实存在方差，但幅度远小于 control variants（MLM std=0.115, Topic std=0.207）\n- 2-seed 的 DD OOD Full F1 均值 = 0.9952，最差 K=3 也有 0.935\n- **核心 claim 安全**：9-class treatment 的跨攻击泛化优势在多 seed 下稳定，不像 control 那样出现大幅波动"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan002-seed456-dd-ood_20260518T070820"
+          },
+          "id": "event-000053"
+        }
+      ],
+      "message_count": 53
+    }
+  ],
+  "readable_path": "readable/conversations/eval-plan002-seed456-dd-ood.md"
+}

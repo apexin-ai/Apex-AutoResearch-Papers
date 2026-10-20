@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "029d4ee2541026f9dd77",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "ops anon repo push",
+  "task_key": "worker_ops_anon-repo-push_20260523T131451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anon-repo-push_20260523T131451_result.json",
+    "occurrence": 1,
+    "bytes": 1131,
+    "sha256": "6d653eadb095c512d949caa304b4e66a91da4e87cd405cf853f8ea1ccbcbe102"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**报告：**\n\n| 项目 | 值 |\n|------|-----|\n| Repo URL | https://github.com/anonymous-nlp-2026/persuasion_turn_jailbreak_detect |\n| 文件数量 | 579 |\n| Commit hash | `74298e0` |\n| 总大小 | 23M |\n| Git author | Anonymous \\<anonymous@example.com\\> |\n\n**匿名化处理：**\n- API key（`tum_XXB3sZI...`）→ `YOUR_API_KEY`（2个文件：`llm_judge_gpt41.py`, `llm_judge_gpt55.py`）\n- `/root/autodl-tmp/hf_cache` → `./cache`\n- `/root/persuasion_turn_jailbreak_detect` → `.`\n- `/root/miniconda3/bin/python` → `python3`\n- `hf-mirror.com` → `huggingface.co`\n- 本地 DeBERTa snapshot 路径 → `microsoft/deberta-v3-base`\n- 本地 RoBERTa/BERT 路径 → 标准 HuggingFace model name\n- 删除了 `.bak`、`.disabled` 等无用文件\n- 补拉了 `src/data/`（dataset.py, collator.py）因 rsync 排除了 `data/`\n\n**未包含：** `paper/`、`data/`、`checkpoints/`、`docs/`、`figures/`、`artifacts/`（除 results JSON）\n\n**未发现的敏感项：** 个人姓名（caoxiaoyu、周俊伟、张默涵、曹晓玉）均未出现在代码中，无需替换。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anon-repo-push.md"
+}

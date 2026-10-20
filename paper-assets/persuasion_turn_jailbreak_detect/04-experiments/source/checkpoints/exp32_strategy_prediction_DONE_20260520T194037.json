@@ -1,0 +1,60 @@
+{
+  "exp_id": "exp32_strategy_prediction",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:29:25.369Z",
+    "updated_at": "2026-05-20T19:40:37.649Z",
+    "hypothesis": "Correctly detected jailbreak conversations have higher persuasion strategy prediction accuracy than missed ones, and certain strategy types (e.g., rapport_building, emotional_manipulation) are associated with higher detection rates, because the persuasion head's ability to identify strategies is mechanistically linked to the encoder's discriminative power for downstream detection.",
+    "spec": {
+      "command": "python scripts/exp32_strategy_prediction.py",
+      "server": "westd-33183",
+      "data_path": "data/generated/deceptive_delight_all.jsonl + actorattack_all.jsonl + plan_002_splits/test.jsonl",
+      "data_count": "118+118 (80 jailbreak + 38 benign each)",
+      "model_name": "exp16_9class_deberta+bigru",
+      "seed": "42,123,456",
+      "checkpoint_source": "exp16/9class_seed{42,123,456}",
+      "eval_data": "DD OOD + AA OOD"
+    },
+    "log_path": "/tmp/exp32_strategy_prediction.log",
+    "checkpoint_path": "results/exp32_strategy_prediction.json",
+    "metrics": {
+      "dd_ood": {
+        "strategy_acc": "0.4145±0.0173",
+        "jb_strategy_acc": "0.1431±0.0260",
+        "macro_f1": "0.1626±0.0238",
+        "strategy_acc_detected": "0.1634±0.0200",
+        "strategy_acc_missed": "0.0758±0.0123",
+        "missed_per_seed": [
+          31,
+          5,
+          26
+        ],
+        "detection_rate_rapport_building": 0.7417,
+        "corr_det_prob_vs_strat_acc": "r~0.45, p<0.001"
+      },
+      "aa_ood": {
+        "strategy_acc": "0.4604±0.0114",
+        "jb_strategy_acc": "0.0682±0.0192",
+        "macro_f1": "0.1145±0.0212",
+        "strategy_acc_detected": "0.1311±0.0375",
+        "strategy_acc_missed": "0.0393±0.0142",
+        "missed_per_seed": [
+          63,
+          41,
+          66
+        ],
+        "detection_rate_authority_appeal": 0.2841,
+        "detection_rate_emotional_manipulation": 0.5238,
+        "corr_det_prob_vs_strat_acc": "r~0.24, p~0.03"
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T19:40:37.649Z"
+  },
+  "timestamp": "2026-05-20T19:40:37.814422+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d63ab1d1d47c10f9f9c1",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code toxicchat path verify",
+  "task_key": "worker_code_toxicchat-path-verify_20260520T011525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_toxicchat-path-verify_20260520T011525_result.json",
+    "occurrence": 1,
+    "bytes": 1239,
+    "sha256": "a18c8acd012480904c402b934bc52ee2a67086fb0a1841b808a7b0517e7441c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果非常清楚：\n\n## 汇报\n\n**文件对比：**\n\n| 文件 | 行数 | jailbreak | benign | 平衡度 |\n|------|------|-----------|--------|--------|\n| `toxicchat_eval.jsonl` | 408 | 204 | 204 | 50/50 ✓ |\n| `toxicchat_plan002_eval.jsonl` | 242 | 204 | 38 | 84/16 ✗ |\n| `toxicchat_balanced.jsonl` | **不存在** | — | — | — |\n\n**路径使用：**\n- exp8（原始实验）→ `data/mhj/toxicchat_eval.jsonl`（408条，平衡）\n- exp16/exp17 → `data/mhj/toxicchat_plan002_eval.jsonl`（242条，不平衡）\n\n**但切换路径并不能解决问题。** 9class_seed42 在两个文件上都很差：\n\n| 数据集 | F1 | Pred分布 | True分布 |\n|--------|-----|----------|----------|\n| plan002 (242) | **0.3099** | 37jb+205bn | 204jb+38bn |\n| balanced (408) | **0.3353** | 133jb+275bn | 204jb+204bn |\n\n模型在 ToxicChat 上严重偏向预测 benign——204 个真实 jailbreak 中，plan002 上只识别出 37 个，balanced 上只识别出 133 个。**数据路径差异不是根因，模型本身在 ToxicChat 分布上就表现很差。**\n\n可能的深层原因：ToxicChat 的 human jailbreak 模式与训练数据中的 LLM-generated 攻击差异太大，模型无法泛化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-toxicchat-path-verify.md"
+}

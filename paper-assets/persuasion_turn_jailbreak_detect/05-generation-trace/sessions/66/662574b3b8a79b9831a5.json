@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "662574b3b8a79b9831a5",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval cross attack baseline",
+  "task_key": "worker_eval_cross-attack-baseline_20260517T204805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cross-attack-baseline_20260517T204805_result.json",
+    "occurrence": 1,
+    "bytes": 1899,
+    "sha256": "3c3135253d70159a989bd67ab3026e275af8fc8c27a6fc31ea8b5801627137e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成，结果已保存到 `results/cross_attack_eval.json`。\n\n## Cross-Attack Evaluation 结果汇总\n\n**Models trained on: Crescendo (250) + v4c benign (230)**  \n**Evaluated on: FITD (80) / DD (80) / v4c benign (subset)**\n\n### Full Conversation F1 (macro)\n\n| Scenario | Treatment | Baseline | TF-IDF |\n|----------|-----------|----------|--------|\n| FITD vs benign | **1.0000** | 1.0000 | 1.0000 |\n| DD vs benign | **1.0000** | 1.0000 | 1.0000 |\n| FITD+DD vs benign | **1.0000** | 0.9937 | 1.0000 |\n\n### Early Detection (F1 macro) - FITD\n\n| K | Treatment | Baseline | TF-IDF |\n|---|-----------|----------|--------|\n| 1 | **0.9812** | 0.7483 | 0.9687 |\n| 2 | **0.9750** | 0.6866 | 1.0000 |\n| 3 | **0.9937** | 0.8465 | 1.0000 |\n| 5 | 1.0000 | 0.9875 | 1.0000 |\n\n### Early Detection (F1 macro) - DD\n\n| K | Treatment | Baseline | TF-IDF |\n|---|-----------|----------|--------|\n| 1 | 0.9812 | **1.0000** | 1.0000 |\n| 2 | 0.9875 | 1.0000 | 1.0000 |\n| 3 | 0.9937 | 1.0000 | 1.0000 |\n| 5 | 1.0000 | 1.0000 | 1.0000 |\n\n### Key Findings\n\n1. **Full conversation: 完美泛化** — 所有模型在完整对话上都达到 F1 ~1.0，OOD 攻击类型的完整对话足够区分。\n\n2. **Early detection FITD 是关键区分点** — Baseline GRU 在 K=1 和 K=2 时严重下降（F1=0.75, 0.69），recall 仅 0.53/0.43。Treatment GRU 保持 0.98+。这说明 persuasion-grounded embeddings 对 FITD 的早期检测有显著帮助。\n\n3. **DD 区分度低** — Baseline GRU 在 DD 上即使 K=1 也是完美的，说明 DD 的第一轮 user turn 本身就有足够的信号（可能风格/内容差异明显）。\n\n4. **TF-IDF 在 K>=2 时过于强** — TF-IDF 从 K=2 开始就是 1.0，这暗示 FITD/DD 与 benign 可能存在 topic/vocabulary 的分布差异（而非纯靠 persuasion pattern），需要在论文中讨论这个 confound。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cross-attack-baseline.md"
+}

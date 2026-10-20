@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "712511be605391624ec2",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "fix eval exp16 dd path",
+  "task_key": "worker_fix_eval-exp16-dd-path_20260519T162529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval-exp16-dd-path_20260519T162529_result.json",
+    "occurrence": 1,
+    "bytes": 443,
+    "sha256": "d74662ae989799e5a4102642f2b2f2c21274360edc49631cf0fd62538483b620"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### 汇报\n\n**修复完成。**\n\n- **修复前** 第 34 行：`\"dd_ood\": PROJ / \"data/dd_ood_perturbed/perturbed.jsonl\"`\n- **修复后** 第 34 行：`\"dd_ood\": PROJ / \"data/generated/deceptive_delight_all.jsonl\"`\n- docstring（第 6 行）也同步更新了。\n- `eval_exp16.py` 中已无 `dd_ood_perturbed` 残留。\n\n**eval_exp17.py 无此问题**——grep `dd_ood_perturbed` 和 `perturbed` 均无匹配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-exp16-dd-path.md"
+}

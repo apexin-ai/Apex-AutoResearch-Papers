@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "094c770b7d715aa1f605",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval plan006 cross attack",
+  "task_key": "worker_eval_plan006-cross-attack_20260517T232032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan006-cross-attack_20260517T232032_result.json",
+    "occurrence": 1,
+    "bytes": 2013,
+    "sha256": "c92e32da6df1e8decd21c9d0023dccb5e4117ac8de94d0f23f12102973f0393f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Evaluation complete. Results saved to `results/plan_006_cross_attack_eval.json`.\n\n## Results Summary\n\n| Attack | K | Treatment F1 | Baseline F1 | TF-IDF F1 | Δ(T-B) |\n|--------|------|-------------|-------------|-----------|--------|\n| **FITD** | full | 1.0000 | 1.0000 | 1.0000 | +0.0000 |\n| **FITD** | 1 | 1.0000 | 0.9902 | 1.0000 | **+0.0098** |\n| **FITD** | 2 | 1.0000 | 1.0000 | 1.0000 | +0.0000 |\n| **FITD** | 3 | 1.0000 | 1.0000 | 1.0000 | +0.0000 |\n| **DD** | full | 1.0000 | 0.2845 | 0.9439 | **+0.7155** |\n| **DD** | 1 | 1.0000 | 0.5752 | 1.0000 | **+0.4248** |\n| **DD** | 2 | 0.9904 | 0.4381 | 1.0000 | **+0.5523** |\n| **DD** | 3 | 0.9904 | 0.3596 | 0.9809 | **+0.6307** |\n| **DD** | 5 | 1.0000 | 0.3105 | 0.9904 | **+0.6895** |\n| **FITD+DD** | 1 | 1.0000 | 0.7065 | 1.0000 | **+0.2935** |\n| **FITD+DD** | 3 | 0.9919 | 0.6159 | 0.9840 | **+0.3760** |\n\n## Key Findings\n\n1. **FITD**: Both treatment and baseline near-perfect (ceiling effect). Treatment has tiny +0.98pp edge at K=1 only. FITD is too easy for both models.\n\n2. **DD (Deceptive Delight)**: **Massive treatment advantage**. Baseline collapses completely (F1=0.28 full, recall=3.75%), while treatment maintains perfect F1=1.0. This is the opposite of the prior expectation that \"DD has low distinguishability\" — the baseline GRU (with vanilla DeBERTa embeddings) simply can't detect DD at all, but persuasion-fine-tuned embeddings make it trivial.\n\n3. **TF-IDF**: Strong on both attacks (F1≥0.94), indicating lexical cues exist. But TF-IDF slightly underperforms treatment on DD K=3/K=5.\n\n4. **Pass criteria**: Technically PASS (FITD K=1 delta > 0), but the real story is DD, not FITD.\n\n**Interpretation**: The persuasion fine-tuning dramatically improves detection of Deceptive Delight (unseen attack), proving the model learned transferable structural signals. The FITD ceiling effect suggests those conversations may contain strong surface signals even without persuasion-aware embeddings."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan006-cross-attack.md"
+}

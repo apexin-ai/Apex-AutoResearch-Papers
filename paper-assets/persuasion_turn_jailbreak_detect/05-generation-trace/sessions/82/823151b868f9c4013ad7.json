@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "823151b868f9c4013ad7",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp28b data efficiency supplement",
+  "task_key": "worker_code_exp28b-data-efficiency-supplement_20260520T155601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp28b-data-efficiency-supplement_20260520T155601_result.json",
+    "occurrence": 1,
+    "bytes": 920,
+    "sha256": "bc026e99eea28705fc3c04e5aaf206433d21910794cd1958e0ac18cdc28c3e5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交，状态：\n\n- **PID**: 73186\n- **日志**: `/tmp/exp28b.log`\n- **Registry**: `exp28b_data_efficiency_supplement` → RUNNING\n- **预计时间**: ~3h（10 个 run 串行）\n\n**训练矩阵**：\n| 条件 | N=50 | N=125 | N=250 | N=350 |\n|------|------|-------|-------|-------|\n| 9-class s123 | 运行中 | pending | pending | pending |\n| 9-class s456 | pending | pending | pending | pending |\n| vanilla s42 | pending | — | pending | — |\n\n脚本设计：\n- 9-class: `data_seed=42`（相同数据子集），`model_seed=123/456`（不同模型初始化）\n- Vanilla: `data_seed=42, model_seed=42`，补 N=50 和 N=250\n- 每个 run 完成后保存中间结果到 `results/exp28b_intermediate.json`\n- 全部完成后自动合并 exp28+exp28b 到 `results/exp28_combined_data_efficiency.json`，含 mean±std 汇总\n\n可以用 `tail /tmp/exp28b.log` 随时查看进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp28b-data-efficiency-supplement.md"
+}

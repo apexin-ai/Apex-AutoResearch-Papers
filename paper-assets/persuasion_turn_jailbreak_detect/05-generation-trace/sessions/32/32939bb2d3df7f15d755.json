@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32939bb2d3df7f15d755",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code download main pdf",
+  "task_key": "worker_code_download-main-pdf_20260519T142046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_download-main-pdf_20260519T142046_result.json",
+    "occurrence": 1,
+    "bytes": 139,
+    "sha256": "99b75128321a72eebc44eab78523b533cfb4effefdd0b73a178c86d589a8c811"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成。\n\n- 远程文件：410,609 bytes，存在\n- 下载：成功\n- 本地文件：410,609 bytes，大小一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-download-main-pdf.md"
+}

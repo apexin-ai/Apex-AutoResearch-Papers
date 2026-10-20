@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp16_multi_llm",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T20:08:23.368Z",
+    "updated_at": "2026-05-19T20:08:23.368Z",
+    "spec": {
+      "command": "bash scripts/run_exp16_training.sh (vanilla GPU0, 9-class GPU1; MLM pending GPU0 after vanilla)",
+      "server": "westd-33183",
+      "data_path": "data/mixed_llm/ (350 train / 74 val / 76 test, 250 Qwen + 250 Llama)",
+      "data_count": 500,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": "42,123,456"
+    }
+  },
+  "timestamp": "2026-05-19T20:08:23.498702+00:00",
+  "trigger": "update_registry"
+}

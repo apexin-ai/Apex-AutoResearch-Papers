@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp23_aa_error_analysis",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:18:12.980Z",
+    "updated_at": "2026-05-20T14:23:12.314Z",
+    "hypothesis": "9-class DAPT errors on AA OOD are concentrated in specific topics/strategies, with short-turn conversations being harder to detect"
+  },
+  "timestamp": "2026-05-20T14:23:12.485145+00:00",
+  "trigger": "update_registry"
+}

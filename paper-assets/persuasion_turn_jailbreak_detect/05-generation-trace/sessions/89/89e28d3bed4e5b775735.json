@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89e28d3bed4e5b775735",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "viz fig1 v4 enhanced",
+  "task_key": "worker_viz_fig1_v4_enhanced_20260524T140854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig1_v4_enhanced_20260524T140854_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "e2ee6b1a1eb7b99e0f9c0f5ed528287a5d31ca8cdd2e20756686da8ebb998ef9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 v4 已完成，文件已保存到：\n\n- `docs/paper/figures/paper/fig1_architecture.pdf`\n- `docs/paper/figures/paper/fig1_architecture.png`\n- `docs/paper/figures/paper/fig1_architecture.py`\n\nStage 2 增强内容：\n- 顶部 h₁…hₖ 序列条，带蓝色 forward / 紫色 backward 双向箭头\n- BiGRU 内部 forward → / ← backward 双向隐层可视化\n- ⊕ concat 节点 + \"512\" 标注\n- MLP 内标注 \"512→256→2\"\n- BiGRU 下方 \"d=256 per dir\" 维度注释"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig1-v4-enhanced.md"
+}

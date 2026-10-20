@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93aa85bf52fc601a1d64",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan003 scrambled ablation",
+  "task_key": "worker_train_plan003-scrambled-ablation_20260517T224408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan003-scrambled-ablation_20260517T224408_result.json",
+    "occurrence": 1,
+    "bytes": 1616,
+    "sha256": "28dec893ffb722a7f2dbc3b721d8d612d2be9012b642c5150d2a2f55bd4b7f80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All results obtained. Here's the **plan_003 Scrambled-Label Ablation** summary:\n\n## Results\n\n| K | Scrambled F1 | Proper Treatment F1 (phase_b) | Baseline F1 (phase_b) |\n|---|---|---|---|\n| 1 | 0.9744 | (not tested) | (not tested) |\n| 2 | 1.0000 | 0.9867 | 0.8788 |\n| 3 | 1.0000 | 0.9867 | 0.9276 |\n| 5 | 1.0000 | 1.0000 | 0.9577 |\n| full | 1.0000 | 1.0000 | 0.9867 |\n\n## Stage 1 DeBERTa comparison\n\n| Metric | Scrambled | Proper |\n|---|---|---|\n| Val Persuasion Acc | 0.6437 | 0.7963 |\n| Val Intent Acc | 0.9674 | 0.9514 |\n| Best Val Loss | 1.0147 | 0.6164 |\n\n## Conclusion\n\n**Ablation FAILS** — scrambling strategy labels does NOT hurt end-to-end detection performance. The scrambled model matches or slightly exceeds the proper treatment at every K.\n\nKey interpretation:\n1. Strategy labels are correctly learned as noisy (0.64 vs 0.80 persuasion acc), confirming the scramble worked\n2. But the binary intent signal (jailbreak vs benign) is strong enough to carry detection performance alone\n3. The DeBERTa embeddings capture sufficient textual differences between jailbreak and benign conversations regardless of strategy label quality\n4. For this dataset and test difficulty level, the persuasion strategy signal is **redundant** for detection\n\nNote: The phase_b results used a slightly different test split (N=72 vs 73). The definitive comparison will come from plan_002's results on the identical `data/final_v2/test.jsonl`. The conclusion is unlikely to change given near-perfect performance from both.\n\nResults saved to `results/plan_003_scrambled_eval.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan003-scrambled-ablation.md"
+}

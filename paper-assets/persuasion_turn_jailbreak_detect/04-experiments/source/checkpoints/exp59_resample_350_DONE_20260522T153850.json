@@ -1,0 +1,57 @@
+{
+  "exp_id": "exp59_resample_350",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T13:31:36.220Z",
+    "updated_at": "2026-05-22T15:38:50.560Z",
+    "spec": {
+      "command": "bash scripts/exp59_run_all.sh",
+      "server": "westd-33183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "127239",
+      "log_path": "~/runs/persuasion_turn_jailbreak_detect/exp59_resample_350.log",
+      "submitted_at": "2026-05-22T13:31:35.896Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/exp59_resample/",
+      "data_count": 350,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": "42,123,456",
+      "checkpoint_path": "/root/persuasion_turn_jailbreak_detect/results/exp59_aggregate.json",
+      "wall_clock_seconds": 7634.7,
+      "gpu_hours": 2.12
+    },
+    "hypothesis": "Randomly sampling 350 conversations from expanded_1000 will show similar OOD degradation as the full 1000-sample training, confirming that the performance drop is driven by data composition changes (new attack types/benign sources) rather than sample count",
+    "conclusion": "success",
+    "metrics": {
+      "dd_ood_f1": "0.887±0.086",
+      "aa_ood_f1": "0.883±0.091",
+      "iid_f1": "0.998±0.003",
+      "dd_seeds": [
+        0.765,
+        0.948,
+        0.948
+      ],
+      "aa_seeds": [
+        0.758,
+        0.916,
+        0.974
+      ],
+      "iid_seeds": [
+        1,
+        0.993,
+        1
+      ]
+    },
+    "completed_at": "2026-05-22T15:38:50.560Z"
+  },
+  "timestamp": "2026-05-22T15:38:50.775519+00:00",
+  "trigger": "update_registry"
+}

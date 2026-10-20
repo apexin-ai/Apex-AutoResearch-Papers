@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d0c18e1db8f6a5c7bd0f",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "paper tex recovery A appendix",
+  "task_key": "worker_paper_tex_recovery_A_appendix_20260523T051344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_tex_recovery_A_appendix_20260523T051344.log",
+    "occurrence": 1,
+    "bytes": 921682,
+    "sha256": "e516f38a542184058e0a14ab16ba46fb8083f26506324177981dd73a72f68801"
+  },
+  "statistics": {
+    "messages": 171,
+    "user_turns": 0,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 64,
+      "tool_result": 64,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 171,
+      "chunks": [
+        {
+          "path": "d0c18e1db8f6a5c7bd0f-part-0001.json",
+          "message_count": 101
+        },
+        {
+          "path": "d0c18e1db8f6a5c7bd0f-part-0002.json",
+          "message_count": 70
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-tex-recovery-a-appendix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "921487615f468cfd1ce6",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "research precheck exp16 17",
+  "task_key": "worker_research_precheck-exp16-17_20260519T142345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_precheck-exp16-17_20260519T142345_result.json",
+    "occurrence": 1,
+    "bytes": 4562,
+    "sha256": "8684bf761529fdef857f1b16cbb738d642b3f5f0c94614fdad2bc1d6aeed1f7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 预检报告\n\n### 1. Llama 模型\n- **路径**: `/root/autodl-tmp/hf_cache/meta-llama/Llama-3.1-8B-Instruct/` (完整权重 + config.json)\n- **HF cache 备份**: `/root/.cache/huggingface/hub/models--meta-llama--Llama-3.1-8B-Instruct`\n- **状态**: ✅ 可用\n\n### 2. 磁盘空间\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| `/`（根） | 30G | 16G | **15G** | 51% |\n| `/root/autodl-tmp` | 350G | 91G | **260G** | 26% |\n\n- `data/` 目录: 150MB\n- `checkpoints/` 目录: 8.1G\n- **结论**: autodl-tmp 空间充足，根分区注意不要再装大包\n\n### 3. 数据生成\n\n**Crescendo 生成脚本（Qwen 版）**:\n- `scripts/generate_crescendo.py` — 原版\n- `scripts/generate_crescendo_v2.py` — v2\n- `scripts/generate_crescendo_transformers.py`\n- `scripts/generate_crescendo_part.py`\n\n**Llama 跨 LLM 生成脚本（exp14 已有）**:\n- `scripts/generate_dd_llama.py` — Deceptive Delight (Llama)\n- `scripts/generate_aa_llama.py` — ActorAttack (Llama)\n- `scripts/generate_benign_llama.py` — Benign (Llama)\n\n**数据格式** (JSONL, 每行一个对话):\n```json\n{\n  \"conversation_id\": \"crescendo_0106\",\n  \"turns\": [\n    {\"role\": \"user\", \"content\": \"...\", \"intended_strategy\": 1},\n    {\"role\": \"assistant\", \"content\": \"...\"},\n    ...\n  ],\n  \"label\": \"jailbreak\",        // \"jailbreak\" | \"benign\"\n  \"source\": \"crescendo\",        // 标识生成来源\n  \"attack_type\": \"persuasion-based\",\n  \"num_turns\": 10,\n  \"strategy_sequence\": [1, 1, 3, 3, 7, 5, 5, 5, 5, 5],\n  \"metadata\": {\"category\": \"...\", \"plain_query\": \"...\", ...}  // 可选\n}\n```\n\n**现有原始生成数据**:\n| 文件 | 行数 |\n|------|------|\n| `generated/crescendo_all.jsonl` | 250 |\n| `generated/deceptive_delight_all.jsonl` | 80 |\n| `generated/actorattack_all.jsonl` | 80 |\n\n**现有训练集规模**:\n| 数据集 | train | val | test | total |\n|--------|-------|-----|------|-------|\n| `data/` (root) | 349 | 75 | 76 | **500** |\n| `data/final_v2/` | 336 | 71 | 73 | 480 |\n| `data/plan_002_splits/` | 350 | 74 | 76 | 500 |\n\n### 4. 训练代码\n\n**Stage 1 — DeBERTa 多任务微调** (`src/train_deberta.py`):\n- 参数: `--train_data`, `--val_data`, `--model_name`(默认 deberta-v3-base), `--output_dir`, `--max_length`(256), `--batch_size`(16), `--lr`(2e-5), `--epochs`(5), `--alpha`(0.3), `--seed`, `--use_wandb`\n- 任务: 9 类 persuasion strategy + 二分类 jailbreak intent\n\n**Stage 2 — GRU 序列分类器** (`src/train_classifier.py`):\n- 参数: `--train_data`, `--val_data`, `--mode`(baseline/treatment), `--deberta_checkpoint`, `--hidden_dim`(256), `--num_layers`(2), `--dropout`(0.3), `--epochs`(20), `--batch_size`(32), `--lr`(1e-3)\n- treatment 模式需要 Stage 1 的 checkpoint\n\n**其他训练变体**: `train_deberta_binary.py`, `train_classifier_binary.py`, `train_classifier_meanpool.py`, `train_deberta_mlm.py`, `train_deberta_topic.py`\n\n**评估脚本**: `src/evaluate.py`, `src/eval_early_detection.py`, `scripts/eval_cross_llm.py`, `scripts/eval_cross_llm_control.py`\n\n### 5. exp14 Llama 数据\n路径: `data/cross_llm/`\n| 文件 | 行数 | 大小 |\n|------|------|------|\n| `dd_llama.jsonl` | 50 | 1.1MB |\n| `aa_llama.jsonl` | 50 | 689KB |\n| `benign_llama.jsonl` | 50 | 1.1MB |\n| **合计** | **150** | ~2.9MB |\n\n格式与主数据一致，`source` 字段标记为 `llama3.1-8b-deceptive-delight` 等。\n\n### 6. Qwen 模型\n| 模型 | 路径 |\n|------|------|\n| Qwen2.5-7B-Instruct | `/root/autodl-tmp/hf_cache/Qwen/Qwen2.5-7B-Instruct/` |\n| **Qwen3-8B** | `/root/autodl-tmp/hf_cache/Qwen/Qwen3-8B/` (5 个 safetensors 分片) |\n| Qwen3-30B-A3B | `/root/autodl-tmp/hf_cache/Qwen/Qwen3-30B-A3B/` |\n\n实验 B 追加生成用 **Qwen3-8B**，模型完整可用。\n\n### 7. Python 环境\n- Python 3.10.12\n- Conda: `/root/miniconda3/bin/pip`\n- 关键包: 无法通过 `pip list` 在 read_only 模式查看（被拦截）。从代码 import 推断需要: `torch`, `transformers`, `accelerate`, `wandb`\n- 无 `requirements.txt` 文件\n\n---\n\n**两组实验的可行性**:\n- **实验 A (Multi-LLM)**: Llama 模型和生成脚本均已就位，exp14 已有 150 条 Llama 数据。需新写 Crescendo-Llama 生成脚本（现有 DD/AA/benign 的 Llama 脚本可参考），然后混合训练\n- **实验 B (Dataset Scale)**: Qwen3-8B 已就位，Crescendo 生成脚本已有多个版本可复用，追加 500 条后扩展到 ~1000 条训练集"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-precheck-exp16-17.md"
+}

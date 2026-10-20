@@ -1,0 +1,67 @@
+{
+  "exp_id": "exp14b_cross_llm_control",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:19:48.670Z",
+    "updated_at": "2026-05-19T07:27:01.244Z",
+    "hypothesis": "exp14 cross-LLM failure is caused by double distribution shift (both jailbreak AND benign from Llama). By pairing Llama jailbreak with Qwen IID benign, we isolate the jailbreak detection component. If F1 recovers significantly, the failure is primarily due to Llama benign misclassification, not inability to detect Llama-style jailbreaks.",
+    "parent": "exp14_cross_llm_validation",
+    "spec": {
+      "command": "python scripts/eval_cross_llm_control.py",
+      "server": "westd-33183",
+      "data_path": "data/cross_llm/ (Llama JB) + original Qwen benign test split",
+      "data_count": "DD: 50 JB + 38 benign = 88; AA: 50 JB + 38 benign = 88",
+      "model_name": "vanilla + jb_mlm + 9class DeBERTa checkpoints",
+      "seed": "42, 123, 456",
+      "checkpoint_source": "exp14_cross_llm_validation",
+      "eval_data": "Llama jailbreak (dd_llama.jsonl + aa_llama.jsonl) paired with Qwen IID benign test split",
+      "checkpoint_path": "N/A (inference only)",
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/cross_llm_control.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "dd_full": {
+        "vanilla": 0.302,
+        "jb_mlm": 0.778,
+        "9class": 1
+      },
+      "aa_full": {
+        "vanilla": 0.302,
+        "jb_mlm": 0.903,
+        "9class": 0.801
+      },
+      "dd_k1": {
+        "vanilla": 0.319,
+        "jb_mlm": 0.965,
+        "9class": 0.935
+      },
+      "dd_k3": {
+        "vanilla": 0.302,
+        "jb_mlm": 0.996,
+        "9class": 0.977
+      },
+      "aa_k1": {
+        "vanilla": 0.443,
+        "jb_mlm": 0.927,
+        "9class": 0.832
+      },
+      "aa_k3": {
+        "vanilla": 0.302,
+        "jb_mlm": 0.988,
+        "9class": 0.8
+      },
+      "recovery_vs_exp14_dd_full": {
+        "jb_mlm": "+49.6pp",
+        "9class": "+56.7pp"
+      },
+      "note": "jb_mlm DD Full std=0.306 due to seed456 outlier (0.345)"
+    },
+    "completed_at": "2026-05-19T07:27:01.244Z"
+  },
+  "timestamp": "2026-05-19T07:27:01.361323+00:00",
+  "trigger": "update_registry"
+}

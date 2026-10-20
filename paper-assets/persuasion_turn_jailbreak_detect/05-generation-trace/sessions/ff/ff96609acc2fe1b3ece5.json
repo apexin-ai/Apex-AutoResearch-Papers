@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff96609acc2fe1b3ece5",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "audit final text numbers",
+  "task_key": "worker_audit_final_text_numbers_20260524T042755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_final_text_numbers_20260524T042755_result.json",
+    "occurrence": 1,
+    "bytes": 7396,
+    "sha256": "dfdfc9f105cf635e2d660f357b5b9144a8b9a7b1d622da1e9e161b1b82b48cc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract 共 173 words，符合 ≤200 限制。现在已收集所有必要数据，开始编制核查报告。\n\n## Abstract\n\n| 位置 | 论文数字 | Registry 来源 | Registry 值 | 一致？ | 备注 |\n|------|---------|--------------|------------|-------|------|\n| Llama Guard 1.8% | 1.8% | exp40 (5/278 pooled) | 5/278=1.80% | ✅ | |\n| 125M–355M | 125M–355M | RoBERTa-base/large | 125M, 184M, 355M | ✅ | 范围正确 |\n| F1=0.97–1.0 | 0.97–1.0 | evidence_hierarchy | 9class DD=.997, AA=.972 | ✅ | .972→0.97, .997→1.0 |\n| vanilla 0.26–0.31 | 0.26–0.31 | evidence_hierarchy | vanilla DD=.312, AA=.258 | ✅ | .258→0.26, .312→0.31 |\n| ActorAttack F1=0.504 | 0.504 | exp16/exp69 mixed-LLM | 0.504±0.107 | ✅ | |\n| ToxicChat MLM 0.837 | 0.837 | exp12 bootstrap | 0.8373 (pooled) | ✅ | pooled vs per-seed mean 略有差异，3位小数一致 |\n| ToxicChat classif 0.596 | 0.596 | exp12 bootstrap | 0.5962 (pooled) | ✅ | |\n| FPR 58–68% | 58–68% | exp51 OASST2 + exp19 WC | 57.5% / 68.1% | ✅ | 57.5%→58% 四舍五入可接受 |\n| FPR 0–1.5% | 0–1.5% | exp45 WC n=10 + exp52 OASST2 n=25 | 0% / mean 1.0%(max 1.5%) | ✅ | 报告最大值1.5% |\n| 24.3× speedup | 24.3× | exp46 | speedup_factor=24.3 | ✅ | |\n| 43× fewer params | 43× | exp46 | 8190M/186.73M=43.86 | ⚠️ | 实际43.86，向下取整至43；44更准确 |\n| Word count | — | — | 173 words | ✅ | <200 |\n\n## Introduction\n\n| 位置 | 论文数字 | Registry 来源 | Registry 值 | 一致？ | 备注 |\n|------|---------|--------------|------------|-------|------|\n| over 60pp | >60pp | evidence_hierarchy | DD gap=68.5pp, AA gap=71.4pp | ✅ | |\n| ~50pp MLM gap (mixed) | ~50pp | exp16 mixed-LLM | 0.818-0.289=52.9pp | ⚠️ | 实际~53pp, 写~50pp偏低 |\n| GPT-5.5 0.191–0.449 | 0.191–0.449 | plan_012 | K2=0.1905, K5=0.449 | ✅ | 0.1905→0.191 |\n| 30–47% unparseable | 30–47% | plan_012 | 23/76=30.3%, 36/76=47.4% | ✅ | |\n| vanilla 0.26–0.31 | 0.26–0.31 | vanilla_multiseed + exp2 | DD=.312, AA=.258 | ✅ | 同Abstract |\n| 0.97–1.0 | 0.97–1.0 | evidence_hierarchy | DD=.997, AA=.972 | ✅ | |\n| DeBERTa 1.000→0.312 | 1.000→0.312 | vanilla_multiseed | IID=1.000, DD=0.312 | ✅ | |\n| MLM mixed=0.289 ≈ vanilla | 0.289 | exp16 | MLM DD=0.289, vanilla DD=0.291 | ✅ | |\n| classif DAPT 0.818 | 0.818 | exp16 | 9class DD=0.818±0.096 | ✅ | |\n| RoBERTa-large handles AA | — | exp15 | vanilla AA=1.000 | ✅ | |\n| \\|d\\|≤0.14 on DD | ≤0.14 | exp41 TOST | cohens_d=-0.136, \\|d\\|=0.136 | ✅ | |\n| d≈0 on FITD | ≈0 | exp41 TOST | cohens_d=0 | ✅ | |\n| n=10 seeds | 10 | exp41 | n_seeds=10 | ✅ | |\n| d=0.44 AA | 0.44 | exp41 TOST | cohens_d=0.44 | ✅ | |\n| 17pp SVD removal | 17pp | exp65 | DD: 1.000→0.8308, Δ=16.92pp | ✅ | 16.92→17pp |\n| 24.3× speedup | 24.3× | exp46 | 24.3 | ✅ | |\n| 43× fewer params | 43× | exp46 | 43.86 | ⚠️ | 同Abstract |\n| 10–25 conversations | 10–25 | exp45+exp52 | WC n=10, OASST2 n=25 | ✅ | |\n| FPR 58–68%→0–1.5% | — | exp19+exp51+exp45+exp52 | — | ✅ | 同Abstract |\n\n## Discussion (conclusion.tex)\n\n| 位置 | 论文数字 | Registry 来源 | Registry 值 | 一致？ | 备注 |\n|------|---------|--------------|------------|-------|------|\n| F1=0.541±0.207 topic | 0.541±0.207 | evidence_hierarchy / exp2 | topic DD=.541±.207 | ✅ | |\n| within 3.9pp scrambled | 3.9pp | evidence_hierarchy | binary AA .990 - scrambled AA .951 = 3.9pp | ✅ | max gap between classification variants |\n| F1≥0.97 at K≤5 MLM | ≥0.97 | main_results table | MLM DD K2=.993 | ✅ | K2已满足; Full=.914 符合\"at K≤5\"约束 |\n| participation ratio 3.7–9.4 | 3.7–9.4 | exp49 | binary=3.73, scrambled=7.82, 9class=9.37 | ✅ | |\n| participation ratio 25–32 | 25–32 | exp49 | wiki_mlm=25.00, vanilla=31.93 (jb_mlm=24.56) | ⚠️ | jb_mlm=24.56偏低; 25–32仅含wiki_mlm和vanilla |\n| 17pp SVD removal | 17pp | exp65 | 1.000→0.8308=16.92pp | ✅ | |\n| +18–42pp ToxicChat | 18–42pp | exp12 / ToxicChat table | 9class-vanilla=18.3pp, MLM-vanilla=42.4pp | ✅ | 限jailbreak-domain DAPT variants |\n| 0.818 mixed-LLM 9-class | 0.818 | exp16 | 9class DD=0.818±0.096 | ✅ | |\n| RoBERTa-large vanilla AA=1.000 | 1.000 | exp15 | vanilla AA full=1.000 | ✅ | |\n| 9-class AA=0.946 | 0.946 | exp15 | 9class AA full=0.946 | ✅ | |\n| 68.1% WildChat FPR | 68.1% | exp19 | 9class mean=0.681 | ✅ | |\n| Δ≤1pp mean pooling | ≤1pp | exp13 vs evidence_hierarchy | DD: 0.6pp, AA: 1.0pp | ✅ | AA恰好=1pp, ≤成立 |\n| DD Δ=-2.5pp length | -2.5pp | exp37 part3 | DD_delta=-0.025 | ✅ | |\n| -57.9pp AA collapse | -57.9pp | exp37 part3 | AA_delta=-0.579 | ✅ | |\n| N=155 length-matched | 155 | exp67/exp37 | — | ❓ | 无法从registry直接验证N=155的来源 |\n| 0.97–1.0 vs 0.26–0.31 | — | — | — | ✅ | 同Abstract |\n| ActorAttack F1=0.504 | 0.504 | — | — | ✅ | 同Abstract |\n| ToxicChat MLM 0.837 vs 0.596 | — | — | — | ✅ | 同Abstract |\n| 58–68%→0–1.5% | — | — | — | ✅ | 同Abstract |\n| 10–25 conversations | — | — | — | ✅ | 同Abstract |\n\n## Limitations\n\n| 位置 | 论文数字 | Registry 来源 | Registry 值 | 一致？ | 备注 |\n|------|---------|--------------|------------|-------|------|\n| 350 training | 350 | experiments.tex setup | 350 | ✅ | |\n| 76–118 test | 76–118 | experiments.tex setup | IID test=76, OOD=118 | ✅ | |\n| 3 seeds | 3 | experiments.tex | seeds 42,123,456 | ✅ | |\n| 12–14pp dual-OOD drop | 12–14pp | evidence_hierarchy table | DD=14.2pp, AA=13.0pp → 13–14pp | ❌ | **应为13–14pp，12偏低1pp** |\n| n≤50 | ≤50 | exp45/exp51 | n=5,10,25,50 | ✅ | |\n| κ=0.78 | 0.78 | exp32/exp33上下文 | — | ✅ | 标注验证指标，不在registry metrics中 |\n| 184M vs 355M | 184M/355M | cross_encoder table | DeBERTa=184M, RoBERTa-large=355M | ✅ | |\n\n## 四舍五入一致性检查\n\n- **F1 值**: 全篇统一使用 3 位小数（.XXX），✅ 一致\n- **百分比**: 文中使用整数（\"60 percentage points\", \"17pp\"）或 1 位小数（\"68.1%\", \"1.5%\"），✅ 一致\n- **std 格式**: 表格统一 3 位小数，✅ 一致\n\n## 汇总\n\n**发现 1 处实质性不一致 + 3 处可接受的近似值偏差 + 1 处无法验证：**\n\n### 需要修复（1处）\n\n1. **Limitations \"12–14pp\"** → 应改为 **\"13–14pp\"**。Table evidence_hierarchy 计算：DD drop = 0.997-0.855 = 14.2pp, AA drop = 0.972-0.842 = 13.0pp。下界是 13.0pp 而非 12pp。\n\n   修复：`conclusion.tex` 第 32 行，将 `12--14\\,pp` 改为 `13--14\\,pp`。\n\n### 可接受但建议关注（3处）\n\n2. **\"43× fewer parameters\"**: 实际 43.86×，写 43× 是向下取整。如需精确可改为 \"44×\" 或 \"$\\sim$44$\\times$\"，但 43× 不算错误。\n3. **\"~50pp\" MLM gap under mixed-LLM** (Introduction): 实际 52.9pp，\"~50pp\" 偏低约 3pp。可改为 \"~53pp\" 或 \"$>$50pp\"。\n4. **participation ratio \"25–32\"**: 实际含 jb_mlm=24.56，严格范围应为 \"24.6–31.9\"。但如果 \"25–32\" 仅指 vanilla 和 wiki_mlm（非 MLM domain variants），则可接受。\n\n### 无法验证（1处）\n\n5. **N=155 length-matched evaluation**: 未在 registry 中找到直接对应该样本量的实验。建议确认来源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-final-text-numbers.md"
+}

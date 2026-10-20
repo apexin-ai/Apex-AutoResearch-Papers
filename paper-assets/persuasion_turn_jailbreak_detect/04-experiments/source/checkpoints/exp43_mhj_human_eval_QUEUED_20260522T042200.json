@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp43_mhj_human_eval",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:12:23.950Z",
+    "updated_at": "2026-05-22T04:22:00.285Z",
+    "hypothesis": "9-class DAPT representations encode transferable persuasion signals that generalize to real human multi-turn jailbreak attempts (MHJ dataset), achieving higher detection recall than vanilla DeBERTa because human attackers use similar persuasion strategies as synthetic attacks.",
+    "parent": "exp42_ood_benign_mixed"
+  },
+  "timestamp": "2026-05-22T04:22:00.500750+00:00",
+  "trigger": "update_registry"
+}

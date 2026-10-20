@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp33_strategy_prediction_plan002",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:12:05.342Z",
+    "updated_at": "2026-05-20T20:18:54.081Z",
+    "hypothesis": "Plan_002 checkpoints (主管道, AA OOD ~97%) 的策略预测-检测关联将比 exp32 (exp16 mixed-LLM checkpoints) 更强，因为 plan_002 在 AA OOD 上检测率更高，正确检测样本的策略预测准确率与检测概率的相关性也应更显著。",
+    "parent": "exp32_strategy_prediction"
+  },
+  "timestamp": "2026-05-20T20:18:54.269112+00:00",
+  "trigger": "update_registry"
+}

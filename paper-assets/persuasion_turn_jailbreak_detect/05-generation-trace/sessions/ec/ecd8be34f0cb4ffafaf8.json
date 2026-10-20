@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecd8be34f0cb4ffafaf8",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "test plan004 dryrun",
+  "task_key": "worker_test_plan004-dryrun_20260517T225030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_test_plan004-dryrun_20260517T225030_result.json",
+    "occurrence": 1,
+    "bytes": 1655,
+    "sha256": "2cd7b2e72f27a84404d826014d09dc4f8e0f3e686310790babb2fb82e0001034"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All modules verified. Here's the summary:\n\n---\n\n## Dry-Run Results\n\n### 1. `--help` 验证 ✅\n所有新参数存在：`--train_path`, `--quality_check`, `--bertscore_threshold`, `--skip_perturb`\n\n### 2. Mini Perturbation (3条) ✅\n- 27 user turns 全部成功 paraphrase，0 失败\n- Qwen3-8B 从本地缓存加载正常\n\n**示例对比：**\n| | Original | Perturbed |\n|---|---|---|\n| jailbreak | \"Hey there! I've been trying to figure out how to stay secure online...\" | \"Hey, what's up? I've been really focused on staying safe while browsing the web...\" |\n| benign | \"Could you help me with replacing a leaky faucet in my bathroom?\" | \"Can you guide me through fixing a dripping tap in my master bathroom?\" |\n\n### 3. M001 `<think>` 标签泄漏检查 ✅\n**No leakage detected.** 双重保护生效：`enable_thinking=False` + `strip_thinking()` 后处理。\n\n### 4. BERTScore 质量模块 ✅\n安装了 `bert-score` 和 `sentence-transformers` 后正常运行：\n- BERTScore F1: **0.920 ± 0.012**（高语义保持）\n- Semantic Similarity: **0.766 ± 0.112**\n- Lexical Overlap: **0.196 ± 0.044**（低词汇重叠 = aggressive paraphrase）\n- Low-quality turns filtered: **0/27**（阈值 0.6）\n\n### 5. TF-IDF Baseline 模块 ✅\n- 训练集 350 samples，训练正常\n- 原始/扰动数据上评估均可运行\n\n### 需要修复的问题\n- `torch_dtype` 参数 deprecation warning（应改为 `dtype`），不影响功能但会在 transformers 未来版本失效\n- `bert-score` 和 `sentence-transformers` 需要预先安装（代码中是 lazy import，可在 requirements 中标注）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/test-plan004-dryrun.md"
+}

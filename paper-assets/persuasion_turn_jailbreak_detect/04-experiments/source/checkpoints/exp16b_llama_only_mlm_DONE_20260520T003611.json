@@ -1,0 +1,51 @@
+{
+  "exp_id": "exp16b_llama_only_mlm",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:11:21.743Z",
+    "updated_at": "2026-05-20T00:36:11.646Z",
+    "spec": {
+      "command": "bash scripts/exp16_llama_only_mlm.sh",
+      "server": "westd-33183",
+      "data_path": "data/llama_only_splits/ (350 train / 74 val / 77 test)",
+      "data_count": 501,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": "42",
+      "gpu": "cuda:2",
+      "tmux": "exp16_llama_mlm",
+      "log_path": "logs/exp16_llama_only_mlm.log",
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "DD OOD + AA OOD after training",
+      "checkpoint_path": "checkpoints/exp16_llama_only_mlm/mlm_gru_seed42/baseline/"
+    },
+    "hypothesis": "MLM DAPT on Llama-only data (250 conversations) will produce stable intermediate performance between vanilla and 9-class on DD OOD and AA OOD, distinguishing whether MLM instability in exp16 mixed training is caused by multi-source data mixing or is inherent to MLM DAPT",
+    "parent": "exp16_multi_llm",
+    "metrics": {
+      "s1_mlm_val_loss": 5.1489,
+      "s2_gru_val_loss": 0.3776,
+      "s2_gru_val_acc": 0.8514
+    },
+    "conclusion": "success",
+    "reproduce": {
+      "finished_at": "2026-05-20T00:22:19.366Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-20T00:22:21.064Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T00:22:23.763073+00:00"
+        }
+      ]
+    },
+    "notes": "Cron 假警报: 训练实际完成 (MLM 4 epochs val_loss=5.1489 + GRU 20 epochs val_acc=0.8514, 日志末尾 \"ALL DONE\")。失败原因是无 W&B 配置导致 cron 5次检测不到 metrics。Worker worker_code_exp16b-eval_20260520T001556 正在补跑 OOD eval。"
+  },
+  "timestamp": "2026-05-20T00:36:11.908279+00:00",
+  "trigger": "update_registry"
+}

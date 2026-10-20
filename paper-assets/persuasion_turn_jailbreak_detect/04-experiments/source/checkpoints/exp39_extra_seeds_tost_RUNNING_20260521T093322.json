@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp39_extra_seeds_tost",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T09:15:07.434Z",
+    "updated_at": "2026-05-21T09:33:22.067Z",
+    "hypothesis": "扩展 9-class 和 scrambled 到 5 seeds (新增 789/1000) 将提供足够统计效力支持 TOST 等价性检验：scrambled 在 DD OOD 上与 9-class 等价（差距 &lt;2pp），但在 AA OOD 上显著更低，证明策略标签的正确语义信息对 hard OOD 至关重要。",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python scripts/exp39_extra_seeds.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/train.jsonl + DD/AA/FITD OOD",
+      "data_count": "350 train + 80 DD + 80 AA + 80 FITD + 76 test",
+      "model_name": "microsoft/deberta-v3-base + BiGRU (9class & scrambled)",
+      "seed": "789,1000",
+      "checkpoint_path": "/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp39_*/",
+      "log_path": "/tmp/exp39.log"
+    },
+    "metrics": {
+      "9class_seed789": {
+        "iid": 1,
+        "dd_ood": 1,
+        "aa_ood": 0.9715,
+        "fitd_ood": 1
+      },
+      "9class_seed1000": {
+        "iid": 1,
+        "dd_ood": 1,
+        "aa_ood": 0.9715,
+        "fitd_ood": 0.9904
+      },
+      "scrambled_seed789": {
+        "iid": 1,
+        "dd_ood": 1,
+        "aa_ood": 0.9904,
+        "fitd_ood": 1
+      },
+      "scrambled_seed1000": {
+        "iid": 1,
+        "dd_ood": 1,
+        "aa_ood": 0.9904,
+        "fitd_ood": 0.9904
+      },
+      "total_time_min": 7.6
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T09:33:22.260275+00:00",
+  "trigger": "update_registry"
+}

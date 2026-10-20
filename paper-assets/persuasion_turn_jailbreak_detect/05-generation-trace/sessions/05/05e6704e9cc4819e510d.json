@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05e6704e9cc4819e510d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "monitor datagen progress check",
+  "task_key": "worker_monitor_datagen-progress-check_20260519T162448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_datagen-progress-check_20260519T162448_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "01a952cee5958ccebd48ebdfaec96003d6be0c6da5c29e328274cdc5dda4eda2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个任务全部正常运行，汇总如下：\n\n| GPU | 任务 | 进度 | 状态 | 预估剩余 |\n|-----|------|------|------|----------|\n| 0 | exp16 Llama jailbreak | **125/250** (50%) | ✅ 运行中 (89% GPU) | ~110 min |\n| 1 | exp16 Llama benign | **72/250** (29%) | ✅ 运行中 (90% GPU) | ~208 min |\n| 2 | exp17 Qwen jailbreak | **46/250** (18%) | ✅ 运行中 (88% GPU) | ~243 min |\n| 3 | exp17 Qwen benign | **32/250** (13%) | ✅ 运行中 (87% GPU) | ~368 min |\n\n**说明：**\n- Llama jailbreak 的 jsonl 文件只有 2 行（脚本可能攒批写入），但日志显示已处理到 125 条\n- Llama benign 的 jsonl 有 72 行，与日志进度一致（实时写入）\n- Qwen 两个任务数据写入 `.progress` 文件，最终 `.jsonl` 在全部完成后生成\n- Qwen benign 每条耗时较长（turn 数多，15-27 turns vs Llama 的 5-12 turns），预估 ~6 小时完成\n- 无错误日志，4 个进程全部活跃"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-datagen-progress-check.md"
+}

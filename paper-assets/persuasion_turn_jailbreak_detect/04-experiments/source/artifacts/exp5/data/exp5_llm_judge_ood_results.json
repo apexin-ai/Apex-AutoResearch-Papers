@@ -1,0 +1,24 @@
+{
+  "model": "Qwen3-8B",
+  "prompt_template": "identical to IID experiment (plan_012)",
+  "dd_ood": {
+    "n_conversations": 80,
+    "n_benign": 38,
+    "k1": {"f1": 0.0, "precision": 0.0, "recall": 0.0, "accuracy": 0.322, "unparseable": 0},
+    "k2": {"f1": 0.0, "precision": 0.0, "recall": 0.0, "accuracy": 0.322, "unparseable": 0},
+    "k3": {"f1": 0.0, "precision": 0.0, "recall": 0.0, "accuracy": 0.322, "unparseable": 0},
+    "k5": {"f1": 0.0, "precision": 0.0, "recall": 0.0, "accuracy": 0.322, "unparseable": 0},
+    "full": {"f1": 0.0, "precision": 0.0, "recall": 0.0, "accuracy": 0.322, "unparseable": 0}
+  },
+  "fitd_ood": {
+    "n_conversations": 80,
+    "n_benign": 38,
+    "k1": {"f1": 0.0, "precision": 0.0, "recall": 0.0, "accuracy": 0.322, "unparseable": 0},
+    "k2": {"f1": 0.0, "precision": 0.0, "recall": 0.0, "accuracy": 0.322, "unparseable": 0},
+    "k3": {"f1": 0.0, "precision": 0.0, "recall": 0.0, "accuracy": 0.322, "unparseable": 0},
+    "k5": {"f1": 0.0247, "precision": 1.0, "recall": 0.0125, "accuracy": 0.3305, "unparseable": 0},
+    "full": {"f1": 0.0247, "precision": 1.0, "recall": 0.0125, "accuracy": 0.3305, "unparseable": 0}
+  },
+  "timestamp": "2026-05-18T19:03:40.676668",
+  "elapsed_seconds": {"dd": 381.0, "fitd": 354.3}
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "348f5889dfa0e0b4d65a",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp17 training prep",
+  "task_key": "worker_code_exp17-training-prep_20260519T160540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp17-training-prep_20260519T160540.log",
+    "occurrence": 1,
+    "bytes": 673319,
+    "sha256": "51957f15e26fd168ce2d470b57255d2fed89d8cf0f12b99ae061c657f74b7ebc"
+  },
+  "statistics": {
+    "messages": 181,
+    "user_turns": 0,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 74,
+      "tool_result": 74,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 181,
+      "chunks": [
+        {
+          "path": "348f5889dfa0e0b4d65a-part-0001.json",
+          "message_count": 154
+        },
+        {
+          "path": "348f5889dfa0e0b4d65a-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp17-training-prep.md"
+}

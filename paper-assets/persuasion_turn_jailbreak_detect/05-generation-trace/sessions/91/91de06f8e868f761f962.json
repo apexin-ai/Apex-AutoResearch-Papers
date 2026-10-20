@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91de06f8e868f761f962",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp15b monitor and complete",
+  "task_key": "worker_eval_exp15b-monitor-and-complete_20260519T090541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp15b-monitor-and-complete_20260519T090541_result.json",
+    "occurrence": 1,
+    "bytes": 206,
+    "sha256": "440268efae33175963d5a31519d28c512c42316cea9842540d9cbd9540c5757c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp15b 脚本已在 cuda:0 运行，包含完整 pipeline（DAPT x3 seeds → GRU x3 seeds → DD/AA 评估 → 保存 JSON）。当前正在训练 DAPT seed=42。4.5 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp15b-monitor-and-complete.md"
+}

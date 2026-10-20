@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "f6324d1a42b282d76a94",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "train plan016v2 topic multiseed",
+  "task_key": "worker_train_plan016v2-topic-multiseed_20260518T061237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan016v2-topic-multiseed_20260518T061237.log",
+    "occurrence": 1,
+    "bytes": 640873,
+    "sha256": "befa6d09a7040074da41ca164338ca3a865b85c3b74c4c10ba497f6c75a7ed11"
+  },
+  "statistics": {
+    "messages": 388,
+    "user_turns": 0,
+    "tool_calls": 148,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 88,
+      "tool_call": 148,
+      "tool_result": 148,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 388,
+      "chunks": [
+        {
+          "path": "f6324d1a42b282d76a94-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f6324d1a42b282d76a94-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f6324d1a42b282d76a94-part-0003.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-plan016v2-topic-multiseed.md"
+}

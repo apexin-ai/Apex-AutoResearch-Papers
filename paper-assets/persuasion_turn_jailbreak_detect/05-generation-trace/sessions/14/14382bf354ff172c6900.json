@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "14382bf354ff172c6900",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "data benign v4 register match",
+  "task_key": "worker_data_benign-v4-register-match_20260517T142138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_benign-v4-register-match_20260517T142138.log",
+    "occurrence": 1,
+    "bytes": 1510846,
+    "sha256": "ebfadde923679fa09e7075708b21257cbf7c40ccb174ebce7415631cc32544c7"
+  },
+  "statistics": {
+    "messages": 1169,
+    "user_turns": 1,
+    "tool_calls": 502,
+    "roles": {
+      "log": 1,
+      "system": 31,
+      "record": 1,
+      "assistant": 131,
+      "tool_call": 502,
+      "tool_result": 502,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 965,
+      "chunks": [
+        {
+          "path": "14382bf354ff172c6900-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "14382bf354ff172c6900-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "14382bf354ff172c6900-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "14382bf354ff172c6900-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "14382bf354ff172c6900-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "14382bf354ff172c6900-part-0006.json",
+          "message_count": 65
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 204,
+      "chunks": [
+        {
+          "path": "14382bf354ff172c6900-part-0006.json",
+          "message_count": 115
+        },
+        {
+          "path": "14382bf354ff172c6900-part-0007.json",
+          "message_count": 89
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-benign-v4-register-match.md"
+}

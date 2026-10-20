@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62f2418c2ae0b403cfe9",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "util scp cka heatmap",
+  "task_key": "worker_util_scp_cka_heatmap_20260518T192932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_util_scp_cka_heatmap_20260518T192932_result.json",
+    "occurrence": 1,
+    "bytes": 203,
+    "sha256": "63e0fb805baf32df507b9caa6bf03286e2d5103fcfffb7f973e5d7ac05c0cb21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 超时，PDF 文件未出现在本地。符合预期——SSH 连接不可用，worker 无法完成下载。\n\n如上所述，需要先解决 SSH 连接配置问题才能继续。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/util-scp-cka-heatmap.md"
+}

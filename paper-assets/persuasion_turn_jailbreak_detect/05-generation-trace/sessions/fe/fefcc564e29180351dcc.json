@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fefcc564e29180351dcc",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp45 check processes",
+  "task_key": "worker_code_exp45_check_processes_20260522T064227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp45_check_processes_20260522T064227_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "32cd3dc32b9d9edc5072075b83c0583be46efd588c7d4649ce2c6201bf47663c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**GPU 0 上当前只有 1 个 Python 进程：**\n\n| PID | 命令 | GPU 显存 | 状态 |\n|-----|------|---------|------|\n| **47812** | `python exp45_benign_adaptation_curve.py` | 1914 MiB | Running |\n\n**PID 54587**（`train_deberta.py --train_data exp45_mixed_n10.jsonl`）在第一次 nvidia-smi 时还在（占 10246 MiB），几秒后已退出，可能是刚刚训练完成。\n\n**进程树关系：**\n- PID 47801 → tmux session `exp45_benign_adaptation_curve`\n- PID 47802 → tmux 内的 bash wrapper\n- PID 47812 → `exp45_benign_adaptation_curve.py`（主脚本，仍在运行）\n- PID 54587 → `train_deberta.py`（已退出，是主脚本的子任务）\n\n**结论：没有竞争问题。** PID 54587 是 exp45 主脚本（47812）启动的 `train_deberta.py` 子进程，已自然结束。当前 GPU 0 上只剩主脚本一个进程，显存从 ~11GB 降到 ~2GB，GPU 利用率从 94% 降到 5%，说明刚完成一轮训练。tmux session 只有一个 `exp45_benign_adaptation_curve`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp45-check-processes.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "660cf2d2b76bdd0b2b70",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "data plan001 quality fix",
+  "task_key": "worker_data_plan001-quality-fix_20260517T170413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_plan001-quality-fix_20260517T170413_result.json",
+    "occurrence": 1,
+    "bytes": 1272,
+    "sha256": "b3d72bddae8d5e1f1ac9bdfb05fe1ca2795b7ef2a908cb0e34063f92eb4f8ba5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Plan 001 结果报告\n\n### Step A: 策略标签修复 ✅\n- benign → `persuasion_strategy=0` (none)\n- jailbreak → `persuasion_strategy=1-8` (原 0-7 右移+1)\n- 模型 `num_persuasion_classes` 更新为 9\n\n### Step B: Register 归一化 ✅\n- Qwen3-8B 对 250 个 jailbreak 对话的 2068 个 user turn 做了 casual register paraphrase\n- 成功率: 2068/2068 (100%), 0 失败\n- 输出: `data/generated/crescendo_normalized.jsonl`\n\n### Step C: TF-IDF Hard Gate ❌ FAIL\n| 指标 | 值 |\n|---|---|\n| 5-Fold CV F1 | **1.0000 ± 0.0000** |\n| Hard Gate (F1 < 0.75) | **FAIL** |\n\n**结论**: Register 归一化未能消除 TF-IDF 可利用的文本表面特征差异。jailbreak 数据即使经过 casual register paraphrase，仍然与 benign 数据在词频分布上完全可分。\n\n**根因分析**: 差异不仅是 register (正式 vs 口语)，更核心的是 **话题/意图层面的词汇差异**:\n- Benign 对话围绕日常生活问题 (\"like\", \"guess\", \"huh\", \"was wondering\")\n- Jailbreak 对话围绕请求/说服目标 (\"could\", \"help\", \"without\", \"if we\")\n\n单纯的 register normalization 无法消除意图层面的词汇差异。需要更根本的数据重构或对抗性数据增强策略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-plan001-quality-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cae5cf31292c341facd",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp18 e2e finetune",
+  "task_key": "worker_code_exp18-e2e-finetune_20260520T122621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp18-e2e-finetune_20260520T122621_result.json",
+    "occurrence": 1,
+    "bytes": 1101,
+    "sha256": "b7e65097fbd13450300fdd03237f4a392cfbd8593221140ab5e1786d9f94b0a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n```\nexp18 End-to-end Fine-tuning Results (F1 macro):\n\n9-class E2E:\n  seed42:  IID=1.000  DD_OOD=1.000  AA_OOD=1.000\n  seed123: IID=1.000  DD_OOD=1.000  AA_OOD=0.990\n  seed456: IID=1.000  DD_OOD=1.000  AA_OOD=1.000\n  mean:    IID=1.000±0.000  DD_OOD=1.000±0.000  AA_OOD=0.997±0.005\n\n对比 frozen probing (exp1):\n  frozen:  IID=1.000±0.000  DD_OOD=0.994±0.005  AA_OOD=0.939±0.047\n  e2e:     IID=1.000±0.000  DD_OOD=1.000±0.000  AA_OOD=0.997±0.005\n  Δ:       IID=+0.000       DD_OOD=+0.006        AA_OOD=+0.058\n```\n\n**关键发现**：E2E fine-tuning 在 AA_OOD 上提升最大（+5.8%），将 ActorAttack OOD F1 从 0.939 提升到 0.997，同时方差大幅缩小（0.047→0.005）。DD_OOD 也从 0.994 提升到完美 1.000。\n\n所有 seed 在 epoch 1 就达到 val_f1=1.0，随后 early stop。训练非常稳定。\n\n**产出**：\n- Checkpoints: `checkpoints/exp18_e2e_seed{42,123,456}/best.pt`（包含 encoder + GRU state dict）\n- 结果 JSON: `results/exp18_e2e_results.json`\n- 脚本: `scripts/exp18_e2e_finetune.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp18-e2e-finetune.md"
+}

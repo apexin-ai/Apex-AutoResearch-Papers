@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7a671b7bfcde81f81baa",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "paper text wave2 p2 p3 p9 p11 p14",
+  "task_key": "worker_paper_text_wave2_p2_p3_p9_p11_p14_20260522T140858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_text_wave2_p2_p3_p9_p11_p14_20260522T140858.log",
+    "occurrence": 1,
+    "bytes": 786712,
+    "sha256": "125a43947c125af4e15e18b7bb3020dc5fe9188d2216c0319e44767f146174fa"
+  },
+  "statistics": {
+    "messages": 205,
+    "user_turns": 0,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 75,
+      "tool_result": 75,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 205,
+      "chunks": [
+        {
+          "path": "7a671b7bfcde81f81baa-part-0001.json",
+          "message_count": 151
+        },
+        {
+          "path": "7a671b7bfcde81f81baa-part-0002.json",
+          "message_count": 54
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-text-wave2-p2-p3-p9-p11-p14.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0f6a8ead117b476d8f63",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "train plan017 mlm control",
+  "task_key": "worker_train_plan017-mlm-control_20260518T050320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan017-mlm-control_20260518T050320.log",
+    "occurrence": 1,
+    "bytes": 533731,
+    "sha256": "4846d13cbfc2e59d49c473c7d5f838fb68fafc62083b1053fd471508a5bd27d8"
+  },
+  "statistics": {
+    "messages": 328,
+    "user_turns": 0,
+    "tool_calls": 149,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 149,
+      "tool_result": 149,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 328,
+      "chunks": [
+        {
+          "path": "0f6a8ead117b476d8f63-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0f6a8ead117b476d8f63-part-0002.json",
+          "message_count": 148
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-plan017-mlm-control-copy-2.md"
+}

@@ -1,0 +1,110 @@
+{
+  "exp_id": "exp35_cross_seed_ensemble",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:12:07.318Z",
+    "updated_at": "2026-05-20T20:28:58.121Z",
+    "hypothesis": "3-seed majority vote ensemble 将在所有 OOD 攻击家族上提升检测 F1（尤其减少 AA OOD 上的漏检），9-class ensemble 的提升幅度大于 MLM/vanilla，因为 9-class 各 seed 的错误模式更互补（来自不同的策略表征空间初始化）。",
+    "parent": "exp23_aa_error_analysis",
+    "spec": {
+      "command": "python scripts/exp35_cross_seed_ensemble.py",
+      "server": "westd-33183",
+      "data_path": "per_sample_predictions/ + FITD OOD generated",
+      "data_count": 354,
+      "model_name": "9class + jb_mlm + vanilla (3 seeds each)",
+      "seed": "42,123,456",
+      "checkpoint_source": "plan_002 + plan_017_mlm + pretrained",
+      "eval_data": "DD 118 + FITD 118 + AA 118"
+    },
+    "metrics": {
+      "dd_ood": {
+        "9class": {
+          "ensemble_f1": 1,
+          "individual_mean": 0.9968,
+          "individual_std": 0.0045,
+          "delta": 0.0032,
+          "fixed": 1,
+          "broke": 0
+        },
+        "jb_mlm": {
+          "ensemble_f1": 1,
+          "individual_mean": 0.9138,
+          "individual_std": 0.115,
+          "delta": 0.0862,
+          "fixed": 30,
+          "broke": 0
+        },
+        "vanilla": {
+          "ensemble_f1": 0.2575,
+          "individual_mean": 0.2619,
+          "individual_std": 0.017,
+          "delta": -0.0044,
+          "fixed": 1,
+          "broke": 0
+        }
+      },
+      "aa_ood": {
+        "9class": {
+          "ensemble_f1": 0.9809,
+          "individual_mean": 0.9719,
+          "individual_std": 0.0261,
+          "delta": 0.009,
+          "fixed": 5,
+          "broke": 0
+        },
+        "jb_mlm": {
+          "ensemble_f1": 0.953,
+          "individual_mean": 0.8934,
+          "individual_std": 0.0799,
+          "delta": 0.0596,
+          "fixed": 26,
+          "broke": 0
+        },
+        "vanilla": {
+          "ensemble_f1": 0.2575,
+          "individual_mean": 0.2575,
+          "individual_std": 0,
+          "delta": 0,
+          "fixed": 0,
+          "broke": 0
+        }
+      },
+      "fitd_ood": {
+        "9class": {
+          "ensemble_f1": 1,
+          "individual_mean": 1,
+          "individual_std": 0,
+          "delta": 0,
+          "fixed": 0,
+          "broke": 0
+        },
+        "jb_mlm": {
+          "ensemble_f1": 1,
+          "individual_mean": 0.9904,
+          "individual_std": 0.0078,
+          "delta": 0.0096,
+          "fixed": 3,
+          "broke": 0
+        },
+        "vanilla": {
+          "ensemble_f1": 1,
+          "individual_mean": 0.9936,
+          "individual_std": 0.009,
+          "delta": 0.0064,
+          "fixed": 2,
+          "broke": 0
+        }
+      },
+      "note": "Ensemble NEVER breaks correct predictions (broke=0 everywhere). jb_mlm benefits most from ensemble (+8.6pp DD, +6.0pp AA). 9class achieves perfect DD/FITD, near-perfect AA (0.981). Vanilla too weak to benefit."
+    },
+    "checkpoint_path": "plan_002 + plan_017_mlm + pretrained (3 seeds each)",
+    "log_path": "results/exp35_cross_seed_ensemble.json",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T20:28:58.296514+00:00",
+  "trigger": "update_registry"
+}

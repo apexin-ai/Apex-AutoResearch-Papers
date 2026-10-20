@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6312edff967b94643a0b",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp15b check results",
+  "task_key": "worker_eval_exp15b-check-results_20260519T092026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp15b-check-results_20260519T092026_result.json",
+    "occurrence": 1,
+    "bytes": 960,
+    "sha256": "cea8898afaecf0d96f3a86c6cd9553bd296400eb8341414ff8bc6c4216a160ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp15b 训练成功完成。3 seeds (42/123/456) 的 DAPT + GRU checkpoints 均完整。\n\n## exp15b 结果\n\n### DD OOD (Macro F1, mean±std, 3 seeds)\n| Variant | K=1 | K=3 | Full |\n|---------|-----|-----|------|\n| 9class LR=1e-5 (exp15b) | .899±.066 | .851±.094 | .948±.034 |\n| 9class LR=2e-5 (exp15) | .965 | .960 | .987 |\n| vanilla (exp15) | .878 | .915 | .927 |\n\n### ActorAttack (Macro F1, mean±std, 3 seeds)\n| Variant | K=1 | K=3 | Full |\n|---------|-----|-----|------|\n| 9class LR=1e-5 (exp15b) | .459±.077 | .676±.077 | .781±.054 |\n| 9class LR=2e-5 (exp15) | .718 | .881 | .946 |\n| vanilla (exp15) | .977 | .990 | 1.000 |\n\n**结论：LR=1e-5 在两个数据集上均大幅低于 LR=2e-5。** DD OOD Full 从 .987 降到 .948，K=1 从 .965 降到 .899；ActorAttack 更严重，Full 从 .946 降到 .781，K=1 从 .718 降到 .459。降低学习率没有带来改善，LR=2e-5 仍是 9class DAPT 的更优选择。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp15b-check-results.md"
+}

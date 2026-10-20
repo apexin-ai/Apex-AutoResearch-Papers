@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp26_frozen_probing",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:40:17.179Z",
+    "updated_at": "2026-05-20T14:48:46.997Z",
+    "hypothesis": "Frozen 9-class DAPT DeBERTa representations alone carry sufficient OOD generalization signal: a randomly-initialized BiGRU trained on these frozen embeddings should achieve comparable OOD F1 to the jointly-trained plan_002 GRU, because the DAPT pre-training encodes persuasion-strategy structure that transfers across attack types."
+  },
+  "timestamp": "2026-05-20T14:48:47.174398+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "dca5c260735a4340331e",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp17 qwen datagen v2",
+  "task_key": "worker_code_exp17-qwen-datagen-v2_20260519T151849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp17-qwen-datagen-v2_20260519T151849.log",
+    "occurrence": 1,
+    "bytes": 644464,
+    "sha256": "00084b1c1e2007ff2d819e31727f6d8652e81928381c0b92dc3951eaa3df5f75"
+  },
+  "statistics": {
+    "messages": 174,
+    "user_turns": 0,
+    "tool_calls": 62,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 62,
+      "tool_result": 62,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 174,
+      "chunks": [
+        {
+          "path": "dca5c260735a4340331e-part-0001.json",
+          "message_count": 157
+        },
+        {
+          "path": "dca5c260735a4340331e-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp17-qwen-datagen-v2.md"
+}

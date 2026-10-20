@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "d99f398719045f7b5485",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "eval plan 012 gpt55",
+  "task_key": "worker_eval_plan_012_gpt55_20260518T024740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_012_gpt55_20260518T024740.log",
+    "occurrence": 1,
+    "bytes": 883926,
+    "sha256": "f27c69733ca1ff6b11cff667948b7aebffc1c2c3f456ef8fbf00fbe5f035e979"
+  },
+  "statistics": {
+    "messages": 717,
+    "user_turns": 0,
+    "tool_calls": 314,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 85,
+      "tool_call": 314,
+      "tool_result": 314,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 717,
+      "chunks": [
+        {
+          "path": "d99f398719045f7b5485-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d99f398719045f7b5485-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d99f398719045f7b5485-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d99f398719045f7b5485-part-0004.json",
+          "message_count": 177
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-plan-012-gpt55.md"
+}

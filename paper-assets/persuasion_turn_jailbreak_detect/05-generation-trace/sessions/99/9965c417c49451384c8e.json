@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9965c417c49451384c8e",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "research citation verification",
+  "task_key": "worker_research_citation-verification_20260520T054813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation-verification_20260520T054813_result.json",
+    "occurrence": 1,
+    "bytes": 6673,
+    "sha256": "76878fe21af9079165d30de0b4f39a4d8bb5e838e80e406444cf873a49ad5503"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 7 项搜索完毕，结果出乎意料——**7 项全部是真实论文**，不是幻觉。以下是逐项报告。\n\n---\n\n## 1. X-Boundary\n\n- **(a) 真实性**: 真实论文\n- **(b) 引用信息**: Xiaoya Lu, Dongrui Liu, Yi Yu, Luxin Xu, Jing Shao. EMNLP 2025 Findings. [arXiv:2502.09990](https://arxiv.org/abs/2502.09990), [ACL Anthology](https://aclanthology.org/2025.findings-emnlp.282/)\n- **(c) 相关性**: **高** — 在 LLM 特征空间中建立安全边界，将有害表征推离安全表征，实现 representation-level 的 multi-turn jailbreak 防御。与我们的 representation-level detection 直接相关。\n- **(d) 是否需引用**: **是** — 这是 representation-level multi-turn jailbreak defense 的直接前驱工作，必须在 Related Work 中讨论。需区分：X-Boundary 是修改模型权重的 defense，我们是外部 classifier 的 detection。\n\n---\n\n## 2. Active Honeypot Guardrail System\n\n- **(a) 真实性**: 真实论文\n- **(b) 引用信息**: [arXiv:2510.15017](https://arxiv.org/abs/2510.15017), October 2025. 尚无正式 venue（arXiv preprint）。\n- **(c) 相关性**: **中** — 针对 multi-turn jailbreak 的主动防御，通过 honeypot bait 探测用户意图。方法论（proactive bait insertion）与我们的 passive classification 路线差异大。\n- **(d) 是否需引用**: **可选** — 作为 multi-turn jailbreak defense 的另一类方法可以在 Related Work 中提及，但非必须。仅是 arXiv preprint，未经 peer review。\n\n---\n\n## 3. J-DAPT\n\n- **(a) 真实性**: 真实论文，但 reviewer 描述不准确\n- **(b) 引用信息**: Francesco Marchiori et al. [arXiv:2509.23281](https://arxiv.org/abs/2509.23281), September 2025. 官网 [j-dapt.github.io](https://j-dapt.github.io/). 无正式 venue。\n- **(c) 相关性**: **低** — J-DAPT 是针对 **多模态机器人场景**（自动驾驶、海洋机器人、四足导航）的 VLM jailbreak 检测做 domain adaptation，不是文本 LLM 的 jailbreak detection。虽然名字里有 \"domain adaptation for jailbreak detection\"，但目标域完全不同。\n- **(d) 是否需引用**: **否** — 域差异太大（VLM + robotics vs. text LLM），强行引用反而让 reviewer 质疑我们对自己工作定位的理解。\n\n---\n\n## 4. Jailbreaking Leaves a Trace\n\n- **(a) 真实性**: 真实论文\n- **(b) 引用信息**: Sri Durga Sai Sowmya Kadali, Evangelos E. Papalexakis. [arXiv:2602.11495](https://arxiv.org/abs/2602.11495), February 2026. 无正式 venue（preprint）。\n- **(c) 相关性**: **高** — 通过逐层分析 LLM 内部表征区分 jailbreak 和 benign prompt，用 CP decomposition + latent classifier 实现 >90% F1 检测。与我们的 representation-level detection 思路高度一致，虽然他们在模型内部做（white-box），我们用外部 classifier（black-box detection）。\n- **(d) 是否需引用**: **是** — 作为 internal representation analysis for jailbreak detection 的代表工作必须讨论。可以作为我们方法的互补视角：他们做 white-box 内部分析，我们做 black-box 外部分类。\n\n---\n\n## 5. RCS (Representational Contrastive Scoring)\n\n- **(a) 真实性**: 真实论文\n- **(b) 引用信息**: Peichun Hua et al. ACL 2026. [arXiv:2512.12069](https://arxiv.org/abs/2512.12069), [GitHub](https://github.com/sarendis56/Jailbreak_Detection_RCS)\n- **(c) 相关性**: **中** — Representation-level jailbreak detection，但针对 **Vision Language Models**（LVLM），不是纯文本 LLM。方法思路（在 safety-critical layers 学 lightweight projection 分离 benign/malicious）与我们有概念相似性。\n- **(d) 是否需引用**: **可选偏是** — 虽然目标是 VLM，但 representation-level jailbreak detection 的方法论值得在 Related Work 中提及，说明这一思路在多模态领域也有并行探索。一句话带过即可。\n\n---\n\n## 6. MultiBreak\n\n- **(a) 真实性**: 真实论文\n- **(b) 引用信息**: [arXiv:2605.01687](https://arxiv.org/abs/2605.01687), May 2026. 同时在 [OpenReview](https://openreview.net/forum?id=uJgfj5EJ2W) 上有提交。\n- **(c) 相关性**: **中偏高** — 10,389 条 multi-turn adversarial prompts，2,665 种 harmful intents，是目前最大的 multi-turn jailbreak benchmark。作为评估资源直接相关。\n- **(d) 是否需引用**: **可选** — 2026年5月刚出（本月），在 EMNLP 2026 投稿截止时可能还未正式发表。如果我们用了它做评估则必须引，仅作为 Related Work 提及则可选。注意：这篇非常新，reviewer 推荐它可能说明 reviewer 就是相关圈子的人。\n\n---\n\n## 7. M2S\n\n- **(a) 真实性**: 真实论文\n- **(b) 引用信息**: ACL 2025 Long Paper. [ACL Anthology](https://aclanthology.org/2025.acl-long.805/), [arXiv:2503.04856](https://arxiv.org/abs/2503.04856)\n- **(c) 相关性**: **中** — 将 multi-turn jailbreak 压缩为 single-turn，属于 attack/red-teaming 方向而非 detection。但其 multi-turn → single-turn 的 reduction 思路与理解 multi-turn jailbreak 结构相关。\n- **(d) 是否需引用**: **可选** — 作为 multi-turn jailbreak attack 方法可在 Related Work 中提及（我们检测的对象），但不是 detection 方向的必引工作。\n\n---\n\n## 总结\n\n| 项目 | 真实性 | 相关性 | 建议 |\n|------|--------|--------|------|\n| X-Boundary | 真实 | 高 | **必须引用** |\n| Active Honeypot | 真实 | 中 | 可选 |\n| J-DAPT | 真实（描述不准） | 低 | 不引 |\n| Jailbreaking Leaves a Trace | 真实 | 高 | **必须引用** |\n| RCS | 真实 | 中 | 可选偏是 |\n| MultiBreak | 真实 | 中偏高 | 可选 |\n| M2S | 真实 | 中 | 可选 |\n\n**7/7 全部是真实论文，0 项幻觉。** Director 的怀疑未得到证实——这位 reviewer 做了扎实的文献调研。\n\n**建议行动**：至少补引 X-Boundary 和 Jailbreaking Leaves a Trace 这两篇（高相关性），RCS 可一句话带过。其余根据篇幅决定。J-DAPT 因域差异太大可以不引，rebuttal 中说明即可。\n\nSources:\n- [X-Boundary (ACL Anthology)](https://aclanthology.org/2025.findings-emnlp.282/)\n- [X-Boundary (arXiv)](https://arxiv.org/abs/2502.09990)\n- [Active Honeypot Guardrail (arXiv)](https://arxiv.org/abs/2510.15017)\n- [J-DAPT (arXiv)](https://arxiv.org/abs/2509.23281)\n- [Jailbreaking Leaves a Trace (arXiv)](https://arxiv.org/abs/2602.11495)\n- [RCS (arXiv)](https://arxiv.org/abs/2512.12069)\n- [MultiBreak (arXiv)](https://arxiv.org/abs/2605.01687)\n- [M2S (ACL Anthology)](https://aclanthology.org/2025.acl-long.805/)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-verification.md"
+}

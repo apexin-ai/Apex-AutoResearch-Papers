@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51a249d6d633a07c8418",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper figure cka heatmap fetch",
+  "task_key": "worker_paper_figure_cka_heatmap_fetch_20260518T192623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_cka_heatmap_fetch_20260518T192623_result.json",
+    "occurrence": 1,
+    "bytes": 170,
+    "sha256": "e1051e1b34c0d23d60fa71bdd932d02f064f2b6ae21445354e64384a751a8052"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 超时，文件未出现。如上所述，SSH 连接缺少密钥和配置，无法自动下载。等待你提供 SSH 访问或手动传输文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-cka-heatmap-fetch.md"
+}

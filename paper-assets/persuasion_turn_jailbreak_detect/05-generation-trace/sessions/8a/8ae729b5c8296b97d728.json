@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ae729b5c8296b97d728",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan018 wiki mlm multiseed",
+  "task_key": "worker_train_plan018-wiki-mlm-multiseed_20260518T064551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan018-wiki-mlm-multiseed_20260518T064551_result.json",
+    "occurrence": 1,
+    "bytes": 1161,
+    "sha256": "a03c87f19bb1bdc18b0990d1a2932f47512fbb4d871d493bc0665dc72de83967"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## Plan 018 Wiki MLM 3-seed 结果\n\n| K | seed=42 | seed=123 | seed=456 | Mean | Std |\n|---|---------|----------|----------|------|-----|\n| **full** | 0.742 | 0.990 | 0.980 | **0.904** | 0.115 |\n| k=1 | 0.822 | 1.000 | 0.917 | **0.913** | 0.073 |\n| k=2 | 0.815 | 0.990 | 0.928 | **0.911** | 0.073 |\n| k=3 | 0.849 | 0.990 | 0.970 | **0.937** | 0.062 |\n| k=5 | 0.808 | 0.990 | 0.970 | **0.923** | 0.082 |\n| IID full | 0.987 | 0.987 | 0.961 | **0.978** | 0.012 |\n\n**关键发现：**\n- Wiki MLM 3-seed DD OOD full: **0.904 ± 0.115**\n- 对比 plan_016v2 topic 3-seed: **0.541 ± 0.207**\n- Wiki MLM 明显更稳定、mean 更高\n- seed=42 是明显 outlier（0.742 vs 其他两个 >0.98），可能是 GRU 训练不稳定导致\n- IID 三个 seed 都很稳定（0.978 ± 0.012）\n\n**已完成操作：**\n1. 清理磁盘（移走旧 checkpoint 腾出 3.7GB）\n2. 训练 seed=123 和 seed=456（均成功，val_loss ~8.1-8.2）\n3. 评估两个新 seed 的 DD OOD + IID\n4. 保存 3-seed 汇总到 `results/plan_018_wiki_mlm_3seed_summary.json`\n5. Registry 已更新 plan_018_wiki_mlm_control 的 metrics"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan018-wiki-mlm-multiseed.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp10_fewshot_llm_judge",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:50:35.003Z",
+    "updated_at": "2026-05-18T17:09:22.922Z",
+    "hypothesis": "3-shot in-context examples should significantly improve LLM-as-judge jailbreak detection over zero-shot by providing the model with concrete examples of escalation patterns, but will still underperform trained classifiers because few-shot prompting cannot match fine-tuned feature extraction.",
+    "parent": "exp5_llm_judge_ood"
+  },
+  "timestamp": "2026-05-18T17:09:23.052272+00:00",
+  "trigger": "update_registry"
+}

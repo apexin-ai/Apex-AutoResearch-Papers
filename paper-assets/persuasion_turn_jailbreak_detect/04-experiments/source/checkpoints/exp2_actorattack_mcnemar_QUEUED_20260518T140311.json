@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp2_actorattack_mcnemar",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:37:56.702Z",
+    "updated_at": "2026-05-18T14:03:11.815Z",
+    "hypothesis": "9-class persuasion-aware encoder significantly outperforms vanilla DeBERTa on ActorAttack OOD data at per-sample level (McNemar test), supporting cross-attack generalization claim.",
+    "parent": "exp2_actorattack_ood"
+  },
+  "timestamp": "2026-05-18T14:03:11.936122+00:00",
+  "trigger": "update_registry"
+}

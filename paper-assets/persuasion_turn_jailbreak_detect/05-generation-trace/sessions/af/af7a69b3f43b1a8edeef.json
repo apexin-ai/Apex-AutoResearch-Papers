@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af7a69b3f43b1a8edeef",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper writing abstract d019d020",
+  "task_key": "worker_paper_writing_abstract_d019d020_20260518T062839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_abstract_d019d020_20260518T062839_result.json",
+    "occurrence": 1,
+    "bytes": 375,
+    "sha256": "2caccb274b01b893c59a4f8d43c4393303265b9c2b5a6f72b75c4a6c518b90f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract written (168 words). Three key numbers (0.28, 1.00, +72pp) serve the central claim. All abbreviations defined inline. No dashes, no trailing -ing phrases, no banned words. The narrative arc: failure of vanilla approach → six-variant ablation → domain exposure as mechanism → taxonomy for interpretability, not accuracy → reframing the problem."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-abstract-d019d020.md"
+}

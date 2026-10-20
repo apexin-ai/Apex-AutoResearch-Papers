@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_015_dd_eval",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T03:17:34.913Z",
+    "updated_at": "2026-05-18T03:17:44.509Z",
+    "hypothesis": "Mean pooling classifier (without temporal modeling) will perform comparably to BiGRU on DD OOD data, proving GRU temporal modeling is not necessary and persuasion embeddings alone drive cross-attack generalization",
+    "parent": "plan_006_cross_attack_clean"
+  },
+  "timestamp": "2026-05-18T03:17:44.540678+00:00",
+  "trigger": "update_registry"
+}

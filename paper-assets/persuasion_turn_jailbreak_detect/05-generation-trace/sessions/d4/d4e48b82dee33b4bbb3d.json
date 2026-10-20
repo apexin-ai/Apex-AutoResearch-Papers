@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4e48b82dee33b4bbb3d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan017 mlm control",
+  "task_key": "worker_train_plan017-mlm-control_20260518T050320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan017-mlm-control_20260518T050320_result.json",
+    "occurrence": 1,
+    "bytes": 1241,
+    "sha256": "d7c0bfbc6e094110ef6892eaba0ddd84c4c8700738f3b643481f4713fbb67f75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器 westd-33183 持续无法连接（port 33183 on 36.103.198.204 不可达）。这个中断已持续较长时间。\n\n**已完成的工作：**\n\n1. **两个脚本已成功写入服务器**（在连接断开前完成）：\n   - `src/train_deberta_mlm.py` — Stage 1 MLM 训练（DebertaV2ForMaskedLM, 15% masking, 4 epochs, lr=2e-5）\n   - `src/plan_017_dd_eval.py` — Stage 2+3: 加载 MLM encoder → 提取 CLS embeddings → 训练 BiGRU → 评估 DD OOD (K=1,2,3,5,full) + IID\n\n2. **MLM 训练已用 nohup 启动**（PID 198446, CUDA_VISIBLE_DEVICES=1），但无法确认是否成功运行（连接在启动后立即断开）\n\n**恢复连接后需要做的：**\n\n1. 检查训练日志：`cat logs/plan_017_mlm_train.log`\n2. 如果 MLM 训练失败或未启动，重新运行：\n   ```bash\n   cd /root/persuasion_turn_jailbreak_detect\n   source /root/miniconda3/bin/activate\n   CUDA_VISIBLE_DEVICES=1 python src/train_deberta_mlm.py 2>&1 | tee logs/plan_017_mlm_train.log\n   ```\n3. MLM 训练完成后，运行评估：\n   ```bash\n   CUDA_VISIBLE_DEVICES=1 python src/plan_017_dd_eval.py 2>&1 | tee logs/plan_017_dd_eval.log\n   ```\n4. 结果将保存到 `results/plan_017_mlm_control.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan017-mlm-control-copy-2.md"
+}

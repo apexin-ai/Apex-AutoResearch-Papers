@@ -1,0 +1,116 @@
+paper_key: "wildguard"
+title: "WildGuard: Open One-Stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs"
+venue: "NeurIPS 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - Llama-Guard
+    - Llama-Guard2
+    - Aegis-Guard
+    - MD-Judge
+    - LibrAI-LongFormer
+    - LibrAI-LongFormer-harm
+    - LibrAI-LongFormer-ref
+    - BeaverDam
+    - HarmBench classifier
+    - OpenAI Moderation API
+    - GPT-4 (gpt-4-0125-preview)
+  metrics:
+    - {name: "F1 (prompt harmfulness)", direction: "higher_better"}
+    - {name: "F1 (response harmfulness)", direction: "higher_better"}
+    - {name: "F1 (refusal detection)", direction: "higher_better"}
+    - {name: "Attack Success Rate (ASR)", direction: "lower_better"}
+    - {name: "Refusal-to-Answer rate on benign prompts", direction: "lower_better"}
+  datasets:
+    - {name: "WildGuardMix (WildGuardTrain)", size: "87K labeled examples"}
+    - {name: "WildGuardTest", size: "5,299 items, 3 annotators per item"}
+    - {name: "ToxicChat", size: "public benchmark"}
+    - {name: "OpenAI Moderation", size: "public benchmark"}
+    - {name: "AegisSafetyTest", size: "public benchmark"}
+    - {name: "SimpleSafetyTests", size: "public benchmark"}
+    - {name: "HarmBench", size: "public benchmark"}
+    - {name: "SafeRLHF", size: "public benchmark"}
+    - {name: "BeaverTails", size: "public benchmark"}
+    - {name: "XSTest-Resp", size: "public benchmark"}
+    - {name: "WildJailbreak eval set", size: "2,000 harmful + 250 benign adversarial prompts"}
+  ablation_dimensions:
+    - "synthetic adversarial data inclusion"
+    - "synthetic vanilla data inclusion"
+    - "in-the-wild data inclusion"
+    - "annotator-written data inclusion"
+    - "multi-task vs single-task training"
+    - "base model architecture choice"
+  training_recipe:
+    optimizer: "not specified (standard fine-tuning)"
+    lr: "2e-6 with linear schedule"
+    batch_size: 128
+    sequence_length: 4096
+    epochs: 2
+    hardware: "4x A100 80GB GPUs"
+    duration: "~5 hours"
+    base_model: "Mistral-7b-v0.3"
+  method_family: "instruction-tuned safety classifier (multi-task fine-tuning on curated synthetic + real data)"
+
+positioning:
+  core_claim: "通过精心构造的多源训练数据（尤其是对抗性数据）和多任务统一训练，一个7B开源模型可以在prompt有害性、response有害性、拒绝检测三个任务上同时匹敌或超越GPT-4，关键突破在于对抗性输入的鲁棒性"
+  key_results: "Prompt harmfulness F1: 86.1% (vs GPT-4 84.6%); adversarial prompt F1: 85.5% (vs GPT-4 81.6%, +3.9%); refusal detection F1: 88.6% (vs LibrAI 70.1%, +26.4%); ASR as filter: 79.8% -> 2.4% with only 0.4% over-refusal"
+  limitations:
+    - "高度依赖合成数据，可能无法完美近似真实用户输入分布"
+    - "风险分类体系反映作者定义，其他利益相关方可能有不同视角"
+    - "拒绝定义的复杂性（重定向拒绝、选择性拒绝等）仍有待完善"
+    - "不提供细粒度的危害类别分类，只做二元判断"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "开篇强调LLM安全的迫切性——现有开源moderation工具在对抗性输入面前表现严重不足，且缺乏拒绝检测能力，形成两个关键gap"
+  tension: "两层张力：(1) 开源工具 vs GPT-4在adversarial prompt上的巨大性能差距; (2) 现有工具用response harmfulness代替refusal detection的方法论缺陷——'response harmfulness is insufficient to determine whether a model refuses'"
+  key_insight: "数据质量和多样性（特别是对抗性数据的系统化构造）比模型架构选择更重要；多任务统一训练可以在不牺牲单任务性能的前提下实现知识共享"
+  argument_chain: "LLM safety需要moderation -> 现有开源工具有两个gap(adversarial robustness + refusal detection) -> 构造WildGuardMix覆盖13类风险+4种数据源 -> 多任务统一训练WildGuard -> 10个benchmark验证超越GPT-4 -> 实际部署ASR从79.8%降至2.4%"
+  contribution_framing: "三条贡献：模型(multi-task one-stop tool)、数据(92K WildGuardMix)、实验(comprehensive benchmarking)，按重要性递减排列"
+  intro_structure: "5段: P1=LLM safety问题背景 -> P2=WildGuard定位(三任务一体) -> P3=现有工具两个gap(adversarial+refusal) -> P4=数据构造方法 -> P5=评估结果总结"
+  notable_technique: "用Figure 2的adversarial vs vanilla性能对比图直接展示现有工具在adversarial场景下的崩溃，形成视觉冲击力强的motivation；用部署实验(ASR 79.8%->2.4%)作为practical impact的收尾论据"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "method_overview"
+    description: "WildGuardMix数据集构成概览，展示四种数据来源（Synthetic Vanilla/Adversarial, In-the-Wild, Annotator-written），下方配有prompt和response示例"
+    narrative_role: "让读者快速理解数据构造的全貌和多样性，为后续数据质量论证铺垫"
+    design_elements: ["四象限数据源划分", "代表性示例展示", "颜色区分数据类型"]
+    visual_style: "结构化布局，上半部分是数据源分类图，下半部分是具体样例，信息密度高"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      what_compared: "各moderation工具在adversarial vs vanilla prompt上的性能差异"
+      how_gain_highlighted: "通过adversarial和vanilla的巨大差距突出现有工具的脆弱性，WildGuard在两种场景下均表现稳定"
+      design_note: "直接对比adversarial/vanilla两个维度是最有说服力的motivation图——不是说WildGuard好，而是说现有工具在adversarial上崩溃"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(数据全景) -> Figure 2(motivation: adversarial gap) -> 后续figures支撑实验细节"
+
+tables:
+  table_count: 14
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "methods (moderation tools)"
+    col_axis: "benchmarks x metrics (F1 for prompt harm, response harm)"
+    row_organization: "by_category (open-source baselines, closed-source, WildGuard)"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "F1 scores, single run"
+    num_baselines: 11
+    design_note: "跨10个benchmark的大规模对比表，每个benchmark一列，行按open/closed分组，信息密度极高但结构清晰；WildGuard放在最后一行突出最终结果"
+  ablation_tables:
+    - table_id: "Table 4 (WildGuardTest results)"
+      what_varied: ["adversarial vs vanilla prompts", "three tasks"]
+      variation_style: "full_numbers"
+      design_note: "在自有测试集上按adversarial/vanilla拆分报告，直接对应核心claim"
+    - table_id: "Ablation tables (data component removal)"
+      what_varied: ["synthetic adversarial data", "synthetic vanilla data", "in-the-wild data", "annotator-written data"]
+      variation_style: "delta_from_base"
+      design_note: "逐个移除数据源展示各组分贡献，数值变化清晰展示每类数据的独特价值"
+  supplementary_tables:
+    in_appendix: true
+    content: "详细的per-benchmark细分结果、数据统计、标注者一致性(Fleiss Kappa)、额外baseline对比"
+    reason: "主表已经覆盖核心对比，附录放更细粒度的拆分避免主文过载"

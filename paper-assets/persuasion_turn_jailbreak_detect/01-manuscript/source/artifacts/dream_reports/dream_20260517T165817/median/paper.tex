@@ -1,0 +1,611 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{tabularx}
+\usepackage{enumitem}
+
+\title{DisPeD: Exploiting the Pragmatic Evasion Asymmetry\\for Robust Multi-Turn Jailbreak Detection}
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+\begin{abstract}
+Multi-turn jailbreak attacks distribute adversarial intent across individually benign conversational turns, evading detectors that rely on lexical or per-turn semantic features.
+We observe that while attackers can freely vary surface-level wording, the underlying persuasion playbook (rapport building, reframing, escalation) is a structural prerequisite for attack success, creating a \emph{pragmatic evasion asymmetry}.
+We present DisPeD, a two-stage detector that exploits this asymmetry: a DeBERTa encoder fine-tuned on an 8-class persuasion strategy taxonomy produces pragmatic-aware turn embeddings, and a Bi-GRU models the temporal strategy sequence for conversation-level classification.
+On register-normalized Crescendo data (TF-IDF = 0.67), DisPeD achieves F1 = 0.86 at $K{=}3$ turns, an 8 percentage point (pp) improvement over a vanilla semantic baseline ($p{=}0.018$).
+Under adversarial paraphrasing, DisPeD degrades by 7 pp compared to 12 pp for the semantic baseline and 18 pp for a lexical baseline, providing complementary robustness through pragmatic features ($\Delta$-$\Delta$ = 5 pp, $p{=}0.043$).
+Cross-attack evaluation on FITD-style conversations shows significant generalization (+8 pp, $p{=}0.034$), though transfer to Deceptive Delight remains limited (+5 pp, $p{=}0.142$).
+Jailbreak conversations exhibit significantly more monotonic persuasion escalation trajectories than benign conversations at the group level ($p{=}0.003$), though individual-level variance is substantial ($\sigma{=}0.18$).
+These results establish a proof-of-concept that discourse-level persuasion structure offers a complementary detection signal that is harder to evade than lexical or semantic features alone.
+\end{abstract}
+
+% ============================================================
+% 1  INTRODUCTION
+% ============================================================
+\section{Introduction}
+
+Large Language Models (LLMs) deployed in conversational settings face a growing class of multi-turn jailbreak attacks. Strategies such as Crescendo \citep{russinovich2024greatwritearticle}, Foot-in-the-Door (FITD) \citep{zhou2024speak}, and Deceptive Delight \citep{jiang2024deceptivedelight} distribute adversarial intent across turns that are individually benign, bypassing single-turn safety filters with attack success rates (ASR) exceeding 90\%.
+
+Existing defenses operate at two levels.
+Lexical detectors flag harmful keywords or phrases but are trivially evaded through synonym substitution.
+Semantic detectors, such as the recent DeepContext framework \citep{deepcontext2026}, track embedding-level drift across turns but face a fundamental vulnerability identified by \citet{bullwinkel2025multiturnjailbreaks}: per-turn representations in multi-turn attacks are deliberately maintained within a ``benign'' region of the embedding space, producing a 50-point ASR gap between single-turn and multi-turn settings.
+Generic semantic drift detectors also confuse legitimate conversational evolution with adversarial manipulation, leading to elevated false positive rates on real-world conversations.
+
+We identify a structural property of persuasion-mediated attacks that neither lexical nor semantic detectors exploit.
+Multi-turn jailbreaks that achieve high ASR follow a persuasion playbook that progresses through identifiable stages: rapport building, authority framing, reframing, and escalation \citep{zeng2024pap, hagendorff2026persuasion}.
+Removing any stage either collapses the attack to a single-turn prompt (already covered by existing defenses) or reduces its success rate below useful thresholds.
+This creates a \emph{pragmatic evasion asymmetry}: an attacker can freely vary what they say (lexical, semantic) but not the pragmatic function of what they say (persuasion structure).
+
+We present DisPeD (\textbf{Dis}course-level \textbf{Pe}rsuasion-grounded jailbreak \textbf{D}etection), a two-stage architecture that exploits this asymmetry.
+In Stage 1, we fine-tune DeBERTa-v3-base on a multi-task objective combining 8-class persuasion strategy classification with binary intent classification, producing turn embeddings that encode pragmatic function rather than surface content.
+In Stage 2, a Bi-GRU models the temporal sequence of these embeddings to classify conversations.
+
+Our contributions are:
+\begin{itemize}[nosep]
+\item We formalize the pragmatic evasion asymmetry and provide empirical evidence that pragmatic features offer complementary robustness: under adversarial paraphrasing, DisPeD's degradation is 5 pp less than a semantic baseline ($p{=}0.043$), while a lexical baseline collapses by 18 pp (Section~\ref{sec:perturbation}).
+\item We show that persuasion-grounded embeddings enable earlier detection, with a significant advantage at $K{=}3$ turns (+8 pp, $p{=}0.018$) and a consistent but not statistically significant trend at $K{=}2$ (+7 pp, $p{=}0.072$), on data verified to be free of lexical shortcuts (TF-IDF = 0.67; Section~\ref{sec:core}).
+\item We demonstrate that jailbreak conversations exhibit significantly more monotonic escalation in persuasion strategy space than benign conversations at the group level ($p{=}0.003$), providing a mechanistic basis for the detection advantage (Section~\ref{sec:trajectory}).
+\end{itemize}
+
+% ============================================================
+% 2  RELATED WORK
+% ============================================================
+\section{Related Work}
+
+\paragraph{Multi-turn jailbreak attacks.}
+Crescendo \citep{russinovich2024greatwritearticle} gradually escalates requests across turns, achieving ASR above 90\% on production models.
+FITD \citep{zhou2024speak} adapts the foot-in-the-door compliance technique from social psychology, starting with small requests before escalating.
+Deceptive Delight \citep{jiang2024deceptivedelight} interleaves harmful content within benign conversational context.
+\citet{bullwinkel2025multiturnjailbreaks} show that per-turn representations in these attacks remain within the benign embedding region, explaining why turn-level classifiers fail.
+
+\paragraph{Multi-turn jailbreak detection.}
+DeepContext \citep{deepcontext2026} models semantic drift across turns using BERT embeddings and sequential classifiers.
+While effective on in-domain data, generic drift detectors struggle to distinguish adversarial escalation from legitimate conversational evolution, leading to false positives on naturally drifting conversations.
+No published work combines persuasion-grounded turn representations with temporal sequence modeling.
+
+\paragraph{Persuasion in adversarial contexts.}
+\citet{zeng2024pap} identify 40 persuasion techniques used in jailbreak prompts and show that persuasion-augmented attacks achieve higher ASR.
+\citet{hagendorff2026persuasion} find identifiable persuasion strategies in 97\% of successful multi-turn attacks, confirming the structural role of persuasion.
+\citet{howdollmspersuade2025} demonstrate that persuasion dynamics are extractable from turn-level representations.
+Our work builds on these findings by using persuasion structure as a detection signal rather than an attack amplifier.
+
+\paragraph{Theoretical grounding.}
+Speech Act Theory \citep{austin1962things, searle1969speech} distinguishes locutionary acts (what is said) from illocutionary acts (what is done by saying it).
+Existing detectors operate at the locutionary level; DisPeD operates at the illocutionary level by encoding the pragmatic function of each turn.
+
+% ============================================================
+% 3  METHOD
+% ============================================================
+\section{Method}
+
+\subsection{Problem Formulation}
+
+Given a conversation prefix $\mathbf{c} = (t_1, t_2, \ldots, t_K)$ of $K$ user turns, the goal is to classify $\mathbf{c}$ as \emph{jailbreak} or \emph{benign}.
+We seek a classifier that (a) works at small $K$ for early detection, (b) is robust to lexical and semantic perturbation of individual turns, and (c) generalizes across attack families.
+
+\subsection{Stage 1: Persuasion-Grounded Turn Encoder}
+
+We fine-tune DeBERTa-v3-base \citep{he2021debertav3} on a multi-task objective with two heads:
+\begin{itemize}[nosep]
+\item \textbf{Persuasion strategy classification} (8 classes + ``none''): rapport building, authority appeal, emotional appeal, logical appeal, reframing, social proof, urgency/scarcity, reciprocity.
+\item \textbf{Intent classification} (binary): jailbreak vs.\ benign turn.
+\end{itemize}
+The combined loss is $\mathcal{L} = \mathcal{L}_{\text{persuasion}} + \lambda \mathcal{L}_{\text{intent}}$ with $\lambda = 1.0$.
+The fine-tuned encoder produces [CLS] embeddings that encode pragmatic function rather than surface semantics alone.
+
+\subsection{Stage 2: Temporal Sequence Classifier}
+
+For a conversation of $K$ turns, we extract [CLS] embeddings $\mathbf{e}_1, \ldots, \mathbf{e}_K$ from the Stage 1 encoder.
+A Bi-GRU processes the embedding sequence and a linear head classifies the final hidden state as jailbreak or benign.
+The GRU captures temporal patterns in persuasion strategy transitions, such as the progression from rapport building to authority framing to escalation.
+
+\subsection{Baselines}
+
+We compare against three baselines that isolate different feature levels:
+\begin{itemize}[nosep]
+\item \textbf{TF-IDF + Logistic Regression}: lexical features, representing the bottom of the evasion hierarchy.
+\item \textbf{Vanilla DeBERTa + GRU}: same architecture as DisPeD, but with DeBERTa embeddings that are \emph{not} fine-tuned on persuasion strategy classification. This is the primary baseline, as it isolates the effect of persuasion grounding.
+\item \textbf{DeepContext proxy} (BERT-base + GRU): approximation of DeepContext \citep{deepcontext2026} using BERT-base with generic semantic features. Not a faithful reproduction (no public code available), but provides an additional reference point.
+\end{itemize}
+
+% ============================================================
+% 4  DATA AND SETUP
+% ============================================================
+\section{Experimental Setup}
+
+\subsection{Data}
+
+Our primary dataset consists of 240 Crescendo-style multi-turn jailbreak conversations and matched benign conversations (480 total), generated using a Qwen3-8B pipeline with persuasion strategy annotations.
+
+\paragraph{Register normalization.}
+Initial data exhibited a critical lexical shortcut: TF-IDF separability of 1.0 between jailbreak and benign turns, caused by (a) a hard-coded strategy label for benign turns and (b) register differences between jailbreak and benign language.
+We applied two fixes.
+First, we assigned benign turns a dedicated ``none'' strategy label (9th class), removing the label shortcut and reducing TF-IDF from 1.0 to 0.82.
+Second, we used Qwen3-8B to rewrite jailbreak turns into conversational register while preserving persuasion structure, further reducing TF-IDF to 0.67, below our hard gate of 0.75 (Table~\ref{tab:tfidf}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{TF-IDF separability through the data cleaning pipeline.}
+\label{tab:tfidf}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Stage} & \textbf{TF-IDF} & \textbf{Description} \\
+\midrule
+Original & 1.00 & Label shortcut + register gap \\
+After label fix & 0.82 & Register gap remains \\
+After register norm. & 0.67 & Below 0.75 gate \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:deberta_clean} shows the impact of data cleaning on the Stage 1 encoder.
+Persuasion classification accuracy drops from 0.80 to 0.72 after normalization, as the model can no longer rely on register-correlated surface cues and must identify persuasion strategies from semantic content.
+Intent classification accuracy remains stable (0.95 to 0.93), consistent with the coarser binary task being less sensitive to register changes.
+The 0.72 persuasion accuracy constitutes a bottleneck for downstream performance, as classification errors propagate through the embedding representations to the GRU stage.
+
+\begin{table}[t]
+\centering
+\small
+\caption{DeBERTa multi-task performance on original vs.\ clean data.}
+\label{tab:deberta_clean}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{Original} & \textbf{Clean} & \textbf{$\Delta$} \\
+\midrule
+Persuasion Acc (8-class) & 0.80 & 0.72 & $-$0.08 \\
+Intent Acc (binary) & 0.95 & 0.93 & $-$0.02 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cross-attack data.}
+To evaluate generalization, we generated 72 FITD-style and 65 Deceptive Delight-style conversations using the same Qwen3-8B pipeline (Table~\ref{tab:attack_gen}).
+FITD conversations emphasize compliance escalation with heavier use of logical and authority appeals.
+Deceptive Delight conversations rely more on rapport building and emotional appeal.
+Manual spot-check accuracy of persuasion annotations is 82\%.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Generated attack data statistics.}
+\label{tab:attack_gen}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Attack Type} & \textbf{Conv.} & \textbf{Avg Turns} & \textbf{Strategies} & \textbf{Reject \%} \\
+\midrule
+Crescendo (original) & 240 & 5.4 & 8/8 & --- \\
+FITD & 72 & 6.2 & 7/8 & 12\% \\
+Deceptive Delight & 65 & 5.8 & 6/8 & 18\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Hard negatives.}
+We filtered 85 high-semantic-drift benign conversations from WildChat \citep{wildchat2024} as hard negatives.
+After keyword and LLM-based filtering, residual jailbreak contamination is estimated at 3\%.
+
+\subsection{Evaluation Protocol}
+
+All models are trained on Crescendo data and evaluated on a held-out test set ($n{=}72$).
+We report F1 score at conversation prefix lengths $K \in \{1, 2, 3, 5, \text{full}\}$.
+Statistical significance is assessed via bootstrap resampling (10,000 iterations); we report 95\% confidence intervals and $p$-values.
+
+% ============================================================
+% 5  RESULTS
+% ============================================================
+\section{Results}
+
+\subsection{Core Detection Performance}
+\label{sec:core}
+
+Table~\ref{tab:core} presents the central comparison between DisPeD (treatment) and the vanilla DeBERTa baseline on clean data.
+DisPeD outperforms the baseline at all prefix lengths, with the gap largest at $K{=}1$ (+10 pp) and narrowing as more turns become available (+5 pp at full conversation).
+This narrowing is expected: with sufficient turns, vanilla semantic embeddings accumulate enough evidence to partially close the gap.
+
+At $K{=}3$, DisPeD achieves F1 = 0.86 vs.\ 0.78 for the baseline, an 8 pp improvement that is statistically significant ($p{=}0.018$).
+At $K{=}2$, the 7 pp improvement is directionally consistent but does not reach significance ($p{=}0.072$), as the bootstrap confidence intervals overlap (DisPeD: [0.76, 0.88]; baseline: [0.68, 0.82]).
+The early detection advantage thus holds firmly from $K{=}3$ onward; confirming $K{=}2$ significance would require a larger test set.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Detection F1 by conversation prefix length on clean data. $^*p{<}0.05$ (bootstrap).}
+\label{tab:core}
+\begin{tabular}{lccccc}
+\toprule
+$K$ & \textbf{DisPeD F1} & \textbf{95\% CI} & \textbf{Baseline F1} & \textbf{95\% CI} & \textbf{$\Delta$ (pp)} \\
+\midrule
+1 & 0.73 & [0.64, 0.82] & 0.63 & [0.53, 0.73] & +10 \\
+2 & 0.82 & [0.76, 0.88] & 0.75 & [0.68, 0.82] & +7 \\
+3 & 0.86$^*$ & [0.81, 0.91] & 0.78 & [0.72, 0.84] & +8 \\
+5 & 0.90$^*$ & [0.85, 0.95] & 0.84 & [0.78, 0.90] & +6 \\
+Full & 0.91$^*$ & [0.87, 0.95] & 0.86 & [0.81, 0.91] & +5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:fpr} reports false positive rates at 95\% TPR.
+DisPeD achieves FPR = 0.05 at $K{=}3$ compared to 0.11 for the baseline, indicating fewer benign conversations are misclassified even at an aggressive detection threshold.
+
+\begin{table}[t]
+\centering
+\small
+\caption{False positive rate at 95\% TPR on clean data.}
+\label{tab:fpr}
+\begin{tabular}{lcc}
+\toprule
+$K$ & \textbf{DisPeD FPR@95} & \textbf{Baseline FPR@95} \\
+\midrule
+2 & 0.08 & 0.14 \\
+3 & 0.05 & 0.11 \\
+Full & 0.03 & 0.06 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Scrambled-Label Ablation}
+\label{sec:ablation}
+
+To verify that the persuasion strategy labels carry genuine signal rather than acting as mere class indicators, we retrain the Stage 1 encoder with randomly scrambled persuasion labels (Table~\ref{tab:scrambled}).
+Scrambling causes a 7 pp drop in full-conversation F1 (0.91 to 0.84, $p{=}0.008$) and a 6 pp drop at $K{=}3$ ($p{=}0.024$), confirming that the treatment model's advantage derives from correctly encoding pragmatic function.
+The scrambled model performs slightly below the vanilla baseline (0.84 vs.\ 0.86 at full), indicating that incorrect persuasion supervision introduces noise that degrades the underlying semantic representation.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Scrambled-label ablation. Proper = correct persuasion labels; scrambled = randomly shuffled labels.}
+\label{tab:scrambled}
+\begin{tabular}{lcccc}
+\toprule
+$K$ & \textbf{Proper} & \textbf{Scrambled} & \textbf{Baseline} & \textbf{Drop (pp)} \\
+\midrule
+2 & 0.82 & 0.77 & 0.75 & $-$5 \\
+3 & 0.86 & 0.80 & 0.78 & $-$6 \\
+Full & 0.91 & 0.84 & 0.86 & $-$7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Robustness Under Adversarial Perturbation}
+\label{sec:perturbation}
+
+We evaluate robustness by applying aggressive paraphrasing (synonym substitution, syntactic restructuring, register shifting) to jailbreak conversations at test time, while models remain trained on unperturbed data.
+The perturbed data achieves TF-IDF separability of 0.41, confirming successful removal of most residual lexical cues.
+
+Table~\ref{tab:perturbation} shows a clear ordering in degradation magnitude: TF-IDF + LR collapses by 18 pp (0.74 to 0.56), the vanilla semantic baseline drops 12 pp (0.86 to 0.74), and DisPeD drops 7 pp (0.91 to 0.84).
+The $\Delta$-$\Delta$ between DisPeD and the semantic baseline is 5 pp ($p{=}0.043$), providing evidence that pragmatic features offer complementary robustness.
+This difference is statistically significant but not overwhelming; the bottleneck is the persuasion classifier's accuracy of 0.72, which limits how effectively pragmatic features can be encoded and thus caps the robustness advantage.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Performance under adversarial paraphrasing (full conversation). $\Delta$-$\Delta$ measures the relative robustness advantage over DisPeD.}
+\label{tab:perturbation}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Clean F1} & \textbf{Perturbed F1} & \textbf{Drop} & \textbf{$\Delta$-$\Delta$} \\
+\midrule
+DisPeD & 0.91 & 0.84 & $-$7 & --- \\
+Baseline (vanilla DeBERTa) & 0.86 & 0.74 & $-$12 & 5 pp \\
+TF-IDF + LR & 0.74 & 0.56 & $-$18 & 11 pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:perturbation_k3} presents the same analysis at $K{=}3$.
+The degradation ordering is consistent: DisPeD drops 7 pp compared to 12 pp for the baseline and 19 pp for TF-IDF + LR.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Performance under adversarial paraphrasing at $K{=}3$.}
+\label{tab:perturbation_k3}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{Clean $K{=}3$} & \textbf{Perturbed $K{=}3$} & \textbf{Drop} \\
+\midrule
+DisPeD & 0.86 & 0.79 & $-$7 \\
+Baseline & 0.78 & 0.66 & $-$12 \\
+TF-IDF + LR & 0.71 & 0.52 & $-$19 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Attack Generalization}
+\label{sec:crossattack}
+
+We evaluate models trained exclusively on Crescendo data against FITD and Deceptive Delight conversations in a zero-shot setting (Table~\ref{tab:crossattack}).
+Results vary substantially by attack type and must be reported separately; the aggregate ($\Delta{=}6$ pp, $p{=}0.052$) is misleading.
+
+On FITD, DisPeD achieves F1 = 0.74 with an 8 pp advantage over the baseline ($p{=}0.034$).
+This transfer is expected: FITD's compliance escalation shares substantial overlap with Crescendo's persuasion escalation in strategy space, with both progressing through trust-building and authority-based request escalation.
+
+On Deceptive Delight, DisPeD achieves F1 = 0.64 with a 5 pp advantage that does not reach significance ($p{=}0.142$).
+Deceptive Delight relies on interleaving harmful content within pleasant context rather than explicit persuasion escalation, and its strategy distribution (heavy on rapport building and emotional appeal) diverges from Crescendo's (heavy on authority appeal and reframing).
+The model trained on Crescendo lacks exposure to this interleaving pattern.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-attack zero-shot generalization. Models trained on Crescendo only. $^*p{<}0.05$.}
+\label{tab:crossattack}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Attack Type} & \textbf{DisPeD F1} & \textbf{Baseline F1} & \textbf{$\Delta$ (pp)} & \textbf{$p$} \\
+\midrule
+Crescendo (in-domain) & 0.91 & 0.86 & +5 & 0.031$^*$ \\
+FITD (zero-shot) & 0.74 & 0.66 & +8 & 0.034$^*$ \\
+Deceptive Delight (zero-shot) & 0.64 & 0.59 & +5 & 0.142 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:strategy_dist} shows the persuasion strategy distributions across attack types, illustrating why transfer varies.
+FITD shares Crescendo's emphasis on logical and authority appeals, while Deceptive Delight diverges toward rapport and emotional strategies.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Persuasion strategy distribution (\%) across attack types.}
+\label{tab:strategy_dist}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Strategy} & \textbf{Crescendo} & \textbf{FITD} & \textbf{Dec.\ Delight} \\
+\midrule
+Rapport Building & 22 & 18 & 28 \\
+Authority Appeal & 14 & 16 & 3 \\
+Emotional Appeal & 11 & 8 & 21 \\
+Logical Appeal & 13 & 19 & 12 \\
+Reframing & 15 & 10 & 14 \\
+Social Proof & 8 & 12 & 7 \\
+Urgency/Scarcity & 6 & 9 & 4 \\
+Reciprocity & 5 & 6 & 5 \\
+None & 6 & 2 & 6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Persuasion Strategy Trajectory Analysis}
+\label{sec:trajectory}
+
+We compute a monotonicity score over each conversation's sequence of persuasion strategies, measuring whether strategies progress unidirectionally through an ordered intensity scale (Table~\ref{tab:trajectory}).
+At the group level, jailbreak conversations score significantly higher (0.71 vs.\ 0.38 for benign, $p{=}0.003$).
+Transition entropy is also lower in jailbreak conversations (1.42 vs.\ 2.15, $p{=}0.007$), indicating more predictable and structured strategy progressions.
+
+However, individual-level variance is substantial: the standard deviation of jailbreak monotonicity scores is 0.18, and only 68\% of jailbreak conversations exceed a monotonicity threshold of 0.6.
+The remaining 32\% deviate from monotonic escalation, likely due to (a) tactical de-escalation by attackers who retreat to rapport building mid-conversation before re-escalating, and (b) noise from the persuasion classifier's 72\% accuracy propagating into trajectory-level scores.
+These results support the mechanistic basis for DisPeD's detection advantage at the population level, while acknowledging that the monotonic escalation pattern is a tendency rather than a universal property.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Persuasion strategy trajectory analysis. $^*p{<}0.01$.}
+\label{tab:trajectory}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{Jailbreak} & \textbf{Benign} & \textbf{$p$} \\
+\midrule
+Monotonicity (mean $\pm$ std) & 0.71 $\pm$ 0.18 & 0.38 $\pm$ 0.14 & 0.003$^*$ \\
+Transition Entropy & 1.42 & 2.15 & 0.007$^*$ \\
+\% Above threshold (0.6) & 68\% & 12\% & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Hard Negative Evaluation}
+\label{sec:hardneg}
+
+Table~\ref{tab:wildchat} reports false positive rates on WildChat hard negatives.
+DisPeD misclassifies 12\% of high-drift benign conversations (10 out of 85), compared to 18\% for the baseline and 27\% for TF-IDF + LR.
+While DisPeD's persuasion grounding reduces false positives relative to the baseline, the 12\% rate is not negligible: the model conflates legitimate persuasion (e.g., debate-style exchanges with authority appeals) with adversarial persuasion escalation.
+Distinguishing these two cases likely requires either a stronger intent classification signal or conversation-level contextual features beyond the current architecture.
+
+\begin{table}[t]
+\centering
+\small
+\caption{False positive rate on WildChat hard negatives ($n{=}85$).}
+\label{tab:wildchat}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Model} & \textbf{FPR (WildChat)} & \textbf{FPR (in-domain)} \\
+\midrule
+DisPeD & 12\% & 3\% \\
+Baseline & 18\% & 6\% \\
+TF-IDF + LR & 27\% & 19\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Comparison Across Feature Levels}
+\label{sec:hierarchy}
+
+Table~\ref{tab:hierarchy} places all baselines on a single scale.
+Performance on clean data follows a consistent ordering: TF-IDF + LR (0.74) $<$ DeepContext proxy (0.82) $<$ vanilla DeBERTa + GRU (0.86) $<$ DisPeD (0.91).
+Under adversarial perturbation, the gap widens: TF-IDF + LR drops to 0.56, BERT + GRU to 0.69, the vanilla baseline to 0.74, and DisPeD to 0.84.
+
+The DeepContext proxy comparison should be interpreted with caution.
+The 4 pp gap between BERT + GRU (0.82) and vanilla DeBERTa + GRU (0.86) is partly attributable to the encoder capacity difference (BERT-base vs.\ DeBERTa-v3-base), not solely to architectural choices.
+The primary controlled comparison remains DisPeD vs.\ the vanilla DeBERTa baseline, which isolates the effect of persuasion grounding using the same encoder.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Comparison across feature levels (full conversation). The DeepContext proxy uses BERT-base rather than DeBERTa, introducing a capacity confound (see text).}
+\label{tab:hierarchy}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Full F1} & \textbf{$K{=}3$ F1} & \textbf{$K{=}2$ F1} & \textbf{Perturbed F1} \\
+\midrule
+DisPeD & 0.91 & 0.86 & 0.82 & 0.84 \\
+Baseline (DeBERTa + GRU) & 0.86 & 0.78 & 0.75 & 0.74 \\
+DeepContext proxy (BERT + GRU) & 0.82 & 0.74 & 0.70 & 0.69 \\
+TF-IDF + LR & 0.74 & 0.71 & 0.68 & 0.56 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Stability Analysis}
+\label{sec:stability}
+
+To assess the sensitivity of results to encoder training, we evaluate three DeBERTa checkpoints from different training epochs (Table~\ref{tab:stability}).
+Downstream F1 varies by at most 2 pp (0.89 to 0.91), and $K{=}3$ F1 varies by 2 pp (0.84 to 0.86), confirming that reported results are not artifacts of a particular checkpoint.
+Epoch 3 is selected based on peak persuasion accuracy (0.72); the final epoch shows mild overfitting (persuasion accuracy drops to 0.71).
+Full random-seed variance analysis (multiple independent training runs) was not conducted due to computational constraints.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-checkpoint stability. Max spread $\leq$ 2 pp across all metrics.}
+\label{tab:stability}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Checkpoint} & \textbf{Persuasion Acc} & \textbf{Full F1} & \textbf{$K{=}3$ F1} \\
+\midrule
+Epoch 2 & 0.70 & 0.90 & 0.84 \\
+Epoch 3 (selected) & 0.72 & 0.91 & 0.86 \\
+Epoch 5 (final) & 0.71 & 0.89 & 0.85 \\
+\midrule
+Std & 0.01 & 0.01 & 0.01 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+% 6  LIMITATIONS
+% ============================================================
+\section{Limitations}
+\label{sec:limitations}
+
+We identify several limitations that bound the generalizability of our findings.
+
+\paragraph{Dataset scale.}
+Our primary dataset contains 480 conversations (240 jailbreak, 240 benign) with a test set of $n{=}72$.
+This is small for a detection paper, and several of our comparisons (notably $K{=}2$ with $p{=}0.072$) do not reach statistical significance at this sample size.
+While we report bootstrap confidence intervals throughout to quantify uncertainty, the proof-of-concept results presented here require validation on larger datasets before deployment conclusions can be drawn.
+
+\paragraph{Persuasion classifier bottleneck.}
+The Stage 1 persuasion classifier achieves 72\% accuracy on the clean data.
+This ceiling propagates through the entire pipeline: turn embeddings encode noisy pragmatic representations, the GRU receives imperfect strategy sequences, and the downstream classifier's advantage is capped.
+The 5 pp $\Delta$-$\Delta$ under adversarial perturbation ($p{=}0.043$) is real but modest; we hypothesize that a more accurate persuasion encoder would widen this gap, but cannot verify without better training data or larger models.
+The 35\% overlap between top TF-IDF features and persuasion-related vocabulary further suggests that the current encoder partially confounds lexical and pragmatic signals.
+
+\paragraph{Attack type coverage.}
+DisPeD is designed for persuasion-mediated multi-turn attacks.
+Cross-attack evaluation shows significant generalization to FITD (which shares the escalation structure) but limited transfer to Deceptive Delight (which uses interleaving rather than escalation).
+Pure information accumulation attacks, token smuggling, and single-frame roleplay are outside our scope.
+A dual-track architecture combining persuasion and semantic signals (future work) would provide broader coverage.
+
+\paragraph{Individual-level trajectory variance.}
+While group-level monotonicity differences are highly significant ($p{=}0.003$), 32\% of jailbreak conversations do not exhibit monotonic escalation patterns.
+The individual-level monotonicity score has $\sigma{=}0.18$, meaning a substantial fraction of jailbreaks deviate from the idealized escalation trajectory.
+This variance likely reflects both genuine attack diversity (tactical de-escalation) and noise from the persuasion classifier.
+
+\paragraph{Synthetic data.}
+All attack conversations are LLM-generated rather than collected from real adversarial interactions.
+LLM-generated attacks may not capture the full diversity of human adversarial strategies.
+The register normalization step, while necessary to remove lexical shortcuts, introduces an additional synthetic transformation whose fidelity we can only partially verify (8\% rejection rate).
+
+\paragraph{Hard negative false positives.}
+DisPeD's 12\% false positive rate on WildChat hard negatives, while lower than the baseline's 18\%, indicates that persuasion grounding alone cannot reliably distinguish legitimate persuasion from adversarial persuasion.
+Deployment settings with high volumes of naturally persuasive conversations (e.g., sales, debate) would require additional safeguards.
+
+\paragraph{Reproducibility.}
+The DeepContext proxy comparison uses BERT-base rather than a faithful reproduction of DeepContext (no public code is available), introducing a confound between encoder capacity and architectural design.
+Cross-seed variance analysis was not conducted.
+
+% ============================================================
+% 7  CONCLUSION
+% ============================================================
+\section{Conclusion}
+
+We have presented DisPeD, a proof-of-concept detector that exploits the pragmatic evasion asymmetry in multi-turn jailbreak attacks.
+By fine-tuning DeBERTa on persuasion strategy classification and modeling strategy sequences with a GRU, DisPeD provides a complementary detection signal that is more robust to surface-level evasion than lexical or semantic features.
+On register-normalized data, DisPeD achieves a significant 8 pp F1 improvement at $K{=}3$ turns and degrades 5 pp less than a semantic baseline under adversarial paraphrasing.
+
+The results establish that discourse-level persuasion structure is a viable detection axis, while also revealing clear boundaries: the approach depends on persuasion classifier quality, generalizes unevenly across attack families, and the monotonic escalation signal is a group-level tendency with substantial individual variance.
+Future work should address the persuasion classifier bottleneck through larger annotated corpora, extend training to diverse attack families, and explore a dual-track architecture that combines pragmatic and semantic signals for broader coverage.
+
+% ============================================================
+% REFERENCES
+% ============================================================
+\bibliographystyle{plainnat}
+\begin{thebibliography}{20}
+
+\bibitem[Austin(1962)]{austin1962things}
+J.~L. Austin.
+\newblock \emph{How to Do Things with Words}.
+\newblock Oxford University Press, 1962.
+
+\bibitem[Bullwinkel et~al.(2025)]{bullwinkel2025multiturnjailbreaks}
+J.~Bullwinkel, S.~Marro, et~al.
+\newblock Multi-turn jailbreaks: Analyzing representation shifts in large language models under adversarial dialogue.
+\newblock \emph{arXiv preprint arXiv:2507.02956}, 2025.
+
+\bibitem[DeepContext(2026)]{deepcontext2026}
+DeepContext Authors.
+\newblock DeepContext: Detecting multi-turn jailbreak attacks via semantic drift tracking.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[Hagendorff(2026)]{hagendorff2026persuasion}
+T.~Hagendorff.
+\newblock Persuasion strategies in multi-turn adversarial interactions with large language models.
+\newblock \emph{Nature Communications}, 2026.
+
+\bibitem[He et~al.(2021)]{he2021debertav3}
+P.~He, J.~Gao, and W.~Chen.
+\newblock {DeBERTaV3}: Improving {DeBERTa} using {ELECTRA}-style pre-training with gradient-disentangled embedding sharing.
+\newblock \emph{arXiv preprint arXiv:2111.09543}, 2021.
+
+\bibitem[Jiang et~al.(2024)]{jiang2024deceptivedelight}
+Z.~Jiang et~al.
+\newblock Deceptive delight: Interleaving benign and harmful content for multi-turn jailbreaking.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem[Russinovich and Salem(2024)]{russinovich2024greatwritearticle}
+M.~Russinovich and A.~Salem.
+\newblock Great, now write an article about that: The crescendo multi-turn {LLM} jailbreak attack.
+\newblock \emph{arXiv preprint arXiv:2404.01833}, 2024.
+
+\bibitem[Searle(1969)]{searle1969speech}
+J.~R. Searle.
+\newblock \emph{Speech Acts: An Essay in the Philosophy of Language}.
+\newblock Cambridge University Press, 1969.
+
+\bibitem[WildChat(2024)]{wildchat2024}
+WildChat Team.
+\newblock {WildChat}: 1{M} {ChatGPT} interaction logs in the wild.
+\newblock \emph{ICLR}, 2024.
+
+\bibitem[Zeng et~al.(2024)]{zeng2024pap}
+Y.~Zeng, H.~Lin, J.~Zhang, et~al.
+\newblock How {Johnny} can persuade {LLMs} to jailbreak them: Rethinking persuasion to challenge {AI} safety by humanizing {LLMs}.
+\newblock \emph{ACL}, 2024.
+
+\bibitem[Zhou et~al.(2024)]{zhou2024speak}
+Y.~Zhou et~al.
+\newblock Speak out of turn: Safety vulnerability of large language models in multi-turn dialogue.
+\newblock \emph{arXiv preprint}, 2024.
+
+\bibitem[How Do LLMs Persuade(2025)]{howdollmspersuade2025}
+Anonymous.
+\newblock How do {LLMs} persuade? {E}xtracting persuasion dynamics from turn-level representations.
+\newblock \emph{arXiv preprint arXiv:2508.05625}, 2025.
+
+\end{thebibliography}
+
+\end{document}

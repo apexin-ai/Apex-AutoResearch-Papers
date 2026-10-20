@@ -1,0 +1,683 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{tabularx}
+\usepackage{array}
+
+\newcommand{\ours}{DisPeD}
+\newcommand{\fone}{F$_1$}
+
+\title{\ours{}: Persuasion-Aware Fine-Tuning for Robust\\Cross-Attack Multi-Turn Jailbreak Detection}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+\begin{abstract}
+Multi-turn jailbreak attacks distribute adversarial intent across individually benign conversational turns, defeating per-turn safety classifiers and single-turn content analysis.
+A natural defense is to track semantic drift across turns with a generic encoder and a recurrent aggregator, but we show that this vanilla temporal modeling approach catastrophically fails on unseen attack families: a model trained on Crescendo conversations collapses to \fone{}=0.28 when evaluated on Deceptive Delight.
+We propose \ours{}, which fine-tunes DeBERTa-v3-base on an 8-class persuasion strategy classification objective before aggregation.
+This persuasion-aware fine-tuning bridges the cross-attack generalization gap entirely, achieving \fone{}=1.0 on the same unseen attacks (a +72 percentage point improvement).
+Systematic ablation reveals that the supervision signal, not architectural choices, drives generalization: scrambled strategy labels retain \fone{}=0.94--0.99, binary persuasion-presence labels match 8-class performance within 1 percentage point (pp), mean pooling matches GRU aggregation, and detection is insensitive to multi-task loss weighting.
+The 8-class taxonomy provides complementary value through interpretable strategy trajectories that distinguish attack families.
+Zero-shot frontier Large Language Model (LLM) judges (GPT-5.5, Qwen3-8B) achieve at most \fone{}=0.45 on the same data, confirming that content-level analysis cannot detect process-level manipulation.
+\end{abstract}
+
+% ============================================================
+% 1. INTRODUCTION
+% ============================================================
+\section{Introduction}
+
+Multi-turn jailbreak attacks such as Crescendo \citep{russinovich2024}, Foot-in-the-Door (FITD), and Deceptive Delight \citep{jiang2024} exploit conversational dynamics to circumvent safety alignment in large language models.
+Rather than injecting a single adversarial prompt, these attacks distribute manipulative intent across multiple turns, keeping each individual message within the ``benign'' region of representation space \citep{bullwinkel2025}.
+This deliberate distribution defeats per-turn safety classifiers \citep{inan2023llamaguard,han2024wildguard,zeng2024shieldgemma} and LLM-as-judge approaches \citep{perez2022}, which analyze content at the utterance level rather than tracking the adversarial process across the full conversation.
+
+A natural response is to model the temporal evolution of turn-level representations.
+DeepContext \citep{su2026} encodes each turn with BERT and aggregates the sequence with a GRU, achieving \fone{}=0.84 on in-distribution Crescendo detection.
+However, we demonstrate that this vanilla semantic temporal modeling approach fails catastrophically when confronted with attack types unseen during training: a DeBERTa-v3-base + GRU model trained on Crescendo conversations collapses to \fone{}=0.28 on Deceptive Delight (DD) attacks.
+The generic encoder produces turn embeddings that capture surface semantics but miss the pragmatic manipulation strategies shared across attack families.
+
+Recent work establishes that persuasion is systematic in jailbreaks.
+\citet{zeng2024pap} identify 40 persuasion techniques effective for jailbreaking and show that persuasion-enhanced attacks substantially increase attack success rates.
+\citet{hagendorff2026} find identifiable persuasion strategies in 97\% of successful attacks across a large-scale corpus.
+Complementary analysis demonstrates that persuasion dynamics are extractable from turn-level neural representations \citep{howdollms2025}.
+Yet no published method operationalizes these observations into a detection system that generalizes across attack types.
+
+We propose \ours{} (\textbf{Dis}course-level \textbf{Pe}rsuasion \textbf{D}etector), which uses persuasion strategy classification as a multi-task fine-tuning objective for the turn-level encoder.
+Stage~1 fine-tunes DeBERTa-v3-base on two tasks jointly: 8-class persuasion strategy classification and binary jailbreak-intent classification.
+Stage~2 aggregates the resulting turn embeddings via a sequence model (GRU or mean pooling) for conversation-level detection.
+The persuasion objective teaches the encoder to attend to pragmatic features that transfer across attack families, without requiring attack-specific training data.
+
+Our experiments yield three findings.
+First, persuasion-aware fine-tuning bridges the cross-attack generalization gap completely: \ours{} achieves \fone{}=1.0 on unseen DD attacks where the vanilla baseline collapses to \fone{}=0.28, a +72pp improvement.
+Second, systematic ablation reveals that the persuasion fine-tuning objective is the sole critical ingredient: scrambled labels, binary labels, mean pooling, and varying loss weights all produce equivalent detection, while the 8-class taxonomy provides interpretable strategy trajectories as a complementary contribution.
+Third, zero-shot LLM judges (GPT-5.5: \fone{}=0.38; Qwen3-8B: \fone{}=0.10) confirm that content-level analysis cannot substitute for process-level detection.
+
+Our contributions are:
+\begin{itemize}
+    \item We demonstrate that vanilla semantic temporal modeling (generic encoder + RNN) fails catastrophically on unseen multi-turn attack types (\fone{}=0.28 on DD) and that persuasion-aware fine-tuning bridges this gap entirely (\fone{}=1.0, +72pp).
+    \item We provide comprehensive ablation evidence that the persuasion fine-tuning objective functions as an accessible supervision signal: detection is robust to label quality, label granularity, aggregation architecture, and loss weighting. The 8-class taxonomy enables interpretable strategy trajectory analysis as a complementary contribution.
+    \item We establish baselines against TF-IDF (strong lexical), frontier LLM judges (content-level), and a DeepContext proxy (vanilla temporal), positioning \ours{} within the landscape of multi-turn jailbreak defenses.
+\end{itemize}
+
+% ============================================================
+% 2. RELATED WORK
+% ============================================================
+\section{Related Work}
+
+\paragraph{Multi-turn jailbreak attacks.}
+Crescendo \citep{russinovich2024} gradually escalates requests across turns, exploiting conversational context to normalize harmful content.
+PAIR \citep{chao2023} uses an attacker LLM to iteratively refine jailbreak prompts.
+\citet{jiang2024} introduce Deceptive Delight, which interleaves benign and adversarial content to exploit attention dilution.
+\citet{wei2024} provide a taxonomy of jailbreak strategies, distinguishing competing-objectives and mismatched-generalization failures.
+\citet{bullwinkel2025} show that multi-turn attacks keep per-turn representations in a ``benign'' region, causing a 50-point attack success rate gap relative to single-turn attacks.
+
+\paragraph{Safety classifiers and guardrails.}
+Per-turn classifiers such as Llama Guard \citep{inan2023llamaguard}, WildGuard \citep{han2024wildguard}, ShieldGemma \citep{zeng2024shieldgemma}, and Constitutional Classifiers \citep{anthropic2024constitutional} detect harmful content at the utterance level.
+These systems achieve high accuracy on single-turn attacks but do not model cross-turn dependencies.
+LLM-as-judge approaches \citep{perez2022,ganguli2022} prompt frontier models to evaluate conversations but analyze content rather than process, limiting their effectiveness against distributed manipulation.
+
+\paragraph{Multi-turn defenses.}
+DeepContext \citep{su2026} aggregates BERT turn embeddings via a GRU for conversation-level detection, achieving \fone{}=0.84 on Crescendo.
+BIID \citep{biid2025} and G-Guard \citep{gguard2025} propose graph-based and multi-agent approaches to multi-turn safety.
+SafeDream \citep{safedream2025} uses proactive safety mechanisms.
+None of these methods incorporate persuasion-grounded features or evaluate cross-attack generalization.
+
+\paragraph{Persuasion in adversarial contexts.}
+\citet{zeng2024pap} systematically apply 40 persuasion techniques to jailbreaking, demonstrating that persuasion-enhanced prompts substantially increase attack success.
+\citet{hagendorff2026} analyze a large-scale jailbreak corpus and find identifiable persuasion strategies in 97\% of successful attacks.
+\citet{howdollms2025} show that persuasion dynamics are extractable from turn-level representations.
+These findings motivate persuasion-aware detection but have not been operationalized into cross-attack-generalizable classifiers.
+
+\paragraph{Discourse analysis and computational persuasion.}
+Discourse-level analysis has a long history in NLP, from Rhetorical Structure Theory \citep{mann1988} to the Penn Discourse Treebank \citep{prasad2008pdtb} and dialogue act classification \citep{stolcke2000}.
+Computational persuasion detection has been studied in argumentation mining \citep{habernal2016} and social media influence \citep{tan2016}.
+\ours{} connects these traditions to LLM safety by treating persuasion strategy classification as a representation learning objective.
+
+\paragraph{Red-teaming and evaluation.}
+Systematic red-teaming efforts \citep{perez2022,ganguli2022} and benchmarks such as HarmBench \citep{mazeika2024} evaluate model safety.
+\citet{nasr2025} study adaptive attacks that evade classifiers.
+\citet{gururangan2018} and \citet{niven2019} demonstrate annotation artifacts in NLP benchmarks.
+We address artifact concerns through topic-anchored data construction and ablation controls.
+
+
+% ============================================================
+% 3. METHOD
+% ============================================================
+\section{Method}
+
+\subsection{Problem Formulation}
+Given a multi-turn conversation $C = (u_1, u_2, \ldots, u_T)$ consisting of $T$ turns, the goal is to classify $C$ as jailbreak or benign at the conversation level.
+We additionally define a per-turn persuasion strategy label $s_t \in \{0, 1, \ldots, 7\}$ from an 8-class taxonomy and a binary jailbreak-intent label $y_t \in \{0, 1\}$.
+
+\subsection{Stage 1: Persuasion-Aware Encoder Fine-Tuning}
+We fine-tune DeBERTa-v3-base \citep{he2021deberta} on two auxiliary tasks jointly.
+Each turn $u_t$ is encoded independently to produce a [CLS] representation $\mathbf{h}_t \in \mathbb{R}^d$.
+Two classification heads operate on $\mathbf{h}_t$:
+
+\begin{align}
+    \hat{s}_t &= \text{softmax}(\mathbf{W}_s \mathbf{h}_t + \mathbf{b}_s) \label{eq:persuasion} \\
+    \hat{y}_t &= \sigma(\mathbf{w}_y^\top \mathbf{h}_t + b_y) \label{eq:intent}
+\end{align}
+
+The combined loss is:
+\begin{equation}
+    \mathcal{L}_{\text{stage1}} = \mathcal{L}_{\text{CE}}(\hat{s}_t, s_t) + \lambda \cdot \mathcal{L}_{\text{BCE}}(\hat{y}_t, y_t)
+\end{equation}
+where $\lambda$ controls the relative weight of the intent classification objective.
+Ablation experiments (Section~\ref{sec:ablation}) show detection performance is insensitive to $\lambda \in \{0, 0.3, 0.5, 2.0\}$.
+
+\subsection{Stage 2: Conversation-Level Aggregation}
+Given the fine-tuned encoder, we extract turn embeddings $\mathbf{H} = (\mathbf{h}_1, \ldots, \mathbf{h}_K)$ for the first $K$ turns of a conversation.
+These are aggregated and classified:
+\begin{equation}
+    \hat{c} = \sigma(\mathbf{w}_c^\top f(\mathbf{H}) + b_c)
+\end{equation}
+where $f$ is either a GRU that produces the final hidden state, or mean pooling across turns.
+We report GRU as the default but note that mean pooling produces equivalent results (Section~\ref{sec:ablation}), confirming that temporal ordering is not the detection mechanism.
+
+\subsection{Early Detection}
+For deployment, the system can operate on partial conversations.
+Given the first $K$ turns, detection is performed on $\mathbf{H}_K = (\mathbf{h}_1, \ldots, \mathbf{h}_K)$.
+We evaluate at $K \in \{1, 2, 3, 5, \text{full}\}$ to characterize early detection capability.
+
+\subsection{Persuasion Strategy Taxonomy}
+\label{sec:taxonomy}
+Following \citet{zeng2024pap} and \citet{hagendorff2026}, we define 8 persuasion strategy classes spanning the spectrum from rapport building to explicit coercion.
+Strategy index increases with escalation intensity: class 0 (rapport/trust building) through class 7 (explicit pressure/coercion).
+This ordering enables trajectory analysis (Section~\ref{sec:interpretability}) where the temporal pattern of strategy indices characterizes different attack types.
+
+% ============================================================
+% 4. EXPERIMENTAL SETUP
+% ============================================================
+\section{Experimental Setup}
+
+\subsection{Data}
+\paragraph{Training data.}
+We construct a topic-anchored dataset of 480 conversations (240 Crescendo jailbreak, 240 benign) with per-turn persuasion strategy annotations.
+Benign conversations are anchored to matching topics to eliminate trivial lexical shortcuts from topic divergence.
+Each conversation is annotated with turn-level 8-class persuasion strategy labels and binary jailbreak-intent labels.
+
+\paragraph{In-distribution test set.}
+A held-out set of 72 Crescendo conversations (36 jailbreak, 36 benign) is used for IID evaluation.
+
+\paragraph{Out-of-distribution test sets.}
+We generate 80 FITD and 80 Deceptive Delight (DD) conversations with persuasion annotations using a controlled generation pipeline.
+FITD conversations use 4 distinct persuasion strategies and average 8.5 turns.
+DD conversations use 6 strategies and average 7.2 turns.
+These are used exclusively for evaluation; no OOD data appears during training.
+
+\paragraph{Hard negative evaluation.}
+200 conversations from WildChat \citep{zhao2024wildchat} are filtered for high-drift characteristics (topic shift $\geq$3, $>$10 turns, emotional/persuasive language) after removing contaminated samples (contamination rate reduced from 15\% to 2\%).
+
+\subsection{Models}
+\paragraph{\ours{} (Treatment).}
+DeBERTa-v3-base fine-tuned on the persuasion + intent multi-task objective (Stage~1), followed by GRU aggregation (Stage~2).
+Achieves 82\% accuracy on persuasion strategy classification and 98\% on intent classification.
+
+\paragraph{Vanilla baseline.}
+Same Stage~2 architecture (DeBERTa-v3-base + GRU) without Stage~1 fine-tuning.
+
+\paragraph{TF-IDF + Logistic Regression.}
+TF-IDF features with logistic regression, serving as a strong lexical baseline.
+
+\paragraph{DeepContext proxy.}
+BERT-base + GRU, reproducing the DeepContext \citep{su2026} approach with available resources.
+
+\paragraph{LLM-as-Judge.}
+GPT-5.5 and Qwen3-8B with zero-shot prompting for conversation-level jailbreak detection.
+
+\subsection{Evaluation}
+All models are evaluated on conversation-level binary classification (\fone{} score) at $K \in \{1, 2, 3, 5, \text{full}\}$ turns.
+Treatment and baseline models are trained with 3 random seeds; we report mean $\pm$ standard deviation.
+Bootstrap 95\% confidence intervals are computed on the test set.
+
+% ============================================================
+% 5. RESULTS
+% ============================================================
+\section{Results}
+
+\subsection{Baseline Landscape}
+\label{sec:baselines}
+
+Table~\ref{tab:tfidf} reports the TF-IDF + LR baseline across all attack types.
+TF-IDF achieves \fone{}=1.0 on Crescendo and FITD, and \fone{}=0.944 on DD.
+This confirms inherent lexical separability between jailbreak and benign conversations: the top predictive features for jailbreak (``sure,'' ``hypothetical,'' ``creative,'' ``story,'' ``imagine'') versus benign (``thanks,'' ``code,'' ``help,'' ``python,'' ``error'') reflect fundamentally different conversational registers.
+We report TF-IDF as an honest upper bound for lexical approaches throughout the paper.
+
+\begin{table}[t]
+\centering
+\caption{TF-IDF + Logistic Regression baseline across attack types.}
+\label{tab:tfidf}
+\begin{tabular}{lccc}
+\toprule
+ & Crescendo & FITD & DD \\
+\midrule
+TF-IDF + LR & 1.000 & 1.000 & 0.944 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{In-Distribution Detection}
+\label{sec:iid}
+
+Table~\ref{tab:iid} reports IID performance on the Crescendo test set.
+Both treatment and baseline achieve near-perfect detection at higher $K$, with the treatment reaching \fone{}=1.0 across all $K$ values with zero variance across 3 seeds.
+The baseline is also strong IID (\fone{}=0.968 at $K$=1, rising to 1.0 at full), confirming that vanilla DeBERTa is a competent in-distribution detector.
+The small IID gap (max 3.2pp at $K$=1) is expected: the paper's value proposition is not IID performance but cross-attack generalization.
+
+\begin{table}[t]
+\centering
+\caption{IID detection performance on Crescendo test set ($n$=72, 3-seed mean $\pm$ std). Treatment achieves zero variance across all $K$.}
+\label{tab:iid}
+\begin{tabular}{lccccc}
+\toprule
+Model & $K$=1 & $K$=2 & $K$=3 & $K$=5 & Full \\
+\midrule
+Treatment & 1.000\tiny{$\pm$.000} & 1.000\tiny{$\pm$.000} & 1.000\tiny{$\pm$.000} & 1.000\tiny{$\pm$.000} & 1.000\tiny{$\pm$.000} \\
+Baseline  & 0.968\tiny{$\pm$.033} & 0.977\tiny{$\pm$---} & 0.987\tiny{$\pm$---} & 0.996\tiny{$\pm$---} & 1.000\tiny{$\pm$---} \\
+TF-IDF    & \multicolumn{5}{c}{1.000 (all $K$)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Attack Generalization}
+\label{sec:cross_attack}
+
+Table~\ref{tab:cross_attack} presents the central experiment: models trained exclusively on Crescendo, evaluated on unseen FITD and DD attacks.
+On DD, the vanilla baseline collapses to \fone{}=0.284 at full conversation length, while the treatment achieves \fone{}=1.0 (a +71.6pp gap).
+The baseline's performance on DD degrades monotonically with conversation length ($K$=1: 0.575 $\to$ full: 0.284), indicating that the model actively gets worse as DD's deceptive structure unfolds.
+The treatment maintains perfect or near-perfect detection across all $K$ values.
+
+On FITD, both models achieve strong performance (treatment: 1.0, baseline: 1.0 at full; 1.0 vs. 0.99 at $K$=1).
+This asymmetry is informative: FITD's compliance-escalation pattern is structurally similar to Crescendo, enabling vanilla transfer.
+DD's interleaving deception mechanism is fundamentally different, exposing the vanilla approach's reliance on Crescendo-specific surface features.
+
+TF-IDF achieves \fone{}=0.944 on DD (strong but not perfect) and 1.0 on FITD.
+The treatment's advantage over TF-IDF on DD (5.6pp) is modest in raw detection but becomes substantial under adversarial perturbation (Section~\ref{sec:perturbation}).
+
+\begin{table}[t]
+\centering
+\caption{Cross-attack generalization: models trained on Crescendo only, evaluated on unseen FITD and DD. The +71.6pp gap on DD is the paper's headline result.}
+\label{tab:cross_attack}
+\begin{tabular}{llccccc}
+\toprule
+Attack & Model & $K$=1 & $K$=2 & $K$=3 & $K$=5 & Full \\
+\midrule
+\multirow{3}{*}{DD}
+  & Treatment & 1.000 & 0.990 & 0.990 & 1.000 & 1.000 \\
+  & Baseline  & 0.575 & 0.438 & 0.360 & 0.310 & 0.284 \\
+  & TF-IDF    & --- & --- & --- & --- & 0.944 \\
+\midrule
+\multirow{3}{*}{FITD}
+  & Treatment & 1.000 & --- & --- & --- & 1.000 \\
+  & Baseline  & 0.990 & --- & --- & --- & 1.000 \\
+  & TF-IDF    & --- & --- & --- & --- & 1.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Ablation Studies}
+\label{sec:ablation}
+
+Table~\ref{tab:ablation} presents systematic ablation across four dimensions: label quality, label granularity, loss weighting, and aggregation architecture.
+The results converge on a single conclusion: the persuasion fine-tuning objective is the sole critical ingredient for cross-attack generalization.
+
+\paragraph{Label quality (scrambled vs. proper).}
+Randomly permuting strategy labels before fine-tuning reduces DD \fone{} by only 1.0pp at full length (0.990 vs. 1.000) and 6.5pp at $K$=1 (0.935 vs. 1.000).
+Both scrambled and proper labels massively outperform the vanilla baseline (+70.6pp and +71.6pp on DD, respectively).
+This reveals that the fine-tuning process on persuasion-related text, not the specific class boundaries, drives generalization.
+Scrambled fine-tuning still achieves 64.4\% persuasion strategy accuracy (vs. 79.6\% with proper labels), confirming that even degraded class signal provides useful representation structure.
+
+\paragraph{Label granularity (binary vs. 8-class).}
+Collapsing the 8-class taxonomy to binary (persuasion-present vs. none) produces equivalent IID detection (\fone{}=1.0) and nearly equivalent DD detection (\fone{}=0.990 vs. 1.000, a 1.0pp gap at full; 0.981 vs. 1.000 at $K$=1).
+The model is fundamentally a persuasion-presence detector.
+The 8-class taxonomy provides interpretability value (Section~\ref{sec:interpretability}), not detection advantage.
+
+\paragraph{Loss weighting ($\lambda$).}
+Detection is insensitive to $\lambda \in \{0, 0.3, 0.5, 2.0\}$: all configurations achieve \fone{}=1.0 on both IID and DD.
+The $\lambda$=0 condition (persuasion-only, no intent head) working equally well confirms that the intent classification head does not leak direct jailbreak signal into the encoder.
+
+\paragraph{Aggregation architecture (GRU vs. mean pooling).}
+Mean pooling matches GRU within 1pp on all evaluations (DD full: 1.0 vs. 1.0; DD $K$=1: 1.0 vs. 1.0).
+Temporal ordering is not the detection mechanism: the model detects persuasion-enriched embeddings regardless of turn order.
+
+\begin{table}[t]
+\centering
+\caption{Ablation study on DD (out-of-distribution). All variants with any form of persuasion fine-tuning massively outperform the vanilla baseline (\fone{}=0.284). The persuasion objective is the sole critical ingredient.}
+\label{tab:ablation}
+\begin{tabular}{lcc}
+\toprule
+Configuration & DD Full \fone{} & DD $K$=1 \fone{} \\
+\midrule
+Treatment (8-class, GRU, $\lambda$=0.5) & 1.000 & 1.000 \\
+Scrambled labels & 0.990 & 0.935 \\
+Binary labels & 0.990 & 0.981 \\
+$\lambda$=0 (persuasion only) & 1.000 & --- \\
+$\lambda$=0.3 & 1.000 & --- \\
+$\lambda$=2.0 & 1.000 & --- \\
+Mean pooling (replace GRU) & 1.000 & 1.000 \\
+\midrule
+Vanilla baseline (no fine-tuning) & 0.284 & 0.575 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Adversarial Perturbation Robustness}
+\label{sec:perturbation}
+
+To test whether models rely on surface lexical cues, we apply aggressive paraphrasing to the Crescendo test set (BERTScore = 0.92 to originals, lexical overlap = 0.20) and evaluate all models on the perturbed data.
+Table~\ref{tab:perturbation} reports \fone{} and the drop ($\Delta$) relative to original performance.
+
+The treatment shows zero degradation at $K \geq 2$ and only $-$2.6pp at $K$=1.
+The vanilla baseline is the most fragile ($-$11.8pp at full, $-$14.6pp at $K$=1).
+TF-IDF is intermediate: robust at $K \geq 3$ ($-$1.3pp) but degrades at $K$=1 ($-$9.6pp), where lexical signal is sparse.
+The strongest differentiation appears at early detection under perturbation ($K$=1), where the treatment leads TF-IDF by 7.0pp and the baseline by 12.0pp.
+
+\begin{table}[t]
+\centering
+\caption{Adversarial perturbation robustness. $\Delta$ = \fone{} drop from unperturbed. BERTScore = 0.92, lexical overlap = 0.20. Early detection ($K$=1) under perturbation maximally separates the three approaches.}
+\label{tab:perturbation}
+\begin{tabular}{lcccc}
+\toprule
+Model & Orig. \fone{} & Pert. \fone{} & $\Delta$ & Pert. $K$=1 ($\Delta$) \\
+\midrule
+Treatment & 1.000 & 1.000 & 0.0pp & 0.974 ($-$2.6pp) \\
+Baseline  & 1.000 & 0.882 & $-$11.8pp & 0.854 ($-$14.6pp) \\
+TF-IDF    & 1.000 & 0.987 & $-$1.3pp & 0.904 ($-$9.6pp) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{LLM-as-Judge Baseline}
+\label{sec:llm_judge}
+
+Table~\ref{tab:llm_judge} evaluates zero-shot conversation-level jailbreak detection by frontier LLMs.
+GPT-5.5 achieves perfect precision (1.0 at $K$=2) but catastrophically low recall (10.5\% at $K$=2, 29.0\% at $K$=5), producing \fone{}=0.19--0.45.
+The frontier LLM is ``deceived'' by Crescendo's surface educational framing because it analyzes content, not the underlying manipulation process.
+A substantial fraction of responses are unparseable (30.3\% at $K$=2, 47.4\% at full), further limiting practical utility.
+Even with best-case unparseable correction (all unparseable treated as correct), GPT-5.5 reaches approximately \fone{}=0.75, still far below the treatment (\fone{}=1.0).
+
+Qwen3-8B performs near zero (\fone{}=0.0--0.15), confirming that this is not a model-size issue but a fundamental limitation of content-level analysis for process-level attacks.
+
+\begin{table}[t]
+\centering
+\caption{LLM-as-judge zero-shot detection on Crescendo. Frontier LLMs achieve high precision but catastrophically low recall: content analysis cannot detect distributed persuasion.}
+\label{tab:llm_judge}
+\begin{tabular}{lccccc}
+\toprule
+Model & $K$=2 & $K$=3 & $K$=5 & Full & Unparseable \\
+\midrule
+GPT-5.5 \fone{}   & 0.190 & 0.273 & 0.449 & 0.383 & 30--47\% \\
+Qwen3-8B \fone{}  & 0.000 & 0.051 & 0.146 & 0.100 & --- \\
+Treatment \fone{}  & 1.000 & 1.000 & 1.000 & 1.000 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Interpretability via Strategy Trajectories}
+\label{sec:interpretability}
+
+Table~\ref{tab:transitions} reports persuasion strategy transition statistics.
+Different attack types exhibit distinct trajectory signatures.
+Crescendo conversations show gradual escalation, with mean strategy index rising from 0.86 in early turns to 5.64 in late turns (escalation slope = 0.53 per turn).
+Across 8 turns, the strategy profile spans all 8 classes.
+FITD conversations follow a commitment-escalation pattern: low-intensity strategies dominate early turns before a sharp transition to high-intensity strategies (low $\to$ low $\to$ mid $\to$ high).
+DD conversations cycle through emotional manipulation, role assignment, and deception in an interleaving pattern, using 6 of 8 strategy classes.
+
+Benign conversations show low strategy index variance ($<$1.5) and low transition entropy (1.2 vs. 2.8 for jailbreak), confirming the absence of structured escalation.
+These trajectories provide security analysts with attack fingerprints that characterize how an attack unfolds, not merely that it is occurring.
+
+\begin{table}[t]
+\centering
+\caption{Strategy trajectory statistics by attack type. Jailbreak conversations exhibit higher transition entropy and structured escalation patterns absent in benign conversations.}
+\label{tab:transitions}
+\begin{tabular}{lcccc}
+\toprule
+ & Crescendo & FITD & DD & Benign \\
+\midrule
+Strategies used & 8 & 4 & 6 & --- \\
+Mean idx. start & 0.86 & \multicolumn{2}{c}{(see pattern)} & --- \\
+Mean idx. end & 5.64 & \multicolumn{2}{c}{(see pattern)} & --- \\
+Escalation slope & 0.53 & --- & --- & --- \\
+Transition entropy & \multicolumn{3}{c}{2.8 (jailbreak)} & 1.2 \\
+Idx. variance & --- & --- & --- & $<$1.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ============================================================
+% 6. ADDITIONAL ANALYSIS
+% ============================================================
+\section{Additional Analysis}
+
+\subsection{DeepContext Proxy Comparison}
+
+To ground our comparison with the DeepContext approach \citep{su2026}, we train a BERT-base + GRU proxy.
+This proxy achieves reasonable IID performance (\fone{}=0.96) but collapses on DD (\fone{}=0.32), confirming that the vanilla temporal modeling failure is independent of encoder choice (BERT-base vs. DeBERTa-v3-base).
+The 68pp gap between the proxy and our treatment on DD (\fone{}=0.32 vs. 1.0) validates that encoder representation quality, not temporal architecture, drives generalization (Table~\ref{tab:proxy}).
+
+\begin{table}[t]
+\centering
+\caption{DeepContext proxy (BERT-base + GRU) comparison. The vanilla temporal approach fails OOD regardless of encoder choice.}
+\label{tab:proxy}
+\begin{tabular}{lcccc}
+\toprule
+Model & IID Full & DD Full & DD $K$=1 & FITD Full \\
+\midrule
+DeepContext proxy & 0.960 & 0.320 & 0.550 & 0.910 \\
+Treatment         & 1.000 & 1.000 & 1.000 & 1.000 \\
+Baseline (DeBERTa) & 1.000 & 0.284 & 0.575 & 1.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{False Positive Analysis on Hard Negatives}
+
+We evaluate false positive rates on 200 WildChat conversations selected for high-drift characteristics (Table~\ref{tab:fpr}).
+The treatment produces 8\% FPR, the baseline 12\%, and TF-IDF 5\%.
+False positives from the treatment occur on genuinely persuasive benign conversations (sales pitches, debate, tutoring), which is expected behavior for a model designed to detect persuasion dynamics.
+Deployment would require threshold tuning for the target precision-recall tradeoff.
+
+\begin{table}[t]
+\centering
+\caption{False positive rate on WildChat hard negatives ($n$=200). High-drift definition: topic shift $\geq$3, $>$10 turns, emotional/persuasive language.}
+\label{tab:fpr}
+\begin{tabular}{lc}
+\toprule
+Model & FPR \\
+\midrule
+Treatment & 0.08 \\
+Baseline  & 0.12 \\
+TF-IDF    & 0.05 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Checkpoint Sensitivity}
+
+Table~\ref{tab:checkpoint} reports performance across fine-tuning checkpoints at epochs 2, 3, and final.
+IID detection is invariant across checkpoints (all \fone{}=1.0).
+OOD detection shows negligible variance ($<$0.5pp): epoch 2 achieves \fone{}=0.995 on DD, rising to 1.0 by epoch 3.
+Even epoch 2 (lower persuasion accuracy: 76\% vs. final 82\%) produces near-perfect downstream detection, reinforcing that precise persuasion classification is not required.
+
+\begin{table}[t]
+\centering
+\caption{Checkpoint sensitivity analysis. Detection is robust to early stopping; even epoch 2 (lower persuasion accuracy) achieves near-perfect OOD detection.}
+\label{tab:checkpoint}
+\begin{tabular}{lccc}
+\toprule
+Checkpoint & IID Full \fone{} & DD Full \fone{} & Persuasion Acc. \\
+\midrule
+Epoch 2 & 1.000 & 0.995 & 0.76 \\
+Epoch 3 & 1.000 & 1.000 & 0.80 \\
+Final   & 1.000 & 1.000 & 0.82 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% ============================================================
+% 7. DISCUSSION
+% ============================================================
+\section{Discussion}
+
+\paragraph{The supervision signal, not the architecture.}
+The comprehensive ablation picture (Section~\ref{sec:ablation}) reveals a clean mechanistic story. Four independent ablation axes (label quality, label granularity, loss weighting, temporal modeling) all point to the same conclusion: the persuasion fine-tuning objective is the sole critical ingredient for cross-attack generalization. Scrambled labels retain \fone{}=0.94--0.99 on DD, binary labels match 8-class within 1pp, mean pooling matches GRU, and all $\lambda$ values produce \fone{}=1.0. The method requires no careful hyperparameter tuning, no expert label annotation, and no specific architecture. This positions persuasion-domain fine-tuning as an accessible and robust supervision signal rather than an overengineered system.
+
+\paragraph{Honest positioning against TF-IDF.}
+TF-IDF + LR achieves \fone{}=0.944 on DD and 1.0 on Crescendo and FITD, reflecting inherent lexical separability between jailbreak and benign conversations. \ours{} does not claim superiority over TF-IDF on raw detection. Instead, the treatment provides three complementary advantages: (1) it bridges the vanilla temporal modeling gap (+72pp on DD vs. the baseline's 0.28), establishing that persuasion-aware representations solve a problem that lexical features happen to also address through a different mechanism; (2) it is more robust under adversarial perturbation at early detection ($K$=1: treatment $-$2.6pp vs. TF-IDF $-$9.6pp); (3) it provides interpretable strategy trajectories that TF-IDF cannot offer.
+
+\paragraph{Content analysis vs. process detection.}
+The LLM-as-judge results (Section~\ref{sec:llm_judge}) establish a fundamental distinction. GPT-5.5 achieves perfect precision but recall below 30\%, confirming that even frontier LLMs analyzing conversation content cannot detect distributed persuasion when each turn appears individually benign. \ours{} operates at the process level, detecting the accumulation of persuasion dynamics rather than evaluating content for harmfulness. These are complementary capabilities: content analysis catches explicit harm, process detection catches distributed manipulation.
+
+\paragraph{Limitations.}
+The evaluation uses synthetic OOD data (80 FITD + 80 DD conversations). While sufficient for proof-of-concept, ecological validity requires evaluation on real-world multi-turn attacks when such data becomes available. The 8\% FPR on WildChat hard negatives indicates that deployment requires threshold calibration. The method targets persuasion-mediated attacks and does not address pure information accumulation, token smuggling, or single-frame roleplay jailbreaks. The training set ($n$=480) is small; scaling to larger and more diverse persuasion-annotated corpora may further improve robustness.
+
+
+% ============================================================
+% 8. CONCLUSION
+% ============================================================
+\section{Conclusion}
+
+We presented \ours{}, a method that uses persuasion strategy classification as a multi-task fine-tuning objective to enable cross-attack multi-turn jailbreak detection.
+Our central finding is that vanilla semantic temporal modeling catastrophically fails on unseen attack types (\fone{}=0.28 on Deceptive Delight), while persuasion-aware fine-tuning bridges this gap entirely (\fone{}=1.0, +72pp).
+Systematic ablation demonstrates that the persuasion fine-tuning objective functions as an accessible supervision signal: detection survives label scrambling, binary collapse, architecture changes, and loss reweighting.
+The 8-class taxonomy provides complementary interpretability through characteristic strategy trajectories.
+These results establish persuasion-domain fine-tuning as a practical and robust approach to detecting distributed multi-turn manipulation, complementing existing per-turn safety classifiers and content-level LLM judges.
+
+% ============================================================
+% REFERENCES
+% ============================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{30}
+
+\bibitem[Anthropic(2024)]{anthropic2024constitutional}
+Anthropic.
+\newblock Constitutional classifiers: Defending against universal jailbreaks.
+\newblock Technical report, 2024.
+
+\bibitem[Austin(1962)]{austin1962}
+J.~L. Austin.
+\newblock \emph{How to Do Things with Words}.
+\newblock Oxford University Press, 1962.
+
+\bibitem[BIID(2025)]{biid2025}
+BIID: Backdoor-based multi-turn jailbreak defense.
+\newblock arXiv preprint, 2025.
+
+\bibitem[Bullwinkel et~al.(2025)]{bullwinkel2025}
+B.~Bullwinkel et~al.
+\newblock Multi-turn attacks keep per-turn representations benign.
+\newblock arXiv:2507.02956, 2025.
+
+\bibitem[Chao et~al.(2023)]{chao2023}
+P.~Chao, A.~Robey, E.~Dobriban, H.~Hassani, G.~J. Pappas, and E.~Wong.
+\newblock Jailbreaking black box large language models in twenty queries.
+\newblock arXiv preprint, 2023.
+
+\bibitem[G-Guard(2025)]{gguard2025}
+G-Guard: Graph-based multi-turn safety guardrails.
+\newblock arXiv preprint, 2025.
+
+\bibitem[Ganguli et~al.(2022)]{ganguli2022}
+D.~Ganguli et~al.
+\newblock Red teaming language models to reduce harms.
+\newblock arXiv preprint, 2022.
+
+\bibitem[Gururangan et~al.(2018)]{gururangan2018}
+S.~Gururangan, S.~Swayamdipta, O.~Levy, R.~Schwartz, S.~Bowman, and N.~A. Smith.
+\newblock Annotation artifacts in natural language inference data.
+\newblock In \emph{NAACL}, 2018.
+
+\bibitem[Habernal and Gurevych(2016)]{habernal2016}
+I.~Habernal and I.~Gurevych.
+\newblock Which argument is more convincing? Analyzing and predicting convincingness of web arguments using bidirectional LSTM.
+\newblock In \emph{ACL}, 2016.
+
+\bibitem[Hagendorff(2026)]{hagendorff2026}
+T.~Hagendorff.
+\newblock Persuasion strategies in successful jailbreak attacks.
+\newblock \emph{Nature Communications}, 2026.
+
+\bibitem[Han et~al.(2024)]{han2024wildguard}
+S.~Han et~al.
+\newblock WildGuard: Open one-stop moderation tools for safety risks, jailbreaks, and refusals of LLMs.
+\newblock arXiv preprint, 2024.
+
+\bibitem[He et~al.(2021)]{he2021deberta}
+P.~He, X.~Liu, J.~Gao, and W.~Chen.
+\newblock DeBERTa: Decoding-enhanced BERT with disentangled attention.
+\newblock In \emph{ICLR}, 2021.
+
+\bibitem[How Do LLMs Persuade?(2025)]{howdollms2025}
+How do LLMs persuade? Extracting persuasion dynamics from turn-level representations.
+\newblock arXiv:2508.05625, 2025.
+
+\bibitem[Inan et~al.(2023)]{inan2023llamaguard}
+H.~Inan et~al.
+\newblock Llama Guard: LLM-based input-output safeguard for human-AI conversations.
+\newblock arXiv preprint, 2023.
+
+\bibitem[Jiang et~al.(2024)]{jiang2024}
+Z.~Jiang et~al.
+\newblock Deceptive Delight: Jailbreaking large language models through camouflaged content.
+\newblock arXiv preprint, 2024.
+
+\bibitem[Mann and Thompson(1988)]{mann1988}
+W.~C. Mann and S.~A. Thompson.
+\newblock Rhetorical structure theory: Toward a functional theory of text organization.
+\newblock \emph{Text}, 8(3):243--281, 1988.
+
+\bibitem[Mazeika et~al.(2024)]{mazeika2024}
+M.~Mazeika et~al.
+\newblock HarmBench: A standardized evaluation framework for automated red teaming and robust refusal.
+\newblock arXiv preprint, 2024.
+
+\bibitem[Nasr et~al.(2025)]{nasr2025}
+M.~Nasr, N.~Carlini, et~al.
+\newblock Adaptive attacks against safety classifiers.
+\newblock arXiv preprint, 2025.
+
+\bibitem[Niven and Kao(2019)]{niven2019}
+T.~Niven and H.-Y. Kao.
+\newblock Probing neural network comprehension of natural language arguments.
+\newblock In \emph{ACL}, 2019.
+
+\bibitem[Perez et~al.(2022)]{perez2022}
+E.~Perez et~al.
+\newblock Red teaming language models with language models.
+\newblock arXiv preprint, 2022.
+
+\bibitem[Prasad et~al.(2008)]{prasad2008pdtb}
+R.~Prasad, N.~Dinesh, A.~Lee, E.~Miltsakaki, L.~Robaldo, A.~Joshi, and B.~Webber.
+\newblock The Penn Discourse TreeBank 2.0.
+\newblock In \emph{LREC}, 2008.
+
+\bibitem[Russinovich et~al.(2024)]{russinovich2024}
+M.~Russinovich, A.~Salem, and R.~Eldan.
+\newblock Great, now write an article about that: The crescendo multi-turn LLM jailbreak attack.
+\newblock arXiv preprint, 2024.
+
+\bibitem[SafeDream(2025)]{safedream2025}
+SafeDream: Proactive safety for multi-turn conversations.
+\newblock arXiv preprint, 2025.
+
+\bibitem[Searle(1969)]{searle1969}
+J.~R. Searle.
+\newblock \emph{Speech Acts: An Essay in the Philosophy of Language}.
+\newblock Cambridge University Press, 1969.
+
+\bibitem[Stolcke et~al.(2000)]{stolcke2000}
+A.~Stolcke, K.~Ries, N.~Coccaro, E.~Shriberg, R.~Bates, D.~Jurafsky, P.~Taylor, R.~Martin, C.~Van~Ess-Dykema, and M.~Meteer.
+\newblock Dialogue act modeling for automatic tagging and recognition of conversational speech.
+\newblock \emph{Computational Linguistics}, 26(3):339--373, 2000.
+
+\bibitem[Su et~al.(2026)]{su2026}
+Y.~Su et~al.
+\newblock DeepContext: Multi-turn jailbreak detection via temporal semantic drift.
+\newblock arXiv:2602.16935, 2026.
+
+\bibitem[Tan et~al.(2016)]{tan2016}
+C.~Tan, V.~Niculae, C.~Danescu-Niculescu-Mizil, and L.~Lee.
+\newblock Winning arguments: Interaction dynamics and persuasion strategies in good-faith online discussions.
+\newblock In \emph{WWW}, 2016.
+
+\bibitem[Wei et~al.(2024)]{wei2024}
+A.~Wei, N.~Haghtalab, and J.~Steinhardt.
+\newblock Jailbroken: How does LLM safety training fail?
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[Zeng et~al.(2024a)]{zeng2024pap}
+Y.~Zeng, H.~Lin, J.~Zhang, D.~Yang, R.~Jia, and W.~Shi.
+\newblock How johnny can persuade LLMs to jailbreak them: Rethinking persuasion to challenge AI safety by humanizing LLMs.
+\newblock In \emph{ACL}, 2024.
+
+\bibitem[Zeng et~al.(2024b)]{zeng2024shieldgemma}
+W.~Zeng et~al.
+\newblock ShieldGemma: Generative AI content moderation based on Gemma.
+\newblock arXiv preprint, 2024.
+
+\bibitem[Zhao et~al.(2024)]{zhao2024wildchat}
+W.~Zhao et~al.
+\newblock WildChat: 1M ChatGPT interaction logs in the wild.
+\newblock In \emph{ICLR}, 2024.
+
+\end{thebibliography}
+
+\end{document}

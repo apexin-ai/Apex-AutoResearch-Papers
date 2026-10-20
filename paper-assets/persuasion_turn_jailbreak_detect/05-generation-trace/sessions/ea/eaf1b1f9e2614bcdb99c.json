@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eaf1b1f9e2614bcdb99c",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper embedding tsne",
+  "task_key": "worker_paper_embedding-tsne_20260518T232830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_embedding-tsne_20260518T232830_result.json",
+    "occurrence": 1,
+    "bytes": 824,
+    "sha256": "2e42183070bfb9cd3a4063fcd1d97ce2f650fc60c30181a1085e4812efabe2ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "t-SNE 可视化生成完成。\n\n**输出文件：**\n- PDF: `/root/persuasion_turn_jailbreak_detect/paper/figures/embedding_tsne.pdf` (29 KB)\n- PNG: `/root/persuasion_turn_jailbreak_detect/paper/figures/embedding_tsne.png` (265 KB)\n\n**布局：** 3×2 子图\n- 行：Vanilla / JB-MLM / 9-Class\n- 列：DD OOD / ActorAttack\n- 颜色：蓝色 = Benign (38 条), 红色 = Jailbreak (80 条)\n\n**数据维度：** 每个 conversation 的所有 user turn [CLS] embedding (768-dim) 经 mean pooling 压为一个向量，共 118 个点/子图。\n\n**使用的 checkpoints：**\n1. Vanilla: `microsoft/deberta-v3-base` 原始预训练权重\n2. JB-MLM: `checkpoints/plan_017_mlm/best/` (MLM continued pretraining)\n3. 9-Class: `checkpoints/plan_002/deberta_multitask/best/model.pt` (9-class 多任务微调)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-embedding-tsne.md"
+}

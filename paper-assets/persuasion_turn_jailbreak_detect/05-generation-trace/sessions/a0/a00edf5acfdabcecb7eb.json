@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a00edf5acfdabcecb7eb",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan002 continue",
+  "task_key": "worker_train_plan002-continue_20260517T224944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan002-continue_20260517T224944_result.json",
+    "occurrence": 1,
+    "bytes": 2411,
+    "sha256": "258fe54e91f12521321881e38fb5365355312c081ad521d8411350877e893430"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 完成。最终结果：\n\n```\nK      Method                    F1       Prec     Rec      Acc      FPR@95   Δ(T-B)\n─────────────────────────────────────────────────────────────────────────────────────\n1      DeBERTa-FT + GRU          1.0000   1.0000   1.0000   1.0000   0.0000\n1      DeBERTa-vanilla + GRU     0.9870   0.9744   1.0000   0.9868   0.0263   +0.013\n1      TF-IDF + LR               1.0000   1.0000   1.0000   1.0000   0.0000\n\n2      DeBERTa-FT + GRU          1.0000   1.0000   1.0000   1.0000   0.0000\n2      DeBERTa-vanilla + GRU     0.9867   1.0000   0.9737   0.9868   0.0000   +0.013\n2      TF-IDF + LR               1.0000   1.0000   1.0000   1.0000   0.0000\n\n3      DeBERTa-FT + GRU          1.0000   1.0000   1.0000   1.0000   0.0000\n3      DeBERTa-vanilla + GRU     0.9867   1.0000   0.9737   0.9868   0.0000   +0.013\n3      TF-IDF + LR               1.0000   1.0000   1.0000   1.0000   0.0000\n\n5      DeBERTa-FT + GRU          1.0000   1.0000   1.0000   1.0000   0.0000\n5      DeBERTa-vanilla + GRU     1.0000   1.0000   1.0000   1.0000   0.0000   +0.000\n5      TF-IDF + LR               1.0000   1.0000   1.0000   1.0000   0.0000\n\nfull   DeBERTa-FT + GRU          1.0000   1.0000   1.0000   1.0000   0.0000\nfull   DeBERTa-vanilla + GRU     1.0000   1.0000   1.0000   1.0000   0.0000   +0.000\nfull   TF-IDF + LR               1.0000   1.0000   1.0000   1.0000   0.0000\n```\n\n**Pass criteria: FAIL**（Treatment-Baseline Δ 仅 ~1.3pp，远低于要求的 5pp）\n\n**根本原因：数据太容易分类。** TF-IDF 在所有 K 值都达到 F1=1.0，说明 jailbreak 和 benign 对话在词汇层面就完全可分。vanilla DeBERTa + GRU 也接近完美。persuasion-aware fine-tuning 无法展示增量价值，因为任务本身不需要理解说服策略就能解决。\n\n**Checkpoints 已保存：**\n- DeBERTa: `checkpoints/plan_002/deberta_multitask/best/`\n- GRU Treatment: `checkpoints/plan_002/gru/treatment/best.pt`\n- GRU Baseline: `checkpoints/plan_002/gru/baseline/best.pt`\n- 评估结果: `results/plan_002_eval.json`\n\n**需要更难的 benign 数据**（topic-anchored、与 jailbreak 话题对齐）才能让 treatment vs baseline 的差异显现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan002-continue.md"
+}

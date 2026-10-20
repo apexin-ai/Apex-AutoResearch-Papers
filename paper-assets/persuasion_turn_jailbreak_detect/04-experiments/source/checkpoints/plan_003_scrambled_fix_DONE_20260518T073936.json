@@ -1,0 +1,61 @@
+{
+  "exp_id": "plan_003_scrambled_fix",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T07:33:22.415Z",
+    "updated_at": "2026-05-18T07:39:35.990Z",
+    "hypothesis": "If correct persuasion strategy labels are the key mechanism for jailbreak detection, then scrambling these labels (while keeping intent labels intact) should significantly degrade detection performance, especially on OOD data.",
+    "parent": "plan_003_scrambled_perturbation",
+    "spec": {
+      "command": "python src/train_deberta.py + python src/plan_003_scrambled_fix.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/train_scrambled.jsonl",
+      "data_count": 350,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/plan_003_scrambled_fix/deberta_multitask/best",
+      "eval_data": "data/plan_002_splits/test.jsonl + data/generated/deceptive_delight_all.jsonl + results/plan_004_perturbed_test.jsonl",
+      "checkpoint_path": "checkpoints/plan_003_scrambled_fix/",
+      "log_path": "results/plan_003_scrambled_fix_stage1.log"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "deberta": {
+        "val_persuasion_acc": 0.679,
+        "val_intent_acc": 1,
+        "val_loss": 0.776,
+        "best_epoch": 4
+      },
+      "iid_test": {
+        "full": 1,
+        "k1": 1,
+        "k2": 1,
+        "k3": 1,
+        "k5": 1
+      },
+      "dd_ood": {
+        "full": 0.9904,
+        "k1": 0.9904,
+        "k2": 0.9439,
+        "k3": 0.935,
+        "k5": 0.9904
+      },
+      "perturbation": {
+        "clean_full": 1,
+        "perturbed_full": 1,
+        "delta_full": 0,
+        "delta_k1": 0.0527,
+        "delta_k2": 0.0263,
+        "delta_k3": 0,
+        "delta_k5": 0
+      }
+    },
+    "completed_at": "2026-05-18T07:39:35.990Z"
+  },
+  "timestamp": "2026-05-18T07:39:36.076028+00:00",
+  "trigger": "update_registry"
+}

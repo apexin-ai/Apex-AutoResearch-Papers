@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e435419bf37aaad24d7",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan002 clean training",
+  "task_key": "worker_train_plan002-clean-training_20260517T224346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan002-clean-training_20260517T224346_result.json",
+    "occurrence": 1,
+    "bytes": 163,
+    "sha256": "63216c48622bc747798aeccd8e91272a47f53c1e6ae0c4bbac8d2f5f082d62bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已在后台运行（PID 124856）。Step 1 merge 已完成验证通过。DeBERTa 正在 cuda:0 上训练，4.5 分钟后我会检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan002-clean-training.md"
+}

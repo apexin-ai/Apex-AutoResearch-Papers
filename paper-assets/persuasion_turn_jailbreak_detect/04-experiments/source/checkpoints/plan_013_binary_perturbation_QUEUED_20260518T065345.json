@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_013_binary_perturbation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:53:26.355Z",
+    "updated_at": "2026-05-18T06:53:45.087Z",
+    "hypothesis": "Binary persuasion classification will maintain near-zero perturbation degradation similar to 9-class, proving robustness comes from persuasion-presence detection not fine-grained strategy discrimination",
+    "parent": "plan_013_none_collapse"
+  },
+  "timestamp": "2026-05-18T06:53:45.165268+00:00",
+  "trigger": "update_registry"
+}

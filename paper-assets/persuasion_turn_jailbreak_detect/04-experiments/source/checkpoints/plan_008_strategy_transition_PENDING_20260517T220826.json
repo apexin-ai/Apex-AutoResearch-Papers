@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_008_strategy_transition",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T22:08:21.409Z",
+    "updated_at": "2026-05-17T22:08:26.754Z",
+    "hypothesis": "Crescendo exhibits monotonically escalating strategy sequences (mean index increases over turns) while FITD/DD show distinct transition patterns, supporting the Pragmatic Evasion Asymmetry claim"
+  },
+  "timestamp": "2026-05-17T22:08:26.768088+00:00",
+  "trigger": "update_registry"
+}

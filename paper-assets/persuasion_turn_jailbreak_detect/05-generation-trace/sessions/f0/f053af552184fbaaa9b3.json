@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f053af552184fbaaa9b3",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train mf1 binary seed123",
+  "task_key": "worker_train_mf1-binary-seed123_20260518T093440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_mf1-binary-seed123_20260518T093440_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "0cd448b56dd54a4274030dde957fd570496c951b767a6670e62223fa9da1f50b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 完成。结果汇总：\n\n**DeBERTa Stage 1 (seed=123)**\n- Best epoch: 3 (val_loss=0.0006)\n- Val Persuasion Acc: 1.0, Val Intent Acc: 1.0\n\n**GRU Stage 2 (seed=123)**\n- Val Acc: 1.0 from epoch 1\n\n**DD OOD F1 (macro)**\n\n| K | F1 |\n|---|-----|\n| 1 | 1.0000 |\n| 2 | 1.0000 |\n| 3 | 0.9904 |\n| 5 | 1.0000 |\n| Full | 1.0000 |\n\n**IID F1 (macro)**\n\n| K | F1 |\n|---|-----|\n| 1 | 1.0000 |\n| 2 | 1.0000 |\n| 3 | 1.0000 |\n| 5 | 1.0000 |\n| Full | 1.0000 |\n\n结果与 seed=456 几乎一致，K=3 的 DD OOD 同样是 0.9904（1 个 DD 样本在截断到 3 turns 时被漏掉）。Artifact 已注册为 `art_20260518_9f4f78`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-mf1-binary-seed123.md"
+}

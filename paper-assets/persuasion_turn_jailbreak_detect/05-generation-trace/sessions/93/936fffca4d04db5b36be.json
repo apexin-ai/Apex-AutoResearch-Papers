@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "936fffca4d04db5b36be",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "ops status check and prep",
+  "task_key": "worker_ops_status-check-and-prep_20260517T203830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status-check-and-prep_20260517T203830_result.json",
+    "occurrence": 1,
+    "bytes": 1267,
+    "sha256": "6493c6d475c34dea95838e5fb2d735c579718e46ea7b3f20bc163f2e25dbcf5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== Status Check Report ===\n\nTask Progress:\n  topic-anchored-benign-v2: 137/250 (69+68, running on GPU 0+1, ~55% done)\n    Estimated completion: ~75-80 min from now (~06:00 server time)\n  FITD: 80/80 ✓ DONE\n  Deceptive Delight: 80/80 ✓ DONE\n\nGPU Status:\n  cuda:0: topic_anchored_benign v2 (PID 105887, 19GB, 87% util)\n  cuda:1: topic_anchored_benign v2 (PID 106560, 19GB, 87% util)\n  cuda:2: FREE\n  cuda:3: FREE\n\nFITD+DD Quality Check:\n  FITD: 80 conversations, strategy format: int (0-based, e.g. 0, 5)\n  DD: 80 conversations, strategy format: int (0-based, e.g. 0, 6)\n  Samples look reasonable — multi-turn escalation with proper strategy labels\n\nCode Preparation:\n  merge_and_split.py pair-grouped split: ✓ DONE\n    - Added --pair_grouped flag\n    - Matches via matched_jailbreak_id ↔ conversation_id\n    - Crescendo↔benign_ta_v2 pairs stay in same fold\n    - FITD/DD (unpaired jailbreak) split independently\n    - --jailbreak now accepts multiple files (nargs=\"+\")\n  train_deberta.py num_classes=9: ✓ CONFIRMED (num_persuasion_classes=9 in deberta_multitask.py:22)\n  scramble_labels.py: ✓ CREATED and verified\n\nTF-IDF Sanity Check: PENDING (need topic-anchored-v2 to complete first, 137/250)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-and-prep.md"
+}

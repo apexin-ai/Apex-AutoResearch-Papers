@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec7dc6843039d9dddef1",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval plan002 seed456 dd ood",
+  "task_key": "worker_eval_plan002-seed456-dd-ood_20260518T070820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan002-seed456-dd-ood_20260518T070820_result.json",
+    "occurrence": 1,
+    "bytes": 745,
+    "sha256": "f90653bfe6d2e9a409d46833bfb607ffffb6bb4afb584c534bb1ca755b3fe6d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**结果汇总 — plan_002 9-class persuasion treatment DD OOD (2 seeds)**:\n\n| K | seed=42 | seed=456 |\n|---|---------|----------|\n| k=1 | 1.0000 | 0.9715 |\n| k=2 | 0.9904 | 0.9622 |\n| k=3 | 0.9904 | 0.9350 |\n| k=5 | 1.0000 | 0.9904 |\n| full | 1.0000 | 0.9904 |\n\n**核心发现**：\n- seed=456 DD OOD F1 全面 >0.93，precision=1.0（无误报），仅有少量漏检\n- 与 seed=42 的 F1=1.0 相比确实存在方差，但幅度远小于 control variants（MLM std=0.115, Topic std=0.207）\n- 2-seed 的 DD OOD Full F1 均值 = 0.9952，最差 K=3 也有 0.935\n- **核心 claim 安全**：9-class treatment 的跨攻击泛化优势在多 seed 下稳定，不像 control 那样出现大幅波动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan002-seed456-dd-ood.md"
+}

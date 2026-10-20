@@ -1,0 +1,8 @@
+See full results at server westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp61_binary_partitions.json
+
+Summary:
+- IID F1: 1.0000 ± 0.0000 (10/10 perfect)
+- DD OOD F1: 1.0000 ± 0.0000 (10/10 perfect)
+- AA OOD F1: 0.9636 ± 0.1093 (9/10 perfect, seed7=0.6356)
+
+Partition seed7 outlier: A=[1,4,6,7] B=[0,2,3,5,8], AA F1=0.6356

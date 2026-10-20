@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp18_e2e_finetune",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:24:17.917Z",
+    "updated_at": "2026-05-20T12:24:18.917Z",
+    "hypothesis": "Unfreezing DeBERTa-v3-base encoder for end-to-end fine-tuning (Stage 1 DAPT + Stage 2 GRU joint training) will produce comparable or better OOD F1 vs frozen probing, quantifying the performance gap of the frozen approach and validating probing methodology"
+  },
+  "timestamp": "2026-05-20T12:24:19.049988+00:00",
+  "trigger": "update_registry"
+}

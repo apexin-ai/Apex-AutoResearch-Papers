@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c58abbf44386efbafb7",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "ops exp70 status check",
+  "task_key": "worker_ops_exp70_status_check_20260524T025119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp70_status_check_20260524T025119_result.json",
+    "occurrence": 1,
+    "bytes": 917,
+    "sha256": "3e2acdc4eb026d6e3a97856b4ff10ba0222672c0a5a58122db80623b673d57f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (negative)。\n\n## 诊断结果\n\n**状态：已正常完成**（08:30 结束，GPU 已释放，cuda:0 利用率 0% 属正常）\n\n### DD OOD Macro F1 (full, 3 seeds)\n\n| Model | Vanilla | 9-class |\n|-------|---------|---------|\n| **DeBERTa-v3-large** | 0.898 ± 0.033 | **0.997 ± 0.005** |\n| RoBERTa-large (baseline) | 0.927 ± 0.036 | 0.987 ± 0.004 |\n\n### AA OOD Macro F1 (full, 3 seeds)\n\n| Model | Vanilla | 9-class |\n|-------|---------|---------|\n| **DeBERTa-v3-large** | 0.870 ± 0.022 | **1.000 ± 0.000** |\n| RoBERTa-large (baseline) | 1.000 ± 0.000 | 0.946 ± 0.057 |\n\n### 关键发现\n\n假设被**否定**：DeBERTa-v3-large 的 9-class AA (1.000) **高于** vanilla AA (0.870)，与 RoBERTa-large 的模式（9-class AA < vanilla AA）完全相反。这证实 AA OOD 退化是 **RoBERTa-specific** 的，而非大模型的通用 scale 效应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp70-status-check.md"
+}

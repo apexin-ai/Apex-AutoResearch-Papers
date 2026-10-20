@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fb6c1d00f3168e25e7f",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code fig2 3seed update",
+  "task_key": "worker_code_fig2-3seed-update_20260518T114016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig2-3seed-update_20260518T114016_result.json",
+    "occurrence": 1,
+    "bytes": 502,
+    "sha256": "f65ad3e8500932752e90dc64f7243e6dceacc98b30fb0b2bce25cd13bbc99a26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- `figures/paper/fig2_cross_attack_bar.pdf` — 15,210 bytes, PDF 1.4, 1 page\n- `docs/paper/figures/paper/fig2_cross_attack_bar.pdf` — 已同步\n- 生成脚本：`scripts/plot_fig2_cross_attack_bar.py`\n- 风格与项目现有图表一致（DejaVu Sans, 9pt, 300 DPI, tight bbox）\n- 3 组 bar（Vanilla / MLM-only / 9-class）× 5 prefix lengths，含 error bars（capsize=3, linewidth=1）\n- colorblind-friendly 配色，顶部/右侧边框移除，Y 轴虚线网格"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig2-3seed-update.md"
+}

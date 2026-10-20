@@ -1,0 +1,900 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ce87e350d11e2548fa51",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-20T19:40:33.454Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NSXfRryN3yREcaW8eRBYg2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp32_strategy_prediction\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:29:25.369Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:40:33.281Z\\\", \\\"hypothesis\\\": \\\"Correctly detected jailbreak conversations have higher persuasion strategy prediction accuracy than missed ones, and certain strategy types (e.g., rapport_building, emotional_manipulation) are associated with higher detection rates, because the persuasion head's ability to identify strategies is mechanistically linked to the encoder's discriminative power for downstream detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp32_strategy_prediction.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/generated/deceptive_delight_all.jsonl + actorattack_all.jsonl + plan_002_splits/test.jsonl\\\", \\\"data_count\\\": \\\"118+118 (80 jailbreak + 38 benign each)\\\", \\\"model_name\\\": \\\"exp16_9class_deberta+bigru\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"checkpoint_source\\\": \\\"exp16/9class_seed{42,123,456}\\\", \\\"eval_data\\\": \\\"DD OOD + AA OOD\\\"}, \\\"log_path\\\": \\\"/tmp/exp32_strategy_prediction.log\\\", \\\"checkpoint_path\\\": \\\"results/exp32_strategy_prediction.json\\\", \\\"metrics\\\": {\\\"dd_ood\\\": {\\\"strategy_acc\\\": \\\"0.4145±0.0173\\\", \\\"jb_strategy_acc\\\": \\\"0.1431±0.0260\\\", \\\"macro_f1\\\": \\\"0.1626±0.0238\\\", \\\"strategy_acc_detected\\\": \\\"0.1634±0.0200\\\", \\\"strategy_acc_missed\\\": \\\"0.0758±0.0123\\\", \\\"missed_per_seed\\\": [31, 5, 26], \\\"detection_rate_rapport_building\\\": 0.7417, \\\"corr_det_prob_vs_strat_acc\\\": \\\"r~0.45, p<0.001\\\"}, \\\"aa_ood\\\": {\\\"strategy_acc\\\": \\\"0.4604±0.0114\\\", \\\"jb_strategy_acc\\\": \\\"0.0682±0.0192\\\", \\\"macro_f1\\\": \\\"0.1145±0.0212\\\", \\\"strategy_acc_detected\\\": \\\"0.1311±0.0375\\\", \\\"strategy_acc_missed\\\": \\\"0.0393±0.0142\\\", \\\"missed_per_seed\\\": [63, 41, 66], \\\"detection_rate_authority_appeal\\\": 0.2841, \\\"detection_rate_emotional_manipulation\\\": 0.5238, \\\"corr_det_prob_vs_strat_acc\\\": \\\"r~0.24, p~0.03\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4272}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "0c6ee5af-df41-4c8c-829f-df0820376baa",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp32_strategy_prediction\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:29:25.369Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:40:33.281Z\\\", \\\"hypothesis\\\": \\\"Correctly detected jailbreak conversations have higher persuasion strategy prediction accuracy than missed ones, and certain strategy types (e.g., rapport_building, emotional_manipulation) are associated with higher detection rates, because the persuasion head's ability to identify strategies is mechanistically linked to the encoder's discriminative power for downstream detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp32_strategy_prediction.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/generated/deceptive_delight_all.jsonl + actorattack_all.jsonl + plan_002_splits/test.jsonl\\\", \\\"data_count\\\": \\\"118+118 (80 jailbreak + 38 benign each)\\\", \\\"model_name\\\": \\\"exp16_9class_deberta+bigru\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"checkpoint_source\\\": \\\"exp16/9class_seed{42,123,456}\\\", \\\"eval_data\\\": \\\"DD OOD + AA OOD\\\"}, \\\"log_path\\\": \\\"/tmp/exp32_strategy_prediction.log\\\", \\\"checkpoint_path\\\": \\\"results/exp32_strategy_prediction.json\\\", \\\"metrics\\\": {\\\"dd_ood\\\": {\\\"strategy_acc\\\": \\\"0.4145±0.0173\\\", \\\"jb_strategy_acc\\\": \\\"0.1431±0.0260\\\", \\\"macro_f1\\\": \\\"0.1626±0.0238\\\", \\\"strategy_acc_detected\\\": \\\"0.1634±0.0200\\\", \\\"strategy_acc_missed\\\": \\\"0.0758±0.0123\\\", \\\"missed_per_seed\\\": [31, 5, 26], \\\"detection_rate_rapport_building\\\": 0.7417, \\\"corr_det_prob_vs_strat_acc\\\": \\\"r~0.45, p<0.001\\\"}, \\\"aa_ood\\\": {\\\"strategy_acc\\\": \\\"0.4604±0.0114\\\", \\\"jb_strategy_acc\\\": \\\"0.0682±0.0192\\\", \\\"macro_f1\\\": \\\"0.1145±0.0212\\\", \\\"strategy_acc_detected\\\": \\\"0.1311±0.0375\\\", \\\"strategy_acc_missed\\\": \\\"0.0393±0.0142\\\", \\\"missed_per_seed\\\": [63, 41, 66], \\\"detection_rate_authority_appeal\\\": 0.2841, \\\"detection_rate_emotional_manipulation\\\": 0.5238, \\\"corr_det_prob_vs_strat_acc\\\": \\\"r~0.24, p~0.03\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4272}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp32_strategy_prediction\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:29:25.369Z\", \"updated_at\": \"2026-05-20T19:40:33.281Z\", \"hypothesis\": \"Correctly detected jailbreak conversations have higher persuasion strategy prediction accuracy than missed ones, and certain strategy types (e.g., rapport_building, emotional_manipulation) are associated with higher detection rates, because the persuasion head's ability to identify strategies is mechanistically linked to the encoder's discriminative power for downstream detection.\", \"spec\": {\"command\": \"python scripts/exp32_strategy_prediction.py\", \"server\": \"westd-33183\", \"data_path\": \"data/generated/deceptive_delight_all.jsonl + actorattack_all.jsonl + plan_002_splits/test.jsonl\", \"data_count\": \"118+118 (80 jailbreak + 38 benign each)\", \"model_name\": \"exp16_9class_deberta+bigru\", \"seed\": \"42,123,456\", \"checkpoint_source\": \"exp16/9class_seed{42,123,456}\", \"eval_data\": \"DD OOD + AA OOD\"}, \"log_path\": \"/tmp/exp32_strategy_prediction.log\", \"checkpoint_path\": \"results/exp32_strategy_prediction.json\", \"metrics\": {\"dd_ood\": {\"strategy_acc\": \"0.4145±0.0173\", \"jb_strategy_acc\": \"0.1431±0.0260\", \"macro_f1\": \"0.1626±0.0238\", \"strategy_acc_detected\": \"0.1634±0.0200\", \"strategy_acc_missed\": \"0.0758±0.0123\", \"missed_per_seed\": [31, 5, 26], \"detection_rate_rapport_building\": 0.7417, \"corr_det_prob_vs_strat_acc\": \"r~0.45, p<0.001\"}, \"aa_ood\": {\"strategy_acc\": \"0.4604±0.0114\", \"jb_strategy_acc\": \"0.0682±0.0192\", \"macro_f1\": \"0.1145±0.0212\", \"strategy_acc_detected\": \"0.1311±0.0375\", \"strategy_acc_missed\": \"0.0393±0.0142\", \"missed_per_seed\": [63, 41, 66], \"detection_rate_authority_appeal\": 0.2841, \"detection_rate_emotional_manipulation\": 0.5238, \"corr_det_prob_vs_strat_acc\": \"r~0.24, p~0.03\"}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4272}}"
+              }
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E4a16412oawTDzUn8EyxMD",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp32_strategy_prediction",
+                "field": "conclusion",
+                "value": "success",
+                "project": "persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "a670afa6-51c5-4001-8ff4-1860ba153462",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014jGtKPjXZCrmLxbi1evACS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1271,
+                "cache_read_input_tokens": 113002,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1271
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RqGkC2tksijdxa5osTuFE4",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp32_strategy_prediction",
+                "field": "status",
+                "value": "DONE",
+                "project": "persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "c4431ba3-0ec4-4c8c-ab14-2879ccc5edb3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014jGtKPjXZCrmLxbi1evACS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1271,
+                "cache_read_input_tokens": 113002,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1271
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-20T19:40:37.365Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E4a16412oawTDzUn8EyxMD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp32_strategy_prediction\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:29:25.369Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:40:37.177Z\\\", \\\"hypothesis\\\": \\\"Correctly detected jailbreak conversations have higher persuasion strategy prediction accuracy than missed ones, and certain strategy types (e.g., rapport_building, emotional_manipulation) are associated with higher detection rates, because the persuasion head's ability to identify strategies is mechanistically linked to the encoder's discriminative power for downstream detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp32_strategy_prediction.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/generated/deceptive_delight_all.jsonl + actorattack_all.jsonl + plan_002_splits/test.jsonl\\\", \\\"data_count\\\": \\\"118+118 (80 jailbreak + 38 benign each)\\\", \\\"model_name\\\": \\\"exp16_9class_deberta+bigru\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"checkpoint_source\\\": \\\"exp16/9class_seed{42,123,456}\\\", \\\"eval_data\\\": \\\"DD OOD + AA OOD\\\"}, \\\"log_path\\\": \\\"/tmp/exp32_strategy_prediction.log\\\", \\\"checkpoint_path\\\": \\\"results/exp32_strategy_prediction.json\\\", \\\"metrics\\\": {\\\"dd_ood\\\": {\\\"strategy_acc\\\": \\\"0.4145±0.0173\\\", \\\"jb_strategy_acc\\\": \\\"0.1431±0.0260\\\", \\\"macro_f1\\\": \\\"0.1626±0.0238\\\", \\\"strategy_acc_detected\\\": \\\"0.1634±0.0200\\\", \\\"strategy_acc_missed\\\": \\\"0.0758±0.0123\\\", \\\"missed_per_seed\\\": [31, 5, 26], \\\"detection_rate_rapport_building\\\": 0.7417, \\\"corr_det_prob_vs_strat_acc\\\": \\\"r~0.45, p<0.001\\\"}, \\\"aa_ood\\\": {\\\"strategy_acc\\\": \\\"0.4604±0.0114\\\", \\\"jb_strategy_acc\\\": \\\"0.0682±0.0192\\\", \\\"macro_f1\\\": \\\"0.1145±0.0212\\\", \\\"strategy_acc_detected\\\": \\\"0.1311±0.0375\\\", \\\"strategy_acc_missed\\\": \\\"0.0393±0.0142\\\", \\\"missed_per_seed\\\": [63, 41, 66], \\\"detection_rate_authority_appeal\\\": 0.2841, \\\"detection_rate_emotional_manipulation\\\": 0.5238, \\\"corr_det_prob_vs_strat_acc\\\": \\\"r~0.24, p~0.03\\\"}}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4303}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "0bca6b03-5545-4cc6-b385-270d9d916a42",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp32_strategy_prediction\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:29:25.369Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:40:37.177Z\\\", \\\"hypothesis\\\": \\\"Correctly detected jailbreak conversations have higher persuasion strategy prediction accuracy than missed ones, and certain strategy types (e.g., rapport_building, emotional_manipulation) are associated with higher detection rates, because the persuasion head's ability to identify strategies is mechanistically linked to the encoder's discriminative power for downstream detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp32_strategy_prediction.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/generated/deceptive_delight_all.jsonl + actorattack_all.jsonl + plan_002_splits/test.jsonl\\\", \\\"data_count\\\": \\\"118+118 (80 jailbreak + 38 benign each)\\\", \\\"model_name\\\": \\\"exp16_9class_deberta+bigru\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"checkpoint_source\\\": \\\"exp16/9class_seed{42,123,456}\\\", \\\"eval_data\\\": \\\"DD OOD + AA OOD\\\"}, \\\"log_path\\\": \\\"/tmp/exp32_strategy_prediction.log\\\", \\\"checkpoint_path\\\": \\\"results/exp32_strategy_prediction.json\\\", \\\"metrics\\\": {\\\"dd_ood\\\": {\\\"strategy_acc\\\": \\\"0.4145±0.0173\\\", \\\"jb_strategy_acc\\\": \\\"0.1431±0.0260\\\", \\\"macro_f1\\\": \\\"0.1626±0.0238\\\", \\\"strategy_acc_detected\\\": \\\"0.1634±0.0200\\\", \\\"strategy_acc_missed\\\": \\\"0.0758±0.0123\\\", \\\"missed_per_seed\\\": [31, 5, 26], \\\"detection_rate_rapport_building\\\": 0.7417, \\\"corr_det_prob_vs_strat_acc\\\": \\\"r~0.45, p<0.001\\\"}, \\\"aa_ood\\\": {\\\"strategy_acc\\\": \\\"0.4604±0.0114\\\", \\\"jb_strategy_acc\\\": \\\"0.0682±0.0192\\\", \\\"macro_f1\\\": \\\"0.1145±0.0212\\\", \\\"strategy_acc_detected\\\": \\\"0.1311±0.0375\\\", \\\"strategy_acc_missed\\\": \\\"0.0393±0.0142\\\", \\\"missed_per_seed\\\": [63, 41, 66], \\\"detection_rate_authority_appeal\\\": 0.2841, \\\"detection_rate_emotional_manipulation\\\": 0.5238, \\\"corr_det_prob_vs_strat_acc\\\": \\\"r~0.24, p~0.03\\\"}}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4303}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp32_strategy_prediction\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:29:25.369Z\", \"updated_at\": \"2026-05-20T19:40:37.177Z\", \"hypothesis\": \"Correctly detected jailbreak conversations have higher persuasion strategy prediction accuracy than missed ones, and certain strategy types (e.g., rapport_building, emotional_manipulation) are associated with higher detection rates, because the persuasion head's ability to identify strategies is mechanistically linked to the encoder's discriminative power for downstream detection.\", \"spec\": {\"command\": \"python scripts/exp32_strategy_prediction.py\", \"server\": \"westd-33183\", \"data_path\": \"data/generated/deceptive_delight_all.jsonl + actorattack_all.jsonl + plan_002_splits/test.jsonl\", \"data_count\": \"118+118 (80 jailbreak + 38 benign each)\", \"model_name\": \"exp16_9class_deberta+bigru\", \"seed\": \"42,123,456\", \"checkpoint_source\": \"exp16/9class_seed{42,123,456}\", \"eval_data\": \"DD OOD + AA OOD\"}, \"log_path\": \"/tmp/exp32_strategy_prediction.log\", \"checkpoint_path\": \"results/exp32_strategy_prediction.json\", \"metrics\": {\"dd_ood\": {\"strategy_acc\": \"0.4145±0.0173\", \"jb_strategy_acc\": \"0.1431±0.0260\", \"macro_f1\": \"0.1626±0.0238\", \"strategy_acc_detected\": \"0.1634±0.0200\", \"strategy_acc_missed\": \"0.0758±0.0123\", \"missed_per_seed\": [31, 5, 26], \"detection_rate_rapport_building\": 0.7417, \"corr_det_prob_vs_strat_acc\": \"r~0.45, p<0.001\"}, \"aa_ood\": {\"strategy_acc\": \"0.4604±0.0114\", \"jb_strategy_acc\": \"0.0682±0.0192\", \"macro_f1\": \"0.1145±0.0212\", \"strategy_acc_detected\": \"0.1311±0.0375\", \"strategy_acc_missed\": \"0.0393±0.0142\", \"missed_per_seed\": [63, 41, 66], \"detection_rate_authority_appeal\": 0.2841, \"detection_rate_emotional_manipulation\": 0.5238, \"corr_det_prob_vs_strat_acc\": \"r~0.24, p~0.03\"}}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4303}}"
+              }
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-20T19:40:38.249Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RqGkC2tksijdxa5osTuFE4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp32_strategy_prediction\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:29:25.369Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:40:37.649Z\\\", \\\"hypothesis\\\": \\\"Correctly detected jailbreak conversations have higher persuasion strategy prediction accuracy than missed ones, and certain strategy types (e.g., rapport_building, emotional_manipulation) are associated with higher detection rates, because the persuasion head's ability to identify strategies is mechanistically linked to the encoder's discriminative power for downstream detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp32_strategy_prediction.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/generated/deceptive_delight_all.jsonl + actorattack_all.jsonl + plan_002_splits/test.jsonl\\\", \\\"data_count\\\": \\\"118+118 (80 jailbreak + 38 benign each)\\\", \\\"model_name\\\": \\\"exp16_9class_deberta+bigru\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"checkpoint_source\\\": \\\"exp16/9class_seed{42,123,456}\\\", \\\"eval_data\\\": \\\"DD OOD + AA OOD\\\"}, \\\"log_path\\\": \\\"/tmp/exp32_strategy_prediction.log\\\", \\\"checkpoint_path\\\": \\\"results/exp32_strategy_prediction.json\\\", \\\"metrics\\\": {\\\"dd_ood\\\": {\\\"strategy_acc\\\": \\\"0.4145±0.0173\\\", \\\"jb_strategy_acc\\\": \\\"0.1431±0.0260\\\", \\\"macro_f1\\\": \\\"0.1626±0.0238\\\", \\\"strategy_acc_detected\\\": \\\"0.1634±0.0200\\\", \\\"strategy_acc_missed\\\": \\\"0.0758±0.0123\\\", \\\"missed_per_seed\\\": [31, 5, 26], \\\"detection_rate_rapport_building\\\": 0.7417, \\\"corr_det_prob_vs_strat_acc\\\": \\\"r~0.45, p<0.001\\\"}, \\\"aa_ood\\\": {\\\"strategy_acc\\\": \\\"0.4604±0.0114\\\", \\\"jb_strategy_acc\\\": \\\"0.0682±0.0192\\\", \\\"macro_f1\\\": \\\"0.1145±0.0212\\\", \\\"strategy_acc_detected\\\": \\\"0.1311±0.0375\\\", \\\"strategy_acc_missed\\\": \\\"0.0393±0.0142\\\", \\\"missed_per_seed\\\": [63, 41, 66], \\\"detection_rate_authority_appeal\\\": 0.2841, \\\"detection_rate_emotional_manipulation\\\": 0.5238, \\\"corr_det_prob_vs_strat_acc\\\": \\\"r~0.24, p~0.03\\\"}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T19:40:37.649Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8754}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "293b4d61-7f0b-4c49-98f7-7064ed33d50a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp32_strategy_prediction\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:29:25.369Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:40:37.649Z\\\", \\\"hypothesis\\\": \\\"Correctly detected jailbreak conversations have higher persuasion strategy prediction accuracy than missed ones, and certain strategy types (e.g., rapport_building, emotional_manipulation) are associated with higher detection rates, because the persuasion head's ability to identify strategies is mechanistically linked to the encoder's discriminative power for downstream detection.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp32_strategy_prediction.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/generated/deceptive_delight_all.jsonl + actorattack_all.jsonl + plan_002_splits/test.jsonl\\\", \\\"data_count\\\": \\\"118+118 (80 jailbreak + 38 benign each)\\\", \\\"model_name\\\": \\\"exp16_9class_deberta+bigru\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"checkpoint_source\\\": \\\"exp16/9class_seed{42,123,456}\\\", \\\"eval_data\\\": \\\"DD OOD + AA OOD\\\"}, \\\"log_path\\\": \\\"/tmp/exp32_strategy_prediction.log\\\", \\\"checkpoint_path\\\": \\\"results/exp32_strategy_prediction.json\\\", \\\"metrics\\\": {\\\"dd_ood\\\": {\\\"strategy_acc\\\": \\\"0.4145±0.0173\\\", \\\"jb_strategy_acc\\\": \\\"0.1431±0.0260\\\", \\\"macro_f1\\\": \\\"0.1626±0.0238\\\", \\\"strategy_acc_detected\\\": \\\"0.1634±0.0200\\\", \\\"strategy_acc_missed\\\": \\\"0.0758±0.0123\\\", \\\"missed_per_seed\\\": [31, 5, 26], \\\"detection_rate_rapport_building\\\": 0.7417, \\\"corr_det_prob_vs_strat_acc\\\": \\\"r~0.45, p<0.001\\\"}, \\\"aa_ood\\\": {\\\"strategy_acc\\\": \\\"0.4604±0.0114\\\", \\\"jb_strategy_acc\\\": \\\"0.0682±0.0192\\\", \\\"macro_f1\\\": \\\"0.1145±0.0212\\\", \\\"strategy_acc_detected\\\": \\\"0.1311±0.0375\\\", \\\"strategy_acc_missed\\\": \\\"0.0393±0.0142\\\", \\\"missed_per_seed\\\": [63, 41, 66], \\\"detection_rate_authority_appeal\\\": 0.2841, \\\"detection_rate_emotional_manipulation\\\": 0.5238, \\\"corr_det_prob_vs_strat_acc\\\": \\\"r~0.24, p~0.03\\\"}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T19:40:37.649Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8754}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp32_strategy_prediction\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:29:25.369Z\", \"updated_at\": \"2026-05-20T19:40:37.649Z\", \"hypothesis\": \"Correctly detected jailbreak conversations have higher persuasion strategy prediction accuracy than missed ones, and certain strategy types (e.g., rapport_building, emotional_manipulation) are associated with higher detection rates, because the persuasion head's ability to identify strategies is mechanistically linked to the encoder's discriminative power for downstream detection.\", \"spec\": {\"command\": \"python scripts/exp32_strategy_prediction.py\", \"server\": \"westd-33183\", \"data_path\": \"data/generated/deceptive_delight_all.jsonl + actorattack_all.jsonl + plan_002_splits/test.jsonl\", \"data_count\": \"118+118 (80 jailbreak + 38 benign each)\", \"model_name\": \"exp16_9class_deberta+bigru\", \"seed\": \"42,123,456\", \"checkpoint_source\": \"exp16/9class_seed{42,123,456}\", \"eval_data\": \"DD OOD + AA OOD\"}, \"log_path\": \"/tmp/exp32_strategy_prediction.log\", \"checkpoint_path\": \"results/exp32_strategy_prediction.json\", \"metrics\": {\"dd_ood\": {\"strategy_acc\": \"0.4145±0.0173\", \"jb_strategy_acc\": \"0.1431±0.0260\", \"macro_f1\": \"0.1626±0.0238\", \"strategy_acc_detected\": \"0.1634±0.0200\", \"strategy_acc_missed\": \"0.0758±0.0123\", \"missed_per_seed\": [31, 5, 26], \"detection_rate_rapport_building\": 0.7417, \"corr_det_prob_vs_strat_acc\": \"r~0.45, p<0.001\"}, \"aa_ood\": {\"strategy_acc\": \"0.4604±0.0114\", \"jb_strategy_acc\": \"0.0682±0.0192\", \"macro_f1\": \"0.1145±0.0212\", \"strategy_acc_detected\": \"0.1311±0.0375\", \"strategy_acc_missed\": \"0.0393±0.0142\", \"missed_per_seed\": [63, 41, 66], \"detection_rate_authority_appeal\": 0.2841, \"detection_rate_emotional_manipulation\": 0.5238, \"corr_det_prob_vs_strat_acc\": \"r~0.24, p~0.03\"}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T19:40:37.649Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8754}}"
+              }
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JH9XdURnnbT5mfoN2BY7Am",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp32_strategy_prediction",
+                "type": "report",
+                "description": "Strategy prediction analysis: detection correctness vs strategy accuracy, per-strategy confusion matrix, per-strategy detection rates on DD OOD and AA OOD (3 seeds)",
+                "project": "persuasion_turn_jailbreak_detect",
+                "exp_id": "exp32_strategy_prediction",
+                "source_path": "/root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json",
+                "tags": [
+                  "analysis",
+                  "strategy",
+                  "persuasion",
+                  "ood"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "88078619-99aa-40fa-807c-ddf32f8248e8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EEus77exPzWbfBZUVtLACt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1954,
+                "cache_read_input_tokens": 114273,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1954
+                },
+                "output_tokens": 51,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-20T19:40:44.463Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JH9XdURnnbT5mfoN2BY7Am",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "caac8e8b-adde-4427-92cb-bb147ad0357e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The source_path is on the remote server, not the local machine. I need to use `content` instead of `source_path` for this. Let me get the JSON from the server and register with content.\n\nActually, the file is large (has full per-seed results). Let me use the content approach with a summary instead.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "922a60f4-bdd0-4da7-b231-63fdb8fe9143",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011chAFRCoyzkQj1xdiTENMW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 333,
+                "cache_read_input_tokens": 116227,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 333
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CWUx3R8huc3AFtHSP7FYjR",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-33183",
+                "command": "wc -c /root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "a15e5682-03cf-4a00-bdb5-f1eb24445b7d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011chAFRCoyzkQj1xdiTENMW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 333,
+                "cache_read_input_tokens": 116227,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 333
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-20T19:40:50.367Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CWUx3R8huc3AFtHSP7FYjR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"201147 /root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "e4c3580a-a1fc-4473-b911-c3440c99e4f6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"201147 /root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"201147 /root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P5VMXrLmf1kyQCMTzBKWJN",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp32_strategy_prediction",
+                "type": "report",
+                "description": "Strategy prediction analysis: detection correctness vs strategy accuracy, per-strategy confusion matrix, per-strategy detection rates on DD OOD and AA OOD (3 seeds). Full results at westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json",
+                "project": "persuasion_turn_jailbreak_detect",
+                "exp_id": "exp32_strategy_prediction",
+                "content": "{\n  \"summary\": \"exp32 Strategy Prediction Analysis\",\n  \"DD_OOD\": {\n    \"strategy_acc\": \"0.4145±0.0173\",\n    \"jb_strategy_acc\": \"0.1431±0.0260\",\n    \"macro_f1\": \"0.1626±0.0238\",\n    \"strategy_acc_detected_vs_missed\": \"0.1634 vs 0.0758\",\n    \"gt_conf_detected_vs_missed\": \"0.1523 vs 0.0837\",\n    \"correlation_det_prob_vs_strat_acc\": \"r~0.45, p<0.001\",\n    \"missed_per_seed\": [31, 5, 26],\n    \"best_classes\": {\"rapport_building\": \"F1=0.5727\", \"none\": \"F1=0.6457\"},\n    \"detection_rate_rapport_building\": 0.7417\n  },\n  \"AA_OOD\": {\n    \"strategy_acc\": \"0.4604±0.0114\",\n    \"jb_strategy_acc\": \"0.0682±0.0192\",\n    \"macro_f1\": \"0.1145±0.0212\",\n    \"strategy_acc_detected_vs_missed\": \"0.1311 vs 0.0393\",\n    \"gt_conf_detected_vs_missed\": \"0.1393 vs 0.0495\",\n    \"correlation_det_prob_vs_strat_acc\": \"r~0.24, p~0.03\",\n    \"missed_per_seed\": [63, 41, 66],\n    \"detection_rate_by_dominant_strategy\": {\n      \"emotional_manipulation\": 0.5238,\n      \"authority_appeal\": 0.2841,\n      \"logical_reframing\": 0.2667,\n      \"gradual_escalation\": 0.1667,\n      \"rapport_building\": 0.1111\n    }\n  }\n}",
+                "content_filename": "exp32_strategy_prediction_summary.json",
+                "tags": [
+                  "analysis",
+                  "strategy",
+                  "persuasion",
+                  "ood"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "56f5983a-29a9-4796-a521-4edb3934ee12",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CJQzKUr5M5pP5JyAgmfP23",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 484,
+                "cache_read_input_tokens": 116560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 484
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-20T19:41:04.113Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'summary': 'exp32 Strate...ort_building': 0.1111}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01P5VMXrLmf1kyQCMTzBKWJN"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "2e445da3-729e-412d-b74f-402f098822db",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'summary': 'exp32 Strate...ort_building': 0.1111}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LyJhvF2YaSzcEZLsyu1rC4",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp32_strategy_prediction",
+                "type": "report",
+                "description": "Strategy prediction analysis: detection correctness vs strategy accuracy, per-strategy confusion matrix, per-strategy detection rates on DD OOD and AA OOD (3 seeds). Full results at westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json",
+                "project": "persuasion_turn_jailbreak_detect",
+                "exp_id": "exp32_strategy_prediction",
+                "content": "{\"summary\":\"exp32 Strategy Prediction Analysis\",\"DD_OOD\":{\"strategy_acc\":\"0.4145±0.0173\",\"jb_strategy_acc\":\"0.1431±0.0260\",\"macro_f1\":\"0.1626±0.0238\",\"strategy_acc_detected_vs_missed\":\"0.1634 vs 0.0758\",\"gt_conf_detected_vs_missed\":\"0.1523 vs 0.0837\",\"correlation\":\"r~0.45 p<0.001\",\"missed_per_seed\":[31,5,26],\"detection_rate_rapport_building\":0.7417},\"AA_OOD\":{\"strategy_acc\":\"0.4604±0.0114\",\"jb_strategy_acc\":\"0.0682±0.0192\",\"macro_f1\":\"0.1145±0.0212\",\"strategy_acc_detected_vs_missed\":\"0.1311 vs 0.0393\",\"correlation\":\"r~0.24 p~0.03\",\"missed_per_seed\":[63,41,66],\"detection_rate\":{\"emotional_manipulation\":0.5238,\"authority_appeal\":0.2841,\"logical_reframing\":0.2667,\"gradual_escalation\":0.1667,\"rapport_building\":0.1111}}}",
+                "content_filename": "exp32_strategy_prediction_summary.json",
+                "tags": [
+                  "analysis",
+                  "strategy",
+                  "persuasion",
+                  "ood"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "0702e419-1fdc-453b-b578-b5fc070f1442",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013KCW3EQYaSPUVctxVKu3uV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 900,
+                "cache_read_input_tokens": 117044,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 900
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-20T19:41:11.124Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'summary': 'exp32 Strate...ort_building': 0.1111}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01LyJhvF2YaSzcEZLsyu1rC4"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "026c0c1b-2061-46db-97d7-bf8d76be5488",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'summary': 'exp32 Strate...ort_building': 0.1111}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GGMCA4ggW7y5jhx3XHwpyN",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp32_strategy_prediction",
+                "type": "report",
+                "description": "Strategy prediction analysis on DD OOD and AA OOD (3 seeds). Full results at westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json",
+                "project": "persuasion_turn_jailbreak_detect",
+                "exp_id": "exp32_strategy_prediction",
+                "url": "westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json",
+                "tags": [
+                  "analysis",
+                  "strategy",
+                  "persuasion",
+                  "ood"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "177082b2-672f-40ac-8481-936cbe79af5c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HW8tYuehqf4fBQJriE5XGZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 717,
+                "cache_read_input_tokens": 117944,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 717
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-20T19:41:16.105Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GGMCA4ggW7y5jhx3XHwpyN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_110913\\\", \\\"name\\\": \\\"exp32_strategy_prediction\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Strategy prediction analysis on DD OOD and AA OOD (3 seeds). Full results at westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json\\\", \\\"path\\\": null, \\\"url\\\": \\\"westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json\\\", \\\"project\\\": \\\"persuasion_turn_jailbreak_detect\\\", \\\"exp_id\\\": \\\"exp32_strategy_prediction\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T19:41:15.985924+00:00\\\", \\\"tags\\\": [\\\"analysis\\\", \\\"strategy\\\", \\\"persuasion\\\", \\\"ood\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "d516a554-4942-4ed8-8936-73b6dd6edea0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_110913\\\", \\\"name\\\": \\\"exp32_strategy_prediction\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Strategy prediction analysis on DD OOD and AA OOD (3 seeds). Full results at westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json\\\", \\\"path\\\": null, \\\"url\\\": \\\"westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json\\\", \\\"project\\\": \\\"persuasion_turn_jailbreak_detect\\\", \\\"exp_id\\\": \\\"exp32_strategy_prediction\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T19:41:15.985924+00:00\\\", \\\"tags\\\": [\\\"analysis\\\", \\\"strategy\\\", \\\"persuasion\\\", \\\"ood\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_110913\", \"name\": \"exp32_strategy_prediction\", \"type\": \"report\", \"description\": \"Strategy prediction analysis on DD OOD and AA OOD (3 seeds). Full results at westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json\", \"path\": null, \"url\": \"westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json\", \"project\": \"persuasion_turn_jailbreak_detect\", \"exp_id\": \"exp32_strategy_prediction\", \"skill\": \"\", \"created_at\": \"2026-05-20T19:41:15.985924+00:00\", \"tags\": [\"analysis\", \"strategy\", \"persuasion\", \"ood\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01URPTftPFY8GbjJ2vtWdS1C",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Write exp32_strategy_prediction.py script",
+                    "status": "completed",
+                    "activeForm": "Writing exp32_strategy_prediction.py script"
+                  },
+                  {
+                    "content": "Upload script to server",
+                    "status": "completed",
+                    "activeForm": "Uploading script to server"
+                  },
+                  {
+                    "content": "Submit and run exp32",
+                    "status": "completed",
+                    "activeForm": "Submitting and running exp32"
+                  },
+                  {
+                    "content": "Update registry with results",
+                    "status": "completed",
+                    "activeForm": "Updating registry with results"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "b08caa41-a18f-4763-980f-02517ccbd9b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014nRBH3J8ZPYtK3hEkxDzJD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 599,
+                "cache_read_input_tokens": 118661,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 599
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-20T19:41:21.095Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01URPTftPFY8GbjJ2vtWdS1C",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "dd19628e-636e-4306-8a1f-3f96de13541a",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Write exp32_strategy_prediction.py script",
+                  "status": "completed",
+                  "activeForm": "Writing exp32_strategy_prediction.py script"
+                },
+                {
+                  "content": "Upload script to server",
+                  "status": "completed",
+                  "activeForm": "Uploading script to server"
+                },
+                {
+                  "content": "Submit and run exp32",
+                  "status": "in_progress",
+                  "activeForm": "Submitting and running exp32"
+                },
+                {
+                  "content": "Update registry with results",
+                  "status": "pending",
+                  "activeForm": "Updating registry with results"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Write exp32_strategy_prediction.py script",
+                  "status": "completed",
+                  "activeForm": "Writing exp32_strategy_prediction.py script"
+                },
+                {
+                  "content": "Upload script to server",
+                  "status": "completed",
+                  "activeForm": "Uploading script to server"
+                },
+                {
+                  "content": "Submit and run exp32",
+                  "status": "completed",
+                  "activeForm": "Submitting and running exp32"
+                },
+                {
+                  "content": "Update registry with results",
+                  "status": "completed",
+                  "activeForm": "Updating registry with results"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp32 完成。核心发现：\n\n**DD OOD (Deceptive Delight)**\n- 策略预测准确率很低（JB-only: 14.3%），仅 rapport_building 被较好识别（F1=0.57）\n- 正确检测的对话策略准确率显著高于漏检（0.163 vs 0.076），相关性显著（r≈0.45, p<0.001）\n- 检测率 74.2%（3 seed 平均），所有 DD 对话的主导策略都是 rapport_building\n\n**AA OOD (ActorAttack)**\n- 策略预测更差（JB-only: 6.8%），模型严重偏向预测 \"none\"\n- 正确检测 vs 漏检的策略准确率差异仍显著（0.131 vs 0.039），相关性 r≈0.24, p≈0.03\n- 不同策略检测率差异大：emotional_manipulation (52%) > authority_appeal (28%) > logical_reframing (27%) > gradual_escalation (17%) > rapport_building (11%)\n- 漏检严重：3 seed 分别漏 63/41/66 个（共 80 个 jailbreak）\n\n**结论**：策略预测准确率与检测成功率正相关，但模型在 OOD 数据上的策略预测能力很弱——persuasion head 的主要贡献是通过训练信号改善编码器表征质量，而非通过准确的策略预测本身。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "uuid": "83f56a21-d0f3-4446-a553-6728371de7e5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016zbHZaJwonahPdrXjSKWx3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 217,
+                "cache_read_input_tokens": 119260,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 217
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp32 完成。核心发现：\n\n**DD OOD (Deceptive Delight)**\n- 策略预测准确率很低（JB-only: 14.3%），仅 rapport_building 被较好识别（F1=0.57）\n- 正确检测的对话策略准确率显著高于漏检（0.163 vs 0.076），相关性显著（r≈0.45, p<0.001）\n- 检测率 74.2%（3 seed 平均），所有 DD 对话的主导策略都是 rapport_building\n\n**AA OOD (ActorAttack)**\n- 策略预测更差（JB-only: 6.8%），模型严重偏向预测 \"none\"\n- 正确检测 vs 漏检的策略准确率差异仍显著（0.131 vs 0.039），相关性 r≈0.24, p≈0.03\n- 不同策略检测率差异大：emotional_manipulation (52%) > authority_appeal (28%) > logical_reframing (27%) > gradual_escalation (17%) > rapport_building (11%)\n- 漏检严重：3 seed 分别漏 63/41/66 个（共 80 个 jailbreak）\n\n**结论**：策略预测准确率与检测成功率正相关，但模型在 OOD 数据上的策略预测能力很弱——persuasion head 的主要贡献是通过训练信号改善编码器表征质量，而非通过准确的策略预测本身。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 673850,
+            "duration_api_ms": 639783,
+            "num_turns": 71,
+            "stop_reason": "end_turn",
+            "session_id": "340d6217-3675-4c58-8f8a-43fff409cb60",
+            "total_cost_usd": 3.543573500000001,
+            "usage": {
+              "input_tokens": 54,
+              "cache_creation_input_tokens": 107636,
+              "cache_read_input_tokens": 3711469,
+              "output_tokens": 40508,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 107636,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 437,
+                  "cache_read_input_tokens": 119260,
+                  "cache_creation_input_tokens": 217,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 217
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2069,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002144,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 54,
+                "outputTokens": 40508,
+                "cacheReadInputTokens": 3711469,
+                "cacheCreationInputTokens": 107636,
+                "webSearchRequests": 0,
+                "costUSD": 3.5414295000000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "171b81aa-0ce5-40c5-bda5-e8d57970f530"
+          },
+          "id": "event-000177"
+        }
+      ]
+    }
+  ]
+}

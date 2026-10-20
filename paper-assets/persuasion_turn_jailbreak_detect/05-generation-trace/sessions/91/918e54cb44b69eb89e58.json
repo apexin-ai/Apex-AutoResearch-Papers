@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "918e54cb44b69eb89e58",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper tex recovery A appendix",
+  "task_key": "worker_paper_tex_recovery_A_appendix_20260523T051344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_tex_recovery_A_appendix_20260523T051344_result.json",
+    "occurrence": 1,
+    "bytes": 1139,
+    "sha256": "99843bd7cf83bdca57bd8c82ea045f40979a02a093043f0a846634e51403d297"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Zero warnings. All 9 missing sections restored:\n\n| Section | Label | Content |\n|---------|-------|---------|\n| Representation Analysis | `app:representation` | PR/Fisher/Weight table for 7 variants |\n| Layerwise Analysis | `app:layerwise` | PR/Fisher across layers 0-12 with figure |\n| Discriminative Subspace Probe | `app:discriminative_probe` | Top-k SVD probe table (3/768 dims sufficient) |\n| SVD Necessity Ablation | `app:svd_necessity` | Remove-top-3 vs remove-random-3 ablation |\n| Topic Failure Analysis | `app:topic_failure` | Per-turn Fisher table showing why topic DAPT fails |\n| OASST2 Adaptation | `app:oasst2` | OASST2 benign adaptation curve |\n| Dual-OOD Detection | `app:dual_ood` | Estimated dual-OOD F1 under 5 benign conditions |\n| Confidence Analysis | `app:confidence` | ToxicChat high-confidence FP analysis |\n| Truncation Analysis | `app:truncated` | Full vs last-turn-only F1 comparison |\n\nFile: 693 → 935 lines. PDF: 25 pages, zero undefined references/warnings. Also fixed two broken cross-references (`tab:benign_curve` → `tab:wildchat_fpr`, `sec:benign` → `sec:benign_shift`)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-tex-recovery-a-appendix.md"
+}

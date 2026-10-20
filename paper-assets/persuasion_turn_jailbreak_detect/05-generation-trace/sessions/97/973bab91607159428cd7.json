@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "973bab91607159428cd7",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp44 multi llm mixed",
+  "task_key": "worker_code_exp44_multi_llm_mixed_20260522T044223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp44_multi_llm_mixed_20260522T044223_result.json",
+    "occurrence": 1,
+    "bytes": 131,
+    "sha256": "1150a5a509cf9d6be826c7b245d968f0c3338a7e3636367571128e6e4cae45ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Generation running smoothly — 12/50 FITD Llama conversations complete, ~44 min remaining. Will check back shortly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp44-multi-llm-mixed.md"
+}

@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan_016v2_topic_perturbation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:52:43.895Z",
+    "updated_at": "2026-05-18T06:53:03.279Z",
+    "hypothesis": "Topic classification model will show significant perturbation degradation comparable to vanilla baseline, as non-aligned classification does not teach lexically-invariant features",
+    "parent": "plan_016v2_topic_control",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python src/plan_016v2_perturbed_eval.py",
+      "server": "westd-33183",
+      "data_path": "results/plan_004_perturbed_test.jsonl",
+      "data_count": 76,
+      "model_name": "plan_016v2_topic DeBERTa + BiGRU",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/plan_016v2_topic/best + gru/best.pt",
+      "eval_data": "plan_004 perturbed Crescendo test (76 convs, 38 jailbreak + 38 benign)"
+    }
+  },
+  "timestamp": "2026-05-18T06:53:03.365671+00:00",
+  "trigger": "update_registry"
+}

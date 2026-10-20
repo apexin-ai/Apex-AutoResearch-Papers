@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp30_length_stratified",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:40:20.867Z",
+    "updated_at": "2026-05-20T15:24:52.548Z",
+    "hypothesis": "9-class DAPT maintains consistent jailbreak detection performance across different conversation lengths (turn counts), with no systematic degradation in shorter or longer conversations.",
+    "spec": {
+      "command": "python scripts/exp30_length_stratified.py",
+      "server": "westd-33183",
+      "data_path": "results/per_sample_predictions/",
+      "data_count": 236,
+      "model_name": "9class/jb_mlm/vanilla",
+      "seed": "42,123,456",
+      "checkpoint_source": "plan_002 checkpoints",
+      "eval_data": "dd_ood_per_sample.json, actorattack_per_sample.json"
+    }
+  },
+  "timestamp": "2026-05-20T15:24:52.708517+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "69f03b39362ff2b841c9",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp44 investigate",
+  "task_key": "worker_code_exp44_investigate_20260522T053303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp44_investigate_20260522T053303.log",
+    "occurrence": 1,
+    "bytes": 606583,
+    "sha256": "795e8780bd41d47a8437e94f428a9742033dc66d69ed352f2e1d88df2469c129"
+  },
+  "statistics": {
+    "messages": 150,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 54,
+      "tool_result": 54,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 150,
+      "chunks": [
+        {
+          "path": "69f03b39362ff2b841c9-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "69f03b39362ff2b841c9-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp44-investigate.md"
+}

@@ -1,0 +1,25 @@
+{
+  "exp_id": "mf1_binary_seed123",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T09:11:45.083Z",
+    "updated_at": "2026-05-18T09:58:14.037Z",
+    "hypothesis": "Binary persuasion classification (seed=123) will maintain DD OOD F1 comparable to seed=42 (0.990), confirming low variance for binary variant and providing 3-seed statistical support for reviewer MF1",
+    "spec": {
+      "command": "train_deberta.py + train_gru.py + evaluate_gru.py (binary, seed=123)",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits + data/dd_ood",
+      "data_count": 480,
+      "model_name": "DeBERTa-v3-base (num_persuasion_classes=2)",
+      "seed": 123,
+      "checkpoint_path": "checkpoints/mf1_binary_seed123/",
+      "log_path": "results/mf1_binary_seed123.json"
+    }
+  },
+  "timestamp": "2026-05-18T09:58:14.144946+00:00",
+  "trigger": "update_registry"
+}

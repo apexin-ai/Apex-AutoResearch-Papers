@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "id": "7c3c5ecdba76f29f82ce",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "train exp2 actorattack ood",
+  "task_key": "worker_train_exp2-actorattack-ood_20260518T104314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_exp2-actorattack-ood_20260518T104314.log",
+    "occurrence": 1,
+    "bytes": 2214703,
+    "sha256": "48ab258c06b8455e237666d6fb29175d038cbfa8ca93b8005af5e01f3197d487"
+  },
+  "statistics": {
+    "messages": 1463,
+    "user_turns": 2,
+    "tool_calls": 663,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 125,
+      "tool_call": 663,
+      "tool_result": 663,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 484,
+      "chunks": [
+        {
+          "path": "7c3c5ecdba76f29f82ce-part-0001.json",
+          "message_count": 159
+        },
+        {
+          "path": "7c3c5ecdba76f29f82ce-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7c3c5ecdba76f29f82ce-part-0003.json",
+          "message_count": 145
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 962,
+      "chunks": [
+        {
+          "path": "7c3c5ecdba76f29f82ce-part-0003.json",
+          "message_count": 35
+        },
+        {
+          "path": "7c3c5ecdba76f29f82ce-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "7c3c5ecdba76f29f82ce-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "7c3c5ecdba76f29f82ce-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "7c3c5ecdba76f29f82ce-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "7c3c5ecdba76f29f82ce-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "7c3c5ecdba76f29f82ce-part-0009.json",
+          "message_count": 27
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "7c3c5ecdba76f29f82ce-part-0009.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-exp2-actorattack-ood.md"
+}

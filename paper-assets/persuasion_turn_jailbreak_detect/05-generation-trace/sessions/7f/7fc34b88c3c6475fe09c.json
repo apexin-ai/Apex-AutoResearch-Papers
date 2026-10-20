@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fc34b88c3c6475fe09c",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code fig2 regenerate",
+  "task_key": "worker_code_fig2-regenerate_20260519T130008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig2-regenerate_20260519T130008_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "cf52b8bd79657c0cef2f8e7e96c95ef50a1fd22bd8b71c790e094bdceeeb0307"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 已重新生成。\n\n**修改内容**：\n- `scripts/plot_fig2_cross_attack_bar.py` 中 9-class stds 最后一个值：`0.005` → `0.006`（对齐 Table 1 的 0.997±0.006）\n\n**确认**：脚本中所有 Full 列数值现在与 Table 1 一致：\n| Variant | Mean | Std |\n|---------|------|-----|\n| Vanilla | 0.312 | 0.026 |\n| MLM-only | 0.914 | 0.115 |\n| 9-class | 0.997 | 0.006 |\n\n**输出路径**：\n- `/root/persuasion_turn_jailbreak_detect/figures/paper/fig2_cross_attack_bar.pdf`\n- `/root/persuasion_turn_jailbreak_detect/docs/paper/figures/paper/fig2_cross_attack_bar.pdf`（已同步）\n\n**关于 \"0.28 / +72pp\" 标注**：脚本中不包含任何文字标注代码，Vanilla Full 的 bar 高度一直是 0.312。如果 Figure 2 中有 \"0.28 / +72pp\" 的文字标注，这些可能在 LaTeX 源文件中（如 `\\includegraphics` 旁的 overlay 或 caption 中）。需要我查找 LaTeX 中的标注吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig2-regenerate.md"
+}

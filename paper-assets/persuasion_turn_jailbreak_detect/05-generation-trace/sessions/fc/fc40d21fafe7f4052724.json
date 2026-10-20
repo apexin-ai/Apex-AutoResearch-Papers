@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fc40d21fafe7f4052724",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "research exp53 llm judge prompt",
+  "task_key": "worker_research_exp53_llm_judge_prompt_20260522T101013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_exp53_llm_judge_prompt_20260522T101013.log",
+    "occurrence": 1,
+    "bytes": 700637,
+    "sha256": "cbb641d10a968bda7b62a9ead5e1f15bb150c5e708fdfb521f231e3d7eac6c74"
+  },
+  "statistics": {
+    "messages": 266,
+    "user_turns": 0,
+    "tool_calls": 92,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 92,
+      "tool_result": 92,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 266,
+      "chunks": [
+        {
+          "path": "fc40d21fafe7f4052724-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fc40d21fafe7f4052724-part-0002.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-exp53-llm-judge-prompt.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54e3cd0de8c215178876",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper figure fig3 strategy heatmap",
+  "task_key": "worker_paper_figure_fig3_strategy_heatmap_20260518T035457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig3_strategy_heatmap_20260518T035457_result.json",
+    "occurrence": 1,
+    "bytes": 300,
+    "sha256": "1c0a85e8c586a06144a4544e6709e30a0f10d4f8304ae7224d45dd1f149bd527"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF + PNG 均已生成并注册。数据基于 registry 聚合指标反推（fallback），论文中引用时需注明 \"reconstructed from aggregate statistics\"。如后续从服务器拿到真实 `strategy_transition_matrices.json`，替换脚本顶部矩阵数据重新跑即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3-strategy-heatmap.md"
+}

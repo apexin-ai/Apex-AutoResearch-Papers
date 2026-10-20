@@ -1,0 +1,38 @@
+{
+  "exp_id": "mf1_scrambled_seed456",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T09:11:49.552Z",
+    "updated_at": "2026-05-18T09:19:49.959Z",
+    "hypothesis": "Scrambled-label classification (seed=456) on plan_002_splits data will show DD OOD F1 comparable to seed=42 (0.990), confirming scrambled variant's performance and variance for reviewer MF1",
+    "spec": {
+      "command": "python src/mf1_scrambled_seed456_pipeline.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/",
+      "data_count": 350,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": 456,
+      "checkpoint_path": "checkpoints/mf1_scrambled_seed456/",
+      "log_path": "results/mf1_scrambled_seed456_run.log"
+    },
+    "metrics": {
+      "dd_ood_full_f1": 1,
+      "dd_ood_k1_f1": 1,
+      "dd_ood_k2_f1": 1,
+      "dd_ood_k3_f1": 0.9904,
+      "dd_ood_k5_f1": 1,
+      "iid_full_f1": 1,
+      "deberta_val_persuasion_acc": 0.698,
+      "deberta_val_intent_acc": 1,
+      "deberta_best_epoch": 4
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T09:19:49.959Z"
+  },
+  "timestamp": "2026-05-18T09:19:50.094989+00:00",
+  "trigger": "update_registry"
+}

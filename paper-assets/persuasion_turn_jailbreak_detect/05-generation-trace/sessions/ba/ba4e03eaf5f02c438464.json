@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba4e03eaf5f02c438464",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp51 adapt curve",
+  "task_key": "worker_code_exp51_adapt_curve_20260522T094532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp51_adapt_curve_20260522T094532_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "4ff2f810a0529eeed53db0de69a0d9b415203254d1614a73c9ff9853c9ca9205"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果汇总：\n\n| N | FPR | IID F1 | DD F1 | AA F1 | FITD F1 |\n|---|-----|--------|-------|-------|---------|\n| 0 | 57.5% | - | - | - | - |\n| 10 | 20.5% | 1.0 | 1.0 | 1.0 | 1.0 |\n| **25** | **1.5%** | 1.0 | 1.0 | 0.953 | 1.0 |\n| **50** | **0.5%** | 1.0 | 1.0 | 0.990 | 1.0 |\n\n- FPR 拐点在 N=25：从 20.5% 骤降到 1.5%（仅 3/200 误报）\n- N=50 进一步降至 0.5%（1/200），但未完全到 0%\n- OOD 检测能力完好：DD/FITD F1=1.0，AA F1 在 N=25 时略降到 0.953 但 N=50 回升到 0.990\n- IID F1 全程 1.0\n\n结果已保存至服务器 `results/exp51_oasst2_adapt_curve.json` 并注册为 artifact `art_20260522_a48c36`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp51-adapt-curve.md"
+}

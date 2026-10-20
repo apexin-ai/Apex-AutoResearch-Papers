@@ -1,0 +1,15 @@
+{
+  "exp_id": "pilot_phase_b",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:29:35.872Z",
+    "updated_at": "2026-05-17T16:29:39.554Z",
+    "hypothesis": "Persuasion-aware DeBERTa embeddings (multi-task fine-tuned) fed to Bi-GRU will outperform vanilla DeBERTa embeddings at early detection (K=2,3,5 turns) of Crescendo-style jailbreak attacks"
+  },
+  "timestamp": "2026-05-17T16:29:39.585839+00:00",
+  "trigger": "update_registry"
+}

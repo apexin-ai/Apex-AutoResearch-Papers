@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ddd1edd3e96f0af6929",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval sf9 strategy prediction",
+  "task_key": "worker_eval_sf9-strategy-prediction_20260518T091216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_sf9-strategy-prediction_20260518T091216_result.json",
+    "occurrence": 1,
+    "bytes": 1198,
+    "sha256": "4ef411cae8e9aed1c6c1b292d830f30a4734d304ae877906fab6aabde471d2e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SF9 评估完成。\n\n**结果摘要：**\n\n| 指标 | 值 |\n|---|---|\n| Overall Accuracy | **30.7%** |\n| Cohen's Kappa | **0.126** |\n| 总对话数 | 80 |\n| 总 user turns | 645 |\n\n**Per-class (有 GT 样本的类)：**\n\n| Strategy | P | R | F1 | Support |\n|---|---|---|---|---|\n| rapport_building | 0.408 | 0.881 | 0.557 | 160 |\n| logical_reframing | 0.321 | 0.121 | 0.176 | 140 |\n| gradual_escalation | 0.233 | 0.310 | 0.266 | 129 |\n| obfuscation | 0.000 | 0.000 | 0.000 | 160 |\n| role_assignment | 0.000 | 0.000 | 0.000 | 36 |\n| emotional_manipulation | 0.000 | 0.000 | 0.000 | 20 |\n\n**关键发现：**\n- 模型严重偏向预测 rapport_building（346/645 次预测为该类）\n- obfuscation 有 160 个 GT 样本但 recall=0，全部被误分为 rapport_building(86) 和 gradual_escalation(41)\n- 转移矩阵差异最大的地方：GT 中 rapport→obfuscation 概率 50%，但预测中该路径几乎消失（-49.7%）；logical_reframing→gradual_escalation GT 为 100% 但预测中降至 45.7%\n\n结果 JSON 保存在 `/root/persuasion_turn_jailbreak_detect/results/sf9_strategy_prediction.json`，artifact 已注册为 `sf9_strategy_prediction`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-sf9-strategy-prediction.md"
+}

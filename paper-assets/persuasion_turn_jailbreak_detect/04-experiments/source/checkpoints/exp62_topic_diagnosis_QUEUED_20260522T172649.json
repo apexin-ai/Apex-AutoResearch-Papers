@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp62_topic_diagnosis",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T17:26:41.075Z",
+    "updated_at": "2026-05-22T17:26:49.758Z",
+    "hypothesis": "Topic DAPT fails because it blurs the jailbreak/benign boundary in embedding space — topic classification teaches features orthogonal to the jailbreak detection task, resulting in lower Fisher separability between jailbreak and benign representations"
+  },
+  "timestamp": "2026-05-22T17:26:49.984836+00:00",
+  "trigger": "update_registry"
+}

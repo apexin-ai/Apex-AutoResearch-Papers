@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_003_scrambled_perturbation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T07:07:32.928Z",
+    "updated_at": "2026-05-18T07:07:52.890Z",
+    "hypothesis": "Scrambled-label classification (random strategy labels on domain text) will show perturbation degradation between binary (0.000) and MLM (-0.026), testing whether correct label content matters for robustness or if any classification structure suffices",
+    "parent": "plan_003_scrambled_ablation"
+  },
+  "timestamp": "2026-05-18T07:07:52.981313+00:00",
+  "trigger": "update_registry"
+}

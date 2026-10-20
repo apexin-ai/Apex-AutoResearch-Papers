@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1028e09fc1ad05659c19",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "data user only fix",
+  "task_key": "worker_data_user-only-fix_20260517T063114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_user-only-fix_20260517T063114_result.json",
+    "occurrence": 1,
+    "bytes": 577,
+    "sha256": "3f1c3122d038dd18e7038c8745ffd8cab1a7f17b710a4a8dcd07311e62ba1e36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "处理完成。汇总：\n\n| 指标 | 值 |\n|------|-----|\n| 总对话数 | 500 |\n| train / val / test | 350 / 75 / 75 |\n| 含 assistant turn 的对话 | **0**（全部清除） |\n\n**各 attack_type avg user turns：**\n- cipher-based (tom-gibbs, 115条): 10.43\n- persuasion-based (safemtdata, 135条): 5.00\n- benign (wildchat, 250条): 7.47\n\n**全集 user turns：** avg=7.48, median=6.0, min=3, max=36\n\nattack_type 分布和 split 条数均保持不变。结构性 shortcut 已消除——所有数据集现在统一为 user-only turn sequences。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-user-only-fix.md"
+}

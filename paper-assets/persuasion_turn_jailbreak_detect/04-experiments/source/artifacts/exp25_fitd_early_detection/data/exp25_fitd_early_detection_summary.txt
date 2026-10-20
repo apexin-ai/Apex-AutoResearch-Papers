@@ -1,0 +1,1 @@
+Server path: /root/persuasion_turn_jailbreak_detect/results/exp25_fitd_early_detection.json\nSummary (mean±std):\n9class: k1=1.000±0.000 k2=0.997±0.005 k3=1.000±0.000 k5=1.000±0.000 full=1.000±0.000\nmlm:    k1=0.610±0.281 k2=0.598±0.256 k3=0.654±0.302 k5=0.635±0.238 full=0.707±0.217\nvanilla:k1=0.698±0.038 k2=0.786±0.043 k3=0.791±0.057 k5=0.823±0.040 full=0.882±0.027

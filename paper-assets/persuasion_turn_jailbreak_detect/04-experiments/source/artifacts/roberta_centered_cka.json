@@ -1,0 +1,26 @@
+{
+  "centered_cka": {
+    "iid": {
+      "vanilla_vs_mlm": 0.393432,
+      "vanilla_vs_9class": 0.592098,
+      "mlm_vs_9class": 0.350982
+    },
+    "dd_ood": {
+      "vanilla_vs_mlm": 0.255493,
+      "vanilla_vs_9class": 0.734975,
+      "mlm_vs_9class": 0.183337
+    }
+  },
+  "uncentered_cka": {
+    "iid": {
+      "vanilla_vs_mlm": 0.998423,
+      "vanilla_vs_9class": 0.510671,
+      "mlm_vs_9class": 0.501651
+    },
+    "dd_ood": {
+      "vanilla_vs_mlm": 0.99823,
+      "vanilla_vs_9class": 0.623592,
+      "mlm_vs_9class": 0.626134
+    }
+  }
+}

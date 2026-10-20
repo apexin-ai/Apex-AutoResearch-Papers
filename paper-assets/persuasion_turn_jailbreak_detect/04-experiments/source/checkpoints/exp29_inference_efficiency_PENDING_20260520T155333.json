@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp29_inference_efficiency",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:40:20.050Z",
+    "updated_at": "2026-05-20T15:53:33.255Z",
+    "hypothesis": "DeBERTa+BiGRU achieves orders-of-magnitude faster inference than LLM-based judges while maintaining superior OOD detection accuracy, demonstrating practical deployability for real-time jailbreak detection."
+  },
+  "timestamp": "2026-05-20T15:53:33.434843+00:00",
+  "trigger": "update_registry"
+}

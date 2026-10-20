@@ -1,0 +1,722 @@
+tier: worst
+narrative_guidance: 'Core detection-method framing fails. Reframe for resubmission
+  (same venue, next cycle) as empirical analysis paper: ''What Makes Multi-Turn Jailbreaks
+  Detectable? A Fine-Grained Analysis of Lexical, Semantic, and Pragmatic Signals.''
+  New angle: the comprehensive ablation picture IS the contribution — systematically
+  decomposing which features matter (lexical > pragmatic >> vanilla semantic), when
+  they fail (perturbation, early detection), and why (persuasion domain shifts representations).
+  Add new experiments: (1) real-world OOD evaluation on WildJailbreak or equivalent,
+  (2) random-task fine-tuning control (NLI, sentiment, topic) to isolate persuasion-specificity
+  vs general fine-tuning effect, (3) scale to 5K+ samples with diverse benign sources.
+  The +72pp over vanilla temporal modeling and the scrambled-label insight become
+  findings within the analysis, not the headline claim. TF-IDF strength becomes a
+  key finding (''lexical separability is the dominant signal'') rather than an embarrassment.
+  Target same EMNLP track but as analysis/resources paper.
+
+  '
+imagined_experiments:
+- name: core_revalidation_clean
+  plan_id: plan_002
+  description: 'Re-run Phase B on clean data with 3 seeds. Treatment vs baseline on
+    IID crescendo + topic-anchored benign.
+
+    '
+  expected_results:
+    treatment_k1_f1: 1.0
+    treatment_k2_f1: 1.0
+    treatment_full_f1: 1.0
+    baseline_k1_f1: 0.968
+    baseline_k2_f1: 0.978
+    baseline_full_f1: 1.0
+    tfidf_all_k_f1: 1.0
+    max_delta_pp: 3.2
+    pass_criteria_5pp: false
+    seed_std_treatment: 0.0
+    seed_std_baseline_k1: 0.033
+  result_rationale: '在 worst 档下，IID 评估暴露核心问题：treatment 与 baseline 的差距仅 1-3pp，远低于 5pp
+    pass criteria。 Reviewer 直接指出："在分布内数据上，persuasion fine-tuning 几乎没有带来改进，vanilla
+    DeBERTa 已经足够好。 TF-IDF 在所有 K 值上都是 F1=1.0，一个词袋模型在 IID 上完美表现，说明任务本身太简单。" 这个结果为后续所有
+    ablation 的"所有变体都差不多"定下了基调——如果 IID 上 baseline 就接近完美， 那么 treatment 的改进空间本就极为有限，任何
+    architecture/label 变化都不太可能产生显著差异。
+
+    '
+  tables:
+  - caption: 'Table 1: IID Detection Performance (3-seed mean ± std)'
+    rows:
+    - model: Treatment (ours)
+      k1: 1.000±0.000
+      k2: 1.000±0.000
+      k3: 1.000±0.000
+      full: 1.000±0.000
+    - model: Baseline (vanilla)
+      k1: 0.968±0.033
+      k2: 0.978±0.016
+      k3: 0.987±0.000
+      full: 1.000±0.000
+    - model: TF-IDF + LR
+      k1: '1.000'
+      k2: '1.000'
+      k3: '1.000'
+      full: '1.000'
+  figures_description:
+  - Bootstrap CI bar chart showing overlapping confidence intervals between treatment
+    and baseline at K≥3
+  analysis: 'Reviewer 2 的致命评论："Table 1 shows that the baseline already achieves F1≥0.97
+    IID with zero persuasion fine-tuning. The TF-IDF baseline is perfect. The authors''
+    own data demonstrates that their method is unnecessary for in-distribution detection.
+    The claimed contribution is therefore entirely dependent on the OOD evaluation
+    (Table 3), which uses synthetic data of questionable validity."
+
+    '
+- name: scrambled_label_ablation
+  plan_id: plan_003
+  description: 'Randomly shuffle persuasion strategy labels, retrain treatment. Tests
+    whether specific label assignments matter.
+
+    '
+  expected_results:
+    scrambled_k1_f1: 0.974
+    scrambled_k2_f1: 1.0
+    scrambled_full_f1: 1.0
+    proper_k2_f1: 0.987
+    proper_full_f1: 1.0
+    scrambled_deberta_persuasion_acc: 0.644
+    proper_deberta_persuasion_acc: 0.796
+    gap_k1_pp: 2.6
+    gap_full_pp: 0.0
+  result_rationale: '在 worst 档下，scrambled labels 几乎不降性能（仅 K=1 处 2.6pp，full 完全相同），这被
+    reviewer 解读为毁灭性证据。pass_criteria 要求 scrambled < proper 且有显著差距，但实际差距可忽略不计。 Reviewer
+    论证："If random labels work equally well, the 8-class persuasion taxonomy is not
+    contributing any meaningful signal. The model is simply learning a domain shift
+    from the fine-tuning data distribution, not persuasion-specific features. This
+    is indistinguishable from any domain-adaptive fine-tuning." 这个结果与 plan_013 (binary≈8-class)
+    和 plan_015 (mean≈GRU) 共同构成"三重无差异"论证， reviewer 将其打包为"the method has no meaningful
+    design choices — any fine-tuning works."
+
+    '
+  tables:
+  - caption: 'Table 4: Scrambled-Label Ablation (IID)'
+    rows:
+    - model: 8-class (proper)
+      k1: '0.987'
+      k2: '0.987'
+      full: '1.000'
+    - model: 8-class (scrambled)
+      k1: '0.974'
+      k2: '1.000'
+      full: '1.000'
+    - model: Baseline (no FT)
+      k1: '0.968'
+      k2: '0.978'
+      full: '1.000'
+  figures_description: []
+  analysis: 'Reviewer 1 的核心攻击点之一。"The scrambled control is devastating to the paper''s
+    thesis. The authors claim persuasion-aware fine-tuning captures pragmatic features,
+    but random labels achieve identical performance. Combined with the binary-collapse
+    result (Table 5) and the mean-pooling result (Table 6), the picture is clear:
+    any fine-tuning on persuasion-adjacent text works, regardless of labels, granularity,
+    or temporal modeling. This is not a method paper; it is a demonstration that domain-adaptive
+    fine-tuning helps — a result that is entirely predictable from the transfer learning
+    literature."
+
+    '
+- name: adversarial_perturbation
+  plan_id: plan_004
+  description: 'Apply aggressive paraphrasing to jailbreak conversations. Evaluate
+    treatment, baseline, and TF-IDF on perturbed data (models trained on unperturbed).
+
+    '
+  expected_results:
+    treatment_original_f1: 1.0
+    treatment_perturbed_f1: 1.0
+    treatment_f1_drop: 0.0
+    baseline_original_f1: 1.0
+    baseline_perturbed_f1: 0.882
+    baseline_f1_drop: -0.118
+    tfidf_original_f1: 1.0
+    tfidf_perturbed_f1: 0.987
+    tfidf_f1_drop: -0.013
+    bertscore_mean: 0.92
+    lexical_overlap: 0.2
+  result_rationale: '在 worst 档下，perturbation 实验的结果虽然表面上支持 treatment（zero degradation），但
+    reviewer 从两个角度攻击。第一，TF-IDF 在 perturbation 下仅下降 1.3pp（F1=0.987），说明即使"aggressive
+    paraphrasing"也未能真正消除词汇信号。Reviewer 质疑 perturbation 的质量："BERTScore=0.92 means the
+    paraphrases are highly similar to originals. Lexical overlap=0.20 is moderate,
+    but if TF-IDF still achieves F1=0.987, the perturbation failed to remove the dominant
+    lexical signal. This is not a valid adversarial robustness test." 第二，baseline
+    的 11.8pp 下降被归因于 vanilla DeBERTa 的 脆弱性，而非 treatment 的鲁棒性："The baseline is a straw
+    man — no one deploys vanilla DeBERTa without fine-tuning for production safety
+    detection." 结论：perturbation 实验既未真正挑战 lexical features，也未对比有意义的 production baseline。
+
+    '
+  tables:
+  - caption: 'Table 7: Adversarial Perturbation Robustness (IID, K=all)'
+    rows:
+    - model: Treatment
+      original: '1.000'
+      perturbed: '1.000'
+      delta: 0.0pp
+    - model: Baseline
+      original: '1.000'
+      perturbed: '0.882'
+      delta: -11.8pp
+    - model: TF-IDF
+      original: '1.000'
+      perturbed: '0.987'
+      delta: -1.3pp
+  figures_description:
+  - 'Bar chart of F1 drop under perturbation. Reviewer annotates: ''TF-IDF barely
+    drops — perturbation is too weak'''
+  analysis: 'Reviewer 3 在 perturbation 评估上给出 near-fatal 意见："The perturbation experiment
+    is methodologically flawed. Real adversarial attacks use adaptive strategies (Nasr
+    & Carlini 2025) that specifically target the detector''s features. The authors''
+    synonym+paraphrase approach does not constitute a meaningful adversarial evaluation.
+    Furthermore, TF-IDF''s near-immunity to this perturbation (F1=0.987) suggests
+    the perturbation preserves the very lexical cues that make this task trivially
+    solvable. I would need to see evaluation against adaptive attacks or, at minimum,
+    perturbation that reduces TF-IDF to F1<0.80 before accepting robustness claims."
+
+    '
+- name: multi_attack_generation
+  plan_id: plan_005
+  description: 'Generate FITD and Deceptive Delight attack conversations using Qwen3-8B
+    pipeline. ~80 per type.
+
+    '
+  expected_results:
+    fitd_count: 80
+    dd_count: 80
+    fitd_strategies:
+    - 0
+    - 1
+    - 3
+    - 5
+    dd_strategies:
+    - 0
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    synthetic_quality: LLM-generated, not validated against real attacks
+  result_rationale: '在 worst 档下，synthetic data 是 fatal 级别的问题。Reviewer 的核心论点： "The
+    OOD evaluation uses LLM-generated attack conversations, not real adversarial interactions.
+    The authors use Qwen3-8B to generate ''Deceptive Delight'' and ''FITD'' conversations
+    based on attack playbooks, but there is no evidence these synthetic conversations
+    capture the true distribution of real multi-turn jailbreaks. Real attacks involve
+    human adversarial creativity, adaptive strategy shifts, and conversation dynamics
+    that templated generation cannot replicate. The paper must evaluate on real attack
+    datasets (WildJailbreak, HarmBench multi-turn, or human red-teaming logs) to support
+    any OOD generalization claim." 这是 2-3 位 reviewer 共同提出的要求，直接否定了 plan_006 的全部 OOD
+    结论。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'Synthetic OOD data 是 worst 档的核心假设之一。即使 plan_006 在这些数据上表现优异， reviewer
+    不接受 LLM 生成数据作为 OOD 泛化的证据。resubmission 需要 WildJailbreak 或等效真实数据集上的评估。
+
+    '
+- name: cross_attack_evaluation
+  plan_id: plan_006
+  description: 'Evaluate Crescendo-trained models on FITD and DD (synthetic). Core
+    OOD generalization test.
+
+    '
+  expected_results:
+    dd_treatment_full_f1: 1.0
+    dd_baseline_full_f1: 0.284
+    dd_treatment_k1_f1: 1.0
+    dd_baseline_k1_f1: 0.575
+    dd_tfidf_full_f1: 0.944
+    fitd_treatment_full_f1: 1.0
+    fitd_baseline_full_f1: 1.0
+    max_dd_delta_pp: 71.6
+    dd_scrambled_full_f1: 0.99
+    dd_scrambled_treatment_gap: 1.0
+  result_rationale: '在 worst 档下，DD 上的 +72pp 是论文最强的数字，但被两层攻击消解。 第一层：synthetic data
+    dismissal（见 plan_005）。"These are not real Deceptive Delight attacks. The +72pp
+    gain may reflect the synthetic data generator''s stylistic artifacts rather than
+    genuine cross-attack generalization." 第二层：TF-IDF=0.94 on DD。Reviewer 计算 treatment
+    vs TF-IDF gap = 5.6pp，论证 "a bag-of-words nearly matches your method on unseen
+    attacks, confirming that lexical separability — not pragmatic understanding —
+    is the dominant detection signal even OOD. The +72pp over vanilla DeBERTa is a
+    straw-man comparison; no practitioner would choose vanilla DeBERTa over TF-IDF."
+    第三层：scrambled labels 在 DD 上 F1=0.99，与 proper labels 差距仅 1pp，进一步削弱 persuasion-specific
+    claim。 FITD 上 baseline 也达到 F1=1.0，reviewer 忽略 FITD 结果因为 "the attack type where
+    your method works is also trivially detectable by all methods."
+
+    '
+  tables:
+  - caption: 'Table 3: Cross-Attack Generalization (trained on Crescendo, evaluated
+      OOD)'
+    rows:
+    - attack: DD
+      treatment: '1.000'
+      baseline: '0.284'
+      tfidf: '0.944'
+      scrambled: '0.990'
+    - attack: FITD
+      treatment: '1.000'
+      baseline: '1.000'
+      tfidf: '1.000'
+      scrambled: '1.000'
+  figures_description:
+  - Grouped bar chart. Reviewer highlights TF-IDF=0.944 bar being nearly as tall as
+    Treatment=1.0
+  analysis: 'Reviewer 1 的 fatal concern："The only setting where DisPeD demonstrates
+    meaningful advantage over TF-IDF is on synthetic Deceptive Delight data (+5.6pp),
+    and even there TF-IDF achieves F1=0.94. On FITD, all methods are perfect. The
+    headline claim of +72pp is over a straw-man baseline that no one would deploy.
+    When the relevant comparison is Treatment vs TF-IDF, the improvement is marginal
+    and on synthetic data of unknown validity. I cannot support acceptance on this
+    basis."
+
+    '
+- name: tfidf_lr_baseline
+  plan_id: plan_007
+  description: 'TF-IDF + Logistic Regression baseline on clean data across all attack
+    types.
+
+    '
+  expected_results:
+    tfidf_crescendo_f1: 1.0
+    tfidf_fitd_f1: 1.0
+    tfidf_dd_f1: 0.944
+    tfidf_wildchat_f1: 0.998
+    tfidf_cv_f1: 1.0
+  result_rationale: '在 worst 档下，TF-IDF 的近乎完美表现是最具破坏力的单一结果。F1=1.0 on IID，F1=0.94 on
+    DD OOD， F1=0.998 on real WildChat benign。Reviewer 引用 Gururangan et al. 2018 (annotation
+    artifacts) 和 Niven & Kao 2019 (spurious cues)，论证整个任务存在 dataset artifact： "TF-IDF=0.94-1.0
+    across all evaluation settings, including OOD, demonstrates that the task is dominated
+    by superficial lexical features. This is the textbook definition of an annotation
+    artifact (Gururangan et al., 2018). The paper''s neural approach is solving an
+    already-solved problem. The interesting question is not ''can we detect these
+    conversations'' but ''why are they so trivially detectable'' — and that question
+    requires a fundamentally different paper." 这个结果使得 reviewer 将 TF-IDF objection
+    severity 标记为 fatal/near-fatal。
+
+    '
+  tables:
+  - caption: 'Table 2: TF-IDF + LR Baseline Across Data Sources'
+    rows:
+    - data: Crescendo (IID)
+      f1: '1.000'
+      note: CV balanced
+    - data: FITD (OOD)
+      f1: '1.000'
+      note: ''
+    - data: DD (OOD)
+      f1: '0.944'
+      note: Only setting < 1.0
+    - data: WildChat benign
+      f1: '0.998'
+      note: Real data
+  figures_description: []
+  analysis: 'TF-IDF 结果被 Reviewer 2 称为 "the elephant in the room that the paper tries
+    to acknowledge but cannot overcome." 在 resubmission 中，TF-IDF 的强表现需要从"embarrassment"重新定位为
+    "key finding"——lexical separability IS the dominant signal, and the paper''s contribution
+    is the systematic decomposition of what happens when you go beyond it.
+
+    '
+- name: strategy_transition_analysis
+  plan_id: plan_008
+  description: 'Compute persuasion strategy transition matrices and trajectory visualizations
+    for interpretability.
+
+    '
+  expected_results:
+    crescendo_mean_index_start: 0.86
+    crescendo_mean_index_end: 5.64
+    crescendo_strategies_used: 8
+    fitd_strategies_used: 4
+    dd_strategies_used: 6
+    crescendo_transitions: 1818
+    visual_distinction: moderate
+  result_rationale: '在 worst 档下，strategy trajectory analysis 被视为 descriptive 而非 scientific
+    contribution。 Reviewer 的两个攻击： 第一，plan_015 已证明 mean pooling ≈ GRU，即模型不依赖 temporal
+    ordering 进行检测。 Reviewer 论证："The strategy trajectories are post-hoc descriptive
+    statistics that do not drive detection performance. The model ignores temporal
+    order (Table 6), so claiming interpretability via trajectories is misleading —
+    the trajectories describe the data, not the model''s decision process." 第二，RC6
+    (interpretability without human eval)："Strategy labels are presented as interpretable,
+    but no human evaluation confirms that practitioners find these trajectories useful
+    for understanding attacks. Without user studies, interpretability claims are unsubstantiated."
+
+    '
+  tables:
+  - caption: 'Table 8: Persuasion Strategy Usage by Attack Type'
+    rows:
+    - attack: Crescendo
+      strategies_used: 8
+      mean_start: 0.86
+      mean_end: 5.64
+      transitions: 1818
+    - attack: FITD
+      strategies_used: 4
+      mean_start: N/A
+      mean_end: N/A
+      transitions: 541
+    - attack: DD
+      strategies_used: 6
+      mean_start: N/A
+      mean_end: N/A
+      transitions: 565
+  figures_description:
+  - 'Strategy transition heatmaps (3 panels: Crescendo, FITD, DD). Reviewer: ''descriptive,
+    not a contribution'''
+  - 'Per-turn strategy index evolution. Reviewer: ''model doesn''t use this (Table
+    6), so what''s the point?'''
+  analysis: 'Reviewer 3："The strategy trajectory analysis is the weakest section.
+    It presents interesting descriptive statistics but (a) the model doesn''t use
+    temporal order for detection, (b) no human evaluation validates interpretability,
+    and (c) the taxonomy itself is not validated (scrambled labels work equally well).
+    This section should either be cut or explicitly downgraded to ''exploratory analysis.''"
+
+    '
+- name: wildchat_hard_negatives
+  plan_id: plan_009
+  description: 'Filter WildChat for high-drift benign conversations as hard negatives.
+    Evaluate FPR.
+
+    '
+  expected_results:
+    wildchat_high_drift_fpr_treatment: 0.12
+    wildchat_high_drift_fpr_baseline: 0.18
+    wildchat_high_drift_fpr_tfidf: 0.08
+    contamination_rate: 0.15
+    sample_count: 200
+  result_rationale: '在 worst 档下，WildChat hard negatives 暴露两个问题。第一，14-16% contamination
+    rate 意味着 "hard negatives" 中实际包含真实 jailbreak 对话，FPR 计算不可靠。Reviewer："The authors
+    acknowledge 14-16% jailbreak contamination in WildChat. This means their FPR estimates
+    are upper bounds at best. Without reliable ground truth on WildChat, this experiment
+    is inconclusive." 第二，TF-IDF 的 FPR (0.08) 低于 treatment (0.12)，进一步削弱 treatment 相对于简单方法
+    的优势。n=200 的样本量在 reviewer 看来仍然太小： "200 hard negatives from a single source does
+    not constitute a representative evaluation of real-world false positive rates."
+
+    '
+  tables:
+  - caption: 'Table 9: FPR on WildChat High-Drift Benign Conversations'
+    rows:
+    - model: Treatment
+      fpr: '0.12'
+      note: 12% false alarm rate
+    - model: Baseline
+      fpr: '0.18'
+      note: ''
+    - model: TF-IDF
+      fpr: '0.08'
+      note: Lowest FPR
+  figures_description: []
+  analysis: 'Reviewer 2："The WildChat evaluation is contaminated and small-scale.
+    More critically, TF-IDF has lower FPR than DisPeD, which directly contradicts
+    the paper''s positioning. If a practitioner wanted to minimize false positives
+    on real conversations, they would choose TF-IDF over DisPeD."
+
+    '
+- name: cross_checkpoint_variance
+  plan_id: plan_010
+  description: 'Evaluate from multiple DeBERTa fine-tuning checkpoints (epoch 2/3/final)
+    to quantify training stochasticity.
+
+    '
+  expected_results:
+    epoch2_f1: 1.0
+    epoch3_f1: 1.0
+    final_f1: 1.0
+    variance_across_checkpoints: 0.0
+    epoch2_dd_f1: 0.98
+    epoch3_dd_f1: 1.0
+    final_dd_f1: 1.0
+    dd_variance: 0.01
+  result_rationale: '在 worst 档下，checkpoint variance 接近零本身不是负面结果，但 reviewer 将其纳入 "所有变体都差不多"的整体论证中。F1=1.0
+    across all checkpoints 加上 F1=1.0 across all lambda values (plan_014) 加上 mean≈GRU
+    (plan_015) 共同表明方法对所有超参数完全不敏感。 Reviewer 论证："The method is insensitive to every
+    architectural and training choice examined: checkpoint, lambda, aggregation, label
+    granularity, label correctness. This extreme insensitivity suggests the model
+    is exploiting a single dominant signal (likely lexical or distributional) that
+    any reasonable fine-tuning captures, rather than learning nuanced pragmatic features."
+    这个实验本身不是 fatal，但为整体 "incremental" 判断添砖加瓦。
+
+    '
+  tables:
+  - caption: 'Table S1: Cross-Checkpoint Variance'
+    rows:
+    - checkpoint: Epoch 2
+      iid_f1: '1.000'
+      dd_f1: '0.980'
+    - checkpoint: Epoch 3
+      iid_f1: '1.000'
+      dd_f1: '1.000'
+    - checkpoint: Final
+      iid_f1: '1.000'
+      dd_f1: '1.000'
+  figures_description: []
+  analysis: '独立来看无害，但 reviewer 汇总所有 ablation 后写道："Across Tables 4-6 and S1-S2, we
+    see zero variance across labels, granularity, aggregation, lambda, and checkpoints.
+    This is not robustness — it is a lack of meaningful design space. The paper presents
+    15 ablation conditions that all produce the same result, which paradoxically undermines
+    rather than supports the claimed contribution."
+
+    '
+- name: deepcontext_proxy_reproduction
+  plan_id: plan_011
+  description: 'BERT-base + GRU proxy for DeepContext. Tests whether encoder choice
+    (BERT vs DeBERTa) matters.
+
+    '
+  expected_results:
+    bert_gru_iid_f1: 0.95
+    bert_gru_dd_f1: 0.35
+    deberta_vanilla_gru_dd_f1: 0.284
+    bert_gru_fitd_f1: 0.98
+    deberta_ft_gru_dd_f1: 1.0
+  result_rationale: '在 worst 档下，DeepContext proxy 是一个 P2 实验，reviewer 对其关注有限但提出方法论批评。
+    BERT-base + GRU 在 DD 上 F1=0.35（略高于 vanilla DeBERTa 的 0.284），reviewer 指出： "The
+    DeepContext proxy uses BERT-base, which is a weaker encoder than DeBERTa-v3-base.
+    The comparison is unfair by construction. A more meaningful control would be DeBERTa
+    fine-tuned on a non-persuasion task (e.g., NLI or sentiment) to isolate whether
+    the improvement comes from persuasion-specific fine-tuning or simply from any
+    task-adaptive fine-tuning. The absence of this control is a significant gap."
+    这个缺失的 control（random-task fine-tuning）正是 resubmission narrative 中要求的 新实验之一。
+
+    '
+  tables:
+  - caption: 'Table S3: DeepContext Proxy Comparison'
+    rows:
+    - model: BERT + GRU (proxy)
+      iid_f1: '0.950'
+      dd_f1: '0.350'
+    - model: DeBERTa vanilla + GRU
+      iid_f1: '1.000'
+      dd_f1: '0.284'
+    - model: DeBERTa FT + GRU (ours)
+      iid_f1: '1.000'
+      dd_f1: '1.000'
+  figures_description: []
+  analysis: 'Reviewer 1："The comparison against a BERT-base proxy is methodologically
+    weak. The real question — does persuasion-specific fine-tuning outperform general
+    task fine-tuning — is not addressed. A DeBERTa fine-tuned on NLI, sentiment analysis,
+    or even random text classification would be a far more informative control. Without
+    this, the paper cannot distinguish ''persuasion fine-tuning helps'' from ''any
+    fine-tuning helps,'' and the scrambled-label result (Table 4) already suggests
+    the latter."
+
+    '
+- name: llm_as_judge_baseline
+  plan_id: plan_012
+  description: 'GPT-5.5 and Qwen3-8B zero-shot jailbreak detection as LLM-as-judge
+    baseline.
+
+    '
+  expected_results:
+    gpt55_k2_f1: 0.19
+    gpt55_k3_f1: 0.27
+    gpt55_k5_f1: 0.45
+    gpt55_full_f1: 0.38
+    gpt55_precision: 1.0
+    gpt55_recall_k5: 0.29
+    qwen_full_f1: 0.1
+    unparseable_k2_rate: 0.3
+    unparseable_full_rate: 0.47
+    upper_bound_f1_corrected: 0.75
+  result_rationale: '在 worst 档下，GPT-5.5 结果被 reviewer 从两个角度消解。 第一，unparseable rate
+    30-47%。Reviewer 计算 upper-bound：如果所有 unparseable 都是 正确的 jailbreak 检测（合理假设——模型可能因为检测到
+    jailbreak 而拒绝回答），corrected F1 ≈ 0.70-0.80，与 treatment 的差距大幅缩小。"The 47% unparseable
+    rate invalidates the F1 comparison. Under reasonable assumptions about unparseable
+    responses, GPT-5.5 achieves F1≈0.75, not 0.38. The paper should report both conservative
+    and liberal bounds." 第二，zero-shot prompt 没有经过优化。"The authors use a single generic
+    prompt without few-shot examples, chain-of-thought, or prompt engineering. Comparing
+    an unoptimized zero-shot LLM against a purpose-trained classifier is not a fair
+    baseline. At minimum, the paper should test 3-5 prompt variants and report best
+    performance." 结论：即使 GPT-5.5 确实弱于 treatment，reviewer 认为差距被人为放大，且缺少 optimized prompt
+    baseline。
+
+    '
+  tables:
+  - caption: 'Table 10: LLM-as-Judge Baseline'
+    rows:
+    - model: GPT-5.5 (zero-shot)
+      k2: '0.19'
+      k5: '0.45'
+      full: '0.38'
+      unparseable: 30-47%
+    - model: Qwen3-8B
+      k2: '0.00'
+      k5: '0.15'
+      full: '0.10'
+      unparseable: low
+    - model: GPT-5.5 (upper bound)
+      k2: ~0.55
+      k5: ~0.75
+      full: ~0.75
+      unparseable: 0%
+    - model: Treatment (ours)
+      k2: '1.00'
+      k5: '1.00'
+      full: '1.00'
+      unparseable: N/A
+  figures_description:
+  - Bar chart with error bars showing GPT-5.5 conservative vs upper-bound F1
+  analysis: 'Reviewer 3："The LLM-as-judge comparison is poorly controlled. A 47% unparseable
+    rate means nearly half the responses cannot be scored, and the conservative F1=0.38
+    is misleading. Furthermore, the prompt was not optimized — no few-shot examples,
+    no chain-of-thought, no system prompt engineering. This is comparing an optimized
+    trained system against an unoptimized baseline, which inflates the gap. I compute
+    an upper-bound F1 of 0.70-0.80 for GPT-5.5, making the practical advantage of
+    DisPeD more modest than claimed. A cost-performance analysis (DisPeD requires
+    GPU fine-tuning; GPT-5.5 requires only API calls) would further contextualize
+    this comparison."
+
+    '
+- name: none_collapse_ablation
+  plan_id: plan_013
+  description: 'Binary persuasion-present vs none (2-class) vs full 8-class. Tests
+    whether fine-grained taxonomy matters.
+
+    '
+  expected_results:
+    binary_iid_full_f1: 1.0
+    ninclass_iid_full_f1: 1.0
+    binary_dd_full_f1: 0.99
+    ninclass_dd_full_f1: 1.0
+    dd_gap_pp: 1.0
+    baseline_dd_full_f1: 0.284
+  result_rationale: '在 worst 档下，binary≈8-class 是 "三重无差异" 的第二重（scrambled≈proper 为第一重，
+    mean≈GRU 为第三重）。IID 上完全相同，DD 上仅 1pp 差距。pass_criteria 要求 8-class 领先 ≥3pp，未达标。Reviewer
+    论证："The 8-class taxonomy — the paper''s proposed innovation — provides no detection
+    advantage over a simple binary ''persuasion present/absent'' flag. Combined with
+    the scrambled-label result, this confirms the model is a persuasion-presence detector,
+    not a persuasion-strategy detector. The authors acknowledge this but then claim
+    interpretability value, which is not validated by any human evaluation (RC6)."
+    这个结果直接将论文的 novelty perception 从 "new method" 降级为 "engineering trick"—— 任何形式的 persuasion-adjacent
+    fine-tuning 都能达到同样效果。
+
+    '
+  tables:
+  - caption: 'Table 5: Label Granularity Ablation'
+    rows:
+    - model: 8-class (full)
+      iid: '1.000'
+      dd: '1.000'
+    - model: Binary (presence)
+      iid: '1.000'
+      dd: '0.990'
+    - model: Baseline (no FT)
+      iid: '1.000'
+      dd: '0.284'
+  figures_description: []
+  analysis: 'Reviewer 2："Table 5 kills the claim that the 8-class taxonomy matters
+    for detection. Binary fine-tuning matches 8-class everywhere. The paper pivots
+    to interpretability, but interpretability with random labels working equally well
+    (Table 4) means the ''interpretable'' labels are not grounded in what the model
+    actually learns. This is a circular argument: the taxonomy is claimed to be valuable
+    for interpretability, but the model doesn''t actually use the taxonomy."
+
+    '
+- name: lambda_ablation
+  plan_id: plan_014
+  description: 'Lambda ablation for multi-task objective weight. Tests sensitivity
+    to persuasion/intent loss balance.
+
+    '
+  expected_results:
+    lambda_0_f1: 1.0
+    lambda_0.3_f1: 1.0
+    lambda_0.5_f1: 1.0
+    lambda_1.0_f1: 1.0
+    lambda_2.0_f1: 1.0
+    lambda_0_dd_f1: 1.0
+    lambda_2.0_dd_f1: 1.0
+  result_rationale: '在 worst 档下，所有 lambda 值产生相同的 F1=1.0，包括 lambda=0（纯 persuasion 分类，
+    无 intent head）和 lambda=2.0（intent 权重为 persuasion 的两倍）。 Reviewer 将此与其他 insensitivity
+    结果叠加："Lambda∈{0, 0.3, 0.5, 1.0, 2.0} all produce F1=1.0. This means the intent
+    head contributes nothing (lambda=0 matches lambda=1.0), the multi-task balance
+    is irrelevant, and — combining with Tables 4-6 — the method has zero meaningful
+    hyperparameters to tune. While the authors frame this as robustness, it actually
+    indicates that a single dominant signal (the domain of the fine-tuning data) overwhelms
+    all other factors. This is not a method with design choices; it is a demonstration
+    that fine-tuning DeBERTa on persuasion text, in any configuration, is sufficient.
+    The contribution is one sentence, not a paper."
+
+    '
+  tables:
+  - caption: 'Table S2: Lambda Ablation'
+    rows:
+    - lambda: 0 (persuasion only)
+      iid_f1: '1.000'
+      dd_f1: '1.000'
+    - lambda: '0.3'
+      iid_f1: '1.000'
+      dd_f1: '1.000'
+    - lambda: '0.5'
+      iid_f1: '1.000'
+      dd_f1: '1.000'
+    - lambda: 1.0 (default)
+      iid_f1: '1.000'
+      dd_f1: '1.000'
+    - lambda: '2.0'
+      iid_f1: '1.000'
+      dd_f1: '1.000'
+  figures_description:
+  - 'Flat line plot across all lambda values. Reviewer: ''this is not an ablation;
+    it is a flatline'''
+  analysis: 'Reviewer 1："The lambda ablation is the final nail. Lambda=0 (no intent
+    head at all) matches the full multi-task model. This means the paper''s entire
+    multi-task framework is unnecessary — simple persuasion fine-tuning without any
+    conversation-level objective is equally effective. The ''multi-task'' framing
+    is misleading."
+
+    '
+- name: mean_pooling_baseline
+  plan_id: plan_015
+  description: 'Replace Bi-GRU with mean pooling. Tests whether temporal modeling
+    contributes to detection.
+
+    '
+  expected_results:
+    meanpool_treatment_iid_f1: 1.0
+    gru_treatment_iid_f1: 1.0
+    meanpool_treatment_dd_f1: 1.0
+    gru_treatment_dd_f1: 1.0
+    meanpool_baseline_dd_f1: 0.295
+    gru_baseline_dd_f1: 0.284
+    gap_pp: 0.0
+  result_rationale: '在 worst 档下，mean pooling ≈ GRU 是 "三重无差异" 的第三重。Treatment 下两者完全相同
+    （IID 和 DD 均 F1=1.0）。Baseline 下差异可忽略（0.295 vs 0.284）。 pass_criteria 要求 GRU > mean
+    pooling ≥3pp，未达标。Reviewer 论证： "The GRU temporal model — a key architectural component
+    presented in Figure 1 — provides zero improvement over simple mean pooling. This
+    means the model does not learn temporal dynamics or turn-ordering patterns. Combined
+    with the scrambled-label and binary-collapse results, the paper''s architecture
+    reduces to: fine-tune DeBERTa on any persuasion-adjacent text, then average the
+    embeddings. This is a one-line method description, not a paper." 更关键的是，这个结果直接否定了
+    Claim 2 (strategy trajectories as interpretability) 的检测意义——如果模型不使用 temporal order，那么
+    trajectory analysis 仅是描述性的。
+
+    '
+  tables:
+  - caption: 'Table 6: Temporal Modeling Ablation'
+    rows:
+    - model: Treatment + GRU
+      iid_f1: '1.000'
+      dd_f1: '1.000'
+    - model: Treatment + Mean Pool
+      iid_f1: '1.000'
+      dd_f1: '1.000'
+    - model: Baseline + GRU
+      iid_f1: '1.000'
+      dd_f1: '0.284'
+    - model: Baseline + Mean Pool
+      iid_f1: '1.000'
+      dd_f1: '0.295'
+  figures_description:
+  - Paired comparison chart. All Treatment bars identical; Reviewer circles this and
+    writes 'no signal'
+  analysis: 'Reviewer 2："Mean pooling matching GRU is the most damaging architectural
+    result. It means: (1) temporal order is irrelevant for detection, undermining
+    the ''trajectory'' narrative; (2) the architecture diagram (Figure 1) with its
+    GRU component is misleading; (3) the effective method is simply ''average fine-tuned
+    embeddings and classify,'' which is standard transfer learning. The paper''s contribution,
+    stripped of all ablated-away components, is: ''fine-tuning DeBERTa on persuasion-related
+    text, with any labels and any aggregation, improves OOD jailbreak detection on
+    synthetic data.'' This is incremental."'

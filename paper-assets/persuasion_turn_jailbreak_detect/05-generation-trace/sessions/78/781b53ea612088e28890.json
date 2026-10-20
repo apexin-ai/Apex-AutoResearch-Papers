@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "781b53ea612088e28890",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "debug exp6 vanilla inconsistency",
+  "task_key": "worker_debug_exp6-vanilla-inconsistency_20260518T144423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_exp6-vanilla-inconsistency_20260518T144423_result.json",
+    "occurrence": 1,
+    "bytes": 1755,
+    "sha256": "ac59a06fb6098d791bbb92d8283a9b80c066ceaf233a3892d655685cc9c969ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。以下是完整排查报告。\n\n---\n\n## 排查报告\n\n### 1. 根因\n\nexp6 脚本 (`src/exp6_actorattack_perturbation.py`) 使用了**错误的 checkpoint**，涉及 3 个 variant-seed 组合：\n\n| variant | seed | exp2 正确路径 | exp6 错误路径 | MD5 不同 |\n|---|---|---|---|---|\n| vanilla | 123 | `plan_002_seed123/gru/baseline/best.pt` | `vanilla_seed123_gru/best.pt` | ✓ |\n| vanilla | 456 | `plan_002_seed456/gru/baseline/best.pt` | `vanilla_seed456_gru/best.pt` | ✓ |\n| binary | 42 | `mf1_binary_seed42/` (DeBERTa+GRU) | `plan_013_none_collapse/` (BACKUP) | ✓ |\n\n评估逻辑、数据加载、F1 计算方式完全一致，唯一差异就是 checkpoint 路径。\n\n### 2. 修正范围\n\n**已修正** exp6 脚本和结果文件。修正前后 clean_k1 对比：\n\n| variant | 修正前 | 修正后 | exp2 值 | 一致 |\n|---|---|---|---|---|\n| vanilla mean | 0.439 | **0.337** | 0.337 | ✓ |\n| binary mean | 0.765 | **0.737** | 0.737 | ✓ |\n| 其他 5 个变体 | — | 无变化 | — | ✓ |\n\nMcNemar 测试也已用正确 checkpoint 重算。\n\n### 3. 定性影响\n\n| 问题 | 结论 |\n|---|---|\n| \"所有变体均退化\" | **仍成立**（topic k1 除外，delta +0.012），但 vanilla 和 binary 的退化幅度显著变小 |\n| vanilla delta_k1 | -0.146 → **-0.068**（退化减半，因为 baseline 本就很低，floor effect） |\n| binary delta_k1 | -0.126 → **-0.068**（seed42 delta 从 -0.176 变为 -0.001） |\n| 9class vs vanilla McNemar | **不变**，仍全部 p<0.001，方向 A>B，修正后差距更大 |\n| 论文叙事影响 | 需要修正 perturbation table 中的 vanilla 和 binary 行；结论不变但措辞需调整退化幅度 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-exp6-vanilla-inconsistency.md"
+}

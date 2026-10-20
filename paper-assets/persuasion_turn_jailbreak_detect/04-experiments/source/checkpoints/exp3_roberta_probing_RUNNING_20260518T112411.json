@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp3_roberta_probing",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T11:23:53.615Z",
+    "updated_at": "2026-05-18T11:24:11.872Z",
+    "hypothesis": "RoBERTa 9-class persuasion encoder encodes richer discourse structure than vanilla/MLM variants (matching DeBERTa pattern), as measured by linear probing accuracy and CKA divergence, confirming findings are encoder-agnostic",
+    "spec": {
+      "command": "python exp3_roberta_probing.py + CKA audit",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits + data/dd_ood",
+      "data_count": 118,
+      "model_name": "RoBERTa-base (9-class/MLM/vanilla)",
+      "seed": 42,
+      "checkpoint_path": "checkpoints/exp1_roberta_*/",
+      "log_path": "results/exp3_roberta_probing.json"
+    }
+  },
+  "timestamp": "2026-05-18T11:24:11.957817+00:00",
+  "trigger": "update_registry"
+}

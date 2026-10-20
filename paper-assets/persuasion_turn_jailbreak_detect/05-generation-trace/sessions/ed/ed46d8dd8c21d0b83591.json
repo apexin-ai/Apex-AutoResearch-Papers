@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed46d8dd8c21d0b83591",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp38 wildcat calibration v2",
+  "task_key": "worker_code_exp38-wildcat-calibration-v2_20260521T013619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp38-wildcat-calibration-v2_20260521T013619_result.json",
+    "occurrence": 1,
+    "bytes": 1511,
+    "sha256": "9ad902c00bf64840fbda8d335a0975366697580b0ea391dcb5268ff0cfa4a66f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment complete. Here's the summary:\n\n## exp38_wildcat_calibration — Results (NEGATIVE)\n\n| Metric | Value |\n|--------|-------|\n| ROC AUC | 0.700 ± 0.054 |\n| Default t=0.5 FPR | 79.1% ± 9.8% |\n| Optimal threshold (TPR≥95%) FPR | **62.7% ± 10.0%** |\n| Optimal threshold (TPR≥90%) FPR | **58.7% ± 9.1%** |\n| Temperature (LOO-226) | T = 20–40 (severe overconfidence) |\n| Temp-scaled FPR@TPR95 | 62.7% (identical — ROC invariant) |\n| Temp-scaled FPR@TPR90 | 58.3% |\n\n**Per-seed AUC**: seed42=0.768, seed123=0.697, seed456=0.635\n\n### Key findings\n\n1. **AUC=0.70** — the model has limited ability to distinguish WildChat benign from jailbreak. This is the fundamental ceiling.\n2. **Threshold adjustment** drops FPR from 79% → 63% (at TPR≥0.95), a ~16pp improvement but still far from the <25% target.\n3. **Temperature scaling** does NOT change operating-point FPR because ROC is invariant to monotonic score transforms. The learned T=20–40 confirms the model is severely overconfident (all probabilities clustered near 1.0).\n4. **Conclusion: NEGATIVE** — WildChat high FPR is genuine domain shift, not a calibration artifact. Post-hoc threshold/temperature calibration is insufficient.\n\n### Output artifacts\n- Results JSON: `results/exp38_wildcat_calibration.json`\n- Figures: `results/exp38_roc/` (roc_curve, roc_comparison, prob_distributions — PDF+PNG)\n- Script: `scripts/exp38_wildcat_calibration.py`\n\nRegistry updated to **DONE (negative)**."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp38-wildcat-calibration-v2.md"
+}

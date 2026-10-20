@@ -1,0 +1,31 @@
+paper_key: "Annotation Artifacts in Natural Language Inference Data"
+title: "Annotation Artifacts in Natural Language Inference Data"
+venue: "NAACL 2018"
+full_text_available: false
+analysis_level: "abstract_only"
+
+research:
+  baselines:
+    - "majority class baseline"
+    - "hypothesis-only text classification model"
+    - "full NLI models (premise + hypothesis)"
+  metrics:
+    - {name: "hypothesis-only accuracy", direction: "context_dependent"}
+    - {name: "NLI accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "SNLI", size: "~570K pairs"}
+    - {name: "MultiNLI", size: "~433K pairs"}
+  ablation_dimensions:
+    - "hypothesis-only vs full model"
+    - "linguistic artifact types (negation, vagueness)"
+    - "dataset comparison (SNLI vs MultiNLI)"
+  training_recipe: {info_available: false}
+  method_family: "annotation artifact analysis / dataset bias detection"
+
+positioning:
+  core_claim: "Major NLI datasets contain systematic annotation artifacts — predictable linguistic patterns in hypotheses — that allow a hypothesis-only model to achieve ~67% accuracy on SNLI and ~53% on MultiNLI, demonstrating that model performance on these benchmarks has been overestimated."
+  relation_to_us: "orthogonal"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

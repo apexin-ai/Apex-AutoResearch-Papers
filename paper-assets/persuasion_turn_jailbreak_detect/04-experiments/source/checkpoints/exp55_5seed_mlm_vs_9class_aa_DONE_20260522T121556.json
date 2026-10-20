@@ -1,0 +1,75 @@
+{
+  "exp_id": "exp55_5seed_mlm_vs_9class_aa",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:11:41.549Z",
+    "updated_at": "2026-05-22T12:15:56.035Z",
+    "hypothesis": "9-class persuasion-grounded DeBERTa DAPT produces significantly better OOD generalization than domain-exposure-only MLM DAPT, with the advantage being robust across 5 random seeds (expanding from 3 to address reviewer W2 concern about insufficient seed count)",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python scripts/exp55_5seed_expansion.py",
+      "server": "westd-49690",
+      "data_path": "/root/persuasion_turn_jailbreak_detect/data/plan_002_splits/",
+      "data_count": "~800 train + OOD eval sets",
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": "789,1024",
+      "checkpoint_path": "/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp55_*",
+      "log_path": "/tmp/exp55_train.log"
+    },
+    "metrics": {
+      "n_seeds": 5,
+      "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1024
+      ],
+      "9class_aa_ood": {
+        "mean": 0.9735,
+        "std": 0.0124
+      },
+      "mlm_aa_ood": {
+        "mean": 0.9566,
+        "std": 0.0237
+      },
+      "9class_iid": {
+        "mean": 1,
+        "std": 0
+      },
+      "mlm_iid": {
+        "mean": 0.9816,
+        "std": 0.0134
+      },
+      "9class_dd_ood": {
+        "mean": 0.9924,
+        "std": 0.0111
+      },
+      "mlm_dd_ood": {
+        "mean": 0.9883,
+        "std": 0.0094
+      },
+      "9class_fitd_ood": {
+        "mean": 1,
+        "std": 0
+      },
+      "mlm_fitd_ood": {
+        "mean": 0.9883,
+        "std": 0.0094
+      },
+      "aa_ood_delta_pp": 1.69,
+      "aa_ood_paired_ttest_p": 0.2461,
+      "aa_ood_wilcoxon_p": 0.1875,
+      "aa_ood_9class_wins": 4,
+      "aa_ood_mlm_wins": 1,
+      "total_time_min": 10.5
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-22T12:15:56.035Z"
+  },
+  "timestamp": "2026-05-22T12:15:56.526670+00:00",
+  "trigger": "update_registry"
+}

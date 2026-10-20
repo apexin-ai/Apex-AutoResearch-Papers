@@ -1,0 +1,4201 @@
+# code std calculation audit
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 86
+- **Recorded user turns:** 0
+- **Tool calls:** 33
+- **Original source:** `logs/workers/worker_code_std-calculation-audit_20260521T052300.log`
+- **Structured JSON:** [`261c49cfd4c68eff757a.json`](../../sessions/26/261c49cfd4c68eff757a.json)
+
+## Before a recorded user message
+
+86 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "afa87d5a-8a8a-4ec2-b74f-e319a503ef92",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779358200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a8e4d357-76b4-4a97-8216-8f551880f0c8",
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to audit all std computation methods in their codebase on a remote server. This is a read-only task. Let me start by searching the code on the server for all std-related calls, and also check for .tex files.
+
+I'll run multiple ssh_read_only commands in parallel to gather all the information needed.
+
+Let me first load the MCP tools I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "e109545b-81ae-4197-b341-4b8e9c61c6e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WgMXEZYMBMYgezvMSxsV3x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13131,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13131
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始审计 std 计算方式。先并行搜索代码和论文文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "546573aa-149a-4364-a07b-c1e15c21ea86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WgMXEZYMBMYgezvMSxsV3x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13131,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13131
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01C6JYcMXBDAX4ofBj3aJ35U`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "46d79547-448b-41c0-8f9e-5b5473e7acd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WgMXEZYMBMYgezvMSxsV3x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13131,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13131
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T05:23:16.350Z_
+
+<details><summary>↩ Tool result · `toolu_01C6JYcMXBDAX4ofBj3aJ35U`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "9e393a16-3245-4b75-8e73-de5b2bc9cb08",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013ir68FovDKtdA2iTM4XHpi`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"\\.std\\b\\|\\.std(\" /root/persuasion_turn_jailbreak_detect/scripts/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "258ea0f1-e0fb-46b2-a615-3295dca014db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JSzsnNt1Ji9XTStJqg1bfa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 24578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 753
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T05:23:19.677Z_
+
+<details><summary>↩ Tool result · `toolu_013ir68FovDKtdA2iTM4XHpi`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "eae7c79e-5dfd-4d8e-bd5f-5683c232a358",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AqmA9YLEHZRGWCMFavdpHa`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"ddof\" /root/persuasion_turn_jailbreak_detect/scripts/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "757130c5-aef1-41d3-9d39-92213d0917b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JSzsnNt1Ji9XTStJqg1bfa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 24578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 753
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L4Nu1X9kbD9mjdXnHb6iYJ`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/persuasion_turn_jailbreak_detect -name \"*.tex\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "c1de47b9-17ed-462d-ab71-064023f9501e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JSzsnNt1Ji9XTStJqg1bfa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 24578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 753
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T05:23:21.659Z_
+
+<details><summary>↩ Tool result · `toolu_01AqmA9YLEHZRGWCMFavdpHa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py:127:    seed_std = float(np.std(seed_f1s, ddof=1))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "bbf66628-9507-4b13-a026-76e19d978953",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py:127:    seed_std = float(np.std(seed_f1s, ddof=1))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py:127:    seed_std = float(np.std(seed_f1s, ddof=1))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T05:23:22.198Z_
+
+<details><summary>↩ Tool result · `toolu_01L4Nu1X9kbD9mjdXnHb6iYJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/paper/main.tex\\n/root/persuasion_turn_jailbreak_detect/paper/appendix.tex\\n/root/persuasion_turn_jailbreak_detect/paper/checklist.tex\\n/root/persuasion_turn_jailbreak_detect/paper/conclusion.tex\\n/root/persuasion_turn_jailbreak_detect/paper/experiments.tex\\n/root/persuasion_turn_jailbreak_detect/paper/method.tex\\n/root/persuasion_turn_jailbreak_detect/paper/related_work.tex\\n/root/persuasion_turn_jailbreak_detect/paper/introduction.tex\\n/root/persuasion_turn_jailbreak_detect/paper/abstract.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "49ea82b4-f117-4d80-8e89-98d22f48cef4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/paper/main.tex\\\\n/root/persuasion_turn_jailbreak_detect/paper/appendix.tex\\\\n/root/persuasion_turn_jailbreak_detect/paper/checklist.tex\\\\n/root/persuasion_turn_jailbreak_detect/paper/conclusion.tex\\\\n/root/persuasion_turn_jailbreak_detect/paper/experiments.tex\\\\n/root/persuasion_turn_jailbreak_detect/paper/method.tex\\\\n/root/persuasion_turn_jailbreak_detect/paper/related_work.tex\\\\n/root/persuasion_turn_jailbreak_detect/paper/introduction.tex\\\\n/root/persuasion_turn_jailbreak_detect/paper/abstract.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/paper/main.tex\\n/root/persuasion_turn_jailbreak_detect/paper/appendix.tex\\n/root/persuasion_turn_jailbreak_detect/paper/checklist.tex\\n/root/persuasion_turn_jailbreak_detect/paper/conclusion.tex\\n/root/persuasion_turn_jailbreak_detect/paper/experiments.tex\\n/root/persuasion_turn_jailbreak_detect/paper/method.tex\\n/root/persuasion_turn_jailbreak_detect/paper/related_work.tex\\n/root/persuasion_turn_jailbreak_detect/paper/introduction.tex\\n/root/persuasion_turn_jailbreak_detect/paper/abstract.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CpZMxLWrJcwDcec5AwoavH`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/persuasion_turn_jailbreak_detect/scripts -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "d7e3599f-7a92-4f6d-8211-893a3ff56e15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JSzsnNt1Ji9XTStJqg1bfa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 24578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 753
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T05:23:22.734Z_
+
+<details><summary>↩ Tool result · `toolu_01CpZMxLWrJcwDcec5AwoavH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/scripts/compute_baseline_embeddings.py\\n/root/persuasion_turn_jailbreak_detect/scripts/train_baseline_gru.py\\n/root/persuasion_turn_jailbreak_detect/scripts/train_subset_baseline.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_v2.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo.py\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_transformers.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp16.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py\\n/root/persuasion_turn_jailbreak_detect/scripts/test_fix.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_part.py\\n/root/persuasion_turn_jailbreak_detect/scripts/step1_wildchat_filter.py\\n/root/persuasion_turn_jailbreak_detect/scripts/step2_generate_benign.py\\n/root/persuasion_turn_jailbreak_detect/scripts/step3_sanity_check.py\\n/root/persuasion_turn_jailbreak_detect/scripts/step2b_generate_casual.py\\n/root/persuasion_turn_jailbreak_detect/scripts/step2c_generate_fewshot.py\\n/root/persuasion_turn_jailbreak_detect/scripts/step2d_rewrite_benign.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_v4.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_v4b.py\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check_v4b.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_v4c.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_v4d.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_v4c_full.py\\n/root/persuasion_turn_jailbreak_detect/scripts/prepare_pilot.py\\n/root/persuasion_turn_jailbreak_detect/scripts/merge_and_split.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_fitd.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_deceptive_delight.py\\n/root/persuasion_turn_jailbreak_detect/scripts/gen_transition_matrix.py\\n/root/persuasion_turn_jailbreak_detect/scripts/plan002_retrain_eval.py\\n/root/persuasion_turn_jailbreak_detect/scripts/plan002_retrain_v2.py\\n/root/persuasion_turn_jailbreak_detect/scripts/prepare_wildchat_benign.py\\n/root/persuasion_turn_jailbreak_detect/scripts/run_plan_014.py\\n/root/persuasion_turn_jailbreak_detect/scripts/statistical_tests.py\\n/root/persuasion_turn_jailbreak_detect/scripts/matched_seed_stats.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_probing.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_actorattack.py\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood.py\\n/root/persuasion_turn_jailbreak_detect/scripts/vanilla_multiseed_dd_ood.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_roberta_probing.py\\n/root/persuasion_turn_jailbreak_detect/scripts/centered_cka.py\\n/root/persuasion_turn_jailbreak_detect/scripts/roberta_centered_cka.py\\n/root/persuasion_turn_jailbreak_detect/scripts/plot_fig2_cross_attack_bar.py\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood_all.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp4_vanilla_perturbation_mcnemar.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_missing_seeds.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_binary_seed42_actorattack.py\\n/root/persuasion_turn_jailbreak_detect/scripts/aggregate_exp2_missing.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp2_actorattack_mcnemar.py\\n/root/persuasion_turn_jailbreak_detect/scripts/fix_exp6_reeval.py\\n/root/persuasion_turn_jailbreak_detect/scripts/fix_exp6_mcnemar.py\\n/root/persuasion_turn_jailbreak_detect/scripts/prepare_human_eval_data.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_mhj_human_eval.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp9_bootstrap_ci.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_human_jailbreak_verazuo.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_scrambled_seed123_eval.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_recalc_macro_f1.py\\n/root/persuasion_turn_jailbreak_detect/scripts/extract_tsne.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py\\n/root/persuasion_turn_jailbreak_detect/scripts/meanpool_multiseed.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_dd_llama.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_aa_llama.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_llama.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm_control.py\\n/root/persuasion_turn_jailbreak_detect/scripts/analyze_predictions.py\\n/root/persuasion_turn_jailbreak_detect/scripts/download_roberta_large.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15_roberta_large.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15b_roberta_large_lr1e5.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15c_roberta_large_mlm.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_llama.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_expanded.py\\n/root/persuasion_turn_jailbreak_detect/scripts/prepare_expanded_data.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp17.py\\n/root/persuasion_turn_jailbreak_detect/scripts/prepare_mixed_data.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp16b_llama_mlm.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp16b_vanilla.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_toxicchat_balanced.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_toxicchat_balanced_mlm.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp17_toxicchat_balanced.py\\n/root/persuasion_turn_jailbreak_detect/scripts/reeval_exp16_balanced.py\\n/root/persuasion_turn_jailbreak_detect/scripts/turn_shuffle_ablation.py\\n/root/persuasion_turn_jailbreak_detect/scripts/turn_shuffle_ablation_exp1.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp18_e2e_finetune.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp19_wildchat_fpr.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp20_deepcontext_proxy.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp21_cross_checkpoint.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp23_aa_error_analysis.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp25_fitd_early_detection.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp24_calibration_ece.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp26_frozen_probing.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp27_mean_pooling.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp30_length_stratified.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28_data_efficiency.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28_vanilla_only.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp29_inference_efficiency.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp31_lambda_ablation.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp33_strategy_prediction_plan002.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp34_representation_tsne.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp35_cross_seed_ensemble.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp36_frozen_mlm_probing.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "255efdac-bb55-4e37-82f1-ee84b1ad1b26",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/scripts/compute_baseline_embeddings.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/train_baseline_gru.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/train_subset_baseline.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_v2.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_transformers.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp16.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/test_fix.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_part.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/step1_wildchat_filter.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/step2_generate_benign.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/step3_sanity_check.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/step2b_generate_casual.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/step2c_generate_fewshot.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/step2d_rewrite_benign.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_v4.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_v4b.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check_v4b.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_v4c.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_v4d.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_v4c_full.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/prepare_pilot.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/merge_and_split.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_fitd.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_deceptive_delight.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/gen_transition_matrix.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/plan002_retrain_eval.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/plan002_retrain_v2.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/prepare_wildchat_benign.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/run_plan_014.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/statistical_tests.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/matched_seed_stats.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_probing.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_actorattack.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/vanilla_multiseed_dd_ood.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_roberta_probing.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/centered_cka.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/roberta_centered_cka.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/plot_fig2_cross_attack_bar.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood_all.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp4_vanilla_perturbation_mcnemar.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_missing_seeds.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_binary_seed42_actorattack.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/aggregate_exp2_missing.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp2_actorattack_mcnemar.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/fix_exp6_reeval.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/fix_exp6_mcnemar.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/prepare_human_eval_data.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_mhj_human_eval.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp9_bootstrap_ci.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_human_jailbreak_verazuo.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_scrambled_seed123_eval.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_recalc_macro_f1.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/extract_tsne.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/meanpool_multiseed.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_dd_llama.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_aa_llama.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_llama.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm_control.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/analyze_predictions.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/download_roberta_large.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15_roberta_large.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15b_roberta_large_lr1e5.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15c_roberta_large_mlm.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_llama.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_expanded.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/prepare_expanded_data.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp17.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/prepare_mixed_data.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp16b_llama_mlm.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp16b_vanilla.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_toxicchat_balanced.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_toxicchat_balanced_mlm.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp17_toxicchat_balanced.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/reeval_exp16_balanced.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/turn_shuffle_ablation.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/turn_shuffle_ablation_exp1.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp18_e2e_finetune.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp19_wildchat_fpr.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp20_deepcontext_proxy.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp21_cross_checkpoint.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp23_aa_error_analysis.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp25_fitd_early_detection.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp24_calibration_ece.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp26_frozen_probing.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp27_mean_pooling.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp30_length_stratified.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28_data_efficiency.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28_vanilla_only.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp29_inference_efficiency.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp31_lambda_ablation.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp33_strategy_prediction_plan002.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp34_representation_tsne.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp35_cross_seed_ensemble.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp36_frozen_mlm_probing.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/scripts/compute_baseline_embeddings.py\\n/root/persuasion_turn_jailbreak_detect/scripts/train_baseline_gru.py\\n/root/persuasion_turn_jailbreak_detect/scripts/train_subset_baseline.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_v2.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo.py\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_transformers.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp16.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py\\n/root/persuasion_turn_jailbreak_detect/scripts/test_fix.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_part.py\\n/root/persuasion_turn_jailbreak_detect/scripts/step1_wildchat_filter.py\\n/root/persuasion_turn_jailbreak_detect/scripts/step2_generate_benign.py\\n/root/persuasion_turn_jailbreak_detect/scripts/step3_sanity_check.py\\n/root/persuasion_turn_jailbreak_detect/scripts/step2b_generate_casual.py\\n/root/persuasion_turn_jailbreak_detect/scripts/step2c_generate_fewshot.py\\n/root/persuasion_turn_jailbreak_detect/scripts/step2d_rewrite_benign.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_v4.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_v4b.py\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check_v4b.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_v4c.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_v4d.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_v4c_full.py\\n/root/persuasion_turn_jailbreak_detect/scripts/prepare_pilot.py\\n/root/persuasion_turn_jailbreak_detect/scripts/merge_and_split.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_fitd.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_deceptive_delight.py\\n/root/persuasion_turn_jailbreak_detect/scripts/gen_transition_matrix.py\\n/root/persuasion_turn_jailbreak_detect/scripts/plan002_retrain_eval.py\\n/root/persuasion_turn_jailbreak_detect/scripts/plan002_retrain_v2.py\\n/root/persuasion_turn_jailbreak_detect/scripts/prepare_wildchat_benign.py\\n/root/persuasion_turn_jailbreak_detect/scripts/run_plan_014.py\\n/root/persuasion_turn_jailbreak_detect/scripts/statistical_tests.py\\n/root/persuasion_turn_jailbreak_detect/scripts/matched_seed_stats.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_probing.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_actorattack.py\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood.py\\n/root/persuasion_turn_jailbreak_detect/scripts/vanilla_multiseed_dd_ood.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_roberta_probing.py\\n/root/persuasion_turn_jailbreak_detect/scripts/centered_cka.py\\n/root/persuasion_turn_jailbreak_detect/scripts/roberta_centered_cka.py\\n/root/persuasion_turn_jailbreak_detect/scripts/plot_fig2_cross_attack_bar.py\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood_all.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp4_vanilla_perturbation_mcnemar.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_missing_seeds.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_binary_seed42_actorattack.py\\n/root/persuasion_turn_jailbreak_detect/scripts/aggregate_exp2_missing.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp2_actorattack_mcnemar.py\\n/root/persuasion_turn_jailbreak_detect/scripts/fix_exp6_reeval.py\\n/root/persuasion_turn_jailbreak_detect/scripts/fix_exp6_mcnemar.py\\n/root/persuasion_turn_jailbreak_detect/scripts/prepare_human_eval_data.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_mhj_human_eval.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp9_bootstrap_ci.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_human_jailbreak_verazuo.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_scrambled_seed123_eval.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_recalc_macro_f1.py\\n/root/persuasion_turn_jailbreak_detect/scripts/extract_tsne.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py\\n/root/persuasion_turn_jailbreak_detect/scripts/meanpool_multiseed.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_dd_llama.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_aa_llama.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_llama.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm_control.py\\n/root/persuasion_turn_jailbreak_detect/scripts/analyze_predictions.py\\n/root/persuasion_turn_jailbreak_detect/scripts/download_roberta_large.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15_roberta_large.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15b_roberta_large_lr1e5.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15c_roberta_large_mlm.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_llama.py\\n/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_expanded.py\\n/root/persuasion_turn_jailbreak_detect/scripts/prepare_expanded_data.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp17.py\\n/root/persuasion_turn_jailbreak_detect/scripts/prepare_mixed_data.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp16b_llama_mlm.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp16b_vanilla.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_toxicchat_balanced.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_toxicchat_balanced_mlm.py\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp17_toxicchat_balanced.py\\n/root/persuasion_turn_jailbreak_detect/scripts/reeval_exp16_balanced.py\\n/root/persuasion_turn_jailbreak_detect/scripts/turn_shuffle_ablation.py\\n/root/persuasion_turn_jailbreak_detect/scripts/turn_shuffle_ablation_exp1.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp18_e2e_finetune.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp19_wildchat_fpr.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp20_deepcontext_proxy.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp21_cross_checkpoint.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp23_aa_error_analysis.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp25_fitd_early_detection.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp24_calibration_ece.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp26_frozen_probing.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp27_mean_pooling.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp30_length_stratified.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28_data_efficiency.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28_vanilla_only.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp29_inference_efficiency.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp31_lambda_ablation.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp33_strategy_prediction_plan002.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp34_representation_tsne.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp35_cross_seed_ensemble.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp36_frozen_mlm_probing.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I found:
+1. `ddof` only appears in `exp12_toxicchat_bootstrap.py:127` with `ddof=1` (sample std)
+2. The pipe `|` is blocked in ssh_read_only, I need to use separate grep commands
+3. .tex files are in `/root/persuasion_turn_jailbreak_detect/paper/`
+4. There are many scripts
+
+Let me now search for all `.std(` calls without the pipe, and check the tex files for std-related mentions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "e12f452f-a5d5-4f7d-898d-75df738340cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LJ5JpdsBff8VMr9H6Brcju",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4090,
+      "cache_read_input_tokens": 25331,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4090
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+找到 ddof 只出现一处。继续搜索所有 `.std(` 调用和论文中的描述。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "c6c78f68-3a36-4e88-8390-462be609de77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LJ5JpdsBff8VMr9H6Brcju",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4090,
+      "cache_read_input_tokens": 25331,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4090
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GdCtxWdqjpXnqHz6jCfRCg`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"\\.std(\" /root/persuasion_turn_jailbreak_detect/scripts/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "86e3d9ab-39df-4dca-8af1-c2b15e5238de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LJ5JpdsBff8VMr9H6Brcju",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4090,
+      "cache_read_input_tokens": 25331,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4090
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T05:23:30.691Z_
+
+<details><summary>↩ Tool result · `toolu_01GdCtxWdqjpXnqHz6jCfRCg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/scripts/sanity_check.py:70:    std_f1 = scores.std()\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp16.py:167:                std = np.std(f1s)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:581:                \\\"iid_std\\\": float(np.std(iid_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:583:                \\\"dd_ood_std\\\": float(np.std(dd_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:585:                \\\"aa_ood_std\\\": float(np.std(aa_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/step3_sanity_check.py:59:    print(f\\\"DeBERTa LogReg F1: {scores.mean():.3f} +/- {scores.std():.3f}\\\", flush=True)\\n/root/persuasion_turn_jailbreak_detect/scripts/step3_sanity_check.py:69:    print(f\\\"TF-IDF LogReg F1: {scores_tfidf.mean():.3f} +/- {scores_tfidf.std():.3f}\\\", flush=True)\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check_v4b.py:32:print(f\\\"\\\\nTF-IDF F1 (20+{len(benign)}): {scores.mean():.3f} +/- {scores.std():.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check_v4b.py:49:    \\\"tfidf_f1_std\\\": float(scores.std()),\\n/root/persuasion_turn_jailbreak_detect/scripts/statistical_tests.py:125:        \\\"f1_std\\\": round(float(np.std(f1s)), 4),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_probing.py:161:    std_acc = float(np.std(scores))\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood.py:283:                    \\\"std\\\": float(np.std(vals)),  # population std\\n/root/persuasion_turn_jailbreak_detect/scripts/vanilla_multiseed_dd_ood.py:212:            \\\"std\\\": round(float(np.std(vals)), 4)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_roberta_probing.py:297:    std_acc = float(np.std(scores))\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood_all.py:277:                    \\\"std\\\": float(np.std(vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp4_vanilla_perturbation_mcnemar.py:254:                               \\\"std\\\": round(float(np.std(vals)), 4)}\\n/root/persuasion_turn_jailbreak_detect/scripts/aggregate_exp2_missing.py:28:            \\\"std\\\": float(np.std(vals)),  # population std (N divisor)\\n/root/persuasion_turn_jailbreak_detect/scripts/fix_exp6_reeval.py:144:                std_dict[key] = round(float(np.std(vals)), 4)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_mhj_human_eval.py:326:                avg[f\\\"{metric_name}_std\\\"] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_human_jailbreak_verazuo.py:345:                avg[f\\\"{k}_std\\\"] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_recalc_macro_f1.py:345:                agg[f\\\"{k}_std\\\"] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py:127:    seed_std = float(np.std(seed_f1s, ddof=1))\\n/root/persuasion_turn_jailbreak_detect/scripts/meanpool_multiseed.py:257:            stds[kl] = round(float(np.std(vals)), 4)\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm.py:186:                    \\\"std\\\": float(np.std(vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm_control.py:190:                    \\\"std\\\": float(np.std(vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/analyze_predictions.py:239:                        out[key] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15_roberta_large.py:401:                    res_dict[\\\"mean_std\\\"][m] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15b_roberta_large_lr1e5.py:403:                    res_dict[\\\"mean_std\\\"][m] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15c_roberta_large_mlm.py:429:                results[eval_key][\\\"mean_std\\\"][m] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scr\\n\\n... [截断: 输出过长，省略 4965 字符] ...\\n\\nmacro_f1\\\", \\\"mean\\\": round(np.mean(vals), 4), \\\"std\\\": round(np.std(vals), 4), \\\"per_seed\\\": [round(v, 4) for v in vals]}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp30_length_stratified.py:212:                std_r = np.std(recalls)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp29_inference_efficiency.py:129:    std_lat = float(np.std(latencies))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp29_inference_efficiency.py:217:    std_lat = float(np.std(latencies))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:424:            return f\\\"{np.mean(vs):.4f}±{np.std(vs):.4f}\\\" if vs else \\\"N/A\\\"\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:427:            \\\"strategy_acc\\\": f\\\"{np.mean(vals['strategy_acc']):.4f}±{np.std(vals['strategy_acc']):.4f}\\\",\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:428:            \\\"jb_strategy_acc\\\": f\\\"{np.mean(vals['jb_strategy_acc']):.4f}±{np.std(vals['jb_strategy_acc']):.4f}\\\",\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:429:            \\\"macro_f1\\\": f\\\"{np.mean(vals['macro_f1']):.4f}±{np.std(vals['macro_f1']):.4f}\\\",\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:293:                \\\"iid_std\\\": float(np.std(iid_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:295:                \\\"dd_ood_std\\\": float(np.std(dd_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:297:                \\\"aa_ood_std\\\": float(np.std(aa_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp33_strategy_prediction_plan002.py:378:            return f\\\"{np.mean(vs):.4f}±{np.std(vs):.4f}\\\" if vs else \\\"N/A\\\"\\n/root/persuasion_turn_jailbreak_detect/scripts/exp35_cross_seed_ensemble.py:276:                std_f1 = np.std(seed_f1s)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp36_frozen_mlm_probing.py:369:            std_results[m] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:168:                \\\"fpr_std\\\": float(np.std(fprs)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:246:        \\\"fpr_std\\\": float(np.std(orig_fprs)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:255:            \\\"fpr_std\\\": float(np.std(fprs)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:354:                \\\"std\\\": float(np.std(orig_rates)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:359:                \\\"std\\\": float(np.std(pad_rates)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:210:    roc_results[\\\"std_auc\\\"] = float(np.std(aucs))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:213:    print(f\\\"  Mean: AUC={np.mean(aucs):.4f}+/-{np.std(aucs):.4f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:214:    print(f\\\"  Mean: FPR@TPR95={np.mean(fprs95):.3f}+/-{np.std(fprs95):.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:215:    print(f\\\"  Mean: FPR@TPR90={np.mean(fprs90):.3f}+/-{np.std(fprs90):.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:264:    cal_result[\\\"default_t05\\\"][\\\"fpr_std\\\"] = float(np.std(fprs_d))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:265:    print(f\\\"  Default t=0.5: FPR(all226)={np.mean(fprs_d):.3f}+/-{np.std(fprs_d):.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:287:            cal_result[key][sname][\\\"fpr_std\\\"] = float(np.std(fprs))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:303:        cal_result[key][\\\"loo_226\\\"][\\\"fpr_std\\\"] = float(np.std(fprs_loo))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:376:            temp_results[\\\"per_size\\\"][sname][f\\\"{tkey}_fpr_std\\\"] = float(np.std(fprs))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "dba4bf09-282e-4b45-ad8b-14bc705bbb6b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/scripts/sanity_check.py:70:    std_f1 = scores.std()\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp16.py:167:                std = np.std(f1s)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:581:                \\\\\\\"iid_std\\\\\\\": float(np.std(iid_vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:583:                \\\\\\\"dd_ood_std\\\\\\\": float(np.std(dd_vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:585:                \\\\\\\"aa_ood_std\\\\\\\": float(np.std(aa_vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/step3_sanity_check.py:59:    print(f\\\\\\\"DeBERTa LogReg F1: {scores.mean():.3f} +/- {scores.std():.3f}\\\\\\\", flush=True)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/step3_sanity_check.py:69:    print(f\\\\\\\"TF-IDF LogReg F1: {scores_tfidf.mean():.3f} +/- {scores_tfidf.std():.3f}\\\\\\\", flush=True)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check_v4b.py:32:print(f\\\\\\\"\\\\\\\\nTF-IDF F1 (20+{len(benign)}): {scores.mean():.3f} +/- {scores.std():.3f}\\\\\\\")\\\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check_v4b.py:49:    \\\\\\\"tfidf_f1_std\\\\\\\": float(scores.std()),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/statistical_tests.py:125:        \\\\\\\"f1_std\\\\\\\": round(float(np.std(f1s)), 4),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_probing.py:161:    std_acc = float(np.std(scores))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood.py:283:                    \\\\\\\"std\\\\\\\": float(np.std(vals)),  # population std\\\\n/root/persuasion_turn_jailbreak_detect/scripts/vanilla_multiseed_dd_ood.py:212:            \\\\\\\"std\\\\\\\": round(float(np.std(vals)), 4)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_roberta_probing.py:297:    std_acc = float(np.std(scores))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood_all.py:277:                    \\\\\\\"std\\\\\\\": float(np.std(vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp4_vanilla_perturbation_mcnemar.py:254:                               \\\\\\\"std\\\\\\\": round(float(np.std(vals)), 4)}\\\\n/root/persuasion_turn_jailbreak_detect/scripts/aggregate_exp2_missing.py:28:            \\\\\\\"std\\\\\\\": float(np.std(vals)),  # population std (N divisor)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/fix_exp6_reeval.py:144:                std_dict[key] = round(float(np.std(vals)), 4)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_mhj_human_eval.py:326:                avg[f\\\\\\\"{metric_name}_std\\\\\\\"] = float(np.std(vals))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_human_jailbreak_verazuo.py:345:                avg[f\\\\\\\"{k}_std\\\\\\\"] = float(np.std(vals))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_recalc_macro_f1.py:345:                agg[f\\\\\\\"{k}_std\\\\\\\"] = float(np.std(vals))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py:127:    seed_std = float(np.std(seed_f1s, ddof=1))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/meanpool_multiseed.py:257:            stds[kl] = round(float(np.std(vals)), 4)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm.py:186:                    \\\\\\\"std\\\\\\\": float(np.std(vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm_control.py:190:                    \\\\\\\"std\\\\\\\": float(np.std(vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/analyze_predictions.py:239:                        out[key] = {\\\\\\\"mean\\\\\\\": float(np.mean(vals)), \\\\\\\"std\\\\\\\": float(np.std(vals))}\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15_roberta_large.py:401:                    res_dict[\\\\\\\"mean_std\\\\\\\"][m] = {\\\\\\\"mean\\\\\\\": float(np.mean(vals)), \\\\\\\"std\\\\\\\": float(np.std(vals))}\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15b_roberta_large_lr1e5.py:403:                    res_dict[\\\\\\\"mean_std\\\\\\\"][m] = {\\\\\\\"mean\\\\\\\": float(np.mean(vals)), \\\\\\\"std\\\\\\\": float(np.std(vals))}\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15c_roberta_large_mlm.py:429:                results[eval_key][\\\\\\\"mean_std\\\\\\\"][m] = {\\\\\\\"mean\\\\\\\": float(np.mean(vals)), \\\\\\\"std\\\\\\\": float(np.std(vals))}\\\\n/root/persuasion_turn_jailbreak_detect/scr\\\\n\\\\n... [截断: 输出过长，省略 4965 字符] ...\\\\n\\\\nmacro_f1\\\\\\\", \\\\\\\"mean\\\\\\\": round(np.mean(vals), 4), \\\\\\\"std\\\\\\\": round(np.std(vals), 4), \\\\\\\"per_seed\\\\\\\": [round(v, 4) for v in vals]}\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp30_length_stratified.py:212:                std_r = np.std(recalls)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp29_inference_efficiency.py:129:    std_lat = float(np.std(latencies))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp29_inference_efficiency.py:217:    std_lat = float(np.std(latencies))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:424:            return f\\\\\\\"{np.mean(vs):.4f}±{np.std(vs):.4f}\\\\\\\" if vs else \\\\\\\"N/A\\\\\\\"\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:427:            \\\\\\\"strategy_acc\\\\\\\": f\\\\\\\"{np.mean(vals['strategy_acc']):.4f}±{np.std(vals['strategy_acc']):.4f}\\\\\\\",\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:428:            \\\\\\\"jb_strategy_acc\\\\\\\": f\\\\\\\"{np.mean(vals['jb_strategy_acc']):.4f}±{np.std(vals['jb_strategy_acc']):.4f}\\\\\\\",\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:429:            \\\\\\\"macro_f1\\\\\\\": f\\\\\\\"{np.mean(vals['macro_f1']):.4f}±{np.std(vals['macro_f1']):.4f}\\\\\\\",\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:293:                \\\\\\\"iid_std\\\\\\\": float(np.std(iid_vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:295:                \\\\\\\"dd_ood_std\\\\\\\": float(np.std(dd_vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:297:                \\\\\\\"aa_ood_std\\\\\\\": float(np.std(aa_vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp33_strategy_prediction_plan002.py:378:            return f\\\\\\\"{np.mean(vs):.4f}±{np.std(vs):.4f}\\\\\\\" if vs else \\\\\\\"N/A\\\\\\\"\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp35_cross_seed_ensemble.py:276:                std_f1 = np.std(seed_f1s)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp36_frozen_mlm_probing.py:369:            std_results[m] = float(np.std(vals))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:168:                \\\\\\\"fpr_std\\\\\\\": float(np.std(fprs)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:246:        \\\\\\\"fpr_std\\\\\\\": float(np.std(orig_fprs)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:255:            \\\\\\\"fpr_std\\\\\\\": float(np.std(fprs)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:354:                \\\\\\\"std\\\\\\\": float(np.std(orig_rates)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:359:                \\\\\\\"std\\\\\\\": float(np.std(pad_rates)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:210:    roc_results[\\\\\\\"std_auc\\\\\\\"] = float(np.std(aucs))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:213:    print(f\\\\\\\"  Mean: AUC={np.mean(aucs):.4f}+/-{np.std(aucs):.4f}\\\\\\\")\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:214:    print(f\\\\\\\"  Mean: FPR@TPR95={np.mean(fprs95):.3f}+/-{np.std(fprs95):.3f}\\\\\\\")\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:215:    print(f\\\\\\\"  Mean: FPR@TPR90={np.mean(fprs90):.3f}+/-{np.std(fprs90):.3f}\\\\\\\")\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:264:    cal_result[\\\\\\\"default_t05\\\\\\\"][\\\\\\\"fpr_std\\\\\\\"] = float(np.std(fprs_d))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:265:    print(f\\\\\\\"  Default t=0.5: FPR(all226)={np.mean(fprs_d):.3f}+/-{np.std(fprs_d):.3f}\\\\\\\")\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:287:            cal_result[key][sname][\\\\\\\"fpr_std\\\\\\\"] = float(np.std(fprs))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:303:        cal_result[key][\\\\\\\"loo_226\\\\\\\"][\\\\\\\"fpr_std\\\\\\\"] = float(np.std(fprs_loo))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:376:            temp_results[\\\\\\\"per_size\\\\\\\"][sname][f\\\\\\\"{tkey}_fpr_std\\\\\\\"] = float(np.std(fprs))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/scripts/sanity_check.py:70:    std_f1 = scores.std()\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp16.py:167:                std = np.std(f1s)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:581:                \\\"iid_std\\\": float(np.std(iid_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:583:                \\\"dd_ood_std\\\": float(np.std(dd_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:585:                \\\"aa_ood_std\\\": float(np.std(aa_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/step3_sanity_check.py:59:    print(f\\\"DeBERTa LogReg F1: {scores.mean():.3f} +/- {scores.std():.3f}\\\", flush=True)\\n/root/persuasion_turn_jailbreak_detect/scripts/step3_sanity_check.py:69:    print(f\\\"TF-IDF LogReg F1: {scores_tfidf.mean():.3f} +/- {scores_tfidf.std():.3f}\\\", flush=True)\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check_v4b.py:32:print(f\\\"\\\\nTF-IDF F1 (20+{len(benign)}): {scores.mean():.3f} +/- {scores.std():.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check_v4b.py:49:    \\\"tfidf_f1_std\\\": float(scores.std()),\\n/root/persuasion_turn_jailbreak_detect/scripts/statistical_tests.py:125:        \\\"f1_std\\\": round(float(np.std(f1s)), 4),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_probing.py:161:    std_acc = float(np.std(scores))\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood.py:283:                    \\\"std\\\": float(np.std(vals)),  # population std\\n/root/persuasion_turn_jailbreak_detect/scripts/vanilla_multiseed_dd_ood.py:212:            \\\"std\\\": round(float(np.std(vals)), 4)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_roberta_probing.py:297:    std_acc = float(np.std(scores))\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood_all.py:277:                    \\\"std\\\": float(np.std(vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp4_vanilla_perturbation_mcnemar.py:254:                               \\\"std\\\": round(float(np.std(vals)), 4)}\\n/root/persuasion_turn_jailbreak_detect/scripts/aggregate_exp2_missing.py:28:            \\\"std\\\": float(np.std(vals)),  # population std (N divisor)\\n/root/persuasion_turn_jailbreak_detect/scripts/fix_exp6_reeval.py:144:                std_dict[key] = round(float(np.std(vals)), 4)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_mhj_human_eval.py:326:                avg[f\\\"{metric_name}_std\\\"] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_human_jailbreak_verazuo.py:345:                avg[f\\\"{k}_std\\\"] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_recalc_macro_f1.py:345:                agg[f\\\"{k}_std\\\"] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py:127:    seed_std = float(np.std(seed_f1s, ddof=1))\\n/root/persuasion_turn_jailbreak_detect/scripts/meanpool_multiseed.py:257:            stds[kl] = round(float(np.std(vals)), 4)\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm.py:186:                    \\\"std\\\": float(np.std(vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm_control.py:190:                    \\\"std\\\": float(np.std(vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/analyze_predictions.py:239:                        out[key] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15_roberta_large.py:401:                    res_dict[\\\"mean_std\\\"][m] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15b_roberta_large_lr1e5.py:403:                    res_dict[\\\"mean_std\\\"][m] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15c_roberta_large_mlm.py:429:                results[eval_key][\\\"mean_std\\\"][m] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scr\\n\\n... [截断: 输出过长，省略 4965 字符] ...\\n\\nmacro_f1\\\", \\\"mean\\\": round(np.mean(vals), 4), \\\"std\\\": round(np.std(vals), 4), \\\"per_seed\\\": [round(v, 4) for v in vals]}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp30_length_stratified.py:212:                std_r = np.std(recalls)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp29_inference_efficiency.py:129:    std_lat = float(np.std(latencies))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp29_inference_efficiency.py:217:    std_lat = float(np.std(latencies))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:424:            return f\\\"{np.mean(vs):.4f}±{np.std(vs):.4f}\\\" if vs else \\\"N/A\\\"\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:427:            \\\"strategy_acc\\\": f\\\"{np.mean(vals['strategy_acc']):.4f}±{np.std(vals['strategy_acc']):.4f}\\\",\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:428:            \\\"jb_strategy_acc\\\": f\\\"{np.mean(vals['jb_strategy_acc']):.4f}±{np.std(vals['jb_strategy_acc']):.4f}\\\",\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:429:            \\\"macro_f1\\\": f\\\"{np.mean(vals['macro_f1']):.4f}±{np.std(vals['macro_f1']):.4f}\\\",\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:293:                \\\"iid_std\\\": float(np.std(iid_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:295:                \\\"dd_ood_std\\\": float(np.std(dd_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:297:                \\\"aa_ood_std\\\": float(np.std(aa_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp33_strategy_prediction_plan002.py:378:            return f\\\"{np.mean(vs):.4f}±{np.std(vs):.4f}\\\" if vs else \\\"N/A\\\"\\n/root/persuasion_turn_jailbreak_detect/scripts/exp35_cross_seed_ensemble.py:276:                std_f1 = np.std(seed_f1s)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp36_frozen_mlm_probing.py:369:            std_results[m] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:168:                \\\"fpr_std\\\": float(np.std(fprs)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:246:        \\\"fpr_std\\\": float(np.std(orig_fprs)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:255:            \\\"fpr_std\\\": float(np.std(fprs)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:354:                \\\"std\\\": float(np.std(orig_rates)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:359:                \\\"std\\\": float(np.std(pad_rates)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:210:    roc_results[\\\"std_auc\\\"] = float(np.std(aucs))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:213:    print(f\\\"  Mean: AUC={np.mean(aucs):.4f}+/-{np.std(aucs):.4f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:214:    print(f\\\"  Mean: FPR@TPR95={np.mean(fprs95):.3f}+/-{np.std(fprs95):.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:215:    print(f\\\"  Mean: FPR@TPR90={np.mean(fprs90):.3f}+/-{np.std(fprs90):.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:264:    cal_result[\\\"default_t05\\\"][\\\"fpr_std\\\"] = float(np.std(fprs_d))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:265:    print(f\\\"  Default t=0.5: FPR(all226)={np.mean(fprs_d):.3f}+/-{np.std(fprs_d):.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:287:            cal_result[key][sname][\\\"fpr_std\\\"] = float(np.std(fprs))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:303:        cal_result[key][\\\"loo_226\\\"][\\\"fpr_std\\\"] = float(np.std(fprs_loo))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:376:            temp_results[\\\"per_size\\\"][sname][f\\\"{tkey}_fpr_std\\\"] = float(np.std(fprs))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VdeSTQhZDW93J63M1mAGUU`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"np\\.std\" /root/persuasion_turn_jailbreak_detect/scripts/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "a93977eb-b4cb-4adb-89b9-a74d32ccb6a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LJ5JpdsBff8VMr9H6Brcju",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4090,
+      "cache_read_input_tokens": 25331,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4090
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T05:23:31.637Z_
+
+<details><summary>↩ Tool result · `toolu_01VdeSTQhZDW93J63M1mAGUU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/scripts/eval_exp16.py:167:                std = np.std(f1s)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:581:                \\\"iid_std\\\": float(np.std(iid_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:583:                \\\"dd_ood_std\\\": float(np.std(dd_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:585:                \\\"aa_ood_std\\\": float(np.std(aa_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/statistical_tests.py:125:        \\\"f1_std\\\": round(float(np.std(f1s)), 4),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_probing.py:161:    std_acc = float(np.std(scores))\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood.py:283:                    \\\"std\\\": float(np.std(vals)),  # population std\\n/root/persuasion_turn_jailbreak_detect/scripts/vanilla_multiseed_dd_ood.py:212:            \\\"std\\\": round(float(np.std(vals)), 4)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_roberta_probing.py:297:    std_acc = float(np.std(scores))\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood_all.py:277:                    \\\"std\\\": float(np.std(vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp4_vanilla_perturbation_mcnemar.py:254:                               \\\"std\\\": round(float(np.std(vals)), 4)}\\n/root/persuasion_turn_jailbreak_detect/scripts/aggregate_exp2_missing.py:28:            \\\"std\\\": float(np.std(vals)),  # population std (N divisor)\\n/root/persuasion_turn_jailbreak_detect/scripts/fix_exp6_reeval.py:144:                std_dict[key] = round(float(np.std(vals)), 4)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_mhj_human_eval.py:326:                avg[f\\\"{metric_name}_std\\\"] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_human_jailbreak_verazuo.py:345:                avg[f\\\"{k}_std\\\"] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_recalc_macro_f1.py:345:                agg[f\\\"{k}_std\\\"] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py:127:    seed_std = float(np.std(seed_f1s, ddof=1))\\n/root/persuasion_turn_jailbreak_detect/scripts/meanpool_multiseed.py:257:            stds[kl] = round(float(np.std(vals)), 4)\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm.py:186:                    \\\"std\\\": float(np.std(vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm_control.py:190:                    \\\"std\\\": float(np.std(vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/analyze_predictions.py:239:                        out[key] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15_roberta_large.py:401:                    res_dict[\\\"mean_std\\\"][m] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15b_roberta_large_lr1e5.py:403:                    res_dict[\\\"mean_std\\\"][m] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15c_roberta_large_mlm.py:429:                results[eval_key][\\\"mean_std\\\"][m] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp17.py:225:                print(f\\\"  {bench:<12}: {np.mean(vals):.4f} +/- {np.std(vals):.4f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_toxicchat_balanced.py:118:        std_f1 = np.std(f1_list)\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_toxicchat_balanced_mlm.py:92:    std_f1 = np.std(f1_list)\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp17_toxicchat_balanced.py:75:    print(f\\\"  mean±std: {np.mean(f1s):.4f}±{np.std(f1s):.4f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/reeval_exp16_balanced.py:199:                    \\\"f1_std\\\": float(np.std(f1s)),\\n/root/persuasion_turn_jailbreak_detect/scripts/reeval_exp16_balanced.py:201:             \\n\\n... [截断: 输出过长，省略 4276 字符] ...\\n\\nmacro_f1\\\", \\\"mean\\\": round(np.mean(vals), 4), \\\"std\\\": round(np.std(vals), 4), \\\"per_seed\\\": [round(v, 4) for v in vals]}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp30_length_stratified.py:212:                std_r = np.std(recalls)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp29_inference_efficiency.py:129:    std_lat = float(np.std(latencies))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp29_inference_efficiency.py:217:    std_lat = float(np.std(latencies))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:424:            return f\\\"{np.mean(vs):.4f}±{np.std(vs):.4f}\\\" if vs else \\\"N/A\\\"\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:427:            \\\"strategy_acc\\\": f\\\"{np.mean(vals['strategy_acc']):.4f}±{np.std(vals['strategy_acc']):.4f}\\\",\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:428:            \\\"jb_strategy_acc\\\": f\\\"{np.mean(vals['jb_strategy_acc']):.4f}±{np.std(vals['jb_strategy_acc']):.4f}\\\",\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:429:            \\\"macro_f1\\\": f\\\"{np.mean(vals['macro_f1']):.4f}±{np.std(vals['macro_f1']):.4f}\\\",\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:293:                \\\"iid_std\\\": float(np.std(iid_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:295:                \\\"dd_ood_std\\\": float(np.std(dd_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:297:                \\\"aa_ood_std\\\": float(np.std(aa_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp33_strategy_prediction_plan002.py:378:            return f\\\"{np.mean(vs):.4f}±{np.std(vs):.4f}\\\" if vs else \\\"N/A\\\"\\n/root/persuasion_turn_jailbreak_detect/scripts/exp35_cross_seed_ensemble.py:276:                std_f1 = np.std(seed_f1s)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp36_frozen_mlm_probing.py:369:            std_results[m] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:168:                \\\"fpr_std\\\": float(np.std(fprs)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:246:        \\\"fpr_std\\\": float(np.std(orig_fprs)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:255:            \\\"fpr_std\\\": float(np.std(fprs)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:354:                \\\"std\\\": float(np.std(orig_rates)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:359:                \\\"std\\\": float(np.std(pad_rates)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:210:    roc_results[\\\"std_auc\\\"] = float(np.std(aucs))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:213:    print(f\\\"  Mean: AUC={np.mean(aucs):.4f}+/-{np.std(aucs):.4f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:214:    print(f\\\"  Mean: FPR@TPR95={np.mean(fprs95):.3f}+/-{np.std(fprs95):.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:215:    print(f\\\"  Mean: FPR@TPR90={np.mean(fprs90):.3f}+/-{np.std(fprs90):.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:264:    cal_result[\\\"default_t05\\\"][\\\"fpr_std\\\"] = float(np.std(fprs_d))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:265:    print(f\\\"  Default t=0.5: FPR(all226)={np.mean(fprs_d):.3f}+/-{np.std(fprs_d):.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:287:            cal_result[key][sname][\\\"fpr_std\\\"] = float(np.std(fprs))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:303:        cal_result[key][\\\"loo_226\\\"][\\\"fpr_std\\\"] = float(np.std(fprs_loo))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:376:            temp_results[\\\"per_size\\\"][sname][f\\\"{tkey}_fpr_std\\\"] = float(np.std(fprs))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "0433c2ec-3076-417d-bda0-aca3bad5d5b6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/scripts/eval_exp16.py:167:                std = np.std(f1s)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:581:                \\\\\\\"iid_std\\\\\\\": float(np.std(iid_vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:583:                \\\\\\\"dd_ood_std\\\\\\\": float(np.std(dd_vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:585:                \\\\\\\"aa_ood_std\\\\\\\": float(np.std(aa_vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/statistical_tests.py:125:        \\\\\\\"f1_std\\\\\\\": round(float(np.std(f1s)), 4),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_probing.py:161:    std_acc = float(np.std(scores))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood.py:283:                    \\\\\\\"std\\\\\\\": float(np.std(vals)),  # population std\\\\n/root/persuasion_turn_jailbreak_detect/scripts/vanilla_multiseed_dd_ood.py:212:            \\\\\\\"std\\\\\\\": round(float(np.std(vals)), 4)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_roberta_probing.py:297:    std_acc = float(np.std(scores))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood_all.py:277:                    \\\\\\\"std\\\\\\\": float(np.std(vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp4_vanilla_perturbation_mcnemar.py:254:                               \\\\\\\"std\\\\\\\": round(float(np.std(vals)), 4)}\\\\n/root/persuasion_turn_jailbreak_detect/scripts/aggregate_exp2_missing.py:28:            \\\\\\\"std\\\\\\\": float(np.std(vals)),  # population std (N divisor)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/fix_exp6_reeval.py:144:                std_dict[key] = round(float(np.std(vals)), 4)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_mhj_human_eval.py:326:                avg[f\\\\\\\"{metric_name}_std\\\\\\\"] = float(np.std(vals))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_human_jailbreak_verazuo.py:345:                avg[f\\\\\\\"{k}_std\\\\\\\"] = float(np.std(vals))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_recalc_macro_f1.py:345:                agg[f\\\\\\\"{k}_std\\\\\\\"] = float(np.std(vals))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py:127:    seed_std = float(np.std(seed_f1s, ddof=1))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/meanpool_multiseed.py:257:            stds[kl] = round(float(np.std(vals)), 4)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm.py:186:                    \\\\\\\"std\\\\\\\": float(np.std(vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm_control.py:190:                    \\\\\\\"std\\\\\\\": float(np.std(vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/analyze_predictions.py:239:                        out[key] = {\\\\\\\"mean\\\\\\\": float(np.mean(vals)), \\\\\\\"std\\\\\\\": float(np.std(vals))}\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15_roberta_large.py:401:                    res_dict[\\\\\\\"mean_std\\\\\\\"][m] = {\\\\\\\"mean\\\\\\\": float(np.mean(vals)), \\\\\\\"std\\\\\\\": float(np.std(vals))}\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15b_roberta_large_lr1e5.py:403:                    res_dict[\\\\\\\"mean_std\\\\\\\"][m] = {\\\\\\\"mean\\\\\\\": float(np.mean(vals)), \\\\\\\"std\\\\\\\": float(np.std(vals))}\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15c_roberta_large_mlm.py:429:                results[eval_key][\\\\\\\"mean_std\\\\\\\"][m] = {\\\\\\\"mean\\\\\\\": float(np.mean(vals)), \\\\\\\"std\\\\\\\": float(np.std(vals))}\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp17.py:225:                print(f\\\\\\\"  {bench:<12}: {np.mean(vals):.4f} +/- {np.std(vals):.4f}\\\\\\\")\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_toxicchat_balanced.py:118:        std_f1 = np.std(f1_list)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_toxicchat_balanced_mlm.py:92:    std_f1 = np.std(f1_list)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp17_toxicchat_balanced.py:75:    print(f\\\\\\\"  mean±std: {np.mean(f1s):.4f}±{np.std(f1s):.4f}\\\\\\\")\\\\n/root/persuasion_turn_jailbreak_detect/scripts/reeval_exp16_balanced.py:199:                    \\\\\\\"f1_std\\\\\\\": float(np.std(f1s)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/reeval_exp16_balanced.py:201:             \\\\n\\\\n... [截断: 输出过长，省略 4276 字符] ...\\\\n\\\\nmacro_f1\\\\\\\", \\\\\\\"mean\\\\\\\": round(np.mean(vals), 4), \\\\\\\"std\\\\\\\": round(np.std(vals), 4), \\\\\\\"per_seed\\\\\\\": [round(v, 4) for v in vals]}\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp30_length_stratified.py:212:                std_r = np.std(recalls)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp29_inference_efficiency.py:129:    std_lat = float(np.std(latencies))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp29_inference_efficiency.py:217:    std_lat = float(np.std(latencies))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:424:            return f\\\\\\\"{np.mean(vs):.4f}±{np.std(vs):.4f}\\\\\\\" if vs else \\\\\\\"N/A\\\\\\\"\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:427:            \\\\\\\"strategy_acc\\\\\\\": f\\\\\\\"{np.mean(vals['strategy_acc']):.4f}±{np.std(vals['strategy_acc']):.4f}\\\\\\\",\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:428:            \\\\\\\"jb_strategy_acc\\\\\\\": f\\\\\\\"{np.mean(vals['jb_strategy_acc']):.4f}±{np.std(vals['jb_strategy_acc']):.4f}\\\\\\\",\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:429:            \\\\\\\"macro_f1\\\\\\\": f\\\\\\\"{np.mean(vals['macro_f1']):.4f}±{np.std(vals['macro_f1']):.4f}\\\\\\\",\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:293:                \\\\\\\"iid_std\\\\\\\": float(np.std(iid_vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:295:                \\\\\\\"dd_ood_std\\\\\\\": float(np.std(dd_vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:297:                \\\\\\\"aa_ood_std\\\\\\\": float(np.std(aa_vals)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp33_strategy_prediction_plan002.py:378:            return f\\\\\\\"{np.mean(vs):.4f}±{np.std(vs):.4f}\\\\\\\" if vs else \\\\\\\"N/A\\\\\\\"\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp35_cross_seed_ensemble.py:276:                std_f1 = np.std(seed_f1s)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp36_frozen_mlm_probing.py:369:            std_results[m] = float(np.std(vals))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:168:                \\\\\\\"fpr_std\\\\\\\": float(np.std(fprs)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:246:        \\\\\\\"fpr_std\\\\\\\": float(np.std(orig_fprs)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:255:            \\\\\\\"fpr_std\\\\\\\": float(np.std(fprs)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:354:                \\\\\\\"std\\\\\\\": float(np.std(orig_rates)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:359:                \\\\\\\"std\\\\\\\": float(np.std(pad_rates)),\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:210:    roc_results[\\\\\\\"std_auc\\\\\\\"] = float(np.std(aucs))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:213:    print(f\\\\\\\"  Mean: AUC={np.mean(aucs):.4f}+/-{np.std(aucs):.4f}\\\\\\\")\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:214:    print(f\\\\\\\"  Mean: FPR@TPR95={np.mean(fprs95):.3f}+/-{np.std(fprs95):.3f}\\\\\\\")\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:215:    print(f\\\\\\\"  Mean: FPR@TPR90={np.mean(fprs90):.3f}+/-{np.std(fprs90):.3f}\\\\\\\")\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:264:    cal_result[\\\\\\\"default_t05\\\\\\\"][\\\\\\\"fpr_std\\\\\\\"] = float(np.std(fprs_d))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:265:    print(f\\\\\\\"  Default t=0.5: FPR(all226)={np.mean(fprs_d):.3f}+/-{np.std(fprs_d):.3f}\\\\\\\")\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:287:            cal_result[key][sname][\\\\\\\"fpr_std\\\\\\\"] = float(np.std(fprs))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:303:        cal_result[key][\\\\\\\"loo_226\\\\\\\"][\\\\\\\"fpr_std\\\\\\\"] = float(np.std(fprs_loo))\\\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:376:            temp_results[\\\\\\\"per_size\\\\\\\"][sname][f\\\\\\\"{tkey}_fpr_std\\\\\\\"] = float(np.std(fprs))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/scripts/eval_exp16.py:167:                std = np.std(f1s)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:581:                \\\"iid_std\\\": float(np.std(iid_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:583:                \\\"dd_ood_std\\\": float(np.std(dd_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28b_supplement.py:585:                \\\"aa_ood_std\\\": float(np.std(aa_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/statistical_tests.py:125:        \\\"f1_std\\\": round(float(np.std(f1s)), 4),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_probing.py:161:    std_acc = float(np.std(scores))\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood.py:283:                    \\\"std\\\": float(np.std(vals)),  # population std\\n/root/persuasion_turn_jailbreak_detect/scripts/vanilla_multiseed_dd_ood.py:212:            \\\"std\\\": round(float(np.std(vals)), 4)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp3_roberta_probing.py:297:    std_acc = float(np.std(scores))\\n/root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood_all.py:277:                    \\\"std\\\": float(np.std(vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp4_vanilla_perturbation_mcnemar.py:254:                               \\\"std\\\": round(float(np.std(vals)), 4)}\\n/root/persuasion_turn_jailbreak_detect/scripts/aggregate_exp2_missing.py:28:            \\\"std\\\": float(np.std(vals)),  # population std (N divisor)\\n/root/persuasion_turn_jailbreak_detect/scripts/fix_exp6_reeval.py:144:                std_dict[key] = round(float(np.std(vals)), 4)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_mhj_human_eval.py:326:                avg[f\\\"{metric_name}_std\\\"] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_human_jailbreak_verazuo.py:345:                avg[f\\\"{k}_std\\\"] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp8_recalc_macro_f1.py:345:                agg[f\\\"{k}_std\\\"] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py:127:    seed_std = float(np.std(seed_f1s, ddof=1))\\n/root/persuasion_turn_jailbreak_detect/scripts/meanpool_multiseed.py:257:            stds[kl] = round(float(np.std(vals)), 4)\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm.py:186:                    \\\"std\\\": float(np.std(vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_cross_llm_control.py:190:                    \\\"std\\\": float(np.std(vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/analyze_predictions.py:239:                        out[key] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15_roberta_large.py:401:                    res_dict[\\\"mean_std\\\"][m] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15b_roberta_large_lr1e5.py:403:                    res_dict[\\\"mean_std\\\"][m] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp15c_roberta_large_mlm.py:429:                results[eval_key][\\\"mean_std\\\"][m] = {\\\"mean\\\": float(np.mean(vals)), \\\"std\\\": float(np.std(vals))}\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp17.py:225:                print(f\\\"  {bench:<12}: {np.mean(vals):.4f} +/- {np.std(vals):.4f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_toxicchat_balanced.py:118:        std_f1 = np.std(f1_list)\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_toxicchat_balanced_mlm.py:92:    std_f1 = np.std(f1_list)\\n/root/persuasion_turn_jailbreak_detect/scripts/eval_exp17_toxicchat_balanced.py:75:    print(f\\\"  mean±std: {np.mean(f1s):.4f}±{np.std(f1s):.4f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/reeval_exp16_balanced.py:199:                    \\\"f1_std\\\": float(np.std(f1s)),\\n/root/persuasion_turn_jailbreak_detect/scripts/reeval_exp16_balanced.py:201:             \\n\\n... [截断: 输出过长，省略 4276 字符] ...\\n\\nmacro_f1\\\", \\\"mean\\\": round(np.mean(vals), 4), \\\"std\\\": round(np.std(vals), 4), \\\"per_seed\\\": [round(v, 4) for v in vals]}\\n/root/persuasion_turn_jailbreak_detect/scripts/exp30_length_stratified.py:212:                std_r = np.std(recalls)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp29_inference_efficiency.py:129:    std_lat = float(np.std(latencies))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp29_inference_efficiency.py:217:    std_lat = float(np.std(latencies))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:424:            return f\\\"{np.mean(vs):.4f}±{np.std(vs):.4f}\\\" if vs else \\\"N/A\\\"\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:427:            \\\"strategy_acc\\\": f\\\"{np.mean(vals['strategy_acc']):.4f}±{np.std(vals['strategy_acc']):.4f}\\\",\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:428:            \\\"jb_strategy_acc\\\": f\\\"{np.mean(vals['jb_strategy_acc']):.4f}±{np.std(vals['jb_strategy_acc']):.4f}\\\",\\n/root/persuasion_turn_jailbreak_detect/scripts/exp32_strategy_prediction.py:429:            \\\"macro_f1\\\": f\\\"{np.mean(vals['macro_f1']):.4f}±{np.std(vals['macro_f1']):.4f}\\\",\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:293:                \\\"iid_std\\\": float(np.std(iid_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:295:                \\\"dd_ood_std\\\": float(np.std(dd_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp28c_vanilla_supplement.py:297:                \\\"aa_ood_std\\\": float(np.std(aa_vals)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp33_strategy_prediction_plan002.py:378:            return f\\\"{np.mean(vs):.4f}±{np.std(vs):.4f}\\\" if vs else \\\"N/A\\\"\\n/root/persuasion_turn_jailbreak_detect/scripts/exp35_cross_seed_ensemble.py:276:                std_f1 = np.std(seed_f1s)\\n/root/persuasion_turn_jailbreak_detect/scripts/exp36_frozen_mlm_probing.py:369:            std_results[m] = float(np.std(vals))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:168:                \\\"fpr_std\\\": float(np.std(fprs)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:246:        \\\"fpr_std\\\": float(np.std(orig_fprs)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:255:            \\\"fpr_std\\\": float(np.std(fprs)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:354:                \\\"std\\\": float(np.std(orig_rates)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp37_length_matched_benign.py:359:                \\\"std\\\": float(np.std(pad_rates)),\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:210:    roc_results[\\\"std_auc\\\"] = float(np.std(aucs))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:213:    print(f\\\"  Mean: AUC={np.mean(aucs):.4f}+/-{np.std(aucs):.4f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:214:    print(f\\\"  Mean: FPR@TPR95={np.mean(fprs95):.3f}+/-{np.std(fprs95):.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:215:    print(f\\\"  Mean: FPR@TPR90={np.mean(fprs90):.3f}+/-{np.std(fprs90):.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:264:    cal_result[\\\"default_t05\\\"][\\\"fpr_std\\\"] = float(np.std(fprs_d))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:265:    print(f\\\"  Default t=0.5: FPR(all226)={np.mean(fprs_d):.3f}+/-{np.std(fprs_d):.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:287:            cal_result[key][sname][\\\"fpr_std\\\"] = float(np.std(fprs))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:303:        cal_result[key][\\\"loo_226\\\"][\\\"fpr_std\\\"] = float(np.std(fprs_loo))\\n/root/persuasion_turn_jailbreak_detect/scripts/exp38_wildcat_calibration.py:376:            temp_results[\\\"per_size\\\"][sname][f\\\"{tkey}_fpr_std\\\"] = float(np.std(fprs))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NveLunCHmxwxoq7CkWap2r`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"torch\\.std\" /root/persuasion_turn_jailbreak_detect/scripts/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "bd2ba30a-fa10-4923-96ab-4dbd94e1d7f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LJ5JpdsBff8VMr9H6Brcju",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4090,
+      "cache_read_input_tokens": 25331,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4090
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T05:23:32.530Z_
+
+<details><summary>↩ Tool result · `toolu_01NveLunCHmxwxoq7CkWap2r`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "94133fa5-f7d0-4584-8eeb-44bd3c781d2c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019aZCKnm6NdhYXP1iFQRmpD`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"standard deviation\\|population\\|sample std\\|ddof\\|Bessel\\|n-1\\|divisor\" /root/persuasion_turn_jailbreak_detect/paper/ --include=\"*.tex\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "0fbc2007-e448-43dd-9f30-7e8ff1e0cbb8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LJ5JpdsBff8VMr9H6Brcju",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4090,
+      "cache_read_input_tokens": 25331,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4090
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T05:23:33.221Z_
+
+<details><summary>↩ Tool result · `toolu_019aZCKnm6NdhYXP1iFQRmpD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "ec02786f-cc96-43b0-b91b-b615a5217124",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No `torch.std` found. The pipe in the last grep command was blocked. Let me search the tex files separately for the relevant terms. Let me also check the `.std()` calls that use pandas/sklearn (like `scores.std()`) and the key tex files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "af7945ad-c07d-4c51-898b-d2e803a8ef44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TA8LabTRnm1Bvqa788Uo2Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8132,
+      "cache_read_input_tokens": 29421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+没有 `torch.std`。继续搜索论文 tex 文件中的 std 描述。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "069b8403-6e92-4667-b707-3ff9cd2f0eff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TA8LabTRnm1Bvqa788Uo2Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8132,
+      "cache_read_input_tokens": 29421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GcdhWc8N6McYamRkkXzgpV`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"standard deviation\" /root/persuasion_turn_jailbreak_detect/paper/ --include=\"*.tex\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "1501ea67-2892-4daa-bc78-516df0379a27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TA8LabTRnm1Bvqa788Uo2Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8132,
+      "cache_read_input_tokens": 29421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T05:23:41.421Z_
+
+<details><summary>↩ Tool result · `toolu_01GcdhWc8N6McYamRkkXzgpV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/paper/checklist.tex:19:  \\\\item Did you report error bars or confidence intervals? \\\\textbf{Yes.} All OOD results report 3-seed mean$\\\\pm$std (sample standard deviation with Bessel's correction, $N{-}1$ divisor). Statistical tests (McNemar's, bootstrap CIs, permutation tests) are reported where applicable.\\n/root/persuasion_turn_jailbreak_detect/paper/experiments.tex:29:All standard deviations are computed over 3 random seeds using the population formula ($n$ divisor); Bessel-corrected estimates ($n{-}1$ divisor) are $\\\\approx$22\\\\% larger but do not alter any significance conclusions.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "3d3c417b-3646-4f2b-bbac-13f7336647c6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/paper/checklist.tex:19:  \\\\\\\\item Did you report error bars or confidence intervals? \\\\\\\\textbf{Yes.} All OOD results report 3-seed mean$\\\\\\\\pm$std (sample standard deviation with Bessel's correction, $N{-}1$ divisor). Statistical tests (McNemar's, bootstrap CIs, permutation tests) are reported where applicable.\\\\n/root/persuasion_turn_jailbreak_detect/paper/experiments.tex:29:All standard deviations are computed over 3 random seeds using the population formula ($n$ divisor); Bessel-corrected estimates ($n{-}1$ divisor) are $\\\\\\\\approx$22\\\\\\\\% larger but do not alter any significance conclusions.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/paper/checklist.tex:19:  \\\\item Did you report error bars or confidence intervals? \\\\textbf{Yes.} All OOD results report 3-seed mean$\\\\pm$std (sample standard deviation with Bessel's correction, $N{-}1$ divisor). Statistical tests (McNemar's, bootstrap CIs, permutation tests) are reported where applicable.\\n/root/persuasion_turn_jailbreak_detect/paper/experiments.tex:29:All standard deviations are computed over 3 random seeds using the population formula ($n$ divisor); Bessel-corrected estimates ($n{-}1$ divisor) are $\\\\approx$22\\\\% larger but do not alter any significance conclusions.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CMNQVqbv3E45aLtyi6sFJn`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"population\" /root/persuasion_turn_jailbreak_detect/paper/ --include=\"*.tex\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "b33eac8e-6714-4b7b-9b0b-acda1a125e09",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TA8LabTRnm1Bvqa788Uo2Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8132,
+      "cache_read_input_tokens": 29421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T05:23:42.387Z_
+
+<details><summary>↩ Tool result · `toolu_01CMNQVqbv3E45aLtyi6sFJn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/paper/experiments.tex:29:All standard deviations are computed over 3 random seeds using the population formula ($n$ divisor); Bessel-corrected estimates ($n{-}1$ divisor) are $\\\\approx$22\\\\% larger but do not alter any significance conclusions.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "dc2bad0a-516d-47da-b4e1-a7622c941d96",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/paper/experiments.tex:29:All standard deviations are computed over 3 random seeds using the population formula ($n$ divisor); Bessel-corrected estimates ($n{-}1$ divisor) are $\\\\\\\\approx$22\\\\\\\\% larger but do not alter any significance conclusions.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/paper/experiments.tex:29:All standard deviations are computed over 3 random seeds using the population formula ($n$ divisor); Bessel-corrected estimates ($n{-}1$ divisor) are $\\\\approx$22\\\\% larger but do not alter any significance conclusions.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Uj2wUaaLHxejBSseWFaVsi`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"sample\" /root/persuasion_turn_jailbreak_detect/paper/ --include=\"*.tex\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "7af525fb-2c5b-4226-b79d-5e392cd25a06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TA8LabTRnm1Bvqa788Uo2Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8132,
+      "cache_read_input_tokens": 29421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-21T05:23:43.362Z_
+
+<details><summary>↩ Tool result · `toolu_01Uj2wUaaLHxejBSseWFaVsi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/paper/appendix.tex:164:\\\\caption{Persuasion strategy transition count matrices for three attack types, based on ground-truth intended strategy labels. Strategy labels validated on $n$=50 samples with a single annotator ($\\\\kappa$=0.78); fine-grained trajectory patterns should be interpreted with this limitation. Crescendo exhibits broad coverage across all strategy categories, while FITD and DD concentrate transitions in smaller subsets. Row $i$, column $j$ counts transitions from strategy $i$ at turn $t$ to strategy $j$ at turn $t+1$.}\\n/root/persuasion_turn_jailbreak_detect/paper/appendix.tex:191:\\\\caption{t-SNE visualization of mean-pooled \\\\texttt{[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak).}\\n/root/persuasion_turn_jailbreak_detect/paper/appendix.tex:201:\\\\caption{Cross-LLM validation (F1, full conversation). All models are trained on Qwen3-8B data; conditions vary the source of jailbreak (JB) and benign (ben.) conversations at inference. Values are evaluated under a matched 50-sample subset protocol and differ from Table~\\\\ref{tab:evidence_hierarchy}, which uses the full evaluation set.}\\n/root/persuasion_turn_jailbreak_detect/paper/appendix.tex:223:\\\\caption{Error decomposition for DD Full cross-LLM conditions (matched 50-sample subsets). TP rate is identical across benign conditions; the F1 collapse in the Llama-only condition (Table~\\\\ref{tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text.}\\n/root/persuasion_turn_jailbreak_detect/paper/checklist.tex:19:  \\\\item Did you report error bars or confidence intervals? \\\\textbf{Yes.} All OOD results report 3-seed mean$\\\\pm$std (sample standard deviation with Bessel's correction, $N{-}1$ divisor). Statistical tests (McNemar's, bootstrap CIs, permutation tests) are reported where applicable.\\n/root/persuasion_turn_jailbreak_detect/paper/checklist.tex:23:Not applicable. No human evaluation was conducted. Strategy annotation quality was validated against a human sample ($n$=50, $\\\\kappa$=0.78) but this was a validation check, not a full human evaluation study.\\n/root/persuasion_turn_jailbreak_detect/paper/conclusion.tex:34:Persuasion strategy labels are produced by Qwen3-8B with structured prompting. Inter-annotator agreement with a human sample ($n$=50) yields Cohen's $\\\\kappa$=0.78, which indicates substantial but imperfect agreement. The small human validation sample and reliance on a single annotator model limit confidence in label quality. We plan to release the annotation prompts and data to enable independent verification.\\n/root/persuasion_turn_jailbreak_detect/paper/experiments.tex:28:For key pairwise comparisons, we report BCa bootstrap 95\\\\% confidence intervals (10,000 resamples over individual predictions pooled across seeds) and paired permutation tests (10,000 permutations). Bootstrap means may differ slightly from seed-averaged F1 due to the nonlinearity of F1 aggregation.\\n/root/persuasion_turn_jailbreak_detect/paper/method.tex:44:The \\\\textbf{9-class} variant uses two classification heads: 9-class persuasion strategy classification ($L_{\\\\text{strategy}}$) and binary jailbreak intent ($L_{\\\\text{intent}}$), with combined loss $L = L_{\\\\text{strategy}} + \\\\alpha \\\\cdot L_{\\\\text{intent}}$ ($\\\\alpha = 0.3$, selected from $\\\\{0, 0.3, 0.5, 2.0\\\\}$; all values yield F1\\\\,=\\\\,1.0 on IID). The taxonomy comprises eight persuasion strategies (rapport building, authority appeal, emotional manipulation, logical reframing, role assignment, gradual escalation, obfuscation, direct request) plus a none category, grounded in PAP~\\\\citep{zeng2024pap} and Cialdini's principles~\\\\citep{cialdini2001influence}. Strategy annotations are produced by Qwen3-8B with structured prompting that includes definitions and examples for each category; inter-annotator agreement between model annotations and a human sample ($n$=50) yields Cohen's $\\\\kappa$=0.78.\\n/root/persuasion_turn_jailbreak_detect/paper/method.tex:50:The \\\\textbf{Wikipedia MLM} variant applies the same MLM objective to a token-matched sample of Wikipedia text; this isolates domain-specific from general continued pretraining.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "72fe7f24-c539-425e-bc41-8efcb241e3e3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/paper/appendix.tex:164:\\\\\\\\caption{Persuasion strategy transition count matrices for three attack types, based on ground-truth intended strategy labels. Strategy labels validated on $n$=50 samples with a single annotator ($\\\\\\\\kappa$=0.78); fine-grained trajectory patterns should be interpreted with this limitation. Crescendo exhibits broad coverage across all strategy categories, while FITD and DD concentrate transitions in smaller subsets. Row $i$, column $j$ counts transitions from strategy $i$ at turn $t$ to strategy $j$ at turn $t+1$.}\\\\n/root/persuasion_turn_jailbreak_detect/paper/appendix.tex:191:\\\\\\\\caption{t-SNE visualization of mean-pooled \\\\\\\\texttt{[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak).}\\\\n/root/persuasion_turn_jailbreak_detect/paper/appendix.tex:201:\\\\\\\\caption{Cross-LLM validation (F1, full conversation). All models are trained on Qwen3-8B data; conditions vary the source of jailbreak (JB) and benign (ben.) conversations at inference. Values are evaluated under a matched 50-sample subset protocol and differ from Table~\\\\\\\\ref{tab:evidence_hierarchy}, which uses the full evaluation set.}\\\\n/root/persuasion_turn_jailbreak_detect/paper/appendix.tex:223:\\\\\\\\caption{Error decomposition for DD Full cross-LLM conditions (matched 50-sample subsets). TP rate is identical across benign conditions; the F1 collapse in the Llama-only condition (Table~\\\\\\\\ref{tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text.}\\\\n/root/persuasion_turn_jailbreak_detect/paper/checklist.tex:19:  \\\\\\\\item Did you report error bars or confidence intervals? \\\\\\\\textbf{Yes.} All OOD results report 3-seed mean$\\\\\\\\pm$std (sample standard deviation with Bessel's correction, $N{-}1$ divisor). Statistical tests (McNemar's, bootstrap CIs, permutation tests) are reported where applicable.\\\\n/root/persuasion_turn_jailbreak_detect/paper/checklist.tex:23:Not applicable. No human evaluation was conducted. Strategy annotation quality was validated against a human sample ($n$=50, $\\\\\\\\kappa$=0.78) but this was a validation check, not a full human evaluation study.\\\\n/root/persuasion_turn_jailbreak_detect/paper/conclusion.tex:34:Persuasion strategy labels are produced by Qwen3-8B with structured prompting. Inter-annotator agreement with a human sample ($n$=50) yields Cohen's $\\\\\\\\kappa$=0.78, which indicates substantial but imperfect agreement. The small human validation sample and reliance on a single annotator model limit confidence in label quality. We plan to release the annotation prompts and data to enable independent verification.\\\\n/root/persuasion_turn_jailbreak_detect/paper/experiments.tex:28:For key pairwise comparisons, we report BCa bootstrap 95\\\\\\\\% confidence intervals (10,000 resamples over individual predictions pooled across seeds) and paired permutation tests (10,000 permutations). Bootstrap means may differ slightly from seed-averaged F1 due to the nonlinearity of F1 aggregation.\\\\n/root/persuasion_turn_jailbreak_detect/paper/method.tex:44:The \\\\\\\\textbf{9-class} variant uses two classification heads: 9-class persuasion strategy classification ($L_{\\\\\\\\text{strategy}}$) and binary jailbreak intent ($L_{\\\\\\\\text{intent}}$), with combined loss $L = L_{\\\\\\\\text{strategy}} + \\\\\\\\alpha \\\\\\\\cdot L_{\\\\\\\\text{intent}}$ ($\\\\\\\\alpha = 0.3$, selected from $\\\\\\\\{0, 0.3, 0.5, 2.0\\\\\\\\}$; all values yield F1\\\\\\\\,=\\\\\\\\,1.0 on IID). The taxonomy comprises eight persuasion strategies (rapport building, authority appeal, emotional manipulation, logical reframing, role assignment, gradual escalation, obfuscation, direct request) plus a none category, grounded in PAP~\\\\\\\\citep{zeng2024pap} and Cialdini's principles~\\\\\\\\citep{cialdini2001influence}. Strategy annotations are produced by Qwen3-8B with structured prompting that includes definitions and examples for each category; inter-annotator agreement between model annotations and a human sample ($n$=50) yields Cohen's $\\\\\\\\kappa$=0.78.\\\\n/root/persuasion_turn_jailbreak_detect/paper/method.tex:50:The \\\\\\\\textbf{Wikipedia MLM} variant applies the same MLM objective to a token-matched sample of Wikipedia text; this isolates domain-specific from general continued pretraining.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/paper/appendix.tex:164:\\\\caption{Persuasion strategy transition count matrices for three attack types, based on ground-truth intended strategy labels. Strategy labels validated on $n$=50 samples with a single annotator ($\\\\kappa$=0.78); fine-grained trajectory patterns should be interpreted with this limitation. Crescendo exhibits broad coverage across all strategy categories, while FITD and DD concentrate transitions in smaller subsets. Row $i$, column $j$ counts transitions from strategy $i$ at turn $t$ to strategy $j$ at turn $t+1$.}\\n/root/persuasion_turn_jailbreak_detect/paper/appendix.tex:191:\\\\caption{t-SNE visualization of mean-pooled \\\\texttt{[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak).}\\n/root/persuasion_turn_jailbreak_detect/paper/appendix.tex:201:\\\\caption{Cross-LLM validation (F1, full conversation). All models are trained on Qwen3-8B data; conditions vary the source of jailbreak (JB) and benign (ben.) conversations at inference. Values are evaluated under a matched 50-sample subset protocol and differ from Table~\\\\ref{tab:evidence_hierarchy}, which uses the full evaluation set.}\\n/root/persuasion_turn_jailbreak_detect/paper/appendix.tex:223:\\\\caption{Error decomposition for DD Full cross-LLM conditions (matched 50-sample subsets). TP rate is identical across benign conditions; the F1 collapse in the Llama-only condition (Table~\\\\ref{tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text.}\\n/root/persuasion_turn_jailbreak_detect/paper/checklist.tex:19:  \\\\item Did you report error bars or confidence intervals? \\\\textbf{Yes.} All OOD results report 3-seed mean$\\\\pm$std (sample standard deviation with Bessel's correction, $N{-}1$ divisor). Statistical tests (McNemar's, bootstrap CIs, permutation tests) are reported where applicable.\\n/root/persuasion_turn_jailbreak_detect/paper/checklist.tex:23:Not applicable. No human evaluation was conducted. Strategy annotation quality was validated against a human sample ($n$=50, $\\\\kappa$=0.78) but this was a validation check, not a full human evaluation study.\\n/root/persuasion_turn_jailbreak_detect/paper/conclusion.tex:34:Persuasion strategy labels are produced by Qwen3-8B with structured prompting. Inter-annotator agreement with a human sample ($n$=50) yields Cohen's $\\\\kappa$=0.78, which indicates substantial but imperfect agreement. The small human validation sample and reliance on a single annotator model limit confidence in label quality. We plan to release the annotation prompts and data to enable independent verification.\\n/root/persuasion_turn_jailbreak_detect/paper/experiments.tex:28:For key pairwise comparisons, we report BCa bootstrap 95\\\\% confidence intervals (10,000 resamples over individual predictions pooled across seeds) and paired permutation tests (10,000 permutations). Bootstrap means may differ slightly from seed-averaged F1 due to the nonlinearity of F1 aggregation.\\n/root/persuasion_turn_jailbreak_detect/paper/method.tex:44:The \\\\textbf{9-class} variant uses two classification heads: 9-class persuasion strategy classification ($L_{\\\\text{strategy}}$) and binary jailbreak intent ($L_{\\\\text{intent}}$), with combined loss $L = L_{\\\\text{strategy}} + \\\\alpha \\\\cdot L_{\\\\text{intent}}$ ($\\\\alpha = 0.3$, selected from $\\\\{0, 0.3, 0.5, 2.0\\\\}$; all values yield F1\\\\,=\\\\,1.0 on IID). The taxonomy comprises eight persuasion strategies (rapport building, authority appeal, emotional manipulation, logical reframing, role assignment, gradual escalation, obfuscation, direct request) plus a none category, grounded in PAP~\\\\citep{zeng2024pap} and Cialdini's principles~\\\\citep{cialdini2001influence}. Strategy annotations are produced by Qwen3-8B with structured prompting that includes definitions and examples for each category; inter-annotator agreement between model annotations and a human sample ($n$=50) yields Cohen's $\\\\kappa$=0.78.\\n/root/persuasion_turn_jailbreak_detect/paper/method.tex:50:The \\\\textbf{Wikipedia MLM} variant applies the same MLM objective to a token-matched sample of Wikipedia text; this isolates domain-specific from general continued pretraining.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019C2fKW9xZnoEtUfnzmrQ5V`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"ddof\\|Bessel\\|divisor\\|n-1\" /root/persuasion_turn_jailbreak_detect/paper/ --include=\"*.tex\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "df7766f0-cc9c-45a3-86c7-7e8e04da0058",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TA8LabTRnm1Bvqa788Uo2Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8132,
+      "cache_read_input_tokens": 29421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-21T05:23:44.373Z_
+
+<details><summary>↩ Tool result · `toolu_019C2fKW9xZnoEtUfnzmrQ5V`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "53f52c1a-18ac-4265-950f-eab53bd93198",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JyXeBJz2mY1WNz2SEZ6gK3`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"std\\|\\\\\\\\pm\\|\\\\\\\\sigma\\|deviation\" /root/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "6c4cfd2a-5533-468c-8326-16c149665f27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TA8LabTRnm1Bvqa788Uo2Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8132,
+      "cache_read_input_tokens": 29421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-21T05:23:45.484Z_
+
+<details><summary>↩ Tool result · `toolu_01JyXeBJz2mY1WNz2SEZ6gK3`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "3d3e308d-2f9a-4461-b842-b6706430eaf2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012L9rgLrtHyR8BqFnvHYN86`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"std\\|\\\\\\\\pm\\|\\\\\\\\sigma\\|deviation\" /root/persuasion_turn_jailbreak_detect/paper/checklist.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "6988a8e6-ee36-4ec5-ab0d-d8e14a0a4e7e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TA8LabTRnm1Bvqa788Uo2Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8132,
+      "cache_read_input_tokens": 29421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T05:23:46.356Z_
+
+<details><summary>↩ Tool result · `toolu_012L9rgLrtHyR8BqFnvHYN86`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "2f3d85d9-21cb-4eb2-8191-9e4927e0d0a4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FiYwPEaqCjLdmN1Kkf1Ukk`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"std\\|\\\\\\\\pm\\|\\\\\\\\sigma\\|deviation\" /root/persuasion_turn_jailbreak_detect/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "a948b3eb-fbf5-4159-9572-c938ea5319ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TA8LabTRnm1Bvqa788Uo2Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8132,
+      "cache_read_input_tokens": 29421,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8132
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-21T05:23:47.267Z_
+
+<details><summary>↩ Tool result · `toolu_01FiYwPEaqCjLdmN1Kkf1Ukk`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "678b9793-8c46-4fb9-91ad-94d08cb7aef0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `\\` in grep patterns is being interpreted as shell metacharacter. Let me search the tex files differently. But I already got the key results from the "standard deviation" and "population" searches. Let me now search the appendix for the Table 26 mention.
+
+I've found the two key tex references:
+1. **experiments.tex:29** — "All standard deviations are computed over 3 random seeds using the population formula ($n$ divisor); Bessel-corrected estimates ($n{-}1$ divisor) are $\approx$22\% larger but do not alter any significance conclusions."
+
+
+2. **checklist.tex:19** — "All OOD results report 3-seed mean$\pm$std (sample standard deviation with Bessel's correction, $N{-}1$ divisor)."
+
+These directly contradict each other—one claims population std with n divisor, the other claims sample std with n-1 divisor. Now I need to track down the appendix Table 26 reference and check how the `.std()` calls are actually being computed in the sanity check scripts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "29ca4239-73d3-4e54-9576-02594f7c472f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3vfWPAw7ydC1WtZZgiYDg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 37553,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3271
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+找到两处关键矛盾的 tex 描述。继续搜索 appendix Table 26 和其余代码上下文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "1aaee8e4-e076-42fd-8280-78df190857f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3vfWPAw7ydC1WtZZgiYDg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 37553,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3271
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0189XWgY4pcq5H1AqVMksBSd`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -n \"Table 26\\|Table~26\\|tab:26\\|Table\\\\\\\\,26\" /root/persuasion_turn_jailbreak_detect/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "5b2e38d9-7c7c-437c-bbbe-51ffa3d28e95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3vfWPAw7ydC1WtZZgiYDg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 37553,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3271
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-21T05:23:58.829Z_
+
+<details><summary>↩ Tool result · `toolu_0189XWgY4pcq5H1AqVMksBSd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "5c879b23-aa65-4bb8-afb5-392e33edca7f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FUon11CWpgsrj8DYVuhDMS`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -n \"sample std\\|sample standard\\|Bessel\\|n-1\\|ddof\" /root/persuasion_turn_jailbreak_detect/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "0b9bdfef-60d5-410c-859f-2446ee989fa5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3vfWPAw7ydC1WtZZgiYDg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 37553,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3271
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T05:24:00.244Z_
+
+<details><summary>↩ Tool result · `toolu_01FUon11CWpgsrj8DYVuhDMS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "2d8778bc-939a-48e4-8305-19db7989296a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016L7MjGGEf2e6ZPsqH3x9HB`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"\\.std()\" /root/persuasion_turn_jailbreak_detect/scripts/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "583496cd-1ed9-46ea-b2d5-96b5589f9ca2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3vfWPAw7ydC1WtZZgiYDg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 37553,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3271
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-21T05:24:01.113Z_
+
+<details><summary>↩ Tool result · `toolu_016L7MjGGEf2e6ZPsqH3x9HB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/scripts/sanity_check.py:70:    std_f1 = scores.std()\\n/root/persuasion_turn_jailbreak_detect/scripts/step3_sanity_check.py:59:    print(f\\\"DeBERTa LogReg F1: {scores.mean():.3f} +/- {scores.std():.3f}\\\", flush=True)\\n/root/persuasion_turn_jailbreak_detect/scripts/step3_sanity_check.py:69:    print(f\\\"TF-IDF LogReg F1: {scores_tfidf.mean():.3f} +/- {scores_tfidf.std():.3f}\\\", flush=True)\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check_v4b.py:32:print(f\\\"\\\\nTF-IDF F1 (20+{len(benign)}): {scores.mean():.3f} +/- {scores.std():.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check_v4b.py:49:    \\\"tfidf_f1_std\\\": float(scores.std()),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "2734c765-34a0-4fea-826a-8b0164208f46",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/scripts/sanity_check.py:70:    std_f1 = scores.std()\\\\n/root/persuasion_turn_jailbreak_detect/scripts/step3_sanity_check.py:59:    print(f\\\\\\\"DeBERTa LogReg F1: {scores.mean():.3f} +/- {scores.std():.3f}\\\\\\\", flush=True)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/step3_sanity_check.py:69:    print(f\\\\\\\"TF-IDF LogReg F1: {scores_tfidf.mean():.3f} +/- {scores_tfidf.std():.3f}\\\\\\\", flush=True)\\\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check_v4b.py:32:print(f\\\\\\\"\\\\\\\\nTF-IDF F1 (20+{len(benign)}): {scores.mean():.3f} +/- {scores.std():.3f}\\\\\\\")\\\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check_v4b.py:49:    \\\\\\\"tfidf_f1_std\\\\\\\": float(scores.std()),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/scripts/sanity_check.py:70:    std_f1 = scores.std()\\n/root/persuasion_turn_jailbreak_detect/scripts/step3_sanity_check.py:59:    print(f\\\"DeBERTa LogReg F1: {scores.mean():.3f} +/- {scores.std():.3f}\\\", flush=True)\\n/root/persuasion_turn_jailbreak_detect/scripts/step3_sanity_check.py:69:    print(f\\\"TF-IDF LogReg F1: {scores_tfidf.mean():.3f} +/- {scores_tfidf.std():.3f}\\\", flush=True)\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check_v4b.py:32:print(f\\\"\\\\nTF-IDF F1 (20+{len(benign)}): {scores.mean():.3f} +/- {scores.std():.3f}\\\")\\n/root/persuasion_turn_jailbreak_detect/scripts/sanity_check_v4b.py:49:    \\\"tfidf_f1_std\\\": float(scores.std()),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011a21T733DZv16YAAmBYGaU`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat -n /root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "9a245284-837c-49af-8a62-ba0a7ea5edd8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3vfWPAw7ydC1WtZZgiYDg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 37553,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3271
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-21T05:24:02.338Z_
+
+<details><summary>↩ Tool result · `toolu_011a21T733DZv16YAAmBYGaU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\timport json\\n     2\\timport numpy as np\\n     3\\tfrom sklearn.metrics import f1_score\\n     4\\tfrom scipy import stats as sp_stats\\n     5\\timport time\\n     6\\t\\n     7\\tnp.random.seed(42)\\n     8\\tt0 = time.time()\\n     9\\t\\n    10\\twith open('results/exp8_raw_predictions.json') as f:\\n    11\\t    data = json.load(f)\\n    12\\t\\n    13\\tVARIANTS = ['vanilla', '9class', 'binary', 'scrambled', 'jb_mlm', 'wiki_mlm', 'topic']\\n    14\\tSEEDS = ['42', '123', '456']\\n    15\\tN_RESAMPLES = 10000\\n    16\\t\\n    17\\tdef fast_macro_f1(y_true, y_pred):\\n    18\\t    \\\"\\\"\\\"Vectorized macro F1 for binary classification.\\\"\\\"\\\"\\n    19\\t    tp = np.sum((y_true == 1) & (y_pred == 1))\\n    20\\t    fp = np.sum((y_true == 0) & (y_pred == 1))\\n    21\\t    fn = np.sum((y_true == 1) & (y_pred == 0))\\n    22\\t    tn = np.sum((y_true == 0) & (y_pred == 0))\\n    23\\t    \\n    24\\t    prec1 = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    25\\t    rec1 = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    26\\t    f1_1 = 2 * prec1 * rec1 / (prec1 + rec1) if (prec1 + rec1) > 0 else 0.0\\n    27\\t    \\n    28\\t    prec0 = tn / (tn + fn) if (tn + fn) > 0 else 0.0\\n    29\\t    rec0 = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\n    30\\t    f1_0 = 2 * prec0 * rec0 / (prec0 + rec0) if (prec0 + rec0) > 0 else 0.0\\n    31\\t    \\n    32\\t    return (f1_0 + f1_1) / 2.0\\n    33\\t\\n    34\\tdef bca_bootstrap_ci(y_true, y_pred, n_resamples=N_RESAMPLES, alpha=0.05):\\n    35\\t    n = len(y_true)\\n    36\\t    y_true = np.asarray(y_true)\\n    37\\t    y_pred = np.asarray(y_pred)\\n    38\\t    \\n    39\\t    theta_hat = fast_macro_f1(y_true, y_pred)\\n    40\\t    \\n    41\\t    # Vectorized bootstrap: generate all indices at once\\n    42\\t    all_idx = np.random.randint(0, n, (n_resamples, n))\\n    43\\t    boot_stats = np.empty(n_resamples)\\n    44\\t    for i in range(n_resamples):\\n    45\\t        idx = all_idx[i]\\n    46\\t        boot_stats[i] = fast_macro_f1(y_true[idx], y_pred[idx])\\n    47\\t    \\n    48\\t    valid = ~np.isnan(boot_stats)\\n    49\\t    boot_stats_valid = boot_stats[valid]\\n    50\\t    \\n    51\\t    # Bias correction (z0)\\n    52\\t    prop_below = np.mean(boot_stats_valid < theta_hat)\\n    53\\t    prop_below = np.clip(prop_below, 1e-10, 1 - 1e-10)\\n    54\\t    z0 = sp_stats.norm.ppf(prop_below)\\n    55\\t    \\n    56\\t    # Acceleration (jackknife)\\n    57\\t    jack_stats = np.empty(n)\\n    58\\t    for i in range(n):\\n    59\\t        mask = np.ones(n, dtype=bool)\\n    60\\t        mask[i] = False\\n    61\\t        jack_stats[i] = fast_macro_f1(y_true[mask], y_pred[mask])\\n    62\\t    \\n    63\\t    jack_mean = np.mean(jack_stats)\\n    64\\t    diff = jack_mean - jack_stats\\n    65\\t    a = np.sum(diff**3) / (6.0 * (np.sum(diff**2)**1.5) + 1e-15)\\n    66\\t    \\n    67\\t    z_lo = sp_stats.norm.ppf(alpha / 2)\\n    68\\t    z_hi = sp_stats.norm.ppf(1 - alpha / 2)\\n    69\\t    \\n    70\\t    a1 = sp_stats.norm.cdf(z0 + (z0 + z_lo) / (1 - a * (z0 + z_lo)))\\n    71\\t    a2 = sp_stats.norm.cdf(z0 + (z0 + z_hi) / (1 - a * (z0 + z_hi)))\\n    72\\t    \\n    73\\t    lower = float(np.percentile(boot_stats_valid, 100 * a1))\\n    74\\t    upper = float(np.percentile(boot_stats_valid, 100 * a2))\\n    75\\t    \\n    76\\t    return lower, upper, float(theta_hat)\\n    77\\t\\n    78\\t\\n    79\\tdef paired_permutation_test(y_true, y_pred_a, y_pred_b, n_permutations=N_RESAMPLES):\\n    80\\t    y_true = np.asarray(y_true)\\n    81\\t    y_pred_a = np.asarray(y_pred_a)\\n    82\\t    y_pred_b = np.asarray(y_pred_b)\\n    83\\t    n = len(y_true)\\n    84\\t    \\n    85\\t    observed_diff = fast_macro_f1(y_true, y_pred_a) - fast_macro_f1(y_true, y_pred_b)\\n    86\\t    \\n    87\\t    # Vectorized: generate all swap masks at once\\n    88\\t    swaps = np.random.randint(0, 2, (n_permutations, n)).astype(bool)\\n    89\\t    count = 0\\n    90\\t    for i in range(n_permutations):\\n    91\\t        s = swaps[i]\\n    92\\t        pa = np.where(s, y_pred_b, y_pred_a)\\n    93\\t        pb = np.where(s, y_pred_a, y_pred_b)\\n    94\\t        perm_diff = fast_macro_f1(y_true, pa) - fast_macro_f1(y_true, pb)\\n    95\\t        if abs(perm_diff) >= abs(observed_diff):\\n    96\\t            count += 1\\n    97\\t    \\n    98\\t    p\\n\\n... [截断: 输出过长，省略 1516 字符] ...\\n\\n print(f\\\"\\\\n{variant:>12s}: pooled F1={pooled_f1:.4f}  CI=[{pooled_lower:.4f}, {pooled_upper:.4f}]  \\\"\\n   138\\t          f\\\"seed mean={seed_mean:.4f} +/- {seed_std:.4f}\\\")\\n   139\\t    for seed in SEEDS:\\n   140\\t        ps = per_seed[seed]\\n   141\\t        print(f\\\"{'':>12s}  seed {seed}: F1={ps['f1']:.4f}  CI=[{ps['ci_95'][0]:.4f}, {ps['ci_95'][1]:.4f}]\\\")\\n   142\\t\\n   143\\tprint(f\\\"\\\\nBootstrap done in {time.time()-t0:.1f}s\\\")\\n   144\\t\\n   145\\t# ====== Permutation Tests ======\\n   146\\tt1 = time.time()\\n   147\\tprint(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n   148\\tprint(\\\"Paired Permutation Tests (10,000 permutations)\\\")\\n   149\\tprint(\\\"=\\\" * 70)\\n   150\\t\\n   151\\tcomparisons = [\\n   152\\t    ('jb_mlm', '9class', 'jb_mlm_vs_9class'),\\n   153\\t    ('jb_mlm', 'vanilla', 'jb_mlm_vs_vanilla'),\\n   154\\t    ('wiki_mlm', '9class', 'wiki_mlm_vs_9class'),\\n   155\\t]\\n   156\\t\\n   157\\tperm_results = {}\\n   158\\t\\n   159\\tfor var_a, var_b, label in comparisons:\\n   160\\t    seed_diffs = []\\n   161\\t    seed_pvals = []\\n   162\\t    \\n   163\\t    for seed in SEEDS:\\n   164\\t        tc_a = data[var_a][seed]['toxicchat']\\n   165\\t        tc_b = data[var_b][seed]['toxicchat']\\n   166\\t        yt = np.array(tc_a['y_true'])\\n   167\\t        yp_a = np.array(tc_a['y_pred'])\\n   168\\t        yp_b = np.array(tc_b['y_pred'])\\n   169\\t        diff, pval = paired_permutation_test(yt, yp_a, yp_b)\\n   170\\t        seed_diffs.append(diff)\\n   171\\t        seed_pvals.append(pval)\\n   172\\t    \\n   173\\t    # Pooled\\n   174\\t    pyt, pypa, pypb = [], [], []\\n   175\\t    for seed in SEEDS:\\n   176\\t        tc_a = data[var_a][seed]['toxicchat']\\n   177\\t        tc_b = data[var_b][seed]['toxicchat']\\n   178\\t        pyt.extend(tc_a['y_true'])\\n   179\\t        pypa.extend(tc_a['y_pred'])\\n   180\\t        pypb.extend(tc_b['y_pred'])\\n   181\\t    \\n   182\\t    pooled_diff, pooled_pval = paired_permutation_test(np.array(pyt), np.array(pypa), np.array(pypb))\\n   183\\t    \\n   184\\t    # Fisher's method\\n   185\\t    chi2_stat = -2 * np.sum(np.log(np.array(seed_pvals)))\\n   186\\t    fisher_pval = float(1 - sp_stats.chi2.cdf(chi2_stat, df=2 * len(SEEDS)))\\n   187\\t    \\n   188\\t    perm_results[label] = {\\n   189\\t        'pooled_diff': round(pooled_diff, 4),\\n   190\\t        'pooled_p_value': round(pooled_pval, 6),\\n   191\\t        'per_seed': {\\n   192\\t            seed: {'diff': round(d, 4), 'p_value': round(p, 6)}\\n   193\\t            for seed, d, p in zip(SEEDS, seed_diffs, seed_pvals)\\n   194\\t        },\\n   195\\t        'fisher_combined_p': round(fisher_pval, 6)\\n   196\\t    }\\n   197\\t    \\n   198\\t    sig = \\\"***\\\" if pooled_pval < 0.001 else \\\"**\\\" if pooled_pval < 0.01 else \\\"*\\\" if pooled_pval < 0.05 else \\\"n.s.\\\"\\n   199\\t    print(f\\\"\\\\n{label:>25s}: diff={pooled_diff:+.4f}  p={pooled_pval:.6f} {sig}\\\")\\n   200\\t    print(f\\\"{'':>25s}  Fisher combined p={fisher_pval:.6f}\\\")\\n   201\\t    for seed, d, p in zip(SEEDS, seed_diffs, seed_pvals):\\n   202\\t        print(f\\\"{'':>25s}  seed {seed}: diff={d:+.4f}  p={p:.6f}\\\")\\n   203\\t\\n   204\\tprint(f\\\"\\\\nPermutation tests done in {time.time()-t1:.1f}s\\\")\\n   205\\tprint(f\\\"Total time: {time.time()-t0:.1f}s\\\")\\n   206\\t\\n   207\\t# ====== Verify against sklearn ======\\n   208\\tprint(\\\"\\\\n--- Verification: fast_macro_f1 vs sklearn ---\\\")\\n   209\\tfor variant in ['jb_mlm', 'vanilla', '9class']:\\n   210\\t    tc = data[variant]['42']['toxicchat']\\n   211\\t    yt, yp = np.array(tc['y_true']), np.array(tc['y_pred'])\\n   212\\t    sk = f1_score(yt, yp, average='macro')\\n   213\\t    fast = fast_macro_f1(yt, yp)\\n   214\\t    print(f\\\"{variant}: sklearn={sk:.6f}  fast={fast:.6f}  match={abs(sk-fast)<1e-10}\\\")\\n   215\\t\\n   216\\t# ====== Save ======\\n   217\\toutput = {\\n   218\\t    'bootstrap_ci': bootstrap_results,\\n   219\\t    'permutation_tests': perm_results,\\n   220\\t    'metric': 'f1_macro',\\n   221\\t    'n_resamples': N_RESAMPLES,\\n   222\\t    'n_samples_per_seed': 408,\\n   223\\t    'seeds': SEEDS,\\n   224\\t    'random_seed': 42\\n   225\\t}\\n   226\\t\\n   227\\twith open('results/exp12_toxicchat_bootstrap.json', 'w') as f:\\n   228\\t    json.dump(output, f, indent=2)\\n   229\\t\\n   230\\tprint(f\\\"\\\\nResults saved to results/exp12_toxicchat_bootstrap.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "5ed41151-733a-4a7f-96cc-38b30c692734",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\timport json\\\\n     2\\\\timport numpy as np\\\\n     3\\\\tfrom sklearn.metrics import f1_score\\\\n     4\\\\tfrom scipy import stats as sp_stats\\\\n     5\\\\timport time\\\\n     6\\\\t\\\\n     7\\\\tnp.random.seed(42)\\\\n     8\\\\tt0 = time.time()\\\\n     9\\\\t\\\\n    10\\\\twith open('results/exp8_raw_predictions.json') as f:\\\\n    11\\\\t    data = json.load(f)\\\\n    12\\\\t\\\\n    13\\\\tVARIANTS = ['vanilla', '9class', 'binary', 'scrambled', 'jb_mlm', 'wiki_mlm', 'topic']\\\\n    14\\\\tSEEDS = ['42', '123', '456']\\\\n    15\\\\tN_RESAMPLES = 10000\\\\n    16\\\\t\\\\n    17\\\\tdef fast_macro_f1(y_true, y_pred):\\\\n    18\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"Vectorized macro F1 for binary classification.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    19\\\\t    tp = np.sum((y_true == 1) & (y_pred == 1))\\\\n    20\\\\t    fp = np.sum((y_true == 0) & (y_pred == 1))\\\\n    21\\\\t    fn = np.sum((y_true == 1) & (y_pred == 0))\\\\n    22\\\\t    tn = np.sum((y_true == 0) & (y_pred == 0))\\\\n    23\\\\t    \\\\n    24\\\\t    prec1 = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\\\n    25\\\\t    rec1 = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\\\n    26\\\\t    f1_1 = 2 * prec1 * rec1 / (prec1 + rec1) if (prec1 + rec1) > 0 else 0.0\\\\n    27\\\\t    \\\\n    28\\\\t    prec0 = tn / (tn + fn) if (tn + fn) > 0 else 0.0\\\\n    29\\\\t    rec0 = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\\\n    30\\\\t    f1_0 = 2 * prec0 * rec0 / (prec0 + rec0) if (prec0 + rec0) > 0 else 0.0\\\\n    31\\\\t    \\\\n    32\\\\t    return (f1_0 + f1_1) / 2.0\\\\n    33\\\\t\\\\n    34\\\\tdef bca_bootstrap_ci(y_true, y_pred, n_resamples=N_RESAMPLES, alpha=0.05):\\\\n    35\\\\t    n = len(y_true)\\\\n    36\\\\t    y_true = np.asarray(y_true)\\\\n    37\\\\t    y_pred = np.asarray(y_pred)\\\\n    38\\\\t    \\\\n    39\\\\t    theta_hat = fast_macro_f1(y_true, y_pred)\\\\n    40\\\\t    \\\\n    41\\\\t    # Vectorized bootstrap: generate all indices at once\\\\n    42\\\\t    all_idx = np.random.randint(0, n, (n_resamples, n))\\\\n    43\\\\t    boot_stats = np.empty(n_resamples)\\\\n    44\\\\t    for i in range(n_resamples):\\\\n    45\\\\t        idx = all_idx[i]\\\\n    46\\\\t        boot_stats[i] = fast_macro_f1(y_true[idx], y_pred[idx])\\\\n    47\\\\t    \\\\n    48\\\\t    valid = ~np.isnan(boot_stats)\\\\n    49\\\\t    boot_stats_valid = boot_stats[valid]\\\\n    50\\\\t    \\\\n    51\\\\t    # Bias correction (z0)\\\\n    52\\\\t    prop_below = np.mean(boot_stats_valid < theta_hat)\\\\n    53\\\\t    prop_below = np.clip(prop_below, 1e-10, 1 - 1e-10)\\\\n    54\\\\t    z0 = sp_stats.norm.ppf(prop_below)\\\\n    55\\\\t    \\\\n    56\\\\t    # Acceleration (jackknife)\\\\n    57\\\\t    jack_stats = np.empty(n)\\\\n    58\\\\t    for i in range(n):\\\\n    59\\\\t        mask = np.ones(n, dtype=bool)\\\\n    60\\\\t        mask[i] = False\\\\n    61\\\\t        jack_stats[i] = fast_macro_f1(y_true[mask], y_pred[mask])\\\\n    62\\\\t    \\\\n    63\\\\t    jack_mean = np.mean(jack_stats)\\\\n    64\\\\t    diff = jack_mean - jack_stats\\\\n    65\\\\t    a = np.sum(diff**3) / (6.0 * (np.sum(diff**2)**1.5) + 1e-15)\\\\n    66\\\\t    \\\\n    67\\\\t    z_lo = sp_stats.norm.ppf(alpha / 2)\\\\n    68\\\\t    z_hi = sp_stats.norm.ppf(1 - alpha / 2)\\\\n    69\\\\t    \\\\n    70\\\\t    a1 = sp_stats.norm.cdf(z0 + (z0 + z_lo) / (1 - a * (z0 + z_lo)))\\\\n    71\\\\t    a2 = sp_stats.norm.cdf(z0 + (z0 + z_hi) / (1 - a * (z0 + z_hi)))\\\\n    72\\\\t    \\\\n    73\\\\t    lower = float(np.percentile(boot_stats_valid, 100 * a1))\\\\n    74\\\\t    upper = float(np.percentile(boot_stats_valid, 100 * a2))\\\\n    75\\\\t    \\\\n    76\\\\t    return lower, upper, float(theta_hat)\\\\n    77\\\\t\\\\n    78\\\\t\\\\n    79\\\\tdef paired_permutation_test(y_true, y_pred_a, y_pred_b, n_permutations=N_RESAMPLES):\\\\n    80\\\\t    y_true = np.asarray(y_true)\\\\n    81\\\\t    y_pred_a = np.asarray(y_pred_a)\\\\n    82\\\\t    y_pred_b = np.asarray(y_pred_b)\\\\n    83\\\\t    n = len(y_true)\\\\n    84\\\\t    \\\\n    85\\\\t    observed_diff = fast_macro_f1(y_true, y_pred_a) - fast_macro_f1(y_true, y_pred_b)\\\\n    86\\\\t    \\\\n    87\\\\t    # Vectorized: generate all swap masks at once\\\\n    88\\\\t    swaps = np.random.randint(0, 2, (n_permutations, n)).astype(bool)\\\\n    89\\\\t    count = 0\\\\n    90\\\\t    for i in range(n_permutations):\\\\n    91\\\\t        s = swaps[i]\\\\n    92\\\\t        pa = np.where(s, y_pred_b, y_pred_a)\\\\n    93\\\\t        pb = np.where(s, y_pred_a, y_pred_b)\\\\n    94\\\\t        perm_diff = fast_macro_f1(y_true, pa) - fast_macro_f1(y_true, pb)\\\\n    95\\\\t        if abs(perm_diff) >= abs(observed_diff):\\\\n    96\\\\t            count += 1\\\\n    97\\\\t    \\\\n    98\\\\t    p\\\\n\\\\n... [截断: 输出过长，省略 1516 字符] ...\\\\n\\\\n print(f\\\\\\\"\\\\\\\\n{variant:>12s}: pooled F1={pooled_f1:.4f}  CI=[{pooled_lower:.4f}, {pooled_upper:.4f}]  \\\\\\\"\\\\n   138\\\\t          f\\\\\\\"seed mean={seed_mean:.4f} +/- {seed_std:.4f}\\\\\\\")\\\\n   139\\\\t    for seed in SEEDS:\\\\n   140\\\\t        ps = per_seed[seed]\\\\n   141\\\\t        print(f\\\\\\\"{'':>12s}  seed {seed}: F1={ps['f1']:.4f}  CI=[{ps['ci_95'][0]:.4f}, {ps['ci_95'][1]:.4f}]\\\\\\\")\\\\n   142\\\\t\\\\n   143\\\\tprint(f\\\\\\\"\\\\\\\\nBootstrap done in {time.time()-t0:.1f}s\\\\\\\")\\\\n   144\\\\t\\\\n   145\\\\t# ====== Permutation Tests ======\\\\n   146\\\\tt1 = time.time()\\\\n   147\\\\tprint(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n   148\\\\tprint(\\\\\\\"Paired Permutation Tests (10,000 permutations)\\\\\\\")\\\\n   149\\\\tprint(\\\\\\\"=\\\\\\\" * 70)\\\\n   150\\\\t\\\\n   151\\\\tcomparisons = [\\\\n   152\\\\t    ('jb_mlm', '9class', 'jb_mlm_vs_9class'),\\\\n   153\\\\t    ('jb_mlm', 'vanilla', 'jb_mlm_vs_vanilla'),\\\\n   154\\\\t    ('wiki_mlm', '9class', 'wiki_mlm_vs_9class'),\\\\n   155\\\\t]\\\\n   156\\\\t\\\\n   157\\\\tperm_results = {}\\\\n   158\\\\t\\\\n   159\\\\tfor var_a, var_b, label in comparisons:\\\\n   160\\\\t    seed_diffs = []\\\\n   161\\\\t    seed_pvals = []\\\\n   162\\\\t    \\\\n   163\\\\t    for seed in SEEDS:\\\\n   164\\\\t        tc_a = data[var_a][seed]['toxicchat']\\\\n   165\\\\t        tc_b = data[var_b][seed]['toxicchat']\\\\n   166\\\\t        yt = np.array(tc_a['y_true'])\\\\n   167\\\\t        yp_a = np.array(tc_a['y_pred'])\\\\n   168\\\\t        yp_b = np.array(tc_b['y_pred'])\\\\n   169\\\\t        diff, pval = paired_permutation_test(yt, yp_a, yp_b)\\\\n   170\\\\t        seed_diffs.append(diff)\\\\n   171\\\\t        seed_pvals.append(pval)\\\\n   172\\\\t    \\\\n   173\\\\t    # Pooled\\\\n   174\\\\t    pyt, pypa, pypb = [], [], []\\\\n   175\\\\t    for seed in SEEDS:\\\\n   176\\\\t        tc_a = data[var_a][seed]['toxicchat']\\\\n   177\\\\t        tc_b = data[var_b][seed]['toxicchat']\\\\n   178\\\\t        pyt.extend(tc_a['y_true'])\\\\n   179\\\\t        pypa.extend(tc_a['y_pred'])\\\\n   180\\\\t        pypb.extend(tc_b['y_pred'])\\\\n   181\\\\t    \\\\n   182\\\\t    pooled_diff, pooled_pval = paired_permutation_test(np.array(pyt), np.array(pypa), np.array(pypb))\\\\n   183\\\\t    \\\\n   184\\\\t    # Fisher's method\\\\n   185\\\\t    chi2_stat = -2 * np.sum(np.log(np.array(seed_pvals)))\\\\n   186\\\\t    fisher_pval = float(1 - sp_stats.chi2.cdf(chi2_stat, df=2 * len(SEEDS)))\\\\n   187\\\\t    \\\\n   188\\\\t    perm_results[label] = {\\\\n   189\\\\t        'pooled_diff': round(pooled_diff, 4),\\\\n   190\\\\t        'pooled_p_value': round(pooled_pval, 6),\\\\n   191\\\\t        'per_seed': {\\\\n   192\\\\t            seed: {'diff': round(d, 4), 'p_value': round(p, 6)}\\\\n   193\\\\t            for seed, d, p in zip(SEEDS, seed_diffs, seed_pvals)\\\\n   194\\\\t        },\\\\n   195\\\\t        'fisher_combined_p': round(fisher_pval, 6)\\\\n   196\\\\t    }\\\\n   197\\\\t    \\\\n   198\\\\t    sig = \\\\\\\"***\\\\\\\" if pooled_pval < 0.001 else \\\\\\\"**\\\\\\\" if pooled_pval < 0.01 else \\\\\\\"*\\\\\\\" if pooled_pval < 0.05 else \\\\\\\"n.s.\\\\\\\"\\\\n   199\\\\t    print(f\\\\\\\"\\\\\\\\n{label:>25s}: diff={pooled_diff:+.4f}  p={pooled_pval:.6f} {sig}\\\\\\\")\\\\n   200\\\\t    print(f\\\\\\\"{'':>25s}  Fisher combined p={fisher_pval:.6f}\\\\\\\")\\\\n   201\\\\t    for seed, d, p in zip(SEEDS, seed_diffs, seed_pvals):\\\\n   202\\\\t        print(f\\\\\\\"{'':>25s}  seed {seed}: diff={d:+.4f}  p={p:.6f}\\\\\\\")\\\\n   203\\\\t\\\\n   204\\\\tprint(f\\\\\\\"\\\\\\\\nPermutation tests done in {time.time()-t1:.1f}s\\\\\\\")\\\\n   205\\\\tprint(f\\\\\\\"Total time: {time.time()-t0:.1f}s\\\\\\\")\\\\n   206\\\\t\\\\n   207\\\\t# ====== Verify against sklearn ======\\\\n   208\\\\tprint(\\\\\\\"\\\\\\\\n--- Verification: fast_macro_f1 vs sklearn ---\\\\\\\")\\\\n   209\\\\tfor variant in ['jb_mlm', 'vanilla', '9class']:\\\\n   210\\\\t    tc = data[variant]['42']['toxicchat']\\\\n   211\\\\t    yt, yp = np.array(tc['y_true']), np.array(tc['y_pred'])\\\\n   212\\\\t    sk = f1_score(yt, yp, average='macro')\\\\n   213\\\\t    fast = fast_macro_f1(yt, yp)\\\\n   214\\\\t    print(f\\\\\\\"{variant}: sklearn={sk:.6f}  fast={fast:.6f}  match={abs(sk-fast)<1e-10}\\\\\\\")\\\\n   215\\\\t\\\\n   216\\\\t# ====== Save ======\\\\n   217\\\\toutput = {\\\\n   218\\\\t    'bootstrap_ci': bootstrap_results,\\\\n   219\\\\t    'permutation_tests': perm_results,\\\\n   220\\\\t    'metric': 'f1_macro',\\\\n   221\\\\t    'n_resamples': N_RESAMPLES,\\\\n   222\\\\t    'n_samples_per_seed': 408,\\\\n   223\\\\t    'seeds': SEEDS,\\\\n   224\\\\t    'random_seed': 42\\\\n   225\\\\t}\\\\n   226\\\\t\\\\n   227\\\\twith open('results/exp12_toxicchat_bootstrap.json', 'w') as f:\\\\n   228\\\\t    json.dump(output, f, indent=2)\\\\n   229\\\\t\\\\n   230\\\\tprint(f\\\\\\\"\\\\\\\\nResults saved to results/exp12_toxicchat_bootstrap.json\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"     1\\timport json\\n     2\\timport numpy as np\\n     3\\tfrom sklearn.metrics import f1_score\\n     4\\tfrom scipy import stats as sp_stats\\n     5\\timport time\\n     6\\t\\n     7\\tnp.random.seed(42)\\n     8\\tt0 = time.time()\\n     9\\t\\n    10\\twith open('results/exp8_raw_predictions.json') as f:\\n    11\\t    data = json.load(f)\\n    12\\t\\n    13\\tVARIANTS = ['vanilla', '9class', 'binary', 'scrambled', 'jb_mlm', 'wiki_mlm', 'topic']\\n    14\\tSEEDS = ['42', '123', '456']\\n    15\\tN_RESAMPLES = 10000\\n    16\\t\\n    17\\tdef fast_macro_f1(y_true, y_pred):\\n    18\\t    \\\"\\\"\\\"Vectorized macro F1 for binary classification.\\\"\\\"\\\"\\n    19\\t    tp = np.sum((y_true == 1) & (y_pred == 1))\\n    20\\t    fp = np.sum((y_true == 0) & (y_pred == 1))\\n    21\\t    fn = np.sum((y_true == 1) & (y_pred == 0))\\n    22\\t    tn = np.sum((y_true == 0) & (y_pred == 0))\\n    23\\t    \\n    24\\t    prec1 = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    25\\t    rec1 = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    26\\t    f1_1 = 2 * prec1 * rec1 / (prec1 + rec1) if (prec1 + rec1) > 0 else 0.0\\n    27\\t    \\n    28\\t    prec0 = tn / (tn + fn) if (tn + fn) > 0 else 0.0\\n    29\\t    rec0 = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\n    30\\t    f1_0 = 2 * prec0 * rec0 / (prec0 + rec0) if (prec0 + rec0) > 0 else 0.0\\n    31\\t    \\n    32\\t    return (f1_0 + f1_1) / 2.0\\n    33\\t\\n    34\\tdef bca_bootstrap_ci(y_true, y_pred, n_resamples=N_RESAMPLES, alpha=0.05):\\n    35\\t    n = len(y_true)\\n    36\\t    y_true = np.asarray(y_true)\\n    37\\t    y_pred = np.asarray(y_pred)\\n    38\\t    \\n    39\\t    theta_hat = fast_macro_f1(y_true, y_pred)\\n    40\\t    \\n    41\\t    # Vectorized bootstrap: generate all indices at once\\n    42\\t    all_idx = np.random.randint(0, n, (n_resamples, n))\\n    43\\t    boot_stats = np.empty(n_resamples)\\n    44\\t    for i in range(n_resamples):\\n    45\\t        idx = all_idx[i]\\n    46\\t        boot_stats[i] = fast_macro_f1(y_true[idx], y_pred[idx])\\n    47\\t    \\n    48\\t    valid = ~np.isnan(boot_stats)\\n    49\\t    boot_stats_valid = boot_stats[valid]\\n    50\\t    \\n    51\\t    # Bias correction (z0)\\n    52\\t    prop_below = np.mean(boot_stats_valid < theta_hat)\\n    53\\t    prop_below = np.clip(prop_below, 1e-10, 1 - 1e-10)\\n    54\\t    z0 = sp_stats.norm.ppf(prop_below)\\n    55\\t    \\n    56\\t    # Acceleration (jackknife)\\n    57\\t    jack_stats = np.empty(n)\\n    58\\t    for i in range(n):\\n    59\\t        mask = np.ones(n, dtype=bool)\\n    60\\t        mask[i] = False\\n    61\\t        jack_stats[i] = fast_macro_f1(y_true[mask], y_pred[mask])\\n    62\\t    \\n    63\\t    jack_mean = np.mean(jack_stats)\\n    64\\t    diff = jack_mean - jack_stats\\n    65\\t    a = np.sum(diff**3) / (6.0 * (np.sum(diff**2)**1.5) + 1e-15)\\n    66\\t    \\n    67\\t    z_lo = sp_stats.norm.ppf(alpha / 2)\\n    68\\t    z_hi = sp_stats.norm.ppf(1 - alpha / 2)\\n    69\\t    \\n    70\\t    a1 = sp_stats.norm.cdf(z0 + (z0 + z_lo) / (1 - a * (z0 + z_lo)))\\n    71\\t    a2 = sp_stats.norm.cdf(z0 + (z0 + z_hi) / (1 - a * (z0 + z_hi)))\\n    72\\t    \\n    73\\t    lower = float(np.percentile(boot_stats_valid, 100 * a1))\\n    74\\t    upper = float(np.percentile(boot_stats_valid, 100 * a2))\\n    75\\t    \\n    76\\t    return lower, upper, float(theta_hat)\\n    77\\t\\n    78\\t\\n    79\\tdef paired_permutation_test(y_true, y_pred_a, y_pred_b, n_permutations=N_RESAMPLES):\\n    80\\t    y_true = np.asarray(y_true)\\n    81\\t    y_pred_a = np.asarray(y_pred_a)\\n    82\\t    y_pred_b = np.asarray(y_pred_b)\\n    83\\t    n = len(y_true)\\n    84\\t    \\n    85\\t    observed_diff = fast_macro_f1(y_true, y_pred_a) - fast_macro_f1(y_true, y_pred_b)\\n    86\\t    \\n    87\\t    # Vectorized: generate all swap masks at once\\n    88\\t    swaps = np.random.randint(0, 2, (n_permutations, n)).astype(bool)\\n    89\\t    count = 0\\n    90\\t    for i in range(n_permutations):\\n    91\\t        s = swaps[i]\\n    92\\t        pa = np.where(s, y_pred_b, y_pred_a)\\n    93\\t        pb = np.where(s, y_pred_a, y_pred_b)\\n    94\\t        perm_diff = fast_macro_f1(y_true, pa) - fast_macro_f1(y_true, pb)\\n    95\\t        if abs(perm_diff) >= abs(observed_diff):\\n    96\\t            count += 1\\n    97\\t    \\n    98\\t    p\\n\\n... [截断: 输出过长，省略 1516 字符] ...\\n\\n print(f\\\"\\\\n{variant:>12s}: pooled F1={pooled_f1:.4f}  CI=[{pooled_lower:.4f}, {pooled_upper:.4f}]  \\\"\\n   138\\t          f\\\"seed mean={seed_mean:.4f} +/- {seed_std:.4f}\\\")\\n   139\\t    for seed in SEEDS:\\n   140\\t        ps = per_seed[seed]\\n   141\\t        print(f\\\"{'':>12s}  seed {seed}: F1={ps['f1']:.4f}  CI=[{ps['ci_95'][0]:.4f}, {ps['ci_95'][1]:.4f}]\\\")\\n   142\\t\\n   143\\tprint(f\\\"\\\\nBootstrap done in {time.time()-t0:.1f}s\\\")\\n   144\\t\\n   145\\t# ====== Permutation Tests ======\\n   146\\tt1 = time.time()\\n   147\\tprint(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n   148\\tprint(\\\"Paired Permutation Tests (10,000 permutations)\\\")\\n   149\\tprint(\\\"=\\\" * 70)\\n   150\\t\\n   151\\tcomparisons = [\\n   152\\t    ('jb_mlm', '9class', 'jb_mlm_vs_9class'),\\n   153\\t    ('jb_mlm', 'vanilla', 'jb_mlm_vs_vanilla'),\\n   154\\t    ('wiki_mlm', '9class', 'wiki_mlm_vs_9class'),\\n   155\\t]\\n   156\\t\\n   157\\tperm_results = {}\\n   158\\t\\n   159\\tfor var_a, var_b, label in comparisons:\\n   160\\t    seed_diffs = []\\n   161\\t    seed_pvals = []\\n   162\\t    \\n   163\\t    for seed in SEEDS:\\n   164\\t        tc_a = data[var_a][seed]['toxicchat']\\n   165\\t        tc_b = data[var_b][seed]['toxicchat']\\n   166\\t        yt = np.array(tc_a['y_true'])\\n   167\\t        yp_a = np.array(tc_a['y_pred'])\\n   168\\t        yp_b = np.array(tc_b['y_pred'])\\n   169\\t        diff, pval = paired_permutation_test(yt, yp_a, yp_b)\\n   170\\t        seed_diffs.append(diff)\\n   171\\t        seed_pvals.append(pval)\\n   172\\t    \\n   173\\t    # Pooled\\n   174\\t    pyt, pypa, pypb = [], [], []\\n   175\\t    for seed in SEEDS:\\n   176\\t        tc_a = data[var_a][seed]['toxicchat']\\n   177\\t        tc_b = data[var_b][seed]['toxicchat']\\n   178\\t        pyt.extend(tc_a['y_true'])\\n   179\\t        pypa.extend(tc_a['y_pred'])\\n   180\\t        pypb.extend(tc_b['y_pred'])\\n   181\\t    \\n   182\\t    pooled_diff, pooled_pval = paired_permutation_test(np.array(pyt), np.array(pypa), np.array(pypb))\\n   183\\t    \\n   184\\t    # Fisher's method\\n   185\\t    chi2_stat = -2 * np.sum(np.log(np.array(seed_pvals)))\\n   186\\t    fisher_pval = float(1 - sp_stats.chi2.cdf(chi2_stat, df=2 * len(SEEDS)))\\n   187\\t    \\n   188\\t    perm_results[label] = {\\n   189\\t        'pooled_diff': round(pooled_diff, 4),\\n   190\\t        'pooled_p_value': round(pooled_pval, 6),\\n   191\\t        'per_seed': {\\n   192\\t            seed: {'diff': round(d, 4), 'p_value': round(p, 6)}\\n   193\\t            for seed, d, p in zip(SEEDS, seed_diffs, seed_pvals)\\n   194\\t        },\\n   195\\t        'fisher_combined_p': round(fisher_pval, 6)\\n   196\\t    }\\n   197\\t    \\n   198\\t    sig = \\\"***\\\" if pooled_pval < 0.001 else \\\"**\\\" if pooled_pval < 0.01 else \\\"*\\\" if pooled_pval < 0.05 else \\\"n.s.\\\"\\n   199\\t    print(f\\\"\\\\n{label:>25s}: diff={pooled_diff:+.4f}  p={pooled_pval:.6f} {sig}\\\")\\n   200\\t    print(f\\\"{'':>25s}  Fisher combined p={fisher_pval:.6f}\\\")\\n   201\\t    for seed, d, p in zip(SEEDS, seed_diffs, seed_pvals):\\n   202\\t        print(f\\\"{'':>25s}  seed {seed}: diff={d:+.4f}  p={p:.6f}\\\")\\n   203\\t\\n   204\\tprint(f\\\"\\\\nPermutation tests done in {time.time()-t1:.1f}s\\\")\\n   205\\tprint(f\\\"Total time: {time.time()-t0:.1f}s\\\")\\n   206\\t\\n   207\\t# ====== Verify against sklearn ======\\n   208\\tprint(\\\"\\\\n--- Verification: fast_macro_f1 vs sklearn ---\\\")\\n   209\\tfor variant in ['jb_mlm', 'vanilla', '9class']:\\n   210\\t    tc = data[variant]['42']['toxicchat']\\n   211\\t    yt, yp = np.array(tc['y_true']), np.array(tc['y_pred'])\\n   212\\t    sk = f1_score(yt, yp, average='macro')\\n   213\\t    fast = fast_macro_f1(yt, yp)\\n   214\\t    print(f\\\"{variant}: sklearn={sk:.6f}  fast={fast:.6f}  match={abs(sk-fast)<1e-10}\\\")\\n   215\\t\\n   216\\t# ====== Save ======\\n   217\\toutput = {\\n   218\\t    'bootstrap_ci': bootstrap_results,\\n   219\\t    'permutation_tests': perm_results,\\n   220\\t    'metric': 'f1_macro',\\n   221\\t    'n_resamples': N_RESAMPLES,\\n   222\\t    'n_samples_per_seed': 408,\\n   223\\t    'seeds': SEEDS,\\n   224\\t    'random_seed': 42\\n   225\\t}\\n   226\\t\\n   227\\twith open('results/exp12_toxicchat_bootstrap.json', 'w') as f:\\n   228\\t    json.dump(output, f, indent=2)\\n   229\\t\\n   230\\tprint(f\\\"\\\\nResults saved to results/exp12_toxicchat_bootstrap.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for "Table 26" in the appendix more carefully - the pipe character was blocked. Let me try without pipes.
+
+Also I need to check the appendix for the third std mention. Let me search with different patterns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "d0e58d29-bf0e-4024-ae28-be67214b01eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DbS6cxhZzFicP6GJL7PTSh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5831,
+      "cache_read_input_tokens": 40824,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5831
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+需要找 appendix 中 Table 26 的 std 描述。继续搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "0b135d5c-6285-4089-97f1-ac989dc8b13a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DbS6cxhZzFicP6GJL7PTSh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5831,
+      "cache_read_input_tokens": 40824,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5831
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017v2Fa31wcuoTkwWo5kg5Ej`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -n \"Table 26\" /root/persuasion_turn_jailbreak_detect/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "1b610424-8402-482a-ab9a-0335fd29741e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DbS6cxhZzFicP6GJL7PTSh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5831,
+      "cache_read_input_tokens": 40824,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5831
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T05:24:11.273Z_
+
+<details><summary>↩ Tool result · `toolu_017v2Fa31wcuoTkwWo5kg5Ej`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "bc0e00c4-34df-4f92-9768-e5103221a02f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RBPoLBmzvBDMkR3a4evSj3`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -n \"Bessel\" /root/persuasion_turn_jailbreak_detect/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "531f4773-c6ad-4dfb-8e2b-7ef15040370d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DbS6cxhZzFicP6GJL7PTSh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5831,
+      "cache_read_input_tokens": 40824,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5831
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-21T05:24:12.227Z_
+
+<details><summary>↩ Tool result · `toolu_01RBPoLBmzvBDMkR3a4evSj3`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "0ad492b3-f39a-4e53-a990-b539a7177849",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YGJwAEU9Xg4FeEEA24PeVE`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -n \"deviation\" /root/persuasion_turn_jailbreak_detect/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "cbf87d4c-b22b-48d1-8bb1-7b115472e0a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DbS6cxhZzFicP6GJL7PTSh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5831,
+      "cache_read_input_tokens": 40824,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5831
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-21T05:24:12.989Z_
+
+<details><summary>↩ Tool result · `toolu_01YGJwAEU9Xg4FeEEA24PeVE`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "39aa6aa5-04e2-4648-9fd0-2f6bca2b10e6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018wu4k7sKWwbGZPVxpy3gh9`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -n \"divisor\" /root/persuasion_turn_jailbreak_detect/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "1cde46a7-44fa-48e5-9bd9-cb67a14831f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DbS6cxhZzFicP6GJL7PTSh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5831,
+      "cache_read_input_tokens": 40824,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5831
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-21T05:24:13.517Z_
+
+<details><summary>↩ Tool result · `toolu_018wu4k7sKWwbGZPVxpy3gh9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "93ac46f4-b379-4485-bf8e-ff6edac00127",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All searches return empty - meaning the appendix.tex doesn't contain "Table 26", "Bessel", "deviation", or "divisor". So the third contradictory mention (appendix Table 26) might not exist on the server, or the reviewer is referring to a specific table number that doesn't contain those keywords explicitly. Let me check how many tables are in the appendix and look for the table captions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "654dcc72-cb29-4331-8c8d-ab072d627d09",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDp4ekRHnuDbiK3VQ6qWUm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 979,
+      "cache_read_input_tokens": 46655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 979
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+appendix.tex 中没有直接提到 "Table 26"、"Bessel"、"deviation"、"divisor"。检查 appendix 中的表格 caption。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "949dcd70-8505-4526-acad-5456cfa21db3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDp4ekRHnuDbiK3VQ6qWUm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 979,
+      "cache_read_input_tokens": 46655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 979
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JnFZqH4ocMURpWe3JtrE9t`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -n \"caption\" /root/persuasion_turn_jailbreak_detect/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "56fba302-29ca-403d-af1f-8a5f035b1320",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDp4ekRHnuDbiK3VQ6qWUm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 979,
+      "cache_read_input_tokens": 46655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 979
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-21T05:24:21.347Z_
+
+<details><summary>↩ Tool result · `toolu_01JnFZqH4ocMURpWe3JtrE9t`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"11:\\\\caption{LLM-as-judge jailbreak detection. IID: binary F1 (Crescendo test set); OOD: macro F1 (DD = Deceptive Delight, AA = ActorAttack). GPT-5.5 F1 values exclude unparseable responses and represent upper bounds.}\\n43:\\\\caption{Full cross-attack generalization results (F1) at all prefix lengths. 3-seed mean$\\\\pm$std where available. ``--'' indicates insufficient conversation length for that prefix (FITD conversations contain 2--3 turns).}\\n77:\\\\caption{Full ActorAttack OOD results (F1) at all prefix lengths. 3-seed mean$\\\\pm$std (Binary per-$K$ reports $n$=2; Full is 3-seed).}\\n107:\\\\caption{Perturbation behavior under adversarial paraphrasing on IID Crescendo ($n$=76). $\\\\Delta$: F1 degradation (pp). Classification-supervised variants achieve zero degradation at full length; this pattern does not generalize to ActorAttack.}\\n135:\\\\caption{Perturbation robustness on OOD Deceptive Delight ($n$=118). $\\\\Delta$: F1 change (pp) from clean to paraphrased. 3-seed mean$\\\\pm$std where available.}\\n164:\\\\caption{Persuasion strategy transition count matrices for three attack types, based on ground-truth intended strategy labels. Strategy labels validated on $n$=50 samples with a single annotator ($\\\\kappa$=0.78); fine-grained trajectory patterns should be interpreted with this limitation. Crescendo exhibits broad coverage across all strategy categories, while FITD and DD concentrate transitions in smaller subsets. Row $i$, column $j$ counts transitions from strategy $i$ at turn $t$ to strategy $j$ at turn $t+1$.}\\n179:\\\\caption{Centered CKA similarity~\\\\citep{kornblith2019cka} between encoder variants on IID and OOD data for DeBERTa-v3 and RoBERTa. Low off-diagonal values (vanilla vs.\\\\ adapted variants) confirm that continued pretraining substantially reshapes representations; the MLM vs.\\\\ 9-class block shows distinct geometries (CKA $\\\\leq$ 0.2 on RoBERTa OOD).}\\n191:\\\\caption{t-SNE visualization of mean-pooled \\\\texttt{[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak).}\\n201:\\\\caption{Cross-LLM validation (F1, full conversation). All models are trained on Qwen3-8B data; conditions vary the source of jailbreak (JB) and benign (ben.) conversations at inference. Values are evaluated under a matched 50-sample subset protocol and differ from Table~\\\\ref{tab:evidence_hierarchy}, which uses the full evaluation set.}\\n223:\\\\caption{Error decomposition for DD Full cross-LLM conditions (matched 50-sample subsets). TP rate is identical across benign conditions; the F1 collapse in the Llama-only condition (Table~\\\\ref{tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text.}\\n244:\\\\caption{RoBERTa-large (355M) DAPT learning rate control on OOD Full (3-seed mean$\\\\pm$std). Reducing the learning rate worsens both DD and AA, ruling out over-adaptation as the cause of the regression in Table~\\\\ref{tab:cross_encoder}.}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "a5fc5100-e54c-465b-a1d9-54490487a8d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"11:\\\\\\\\caption{LLM-as-judge jailbreak detection. IID: binary F1 (Crescendo test set); OOD: macro F1 (DD = Deceptive Delight, AA = ActorAttack). GPT-5.5 F1 values exclude unparseable responses and represent upper bounds.}\\\\n43:\\\\\\\\caption{Full cross-attack generalization results (F1) at all prefix lengths. 3-seed mean$\\\\\\\\pm$std where available. ``--'' indicates insufficient conversation length for that prefix (FITD conversations contain 2--3 turns).}\\\\n77:\\\\\\\\caption{Full ActorAttack OOD results (F1) at all prefix lengths. 3-seed mean$\\\\\\\\pm$std (Binary per-$K$ reports $n$=2; Full is 3-seed).}\\\\n107:\\\\\\\\caption{Perturbation behavior under adversarial paraphrasing on IID Crescendo ($n$=76). $\\\\\\\\Delta$: F1 degradation (pp). Classification-supervised variants achieve zero degradation at full length; this pattern does not generalize to ActorAttack.}\\\\n135:\\\\\\\\caption{Perturbation robustness on OOD Deceptive Delight ($n$=118). $\\\\\\\\Delta$: F1 change (pp) from clean to paraphrased. 3-seed mean$\\\\\\\\pm$std where available.}\\\\n164:\\\\\\\\caption{Persuasion strategy transition count matrices for three attack types, based on ground-truth intended strategy labels. Strategy labels validated on $n$=50 samples with a single annotator ($\\\\\\\\kappa$=0.78); fine-grained trajectory patterns should be interpreted with this limitation. Crescendo exhibits broad coverage across all strategy categories, while FITD and DD concentrate transitions in smaller subsets. Row $i$, column $j$ counts transitions from strategy $i$ at turn $t$ to strategy $j$ at turn $t+1$.}\\\\n179:\\\\\\\\caption{Centered CKA similarity~\\\\\\\\citep{kornblith2019cka} between encoder variants on IID and OOD data for DeBERTa-v3 and RoBERTa. Low off-diagonal values (vanilla vs.\\\\\\\\ adapted variants) confirm that continued pretraining substantially reshapes representations; the MLM vs.\\\\\\\\ 9-class block shows distinct geometries (CKA $\\\\\\\\leq$ 0.2 on RoBERTa OOD).}\\\\n191:\\\\\\\\caption{t-SNE visualization of mean-pooled \\\\\\\\texttt{[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak).}\\\\n201:\\\\\\\\caption{Cross-LLM validation (F1, full conversation). All models are trained on Qwen3-8B data; conditions vary the source of jailbreak (JB) and benign (ben.) conversations at inference. Values are evaluated under a matched 50-sample subset protocol and differ from Table~\\\\\\\\ref{tab:evidence_hierarchy}, which uses the full evaluation set.}\\\\n223:\\\\\\\\caption{Error decomposition for DD Full cross-LLM conditions (matched 50-sample subsets). TP rate is identical across benign conditions; the F1 collapse in the Llama-only condition (Table~\\\\\\\\ref{tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text.}\\\\n244:\\\\\\\\caption{RoBERTa-large (355M) DAPT learning rate control on OOD Full (3-seed mean$\\\\\\\\pm$std). Reducing the learning rate worsens both DD and AA, ruling out over-adaptation as the cause of the regression in Table~\\\\\\\\ref{tab:cross_encoder}.}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"11:\\\\caption{LLM-as-judge jailbreak detection. IID: binary F1 (Crescendo test set); OOD: macro F1 (DD = Deceptive Delight, AA = ActorAttack). GPT-5.5 F1 values exclude unparseable responses and represent upper bounds.}\\n43:\\\\caption{Full cross-attack generalization results (F1) at all prefix lengths. 3-seed mean$\\\\pm$std where available. ``--'' indicates insufficient conversation length for that prefix (FITD conversations contain 2--3 turns).}\\n77:\\\\caption{Full ActorAttack OOD results (F1) at all prefix lengths. 3-seed mean$\\\\pm$std (Binary per-$K$ reports $n$=2; Full is 3-seed).}\\n107:\\\\caption{Perturbation behavior under adversarial paraphrasing on IID Crescendo ($n$=76). $\\\\Delta$: F1 degradation (pp). Classification-supervised variants achieve zero degradation at full length; this pattern does not generalize to ActorAttack.}\\n135:\\\\caption{Perturbation robustness on OOD Deceptive Delight ($n$=118). $\\\\Delta$: F1 change (pp) from clean to paraphrased. 3-seed mean$\\\\pm$std where available.}\\n164:\\\\caption{Persuasion strategy transition count matrices for three attack types, based on ground-truth intended strategy labels. Strategy labels validated on $n$=50 samples with a single annotator ($\\\\kappa$=0.78); fine-grained trajectory patterns should be interpreted with this limitation. Crescendo exhibits broad coverage across all strategy categories, while FITD and DD concentrate transitions in smaller subsets. Row $i$, column $j$ counts transitions from strategy $i$ at turn $t$ to strategy $j$ at turn $t+1$.}\\n179:\\\\caption{Centered CKA similarity~\\\\citep{kornblith2019cka} between encoder variants on IID and OOD data for DeBERTa-v3 and RoBERTa. Low off-diagonal values (vanilla vs.\\\\ adapted variants) confirm that continued pretraining substantially reshapes representations; the MLM vs.\\\\ 9-class block shows distinct geometries (CKA $\\\\leq$ 0.2 on RoBERTa OOD).}\\n191:\\\\caption{t-SNE visualization of mean-pooled \\\\texttt{[CLS]} embeddings (perplexity=30) for Vanilla, JB-MLM, and 9-Class variants on DD OOD and ActorAttack (118 samples each; blue=benign, red=jailbreak).}\\n201:\\\\caption{Cross-LLM validation (F1, full conversation). All models are trained on Qwen3-8B data; conditions vary the source of jailbreak (JB) and benign (ben.) conversations at inference. Values are evaluated under a matched 50-sample subset protocol and differ from Table~\\\\ref{tab:evidence_hierarchy}, which uses the full evaluation set.}\\n223:\\\\caption{Error decomposition for DD Full cross-LLM conditions (matched 50-sample subsets). TP rate is identical across benign conditions; the F1 collapse in the Llama-only condition (Table~\\\\ref{tab:cross_llm}, row~2) is driven entirely by false positives on unfamiliar benign text.}\\n244:\\\\caption{RoBERTa-large (355M) DAPT learning rate control on OOD Full (3-seed mean$\\\\pm$std). Reducing the learning rate worsens both DD and AA, ruling out over-adaptation as the cause of the regression in Table~\\\\ref{tab:cross_encoder}.}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L7kx9bhy2dgC5xF47h16Mn`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -n \"pm\" /root/persuasion_turn_jailbreak_detect/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "5df4d1b0-287e-4ae1-afa1-cb1cf96dbe93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDp4ekRHnuDbiK3VQ6qWUm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 979,
+      "cache_read_input_tokens": 46655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 979
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-21T05:24:22.046Z_
+
+<details><summary>↩ Tool result · `toolu_01L7kx9bhy2dgC5xF47h16Mn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"43:\\\\caption{Full cross-attack generalization results (F1) at all prefix lengths. 3-seed mean$\\\\pm$std where available. ``--'' indicates insufficient conversation length for that prefix (FITD conversations contain 2--3 turns).}\\n50:9-class (ours) & 1.000$\\\\pm$.000 & 1.000$\\\\pm$.000 & 1.000$\\\\pm$.000 & 1.000$\\\\pm$.000 & 1.000$\\\\pm$.000 \\\\\\\\\\n52:Vanilla DeBERTa & .968$\\\\pm$.033 & .978$\\\\pm$.016 & .987$\\\\pm$.000 & .982$\\\\pm$.014 & 1.000$\\\\pm$.000 \\\\\\\\\\n56:9-class (ours) & .990$\\\\pm$.013 & .981$\\\\pm$.013 & .972$\\\\pm$.026 & .997$\\\\pm$.005 & .997$\\\\pm$.005 \\\\\\\\\\n57:Binary & .994$\\\\pm$.009 & .994$\\\\pm$.009 & .984$\\\\pm$.008 & 1.000$\\\\pm$.000 & 1.000$\\\\pm$.000 \\\\\\\\\\n58:Scrambled & .997$\\\\pm$.005 & .981$\\\\pm$.026 & .975$\\\\pm$.029 & .997$\\\\pm$.005 & .997$\\\\pm$.005 \\\\\\\\\\n59:MLM-only & .973$\\\\pm$.019 & .993$\\\\pm$.009 & .997$\\\\pm$.005 & .997$\\\\pm$.005 & .914$\\\\pm$.115 \\\\\\\\\\n60:Vanilla DeBERTa & .628$\\\\pm$.038 & .479$\\\\pm$.038 & .389$\\\\pm$.027 & .351$\\\\pm$.030 & .312$\\\\pm$.026 \\\\\\\\\\n77:\\\\caption{Full ActorAttack OOD results (F1) at all prefix lengths. 3-seed mean$\\\\pm$std (Binary per-$K$ reports $n$=2; Full is 3-seed).}\\n84:Binary & .788$\\\\pm$.020 & \\\\textbf{.935$\\\\pm$.018} & \\\\textbf{.976$\\\\pm$.005} & \\\\textbf{.995$\\\\pm$.005} & \\\\textbf{.990$\\\\pm$.008} \\\\\\\\\\n85:9-class & .773$\\\\pm$.041 & .855$\\\\pm$.048 & .921$\\\\pm$.046 & .966$\\\\pm$.028 & .972$\\\\pm$.026 \\\\\\\\\\n86:Scrambled & .652$\\\\pm$.034 & .804$\\\\pm$.053 & .854$\\\\pm$.046 & .910$\\\\pm$.052 & .951$\\\\pm$.043 \\\\\\\\\\n87:MLM-only & .736$\\\\pm$.150 & .909$\\\\pm$.058 & .945$\\\\pm$.039 & .929$\\\\pm$.033 & .893$\\\\pm$.080 \\\\\\\\\\n88:Wiki MLM & .656$\\\\pm$.224 & .672$\\\\pm$.252 & .693$\\\\pm$.280 & .689$\\\\pm$.285 & .686$\\\\pm$.297 \\\\\\\\\\n89:Topic & .513$\\\\pm$.077 & .580$\\\\pm$.109 & .565$\\\\pm$.100 & .615$\\\\pm$.111 & .625$\\\\pm$.141 \\\\\\\\\\n90:Vanilla & .337$\\\\pm$.049 & .306$\\\\pm$.026 & .284$\\\\pm$.011 & .262$\\\\pm$.006 & .258$\\\\pm$.000 \\\\\\\\\\n94:9-class & \\\\textbf{.738$\\\\pm$.033} & .805$\\\\pm$.033 & .884$\\\\pm$.066 & .925$\\\\pm$.066 & .939$\\\\pm$.046 \\\\\\\\\\n95:MLM & .633$\\\\pm$.133 & .665$\\\\pm$.150 & .713$\\\\pm$.174 & .719$\\\\pm$.184 & .730$\\\\pm$.201 \\\\\\\\\\n96:Vanilla & .410$\\\\pm$.126 & .425$\\\\pm$.143 & .432$\\\\pm$.144 & .466$\\\\pm$.144 & .466$\\\\pm$.163 \\\\\\\\\\n135:\\\\caption{Perturbation robustness on OOD Deceptive Delight ($n$=118). $\\\\Delta$: F1 change (pp) from clean to paraphrased. 3-seed mean$\\\\pm$std where available.}\\n141:9-class & .997$\\\\pm$.005 & 1.000$\\\\pm$.000 & +0.3 & +0.6 \\\\\\\\\\n142:Binary & 1.000$\\\\pm$.000 & 1.000$\\\\pm$.000 & 0.0 & +0.6 \\\\\\\\\\n143:Scrambled & .997$\\\\pm$.005 & 1.000$\\\\pm$.000 & +0.3 & $-$0.3 \\\\\\\\\\n145:JB MLM & .914$\\\\pm$.115 & .941 & +2.7 & 0.0 \\\\\\\\\\n146:Wiki MLM$^{*}$ & .904$\\\\pm$.115 & .872 & $-$3.3 & $-$3.2 \\\\\\\\\\n147:Vanilla$^{\\\\dagger}$ & .312$\\\\pm$.026 & .339$\\\\pm$.055 & +2.7 & $-$6.8$\\\\pm$1.1 \\\\\\\\\\n155:On OOD ActorAttack, domain-adapted variants degrade substantially (9-class $\\\\Delta$\\\\,=\\\\,$-$20.4$\\\\pm$13.5\\\\,pp, MLM $-$35.3\\\\,pp), but perturbation narrows rather than closes the adapted vs.\\\\ non-adapted gap: 9-class perturbed F1 = 0.768 vs.\\\\ vanilla 0.248 (McNemar $p < 0.001$).\\n244:\\\\caption{RoBERTa-large (355M) DAPT learning rate control on OOD Full (3-seed mean$\\\\pm$std). Reducing the learning rate worsens both DD and AA, ruling out over-adaptation as the cause of the regression in Table~\\\\ref{tab:cross_encoder}.}\\n250:Vanilla (no DAPT) & .927$\\\\pm$.036 & 1.000$\\\\pm$.000 \\\\\\\\\\n251:9-class, LR=$2 \\\\times 10^{-5}$ & .987$\\\\pm$.004 & .946$\\\\pm$.057 \\\\\\\\\\n252:9-class, LR=$1 \\\\times 10^{-5}$ & .948$\\\\pm$.034 & .781$\\\\pm$.054 \\\\\\\\\\n257:Reducing the DAPT learning rate from $2 \\\\times 10^{-5}$ to $1 \\\\times 10^{-5}$ worsens both DD and AA performance, which rules out over-adaptation as the cause of the regression observed in Table~\\\\ref{tab:cross_encoder}. An MLM-only variant (without classification) produces the same pattern (AA Full = 0.874$\\\\pm$0.014); representation drift from continued pretraining, not classification-specific bias, is the underlying cause. Domain-adaptive fine-tuning narrows the representation space of a sufficiently large encoder and reduces its inherent OOD generalization ability.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "09b02855-a272-4d98-be63-f756e15321aa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"43:\\\\\\\\caption{Full cross-attack generalization results (F1) at all prefix lengths. 3-seed mean$\\\\\\\\pm$std where available. ``--'' indicates insufficient conversation length for that prefix (FITD conversations contain 2--3 turns).}\\\\n50:9-class (ours) & 1.000$\\\\\\\\pm$.000 & 1.000$\\\\\\\\pm$.000 & 1.000$\\\\\\\\pm$.000 & 1.000$\\\\\\\\pm$.000 & 1.000$\\\\\\\\pm$.000 \\\\\\\\\\\\\\\\\\\\n52:Vanilla DeBERTa & .968$\\\\\\\\pm$.033 & .978$\\\\\\\\pm$.016 & .987$\\\\\\\\pm$.000 & .982$\\\\\\\\pm$.014 & 1.000$\\\\\\\\pm$.000 \\\\\\\\\\\\\\\\\\\\n56:9-class (ours) & .990$\\\\\\\\pm$.013 & .981$\\\\\\\\pm$.013 & .972$\\\\\\\\pm$.026 & .997$\\\\\\\\pm$.005 & .997$\\\\\\\\pm$.005 \\\\\\\\\\\\\\\\\\\\n57:Binary & .994$\\\\\\\\pm$.009 & .994$\\\\\\\\pm$.009 & .984$\\\\\\\\pm$.008 & 1.000$\\\\\\\\pm$.000 & 1.000$\\\\\\\\pm$.000 \\\\\\\\\\\\\\\\\\\\n58:Scrambled & .997$\\\\\\\\pm$.005 & .981$\\\\\\\\pm$.026 & .975$\\\\\\\\pm$.029 & .997$\\\\\\\\pm$.005 & .997$\\\\\\\\pm$.005 \\\\\\\\\\\\\\\\\\\\n59:MLM-only & .973$\\\\\\\\pm$.019 & .993$\\\\\\\\pm$.009 & .997$\\\\\\\\pm$.005 & .997$\\\\\\\\pm$.005 & .914$\\\\\\\\pm$.115 \\\\\\\\\\\\\\\\\\\\n60:Vanilla DeBERTa & .628$\\\\\\\\pm$.038 & .479$\\\\\\\\pm$.038 & .389$\\\\\\\\pm$.027 & .351$\\\\\\\\pm$.030 & .312$\\\\\\\\pm$.026 \\\\\\\\\\\\\\\\\\\\n77:\\\\\\\\caption{Full ActorAttack OOD results (F1) at all prefix lengths. 3-seed mean$\\\\\\\\pm$std (Binary per-$K$ reports $n$=2; Full is 3-seed).}\\\\n84:Binary & .788$\\\\\\\\pm$.020 & \\\\\\\\textbf{.935$\\\\\\\\pm$.018} & \\\\\\\\textbf{.976$\\\\\\\\pm$.005} & \\\\\\\\textbf{.995$\\\\\\\\pm$.005} & \\\\\\\\textbf{.990$\\\\\\\\pm$.008} \\\\\\\\\\\\\\\\\\\\n85:9-class & .773$\\\\\\\\pm$.041 & .855$\\\\\\\\pm$.048 & .921$\\\\\\\\pm$.046 & .966$\\\\\\\\pm$.028 & .972$\\\\\\\\pm$.026 \\\\\\\\\\\\\\\\\\\\n86:Scrambled & .652$\\\\\\\\pm$.034 & .804$\\\\\\\\pm$.053 & .854$\\\\\\\\pm$.046 & .910$\\\\\\\\pm$.052 & .951$\\\\\\\\pm$.043 \\\\\\\\\\\\\\\\\\\\n87:MLM-only & .736$\\\\\\\\pm$.150 & .909$\\\\\\\\pm$.058 & .945$\\\\\\\\pm$.039 & .929$\\\\\\\\pm$.033 & .893$\\\\\\\\pm$.080 \\\\\\\\\\\\\\\\\\\\n88:Wiki MLM & .656$\\\\\\\\pm$.224 & .672$\\\\\\\\pm$.252 & .693$\\\\\\\\pm$.280 & .689$\\\\\\\\pm$.285 & .686$\\\\\\\\pm$.297 \\\\\\\\\\\\\\\\\\\\n89:Topic & .513$\\\\\\\\pm$.077 & .580$\\\\\\\\pm$.109 & .565$\\\\\\\\pm$.100 & .615$\\\\\\\\pm$.111 & .625$\\\\\\\\pm$.141 \\\\\\\\\\\\\\\\\\\\n90:Vanilla & .337$\\\\\\\\pm$.049 & .306$\\\\\\\\pm$.026 & .284$\\\\\\\\pm$.011 & .262$\\\\\\\\pm$.006 & .258$\\\\\\\\pm$.000 \\\\\\\\\\\\\\\\\\\\n94:9-class & \\\\\\\\textbf{.738$\\\\\\\\pm$.033} & .805$\\\\\\\\pm$.033 & .884$\\\\\\\\pm$.066 & .925$\\\\\\\\pm$.066 & .939$\\\\\\\\pm$.046 \\\\\\\\\\\\\\\\\\\\n95:MLM & .633$\\\\\\\\pm$.133 & .665$\\\\\\\\pm$.150 & .713$\\\\\\\\pm$.174 & .719$\\\\\\\\pm$.184 & .730$\\\\\\\\pm$.201 \\\\\\\\\\\\\\\\\\\\n96:Vanilla & .410$\\\\\\\\pm$.126 & .425$\\\\\\\\pm$.143 & .432$\\\\\\\\pm$.144 & .466$\\\\\\\\pm$.144 & .466$\\\\\\\\pm$.163 \\\\\\\\\\\\\\\\\\\\n135:\\\\\\\\caption{Perturbation robustness on OOD Deceptive Delight ($n$=118). $\\\\\\\\Delta$: F1 change (pp) from clean to paraphrased. 3-seed mean$\\\\\\\\pm$std where available.}\\\\n141:9-class & .997$\\\\\\\\pm$.005 & 1.000$\\\\\\\\pm$.000 & +0.3 & +0.6 \\\\\\\\\\\\\\\\\\\\n142:Binary & 1.000$\\\\\\\\pm$.000 & 1.000$\\\\\\\\pm$.000 & 0.0 & +0.6 \\\\\\\\\\\\\\\\\\\\n143:Scrambled & .997$\\\\\\\\pm$.005 & 1.000$\\\\\\\\pm$.000 & +0.3 & $-$0.3 \\\\\\\\\\\\\\\\\\\\n145:JB MLM & .914$\\\\\\\\pm$.115 & .941 & +2.7 & 0.0 \\\\\\\\\\\\\\\\\\\\n146:Wiki MLM$^{*}$ & .904$\\\\\\\\pm$.115 & .872 & $-$3.3 & $-$3.2 \\\\\\\\\\\\\\\\\\\\n147:Vanilla$^{\\\\\\\\dagger}$ & .312$\\\\\\\\pm$.026 & .339$\\\\\\\\pm$.055 & +2.7 & $-$6.8$\\\\\\\\pm$1.1 \\\\\\\\\\\\\\\\\\\\n155:On OOD ActorAttack, domain-adapted variants degrade substantially (9-class $\\\\\\\\Delta$\\\\\\\\,=\\\\\\\\,$-$20.4$\\\\\\\\pm$13.5\\\\\\\\,pp, MLM $-$35.3\\\\\\\\,pp), but perturbation narrows rather than closes the adapted vs.\\\\\\\\ non-adapted gap: 9-class perturbed F1 = 0.768 vs.\\\\\\\\ vanilla 0.248 (McNemar $p < 0.001$).\\\\n244:\\\\\\\\caption{RoBERTa-large (355M) DAPT learning rate control on OOD Full (3-seed mean$\\\\\\\\pm$std). Reducing the learning rate worsens both DD and AA, ruling out over-adaptation as the cause of the regression in Table~\\\\\\\\ref{tab:cross_encoder}.}\\\\n250:Vanilla (no DAPT) & .927$\\\\\\\\pm$.036 & 1.000$\\\\\\\\pm$.000 \\\\\\\\\\\\\\\\\\\\n251:9-class, LR=$2 \\\\\\\\times 10^{-5}$ & .987$\\\\\\\\pm$.004 & .946$\\\\\\\\pm$.057 \\\\\\\\\\\\\\\\\\\\n252:9-class, LR=$1 \\\\\\\\times 10^{-5}$ & .948$\\\\\\\\pm$.034 & .781$\\\\\\\\pm$.054 \\\\\\\\\\\\\\\\\\\\n257:Reducing the DAPT learning rate from $2 \\\\\\\\times 10^{-5}$ to $1 \\\\\\\\times 10^{-5}$ worsens both DD and AA performance, which rules out over-adaptation as the cause of the regression observed in Table~\\\\\\\\ref{tab:cross_encoder}. An MLM-only variant (without classification) produces the same pattern (AA Full = 0.874$\\\\\\\\pm$0.014); representation drift from continued pretraining, not classification-specific bias, is the underlying cause. Domain-adaptive fine-tuning narrows the representation space of a sufficiently large encoder and reduces its inherent OOD generalization ability.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"43:\\\\caption{Full cross-attack generalization results (F1) at all prefix lengths. 3-seed mean$\\\\pm$std where available. ``--'' indicates insufficient conversation length for that prefix (FITD conversations contain 2--3 turns).}\\n50:9-class (ours) & 1.000$\\\\pm$.000 & 1.000$\\\\pm$.000 & 1.000$\\\\pm$.000 & 1.000$\\\\pm$.000 & 1.000$\\\\pm$.000 \\\\\\\\\\n52:Vanilla DeBERTa & .968$\\\\pm$.033 & .978$\\\\pm$.016 & .987$\\\\pm$.000 & .982$\\\\pm$.014 & 1.000$\\\\pm$.000 \\\\\\\\\\n56:9-class (ours) & .990$\\\\pm$.013 & .981$\\\\pm$.013 & .972$\\\\pm$.026 & .997$\\\\pm$.005 & .997$\\\\pm$.005 \\\\\\\\\\n57:Binary & .994$\\\\pm$.009 & .994$\\\\pm$.009 & .984$\\\\pm$.008 & 1.000$\\\\pm$.000 & 1.000$\\\\pm$.000 \\\\\\\\\\n58:Scrambled & .997$\\\\pm$.005 & .981$\\\\pm$.026 & .975$\\\\pm$.029 & .997$\\\\pm$.005 & .997$\\\\pm$.005 \\\\\\\\\\n59:MLM-only & .973$\\\\pm$.019 & .993$\\\\pm$.009 & .997$\\\\pm$.005 & .997$\\\\pm$.005 & .914$\\\\pm$.115 \\\\\\\\\\n60:Vanilla DeBERTa & .628$\\\\pm$.038 & .479$\\\\pm$.038 & .389$\\\\pm$.027 & .351$\\\\pm$.030 & .312$\\\\pm$.026 \\\\\\\\\\n77:\\\\caption{Full ActorAttack OOD results (F1) at all prefix lengths. 3-seed mean$\\\\pm$std (Binary per-$K$ reports $n$=2; Full is 3-seed).}\\n84:Binary & .788$\\\\pm$.020 & \\\\textbf{.935$\\\\pm$.018} & \\\\textbf{.976$\\\\pm$.005} & \\\\textbf{.995$\\\\pm$.005} & \\\\textbf{.990$\\\\pm$.008} \\\\\\\\\\n85:9-class & .773$\\\\pm$.041 & .855$\\\\pm$.048 & .921$\\\\pm$.046 & .966$\\\\pm$.028 & .972$\\\\pm$.026 \\\\\\\\\\n86:Scrambled & .652$\\\\pm$.034 & .804$\\\\pm$.053 & .854$\\\\pm$.046 & .910$\\\\pm$.052 & .951$\\\\pm$.043 \\\\\\\\\\n87:MLM-only & .736$\\\\pm$.150 & .909$\\\\pm$.058 & .945$\\\\pm$.039 & .929$\\\\pm$.033 & .893$\\\\pm$.080 \\\\\\\\\\n88:Wiki MLM & .656$\\\\pm$.224 & .672$\\\\pm$.252 & .693$\\\\pm$.280 & .689$\\\\pm$.285 & .686$\\\\pm$.297 \\\\\\\\\\n89:Topic & .513$\\\\pm$.077 & .580$\\\\pm$.109 & .565$\\\\pm$.100 & .615$\\\\pm$.111 & .625$\\\\pm$.141 \\\\\\\\\\n90:Vanilla & .337$\\\\pm$.049 & .306$\\\\pm$.026 & .284$\\\\pm$.011 & .262$\\\\pm$.006 & .258$\\\\pm$.000 \\\\\\\\\\n94:9-class & \\\\textbf{.738$\\\\pm$.033} & .805$\\\\pm$.033 & .884$\\\\pm$.066 & .925$\\\\pm$.066 & .939$\\\\pm$.046 \\\\\\\\\\n95:MLM & .633$\\\\pm$.133 & .665$\\\\pm$.150 & .713$\\\\pm$.174 & .719$\\\\pm$.184 & .730$\\\\pm$.201 \\\\\\\\\\n96:Vanilla & .410$\\\\pm$.126 & .425$\\\\pm$.143 & .432$\\\\pm$.144 & .466$\\\\pm$.144 & .466$\\\\pm$.163 \\\\\\\\\\n135:\\\\caption{Perturbation robustness on OOD Deceptive Delight ($n$=118). $\\\\Delta$: F1 change (pp) from clean to paraphrased. 3-seed mean$\\\\pm$std where available.}\\n141:9-class & .997$\\\\pm$.005 & 1.000$\\\\pm$.000 & +0.3 & +0.6 \\\\\\\\\\n142:Binary & 1.000$\\\\pm$.000 & 1.000$\\\\pm$.000 & 0.0 & +0.6 \\\\\\\\\\n143:Scrambled & .997$\\\\pm$.005 & 1.000$\\\\pm$.000 & +0.3 & $-$0.3 \\\\\\\\\\n145:JB MLM & .914$\\\\pm$.115 & .941 & +2.7 & 0.0 \\\\\\\\\\n146:Wiki MLM$^{*}$ & .904$\\\\pm$.115 & .872 & $-$3.3 & $-$3.2 \\\\\\\\\\n147:Vanilla$^{\\\\dagger}$ & .312$\\\\pm$.026 & .339$\\\\pm$.055 & +2.7 & $-$6.8$\\\\pm$1.1 \\\\\\\\\\n155:On OOD ActorAttack, domain-adapted variants degrade substantially (9-class $\\\\Delta$\\\\,=\\\\,$-$20.4$\\\\pm$13.5\\\\,pp, MLM $-$35.3\\\\,pp), but perturbation narrows rather than closes the adapted vs.\\\\ non-adapted gap: 9-class perturbed F1 = 0.768 vs.\\\\ vanilla 0.248 (McNemar $p < 0.001$).\\n244:\\\\caption{RoBERTa-large (355M) DAPT learning rate control on OOD Full (3-seed mean$\\\\pm$std). Reducing the learning rate worsens both DD and AA, ruling out over-adaptation as the cause of the regression in Table~\\\\ref{tab:cross_encoder}.}\\n250:Vanilla (no DAPT) & .927$\\\\pm$.036 & 1.000$\\\\pm$.000 \\\\\\\\\\n251:9-class, LR=$2 \\\\times 10^{-5}$ & .987$\\\\pm$.004 & .946$\\\\pm$.057 \\\\\\\\\\n252:9-class, LR=$1 \\\\times 10^{-5}$ & .948$\\\\pm$.034 & .781$\\\\pm$.054 \\\\\\\\\\n257:Reducing the DAPT learning rate from $2 \\\\times 10^{-5}$ to $1 \\\\times 10^{-5}$ worsens both DD and AA performance, which rules out over-adaptation as the cause of the regression observed in Table~\\\\ref{tab:cross_encoder}. An MLM-only variant (without classification) produces the same pattern (AA Full = 0.874$\\\\pm$0.014); representation drift from continued pretraining, not classification-specific bias, is the underlying cause. Domain-adaptive fine-tuning narrows the representation space of a sufficiently large encoder and reduces its inherent OOD generalization ability.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014BndY825XcnC3iuPv8yCcU`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -nc \"begin.table\" /root/persuasion_turn_jailbreak_detect/paper/appendix.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "2200d9a2-a0f1-4d14-afc3-e792de438d5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDp4ekRHnuDbiK3VQ6qWUm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 979,
+      "cache_read_input_tokens": 46655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 979
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-21T05:24:22.797Z_
+
+<details><summary>↩ Tool result · `toolu_014BndY825XcnC3iuPv8yCcU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"8\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "947b903f-04b2-47cb-ab72-83f3a237d6bd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"8\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"8\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The appendix has 8 tables but no explicit mention of "Table 26", "Bessel", "deviation", or "divisor". The tables in the appendix all say "3-seed mean±std" but don't specify population or sample.
+
+Let me also check the experiments.tex and checklist.tex more carefully, and look at what's in the main experiments tables. Let me also check if the appendix tables might be numbered up to 26 (since the main paper has tables too).
+
+Actually wait - the reviewer mentioned "appendix Table 26". Looking at the captions, there are tables in the appendix. 
+
+The numbering depends on the total count across the paper. The appendix has 8 tables and the main paper likely has more, which together might reach 26. But what's crucial is that almost all scripts compute standard deviation using the population formula with a divisor of n, except for one bootstrap script that uses the sample formula with n-1. The experiments.tex file explicitly states that all standard deviations are computed over 3 random seeds using the population formula.
+
+However, there's a direct contradiction: checklist.tex claims the OOD results use sample standard deviation with Bessel's correction (n-1 divisor), while the code overwhelmingly defaults to population standard deviation. The appendix table captions don't specify which type, and checking the `.std()` calls on numpy arrays confirms they all use the population formula by default, except for that single exception in the bootstrap script.
+
+Now I need to verify the actual reported values by checking if there are any results JSON files or looking through the remaining scripts from my earlier search to make sure I haven't missed any other standard deviation calculations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "355f2aff-c01d-4f8d-b2da-8e290155d57a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EHyGZsdMKKEZ4KBVNVZxmz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3828,
+      "cache_read_input_tokens": 47634,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3828
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+现在检查几个关键脚本的上下文，确认 std 用途（是否用于论文报告的 3-seed F1 std）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "fc1e23a2-4e03-470e-ad5d-9743e0c50dcd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EHyGZsdMKKEZ4KBVNVZxmz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3828,
+      "cache_read_input_tokens": 47634,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3828
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01317NSTsdpqfrP5qpub8Nqe`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -n \"np.std\" /root/persuasion_turn_jailbreak_detect/scripts/statistical_tests.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "388a177c-3ffb-435a-8588-2804f03d32c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EHyGZsdMKKEZ4KBVNVZxmz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3828,
+      "cache_read_input_tokens": 47634,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3828
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FKry8qPvViv8LXyXBmQvNL`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "head -135 /root/persuasion_turn_jailbreak_detect/scripts/statistical_tests.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "c0ea677b-f3d1-4d59-805a-1873ee3a2445",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EHyGZsdMKKEZ4KBVNVZxmz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3828,
+      "cache_read_input_tokens": 47634,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3828
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-21T05:24:45.180Z_
+
+<details><summary>↩ Tool result · `toolu_01317NSTsdpqfrP5qpub8Nqe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"125:        \\\"f1_std\\\": round(float(np.std(f1s)), 4),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "757825b2-cc57-4bcb-a3ec-6a05a1005850",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"125:        \\\\\\\"f1_std\\\\\\\": round(float(np.std(f1s)), 4),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"125:        \\\"f1_std\\\": round(float(np.std(f1s)), 4),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015oRLZwyXpZTqyN27L6ZXxV`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -n \"np.std\" /root/persuasion_turn_jailbreak_detect/scripts/evaluate_actorattack_ood.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "ec0c7415-a69c-4065-ba9f-d1773851944a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EHyGZsdMKKEZ4KBVNVZxmz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3828,
+      "cache_read_input_tokens": 47634,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3828
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-21T05:24:45.710Z_
+
+<details><summary>↩ Tool result · `toolu_01FKry8qPvViv8LXyXBmQvNL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/hf_cache\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"0\\\"\\n\\nimport sys\\nimport json\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom scipy.stats import chi2\\n\\nsys.path.insert(0, \\\"/root/persuasion_turn_jailbreak_detect\\\")\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\nfrom src.models.gru_classifier import GRUClassifier\\nfrom transformers import AutoTokenizer\\n\\nPROJ = Path(\\\"/root/persuasion_turn_jailbreak_detect\\\")\\nDEVICE = torch.device(\\\"cuda:0\\\" if torch.cuda.is_available() else \\\"cpu\\\")\\nLOCAL_MODEL = \\\"/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\\\"\\nMAX_LENGTH = 256\\n\\nVARIANTS = {\\n    \\\"9class\\\": {\\n        \\\"deberta\\\": PROJ / \\\"checkpoints/plan_002/deberta_multitask/best/model.pt\\\",\\n        \\\"gru\\\": PROJ / \\\"checkpoints/plan_002/gru/treatment/best.pt\\\",\\n        \\\"num_persuasion_classes\\\": 9,\\n    },\\n    \\\"scrambled\\\": {\\n        \\\"deberta\\\": PROJ / \\\"checkpoints/plan_003_scrambled_fix/deberta_multitask/best/model.pt\\\",\\n        \\\"gru\\\": PROJ / \\\"checkpoints/plan_003_scrambled_fix/gru/best.pt\\\",\\n        \\\"num_persuasion_classes\\\": 9,\\n    },\\n    \\\"binary\\\": {\\n        \\\"deberta\\\": PROJ / \\\"checkpoints/mf1_binary_seed456/deberta_multitask/best/model.pt\\\",\\n        \\\"gru\\\": PROJ / \\\"checkpoints/mf1_binary_seed456/gru/treatment/best.pt\\\",\\n        \\\"num_persuasion_classes\\\": 2,\\n    },\\n}\\n\\nK_VALUES = [1, 2, 3, 5, None]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef extract_user_turns(conv):\\n    return [t[\\\"content\\\"] for t in conv[\\\"turns\\\"] if t[\\\"role\\\"] == \\\"user\\\"]\\n\\n\\ndef get_label(conv):\\n    return 1 if conv[\\\"label\\\"] == \\\"jailbreak\\\" else 0\\n\\n\\ndef load_encoder(deberta_path, num_classes):\\n    model = DeBERTaMultiTask(model_name=LOCAL_MODEL, num_persuasion_classes=num_classes)\\n    sd = torch.load(deberta_path, map_location=\\\"cpu\\\")\\n    model.load_state_dict(sd)\\n    enc = model.deberta.to(DEVICE).eval()\\n    for p in enc.parameters():\\n        p.requires_grad = False\\n    return enc\\n\\n\\ndef load_gru(path):\\n    gru = GRUClassifier(input_dim=768, hidden_dim=256, num_layers=2, dropout=0.3)\\n    gru.load_state_dict(torch.load(path, map_location=\\\"cpu\\\"))\\n    gru.to(DEVICE).eval()\\n    return gru\\n\\n\\ndef get_predictions(encoder, gru, tokenizer, convs, k=None):\\n    preds = []\\n    labels = []\\n    for c in convs:\\n        turns = extract_user_turns(c)\\n        t = turns[:k] if k is not None else turns\\n        if len(t) == 0:\\n            t = [\\\"\\\"]\\n        enc = tokenizer(t, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\\\"pt\\\").to(DEVICE)\\n        with torch.no_grad():\\n            out = encoder(input_ids=enc[\\\"input_ids\\\"], attention_mask=enc[\\\"attention_mask\\\"])\\n            embs = out.last_hidden_state[:, 0, :]\\n            embs_batch = embs.unsqueeze(0)\\n            lengths = torch.tensor([embs.size(0)], dtype=torch.long).to(DEVICE)\\n            logits = gru(embs_batch, lengths)\\n            pred = logits.argmax(dim=1).item()\\n        preds.append(pred)\\n        labels.append(get_label(c))\\n    return np.array(labels), np.array(preds)\\n\\n\\ndef mcnemar_test(y_true, pred_a, pred_b):\\n    correct_a = (pred_a == y_true)\\n    correct_b = (pred_b == y_true)\\n    b = int(np.sum(correct_a & ~correct_b))\\n    c = int(np.sum(~correct_a & correct_b))\\n    if b + c == 0:\\n        return {\\\"chi2\\\": 0.0, \\\"p_value\\\": 1.0, \\\"b\\\": b, \\\"c\\\": c, \\\"n\\\": len(y_true)}\\n    stat = (abs(b - c) - 1)**2 / (b + c)\\n    p = 1 - chi2.cdf(stat, df=1)\\n    return {\\\"chi2\\\": round(float(stat), 4), \\\"p_value\\\": round(float(p), 4), \\\"b\\\": b, \\\"c\\\": c, \\\"n\\\": len(y_true)}\\n\\n\\ndef bootstrap_f1_ci(y_true, preds, n_boot=10000, ci=0.95, seed=42):\\n    rng = np.random.RandomState(seed)\\n    y_true, preds = np.array(y_true), np.array(preds)\\n    n = len(y_true)\\n    f1s = []\\n    for _ in range(n_boot):\\n        idx = rng.choice(n, n, replace=True)\\n        yt, yp = y_true[idx], preds[idx]\\n        tp = int(np.sum((yt == 1) & (yp == 1)))\\n        fp = int(np.sum((yt == 0) & (yp == 1)))\\n        fn = int(np.sum((yt == 1) & (yp == 0)))\\n        pr = tp / (tp + fp) if (tp + fp) > 0 else 0\\n        rc = tp / (tp + fn) if (tp + fn) > 0 else 0\\n        f1 = 2 * pr * rc / (pr + rc) if (pr + rc) > 0 else 0\\n        f1s.append(f1)\\n    alpha = 1 - ci\\n    return {\\n        \\\"f1_mean\\\": round(float(np.mean(f1s)), 4),\\n        \\\"f1_std\\\": round(float(np.std(f1s)), 4),\\n        \\\"ci_lower\\\": round(float(np.percentile(f1s, alpha/2 * 100)), 4),\\n        \\\"ci_upper\\\": round(float(np.percentile(f1s, (1 - alpha/2) * 100)), 4),\\n        \\\"n_bootstrap\\\": n_boot,\\n    }\\n\\n\\ndef main():\\n    print(f\\\"Device: {DEVICE}\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(LOCAL_MODEL)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "66cdf42a-dd87-497e-8851-702dfb7bcb2c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import os\\\\nos.environ[\\\\\\\"HF_HOME\\\\\\\"] = \\\\\\\"/root/autodl-tmp/hf_cache\\\\\\\"\\\\nos.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = \\\\\\\"0\\\\\\\"\\\\n\\\\nimport sys\\\\nimport json\\\\nimport numpy as np\\\\nimport torch\\\\nfrom pathlib import Path\\\\nfrom scipy.stats import chi2\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/persuasion_turn_jailbreak_detect\\\\\\\")\\\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\\\nfrom src.models.gru_classifier import GRUClassifier\\\\nfrom transformers import AutoTokenizer\\\\n\\\\nPROJ = Path(\\\\\\\"/root/persuasion_turn_jailbreak_detect\\\\\\\")\\\\nDEVICE = torch.device(\\\\\\\"cuda:0\\\\\\\" if torch.cuda.is_available() else \\\\\\\"cpu\\\\\\\")\\\\nLOCAL_MODEL = \\\\\\\"/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\\\\\\\"\\\\nMAX_LENGTH = 256\\\\n\\\\nVARIANTS = {\\\\n    \\\\\\\"9class\\\\\\\": {\\\\n        \\\\\\\"deberta\\\\\\\": PROJ / \\\\\\\"checkpoints/plan_002/deberta_multitask/best/model.pt\\\\\\\",\\\\n        \\\\\\\"gru\\\\\\\": PROJ / \\\\\\\"checkpoints/plan_002/gru/treatment/best.pt\\\\\\\",\\\\n        \\\\\\\"num_persuasion_classes\\\\\\\": 9,\\\\n    },\\\\n    \\\\\\\"scrambled\\\\\\\": {\\\\n        \\\\\\\"deberta\\\\\\\": PROJ / \\\\\\\"checkpoints/plan_003_scrambled_fix/deberta_multitask/best/model.pt\\\\\\\",\\\\n        \\\\\\\"gru\\\\\\\": PROJ / \\\\\\\"checkpoints/plan_003_scrambled_fix/gru/best.pt\\\\\\\",\\\\n        \\\\\\\"num_persuasion_classes\\\\\\\": 9,\\\\n    },\\\\n    \\\\\\\"binary\\\\\\\": {\\\\n        \\\\\\\"deberta\\\\\\\": PROJ / \\\\\\\"checkpoints/mf1_binary_seed456/deberta_multitask/best/model.pt\\\\\\\",\\\\n        \\\\\\\"gru\\\\\\\": PROJ / \\\\\\\"checkpoints/mf1_binary_seed456/gru/treatment/best.pt\\\\\\\",\\\\n        \\\\\\\"num_persuasion_classes\\\\\\\": 2,\\\\n    },\\\\n}\\\\n\\\\nK_VALUES = [1, 2, 3, 5, None]\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(l) for l in f if l.strip()]\\\\n\\\\n\\\\ndef extract_user_turns(conv):\\\\n    return [t[\\\\\\\"content\\\\\\\"] for t in conv[\\\\\\\"turns\\\\\\\"] if t[\\\\\\\"role\\\\\\\"] == \\\\\\\"user\\\\\\\"]\\\\n\\\\n\\\\ndef get_label(conv):\\\\n    return 1 if conv[\\\\\\\"label\\\\\\\"] == \\\\\\\"jailbreak\\\\\\\" else 0\\\\n\\\\n\\\\ndef load_encoder(deberta_path, num_classes):\\\\n    model = DeBERTaMultiTask(model_name=LOCAL_MODEL, num_persuasion_classes=num_classes)\\\\n    sd = torch.load(deberta_path, map_location=\\\\\\\"cpu\\\\\\\")\\\\n    model.load_state_dict(sd)\\\\n    enc = model.deberta.to(DEVICE).eval()\\\\n    for p in enc.parameters():\\\\n        p.requires_grad = False\\\\n    return enc\\\\n\\\\n\\\\ndef load_gru(path):\\\\n    gru = GRUClassifier(input_dim=768, hidden_dim=256, num_layers=2, dropout=0.3)\\\\n    gru.load_state_dict(torch.load(path, map_location=\\\\\\\"cpu\\\\\\\"))\\\\n    gru.to(DEVICE).eval()\\\\n    return gru\\\\n\\\\n\\\\ndef get_predictions(encoder, gru, tokenizer, convs, k=None):\\\\n    preds = []\\\\n    labels = []\\\\n    for c in convs:\\\\n        turns = extract_user_turns(c)\\\\n        t = turns[:k] if k is not None else turns\\\\n        if len(t) == 0:\\\\n            t = [\\\\\\\"\\\\\\\"]\\\\n        enc = tokenizer(t, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\\\\\\\"pt\\\\\\\").to(DEVICE)\\\\n        with torch.no_grad():\\\\n            out = encoder(input_ids=enc[\\\\\\\"input_ids\\\\\\\"], attention_mask=enc[\\\\\\\"attention_mask\\\\\\\"])\\\\n            embs = out.last_hidden_state[:, 0, :]\\\\n            embs_batch = embs.unsqueeze(0)\\\\n            lengths = torch.tensor([embs.size(0)], dtype=torch.long).to(DEVICE)\\\\n            logits = gru(embs_batch, lengths)\\\\n            pred = logits.argmax(dim=1).item()\\\\n        preds.append(pred)\\\\n        labels.append(get_label(c))\\\\n    return np.array(labels), np.array(preds)\\\\n\\\\n\\\\ndef mcnemar_test(y_true, pred_a, pred_b):\\\\n    correct_a = (pred_a == y_true)\\\\n    correct_b = (pred_b == y_true)\\\\n    b = int(np.sum(correct_a & ~correct_b))\\\\n    c = int(np.sum(~correct_a & correct_b))\\\\n    if b + c == 0:\\\\n        return {\\\\\\\"chi2\\\\\\\": 0.0, \\\\\\\"p_value\\\\\\\": 1.0, \\\\\\\"b\\\\\\\": b, \\\\\\\"c\\\\\\\": c, \\\\\\\"n\\\\\\\": len(y_true)}\\\\n    stat = (abs(b - c) - 1)**2 / (b + c)\\\\n    p = 1 - chi2.cdf(stat, df=1)\\\\n    return {\\\\\\\"chi2\\\\\\\": round(float(stat), 4), \\\\\\\"p_value\\\\\\\": round(float(p), 4), \\\\\\\"b\\\\\\\": b, \\\\\\\"c\\\\\\\": c, \\\\\\\"n\\\\\\\": len(y_true)}\\\\n\\\\n\\\\ndef bootstrap_f1_ci(y_true, preds, n_boot=10000, ci=0.95, seed=42):\\\\n    rng = np.random.RandomState(seed)\\\\n    y_true, preds = np.array(y_true), np.array(preds)\\\\n    n = len(y_true)\\\\n    f1s = []\\\\n    for _ in range(n_boot):\\\\n        idx = rng.choice(n, n, replace=True)\\\\n        yt, yp = y_true[idx], preds[idx]\\\\n        tp = int(np.sum((yt == 1) & (yp == 1)))\\\\n        fp = int(np.sum((yt == 0) & (yp == 1)))\\\\n        fn = int(np.sum((yt == 1) & (yp == 0)))\\\\n        pr = tp / (tp + fp) if (tp + fp) > 0 else 0\\\\n        rc = tp / (tp + fn) if (tp + fn) > 0 else 0\\\\n        f1 = 2 * pr * rc / (pr + rc) if (pr + rc) > 0 else 0\\\\n        f1s.append(f1)\\\\n    alpha = 1 - ci\\\\n    return {\\\\n        \\\\\\\"f1_mean\\\\\\\": round(float(np.mean(f1s)), 4),\\\\n        \\\\\\\"f1_std\\\\\\\": round(float(np.std(f1s)), 4),\\\\n        \\\\\\\"ci_lower\\\\\\\": round(float(np.percentile(f1s, alpha/2 * 100)), 4),\\\\n        \\\\\\\"ci_upper\\\\\\\": round(float(np.percentile(f1s, (1 - alpha/2) * 100)), 4),\\\\n        \\\\\\\"n_bootstrap\\\\\\\": n_boot,\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    print(f\\\\\\\"Device: {DEVICE}\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(LOCAL_MODEL)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"import os\\nos.environ[\\\"HF_HOME\\\"] = \\\"/root/autodl-tmp/hf_cache\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"0\\\"\\n\\nimport sys\\nimport json\\nimport numpy as np\\nimport torch\\nfrom pathlib import Path\\nfrom scipy.stats import chi2\\n\\nsys.path.insert(0, \\\"/root/persuasion_turn_jailbreak_detect\\\")\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\nfrom src.models.gru_classifier import GRUClassifier\\nfrom transformers import AutoTokenizer\\n\\nPROJ = Path(\\\"/root/persuasion_turn_jailbreak_detect\\\")\\nDEVICE = torch.device(\\\"cuda:0\\\" if torch.cuda.is_available() else \\\"cpu\\\")\\nLOCAL_MODEL = \\\"/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\\\"\\nMAX_LENGTH = 256\\n\\nVARIANTS = {\\n    \\\"9class\\\": {\\n        \\\"deberta\\\": PROJ / \\\"checkpoints/plan_002/deberta_multitask/best/model.pt\\\",\\n        \\\"gru\\\": PROJ / \\\"checkpoints/plan_002/gru/treatment/best.pt\\\",\\n        \\\"num_persuasion_classes\\\": 9,\\n    },\\n    \\\"scrambled\\\": {\\n        \\\"deberta\\\": PROJ / \\\"checkpoints/plan_003_scrambled_fix/deberta_multitask/best/model.pt\\\",\\n        \\\"gru\\\": PROJ / \\\"checkpoints/plan_003_scrambled_fix/gru/best.pt\\\",\\n        \\\"num_persuasion_classes\\\": 9,\\n    },\\n    \\\"binary\\\": {\\n        \\\"deberta\\\": PROJ / \\\"checkpoints/mf1_binary_seed456/deberta_multitask/best/model.pt\\\",\\n        \\\"gru\\\": PROJ / \\\"checkpoints/mf1_binary_seed456/gru/treatment/best.pt\\\",\\n        \\\"num_persuasion_classes\\\": 2,\\n    },\\n}\\n\\nK_VALUES = [1, 2, 3, 5, None]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef extract_user_turns(conv):\\n    return [t[\\\"content\\\"] for t in conv[\\\"turns\\\"] if t[\\\"role\\\"] == \\\"user\\\"]\\n\\n\\ndef get_label(conv):\\n    return 1 if conv[\\\"label\\\"] == \\\"jailbreak\\\" else 0\\n\\n\\ndef load_encoder(deberta_path, num_classes):\\n    model = DeBERTaMultiTask(model_name=LOCAL_MODEL, num_persuasion_classes=num_classes)\\n    sd = torch.load(deberta_path, map_location=\\\"cpu\\\")\\n    model.load_state_dict(sd)\\n    enc = model.deberta.to(DEVICE).eval()\\n    for p in enc.parameters():\\n        p.requires_grad = False\\n    return enc\\n\\n\\ndef load_gru(path):\\n    gru = GRUClassifier(input_dim=768, hidden_dim=256, num_layers=2, dropout=0.3)\\n    gru.load_state_dict(torch.load(path, map_location=\\\"cpu\\\"))\\n    gru.to(DEVICE).eval()\\n    return gru\\n\\n\\ndef get_predictions(encoder, gru, tokenizer, convs, k=None):\\n    preds = []\\n    labels = []\\n    for c in convs:\\n        turns = extract_user_turns(c)\\n        t = turns[:k] if k is not None else turns\\n        if len(t) == 0:\\n            t = [\\\"\\\"]\\n        enc = tokenizer(t, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\\\"pt\\\").to(DEVICE)\\n        with torch.no_grad():\\n            out = encoder(input_ids=enc[\\\"input_ids\\\"], attention_mask=enc[\\\"attention_mask\\\"])\\n            embs = out.last_hidden_state[:, 0, :]\\n            embs_batch = embs.unsqueeze(0)\\n            lengths = torch.tensor([embs.size(0)], dtype=torch.long).to(DEVICE)\\n            logits = gru(embs_batch, lengths)\\n            pred = logits.argmax(dim=1).item()\\n        preds.append(pred)\\n        labels.append(get_label(c))\\n    return np.array(labels), np.array(preds)\\n\\n\\ndef mcnemar_test(y_true, pred_a, pred_b):\\n    correct_a = (pred_a == y_true)\\n    correct_b = (pred_b == y_true)\\n    b = int(np.sum(correct_a & ~correct_b))\\n    c = int(np.sum(~correct_a & correct_b))\\n    if b + c == 0:\\n        return {\\\"chi2\\\": 0.0, \\\"p_value\\\": 1.0, \\\"b\\\": b, \\\"c\\\": c, \\\"n\\\": len(y_true)}\\n    stat = (abs(b - c) - 1)**2 / (b + c)\\n    p = 1 - chi2.cdf(stat, df=1)\\n    return {\\\"chi2\\\": round(float(stat), 4), \\\"p_value\\\": round(float(p), 4), \\\"b\\\": b, \\\"c\\\": c, \\\"n\\\": len(y_true)}\\n\\n\\ndef bootstrap_f1_ci(y_true, preds, n_boot=10000, ci=0.95, seed=42):\\n    rng = np.random.RandomState(seed)\\n    y_true, preds = np.array(y_true), np.array(preds)\\n    n = len(y_true)\\n    f1s = []\\n    for _ in range(n_boot):\\n        idx = rng.choice(n, n, replace=True)\\n        yt, yp = y_true[idx], preds[idx]\\n        tp = int(np.sum((yt == 1) & (yp == 1)))\\n        fp = int(np.sum((yt == 0) & (yp == 1)))\\n        fn = int(np.sum((yt == 1) & (yp == 0)))\\n        pr = tp / (tp + fp) if (tp + fp) > 0 else 0\\n        rc = tp / (tp + fn) if (tp + fn) > 0 else 0\\n        f1 = 2 * pr * rc / (pr + rc) if (pr + rc) > 0 else 0\\n        f1s.append(f1)\\n    alpha = 1 - ci\\n    return {\\n        \\\"f1_mean\\\": round(float(np.mean(f1s)), 4),\\n        \\\"f1_std\\\": round(float(np.std(f1s)), 4),\\n        \\\"ci_lower\\\": round(float(np.percentile(f1s, alpha/2 * 100)), 4),\\n        \\\"ci_upper\\\": round(float(np.percentile(f1s, (1 - alpha/2) * 100)), 4),\\n        \\\"n_bootstrap\\\": n_boot,\\n    }\\n\\n\\ndef main():\\n    print(f\\\"Device: {DEVICE}\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(LOCAL_MODEL)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-21T05:24:46.237Z_
+
+<details><summary>↩ Tool result · `toolu_015oRLZwyXpZTqyN27L6ZXxV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"283:                    \\\"std\\\": float(np.std(vals)),  # population std\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "a9eed99b-7ecc-416c-bf9b-f573adf3b97d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"283:                    \\\\\\\"std\\\\\\\": float(np.std(vals)),  # population std\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"283:                    \\\"std\\\": float(np.std(vals)),  # population std\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NL6U2WpWx2zEGiNgqmPgee`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -n \"np.std\" /root/persuasion_turn_jailbreak_detect/scripts/vanilla_multiseed_dd_ood.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "30e8abd2-c674-4eb1-9bcb-528702a03caf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EHyGZsdMKKEZ4KBVNVZxmz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3828,
+      "cache_read_input_tokens": 47634,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3828
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-21T05:24:46.838Z_
+
+<details><summary>↩ Tool result · `toolu_01NL6U2WpWx2zEGiNgqmPgee`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"212:            \\\"std\\\": round(float(np.std(vals)), 4)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "b15284a6-7034-43ff-b6aa-1c70d783a0ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"212:            \\\\\\\"std\\\\\\\": round(float(np.std(vals)), 4)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"212:            \\\"std\\\": round(float(np.std(vals)), 4)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SKnCWgfZnMRrPZRQfESt1X`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"np.std\" /root/persuasion_turn_jailbreak_detect/scripts/turn_shuffle_ablation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "977b6222-c16c-4379-83c1-ea6fd44d322e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EHyGZsdMKKEZ4KBVNVZxmz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3828,
+      "cache_read_input_tokens": 47634,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3828
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-21T05:24:47.881Z_
+
+<details><summary>↩ Tool result · `toolu_01SKnCWgfZnMRrPZRQfESt1X`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"175:            orig_std = np.std(orig)\\n177:            shuf_std = np.std(shuf)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "fbd4fe9e-b47f-445b-a5c6-e8298a3d2b0c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"175:            orig_std = np.std(orig)\\\\n177:            shuf_std = np.std(shuf)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"175:            orig_std = np.std(orig)\\n177:            shuf_std = np.std(shuf)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WSGmDvgybDbzKuNYSsRPWi`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -rn \"np.std\" /root/persuasion_turn_jailbreak_detect/scripts/exp9_bootstrap_ci.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "be76d7ab-9bea-47ac-9579-c564e1a3e221",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EHyGZsdMKKEZ4KBVNVZxmz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3828,
+      "cache_read_input_tokens": 47634,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3828
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-21T05:24:48.781Z_
+
+<details><summary>↩ Tool result · `toolu_01WSGmDvgybDbzKuNYSsRPWi`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "648214dc-afb3-4746-910d-c46cdc6ff834",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check if there's any appendix table that mentions std type. Let me also look at the `exp9_bootstrap_ci.py` which is the main bootstrap CI script (separate from `exp12`). Also, let me read a few lines around the experiments.tex:29 statement and checklist.tex:19 statement to get full context.
+
+Actually, I have all the information I need. Let me now write the audit report.
+
+Summary of findings:
+
+## A. Code actual std type
+
+Almost all scripts use `np.std(vals)` (no ddof parameter) = **population std (ddof=0, n divisor)**:
+
+
+I'm seeing a consistent pattern across multiple scripts where population standard deviation is being calculated, with several files explicitly documenting this choice in their comments. -}1$ divisor) are ≈22% larger but do not alter any significance conclusions."
+   → Claims **sample std**
+
+2. **checklist.tex:19** — "All OOD results report 3-seed mean±std (sample standard deviation with Bessel's correction, $N{-}1$ divisor)."
+   → Claims **sample std**
+
+3. **appendix.tex** — Tables say "3-seed mean±std" without specifying population or sample. No explicit mention of "Table 26" in the appendix source (the table number 26 may result from automatic numbering across the whole paper).
+
+## C. Consistency
+
+- **Code vs experiments.tex**: Code uses population std → experiments.tex says population std → **CONSISTENT** (for all scripts except exp12)
+- **Code vs checklist.tex**: Code uses population std → checklist.tex says sample std → **INCONSISTENT**
+- **Code vs appendix.tex**: Code uses population std → appendix.tex doesn't specify → **AMBIGUOUS**
+
+So the paper has conflicting claims: experiments.tex declares population std, but checklist.tex declares sample std for OOD results specifically. The code predominantly uses population std except for one bootstrap script, which aligns with experiments.tex but contradicts checklist.tex.
+
+## D. Impact analysis
+
+For n=3 seeds:
+- sample_std = population_std × √(3/2) ≈ population_std × 1.2247
+- Difference: sample std is ~22.47% larger than population std
+
+For significance: The paper uses bootstrap CIs and permutation tests (not std-based significance tests), so the std values are purely descriptive (reported as mean±std in tables). The actual significance conclusions rely on bootstrap CIs and permutation p-values, which are not affected by the std formula choice.
+
+The contradiction between experiments.tex and checklist.tex is a real documentation issue that needs clarification, though it doesn't impact the statistical conclusions since significance testing doesn't depend on which std formula was used.
+
+I couldn't locate the specific reference to "appendix Table 26 says sample std (n-1 divisor)" that was mentioned, so I'll note that in my report. I should also clarify how the std calculations work across the codebase—numpy arrays default to population std (ddof=0) while pandas defaults to sample std (ddof=1), and since the scripts use numpy arrays from cross_val_score, the .std() calls compute population standard deviation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "cf5cc054-efc9-409e-9a6b-899748867bce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013W8paHsLdPtXPQfyRWzJt5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4446,
+      "cache_read_input_tokens": 51462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4446
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+所有数据已收集完毕。以下是审计报告：
+
+---
+
+## A. 代码实际使用的 std 类型
+
+### 全部使用 `np.std(vals)` (ddof=0, **population std, n divisor**) 的脚本：
+
+| 脚本 | 行号 | 调用 | 用途 |
+|------|------|------|------|
+| `statistical_tests.py` | 125 | `np.std(f1s)` | 3-seed F1 bootstrap std |
+| `evaluate_actorattack_ood.py` | 283 | `np.std(vals)` | 3-seed F1 (注释明确写了 `# population std`) |
+| `aggregate_exp2_missing.py` | 28 | `np.std(vals)` | 3-seed F1 (注释写了 `# population std (N divisor)`) |
+| `vanilla_multiseed_dd_ood.py` | 212 | `np.std(vals)` | 3-seed F1 |
+| `eval_exp16.py` | 167 | `np.std(f1s)` | 3-seed F1 |
+| `exp3_probing.py` | 161 | `np.std(scores)` | 3-seed probing accuracy |
+| `exp3_roberta_probing.py` | 297 | `np.std(scores)` | 3-seed probing accuracy |
+| `evaluate_actorattack_ood_all.py` | 277 | `np.std(vals)` | 3-seed F1 |
+| `exp4_vanilla_perturbation_mcnemar.py` | 254 | `np.std(vals)` | 3-seed F1 |
+| `fix_exp6_reeval.py` | 144 | `np.std(vals)` | 3-seed F1 |
+| `exp8_mhj_human_eval.py` | 326 | `np.std(vals)` | 3-seed metrics |
+| `exp8_human_jailbreak_verazuo.py` | 345 | `np.std(vals)` | 3-seed metrics |
+| `exp8_recalc_macro_f1.py` | 345 | `np.std(vals)` | 3-seed metrics |
+| `meanpool_multiseed.py` | 257 | `np.std(vals)` | 3-seed F1 |
+| `eval_cross_llm.py` | 186 | `np.std(vals)` | 3-seed F1 |
+| `eval_cross_llm_control.py` | 190 | `np.std(vals)` | 3-seed F1 |
+| `analyze_predictions.py` | 239 | `np.std(vals)` | 3-seed metrics |
+| `exp15_roberta_large.py` | 401 | `np.std(vals)` | 3-seed metrics |
+| `exp15b_roberta_large_lr1e5.py` | 403 | `np.std(vals)` | 3-seed metrics |
+| `exp15c_roberta_large_mlm.py` | 429 | `np.std(vals)` | 3-seed metrics |
+| `eval_exp17.py` | 225 | `np.std(vals)` | 3-seed metrics |
+| `eval_toxicchat_balanced.py` | 118 | `np.std(f1_list)` | 3-seed F1 |
+| `eval_toxicchat_balanced_mlm.py` | 92 | `np.std(f1_list)` | 3-seed F1 |
+| `eval_exp17_toxicchat_balanced.py` | 75 | `np.std(f1s)` | 3-seed F1 |
+| `reeval_exp16_balanced.py` | 199 | `np.std(f1s)` | 3-seed F1 |
+| `turn_shuffle_ablation.py` | 175, 177 | `np.std(orig/shuf)` | 3-seed F1 |
+| `exp28b_supplement.py` | 581,583,585 | `np.std(vals)` | 3-seed F1 |
+| `exp28c_vanilla_supplement.py` | 293,295,297 | `np.std(vals)` | 3-seed F1 |
+| `exp30_length_stratified.py` | 212 | `np.std(recalls)` | 3-seed recall |
+| `exp29_inference_efficiency.py` | 129, 217 | `np.std(latencies)` | latency std (非 seed F1) |
+| `exp32_strategy_prediction.py` | 424,427-429 | `np.std(vs)` | 3-seed metrics |
+| `exp33_strategy_prediction_plan002.py` | 378 | `np.std(vs)` | 3-seed metrics |
+| `exp35_cross_seed_ensemble.py` | 276 | `np.std(seed_f1s)` | 3-seed F1 |
+| `exp36_frozen_mlm_probing.py` | 369 | `np.std(vals)` | 3-seed metrics |
+| `exp37_length_matched_benign.py` | 168,246,255,354,359 | `np.std(...)` | 3-seed FPR |
+| `exp38_wildcat_calibration.py` | 210,264,287,303,376 | `np.std(...)` | 3-seed AUC/FPR |
+
+`.std()` 调用（numpy array 方法，默认 ddof=0 = population）：
+| `sanity_check.py` | 70 | `scores.std()` | CV F1 (非论文数字) |
+| `step3_sanity_check.py` | 59, 69 | `scores.std()` | CV F1 (非论文数字) |
+| `sanity_check_v4b.py` | 32, 49 | `scores.std()` | CV F1 (非论文数字) |
+
+### 唯一例外 — **sample std (ddof=1)**：
+
+| 脚本 | 行号 | 调用 | 用途 |
+|------|------|------|------|
+| `exp12_toxicchat_bootstrap.py` | 127 | `np.std(seed_f1s, ddof=1)` | 3-seed ToxicChat F1 seed std |
+
+**无 `torch.std` 调用。无 pandas `.std()` 调用。**
+
+---
+
+## B. 论文三处描述
+
+1. **experiments.tex:29** — "All standard deviations are computed over 3 random seeds using the **population formula ($n$ divisor)**; Bessel-corrected estimates ($n{-}1$ divisor) are ≈22% larger but do not alter any significance conclusions."
+
+2. **checklist.tex:19** — "All OOD results report 3-seed mean±std (**sample standard deviation with Bessel's correction, $N{-}1$ divisor**)."
+
+3. **appendix.tex** — 表格 caption 中均写 "3-seed mean±std"，**未指定 population 或 sample**。appendix.tex 内无 "Bessel"、"divisor"、"n-1"、"deviation" 等关键词。Table 26（自动编号）的 caption 中没有明确标注 std 类型。
+
+---
+
+## C. 一致性判断
+
+| 对比 | 结果 |
+|------|------|
+| 代码 (population) vs experiments.tex (population) | **一致** |
+| 代码 (population) vs checklist.tex (sample) | **矛盾** |
+| experiments.tex (population) vs checklist.tex (sample) | **矛盾** |
+| exp12 脚本 (sample, ddof=1) vs 其他所有脚本 (population, ddof=0) | **exp12 是唯一异类** |
+
+**结论：代码绝大多数使用 population std (n divisor)，experiments.tex 描述正确，checklist.tex 描述错误。**
+
+`exp12_toxicchat_bootstrap.py` 是唯一用 sample std 的脚本，它的 seed_std 值会比其他脚本大 22.5%，这可能导致该脚本产生的数字与论文整体不一致。
+
+---
+
+## D. 影响分析
+
+**换算关系** (n=3 seeds):
+- `sample_std = population_std × √(3/2) ≈ population_std × 1.2247`
+- sample std 比 population std 大 **~22.5%**
+
+**对论文数字的影响**：
+- 论文中所有 ±std 数字实际来自 population std（除 exp12）
+- 典型 std 值范围：0.005–0.115（从 appendix 表格数据看）
+- 如换成 sample std，例如 `.026` → `.032`，`.115` → `.141`
+- **数量级和相对排序不变**
+
+**对 significance 结论的影响**：
+- 论文的 significance 判断基于 **bootstrap CIs** 和 **permutation tests**（不依赖 std 值），因此 std 类型不影响任何 significance 结论
+- experiments.tex 中已正确声明"do not alter any significance conclusions"
+
+**exp12 的异常**：
+- `exp12_toxicchat_bootstrap.py:127` 用 `ddof=1`，其 `seed_std` 比同口径 population std 大 22.5%
+- 如果该数字出现在论文中（ToxicChat 的 seed std），它与其他表格的 std 口径不一致
+- 建议统一为 `ddof=0` 或全部改为 `ddof=1`，并修正 checklist.tex 使三处描述一致
+
+---
+
+**修复建议**（不修改文件，仅列出）：
+1. **checklist.tex:19** — 改为 "population standard deviation ($N$ divisor)" 以匹配代码和 experiments.tex
+2. **exp12_toxicchat_bootstrap.py:127** — 将 `ddof=1` 改为 `ddof=0` 以匹配其他所有脚本（或反过来全部统一为 ddof=1，但改动面更大）
+3. 如果选择全部统一为 sample std (ddof=1)，则需重跑所有脚本并更新 experiments.tex 的描述
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "uuid": "5c26ab2f-8041-41ca-aac4-90810fcfe934",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013W8paHsLdPtXPQfyRWzJt5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4446,
+      "cache_read_input_tokens": 51462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4446
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 86_
+
+所有数据已收集完毕。以下是审计报告：
+
+---
+
+## A. 代码实际使用的 std 类型
+
+### 全部使用 `np.std(vals)` (ddof=0, **population std, n divisor**) 的脚本：
+
+| 脚本 | 行号 | 调用 | 用途 |
+|------|------|------|------|
+| `statistical_tests.py` | 125 | `np.std(f1s)` | 3-seed F1 bootstrap std |
+| `evaluate_actorattack_ood.py` | 283 | `np.std(vals)` | 3-seed F1 (注释明确写了 `# population std`) |
+| `aggregate_exp2_missing.py` | 28 | `np.std(vals)` | 3-seed F1 (注释写了 `# population std (N divisor)`) |
+| `vanilla_multiseed_dd_ood.py` | 212 | `np.std(vals)` | 3-seed F1 |
+| `eval_exp16.py` | 167 | `np.std(f1s)` | 3-seed F1 |
+| `exp3_probing.py` | 161 | `np.std(scores)` | 3-seed probing accuracy |
+| `exp3_roberta_probing.py` | 297 | `np.std(scores)` | 3-seed probing accuracy |
+| `evaluate_actorattack_ood_all.py` | 277 | `np.std(vals)` | 3-seed F1 |
+| `exp4_vanilla_perturbation_mcnemar.py` | 254 | `np.std(vals)` | 3-seed F1 |
+| `fix_exp6_reeval.py` | 144 | `np.std(vals)` | 3-seed F1 |
+| `exp8_mhj_human_eval.py` | 326 | `np.std(vals)` | 3-seed metrics |
+| `exp8_human_jailbreak_verazuo.py` | 345 | `np.std(vals)` | 3-seed metrics |
+| `exp8_recalc_macro_f1.py` | 345 | `np.std(vals)` | 3-seed metrics |
+| `meanpool_multiseed.py` | 257 | `np.std(vals)` | 3-seed F1 |
+| `eval_cross_llm.py` | 186 | `np.std(vals)` | 3-seed F1 |
+| `eval_cross_llm_control.py` | 190 | `np.std(vals)` | 3-seed F1 |
+| `analyze_predictions.py` | 239 | `np.std(vals)` | 3-seed metrics |
+| `exp15_roberta_large.py` | 401 | `np.std(vals)` | 3-seed metrics |
+| `exp15b_roberta_large_lr1e5.py` | 403 | `np.std(vals)` | 3-seed metrics |
+| `exp15c_roberta_large_mlm.py` | 429 | `np.std(vals)` | 3-seed metrics |
+| `eval_exp17.py` | 225 | `np.std(vals)` | 3-seed metrics |
+| `eval_toxicchat_balanced.py` | 118 | `np.std(f1_list)` | 3-seed F1 |
+| `eval_toxicchat_balanced_mlm.py` | 92 | `np.std(f1_list)` | 3-seed F1 |
+| `eval_exp17_toxicchat_balanced.py` | 75 | `np.std(f1s)` | 3-seed F1 |
+| `reeval_exp16_balanced.py` | 199 | `np.std(f1s)` | 3-seed F1 |
+| `turn_shuffle_ablation.py` | 175, 177 | `np.std(orig/shuf)` | 3-seed F1 |
+| `exp28b_supplement.py` | 581,583,585 | `np.std(vals)` | 3-seed F1 |
+| `exp28c_vanilla_supplement.py` | 293,295,297 | `np.std(vals)` | 3-seed F1 |
+| `exp30_length_stratified.py` | 212 | `np.std(recalls)` | 3-seed recall |
+| `exp29_inference_efficiency.py` | 129, 217 | `np.std(latencies)` | latency std (非 seed F1) |
+| `exp32_strategy_prediction.py` | 424,427-429 | `np.std(vs)` | 3-seed metrics |
+| `exp33_strategy_prediction_plan002.py` | 378 | `np.std(vs)` | 3-seed metrics |
+| `exp35_cross_seed_ensemble.py` | 276 | `np.std(seed_f1s)` | 3-seed F1 |
+| `exp36_frozen_mlm_probing.py` | 369 | `np.std(vals)` | 3-seed metrics |
+| `exp37_length_matched_benign.py` | 168,246,255,354,359 | `np.std(...)` | 3-seed FPR |
+| `exp38_wildcat_calibration.py` | 210,264,287,303,376 | `np.std(...)` | 3-seed AUC/FPR |
+
+`.std()` 调用（numpy array 方法，默认 ddof=0 = population）：
+| `sanity_check.py` | 70 | `scores.std()` | CV F1 (非论文数字) |
+| `step3_sanity_check.py` | 59, 69 | `scores.std()` | CV F1 (非论文数字) |
+| `sanity_check_v4b.py` | 32, 49 | `scores.std()` | CV F1 (非论文数字) |
+
+### 唯一例外 — **sample std (ddof=1)**：
+
+| 脚本 | 行号 | 调用 | 用途 |
+|------|------|------|------|
+| `exp12_toxicchat_bootstrap.py` | 127 | `np.std(seed_f1s, ddof=1)` | 3-seed ToxicChat F1 seed std |
+
+**无 `torch.std` 调用。无 pandas `.std()` 调用。**
+
+---
+
+## B. 论文三处描述
+
+1. **experiments.tex:29** — "All standard deviations are computed over 3 random seeds using the **population formula ($n$ divisor)**; Bessel-corrected estimates ($n{-}1$ divisor) are ≈22% larger but do not alter any significance conclusions."
+
+2. **checklist.tex:19** — "All OOD results report 3-seed mean±std (**sample standard deviation with Bessel's correction, $N{-}1$ divisor**)."
+
+3. **appendix.tex** — 表格 caption 中均写 "3-seed mean±std"，**未指定 population 或 sample**。appendix.tex 内无 "Bessel"、"divisor"、"n-1"、"deviation" 等关键词。Table 26（自动编号）的 caption 中没有明确标注 std 类型。
+
+---
+
+## C. 一致性判断
+
+| 对比 | 结果 |
+|------|------|
+| 代码 (population) vs experiments.tex (population) | **一致** |
+| 代码 (population) vs checklist.tex (sample) | **矛盾** |
+| experiments.tex (population) vs checklist.tex (sample) | **矛盾** |
+| exp12 脚本 (sample, ddof=1) vs 其他所有脚本 (population, ddof=0) | **exp12 是唯一异类** |
+
+**结论：代码绝大多数使用 population std (n divisor)，experiments.tex 描述正确，checklist.tex 描述错误。**
+
+`exp12_toxicchat_bootstrap.py` 是唯一用 sample std 的脚本，它的 seed_std 值会比其他脚本大 22.5%，这可能导致该脚本产生的数字与论文整体不一致。
+
+---
+
+## D. 影响分析
+
+**换算关系** (n=3 seeds):
+- `sample_std = population_std × √(3/2) ≈ population_std × 1.2247`
+- sample std 比 population std 大 **~22.5%**
+
+**对论文数字的影响**：
+- 论文中所有 ±std 数字实际来自 population std（除 exp12）
+- 典型 std 值范围：0.005–0.115（从 appendix 表格数据看）
+- 如换成 sample std，例如 `.026` → `.032`，`.115` → `.141`
+- **数量级和相对排序不变**
+
+**对 significance 结论的影响**：
+- 论文的 significance 判断基于 **bootstrap CIs** 和 **permutation tests**（不依赖 std 值），因此 std 类型不影响任何 significance 结论
+- experiments.tex 中已正确声明"do not alter any significance conclusions"
+
+**exp12 的异常**：
+- `exp12_toxicchat_bootstrap.py:127` 用 `ddof=1`，其 `seed_std` 比同口径 population std 大 22.5%
+- 如果该数字出现在论文中（ToxicChat 的 seed std），它与其他表格的 std 口径不一致
+- 建议统一为 `ddof=0` 或全部改为 `ddof=1`，并修正 checklist.tex 使三处描述一致
+
+---
+
+**修复建议**（不修改文件，仅列出）：
+1. **checklist.tex:19** — 改为 "population standard deviation ($N$ divisor)" 以匹配代码和 experiments.tex
+2. **exp12_toxicchat_bootstrap.py:127** — 将 `ddof=1` 改为 `ddof=0` 以匹配其他所有脚本（或反过来全部统一为 ddof=1，但改动面更大）
+3. 如果选择全部统一为 sample std (ddof=1)，则需重跑所有脚本并更新 experiments.tex 的描述
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 165996,
+  "duration_api_ms": 165380,
+  "num_turns": 34,
+  "stop_reason": "end_turn",
+  "session_id": "8511cd44-c6c1-4387-9f87-c73aeae9bd4b",
+  "total_cost_usd": 0.6783187500000001,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 44461,
+    "cache_read_input_tokens": 314905,
+    "output_tokens": 9632,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 44461,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 3908,
+        "cache_read_input_tokens": 51462,
+        "cache_creation_input_tokens": 4446,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4446
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2040,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002125,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 9632,
+      "cacheReadInputTokens": 314905,
+      "cacheCreationInputTokens": 44461,
+      "webSearchRequests": 0,
+      "costUSD": 0.6761937499999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e661a454-4573-4b32-8c29-f78e29a216b2"
+}
+```
+
+</details>
+
+---

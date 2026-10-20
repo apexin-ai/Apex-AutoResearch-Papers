@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "708c63446887f88e3791",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code std calculation audit",
+  "task_key": "worker_code_std-calculation-audit_20260521T052300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_std-calculation-audit_20260521T052300_result.json",
+    "occurrence": 1,
+    "bytes": 6587,
+    "sha256": "3ea2c20249e46026b1cb3f7822f231ab28958bfd4575fe2682a75d71cfd4196e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。以下是审计报告：\n\n---\n\n## A. 代码实际使用的 std 类型\n\n### 全部使用 `np.std(vals)` (ddof=0, **population std, n divisor**) 的脚本：\n\n| 脚本 | 行号 | 调用 | 用途 |\n|------|------|------|------|\n| `statistical_tests.py` | 125 | `np.std(f1s)` | 3-seed F1 bootstrap std |\n| `evaluate_actorattack_ood.py` | 283 | `np.std(vals)` | 3-seed F1 (注释明确写了 `# population std`) |\n| `aggregate_exp2_missing.py` | 28 | `np.std(vals)` | 3-seed F1 (注释写了 `# population std (N divisor)`) |\n| `vanilla_multiseed_dd_ood.py` | 212 | `np.std(vals)` | 3-seed F1 |\n| `eval_exp16.py` | 167 | `np.std(f1s)` | 3-seed F1 |\n| `exp3_probing.py` | 161 | `np.std(scores)` | 3-seed probing accuracy |\n| `exp3_roberta_probing.py` | 297 | `np.std(scores)` | 3-seed probing accuracy |\n| `evaluate_actorattack_ood_all.py` | 277 | `np.std(vals)` | 3-seed F1 |\n| `exp4_vanilla_perturbation_mcnemar.py` | 254 | `np.std(vals)` | 3-seed F1 |\n| `fix_exp6_reeval.py` | 144 | `np.std(vals)` | 3-seed F1 |\n| `exp8_mhj_human_eval.py` | 326 | `np.std(vals)` | 3-seed metrics |\n| `exp8_human_jailbreak_verazuo.py` | 345 | `np.std(vals)` | 3-seed metrics |\n| `exp8_recalc_macro_f1.py` | 345 | `np.std(vals)` | 3-seed metrics |\n| `meanpool_multiseed.py` | 257 | `np.std(vals)` | 3-seed F1 |\n| `eval_cross_llm.py` | 186 | `np.std(vals)` | 3-seed F1 |\n| `eval_cross_llm_control.py` | 190 | `np.std(vals)` | 3-seed F1 |\n| `analyze_predictions.py` | 239 | `np.std(vals)` | 3-seed metrics |\n| `exp15_roberta_large.py` | 401 | `np.std(vals)` | 3-seed metrics |\n| `exp15b_roberta_large_lr1e5.py` | 403 | `np.std(vals)` | 3-seed metrics |\n| `exp15c_roberta_large_mlm.py` | 429 | `np.std(vals)` | 3-seed metrics |\n| `eval_exp17.py` | 225 | `np.std(vals)` | 3-seed metrics |\n| `eval_toxicchat_balanced.py` | 118 | `np.std(f1_list)` | 3-seed F1 |\n| `eval_toxicchat_balanced_mlm.py` | 92 | `np.std(f1_list)` | 3-seed F1 |\n| `eval_exp17_toxicchat_balanced.py` | 75 | `np.std(f1s)` | 3-seed F1 |\n| `reeval_exp16_balanced.py` | 199 | `np.std(f1s)` | 3-seed F1 |\n| `turn_shuffle_ablation.py` | 175, 177 | `np.std(orig/shuf)` | 3-seed F1 |\n| `exp28b_supplement.py` | 581,583,585 | `np.std(vals)` | 3-seed F1 |\n| `exp28c_vanilla_supplement.py` | 293,295,297 | `np.std(vals)` | 3-seed F1 |\n| `exp30_length_stratified.py` | 212 | `np.std(recalls)` | 3-seed recall |\n| `exp29_inference_efficiency.py` | 129, 217 | `np.std(latencies)` | latency std (非 seed F1) |\n| `exp32_strategy_prediction.py` | 424,427-429 | `np.std(vs)` | 3-seed metrics |\n| `exp33_strategy_prediction_plan002.py` | 378 | `np.std(vs)` | 3-seed metrics |\n| `exp35_cross_seed_ensemble.py` | 276 | `np.std(seed_f1s)` | 3-seed F1 |\n| `exp36_frozen_mlm_probing.py` | 369 | `np.std(vals)` | 3-seed metrics |\n| `exp37_length_matched_benign.py` | 168,246,255,354,359 | `np.std(...)` | 3-seed FPR |\n| `exp38_wildcat_calibration.py` | 210,264,287,303,376 | `np.std(...)` | 3-seed AUC/FPR |\n\n`.std()` 调用（numpy array 方法，默认 ddof=0 = population）：\n| `sanity_check.py` | 70 | `scores.std()` | CV F1 (非论文数字) |\n| `step3_sanity_check.py` | 59, 69 | `scores.std()` | CV F1 (非论文数字) |\n| `sanity_check_v4b.py` | 32, 49 | `scores.std()` | CV F1 (非论文数字) |\n\n### 唯一例外 — **sample std (ddof=1)**：\n\n| 脚本 | 行号 | 调用 | 用途 |\n|------|------|------|------|\n| `exp12_toxicchat_bootstrap.py` | 127 | `np.std(seed_f1s, ddof=1)` | 3-seed ToxicChat F1 seed std |\n\n**无 `torch.std` 调用。无 pandas `.std()` 调用。**\n\n---\n\n## B. 论文三处描述\n\n1. **experiments.tex:29** — \"All standard deviations are computed over 3 random seeds using the **population formula ($n$ divisor)**; Bessel-corrected estimates ($n{-}1$ divisor) are ≈22% larger but do not alter any significance conclusions.\"\n\n2. **checklist.tex:19** — \"All OOD results report 3-seed mean±std (**sample standard deviation with Bessel's correction, $N{-}1$ divisor**).\"\n\n3. **appendix.tex** — 表格 caption 中均写 \"3-seed mean±std\"，**未指定 population 或 sample**。appendix.tex 内无 \"Bessel\"、\"divisor\"、\"n-1\"、\"deviation\" 等关键词。Table 26（自动编号）的 caption 中没有明确标注 std 类型。\n\n---\n\n## C. 一致性判断\n\n| 对比 | 结果 |\n|------|------|\n| 代码 (population) vs experiments.tex (population) | **一致** |\n| 代码 (population) vs checklist.tex (sample) | **矛盾** |\n| experiments.tex (population) vs checklist.tex (sample) | **矛盾** |\n| exp12 脚本 (sample, ddof=1) vs 其他所有脚本 (population, ddof=0) | **exp12 是唯一异类** |\n\n**结论：代码绝大多数使用 population std (n divisor)，experiments.tex 描述正确，checklist.tex 描述错误。**\n\n`exp12_toxicchat_bootstrap.py` 是唯一用 sample std 的脚本，它的 seed_std 值会比其他脚本大 22.5%，这可能导致该脚本产生的数字与论文整体不一致。\n\n---\n\n## D. 影响分析\n\n**换算关系** (n=3 seeds):\n- `sample_std = population_std × √(3/2) ≈ population_std × 1.2247`\n- sample std 比 population std 大 **~22.5%**\n\n**对论文数字的影响**：\n- 论文中所有 ±std 数字实际来自 population std（除 exp12）\n- 典型 std 值范围：0.005–0.115（从 appendix 表格数据看）\n- 如换成 sample std，例如 `.026` → `.032`，`.115` → `.141`\n- **数量级和相对排序不变**\n\n**对 significance 结论的影响**：\n- 论文的 significance 判断基于 **bootstrap CIs** 和 **permutation tests**（不依赖 std 值），因此 std 类型不影响任何 significance 结论\n- experiments.tex 中已正确声明\"do not alter any significance conclusions\"\n\n**exp12 的异常**：\n- `exp12_toxicchat_bootstrap.py:127` 用 `ddof=1`，其 `seed_std` 比同口径 population std 大 22.5%\n- 如果该数字出现在论文中（ToxicChat 的 seed std），它与其他表格的 std 口径不一致\n- 建议统一为 `ddof=0` 或全部改为 `ddof=1`，并修正 checklist.tex 使三处描述一致\n\n---\n\n**修复建议**（不修改文件，仅列出）：\n1. **checklist.tex:19** — 改为 \"population standard deviation ($N$ divisor)\" 以匹配代码和 experiments.tex\n2. **exp12_toxicchat_bootstrap.py:127** — 将 `ddof=1` 改为 `ddof=0` 以匹配其他所有脚本（或反过来全部统一为 ddof=1，但改动面更大）\n3. 如果选择全部统一为 sample std (ddof=1)，则需重跑所有脚本并更新 experiments.tex 的描述"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-std-calculation-audit.md"
+}

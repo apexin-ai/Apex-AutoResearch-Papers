@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp35_cross_seed_ensemble",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:12:07.318Z",
+    "updated_at": "2026-05-20T20:26:48.501Z",
+    "hypothesis": "3-seed majority vote ensemble 将在所有 OOD 攻击家族上提升检测 F1（尤其减少 AA OOD 上的漏检），9-class ensemble 的提升幅度大于 MLM/vanilla，因为 9-class 各 seed 的错误模式更互补（来自不同的策略表征空间初始化）。",
+    "parent": "exp23_aa_error_analysis",
+    "spec": {
+      "command": "python scripts/exp35_cross_seed_ensemble.py",
+      "server": "westd-33183",
+      "data_path": "per_sample_predictions/ + FITD OOD generated",
+      "data_count": 354,
+      "model_name": "9class + jb_mlm + vanilla (3 seeds each)",
+      "seed": "42,123,456",
+      "checkpoint_source": "plan_002 + plan_017_mlm + pretrained",
+      "eval_data": "DD 118 + FITD 118 + AA 118"
+    }
+  },
+  "timestamp": "2026-05-20T20:26:48.677792+00:00",
+  "trigger": "update_registry"
+}

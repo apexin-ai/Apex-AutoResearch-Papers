@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp8_mhj_human_data",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:16:18.419Z",
+    "updated_at": "2026-05-18T16:16:18.419Z"
+  },
+  "timestamp": "2026-05-18T16:16:18.515030+00:00",
+  "trigger": "update_registry"
+}

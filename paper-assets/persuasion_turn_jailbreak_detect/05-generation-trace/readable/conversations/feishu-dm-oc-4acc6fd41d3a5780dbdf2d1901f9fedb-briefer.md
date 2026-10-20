@@ -1,0 +1,991 @@
+# feishu dm oc 4acc6fd41d3a5780dbdf2d1901f9fedb briefer
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 30
+- **Recorded user turns:** 2
+- **Tool calls:** 13
+- **Original source:** `logs/chats/feishu_dm_oc_4acc6fd41d3a5780dbdf2d1901f9fedb_briefer.jsonl`
+- **Structured JSON:** [`6cfc9a4526ca68cfc395.json`](../../sessions/6c/6cfc9a4526ca68cfc395.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+16 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T15:36:36.580190+00:00_
+
+[飞书用户 曹晓玉 (ou_b1d0f70ddf7ec3fe902f3344f4e214e0)]: 大白话讲清楚原始idea是什么，实验都做了什么结果如何，现在在干什么，预计中稿率
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "source": "feishu:oc_4acc6fd41d3a5780dbdf2d1901f9fedb"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T15:36:45.859135+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_registry",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_registry",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T15:36:46.417824+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "ToolSearch",
+  "elapsed_ms": 558
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T15:36:48.978719+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "persuasion_turn_jailbreak_detect",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-17T15:36:49.548091+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/memory.md\", \"content\": \"# Environment Setup Report (2026-05-17)\\n\\n## Server: westd-33183\\n\\n### System\\n- Python: 3.12.3 (miniconda3)\\n- CUDA Driver: 13.0\\n- PyTorch: 2.8.0+cu128\\n- OS PATH: `/root/miniconda3/bin`\\n\\n### GPU\\n- 4x NVIDIA RTX PRO 6000 Blackwell Server Edition (96GB each)\\n- CUDA available: True\\n- GPU tensor test: passed\\n\\n### Installed Packages\\n| Package | Version |\\n|---------|---------|\\n| torch | 2.8.0+cu128 |\\n| torchvision | 0.23.0+cu128 |\\n| transformers | 5.8.1 |\\n| datasets | 4.8.5 |\\n| accelerate | 1.13.0 |\\n| scikit-learn | 1.8.0 |\\n| scipy | 1.17.1 |\\n| tqdm | 4.67.3 |\\n| wandb | 0.27.0 |\\n| jsonlines | 4.0.0 |\\n| sentencepiece | 0.2.1 |\\n| huggingface_hub | 1.15.0 |\\n\\n### DeBERTa-v3-base\\n- Cache path: `/root/.cache/huggingface/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3`\\n- Load test: passed (tokenizer + model)\\n- Note: HuggingFace Hub requires `HF_ENDPOINT=https://hf-mirror.com` (huggingface.co not reachable from this server)\\n\\n### Project Directory\\n- `/root/persuasion_turn_jailbreak_detect` (created)\\n\\n### Notes\\n- hf-xet uninstalled (caused download stalls), plain HTTP download works fine via hf-mirror\\n- pip upgraded to 26.1.1\\n- No conda env created; using base miniconda3 environment directly\\n\", \"total_chars\": 1234, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 569
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-17T15:36:49.548397+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "persuasion_turn_jailbreak_detect"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T15:36:50.110375+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/ROADMAP.md\", \"content\": \"# persuasion_turn_jailbreak_detect — Research Dashboard\\n\\n> 最后更新: 2026-05-17 10:03 UTC | 更新原因: 修正 attacker 模型为 Qwen3-8B（非 30B）+ 双进程并行生成\\n\\n## 核心方向\\nDisPeD: 利用 discourse-level persuasion strategy sequences（而非 generic intent drift）检测多轮 jailbreak。核心理论：多轮攻击在 per-turn semantic 空间中隐藏为 benign（Bullwinkel et al. 2025），但 pragmatic-level 的说服策略序列（rapport→reframing→escalation）构成不可规避的检测信号。\\n\\n## 目标会议\\nEMNLP 2026 ARR — **DDL: 2026-05-25**（距今 8 天）\\n\\n## 当前进展\\n- 阶段: MVP 验证（数据生成中）\\n- 服务器: ✅ westd-33183（4× RTX PRO 6000 Blackwell, 96GB VRAM）\\n- 数据生成: Crescendo v2 运行中（Qwen3-8B attacker + Qwen2.5-7B target），8/250 完成，双进程并行中\\n- `&lt;think>` 泄漏已修复，策略多样性验证通过（8/8 类覆盖）\\n- WildChat 深度清洗完成 ✅（226 条 benign clean）\\n- Taxonomy: 8-class 定义完成 ✅\\n- 训练代码: Phase B pipeline 全部就绪 ✅\\n\\n## MVP 验证方案\\n\\n**Phase A（进行中）**:\\n- [x] 8-class persuasion taxonomy\\n- [x] Phase B 训练代码 + dry-run\\n- [x] WildChat 深度清洗（226 条 clean benign）\\n- [ ] Crescendo 数据生成（目标 250 条，ETA ~2-2.5h 双进程并行）\\n- [ ] Sanity check：baseline F1 在 70-85%\\n- [ ] 重新标注（需额外 API credit）+ 真 dual annotation\\n- [ ] κ 验证\\n\\n**Phase B（等 Phase A 完成）**:\\n- [x] Baseline GRU pipeline validated\\n- [x] Treatment DeBERTa pipeline validated\\n- [ ] 新数据 baseline → 确认非 trivial\\n- [ ] Treatment 训练 + 对比\\n\\n**Pass/Fail**:\\n- 标注质量：总 κ ≥ 0.60 且每类 κ ≥ 0.40（真 dual annotation）\\n- 核心假设：F1 ≥ baseline + 2 points OR early detection / FPR ≥ 10% relative improvement\\n\\n## GPU 预算\\n- 分配: 4× RTX PRO 6000 Blackwell (96GB) @ westd-33183\\n- 约束: C001 — 仅 cuda:0-3\\n- 当前: cuda:0+1 生成进程 1, cuda:2+3 生成进程 2（4/4 使用中）\\n\\n## 近期任务\\n- [ ] Crescendo 双进程生成完成（ETA ~2-2.5h）\\n- [ ] 50 条后首次 sanity check（diversity + baseline F1）\\n- [ ] 250 条完成后完整 sanity check\\n- [ ] 向用户申请额外 API credit（重新标注）\\n- [ ] 标注 + dual annotation + Phase B 训练\\n\", \"lines\": 52}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 561
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T15:36:50.110786+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "persuasion_turn_jailbreak_detect",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T15:36:50.653949+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0001}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 543
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-17T15:37:06.256471+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__load_project_config",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__load_project_config",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T15:37:07.384758+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "ToolSearch",
+  "elapsed_ms": 1128
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T15:37:11.101953+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "persuasion_turn_jailbreak_detect"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T15:37:11.673403+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"persuasion_turn_jailbreak_detect\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": \"westd-33183:cuda:0,cuda:1,cuda:2,cuda:3\", \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/persuasion_turn_jailbreak_detect\", \"servers\": [\"westd-33183\"]}, \"feishu\": {\"chat_id\": \"oc_a90fe0dde422576f214f12233cfe27a3\", \"operational_chat_id\": \"oc_68ab8931ec4907f792551ec1fb03c882\"}, \"project\": {\"created_at\": \"2026-05-17T05:39:56.653Z\", \"description\": \"Beyond Intent Drift: Persuasion-Grounded Turn Representations for Multi-Turn Jailbreak Detection\", \"name\": \"persuasion_turn_jailbreak_detect\", \"phase\": \"mvp\", \"source_idea_id\": \"idea_008\"}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 571
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T15:37:11.673813+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/constraints.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/constraints.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T15:37:12.241401+00:00_
+
+1	_next_id: 2
+2	constraints:
+3	- id: C001
+4	  added: 2026-05-17 06:29 UTC
+5	  summary: GPU 使用严格限制在 cuda:0, cuda:1, cuda:2, cuda:3（westd-33183 共 9 张卡，本项目只分配前 4
+6	    张）。训练脚本必须设置 CUDA_VISIBLE_DEVICES=0,1,2,3。
+7	  scope: all
+8	  reason: 服务器共 9 GPU，Manager 只分配 4 张给本项目。L1 红线：禁止使用白名单外 GPU。
+9	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "Read",
+  "elapsed_ms": 567
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-17T15:37:51.730253+00:00_
+
+好，信息齐了，给你讲清楚。
+
+---
+
+## 原始 idea
+
+**一句话**：现有的多轮 jailbreak 检测方法都是看"用户每轮说的内容是否有恶意"，但高级多轮攻击（比如 Crescendo）每一轮单独看都是无害的，只有把整个对话的**说服策略序列**串起来看才能发现异常。
+
+**大白话**：攻击者不是一上来就问"怎么造炸弹"，而是先跟大模型套近乎（建立信任）→ 慢慢把话题引过去（重新框架）→ 最后升级到真正的恶意请求。每一轮单看都正常，但"套近乎→引导→升级"这个**策略模式**本身就是危险信号。项目起名 **DisPeD**（Discourse-level Persuasion Detection），核心就是用一个 8 类说服策略分类器先给每轮打标签，再用策略序列做 jailbreak 检测。
+
+## 实验做了什么、结果如何
+
+**目前还没有正式实验结果**——项目今天（5月17日）刚立项，还在 Phase A 数据准备阶段：
+
+1. **说服策略体系**：定义了 8 类说服策略分类（taxonomy）——已完成
+2. **良性数据**：从 WildChat 数据集深度清洗出 226 条干净的多轮良性对话——已完成
+3. **攻击数据生成**：用 Qwen3-8B 当攻击者、Qwen2.5-7B 当目标，自动生成 Crescendo 风格的多轮攻击对话，目标 250 条，目前完成 8 条，两个进程并行跑着，预计 2-2.5 小时跑完
+4. **训练代码**：baseline（GRU）和 treatment（DeBERTa）的训练 pipeline 都写好了，dry-run 通过——等数据就能跑
+5. **实验注册表**：空的，还没有正式跑过实验
+
+简单说：**代码和框架都就绪了，卡在数据生成上，还没出任何实验数字。**
+
+## 现在在干什么
+
+- 4 张 RTX PRO 6000（96GB）全部占满在跑 Crescendo 攻击数据生成
+- 生成完 250 条后会做第一次 sanity check（看策略多样性 + baseline F1 是否在 70-85%）
+- 之后要做人工标注 + 双标注一致性检验（κ ≥ 0.60），需要额外的 API credit
+
+## 预计中稿率
+
+直说：**偏低，大概 15-25%**。原因：
+
+1. **时间极紧**——目标是 EMNLP 2026 ARR，DDL 5月25日，离现在只剩 8 天，数据还在生成阶段，从零到完整论文 8 天非常赶
+2. **还没有任何实验数字**——核心假设（策略序列比语义特征更有效）尚未验证，存在假设不成立的风险
+3. **数据规模小**——250 条攻击 + 226 条良性，对 EMNLP 来说偏小，reviewer 可能质疑泛化性
+4. **标注质量待验证**——dual annotation + κ 检验还没做，如果 κ 不达标整个 pipeline 要返工
+
+**如果**核心假设成立（F1 比 baseline 高 2+ 点或 early detection 明显更好）、数据质量过关、论文写得好，有 shot；但 8 天从数据生成到投稿，客观上很赶。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+14 recorded events
+
+### User
+
+_source line 17 · 2026-05-20T05:10:13.158848+00:00_
+
+[飞书用户 曹晓玉 (ou_b1d0f70ddf7ec3fe902f3344f4e214e0)]: 现在怎么样了，method还行吗
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "source": "feishu:oc_4acc6fd41d3a5780dbdf2d1901f9fedb"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-20T05:10:20.687961+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "persuasion_turn_jailbreak_detect",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T05:10:21.339810+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "persuasion_turn_jailbreak_detect"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T05:10:21.950007+00:00_
+
+Error: result (68,696 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-briefer-2c638876/db1349c1-30ff-43f1-b8b5-217ecb1b07f7/tool-results/mcp-agent-ml-research-read_registry-1779253821249.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-briefer-2c638876/db1349c1-30ff-43f1-b8b5-217ecb1b07f7/tool-results/mcp-agent-ml-research-read_registry-1779253821249.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-briefer-2c638876/db1349c1-30ff-43f1-b8b5-217ecb1b07f7/tool-results/mcp-agent-ml-research-read_registry-1779253821249.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1262
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T05:10:21.950503+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/ROADMAP.md\", \"content\": \"# persuasion_turn_jailbreak_detect — Research Dashboard\\n\\n> 最后更新: 2026-05-20 03:04 UTC | 更新原因: 服务重启后状态恢复：所有待完成项已勾选，当前等待用户审批 Round 5 审稿提交\\n\\n## 核心方向\\nMulti-turn jailbreak 检测的系统性分解：classification-based DAPT (9-class) 是唯一跨训练数据组成（单源/混合LLM/跨源）稳健的适应方法。MLM 有效性仅限于单源 Qwen 数据。详见 paper_framing.md (D049 reframe)。\\n\\n## 当前阶段\\n**论文更新全部完成 → Round 5 审稿已提交 → 等待用户审批 review mode** — DDL 2026-05-25 (ARR May)\\n\\n## 已完成\\n- [x] exp16 Mixed Qwen+Llama 500 训练 (3 variants × 3 seeds) — 9-class >> MLM ≈ vanilla\\n- [x] exp16b Llama-only MLM ablation (seed 42) — MLM ≤ vanilla，MLM 非通用\\n- [x] exp17 Qwen 1000 scale validation (3 variants × 3 seeds) — 9-class 主导地位在 2x 规模保持\\n- [x] D049: Core Claim 1 重构为 \\\"classification-based DAPT is robust\\\"\\n- [x] D050: ToxicChat 定位为 zero-shot single-turn transfer\\n- [x] D051: ToxicChat 0.861 artifact 推翻，balanced eval = 0.550±0.052\\n- [x] paper_framing.md 已按 D049/D050/D051 更新\\n- [x] fp16 验证：exp16 结果不受影响（全部 fp32）\\n- [x] ToxicChat 低分诊断：单轮 distribution shift + GRU spurious length feature\\n- [x] exp16 ToxicChat 平衡集(408条)重新评估 — 9-class=0.550±0.052, vanilla=0.356, MLM=0.256\\n- [x] Paper Agent 论文全面更新（D049/D050/D051 + Appendix tables + 页数压缩）\\n- [x] Discussion/Conclusion 压缩至 8 页正文限制内\\n- [x] Round 5 审稿提交（apr_20260520T020101_ay8q，推荐 fresh mode）\\n\\n## 待完成\\n- [ ] 用户审批 Round 5 review mode（卡片已发，等待确认）\\n- [ ] Round 5 审稿报告返回后处理\\n\\n## 数据泄漏记录\\n- **M018 (exp16)**: prepare_mixed_data.py 合并所有 Qwen splits 后再采样，42% qwen_test 泄入训练集。D048: 废弃 qwen_test 指标，其余 6 个测试集 clean。\\n- **M019 (exp17)**: prepare_expanded_data.py 同样模式，71% 原始测试集泄入训练集。仅使用 OOD 指标。\\n\\n## 编译状态\\n0 error, 0 undefined citation, 8 页正文 + limitations/appendix/checklist (17 页总计)\\n⚠️ paper_compile_and_check 工具有 UTF-8 bug（pdflatex 日志中 Marasović T1 编码），已手动验证通过。\\n\\n## 评分趋势\\nRound 1: 2.5/5 → Round 2: 2.5/5 → Round 3: 2.75/5 → 
+…[truncated 1558 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 610
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-20T05:10:21.950827+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "persuasion_turn_jailbreak_detect",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T05:10:22.562315+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/report.md\", \"content\": \"# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp16_9class_train（准备中）\\n- exp16_vanilla_train（准备中）\\n- exp17_qwen_benign_gen（准备中）\\n- exp17_qwen_jailbreak_gen（准备中）\\n- exp17_dryrun（准备中）\\n- exp16_llama_benign_gen（准备中）\\n- exp16_llama_jailbreak_gen（准备中）\\n- llama_crescendo_dryrun（准备中）\\n- exp16_multi_llm_training: Training on mixed-LLM data (Qwen + Llama) will eliminate the single-LLM confound: the model will generalize cross-LLM (Llama OOD F1 from 0.37-0.43 to 0.8+) because mixed benign distribution covers both LLMs' stylistic patterns, resolving the false-positive-driven failure identified in exp14.（准备中）\\n- exp13_meanpool_multiseed: Mean pooling classifier (without temporal modeling) will perform comparably to BiGRU across 3 seeds on both DD OOD and ActorAttack, confirming that persuasion-grounded embeddings alone drive cross-attack generalization and GRU temporal modeling is not necessary.（准备中）\\n- …另有 22 项\\n\\n## 近期结论\\n- **exp16b_llama_only_mlm** (failed): MLM DAPT on Llama-only data (250 conversations) will produce stable intermediate performance between vanilla and 9-class on DD OOD and AA OOD, distinguishing whether MLM instability in exp16 mixed training is caused by multi-source data mixing or is inherent to MLM DAPT ← 基于 exp16_multi_llm\\n- **exp16_multi_llm** (success): Training on mixed Qwen+Llama conversations (250+250) eliminates single-LLM confound: the evidence hierarchy (9-class >> MLM >> vanilla) holds on mixed data, and cross-LLM false positive rate drops vs single-source training, proving DAPT generalizes across LLM distributions\\n- **exp17_dataset_scale** (failed): Doubling training data from 500 to 1000 conversations (with new topic seeds) will maintain or improve the DAPT evidence hierarchy (9-class >> MLM >> vanilla on 
+…[truncated 375 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 611
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-20T05:10:27.463779+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "file": "paper_framing.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "persuasion_turn_jailbreak_detect",
+    "file": "paper_framing.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T05:10:27.464615+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper_framing.md\", \"content\": \"# Paper Framing — persuasion_turn_jailbreak_detect\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR submission)\\n- Deadline: 2026-05-25 (ARR May cycle)\\n- Track: LLM Security / Discourse and Pragmatics\\n- Commitment deadline: 2026-08-02\\n\\n## Title (Working)\\nWhat Makes Multi-Turn Jailbreaks Detectable? A Systematic Decomposition of Cross-Attack Generalization\\n\\n## Core Insight (D030 → D049 — classification-based DAPT reframe)\\nDomain adaptation universally improves cross-attack generalization across encoder architectures; encoder pretraining determines the difficulty threshold at which adaptation becomes critical. Systematic ablation across two encoders (DeBERTa-v3, RoBERTa) and three OOD attack families (DD, FITD, ActorAttack) reveals:\\n\\n**On Deceptive Delight (moderate OOD)**: DeBERTa vanilla collapses (F1=0.31±0.03), continued pretraining bridges ~60pp (MLM=0.91±0.12), classification achieves 0.997±0.005. RoBERTa vanilla already succeeds (0.981±0.026) — hierarchy is flat. Scrambled=binary=9-class (all 0.997±0.005).\\n\\n**On ActorAttack (hard OOD)**: RoBERTa vanilla ALSO collapses (0.466±0.163), proving \\\"no DA needed\\\" was DD-specific. DeBERTa vanilla=0.258±0.000. Both encoders benefit from DA: DeBERTa 9-class=0.972±0.026, RoBERTa 9-class=0.939±0.046. Binary (0.990±0.008) ≈ 9-class (0.972±0.026) ≈ scrambled (0.951±0.043) — all three classification variants equivalent at Full (max gap 3.9pp, variance intervals fully overlap, n=3). Label quality is not a significant factor on ActorAttack, consistent with DD findings (D032).\\n\\n**On Human-Written Jailbreaks (exp8, ToxicChat, macro F1 — D036)**: Domain-adapted variants outperform vanilla on human-authored data from ToxicChat (LMSYS, 204 jailbreaks + 204 benign, balanced, no data leakage). Macro F1: JB-MLM=0.837±0.0
+…[truncated 10477 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-20T05:10:27.565397+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "persuasion_turn_jailbreak_detect",
+  "file": "decisions.yaml",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "persuasion_turn_jailbreak_detect",
+    "file": "decisions.yaml",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T05:10:27.616692+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/decisions.yaml\", \"content\": \"_next_id: 53\\ndecisions:\\n- id: D001\\n  date: 2026-05-17 16:09 UTC\\n  summary: 接受 DeBERTa F1=0.789 作为 baseline，停止数据 TF-IDF 迭代，reframe MVP 为 early detection\\n  rationale: 'DeBERTa F1=0.789 已在目标范围(0.70-0.85)。TF-IDF F1=0.924 高但不致命——论文 reframe:\\n    TF-IDF/vanilla 方法需完整对话才能分类，DisPeD 在 K=2-3 turns 即可通过 persuasion trajectory 早期检测。这完美对齐\\n    Bullwinkel et al. 的核心发现（早期 turns 表征为 benign）。数据迭代已耗 4 轮 6+ 小时，继续追 TF-IDF 阈值的 ROI\\n    为负。用 Crescendo oracle labels (intended_strategy) 替代 GPT 标注，节省 API 成本和时间。'\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-17 16:49 UTC\\n  summary: MVP PASS — early detection K=2 +10.8pp, K=3 +5.9pp 超过阈值；TF-IDF=1.0 标记为\\n    research 阶段优先解决项\\n  rationale: Treatment (persuasion-grounded DeBERTa → GRU) 在 K=2 时 F1=0.987 vs baseline\\n    0.879 (+10.8pp)，K=3 时 +5.9pp，均超过 MVP 阈值 +5pp。Full conversation F1 差距仅 +1.3pp 未达\\n    +2pp 阈值，但 early detection 是核心 claim 所在。TF-IDF=1.0 表明词汇 shortcut 仍存在，但 (1) 不影响\\n    treatment vs baseline 相对比较的有效性，(2) 可作为 paper motivation（lexical cues 偶然有效但可被攻击者规避，pragmatic\\n    patterns 不可规避），(3) research 阶段通过 adversarial perturbation 实验验证 robustness。\\n  related_experiments:\\n  - exp_id: pilot_phase_b\\n    role: pipeline_validation\\n    result: success (n=270, directionally positive but not statistically meaningful)\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-17 16:59 UTC\\n  summary: 进入 Research 阶段，framing 定位为 Pragmatic Evasion Asymmetry，experiment plan\\n    含 6 个 P0 实验\\n  rationale: MVP PASS (D002) 后按 post-mvp-kickoff 流程：paper_framing.md 将核心贡献从\\\"更好的检测器\\\"升级为\\\"语用逃逸不对称性原则的首个实证验证\\\"（源自\\n    Human Review Note），experiment_plan.yaml 优先解决 TF-IDF=1.0 数据质量阻塞。Dream full review\\n    已发起，等回调后审批 P0。\\n  related_experiments:\\n  - exp_id: phase_b_full\\n    role: motivation\\n    result: K=2 +10.8pp but 
+…[truncated 10913 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-20T05:10:38.669764+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-briefer-2c638876/db1349c1-30ff-43f1-b8b5-217ecb1b07f7/tool-results/mcp-agent-ml-research-read_registry-1779253821249.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(f'Total experiments: {result[\\\"data\\\"][\\\"count\\\"]}')\nprint()\nfor eid, exp in exps.items():\n    status = exp.get('status','?')\n    conclusion = exp.get('conclusion','')[:80] if exp.get('conclusion') else ''\n    print(f'{eid}: [{status}] {conclusion}')\n\"",
+  "description": "Summarize registry experiments status and conclusions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect--claude-sessions-briefer-2c638876/db1349c1-30ff-43f1-b8b5-217ecb1b07f7/tool-results/mcp-agent-ml-research-read_registry-1779253821249.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(f'Total experiments: {result[\\\"data\\\"][\\\"count\\\"]}')\nprint()\nfor eid, exp in exps.items():\n    status = exp.get('status','?')\n    conclusion = exp.get('conclusion','')[:80] if exp.get('conclusion') else ''\n    print(f'{eid}: [{status}] {conclusion}')\n\"",
+    "description": "Summarize registry experiments status and conclusions"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T05:10:39.309433+00:00_
+
+Total experiments: 81
+
+exp17_dataset_scale: [DONE] success
+exp16_multi_llm: [DONE] success
+exp16b_llama_only_mlm: [DONE] success
+exp16_9class_train: [PREPARING] 
+exp16_vanilla_train: [PREPARING] 
+exp17_qwen_benign_gen: [PREPARING] 
+exp17_qwen_jailbreak_gen: [PREPARING] 
+exp17_dryrun: [PREPARING] 
+exp16_llama_benign_gen: [PREPARING] 
+exp16_llama_jailbreak_gen: [PREPARING] 
+llama_crescendo_dryrun: [PREPARING] 
+exp16_multi_llm_training: [PREPARING] 
+exp15c_roberta_large_mlm: [DONE] negative
+exp14c_prediction_analysis: [DONE] success
+exp15b_roberta_large_lr: [DONE] negative
+exp15_roberta_large: [DONE] negative
+exp14b_cross_llm_control: [DONE] success
+exp14_cross_llm_validation: [DONE] negative
+exp13_meanpool_multiseed: [PREPARING] success
+exp12_toxicchat_bootstrap: [PREPARING] success
+exp11_tost_equivalence: [PREPARING] success
+exp5_llm_judge_ood: [DONE] success
+exp9_bootstrap_ci: [DONE] success
+exp8_mhj_human_data: [DONE] success
+exp10_fewshot_llm_judge: [DONE] success
+exp7_tfidf_perprefix_actorattack: [DONE] success
+exp6_actorattack_perturbation: [DONE] negative
+exp2_actorattack_mcnemar: [DONE] success
+exp2_actorattack_ood: [DONE] success
+exp4_dd_ood_perturbation: [DONE] success
+exp3_roberta_probing: [DONE] success
+exp3_probing: [PREPARING] success
+vanilla_multiseed_dd_ood: [DONE] success
+mf1_binary_seed123: [DONE] success
+exp1_roberta_vanilla: [PREPARING] success
+exp1_roberta_mlm: [PREPARING] success
+exp1_roberta_9class: [PREPARING] success
+mf1_binary_seed456: [DONE] success
+mf1_scrambled_seed123: [DONE] success
+mf1_scrambled_seed456: [DONE] success
+plan_003_scrambled_perturbation: [DONE] negative
+plan_003_scrambled_fix: [DONE] negative
+plan_002_seed456: [DONE] success
+plan_002_seed123: [DONE] success
+plan_003_scrambled_retrain: [PREPARING] 
+plan_018_wiki_mlm_control: [DONE] success
+plan_018_eval_seed456: [PREPARING] 
+plan_017_mlm_control: [DONE] negative
+plan_018_eval_seed123: [PREPARING] 
+plan_018_wiki_mlm_seed456: [PREPARING] 
+plan_018_wiki_mlm_seed123: [PREPARING
+…[truncated 1204 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer",
+  "tool": "Bash",
+  "elapsed_ms": 639
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-20T05:11:18.161889+00:00_
+
+信息够了，以下是项目全貌。
+
+---
+
+## 原始 idea
+
+**一句话**：多轮 jailbreak 攻击（如 Crescendo）每一轮单独看都像正常对话，传统检测器抓不到。但攻击者在对话里使用的**说服策略序列**（先套近乎→再偷换概念→最后升级请求）是无法隐藏的信号，可以用来做检测。
+
+**具体做法**：用一个 8 类说服策略分类器（rapport building, reframing, escalation 等）给 DeBERTa 做领域自适应预训练（DAPT），把每一轮对话编码成"说服策略向量"，然后用 GRU 序列模型看整段对话的策略轨迹，判断是否是 jailbreak。
+
+---
+
+## 实验做了什么、结果如何
+
+一共跑了 **81 个实验（49 个有结论：32 成功、15 负向、2 失败）**，核心发现：
+
+1. **方法有效但机制和预期不同**：原以为"精确的说服策略标签"是关键，实验证明**任何形式的说服文本微调**（正确标签、打乱标签、二分类、甚至 MLM 续训）都能大幅提升跨攻击泛化——vanilla DeBERTa 在未见攻击上 F1=0.28，微调后直接到 0.97-1.0。标签质量只贡献 1-6pp 的微弱差异。
+
+2. **但在多 LLM 混合训练下，分类式 DAPT 是唯一稳健的**：MLM 续训只在单源（Qwen）数据上有效，换成混合 LLM 数据就崩了（方差 0.466）。9-class 分类 DAPT 是唯一跨训练数据组成都稳定的方法。这成了论文**最终的核心 claim**。
+
+3. **TF-IDF 在简单攻击上完美（0.96），但在复杂攻击（ActorAttack）上崩溃（0.26）**，9-class 在 ActorAttack 上仍 0.97，拉开 71pp 差距。
+
+4. **GPT-5.5 zero-shot 检测 F1 只有 0.19-0.45**，被"表面教育框架"欺骗，说明 LLM judge 不行。
+
+5. **人类数据迁移一般**：ToxicChat 上平衡评估 9-class F1=0.55，比 vanilla 好（0.36），但远不算亮眼。论文定位为"zero-shot 单轮迁移"而非核心 claim。
+
+---
+
+## 现在在干什么
+
+- 论文已写完（8 页正文 + appendix，共 17 页），**Round 5 内部审稿已提交**，等用户审批 review mode
+- DDL 是 **2026-05-25（EMNLP 2026 ARR May）**，还剩 5 天
+- 已决定不再跑新实验（D052），论文内容冻结
+- 所有 GPU 空闲
+
+---
+
+## 预计中稿率
+
+坦率说：**偏难，大概 Findings 边缘（3.0-3.5 分区间）**。
+
+**利好**：
+- 实验量大、ablation 非常系统（49 个实验），reviewer 喜欢这种彻底拆解
+- 核心发现（分类 DAPT 跨数据组成稳健）有实际价值
+- TF-IDF 在复杂攻击崩溃 + LLM judge 不行 → motivation 站得住
+
+**风险**：
+- 内部审稿评分趋势 2.5→2.5→2.75，到 Round 5 还没破 3
+- 人类数据迁移弱（ToxicChat F1=0.55），reviewer 大概率会质疑实用性
+- 原始 idea 的核心假设（"说服策略标签是关键"）被自己的 ablation 推翻了，虽然诚实地 reframe 了但 novelty 被削弱
+- 纯合成数据训练+评估，reviewer 普遍对此敏感
+- 论文 title 已从最初的"说服策略检测"改了好几轮，说明 framing 一直在漂移
+
+综合看，**主会接收概率较低（~15-20%），Findings 有一定机会（~35-40%）**。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_4acc6fd41d3a5780dbdf2d1901f9fedb:briefer"
+}
+```
+
+</details>
+
+---

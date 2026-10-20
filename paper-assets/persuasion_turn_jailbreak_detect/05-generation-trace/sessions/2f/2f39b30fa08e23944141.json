@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f39b30fa08e23944141",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval plan 012 gpt55",
+  "task_key": "worker_eval_plan_012_gpt55_20260518T024740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_012_gpt55_20260518T024740_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "9e595d3891f18863fe6ab6567cfdc4d3d94d3bcedfa4eaa29bf7ed6f6106853d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**GPT-5.5 LLM Judge Baseline 结果汇总：**\n\n| K | F1 | Precision | Recall | Unparseable |\n|---|---|---|---|---|\n| K=2 | 0.1905 | 1.0 | 0.1053 | 23/76 |\n| K=3 | 0.2727 | 1.0 | 0.1579 | 23/76 |\n| K=5 | **0.4490** | 1.0 | 0.2895 | 28/76 |\n| full | 0.3830 | 1.0 | 0.2368 | 36/76 |\n\n关键发现：\n- GPT-5.5 比 Qwen3-8B 好（best F1 0.45 vs 0.15），但仍远低于 trained classifier (F1=1.0)\n- 精确率 1.0 说明它判定为 jailbreak 的都是对的，但大量漏检（recall 最高仅 0.29）\n- 30-47% 的样本输出不可解析（reasoning model token 耗尽未输出 verdict），默认计为 benign\n- full 对话反而比 K=5 差，可能是因为更长的输入导致更多 unparseable\n\n结论：即使是 GPT-5.5 级别的 LLM，zero-shot judge 在早期检测上也表现很差，验证了 trained classifier 的存在价值。\n\n产出已保存到 `results/plan_012_gpt55_judge.json`，artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-012-gpt55.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "475bc14baf432ae8e8af",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "research rebuttal data summary",
+  "task_key": "worker_research_rebuttal_data_summary_20260522T213017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_rebuttal_data_summary_20260522T213017_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "d019bcffc28da241f33e777823aa19254288f7658771c5bbaa8c5459b8df062b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `/root/jailbreak_detect/rebuttal_data_summary.md`（203 行），覆盖 5 个板块：\n\n1. **exp63 FP/FN** — 9-class vs MLM 的 F1/FPR/P/R + 144/46 样本错误分解\n2. **exp54 causal probe** — top-3 SVD 投影保留完美 OOD 检测 (F1=1.0)，MLM full-768 仅 0.636；附 exp57 IID-only SVD 补充（无数据泄漏）\n3. **exp50 layerwise** — 13 层 Fisher ratio 完整表，peak 在 layer 10（9-class=10.92 vs vanilla=0.73）\n4. **WildChat/OASST2 adaptation** — FPR 随 N 下降曲线 + multi-seed 验证（WC n=10 FPR=0，OASST2 n=25 FPR=0.010±0.005）\n5. **Per-seed variance** — 3-seed/5-seed/10-seed 的 DD/AA OOD F1 mean±std，含 TOST 等价检验结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-rebuttal-data-summary.md"
+}

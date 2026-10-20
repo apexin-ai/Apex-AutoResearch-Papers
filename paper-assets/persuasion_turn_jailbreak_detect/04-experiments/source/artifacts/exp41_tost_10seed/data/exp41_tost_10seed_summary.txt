@@ -1,0 +1,14 @@
+TOST 10-seed Analysis (exp41)
+Seeds: 42, 123, 456, 789, 1000, 2024, 2025, 2026, 314, 628
+Margin: 5pp (0.05)
+
+DD OOD:   p=2.06e-9,  EQUIVALENT,  Cohen d=-0.136
+AA OOD:   p=0.183,    NOT EQUIV,   Cohen d=0.440
+FITD OOD: p=0.0,      EQUIVALENT,  Cohen d=0.0
+
+9-class AA mean: 0.979
+Scrambled AA mean: 0.949
+Diff: ~3pp
+
+Conclusion: NEGATIVE — increased sample size made AA non-equivalence MORE evident.
+Full results at server: /root/persuasion_turn_jailbreak_detect/results/exp41_tost_10seed_analysis.json

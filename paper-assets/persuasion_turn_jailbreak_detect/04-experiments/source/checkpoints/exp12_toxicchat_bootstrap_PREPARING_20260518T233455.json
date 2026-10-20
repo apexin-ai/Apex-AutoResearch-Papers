@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp12_toxicchat_bootstrap",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:34:47.678Z",
+    "updated_at": "2026-05-18T23:34:55.670Z",
+    "hypothesis": "BCa bootstrap CIs and paired permutation tests on ToxicChat human data will confirm that jb_mlm significantly outperforms 9-class (24pp gap) and vanilla (42pp gap), providing rigorous statistical support for the evidence hierarchy on human-written jailbreak data.",
+    "parent": "exp8_mhj_human_data",
+    "spec": {
+      "command": "python scripts/exp12_toxicchat_bootstrap.py",
+      "server": "westd-33183",
+      "data_path": "results/exp8_raw_predictions.json",
+      "data_count": 408,
+      "model_name": "DeBERTa-v3-base variants (7)",
+      "seed": "42,123,456",
+      "checkpoint_path": "N/A (analysis only)",
+      "log_path": "results/exp12_toxicchat_bootstrap.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T23:34:55.873214+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp62_topic_diagnosis",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T17:26:41.075Z",
+    "updated_at": "2026-05-22T17:27:19.371Z",
+    "hypothesis": "Topic DAPT fails because it blurs the jailbreak/benign boundary in embedding space — topic classification teaches features orthogonal to the jailbreak detection task, resulting in lower Fisher separability between jailbreak and benign representations",
+    "spec": {
+      "command": "python scripts/exp62_topic_diagnosis.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/ + OOD test sets",
+      "data_count": 1500,
+      "model_name": "deberta-v3-base (vanilla/9class/topic)",
+      "seed": 42,
+      "checkpoint_source": "plan_002/plan_005_topic/pretrained",
+      "eval_data": "IID test + DD/AA OOD",
+      "checkpoint_path": "results/exp62_topic_diagnosis.json",
+      "log_path": "N/A"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "vanilla_iid_fisher": 0.118,
+      "vanilla_dd_fisher": 0.401,
+      "vanilla_aa_fisher": 0.408,
+      "9class_iid_fisher": 0.073,
+      "9class_dd_fisher": 0.2,
+      "9class_aa_fisher": 0.832,
+      "topic_iid_fisher": 0.108,
+      "topic_dd_fisher": 0.653,
+      "topic_aa_fisher": 0.311,
+      "finding": "9-class DAPT has LOWER Fisher/silhouette than vanilla on IID/DD, not higher — mechanism is richer geometry not simple separability. Topic DAPT failure is not boundary-blurring."
+    },
+    "completed_at": "2026-05-22T17:27:19.371Z"
+  },
+  "timestamp": "2026-05-22T17:27:19.708056+00:00",
+  "trigger": "update_registry"
+}

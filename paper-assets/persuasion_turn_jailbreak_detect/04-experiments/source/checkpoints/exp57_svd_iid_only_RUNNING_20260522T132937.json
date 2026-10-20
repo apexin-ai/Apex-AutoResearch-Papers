@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp57_svd_iid_only",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T13:28:59.797Z",
+    "updated_at": "2026-05-22T13:29:36.939Z",
+    "hypothesis": "SVD directions computed on IID training data only (without OOD test exposure) are sufficient for cross-attack OOD detection via logistic probe, eliminating the data leakage concern in exp54's causal subspace analysis",
+    "parent": "exp54_causal_probe_subspace",
+    "spec": {
+      "command": "python scripts/exp57_svd_iid_only.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/train.jsonl + OOD test sets",
+      "data_count": 740,
+      "model_name": "deberta-v3-base-multitask-9class",
+      "seed": 42,
+      "checkpoint_source": "plan_002/deberta_multitask/best",
+      "eval_data": "IID test + DD/AA/FITD OOD"
+    },
+    "log_path": "results/exp57_svd_iid_only.json",
+    "checkpoint_path": "N/A (analysis only, uses plan_002 checkpoint)",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T13:29:37.234802+00:00",
+  "trigger": "update_registry"
+}

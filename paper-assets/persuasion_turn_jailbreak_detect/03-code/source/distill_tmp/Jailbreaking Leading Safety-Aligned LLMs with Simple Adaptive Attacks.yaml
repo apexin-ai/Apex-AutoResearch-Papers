@@ -1,0 +1,95 @@
+paper_key: "Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks"
+title: "Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks"
+venue: "ICLR 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - GCG (Zou et al. 2023)
+    - AutoDAN (Liu et al. 2024)
+    - PAIR (Chao et al. 2023)
+    - TAP (Mehrotra et al. 2024)
+    - PAP (Zeng et al. 2024)
+    - GPTFuzzer
+    - ICA (Wei et al. 2023)
+  metrics:
+    - {name: "Attack Success Rate (ASR)", direction: "higher_better"}
+    - {name: "GPT-4 Judge Score (1-10)", direction: "higher_better"}
+  datasets:
+    - {name: "AdvBench harmful requests (Chao et al. 2023)", size: "50 requests"}
+    - {name: "SaTML'24 Trojan Detection Competition dataset", size: "competition benchmark"}
+  ablation_dimensions:
+    - attack technique combination (prompt only vs. +random search vs. +self-transfer)
+    - prompt template design per model family
+    - number of random restarts
+    - request structure (user vs. system+user for Claude)
+    - suffix length and token budget
+  training_recipe:
+    optimizer: "N/A (attack-time optimization, no model training)"
+    lr: "N/A"
+    hardware: "API access (GPT-3.5/4, Claude); local GPUs for Llama-2/Gemma/R2D2"
+  method_family: "adaptive jailbreak attacks (combination of manual prompt engineering + zeroth-order optimization)"
+
+positioning:
+  core_claim: "简单的自适应攻击组合即可对所有主流安全对齐 LLM 达到接近 100% 的越狱成功率，表明当前安全对齐远不够鲁棒"
+  key_results: "Llama-2-Chat 7B/13B/70B: 100% ASR (前最佳 92%); R2D2: 100% (前 61%); GPT-4 Turbo: 96% (前 59%); Gemma-7B: 100%; Claude models: 100% via transfer/prefilling"
+  limitations:
+    - "对抗样本不一定能迁移到不同 system prompt 的 ChatGPT 变体"
+    - "GPT-4 作为越狱判断器存在误报，特别是对 Claude 2.1 等高度对齐模型"
+    - "缺乏可靠的自动化越狱评估方法"
+    - "评估依赖主观的 judge 可靠性"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "以对抗鲁棒性评估的类比开篇——正如图像分类领域经历了从过度乐观到正确评估的转变，LLM 安全评估也需要同样严格的方法论"
+  tension: "现有越狱攻击方法要么过于复杂（如 GCG 需要梯度访问），要么成功率有限（如 PAIR 对 GPT-4 只有 59%），且没有单一方法能通用于所有模型——这给人造成了'LLM 安全对齐已足够好'的虚假安全感"
+  key_insight: "自适应性是关键：不同模型对不同攻击模式脆弱，简单技术的组合比单一复杂方法更有效。核心洞察在方法论部分揭示：adaptivity is crucial"
+  argument_chain: "LLM 安全对齐被广泛部署 → 现有攻击评估方法不充分 → 借鉴对抗鲁棒性评估范式 → 提出简单自适应攻击组合 → 在所有主流 LLM 上达到近 100% ASR → 呼吁建立更严格的安全评估标准"
+  contribution_framing: "3 个核心贡献：(1) 在所有主流安全对齐 LLM 上达到近 100% ASR 的实证结果；(2) 适应性攻击方法论的系统化总结；(3) 对 LLM 安全评估标准的建议"
+  intro_structure: "6 段：(1) LLM 滥用风险与安全对齐的必要性；(2) 现有安全对齐技术概述；(3) 现有越狱方法回顾及其局限；(4) 本文自适应方法论；(5) 主要实验结果概述；(6) 关键洞察与评估标准建议"
+  notable_technique: "用计算机视觉对抗鲁棒性评估的成熟框架类比 LLM 安全评估，建立方法论可信度；同时用 'no single method works for all models' 的发现反过来强化自适应方法的必要性"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "teaser_result"
+    description: "展示对 Claude 3 Sonnet 的成功迁移攻击。显示了一个对话界面，包含带有对抗后缀的用户提示和模型的有害响应，以及后续追问如何提取更多有害信息"
+    narrative_role: "作为视觉 'proof of concept'，在论文开头直接展示攻击的可行性和危害性，建立紧迫感"
+    design_elements: ["真实对话界面截图", "对抗后缀高亮", "多轮对话展示持续漏洞"]
+    visual_style: "对话界面截图风格，直观展示攻击效果，无需解读即可理解威胁严重性"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "histogram"
+      what_compared: "GPT 模型在相同查询下的 log-probability 非确定性分布"
+      how_gain_highlighted: "通过展示 1000 次重复查询的概率分布差异，揭示 API 层面的不确定性"
+      design_note: "4 个子图对应 top-1 到 top-4 token 的概率分布，用直方图直观展示非确定性程度"
+    - figure_id: "Figure 3"
+      viz_type: "qualitative_comparison"
+      what_compared: "有无对抗后缀时 Claude 3 Sonnet 的响应对比"
+      how_gain_highlighted: "并排对比截图，无后缀时拒绝 vs 有后缀时生成有害内容"
+      design_note: "before/after 对比是展示攻击效果最直观的方式"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (攻击成功案例) → Figure 2 (API 非确定性分析) → Figure 3 (有无后缀对比)。从视觉冲击到技术分析到方法验证的递进"
+
+tables:
+  table_count: 19
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods (target models)"
+    col_axis: "model source × access type × attack method × previous ASR × achieved ASR"
+    row_organization: "by_category (按模型家族分组：Llama-2, Gemma, R2D2, GPT, Claude)"
+    col_organization: "flat"
+    highlight_strategy: "对比展示 previous best ASR vs. authors' ASR，突出大幅提升"
+    statistical_reporting: "百分比成功率，附注星号和剑号标注数据来源差异和误报情况"
+    num_baselines: 11
+    design_note: "将 11 个目标模型的攻击结果压缩到一张总结表中，通过 previous vs. ours 的对比列直观展示提升幅度；按模型家族分组便于读者快速定位关注的模型"
+  ablation_tables:
+    - table_id: "Tables 2-19"
+      what_varied: ["attack technique combination", "prompt template variants", "random restart counts", "request structure"]
+      variation_style: "full_numbers"
+      design_note: "每个模型家族/攻击变体有独立的详细表格，主表仅展示最终最佳结果。这种分层设计让主表简洁有力，同时在附录提供完整实验细节"
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables 2-19 包含每个模型的详细攻击变体结果、不同 prompt template 的对比、random search 配置消融、self-transfer 效果分析"
+    reason: "主表 (Table 1) 只展示每个模型的最佳 ASR 作为 headline 数字，详细的攻击配置消融放在附录，避免主文过于冗长同时保证可复现性"

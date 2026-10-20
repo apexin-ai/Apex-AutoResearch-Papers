@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d069698189be087107e5",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "ops check alpha value",
+  "task_key": "worker_ops_check_alpha_value_20260518T042414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_alpha_value_20260518T042414_result.json",
+    "occurrence": 1,
+    "bytes": 1067,
+    "sha256": "882a4d6aa269334921eb51be5dbaffd122f43d4439359af6129a85fd3caeb946"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 确认结果\n\n| 项目 | 值 |\n|---|---|\n| `train_deberta.py` 默认 alpha | **0.3** |\n| plan_002 seed42 (run_plan_002.sh) | **alpha=0.3**（未传 `--alpha`，使用默认值）|\n| plan_002 seed123 | **alpha=0.3**（无独立脚本，日志无 alpha 覆盖记录）|\n| plan_002 seed456 | **alpha=0.3**（同上）|\n| plan_014 ablation 中对 plan_002 的标注 | `\"lambda_1.0\"` 但 note 写了 `\"plan_002 baseline (alpha=0.3 default)\"` |\n\n## 结论\n\n**plan_002 所有 seed 实际使用的都是 alpha=0.3**，即 `L = L_persuasion + 0.3 * L_intent`。\n\n论文写 λ=1.0 是错的。plan_014 的 ablation 脚本也确认了这一点：它把 plan_002 的结果标为 `\"lambda_1.0\"` 但 note 明确写 `\"alpha=0.3 default\"`，说明论文中的 λ=1.0 标签和实际 alpha=0.3 之间存在命名混乱。\n\n**需要修正论文**：将论文中的 λ 值从 1.0 改为 0.3，或者明确说明 loss 公式中 intent loss 的权重是 0.3。plan_014 ablation 表格中 `lambda_1.0` 这一行也需要改标签为正确的值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-alpha-value.md"
+}

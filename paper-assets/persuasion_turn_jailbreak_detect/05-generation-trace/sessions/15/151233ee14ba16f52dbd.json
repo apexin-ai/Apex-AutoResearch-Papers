@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "151233ee14ba16f52dbd",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp8 scrambled seed123 v2",
+  "task_key": "worker_eval_exp8-scrambled-seed123-v2_20260518T173539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp8-scrambled-seed123-v2_20260518T173539_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "1c8e244836d064d0ce7275024c64ef88fcf74404756eb7d935c857fa78017b12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已完整存在于 `exp8_macro_f1_corrected.json` 中，scrambled seed123 的结果已经算好了。无需重跑。\n\n```\nscrambled_seed123_toxicchat_macro_f1: 0.654\nscrambled_seed123_toxicchat_binary_f1: 0.738\nscrambled_seed123_verazuo_macro_f1: 0.880\nscrambled_seed123_verazuo_binary_f1: 0.930\n\nscrambled 3-seed ToxicChat macro F1: mean=0.616 std=0.056 (seeds: 42=0.537, 123=0.654, 456=0.657)\nscrambled 3-seed verazuo macro F1: mean=0.822 std=0.046 (seeds: 42=0.818, 123=0.880, 456=0.768)\n```\n\nverazuo_test_only_benign（排除泄露后）:\n```\nscrambled_seed123_verazuo_test_only_macro_f1: 0.722\nscrambled_seed123_verazuo_test_only_binary_f1: 0.930\n\nscrambled 3-seed verazuo_test_only macro F1: mean=0.649 std=0.056 (seeds: 42=0.640, 123=0.722, 456=0.585)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp8-scrambled-seed123-v2.md"
+}

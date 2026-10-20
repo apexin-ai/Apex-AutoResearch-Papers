@@ -1,0 +1,25 @@
+Plan 016v2 Topic Classification Control Results
+
+Stage 1 (DeBERTa + 5-class topic head, NO intent head):
+  Epochs: 4, Val Topic Acc: 0.784, Val Loss: 0.589
+
+Label Leakage Check:
+  Train Cramer's V: 0.228 (weak), Val Cramer's V: 0.310 (moderate)
+  No label leakage confirmed.
+
+DD OOD Results (F1 macro):
+  K=1:  0.697
+  K=2:  0.716
+  K=3:  0.717
+  K=5:  0.750
+  Full: 0.727
+
+Reference - Persuasion Treatment (plan_006):
+  K=1: 1.0, K=2: 0.99, K=5: 1.0, Full: 1.0
+
+Reference - Vanilla Baseline (plan_006):
+  K=1: 0.575, K=2: 0.438, Full: 0.285
+
+Conclusion: Topic control F1=0.727 is far below persuasion treatment (1.0).
+Generic classification fine-tuning is NOT sufficient.
+Persuasion-specific learning is the primary driver of cross-attack generalization.

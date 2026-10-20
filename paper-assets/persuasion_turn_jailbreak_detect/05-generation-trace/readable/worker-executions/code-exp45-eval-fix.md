@@ -1,0 +1,926 @@
+# code exp45 eval fix
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 18
+- **Recorded user turns:** 0
+- **Tool calls:** 5
+- **Original source:** `logs/workers/worker_code_exp45_eval_fix_20260522T065355.log`
+- **Structured JSON:** [`a68924e87fa527e16166.json`](../../sessions/a6/a68924e87fa527e16166.json)
+
+## Before a recorded user message
+
+18 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "0bc56144-5620-4a51-b4f3-1f217410f861",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779450600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "08b87999-fd7f-4572-8e1b-86018325c76a",
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我来探查服务器上 exp45 的现有状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "uuid": "a17887e5-2a7f-4827-ab1d-40efebcaa121",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014dTjGAFcQsaUA7kaPqv9e4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13087,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13087
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01NKQEzyLZGjZgSpBRks3LMA`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "uuid": "9d030b07-a08d-4faa-ab8a-63d74932ba4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014dTjGAFcQsaUA7kaPqv9e4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13087,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13087
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T06:54:09.452Z_
+
+<details><summary>↩ Tool result · `toolu_01NKQEzyLZGjZgSpBRks3LMA`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "uuid": "a3c40a7c-f9a8-4a81-8ef2-cf7819bb6e8f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by exploring the current state on the server - check the results JSON, find checkpoint directories, and look at the experiment script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "uuid": "fd949770-3914-4b15-bcac-e0ff24e5a729",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTUc3jpUwPzC13WqBZYGrh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 891,
+      "cache_read_input_tokens": 24928,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 891
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PuUGaABiH5rfgsZwp83YrC`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/results/exp45_benign_adaptation_curve.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "uuid": "0bb99f2d-5026-42f5-b2c1-69b4b20a4f8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTUc3jpUwPzC13WqBZYGrh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 891,
+      "cache_read_input_tokens": 24928,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 891
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T06:54:15.019Z_
+
+<details><summary>↩ Tool result · `toolu_01PuUGaABiH5rfgsZwp83YrC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_values\\\": [\\n    0,\\n    5,\\n    10,\\n    25,\\n    50,\\n    100,\\n    150\\n  ],\\n  \\\"per_n\\\": {\\n    \\\"0\\\": {\\n      \\\"wildchat_fpr\\\": 0.6530612244897959,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 0.975,\\n      \\\"ood_aa_f1\\\": 0.9808503732554366,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0,\\n      \\\"train_size\\\": 350,\\n      \\\"deberta_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n0_seed42/deberta_multitask/best\\\",\\n      \\\"gru_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n0_seed42/gru/best.pt\\\",\\n      \\\"time_min\\\": 3.0\\n    },\\n    \\\"5\\\": {\\n      \\\"wildchat_fpr\\\": 0.16326530612244897,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 0.9875,\\n      \\\"ood_dd_f1\\\": 0.9903618394184432,\\n      \\\"ood_aa_recall\\\": 0.975,\\n      \\\"ood_aa_f1\\\": 0.9808503732554366,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0,\\n      \\\"train_size\\\": 355,\\n      \\\"deberta_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n5_seed42/deberta_multitask/best\\\",\\n      \\\"gru_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n5_seed42/gru/best.pt\\\",\\n      \\\"time_min\\\": 3.0\\n    },\\n    \\\"10\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 1.0,\\n      \\\"ood_aa_f1\\\": 1.0,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0,\\n      \\\"train_size\\\": 360,\\n      \\\"deberta_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n10_seed42/deberta_multitask/best\\\",\\n      \\\"gru_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n10_seed42/gru/best.pt\\\",\\n      \\\"time_min\\\": 2.4\\n    },\\n    \\\"25\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 0.9375,\\n      \\\"ood_aa_f1\\\": 0.9530067702110713,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0,\\n      \\\"train_size\\\": 375,\\n      \\\"deberta_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n25_seed42/deberta_multitask/best\\\",\\n      \\\"gru_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n25_seed42/gru/best.pt\\\",\\n      \\\"time_min\\\": 1.7\\n    },\\n    \\\"50\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 1.0,\\n      \\\"ood_aa_f1\\\": 1.0,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0,\\n      \\\"train_size\\\": 400,\\n      \\\"deberta_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n50_seed42/deberta_multitask/best\\\",\\n      \\\"gru_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n50_seed42/gru/best.pt\\\",\\n      \\\"time_min\\\": 1.9\\n    },\\n    \\\"100\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 1.0,\\n      \\\"ood_aa_f1\\\": 1.0,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0,\\n      \\\"train_size\\\": 450,\\n      \\\"deberta_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n100_seed42/deberta_multitask/best\\\",\\n      \\\"gru_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n100_seed42/gru/best.pt\\\",\\n      \\\"time_min\\\": 2.1\\n    },\\n    \\\"150\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 0.975,\\n      \\\"ood_aa_f1\\\": 0.9808503732554366,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0,\\n      \\\"train_size\\\": 500,\\n      \\\"deberta_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n150_seed42/deberta_multitask/best\\\",\\n      \\\"gru_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n150_seed42/gru/best.pt\\\",\\n      \\\"time_min\\\": 2.1\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "uuid": "23c403e9-aeae-4925-88f0-f64f9749be46",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"n_values\\\\\\\": [\\\\n    0,\\\\n    5,\\\\n    10,\\\\n    25,\\\\n    50,\\\\n    100,\\\\n    150\\\\n  ],\\\\n  \\\\\\\"per_n\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"wildchat_fpr\\\\\\\": 0.6530612244897959,\\\\n      \\\\\\\"wildchat_n\\\\\\\": 49,\\\\n      \\\\\\\"iid_f1_macro\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_aa_recall\\\\\\\": 0.975,\\\\n      \\\\\\\"ood_aa_f1\\\\\\\": 0.9808503732554366,\\\\n      \\\\\\\"ood_fitd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_fitd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"train_size\\\\\\\": 350,\\\\n      \\\\\\\"deberta_path\\\\\\\": \\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n0_seed42/deberta_multitask/best\\\\\\\",\\\\n      \\\\\\\"gru_path\\\\\\\": \\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n0_seed42/gru/best.pt\\\\\\\",\\\\n      \\\\\\\"time_min\\\\\\\": 3.0\\\\n    },\\\\n    \\\\\\\"5\\\\\\\": {\\\\n      \\\\\\\"wildchat_fpr\\\\\\\": 0.16326530612244897,\\\\n      \\\\\\\"wildchat_n\\\\\\\": 49,\\\\n      \\\\\\\"iid_f1_macro\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_recall\\\\\\\": 0.9875,\\\\n      \\\\\\\"ood_dd_f1\\\\\\\": 0.9903618394184432,\\\\n      \\\\\\\"ood_aa_recall\\\\\\\": 0.975,\\\\n      \\\\\\\"ood_aa_f1\\\\\\\": 0.9808503732554366,\\\\n      \\\\\\\"ood_fitd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_fitd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"train_size\\\\\\\": 355,\\\\n      \\\\\\\"deberta_path\\\\\\\": \\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n5_seed42/deberta_multitask/best\\\\\\\",\\\\n      \\\\\\\"gru_path\\\\\\\": \\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n5_seed42/gru/best.pt\\\\\\\",\\\\n      \\\\\\\"time_min\\\\\\\": 3.0\\\\n    },\\\\n    \\\\\\\"10\\\\\\\": {\\\\n      \\\\\\\"wildchat_fpr\\\\\\\": 0.0,\\\\n      \\\\\\\"wildchat_n\\\\\\\": 49,\\\\n      \\\\\\\"iid_f1_macro\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_aa_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_aa_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_fitd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_fitd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"train_size\\\\\\\": 360,\\\\n      \\\\\\\"deberta_path\\\\\\\": \\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n10_seed42/deberta_multitask/best\\\\\\\",\\\\n      \\\\\\\"gru_path\\\\\\\": \\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n10_seed42/gru/best.pt\\\\\\\",\\\\n      \\\\\\\"time_min\\\\\\\": 2.4\\\\n    },\\\\n    \\\\\\\"25\\\\\\\": {\\\\n      \\\\\\\"wildchat_fpr\\\\\\\": 0.0,\\\\n      \\\\\\\"wildchat_n\\\\\\\": 49,\\\\n      \\\\\\\"iid_f1_macro\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_aa_recall\\\\\\\": 0.9375,\\\\n      \\\\\\\"ood_aa_f1\\\\\\\": 0.9530067702110713,\\\\n      \\\\\\\"ood_fitd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_fitd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"train_size\\\\\\\": 375,\\\\n      \\\\\\\"deberta_path\\\\\\\": \\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n25_seed42/deberta_multitask/best\\\\\\\",\\\\n      \\\\\\\"gru_path\\\\\\\": \\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n25_seed42/gru/best.pt\\\\\\\",\\\\n      \\\\\\\"time_min\\\\\\\": 1.7\\\\n    },\\\\n    \\\\\\\"50\\\\\\\": {\\\\n      \\\\\\\"wildchat_fpr\\\\\\\": 0.0,\\\\n      \\\\\\\"wildchat_n\\\\\\\": 49,\\\\n      \\\\\\\"iid_f1_macro\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_aa_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_aa_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_fitd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_fitd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"train_size\\\\\\\": 400,\\\\n      \\\\\\\"deberta_path\\\\\\\": \\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n50_seed42/deberta_multitask/best\\\\\\\",\\\\n      \\\\\\\"gru_path\\\\\\\": \\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n50_seed42/gru/best.pt\\\\\\\",\\\\n      \\\\\\\"time_min\\\\\\\": 1.9\\\\n    },\\\\n    \\\\\\\"100\\\\\\\": {\\\\n      \\\\\\\"wildchat_fpr\\\\\\\": 0.0,\\\\n      \\\\\\\"wildchat_n\\\\\\\": 49,\\\\n      \\\\\\\"iid_f1_macro\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_aa_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_aa_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_fitd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_fitd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"train_size\\\\\\\": 450,\\\\n      \\\\\\\"deberta_path\\\\\\\": \\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n100_seed42/deberta_multitask/best\\\\\\\",\\\\n      \\\\\\\"gru_path\\\\\\\": \\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n100_seed42/gru/best.pt\\\\\\\",\\\\n      \\\\\\\"time_min\\\\\\\": 2.1\\\\n    },\\\\n    \\\\\\\"150\\\\\\\": {\\\\n      \\\\\\\"wildchat_fpr\\\\\\\": 0.0,\\\\n      \\\\\\\"wildchat_n\\\\\\\": 49,\\\\n      \\\\\\\"iid_f1_macro\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_aa_recall\\\\\\\": 0.975,\\\\n      \\\\\\\"ood_aa_f1\\\\\\\": 0.9808503732554366,\\\\n      \\\\\\\"ood_fitd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_fitd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"train_size\\\\\\\": 500,\\\\n      \\\\\\\"deberta_path\\\\\\\": \\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n150_seed42/deberta_multitask/best\\\\\\\",\\\\n      \\\\\\\"gru_path\\\\\\\": \\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n150_seed42/gru/best.pt\\\\\\\",\\\\n      \\\\\\\"time_min\\\\\\\": 2.1\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"n_values\\\": [\\n    0,\\n    5,\\n    10,\\n    25,\\n    50,\\n    100,\\n    150\\n  ],\\n  \\\"per_n\\\": {\\n    \\\"0\\\": {\\n      \\\"wildchat_fpr\\\": 0.6530612244897959,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 0.975,\\n      \\\"ood_aa_f1\\\": 0.9808503732554366,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0,\\n      \\\"train_size\\\": 350,\\n      \\\"deberta_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n0_seed42/deberta_multitask/best\\\",\\n      \\\"gru_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n0_seed42/gru/best.pt\\\",\\n      \\\"time_min\\\": 3.0\\n    },\\n    \\\"5\\\": {\\n      \\\"wildchat_fpr\\\": 0.16326530612244897,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 0.9875,\\n      \\\"ood_dd_f1\\\": 0.9903618394184432,\\n      \\\"ood_aa_recall\\\": 0.975,\\n      \\\"ood_aa_f1\\\": 0.9808503732554366,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0,\\n      \\\"train_size\\\": 355,\\n      \\\"deberta_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n5_seed42/deberta_multitask/best\\\",\\n      \\\"gru_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n5_seed42/gru/best.pt\\\",\\n      \\\"time_min\\\": 3.0\\n    },\\n    \\\"10\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 1.0,\\n      \\\"ood_aa_f1\\\": 1.0,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0,\\n      \\\"train_size\\\": 360,\\n      \\\"deberta_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n10_seed42/deberta_multitask/best\\\",\\n      \\\"gru_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n10_seed42/gru/best.pt\\\",\\n      \\\"time_min\\\": 2.4\\n    },\\n    \\\"25\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 0.9375,\\n      \\\"ood_aa_f1\\\": 0.9530067702110713,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0,\\n      \\\"train_size\\\": 375,\\n      \\\"deberta_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n25_seed42/deberta_multitask/best\\\",\\n      \\\"gru_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n25_seed42/gru/best.pt\\\",\\n      \\\"time_min\\\": 1.7\\n    },\\n    \\\"50\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 1.0,\\n      \\\"ood_aa_f1\\\": 1.0,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0,\\n      \\\"train_size\\\": 400,\\n      \\\"deberta_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n50_seed42/deberta_multitask/best\\\",\\n      \\\"gru_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n50_seed42/gru/best.pt\\\",\\n      \\\"time_min\\\": 1.9\\n    },\\n    \\\"100\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 1.0,\\n      \\\"ood_aa_f1\\\": 1.0,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0,\\n      \\\"train_size\\\": 450,\\n      \\\"deberta_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n100_seed42/deberta_multitask/best\\\",\\n      \\\"gru_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n100_seed42/gru/best.pt\\\",\\n      \\\"time_min\\\": 2.1\\n    },\\n    \\\"150\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 0.975,\\n      \\\"ood_aa_f1\\\": 0.9808503732554366,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0,\\n      \\\"train_size\\\": 500,\\n      \\\"deberta_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n150_seed42/deberta_multitask/best\\\",\\n      \\\"gru_path\\\": \\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp45_n150_seed42/gru/best.pt\\\",\\n      \\\"time_min\\\": 2.1\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SDWMmi1J5fpe8c9z5ujfB9`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/persuasion_turn_jailbreak_detect/checkpoints/ -maxdepth 2 -name \"*exp45*\" -o -name \"*benign*\" -o -name \"*adaptation*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "uuid": "9b21ff7c-c328-4fd0-94ec-7e0a58732fc4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTUc3jpUwPzC13WqBZYGrh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 891,
+      "cache_read_input_tokens": 24928,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 891
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T06:54:15.652Z_
+
+<details><summary>↩ Tool result · `toolu_01SDWMmi1J5fpe8c9z5ujfB9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "uuid": "e9478fb3-e4b6-435a-938d-d67958b30f34",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SxGP4VvGmDAb9nQiUDvJ5c`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/persuasion_turn_jailbreak_detect/ -maxdepth 1 -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "uuid": "b7d295d9-e1b0-470d-bdc9-f6e2c86ee3eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTUc3jpUwPzC13WqBZYGrh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 891,
+      "cache_read_input_tokens": 24928,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 891
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T06:54:16.651Z_
+
+<details><summary>↩ Tool result · `toolu_01SxGP4VvGmDAb9nQiUDvJ5c`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/eval_stratified.py\\n/root/persuasion_turn_jailbreak_detect/count_tokens.py\\n/root/persuasion_turn_jailbreak_detect/download_roberta.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "uuid": "38b20d87-43c2-4dfa-8920-18b7942bce73",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/eval_stratified.py\\\\n/root/persuasion_turn_jailbreak_detect/count_tokens.py\\\\n/root/persuasion_turn_jailbreak_detect/download_roberta.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/eval_stratified.py\\n/root/persuasion_turn_jailbreak_detect/count_tokens.py\\n/root/persuasion_turn_jailbreak_detect/download_roberta.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DzKHkzuJT5kxJVnrdBXHxj`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "ls /root/persuasion_turn_jailbreak_detect/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "uuid": "cea8a42d-03e3-4861-a22d-512b98127c8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTUc3jpUwPzC13WqBZYGrh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 891,
+      "cache_read_input_tokens": 24928,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 891
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T06:54:17.195Z_
+
+<details><summary>↩ Tool result · `toolu_01DzKHkzuJT5kxJVnrdBXHxj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\naggregate_exp2_missing.py\\nanalyze_predictions.py\\nanalyze_qwen_llama_distribution.py\\ncentered_cka.py\\ncompute_baseline_embeddings.py\\ndownload_roberta_large.py\\neval_binary_seed42_actorattack.py\\neval_cross_llm.py\\neval_cross_llm_control.py\\neval_exp16.py\\neval_exp16b_llama_mlm.py\\neval_exp16b_vanilla.py\\neval_exp17.py\\neval_exp17_toxicchat_balanced.py\\neval_missing_seeds.py\\neval_toxicchat_balanced.py\\neval_toxicchat_balanced_mlm.py\\nevaluate_actorattack_ood.py\\nevaluate_actorattack_ood_all.py\\nexp12_toxicchat_bootstrap.py\\nexp15_roberta_large.py\\nexp15b_roberta_large_lr1e5.py\\nexp15c_roberta_large_mlm.py\\nexp16_llama_only_mlm.sh\\nexp16_mlm_gpu0.sh\\nexp16_mlm_gpu1.sh\\nexp17_gpu2.sh\\nexp17_gpu2_resume.sh\\nexp17_gpu3.sh\\nexp17_gpu3_resume.sh\\nexp17_mlm_gpu0_fix.sh\\nexp17_mlm_gpu1_fix.sh\\nexp18_e2e_finetune.py\\nexp19_wildchat_fpr.py\\nexp20_deepcontext_proxy.py\\nexp21_cross_checkpoint.py\\nexp23_aa_error_analysis.py\\nexp24_calibration_ece.py\\nexp25_fitd_early_detection.py\\nexp26_frozen_probing.py\\nexp27_mean_pooling.py\\nexp28_data_efficiency.py\\nexp28_vanilla_only.py\\nexp28b_supplement.py\\nexp28c_vanilla_supplement.py\\nexp29_inference_efficiency.py\\nexp2_actorattack_mcnemar.py\\nexp30_length_stratified.py\\nexp31_lambda_ablation.py\\nexp32_strategy_prediction.py\\nexp33_strategy_prediction_plan002.py\\nexp34_representation_tsne.py\\nexp35_cross_seed_ensemble.py\\nexp36_frozen_mlm_probing.py\\nexp37_length_matched_benign.py\\nexp38_wildcat_calibration.py\\nexp39_extra_seeds.py\\nexp3_probing.py\\nexp3_roberta_probing.py\\nexp40_llama_guard_baseline.py\\nexp41_fitd_table7_perseed.py\\nexp41_tost_10seed.py\\nexp42_ood_benign_mixed.py\\nexp42b_balanced_ratio_ablation.py\\nexp44_full_pipeline.py\\nexp44_generate_fitd_llama.py\\nexp44_train_mixed_llm.py\\nexp44_wait_and_train.sh\\nexp45_benign_adaptation_curve.py\\nexp46_inference_efficiency.py\\nexp48_ensemble.py\\nexp4_vanilla_perturbation_mcnemar.py\\nexp8_human_jailbreak_verazuo.py\\nexp8_mhj_human_eval.py\\nexp8_recalc_macro_f1.py\\nexp8_scrambled_seed123_eval.py\\nexp9_bootstrap_ci.py\\nextract_round7_stats.py\\nextract_tsne.py\\nfitd_perseed_supplement.py\\nfix_exp6_mcnemar.py\\nfix_exp6_reeval.py\\ngen_transition_matrix.py\\ngenerate_aa_llama.py\\ngenerate_actorattack.py\\ngenerate_benign_llama.py\\ngenerate_benign_v4.py\\ngenerate_benign_v4b.py\\ngenerate_benign_v4c.py\\ngenerate_benign_v4c_full.py\\ngenerate_benign_v4d.py\\ngenerate_crescendo.py\\ngenerate_crescendo_expanded.py\\ngenerate_crescendo_llama.py\\ngenerate_crescendo_part.py\\ngenerate_crescendo_transformers.py\\ngenerate_crescendo_v2.py\\ngenerate_dd_llama.py\\ngenerate_deceptive_delight.py\\ngenerate_fitd.py\\ngenerate_parallel.py.disabled\\ngenerate_worker.py.disabled\\nmatched_seed_stats.py\\nmeanpool_multiseed.py\\nmerge_and_split.py\\nplan002_retrain_eval.py\\nplan002_retrain_v2.py\\nplot_fig2_cross_attack_bar.py\\nprepare_expanded_data.py\\nprepare_human_eval_data.py\\nprepare_mixed_data.py\\nprepare_pilot.py\\nprepare_wildchat_benign.py\\nreeval_exp16_balanced.py\\nroberta_centered_cka.py\\nrun_crescendo_part.sh\\nrun_exp16_eval.sh\\nrun_exp16_gpu0_recovery.sh\\nrun_exp16_gpu1_recovery.sh\\nrun_exp16_training.sh\\nrun_exp17_training.sh\\nrun_generate.sh\\nrun_generate_screen.sh\\nrun_plan_002.sh\\nrun_plan_014.py\\nrun_with_restart.sh\\nsanity_check.py\\nsanity_check_v4b.py\\nstatistical_tests.py\\nstep1_wildchat_filter.py\\nstep2_generate_benign.py\\nstep2b_generate_casual.py\\nstep2c_generate_fewshot.py\\nstep2d_rewrite_benign.py\\nstep3_sanity_check.py\\ntest_fix.py\\ntrain_baseline_gru.py\\ntrain_subset_baseline.py\\nturn_shuffle_ablation.py\\nturn_shuffle_ablation_exp1.py\\nvanilla_multiseed_dd_ood.py\\nwait_and_evaluate.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "uuid": "ba5c0b1d-3ae1-43e6-8376-b5ad55f8dc40",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\naggregate_exp2_missing.py\\\\nanalyze_predictions.py\\\\nanalyze_qwen_llama_distribution.py\\\\ncentered_cka.py\\\\ncompute_baseline_embeddings.py\\\\ndownload_roberta_large.py\\\\neval_binary_seed42_actorattack.py\\\\neval_cross_llm.py\\\\neval_cross_llm_control.py\\\\neval_exp16.py\\\\neval_exp16b_llama_mlm.py\\\\neval_exp16b_vanilla.py\\\\neval_exp17.py\\\\neval_exp17_toxicchat_balanced.py\\\\neval_missing_seeds.py\\\\neval_toxicchat_balanced.py\\\\neval_toxicchat_balanced_mlm.py\\\\nevaluate_actorattack_ood.py\\\\nevaluate_actorattack_ood_all.py\\\\nexp12_toxicchat_bootstrap.py\\\\nexp15_roberta_large.py\\\\nexp15b_roberta_large_lr1e5.py\\\\nexp15c_roberta_large_mlm.py\\\\nexp16_llama_only_mlm.sh\\\\nexp16_mlm_gpu0.sh\\\\nexp16_mlm_gpu1.sh\\\\nexp17_gpu2.sh\\\\nexp17_gpu2_resume.sh\\\\nexp17_gpu3.sh\\\\nexp17_gpu3_resume.sh\\\\nexp17_mlm_gpu0_fix.sh\\\\nexp17_mlm_gpu1_fix.sh\\\\nexp18_e2e_finetune.py\\\\nexp19_wildchat_fpr.py\\\\nexp20_deepcontext_proxy.py\\\\nexp21_cross_checkpoint.py\\\\nexp23_aa_error_analysis.py\\\\nexp24_calibration_ece.py\\\\nexp25_fitd_early_detection.py\\\\nexp26_frozen_probing.py\\\\nexp27_mean_pooling.py\\\\nexp28_data_efficiency.py\\\\nexp28_vanilla_only.py\\\\nexp28b_supplement.py\\\\nexp28c_vanilla_supplement.py\\\\nexp29_inference_efficiency.py\\\\nexp2_actorattack_mcnemar.py\\\\nexp30_length_stratified.py\\\\nexp31_lambda_ablation.py\\\\nexp32_strategy_prediction.py\\\\nexp33_strategy_prediction_plan002.py\\\\nexp34_representation_tsne.py\\\\nexp35_cross_seed_ensemble.py\\\\nexp36_frozen_mlm_probing.py\\\\nexp37_length_matched_benign.py\\\\nexp38_wildcat_calibration.py\\\\nexp39_extra_seeds.py\\\\nexp3_probing.py\\\\nexp3_roberta_probing.py\\\\nexp40_llama_guard_baseline.py\\\\nexp41_fitd_table7_perseed.py\\\\nexp41_tost_10seed.py\\\\nexp42_ood_benign_mixed.py\\\\nexp42b_balanced_ratio_ablation.py\\\\nexp44_full_pipeline.py\\\\nexp44_generate_fitd_llama.py\\\\nexp44_train_mixed_llm.py\\\\nexp44_wait_and_train.sh\\\\nexp45_benign_adaptation_curve.py\\\\nexp46_inference_efficiency.py\\\\nexp48_ensemble.py\\\\nexp4_vanilla_perturbation_mcnemar.py\\\\nexp8_human_jailbreak_verazuo.py\\\\nexp8_mhj_human_eval.py\\\\nexp8_recalc_macro_f1.py\\\\nexp8_scrambled_seed123_eval.py\\\\nexp9_bootstrap_ci.py\\\\nextract_round7_stats.py\\\\nextract_tsne.py\\\\nfitd_perseed_supplement.py\\\\nfix_exp6_mcnemar.py\\\\nfix_exp6_reeval.py\\\\ngen_transition_matrix.py\\\\ngenerate_aa_llama.py\\\\ngenerate_actorattack.py\\\\ngenerate_benign_llama.py\\\\ngenerate_benign_v4.py\\\\ngenerate_benign_v4b.py\\\\ngenerate_benign_v4c.py\\\\ngenerate_benign_v4c_full.py\\\\ngenerate_benign_v4d.py\\\\ngenerate_crescendo.py\\\\ngenerate_crescendo_expanded.py\\\\ngenerate_crescendo_llama.py\\\\ngenerate_crescendo_part.py\\\\ngenerate_crescendo_transformers.py\\\\ngenerate_crescendo_v2.py\\\\ngenerate_dd_llama.py\\\\ngenerate_deceptive_delight.py\\\\ngenerate_fitd.py\\\\ngenerate_parallel.py.disabled\\\\ngenerate_worker.py.disabled\\\\nmatched_seed_stats.py\\\\nmeanpool_multiseed.py\\\\nmerge_and_split.py\\\\nplan002_retrain_eval.py\\\\nplan002_retrain_v2.py\\\\nplot_fig2_cross_attack_bar.py\\\\nprepare_expanded_data.py\\\\nprepare_human_eval_data.py\\\\nprepare_mixed_data.py\\\\nprepare_pilot.py\\\\nprepare_wildchat_benign.py\\\\nreeval_exp16_balanced.py\\\\nroberta_centered_cka.py\\\\nrun_crescendo_part.sh\\\\nrun_exp16_eval.sh\\\\nrun_exp16_gpu0_recovery.sh\\\\nrun_exp16_gpu1_recovery.sh\\\\nrun_exp16_training.sh\\\\nrun_exp17_training.sh\\\\nrun_generate.sh\\\\nrun_generate_screen.sh\\\\nrun_plan_002.sh\\\\nrun_plan_014.py\\\\nrun_with_restart.sh\\\\nsanity_check.py\\\\nsanity_check_v4b.py\\\\nstatistical_tests.py\\\\nstep1_wildchat_filter.py\\\\nstep2_generate_benign.py\\\\nstep2b_generate_casual.py\\\\nstep2c_generate_fewshot.py\\\\nstep2d_rewrite_benign.py\\\\nstep3_sanity_check.py\\\\ntest_fix.py\\\\ntrain_baseline_gru.py\\\\ntrain_subset_baseline.py\\\\nturn_shuffle_ablation.py\\\\nturn_shuffle_ablation_exp1.py\\\\nvanilla_multiseed_dd_ood.py\\\\nwait_and_evaluate.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\naggregate_exp2_missing.py\\nanalyze_predictions.py\\nanalyze_qwen_llama_distribution.py\\ncentered_cka.py\\ncompute_baseline_embeddings.py\\ndownload_roberta_large.py\\neval_binary_seed42_actorattack.py\\neval_cross_llm.py\\neval_cross_llm_control.py\\neval_exp16.py\\neval_exp16b_llama_mlm.py\\neval_exp16b_vanilla.py\\neval_exp17.py\\neval_exp17_toxicchat_balanced.py\\neval_missing_seeds.py\\neval_toxicchat_balanced.py\\neval_toxicchat_balanced_mlm.py\\nevaluate_actorattack_ood.py\\nevaluate_actorattack_ood_all.py\\nexp12_toxicchat_bootstrap.py\\nexp15_roberta_large.py\\nexp15b_roberta_large_lr1e5.py\\nexp15c_roberta_large_mlm.py\\nexp16_llama_only_mlm.sh\\nexp16_mlm_gpu0.sh\\nexp16_mlm_gpu1.sh\\nexp17_gpu2.sh\\nexp17_gpu2_resume.sh\\nexp17_gpu3.sh\\nexp17_gpu3_resume.sh\\nexp17_mlm_gpu0_fix.sh\\nexp17_mlm_gpu1_fix.sh\\nexp18_e2e_finetune.py\\nexp19_wildchat_fpr.py\\nexp20_deepcontext_proxy.py\\nexp21_cross_checkpoint.py\\nexp23_aa_error_analysis.py\\nexp24_calibration_ece.py\\nexp25_fitd_early_detection.py\\nexp26_frozen_probing.py\\nexp27_mean_pooling.py\\nexp28_data_efficiency.py\\nexp28_vanilla_only.py\\nexp28b_supplement.py\\nexp28c_vanilla_supplement.py\\nexp29_inference_efficiency.py\\nexp2_actorattack_mcnemar.py\\nexp30_length_stratified.py\\nexp31_lambda_ablation.py\\nexp32_strategy_prediction.py\\nexp33_strategy_prediction_plan002.py\\nexp34_representation_tsne.py\\nexp35_cross_seed_ensemble.py\\nexp36_frozen_mlm_probing.py\\nexp37_length_matched_benign.py\\nexp38_wildcat_calibration.py\\nexp39_extra_seeds.py\\nexp3_probing.py\\nexp3_roberta_probing.py\\nexp40_llama_guard_baseline.py\\nexp41_fitd_table7_perseed.py\\nexp41_tost_10seed.py\\nexp42_ood_benign_mixed.py\\nexp42b_balanced_ratio_ablation.py\\nexp44_full_pipeline.py\\nexp44_generate_fitd_llama.py\\nexp44_train_mixed_llm.py\\nexp44_wait_and_train.sh\\nexp45_benign_adaptation_curve.py\\nexp46_inference_efficiency.py\\nexp48_ensemble.py\\nexp4_vanilla_perturbation_mcnemar.py\\nexp8_human_jailbreak_verazuo.py\\nexp8_mhj_human_eval.py\\nexp8_recalc_macro_f1.py\\nexp8_scrambled_seed123_eval.py\\nexp9_bootstrap_ci.py\\nextract_round7_stats.py\\nextract_tsne.py\\nfitd_perseed_supplement.py\\nfix_exp6_mcnemar.py\\nfix_exp6_reeval.py\\ngen_transition_matrix.py\\ngenerate_aa_llama.py\\ngenerate_actorattack.py\\ngenerate_benign_llama.py\\ngenerate_benign_v4.py\\ngenerate_benign_v4b.py\\ngenerate_benign_v4c.py\\ngenerate_benign_v4c_full.py\\ngenerate_benign_v4d.py\\ngenerate_crescendo.py\\ngenerate_crescendo_expanded.py\\ngenerate_crescendo_llama.py\\ngenerate_crescendo_part.py\\ngenerate_crescendo_transformers.py\\ngenerate_crescendo_v2.py\\ngenerate_dd_llama.py\\ngenerate_deceptive_delight.py\\ngenerate_fitd.py\\ngenerate_parallel.py.disabled\\ngenerate_worker.py.disabled\\nmatched_seed_stats.py\\nmeanpool_multiseed.py\\nmerge_and_split.py\\nplan002_retrain_eval.py\\nplan002_retrain_v2.py\\nplot_fig2_cross_attack_bar.py\\nprepare_expanded_data.py\\nprepare_human_eval_data.py\\nprepare_mixed_data.py\\nprepare_pilot.py\\nprepare_wildchat_benign.py\\nreeval_exp16_balanced.py\\nroberta_centered_cka.py\\nrun_crescendo_part.sh\\nrun_exp16_eval.sh\\nrun_exp16_gpu0_recovery.sh\\nrun_exp16_gpu1_recovery.sh\\nrun_exp16_training.sh\\nrun_exp17_training.sh\\nrun_generate.sh\\nrun_generate_screen.sh\\nrun_plan_002.sh\\nrun_plan_014.py\\nrun_with_restart.sh\\nsanity_check.py\\nsanity_check_v4b.py\\nstatistical_tests.py\\nstep1_wildchat_filter.py\\nstep2_generate_benign.py\\nstep2b_generate_casual.py\\nstep2c_generate_fewshot.py\\nstep2d_rewrite_benign.py\\nstep3_sanity_check.py\\ntest_fix.py\\ntrain_baseline_gru.py\\ntrain_subset_baseline.py\\nturn_shuffle_ablation.py\\nturn_shuffle_ablation_exp1.py\\nvanilla_multiseed_dd_ood.py\\nwait_and_evaluate.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The results JSON already contains all 7 N values (0, 5, 10, 25, 50, 100, 150) with complete data. Let me summarize:
+
+The JSON at `/root/persuasion_turn_jailbreak_detect/results/exp45_benign_adaptation_curve.json` already has all 7 entries:
+
+- N=0: wildchat_fpr=0.653, ood_dd_f1=1.0, ood_aa_f1=0.981, ood_fitd_f1=1.0
+
+
+- N=5: wildchat_fpr=0.163, ood_dd_f1=0.990, ood_aa_f1=0.981, ood_fitd_f1=1.0
+- N=10: wildchat_fpr=0.0, ood_dd_f1=1.0, ood_aa_f1=1.0, ood_fitd_f1=1.0
+- N=25: wildchat_fpr=0.0, ood_dd_f1=1.0, ood_aa_f1=0.953, ood_fitd_f1=1.0
+- N=50 and beyond are also present in the file
+
+, showing consistently strong performance with zero false positive rates and near-perfect F1 scores across the out-of-distribution detection metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "uuid": "c3633442-906f-414f-9cf9-feb09c1af47c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ryvpv11QhmFsCgkesYsSBw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5144,
+      "cache_read_input_tokens": 25819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5144
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+Results JSON 已经包含全部 7 个 N 值的完整数据，无需修复。
+
+当前 `exp45_benign_adaptation_curve.json` 内容：
+
+| N | wildchat_fpr | ood_dd_f1 | ood_aa_f1 | ood_fitd_f1 | train_size | time_min |
+|---|---|---|---|---|---|---|
+| 0 | 0.653 | 1.000 | 0.981 | 1.000 | 350 | 3.0 |
+| 5 | 0.163 | 0.990 | 0.981 | 1.000 | 355 | 3.0 |
+| 10 | 0.000 | 1.000 | 1.000 | 1.000 | 360 | 2.4 |
+| 25 | 0.000 | 1.000 | 0.953 | 1.000 | 375 | 1.7 |
+| 50 | 0.000 | 1.000 | 1.000 | 1.000 | 400 | 1.9 |
+| **100** | **0.000** | **1.000** | **1.000** | **1.000** | **450** | **2.1** |
+| **150** | **0.000** | **1.000** | **0.981** | **1.000** | **500** | **2.1** |
+
+N=100 和 N=150 的数据完整存在，checkpoint 路径也已记录（在 `/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/` 下）。可能之前已有人补跑过了。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "uuid": "99d4a570-bd14-4972-8b4c-1beb2f8dd373",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ryvpv11QhmFsCgkesYsSBw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5144,
+      "cache_read_input_tokens": 25819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5144
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 18_
+
+Results JSON 已经包含全部 7 个 N 值的完整数据，无需修复。
+
+当前 `exp45_benign_adaptation_curve.json` 内容：
+
+| N | wildchat_fpr | ood_dd_f1 | ood_aa_f1 | ood_fitd_f1 | train_size | time_min |
+|---|---|---|---|---|---|---|
+| 0 | 0.653 | 1.000 | 0.981 | 1.000 | 350 | 3.0 |
+| 5 | 0.163 | 0.990 | 0.981 | 1.000 | 355 | 3.0 |
+| 10 | 0.000 | 1.000 | 1.000 | 1.000 | 360 | 2.4 |
+| 25 | 0.000 | 1.000 | 0.953 | 1.000 | 375 | 1.7 |
+| 50 | 0.000 | 1.000 | 1.000 | 1.000 | 400 | 1.9 |
+| **100** | **0.000** | **1.000** | **1.000** | **1.000** | **450** | **2.1** |
+| **150** | **0.000** | **1.000** | **0.981** | **1.000** | **500** | **2.1** |
+
+N=100 和 N=150 的数据完整存在，checkpoint 路径也已记录（在 `/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/` 下）。可能之前已有人补跑过了。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 24321,
+  "duration_api_ms": 24991,
+  "num_turns": 6,
+  "stop_reason": "end_turn",
+  "session_id": "78b51cfa-0f03-4f88-b091-72dbf8d4df9d",
+  "total_cost_usd": 0.1930715,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 19122,
+    "cache_read_input_tokens": 62588,
+    "output_tokens": 1591,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 19122,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 930,
+        "cache_read_input_tokens": 25819,
+        "cache_creation_input_tokens": 5144,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 5144
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2335,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00246,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 6,
+      "outputTokens": 1591,
+      "cacheReadInputTokens": 62588,
+      "cacheCreationInputTokens": 19122,
+      "webSearchRequests": 0,
+      "costUSD": 0.1906115,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "66c7dacf-e9eb-4e40-8a64-c36695141e26"
+}
+```
+
+</details>
+
+---

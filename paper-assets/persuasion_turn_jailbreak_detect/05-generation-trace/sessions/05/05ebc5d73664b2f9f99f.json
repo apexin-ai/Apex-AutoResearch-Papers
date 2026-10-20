@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05ebc5d73664b2f9f99f",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "viz fig8 layerwise layout fix",
+  "task_key": "worker_viz_fig8_layerwise_layout_fix_20260524T092324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig8_layerwise_layout_fix_20260524T092324_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "996eab10e62956859247867b601f51aa37ce9791acd8815ecaf9fdb132d321cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个布局问题已修复：\n\n1. **(a) \"Late layers\" 文字**：ylim 从 11.5 扩到 13.0，文字现在在数据线上方空白区域，不再被 vanilla 在 layer 10 的峰值（9.70）遮挡\n2. **(b) \"15× vanilla\" 注释**：从右上角 (7.5, 12.5) 移到左侧空白区域 (3.0, 11.5)，箭头指向 layer 10 的数据点\n3. **图例**：从两个 panel 各自的内置图例改为顶部统一图例，4 个 variant 横排显示，不与任何元素重叠\n\nPDF 和 PNG 已复制到本地 `docs/paper/figures/paper/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig8-layerwise-layout-fix.md"
+}

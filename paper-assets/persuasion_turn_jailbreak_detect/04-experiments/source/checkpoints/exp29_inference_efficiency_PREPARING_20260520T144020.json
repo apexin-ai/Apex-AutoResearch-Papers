@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp29_inference_efficiency",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:40:20.050Z",
+    "updated_at": "2026-05-20T14:40:20.050Z"
+  },
+  "timestamp": "2026-05-20T14:40:20.208675+00:00",
+  "trigger": "update_registry"
+}

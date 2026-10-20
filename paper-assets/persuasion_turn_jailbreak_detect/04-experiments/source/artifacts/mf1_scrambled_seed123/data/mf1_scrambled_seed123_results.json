@@ -1,0 +1,1 @@
+Scrambled seed=123 results. DeBERTa: best_epoch=4, val_persuasion_acc=0.6724, val_intent_acc=1.0, val_loss=0.7906. DD OOD F1: full=1.0, k1=1.0, k2=1.0, k3=1.0, k5=1.0. IID F1: all 1.0. Remote path: /root/persuasion_turn_jailbreak_detect/results/mf1_scrambled_seed123.json

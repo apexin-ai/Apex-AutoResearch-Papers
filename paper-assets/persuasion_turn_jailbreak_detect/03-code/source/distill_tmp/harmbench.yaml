@@ -1,0 +1,146 @@
+paper_key: "harmbench"
+title: "HarmBench: A Standardized Evaluation Framework for Automated Red Teaming and Robust Refusal"
+venue: "ICML 2024"
+full_text_available: true
+
+research:
+  baselines:
+    # Red teaming methods (18 total)
+    - GCG
+    - GCG-Multi
+    - GCG-Transfer
+    - PEZ
+    - GBDA
+    - UAT
+    - AutoPrompt
+    - Stochastic Few-Shot
+    - Zero-Shot
+    - PAIR
+    - TAP
+    - TAP-Transfer
+    - AutoDAN
+    - PAP
+    - Human Jailbreaks
+    - Direct Request
+    # Multimodal attacks
+    - PGD
+    - Adversarial Patch
+    # Target LLMs/Defenses (33 total)
+    - Llama 2 (7B/13B/70B Chat)
+    - Mistral
+    - Vicuna
+    - GPT-3.5
+    - GPT-4
+    - Claude variants
+    - Zephyr 7B
+  metrics:
+    - {name: "Attack Success Rate (ASR)", direction: "higher_better for attacks, lower_better for defenses"}
+    - {name: "Classifier accuracy (agreement with human judgments)", direction: "higher_better"}
+    - {name: "MT-Bench score (capability preservation)", direction: "higher_better"}
+  datasets:
+    - {name: "HarmBench behaviors", size: "510 total (400 text + 110 multimodal)"}
+    - {name: "Validation split", size: "100 behaviors"}
+    - {name: "Test split", size: "410 behaviors"}
+    - {name: "Classifier validation set", size: "manually labeled subset"}
+    - {name: "Prequalification sets", size: "3 robustness test sets (refusal+continuation, benign, unrelated harm)"}
+  ablation_dimensions:
+    - "number of tokens generated during evaluation (T parameter)"
+    - "attack method comparison across model families"
+    - "R2D2 adversarial training: optimization steps"
+    - "classifier choice (GPT-4 vs fine-tuned vs keyword matching)"
+    - "GCG variants comparison"
+    - "model family vs model size effects"
+  training_recipe:
+    method: "R2D2 (Robust Refusal Dynamic Defense)"
+    base: "GCG-based adversarial training"
+    approach: "persistent test case pools with continual optimization"
+    target_model: "Zephyr 7B"
+    hardware: "not explicitly specified"
+    optimizer: "gradient-based (GCG optimization)"
+    lr: "not specified"
+  method_family: "standardized evaluation framework + adversarial training defense (GCG-based)"
+
+positioning:
+  core_claim: "自动化红队测试领域缺乏统一评估标准（至少9种不同评估流程），HarmBench通过breadth/comparability/robust metrics三原则建立标准化框架，并揭示了'没有攻击能攻破所有模型，没有防御能抵挡所有攻击'的关键发现"
+  key_results: "评估18种攻击方法x33个LLM; 分类器准确率93.2% (vs GPT-4 88.4%); R2D2将Zephyr的GCG ASR从31.8%降至5.9%同时保持MT-Bench 6.0 (vs 6.5); 评估参数(token数)可使ASR变化高达30%"
+  limitations:
+    - "聚焦model-level防御，未覆盖system-level防御（如input/output filter）"
+    - "R2D2对不同类型攻击(PAIR, TAP, Few-Shot)的泛化性有限，需要多种攻击联合训练"
+    - "评估假设deterministic greedy decoding，未考虑sampling的影响"
+    - "copyright类behavior在更大模型上ASR反而更高，可能与capability相关"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "开篇从LLM的双刃剑效应切入——强大能力带来的安全风险，聚焦于自动化红队测试的必要性"
+  tension: "核心张力来自评估碎片化：'Recent papers on automated red teaming have reported promising results. However, these papers use disparate evaluations, rendering them hard to compare.' Table 1直接用9种不同评估流程的对比图展示问题严重性"
+  key_insight: "三个关键洞察：(1) 评估参数（如生成token数）对ASR的影响高达30%，之前被完全忽视; (2) 模型鲁棒性与参数规模无关，训练流程更重要; (3) 没有universal attack或universal defense"
+  argument_chain: "LLM safety risk -> manual red teaming不可扩展 -> automated red teaming兴起但评估碎片化 -> 提出三原则(breadth+comparability+robust metrics) -> 构建510行为的标准化框架 -> 18攻击x33模型大规模实验 -> 关键发现(no universal attack/defense) -> R2D2展示框架促进攻防共同发展"
+  contribution_framing: "5条贡献（偏多）：框架本身、大规模对比、R2D2方法、设计改进、开源释放。核心是框架，R2D2是showcase"
+  intro_structure: "8段: P1=LLM能力与风险 -> P2=具体有害能力举例 -> P3=现有防御方法概述 -> P4=manual红队不可扩展 -> P5=自动化红队评估碎片化问题 -> P6=HarmBench三原则 -> P7=贡献与发现总结 -> P8=R2D2方法与开源承诺"
+  notable_technique: "用Table 1展示9种不同评估流程的混乱状态作为motivation，这比文字描述有效10倍；Figure 5用'最强5攻击 x 最强5防御'的矩阵展示'no universal winner'的核心发现，结论直观有力"
+
+figures:
+  figure_count: 11
+  figure1:
+    type: "method_overview"
+    description: "HarmBench框架全景图：展示510个curated behaviors跨4个功能类别和多个语义类别，评估18种红队方法和33个LLM的整体架构"
+    narrative_role: "一图概括框架的breadth维度——让读者立刻理解评估的规模和覆盖范围"
+    design_elements: ["功能类别层级", "语义类别色块", "方法和模型数量标注", "评估流程箭头"]
+    visual_style: "信息密度高的框架概览图，用层级和色块区分behavior分类，底部展示攻击方法和目标模型列表"
+  result_figures:
+    - figure_id: "Figure 5"
+      viz_type: "heatmap"
+      what_compared: "top-5攻击方法 vs top-5防御模型的ASR矩阵"
+      how_gain_highlighted: "通过矩阵的非对角优势模式展示'no universal winner'——每个攻击都有弱点，每个防御都有漏洞"
+      design_note: "矩阵式热力图是展示攻防对抗关系的最佳可视化形式，比逐个对比更能揭示全局pattern"
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "生成token数(T)对不同攻击方法ASR的影响"
+      how_gain_highlighted: "展示T参数变化导致ASR波动高达30%，直接支撑standardization的必要性"
+      design_note: "用一个简单实验揭示被忽视的评估偏差，作为comparability principle的实证支撑，说服力极强"
+    - figure_id: "Figure 6"
+      viz_type: "grouped_bar"
+      what_compared: "6个模型家族 x 4种攻击方法的ASR"
+      how_gain_highlighted: "展示ASR在模型家族内稳定但家族间差异巨大，反驳'大模型更鲁棒'的假设"
+      design_note: "按模型家族分组的bar chart直接展示'训练流程比规模重要'的发现"
+  ablation_figures:
+    - figure_id: "Figure 7"
+      viz_type: "bar_chart"
+      dimensions_varied: ["GCG variants", "target LLMs"]
+      design_note: "对比GCG变体在不同目标上的ASR，突出R2D2的显著优势(4x lower ASR)"
+    - figure_id: "Figure 8"
+      viz_type: "line_plot"
+      dimensions_varied: ["optimization steps", "GCG loss/ASR with vs without R2D2"]
+      design_note: "训练曲线展示R2D2如何随优化步数改善鲁棒性，体现方法的收敛特性"
+  figure_narrative_role: "Figure 1(框架全景) -> Figure 2(motivation: 评估参数影响) -> Figure 3(评估流程) -> Figure 4(behavior样例) -> Figure 5(主结果: 攻防矩阵) -> Figure 6(模型家族分析) -> Figure 7-8(R2D2消融)"
+
+tables:
+  table_count: 12
+  main_result_table:
+    table_id: "Table 1 (motivation table, not results)"
+    row_axis: "prior red teaming papers"
+    col_axis: "evaluation dimensions (behaviors, metrics, models tested)"
+    row_organization: "by_year"
+    col_organization: "flat"
+    highlight_strategy: "no highlighting, objective comparison"
+    statistical_reporting: "N/A (survey table)"
+    num_baselines: 9
+    design_note: "这不是传统的主结果表——而是motivation表，用9种不同评估流程的混乱对比直接论证标准化的必要性。主结果在Figure 5的热力图中呈现"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["classifier/metric choice"]
+      variation_style: "full_numbers"
+      design_note: "对比不同分类器与人工判断的一致率，验证HarmBench分类器(93.2%)优于GPT-4(88.4%)和关键词匹配"
+    - table_id: "Table 4"
+      what_varied: ["classifier robustness on 3 prequalification sets"]
+      variation_style: "full_numbers"
+      design_note: "用三种edge case(refusal+continuation, benign, unrelated harm)测试分类器鲁棒性，确保评估可靠性"
+    - table_id: "Table 5"
+      what_varied: ["behavior dataset diversity"]
+      variation_style: "full_numbers"
+      design_note: "与prior work的behavior数量和类别覆盖对比，展示HarmBench的breadth优势"
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables 9-12: multimodal攻击结果、MT-Bench能力保持评估、各语义/功能类别的详细ASR、额外攻击方法对比"
+    reason: "主文聚焦框架设计和核心发现，细粒度per-category结果放附录避免信息过载；multimodal结果因为是扩展功能也放附录"

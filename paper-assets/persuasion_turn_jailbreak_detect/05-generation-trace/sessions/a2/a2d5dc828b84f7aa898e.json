@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2d5dc828b84f7aa898e",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp51 lmsys download",
+  "task_key": "worker_code_exp51_lmsys_download_20260522T090002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp51_lmsys_download_20260522T090002_result.json",
+    "occurrence": 1,
+    "bytes": 1007,
+    "sha256": "c8b7f0b3848bb54806ee150d34dfe49a5ace8f67ff2cc6f213295f39b70efa47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报：\n\n**数据集**: HuggingFaceH4/ultrachat_200k（公开，无 gate），通过 hf-mirror.com 下载\n- LMSYS-Chat-1M 因 gated repo + 无 HF token 无法使用\n- 服务器无法直连 HuggingFace，通过国内镜像解决\n\n**筛选条件**: ≥3 轮用户消息、英文、无 jailbreak 关键词、长度 ≤20k 字符。从 762 条中筛出 500 候选，随机抽取 200 条。\n\n**统计**:\n| 指标 | 值 |\n|------|-----|\n| 总条数 | 200 |\n| 平均轮数 | 3.6 |\n| 最短/最长 | 3 / 7 |\n| 中位数 | 3 |\n| 轮数分布 | 3轮:102, 4轮:80, 5轮:10, 6轮:5, 7轮:3 |\n\n**文件路径**:\n- `/root/persuasion_turn_jailbreak_detect/data/lmsys_benign_200.json` — 200 条 eval 用\n- `/root/persuasion_turn_jailbreak_detect/data/lmsys_benign_10_adapt.json` — 10 条 adaptation 用\n\n**格式验证**: 字段与现有 `wildchat_benign_226.jsonl` 完全一致（`conversation_id`, `source`, `label`, `turns`, `num_turns`, `metadata`, `attack_type`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp51-lmsys-download.md"
+}

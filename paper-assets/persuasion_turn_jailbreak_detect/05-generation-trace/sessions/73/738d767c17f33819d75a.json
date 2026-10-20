@@ -1,0 +1,434 @@
+{
+  "schema_version": "1.0",
+  "id": "738d767c17f33819d75a",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "conversation",
+  "title": "research w11 reference verify",
+  "task_key": "worker_research_w11_reference_verify_20260522T171915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_w11_reference_verify_20260522T171915.jsonl",
+    "occurrence": 1,
+    "bytes": 29125,
+    "sha256": "5e48d9f607bb8c3fd4f9227ead3c9071378a48ed4e666f6e3e951b5d6892f03e"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T17:20:36.414001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T17:20:36.414451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T17:20:36.414786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Yang et al. 2025 \"Multi-Turn Jailbreaks Are Simpler Than They Seem\""
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T17:20:36.414990+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Souly et al. 2024 \"A StrongREJECT for Empty Jailbreaks\" NeurIPS"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T17:20:36.415184+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"State-Dependent Safety Failures in Multi-Turn Language Model Interaction\" 2026"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T17:20:36.415370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Mass-Scale Analysis of In-the-Wild Conversations Reveals Complexity Bounds on LLM Jailbreaking\" 2025"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T17:20:36.415568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Li et al. \"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\" NeurIPS 2023"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T17:20:36.415756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Ke et al. \"Continual Pre-Training of Language Models\" 2023"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T17:20:36.415934+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Chao et al. 2024 \"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\""
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T17:20:36.416180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Yang et al. 2025 \"Multi-Turn Jailbreaks Are Simpler Than They Seem\"\"\n\nLinks: [{\"title\":\"[PDF] Multi-Turn Jailbreaks Are Simpler Than They Seem | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Multi-Turn-Jailbreaks-Are-Simpler-Than-They-Seem-Yang-Lee/9cb14f0ee36175d80815197dd4a156cc14149a5d\"},{\"title\":\"[2508.07646] Multi-Turn Jailbreaks Are Simpler Than They Seem\",\"url\":\"https://arxiv.org/abs/2508.07646\"},{\"title\":\"[2508.07646v1] Multi-Turn Jailbreaks Are Simpler Than They Seem\",\"url\":\"https://arxiv.org/abs/2508.07646v1\"},{\"title\":\"Multi-Turn Jailbreaks Are Simpler Than They Seem Xiaoxue Yang\",\"url\":\"https://openreview.net/pdf?id=SLdXRZ1QXI\"},{\"title\":\"Peak + Accumulation: A Proxy-Level Scoring Formula for Multi-Turn LLM Attack Detection\",\"url\":\"https://arxiv.org/html/2602.11247v1\"},{\"title\":\"Multi-Turn Jailbreaks Are Simpler Than They Seem\",\"url\":\"https://arxiv.org/pdf/2508.07646\"},{\"title\":\"The Echo Chamber Multi-Turn LLM Jailbreak\",\"url\":\"https://arxiv.org/html/2601.05742v1\"},{\"title\":\"A Proxy-Level Scoring Formula for Multi-Turn LLM Attack ...\",\"url\":\"https://arxiv.org/pdf/2602.11247\"},{\"title\":\"Multi-Turn Jailbreaks Are Simpler Than They Seem\",\"url\":\"https://www.researchgate.net/publication/394439487_Multi-Turn_Jailbreaks_Are_Simpler_Than_They_Seem\"}]\n\nI found the paper! Here's what I found about Yang et al. 2025 \"Multi-Turn Jailbreaks Are Simpler Than They Seem\":\n\n**Publication Details:**\nThe paper is by Xiaoxue Yang, Jaeha Lee, Anna-Katharina Dick, Jasper Timm, Fei Xie, and Diogo Cruz, published in arXiv on August 11, 2025.\n\n**Main Findings:**\nWhile defenses against single-turn jailbreak attacks on Large Language Models (LLMs) have improved significantly, multi-turn jailbreaks remain a persistent vulnerability, often achieving success rates exceeding 70% against models optimized for single-turn protection. The work presents an empirical analysis of automated multi-turn jailbreak attacks across state-of-the-art mod\n…[truncated 549 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T17:20:36.416463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Mass-Scale Analysis of In-the-Wild Conversations Reveals Complexity Bounds on LLM Jailbreaking\" 2025\"\n\nLinks: [{\"title\":\"[2507.08014] Mass-Scale Analysis of In-the-Wild Conversations Reveals Complexity Bounds on LLM Jailbreaking\",\"url\":\"https://arxiv.org/abs/2507.08014\"},{\"title\":\"Mass-Scale Analysis of In-the-Wild Conversations Reveals Complexity Bounds on LLM Jailbreaking\",\"url\":\"https://arxiv.org/html/2507.08014\"},{\"title\":\"Mass-Scale Analysis of In-the-Wild Conversations Reveals ...\",\"url\":\"https://arxiv.org/pdf/2507.08014\"},{\"title\":\"Lecture 8 Jailbreaking and Prompt Injection DSC 291 Safety in GenAI 2025 Fall\",\"url\":\"https://cseweb.ucsd.edu/~yuxiangw/classes/AIsafety-2025Fall/Lectures/Lecture8_jailbreaking.pdf\"},{\"title\":\"Scheme of the LZ77 algorithm: the LZ77 algorithm works sequentially and... | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Scheme-of-the-LZ77-algorithm-the-LZ77-algorithm-works-sequentially-and-at-a-generic-step_fig1_1942328\"},{\"title\":\"Exploring Cognitive Vulnerabilities: Self-Persuasion in Jailbreaking LLMs\",\"url\":\"https://www.mdpi.com/2079-9292/14/16/3259\"},{\"title\":\"Raul Castro Fernandez's research works\",\"url\":\"https://www.researchgate.net/scientific-contributions/Raul-Castro-Fernandez-2319022582\"},{\"title\":\"Comparative Analysis of Jailbreaking Techniques for Large Language Models: A Systematic Evaluation Framework | Springer Nature Link\",\"url\":\"https://link.springer.com/chapter/10.1007/978-3-032-19770-2_11\"}]\n\nI found the paper! Here's what I found about \"Mass-Scale Analysis of In-the-Wild Conversations Reveals Complexity Bounds on LLM Jailbreaking\":\n\n## Overview\n\nThis research addresses how understanding the complexity and evolution of jailbreaking strategies is critical for AI safety, presenting a mass-scale empirical analysis of jailbreak complexity across over 2 million real-world conversations from diverse platforms, including dedicated jailbreaking communities and general-p\n…[truncated 1072 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T17:20:36.416761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"State-Dependent Safety Failures in Multi-Turn Language Model Interaction\" 2026\"\n\nLinks: [{\"title\":\"[2603.15684] State-Dependent Safety Failures in Multi-Turn Language Model Interaction\",\"url\":\"https://arxiv.org/abs/2603.15684\"},{\"title\":\"State-Dependent Safety Failures in Multi-Turn Language Model Interaction\",\"url\":\"https://arxiv.org/html/2603.15684\"},{\"title\":\"State-Dependent Safety Failures in Multi-Turn Language Model Interaction\",\"url\":\"https://arxiv.org/pdf/2603.15684\"},{\"title\":\"Paper page - One Turn Too Late: Response-Aware Defense Against Hidden Malicious Intent in Multi-Turn Dialogue\",\"url\":\"https://huggingface.co/papers/2605.05630\"},{\"title\":\"Speak Out of Turn: Safety Vulnerability of Large Language Models in Multi-turn Dialogue\",\"url\":\"https://arxiv.org/html/2402.17262v2\"},{\"title\":\"Speak Out of Turn: Safety Vulnerability of Large Language Models in   Multi-turn Dialogue\",\"url\":\"https://arxiv.org/pdf/2402.17262\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n**\"State-Dependent Safety Failures in Multi-Turn Language Model Interaction\"** is a paper by Pengcheng Li and 7 other authors, submitted on March 15, 2026.\n\n**Key findings of the paper:**\n\nSafety alignment in large language models is typically evaluated under isolated queries, yet real-world use is inherently multi-turn. Although multi-turn jailbreaks are empirically effective, the structure of conversational safety failure remains insufficiently understood.\n\nThe authors study safety failures from a state-space perspective and show that many multi-turn failures arise from structured contextual state evolution rather than isolated prompt vulnerabilities.\n\n**The STAR Framework:**\n\nThe researchers introduce STAR, a state-oriented diagnostic framework that treats dialogue history as a state transition operator and enables controlled analysis of safety behavior along interaction trajectories.\n\n**Main Results:**\n\nAcross multiple frontier language mode\n…[truncated 472 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T17:20:36.417039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Li et al. \"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\" NeurIPS 2023\"\n\nLinks: [{\"title\":\"VCG Harvard | Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\",\"url\":\"https://vcg.seas.harvard.edu/publications/inference-time-intervention-eliciting-truthful-answers-from-a-language-model\"},{\"title\":\"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\",\"url\":\"https://papers.nips.cc/paper_files/paper/2023/hash/81b8390039b7302c909cb769f8b6cd93-Abstract-Conference.html\"},{\"title\":\"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2023/hash/81b8390039b7302c909cb769f8b6cd93-Abstract-Conference.html\"},{\"title\":\"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | OpenReview\",\"url\":\"https://openreview.net/forum?id=aLLuYpn83y\"},{\"title\":\"[PDF] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Inference-Time-Intervention:-Eliciting-Truthful-a-Li-Patel/405f8f5f1c6df1b3343c812832479aad5180b65f\"},{\"title\":\"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model | Request PDF\",\"url\":\"https://www.researchgate.net/publication/401462667_Inference-Time_Intervention_Eliciting_Truthful_Answers_from_a_Language_Model\"},{\"title\":\"[2306.03341] Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\",\"url\":\"https://arxiv.org/abs/2306.03341\"},{\"title\":\"NeurIPS Poster Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\",\"url\":\"https://neurips.cc/virtual/2023/poster/71200\"},{\"title\":\"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\",\"url\":\"https://arxiv.org/pdf/2306.03341\"}]\n\nI found comprehensive information about this paper. Here's what I found:\n\n## Paper Overview\n\nThe paper \"Inference\n…[truncated 1396 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T17:20:36.417311+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Ke et al. \"Continual Pre-Training of Language Models\" 2023\"\n\nLinks: [{\"title\":\"Towards Effective and Efficient Continual Pre-training of Large Language Models\",\"url\":\"https://arxiv.org/html/2407.18743v1\"},{\"title\":\"[2407.18743] Towards Effective and Efficient Continual Pre-training of Large Language Models\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2407.18743\"},{\"title\":\"[2302.03241] Continual Pre-training of Language Models\",\"url\":\"https://arxiv.org/abs/2302.03241\"},{\"title\":\"[2308.04014] Continual Pre-Training of Large Language Models: How to (re)warm your model?\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2308.04014\"},{\"title\":\"Reuse, Don’t Retrain: A Recipe for Continued Pretraining of Language Models\",\"url\":\"https://arxiv.org/html/2407.07263v1\"},{\"title\":\"CONTINUAL PRE-TRAINING OF LANGUAGE MODELS\",\"url\":\"https://openreview.net/pdf?id=m_GDIItaI3o\"},{\"title\":\"Learning Dynamics in Continual Pre-Training for Large Language Models\",\"url\":\"https://arxiv.org/html/2505.07796v2\"},{\"title\":\"Revisiting Replay and Gradient Alignment for Continual Pre-Training of Large Language Models\",\"url\":\"https://arxiv.org/pdf/2508.01908\"}]\n\nBased on the search results, here's what I found about the Ke et al. paper:\n\n\"Continual Pre-Training of Language Models\" by Zixuan Ke, Yijia Shao, Haowei Lin, Tatsuya Konishi, Gyuhak Kim, and Bing Liu was published in 2023 at The Eleventh International Conference on Learning Representations (ICLR 2023) in Kigali, Rwanda, May 1-5, 2023.\n\nThe paper addresses the problem of continually learning to improve a language model's ability to handle new or emerging domains or topics without forgetting previously learned skills or knowledge, which is important in the real world where data shifts constantly and new domains, events or topics keep emerging.\n\nThe proposed method overcomes catastrophic forgetting and achieves knowledge transfer to improve end-task performances, with empirical evaluation demonstrating the effectiveness of \n…[truncated 310 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T17:20:36.417609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Chao et al. 2024 \"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\"\"\n\nLinks: [{\"title\":\"JailbreakBench: LLM robustness benchmark\",\"url\":\"https://jailbreakbench.github.io/\"},{\"title\":\"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models | Request PDF\",\"url\":\"https://www.researchgate.net/publication/397201287_JailbreakBench_An_Open_Robustness_Benchmark_for_Jailbreaking_Large_Language_Models\"},{\"title\":\"GitHub - JailbreakBench/jailbreakbench: JailbreakBench: An Open Robustness Benchmark for Jailbreaking Language Models [NeurIPS 2024 Datasets and Benchmarks Track] · GitHub\",\"url\":\"https://github.com/JailbreakBench/jailbreakbench\"},{\"title\":\"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models - Aalto University's research portal\",\"url\":\"https://research.aalto.fi/en/publications/jailbreakbench-an-open-robustness-benchmark-for-jailbreaking-larg/\"},{\"title\":\"[2404.01318] JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\",\"url\":\"https://arxiv.org/abs/2404.01318\"},{\"title\":\"JailbreakBench: An Open Robustness Benchmark for ...\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/63092d79154adebd7305dfd498cbff70-Paper-Datasets_and_Benchmarks_Track.pdf\"},{\"title\":\"JailbreakBench: An Open Robustness Benchmark\",\"url\":\"https://arxiv.org/pdf/2404.01318\"}]\n\nI found the research paper for you. Here's information about the Chao et al. 2024 paper on JailbreakBench:\n\n## Publication Details\n\nThe paper \"JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\" was published in the NeurIPS Datasets and Benchmarks Track in 2024 by Patrick Chao, Edoardo Debenedetti, Alexander Robey, Maksym Andriushchenko, Francesco Croce, Vikash Sehwag, Edgar Dobriban, Nicolas Flammarion, George J. Pappas, Florian Tramèr, Hamed Hassani, and Eric Wong.\n\n## Key Components\n\nJailbreakBench is an open-sourced benc\n…[truncated 894 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T17:20:36.417915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Souly et al. 2024 \"A StrongREJECT for Empty Jailbreaks\" NeurIPS\"\n\nLinks: [{\"title\":\"A STRONGREJECT for Empty Jailbreaks Alexandra Souly∗ Qingyuan Lu∗ Dillon Bowen∗\",\"url\":\"https://arxiv.org/pdf/2402.10260\"},{\"title\":\"A StrongREJECT for Empty Jailbreaks\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/hash/e2e06adf560b0706d3b1ddfca9f29756-Abstract-Datasets_and_Benchmarks_Track.html\"},{\"title\":\"[PDF] A StrongREJECT for Empty Jailbreaks | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/f2e88c26bc1ebdd4adc5f83ab56cb4276120745d\"},{\"title\":\"[2402.10260] A StrongREJECT for Empty Jailbreaks\",\"url\":\"https://arxiv.org/abs/2402.10260\"},{\"title\":\"NeurIPS Poster A StrongREJECT for Empty Jailbreaks\",\"url\":\"https://neurips.cc/virtual/2024/poster/97752\"},{\"title\":\"Multi-Turn Jailbreaks Are Simpler Than They Seem\",\"url\":\"https://arxiv.org/html/2508.07646v1\"},{\"title\":\"JailbreakBench: An Open Robustness Benchmark for ...\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/63092d79154adebd7305dfd498cbff70-Paper-Datasets_and_Benchmarks_Track.pdf\"},{\"title\":\"A STRONGREJECT for empty jailbreaks | Proceedings of the 38th International Conference on Neural Information Processing Systems\",\"url\":\"https://dl.acm.org/doi/10.5555/3737916.3741900\"},{\"title\":\"A STRONGREJECT for Empty Jailbreaks Alexandra Souly∗ Qingyuan Lu∗ Dillon Bowen∗\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/e2e06adf560b0706d3b1ddfca9f29756-Paper-Datasets_and_Benchmarks_Track.pdf\"},{\"title\":\"A StrongREJECT for Empty Jailbreaks | Request PDF\",\"url\":\"https://www.researchgate.net/publication/397197733_A_StrongREJECT_for_Empty_Jailbreaks\"}]\n\nI found the paper! Here's what I found about Souly et al. 2024:\n\n## Overview\n\n\"A StrongREJECT for Empty Jailbreaks\" by Alexandra Souly, Qingyuan Lu, Dillon Bowen, Tu Trinh, Elvis Hsieh, Sana Pandey, Pieter Abbeel, Justin Svegliato, Scott Emmons, Olivia Watkins, and Sam Toyer was presented at Neu\n…[truncated 1012 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "elapsed_ms": 2
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T17:20:36.418379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2603.15684 \"State-Dependent Safety Failures\" authors"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T17:20:36.418626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2507.08014 \"Mass-Scale Analysis\" jailbreaking authors"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T17:20:36.418830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2603.15684 \"State-Dependent Safety Failures\" authors\"\n\nLinks: [{\"title\":\"[2603.15684] State-Dependent Safety Failures in Multi-Turn Language Model Interaction\",\"url\":\"https://arxiv.org/abs/2603.15684\"},{\"title\":\"State-Dependent Safety Failures in Multi-Turn Language Model Interaction\",\"url\":\"https://arxiv.org/html/2603.15684\"},{\"title\":\"State-Dependent Safety Failures in Multi-Turn Language Model Interaction\",\"url\":\"https://arxiv.org/pdf/2603.15684\"},{\"title\":\"Failure Probability Estimation for Black-Box Autonomous Systems using State-Dependent Importance Sampling Proposals\",\"url\":\"https://arxiv.org/html/2412.02154\"},{\"title\":\"Failure Probability Estimation for Black-Box Autonomous Systems using   State-Dependent Importance Sampling Proposals\",\"url\":\"https://arxiv.org/pdf/2412.02154\"}]\n\nBased on the search results, the authors of the paper \"State-Dependent Safety Failures in Multi-Turn Language Model Interaction\" (arXiv:2603.15684) are: Pengcheng Li, Jie Zhang, Tianwei Zhang, Han Qiu, Kejun Zhang, Weiming Zhang, Nenghai Yu, and Wenbo Zhou.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T17:20:36.419055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2507.08014 \"Mass-Scale Analysis\" jailbreaking authors\"\n\nLinks: [{\"title\":\"[2507.08014] Mass-Scale Analysis of In-the-Wild Conversations Reveals Complexity Bounds on LLM Jailbreaking\",\"url\":\"https://arxiv.org/abs/2507.08014\"},{\"title\":\"Mass-Scale Analysis of In-the-Wild Conversations Reveals ...\",\"url\":\"https://arxiv.org/pdf/2507.08014\"},{\"title\":\"Artificial Intelligence Jul 2025\",\"url\":\"https://www.arxiv.org/list/cs.AI/2025-07?skip=1675&show=500\"},{\"title\":\"Mass-Scale Analysis of In-the-Wild Conversations Reveals Complexity Bounds on LLM Jailbreaking\",\"url\":\"https://arxiv.org/html/2507.08014\"},{\"title\":\"Systematic Scaling Analysis of Jailbreak Attacks in Large Language Models\",\"url\":\"https://arxiv.org/html/2603.11149\"},{\"title\":\"Systematic Scaling Analysis of Jailbreak Attacks in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2603.11149\"}]\n\nBased on the search results, I found the paper for arxiv 2507.08014 titled \"Mass-Scale Analysis of In-the-Wild Conversations Reveals Complexity Bounds on LLM Jailbreaking.\"\n\nThe authors of this paper are Aldan Creo, Raul Castro Fernandez, and Manuel Cebrian.\n\nThe study presents a mass-scale empirical analysis of jailbreak complexity across over 2 million real-world conversations from diverse platforms, including dedicated jailbreaking communities and general-purpose chatbots. Using a range of complexity metrics spanning probabilistic measures, lexical diversity, compression ratios, and cognitive load indicators, they find that jailbreak attempts do not exhibit significantly higher complexity than normal conversations.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T17:20:36.419418+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 7 篇搜索完毕。以下是逐篇核查结果：\n\n---\n\n## 1. Yang et al. (2025) \"Multi-Turn Jailbreaks Are Simpler Than They Seem\"\n\n**✅ 确认存在**\n\n- **标题**: Multi-Turn Jailbreaks Are Simpler Than They Seem\n- **作者**: Xiaoxue Yang, Jaeha Lee, Anna-Katharina Dick, Jasper Timm, Fei Xie, Diogo Cruz\n- **来源**: arXiv:2508.07646, August 2025\n- **状态**: Preprint (未见正式会议发表)\n\n```bibtex\n@article{yang2025multiturn,\n  title={Multi-Turn Jailbreaks Are Simpler Than They Seem},\n  author={Yang, Xiaoxue and Lee, Jaeha and Dick, Anna-Katharina and Timm, Jasper and Xie, Fei and Cruz, Diogo},\n  journal={arXiv preprint arXiv:2508.07646},\n  year={2025}\n}\n```\n\n---\n\n## 2. Souly et al. (2024) \"A StrongREJECT for Empty Jailbreaks\"\n\n**✅ 确认存在，NeurIPS 2024 Datasets and Benchmarks Track**\n\n- **标题**: A StrongREJECT for Empty Jailbreaks\n- **作者**: Alexandra Souly, Qingyuan Lu, Dillon Bowen, Tu Trinh, Elvis Hsieh, Sana Pandey, Pieter Abbeel, Justin Svegliato, Scott Emmons, Olivia Watkins, Sam Toyer\n- **来源**: NeurIPS 2024 (Datasets and Benchmarks Track); arXiv:2402.10260\n\n```bibtex\n@inproceedings{souly2024strongreject,\n  title={A {StrongREJECT} for Empty Jailbreaks},\n  author={Souly, Alexandra and Lu, Qingyuan and Bowen, Dillon and Trinh, Tu and Hsieh, Elvis and Pandey, Sana and Abbeel, Pieter and Svegliato, Justin and Emmons, Scott and Watkins, Olivia and Toyer, Sam},\n  booktitle={Advances in Neural Information Processing Systems},\n  volume={37},\n  year={2024}\n}\n```\n\n---\n\n## 3. \"State-Dependent Safety Failures in Multi-Turn Language Model Interaction\" (2026)\n\n**✅ 确认存在**\n\n- **标题**: State-Dependent Safety Failures in Multi-Turn Language Model Interaction\n- **作者**: Pengcheng Li, Jie Zhang, Tianwei Zhang, Han Qiu, Kejun Zhang, Weiming Zhang, Nenghai Yu, Wenbo Zhou\n- **来源**: arXiv:2603.15684, March 2026\n- **状态**: Preprint\n\n```bibtex\n@article{li2026statedependent,\n  title={State-Dependent Safety Failures in Multi-Turn Language Model Interaction},\n  author={Li, Pengcheng and Zhang, Jie and Zhang, Tianwei and Qiu, Han and Zhang, Kejun and Zhang, Weiming and Yu, Nenghai and Zhou, Wenbo},\n  journal={arXiv preprint arXiv:2603.15684},\n  year={2026}\n}\n```\n\n---\n\n## 4. \"Mass-Scale Analysis of In-the-Wild Conversations Reveals Complexity Bounds on LLM Jailbreaking\" (2025)\n\n**✅ 确认存在**\n\n- **标题**: Mass-Scale Analysis of In-the-Wild Conversations Reveals Complexity Bounds on LLM Jailbreaking\n- **作者**: Aldan Creo, Raul Castro Fernandez, Manuel Cebrian\n- **来源**: arXiv:2507.08014, July 2025\n- **状态**: Preprint\n\n```bibtex\n@article{creo2025massscale,\n  title={Mass-Scale Analysis of In-the-Wild Conversations Reveals Complexity Bounds on {LLM} Jailbreaking},\n  author={Creo, Aldan and Fernandez, Raul Castro and Cebrian, Manuel},\n  journal={arXiv preprint arXiv:2507.08014},\n  year={2025}\n}\n```\n\n---\n\n## 5. Li et al. \"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\"\n\n**✅ 确认存在，NeurIPS 2023**\n\n- **标题**: Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\n- **作者**: Kenneth Li, Oam Patel, Fernanda Viégas, Hanspeter Pfister, Martin Wattenberg\n- **来源**: NeurIPS 2023; arXiv:2306.03341\n- **注意**: 原引用写 \"Li et al. (2024)\" 年份有误，应为 2023\n\n```bibtex\n@inproceedings{li2023iti,\n  title={Inference-Time Intervention: Eliciting Truthful Answers from a Language Model},\n  author={Li, Kenneth and Patel, Oam and Vi{\\'e}gas, Fernanda and Pfister, Hanspeter and Wattenberg, Martin},\n  booktitle={Advances in Neural Information Processing Systems},\n  volume={36},\n  year={2023}\n}\n```\n\n---\n\n## 6. Ke et al. \"Continual Pre-Training of Language Models\"\n\n**✅ 确认存在，ICLR 2023**\n\n- **标题**: Continual Pre-Training of Language Models\n- **作者**: Zixuan Ke, Yijia Shao, Haowei Lin, Tatsuya Konishi, Gyuhak Kim, Bing Liu\n- **来源**: ICLR 2023; arXiv:2302.03241\n\n```bibtex\n@inproceedings{ke2023continual,\n  title={Continual Pre-Training of Language Models},\n  author={Ke, Zixuan and Shao, Yijia and Lin, Haowei and Konishi, Tatsuya and Kim, Gyuhak and Liu, Bing},\n  booktitle={International Conference on Learning Representations},\n  year={2023}\n}\n```\n\n---\n\n## 7. Chao et al. (2024) \"JailbreakBench\"\n\n**✅ 确认存在，NeurIPS 2024 Datasets and Benchmarks Track**\n\n- **标题**: JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\n- **作者**: Patrick Chao, Edoardo Debenedetti, Alexander Robey, Maksym Andriushchenko, Francesco Croce, Vikash Sehwag, Edgar Dobriban, Nicolas Flammarion, George J. Pappas, Florian Tramèr, Hamed Hassani, Eric Wong\n- **来源**: NeurIPS 2024 (Datasets and Benchmarks Track); arXiv:2404.01318\n\n```bibtex\n@inproceedings{chao2024jailbreakbench,\n  title={{JailbreakBench}: An Open Robustness Benchmark for Jailbreaking Large Language Models},\n  author={Chao, Patrick and Debenedetti, Edoardo and Robey, Alexander and Andriushchenko, Maksym and Croce, Francesco and Sehwag, Vikash and Dobriban, Edgar and Flammarion, Nicolas and Pappas, George J. and Tram{\\`e}r, Florian and Hassani, Hamed and Wong, Eric},\n  booktitle={Advances in Neural Information Processing Systems},\n  volume={37},\n  year={2024}\n}\n```\n\n---\n\n## 汇总\n\n| # | 论文 | 判定 | 备注 |\n|---|------|------|------|\n| 1 | Yang et al. (2025) Multi-Turn Jailbreaks | ✅ 存在 | arXiv:2508.07646 |\n| 2 | Souly et al. (2024) StrongREJECT | ✅ 存在 | NeurIPS 2024 D&B |\n| 3 | State-Dependent Safety Failures (2026) | ✅ 存在 | arXiv:2603.15684 |\n| 4 | Mass-Scale Analysis (2025) | ✅ 存在 | arXiv:2507.08014 |\n| 5 | Li et al. ITI | ✅ 存在 | NeurIPS 2023，注意年份应为 2023 非 2024 |\n| 6 | Ke et al. Continual Pre-Training | ✅ 存在 | ICLR 2023 |\n| 7 | Chao et al. JailbreakBench | ✅ 存在 | NeurIPS 2024 D&B |\n\n**全部 7 篇均为真实论文，无 hallucination。** 第 5 篇需注意年份修正（2023 非 2024）。\n\nSources:\n- [Yang et al. 2025 - arXiv](https://arxiv.org/abs/2508.07646)\n- [Souly et al. 2024 - NeurIPS](https://proceedings.neurips.cc/paper_files/paper/2024/hash/e2e06adf560b0706d3b1ddfca9f29756-Abstract-Datasets_and_Benchmarks_Track.html)\n- [Li et al. 2026 - arXiv](https://arxiv.org/abs/2603.15684)\n- [Creo et al. 2025 - arXiv](https://arxiv.org/abs/2507.08014)\n- [Li et al. 2023 ITI - NeurIPS](https://proceedings.neurips.cc/paper_files/paper/2023/hash/81b8390039b7302c909cb769f8b6cd93-Abstract-Conference.html)\n- [Ke et al. 2023 - arXiv](https://arxiv.org/abs/2302.03241)\n- [Chao et al. 2024 - arXiv](https://arxiv.org/abs/2404.01318)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_w11_reference_verify_20260522T171915"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/research-w11-reference-verify.md"
+}

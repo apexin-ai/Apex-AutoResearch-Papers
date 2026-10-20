@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a432c97a2ce6da98cfc6",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "debug exp6 vanilla inconsistency",
+  "task_key": "worker_debug_exp6-vanilla-inconsistency_20260518T144423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_exp6-vanilla-inconsistency_20260518T144423.log",
+    "occurrence": 1,
+    "bytes": 798354,
+    "sha256": "9c2ce8c4ecf1aa3e249f2e6a3951532efe12d3182f7a1ee04302c84743f76370"
+  },
+  "statistics": {
+    "messages": 194,
+    "user_turns": 0,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 68,
+      "tool_result": 68,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 194,
+      "chunks": [
+        {
+          "path": "a432c97a2ce6da98cfc6-part-0001.json",
+          "message_count": 137
+        },
+        {
+          "path": "a432c97a2ce6da98cfc6-part-0002.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/debug-exp6-vanilla-inconsistency.md"
+}

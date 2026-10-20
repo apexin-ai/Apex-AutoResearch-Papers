@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp14b_cross_llm_control",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:19:48.670Z",
+    "updated_at": "2026-05-19T07:26:31.833Z",
+    "hypothesis": "exp14 cross-LLM failure is caused by double distribution shift (both jailbreak AND benign from Llama). By pairing Llama jailbreak with Qwen IID benign, we isolate the jailbreak detection component. If F1 recovers significantly, the failure is primarily due to Llama benign misclassification, not inability to detect Llama-style jailbreaks.",
+    "parent": "exp14_cross_llm_validation"
+  },
+  "timestamp": "2026-05-19T07:26:31.989135+00:00",
+  "trigger": "update_registry"
+}

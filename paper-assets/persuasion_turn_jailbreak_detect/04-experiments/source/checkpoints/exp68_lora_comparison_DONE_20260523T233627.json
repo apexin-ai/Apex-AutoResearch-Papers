@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp68_lora_comparison",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T23:01:46.426Z",
+    "updated_at": "2026-05-23T23:36:27.571Z",
+    "hypothesis": "LoRA (rank 8/16) fine-tuning on DeBERTa-v3-base with 9-class persuasion objective will achieve comparable OOD detection performance to full DAPT fine-tuning, because the key discriminative features can be captured in low-rank adaptations of the attention layers.",
+    "spec": {
+      "command": "bash exp68_run_all.sh",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/",
+      "model_name": "microsoft/deberta-v3-base + LoRA r8/r16",
+      "seed": "42,123,456",
+      "data_count": 350
+    },
+    "conclusion": "success",
+    "metrics": {
+      "lora_r8_dd_f1": "0.9935±0.0046",
+      "lora_r8_aa_f1": "0.9621±0.0133",
+      "lora_r16_dd_f1": "0.9935±0.0046",
+      "lora_r16_aa_f1": "0.9466±0.0117",
+      "baseline_dd_f1": "0.997±0.005",
+      "baseline_aa_f1": "0.972±0.026",
+      "trainable_params_r8": "303K (0.16%)",
+      "trainable_params_r16": "597K (0.32%)"
+    },
+    "checkpoint_path": "checkpoints/lora_r8_s42,lora_r8_s123,lora_r8_s456,lora_r16_s42,lora_r16_s123,lora_r16_s456",
+    "log_path": "logs/exp68_run.log",
+    "completed_at": "2026-05-23T23:36:27.571Z"
+  },
+  "timestamp": "2026-05-23T23:36:27.827086+00:00",
+  "trigger": "update_registry"
+}

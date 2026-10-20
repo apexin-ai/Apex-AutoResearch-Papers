@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40495b2752c4bd9d0028",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "figure fig3 evidence hierarchy",
+  "task_key": "worker_figure_fig3-evidence-hierarchy_20260523T123646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig3-evidence-hierarchy_20260523T123646_result.json",
+    "occurrence": 1,
+    "bytes": 403,
+    "sha256": "c3884dbf79e0043d60c3fbd217e4aab831346501b894bc95c17fcdd24c65dc8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF + PNG 已生成并注册：\n\n- **PDF**: `docs/paper/figures/paper/fig3_evidence_hierarchy.pdf` (16K)\n- **PNG**: `docs/paper/figures/paper/fig3_evidence_hierarchy.png` (58K, 300dpi)\n\n视觉效果符合预期：左侧 3 个 classification 变体在 DD/AA 上接近 1.0 但 ToxicChat 橙色柱明显低（~0.6-0.7）；JB-MLM 的 ToxicChat 柱反超至 0.837，反转清晰可见。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig3-evidence-hierarchy.md"
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "7c4be0721305ac2d033d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp39 extra seeds tost",
+  "task_key": "worker_code_exp39-extra-seeds-tost_20260521T091610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp39-extra-seeds-tost_20260521T091610.log",
+    "occurrence": 1,
+    "bytes": 1146008,
+    "sha256": "4c097eb1ce93ab5e23517a9ae343e957d87d71a647a6564ee8b38c9a21bf8de4"
+  },
+  "statistics": {
+    "messages": 382,
+    "user_turns": 1,
+    "tool_calls": 148,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 148,
+      "tool_result": 148,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 314,
+      "chunks": [
+        {
+          "path": "7c4be0721305ac2d033d-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "7c4be0721305ac2d033d-part-0002.json",
+          "message_count": 136
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 68,
+      "chunks": [
+        {
+          "path": "7c4be0721305ac2d033d-part-0002.json",
+          "message_count": 44
+        },
+        {
+          "path": "7c4be0721305ac2d033d-part-0003.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp39-extra-seeds-tost.md"
+}

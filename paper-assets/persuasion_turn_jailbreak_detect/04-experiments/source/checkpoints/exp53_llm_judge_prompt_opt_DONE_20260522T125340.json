@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp53_llm_judge_prompt_opt",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T10:08:48.075Z",
+    "updated_at": "2026-05-22T12:53:39.856Z",
+    "hypothesis": "An optimized CoT prompt with structured reasoning steps and calibrated examples will improve LLM-as-Judge jailbreak detection F1, especially on OOD datasets (DD, AA), compared to the original 3-shot prompt",
+    "spec": {
+      "command": "python scripts/exp53_llm_judge_optimized.py --device cuda:0",
+      "server": "westd-33183",
+      "model_name": "Qwen3-8B",
+      "data_path": "data/",
+      "data_count": "all (iid+dd_ood+aa_ood+fitd_ood, k1-k5+full)",
+      "seed": 42,
+      "conclusion_detail": "CoT+persuasion taxonomy optimized prompt improves LLM-as-judge AA F1 from 0.627→0.885, but still below DAPT (0.953-1.000). Original AA=0.627, Optimized AA=0.885. Prompt template written to appendix.",
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/exp53_llm_judge_optimized/",
+      "checkpoint_path": "N/A (inference-only)"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T12:53:39.856Z"
+  },
+  "timestamp": "2026-05-22T12:53:40.078967+00:00",
+  "trigger": "update_registry"
+}

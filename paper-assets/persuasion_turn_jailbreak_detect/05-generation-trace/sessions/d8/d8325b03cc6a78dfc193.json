@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8325b03cc6a78dfc193",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train phase b full",
+  "task_key": "worker_train_phase-b-full_20260517T163400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_phase-b-full_20260517T163400_result.json",
+    "occurrence": 1,
+    "bytes": 1577,
+    "sha256": "7d0f16d888e5cb896c17cfce1ab3297a4803d1f5f8d31dba5d4b56954b638788"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase B pipeline complete. Final results summary:\n\n```\n=== Phase B Full Results (N=480, test=72) ===\n\nStage 1 (DeBERTa Multi-task, best epoch 3):\n  Persuasion Accuracy: 0.7963\n  Intent Accuracy:     0.9514\n\nEarly Detection (F1 scores):\nK      Treatment (FT+GRU)  Baseline (vanilla+GRU)  TF-IDF+LR\n2      0.987               0.879                   1.000\n3      0.987               0.928                   1.000\n5      1.000               0.958                   1.000\nfull   1.000               0.987                   1.000\n```\n\n**Key findings**:\n1. **Treatment (DeBERTa-FT + GRU)** achieves near-perfect detection even at K=2 (F1=0.987, FPR@95TPR=0.0), reaching perfect at K=5.\n2. **Baseline (vanilla DeBERTa + GRU)** lags behind, especially at low K values (F1=0.879 at K=2), confirming that persuasion-grounded fine-tuning provides meaningful signal for early detection.\n3. **TF-IDF + LR** achieves perfect scores across all K values, which is concerning - likely due to lexical artifacts in the synthetic data (jailbreak conversations contain distinctly different vocabulary/topics from benign ones). This suggests the current dataset may have distributional shortcuts that a simple text classifier can exploit.\n\nThe treatment vs baseline comparison (the core claim of DisPeD) shows a clear gap at early turns (K=2: +0.108 F1, K=3: +0.059 F1), validating that persuasion-aware embeddings enable earlier detection. The TF-IDF ceiling effect indicates we'll need harder benign examples or adversarial evaluation for a publishable result."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-phase-b-full.md"
+}

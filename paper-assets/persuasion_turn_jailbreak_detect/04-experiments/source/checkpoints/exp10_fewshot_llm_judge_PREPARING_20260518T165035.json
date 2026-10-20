@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp10_fewshot_llm_judge",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:50:35.003Z",
+    "updated_at": "2026-05-18T16:50:35.003Z"
+  },
+  "timestamp": "2026-05-18T16:50:35.101060+00:00",
+  "trigger": "update_registry"
+}

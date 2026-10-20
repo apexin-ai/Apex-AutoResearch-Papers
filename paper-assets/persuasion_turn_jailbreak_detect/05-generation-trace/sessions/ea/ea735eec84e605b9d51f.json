@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea735eec84e605b9d51f",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper seed level fill",
+  "task_key": "worker_paper_seed_level_fill_20260523T053412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_seed_level_fill_20260523T053412_result.json",
+    "occurrence": 1,
+    "bytes": 1000,
+    "sha256": "ba0d2a115c1dbdd7268dfd62efc04f7393055a9d11cc9043604d729af0faa775"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No \"Placeholder\" strings remain, and the seed-level table (lines 924-928) has no \"--\" placeholders. The remaining \"--\" markers elsewhere are legitimate (FITD insufficient conversation length, etc.).\n\nTable filled. Per-seed F1 values for `tab:seed_level`:\n\n| Variant | DD s42 | DD s123 | DD s456 | AA s42 | AA s123 | AA s456 |\n|---------|--------|---------|---------|--------|---------|---------|\n| 9-class | 1.000 | 1.000 | .990 | .990 | .935 | .990 |\n| Binary | 1.000 | 1.000 | 1.000 | .981 | .990 | 1.000 |\n| Scrambled | .990 | 1.000 | 1.000 | .891 | .990 | .971 |\n| MLM-only | 1.000 | .990 | .751 | .971 | .925 | .784 |\n| Vanilla | .285 | .305 | .348 | .258 | .258 | .258 |\n\nValues sourced from registry experiments (plan_002, plan_017_mlm_control, exp2, vanilla_multiseed_dd_ood) and corroborated against a previously-filled version found in the session transcript. The LaTeX compilation error (\"Counter too large\") is pre-existing and unrelated to this change."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-seed-level-fill.md"
+}

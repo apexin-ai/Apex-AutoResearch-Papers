@@ -1,0 +1,11 @@
+Dataset      Mode          9-class      MLM    Delta
+iid          full           1.0000   0.9825  +0.0175
+iid          last_turn      0.9912   0.8944  +0.0968
+dd_ood       full           0.9968   0.9934  +0.0033
+dd_ood       last_turn      0.9417   0.9239  +0.0178
+aa_ood       full           0.9719   0.9413  +0.0306
+aa_ood       last_turn      0.9778   0.9273  +0.0505
+fitd_ood     full           1.0000   0.9871  +0.0129
+fitd_ood     last_turn      1.0000   0.9270  +0.0730
+
+Full JSON on westd-33183: /root/persuasion_turn_jailbreak_detect/results/exp58_truncated_single_turn.json

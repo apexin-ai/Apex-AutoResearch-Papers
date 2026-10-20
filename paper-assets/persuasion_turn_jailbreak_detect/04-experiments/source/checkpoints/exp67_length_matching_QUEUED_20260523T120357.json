@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp67_length_matching",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T12:03:48.017Z",
+    "updated_at": "2026-05-23T12:03:57.361Z",
+    "hypothesis": "Length-matched evaluation will show negligible F1 change compared to full-set evaluation, confirming that 9-class DeBERTa OOD detection does not rely on turn count differences between jailbreak and benign conversations as a shortcut."
+  },
+  "timestamp": "2026-05-23T12:03:57.613147+00:00",
+  "trigger": "update_registry"
+}

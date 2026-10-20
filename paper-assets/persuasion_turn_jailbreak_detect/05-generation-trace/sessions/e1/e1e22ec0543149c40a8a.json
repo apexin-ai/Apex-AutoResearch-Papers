@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1e22ec0543149c40a8a",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "viz fig fpr adaptation",
+  "task_key": "worker_viz_fig_fpr_adaptation_20260524T140803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig_fpr_adaptation_20260524T140803_result.json",
+    "occurrence": 1,
+    "bytes": 457,
+    "sha256": "b273c73abe298af3ad856870a02dadf64e853829ff76e32eac8281d4dd1ddb43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure B 已生成并保存：\n\n- PDF: `docs/paper/figures/paper/fig_fpr_adaptation.pdf`\n- PNG: `docs/paper/figures/paper/fig_fpr_adaptation.png`\n- 源码: `docs/paper/figures/paper/fig_fpr_adaptation.py`\n\n数据来源：exp45 (WildChat)、exp51 (OASST2)、exp66 (ShareGPT)，seed 42。三条曲线均从高 FPR（39–65%）快速下降至 5% 阈值以下，WildChat 最快（N=10 即 0%），OASST2 和 ShareGPT 需 N=25 降至 ~1%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig-fpr-adaptation.md"
+}

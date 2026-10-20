@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "4fbfeee000ecf8632a9a",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "audit data integrity",
+  "task_key": "worker_audit_data-integrity_20260525T194250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-integrity_20260525T194250.log",
+    "occurrence": 1,
+    "bytes": 1751933,
+    "sha256": "7ce5cf6f3799aa1a66218e5b7c58838f07b411660fc2a91377cf291772a83f7a"
+  },
+  "statistics": {
+    "messages": 356,
+    "user_turns": 1,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 134,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 86,
+      "tool_result": 86,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 236,
+      "chunks": [
+        {
+          "path": "4fbfeee000ecf8632a9a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fbfeee000ecf8632a9a-part-0002.json",
+          "message_count": 56
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 120,
+      "chunks": [
+        {
+          "path": "4fbfeee000ecf8632a9a-part-0002.json",
+          "message_count": 38
+        },
+        {
+          "path": "4fbfeee000ecf8632a9a-part-0003.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-data-integrity.md"
+}

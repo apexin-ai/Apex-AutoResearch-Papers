@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_004_perturbation_eval",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T00:09:52.806Z",
+    "updated_at": "2026-05-18T00:09:56.456Z",
+    "hypothesis": "Persuasion-grounded DeBERTa embeddings are robust to adversarial paraphrasing (aggressive user-turn rewriting), while vanilla DeBERTa baseline will show significant F1 degradation, proving treatment relies on structural persuasion signals rather than surface lexical features"
+  },
+  "timestamp": "2026-05-18T00:09:56.498992+00:00",
+  "trigger": "update_registry"
+}

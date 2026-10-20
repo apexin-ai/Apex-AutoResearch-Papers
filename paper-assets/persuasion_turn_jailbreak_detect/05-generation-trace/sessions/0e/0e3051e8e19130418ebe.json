@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0e3051e8e19130418ebe",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp16 exp17 status and launch",
+  "task_key": "worker_code_exp16-exp17-status-and-launch_20260519T231145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-exp17-status-and-launch_20260519T231145.log",
+    "occurrence": 1,
+    "bytes": 643331,
+    "sha256": "cdd3059cf3da75d9d7006a4bb2c1f86b1683f5a7bb057e5fe8f8142a27f23056"
+  },
+  "statistics": {
+    "messages": 322,
+    "user_turns": 0,
+    "tool_calls": 112,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 94,
+      "tool_call": 112,
+      "tool_result": 112,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 322,
+      "chunks": [
+        {
+          "path": "0e3051e8e19130418ebe-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0e3051e8e19130418ebe-part-0002.json",
+          "message_count": 142
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp16-exp17-status-and-launch.md"
+}

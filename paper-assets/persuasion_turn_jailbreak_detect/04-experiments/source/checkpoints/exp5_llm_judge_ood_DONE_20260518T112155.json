@@ -1,0 +1,49 @@
+{
+  "exp_id": "exp5_llm_judge_ood",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:47:30.630Z",
+    "updated_at": "2026-05-18T11:21:55.910Z",
+    "hypothesis": "Zero-shot Qwen3-8B will underperform trained classifiers on OOD data (DD and FITD), establishing that even on unseen attack types, specialized trained detectors outperform general-purpose LLM reasoning",
+    "spec": {
+      "command": "python exp5_llm_judge_ood.py (Qwen3-8B zero-shot on DD+FITD OOD)",
+      "server": "westd-33183",
+      "data_path": "data/dd_ood + data/generated/fitd_all.jsonl + data/plan_002_splits/test.jsonl",
+      "data_count": 236,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_path": "N/A (zero-shot)",
+      "log_path": "results/exp5_llm_judge_ood.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "dd_ood": {
+        "k1_f1": 0,
+        "k2_f1": 0,
+        "k3_f1": 0,
+        "k5_f1": 0,
+        "full_f1": 0,
+        "accuracy": 0.322
+      },
+      "fitd_ood": {
+        "k1_f1": 0,
+        "k2_f1": 0,
+        "k3_f1": 0,
+        "k5_f1": 0.025,
+        "full_f1": 0.025,
+        "accuracy": 0.331
+      },
+      "model": "Qwen3-8B",
+      "mode": "zero-shot",
+      "n_samples": 118,
+      "note": "Predicts all-benign. DD: 0 detections at all K. FITD: 1/80 detected at K>=5. Accuracy 0.322 = 38/118 benign ratio."
+    },
+    "completed_at": "2026-05-18T11:21:55.910Z"
+  },
+  "timestamp": "2026-05-18T11:21:55.987414+00:00",
+  "trigger": "update_registry"
+}

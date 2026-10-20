@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp46_inference_efficiency",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:14:50.840Z",
+    "updated_at": "2026-05-22T21:29:33.167Z",
+    "hypothesis": "DisPeD (DeBERTa+BiGRU) achieves 100x+ speedup over LLM-as-judge (Qwen3-8B 3-shot) with comparable or better OOD detection, because the encoder pipeline processes fixed-length embeddings per turn rather than generating full-sequence autoregressive outputs. This quantifies the practical deployment advantage.",
+    "conclusion": "success",
+    "metrics": {
+      "disped_latency_ms": 13.12,
+      "disped_latency_std": 1.61,
+      "disped_throughput_conv_s": 76.19,
+      "disped_gpu_mem_MB": 868,
+      "disped_params_M": 186.73,
+      "qwen3_latency_ms": 318.53,
+      "qwen3_latency_std": 26.8,
+      "qwen3_throughput_conv_s": 3.14,
+      "qwen3_gpu_mem_MB": 16096,
+      "qwen3_params_B": 8.19,
+      "speedup_factor": 24.3,
+      "memory_ratio": 18.5,
+      "test_conversations": 100,
+      "gpu": "RTX PRO 6000 Blackwell"
+    }
+  },
+  "timestamp": "2026-05-22T21:29:33.411734+00:00",
+  "trigger": "update_registry"
+}

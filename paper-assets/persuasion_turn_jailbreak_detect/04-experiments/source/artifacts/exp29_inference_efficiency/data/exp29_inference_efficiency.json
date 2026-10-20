@@ -1,0 +1,1 @@
+Remote path: /root/persuasion_turn_jailbreak_detect/results/exp29_inference_efficiency.json on westd-33183. DeBERTa+BiGRU: 12.12ms latency, 82.5 conv/s, 186.7M params, 862MB VRAM. TF-IDF+LR: 0.43ms, 2345 conv/s, 10K params. Qwen3-8B: 902-3229ms. GPT-4o est: 2-5s. Speedup: 266x vs Qwen3-8B, 165-413x vs GPT-4o.

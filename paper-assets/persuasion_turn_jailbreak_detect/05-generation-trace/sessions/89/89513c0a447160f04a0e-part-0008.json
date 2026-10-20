@@ -1,0 +1,977 @@
+{
+  "schema_version": "1.0",
+  "session_id": "89513c0a447160f04a0e",
+  "rounds": [
+    {
+      "number": 85,
+      "messages": [
+        {
+          "source_line": 1261,
+          "timestamp": "2026-05-26T12:24:25.178640+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\title{DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection}\n\n\\author{Anonymous}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 452
+          },
+          "id": "event-001261"
+        },
+        {
+          "source_line": 1262,
+          "timestamp": "2026-05-26T12:24:25.480529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -5 /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex",
+              "description": "Get latest abstract"
+            }
+          },
+          "id": "event-001262"
+        },
+        {
+          "source_line": 1263,
+          "timestamp": "2026-05-26T12:24:25.531337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "% abstract.tex\n\\begin{abstract}\nMulti-turn jailbreaks spread adversarial intent across innocent-looking conversation turns, and safety classifiers designed for single-turn threats miss them: Llama Guard~3 catches only 1.8\\%. What makes a detector generalize to attack strategies never seen during training? We introduce DisPeD (Disentangled Persuasion Detection), a controlled framework where seven encoder variants differ solely in pretraining objective while sharing the same frozen classifier; this design isolates how domain exposure, supervision type, and label semantics each contribute to out-of-distribution (OOD) robustness. Classification-based domain adaptation is the only consistently effective mechanism on synthetic multi-turn attacks: it recovers near-perfect detection where vanilla encoders collapse (F1 0.97--1.0 vs.\\ 0.26--0.31) and remains robust under mixed-LLM training where unsupervised pretraining fails entirely. Scrambled labels match correct ones---the classification objective's structural role, not label content, drives generalization. Yet these advantages reverse on human-authored data, where unsupervised pretraining leads, an asymmetry that bounds the scope of each mechanism. The resulting 184M-parameter pipeline achieves 24$\\times$ speedup over LLM-as-judge alternatives, and few-shot adaptation substantially reduces false-positive inflation across deployment platforms\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/persuasion_turn_jailbreak_detect-C207/}.}.\n\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-001263"
+        },
+        {
+          "source_line": 1264,
+          "timestamp": "2026-05-26T12:24:31.883713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"What Makes Multi-Turn\" /tmp/persuasion_repo_sync/ --include=\"*.py\" --include=\"*.md\" --include=\"*.sh\" --include=\"*.txt\" -l 2>/dev/null",
+              "description": "Find old title references"
+            }
+          },
+          "id": "event-001264"
+        },
+        {
+          "source_line": 1265,
+          "timestamp": "2026-05-26T12:24:32.336509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/tmp/persuasion_repo_sync/README.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 452
+          },
+          "id": "event-001265"
+        },
+        {
+          "source_line": 1266,
+          "timestamp": "2026-05-26T12:24:32.839317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"Domain Exposure Bridges\" /tmp/persuasion_repo_sync/ --include=\"*.py\" --include=\"*.md\" --include=\"*.sh\" --include=\"*.txt\" -l 2>/dev/null",
+              "description": "Find old subtitle references"
+            }
+          },
+          "id": "event-001266"
+        },
+        {
+          "source_line": 1267,
+          "timestamp": "2026-05-26T12:24:33.293760+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/tmp/persuasion_repo_sync/README.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 454
+          },
+          "id": "event-001267"
+        },
+        {
+          "source_line": 1268,
+          "timestamp": "2026-05-26T12:24:33.394723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"DisPeD\\|Disentangled Persuasion\" /tmp/persuasion_repo_sync/ --include=\"*.py\" --include=\"*.md\" --include=\"*.sh\" -l 2>/dev/null",
+              "description": "Find new title references"
+            }
+          },
+          "id": "event-001268"
+        },
+        {
+          "source_line": 1269,
+          "timestamp": "2026-05-26T12:24:33.445405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/tmp/persuasion_repo_sync/src/scramble_labels.py\n/tmp/persuasion_repo_sync/scripts/exp60_turncount_baseline.py\n/tmp/persuasion_repo_sync/scripts/exp46_inference_efficiency.py\n/tmp/persuasion_repo_sync/docs/paper/figures/paper/fig1_architecture.py\n/tmp/persuasion_repo_sync/README.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-001269"
+        },
+        {
+          "source_line": 1270,
+          "timestamp": "2026-05-26T12:24:37.613388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"paper\\|Paper\\|title\\|Title\\|treatment\\|Treatment\\|baseline\\|Baseline\\|Stage\\|stage\\|overview\\|Overview\" /tmp/persuasion_repo_sync/README.md | head -20",
+              "description": "Check README structure references"
+            }
+          },
+          "id": "event-001270"
+        },
+        {
+          "source_line": 1271,
+          "timestamp": "2026-05-26T12:24:37.814796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3:This repository contains the code and experimental results for the paper *\"What Makes Multi-Turn Jailbreaks Detectable? Domain Exposure Bridges the Cross-Attack Gap\"*.\n5:## Overview\n7:**DisPeD** is a controlled framework that isolates how domain exposure, supervision type, and label semantics each contribute to out-of-distribution (OOD) robustness in multi-turn jailbreak detection. The two-stage pipeline consists of:\n9:1. **Stage 1 — DeBERTa Multi-Task Fine-Tuning**: Fine-tunes DeBERTa-v3-base on per-turn persuasion strategy classification (9-class) with an auxiliary binary jailbreak intent head.\n10:2. **Stage 2 — GRU Sequence Classifier**: Trains a BiGRU classifier on conversation-level embeddings from the frozen Stage-1 encoder for binary jailbreak detection.\n35:│   ├── deberta_multitask.py  # DeBERTa multi-task model (Stage 1)\n36:│   ├── gru_classifier.py     # BiGRU classifier (Stage 2)\n37:│   └── baseline.py           # Baseline model variants\n38:├── train_deberta.py         # Stage 1: DeBERTa multi-task training\n39:├── train_classifier.py      # Stage 2: GRU classifier training (9-class)\n40:├── train_classifier_binary.py # Stage 2: GRU classifier training (binary)\n46:docs/paper/                  # Paper source (LaTeX)\n72:### Stage 1: DeBERTa Multi-Task Fine-Tuning (DAPT)\n79:    --output_dir checkpoints/stage1 \\\n85:### Stage 2: GRU Sequence Classifier\n88:# Treatment (persuasion-adapted encoder)\n92:    --mode treatment \\\n93:    --deberta_path checkpoints/stage1/best \\\n94:    --output_dir checkpoints/stage2_treatment \\\n98:# Baseline (vanilla DeBERTa encoder)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-001271"
+        },
+        {
+          "source_line": 1272,
+          "timestamp": "2026-05-26T12:24:37.865586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /tmp/persuasion_repo_sync/.gitignore",
+              "description": "Check gitignore"
+            }
+          },
+          "id": "event-001272"
+        },
+        {
+          "source_line": 1273,
+          "timestamp": "2026-05-26T12:24:37.966652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "__pycache__/\n*.pyc\n*.pyo\n.env\nwandb/\ncheckpoints/\n*.pt\n*.bin\n*.safetensors\n*.log\n.DS_Store\n*.aux\n*.out\n*.synctex.gz\n*.fls\n*.fdb_latexmk\n*.blg\n*.bbl\ndata/\nlogs/"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-001273"
+        },
+        {
+          "source_line": 1274,
+          "timestamp": "2026-05-26T12:24:42.236787+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/method.tex",
+              "limit": "50"
+            }
+          },
+          "id": "event-001274"
+        },
+        {
+          "source_line": 1275,
+          "timestamp": "2026-05-26T12:24:42.787710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% method.tex\n2\t\n3\t\\section{Method}\n4\t\\label{sec:method}\n5\t\n6\tCross-attack generalization could stem from domain exposure, classification supervision, label correctness, label granularity, or domain specificity. Disentangling these factors demands an architecture where exactly one component varies across conditions. DisPeD separates encoder adaptation (Stage~1) from temporal classification (Stage~2). Seven Stage-1 variants share the same training data and downstream pipeline but differ solely in their pretraining objective; each isolates a single factor (Figure~\\ref{fig:architecture}).\n7\t\n8\t\\subsection{Problem Formulation}\n9\t\n10\tA conversation $C = \\{u_1, a_1, \\ldots, u_N, a_N\\}$ alternates user turns $u_i$ and assistant responses $a_i$. Given a prefix of $K$ user turns, the model predicts $y \\in \\{0, 1\\}$ (jailbreak vs.\\ benign). We restrict input to user turns because adversarial intent resides in the attacker's messages. This formulation supports early detection from partial prefixes.\n11\t\n12\t\\subsection{Stage 1: Turn-Level Encoder Adaptation}\n13\t\n14\tEach user turn $u_i$ is encoded by DeBERTa-v3-base~\\citep{he2023debertav3}; the \\texttt{[CLS]} embedding $h_i \\in \\mathbb{R}^D$ serves as the turn representation. Seven variants, summarized in Table~\\ref{tab:variants}, share the same training data but differ in objective.\n15\t\n16\t\\begin{table}[t]\n17\t\\centering\n18\t\\small\n19\t\\caption{Stage-1 encoder variants. All operate on the same training conversations except Wikipedia MLM (matched token count on Wikipedia text).}\n20\t\\label{tab:variants}\n21\t\\begin{tabular}{@{}p{1.6cm}p{2.2cm}p{2.8cm}@{}}\n22\t\\toprule\n23\t\\textbf{Variant} & \\textbf{Objective} & \\textbf{Tests whether\\ldots} \\\\\n24\t\\midrule\n25\t9-class & 9-class persuasion + binary intent & full model \\\\\n26\tBinary & binary persuasion + binary intent & granularity matters \\\\\n27\tScrambled & random 9-class + binary intent & label correctness matters \\\\\n28\tMLM-only & 15\\% token masking & supervision is necessary \\\\\n29\tTopic & 5\n…[truncated 3810 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Read",
+            "elapsed_ms": 550
+          },
+          "id": "event-001275"
+        },
+        {
+          "source_line": 1276,
+          "timestamp": "2026-05-26T12:25:04.692828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/tmp/persuasion_repo_sync/README.md",
+              "content": "# DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection\n\nThis repository contains the code and data for the paper *\"DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection\"*.\n\n## Overview\n\nMulti-turn jailbreak attacks distribute adversarial intent across individually benign conversation turns, evading single-turn safety classifiers. **DisPeD** (Disentangled Persuasion Detection) is a controlled framework that isolates how domain exposure, supervision type, and label semantics each contribute to out-of-distribution (OOD) robustness. The two-stage pipeline consists of:\n\n1. **Stage 1 — Turn-Level Encoder Adaptation**: Seven DeBERTa-v3-base encoder variants share the same training data but differ solely in their pretraining objective (9-class persuasion classification, binary, scrambled labels, MLM, topic classification, Wikipedia MLM, or vanilla), each isolating a single factor.\n2. **Stage 2 — Conversation-Level Classification**: A frozen BiGRU aggregates [CLS] embeddings from the frozen Stage-1 encoder for binary jailbreak detection.\n\nKey findings:\n- Classification-based domain adaptation (DAPT) is the only consistently effective mechanism, recovering OOD detection where vanilla encoders collapse (F1 0.97--1.0 vs. 0.26--0.31).\n- Scrambled labels match correct labels — the classification objective's structural role, not label content, drives generalization.\n- These advantages reverse on human-authored data, where unsupervised pretraining leads, revealing condition-specific rather than universal advantages.\n- The 184M-parameter pipeline achieves 24x speedup over LLM-as-judge alternatives.\n\n## Requirements\n\n- Python >= 3.10\n- PyTorch >= 2.0\n- CUDA-capable GPU (tested on A6000, L40)\n\n```bash\npip install torch torchvision torchaudio\npip install transformers datasets accelerate\npip install scikit-learn scipy tqdm\n```\n\n## Project Structure\n\n```\nsrc/\n├── models/\n│   ├── deberta_multitask.py    # DeBERTa multi-task model (Stage 1)\n│   ├── deberta_topic.py        # Topic classification variant\n│   ├── gru_classifier.py       # BiGRU classifier (Stage 2)\n│   └── baseline.py             # Baseline model variants\n├── train_deberta.py            # Stage 1: 9-class DAPT training\n├── train_deberta_binary.py     # Stage 1: Binary variant\n├── train_deberta_mlm.py        # Stage 1: MLM continued pretraining\n├── train_deberta_mlm_wiki.py   # Stage 1: Wikipedia MLM control\n├── train_deberta_topic.py      # Stage 1: Topic classification control\n├── train_classifier.py         # Stage 2: BiGRU classifier training\n├── evaluate.py                 # Evaluation pipeline\n├── scramble_labels.py          # Label scrambling for scrambled variant\n└── ...\nscripts/                        # Experiment and analysis scripts\nresults/                        # Experiment result JSONs\ndocs/paper/                     # Paper source (LaTeX)\n```\n\n## Training\n\n### Stage 1: Encoder Adaptation (Seven Variants)\n\n**9-class DAPT** (primary variant):\n```bash\npython src/train_deberta.py \\\n    --train_data data/train.jsonl \\\n    --val_data data/val.jsonl \\\n    --model_name microsoft/deberta-v3-base \\\n    --output_dir checkpoints/stage1_9class \\\n    --epochs 5 --batch_size 16 --lr 2e-5\n```\n\n**MLM-only** (unsupervised control):\n```bash\npython src/train_deberta_mlm.py \\\n    --train_data data/train.jsonl \\\n    --model_name microsoft/deberta-v3-base \\\n    --output_dir checkpoints/stage1_mlm \\\n    --epochs 5 --batch_size 16\n```\n\n**Wikipedia MLM** (domain specificity control):\n```bash\npython src/train_deberta_mlm_wiki.py \\\n    --model_name microsoft/deberta-v3-base \\\n    --output_dir checkpoints/stage1_wiki_mlm \\\n    --epochs 5 --batch_size 16\n```\n\n**Topic classification** (task alignment control):\n```bash\npython src/train_deberta_topic.py \\\n    --train_data data/train.jsonl \\\n    --model_name microsoft/deberta-v3-base \\\n    --output_dir checkpoints/stage1_topic \\\n    --epochs 5 --batch_size 16\n```\n\n### Stage 2: Conversation-Level Classification\n\n```bash\npython src/train_classifier.py \\\n    --train_data data/train.jsonl \\\n    --val_data data/val.jsonl \\\n    --deberta_path checkpoints/stage1_9class/best \\\n    --output_dir checkpoints/stage2 \\\n    --epochs 30 --batch_size 8\n```\n\n### Evaluation\n\n```bash\npython src/evaluate.py \\\n    --test_data data/test.jsonl \\\n    --deberta_path checkpoints/stage1_9class/best \\\n    --gru_path checkpoints/stage2/best.pt \\\n    --output results/eval_results.json\n```\n\n## Data\n\nTraining data consists of synthetic multi-turn conversations with per-turn persuasion strategy annotations. Four attack families are used: Crescendo, Foot-in-the-Door (FITD), Deceptive Delight, and ActorAttack, generated via Qwen and Llama models. Strategy annotations are produced by Qwen3-8B.\n\nThe expected data format is JSONL with each line containing a conversation object with per-turn `strategy` labels and a conversation-level `label` field.\n\n## License\n\nCC BY-NC 4.0\n"
+            }
+          },
+          "id": "event-001276"
+        },
+        {
+          "source_line": 1277,
+          "timestamp": "2026-05-26T12:25:05.239684+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Write",
+            "elapsed_ms": 546
+          },
+          "id": "event-001277"
+        },
+        {
+          "source_line": 1278,
+          "timestamp": "2026-05-26T12:25:08.857580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/tmp/persuasion_repo_sync/README.md"
+            }
+          },
+          "id": "event-001278"
+        },
+        {
+          "source_line": 1279,
+          "timestamp": "2026-05-26T12:25:09.372939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# What Makes Multi-Turn Jailbreaks Detectable? Domain Exposure Bridges the Cross-Attack Gap\n2\t\n3\tThis repository contains the code and experimental results for the paper *\"What Makes Multi-Turn Jailbreaks Detectable? Domain Exposure Bridges the Cross-Attack Gap\"*.\n4\t\n5\t## Overview\n6\t\n7\t**DisPeD** is a controlled framework that isolates how domain exposure, supervision type, and label semantics each contribute to out-of-distribution (OOD) robustness in multi-turn jailbreak detection. The two-stage pipeline consists of:\n8\t\n9\t1. **Stage 1 — DeBERTa Multi-Task Fine-Tuning**: Fine-tunes DeBERTa-v3-base on per-turn persuasion strategy classification (9-class) with an auxiliary binary jailbreak intent head.\n10\t2. **Stage 2 — GRU Sequence Classifier**: Trains a BiGRU classifier on conversation-level embeddings from the frozen Stage-1 encoder for binary jailbreak detection.\n11\t\n12\tThe resulting 184M-parameter pipeline achieves 24x speedup over LLM-as-judge alternatives.\n13\t\n14\t## Requirements\n15\t\n16\t- Python >= 3.10\n17\t- PyTorch >= 2.0\n18\t- CUDA-capable GPU (tested on A6000, L40)\n19\t\n20\tInstall dependencies:\n21\t```bash\n22\tpip install torch torchvision torchaudio\n23\tpip install transformers datasets accelerate einops\n24\tpip install scikit-learn scipy tqdm\n25\t```\n26\t\n27\t## Project Structure\n28\t\n29\t```\n30\tsrc/\n31\t├── data/\n32\t│   ├── dataset.py          # TurnDataset & ConversationDataset\n33\t│   └── collator.py         # Data collators for batching\n34\t├── models/\n35\t│   ├── deberta_multitask.py  # DeBERTa multi-task model (Stage 1)\n36\t│   ├── gru_classifier.py     # BiGRU classifier (Stage 2)\n37\t│   └── baseline.py           # Baseline model variants\n38\t├── train_deberta.py         # Stage 1: DeBERTa multi-task training\n39\t├── train_classifier.py      # Stage 2: GRU classifier training (9-class)\n40\t├── train_classifier_binary.py # Stage 2: GRU classifier training (binary)\n41\t├── evaluate.py              # Evaluation (F1, early detection, FPR@95TPR)\n42\t├── train_deberta_mlm.py\n…[truncated 3077 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Read",
+            "elapsed_ms": 515
+          },
+          "id": "event-001279"
+        },
+        {
+          "source_line": 1280,
+          "timestamp": "2026-05-26T12:25:22.797099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/tmp/persuasion_repo_sync/README.md",
+              "content": "# DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection\n\nThis repository contains the code and data for the paper *\"DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection\"*.\n\n## Overview\n\nMulti-turn jailbreak attacks distribute adversarial intent across individually benign conversation turns, evading single-turn safety classifiers. **DisPeD** (Disentangled Persuasion Detection) is a controlled framework that isolates how domain exposure, supervision type, and label semantics each contribute to out-of-distribution (OOD) robustness. The two-stage pipeline consists of:\n\n1. **Stage 1 — Turn-Level Encoder Adaptation**: Seven DeBERTa-v3-base encoder variants share the same training data but differ solely in their pretraining objective (9-class persuasion classification, binary, scrambled labels, MLM, topic classification, Wikipedia MLM, or vanilla), each isolating a single factor.\n2. **Stage 2 — Conversation-Level Classification**: A frozen BiGRU aggregates [CLS] embeddings from the frozen Stage-1 encoder for binary jailbreak detection.\n\nKey findings:\n- Classification-based domain adaptation (DAPT) is the only consistently effective mechanism, recovering OOD detection where vanilla encoders collapse (F1 0.97--1.0 vs. 0.26--0.31).\n- Scrambled labels match correct labels -- the classification objective's structural role, not label content, drives generalization.\n- These advantages reverse on human-authored data, where unsupervised pretraining leads, revealing condition-specific rather than universal advantages.\n- The 184M-parameter pipeline achieves 24x speedup over LLM-as-judge alternatives.\n\n## Requirements\n\n- Python >= 3.10\n- PyTorch >= 2.0\n- CUDA-capable GPU (tested on A6000, L40)\n\n```bash\npip install torch torchvision torchaudio\npip install transformers datasets accelerate\npip install scikit-learn scipy tqdm\n```\n\n## Project Structure\n\n```\nsrc/\n├── models/\n│   ├── deberta_multitask.py    # DeBERTa multi-task model (Stage 1)\n│   ├── deberta_topic.py        # Topic classification variant\n│   ├── gru_classifier.py       # BiGRU classifier (Stage 2)\n│   └── baseline.py             # Baseline model variants\n├── train_deberta.py            # Stage 1: 9-class DAPT training\n├── train_deberta_binary.py     # Stage 1: Binary variant\n├── train_deberta_mlm.py        # Stage 1: MLM continued pretraining\n├── train_deberta_mlm_wiki.py   # Stage 1: Wikipedia MLM control\n├── train_deberta_topic.py      # Stage 1: Topic classification control\n├── train_classifier.py         # Stage 2: BiGRU classifier training\n├── evaluate.py                 # Evaluation pipeline\n├── scramble_labels.py          # Label scrambling for scrambled variant\n└── ...\nscripts/                        # Experiment and analysis scripts\nresults/                        # Experiment result JSONs\ndocs/paper/                     # Paper source (LaTeX)\n```\n\n## Training\n\n### Stage 1: Encoder Adaptation (Seven Variants)\n\n**9-class DAPT** (primary variant):\n```bash\npython src/train_deberta.py \\\n    --train_data data/train.jsonl \\\n    --val_data data/val.jsonl \\\n    --model_name microsoft/deberta-v3-base \\\n    --output_dir checkpoints/stage1_9class \\\n    --epochs 5 --batch_size 16 --lr 2e-5\n```\n\n**MLM-only** (unsupervised control):\n```bash\npython src/train_deberta_mlm.py \\\n    --train_data data/train.jsonl \\\n    --model_name microsoft/deberta-v3-base \\\n    --output_dir checkpoints/stage1_mlm \\\n    --epochs 5 --batch_size 16\n```\n\n**Wikipedia MLM** (domain specificity control):\n```bash\npython src/train_deberta_mlm_wiki.py \\\n    --model_name microsoft/deberta-v3-base \\\n    --output_dir checkpoints/stage1_wiki_mlm \\\n    --epochs 5 --batch_size 16\n```\n\n**Topic classification** (task alignment control):\n```bash\npython src/train_deberta_topic.py \\\n    --train_data data/train.jsonl \\\n    --model_name microsoft/deberta-v3-base \\\n    --output_dir checkpoints/stage1_topic \\\n    --epochs 5 --batch_size 16\n```\n\n### Stage 2: Conversation-Level Classification\n\n```bash\npython src/train_classifier.py \\\n    --train_data data/train.jsonl \\\n    --val_data data/val.jsonl \\\n    --deberta_path checkpoints/stage1_9class/best \\\n    --output_dir checkpoints/stage2 \\\n    --epochs 30 --batch_size 8\n```\n\n### Evaluation\n\n```bash\npython src/evaluate.py \\\n    --test_data data/test.jsonl \\\n    --deberta_path checkpoints/stage1_9class/best \\\n    --gru_path checkpoints/stage2/best.pt \\\n    --output results/eval_results.json\n```\n\n## Data\n\nTraining data consists of synthetic multi-turn conversations with per-turn persuasion strategy annotations. Four attack families are used: Crescendo, Foot-in-the-Door (FITD), Deceptive Delight, and ActorAttack, generated via Qwen and Llama models. Strategy annotations are produced by Qwen3-8B.\n\nThe expected data format is JSONL with each line containing a conversation object with per-turn `strategy` labels and a conversation-level `label` field.\n\n## License\n\nCC BY-NC 4.0\n"
+            }
+          },
+          "id": "event-001280"
+        },
+        {
+          "source_line": 1281,
+          "timestamp": "2026-05-26T12:25:23.374415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /tmp/persuasion_repo_sync/README.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Write",
+            "elapsed_ms": 577
+          },
+          "id": "event-001281"
+        },
+        {
+          "source_line": 1282,
+          "timestamp": "2026-05-26T12:25:27.805337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"DisPeD\\|Disentangled\\|What Makes\\|Domain Exposure\" /tmp/persuasion_repo_sync/docs/paper/figures/paper/fig1_architecture.py 2>/dev/null | head -10",
+              "description": "Check fig1 script for title references"
+            }
+          },
+          "id": "event-001282"
+        },
+        {
+          "source_line": 1283,
+          "timestamp": "2026-05-26T12:25:28.773045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2:\"\"\"DisPeD architecture diagram — EMNLP 2026, v4 (Stage 2 enhanced)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 967
+          },
+          "id": "event-001283"
+        },
+        {
+          "source_line": 1284,
+          "timestamp": "2026-05-26T12:25:28.824768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -rn \"DisPeD\\|What Makes\\|Domain Exposure\" /tmp/persuasion_repo_sync/src/ /tmp/persuasion_repo_sync/scripts/ 2>/dev/null | head -20",
+              "description": "Check code files for title references"
+            }
+          },
+          "id": "event-001284"
+        },
+        {
+          "source_line": 1285,
+          "timestamp": "2026-05-26T12:25:28.925931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/tmp/persuasion_repo_sync/src/scramble_labels.py:2:Scrambled-label ablation for DisPeD.\n/tmp/persuasion_repo_sync/scripts/exp60_turncount_baseline.py:120:# --- DisPeD reference results ---\n/tmp/persuasion_repo_sync/scripts/exp60_turncount_baseline.py:151:        \"note\": \"IID/DD K=1 DisPeD not available from early detection experiments\"\n/tmp/persuasion_repo_sync/scripts/exp60_turncount_baseline.py:162:print(f\"{'Test Set':<12} {'TC Full':<10} {'TC K=1':<10} {'DisPeD Full':<12} {'DisPeD K=1':<12}\")\n/tmp/persuasion_repo_sync/scripts/exp46_inference_efficiency.py:1:\"\"\"exp46: Inference efficiency benchmark — DisPeD (DeBERTa+BiGRU) vs Qwen3-8B LLM-as-judge.\n/tmp/persuasion_repo_sync/scripts/exp46_inference_efficiency.py:80:# Part A: DeBERTa + BiGRU (DisPeD)\n/tmp/persuasion_repo_sync/scripts/exp46_inference_efficiency.py:85:    print(\"Part A: DisPeD (DeBERTa-v3-base + BiGRU)\")\n/tmp/persuasion_repo_sync/scripts/exp46_inference_efficiency.py:166:        \"model\": \"DisPeD (DeBERTa-v3-base + BiGRU)\",\n/tmp/persuasion_repo_sync/scripts/exp46_inference_efficiency.py:360:    # Part A: DisPeD\n/tmp/persuasion_repo_sync/scripts/exp46_inference_efficiency.py:373:        \"description\": \"Side-by-side inference efficiency: DisPeD vs Qwen3-8B LLM-as-judge\",\n/tmp/persuasion_repo_sync/scripts/exp46_inference_efficiency.py:383:            \"note\": f\"DisPeD is {speedup}x faster than Qwen3-8B 3-shot\",\n/tmp/persuasion_repo_sync/scripts/exp46_inference_efficiency.py:398:    print(f\"{'DisPeD (DeBERTa+BiGRU)':<35} {disped_lat:>8.2f} ± {disped_results['latency_ms']['std']:<8.2f} {disped_results['throughput_conv_per_sec']:>8.2f} conv/s   {disped_results['gpu_mem_MB']:>6.0f} MB    {disped_results['params_M']}M\")\n/tmp/persuasion_repo_sync/scripts/exp46_inference_efficiency.py:400:    print(f\"\\nSpeedup: DisPeD is {speedup}x faster than Qwen3-8B\")"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-001285"
+        },
+        {
+          "source_line": 1286,
+          "timestamp": "2026-05-26T12:25:33.822261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/persuasion_repo_sync && git diff --stat",
+              "description": "Check what changed"
+            }
+          },
+          "id": "event-001286"
+        },
+        {
+          "source_line": 1287,
+          "timestamp": "2026-05-26T12:25:33.923200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": " README.md | 140 ++++++++++++++++++++++++++++----------------------------------\n 1 file changed, 64 insertions(+), 76 deletions(-)\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-001287"
+        },
+        {
+          "source_line": 1288,
+          "timestamp": "2026-05-26T12:25:39.550773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/persuasion_repo_sync && git add README.md && git commit -m \"$(cat <<'EOF'\nUpdate README to match final paper title and content\n\n- Title: \"DisPeD: A Controlled Study of Encoder Adaptation for\n  Multi-Turn Jailbreak Detection\" (was old working title)\n- Rewrite overview to reflect seven-variant ablation design\n- Add key findings summary\n- Update project structure to show all Stage-1 variant scripts\n- Expand training section with commands for all variants\n- Update data description with four attack families\n- Update license to CC BY-NC 4.0\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n)\" 2>&1",
+              "description": "Commit README update"
+            }
+          },
+          "id": "event-001288"
+        },
+        {
+          "source_line": 1289,
+          "timestamp": "2026-05-26T12:25:39.651759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "[main dbeb78b] Update README to match final paper title and content\n Committer: Ubuntu <ubuntu@ip-172-31-14-162.ap-northeast-1.compute.internal>\nYour name and email address were configured automatically based\non your username and hostname. Please check that they are accurate.\nYou can suppress this message by setting them explicitly. Run the\nfollowing command and follow the instructions in your editor to edit\nyour configuration file:\n\n    git config --global --edit\n\nAfter doing this, you may fix the identity used for this commit with:\n\n    git commit --amend --reset-author\n\n 1 file changed, 64 insertions(+), 76 deletions(-)\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-001289"
+        },
+        {
+          "source_line": 1290,
+          "timestamp": "2026-05-26T12:25:42.667310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/persuasion_repo_sync && git push origin main 2>&1",
+              "description": "Push to GitHub"
+            }
+          },
+          "id": "event-001290"
+        },
+        {
+          "source_line": 1291,
+          "timestamp": "2026-05-26T12:25:44.075352+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "To https://github.com/anonymous-nlp-2026/persuasion_turn_jailbreak_detect.git\n   88534f2..dbeb78b  main -> main\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 1408
+          },
+          "id": "event-001291"
+        },
+        {
+          "source_line": 1292,
+          "timestamp": "2026-05-26T12:25:54.888991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "GitHub 仓库已更新并推送（commit `dbeb78b`）。\n\n**更新内容**：\n\n1. **README.md 全面重写**：\n   - **标题**：旧 \"What Makes Multi-Turn Jailbreaks Detectable? Domain Exposure Bridges the Cross-Attack Gap\" → 新 \"DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection\"（与论文一致）\n   - **Overview**：从只描述 9-class 单变体改为完整描述七变体消融设计，添加四条 key findings\n   - **Project Structure**：补充所有 Stage-1 变体脚本（binary、MLM、wiki MLM、topic、scramble）\n   - **Training**：从只有 treatment/baseline 两种命令，扩展为所有七变体的训练命令\n   - **Data**：补充四个攻击家族（Crescendo、FITD、Deceptive Delight、ActorAttack）和 Qwen3-8B 标注说明\n   - **License**：从 \"for research purposes\" 改为 CC BY-NC 4.0（与论文 Ethical Considerations 一致）\n\n2. **检查结果：无需改动的部分**：\n   - 代码中的 \"DisPeD\" 引用（`scramble_labels.py`、`exp46`、`exp60` 等）均与论文一致\n   - `.gitignore` 正常\n   - 论文 `.tex` 文件已在上一轮推送中同步"
+            }
+          },
+          "id": "event-001292"
+        },
+        {
+          "source_line": 1293,
+          "timestamp": "2026-05-26T12:25:58.270359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 3381
+          },
+          "id": "event-001293"
+        },
+        {
+          "source_line": 1294,
+          "timestamp": "2026-05-26T12:26:00.453500+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码中引用的 \"DisPeD\" 名称和论文一致，没有旧标题残留。现在检查 `.gitignore` 是否需要更新，以及是否需要更新其他文件。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director"
+          },
+          "id": "event-001294"
+        }
+      ]
+    },
+    {
+      "number": 86,
+      "messages": [
+        {
+          "source_line": 1295,
+          "timestamp": "2026-05-26T12:36:49.938668+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 曹晓玉]: 📋 代码仓库更新（含凭证）\n\n论文经过多轮修改后，GitHub 仓库里的内容可能已经过时了。请在本机 clone 仓库，对照论文最新版本更新后 push。\n\n你的仓库信息：\n- 仓库地址：https://github.com/anonymous-nlp-2026/persuasion_turn_jailbreak_detect\n- Push URL：https://[REDACTED]@github.com/anonymous-nlp-2026/persuasion_turn_jailbreak_detect.git\n\n操作步骤：\n```\ngit config --global user.name \"Anonymous\"\ngit config --global user.email \"anonymous@example.com\"\ngit clone https://[REDACTED]@github.com/anonymous-nlp-2026/persuasion_turn_jailbreak_detect.git\ncd persuasion_turn_jailbreak_detect\n# 对照论文最新版本，更新 README（标题、摘要）、代码等不一致的内容\ngit add -A && git commit -m \"sync with final paper\" && git push\n```\n\nGPU 服务器已经关了，不需要连。直接在本机操作。\n\n完成后汇报更新了哪些内容 + 最新 commit hash。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "source": "feishu:oc_a90fe0dde422576f214f12233cfe27a3"
+          },
+          "id": "event-001295"
+        },
+        {
+          "source_line": 1296,
+          "timestamp": "2026-05-26T12:37:00.222236+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp && rm -rf persuasion_repo_sync2 && git clone \"https://[REDACTED]@github.com/anonymous-nlp-2026/persuasion_turn_jailbreak_detect.git\" persuasion_repo_sync2 2>&1",
+              "description": "Clone repo with new credentials"
+            }
+          },
+          "id": "event-001296"
+        },
+        {
+          "source_line": 1297,
+          "timestamp": "2026-05-26T12:37:01.985300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cloning into 'persuasion_repo_sync2'...\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 1763
+          },
+          "id": "event-001297"
+        },
+        {
+          "source_line": 1298,
+          "timestamp": "2026-05-26T12:37:04.802686+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /tmp/persuasion_repo_sync2 && git log --oneline -6",
+              "description": "Check current commit history"
+            }
+          },
+          "id": "event-001298"
+        },
+        {
+          "source_line": 1299,
+          "timestamp": "2026-05-26T12:37:04.903640+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "dbeb78b Update README to match final paper title and content\n88534f2 Reference audit + forward reference fixes + paper polish\n23bc577 Fix claim strength in abstract and introduction\nca1229f Hotfix: sync latest tex + comment out missing figures\nd74a515 Final tex sync before submission\n22550ff Anonymous submission\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/.claude/sessions/director_32e62753"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-001299"
+        },
+        {
+          "source_line": 1300,
+          "timestamp": "2026-05-26T12:37:09.680775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -5 /tmp/persuasion_repo_sync2/README.md && echo \"...\" && tail -3 /tmp/persuasion_repo_sync2/README.md",
+              "description": "Verify README title and license"
+            }
+          },
+          "id": "event-001300"
+        },
+        {
+          "source_line": 1301,
+          "timestamp": "2026-05-26T12:37:10.585135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection\n\nThis repository contains the code and data for the paper *\"DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection\"*.\n\n## Overview\n...\n## License\n\nCC BY-NC 4.0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 904
+          },
+          "id": "event-001301"
+        },
+        {
+          "source_line": 1302,
+          "timestamp": "2026-05-26T12:37:11.087582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "diff /tmp/persuasion_repo_sync2/docs/paper/references.bib /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/references.bib | head -5",
+              "description": "Check if references.bib is in sync"
+            }
+          },
+          "id": "event-001302"
+        },
+        {
+          "source_line": 1303,
+          "timestamp": "2026-05-26T12:37:11.942632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 855
+          },
+          "id": "event-001303"
+        },
+        {
+          "source_line": 1304,
+          "timestamp": "2026-05-26T12:37:11.993349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "diff /tmp/persuasion_repo_sync2/docs/paper/abstract.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex && echo \"IDENTICAL\" || echo \"DIFFERS\"",
+              "description": "Check abstract sync"
+            }
+          },
+          "id": "event-001304"
+        },
+        {
+          "source_line": 1305,
+          "timestamp": "2026-05-26T12:37:12.044224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "IDENTICAL"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-001305"
+        },
+        {
+          "source_line": 1306,
+          "timestamp": "2026-05-26T12:37:16.964853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "for f in abstract.tex introduction.tex method.tex experiments.tex related_work.tex conclusion.tex appendix.tex main.tex checklist.tex; do diff \"/tmp/persuasion_repo_sync2/docs/paper/$f\" \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/$f\" > /dev/null 2>&1 && echo \"$f: OK\" || echo \"$f: DIFFERS\"; done",
+              "description": "Check all tex files sync status"
+            }
+          },
+          "id": "event-001306"
+        },
+        {
+          "source_line": 1307,
+          "timestamp": "2026-05-26T12:37:17.065744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "abstract.tex: OK\nintroduction.tex: OK\nmethod.tex: OK\nexperiments.tex: OK\nrelated_work.tex: OK\nconclusion.tex: OK\nappendix.tex: OK\nmain.tex: OK\nchecklist.tex: OK"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-001307"
+        },
+        {
+          "source_line": 1308,
+          "timestamp": "2026-05-26T12:37:24.052741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_reply_to_user"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "tool_args": {
+              "text": "仓库已是最新状态，无需额外操作。\n\n上一轮已完成两次推送：\n- `88534f2` — 引用审计 + 前向引用修复 + 论文完善（references.bib 修复、Ethical Considerations、Limitations 格式等）\n- `dbeb78b` — README 全面重写（标题、Overview、Training、License 等与最终论文对齐）\n\n**验证结果**：用新凭证 clone 后逐文件比对，所有 9 个 .tex 文件 + references.bib + README 均与本地最新版完全一致。\n\n最新 commit：`dbeb78b`"
+            }
+          },
+          "id": "event-001308"
+        },
+        {
+          "source_line": 1309,
+          "timestamp": "2026-05-26T12:37:27.586512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director",
+            "tool": "mcp__agent-ml-research__director_reply_to_user",
+            "elapsed_ms": 3533
+          },
+          "id": "event-001309"
+        },
+        {
+          "source_line": 1310,
+          "timestamp": "2026-05-26T12:37:29.733729+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有论文文件完全同步。仓库已经是最新状态。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a90fe0dde422576f214f12233cfe27a3:director"
+          },
+          "id": "event-001310"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2b35edc134476cc7f9c",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp41 tost 10seed",
+  "task_key": "worker_code_exp41_tost_10seed_20260522T033057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp41_tost_10seed_20260522T033057_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "34f3b9c47f65008121898b1604fc942258207a2aff71ee7649bd5e5d2de4f689"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp41_tost_10seed 执行完成。**\n\n| | DD OOD | AA OOD | FITD OOD |\n|---|---|---|---|\n| TOST p | 2.06e-9 | **0.183** | 0.0 |\n| Equivalent? | YES | **NO** | YES |\n| Cohen's d | -0.14 | **0.44** | 0.0 |\n\n结论：**negative**。增加到 n=10 seeds 后，AA 上的非等价性更加明显（p 从 0.081 升至 0.183，Cohen's d 从 0.08 升至 0.44 中等效应量）。9-class 在 AA 上比 scrambled 高约 3pp（0.979 vs 0.949），scrambled 方差大（seed314: 0.833）。DD 和 FITD 确认等价。\n\n**解读**：persuasion strategy 标签的具体内容对 ActorAttack OOD 泛化有实际影响——打乱标签会降低且不稳定 AA 性能，说明模型确实利用了策略语义信息来泛化到 AA 攻击。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp41-tost-10seed.md"
+}

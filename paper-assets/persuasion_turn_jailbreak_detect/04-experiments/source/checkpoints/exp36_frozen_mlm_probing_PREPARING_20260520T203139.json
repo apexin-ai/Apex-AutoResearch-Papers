@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp36_frozen_mlm_probing",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:31:39.154Z",
+    "updated_at": "2026-05-20T20:31:39.154Z"
+  },
+  "timestamp": "2026-05-20T20:31:39.347265+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2930787ae274c252e161",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval plan 015 dd ood",
+  "task_key": "worker_eval_plan_015_dd_ood_20260518T024643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_015_dd_ood_20260518T024643_result.json",
+    "occurrence": 1,
+    "bytes": 1200,
+    "sha256": "553028f42f7dff9c1c89081fe8b6e8dcbf5599ff4ea68d72f5674d1078f04992"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。结果汇总：\n\n## Plan 015 DD OOD 评估结果\n\n### Treatment (Persuasion DeBERTa + Mean Pooling) vs GRU\n\n| K | MeanPool-T F1 | GRU-T F1 | Delta |\n|---|---|---|---|\n| k1 | 1.0000 | 1.0000 | +0.0000 |\n| k2 | 1.0000 | 0.9904 | +0.0096 |\n| k3 | 0.9937 | 0.9904 | +0.0033 |\n| k5 | 1.0000 | 1.0000 | +0.0000 |\n| full | 1.0000 | 1.0000 | +0.0000 |\n\n### Baseline (Vanilla DeBERTa + Mean Pooling)\n\n| K | Baseline F1 |\n|---|---|\n| k1 | 0.8286 |\n| k2 | 0.6387 |\n| k3 | 0.5614 |\n| k5 | 0.3922 |\n| full | 0.2947 |\n\n### 结论：**comparable**\n\n- GRU temporal modeling 在 DD OOD 场景**无额外价值**：mean pooling 与 GRU 表现几乎相同（均接近满分）\n- **Persuasion embeddings 是核心驱动力**：baseline (vanilla DeBERTa + mean pooling) 在 DD 上 F1 仅 0.29 (full)，而 treatment 达到 1.0。这证明是 persuasion-grounded 表示（而非 temporal modeling）提供了 OOD 泛化能力\n- 有趣的是 baseline 在 K=1 时 F1=0.83 但随 K 增大急剧下降，说明 vanilla embeddings 在单轮时有部分区分力但无法处理多轮对话的复杂模式\n\n结果已保存至服务器 `results/plan_015_dd_eval.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-015-dd-ood.md"
+}

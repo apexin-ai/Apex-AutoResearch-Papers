@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad97fb8c0db516f0849b",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "monitor datagen progress check 2",
+  "task_key": "worker_monitor_datagen-progress-check-2_20260519T174030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_datagen-progress-check-2_20260519T174030_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "16d466712f749e3cfd6689406c34f0da521a7cfaa4b7eaca025efafe2f2c1f8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个任务全部存活，进展正常。汇总：\n\n| GPU | 任务 | 进程存活 | 进度 | 状态 | ETA |\n|-----|------|---------|------|------|-----|\n| cuda:0 | Llama jailbreak (exp16) | ✓ (GPU 90%) | **217/250** (87%) | 运行中 | ~29 min |\n| cuda:1 | Llama benign (exp16) | ✓ (GPU 89%) | **138/250** (55%) | 运行中 | ~130 min |\n| cuda:2 | Qwen jailbreak (exp17) | ✓ (GPU 88%) | **104/250** (42%) | 运行中 | ~181 min |\n| cuda:3 | Qwen benign (exp17) | ✓ (GPU 87%) | **80/250** (32%) | 运行中 | ~277 min |\n\n说明：\n- `tmux ls` 被 read_only 白名单拦截，但 4 个 GPU 均有 python 进程占用 ~18-19GB 显存、利用率 87-90%，日志持续输出，确认全部存活\n- Llama jailbreak 主文件只有 2 行（脚本先写 progress，生成完成后才合并到主文件），progress 文件 217 行与日志一致\n- Qwen 两个任务同理，主 jsonl 尚未生成，progress 文件记录实际进度\n- Llama jailbreak 约半小时完成；Llama benign 约 2 小时；Qwen jailbreak 约 3 小时；Qwen benign 约 4.5 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-datagen-progress-check-2.md"
+}

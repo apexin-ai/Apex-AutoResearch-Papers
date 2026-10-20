@@ -1,0 +1,31 @@
+paper_key: "Llama Guard 3"
+title: "The Llama 3 Herd of Models (includes Llama Guard 3)"
+venue: "Meta AI 2024 (arXiv 2407.21783)"
+full_text_available: false
+analysis_level: "abstract_only"
+
+research:
+  baselines:
+    - "GPT-4"
+    - "leading language models"
+    - "state-of-the-art image/video/speech models"
+  metrics:
+    - {name: "safety classification accuracy", direction: "higher_better"}
+    - {name: "false positive rate", direction: "lower_better"}
+    - {name: "false negative rate", direction: "lower_better"}
+  datasets:
+    - {name: "safety evaluation benchmarks (included in Llama 3 evaluation)", size: "N/A"}
+  ablation_dimensions:
+    - "model size (8B, 70B, 405B)"
+    - "input vs output safety"
+    - "safety taxonomy categories"
+  training_recipe: {info_available: false}
+  method_family: "LLM-based safety classifier / guardrail model"
+
+positioning:
+  core_claim: "Llama Guard 3 is a dedicated input/output safety model released alongside Llama 3, designed to classify content safety across a defined taxonomy of harm categories."
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

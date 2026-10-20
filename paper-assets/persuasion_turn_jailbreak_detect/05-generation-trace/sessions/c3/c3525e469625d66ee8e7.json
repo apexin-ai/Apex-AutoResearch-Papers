@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3525e469625d66ee8e7",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper figure fig2 cross attack bar",
+  "task_key": "worker_paper_figure_fig2_cross_attack_bar_20260518T034206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_cross_attack_bar_20260518T034206_result.json",
+    "occurrence": 1,
+    "bytes": 429,
+    "sha256": "294b168254258f41eb73ddca09fe78c4c91358993732f8af5dd3a14645d6a6eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册：\n\n- **PDF**: `figures/paper/fig2_cross_attack_bar.pdf`\n- **PNG**: `figures/paper/fig2_cross_attack_bar.png`\n- **脚本**: `figures/paper/gen_fig2_cross_attack_bar.py`\n- **Artifact ID**: `art_20260518_8ad888`\n\n核心视觉效果：DD-OOD 组 Vanilla DeBERTa 的 0.28 F1 塌陷（红色加粗标注）与 DisPeD 的 1.00 之间有 +72pp 双箭头标注，一眼可见泛化差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-cross-attack-bar.md"
+}

@@ -1,0 +1,50 @@
+% method.tex
+
+\section{Method}
+\label{sec:method}
+
+Cross-attack generalization could stem from domain exposure, classification supervision, label correctness, label granularity, or domain specificity. Disentangling these factors demands an architecture where exactly one component varies across conditions. DisPeD separates encoder adaptation (Stage~1) from temporal classification (Stage~2). Seven Stage-1 variants share the same training data and downstream pipeline but differ solely in their pretraining objective; each isolates a single factor (Figure~\ref{fig:architecture}).
+
+\subsection{Problem Formulation}
+
+A conversation $C = \{u_1, a_1, \ldots, u_N, a_N\}$ alternates user turns $u_i$ and assistant responses $a_i$. Given a prefix of $K$ user turns, the model predicts $y \in \{0, 1\}$ (jailbreak vs.\ benign). We restrict input to user turns because adversarial intent resides in the attacker's messages. This formulation supports early detection from partial prefixes.
+
+\subsection{Stage 1: Turn-Level Encoder Adaptation}
+
+Each user turn $u_i$ is encoded by DeBERTa-v3-base~\citep{he2023debertav3}; the \texttt{[CLS]} embedding $h_i \in \mathbb{R}^D$ serves as the turn representation. Seven variants, summarized in Table~\ref{tab:variants}, share the same training data but differ in objective.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Stage-1 encoder variants. All operate on the same training conversations except Wikipedia MLM (matched token count on Wikipedia text).}
+\label{tab:variants}
+\begin{tabular}{@{}p{1.6cm}p{2.2cm}p{2.8cm}@{}}
+\toprule
+\textbf{Variant} & \textbf{Objective} & \textbf{Tests whether\ldots} \\
+\midrule
+9-class & 9-class persuasion + binary intent & full model \\
+Binary & binary persuasion + binary intent & granularity matters \\
+Scrambled & random 9-class + binary intent & label correctness matters \\
+MLM-only & 15\% token masking & supervision is necessary \\
+Topic & 5-class topic classif. & any task suffices \\
+Wiki MLM & 15\% masking on Wikipedia & domain specificity matters \\
+Vanilla & no training & Stage-2 alone suffices \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The \textbf{9-class} variant uses two classification heads: 9-class persuasion strategy classification ($L_{\text{strategy}}$) and binary jailbreak intent ($L_{\text{intent}}$), with combined loss $L = L_{\text{strategy}} + \alpha \cdot L_{\text{intent}}$ ($\alpha = 0.3$, selected from $\{0, 0.3, 0.5, 2.0\}$; all values yield F1\,=\,1.0 on IID; Appendix~\ref{app:lambda}). The taxonomy comprises eight persuasion strategies (rapport building, authority appeal, emotional manipulation, logical reframing, role assignment, gradual escalation, obfuscation, direct request) plus a none category, grounded in PAP~\citep{zeng2024pap} and Cialdini's principles~\citep{cialdini2001influence}. Strategy annotations are produced by Qwen3-8B with structured prompting that includes definitions and examples for each category; inter-annotator agreement between model annotations and a human sample ($n$=50) yields Cohen's $\kappa$=0.78.
+
+The \textbf{binary} variant collapses the 9-class taxonomy into persuasive vs.\ non-persuasive, testing whether label granularity matters for detection or robustness.
+The \textbf{scrambled} variant randomly permutes the 9-class labels across turns using a fixed random permutation (seed 42), preserving classification structure (cross-entropy loss, 9-class output space) while destroying label semantics. This isolates whether the classification objective provides representational benefits independent of label correctness. Robustness is verified across additional random permutations with consistent results (Appendix~\ref{app:random_partition}).
+The \textbf{MLM-only} variant applies 15\% masked language modeling on the same jailbreak conversation text without any classification head, testing whether unsupervised domain exposure suffices.
+The \textbf{topic} variant trains a 5-class topic classifier (technology, health, finance, education, general) on the same conversations, testing whether \emph{any} classification task provides the same benefit or whether task alignment matters. This comparison confounds domain relevance with label granularity (5 vs.\ 9 classes) and classification-head architecture; the Wiki-MLM vs.\ JB-MLM pair provides a cleaner isolation of domain effects (Section~\ref{sec:decomposition}).
+The \textbf{Wikipedia MLM} variant applies the same MLM objective to a token-matched sample of Wikipedia text; this isolates domain-specific from general continued pretraining.
+The \textbf{vanilla} baseline uses the pretrained DeBERTa-v3-base weights without any continued pretraining; it measures what Stage~2 alone can achieve.
+
+\subsection{Stage 2: Conversation-Level Classification}
+
+Turn embeddings $\{h_1, \ldots, h_K\}$ from the frozen Stage-1 encoder are aggregated by a 2-layer bidirectional GRU ($d_{\text{hidden}}$=256, dropout 0.3): $\bar{h} = [\overrightarrow{h_K};\; \overleftarrow{h_1}] \in \mathbb{R}^{512}$.
+A two-layer MLP ($512 \to 256 \to 2$, ReLU activation) maps $\bar{h}$ to $\hat{y} \in \{0, 1\}$.
+The Stage-1 encoder is frozen during Stage~2 to ensure ablation fairness across all seven variants (freezing verification in Appendix~\ref{app:frozen_verify}; end-to-end fine-tuning comparison in Appendix~\ref{app:e2e}).
+We retain BiGRU as the default aggregator for its amenability to representation analysis (Centered Kernel Alignment [CKA], t-SNE), noting that mean pooling achieves comparable detection (Section~\ref{sec:decomposition}). Cross-architecture validation on RoBERTa (Section~\ref{sec:cross_encoder}) yields thirteen configurations across three scales.

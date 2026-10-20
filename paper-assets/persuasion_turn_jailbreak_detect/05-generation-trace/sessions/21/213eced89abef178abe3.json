@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "213eced89abef178abe3",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp44 check and submit",
+  "task_key": "worker_code_exp44_check_and_submit_20260522T054742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp44_check_and_submit_20260522T054742_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "cb1e1eaad8808a894796a2c1cb9debc0e17d50ff5cbb602401988b3fe98d28a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Data completeness — all pass:**\n\n| Family | Count | Threshold | Status |\n|--------|-------|-----------|--------|\n| DD Llama | 50 | 50 | ✓ |\n| AA Llama | 50 | 50 | ✓ |\n| FITD Llama | 50 | ≥47 | ✓ |\n| Crescendo Llama | 251 | ≥200 | ✓ |\n| Benign Llama | 250 | — | ✓ |\n\nFITD JSON validity: OK (last line parses correctly).\n\n**Pipeline NOT submitted.** GPU 0 is busy — PID 31463 is running `exp44_train_mixed_llm.py` (5132 MiB used, 69-71% utilization). Submitting `exp44_full_pipeline.py` on the same GPU would likely conflict with this existing exp44 training job.\n\nOptions:\n1. Wait for PID 31463 to finish, then submit the pipeline\n2. Submit the pipeline on a different GPU (e.g. cuda:1) if the pipeline and the existing training are independent\n3. Kill PID 31463 if it's stale/unwanted and then submit"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp44-check-and-submit.md"
+}

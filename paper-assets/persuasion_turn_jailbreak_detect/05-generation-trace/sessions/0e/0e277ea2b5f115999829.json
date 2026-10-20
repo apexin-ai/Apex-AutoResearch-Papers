@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e277ea2b5f115999829",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16 toxicchat balanced eval",
+  "task_key": "worker_code_exp16-toxicchat-balanced-eval_20260520T012109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-toxicchat-balanced-eval_20260520T012109_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "b46318fd17f205d957f0ce066c2af505d59994515b6cc0b5b88c883e8f685dae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。结果如下：\n\n```\ntoxicchat_eval.jsonl (408条, 204jb/204bn) 上的 Macro F1:\n\n9-class:\n  seed42:  0.6235\n  seed123: 0.5165\n  seed456: 0.5091\n  mean±std: 0.5497±0.0523\n\nvanilla:\n  seed42:  0.3655\n  seed123: 0.3567\n  seed456: 0.3445\n  mean±std: 0.3556±0.0086\n```\n\n结果已保存至 `results/exp16_toxicchat_balanced.json`。9-class 在平衡集上 macro F1 比 vanilla 高约 19.4 个百分点（0.550 vs 0.356）。vanilla 的 F1 极低（~0.36），说明在平衡数据上它几乎把大部分样本预测成了同一类。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16-toxicchat-balanced-eval.md"
+}

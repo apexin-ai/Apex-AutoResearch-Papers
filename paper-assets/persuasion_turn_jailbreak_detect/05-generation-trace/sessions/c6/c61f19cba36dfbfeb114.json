@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c61f19cba36dfbfeb114",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper text wave2 p2 p3 p9 p11 p14",
+  "task_key": "worker_paper_text_wave2_p2_p3_p9_p11_p14_20260522T140858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_text_wave2_p2_p3_p9_p11_p14_20260522T140858_result.json",
+    "occurrence": 1,
+    "bytes": 1834,
+    "sha256": "1eaa42412a980f2fbd0a84557ec86dc8dcaf9d22c6796f0bfa7fa66f2d4ee348"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits are in place. Here's a summary of what was done:\n\n**P11 (references):** Added `hsu2024improved` and `li2025m2s` to `references.bib`. Cited Hsu et al. in related work's single-turn defenses list. Cited M2S as a complementary approach in the same paragraph. TrajGuard and SAE Mitigators were already cited.\n\n**P2 (scope limiting):**\n- `abstract.tex`: Added \"On synthetic multi-turn data,\" before the classification DAPT claim\n- `introduction.tex`: Changed \"Two-step adaptation protocol\" → \"Preliminary two-step adaptation protocol\" with \"On the synthetic benchmark\" qualifier\n- `conclusion.tex`: Added \"On synthetic multi-turn data\" scope; changed \"yields a two-step protocol\" → \"suggest a preliminary two-step protocol\"\n\n**P3 (Mixed-LLM downgrade):**\n- Reframed subsection as \"exploratory cross-LLM condition\"\n- Added AA F1=0.504 falls below trivial all-benign baseline (~0.808)\n- Added cross-LLM style confound sentence citing Appendix cross_llm\n\n**P9 (length confound):**\n- Added to Summary paragraph: length difference noted (12–20 vs 3–10 turns) with three controls (truncation 0% FPR, single-turn F1=0.773, padding −57.9pp on AA)\n\n**P14 (scrambled labels):**\n- Code confirms multi-permutation: each of the 10 TOST seeds generates an independent random permutation via `scramble_strategies(data, seed)`. Added clarifying parenthetical \"(each using an independent random permutation)\" to the TOST description.\n\n**P15 (strategy annotation prompt):**\n- Skipped. No separate prompt file exists; strategies are assigned during generation (embedded in `generate_crescendo_v2.py`). Appendix already describes the process and promises release.\n\n**Page budget:** Conclusion ends on page 8. Limitations/Ethics/References on page 9+. Main text ≤ 8 pages confirmed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-text-wave2-p2-p3-p9-p11-p14.md"
+}

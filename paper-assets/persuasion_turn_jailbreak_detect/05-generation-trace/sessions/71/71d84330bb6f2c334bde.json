@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "71d84330bb6f2c334bde",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "viz fig1 paperbanana v2",
+  "task_key": "worker_viz_fig1_paperbanana_v2_20260524T095210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig1_paperbanana_v2_20260524T095210_result.json",
+    "occurrence": 1,
+    "bytes": 2112254,
+    "sha256": "a7c3c8399107dcd493733cbd1fac28b05602ef32a32f4ba883f0f79d1fc5e7d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2142385,
+                "serialized_sha256": "38f547ca7d38332f213f122ea1bdd872fb7e413fac7bbfa475353953b5eb5136",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig1-paperbanana-v2.md"
+}

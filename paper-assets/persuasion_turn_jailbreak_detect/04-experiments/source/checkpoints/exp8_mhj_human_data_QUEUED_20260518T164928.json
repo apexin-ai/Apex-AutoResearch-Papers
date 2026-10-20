@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp8_mhj_human_data",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:16:18.419Z",
+    "updated_at": "2026-05-18T16:49:28.425Z",
+    "hypothesis": "The DeBERTa fine-tuning evidence hierarchy (jb_mlm > 9-class > scrambled > vanilla) observed on Qwen3-8B synthetic data generalizes to human-written jailbreak attempts from ToxicChat, refuting the reviewer concern that cross-attack generalization is merely within-LLM stylistic generalization."
+  },
+  "timestamp": "2026-05-18T16:49:28.546532+00:00",
+  "trigger": "update_registry"
+}

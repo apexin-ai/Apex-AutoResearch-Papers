@@ -1,0 +1,7 @@
+9class_n50: IID=1.0 DD_OOD=1.0 AA_OOD=0.9904
+9class_n125: IID=1.0 DD_OOD=1.0 AA_OOD=0.9904
+9class_n250: IID=1.0 DD_OOD=1.0 AA_OOD=1.0
+9class_n350: IID=1.0 DD_OOD=1.0 AA_OOD=1.0
+vanilla_n125: IID=0.532 DD_OOD=0.244 AA_OOD=0.244
+vanilla_n350: IID=1.0 DD_OOD=0.36 AA_OOD=0.489
+Key finding: DAPT@50 (14% data) outperforms vanilla@350 (100%) by 64pp on DD OOD

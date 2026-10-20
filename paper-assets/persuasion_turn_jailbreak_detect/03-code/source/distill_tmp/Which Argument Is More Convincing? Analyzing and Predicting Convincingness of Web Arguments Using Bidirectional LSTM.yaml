@@ -1,0 +1,28 @@
+paper_key: "Which Argument Is More Convincing? Analyzing and Predicting Convincingness of Web Arguments Using Bidirectional LSTM"
+title: "Which Argument Is More Convincing? Analyzing and Predicting Convincingness of Web Arguments Using Bidirectional LSTM"
+venue: "ACL 2016"
+full_text_available: false
+analysis_level: "abstract_only"
+
+research:
+  baselines:
+    - "SVM with linguistic features"
+    - "Bidirectional LSTM"
+  metrics:
+    - {name: "pairwise accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "UKPConvArg1", size: "16,000 argument pairs across 32 topics"}
+  ablation_dimensions:
+    - "model type (SVM vs BiLSTM)"
+    - "feature types"
+    - "total ordering properties of convincingness"
+  training_recipe: {info_available: false}
+  method_family: "argument quality prediction / computational argumentation"
+
+positioning:
+  core_claim: "Argument convincingness can be computationally predicted as a pairwise relation classification task, achieving 0.76-0.78 accuracy using BiLSTM, with convincingness largely following total ordering properties across 16k annotated argument pairs."
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e056b1927540b359f2a5",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp62 topic diagnosis",
+  "task_key": "worker_code_exp62_topic_diagnosis_20260522T170212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp62_topic_diagnosis_20260522T170212.log",
+    "occurrence": 1,
+    "bytes": 586137,
+    "sha256": "1d23f53d23fbee187fd03aa1d34b5e084ab3cb5da5d91886128cc3106f6852b6"
+  },
+  "statistics": {
+    "messages": 266,
+    "user_turns": 0,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 58,
+      "tool_call": 102,
+      "tool_result": 102,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 266,
+      "chunks": [
+        {
+          "path": "e056b1927540b359f2a5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e056b1927540b359f2a5-part-0002.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp62-topic-diagnosis.md"
+}

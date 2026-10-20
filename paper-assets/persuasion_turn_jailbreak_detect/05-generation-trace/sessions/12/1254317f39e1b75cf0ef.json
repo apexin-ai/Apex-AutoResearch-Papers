@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1254317f39e1b75cf0ef",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code fitd perseed inference",
+  "task_key": "worker_code_fitd-perseed-inference_20260521T082224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fitd-perseed-inference_20260521T082224_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "63705f6213b07cd6ccbd3cdd5fbe21289d3d2d0c2be7f68a45e3d49ac12fe059"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。F1 表中 Binary/Scrambled/Topic 的 FITD 列已全部填入实际值（不再是 \"--\"）。\n\n**推理结果汇总：**\n\n| Variant | s42 | s123 | s456 | Mean±Std |\n|---------|-----|------|------|----------|\n| Binary | 1.000 | 1.000 | 1.000 | 1.000±0.000 |\n| Scrambled | 1.000 | 1.000 | 1.000 | 1.000±0.000 |\n| Topic | 0.990 | 0.774 | 0.909 | 0.891±0.089 |\n\n**更新的文件：**\n- `results/fitd_supplement_binary_scrambled_topic.json` — 原始推理结果（含 per-sample predictions）\n- `results/round7_seed_level_stats.json` — 补入 FITD F1 和 recall\n- `results/round7_seed_table.tex` — LaTeX 表已更新\n\nBinary 和 Scrambled 在 FITD 上全部完美（3 seed 均 F1=1.0）。Topic 表现中等（mean 0.891），seed 123 最弱（0.774），与其在 DD/AA 上的不稳定表现一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fitd-perseed-inference.md"
+}

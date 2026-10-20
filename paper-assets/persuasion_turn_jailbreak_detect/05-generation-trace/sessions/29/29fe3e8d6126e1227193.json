@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29fe3e8d6126e1227193",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code round7 seed level stats",
+  "task_key": "worker_code_round7-seed-level-stats_20260521T073134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_round7-seed-level-stats_20260521T073134_result.json",
+    "occurrence": 1,
+    "bytes": 1783,
+    "sha256": "35d7eeaa21d485d455bab4f115f723928939a4706e4c04987104ff7a893ffab3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。以下是结果摘要：\n\n---\n\n## Task 1: Per-seed F1 (full turn)\n\n| Variant | DD s42 | DD s123 | DD s456 | AA s42 | AA s123 | AA s456 | FITD s42 | FITD s123 | FITD s456 |\n|---------|--------|---------|---------|--------|---------|---------|----------|-----------|-----------|\n| 9-Class | 1.000 | 1.000 | 0.990 | 0.990 | 0.935 | 0.990 | 1.000 | 1.000 | 1.000 |\n| Binary | 1.000 | 1.000 | 1.000 | 0.981 | 0.990 | 1.000 | -- | -- | -- |\n| Scrambled | 0.990 | 1.000 | 1.000 | 0.891 | 0.990 | 0.971 | -- | -- | -- |\n| MLM+cls | 1.000 | 0.990 | 0.751 | 0.971 | 0.925 | 0.784 | 0.961 | 0.432 | 0.729 |\n| Topic | 0.727 | 0.252 | 0.644 | 0.686 | 0.431 | 0.759 | -- | -- | -- |\n| Vanilla | 0.284 | 0.305 | 0.348 | 0.258 | 0.258 | 0.258 | 0.871 | 0.855 | 0.919 |\n\nFITD 数据 Binary/Scrambled/Topic 无评估结果，标 `--`。\n\n## Task 2: Cohen's d (9-class vs Scrambled)\n\n- **DD OOD**: d = **-0.003** (无差异，两者均接近 ceiling ~0.997)\n- **AA OOD**: d = **0.587** (中等效应量，9-class 均值 0.972 vs scrambled 均值 0.951)\n- n=3, CI 很宽\n\n## Task 3: OOD Recall 关键发现\n\n- **9-class**: attack recall 0.91–1.00, benign recall 1.00 across all OOD\n- **Vanilla**: attack recall 仅 0.00–0.04 (DD/AA)，几乎无法检测攻击；benign recall 1.00（全预测 benign）\n- **MLM+cls seed456**: attack recall 在 DD 仅 0.64，跨 seed 不稳定\n- FITD recall 因 per_sample 与 exp25 数据不一致，vanilla/MLM 标注 N/A\n\n## 产出文件\n\n- **JSON**: `/root/persuasion_turn_jailbreak_detect/results/round7_seed_level_stats.json`\n- **LaTeX**: `/root/persuasion_turn_jailbreak_detect/results/round7_seed_table.tex`\n- **Script**: `/root/persuasion_turn_jailbreak_detect/scripts/extract_round7_stats.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-round7-seed-level-stats.md"
+}

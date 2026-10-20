@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47a4629ca591f4cd2113",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code stratified eval",
+  "task_key": "worker_code_stratified-eval_20260517T080331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_stratified-eval_20260517T080331_result.json",
+    "occurrence": 1,
+    "bytes": 1013,
+    "sha256": "e53d9fb25ee01a0240326e5e5bc489c505bebc20880ad460313a539b0ceae2e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| Subset | N | F1 | Accuracy | Precision | Recall | FPR |\n|--------|---|----|---------|-----------|---------|----|\n| Full test | 76 | 0.9870 | 0.9868 | 1.0000 | 0.9744 | 0.0000 |\n| Persuasion-based (jailbreak) | 21 | N/A (单类) | 1.0000 | N/A | **1.0000** | N/A |\n| Cipher-based (jailbreak) | 18 | N/A (单类) | 0.9444 | N/A | **0.9444** | N/A |\n| Benign only | 37 | N/A (单类) | 1.0000 | N/A | N/A | 0.0000 |\n| Persuasion + Benign | 58 | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 0.0000 |\n\n**关键发现**：结果与预期相反。\n\n- Persuasion-based recall = **1.0000** (21/21 全部正确检测)\n- Cipher-based recall = **0.9444** (17/18，漏检 1 个)\n- Full test 唯一的 1 个 FN 来自 cipher-based 样本，不是 persuasion-based\n- FPR = 0.0000（benign 全部正确分类）\n\nBaseline GRU 在 persuasion-based attacks 上表现完美，反而是 cipher-based 有一个漏检。不过测试集较小（76 samples），这个差异不具有统计显著性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-stratified-eval.md"
+}

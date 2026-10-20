@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "42db20f76ebae1b2734b",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "train exp1 roberta mlm",
+  "task_key": "worker_train_exp1-roberta-mlm_20260518T102224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_exp1-roberta-mlm_20260518T102224.log",
+    "occurrence": 1,
+    "bytes": 747983,
+    "sha256": "33718d2e0ed7b0bd9294e69d069e40df5a0739fd9ed6e184ce48c106c48b3ece"
+  },
+  "statistics": {
+    "messages": 281,
+    "user_turns": 0,
+    "tool_calls": 116,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 116,
+      "tool_result": 116,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 281,
+      "chunks": [
+        {
+          "path": "42db20f76ebae1b2734b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "42db20f76ebae1b2734b-part-0002.json",
+          "message_count": 101
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-exp1-roberta-mlm.md"
+}

@@ -1,0 +1,1 @@
+{"9class_seed789":{"iid":1.0,"dd_ood":1.0,"aa_ood":0.9715,"fitd_ood":1.0},"9class_seed1000":{"iid":1.0,"dd_ood":1.0,"aa_ood":0.9715,"fitd_ood":0.9904},"scrambled_seed789":{"iid":1.0,"dd_ood":1.0,"aa_ood":0.9904,"fitd_ood":1.0},"scrambled_seed1000":{"iid":1.0,"dd_ood":1.0,"aa_ood":0.9904,"fitd_ood":0.9904}}

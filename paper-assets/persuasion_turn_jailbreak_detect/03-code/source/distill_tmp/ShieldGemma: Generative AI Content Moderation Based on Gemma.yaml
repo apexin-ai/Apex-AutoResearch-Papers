@@ -1,0 +1,34 @@
+paper_key: "ShieldGemma: Generative AI Content Moderation Based on Gemma"
+title: "ShieldGemma: Generative AI Content Moderation Based on Gemma"
+venue: "arXiv 2024"
+full_text_available: false
+analysis_level: "abstract_only"
+
+research:
+  baselines:
+    - comparable content moderation systems (LlamaGuard, OpenAI Moderation implied)
+  metrics:
+    - {name: "AU-PRC", direction: "higher_better"}
+    - {name: "F1", direction: "higher_better"}
+    - {name: "recall", direction: "higher_better"}
+    - {name: "precision", direction: "higher_better"}
+  datasets:
+    - {name: "internal safety evaluation benchmarks", size: "unknown"}
+    - {name: "synthetic safety data (curated pipeline)", size: "unknown"}
+  ablation_dimensions:
+    - content harm categories (sexually explicit, dangerous, harassment, hate speech)
+    - input vs output moderation
+    - synthetic vs real training data
+    - model scale (Gemma2 variants)
+  training_recipe:
+    info_available: true
+    notes: "Built on Gemma2; novel data curation pipeline; primarily synthetic training data"
+  method_family: "LLM-based safety classifier / content moderation"
+
+positioning:
+  core_claim: "A suite of Gemma2-based safety models with a novel synthetic data curation pipeline outperforms comparable systems across harm categories while generalizing well from primarily synthetic training data."
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67900747368603beefd8",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "verify treatment dryrun checkpoint",
+  "task_key": "worker_verify_treatment-dryrun-checkpoint_20260517T075606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_treatment-dryrun-checkpoint_20260517T075606_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "1660a9e8bf5520c2d07cf4e22a4b680b70370403f9af345d6da73294fb2fcba5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. dry_run 是否设计为不保存 checkpoint\n\n**不是。** `train_deberta.py` 的逻辑中，checkpoint 保存代码在 `if args.dry_run: break` **之前**执行。dry_run 只限制训练为 2 batches，但仍会走完 validation 和 save 流程。之前 checkpoints/ 为空说明 dry-run 从未成功执行完成（可能是环境问题，如 PATH 中无 python）。\n\n### 2. 非 dry-run 1 epoch 训练结果\n\n成功。训练指标：\n- Train Loss: 2.0448\n- Val Loss: 1.2419\n- Val Persuasion Acc: 1.0000\n- Val Intent Acc: 0.5000\n\n### 3. Checkpoint 文件\n\n```\ncheckpoints/treatment_dryrun/\n├── epoch_1/\n│   ├── model.pt          (702M)\n│   ├── tokenizer.json    (8.0M)\n│   └── tokenizer_config.json (538B)\n└── best/\n    ├── model.pt          (702M)\n    ├── tokenizer.json    (8.0M)\n    └── tokenizer_config.json (538B)\n```\n\n文件大小正常（DeBERTa-v3-base ~702MB），checkpoint 保存功能验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-treatment-dryrun-checkpoint.md"
+}

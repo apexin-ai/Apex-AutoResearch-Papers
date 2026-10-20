@@ -1,0 +1,114 @@
+{
+  "exp_id": "exp11_tost_equivalence",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:55:11.384Z",
+    "updated_at": "2026-05-22T21:39:25.289Z",
+    "hypothesis": "Classification-supervised DeBERTa variants (9-class, scrambled, binary) are statistically equivalent on DD OOD (within Δ=5pp margin), formally proving that persuasion label content does not matter — any classification structure on domain text produces equivalent cross-attack generalization.",
+    "parent": "exp9_bootstrap_ci",
+    "spec": {
+      "command": "python scripts/tost_equivalence.py",
+      "server": "westd-33183",
+      "data_path": "results/exp9_bootstrap_ci.json (per-seed predictions)",
+      "data_count": 236,
+      "model_name": "DeBERTa-v3-base variants",
+      "seed": "42,123,456",
+      "checkpoint_path": "N/A (analysis only)",
+      "log_path": "results/tost_equivalence.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "dd_ood_full": {
+        "9class_vs_scrambled": {
+          "mean_diff": 0,
+          "ci_90": [
+            -0.016,
+            0.016
+          ],
+          "p_tost": 0.006,
+          "equivalent": true,
+          "ci_within_margin": true
+        },
+        "9class_vs_binary": {
+          "mean_diff": -0.0032,
+          "ci_90": [
+            -0.013,
+            0.006
+          ],
+          "p_tost": 0.002,
+          "equivalent": true,
+          "ci_within_margin": true
+        },
+        "9class_vs_jb_mlm": {
+          "mean_diff": 0.083,
+          "ci_90": [
+            -0.145,
+            0.311
+          ],
+          "p_tost": 0.643,
+          "equivalent": false,
+          "ci_within_margin": false
+        },
+        "scrambled_vs_binary": {
+          "mean_diff": -0.0032,
+          "ci_90": [
+            -0.013,
+            0.006
+          ],
+          "p_tost": 0.002,
+          "equivalent": true,
+          "ci_within_margin": true
+        }
+      },
+      "actorattack_full": {
+        "9class_vs_scrambled": {
+          "mean_diff": 0.0209,
+          "ci_90": [
+            -0.109,
+            0.151
+          ],
+          "p_tost": 0.29,
+          "equivalent": false,
+          "ci_within_margin": false
+        },
+        "9class_vs_binary": {
+          "mean_diff": -0.0185,
+          "ci_90": [
+            -0.075,
+            0.038
+          ],
+          "p_tost": 0.122,
+          "equivalent": false,
+          "ci_within_margin": false
+        },
+        "9class_vs_jb_mlm": {
+          "mean_diff": 0.0784,
+          "ci_90": [
+            -0.109,
+            0.266
+          ],
+          "p_tost": 0.65,
+          "equivalent": false,
+          "ci_within_margin": false
+        },
+        "scrambled_vs_binary": {
+          "mean_diff": -0.0394,
+          "ci_90": [
+            -0.117,
+            0.038
+          ],
+          "p_tost": 0.363,
+          "equivalent": false,
+          "ci_within_margin": false
+        }
+      },
+      "note": "DD OOD: 9class≈scrambled≈binary formally equivalent (TOST p<0.05, 90% CI within ±0.05). ActorAttack: inconclusive due to n=3 + higher variance. jb_mlm clearly different from classification variants."
+    }
+  },
+  "timestamp": "2026-05-22T21:39:25.531951+00:00",
+  "trigger": "update_registry"
+}

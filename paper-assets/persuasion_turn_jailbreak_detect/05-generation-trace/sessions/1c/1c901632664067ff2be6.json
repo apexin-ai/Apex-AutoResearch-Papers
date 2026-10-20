@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c901632664067ff2be6",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code tost sensitivity analysis",
+  "task_key": "worker_code_tost-sensitivity-analysis_20260520T060835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tost-sensitivity-analysis_20260520T060835_result.json",
+    "occurrence": 1,
+    "bytes": 1476,
+    "sha256": "5254b53c2f2d72414f94d3b982043a0b1da5ecea460645fc43f3c462024d2864"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\nTOST Sensitivity Analysis (9class vs scrambled labels)\n============================================================\n\nDataset: DD OOD Full\n  9class F1s:    [1.0, 1.0, 0.9904]\n  scrambled F1s: [0.9904, 1.0, 1.0]\n  Per-seed diffs: [0.0096, 0.0, -0.0096]\n  Mean difference: 0.000000\n  SE: 0.005565\n\n  δ=5pp (0.05) [original]:  p_tost = 0.0061  → EQUIVALENT\n  δ=2pp (0.02):             p_tost = 0.0347  → EQUIVALENT\n  δ=3pp (0.03):             p_tost = 0.0164  → EQUIVALENT\n\nDataset: ActorAttack Full\n  9class F1s:    [0.9904, 0.935, 0.9904]\n  scrambled F1s: [0.8913, 0.9904, 0.9715]\n  Per-seed diffs: [0.0991, -0.0554, 0.0189]\n  Mean difference: 0.020860\n  SE: 0.044608\n\n  δ=5pp (0.05) [original]:  p_tost = 0.2903  → NOT equivalent\n  δ=2pp (0.02):             p_tost = 0.5068  → NOT equivalent\n  δ=3pp (0.03):             p_tost = 0.4283  → NOT equivalent\n```\n\n**DD OOD Full**: 即使收紧到 δ=2pp，TOST 仍然显著 (p=0.035)，scrambled 与 correct 等价。这说明在 DD OOD 上，9-class label 的信息量有限——scrambled 后模型表现不变。不过 p=0.035 已接近 0.05 边界，比原始 δ=5pp 的 p=0.006 弱很多。\n\n**ActorAttack Full**: 所有 δ 值下 TOST 均不显著（p 远大于 0.05），scrambled 与 correct 不等价。这支持 9-class label 在 ActorAttack 上提供了有意义的信息。高方差（SE=0.045）源于 seed 42 的差异极大（+9.9pp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tost-sensitivity-analysis.md"
+}

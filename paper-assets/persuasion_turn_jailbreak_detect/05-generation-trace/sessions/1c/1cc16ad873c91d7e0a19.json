@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cc16ad873c91d7e0a19",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "research check datagen progress",
+  "task_key": "worker_research_check-datagen-progress_20260519T143452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check-datagen-progress_20260519T143452_result.json",
+    "occurrence": 1,
+    "bytes": 1859,
+    "sha256": "9a1e17e7f25054393dde322999cad4f0a0ae4924d2581b87e0972c7850e1bfdb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果汇总\n\n### exp16 (Llama Crescendo)\n\n| 项目 | 状态 |\n|------|------|\n| **脚本** | 已创建 |\n| **jailbreak 脚本** | `/root/persuasion_turn_jailbreak_detect/scripts/generate_crescendo_llama.py` (26KB) |\n| **benign 脚本** | `/root/persuasion_turn_jailbreak_detect/scripts/generate_benign_llama.py` |\n| **数据** | dry-run 已完成，仅 **2 条** jailbreak 对话 |\n| **数据路径** | `data/llama_conversations/crescendo_jailbreak_llama.jsonl` (2 行, 36KB) |\n| **进度文件** | `crescendo_jailbreak_llama.jsonl.progress` (59KB, 支持断点续传) |\n| **dry-run** | 成功 (EXIT_CODE=0)，2 条对话耗时 2.1 min |\n| **模型** | 已缓存在 `/root/autodl-tmp/hf_cache/meta-llama/Llama-3.1-8B-Instruct` |\n| **tmux** | `llama_crescendo_dryrun` session 存在，dry-run 进程正在运行 |\n\n脚本功能完整：8 个 playbook、30 个 harmful goals、断点续传、benign 模式。\n\n### exp17 (Qwen expanded)\n\n| 项目 | 状态 |\n|------|------|\n| **脚本** | **未创建** — 没有 `generate_crescendo_expanded*.py` |\n| **数据目录** | **不存在** — 没有 `data/expanded_conversations/` |\n| **进度** | 零 |\n\nWorker 在创建 Qwen expanded 脚本之前就被中断了。\n\n### 可复用 vs 需重做\n\n**可直接复用：**\n- `generate_crescendo_llama.py` — 完整可用，支持 resume\n- `generate_benign_llama.py` — 完整可用\n- Llama 模型缓存 — 无需重新下载\n- 原始 `generate_crescendo.py`（Qwen vLLM 版）— 可参考其 playbook/goal 设计\n\n**需要重做：**\n1. Llama jailbreak 全量生成（目标 250 条，已完成 2 条 dry-run，脚本支持续传）\n2. Llama benign 全量生成（0 条，脚本已就绪）\n3. Qwen expanded 生成脚本（需从零编写）\n4. Qwen expanded 数据生成（需脚本就绪后启动）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-check-datagen-progress.md"
+}

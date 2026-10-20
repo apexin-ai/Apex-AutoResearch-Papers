@@ -1,0 +1,28 @@
+paper_key: "Probing Neural Network Comprehension of Natural Language Arguments"
+title: "Probing Neural Network Comprehension of Natural Language Arguments"
+venue: "ACL 2019"
+full_text_available: false
+analysis_level: "abstract_only"
+
+research:
+  baselines:
+    - BERT
+    - untrained human baseline
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "Argument Reasoning Comprehension Task (ARCT)", size: "~2k"}
+    - {name: "adversarial ARCT (proposed)", size: "unknown"}
+  ablation_dimensions:
+    - spurious cue reliance
+    - adversarial robustness
+  training_recipe: {info_available: false}
+  method_family: "probing / dataset bias analysis"
+
+positioning:
+  core_claim: "BERT's 77% on ARCT comes entirely from exploiting spurious statistical cues rather than genuine argument comprehension; an adversarial dataset reduces all models to chance."
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

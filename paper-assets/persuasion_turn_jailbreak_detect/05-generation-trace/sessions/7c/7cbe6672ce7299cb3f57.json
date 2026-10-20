@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cbe6672ce7299cb3f57",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code fig2 download",
+  "task_key": "worker_code_fig2_download_20260522T085757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fig2_download_20260522T085757_result.json",
+    "occurrence": 1,
+    "bytes": 128,
+    "sha256": "acb634b76be0e8512fe6e67c518b9c96ee61e4a6a88df6cd6a61eb60ee53d8c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成。本地文件 21711 bytes (≈21.2KB)，与预期一致。服务器上没有对应的 PNG 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fig2-download.md"
+}

@@ -1,0 +1,600 @@
+paper:
+  title: ''
+  version: 161
+  generated_at: '2026-05-20T09:38:20.463171+00:00'
+claims:
+- id: C001
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'TF-IDF LR reaches F1 = 0.961 on full DD with near-perfect per-prefix performance
+    (K=1-5: 0.994-1.000)'
+  type: quantitative
+  evidence:
+  - exp_id: exp7_tfidf_perprefix_actorattack
+    metric: dd_ood.full=0.961, dd_ood.k1=1.0, dd_ood.k2=1.0, dd_ood.k3=0.994, dd_ood.k5=1.0
+  decisions: []
+  deprecated: false
+- id: C002
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: On ActorAttack, TF-IDF collapses to F1=0.261 (precision=1.0, recall=0.15),
+    while 9-class maintains 0.972±0.026, a 71pp gap
+  type: quantitative
+  evidence:
+  - exp_id: exp7_tfidf_perprefix_actorattack
+    metric: actorattack.full=0.261
+  - exp_id: exp2_actorattack_ood
+    metric: deberta_9class.full=0.972, full_std=0.026
+  decisions: []
+  deprecated: false
+- id: C003
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: TF-IDF collapses from 0.961 (DD) to 0.261 (ActorAttack), falling to vanilla-encoder
+    levels (precision=1.0, recall=0.15)
+  type: quantitative
+  evidence:
+  - exp_id: exp7_tfidf_perprefix_actorattack
+    metric: dd_ood.full=0.961, actorattack.full=0.261
+  decisions: []
+  deprecated: false
+- id: C004
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Domain adaptation provides ~71pp over both vanilla (0.258) and TF-IDF (0.261)
+    on ActorAttack
+  type: quantitative
+  evidence:
+  - exp_id: exp2_actorattack_ood
+    metric: deberta_vanilla.full=0.258, deberta_9class.full=0.972
+  - exp_id: exp7_tfidf_perprefix_actorattack
+    metric: actorattack.full=0.261
+  decisions: []
+  deprecated: false
+- id: C005
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: TF-IDF achieves F1=0.961 on OOD DD with near-perfect per-prefix performance
+  type: quantitative
+  evidence:
+  - exp_id: exp7_tfidf_perprefix_actorattack
+    metric: dd_ood.full=0.961
+  decisions: []
+  deprecated: false
+- id: C006
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: On ActorAttack, TF-IDF collapses to F1=0.261 while domain-adapted models maintain
+    F1>=0.893, a >=63pp gap
+  type: quantitative
+  evidence:
+  - exp_id: exp7_tfidf_perprefix_actorattack
+    metric: actorattack.full=0.261
+  - exp_id: exp2_actorattack_ood
+    metric: deberta_mlm.full=0.893
+  decisions: []
+  deprecated: false
+- id: C007
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Lexical baselines collapse on structurally complex attacks (TF-IDF F1=0.961
+    on DD -> 0.261 on ActorAttack) while domain-adapted models maintain F1>=0.89
+  type: quantitative
+  evidence:
+  - exp_id: exp7_tfidf_perprefix_actorattack
+    metric: dd_ood.full=0.961, actorattack.full=0.261
+  - exp_id: exp2_actorattack_ood
+    metric: deberta_mlm.full=0.893
+  decisions: []
+  deprecated: false
+- id: C008
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'TF-IDF exhibits parallel difficulty threshold: F1=0.961 on DD but 0.261 on
+    ActorAttack'
+  type: quantitative
+  evidence:
+  - exp_id: exp7_tfidf_perprefix_actorattack
+    metric: dd_ood.full=0.961, actorattack.full=0.261
+  decisions: []
+  deprecated: false
+- id: C009
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: cross-LLM detection F1 recovers to 0.78-1.00
+  type: quantitative
+  evidence:
+  - exp_id: exp14b_cross_llm_control
+    metric: jb_mlm DD full=0.778, 9class DD full=1.0, jb_mlm AA full=0.903, 9class
+      AA full=0.801
+  decisions: []
+  deprecated: false
+- id: C010
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: ToxicChat unsupervised domain exposure macro F1 0.84 vs vanilla 0.41
+  type: quantitative
+  evidence:
+  - exp_id: exp8_mhj_human_data
+    metric: jb_mlm_macro_f1=0.837, vanilla_macro_f1=0.413
+  - exp_id: exp12_toxicchat_bootstrap
+    metric: jb_mlm f1=0.8373 CI[0.816,0.858]
+  decisions: []
+  deprecated: false
+- id: C011
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: On ToxicChat, 9-class rises from F1=0.596 (Qwen-only) to 0.861±0.005 (mixed)
+  type: quantitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: 9class_mean.toxicchat
+    value: 0.861
+  decisions: []
+  deprecated: false
+- id: C012
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: MLM collapses to 0.164±0.093, below vanilla (0.344±0.008)
+  type: quantitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: mlm_mean.toxicchat
+    value: 0.164
+  - exp_id: exp16_multi_llm
+    metric: vanilla_mean.toxicchat
+    value: 0.344
+  decisions: []
+  deprecated: false
+- id: C013
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Llama-only training confirms the pattern: MLM ≈ vanilla on all OOD sets'
+  type: quantitative
+  evidence:
+  - exp_id: exp16b_llama_only_mlm
+    metric: eval_mlm.llama_dd_ood_f1
+    value: 0.1905
+  - exp_id: exp16b_llama_only_mlm
+    metric: eval_vanilla_baseline.llama_dd_ood_f1
+    value: 0.1807
+  decisions: []
+  deprecated: false
+- id: C014
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: classification-based DAPT is the only adaptation that robustly bridges the
+    OOD gap across all conditions
+  type: qualitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: 9class_mean.toxicchat
+    value: 0.861
+  - exp_id: exp17_dataset_scale
+    metric: 9class_mean.dd_ood
+    value: 0.889
+  decisions: []
+  deprecated: false
+- id: C015
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: unsupervised pretraining closes ~60pp on single-source data but collapses
+    on mixed-LLM training
+  type: qualitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: mlm_mean.toxicchat
+    value: 0.164
+  decisions: []
+  deprecated: false
+- id: C016
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Mixed-LLM training with classification-based DAPT achieves ToxicChat F1=0.861
+  type: quantitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: 9class_mean.toxicchat
+    value: 0.861
+  decisions: []
+  deprecated: false
+- id: C017
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 9-class DD F1=0.889±0.041, ActorAttack=0.913±0.041 at 1000 conversations
+  type: quantitative
+  evidence:
+  - exp_id: exp17_dataset_scale
+    metric: 9class_mean.dd_ood
+    value: 0.889
+  - exp_id: exp17_dataset_scale
+    metric: 9class_mean.aa_ood
+    value: 0.913
+  decisions: []
+  deprecated: false
+- id: C018
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: DAPT advantage 40-56pp over vanilla
+  type: quantitative
+  evidence:
+  - exp_id: exp17_dataset_scale
+    metric: vanilla_mean.dd_ood
+    value: 0.326
+  - exp_id: exp17_dataset_scale
+    metric: vanilla_mean.aa_ood
+    value: 0.508
+  decisions: []
+  deprecated: false
+- id: C019
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: classification-based DAPT on Qwen+Llama data achieves ToxicChat F1=0.861±0.005
+  type: quantitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: 9class_mean.toxicchat
+    value: 0.861
+  decisions: []
+  deprecated: false
+- id: C020
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: continued pretraining closes roughly 60 percentage points of the OOD gap without
+    labels (on single-source)
+  type: quantitative
+  evidence:
+  - exp_id: plan_017
+    metric: dd_ood_full_f1
+    value: 0.914
+  decisions: []
+  deprecated: false
+- id: C021
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: classification-based adaptation maintains robust generalization (ToxicChat
+    macro F1=0.861 vs 0.344 without adaptation)
+  type: quantitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: 9class_mean.toxicchat
+    value: 0.861
+  - exp_id: exp16_multi_llm
+    metric: vanilla_mean.toxicchat
+    value: 0.344
+  decisions: []
+  deprecated: false
+- id: C022
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: classification-based domain adaptation is the only universally robust variant
+  type: qualitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: 9class_mean.toxicchat
+    value: 0.861
+  - exp_id: exp17_dataset_scale
+    metric: 9class_mean.dd_ood
+    value: 0.889
+  decisions: []
+  deprecated: false
+- id: C023
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: On single-source data, continued pretraining alone closes roughly 60pp of
+    the OOD gap
+  type: quantitative
+  evidence:
+  - exp_id: plan_017
+    metric: dd_ood_full_f1
+    value: 0.914
+  decisions: []
+  deprecated: false
+- id: C024
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: on mixed-LLM data, unsupervised pretraining collapses while classification-based
+    adaptation achieves ToxicChat F1=0.861
+  type: quantitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: 9class_mean.toxicchat
+    value: 0.861
+  - exp_id: exp16_multi_llm
+    metric: mlm_mean.toxicchat
+    value: 0.164
+  decisions: []
+  deprecated: false
+- id: C025
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Mixed-LLM training with classification-based DAPT achieves ToxicChat F1=0.861
+  type: quantitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: 9class_mean.toxicchat
+    value: 0.861
+  decisions: []
+  deprecated: false
+- id: C026
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: doubling the training corpus from 500 to 1000 conversations drops 9-class
+    ToxicChat macro F1 from 0.596 to 0.364
+  type: quantitative
+  evidence:
+  - exp_id: exp17_dataset_scale
+    metric: 9class_mean.toxicchat
+    value: 0.364
+  decisions: []
+  deprecated: false
+- id: C027
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: multi-turn OOD detection remains stable (DD=0.889, ActorAttack=0.913)
+  type: quantitative
+  evidence:
+  - exp_id: exp17_dataset_scale
+    metric: 9class_mean.dd_ood
+    value: 0.889
+  - exp_id: exp17_dataset_scale
+    metric: 9class_mean.aa_ood
+    value: 0.913
+  decisions: []
+  deprecated: false
+- id: C028
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: classification-based adaptation remains strongest on mixed-LLM data (DD OOD
+    F1=0.422 vs 0.079 vanilla)
+  type: quantitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: 9class_mean.dd_ood
+    value: 0.422
+  - exp_id: exp16_multi_llm
+    metric: vanilla_mean.dd_ood
+    value: 0.079
+  decisions: []
+  deprecated: false
+- id: C029
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: classification-based adaptation strongest on mixed-LLM DD OOD (0.422 vs 0.079)
+  type: quantitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: 9class_mean.dd_ood
+    value: 0.422
+  - exp_id: exp16_multi_llm
+    metric: vanilla_mean.dd_ood
+    value: 0.079
+  decisions: []
+  deprecated: false
+- id: C030
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: DD OOD mixed-trained 9-class F1=0.422±0.045 vs vanilla 0.079±0.069
+  type: quantitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: 9class_mean.dd_ood
+    value: 0.422
+  - exp_id: exp16_multi_llm
+    metric: vanilla_mean.dd_ood
+    value: 0.079
+  decisions: []
+  deprecated: false
+- id: C031
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: MLM collapses with extreme variance (0.341±0.466)
+  type: quantitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: mlm_mean.dd_ood
+    value: 0.341
+  decisions: []
+  deprecated: false
+- id: C032
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: ToxicChat no significant change between mixed and single-source (0.550±0.052
+    vs 0.596±0.087)
+  type: quantitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: 9class_balanced_toxicchat
+    value: 0.55
+  decisions: []
+  deprecated: false
+- id: C033
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: classification-based DAPT on mixed data maintains DD OOD advantage (0.422
+    vs 0.079)
+  type: quantitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: 9class_mean.dd_ood
+    value: 0.422
+  - exp_id: exp16_multi_llm
+    metric: vanilla_mean.dd_ood
+    value: 0.079
+  decisions: []
+  deprecated: false
+- id: C034
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: doubling corpus drops 9-class ToxicChat from 0.596 to 0.364±0.040
+  type: quantitative
+  evidence:
+  - exp_id: exp17_dataset_scale
+    metric: 9class_balanced_toxicchat
+    value: 0.364
+  decisions: []
+  deprecated: false
+- id: C035
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: exp16 mixed 9-class DD OOD=0.422±0.045, AA OOD=0.217±0.079, ToxicChat=0.550±0.052
+  type: quantitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: 9class_mean.dd_ood
+    value: 0.422
+  - exp_id: exp16_multi_llm
+    metric: 9class_mean.aa_ood
+    value: 0.217
+  decisions: []
+  deprecated: false
+- id: C036
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: exp16 MLM DD OOD=0.341±0.466, ToxicChat=0.256±0.053
+  type: quantitative
+  evidence:
+  - exp_id: exp16_multi_llm
+    metric: mlm_mean.dd_ood
+    value: 0.341
+  decisions: []
+  deprecated: false
+- id: C037
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: exp17 9-class DD=0.889±0.041, AA=0.913±0.041
+  type: quantitative
+  evidence:
+  - exp_id: exp17_dataset_scale
+    metric: 9class_mean.dd_ood
+    value: 0.889
+  - exp_id: exp17_dataset_scale
+    metric: 9class_mean.aa_ood
+    value: 0.913
+  decisions: []
+  deprecated: false
+- id: C038
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: exp17 MLM DD=0.338, AA=0.351 ≈ vanilla DD=0.326, AA=0.508
+  type: quantitative
+  evidence:
+  - exp_id: exp17_dataset_scale
+    metric: mlm_mean.dd_ood
+    value: 0.338
+  - exp_id: exp17_dataset_scale
+    metric: vanilla_mean.dd_ood
+    value: 0.326
+  decisions: []
+  deprecated: false
+- id: C039
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Turn-order shuffling produces negligible performance change (|Delta| < 1pp)
+    across both DeBERTa-v3-base and RoBERTa-large encoders
+  type: quantitative
+  evidence:
+  - source: shuffle_ablation_deberta
+    values:
+      dd_delta: 0
+      aa_delta: -0.009
+      iid_delta: 0
+  - source: shuffle_ablation_roberta_large
+    values:
+      dd_delta: 0.001
+      aa_delta: -0.007
+      iid_delta: 0
+  decisions:
+  - D054
+  deprecated: false
+tables: []
+figures: []
+_completeness:
+  coverage: 39/39
+  claims: 39
+  tables: 0
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 39
+    tier3: 0
+    tierX: 0
+  last_checked: '2026-05-20T09:38:53.013380+00:00'

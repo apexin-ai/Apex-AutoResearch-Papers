@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97eaa5a26349ebaf5460",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper edit xref check",
+  "task_key": "worker_paper-edit_xref-check_20260521T230925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper-edit_xref-check_20260521T230925_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "8dae95a676983eef73840bbb9a7adf3fbc1994b4225ff1c3053a9ad6f7a22401"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "只有两个无害的 float specifier 警告。\n\n## 报告\n\n```\n## Undefined references: 0\n## Multiply defined: 0\n## 主文→Appendix refs: 66 检查, 0 不匹配\n## Appendix 内部 refs: 全部匹配，无悬挂引用\n## 未被引用的 labels: 6 (app:e2e, app:scale_validation, sec:strategy, tab:calibration, tab:e2e, tab:length_independence) — 均为 appendix 内部定义但未被任何 \\ref 引用的标签，不影响编译\n## 建议修复: 无。所有交叉引用完整，无 typo，编译无 undefined/multiply 警告。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-edit-xref-check.md"
+}

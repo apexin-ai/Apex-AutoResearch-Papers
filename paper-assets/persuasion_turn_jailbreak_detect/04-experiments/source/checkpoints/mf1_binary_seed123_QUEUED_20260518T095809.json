@@ -1,0 +1,15 @@
+{
+  "exp_id": "mf1_binary_seed123",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T09:11:45.083Z",
+    "updated_at": "2026-05-18T09:58:08.920Z",
+    "hypothesis": "Binary persuasion classification (seed=123) will maintain DD OOD F1 comparable to seed=42 (0.990), confirming low variance for binary variant and providing 3-seed statistical support for reviewer MF1"
+  },
+  "timestamp": "2026-05-18T09:58:09.010404+00:00",
+  "trigger": "update_registry"
+}

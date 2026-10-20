@@ -1,0 +1,16 @@
+Exp8: Human Jailbreak Data Evaluation (ToxicChat)
+
+Data: 204 human jailbreak + 204 benign from ToxicChat (LMSYS), 3 seeds
+
+Evidence Hierarchy (F1 at K=1):
+- jb_mlm:     0.842 ± 0.009
+- TF-IDF:     0.710
+- scrambled:  0.667 ± 0.030
+- 9-class:    0.654 ± 0.087
+- vanilla:    0.221 ± 0.055
+
+Ordering: jb_mlm >> tfidf > scrambled ≈ 9-class >> vanilla
+
+Conclusion: All fine-tuned variants massively outperform vanilla (3x+), proving learned representations capture generalizable jailbreak patterns beyond LLM-specific artifacts.
+
+Full results: results/exp8_mhj_evaluation.json

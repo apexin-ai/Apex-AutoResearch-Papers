@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp2_actorattack_ood",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:41:47.379Z",
+    "updated_at": "2026-05-18T12:20:30.285Z",
+    "hypothesis": "Persuasion-grounded DeBERTa will generalize to ActorAttack (a structurally distinct multi-persona attack), extending cross-attack OOD evidence beyond DD and FITD to a third unseen attack type"
+  },
+  "timestamp": "2026-05-18T12:20:30.392042+00:00",
+  "trigger": "update_registry"
+}

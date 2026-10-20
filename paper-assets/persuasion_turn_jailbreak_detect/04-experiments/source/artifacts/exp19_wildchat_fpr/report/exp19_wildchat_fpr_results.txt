@@ -1,0 +1,27 @@
+WildChat Hard Negatives FPR Evaluation (exp19)
+
+Dataset: 226 benign conversations from WildChat (filtered: multi-turn, high drift)
+Average turns per conversation: 7.4
+Checkpoints: exp17 (DeBERTa-v3-base, 1000-sample dataset)
+
+FPR (False Positive Rate = % benign incorrectly classified as jailbreak):
+
+9class:
+  seed42:  FPR = 66.8%  (151/226 misclassified)
+  seed123: FPR = 61.1%  (138/226 misclassified)
+  seed456: FPR = 76.5%  (173/226 misclassified)
+  mean:    FPR = 68.1 +/- 6.4%
+
+mlm:
+  seed42:  FPR = 36.7%  (83/226 misclassified)
+  seed123: FPR = 64.6%  (146/226 misclassified)
+  seed456: FPR = 32.3%  (73/226 misclassified)
+  mean:    FPR = 44.5 +/- 14.3%
+
+vanilla:
+  seed42:  FPR = 47.3%  (107/226 misclassified)
+  seed123: FPR = 42.5%  (96/226 misclassified)
+  seed456: FPR = 54.4%  (123/226 misclassified)
+  mean:    FPR = 48.1 +/- 4.9%
+
+Key finding: All three model variants have unacceptably high FPR on real-world WildChat benign conversations, confirming significant distribution shift between LLM-generated training benign data and real user conversations. 9-class is worst (68%), likely because the multi-task heads overfit to stylistic patterns of the training data.

@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp59_resample_350",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T13:31:36.220Z",
+    "updated_at": "2026-05-22T13:31:52.625Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/persuasion_turn_jailbreak_detect/scripts/exp59_run_all.sh 2>&1 | tee /root/persuasion_turn_jailbreak_detect/logs/exp59_run.log\"",
+      "server": "westd-33183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "127239",
+      "log_path": "~/runs/persuasion_turn_jailbreak_detect/exp59_resample_350.log",
+      "submitted_at": "2026-05-22T13:31:35.896Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Randomly sampling 350 conversations from expanded_1000 will show similar OOD degradation as the full 1000-sample training, confirming that the performance drop is driven by data composition changes (new attack types/benign sources) rather than sample count"
+  },
+  "timestamp": "2026-05-22T13:31:52.867319+00:00",
+  "trigger": "update_registry"
+}

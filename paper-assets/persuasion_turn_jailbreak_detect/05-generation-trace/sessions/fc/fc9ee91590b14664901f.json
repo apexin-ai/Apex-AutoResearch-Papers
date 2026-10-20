@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc9ee91590b14664901f",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp37 length matched benign",
+  "task_key": "worker_code_exp37-length-matched-benign_20260521T004210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp37-length-matched-benign_20260521T004210_result.json",
+    "occurrence": 1,
+    "bytes": 1044,
+    "sha256": "34161d6152c15d8e24f7ea108c46779c6ecea7434545d45158b9f04b5e287f45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp37 完成，conclusion=**negative**。结果摘要：\n\n**Part 1 — WildChat 分层 FPR**\n| Bucket | FPR (mean±std) | n |\n|--------|---------------|---|\n| Short (3-10) | 0.770±0.105 | 196 |\n| Medium (11-15) | 0.942±0.054 | 23 |\n| Long (16+) | 0.857±0.117 | 7 |\n\nShort bucket FPR 反而**低于** Medium，说明 WildChat 高 FPR 不是 length 驱动的。\n\n**Part 2 — Benign 截断测试**\nFPR 在所有截断水平（K=3/5/8/10）均为 **0.000**，3 seeds 全一致。模型不依赖 turn count 判别 benign。\n\n**Part 3 — Jailbreak padding 测试**\n| Attack | Original | Padded (→15 turns) | Delta |\n|--------|----------|-------------------|-------|\n| DD | 0.996±0.006 | 0.971±0.012 | -2.5pp |\n| **AA** | **0.963±0.035** | **0.383±0.261** | **-57.9pp** |\n\nDD 几乎不受影响。但 AA 在追加 benign turns 后检测率从 96.3% 暴跌到 38.3%（seed123 最差仅 5%）。这是 BiGRU attention dilution 漏洞——大量 benign 尾部内容稀释了 AA 微妙的 jailbreak 信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp37-length-matched-benign.md"
+}

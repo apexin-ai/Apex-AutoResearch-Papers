@@ -1,0 +1,46 @@
+{
+  "exp_id": "plan_016v2_topic_perturbation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:52:43.895Z",
+    "updated_at": "2026-05-18T06:53:28.041Z",
+    "hypothesis": "Topic classification model will show significant perturbation degradation comparable to vanilla baseline, as non-aligned classification does not teach lexically-invariant features",
+    "parent": "plan_016v2_topic_control",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python src/plan_016v2_perturbed_eval.py",
+      "server": "westd-33183",
+      "data_path": "results/plan_004_perturbed_test.jsonl",
+      "data_count": 76,
+      "model_name": "plan_016v2_topic DeBERTa + BiGRU",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/plan_016v2_topic/best + gru/best.pt",
+      "eval_data": "plan_004 perturbed Crescendo test (76 convs, 38 jailbreak + 38 benign)"
+    },
+    "metrics": {
+      "clean_f1_full": 1,
+      "clean_f1_k1": 0.8947,
+      "clean_f1_k2": 0.9473,
+      "clean_f1_k3": 0.9605,
+      "clean_f1_k5": 0.9868,
+      "perturbed_f1_full": 0.9605,
+      "perturbed_f1_k1": 0.8676,
+      "perturbed_f1_k2": 0.9206,
+      "perturbed_f1_k3": 0.9605,
+      "perturbed_f1_k5": 0.9605,
+      "delta_full": -0.0395,
+      "delta_k1": -0.0271,
+      "delta_k2": -0.0267,
+      "delta_k3": 0,
+      "delta_k5": -0.0263
+    },
+    "checkpoint_path": "checkpoints/plan_016v2_topic/best + gru/best.pt (eval only, no new checkpoint)",
+    "log_path": "results/plan_016v2_topic_perturbation.json",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-18T06:53:28.102190+00:00",
+  "trigger": "update_registry"
+}

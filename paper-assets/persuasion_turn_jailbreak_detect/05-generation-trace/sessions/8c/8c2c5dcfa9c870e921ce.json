@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8c2c5dcfa9c870e921ce",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "analysis exp69 mixed llm aa error",
+  "task_key": "worker_analysis_exp69_mixed_llm_aa_error_20260523T230252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp69_mixed_llm_aa_error_20260523T230252.log",
+    "occurrence": 1,
+    "bytes": 637519,
+    "sha256": "71fa6052f124f00f6ca93db73ad58aad7d591925f3b7ed9bf67ee5766187edf6"
+  },
+  "statistics": {
+    "messages": 194,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 71,
+      "tool_result": 71,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 194,
+      "chunks": [
+        {
+          "path": "8c2c5dcfa9c870e921ce-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "8c2c5dcfa9c870e921ce-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp69-mixed-llm-aa-error.md"
+}

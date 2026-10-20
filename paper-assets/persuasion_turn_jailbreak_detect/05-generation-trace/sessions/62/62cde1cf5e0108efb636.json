@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "62cde1cf5e0108efb636",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "audit table registry traceability",
+  "task_key": "worker_audit_table-registry-traceability_20260523T191641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_table-registry-traceability_20260523T191641.log",
+    "occurrence": 1,
+    "bytes": 655129,
+    "sha256": "1b645dbde017e341d49d66f08267c68acb3344d1d3d4bc4d677a9acf11364e6c"
+  },
+  "statistics": {
+    "messages": 72,
+    "user_turns": 0,
+    "tool_calls": 25,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 18,
+      "tool_call": 25,
+      "tool_result": 25,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 72,
+      "chunks": [
+        {
+          "path": "62cde1cf5e0108efb636-part-0001.json",
+          "message_count": 70
+        },
+        {
+          "path": "62cde1cf5e0108efb636-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-table-registry-traceability.md"
+}

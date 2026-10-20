@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a2a81370d7a8f5a5b19",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "fix fig2 data consistency",
+  "task_key": "worker_fix_fig2_data_consistency_20260519T131330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_fig2_data_consistency_20260519T131330_result.json",
+    "occurrence": 1,
+    "bytes": 473,
+    "sha256": "c8cc54028901e5b8a268392d06c3044c95eaa3714efe837aae6bd8e241de7b19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并验证，所有数值正确：\n\n- Vanilla DD: **0.31**（红色高亮）\n- DisPeD DD: **1.00**（0.997 → 格式化为 1.00）\n- TF-IDF DD: **0.96**（0.961 → 格式化为 0.96）\n- 箭头标注: **+69pp**\n- IID 和 FITD 列均为 1.00，未受影响\n\nPDF 已复制到三个位置：\n- `figures/paper/fig2_cross_attack_bar.pdf`\n- `paper/figures/fig2_cross_attack_bar.pdf`\n- `artifacts/_project/chart/fig2_cross_attack_bar.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-fig2-data-consistency.md"
+}

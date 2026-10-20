@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp34_representation_tsne",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:12:06.242Z",
+    "updated_at": "2026-05-20T20:21:55.946Z",
+    "hypothesis": "9-class DAPT 的 CLS embedding 在 t-SNE/UMAP 2D 投影中将显示 jailbreak/benign 更清晰的分离（尤其在 AA OOD 上），而 vanilla 和 MLM 的表征将呈现更多重叠，因为 9-class 的说服策略预训练迫使编码器学习与攻击意图相关的判别性特征。"
+  },
+  "timestamp": "2026-05-20T20:21:56.115458+00:00",
+  "trigger": "update_registry"
+}

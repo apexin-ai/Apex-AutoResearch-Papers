@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "872c4ac392245005a9db",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval plan017 mlm perturbation",
+  "task_key": "worker_eval_plan017-mlm-perturbation_20260518T061416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan017-mlm-perturbation_20260518T061416_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "91d59a064cd488855032cea07685091fbc4b71bbd2bd2a93609572dcfa1ab163"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**plan_017 MLM 对抗扰动评估 — 假设被否定**\n\n| K | MLM delta | Treatment delta | Baseline delta | TF-IDF delta |\n|---|-----------|-----------------|----------------|--------------|\n| k=1 | **-0.0922** | -0.0256 | -0.1464 | -0.0959 |\n| k=2 | -0.0396 | 0.0 | -0.121 | -0.0411 |\n| k=3 | -0.0395 | 0.0 | -0.1382 | -0.0133 |\n| full | **-0.0263** | **0.0** | -0.1176 | -0.0133 |\n\nMLM model 扰动鲁棒性处于中间水平：优于 vanilla baseline（-0.1176），但明显不如 persuasion treatment（0.0）。结论：domain adaptation 仅提供部分扰动鲁棒性，分类监督信号（persuasion-augmented data 上的 classification supervision）是实现完全鲁棒性的必要条件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan017-mlm-perturbation.md"
+}

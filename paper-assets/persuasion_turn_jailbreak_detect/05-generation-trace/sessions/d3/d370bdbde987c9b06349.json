@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d370bdbde987c9b06349",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp56 crossllm 10shot",
+  "task_key": "worker_code_exp56_crossllm_10shot_20260522T115411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp56_crossllm_10shot_20260522T115411.log",
+    "occurrence": 1,
+    "bytes": 813233,
+    "sha256": "18efd108c93517d0d5fdee17ad4ca4a193c1302fc772a06dba95f508188bffb0"
+  },
+  "statistics": {
+    "messages": 296,
+    "user_turns": 0,
+    "tool_calls": 118,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 118,
+      "tool_result": 118,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 296,
+      "chunks": [
+        {
+          "path": "d370bdbde987c9b06349-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d370bdbde987c9b06349-part-0002.json",
+          "message_count": 116
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp56-crossllm-10shot.md"
+}

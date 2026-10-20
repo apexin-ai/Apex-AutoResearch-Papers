@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ca065759e69e67b7186",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper p1 text fixes",
+  "task_key": "worker_paper_p1-text-fixes_20260523T115055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p1-text-fixes_20260523T115055_result.json",
+    "occurrence": 1,
+    "bytes": 1296,
+    "sha256": "e29405fe625bc224d5647ec4e05390de6df24690dc6ccefbb682ef22855c317a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes verified. Summary of edits:\n\n**experiments.tex:**\n- **MF2**: Added dual-OOD rows (no adapt: .855/.842, +10-shot: .994/.981) to Table 2 before `\\bottomrule`; added caption note about dual-OOD evaluation\n- **MF3**: L184 \"the advantage narrows...\" → \"ActorAttack detection degrades to chance level (9-class F1=0.504±0.107, indistinguishable from majority baseline ~0.5 at n=3)\"\n- **MF5**: L65 bootstrap CIs → seed-level primary with exploratory bootstrap secondary\n- **MF6**: L115 \"3--23×\" → \"descriptively 3--23×\"\n- **SF4**: L112 \"primary mechanism\" → \"primary observed factor\"\n- **SF4**: L178 \"is driven by DAPT\" → \"appears primarily associated with DAPT\"\n\n**introduction.tex:**\n- **SF4**: L9 \"requires domain adaptation, not a better classifier\" → \"at base model scale benefits substantially from domain adaptation\"\n- **SF4**: L26 \"is necessary\" → \"appears necessary\"\n\n**conclusion.tex (Discussion only):**\n- **SF4**: L8 \"is necessary\" → \"appears necessary\"\n- **MF6**: L11 \"3--23×\" → \"descriptively 3--23×\"\n- **SF4**: Added alternative interpretation paragraph (overfitting/representation collapse vs. beneficial feature selection) at end of \"Cross-condition transfer and boundaries.\" paragraph"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-p1-text-fixes.md"
+}

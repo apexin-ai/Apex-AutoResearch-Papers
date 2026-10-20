@@ -1,0 +1,101 @@
+paper_key: "Bidirectional Intention Inference Enhances LLMs' Defense Against Multi-Turn Jailbreak Attacks"
+title: "Bidirectional Intention Inference Enhances LLMs' Defense Against Multi-Turn Jailbreak Attacks"
+venue: "arXiv preprint 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - RPO
+    - ICD
+    - Paraphrase
+    - SelfReminder
+    - SelfDefense
+    - SmoothLLM
+    - SemanticSmooth
+  metrics:
+    - {name: "Attack Success Rate (ASR)", direction: "lower_better"}
+    - {name: "AlpacaEval Win Rate", direction: "higher_better"}
+  datasets:
+    - {name: "JailBreakBench", size: "200 per attack"}
+    - {name: "HarmBench", size: "200 standard subset"}
+    - {name: "MHJ DERTA subset", size: "144"}
+    - {name: "SafeDialBench", size: "213"}
+    - {name: "CoSafe", size: "167"}
+    - {name: "AlpacaEval", size: "utility benchmark"}
+  ablation_dimensions:
+    - "forward intention inference phase contribution"
+    - "backward intention retrospection phase contribution"
+    - "phase detection distribution across attack types"
+  training_recipe:
+    optimizer: "N/A (inference-time defense, no training)"
+    lr: "N/A"
+    hardware: "N/A"
+  method_family: "prompt-based inference-time defense (dual-phase intention analysis)"
+
+positioning:
+  core_claim: "通过双向意图推理（前向请求意图推断+后向响应意图回溯）建立双重过滤机制，在不修改模型的前提下同时防御单轮和多轮越狱攻击，且保持模型通用能力"
+  key_results: "JailBreakBench Llama3-8B 上 10 种攻击 ASR 几乎全部降至 0%；MHJ 数据集 Llama3-8B ASR=1.39%（最佳 baseline SelfDefense=14.07%）；Llama3-70B MHJ ASR=0.00%（baseline 最佳=7.91%）；AlpacaEval 上 utility 损失 <2%"
+  limitations:
+    - "论文未设专门 limitations section，仅在结论中提到是'初步但有意义的探索'"
+    - "未探索动态适应性（在交互过程中实时调整防御策略）"
+    - "未考虑用户画像能力（基于历史行为判断风险）"
+    - "推理时需要额外的 LLM 调用（前向+后向两次），增加延迟"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "以 GCG（单轮）vs ActorAttack（多轮）的对比案例开篇，展示多轮攻击如何通过渐进式语义操纵绕过安全机制，而现有防御主要针对单轮攻击"
+  tension: "现有防御方法（RPO/ICD/SmoothLLM 等）专注于单轮攻击的 token/paraphrase 级别防御，面对多轮攻击中的语境积累和隐蔽意图操纵时失效；multi-turn 攻击通过多步骤逐步降低模型的安全警觉"
+  key_insight: "单向分析不够——前向分析可以在输入阶段拦截显式有害请求，但会被精心伪装的输入绕过；后向分析可以通过对已生成响应的逆向因果推理发现潜在风险；两者互补形成双重过滤"
+  argument_chain: "multi-turn attacks increasingly bypass single-turn defenses → existing defenses lack intention-level analysis → propose forward intention inference to analyze requests before response → add backward intention retrospection to catch responses that slipped through → dual-phase synergy achieves near-zero ASR → utility preservation validated on AlpacaEval"
+  contribution_framing: "三条贡献：(1) 提出双向意图推理方法，(2) 在 10 种攻击 + 5 个数据集 + 3 个模型上的全面评估，(3) 证明 safety-utility trade-off 优越性"
+  intro_structure: "约 5-6 段：P1 LLM 安全问题背景 → P2 单轮 vs 多轮攻击区别 → P3 现有防御方法局限 → P4 本文方法核心思路 → P5 贡献列表"
+  notable_technique: "用 Figure 1 的具体攻击案例（GCG vs ActorAttack）作为 motivation，直观展示单轮和多轮攻击的差异，让读者立即理解问题的严重性；Figure 4 的 scatter plot 直接可视化 safety-utility trade-off，BIID 在左上角一目了然"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "problem_illustration"
+    description: "对比案例：左侧展示 GCG 单轮越狱攻击（直接的 adversarial suffix），右侧展示 ActorAttack 多轮越狱攻击（通过多步渐进式对话逐步绕过安全机制）"
+    narrative_role: "建立问题紧迫性——直观展示多轮攻击比单轮攻击更隐蔽、更危险，为后文提出双向防御方法做铺垫"
+    design_elements: ["左右对比布局", "对话式多轮展示", "攻击步骤标注", "有害内容高亮"]
+    visual_style: "案例对比型 figure，左右分栏，对话气泡格式展示攻击过程"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "heatmap"
+      what_compared: "不同防御方法在不同攻击策略和模型架构（Llama/Qwen）上的 ASR"
+      how_gain_highlighted: "BIID 行整体深色（低 ASR），其他方法行有明显浅色（高 ASR）区域，颜色对比突出优势"
+      design_note: "heatmap 能同时展示多个维度（方法×攻击×模型），信息密度高；颜色映射让 BIID 的全面优势一目了然"
+    - figure_id: "Figure 4"
+      viz_type: "scatter"
+      what_compared: "各防御方法在 safety（ASR 降低幅度）vs utility（AlpacaEval win rate）上的 trade-off"
+      how_gain_highlighted: "BIID 位于 scatter plot 左上角（高 safety + 高 utility），其他方法散落在右侧或下方"
+      design_note: "scatter plot 展示 trade-off 非常直观，'左上角最优' 的空间隐喻让读者无需看具体数字就能判断优劣"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "bar_chart"
+      dimensions_varied: ["forward phase detection ratio", "backward phase detection ratio", "residual safe ratio"]
+      design_note: "按攻击方法分组的堆叠/分组柱状图，展示两个防御阶段各自的贡献比例，直观说明双向机制的互补性"
+  figure_narrative_role: "Figure 1 (problem illustration: 单轮 vs 多轮攻击案例) → Figure 2 (method overview: BIID 双阶段框架) → Figure 3 (main results: heatmap 全面对比) → Figure 4 (trade-off analysis: safety-utility scatter) → Figure 5 (ablation: 各阶段贡献分析)"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "attack_types × models"
+    row_organization: "by_category"
+    col_organization: "grouped_by_model"
+    highlight_strategy: "bold_best (lowest ASR)"
+    statistical_reporting: "single run ASR percentages"
+    num_baselines: 7
+    design_note: "将 10 种攻击方法（8 单轮 + 2 多轮）并列在同一表中，按模型分区；列数较多但能展示 BIID 在所有攻击-模型组合上的一致优势；单轮和多轮攻击在同一表中对比增强说服力"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["multi-turn safety datasets (MHJ, SafeDialBench, CoSafe)", "models (Llama3-8B, Qwen3-8B, Llama3-70B)"]
+      variation_style: "full_numbers"
+      design_note: "专门的多轮数据集评估表，与 Table 1 互补；3 个数据集 × 3 个模型的完整 ASR 数字，展示 BIID 在多轮场景的绝对优势（MHJ 上 1.39% vs baseline 14.07%）"
+  supplementary_tables:
+    in_appendix: false
+    content: "N/A - 论文未提供附录表"
+    reason: "所有主要结果集中在两张主表中，信息密度足够"

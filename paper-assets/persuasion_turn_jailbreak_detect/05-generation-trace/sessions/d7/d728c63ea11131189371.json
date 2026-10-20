@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d728c63ea11131189371",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "ops server connectivity check",
+  "task_key": "worker_ops_server_connectivity_check_20260524T085342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server_connectivity_check_20260524T085342_result.json",
+    "occurrence": 1,
+    "bytes": 542,
+    "sha256": "f3a0ab6e928c7e4e404388764c6f3407f7ff324280293087b5a4c2e0f3dce8d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**autodl-5090** — 连接失败，`Unable to connect to port 33216 on 106.38.204.136`。可能实例已关机或端口变更。\n\n**gpu-5090-4x-3** — 连接失败，同一错误、同一 IP:端口。两个名称可能指向同一台已下线的实例。\n\n**westd-33183** — 正常：\n- cuda:0: NVIDIA RTX PRO 6000 Black (98GB)，空闲，无进程\n- nvidia-smi 仅显示 1 张卡，与项目配置中\"9 张卡\"不一致\n- 磁盘 /root: 87% (仅剩 4.2G)，偏紧\n\n报告已写入 `memory.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-server-connectivity-check.md"
+}

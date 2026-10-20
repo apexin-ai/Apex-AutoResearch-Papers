@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp33_strategy_prediction_plan002",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:12:05.342Z",
+    "updated_at": "2026-05-20T20:12:05.342Z"
+  },
+  "timestamp": "2026-05-20T20:12:05.509631+00:00",
+  "trigger": "update_registry"
+}

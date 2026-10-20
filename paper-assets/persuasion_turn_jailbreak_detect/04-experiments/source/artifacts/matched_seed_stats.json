@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "dd_ood_n": 118,
+    "dd_jailbreak_n": 80,
+    "test_benign_n": 38,
+    "data_files_loaded": [
+      "/root/persuasion_turn_jailbreak_detect/data/generated/deceptive_delight_all.jsonl",
+      "/root/persuasion_turn_jailbreak_detect/data/plan_002_splits/test.jsonl"
+    ],
+    "n118_diagnosis": "n=118 = 80 DD jailbreak conversations + 38 benign conversations from test split. Both classes needed for F1/accuracy computation.",
+    "missing_checkpoints": {
+      "binary_seed42": "No binary seed=42 checkpoint exists (plan_013 was deleted)",
+      "scrambled_seed123": "No scrambled seed=123 checkpoint exists (was never trained)"
+    },
+    "available_matched_pairs": {
+      "seed42": ["9class", "scrambled"],
+      "seed123": ["9class", "binary"],
+      "seed456": ["9class", "scrambled", "binary"]
+    }
+  },
+  "per_seed_mcnemar": {
+    "seed42": {
+      "9class_vs_scrambled_k1": {"chi2": 0.0, "p_value": 1.0, "b": 1, "c": 0, "n": 118},
+      "9class_vs_scrambled_k2": {"chi2": 2.2857, "p_value": 0.13057, "b": 6, "c": 1, "n": 118}
+    },
+    "seed123": {
+      "9class_vs_binary_k1": {"chi2": 0.0, "p_value": 1.0, "b": 0, "c": 0, "n": 118},
+      "9class_vs_binary_k2": {"chi2": 0.0, "p_value": 1.0, "b": 0, "c": 1, "n": 118}
+    },
+    "seed456": {
+      "9class_vs_scrambled_k1": {"chi2": 1.3333, "p_value": 0.248213, "b": 0, "c": 3, "n": 118},
+      "9class_vs_scrambled_k2": {"chi2": 2.25, "p_value": 0.133614, "b": 0, "c": 4, "n": 118},
+      "9class_vs_binary_k1": {"chi2": 1.3333, "p_value": 0.248213, "b": 0, "c": 3, "n": 118},
+      "9class_vs_binary_k2": {"chi2": 2.25, "p_value": 0.133614, "b": 0, "c": 4, "n": 118},
+      "scrambled_vs_binary_k1": {"chi2": 0.0, "p_value": 1.0, "b": 0, "c": 0, "n": 118},
+      "scrambled_vs_binary_k2": {"chi2": 0.0, "p_value": 1.0, "b": 0, "c": 0, "n": 118}
+    }
+  },
+  "per_seed_bootstrap_ci": {
+    "seed42": {
+      "9class_k1": {"f1_mean": 1.0, "ci_lower": 1.0, "ci_upper": 1.0, "n_bootstrap": 10000},
+      "9class_k2": {"f1_mean": 0.9936, "ci_lower": 0.9796, "ci_upper": 1.0, "n_bootstrap": 10000},
+      "scrambled_k1": {"f1_mean": 0.9938, "ci_lower": 0.9799, "ci_upper": 1.0, "n_bootstrap": 10000},
+      "scrambled_k2": {"f1_mean": 0.961, "ci_lower": 0.9252, "ci_upper": 0.988, "n_bootstrap": 10000}
+    },
+    "seed123": {
+      "9class_k1": {"f1_mean": 1.0, "ci_lower": 1.0, "ci_upper": 1.0, "n_bootstrap": 10000},
+      "9class_k2": {"f1_mean": 0.9936, "ci_lower": 0.9796, "ci_upper": 1.0, "n_bootstrap": 10000},
+      "binary_k1": {"f1_mean": 1.0, "ci_lower": 1.0, "ci_upper": 1.0, "n_bootstrap": 10000},
+      "binary_k2": {"f1_mean": 1.0, "ci_lower": 1.0, "ci_upper": 1.0, "n_bootstrap": 10000}
+    },
+    "seed456": {
+      "9class_k1": {"f1_mean": 0.9809, "ci_lower": 0.9565, "ci_upper": 1.0, "n_bootstrap": 10000},
+      "9class_k2": {"f1_mean": 0.9743, "ci_lower": 0.9459, "ci_upper": 0.9942, "n_bootstrap": 10000},
+      "scrambled_k1": {"f1_mean": 1.0, "ci_lower": 1.0, "ci_upper": 1.0, "n_bootstrap": 10000},
+      "scrambled_k2": {"f1_mean": 1.0, "ci_lower": 1.0, "ci_upper": 1.0, "n_bootstrap": 10000},
+      "binary_k1": {"f1_mean": 1.0, "ci_lower": 1.0, "ci_upper": 1.0, "n_bootstrap": 10000},
+      "binary_k2": {"f1_mean": 1.0, "ci_lower": 1.0, "ci_upper": 1.0, "n_bootstrap": 10000}
+    }
+  },
+  "cross_seed_consistency": {
+    "9class_vs_scrambled": {
+      "seed42_k1": "9class > scrambled (p=1.0, ns)",
+      "seed42_k2": "9class > scrambled (p=0.13057, ns)",
+      "seed456_k1": "scrambled > 9class (p=0.248213, ns)",
+      "seed456_k2": "scrambled > 9class (p=0.133614, ns)"
+    },
+    "9class_vs_binary": {
+      "seed123_k1": "tied (p=1.0, ns)",
+      "seed123_k2": "binary > 9class (p=1.0, ns)",
+      "seed456_k1": "binary > 9class (p=0.248213, ns)",
+      "seed456_k2": "binary > 9class (p=0.133614, ns)"
+    },
+    "scrambled_vs_binary": {
+      "seed456_k1": "tied (p=1.0, ns)",
+      "seed456_k2": "tied (p=1.0, ns)"
+    }
+  }
+}

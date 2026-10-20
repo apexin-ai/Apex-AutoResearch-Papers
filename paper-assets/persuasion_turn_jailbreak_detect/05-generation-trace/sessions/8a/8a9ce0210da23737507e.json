@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8a9ce0210da23737507e",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp22 aa early detection",
+  "task_key": "worker_code_exp22-aa-early-detection_20260520T141852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp22-aa-early-detection_20260520T141852.log",
+    "occurrence": 1,
+    "bytes": 565368,
+    "sha256": "5ac8f8674c7fe7ecac0d6be5262d7c53f10e398eb20611388bbe844a2e2acc69"
+  },
+  "statistics": {
+    "messages": 204,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 73,
+      "tool_result": 73,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 204,
+      "chunks": [
+        {
+          "path": "8a9ce0210da23737507e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8a9ce0210da23737507e-part-0002.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp22-aa-early-detection.md"
+}

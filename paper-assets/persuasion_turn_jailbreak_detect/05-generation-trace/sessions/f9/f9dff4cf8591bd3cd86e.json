@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "f9dff4cf8591bd3cd86e",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "paper rebuttal evidence matrix",
+  "task_key": "worker_paper_rebuttal-evidence-matrix_20260518T232848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_rebuttal-evidence-matrix_20260518T232848.log",
+    "occurrence": 1,
+    "bytes": 722066,
+    "sha256": "ae31d96174e1f79ca6b0a327cb32841db379b51a5d3d6b9ba72db0f62fc27929"
+  },
+  "statistics": {
+    "messages": 133,
+    "user_turns": 2,
+    "tool_calls": 41,
+    "roles": {
+      "log": 1,
+      "system": 35,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 41,
+      "tool_result": 41,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "f9dff4cf8591bd3cd86e-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 3,
+      "chunks": [
+        {
+          "path": "f9dff4cf8591bd3cd86e-part-0001.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 112,
+      "chunks": [
+        {
+          "path": "f9dff4cf8591bd3cd86e-part-0001.json",
+          "message_count": 100
+        },
+        {
+          "path": "f9dff4cf8591bd3cd86e-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-rebuttal-evidence-matrix.md"
+}

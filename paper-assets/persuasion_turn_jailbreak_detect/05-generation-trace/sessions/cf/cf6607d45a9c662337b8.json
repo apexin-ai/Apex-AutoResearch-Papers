@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf6607d45a9c662337b8",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "research w11 reference verify",
+  "task_key": "worker_research_w11_reference_verify_20260522T171915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_w11_reference_verify_20260522T171915_result.json",
+    "occurrence": 1,
+    "bytes": 6818,
+    "sha256": "4f8546e3785e85bbcc611ca17c44b1010e184bb6dab9dc97d2c703064bc1165a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 7 篇搜索完毕。以下是逐篇核查结果：\n\n---\n\n## 1. Yang et al. (2025) \"Multi-Turn Jailbreaks Are Simpler Than They Seem\"\n\n**✅ 确认存在**\n\n- **标题**: Multi-Turn Jailbreaks Are Simpler Than They Seem\n- **作者**: Xiaoxue Yang, Jaeha Lee, Anna-Katharina Dick, Jasper Timm, Fei Xie, Diogo Cruz\n- **来源**: arXiv:2508.07646, August 2025\n- **状态**: Preprint (未见正式会议发表)\n\n```bibtex\n@article{yang2025multiturn,\n  title={Multi-Turn Jailbreaks Are Simpler Than They Seem},\n  author={Yang, Xiaoxue and Lee, Jaeha and Dick, Anna-Katharina and Timm, Jasper and Xie, Fei and Cruz, Diogo},\n  journal={arXiv preprint arXiv:2508.07646},\n  year={2025}\n}\n```\n\n---\n\n## 2. Souly et al. (2024) \"A StrongREJECT for Empty Jailbreaks\"\n\n**✅ 确认存在，NeurIPS 2024 Datasets and Benchmarks Track**\n\n- **标题**: A StrongREJECT for Empty Jailbreaks\n- **作者**: Alexandra Souly, Qingyuan Lu, Dillon Bowen, Tu Trinh, Elvis Hsieh, Sana Pandey, Pieter Abbeel, Justin Svegliato, Scott Emmons, Olivia Watkins, Sam Toyer\n- **来源**: NeurIPS 2024 (Datasets and Benchmarks Track); arXiv:2402.10260\n\n```bibtex\n@inproceedings{souly2024strongreject,\n  title={A {StrongREJECT} for Empty Jailbreaks},\n  author={Souly, Alexandra and Lu, Qingyuan and Bowen, Dillon and Trinh, Tu and Hsieh, Elvis and Pandey, Sana and Abbeel, Pieter and Svegliato, Justin and Emmons, Scott and Watkins, Olivia and Toyer, Sam},\n  booktitle={Advances in Neural Information Processing Systems},\n  volume={37},\n  year={2024}\n}\n```\n\n---\n\n## 3. \"State-Dependent Safety Failures in Multi-Turn Language Model Interaction\" (2026)\n\n**✅ 确认存在**\n\n- **标题**: State-Dependent Safety Failures in Multi-Turn Language Model Interaction\n- **作者**: Pengcheng Li, Jie Zhang, Tianwei Zhang, Han Qiu, Kejun Zhang, Weiming Zhang, Nenghai Yu, Wenbo Zhou\n- **来源**: arXiv:2603.15684, March 2026\n- **状态**: Preprint\n\n```bibtex\n@article{li2026statedependent,\n  title={State-Dependent Safety Failures in Multi-Turn Language Model Interaction},\n  author={Li, Pengcheng and Zhang, Jie and Zhang, Tianwei and Qiu, Han and Zhang, Kejun and Zhang, Weiming and Yu, Nenghai and Zhou, Wenbo},\n  journal={arXiv preprint arXiv:2603.15684},\n  year={2026}\n}\n```\n\n---\n\n## 4. \"Mass-Scale Analysis of In-the-Wild Conversations Reveals Complexity Bounds on LLM Jailbreaking\" (2025)\n\n**✅ 确认存在**\n\n- **标题**: Mass-Scale Analysis of In-the-Wild Conversations Reveals Complexity Bounds on LLM Jailbreaking\n- **作者**: Aldan Creo, Raul Castro Fernandez, Manuel Cebrian\n- **来源**: arXiv:2507.08014, July 2025\n- **状态**: Preprint\n\n```bibtex\n@article{creo2025massscale,\n  title={Mass-Scale Analysis of In-the-Wild Conversations Reveals Complexity Bounds on {LLM} Jailbreaking},\n  author={Creo, Aldan and Fernandez, Raul Castro and Cebrian, Manuel},\n  journal={arXiv preprint arXiv:2507.08014},\n  year={2025}\n}\n```\n\n---\n\n## 5. Li et al. \"Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\"\n\n**✅ 确认存在，NeurIPS 2023**\n\n- **标题**: Inference-Time Intervention: Eliciting Truthful Answers from a Language Model\n- **作者**: Kenneth Li, Oam Patel, Fernanda Viégas, Hanspeter Pfister, Martin Wattenberg\n- **来源**: NeurIPS 2023; arXiv:2306.03341\n- **注意**: 原引用写 \"Li et al. (2024)\" 年份有误，应为 2023\n\n```bibtex\n@inproceedings{li2023iti,\n  title={Inference-Time Intervention: Eliciting Truthful Answers from a Language Model},\n  author={Li, Kenneth and Patel, Oam and Vi{\\'e}gas, Fernanda and Pfister, Hanspeter and Wattenberg, Martin},\n  booktitle={Advances in Neural Information Processing Systems},\n  volume={36},\n  year={2023}\n}\n```\n\n---\n\n## 6. Ke et al. \"Continual Pre-Training of Language Models\"\n\n**✅ 确认存在，ICLR 2023**\n\n- **标题**: Continual Pre-Training of Language Models\n- **作者**: Zixuan Ke, Yijia Shao, Haowei Lin, Tatsuya Konishi, Gyuhak Kim, Bing Liu\n- **来源**: ICLR 2023; arXiv:2302.03241\n\n```bibtex\n@inproceedings{ke2023continual,\n  title={Continual Pre-Training of Language Models},\n  author={Ke, Zixuan and Shao, Yijia and Lin, Haowei and Konishi, Tatsuya and Kim, Gyuhak and Liu, Bing},\n  booktitle={International Conference on Learning Representations},\n  year={2023}\n}\n```\n\n---\n\n## 7. Chao et al. (2024) \"JailbreakBench\"\n\n**✅ 确认存在，NeurIPS 2024 Datasets and Benchmarks Track**\n\n- **标题**: JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\n- **作者**: Patrick Chao, Edoardo Debenedetti, Alexander Robey, Maksym Andriushchenko, Francesco Croce, Vikash Sehwag, Edgar Dobriban, Nicolas Flammarion, George J. Pappas, Florian Tramèr, Hamed Hassani, Eric Wong\n- **来源**: NeurIPS 2024 (Datasets and Benchmarks Track); arXiv:2404.01318\n\n```bibtex\n@inproceedings{chao2024jailbreakbench,\n  title={{JailbreakBench}: An Open Robustness Benchmark for Jailbreaking Large Language Models},\n  author={Chao, Patrick and Debenedetti, Edoardo and Robey, Alexander and Andriushchenko, Maksym and Croce, Francesco and Sehwag, Vikash and Dobriban, Edgar and Flammarion, Nicolas and Pappas, George J. and Tram{\\`e}r, Florian and Hassani, Hamed and Wong, Eric},\n  booktitle={Advances in Neural Information Processing Systems},\n  volume={37},\n  year={2024}\n}\n```\n\n---\n\n## 汇总\n\n| # | 论文 | 判定 | 备注 |\n|---|------|------|------|\n| 1 | Yang et al. (2025) Multi-Turn Jailbreaks | ✅ 存在 | arXiv:2508.07646 |\n| 2 | Souly et al. (2024) StrongREJECT | ✅ 存在 | NeurIPS 2024 D&B |\n| 3 | State-Dependent Safety Failures (2026) | ✅ 存在 | arXiv:2603.15684 |\n| 4 | Mass-Scale Analysis (2025) | ✅ 存在 | arXiv:2507.08014 |\n| 5 | Li et al. ITI | ✅ 存在 | NeurIPS 2023，注意年份应为 2023 非 2024 |\n| 6 | Ke et al. Continual Pre-Training | ✅ 存在 | ICLR 2023 |\n| 7 | Chao et al. JailbreakBench | ✅ 存在 | NeurIPS 2024 D&B |\n\n**全部 7 篇均为真实论文，无 hallucination。** 第 5 篇需注意年份修正（2023 非 2024）。\n\nSources:\n- [Yang et al. 2025 - arXiv](https://arxiv.org/abs/2508.07646)\n- [Souly et al. 2024 - NeurIPS](https://proceedings.neurips.cc/paper_files/paper/2024/hash/e2e06adf560b0706d3b1ddfca9f29756-Abstract-Datasets_and_Benchmarks_Track.html)\n- [Li et al. 2026 - arXiv](https://arxiv.org/abs/2603.15684)\n- [Creo et al. 2025 - arXiv](https://arxiv.org/abs/2507.08014)\n- [Li et al. 2023 ITI - NeurIPS](https://proceedings.neurips.cc/paper_files/paper/2023/hash/81b8390039b7302c909cb769f8b6cd93-Abstract-Conference.html)\n- [Ke et al. 2023 - arXiv](https://arxiv.org/abs/2302.03241)\n- [Chao et al. 2024 - arXiv](https://arxiv.org/abs/2404.01318)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-w11-reference-verify.md"
+}

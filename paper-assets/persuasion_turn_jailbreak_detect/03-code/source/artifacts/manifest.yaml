@@ -1,0 +1,1823 @@
+- id: art_20260517_ba0130
+  name: persuasion_taxonomy
+  type: data
+  description: 8-class persuasion strategy taxonomy JSON schema for per-turn annotation
+    in multi-turn jailbreak detection. Based on PAP (Zeng 2024), Crescendo, FITD,
+    Cialdini, and Guarding the Guardrails.
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/data/persuasion_taxonomy.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T06:11:29.652668+00:00'
+  tags:
+  - taxonomy
+  - annotation
+  - persuasion
+  - jailbreak-detection
+- id: art_20260517_82fbd6
+  name: turn_level_annotations
+  type: data
+  description: GPT-5.5 turn-level persuasion strategy annotations for 3722 user turns
+    (2668 valid, 1054 failed due to API credit exhaustion)
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/data/annotations.jsonl
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T08:01:29.530255+00:00'
+  tags:
+  - annotation
+  - gpt-5.5
+  - persuasion-strategy
+- id: art_20260517_edcdba
+  name: kappa_report
+  type: report
+  description: Cohen's kappa inter-rater agreement report (κ=0.83 vs heuristic baseline,
+    API exhausted before dual-annotation)
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/report/kappa_report.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T08:01:31.423746+00:00'
+  tags:
+  - kappa
+  - agreement
+  - validation
+- id: art_20260517_4295ab
+  name: annotation_stats
+  type: report
+  description: 'Annotation statistics: strategy distribution, per-attack-type breakdown,
+    confidence, cost ($10.68)'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/report/annotation_stats.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T08:01:33.113528+00:00'
+  tags:
+  - stats
+  - annotation
+  - distribution
+- id: art_20260517_0348ae
+  name: literature_map_v1
+  type: data
+  description: 'Literature map with 39 verified citations across 8 categories for
+    EMNLP 2026 Related Work. All entries WebSearch-verified. Covers: production safety
+    systems (5), multi-turn defenses (5), discourse analysis (5), computational persuasion
+    (4), jailbreak attacks (9), red-teaming (4), annotation artifacts (4), adaptive
+    attacks (2), technical foundation (1).'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/data/literature_map.yaml
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: paper-research
+  created_at: '2026-05-17T22:59:35.304892+00:00'
+  tags:
+  - paper
+  - literature
+  - related-work
+  - pre-writing
+- id: art_20260518_8b68c7
+  name: plan_015_dd_ood_eval
+  type: data
+  description: Plan 015 Mean Pooling classifier OOD evaluation on Deceptive Delight
+    data. Treatment meanpool F1 comparable to GRU (both near-perfect on DD). Baseline
+    meanpool much weaker, confirming persuasion embeddings are the key driver.
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/data/plan_015_dd_eval.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T03:16:11.663836+00:00'
+  tags:
+  - plan_015
+  - dd
+  - ood
+  - mean_pooling
+  - ablation
+- id: art_20260518_9da9f5
+  name: GPT-5.5 LLM Judge Baseline Results
+  type: data
+  description: 'GPT-5.5 zero-shot LLM-as-judge baseline for jailbreak early detection
+    on test.jsonl (76 samples). F1: K2=0.19, K3=0.27, K5=0.45, full=0.38. Perfect
+    precision but very low recall. High unparseable rate (23-36/76).'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/data/plan_012_gpt55_judge_summary.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T03:20:09.374992+00:00'
+  tags:
+  - baseline
+  - llm-judge
+  - gpt-5.5
+  - plan_012
+- id: art_20260518_151677
+  name: fig1_architecture
+  type: chart
+  description: 'DisPeD two-stage system architecture conceptual diagram: Treatment
+    (Persuasion-Aware DeBERTa with multi-task heads) vs Baseline pipeline, for Method
+    section'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/fig1_architecture.pdf
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T03:40:35.843594+00:00'
+  tags:
+  - paper
+  - method
+  - architecture
+  - conceptual
+- id: art_20260518_c38aa9
+  name: fig1_architecture
+  type: chart
+  description: 'DisPeD two-stage architecture diagram: Treatment (Persuasion-Aware
+    DeBERTa with 8-class persuasion + jailbreak intent heads) vs Baseline (Vanilla
+    DeBERTa), shared Mean Pooling + Binary Classifier. Conceptual figure for Method
+    section.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/fig1_architecture_c38aa9.pdf
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-18T03:40:56.313357+00:00'
+  tags:
+  - paper
+  - method
+  - conceptual
+  - architecture
+- id: art_20260518_8ad888
+  name: fig2_cross_attack_bar
+  type: chart
+  description: Grouped bar chart comparing DisPeD/Vanilla DeBERTa/TF-IDF LR F1 scores
+    across IID (Crescendo) and two OOD attack types (Deceptive Delight, FITD). Highlights
+    Vanilla DeBERTa's 72pp F1 collapse on OOD Deceptive Delight.
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/fig2_cross_attack_bar.pdf
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T03:45:14.718308+00:00'
+  tags:
+  - paper
+  - experiments
+  - cross-attack
+  - generalization
+  - F1
+- id: art_20260518_6fcf6d
+  name: fig2_cross_attack_bar
+  type: chart
+  description: 'Grouped bar chart: F1 scores for DisPeD/Vanilla DeBERTa/TF-IDF across
+    IID(Crescendo), OOD(DD), OOD(FITD). Key visual: Baseline collapse on DD (0.28)
+    vs Treatment (1.0), +72pp delta annotated. Data from plan_006_cross_attack_clean,
+    plan_002_clean_training.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/fig2_cross_attack_bar_6fcf6d.pdf
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-18T03:52:38.125823+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+  - cross-attack
+- id: art_20260518_3147eb
+  name: fig3_strategy_heatmap
+  type: chart
+  description: '3-panel strategy transition heatmaps: Crescendo (8 strategies, dense),
+    FITD (4 strategies, sparse), Deceptive Delight (6 strategies, medium). 8x8 transition
+    count matrices with Blues colormap. Data from plan_008_strategy_transition via
+    SSH.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/fig3_strategy_heatmap.pdf
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-18T03:56:34.919676+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+  - strategy-transition
+  - heatmap
+- id: art_20260518_2064cc
+  name: fig3_strategy_heatmap
+  type: chart
+  description: 3-panel strategy transition heatmap (Crescendo/FITD/DD), 8x8 matrices
+    with PowerNorm colormap. Reconstructed from aggregate statistics.
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/fig3_strategy_heatmap_2064cc.pdf
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T03:56:39.604081+00:00'
+  tags:
+  - paper
+  - fig3
+  - heatmap
+  - strategy_transition
+- id: art_20260518_6f74e5
+  name: experiments_tex
+  type: paper
+  description: Experiments section LaTeX for DisPeD paper. Contains 6 subsections
+    (Setup, Cross-Attack Generalization, Ablation, Perturbation Robustness, LLM-as-Judge,
+    Strategy Trajectory Analysis), 4 tables, 2 figure references. All numbers from
+    verified experiment results.
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T04:17:24.411790+00:00'
+  tags:
+  - paper
+  - experiments
+  - latex
+- id: art_20260518_db6e8d
+  name: method.tex
+  type: paper
+  description: DisPeD Method section LaTeX (~1400 words). Covers Problem Formulation,
+    Stage 1 (Persuasion-Aware Turn Encoding with multi-task DeBERTa), Stage 2 (mean-pooling
+    + MLP), and Design Rationale.
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/method.tex
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T04:21:38.054630+00:00'
+  tags:
+  - paper
+  - method
+  - latex
+- id: art_20260518_3552e0
+  name: fig3_strategy_heatmap_pdf
+  type: chart
+  description: Fig.3 Strategy Transition Heatmap (PDF) - 3 subplots for Crescendo/FITD/DD,
+    based on real transition matrix data from plan_008
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/fig3_strategy_heatmap_info.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T04:24:21.108878+00:00'
+  tags:
+  - fig3
+  - heatmap
+  - strategy_transition
+  - paper_figure
+- id: art_20260518_398524
+  name: fig3_strategy_heatmap_png
+  type: chart
+  description: Fig.3 Strategy Transition Heatmap (PNG) - 3 subplots for Crescendo/FITD/DD,
+    4026x1330px 300dpi
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/fig3_strategy_heatmap_png_info.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T04:24:23.667967+00:00'
+  tags:
+  - fig3
+  - heatmap
+  - strategy_transition
+  - paper_figure
+- id: art_20260518_43b95f
+  name: plot_strategy_heatmap_script
+  type: intermediate
+  description: Python script for generating Fig.3 strategy transition heatmaps from
+    JSON data
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/intermediate/plot_strategy_heatmap.py
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T04:24:36.241986+00:00'
+  tags:
+  - script
+  - visualization
+  - fig3
+- id: art_20260518_526060
+  name: plan_016_sentiment_control_results
+  type: data
+  description: 'Plan 016 sentiment control: 3-class sentiment replaces 9-class persuasion.
+    DD OOD F1=1.0 all K values, matches persuasion treatment, far exceeds vanilla
+    baseline (0.285).'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/plan_016/data/plan_016_sentiment_control.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: plan_016
+  skill: ''
+  created_at: '2026-05-18T05:01:07.224861+00:00'
+  tags:
+  - control-experiment
+  - sentiment
+  - dd-ood
+  - cross-attack
+- id: art_20260518_7e9bd7
+  name: plan_016v2_topic_control_results
+  type: data
+  description: 'Plan 016v2 Topic Classification Control: DD OOD F1=0.727 (full), far
+    below persuasion treatment (1.0) but above vanilla baseline (0.285). Proves persuasion-specific
+    learning drives cross-attack generalization.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/plan_016v2/data/plan_016v2_topic_control_results.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: plan_016v2
+  skill: ''
+  created_at: '2026-05-18T06:01:49.016973+00:00'
+  tags:
+  - control-experiment
+  - topic-classification
+  - dd-ood
+  - ablation
+- id: art_20260518_a4830f
+  name: plan_017_mlm_perturbation_results
+  type: data
+  description: 'MLM model perturbation robustness eval: clean vs perturbed F1 at K=1,2,3,5,full.
+    MLM delta=-0.0263 (full), worse than treatment (0.0) but better than baseline
+    (-0.1176).'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/plan_017_mlm_perturbation/data/plan_017_mlm_perturbation.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: plan_017_mlm_perturbation
+  skill: ''
+  created_at: '2026-05-18T06:17:57.278031+00:00'
+  tags:
+  - plan_017
+  - perturbation
+  - robustness
+  - mlm
+- id: art_20260518_978c9b
+  name: plan_018_wiki_perturbation_results
+  type: data
+  description: 'Plan 018 Wiki MLM perturbation eval: clean F1=0.987, perturbed F1=0.866,
+    delta=-0.121 (comparable to vanilla baseline, far worse than JB MLM -0.026)'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/plan_018_wiki_perturbation/data/plan_018_wiki_perturbation.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: plan_018_wiki_perturbation
+  skill: ''
+  created_at: '2026-05-18T06:27:06.278525+00:00'
+  tags:
+  - perturbation
+  - wiki-mlm
+  - plan_018
+  - evaluation
+- id: art_20260518_f1e328
+  name: plan_016v2_topic_3seed_summary
+  type: data
+  description: '3-seed (42/123/456) statistics for plan_016v2 topic control: DD OOD
+    F1 mean=0.54±0.21, IID F1 mean=0.97±0.02'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/plan_016v2_topic_control/data/plan_016v2_topic_3seed_summary.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: plan_016v2_topic_control
+  skill: ''
+  created_at: '2026-05-18T06:33:16.079168+00:00'
+  tags:
+  - multi-seed
+  - statistics
+  - topic-control
+- id: art_20260518_9acfe2
+  name: plan_016v2_topic_perturbation_results
+  type: data
+  description: 'Topic classification model perturbation eval: delta=-0.040 (full),
+    hypothesis rejected - topic model shows moderate robustness, not vanilla-level
+    degradation'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/plan_016v2_topic_perturbation/data/plan_016v2_topic_perturbation.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: plan_016v2_topic_perturbation
+  skill: ''
+  created_at: '2026-05-18T06:54:07.663137+00:00'
+  tags:
+  - perturbation
+  - topic
+  - control
+  - eval
+- id: art_20260518_381c61
+  name: binary_perturbation_results
+  type: data
+  description: Plan 013 binary persuasion model perturbation robustness evaluation
+    results
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/plan_013_binary_perturbation/data/binary_perturbation.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: plan_013_binary_perturbation
+  skill: ''
+  created_at: '2026-05-18T06:54:43.721599+00:00'
+  tags:
+  - perturbation
+  - binary
+  - plan_013
+  - robustness
+- id: art_20260518_1c541d
+  name: plan_018_wiki_mlm_3seed_summary
+  type: data
+  description: 'Wikipedia MLM 3-seed (42/123/456) DD OOD + IID evaluation summary.
+    DD OOD Full F1: 0.904 +/- 0.115.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/plan_018_wiki_mlm_control/data/plan_018_wiki_mlm_3seed_summary.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: plan_018_wiki_mlm_control
+  skill: ''
+  created_at: '2026-05-18T07:03:57.526831+00:00'
+  tags:
+  - multi-seed
+  - evaluation
+  - plan_018
+- id: art_20260518_9e8dd0
+  name: plan_003_scrambled_perturbation_results
+  type: data
+  description: Scrambled-label DeBERTa+GRU perturbation eval results. Delta=0.000
+    but due to model failure (F1=0.333 on OOD data), not robustness.
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/plan_003_scrambled_perturbation/data/plan_003_scrambled_perturbation_summary.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: plan_003_scrambled_perturbation
+  skill: ''
+  created_at: '2026-05-18T07:08:51.219373+00:00'
+  tags:
+  - perturbation
+  - scrambled
+  - ablation
+- id: art_20260518_9f69ee
+  name: plan_002_seed123_dd_ood_results
+  type: data
+  description: DD OOD evaluation results for plan_002 seed=123 persuasion treatment.
+    F1=1.0 at full/k1/k5, 0.9904 at k2/k3. Identical to seed=42.
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/plan_002_seed123/data/plan_002_seed123_dd_ood.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: plan_002_seed123
+  skill: ''
+  created_at: '2026-05-18T07:11:41.649126+00:00'
+  tags:
+  - dd-ood
+  - seed123
+  - persuasion-treatment
+  - multi-seed
+- id: art_20260518_689cf7
+  name: plan_002_seed456_dd_ood_results
+  type: data
+  description: DD OOD evaluation results for plan_002 seed=456 persuasion treatment
+    model. Full F1=0.9904, K1=0.9715, K2=0.9622, K3=0.935, K5=0.9904.
+  path: null
+  url: file:///root/persuasion_turn_jailbreak_detect/results/plan_002_seed456_dd_ood.json
+  project: persuasion_turn_jailbreak_detect
+  exp_id: plan_002_seed456
+  skill: ''
+  created_at: '2026-05-18T07:11:52.976830+00:00'
+  tags:
+  - dd_ood
+  - seed456
+  - plan_002
+  - evaluation
+- id: art_20260518_7eefc0
+  name: paper_draft_20260518
+  type: paper
+  description: 论文 PDF draft (2026-05-18)，清理了 8 个 orphan bib entries，10 pages
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/paper_draft_20260518.pdf
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T08:18:30.444265+00:00'
+  tags:
+  - paper
+  - draft
+  - bib-cleanup
+- id: art_20260518_3cf506
+  name: paper_draft_20260518_v2
+  type: paper
+  description: '论文 PDF v2 (2026-05-18): 更新 fig2 折线图 + 清理 bib + experiments.tex 修正,
+    10 pages, 308KB'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/paper_draft_20260518_3cf506.pdf
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T08:29:40.393666+00:00'
+  tags:
+  - paper
+  - draft
+  - fig2-updated
+  - bib-cleanup
+- id: art_20260518_c5264f
+  name: paper_draft_20260518_v3
+  type: paper
+  description: '论文 PDF v3: fig1 更新为 7-variant 架构图 (v2, 55.6KB) + fig2 折线图 (18.4KB)
+    + bib 清理 + experiments.tex 修正, 10 pages, 317KB'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/paper_draft_20260518_c5264f.pdf
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T08:36:53.158980+00:00'
+  tags:
+  - paper
+  - draft
+  - fig1-v2
+  - fig2-updated
+- id: art_20260518_15c75e
+  name: sf9_strategy_prediction
+  type: data
+  description: 9-class DeBERTa strategy prediction on DD OOD (80 convs, 645 turns).
+    Acc=30.7%, kappa=0.126. Per-class metrics, confusion matrix, GT/pred transition
+    matrices.
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/data/sf9_strategy_prediction.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T09:16:45.537223+00:00'
+  tags:
+  - sf9
+  - deberta
+  - strategy_prediction
+  - dd_ood
+- id: art_20260518_928e90
+  name: mf1_scrambled_seed456_results
+  type: data
+  description: 'Scrambled-label seed=456 DD OOD eval results: Full F1=1.000, K=3 F1=0.990'
+  path: null
+  url: results/mf1_scrambled_seed456.json
+  project: persuasion_turn_jailbreak_detect
+  exp_id: mf1_scrambled_seed456
+  skill: ''
+  created_at: '2026-05-18T09:20:14.203195+00:00'
+  tags: []
+- id: art_20260518_f6e8a1
+  name: mf1_scrambled_seed123_results
+  type: data
+  description: 'Scrambled-label ablation (seed=123) full pipeline results. Remote:
+    results/mf1_scrambled_seed123.json'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/mf1_scrambled_seed123/data/mf1_scrambled_seed123_results.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: mf1_scrambled_seed123
+  skill: ''
+  created_at: '2026-05-18T09:21:00.051313+00:00'
+  tags: []
+- id: art_20260518_9f4f78
+  name: mf1_binary_seed123_results
+  type: data
+  description: 'Binary DeBERTa+BiGRU seed=123: DD OOD and IID F1@K results'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/data/mf1_binary_seed123_results.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T09:39:55.722889+00:00'
+  tags:
+  - binary
+  - seed123
+  - dd_ood
+  - iid
+  - evaluation
+- id: art_20260518_8e8ba7
+  name: exp1_roberta_9class_results
+  type: data
+  description: 'RoBERTa-base 9-class multitask fine-tuning + GRU classifier DD OOD
+    evaluation results across 3 seeds (42, 123, 456). Mean DD OOD F1: K1=0.987, K2=0.950,
+    K3=0.956, K5=0.987, Full=0.994.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp1_roberta_9class/data/exp1_roberta_9class_results.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp1_roberta_9class
+  skill: ''
+  created_at: '2026-05-18T10:23:47.876429+00:00'
+  tags:
+  - roberta-base
+  - 9-class
+  - dd-ood
+  - 3-seed
+- id: art_20260518_cbfbca
+  name: exp1_roberta_mlm_results
+  type: data
+  description: RoBERTa-base MLM-only continued pretraining + BiGRU DD OOD evaluation
+    results (3 seeds)
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp1/data/exp1_roberta_mlm_results.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp1
+  skill: ''
+  created_at: '2026-05-18T10:40:22.040481+00:00'
+  tags:
+  - roberta
+  - mlm
+  - dd-ood
+  - cross-encoder
+- id: art_20260518_54e884
+  name: exp1_roberta_vanilla_results
+  type: data
+  description: RoBERTa-base vanilla (no pretraining) + BiGRU DD OOD evaluation results
+    (3 seeds)
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp1/data/exp1_roberta_vanilla_results.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp1
+  skill: ''
+  created_at: '2026-05-18T10:40:24.239225+00:00'
+  tags:
+  - roberta
+  - vanilla
+  - dd-ood
+  - cross-encoder
+- id: art_20260518_5e6780
+  name: exp3_probing_results
+  type: data
+  description: 'Exp3 Probing: Linear probing accuracy (3 tasks x 3 encoders) + CKA
+    analysis (pairwise, layer-wise) for vanilla/MLM/9-class DeBERTa. Key findings:
+    9-class multitask finetuning significantly improves turn position and escalation
+    probing; MLM pretraining barely changes representation (CKA~1.0 vs vanilla); representation
+    divergence concentrated in layers 11-12.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp3_probing/data/exp3_probing_results.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp3_probing
+  skill: ''
+  created_at: '2026-05-18T10:56:11.822030+00:00'
+  tags:
+  - probing
+  - cka
+  - representation-analysis
+  - deberta
+- id: art_20260518_c57d56
+  name: exp5_llm_judge_ood_results
+  type: data
+  description: Qwen3-8B zero-shot LLM-as-Judge OOD evaluation results on DD (80) and
+    FITD (80) datasets with binary F1 at K=1,2,3,5,Full
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp5/data/exp5_llm_judge_ood_results.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp5
+  skill: ''
+  created_at: '2026-05-18T11:04:37.248035+00:00'
+  tags:
+  - llm-judge
+  - ood
+  - qwen3-8b
+  - zero-shot
+  - baseline
+- id: art_20260518_5cc2f9
+  name: exp3_roberta_probing_results
+  type: data
+  description: RoBERTa probing (linear probing + CKA for 3 variants) and DeBERTa CKA=1.0
+    audit results
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp3/data/exp3_roberta_probing_results.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp3
+  skill: ''
+  created_at: '2026-05-18T11:09:28.452653+00:00'
+  tags:
+  - probing
+  - roberta
+  - cka
+  - deberta-audit
+- id: art_20260518_c8bb60
+  name: vanilla_multiseed_dd_ood
+  type: data
+  description: Vanilla DeBERTa 3-seed DD OOD F1 results + centered CKA (vanilla/MLM/9class)
+    with layer-wise breakdown
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/data/vanilla_multiseed_dd_ood.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T11:14:05.556940+00:00'
+  tags:
+  - vanilla
+  - dd_ood
+  - multi-seed
+  - cka
+  - centered
+- id: art_20260518_5a2d2e
+  name: roberta_centered_cka
+  type: data
+  description: RoBERTa centered vs uncentered CKA for 3 encoder pairs (vanilla/MLM/9class)
+    on IID and DD OOD splits. Confirms uncentered CKA severely overestimates vanilla-MLM
+    similarity (0.998 vs centered 0.393/0.255).
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/data/roberta_centered_cka.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T11:33:04.516746+00:00'
+  tags:
+  - cka
+  - roberta
+  - representation-analysis
+  - exp3
+- id: art_20260518_31ad5c
+  name: exp4_dd_ood_perturbation_results
+  type: data
+  description: 'EXP-4: DD OOD adversarial perturbation results. 7 DeBERTa variants
+    x 3 seeds evaluated on clean vs Qwen3-8B paraphrased DD OOD (118 conversations:
+    80 jailbreak + 38 benign). F1 at K=1,2,3,5,Full with delta (perturbed - clean).'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp4/data/exp4_dd_ood_perturbation_results.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp4
+  skill: ''
+  created_at: '2026-05-18T11:43:01.478852+00:00'
+  tags:
+  - exp4
+  - dd_ood
+  - perturbation
+  - adversarial
+  - robustness
+- id: art_20260518_6a9182
+  name: exp4_vanilla_perturbation_mcnemar
+  type: data
+  description: EXP-4 vanilla 3-seed OOD perturbation results + McNemar tests (9class
+    vs vanilla/jb_mlm/scrambled on perturbed DD OOD)
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp4/data/exp4_vanilla_perturbation_mcnemar.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp4
+  skill: ''
+  created_at: '2026-05-18T11:54:25.639342+00:00'
+  tags:
+  - vanilla
+  - perturbation
+  - mcnemar
+  - ood
+  - 3-seed
+- id: art_20260518_61267d
+  name: EXP-2 ActorAttack OOD Evaluation Results
+  type: data
+  description: ActorAttack OOD evaluation results for 10 model variants (7 DeBERTa
+    + 3 RoBERTa) across prefix F1 at K=1,2,3,5,Full. 80 jailbreak + 38 benign = 118
+    conversations. Per-seed and mean±std (population std).
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/EXP-2/data/exp2_actorattack_ood.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: EXP-2
+  skill: ''
+  created_at: '2026-05-18T12:19:25.746101+00:00'
+  tags:
+  - actorattack
+  - ood
+  - evaluation
+  - deberta
+  - roberta
+  - prefix-f1
+- id: art_20260518_9b1e62
+  name: exp6_actorattack_perturbation_results
+  type: data
+  description: 'EXP-6 ActorAttack adversarial perturbation robustness: 7 DeBERTa variants
+    x 3 seeds, clean vs perturbed F1, McNemar tests. Result: negative hypothesis (all
+    variants degrade substantially on ActorAttack perturbation, unlike DD OOD). 9class
+    still >> vanilla (McNemar p<0.001).'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp6_actorattack_perturbation/data/exp6_actorattack_perturbation.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp6_actorattack_perturbation
+  skill: ''
+  created_at: '2026-05-18T14:34:54.376535+00:00'
+  tags:
+  - perturbation
+  - actorattack
+  - mcnemar
+  - robustness
+- id: art_20260518_cdd364
+  name: exp7_tfidf_perprefix_results
+  type: data
+  description: TF-IDF+LR per-prefix (K=1,2,3,5,Full) binary F1 on DD OOD and ActorAttack
+  path: null
+  url: file:///root/persuasion_turn_jailbreak_detect/results/exp7_tfidf_perprefix.json
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp7_tfidf_perprefix_actorattack
+  skill: ''
+  created_at: '2026-05-18T16:21:17.142261+00:00'
+  tags:
+  - tfidf
+  - per-prefix
+  - dd-ood
+  - actorattack
+  - baseline
+- id: art_20260518_1d9172
+  name: exp8_mhj_human_data_evaluation
+  type: report
+  description: 'Evaluation of evidence hierarchy on human-written jailbreak data from
+    ToxicChat (LMSYS). Tests whether models trained on Qwen3-8B synthetic data generalize
+    to human jailbreaks. Result: jb_mlm F1=0.842, 9-class F1=0.654, scrambled F1=0.667,
+    vanilla F1=0.221, TF-IDF F1=0.710.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp8_mhj_human_data/report/exp8_mhj_evaluation_summary.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp8_mhj_human_data
+  skill: ''
+  created_at: '2026-05-18T16:50:26.659668+00:00'
+  tags:
+  - human-data
+  - generalization
+  - toxicchat
+  - evidence-hierarchy
+  - rebuttal
+- id: art_20260518_d2dc85
+  name: exp8_human_jailbreak_verazuo
+  type: data
+  description: 'Exp8: Evidence hierarchy on 666 human jailbreak prompts (verazuo/jailbreak_llms)
+    + 213 benign. jb_mlm=0.968, binary=0.929, 9class=0.812, vanilla=0.131. Hierarchy
+    holds.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp8_mhj_human_data/data/exp8_verazuo_pointer.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp8_mhj_human_data
+  skill: ''
+  created_at: '2026-05-18T17:05:03.205521+00:00'
+  tags:
+  - exp8
+  - human_jailbreak
+  - evidence_hierarchy
+  - verazuo
+- id: art_20260518_be0708
+  name: exp10_fewshot_llm_judge_results
+  type: data
+  description: '3-shot LLM-as-Judge (Qwen3-8B) OOD evaluation results: DD F1=0.54,
+    ActorAttack F1=0.66'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp10_fewshot_llm_judge/data/exp10_fewshot_llm_judge.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp10_fewshot_llm_judge
+  skill: ''
+  created_at: '2026-05-18T17:10:22.627824+00:00'
+  tags:
+  - fewshot
+  - llm-judge
+  - qwen3-8b
+  - ood
+  - baseline
+- id: art_20260518_186563
+  name: exp9_bootstrap_ci_results
+  type: data
+  description: BCa bootstrap 95% CI (10K resamples) and paired permutation tests (10K
+    perms) for all 10 model variants x 3 seeds x 5 K values on DD OOD and ActorAttack
+    OOD datasets. Covers Table 1/3/4 in the paper.
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp9_bootstrap_ci/data/exp9_bootstrap_ci.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp9_bootstrap_ci
+  skill: ''
+  created_at: '2026-05-18T17:39:03.441753+00:00'
+  tags:
+  - bootstrap
+  - confidence-interval
+  - permutation-test
+  - statistical-significance
+  - reviewer-response
+- id: art_20260518_0a9c4d
+  name: Rebuttal Evidence Matrix
+  type: report
+  description: Comprehensive mapping of all reviewer issues (R2+R3) to experimental
+    evidence with registry metrics, resolution status, and remaining gaps
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/report/rebuttal_evidence_matrix.md
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T23:36:41.731884+00:00'
+  tags:
+  - rebuttal
+  - evidence
+  - review
+  - round2
+  - round3
+- id: art_20260519_75815a
+  name: embedding_tsne
+  type: chart
+  description: '3x2 t-SNE visualization: Vanilla/JB-MLM/9-Class × DD OOD/ActorAttack.
+    118 points per subplot (38 benign + 80 jailbreak). Mean-pooled [CLS] embeddings
+    (768-dim).'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/embedding_tsne.png
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T00:20:24.940628+00:00'
+  tags:
+  - paper
+  - figure
+  - tsne
+  - embedding
+- id: art_20260520_8b353d
+  name: exp18_e2e_results
+  type: data
+  description: 'exp18 End-to-end fine-tuning results: unfrozen DeBERTa+GRU vs frozen
+    probing baseline. 3 seeds, IID/DD_OOD/AA_OOD F1 macro.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp18_e2e_finetune/data/exp18_e2e_results.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp18_e2e_finetune
+  skill: ''
+  created_at: '2026-05-20T12:35:03.459220+00:00'
+  tags:
+  - exp18
+  - e2e
+  - fine-tuning
+  - evaluation
+- id: art_20260520_e94bba
+  name: exp19_wildchat_fpr_results
+  type: report
+  description: WildChat Hard Negatives FPR evaluation - 226 high-drift benign conversations
+    evaluated on exp17 checkpoints (9-class/MLM/vanilla x 3 seeds). All variants show
+    very high FPR (32-77%), confirming distribution shift.
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp19_wildchat_fpr/report/exp19_wildchat_fpr_results.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp19_wildchat_fpr
+  skill: ''
+  created_at: '2026-05-20T12:43:06.639629+00:00'
+  tags:
+  - fpr
+  - wildchat
+  - distribution-shift
+  - evaluation
+- id: art_20260520_f21c7c
+  name: exp20_deepcontext_proxy_results
+  type: data
+  description: Exp20 BERT-base-uncased + BiGRU frozen probing baseline results (3
+    seeds)
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp20_deepcontext_proxy/data/exp20_deepcontext_proxy_results.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp20_deepcontext_proxy
+  skill: ''
+  created_at: '2026-05-20T13:51:33.602734+00:00'
+  tags:
+  - exp20
+  - bert-base
+  - baseline
+  - frozen-probing
+  - deepcontext-proxy
+- id: art_20260520_c4df96
+  name: exp21_cross_checkpoint_results
+  type: data
+  description: 'Cross-checkpoint variance: 3 DAPT seeds x (IID+DD_OOD+AA_OOD). IID
+    std=0pp, AA_OOD std=1.27pp, DD_OOD std=2.63pp.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp21_cross_checkpoint/data/exp21_cross_checkpoint_summary.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp21_cross_checkpoint
+  skill: ''
+  created_at: '2026-05-20T14:14:25.071007+00:00'
+  tags:
+  - exp21
+  - cross-checkpoint
+  - variance
+  - ood
+- id: art_20260520_87c9b6
+  name: exp22_aa_early_detection
+  type: data
+  description: AA OOD per-K early detection F1 (9class/mlm/vanilla, K=1,2,3,5,full,
+    3 seeds, plan_002 checkpoints)
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp22_aa_early_detection/data/exp22_aa_early_detection_summary.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp22_aa_early_detection
+  skill: ''
+  created_at: '2026-05-20T14:29:27.951333+00:00'
+  tags: []
+- id: art_20260520_4203d2
+  name: exp25_fitd_early_detection
+  type: data
+  description: FITD OOD per-K early detection F1 (9class/mlm/vanilla, K=1,2,3,5,full,
+    3 seeds, exp16 checkpoints)
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp25_fitd_early_detection/data/exp25_fitd_early_detection_summary.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp25_fitd_early_detection
+  skill: ''
+  created_at: '2026-05-20T14:29:30.743738+00:00'
+  tags: []
+- id: art_20260520_99b9b0
+  name: exp24_calibration_ece
+  type: data
+  description: 'ECE calibration results for 9-class and vanilla on IID/DD-OOD/AA-OOD
+    (3 seeds). 9class: IID ECE≈0, DD 0.14±0.05, AA 0.12±0.05. vanilla: IID 0.009±0.007,
+    DD 0.67±0.004, AA 0.50±0.07. Includes per-bin reliability diagram data.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp24_calibration_ece/data/exp24_calibration_ece.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp24_calibration_ece
+  skill: ''
+  created_at: '2026-05-20T14:29:55.020341+00:00'
+  tags:
+  - calibration
+  - ece
+  - reliability-diagram
+  - 9class
+  - vanilla
+- id: art_20260520_ac1fdc
+  name: exp26_frozen_probing_results
+  type: data
+  description: 'exp26 frozen probing results: frozen 9-class DAPT DeBERTa + fresh
+    BiGRU, 3 seeds, IID + DD/AA/FITD OOD evaluation'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp26_frozen_probing/data/exp26_frozen_probing.py
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp26_frozen_probing
+  skill: ''
+  created_at: '2026-05-20T14:51:31.445898+00:00'
+  tags:
+  - frozen-probing
+  - ood-evaluation
+  - dapt
+- id: art_20260520_66b54b
+  name: exp27_mean_pooling_results
+  type: data
+  description: 'exp27 Mean Pooling E2E results: perfect 1.0 F1 all metrics all seeds.
+    BiGRU not necessary with E2E training.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp27_mean_pooling/data/exp27_mean_pooling_results.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp27_mean_pooling
+  skill: ''
+  created_at: '2026-05-20T15:11:07.968821+00:00'
+  tags: []
+- id: art_20260520_68b02a
+  name: exp30_length_stratified
+  type: data
+  description: 'Length-stratified analysis: 9-class DAPT jailbreak recall by conversation
+    turn count bins on DD OOD and AA OOD'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp30_length_stratified/data/exp30_length_stratified.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp30_length_stratified
+  skill: ''
+  created_at: '2026-05-20T15:25:43.234994+00:00'
+  tags: []
+- id: art_20260520_b3f422
+  name: exp28_data_efficiency_results
+  type: data
+  description: 'exp28 data efficiency results: 9-class DAPT vs vanilla at {50,125,250,350}
+    training samples'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp28_data_efficiency/data/exp28_data_efficiency.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp28_data_efficiency
+  skill: ''
+  created_at: '2026-05-20T15:38:27.197272+00:00'
+  tags:
+  - data-efficiency
+  - sample-efficiency
+  - ablation
+- id: art_20260520_e27a73
+  name: exp29_inference_efficiency_results
+  type: data
+  description: 'Inference efficiency benchmark: DeBERTa+BiGRU (12.12ms, 82.5 conv/s)
+    vs TF-IDF+LR (0.43ms) vs LLM judges (902-3229ms). 165-413x faster than GPT-4o.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp29_inference_efficiency/data/exp29_inference_efficiency.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp29_inference_efficiency
+  skill: ''
+  created_at: '2026-05-20T15:54:41.530631+00:00'
+  tags:
+  - efficiency
+  - benchmark
+  - latency
+  - throughput
+- id: art_20260520_085130
+  name: exp31_lambda_ablation_results
+  type: data
+  description: 'Lambda ablation results: lambda in {0, 0.1, 0.5, 1.0, 2.0} with IID/DD/AA/FITD
+    F1. Higher lambda monotonically hurts AA OOD.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp31_lambda_ablation_aa/data/exp31_lambda_ablation.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp31_lambda_ablation_aa
+  skill: ''
+  created_at: '2026-05-20T19:28:42.218603+00:00'
+  tags: []
+- id: art_20260520_110913
+  name: exp32_strategy_prediction
+  type: report
+  description: Strategy prediction analysis on DD OOD and AA OOD (3 seeds). Full results
+    at westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json
+  path: null
+  url: westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp32_strategy_prediction.json
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp32_strategy_prediction
+  skill: ''
+  created_at: '2026-05-20T19:41:15.985924+00:00'
+  tags:
+  - analysis
+  - strategy
+  - persuasion
+  - ood
+- id: art_20260520_fa32a8
+  name: exp28_final_data_efficiency
+  type: data
+  description: 'Complete data efficiency results: 9-class (3 seeds, 4 sizes) + vanilla
+    (seed42, 4 sizes). Merged from exp28+exp28b+exp28c.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp28c_vanilla_supplement/data/exp28_final_data_efficiency_pointer.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp28c_vanilla_supplement
+  skill: ''
+  created_at: '2026-05-20T19:55:29.642067+00:00'
+  tags:
+  - data-efficiency
+  - exp28
+  - vanilla
+  - 9class
+- id: art_20260521_be3a1f
+  name: exp37_results
+  type: data
+  description: 'exp37 length confound analysis: WildChat stratified FPR, benign truncation,
+    jailbreak padding'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp37_length_matched_benign/data/exp37_results_pointer.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp37_length_matched_benign
+  skill: ''
+  created_at: '2026-05-21T00:51:35.113232+00:00'
+  tags: []
+- id: art_20260521_3c863b
+  name: qwen_llama_text_distribution_analysis
+  type: data
+  description: 'Qwen vs Llama benign text distribution comparison: KL divergence,
+    distinctive vocabulary, bigram Jaccard, TTR. Supports MLM collapse hypothesis.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/data/qwen_llama_text_analysis_pointer.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T06:32:28.058850+00:00'
+  tags:
+  - exp16
+  - analysis
+  - discussion
+  - mlm-collapse
+- id: art_20260521_f2ec5a
+  name: round7_seed_table_latex
+  type: paper
+  description: 'LaTeX tables for Round 7: per-seed OOD F1 + attack/benign recall'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/round7_seed_table.tex
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T07:43:17.432847+00:00'
+  tags:
+  - round7
+  - latex
+  - table
+- id: art_20260521_8c7ece
+  name: round7_seed_level_stats
+  type: data
+  description: 'Round 7 reviewer data: per-seed F1, Cohen''s d, OOD recall for 6 DAPT
+    variants x 3 OOD conditions x 3 seeds'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/data/round7_seed_level_stats.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T07:43:23.225958+00:00'
+  tags:
+  - round7
+  - reviewer
+  - per-seed
+  - f1
+  - cohens-d
+- id: art_20260521_80ca25
+  name: exp39_extra_seeds_results
+  type: data
+  description: 'exp39 TOST extra seeds (789/1000) results: 4 groups (9class + scrambled
+    x 2 seeds), F1 on IID/DD/AA/FITD OOD. Per-sample predictions on westd-33183: results/extra_seeds/*_per_sample.json'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp39_extra_seeds_tost/data/exp39_content.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp39_extra_seeds_tost
+  skill: ''
+  created_at: '2026-05-21T09:34:07.865963+00:00'
+  tags:
+  - tost
+  - seeds
+  - 9class
+  - scrambled
+  - ablation
+- id: art_20260521_0810a7
+  name: exp40_llama_guard_baseline_results
+  type: data
+  description: 'Llama Guard 3 8B baseline evaluation on IID + 3 OOD attack families.
+    Full per-sample predictions on westd-33183: /root/persuasion_turn_jailbreak_detect/results/exp40_llama_guard_baseline.json'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp40/data/exp40_llama_guard_baseline.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp40
+  skill: ''
+  created_at: '2026-05-21T12:02:50.777349+00:00'
+  tags:
+  - baseline
+  - llama-guard
+  - evaluation
+  - jailbreak-detection
+- id: art_20260522_3bd8ef
+  name: exp41_tost_10seed_analysis
+  type: data
+  description: 'TOST equivalence test results with 10 seeds (5pp margin): DD equivalent
+    (p=2e-9), FITD equivalent (p=0), AA NOT equivalent (p=0.183, Cohen d=0.44). Conclusion:
+    negative — label content matters for AA OOD.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp41_tost_10seed/data/exp41_tost_10seed_summary.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp41_tost_10seed
+  skill: ''
+  created_at: '2026-05-22T03:54:42.192252+00:00'
+  tags: []
+- id: art_20260522_7e3feb
+  name: exp42_ood_benign_mixed_results
+  type: data
+  description: 'exp42 results: WildChat FPR 68.1% to 0% by mixing 150 WildChat benign
+    into training. OOD F1 maintained (DD=1.0, AA=0.956, FITD=1.0). 3-seed evaluation
+    on 49 held-out WildChat conversations.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp42_ood_benign_mixed/data/exp42_results.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp42_ood_benign_mixed
+  skill: ''
+  created_at: '2026-05-22T04:11:23.488492+00:00'
+  tags:
+  - wildchat
+  - fpr
+  - ood
+  - benign-mixing
+- id: art_20260522_ab77da
+  name: exp43_mhj_human_eval_results
+  type: report
+  description: Exp43 human jailbreak evaluation results. MHJ multi-turn data gated;
+    evaluated on verazuo single-turn human jailbreaks (666 jb + 213 benign). 9-class
+    +68pp F1 over vanilla. Evidence hierarchy holds.
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp43_mhj_human_eval/report/exp43_mhj_human_eval_report.md
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp43_mhj_human_eval
+  skill: ''
+  created_at: '2026-05-22T04:23:14.640752+00:00'
+  tags:
+  - human_jailbreak
+  - generalization
+  - evidence_hierarchy
+  - mhj_gated
+- id: art_20260522_2ac616
+  name: exp46_inference_efficiency
+  type: data
+  description: 'Side-by-side inference efficiency benchmark: DisPeD (13.12ms, 868MB)
+    vs Qwen3-8B 3-shot (318.53ms, 16GB). 24.3x speedup on 100 conversations.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp46/data/exp46_inference_efficiency.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp46
+  skill: ''
+  created_at: '2026-05-22T06:24:09.641728+00:00'
+  tags:
+  - efficiency
+  - benchmark
+  - latency
+  - inference
+- id: art_20260522_63462a
+  name: exp45_benign_adaptation_curve_results
+  type: data
+  description: 'exp45 benign adaptation curve: 7-point FPR reduction curve (N=0,5,10,25,50,100,150
+    WildChat benign samples). FPR drops from 65.3% to 0% at N=10. All OOD F1 >= 0.953.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp45_benign_adaptation_curve/data/exp45_results.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp45_benign_adaptation_curve
+  skill: ''
+  created_at: '2026-05-22T06:43:57.236043+00:00'
+  tags:
+  - exp45
+  - benign_adaptation
+  - wildchat
+  - fpr
+- id: art_20260522_65c03c
+  name: exp48_ensemble_results
+  type: data
+  description: 'JB-MLM + 9-class ensemble evaluation: 3 fusion methods. NEGATIVE:
+    no Pareto improvement over JB-MLM alone.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp48_ensemble_mlm_9class/data/exp48_ensemble_results.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp48_ensemble_mlm_9class
+  skill: ''
+  created_at: '2026-05-22T06:50:43.110078+00:00'
+  tags: []
+- id: art_20260522_cf1ac3
+  name: exp49_representation_analysis
+  type: data
+  description: Weight norm, SVD geometry, and clustering analysis across 7 DAPT variants
+    for optimization regularization evidence
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp49/data/exp49_representation_analysis.py
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp49
+  skill: ''
+  created_at: '2026-05-22T07:26:09.376386+00:00'
+  tags:
+  - representation
+  - analysis
+  - optimization-regularization
+- id: art_20260522_e7b446
+  name: exp49_representation_analysis
+  type: data
+  description: 'Representation analysis: weight norm, SVD geometry, Fisher clustering
+    for 7 DeBERTa variants. Classification DAPT causes representation collapse (PR
+    3.73-9.37 vs vanilla 31.93) with 3-5 OOM higher Fisher ratio.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp49_representation_analysis/data/exp49_representation_analysis.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp49_representation_analysis
+  skill: ''
+  created_at: '2026-05-22T07:33:29.542915+00:00'
+  tags: []
+- id: art_20260522_29ae86
+  name: exp45_benign_n10_multiseed_summary
+  type: data
+  description: Multi-seed (42/123/456) robustness results for exp45 benign adaptation
+    N=10. FPR=0±0, DD/FITD F1=1.0±0, AA F1=0.981±0.016.
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp45/data/multiseed_n10_summary.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp45
+  skill: ''
+  created_at: '2026-05-22T08:47:02.211616+00:00'
+  tags:
+  - multiseed
+  - benign_adaptation
+  - robustness
+- id: art_20260522_318c42
+  name: exp50_layerwise_results
+  type: data
+  description: Layer-wise PR and Fisher ratio for 4 DeBERTa variants across 13 layers
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp50/data/exp50_layerwise_results.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp50
+  skill: ''
+  created_at: '2026-05-22T09:03:28.277138+00:00'
+  tags:
+  - representation
+  - layerwise
+  - fisher
+  - participation-ratio
+- id: art_20260522_1e4f05
+  name: fig_layerwise_representation
+  type: chart
+  description: 'Two-panel figure: (a) PR by layer, (b) Fisher by layer (log scale)
+    for vanilla/9-class/scrambled/JB-MLM'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp50/chart/fig_layerwise_representation.png
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp50
+  skill: ''
+  created_at: '2026-05-22T09:03:29.868987+00:00'
+  tags:
+  - figure
+  - layerwise
+  - paper
+- id: art_20260522_e6cc68
+  name: exp50_layerwise_results
+  type: data
+  description: Layer-wise PR and Fisher ratio for 4 DeBERTa variants across 13 layers
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp50/data/exp50_layerwise_results_e6cc68.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp50
+  skill: ''
+  created_at: '2026-05-22T09:22:53.103636+00:00'
+  tags:
+  - layerwise
+  - representation
+  - pr
+  - fisher
+- id: art_20260522_bcd637
+  name: fig_layerwise_pr_fisher
+  type: chart
+  description: 'Two-panel figure: (a) PR by layer, (b) Fisher Ratio by layer, for
+    vanilla/9-class/scrambled/JB-MLM'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp50/chart/fig_layerwise_pr_fisher.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp50
+  skill: ''
+  created_at: '2026-05-22T09:22:54.881500+00:00'
+  tags:
+  - layerwise
+  - figure
+  - paper
+- id: art_20260522_a48c36
+  name: exp51_oasst2_adapt_curve
+  type: data
+  description: 'oasst2 benign adaptation curve: FPR vs N (0/10/25/50) with OOD F1
+    metrics'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp51_adapt_curve/data/exp51_oasst2_adapt_curve.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp51_adapt_curve
+  skill: ''
+  created_at: '2026-05-22T09:52:44.165451+00:00'
+  tags:
+  - exp51
+  - oasst2
+  - adaptation
+  - fpr
+- id: art_20260522_588aab
+  name: exp52_multiseed_summary
+  type: report
+  description: 'OASST2 N=25 multi-seed validation summary: FPR mean=1.0%±0.5% across
+    seeds 42/123/456'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp52_oasst2_n25_multiseed/report/exp52_multiseed_summary.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp52_oasst2_n25_multiseed
+  skill: ''
+  created_at: '2026-05-22T10:17:01.366955+00:00'
+  tags: []
+- id: art_20260522_16e40f
+  name: exp53_llm_judge_optimized_script
+  type: intermediate
+  description: Optimized LLM-as-Judge evaluation script comparing original 3-shot
+    vs CoT prompt on IID/DD/AA/FITD at K={1,2,3,5,full}
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp53_llm_judge_prompt_opt/intermediate/exp53_script_info.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp53_llm_judge_prompt_opt
+  skill: ''
+  created_at: '2026-05-22T10:27:17.558750+00:00'
+  tags:
+  - llm-judge
+  - prompt-optimization
+  - evaluation
+- id: art_20260522_1cbee1
+  name: exp54_causal_probe_results
+  type: data
+  description: 'Causal probe experiment: top-k SVD projection preserves OOD detection
+    for 9-class DAPT model (F1=1.0 at k=3) but not MLM-only (F1=0.636). Confirms discriminative
+    compression is causally necessary for OOD generalization.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp54_causal_probe_subspace/data/results_summary.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp54_causal_probe_subspace
+  skill: ''
+  created_at: '2026-05-22T11:43:56.447788+00:00'
+  tags:
+  - causal_probe
+  - svd
+  - ood_generalization
+  - representation_analysis
+- id: art_20260522_e26115
+  name: exp56_crossllm_10shot_results
+  type: data
+  description: 'Cross-LLM 10-shot benign adaptation results: FPR drops 94.5%→3% but
+    OOD recall collapses (AA_llama 0.74→0%). Benign-only adaptation causes FPR-recall
+    tradeoff for cross-LLM shift.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp56_crossllm_10shot_adaptation/data/exp56_crossllm_10shot.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp56_crossllm_10shot_adaptation
+  skill: ''
+  created_at: '2026-05-22T12:09:56.654168+00:00'
+  tags:
+  - cross-llm
+  - adaptation
+  - negative-result
+- id: art_20260522_88faff
+  name: exp55_5seed_combined_results
+  type: data
+  description: '5-seed (42/123/456/789/1024) frozen probing comparison: 9-class vs
+    MLM DeBERTa DAPT on IID, DD OOD, AA OOD, FITD OOD. Per-seed values + summary stats
+    + paired tests.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp55_5seed_mlm_vs_9class_aa/data/exp55_5seed_expansion.py
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp55_5seed_mlm_vs_9class_aa
+  skill: ''
+  created_at: '2026-05-22T12:16:04.708038+00:00'
+  tags:
+  - seed_expansion
+  - mlm_vs_9class
+  - frozen_probing
+  - reviewer_response
+- id: art_20260522_0f8835
+  name: exp58_truncated_single_turn_results
+  type: data
+  description: 'Truncated single-turn ablation results: 9-class DAPT vs MLM DAPT on
+    full vs last-turn-only inference across IID/DD/AA/FITD test sets'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp58_truncated_single_turn/data/exp58_truncated_single_turn.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp58_truncated_single_turn
+  skill: ''
+  created_at: '2026-05-22T13:31:16.443535+00:00'
+  tags:
+  - ablation
+  - R15
+  - multi-turn
+  - truncation
+- id: art_20260522_81f242
+  name: EXP-B Binary Partition Results
+  type: data
+  description: 'EXP-B (exp61): Random binary partition of 9 strategy labels into 2
+    groups, 10 partitions (seeds 1-10). IID F1=1.0, DD F1=1.0, AA F1=0.9636±0.1093.
+    Outlier: seed7 AA=0.6356.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp61/data/exp61_binary_partitions_summary.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp61
+  skill: ''
+  created_at: '2026-05-22T17:04:05.037961+00:00'
+  tags:
+  - binary-partition
+  - ablation
+  - ood-generalization
+  - deberta-dapt
+  - bigru
+- id: art_20260522_f1c62e
+  name: exp64_fp_confidence_stats
+  type: data
+  description: 'ToxicChat FP confidence distribution statistics for 9-class vs jb_mlm,
+    majority vote and per-seed breakdown. Key findings: 9-class high-conf(>0.9) FP
+    ratio=70.2%, mean=0.9014, median=0.9999; jb_mlm high-conf FP ratio=58.8%, mean=0.8334,
+    median=0.9327. Per-seed 9-class high-conf ratio: 96.9%-97.7%. Hypothesis confirmed:
+    9-class FPs are dominated by high-confidence misclassification.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp64_toxicchat_confidence_analysis/data/exp64_artifact_pointer.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp64_toxicchat_confidence_analysis
+  skill: ''
+  created_at: '2026-05-22T22:30:05.208116+00:00'
+  tags:
+  - confidence
+  - false_positive
+  - toxicchat
+- id: art_20260522_12ed3f
+  name: exp65_svd_necessity_ablation_results
+  type: data
+  description: 'SVD dimension necessity ablation results. DD F1: 1.0→0.83 after removing
+    top-3 SVD; random-3 removal no effect.'
+  path: null
+  url: westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp65_svd_ablation.json
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp65_svd_necessity_ablation
+  skill: ''
+  created_at: '2026-05-22T23:43:31.623449+00:00'
+  tags:
+  - svd
+  - ablation
+  - necessity
+  - ood
+- id: art_20260523_8529fb
+  name: fig1_architecture
+  type: chart
+  description: 'DisPeD architecture diagram (Figure 1): three-zone horizontal flow
+    showing Input → Stage 1 (Encoder Adaptation with ×7 DeBERTa variants) → Stage
+    2 (BiGRU Temporal Classification → Jailbreak/Benign). 300 DPI, low-saturation
+    academic palette.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/fig1_architecture.png
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T06:11:07.229455+00:00'
+  tags:
+  - figure
+  - architecture
+  - paper
+  - fig1
+- id: art_20260523_188a5d
+  name: exp66_sharegpt_benign_adaptation
+  type: data
+  description: 'ShareGPT benign adaptation curve results: FPR drops from 0.39 (N=0)
+    to 0.01-0.06 (N=25) with GRU-only retraining. 10 runs across N={0,5,10,15,20,25}
+    with multi-seed for N=10,25.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp66_sharegpt_benign_adaptation/data/exp66_sharegpt_benign_adaptation.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp66_sharegpt_benign_adaptation
+  skill: ''
+  created_at: '2026-05-23T08:50:43.444509+00:00'
+  tags:
+  - benign-adaptation
+  - sharegpt
+  - fpr
+  - gru-only
+- id: art_20260523_700087
+  name: audit_main_text
+  type: report
+  description: 论文主文数字审计报告：逐项检查 abstract/introduction/method/conclusion 中所有定量数字与 registry
+    实验记录的一致性
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/report/audit_main_text.md
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T10:28:51.055197+00:00'
+  tags:
+  - audit
+  - paper
+  - quality-check
+- id: art_20260523_029afe
+  name: audit_experiments
+  type: report
+  description: Experiments.tex 数字审计报告：逐个检查 ~120 个定量声明与 registry 的一致性，发现 5 个需修正问题
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/report/audit_experiments.md
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T10:40:06.529465+00:00'
+  tags:
+  - audit
+  - paper
+  - experiments
+- id: art_20260523_d78922
+  name: audit_appendix
+  type: report
+  description: Appendix数字审计报告：~80项数字与registry交叉验证，0项不一致，7项需注意
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/report/audit_appendix.md
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T10:50:31.774767+00:00'
+  tags:
+  - audit
+  - appendix
+  - paper
+- id: art_20260523_473cce
+  name: exp67_length_matching
+  type: report
+  description: 'Length-matched control experiment results: DD/AA OOD F1 stable under
+    length matching, confirming no turn-count shortcut'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp67/report/exp67_length_matching.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp67
+  skill: ''
+  created_at: '2026-05-23T12:03:02.617906+00:00'
+  tags:
+  - length-matching
+  - control-experiment
+  - ood
+  - reviewer-response
+- id: art_20260523_817f9b
+  name: fig3_evidence_hierarchy
+  type: chart
+  description: 'Fig 3: Evidence hierarchy grouped bar chart — 7 Stage-1 DAPT variants
+    × 3 evaluation conditions (DD OOD, AA OOD, ToxicChat), showing reversal where
+    JB-MLM leads on ToxicChat despite classification variants dominating synthetic
+    OOD.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/fig3_evidence_hierarchy.pdf
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T12:37:41.471094+00:00'
+  tags:
+  - paper
+  - fig3
+  - evidence-hierarchy
+  - toxicchat
+- id: art_20260523_f1d580
+  name: mixed_llm_aa_error_analysis
+  type: report
+  description: 'Mixed-LLM 9-class ActorAttack error analysis: FP/FN decomposition,
+    cross-OOD comparison, root cause hypothesis. F1=0.504 is recall-limited (29% recall,
+    98% precision). Files at results/rebuttal/mixed_llm_error_analysis/ on westd-33183.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp69_mixed_llm_aa_error/report/artifact_pointer.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp69_mixed_llm_aa_error
+  skill: ''
+  created_at: '2026-05-23T23:13:44.533192+00:00'
+  tags:
+  - rebuttal
+  - error-analysis
+  - mixed-llm
+  - actorattack
+- id: art_20260523_7837a1
+  name: exp68_lora_comparison_summary
+  type: data
+  description: LoRA vs full DAPT OOD detection comparison results (DD/AA F1, 3 seeds
+    x 2 ranks)
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp68_lora_comparison/data/exp68_lora_comparison_summary.json
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp68_lora_comparison
+  skill: ''
+  created_at: '2026-05-23T23:37:06.868924+00:00'
+  tags:
+  - rebuttal
+  - lora
+  - ood
+- id: art_20260524_5ca77f
+  name: exp71_mixed_llm_disentangle_results
+  type: data
+  description: '350+350 mixed-LLM disentangle: AA OOD F1 partially recovers 0.504
+    to 0.709, both data quantity and heterogeneity contribute'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/exp71_mixed_llm_disentangle/data/exp71_disentangle_summary.txt
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: exp71_mixed_llm_disentangle
+  skill: ''
+  created_at: '2026-05-24T03:17:32.832612+00:00'
+  tags:
+  - rebuttal
+  - mixed-llm
+  - disentangle
+- id: art_20260524_0f29ea
+  name: fig1_architecture
+  type: chart
+  description: 'DisPeD two-stage pipeline architecture diagram (Figure 1): Stage 1
+    encoder adaptation with ×7 DAPT objectives, Stage 2 BiGRU+MLP temporal classifier.
+    Generated via PaperBanana.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/fig1_architecture_0f29ea.png
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T09:43:30.015721+00:00'
+  tags:
+  - figure1
+  - architecture
+  - paper
+  - paperbanana
+- id: art_20260524_41f713
+  name: fig1_architecture_v2
+  type: chart
+  description: 'DisPeD two-stage pipeline architecture diagram (Figure 1). Stage 1:
+    DeBERTa encoder adaptation with 7 DAPT objectives. Stage 2: BiGRU+MLP temporal
+    classifier. EMNLP 2026 publication quality, 300 DPI, all text ≥7pt at textwidth
+    scaling.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/fig1_architecture_41f713.png
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T10:13:57.811098+00:00'
+  tags:
+  - figure
+  - architecture
+  - paper
+  - emnlp2026
+- id: art_20260524_fbd854
+  name: fig1_architecture_v4
+  type: chart
+  description: Figure 1 architecture diagram v4 — enhanced Stage 2 with BiGRU bidirectional
+    flow (forward/backward arrows), h₁...hₖ input sequence strip, concat ⊕ node with
+    dimension annotations (d=256 per dir, 512, 512→256→2)
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/fig1_architecture_fbd854.pdf
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T14:13:52.121112+00:00'
+  tags:
+  - figure
+  - paper
+  - architecture
+  - stage2
+- id: art_20260524_9969a9
+  name: fig_fpr_adaptation
+  type: chart
+  description: 'FPR adaptation curve: line plot showing FPR(%) vs number of benign
+    conversations (N) for WildChat, OASST2, and ShareGPT. WildChat converges to 0%
+    at N=10, OASST2 to 1.5% at N=25, ShareGPT to 1.0% at N=25. Includes 5% deploy
+    threshold line.'
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/chart/fig_fpr_adaptation.pdf
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T14:14:26.801607+00:00'
+  tags:
+  - figure
+  - fpr
+  - adaptation
+  - appendix
+  - paper
+- id: art_20260525_672bd7
+  name: data_audit_report
+  type: report
+  description: 全文数据真实性与可追溯性审计报告：审计 ~210 个数值，发现 4 confirmed discrepancies + 2 unverifiable
+    claims，已修复 LLM-judge 表和 E2E 表的数值错误
+  path: projects/persuasion_turn_jailbreak_detect/artifacts/_project/report/data_audit_report.md
+  url: null
+  project: persuasion_turn_jailbreak_detect
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:06:15.836252+00:00'
+  tags:
+  - audit
+  - data-verification
+  - paper

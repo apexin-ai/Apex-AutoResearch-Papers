@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp16b_llama_only_mlm",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:11:21.743Z",
+    "updated_at": "2026-05-20T00:11:21.743Z",
+    "spec": {
+      "command": "bash scripts/exp16_llama_only_mlm.sh (S1 MLM DAPT + S2 GRU, seed 42)",
+      "server": "westd-33183",
+      "data_path": "data/llama_only_splits/ (350 train / 74 val / 77 test)",
+      "data_count": 501,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": "42",
+      "gpu": "cuda:2"
+    }
+  },
+  "timestamp": "2026-05-20T00:11:21.877736+00:00",
+  "trigger": "update_registry"
+}

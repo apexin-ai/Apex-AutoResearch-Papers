@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "7601cf53e4c6d8f7dd64",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "data crescendo generation v2",
+  "task_key": "worker_data_crescendo-generation-v2_20260517T081541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_crescendo-generation-v2_20260517T081541.log",
+    "occurrence": 1,
+    "bytes": 1687387,
+    "sha256": "c2420319fb148a6a9753350c496234062e87e8ade294dbad7d3104416064a66c"
+  },
+  "statistics": {
+    "messages": 1003,
+    "user_turns": 1,
+    "tool_calls": 375,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 243,
+      "tool_call": 375,
+      "tool_result": 375,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 522,
+      "chunks": [
+        {
+          "path": "7601cf53e4c6d8f7dd64-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7601cf53e4c6d8f7dd64-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7601cf53e4c6d8f7dd64-part-0003.json",
+          "message_count": 162
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 481,
+      "chunks": [
+        {
+          "path": "7601cf53e4c6d8f7dd64-part-0003.json",
+          "message_count": 18
+        },
+        {
+          "path": "7601cf53e4c6d8f7dd64-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "7601cf53e4c6d8f7dd64-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "7601cf53e4c6d8f7dd64-part-0006.json",
+          "message_count": 103
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-crescendo-generation-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8dea3012be210fe0a06f",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp46 efficiency",
+  "task_key": "worker_code_exp46_efficiency_20260522T061556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp46_efficiency_20260522T061556_result.json",
+    "occurrence": 1,
+    "bytes": 648,
+    "sha256": "17fdb354232ce3f5a559f4ad02eca959dbc0405cf5da48d30afce78e99a7209d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp46 完成。结果：\n\n| | DisPeD (DeBERTa+BiGRU) | Qwen3-8B (3-shot) |\n|---|---|---|\n| **Latency** | 13.12 ± 1.61 ms | 318.53 ± 26.80 ms |\n| **Throughput** | 76.19 conv/s | 3.14 conv/s |\n| **GPU Memory** | 868 MB | 16,096 MB |\n| **Parameters** | 186.73M | 8.19B |\n\n**Speedup: DisPeD is 24.3x faster** than Qwen3-8B LLM-as-judge, using 18.5x less GPU memory and 44x fewer parameters. Tested on 100 conversations (50 IID + 50 DD OOD), same GPU (RTX PRO 6000 Blackwell).\n\nScript: `scripts/exp46_inference_efficiency.py`\nResults: `results/exp46_inference_efficiency.json` (on server)\nRegistry: exp46 → DONE (success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp46-efficiency.md"
+}

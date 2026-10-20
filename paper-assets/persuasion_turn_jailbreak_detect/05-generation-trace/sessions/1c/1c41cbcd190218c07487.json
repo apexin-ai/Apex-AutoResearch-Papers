@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c41cbcd190218c07487",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "data wildchat deep clean",
+  "task_key": "worker_data_wildchat-deep-clean_20260517T081611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_wildchat-deep-clean_20260517T081611_result.json",
+    "occurrence": 1,
+    "bytes": 1214,
+    "sha256": "0570ea2467dbec5fcb1c31b581014da7972681d6c36c26d7512b89bcbb18d2d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清洗完成。汇报：\n\n---\n\n**WildChat 深度清洗结果**\n\n| 指标 | 数值 |\n|------|------|\n| 原 benign 数据 | 250 条 |\n| 扩展关键词命中 | 24 条（3-tier 启发式） |\n| GPT-5.5 判定 | API 403，已 fallback |\n| 最终移除 | **24 条** |\n| 剩余 benign | **226 条** |\n| 总数据集 | **476 条** |\n\n**移除分类：**\n- Tier1（高置信 jailbreak 关键词：DAN/Developer Mode 等）：10 条\n- AutoGPT/agent prompt injection：10 条\n- Tier2+上下文（role assignment + safety context）：1 条\n- Tier3+强上下文（\"character\" + ≥3 safety indicators）：3 条\n\n**更新后 splits：**\n- train: 336 (benign=160, cipher=81, persuasion=95)\n- val: 70 (benign=33, cipher=17, persuasion=20)\n- test: 70 (benign=33, cipher=17, persuasion=20)\n\n**说明：** GPT-5.5 API 返回 403（余额耗尽），使用 3-tier 启发式替代：Tier1 自动移除，Tier2 需要 ≥2 个 jailbreak 上下文词共现，Tier3（\"character\"等高误杀词）需 ≥3 个上下文词。相比之前纯关键词扫描的 12 条，本次通过扩展 AutoGPT 模式检测和分层上下文判断，识别出了之前遗漏的 prompt injection 类攻击。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-wildchat-deep-clean.md"
+}

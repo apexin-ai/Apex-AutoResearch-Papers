@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d58fd1a285e39f17d181",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp15 roberta large",
+  "task_key": "worker_code_exp15-roberta-large_20260519T081337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp15-roberta-large_20260519T081337.log",
+    "occurrence": 1,
+    "bytes": 734399,
+    "sha256": "230a001c0a41622b765e0230d64605d6d57477c9f3347f4608936b7b26a32009"
+  },
+  "statistics": {
+    "messages": 281,
+    "user_turns": 0,
+    "tool_calls": 103,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 71,
+      "tool_call": 103,
+      "tool_result": 103,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 281,
+      "chunks": [
+        {
+          "path": "d58fd1a285e39f17d181-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d58fd1a285e39f17d181-part-0002.json",
+          "message_count": 101
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp15-roberta-large.md"
+}

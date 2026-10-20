@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e054ddf3e7471d6293e6",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260518T042439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_20260518T042439_result.json",
+    "occurrence": 1,
+    "bytes": 706,
+    "sha256": "5656b6813d5b6095e9392eca9c63c66ccffd30304a30965655a2bd178886cf8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All numbers match experiments.tex: DD-OOD Treatment F1=1.000, Baseline=0.284, +72pp, GPT-5.5 F1=0.191-0.449, unparseable 30-47%, perturbation 0pp/11.8pp/1.3pp, scrambled labels 1pp gap, vanilla collapse from 0.575 at K=1 to 0.284 at Full.\n\nWritten to `/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex`. The section follows the 5-paragraph structure (hook, gap, insight, mechanism, contributions), uses ~1100-1200 rendered words, passes all style checks (no em-dashes, no blacklisted words, no -ing phrase endings, no \"significantly\"/\"state-of-the-art\"), and all numbers are consistent with experiments.tex and method.tex."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction.md"
+}

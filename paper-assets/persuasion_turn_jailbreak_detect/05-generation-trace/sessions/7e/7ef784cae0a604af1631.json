@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ef784cae0a604af1631",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp51 check results",
+  "task_key": "worker_code_exp51_check_results_20260522T093839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp51_check_results_20260522T093839_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "c2b91d4ba9a8fc5ba0c0c287e7091c2cf3f940fdeaa7d3c13483335332929c01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp51 oasst2 评估结果\n\n**Phase 1 — Baseline (9-class, no adaptation):**\n| 指标 | 值 |\n|------|-----|\n| oasst2 FPR | **57.5%** (115/200) |\n| Mean jailbreak prob | 0.569 |\n| Max jailbreak prob | 1.000 |\n\nFPR > 20%，触发 Phase 2。\n\n**Phase 2 — 10-shot Adaptation (加 10 条 oasst2 benign 重训):**\n| 指标 | 值 |\n|------|-----|\n| Adapted oasst2 FPR | **20.5%** (41/200) |\n| IID F1 macro | 1.0000 |\n| OOD DD F1 | 1.0000 |\n| OOD AA F1 | 1.0000 |\n| OOD FITD F1 | 1.0000 |\n\n10-shot adaptation 将 FPR 从 57.5% 降到 20.5%，同时 OOD 检测性能无损（所有 OOD attack F1 保持 1.0）。总耗时 1.7 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp51-check-results.md"
+}

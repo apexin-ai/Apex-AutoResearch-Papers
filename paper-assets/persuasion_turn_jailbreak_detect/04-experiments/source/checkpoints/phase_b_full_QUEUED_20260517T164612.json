@@ -1,0 +1,16 @@
+{
+  "exp_id": "phase_b_full",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:46:02.649Z",
+    "updated_at": "2026-05-17T16:46:12.197Z",
+    "hypothesis": "Persuasion-grounded DeBERTa embeddings (multi-task fine-tuned on 8-class persuasion + intent) enable significantly earlier detection of Crescendo jailbreak attacks compared to vanilla DeBERTa embeddings, especially at low K (2-3 turns)",
+    "parent": "pilot_phase_b"
+  },
+  "timestamp": "2026-05-17T16:46:12.227824+00:00",
+  "trigger": "update_registry"
+}

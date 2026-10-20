@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d84f754346b90b9f0b0b",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16b llama ood eval",
+  "task_key": "worker_code_exp16b-llama-ood-eval_20260520T005913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16b-llama-ood-eval_20260520T005913_result.json",
+    "occurrence": 1,
+    "bytes": 1366,
+    "sha256": "ad36f2882af8df353743e6870b83023762d4f63842c24774bbc72db4d631cdf0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。结果如下：\n\n```\nLlama→Llama OOD 评估结果:\n                    Vanilla        MLM      Delta\n--------------------------------------------------\nLlama DD OOD         0.1807     0.1905    +0.0098\nLlama AA OOD         0.4113     0.2903    -0.1210\n--------------------------------------------------\nAverage              0.2960     0.2404    -0.0556\n```\n\n**数据详情**:\n- Llama DD OOD: 50 jailbreak + 18 benign = 68 条（source: llama3.1-8b-deceptive-delight）\n- Llama AA OOD: 50 jailbreak + 18 benign = 68 条（source: llama3.1-8b-actorattack）\n\n**分析**:\n\n两个模型在 Llama OOD 上都**严重失败**，几乎全部预测为 benign：\n\n| | Vanilla pred jb | MLM pred jb | 实际 jb |\n|---|---|---|---|\n| DD | 3/50 | 2/50 | 50 |\n| AA | 16/50 | 7/50 | 50 |\n\n- **DD OOD**: 两者都接近随机以下（~0.19 F1），MLM 微弱提升 +0.01，实质无差异\n- **AA OOD**: Vanilla 略好（0.41 vs 0.29），MLM 反而**降低** -0.12\n- **MLM DAPT 无效甚至有害**: Llama-only MLM 预训练未能改善对 Llama 生成的新攻击类型的泛化，AA 上还显著退化\n\n核心问题是模型对未见过的攻击模式（DD/AA）检测率极低（recall 接近 0），这是 attack-type OOD 问题而非 source-LLM OOD 问题。结果已保存至 `results/exp16b_llama_ood_eval.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16b-llama-ood-eval.md"
+}

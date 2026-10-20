@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a609fe8720f74e6c183",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code fitd perseed table7",
+  "task_key": "worker_code_fitd-perseed-table7_20260521T140517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fitd-perseed-table7_20260521T140517_result.json",
+    "occurrence": 1,
+    "bytes": 1440,
+    "sha256": "a5cb53fe60614166d4329d71847b301c2296ca9565c4a783fef20083bedd9e18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存。汇总：\n\n### FITD Table 7 per-seed 结果\n\n**数据来源**：`per_sample_predictions/fitd_ood_per_sample.json`（由 exp35 使用 plan_002 production checkpoints 生成，今天 04:28 运行）\n\n| Method | K=1 | K=2 | K=3 | K=5 | Full |\n|--------|-----|-----|-----|-----|------|\n| 9-class (ours) | 1.000±.000 | 1.000±.000 | -- | -- | 1.000±.000 |\n| Vanilla DeBERTa | .954±.039 | .952±.061 | -- | -- | .994±.009 |\n| TF-IDF LR | 1.000 | -- | -- | -- | 1.000 |\n\n### 偏差标记\n\nVanilla 所有列的 3-seed 均值与当前 Table 7 值有显著偏差：\n\n| 列 | Table 7 现值 | 3-seed mean | Δ | 原因 |\n|----|-------------|-------------|---|------|\n| K=1 | .990 | .954 | .036 | 现值仅用 seed 42（.990） |\n| K=2 | 1.000 | .952 | .048 | 现值仅用 seed 42（1.000） |\n| Full | 1.000 | .994 | .006 | 现值仅用 seed 42（1.000） |\n\n**根因**：Table 7 FITD 部分之前只用了 seed 42 的结果填入。seed 456 的 vanilla 表现明显低于其他两个 seed（K1=.900, K2=.866, Full=.981），拉低了均值。\n\n9-class 三个 seed 全部 1.000，无偏差。\n\n### LaTeX 建议行\n```\n9-class (ours) & 1.000$\\pm$.000 & 1.000$\\pm$.000 & -- & -- & 1.000$\\pm$.000 \\\\\nVanilla DeBERTa & .954$\\pm$.039 & .952$\\pm$.061 & -- & -- & .994$\\pm$.009 \\\\\n```\n\n产出文件：`/root/persuasion_turn_jailbreak_detect/results/exp41_fitd_table7_perseed.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fitd-perseed-table7.md"
+}

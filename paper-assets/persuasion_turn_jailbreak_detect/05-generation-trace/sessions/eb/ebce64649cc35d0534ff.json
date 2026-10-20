@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebce64649cc35d0534ff",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16 mlm recovery",
+  "task_key": "worker_code_exp16-mlm-recovery_20260519T204746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-mlm-recovery_20260519T204746_result.json",
+    "occurrence": 1,
+    "bytes": 815,
+    "sha256": "3b3d2e0c73c3851eff211cad670f198ab7c664c0cfdb9b1c504ceffbf0b93638"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**脚本内容**：\n\n- `scripts/exp16_mlm_gpu0.sh` — GPU 0 跑 seed 42 Stage 2 → seed 123 Stage 1 → seed 123 Stage 2\n- `scripts/exp16_mlm_gpu1.sh` — GPU 1 跑 seed 456 Stage 1 → seed 456 Stage 2\n- 均已设置 `WANDB_MODE=disabled`, `TRANSFORMERS_OFFLINE=1`, `HF_HUB_OFFLINE=1`\n\n**当前状态**：\n\n| GPU | tmux session | 当前任务 | 进度 |\n|-----|-------------|---------|------|\n| 0 | exp16_mlm_gpu0 | seed 123 Stage 1 (DAPT) | Epoch 3/4, loss 5.61 |\n| 1 | exp16_mlm_gpu1 | seed 456 Stage 1 (DAPT) | Epoch 2/4, loss 6.10 |\n\n- seed 42 Stage 2 (GRU) 已完成，最佳 Val Loss 0.3608, Val Acc 0.8243\n- GPU 显存各占用 ~20GB/98GB，利用率 72-76%\n- 模型缓存 `microsoft/deberta-v3-base` 已在本地，`TRANSFORMERS_OFFLINE=1` 生效无网络请求"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16-mlm-recovery.md"
+}

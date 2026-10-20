@@ -1,0 +1,46 @@
+{
+  "exp_id": "cross_attack_baseline",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:15:33.333Z",
+    "updated_at": "2026-05-17T21:16:08.160Z",
+    "hypothesis": "Persuasion-grounded DeBERTa embeddings (trained on Crescendo) generalize to unseen attack types (FITD/DD) for early detection, outperforming vanilla DeBERTa baseline especially at low K",
+    "parent": "phase_b_full",
+    "spec": {
+      "command": "python cross_attack_eval.py",
+      "server": "westd-33183",
+      "data_path": "/root/persuasion_turn_jailbreak_detect/fitd_all.jsonl + deceptive_delight_all.jsonl",
+      "data_count": 160,
+      "model_name": "DeBERTa-v3-base (phase_b_full checkpoint)",
+      "seed": 42,
+      "checkpoint_source": "phase_b_full",
+      "eval_data": "FITD 80 + DD 80 + v4c benign subset",
+      "checkpoint_path": "N/A (eval only)",
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/cross_attack_eval.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "fitd_treatment_k1_f1": 0.9812,
+      "fitd_baseline_k1_f1": 0.7483,
+      "fitd_treatment_k2_f1": 0.975,
+      "fitd_baseline_k2_f1": 0.6866,
+      "fitd_treatment_k3_f1": 0.9937,
+      "fitd_baseline_k3_f1": 0.8465,
+      "dd_treatment_k1_f1": 0.9812,
+      "dd_baseline_k1_f1": 1,
+      "dd_treatment_k2_f1": 0.9875,
+      "dd_baseline_k2_f1": 1,
+      "full_treatment_f1": 1,
+      "full_baseline_f1": 1,
+      "tfidf_fitd_k2_f1": 1,
+      "tfidf_dd_k1_f1": 1
+    },
+    "completed_at": "2026-05-17T21:16:08.160Z"
+  },
+  "timestamp": "2026-05-17T21:16:08.172803+00:00",
+  "trigger": "update_registry"
+}

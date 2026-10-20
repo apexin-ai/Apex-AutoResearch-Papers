@@ -1,0 +1,64 @@
+{
+  "exp_id": "exp41_tost_10seed",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:27:38.653Z",
+    "updated_at": "2026-05-22T03:53:52.977Z",
+    "hypothesis": "Extending TOST equivalence test from n=5 to n=10 seeds will resolve the inconclusive AA result (p=0.08 at n=5) by providing sufficient statistical power: if scrambled and 9-class are truly equivalent within 5pp margin on ActorAttack, the increased sample size will yield p<0.05, confirming label content irrelevance across all OOD families.",
+    "parent": "exp39_extra_seeds_tost",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python scripts/exp41_tost_10seed.py",
+      "server": "westd-33183",
+      "data_path": "/root/persuasion_turn_jailbreak_detect/data/plan_002_splits/",
+      "data_count": "train+val+test from plan_002_splits",
+      "model_name": "deberta-v3-base + BiGRU",
+      "seed": "2024,2025,2026,314,628 (new) + 42,123,456,789,1000 (prior)",
+      "checkpoint_source": "newly trained from scratch (5 new seeds)",
+      "eval_data": "DD OOD, AA OOD, FITD OOD test sets"
+    },
+    "log_path": "/root/persuasion_turn_jailbreak_detect/logs/exp41_tost_10seed.log",
+    "checkpoint_path": "/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp41_*/",
+    "metrics": {
+      "n_seeds": 10,
+      "seeds": [
+        42,
+        123,
+        456,
+        789,
+        1000,
+        2024,
+        2025,
+        2026,
+        314,
+        628
+      ],
+      "tost_DD": {
+        "p": 2.06e-09,
+        "equivalent": true,
+        "cohens_d": -0.136
+      },
+      "tost_AA": {
+        "p": 0.183,
+        "equivalent": false,
+        "cohens_d": 0.44
+      },
+      "tost_FITD": {
+        "p": 0,
+        "equivalent": true,
+        "cohens_d": 0
+      },
+      "9class_AA_mean": 0.979,
+      "scrambled_AA_mean": 0.949,
+      "AA_mean_diff_pp": 3,
+      "training_time_min": 16.8
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-22T03:53:52.977Z"
+  },
+  "timestamp": "2026-05-22T03:53:53.164969+00:00",
+  "trigger": "update_registry"
+}

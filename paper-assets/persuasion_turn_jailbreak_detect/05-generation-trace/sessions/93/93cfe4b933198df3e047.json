@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93cfe4b933198df3e047",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp12 toxicchat bootstrap",
+  "task_key": "worker_eval_exp12-toxicchat-bootstrap_20260518T233003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp12-toxicchat-bootstrap_20260518T233003_result.json",
+    "occurrence": 1,
+    "bytes": 1215,
+    "sha256": "447a11ccf818c63e70e14bfd46f05bb91593a7edaf2c48e557b7ca2b77a9c865"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存至 `results/exp12_toxicchat_bootstrap.json`。\n\n**Bootstrap 95% CI（pooled, BCa）：**\n\n| Variant | Pooled F1 | 95% CI | Seed mean ± std |\n|---------|-----------|--------|-----------------|\n| jb_mlm | 0.8373 | [0.8162, 0.8576] | 0.8371 ± 0.015 |\n| wiki_mlm | 0.7969 | [0.7737, 0.8195] | 0.7913 ± 0.114 |\n| binary | 0.7092 | [0.6832, 0.7352] | 0.7046 ± 0.088 |\n| scrambled | 0.6174 | [0.5900, 0.6448] | 0.6160 ± 0.068 |\n| 9class | 0.5962 | [0.5685, 0.6235] | 0.5956 ± 0.107 |\n| topic | 0.4975 | [0.4693, 0.5252] | 0.4955 ± 0.051 |\n| vanilla | 0.4147 | [0.3896, 0.4429] | 0.4127 ± 0.026 |\n\n**Permutation Tests（全部 p < 0.001）：**\n\n| Comparison | Diff | Pooled p | Sig |\n|------------|------|----------|-----|\n| jb_mlm vs 9class | +0.2411 | 0.0001 | *** |\n| jb_mlm vs vanilla | +0.4226 | 0.0001 | *** |\n| wiki_mlm vs 9class | +0.2007 | 0.0001 | *** |\n\n三组对比均高度显著（p < 0.001）。jb_mlm 的 CI 最窄（seed std 仅 0.015），稳定性远优于 wiki_mlm（0.114）和 9class（0.107）。唯一值得注意的是 wiki_mlm vs 9class 在 seed 42 下差异不显著（p=0.057），但 Fisher combined 和 pooled 均显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp12-toxicchat-bootstrap.md"
+}

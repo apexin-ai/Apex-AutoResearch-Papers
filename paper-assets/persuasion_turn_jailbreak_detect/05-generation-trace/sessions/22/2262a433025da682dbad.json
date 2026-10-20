@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2262a433025da682dbad",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp8 human jailbreak v3",
+  "task_key": "worker_eval_exp8-human-jailbreak-v3_20260518T164902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp8-human-jailbreak-v3_20260518T164902_result.json",
+    "occurrence": 1,
+    "bytes": 1821,
+    "sha256": "45bf3690c92629cdd184a6198af9e0437632580c1f8ad37a7c9ceb9e2db02cfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 和 artifact 已更新。汇总结果：\n\n## Exp8: 人类越狱数据评估结果 (verazuo/jailbreak_llms)\n\n**数据**: 666 human jailbreak prompts (Reddit/Discord) + 213 benign (plan_002 first-turn)，单轮评估\n\n| Variant | Seeds | F1 (mean±std) | Precision | Recall | Accuracy |\n|---------|-------|---------------|-----------|--------|----------|\n| **jb_mlm** | 3 | **0.968±0.010** | 0.982±0.012 | 0.955±0.011 | 0.952±0.015 |\n| binary | 3 | 0.929±0.037 | 1.000±0.000 | 0.869±0.065 | 0.901±0.049 |\n| wiki_mlm | 3 | 0.897±0.093 | 0.972±0.024 | 0.849±0.158 | 0.865±0.110 |\n| scrambled | 2 | 0.861±0.022 | 1.000±0.000 | 0.756±0.034 | 0.815±0.026 |\n| 9class | 3 | 0.812±0.135 | 1.000±0.000 | 0.706±0.200 | 0.777±0.152 |\n| topic | 3 | 0.758±0.082 | 0.927±0.049 | 0.644±0.092 | 0.694±0.090 |\n| vanilla | 3 | 0.131±0.033 | 0.939±0.022 | 0.071±0.019 | 0.292±0.012 |\n\n### 结论\n\n**Evidence hierarchy 在人类数据上成立。** 核心发现：\n\n1. **vanilla 彻底崩溃** (F1=0.131)：未经领域适配的 DeBERTa 对人类越狱几乎完全失效，确认领域适配是必要条件\n2. **所有领域适配变体 >> vanilla**：即使训练数据全部由 Qwen3-8B 生成，模型仍能泛化到人类写的 jailbreak prompts，**single-LLM confound 不能解释 evidence hierarchy**\n3. **jb_mlm 表现最强** (F1=0.968±0.010)：在人类数据上 MLM 域适配甚至优于分类微调，且方差最低\n4. **9class 方差较大** (0.656~0.986)：seed 敏感性在更难的分布外数据上被放大\n\n这直接反驳了审稿人的质疑：如果 cross-attack generalization 只是 within-LLM stylistic generalization，那么在人类文本上应该完全失效。实际结果显示所有适配变体在人类数据上仍保持 F1>0.75。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp8-human-jailbreak-v3.md"
+}

@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp50_layerwise_representation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T08:58:57.759Z",
+    "updated_at": "2026-05-22T09:21:41.582Z",
+    "hypothesis": "Discriminative compression from classification DAPT concentrates in DeBERTa's later layers (7-12) rather than early layers (1-6), mechanistically distinguishing it from Maennel et al.'s early-layer label-independent statistics. If PR and Fisher ratio diverge between classification-supervised and MLM/vanilla only in later layers, this confirms compression is a task-specific representation restructuring, not an early-layer phenomenon.",
+    "parent": "exp49_representation_analysis",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T09:21:41.790742+00:00",
+  "trigger": "update_registry"
+}

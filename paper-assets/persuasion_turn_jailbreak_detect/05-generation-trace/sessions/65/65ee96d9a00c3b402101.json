@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65ee96d9a00c3b402101",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp15b roberta large lr",
+  "task_key": "worker_code_exp15b-roberta-large-lr_20260519T090013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp15b-roberta-large-lr_20260519T090013_result.json",
+    "occurrence": 1,
+    "bytes": 145,
+    "sha256": "3e213a78b0b1a599650e0a0123cc0422123a5d4348adb800aeaafba64b824835"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，DAPT seed=42 正在 cuda:0 上训练（RoBERTa-large, LR=1e-5, epochs=5, batch=8）。3 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp15b-roberta-large-lr.md"
+}

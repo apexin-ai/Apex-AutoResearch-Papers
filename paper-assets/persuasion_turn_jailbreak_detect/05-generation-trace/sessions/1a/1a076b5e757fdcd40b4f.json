@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a076b5e757fdcd40b4f",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper writing experiments rewrite",
+  "task_key": "worker_paper_writing_experiments_rewrite_20260519T131430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_rewrite_20260519T131430_result.json",
+    "occurrence": 1,
+    "bytes": 1955,
+    "sha256": "3fce5ef3a62c9e549510a09377c96b986bf71fd5b2c4d8fd7fcce9479a846324"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Rewrite complete. Key changes:\n\n**Insight-led openers** (all 6 subsections):\n- Cross-Attack: \"Vanilla encoders collapse under cross-attack transfer; DAPT recovers near-perfect detection\"\n- Decomposing: \"Domain exposure is the primary detection mechanism: it accounts for the largest OOD gain, while label quality and granularity are non-factors\"\n- Cross-Encoder: \"A hierarchy established on a single encoder could reflect architecture-specific artifacts\" (explicit motivation)\n- Human Data: \"The evidence hierarchy is not a Qwen3-8B generation artifact\"\n- Perturbation: \"DAPT's detection advantage persists under adversarial paraphrasing, though absolute robustness is attack-family-dependent\"\n- Strategy: \"Beyond detection accuracy, the 9-class persuasion taxonomy provides interpretable characterization\"\n\n**Redundancy reduction**: removed \"The core result appears in Table X\" opener; merged prefix-length analysis with vanilla collapse paragraph; condensed figure description to one sentence; compressed Summary from ~63 to ~45 words (3 sentences).\n\n**Sentence splitting**: Models paragraph LLM sentence (1 -> 3), Metrics std sentence (split at semicolon), Cross-Attack MLM interpretation (split at \"Longer conversations...\"), Decomposing McNemar sentence (split at period), Cross-Encoder RoBERTa-large opener (colon -> period).\n\n**De-AI fixes**: eliminated -ing participial endings (\"worsening with more turns\" -> \"degrades monotonically from\"; \"confirming that...\" -> \"show that...\"); no em-dashes/en-dashes outside number ranges.\n\n**Strategy expanded**: from 5 lines to 7, added explicit dissociation (\"yet detection F1 remains near-perfect\") and closing interpretive sentence about taxonomy's role.\n\n**Perturbation tightened**: from 4 sentences to 3, insight-first opener combines conclusion + appendix ref.\n\nAll numbers, table/figure blocks, \\label/\\ref, and \\cite preserved exactly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments-rewrite.md"
+}

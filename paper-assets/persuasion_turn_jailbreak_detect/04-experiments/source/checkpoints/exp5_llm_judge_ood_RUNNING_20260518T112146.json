@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp5_llm_judge_ood",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:47:30.630Z",
+    "updated_at": "2026-05-18T11:21:46.016Z",
+    "hypothesis": "Zero-shot Qwen3-8B will underperform trained classifiers on OOD data (DD and FITD), establishing that even on unseen attack types, specialized trained detectors outperform general-purpose LLM reasoning",
+    "spec": {
+      "command": "python exp5_llm_judge_ood.py (Qwen3-8B zero-shot on DD+FITD OOD)",
+      "server": "westd-33183",
+      "data_path": "data/dd_ood + data/generated/fitd_all.jsonl + data/plan_002_splits/test.jsonl",
+      "data_count": 236,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_path": "N/A (zero-shot)",
+      "log_path": "results/exp5_llm_judge_ood.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T11:21:46.116690+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cea9dda3d051347d28fa",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code plan004 adversarial perturbation",
+  "task_key": "worker_code_plan004-adversarial-perturbation_20260517T214835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan004-adversarial-perturbation_20260517T214835_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "5b9a8d356c5f1b9f23a5c4a442a88cbec60dc9a034d2b7be71230a25cef4e3df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `/root/persuasion_turn_jailbreak_detect/src/adversarial_perturbation.py`，argparse 验证通过。\n\n功能总结：\n- **Step 1**：用 Qwen3-8B 对 test.jsonl 所有 user turn 做 aggressive paraphrase（`enable_thinking=False` + regex strip 双重保护），输出同格式 perturbed JSONL\n- **Step 2**：加载 treatment (DeBERTa-FT + GRU) 和 baseline (DeBERTa-vanilla + GRU)，在 original 和 perturbed 数据上分别评估 F1/Precision/Recall/Accuracy @ K=1,2,3,full，输出对比表和 JSON 结果\n- `--skip_perturb` 可跳过 Step 1 直接用已有 perturbed 文件评估\n\n待 plan_002 训练完成后，用新 checkpoint 路径执行即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan004-adversarial-perturbation.md"
+}

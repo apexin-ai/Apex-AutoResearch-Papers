@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab3fe9c70800d36f4a3d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code tost and 5seed table",
+  "task_key": "worker_code_tost-and-5seed-table_20260521T093920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tost-and-5seed-table_20260521T093920_result.json",
+    "occurrence": 1,
+    "bytes": 1116,
+    "sha256": "90ccbfbb9dd99ddb031d78f48c6095cc4acaa4a0ea212bdbcf5b1be88e233727"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n### 5-seed F1 列表 (seeds: 42, 123, 456, 789, 1000)\n\n```\nDD    9-class [1.0000, 1.0000, 0.9904, 1.0000, 1.0000]  scrambled [0.9904, 1.0000, 1.0000, 1.0000, 1.0000]\nAA    9-class [0.9904, 0.9350, 0.9904, 0.9715, 0.9715]  scrambled [0.8913, 0.9904, 0.9715, 0.9904, 0.9904]\nFITD  9-class [1.0000, 1.0000, 1.0000, 1.0000, 0.9904]  scrambled [1.0000, 1.0000, 1.0000, 1.0000, 0.9904]\n```\n\n### TOST 等价性检验 (paired, ε=0.05)\n\n| Condition | mean_diff | SE | p_TOST | Cohen's d | Equivalent? |\n|-----------|-----------|------|--------|-----------|-------------|\n| DD | −0.0000 | 0.0030 | 0.0000 | −0.0011 | **YES** |\n| AA | +0.0050 | 0.0263 | 0.0810 | 0.0843 | **NO** |\n| FITD | 0.0000 | 0.0000 | 0.0000 | 0.0000 | **YES** |\n\n**DD 和 FITD** 统计等价（p < 0.05）。**AA** 未通过 TOST（p=0.081），主要受 seed 42 的 scrambled 低值（0.891）拖累——方差大导致 SE 较大，n=5 下检验力不足以在 ε=0.05 下拒绝。不过 Cohen's d=0.084 属于 negligible effect size。\n\n结果已保存到 `results/exp39_tost_analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tost-and-5seed-table.md"
+}

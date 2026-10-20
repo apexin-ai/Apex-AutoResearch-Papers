@@ -1,0 +1,1 @@
+DD OOD F1 (3-seed mean +/- std): full=0.904+/-0.115, k1=0.913+/-0.073, k2=0.911+/-0.073, k3=0.937+/-0.062, k5=0.923+/-0.082. IID full=0.978+/-0.012. Per-seed DD OOD full: seed42=0.742, seed123=0.990, seed456=0.980. Results on server: /root/persuasion_turn_jailbreak_detect/results/plan_018_wiki_mlm_3seed_summary.json

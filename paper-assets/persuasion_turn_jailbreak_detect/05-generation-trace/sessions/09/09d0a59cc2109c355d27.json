@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "09d0a59cc2109c355d27",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "audit ref verify A",
+  "task_key": "worker_audit_ref-verify-A_20260526T101601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_ref-verify-A_20260526T101601.log",
+    "occurrence": 1,
+    "bytes": 629861,
+    "sha256": "e10e44c5a86fa44330e461a5e4525b0109a9e0d1a3224a7fb99365f03298e72f"
+  },
+  "statistics": {
+    "messages": 286,
+    "user_turns": 0,
+    "tool_calls": 27,
+    "roles": {
+      "log": 1,
+      "system": 203,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 27,
+      "tool_result": 27,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 286,
+      "chunks": [
+        {
+          "path": "09d0a59cc2109c355d27-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "09d0a59cc2109c355d27-part-0002.json",
+          "message_count": 106
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-ref-verify-a.md"
+}

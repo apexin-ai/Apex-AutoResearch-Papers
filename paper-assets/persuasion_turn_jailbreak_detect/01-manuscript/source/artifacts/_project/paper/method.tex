@@ -1,0 +1,80 @@
+% method.tex — DisPeD Method Section
+
+\section{Method}
+\label{sec:method}
+
+DisPeD is a two-stage framework for multi-turn jailbreak detection that operates on the pragmatic structure of conversations rather than their surface content. Stage~1 fine-tunes a turn-level encoder with a multi-task persuasion objective to produce representations sensitive to persuasion strategies. Stage~2 aggregates these turn-level representations for conversation-level binary classification. Figure~\ref{fig:architecture} illustrates the complete pipeline.
+
+\subsection{Problem Formulation}
+
+A multi-turn conversation $C = \{u_1, a_1, u_2, a_2, \ldots, u_N, a_N\}$ consists of alternating user turns $u_i$ and assistant responses $a_i$. We formulate jailbreak detection as binary classification over user turns: given a prefix of the first $K$ user turns $\{u_1, \ldots, u_K\}$, the model predicts whether the conversation constitutes a jailbreak attempt ($y=1$) or a benign interaction ($y=0$). We restrict the input to user turns because the adversarial intent resides in the attacker's messages; assistant responses are reactive and may contain refusals or compliance signals that confound detection. This formulation supports early detection, as the model can classify conversations from partial prefixes without waiting for the conversation to complete.
+
+\subsection{Stage 1: Persuasion-Aware Turn Encoding}
+\label{sec:stage1}
+
+The core hypothesis of DisPeD is that multi-turn jailbreak attacks rely on persuasion strategies that leave detectable pragmatic signatures in the attacker's language, even when individual turns appear benign at the content level. Stage~1 encodes this hypothesis by fine-tuning a DeBERTa-v3-base encoder~\citep{he2021deberta} with a multi-task objective that jointly learns persuasion strategy classification and jailbreak-intent classification at the turn level.
+
+\paragraph{Turn encoding.}
+Each user turn $u_i$ is passed through the DeBERTa encoder to obtain a contextualized representation. We take the [CLS] token embedding $h_i \in \mathbb{R}^d$ as the turn-level representation, where $d$ is the hidden dimension of DeBERTa-v3-base.
+
+\paragraph{Multi-task objective.}
+Two classification heads operate on $h_i$ simultaneously. The first head performs 9-class persuasion strategy classification, producing a cross-entropy loss $L_{\text{strategy}}$. The second head performs binary jailbreak-intent classification, producing a cross-entropy loss $L_{\text{intent}}$. The combined training objective is:
+\begin{equation}
+  L = L_{\text{strategy}} + \alpha \cdot L_{\text{intent}}
+  \label{eq:loss}
+\end{equation}
+where $\alpha$ controls the relative weight of the intent task. We set $\alpha = 0.3$ throughout all experiments, weighting the persuasion strategy task more heavily to prioritize pragmatic feature learning.
+
+The multi-task formulation serves a specific purpose: the persuasion classification task forces the encoder to learn representations that distinguish between different pragmatic strategies (e.g., rapport building vs.\ emotional manipulation), while the intent classification task ensures these representations remain useful for detecting adversarial intent. The encoder thus learns to attend to pragmatic cues in the attacker's language that transfer across attack types, rather than memorizing surface patterns from a single attack family.
+
+\paragraph{Persuasion taxonomy.}
+We define a 9-class taxonomy of persuasion strategies grounded in the Persuasion Attack Paradigm (PAP)~\citep{zeng2024pap} and Cialdini's principles of influence~\citep{cialdini2001influence}. The nine categories comprise eight persuasion strategies and a none category for turns without an identifiable strategy:
+
+\begin{enumerate}[leftmargin=*, itemsep=1pt, topsep=2pt]
+  \item[0.] \textbf{None}: no identifiable persuasion strategy.
+  \item[1.] \textbf{Rapport Building}: establishing trust or common ground.
+  \item[2.] \textbf{Authority Appeal}: invoking expertise, credentials, or institutional authority.
+  \item[3.] \textbf{Emotional Manipulation}: exploiting emotional responses such as urgency, sympathy, or fear.
+  \item[4.] \textbf{Logical Reframing}: restructuring requests to appear reasonable or benign.
+  \item[5.] \textbf{Role Assignment}: assigning the model a persona that bypasses safety constraints.
+  \item[6.] \textbf{Gradual Escalation}: incrementally increasing the severity of requests.
+  \item[7.] \textbf{Obfuscation}: disguising intent through indirection, encoding, or ambiguity.
+  \item[8.] \textbf{Direct Request}: explicit harmful requests without persuasion framing.
+\end{enumerate}
+
+This taxonomy is not exhaustive but covers the dominant strategies identified in existing multi-turn attack analyses~\citep{zeng2024pap,russinovich2024crescendo,fitd2024,deceptivedelight2024}. Turn-level strategy annotations are produced by Qwen3-8B, a procedure we validate through ablation in Section~\ref{sec:ablation}: scrambled labels yield only a 1 percentage point reduction in OOD detection performance, confirming that the fine-tuning process on persuasion-related text, rather than label accuracy, is the primary driver of cross-attack generalization.
+
+\subsection{Stage 2: Conversation-Level Classification}
+\label{sec:stage2}
+
+Stage~2 aggregates turn-level representations from the fine-tuned encoder into a single conversation-level prediction.
+
+\paragraph{Aggregation.}
+Given a prefix of $K$ user turns encoded by the Stage-1 encoder, we obtain [CLS] embeddings $\{h_1, h_2, \ldots, h_K\}$. We aggregate these into a single conversation representation $\bar{h}$ using a bidirectional GRU (BiGRU):
+\begin{equation}
+  \bar{h} = [\overrightarrow{h_K};\; \overleftarrow{h_1}]
+  \label{eq:bigru}
+\end{equation}
+where $\overrightarrow{h_K}$ and $\overleftarrow{h_1}$ are the final hidden states of the forward and backward GRU respectively, and $[;\;]$ denotes concatenation.
+
+Despite using a sequential model, the ablation in Section~\ref{sec:ablation} confirms that replacing BiGRU with orderless mean pooling yields equivalent OOD performance. The model therefore functions as a persuasion-presence detector that identifies whether individual turns carry persuasive intent, rather than a trajectory detector that exploits temporal ordering across turns.
+
+\paragraph{Classifier.}
+A two-layer MLP takes $\bar{h}$ as input and produces a binary prediction $\hat{y} \in \{0, 1\}$, where $\hat{y} = 1$ indicates a jailbreak attempt. The Stage-2 classifier is trained on conversation-level labels while the Stage-1 encoder weights are frozen.
+
+\subsection{Design Rationale}
+\label{sec:rationale}
+
+Several design choices in DisPeD reflect empirical findings from our ablation study (Section~\ref{sec:ablation}) and prior work on multi-turn attacks. We summarize the reasoning here and defer quantitative evidence to the experimental sections.
+
+\paragraph{Why persuasion-aware fine-tuning?}
+Multi-turn jailbreak attacks such as Crescendo~\citep{russinovich2024crescendo} and Deceptive Delight~\citep{deceptivedelight2024} construct sequences of individually benign turns that collectively achieve an adversarial goal. Representation engineering analyses show that these turns occupy the same embedding region as genuinely benign text in pretrained encoders~\citep{bullwinkel2025repeng}, so standard semantic representations cannot separate attack turns from benign ones. Persuasion-aware fine-tuning shifts the encoder's attention from topical content to pragmatic features (implicit requests, escalation cues, rapport-building patterns) that distinguish persuasive from non-persuasive language, regardless of surface topic. Our experiments confirm this mechanism: Vanilla DeBERTa collapses to F1 = 0.284 on OOD Deceptive Delight while DisPeD maintains F1 = 1.000 (Section~\ref{sec:cross_attack}).
+
+\paragraph{Why does BiGRU not outperform mean pooling?}
+If multi-turn attacks relied on specific temporal patterns (e.g., a fixed escalation sequence), BiGRU would outperform orderless aggregation. The equivalence of BiGRU and mean pooling in our ablation indicates that the signal lies in per-turn persuasion presence rather than inter-turn ordering. We use BiGRU as the default aggregator because all main experiments were conducted with this architecture; the ablation finding that mean pooling achieves identical OOD performance confirms that temporal modeling is unnecessary for this task, and the detection signal resides in individual turn representations rather than their sequential arrangement.
+
+\paragraph{Why retain the 9-class taxonomy?}
+The ablation shows that scrambled labels and binary labels both yield OOD detection performance within 1 percentage point of the full 9-class taxonomy. The value of the 9-class taxonomy is interpretability, not detection accuracy. The predicted strategy labels enable trajectory analysis (Section~\ref{sec:strategy}) that exposes how different attack types employ distinct persuasion sequences. This interpretability allows security analysts to inspect and understand detection decisions, a property absent from black-box LLM-based detectors and lexical baselines.
+
+\paragraph{Vanilla DeBERTa as a controlled baseline.}
+To isolate the effect of persuasion-aware fine-tuning, we evaluate a Vanilla DeBERTa baseline that uses the same Stage-2 pipeline (BiGRU over [CLS] embeddings, identical MLP classifier) but with an unfine-tuned DeBERTa encoder. Any performance gap between DisPeD and Vanilla DeBERTa is therefore attributable to Stage-1 fine-tuning alone. This controlled comparison directly tests the persuasion-awareness hypothesis.

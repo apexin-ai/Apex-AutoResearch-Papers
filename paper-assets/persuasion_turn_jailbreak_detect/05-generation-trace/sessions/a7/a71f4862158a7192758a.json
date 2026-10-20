@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a71f4862158a7192758a",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval meanpool multiseed",
+  "task_key": "worker_eval_meanpool-multiseed_20260518T233025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_meanpool-multiseed_20260518T233025_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "a6dd57b94e8d339ac92d25bd5967b1d986c396861b94d4902ae252a03eb10f84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完毕。结果已保存到 `results/meanpool_multiseed.json`。\n\n**Mean Pooling (9-class DeBERTa) 3-seed macro F1 汇总：**\n\n| K | DD OOD (mean±std) | ActorAttack (mean±std) |\n|---|---|---|\n| 1 | 0.9905±0.0134 | 0.8301±0.0272 |\n| 2 | 0.9936±0.0090 | 0.9030±0.0229 |\n| 3 | 0.9842±0.0160 | 0.9622±0.0076 |\n| 5 | 0.9968±0.0045 | 0.9716±0.0153 |\n| Full | 0.9905±0.0134 | 0.9623±0.0151 |\n\nDD OOD 上 mean pooling 几乎全部 ≥0.97，和 BiGRU 差距极小。ActorAttack 上 K≥3 后也达到 0.96+，说明对该任务而言 BiGRU temporal modeling 确实不是必需的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-meanpool-multiseed.md"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp14b_cross_llm_control",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:19:48.670Z",
+    "updated_at": "2026-05-19T07:19:48.670Z"
+  },
+  "timestamp": "2026-05-19T07:19:48.951749+00:00",
+  "trigger": "update_registry"
+}

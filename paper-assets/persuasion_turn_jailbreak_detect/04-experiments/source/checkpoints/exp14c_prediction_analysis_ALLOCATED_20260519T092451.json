@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp14c_prediction_analysis",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T08:12:50.774Z",
+    "updated_at": "2026-05-19T09:24:50.935Z",
+    "hypothesis": "exp14 cross-LLM failure is driven by high false positive rate on Llama benign (model classifies unfamiliar Llama benign text as jailbreak). exp14b control should show near-zero FP on Qwen benign with maintained TP on Llama jailbreak, confirming benign distribution coverage as the bottleneck.",
+    "parent": "exp14b_cross_llm_control",
+    "conclusion": "success",
+    "metrics": {
+      "dd_full_fp_rate": {
+        "exp14_llama_benign": {
+          "vanilla": 0.293,
+          "jb_mlm": 0.88,
+          "9class": 0.9
+        },
+        "exp14b_qwen_benign": {
+          "vanilla": 0,
+          "jb_mlm": 0.009,
+          "9class": 0
+        }
+      },
+      "dd_full_tp_rate": {
+        "both_conditions_identical": {
+          "vanilla": 0,
+          "jb_mlm": 0.68,
+          "9class": 1
+        }
+      },
+      "key_finding": "TP rates identical across exp14/exp14b. FP rate on Llama benign 88-100% vs Qwen benign 0%. F1 collapse 100% caused by FP explosion, jailbreak detection fully cross-LLM transferable."
+    }
+  },
+  "timestamp": "2026-05-19T09:24:51.055677+00:00",
+  "trigger": "update_registry"
+}

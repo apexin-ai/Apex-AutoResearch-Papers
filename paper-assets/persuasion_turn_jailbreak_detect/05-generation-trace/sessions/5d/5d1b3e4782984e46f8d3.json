@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d1b3e4782984e46f8d3",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train mf1 scrambled seed456",
+  "task_key": "worker_train_mf1-scrambled-seed456_20260518T091255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_mf1-scrambled-seed456_20260518T091255_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "ef57c29a9fd28890ce48e3bfa19a2f834ed947a8eee95c7d35c01383c11e93dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MF1 任务完成。\n\n**产出汇总：**\n\n| 项目 | 路径/值 |\n|---|---|\n| Scrambled 数据 | `data/plan_002_splits/train_scrambled_seed456.jsonl` |\n| DeBERTa checkpoint | `checkpoints/mf1_scrambled_seed456/deberta_multitask/best/` |\n| GRU checkpoint | `checkpoints/mf1_scrambled_seed456/gru/best.pt` |\n| 结果文件 | `results/mf1_scrambled_seed456.json` |\n\n**关键指标 (seed=456 vs seed=42)：**\n\n| Metric | seed=456 | seed=42 |\n|---|---|---|\n| DD OOD Full F1 | **1.000** | 0.990 |\n| DD OOD K=1 F1 | **1.000** | 0.990 |\n| DD OOD K=2 F1 | **1.000** | 0.944 |\n| DD OOD K=3 F1 | 0.990 | 0.935 |\n| DD OOD K=5 F1 | **1.000** | 0.990 |\n| DeBERTa val P-acc | 0.698 | 0.679 |\n\nseed=456 性能与 seed=42 一致甚至略优，确认 scrambled variant 跨 seed 稳定。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-mf1-scrambled-seed456.md"
+}

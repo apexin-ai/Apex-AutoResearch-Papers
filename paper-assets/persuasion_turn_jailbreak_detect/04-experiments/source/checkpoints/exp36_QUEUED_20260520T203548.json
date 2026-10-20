@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp36",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:35:39.385Z",
+    "updated_at": "2026-05-20T20:35:48.441Z",
+    "hypothesis": "MLM DAPT encoder produces weaker frozen representations than classification (9-class) DAPT encoder for OOD jailbreak detection, because classification training forces the encoder to learn task-relevant discriminative features while MLM only learns general language patterns."
+  },
+  "timestamp": "2026-05-20T20:35:48.636032+00:00",
+  "trigger": "update_registry"
+}

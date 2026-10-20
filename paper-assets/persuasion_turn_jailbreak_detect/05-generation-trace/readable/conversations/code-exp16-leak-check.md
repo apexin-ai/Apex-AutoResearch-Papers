@@ -1,0 +1,1303 @@
+# code exp16 leak check
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/chats/worker_code_exp16-leak-check_20260519T234739.jsonl`
+- **Structured JSON:** [`e6d25449017dfe99566c.json`](../../sessions/e6/e6d25449017dfe99566c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+43 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T23:50:56.253932+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T23:50:56.254267+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T23:50:56.254461+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json\ntrain = set()\nwith open('data/mixed_llm/train.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        train.add(d.get('conversation_id', d.get('id', '')))\ntest = set()\nwith open('data/mixed_llm/test.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        test.add(d.get('conversation_id', d.get('id', '')))\nval = set()\nwith open('data/mixed_llm/val.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        val.add(d.get('conversation_id', d.get('id', '')))\noverlap_train_test = train & test\noverlap_train_val = train & val\noverlap_val_test = val & test\nprint(f'Train: {len(train)}, Val: {len(val)}, Test: {len(test)}')\nprint(f'Train∩Test overlap: {len(overlap_train_test)}')\nprint(f'Train∩Val overlap: {len(overlap_train_val)}')\nprint(f'Val∩Test overlap: {len(overlap_val_test)}')\nif overlap_train_test:\n    print(f'LEAK train-test: {list(overlap_train_test)[:10]}')\nif overlap_train_val:\n    print(f'LEAK train-val: {list(overlap_train_val)[:10]}')\nif overlap_val_test:\n    print(f'LEAK val-test: {list(overlap_val_test)[:10]}')\nif not (overlap_train_test or overlap_train_val or overlap_val_test):\n    print('NO LEAK - all splits are disjoint')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json\ntrain = set()\nwith open('data/mixed_llm/train.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        train.add(d.get('conversation_id', d.get('id', '')))\ntest = set()\nwith open('data/mixed_llm/test.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        test.add(d.get('conversation_id', d.get('id', '')))\nval = set()\nwith open('data/mixed_llm/val.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        val.add(d.get('conversation_id', d.get('id', '')))\noverlap_train_test = train & test\noverlap_train_val = train & val\noverlap_val_test = val & test\nprint(f'Train: {len(train)}, Val: {len(val)}, Test: {len(test)}')\nprint(f'Train∩Test overlap: {len(overlap_train_test)}')\nprint(f'Train∩Val overlap: {len(overlap_train_val)}')\nprint(f'Val∩Test overlap: {len(overlap_val_test)}')\nif overlap_train_test:\n    print(f'LEAK train-test: {list(overlap_train_test)[:10]}')\nif overlap_train_val:\n    print(f'LEAK train-val: {list(overlap_train_val)[:10]}')\nif overlap_val_test:\n    print(f'LEAK val-test: {list(overlap_val_test)[:10]}')\nif not (overlap_train_test or overlap_train_val or overlap_val_test):\n    print('NO LEAK - all splits are disjoint')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-19T23:50:56.254651+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T23:50:56.254791+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json, hashlib\ndef hash_conversations(filepath):\n    hashes = {}\n    with open(filepath) as f:\n        for line in f:\n            d = json.loads(line)\n            turns = d.get('turns', d.get('conversation', []))\n            content = json.dumps(turns, sort_keys=True)\n            h = hashlib.md5(content.encode()).hexdigest()\n            cid = d.get('conversation_id', d.get('id', ''))\n            hashes[h] = cid\n    return hashes\ntrain_h = hash_conversations('data/mixed_llm/train.jsonl')\ntest_h = hash_conversations('data/mixed_llm/test.jsonl')\nval_h = hash_conversations('data/mixed_llm/val.jsonl')\ncontent_overlap_tt = set(train_h.keys()) & set(test_h.keys())\ncontent_overlap_tv = set(train_h.keys()) & set(val_h.keys())\ncontent_overlap_vt = set(val_h.keys()) & set(test_h.keys())\nprint(f'Train unique contents: {len(train_h)}')\nprint(f'Test unique contents: {len(test_h)}')\nprint(f'Val unique contents: {len(val_h)}')\nprint(f'Content overlap train-test: {len(content_overlap_tt)}')\nprint(f'Content overlap train-val: {len(content_overlap_tv)}')\nprint(f'Content overlap val-test: {len(content_overlap_vt)}')\nif content_overlap_tt:\n    for h in list(content_overlap_tt)[:5]:\n        print(f'  Train {train_h[h]} == Test {test_h[h]}')\nif content_overlap_tv:\n    for h in list(content_overlap_tv)[:5]:\n        print(f'  Train {train_h[h]} == Val {val_h[h]}')\nif not (content_overlap_tt or content_overlap_tv or content_overlap_vt):\n    print('NO CONTENT LEAK')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json, hashlib\ndef hash_conversations(filepath):\n    hashes = {}\n    with open(filepath) as f:\n        for line in f:\n            d = json.loads(line)\n            turns = d.get('turns', d.get('conversation', []))\n            content = json.dumps(turns, sort_keys=True)\n            h = hashlib.md5(content.encode()).hexdigest()\n            cid = d.get('conversation_id', d.get('id', ''))\n            hashes[h] = cid\n    return hashes\ntrain_h = hash_conversations('data/mixed_llm/train.jsonl')\ntest_h = hash_conversations('data/mixed_llm/test.jsonl')\nval_h = hash_conversations('data/mixed_llm/val.jsonl')\ncontent_overlap_tt = set(train_h.keys()) & set(test_h.keys())\ncontent_overlap_tv = set(train_h.keys()) & set(val_h.keys())\ncontent_overlap_vt = set(val_h.keys()) & set(test_h.keys())\nprint(f'Train unique contents: {len(train_h)}')\nprint(f'Test unique contents: {len(test_h)}')\nprint(f'Val unique contents: {len(val_h)}')\nprint(f'Content overlap train-test: {len(content_overlap_tt)}')\nprint(f'Content overlap train-val: {len(content_overlap_tv)}')\nprint(f'Content overlap val-test: {len(content_overlap_vt)}')\nif content_overlap_tt:\n    for h in list(content_overlap_tt)[:5]:\n        print(f'  Train {train_h[h]} == Test {test_h[h]}')\nif content_overlap_tv:\n    for h in list(content_overlap_tv)[:5]:\n        print(f'  Train {train_h[h]} == Val {val_h[h]}')\nif not (content_overlap_tt or content_overlap_tv or content_overlap_vt):\n    print('NO CONTENT LEAK')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T23:50:56.254967+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T23:50:56.255105+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json\nfrom collections import Counter\nfor split in ['train', 'val', 'test']:\n    labels = Counter()\n    sources = Counter()\n    n = 0\n    with open(f'data/mixed_llm/{split}.jsonl') as f:\n        for line in f:\n            d = json.loads(line)\n            labels[d.get('label', 'unknown')] += 1\n            sources[d.get('source', d.get('llm_source', 'unknown'))] += 1\n            n += 1\n    print(f'{split}: n={n}')\n    print(f'  labels: {dict(sorted(labels.items()))}')\n    print(f'  sources: {dict(sorted(sources.items()))}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json\nfrom collections import Counter\nfor split in ['train', 'val', 'test']:\n    labels = Counter()\n    sources = Counter()\n    n = 0\n    with open(f'data/mixed_llm/{split}.jsonl') as f:\n        for line in f:\n            d = json.loads(line)\n            labels[d.get('label', 'unknown')] += 1\n            sources[d.get('source', d.get('llm_source', 'unknown'))] += 1\n            n += 1\n    print(f'{split}: n={n}')\n    print(f'  labels: {dict(sorted(labels.items()))}')\n    print(f'  sources: {dict(sorted(sources.items()))}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T23:50:56.255234+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T23:50:56.255392+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json\ntrain = set()\nwith open('data/mixed_llm/train.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        train.add(d.get('conversation_id', d.get('id', '')))\ntest = set()\nwith open('data/mixed_llm/test.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        test.add(d.get('conversation_id', d.get('id', '')))\nval = set()\nwith open('data/mixed_llm/val.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        val.add(d.get('conversation_id', d.get('id', '')))\noverlap_train_test = train & test\noverlap_train_val = train & val\noverlap_val_test = val & test\nprint(f'Train: {len(train)}, Val: {len(val)}, Test: {len(test)}')\nprint(f'Train∩Test overlap: {len(overlap_train_test)}')\nprint(f'Train∩Val overlap: {len(overlap_train_val)}')\nprint(f'Val∩Test overlap: {len(overlap_val_test)}')\nif overlap_train_test:\n    print(f'LEAK train-test: {list(overlap_train_test)[:10]}')\nif overlap_train_val:\n    print(f'LEAK train-val: {list(overlap_train_val)[:10]}')\nif overlap_val_test:\n    print(f'LEAK val-test: {list(overlap_val_test)[:10]}')\nif not (overlap_train_test or overlap_train_val or overlap_val_test):\n    print('NO LEAK - all splits are disjoint')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json\ntrain = set()\nwith open('data/mixed_llm/train.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        train.add(d.get('conversation_id', d.get('id', '')))\ntest = set()\nwith open('data/mixed_llm/test.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        test.add(d.get('conversation_id', d.get('id', '')))\nval = set()\nwith open('data/mixed_llm/val.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        val.add(d.get('conversation_id', d.get('id', '')))\noverlap_train_test = train & test\noverlap_train_val = train & val\noverlap_val_test = val & test\nprint(f'Train: {len(train)}, Val: {len(val)}, Test: {len(test)}')\nprint(f'Train∩Test overlap: {len(overlap_train_test)}')\nprint(f'Train∩Val overlap: {len(overlap_train_val)}')\nprint(f'Val∩Test overlap: {len(overlap_val_test)}')\nif overlap_train_test:\n    print(f'LEAK train-test: {list(overlap_train_test)[:10]}')\nif overlap_train_val:\n    print(f'LEAK train-val: {list(overlap_train_val)[:10]}')\nif overlap_val_test:\n    print(f'LEAK val-test: {list(overlap_val_test)[:10]}')\nif not (overlap_train_test or overlap_train_val or overlap_val_test):\n    print('NO LEAK - all splits are disjoint')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T23:50:56.255561+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Train: 350, Val: 74, Test: 76\\nTrain∩Test overlap: 0\\nTrain∩Val overlap: 0\\nVal∩Test overlap: 0\\nNO LEAK - all splits are disjoint\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T23:50:56.255711+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json, hashlib\ndef hash_conversations(filepath):\n    hashes = {}\n    with open(filepath) as f:\n        for line in f:\n            d = json.loads(line)\n            turns = d.get('turns', d.get('conversation', []))\n            content = json.dumps(turns, sort_keys=True)\n            h = hashlib.md5(content.encode()).hexdigest()\n            cid = d.get('conversation_id', d.get('id', ''))\n            hashes[h] = cid\n    return hashes\ntrain_h = hash_conversations('data/mixed_llm/train.jsonl')\ntest_h = hash_conversations('data/mixed_llm/test.jsonl')\nval_h = hash_conversations('data/mixed_llm/val.jsonl')\ncontent_overlap_tt = set(train_h.keys()) & set(test_h.keys())\ncontent_overlap_tv = set(train_h.keys()) & set(val_h.keys())\ncontent_overlap_vt = set(val_h.keys()) & set(test_h.keys())\nprint(f'Train unique contents: {len(train_h)}')\nprint(f'Test unique contents: {len(test_h)}')\nprint(f'Val unique contents: {len(val_h)}')\nprint(f'Content overlap train-test: {len(content_overlap_tt)}')\nprint(f'Content overlap train-val: {len(content_overlap_tv)}')\nprint(f'Content overlap val-test: {len(content_overlap_vt)}')\nif content_overlap_tt:\n    for h in list(content_overlap_tt)[:5]:\n        print(f'  Train {train_h[h]} == Test {test_h[h]}')\nif content_overlap_tv:\n    for h in list(content_overlap_tv)[:5]:\n        print(f'  Train {train_h[h]} == Val {val_h[h]}')\nif not (content_overlap_tt or content_overlap_tv or content_overlap_vt):\n    print('NO CONTENT LEAK')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json, hashlib\ndef hash_conversations(filepath):\n    hashes = {}\n    with open(filepath) as f:\n        for line in f:\n            d = json.loads(line)\n            turns = d.get('turns', d.get('conversation', []))\n            content = json.dumps(turns, sort_keys=True)\n            h = hashlib.md5(content.encode()).hexdigest()\n            cid = d.get('conversation_id', d.get('id', ''))\n            hashes[h] = cid\n    return hashes\ntrain_h = hash_conversations('data/mixed_llm/train.jsonl')\ntest_h = hash_conversations('data/mixed_llm/test.jsonl')\nval_h = hash_conversations('data/mixed_llm/val.jsonl')\ncontent_overlap_tt = set(train_h.keys()) & set(test_h.keys())\ncontent_overlap_tv = set(train_h.keys()) & set(val_h.keys())\ncontent_overlap_vt = set(val_h.keys()) & set(test_h.keys())\nprint(f'Train unique contents: {len(train_h)}')\nprint(f'Test unique contents: {len(test_h)}')\nprint(f'Val unique contents: {len(val_h)}')\nprint(f'Content overlap train-test: {len(content_overlap_tt)}')\nprint(f'Content overlap train-val: {len(content_overlap_tv)}')\nprint(f'Content overlap val-test: {len(content_overlap_vt)}')\nif content_overlap_tt:\n    for h in list(content_overlap_tt)[:5]:\n        print(f'  Train {train_h[h]} == Test {test_h[h]}')\nif content_overlap_tv:\n    for h in list(content_overlap_tv)[:5]:\n        print(f'  Train {train_h[h]} == Val {val_h[h]}')\nif not (content_overlap_tt or content_overlap_tv or content_overlap_vt):\n    print('NO CONTENT LEAK')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T23:50:56.255853+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Train unique contents: 350\\nTest unique contents: 76\\nVal unique contents: 74\\nContent overlap train-test: 0\\nContent overlap train-val: 0\\nContent overlap val-test: 0\\nNO CONTENT LEAK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T23:50:56.255978+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json\nfrom collections import Counter\nfor split in ['train', 'val', 'test']:\n    labels = Counter()\n    sources = Counter()\n    n = 0\n    with open(f'data/mixed_llm/{split}.jsonl') as f:\n        for line in f:\n            d = json.loads(line)\n            labels[d.get('label', 'unknown')] += 1\n            sources[d.get('source', d.get('llm_source', 'unknown'))] += 1\n            n += 1\n    print(f'{split}: n={n}')\n    print(f'  labels: {dict(sorted(labels.items()))}')\n    print(f'  sources: {dict(sorted(sources.items()))}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json\nfrom collections import Counter\nfor split in ['train', 'val', 'test']:\n    labels = Counter()\n    sources = Counter()\n    n = 0\n    with open(f'data/mixed_llm/{split}.jsonl') as f:\n        for line in f:\n            d = json.loads(line)\n            labels[d.get('label', 'unknown')] += 1\n            sources[d.get('source', d.get('llm_source', 'unknown'))] += 1\n            n += 1\n    print(f'{split}: n={n}')\n    print(f'  labels: {dict(sorted(labels.items()))}')\n    print(f'  sources: {dict(sorted(sources.items()))}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T23:50:56.256108+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"train: n=350\\n  labels: {'benign': 176, 'jailbreak': 174}\\n  sources: {'llama': 176, 'qwen': 174}\\nval: n=74\\n  labels: {'benign': 36, 'jailbreak': 38}\\n  sources: {'llama': 36, 'qwen': 38}\\ntest: n=76\\n  labels: {'benign': 38, 'jailbreak': 38}\\n  sources: {'llama': 38, 'qwen': 38}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T23:50:56.256266+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && find . -name \"*.log\" -o -name \"*.txt\" | grep -iE \"exp16|9class|9-class\" | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && find . -name \"*.log\" -o -name \"*.txt\" | grep -iE \"exp16|9class|9-class\" | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T23:50:56.256397+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"./logs/exp16_gpu1_recovery.log\\n./logs/exp16_gpu0_recovery.log\\n./logs/exp16_mlm_gpu0.log\\n./logs/exp16_mlm_gpu1.log\\n./logs/exp16_eval.log\\n./results/exp17/9class_stage1_seed42.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T23:50:56.256515+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && ls -la logs/ 2>/dev/null; ls -la outputs/ 2>/dev/null; ls -la checkpoints/ 2>/dev/null; find . -maxdepth 3 -name \"*.log\" | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && ls -la logs/ 2>/dev/null; ls -la outputs/ 2>/dev/null; ls -la checkpoints/ 2>/dev/null; find . -maxdepth 3 -name \"*.log\" | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T23:50:56.256728+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 952\\ndrwxr-xr-x  2 root root  4096 May 20 07:44 .\\ndrwxr-xr-x 12 root root  4096 May 19 02:33 ..\\n-rw-r--r--  1 root root  5888 May 17 22:46 benign_v4_test20.log\\n-rw-r--r--  1 root root  5995 May 17 23:36 benign_v4b_iter2.log\\n-rw-r--r--  1 root root  6061 May 17 23:13 benign_v4b_test20.log\\n-rw-r--r--  1 root root  5697 May 18 00:03 benign_v4c_test20.log\\n-rw-r--r--  1 root root  4243 May 18 00:12 benign_v4d_test20.log\\n-rw-r--r--  1 root root  7716 May 18 19:18 centered_cka.log\\n-rw-r--r--  1 root root  5070 May 17 18:05 crescendo_gen.log\\n-rw-r--r--  1 root root  5947 May 19 17:15 exp15b_roberta_large_lr1e5.log\\n-rw-r--r--  1 root root 20586 May 20 07:40 exp16_eval.log\\n-rw-r--r--  1 root root  5849 May 20 04:32 exp16_gpu0_recovery.log\\n-rw-r--r--  1 root root 14325 May 20 04:34 exp16_gpu1_recovery.log\\n-rw-r--r--  1 root root  8591 May 20 04:51 exp16_mlm_gpu0.log\\n-rw-r--r--  1 root root  6321 May 20 04:51 exp16_mlm_gpu1.log\\n-rw-r--r--  1 root root 12115 May 20 07:14 exp17_gpu2.log\\n-rw-r--r--  1 root root  8472 May 20 07:34 exp17_gpu2_resume.log\\n-rw-r--r--  1 root root  1594 May 20 07:13 exp17_gpu3.log\\n-rw-r--r--  1 root root 13553 May 20 07:35 exp17_gpu3_resume.log\\n-rw-r--r--  1 root root  6583 May 20 07:48 exp17_mlm_gpu0_fix.log\\n-rw-r--r--  1 root root  4937 May 20 07:48 exp17_mlm_gpu1_fix.log\\n-rw-r--r--  1 root root 17117 May 18 18:39 exp1_roberta_mlm.log\\n-rw-r--r--  1 root root  9507 May 18 18:22 exp1_roberta_seed123_456.log\\n-rw-r--r--  1 root root  4947 May 18 18:20 exp1_roberta_seed42.log\\n-rw-r--r--  1 root root  8863 May 18 18:34 exp1_roberta_vanilla.log\\n-rw-r--r--  1 root root  6788 May 18 18:55 exp3_probing.log\\n-rw-r--r--  1 root root  9975 May 18 19:08 exp3_roberta_probing.log\\n-rw-r--r--  1 root root  2749 May 18 19:14 exp4_dd_ood_perturbation_step1.log\\n-rw-r--r--  1 root root 33375 May 18 19:32 exp4_dd_ood_perturbation_step2.log\\n-rw-r--r--  1 ro
+…[truncated 5596 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T23:50:56.256878+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && find . -maxdepth 3 -type d | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && find . -maxdepth 3 -type d | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T23:50:56.257021+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \".\\n./src\\n./src/data\\n./src/data/__pycache__\\n./src/models\\n./src/models/__pycache__\\n./src/__pycache__\\n./data\\n./data/embeddings\\n./data/generated\\n./data/final\\n./data/final_v2\\n./data/plan_002_splits\\n./data/plan_003_v2\\n./data/plan_018_wiki_mlm\\n./data/dd_ood_perturbed\\n./data/actorattack_ood\\n./data/actorattack_perturbed\\n./data/mhj\\n./data/cross_llm\\n./data/llama_conversations\\n./data/expanded_conversations\\n./data/mixed_llm\\n./data/expanded_1000\\n./checkpoints\\n./checkpoints/exp15_roberta_large_9class_seed42\\n./checkpoints/exp15_roberta_large_9class_seed42/deberta_multitask\\n./checkpoints/exp15_roberta_large_9class_seed42/gru\\n./checkpoints/exp15_roberta_large_9class_seed123\\n./checkpoints/exp15_roberta_large_9class_seed123/deberta_multitask\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T23:50:56.257177+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && tail -80 logs/exp16_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && tail -80 logs/exp16_eval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T23:50:56.257391+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n  seed=456\\n  Running: --gru_checkpoint /root/persuasion_turn_jailbreak_detect/checkpoints/exp16/mlm_gru_seed456/baseline/best.pt --output_file /root/persuasion_turn_jailbreak_detect/results/exp16_mlm_only_seed456_mixed_test.json --model_name /root/persuasion_turn_jailbreak_detect/checkpoints/exp16/mlm_seed456/best\\n    mixed_test: F1=?\\n  Running: --gru_checkpoint /root/persuasion_turn_jailbreak_detect/checkpoints/exp16/mlm_gru_seed456/baseline/best.pt --output_file /root/persuasion_turn_jailbreak_detect/results/exp16_mlm_only_seed456_qwen_test.json --model_name /root/persuasion_turn_jailbreak_detect/checkpoints/exp16/mlm_seed456/best\\n    qwen_test: F1=?\\n  Running: --gru_checkpoint /root/persuasion_turn_jailbreak_detect/checkpoints/exp16/mlm_gru_seed456/baseline/best.pt --output_file /root/persuasion_turn_jailbreak_detect/results/exp16_mlm_only_seed456_dd_ood.json --model_name /root/persuasion_turn_jailbreak_detect/checkpoints/exp16/mlm_seed456/best\\n    dd_ood: F1=?\\n  Running: --gru_checkpoint /root/persuasion_turn_jailbreak_detect/checkpoints/exp16/mlm_gru_seed456/baseline/best.pt --output_file /root/persuasion_turn_jailbreak_detect/results/exp16_mlm_only_seed456_aa_ood.json --model_name /root/persuasion_turn_jailbreak_detect/checkpoints/exp16/mlm_seed456/best\\n    aa_ood: F1=?\\n  Running: --gru_checkpoint /root/persuasion_turn_jailbreak_detect/checkpoints/exp16/mlm_gru_seed456/baseline/best.pt --output_file /root/persuasion_turn_jailbreak_detect/results/exp16_mlm_only_seed456_llama_dd.json --model_name /root/persuasion_turn_jailbreak_detect/checkpoints/exp16/mlm_seed456/best\\n    llama_dd: F1=?\\n  Running: --gru_checkpoint /root/persuasion_turn_jailbreak_detect/checkpoints/exp16/mlm_gru_seed456/baseline/best.pt --output_file /root/persuasion_turn_jailbreak_detect/results/exp16_mlm_only_seed456_llama_aa.json --model_name /root/persuasion_turn_jailbreak_detect/checkpoints/exp16/mlm_seed456/be
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T23:50:56.257569+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && cat logs/exp16_gpu0_recovery.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && cat logs/exp16_gpu0_recovery.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T23:50:56.257780+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\nexp16 GPU 0 Recovery — MLM only\\nStart: Wed May 20 04:30:07 CST 2026\\n==========================================\\n\\n>>> MLM Stage 1 (DAPT): seed=42 — Wed May 20 04:30:07 CST 2026\\n[transformers] The tokenizer you are loading from 'microsoft/deberta-v3-base' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\nLoading datasets...\\n  Train: 2818 turns, Val: 595 turns\\n\\rLoading weights:   0%|          | 0/198 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 198/198 [00:00<00:00, 3726.08it/s]\\n[transformers] \\u001b[1mDebertaV2Model LOAD REPORT\\u001b[0m from: microsoft/deberta-v3-base\\nKey                                     | Status     |  | \\n----------------------------------------+------------+--+-\\nmask_predictions.classifier.bias        | UNEXPECTED |  | \\nlm_predictions.lm_head.LayerNorm.weight | UNEXPECTED |  | \\nlm_predictions.lm_head.dense.weight     | UNEXPECTED |  | \\nlm_predictions.lm_head.bias             | UNEXPECTED |  | \\nmask_predictions.classifier.weight      | UNEXPECTED |  | \\nmask_predictions.dense.weight           | UNEXPECTED |  | \\nlm_predictions.lm_head.dense.bias       | UNEXPECTED |  | \\nlm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED |  | \\nmask_predictions.dense.bias             | UNEXPECTED |  | \\nmask_predictions.LayerNorm.bias         | UNEXPECTED |  | \\nmask_predictions.LayerNorm.weight       | UNEXPECTED |  | \\n\\nNotes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\n  Model parameters: 282,932,580\\nStarting MLM training...\\n  Epoch 1 step
+…[truncated 4116 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T23:50:56.257933+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && ls -la checkpoints/exp16/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && ls -la checkpoints/exp16/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T23:50:56.258071+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x 17 root root 4096 May 20 04:51 .\\ndrwxr-xr-x 13 root root 4096 May 20 07:13 ..\\ndrwxr-xr-x  3 root root   31 May 20 04:32 9class_gru_seed123\\ndrwxr-xr-x  3 root root   31 May 20 04:16 9class_gru_seed42\\ndrwxr-xr-x  3 root root   31 May 20 04:34 9class_gru_seed456\\ndrwxr-xr-x  3 root root   26 May 20 04:26 9class_seed123\\ndrwxr-xr-x  3 root root   26 May 20 04:07 9class_seed42\\ndrwxr-xr-x  3 root root   26 May 20 04:33 9class_seed456\\ndrwxr-xr-x  3 root root   30 May 20 04:51 mlm_gru_seed123\\ndrwxr-xr-x  3 root root   30 May 20 04:48 mlm_gru_seed42\\ndrwxr-xr-x  3 root root   30 May 20 04:51 mlm_gru_seed456\\ndrwxr-xr-x  3 root root   26 May 20 04:49 mlm_seed123\\ndrwxr-xr-x  3 root root   26 May 20 04:30 mlm_seed42\\ndrwxr-xr-x  3 root root   26 May 20 04:49 mlm_seed456\\ndrwxr-xr-x  3 root root   30 May 20 04:16 vanilla_seed123\\ndrwxr-xr-x  3 root root   30 May 20 04:06 vanilla_seed42\\ndrwxr-xr-x  3 root root   30 May 20 04:23 vanilla_seed456\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T23:50:56.258240+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && cat logs/exp16_gpu1_recovery.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && cat logs/exp16_gpu1_recovery.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T23:50:56.258464+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================\\nexp16 GPU1 Recovery - 9-class training\\nStarted: Wed May 20 04:30:32 CST 2026\\nGPU: CUDA_VISIBLE_DEVICES=1\\nWANDB_MODE=disabled\\n==========================================\\n\\n>>> [1/5] 9-class seed=42 Stage 2 (BiGRU classifier)\\n    Started: Wed May 20 04:30:32 CST 2026\\n[transformers] The tokenizer you are loading from 'microsoft/deberta-v3-base' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\n\\rLoading weights:   0%|          | 0/198 [00:00<?, ?it/s]\\rLoading weights: 100%|██████████| 198/198 [00:00<00:00, 2999.56it/s]\\n[transformers] \\u001b[1mDebertaV2Model LOAD REPORT\\u001b[0m from: microsoft/deberta-v3-base\\nKey                                     | Status     |  | \\n----------------------------------------+------------+--+-\\nlm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED |  | \\nmask_predictions.LayerNorm.bias         | UNEXPECTED |  | \\nmask_predictions.classifier.weight      | UNEXPECTED |  | \\nmask_predictions.classifier.bias        | UNEXPECTED |  | \\nlm_predictions.lm_head.LayerNorm.weight | UNEXPECTED |  | \\nmask_predictions.LayerNorm.weight       | UNEXPECTED |  | \\nlm_predictions.lm_head.bias             | UNEXPECTED |  | \\nlm_predictions.lm_head.dense.weight     | UNEXPECTED |  | \\nmask_predictions.dense.bias             | UNEXPECTED |  | \\nlm_predictions.lm_head.dense.bias       | UNEXPECTED |  | \\nmask_predictions.dense.weight           | UNEXPECTED |  | \\n\\nNotes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\nPre-computing train embeddings...\\nPre-computing val embeddings...\\nEpoch 1/20 | Train Loss: 0.0978 | Val
+…[truncated 6489 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T23:50:56.258650+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && ls results/exp16*.json 2>/dev/null && cat results/exp16_results.json 2>/dev/null | head -100",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && ls results/exp16*.json 2>/dev/null && cat results/exp16_results.json 2>/dev/null | head -100",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T23:50:56.258857+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results/exp16_9class_seed123_aa_ood.json\\nresults/exp16_9class_seed123_dd_ood.json\\nresults/exp16_9class_seed123_llama_aa.json\\nresults/exp16_9class_seed123_llama_dd.json\\nresults/exp16_9class_seed123_mixed_test.json\\nresults/exp16_9class_seed123_qwen_test.json\\nresults/exp16_9class_seed123_toxicchat.json\\nresults/exp16_9class_seed42_aa_ood.json\\nresults/exp16_9class_seed42_dd_ood.json\\nresults/exp16_9class_seed42_llama_aa.json\\nresults/exp16_9class_seed42_llama_dd.json\\nresults/exp16_9class_seed42_mixed_test.json\\nresults/exp16_9class_seed42_qwen_test.json\\nresults/exp16_9class_seed42_toxicchat.json\\nresults/exp16_9class_seed456_aa_ood.json\\nresults/exp16_9class_seed456_dd_ood.json\\nresults/exp16_9class_seed456_llama_aa.json\\nresults/exp16_9class_seed456_llama_dd.json\\nresults/exp16_9class_seed456_mixed_test.json\\nresults/exp16_9class_seed456_qwen_test.json\\nresults/exp16_9class_seed456_toxicchat.json\\nresults/exp16_mlm_only_seed123_aa_ood.json\\nresults/exp16_mlm_only_seed123_dd_ood.json\\nresults/exp16_mlm_only_seed123_llama_aa.json\\nresults/exp16_mlm_only_seed123_llama_dd.json\\nresults/exp16_mlm_only_seed123_mixed_test.json\\nresults/exp16_mlm_only_seed123_qwen_test.json\\nresults/exp16_mlm_only_seed123_toxicchat.json\\nresults/exp16_mlm_only_seed42_aa_ood.json\\nresults/exp16_mlm_only_seed42_dd_ood.json\\nresults/exp16_mlm_only_seed42_llama_aa.json\\nresults/exp16_mlm_only_seed42_llama_dd.json\\nresults/exp16_mlm_only_seed42_mixed_test.json\\nresults/exp16_mlm_only_seed42_qwen_test.json\\nresults/exp16_mlm_only_seed42_toxicchat.json\\nresults/exp16_mlm_only_seed456_aa_ood.json\\nresults/exp16_mlm_only_seed456_dd_ood.json\\nresults/exp16_mlm_only_seed456_llama_aa.json\\nresults/exp16_mlm_only_seed456_llama_dd.json\\nresults/exp16_mlm_only_seed456_mixed_test.json\\nresults/exp16_mlm_only_seed456_qwen_test.json\\nresults/exp16_mlm_only_seed456_toxicchat.json\\nresults/exp16_results.json
+…[truncated 3784 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T23:50:56.259025+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && ls results/exp16_9class*.json 2>/dev/null && cat results/exp16_9class_seed42_mixed_test.json 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && ls results/exp16_9class*.json 2>/dev/null && cat results/exp16_9class_seed42_mixed_test.json 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T23:50:56.259202+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"results/exp16_9class_seed123_aa_ood.json\\nresults/exp16_9class_seed123_dd_ood.json\\nresults/exp16_9class_seed123_llama_aa.json\\nresults/exp16_9class_seed123_llama_dd.json\\nresults/exp16_9class_seed123_mixed_test.json\\nresults/exp16_9class_seed123_qwen_test.json\\nresults/exp16_9class_seed123_toxicchat.json\\nresults/exp16_9class_seed42_aa_ood.json\\nresults/exp16_9class_seed42_dd_ood.json\\nresults/exp16_9class_seed42_llama_aa.json\\nresults/exp16_9class_seed42_llama_dd.json\\nresults/exp16_9class_seed42_mixed_test.json\\nresults/exp16_9class_seed42_qwen_test.json\\nresults/exp16_9class_seed42_toxicchat.json\\nresults/exp16_9class_seed456_aa_ood.json\\nresults/exp16_9class_seed456_dd_ood.json\\nresults/exp16_9class_seed456_llama_aa.json\\nresults/exp16_9class_seed456_llama_dd.json\\nresults/exp16_9class_seed456_mixed_test.json\\nresults/exp16_9class_seed456_qwen_test.json\\nresults/exp16_9class_seed456_toxicchat.json\\n{\\n  \\\"overall\\\": {\\n    \\\"f1_macro\\\": 1.0,\\n    \\\"f1_per_class\\\": [\\n      1.0,\\n      1.0\\n    ],\\n    \\\"accuracy\\\": 1.0,\\n    \\\"fpr_at_95tpr\\\": 0.0,\\n    \\\"confusion_matrix\\\": [\\n      [\\n        38,\\n        0\\n      ],\\n      [\\n        0,\\n        38\\n      ]\\n    ]\\n  },\\n  \\\"early_detection\\\": {\\n    \\\"k=1\\\": {\\n      \\\"accuracy\\\": 0.9736842105263158,\\n      \\\"f1_macro\\\": 0.9736659736659736\\n    },\\n    \\\"k=2\\\": {\\n      \\\"accuracy\\\": 1.0,\\n      \\\"f1_macro\\\": 1.0\\n    },\\n    \\\"k=3\\\": {\\n      \\\"accuracy\\\": 1.0,\\n      \\\"f1_macro\\\": 1.0\\n    },\\n    \\\"k=5\\\": {\\n      \\\"accuracy\\\": 1.0,\\n      \\\"f1_macro\\\": 1.0\\n    }\\n  },\\n  \\\"per_attack_type\\\": {\\n    \\\"Academic Disguise\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"accuracy\\\": 1.0,\\n      \\\"n\\\": 3\\n    },\\n    \\\"Classic Crescendo\\\": {\\n      \\\"f1_macro\\\": 1.0,\\n      \\\"accuracy\\\": 1.0
+…[truncated 1007 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T23:50:56.259398+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && for f in results/exp16_9class_seed*_mixed_test.json results/exp16_vanilla_seed*_mixed_test.json results/exp16_mlm_only_seed*_mixed_test.json; do echo \"=== $f ===\"; python3 -c \"import json; d=json.load(open('$f')); print(f'F1={d[\\\"overall\\\"][\\\"f1_macro\\\"]:.4f}, Acc={d[\\\"overall\\\"][\\\"accuracy\\\"]:.4f}')\"; done",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && for f in results/exp16_9class_seed*_mixed_test.json results/exp16_vanilla_seed*_mixed_test.json results/exp16_mlm_only_seed*_mixed_test.json; do echo \"=== $f ===\"; python3 -c \"import json; d=json.load(open('$f')); print(f'F1={d[\\\"overall\\\"][\\\"f1_macro\\\"]:.4f}, Acc={d[\\\"overall\\\"][\\\"accuracy\\\"]:.4f}')\"; done",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T23:50:56.259558+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== results/exp16_9class_seed123_mixed_test.json ===\\nF1=1.0000, Acc=1.0000\\n=== results/exp16_9class_seed42_mixed_test.json ===\\nF1=1.0000, Acc=1.0000\\n=== results/exp16_9class_seed456_mixed_test.json ===\\nF1=0.9868, Acc=0.9868\\n=== results/exp16_vanilla_seed123_mixed_test.json ===\\nF1=0.7895, Acc=0.7895\\n=== results/exp16_vanilla_seed42_mixed_test.json ===\\nF1=0.8146, Acc=0.8158\\n=== results/exp16_vanilla_seed456_mixed_test.json ===\\nF1=0.8023, Acc=0.8026\\n=== results/exp16_mlm_only_seed123_mixed_test.json ===\\nF1=0.3619, Acc=0.5132\\n=== results/exp16_mlm_only_seed42_mixed_test.json ===\\nF1=0.8540, Acc=0.8553\\n=== results/exp16_mlm_only_seed456_mixed_test.json ===\\nF1=0.8289, Acc=0.8289\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T23:50:56.259696+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json\n\n# Check the 9class training data - what fields does it have?\nwith open('data/mixed_llm/train.jsonl') as f:\n    d = json.loads(f.readline())\n    print('Fields:', list(d.keys()))\n    print('Label:', d.get('label'))\n    print('Persuasion type:', d.get('persuasion_type', d.get('attack_type', 'N/A')))\n    turns = d.get('turns', d.get('conversation', []))\n    print('Num turns:', len(turns))\n    if turns:\n        print('Turn 0 keys:', list(turns[0].keys()) if isinstance(turns[0], dict) else type(turns[0]))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json\n\n# Check the 9class training data - what fields does it have?\nwith open('data/mixed_llm/train.jsonl') as f:\n    d = json.loads(f.readline())\n    print('Fields:', list(d.keys()))\n    print('Label:', d.get('label'))\n    print('Persuasion type:', d.get('persuasion_type', d.get('attack_type', 'N/A')))\n    turns = d.get('turns', d.get('conversation', []))\n    print('Num turns:', len(turns))\n    if turns:\n        print('Turn 0 keys:', list(turns[0].keys()) if isinstance(turns[0], dict) else type(turns[0]))\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T23:50:56.259825+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fields: ['conversation_id', 'turns', 'label', 'source', 'original_source', 'attack_type']\\nLabel: benign\\nPersuasion type: benign\\nNum turns: 10\\nTurn 0 keys: ['role', 'content', 'persuasion_strategy']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T23:50:56.259979+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && for f in results/exp16_9class_seed42_*.json; do name=$(basename $f .json | sed 's/exp16_9class_seed42_//'); python3 -c \"import json; d=json.load(open('$f')); print(f'$name: F1={d[\\\"overall\\\"][\\\"f1_macro\\\"]:.4f}')\"; done",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && for f in results/exp16_9class_seed42_*.json; do name=$(basename $f .json | sed 's/exp16_9class_seed42_//'); python3 -c \"import json; d=json.load(open('$f')); print(f'$name: F1={d[\\\"overall\\\"][\\\"f1_macro\\\"]:.4f}')\"; done",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T23:50:56.260107+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"aa_ood: F1=0.1753\\ndd_ood: F1=0.3798\\nllama_aa: F1=0.0741\\nllama_dd: F1=0.3243\\nmixed_test: F1=1.0000\\nqwen_test: F1=1.0000\\ntoxicchat: F1=0.8646\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T23:50:56.260226+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json\nfrom collections import Counter\n\n# Check attack_type distribution in train vs test\nfor split in ['train', 'test']:\n    atypes = Counter()\n    with open(f'data/mixed_llm/{split}.jsonl') as f:\n        for line in f:\n            d = json.loads(line)\n            atypes[d.get('attack_type', 'N/A')] += 1\n    print(f'{split} attack_types: {dict(sorted(atypes.items()))}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json\nfrom collections import Counter\n\n# Check attack_type distribution in train vs test\nfor split in ['train', 'test']:\n    atypes = Counter()\n    with open(f'data/mixed_llm/{split}.jsonl') as f:\n        for line in f:\n            d = json.loads(line)\n            atypes[d.get('attack_type', 'N/A')] += 1\n    print(f'{split} attack_types: {dict(sorted(atypes.items()))}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T23:50:56.260352+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"train attack_types: {'Academic Disguise': 11, 'Classic Crescendo': 11, 'DAN Variant': 16, 'Emotional Path': 9, 'Full Spectrum': 10, 'Mixed Emotional': 7, 'Obfuscation Path': 14, 'Role + Obfuscation': 8, 'benign': 176, 'persuasion-based': 88}\\ntest attack_types: {'Academic Disguise': 3, 'Classic Crescendo': 3, 'DAN Variant': 4, 'Emotional Path': 3, 'Full Spectrum': 2, 'Mixed Emotional': 2, 'Obfuscation Path': 2, 'benign': 38, 'persuasion-based': 19}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T23:50:56.260515+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json\nfrom collections import Counter\n\n# Check source-label correlation\ncross = Counter()\nwith open('data/mixed_llm/train.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        cross[(d['source'], d['label'])] += 1\nprint('Train source x label:')\nfor k, v in sorted(cross.items()):\n    print(f'  {k}: {v}')\n\ncross2 = Counter()\nwith open('data/mixed_llm/test.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        cross2[(d['source'], d['label'])] += 1\nprint('Test source x label:')\nfor k, v in sorted(cross2.items()):\n    print(f'  {k}: {v}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-33183",
+    "command": "cd /root/persuasion_turn_jailbreak_detect && python3 -c \"\nimport json\nfrom collections import Counter\n\n# Check source-label correlation\ncross = Counter()\nwith open('data/mixed_llm/train.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        cross[(d['source'], d['label'])] += 1\nprint('Train source x label:')\nfor k, v in sorted(cross.items()):\n    print(f'  {k}: {v}')\n\ncross2 = Counter()\nwith open('data/mixed_llm/test.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        cross2[(d['source'], d['label'])] += 1\nprint('Test source x label:')\nfor k, v in sorted(cross2.items()):\n    print(f'  {k}: {v}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T23:50:56.260677+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Train source x label:\\n  ('llama', 'benign'): 88\\n  ('llama', 'jailbreak'): 88\\n  ('qwen', 'benign'): 88\\n  ('qwen', 'jailbreak'): 86\\nTest source x label:\\n  ('llama', 'benign'): 19\\n  ('llama', 'jailbreak'): 19\\n  ('qwen', 'benign'): 19\\n  ('qwen', 'jailbreak'): 19\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp16-leak-check_20260519T234739",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-19T23:50:56.260874+00:00_
+
+Source-label 并无 confound，是均衡的。汇总全部结果。
+
+---
+
+## 排查结论
+
+### 1. Conversation_id 级别泄漏: **无**
+- Train=350, Val=74, Test=76，三个集合完全不相交，0 重叠
+
+### 2. 内容级别泄漏: **无**
+- 350/74/76 个对话内容 MD5 哈希全部唯一，无重复内容
+
+### 3. Label/Source 分布
+| Split | n | benign | jailbreak | llama | qwen |
+|-------|---|--------|-----------|-------|------|
+| train | 350 | 176 | 174 | 176 | 174 |
+| val | 74 | 36 | 38 | 36 | 38 |
+| test | 76 | 38 | 38 | 38 | 38 |
+
+- Source × Label 交叉：**均衡**（每个 source 中 benign/jailbreak 各半），无 confound
+- Attack types: train 有 10 种（含 Role+Obfuscation），test 只有 9 种（缺 Role+Obfuscation）
+
+### 4. Train Loss 曲线确认
+BiGRU 分类器（在预计算 DeBERTa embedding 上训练）：
+- **Epoch 1**: Train Loss ~0.08–0.10, Val Loss ~0.03–0.06, Val Acc=0.9865
+- **Epoch 2–20**: Train Loss=0.0000, Val Loss 持续上升（0.11→0.18），Val Acc 恒定 0.9865
+- Best model 保存在 **Epoch 1**（val_loss 最低）
+
+→ **Train Loss=0.0 是因为 BiGRU 在 Epoch 2 即完全记忆了训练集**（tiny model + pre-computed embeddings），是典型过拟合，不是泄漏。
+
+### 5. 真正的问题：不是泄漏，是分布过拟合
+
+| Test Set | 9class F1 | vanilla F1 |
+|----------|-----------|------------|
+| **mixed_test** (ID) | **1.0000** | 0.8146 |
+| **qwen_test** (ID) | **1.0000** | 0.9605 |
+| dd_ood | 0.3798 | — |
+| aa_ood | 0.1753 | — |
+| llama_aa | **0.0741** | — |
+| toxicchat | 0.8646 | — |
+
+**F1=1.0 在 in-distribution test 上是真实的，不存在数据泄漏。** 但 OOD 表现崩溃（最低 0.07）说明 9-class persuasion 特征高度分布特异——模型学到的是训练集中特定 attack type 的模式（如 turn-level persuasion strategy），而非通用的 jailbreak 信号。76 个测试样本也太小，完全正确的方差很大。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_exp16-leak-check_20260519T234739"
+}
+```
+
+</details>
+
+---

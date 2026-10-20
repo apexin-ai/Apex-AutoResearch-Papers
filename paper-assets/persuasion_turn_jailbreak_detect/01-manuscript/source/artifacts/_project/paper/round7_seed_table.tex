@@ -1,0 +1,18 @@
+\begin{table}[h]
+\centering
+\caption{Per-seed OOD F1 scores across all DAPT variants (3 seeds: 42, 123, 456).}
+\label{tab:per-seed-f1}
+\begin{tabular}{l|ccc|ccc|ccc}
+\toprule
+& \multicolumn{3}{c|}{DD OOD} & \multicolumn{3}{c|}{AA OOD} & \multicolumn{3}{c}{FITD OOD} \\
+Variant & s42 & s123 & s456 & s42 & s123 & s456 & s42 & s123 & s456 \\
+\midrule
+\textsc{9-Class} & 1.000 & 1.000 & 0.990 & 0.990 & 0.935 & 0.990 & 1.000 & 1.000 & 1.000 \\
+\textsc{Binary} & 1.000 & 1.000 & 1.000 & 0.981 & 0.990 & 1.000 & -- & -- & -- \\
+\textsc{Scrambled} & 0.990 & 1.000 & 1.000 & 0.891 & 0.990 & 0.971 & -- & -- & -- \\
+\textsc{MLM+cls} & 1.000 & 0.990 & 0.751 & 0.971 & 0.925 & 0.784 & 0.961 & 0.432 & 0.729 \\
+\textsc{Topic} & 0.727 & 0.252 & 0.644 & 0.686 & 0.431 & 0.759 & -- & -- & -- \\
+\textsc{Vanilla} & 0.284 & 0.305 & 0.348 & 0.258 & 0.258 & 0.258 & 0.871 & 0.855 & 0.919 \\
+\bottomrule
+\end{tabular}
+\end{table}

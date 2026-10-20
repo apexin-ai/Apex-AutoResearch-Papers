@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfb7dcb360ebc24abb1d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp65 svd ablation",
+  "task_key": "worker_code_exp65_svd_ablation_20260522T233142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp65_svd_ablation_20260522T233142_result.json",
+    "occurrence": 1,
+    "bytes": 1388,
+    "sha256": "2a2b75d8fe72d905e8b634d2e0e44a0de0f1d82a2d962122459b52fe8fa4d07e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果如下：\n\n## 结果表格（mean±std，3 seeds）\n\n| Condition | DD F1 | FITD F1 | AA F1 |\n|---|---|---|---|\n| Original 768-dim | **1.0000±0.0000** | **1.0000±0.0000** | **0.9936±0.0045** |\n| Remove top-3 SVD | 0.8308±0.0642 | 1.0000±0.0000 | 0.9380±0.0112 |\n| Remove random-3 | 1.0000±0.0000 | 1.0000±0.0000 | 0.9936±0.0045 |\n\nSVD info: top-3 方向解释了训练 turn embeddings 89.81% 的方差。\n\n## 分析\n\n1. **DD**: 移除 top-3 SVD 导致 F1 从 1.0 暴跌至 0.83（**Δ=-0.17**），而移除 random-3 零影响。**强因果证据**——3/768 维度的移除造成 17 点下降。\n\n2. **AA**: 移除 top-3 SVD 导致 F1 从 0.994 降至 0.938（**Δ=-0.056**），random-3 零影响。效果显著但比 DD 弱，说明 AA 的判别信息在更多维度上有冗余。\n\n3. **FITD**: 两种 ablation 均无影响（F1=1.0）。FITD 的判别信息更分散，不集中在 top-3 方向。\n\n4. **因果证据成立**：random-3 对照组完美复现 original 结果（数值完全一致），排除了\"移除任意 3 个维度都会降低性能\"的混淆解释。\n\n5. **与 exp54 的互补**：exp54 证明 3 维足够（sufficiency），exp65 证明 3 维必要（necessity，至少对 DD）。Top-3 SVD 方向对 DD 检测既充分又必要，对 AA 充分但部分冗余，对 FITD 充分但非必要。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp65-svd-ablation.md"
+}

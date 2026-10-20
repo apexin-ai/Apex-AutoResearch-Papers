@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "5b85915144fcc44af224",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "eval exp6 actorattack perturbation v2",
+  "task_key": "worker_eval_exp6-actorattack-perturbation-v2_20260518T135631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp6-actorattack-perturbation-v2_20260518T135631.log",
+    "occurrence": 1,
+    "bytes": 1038548,
+    "sha256": "e3eb828fa1d66affd23f7fbeddcb709eaa6eee3265c41d6b24e29264a54e73e3"
+  },
+  "statistics": {
+    "messages": 531,
+    "user_turns": 0,
+    "tool_calls": 211,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 105,
+      "tool_call": 211,
+      "tool_result": 211,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 531,
+      "chunks": [
+        {
+          "path": "5b85915144fcc44af224-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5b85915144fcc44af224-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5b85915144fcc44af224-part-0003.json",
+          "message_count": 171
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-exp6-actorattack-perturbation-v2.md"
+}

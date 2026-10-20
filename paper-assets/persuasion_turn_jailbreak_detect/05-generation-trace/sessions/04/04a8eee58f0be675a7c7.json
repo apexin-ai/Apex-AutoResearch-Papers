@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04a8eee58f0be675a7c7",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16 qwen leak check",
+  "task_key": "worker_code_exp16-qwen-leak-check_20260520T000843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-qwen-leak-check_20260520T000843_result.json",
+    "occurrence": 1,
+    "bytes": 1498,
+    "sha256": "e807e8eec086a260e01a8b207faf11079ef6c5f40be7150e6ed9839af28e6368"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n### 1. `prepare_mixed_data.py` 合并逻辑\n\n代码第 65-70 行将 Qwen 的 `train.jsonl` + `val.jsonl` + `test.jsonl` 全部合并为一个池，shuffle 后采样 125 jailbreak + 125 benign，再按 350/74/76 重新 split。**原始 split 边界被完全打破。**\n\n### 2. 数据泄漏 — **确认存在，且严重**\n\n| 交叉 | 重叠数量 |\n|------|---------|\n| **mixed_train ∩ qwen_test** | **27 (35.5% of qwen_test)** |\n| mixed_val ∩ qwen_test | 5 |\n| mixed_test ∩ qwen_test | 9 |\n| mixed_train ∩ qwen_val | 27 |\n| mixed_test ∩ qwen_train (反向) | 24 |\n\n76 个 qwen_test 样本中有 27 个出现在 mixed_train 中（泄漏率 35.5%）。\n\n### 3. eval 脚本使用的 qwen_test 路径\n\n`eval_exp16.py` 第 33 行：`\"qwen_test\": PROJ / \"data/plan_002_splits/test.jsonl\"` — 用的就是原始 Qwen test 集。\n\n### 4. 影响范围\n\n**exp16 模型在 `qwen_test` 上的所有 eval 指标不可引用。** 35.5% 的 qwen_test 样本在训练时已被模型见过，指标被人为抬高。\n\n可信指标仅限：\n- `mixed_test`（mixed_llm/test.jsonl）上的结果 — 这是 mixed 数据自身的 held-out split，无交叉污染\n- 任何未参与 mixed 合并的外部测试集（如 Llama-only 测试集，如果有的话）\n\n**如需在论文中报告 qwen_test 指标**，必须重新生成 mixed 数据：在采样 Qwen 数据时排除 `plan_002_splits/test.jsonl` 中的样本，仅从 train+val 中采样。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16-qwen-leak-check.md"
+}

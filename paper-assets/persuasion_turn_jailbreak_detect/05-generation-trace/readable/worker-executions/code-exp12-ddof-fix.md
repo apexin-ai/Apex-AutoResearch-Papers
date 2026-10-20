@@ -1,0 +1,1599 @@
+# code exp12 ddof fix
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_code_exp12-ddof-fix_20260521T053051.log`
+- **Structured JSON:** [`66a2e3e0d8717bf59850.json`](../../sessions/66/66a2e3e0d8717bf59850.json)
+
+## Before a recorded user message
+
+33 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "5db25916-00bc-4fc9-b970-f5cdcf39d1e7",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779342000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "2b52239a-2e42-4427-8fa3-27cf8b20f831",
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Looking at the script first to find the `ddof=1` location and understand the context.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "ebb85f3c-dda8-46de-be84-1aa0f708a4b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KXmJ1v28fvpB2JupDw9JgB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11899,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11899
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011EFcEeMbDTKqqta4WroxhL`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "a0db1614-b503-4a48-b80c-06ede3c702d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KXmJ1v28fvpB2JupDw9JgB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11899,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11899
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T05:31:06.013Z_
+
+<details><summary>↩ Tool result · `toolu_011EFcEeMbDTKqqta4WroxhL`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "acf0dc5b-3308-424d-8244-4dad29494ac1",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the script around line 127 and check the results directory in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "8c52cffb-301f-451f-ad9c-b31587a22e9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXNJsiLjTXDYzmueuS9hhX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 691,
+      "cache_read_input_tokens": 23740,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 691
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0189CqA77RwhqhcjzpEvB7Cp`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat -n /root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "6da1dbde-98fd-42c0-9ed5-856765dcee8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXNJsiLjTXDYzmueuS9hhX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 691,
+      "cache_read_input_tokens": 23740,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 691
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0135pFtZJhaUed7rNsYw6Dfz`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "find /root/persuasion_turn_jailbreak_detect/results -name \"*exp12*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "aff6d630-87a5-400b-9061-fc496fdb7f57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXNJsiLjTXDYzmueuS9hhX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 691,
+      "cache_read_input_tokens": 23740,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 691
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T05:31:11.965Z_
+
+<details><summary>↩ Tool result · `toolu_0189CqA77RwhqhcjzpEvB7Cp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\timport json\\n     2\\timport numpy as np\\n     3\\tfrom sklearn.metrics import f1_score\\n     4\\tfrom scipy import stats as sp_stats\\n     5\\timport time\\n     6\\t\\n     7\\tnp.random.seed(42)\\n     8\\tt0 = time.time()\\n     9\\t\\n    10\\twith open('results/exp8_raw_predictions.json') as f:\\n    11\\t    data = json.load(f)\\n    12\\t\\n    13\\tVARIANTS = ['vanilla', '9class', 'binary', 'scrambled', 'jb_mlm', 'wiki_mlm', 'topic']\\n    14\\tSEEDS = ['42', '123', '456']\\n    15\\tN_RESAMPLES = 10000\\n    16\\t\\n    17\\tdef fast_macro_f1(y_true, y_pred):\\n    18\\t    \\\"\\\"\\\"Vectorized macro F1 for binary classification.\\\"\\\"\\\"\\n    19\\t    tp = np.sum((y_true == 1) & (y_pred == 1))\\n    20\\t    fp = np.sum((y_true == 0) & (y_pred == 1))\\n    21\\t    fn = np.sum((y_true == 1) & (y_pred == 0))\\n    22\\t    tn = np.sum((y_true == 0) & (y_pred == 0))\\n    23\\t    \\n    24\\t    prec1 = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    25\\t    rec1 = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    26\\t    f1_1 = 2 * prec1 * rec1 / (prec1 + rec1) if (prec1 + rec1) > 0 else 0.0\\n    27\\t    \\n    28\\t    prec0 = tn / (tn + fn) if (tn + fn) > 0 else 0.0\\n    29\\t    rec0 = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\n    30\\t    f1_0 = 2 * prec0 * rec0 / (prec0 + rec0) if (prec0 + rec0) > 0 else 0.0\\n    31\\t    \\n    32\\t    return (f1_0 + f1_1) / 2.0\\n    33\\t\\n    34\\tdef bca_bootstrap_ci(y_true, y_pred, n_resamples=N_RESAMPLES, alpha=0.05):\\n    35\\t    n = len(y_true)\\n    36\\t    y_true = np.asarray(y_true)\\n    37\\t    y_pred = np.asarray(y_pred)\\n    38\\t    \\n    39\\t    theta_hat = fast_macro_f1(y_true, y_pred)\\n    40\\t    \\n    41\\t    # Vectorized bootstrap: generate all indices at once\\n    42\\t    all_idx = np.random.randint(0, n, (n_resamples, n))\\n    43\\t    boot_stats = np.empty(n_resamples)\\n    44\\t    for i in range(n_resamples):\\n    45\\t        idx = all_idx[i]\\n    46\\t        boot_stats[i] = fast_macro_f1(y_true[idx], y_pred[idx])\\n    47\\t    \\n    48\\t    valid = ~np.isnan(boot_stats)\\n    49\\t    boot_stats_valid = boot_stats[valid]\\n    50\\t    \\n    51\\t    # Bias correction (z0)\\n    52\\t    prop_below = np.mean(boot_stats_valid < theta_hat)\\n    53\\t    prop_below = np.clip(prop_below, 1e-10, 1 - 1e-10)\\n    54\\t    z0 = sp_stats.norm.ppf(prop_below)\\n    55\\t    \\n    56\\t    # Acceleration (jackknife)\\n    57\\t    jack_stats = np.empty(n)\\n    58\\t    for i in range(n):\\n    59\\t        mask = np.ones(n, dtype=bool)\\n    60\\t        mask[i] = False\\n    61\\t        jack_stats[i] = fast_macro_f1(y_true[mask], y_pred[mask])\\n    62\\t    \\n    63\\t    jack_mean = np.mean(jack_stats)\\n    64\\t    diff = jack_mean - jack_stats\\n    65\\t    a = np.sum(diff**3) / (6.0 * (np.sum(diff**2)**1.5) + 1e-15)\\n    66\\t    \\n    67\\t    z_lo = sp_stats.norm.ppf(alpha / 2)\\n    68\\t    z_hi = sp_stats.norm.ppf(1 - alpha / 2)\\n    69\\t    \\n    70\\t    a1 = sp_stats.norm.cdf(z0 + (z0 + z_lo) / (1 - a * (z0 + z_lo)))\\n    71\\t    a2 = sp_stats.norm.cdf(z0 + (z0 + z_hi) / (1 - a * (z0 + z_hi)))\\n    72\\t    \\n    73\\t    lower = float(np.percentile(boot_stats_valid, 100 * a1))\\n    74\\t    upper = float(np.percentile(boot_stats_valid, 100 * a2))\\n    75\\t    \\n    76\\t    return lower, upper, float(theta_hat)\\n    77\\t\\n    78\\t\\n    79\\tdef paired_permutation_test(y_true, y_pred_a, y_pred_b, n_permutations=N_RESAMPLES):\\n    80\\t    y_true = np.asarray(y_true)\\n    81\\t    y_pred_a = np.asarray(y_pred_a)\\n    82\\t    y_pred_b = np.asarray(y_pred_b)\\n    83\\t    n = len(y_true)\\n    84\\t    \\n    85\\t    observed_diff = fast_macro_f1(y_true, y_pred_a) - fast_macro_f1(y_true, y_pred_b)\\n    86\\t    \\n    87\\t    # Vectorized: generate all swap masks at once\\n    88\\t    swaps = np.random.randint(0, 2, (n_permutations, n)).astype(bool)\\n    89\\t    count = 0\\n    90\\t    for i in range(n_permutations):\\n    91\\t        s = swaps[i]\\n    92\\t        pa = np.where(s, y_pred_b, y_pred_a)\\n    93\\t        pb = np.where(s, y_pred_a, y_pred_b)\\n    94\\t        perm_diff = fast_macro_f1(y_true, pa) - fast_macro_f1(y_true, pb)\\n    95\\t        if abs(perm_diff) >= abs(observed_diff):\\n    96\\t            count += 1\\n    97\\t    \\n    98\\t    p\\n\\n... [截断: 输出过长，省略 1516 字符] ...\\n\\n print(f\\\"\\\\n{variant:>12s}: pooled F1={pooled_f1:.4f}  CI=[{pooled_lower:.4f}, {pooled_upper:.4f}]  \\\"\\n   138\\t          f\\\"seed mean={seed_mean:.4f} +/- {seed_std:.4f}\\\")\\n   139\\t    for seed in SEEDS:\\n   140\\t        ps = per_seed[seed]\\n   141\\t        print(f\\\"{'':>12s}  seed {seed}: F1={ps['f1']:.4f}  CI=[{ps['ci_95'][0]:.4f}, {ps['ci_95'][1]:.4f}]\\\")\\n   142\\t\\n   143\\tprint(f\\\"\\\\nBootstrap done in {time.time()-t0:.1f}s\\\")\\n   144\\t\\n   145\\t# ====== Permutation Tests ======\\n   146\\tt1 = time.time()\\n   147\\tprint(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n   148\\tprint(\\\"Paired Permutation Tests (10,000 permutations)\\\")\\n   149\\tprint(\\\"=\\\" * 70)\\n   150\\t\\n   151\\tcomparisons = [\\n   152\\t    ('jb_mlm', '9class', 'jb_mlm_vs_9class'),\\n   153\\t    ('jb_mlm', 'vanilla', 'jb_mlm_vs_vanilla'),\\n   154\\t    ('wiki_mlm', '9class', 'wiki_mlm_vs_9class'),\\n   155\\t]\\n   156\\t\\n   157\\tperm_results = {}\\n   158\\t\\n   159\\tfor var_a, var_b, label in comparisons:\\n   160\\t    seed_diffs = []\\n   161\\t    seed_pvals = []\\n   162\\t    \\n   163\\t    for seed in SEEDS:\\n   164\\t        tc_a = data[var_a][seed]['toxicchat']\\n   165\\t        tc_b = data[var_b][seed]['toxicchat']\\n   166\\t        yt = np.array(tc_a['y_true'])\\n   167\\t        yp_a = np.array(tc_a['y_pred'])\\n   168\\t        yp_b = np.array(tc_b['y_pred'])\\n   169\\t        diff, pval = paired_permutation_test(yt, yp_a, yp_b)\\n   170\\t        seed_diffs.append(diff)\\n   171\\t        seed_pvals.append(pval)\\n   172\\t    \\n   173\\t    # Pooled\\n   174\\t    pyt, pypa, pypb = [], [], []\\n   175\\t    for seed in SEEDS:\\n   176\\t        tc_a = data[var_a][seed]['toxicchat']\\n   177\\t        tc_b = data[var_b][seed]['toxicchat']\\n   178\\t        pyt.extend(tc_a['y_true'])\\n   179\\t        pypa.extend(tc_a['y_pred'])\\n   180\\t        pypb.extend(tc_b['y_pred'])\\n   181\\t    \\n   182\\t    pooled_diff, pooled_pval = paired_permutation_test(np.array(pyt), np.array(pypa), np.array(pypb))\\n   183\\t    \\n   184\\t    # Fisher's method\\n   185\\t    chi2_stat = -2 * np.sum(np.log(np.array(seed_pvals)))\\n   186\\t    fisher_pval = float(1 - sp_stats.chi2.cdf(chi2_stat, df=2 * len(SEEDS)))\\n   187\\t    \\n   188\\t    perm_results[label] = {\\n   189\\t        'pooled_diff': round(pooled_diff, 4),\\n   190\\t        'pooled_p_value': round(pooled_pval, 6),\\n   191\\t        'per_seed': {\\n   192\\t            seed: {'diff': round(d, 4), 'p_value': round(p, 6)}\\n   193\\t            for seed, d, p in zip(SEEDS, seed_diffs, seed_pvals)\\n   194\\t        },\\n   195\\t        'fisher_combined_p': round(fisher_pval, 6)\\n   196\\t    }\\n   197\\t    \\n   198\\t    sig = \\\"***\\\" if pooled_pval < 0.001 else \\\"**\\\" if pooled_pval < 0.01 else \\\"*\\\" if pooled_pval < 0.05 else \\\"n.s.\\\"\\n   199\\t    print(f\\\"\\\\n{label:>25s}: diff={pooled_diff:+.4f}  p={pooled_pval:.6f} {sig}\\\")\\n   200\\t    print(f\\\"{'':>25s}  Fisher combined p={fisher_pval:.6f}\\\")\\n   201\\t    for seed, d, p in zip(SEEDS, seed_diffs, seed_pvals):\\n   202\\t        print(f\\\"{'':>25s}  seed {seed}: diff={d:+.4f}  p={p:.6f}\\\")\\n   203\\t\\n   204\\tprint(f\\\"\\\\nPermutation tests done in {time.time()-t1:.1f}s\\\")\\n   205\\tprint(f\\\"Total time: {time.time()-t0:.1f}s\\\")\\n   206\\t\\n   207\\t# ====== Verify against sklearn ======\\n   208\\tprint(\\\"\\\\n--- Verification: fast_macro_f1 vs sklearn ---\\\")\\n   209\\tfor variant in ['jb_mlm', 'vanilla', '9class']:\\n   210\\t    tc = data[variant]['42']['toxicchat']\\n   211\\t    yt, yp = np.array(tc['y_true']), np.array(tc['y_pred'])\\n   212\\t    sk = f1_score(yt, yp, average='macro')\\n   213\\t    fast = fast_macro_f1(yt, yp)\\n   214\\t    print(f\\\"{variant}: sklearn={sk:.6f}  fast={fast:.6f}  match={abs(sk-fast)<1e-10}\\\")\\n   215\\t\\n   216\\t# ====== Save ======\\n   217\\toutput = {\\n   218\\t    'bootstrap_ci': bootstrap_results,\\n   219\\t    'permutation_tests': perm_results,\\n   220\\t    'metric': 'f1_macro',\\n   221\\t    'n_resamples': N_RESAMPLES,\\n   222\\t    'n_samples_per_seed': 408,\\n   223\\t    'seeds': SEEDS,\\n   224\\t    'random_seed': 42\\n   225\\t}\\n   226\\t\\n   227\\twith open('results/exp12_toxicchat_bootstrap.json', 'w') as f:\\n   228\\t    json.dump(output, f, indent=2)\\n   229\\t\\n   230\\tprint(f\\\"\\\\nResults saved to results/exp12_toxicchat_bootstrap.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "fb997ab5-b983-43bc-b6e9-b5ddbe058268",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\timport json\\\\n     2\\\\timport numpy as np\\\\n     3\\\\tfrom sklearn.metrics import f1_score\\\\n     4\\\\tfrom scipy import stats as sp_stats\\\\n     5\\\\timport time\\\\n     6\\\\t\\\\n     7\\\\tnp.random.seed(42)\\\\n     8\\\\tt0 = time.time()\\\\n     9\\\\t\\\\n    10\\\\twith open('results/exp8_raw_predictions.json') as f:\\\\n    11\\\\t    data = json.load(f)\\\\n    12\\\\t\\\\n    13\\\\tVARIANTS = ['vanilla', '9class', 'binary', 'scrambled', 'jb_mlm', 'wiki_mlm', 'topic']\\\\n    14\\\\tSEEDS = ['42', '123', '456']\\\\n    15\\\\tN_RESAMPLES = 10000\\\\n    16\\\\t\\\\n    17\\\\tdef fast_macro_f1(y_true, y_pred):\\\\n    18\\\\t    \\\\\\\"\\\\\\\"\\\\\\\"Vectorized macro F1 for binary classification.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    19\\\\t    tp = np.sum((y_true == 1) & (y_pred == 1))\\\\n    20\\\\t    fp = np.sum((y_true == 0) & (y_pred == 1))\\\\n    21\\\\t    fn = np.sum((y_true == 1) & (y_pred == 0))\\\\n    22\\\\t    tn = np.sum((y_true == 0) & (y_pred == 0))\\\\n    23\\\\t    \\\\n    24\\\\t    prec1 = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\\\n    25\\\\t    rec1 = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\\\n    26\\\\t    f1_1 = 2 * prec1 * rec1 / (prec1 + rec1) if (prec1 + rec1) > 0 else 0.0\\\\n    27\\\\t    \\\\n    28\\\\t    prec0 = tn / (tn + fn) if (tn + fn) > 0 else 0.0\\\\n    29\\\\t    rec0 = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\\\n    30\\\\t    f1_0 = 2 * prec0 * rec0 / (prec0 + rec0) if (prec0 + rec0) > 0 else 0.0\\\\n    31\\\\t    \\\\n    32\\\\t    return (f1_0 + f1_1) / 2.0\\\\n    33\\\\t\\\\n    34\\\\tdef bca_bootstrap_ci(y_true, y_pred, n_resamples=N_RESAMPLES, alpha=0.05):\\\\n    35\\\\t    n = len(y_true)\\\\n    36\\\\t    y_true = np.asarray(y_true)\\\\n    37\\\\t    y_pred = np.asarray(y_pred)\\\\n    38\\\\t    \\\\n    39\\\\t    theta_hat = fast_macro_f1(y_true, y_pred)\\\\n    40\\\\t    \\\\n    41\\\\t    # Vectorized bootstrap: generate all indices at once\\\\n    42\\\\t    all_idx = np.random.randint(0, n, (n_resamples, n))\\\\n    43\\\\t    boot_stats = np.empty(n_resamples)\\\\n    44\\\\t    for i in range(n_resamples):\\\\n    45\\\\t        idx = all_idx[i]\\\\n    46\\\\t        boot_stats[i] = fast_macro_f1(y_true[idx], y_pred[idx])\\\\n    47\\\\t    \\\\n    48\\\\t    valid = ~np.isnan(boot_stats)\\\\n    49\\\\t    boot_stats_valid = boot_stats[valid]\\\\n    50\\\\t    \\\\n    51\\\\t    # Bias correction (z0)\\\\n    52\\\\t    prop_below = np.mean(boot_stats_valid < theta_hat)\\\\n    53\\\\t    prop_below = np.clip(prop_below, 1e-10, 1 - 1e-10)\\\\n    54\\\\t    z0 = sp_stats.norm.ppf(prop_below)\\\\n    55\\\\t    \\\\n    56\\\\t    # Acceleration (jackknife)\\\\n    57\\\\t    jack_stats = np.empty(n)\\\\n    58\\\\t    for i in range(n):\\\\n    59\\\\t        mask = np.ones(n, dtype=bool)\\\\n    60\\\\t        mask[i] = False\\\\n    61\\\\t        jack_stats[i] = fast_macro_f1(y_true[mask], y_pred[mask])\\\\n    62\\\\t    \\\\n    63\\\\t    jack_mean = np.mean(jack_stats)\\\\n    64\\\\t    diff = jack_mean - jack_stats\\\\n    65\\\\t    a = np.sum(diff**3) / (6.0 * (np.sum(diff**2)**1.5) + 1e-15)\\\\n    66\\\\t    \\\\n    67\\\\t    z_lo = sp_stats.norm.ppf(alpha / 2)\\\\n    68\\\\t    z_hi = sp_stats.norm.ppf(1 - alpha / 2)\\\\n    69\\\\t    \\\\n    70\\\\t    a1 = sp_stats.norm.cdf(z0 + (z0 + z_lo) / (1 - a * (z0 + z_lo)))\\\\n    71\\\\t    a2 = sp_stats.norm.cdf(z0 + (z0 + z_hi) / (1 - a * (z0 + z_hi)))\\\\n    72\\\\t    \\\\n    73\\\\t    lower = float(np.percentile(boot_stats_valid, 100 * a1))\\\\n    74\\\\t    upper = float(np.percentile(boot_stats_valid, 100 * a2))\\\\n    75\\\\t    \\\\n    76\\\\t    return lower, upper, float(theta_hat)\\\\n    77\\\\t\\\\n    78\\\\t\\\\n    79\\\\tdef paired_permutation_test(y_true, y_pred_a, y_pred_b, n_permutations=N_RESAMPLES):\\\\n    80\\\\t    y_true = np.asarray(y_true)\\\\n    81\\\\t    y_pred_a = np.asarray(y_pred_a)\\\\n    82\\\\t    y_pred_b = np.asarray(y_pred_b)\\\\n    83\\\\t    n = len(y_true)\\\\n    84\\\\t    \\\\n    85\\\\t    observed_diff = fast_macro_f1(y_true, y_pred_a) - fast_macro_f1(y_true, y_pred_b)\\\\n    86\\\\t    \\\\n    87\\\\t    # Vectorized: generate all swap masks at once\\\\n    88\\\\t    swaps = np.random.randint(0, 2, (n_permutations, n)).astype(bool)\\\\n    89\\\\t    count = 0\\\\n    90\\\\t    for i in range(n_permutations):\\\\n    91\\\\t        s = swaps[i]\\\\n    92\\\\t        pa = np.where(s, y_pred_b, y_pred_a)\\\\n    93\\\\t        pb = np.where(s, y_pred_a, y_pred_b)\\\\n    94\\\\t        perm_diff = fast_macro_f1(y_true, pa) - fast_macro_f1(y_true, pb)\\\\n    95\\\\t        if abs(perm_diff) >= abs(observed_diff):\\\\n    96\\\\t            count += 1\\\\n    97\\\\t    \\\\n    98\\\\t    p\\\\n\\\\n... [截断: 输出过长，省略 1516 字符] ...\\\\n\\\\n print(f\\\\\\\"\\\\\\\\n{variant:>12s}: pooled F1={pooled_f1:.4f}  CI=[{pooled_lower:.4f}, {pooled_upper:.4f}]  \\\\\\\"\\\\n   138\\\\t          f\\\\\\\"seed mean={seed_mean:.4f} +/- {seed_std:.4f}\\\\\\\")\\\\n   139\\\\t    for seed in SEEDS:\\\\n   140\\\\t        ps = per_seed[seed]\\\\n   141\\\\t        print(f\\\\\\\"{'':>12s}  seed {seed}: F1={ps['f1']:.4f}  CI=[{ps['ci_95'][0]:.4f}, {ps['ci_95'][1]:.4f}]\\\\\\\")\\\\n   142\\\\t\\\\n   143\\\\tprint(f\\\\\\\"\\\\\\\\nBootstrap done in {time.time()-t0:.1f}s\\\\\\\")\\\\n   144\\\\t\\\\n   145\\\\t# ====== Permutation Tests ======\\\\n   146\\\\tt1 = time.time()\\\\n   147\\\\tprint(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n   148\\\\tprint(\\\\\\\"Paired Permutation Tests (10,000 permutations)\\\\\\\")\\\\n   149\\\\tprint(\\\\\\\"=\\\\\\\" * 70)\\\\n   150\\\\t\\\\n   151\\\\tcomparisons = [\\\\n   152\\\\t    ('jb_mlm', '9class', 'jb_mlm_vs_9class'),\\\\n   153\\\\t    ('jb_mlm', 'vanilla', 'jb_mlm_vs_vanilla'),\\\\n   154\\\\t    ('wiki_mlm', '9class', 'wiki_mlm_vs_9class'),\\\\n   155\\\\t]\\\\n   156\\\\t\\\\n   157\\\\tperm_results = {}\\\\n   158\\\\t\\\\n   159\\\\tfor var_a, var_b, label in comparisons:\\\\n   160\\\\t    seed_diffs = []\\\\n   161\\\\t    seed_pvals = []\\\\n   162\\\\t    \\\\n   163\\\\t    for seed in SEEDS:\\\\n   164\\\\t        tc_a = data[var_a][seed]['toxicchat']\\\\n   165\\\\t        tc_b = data[var_b][seed]['toxicchat']\\\\n   166\\\\t        yt = np.array(tc_a['y_true'])\\\\n   167\\\\t        yp_a = np.array(tc_a['y_pred'])\\\\n   168\\\\t        yp_b = np.array(tc_b['y_pred'])\\\\n   169\\\\t        diff, pval = paired_permutation_test(yt, yp_a, yp_b)\\\\n   170\\\\t        seed_diffs.append(diff)\\\\n   171\\\\t        seed_pvals.append(pval)\\\\n   172\\\\t    \\\\n   173\\\\t    # Pooled\\\\n   174\\\\t    pyt, pypa, pypb = [], [], []\\\\n   175\\\\t    for seed in SEEDS:\\\\n   176\\\\t        tc_a = data[var_a][seed]['toxicchat']\\\\n   177\\\\t        tc_b = data[var_b][seed]['toxicchat']\\\\n   178\\\\t        pyt.extend(tc_a['y_true'])\\\\n   179\\\\t        pypa.extend(tc_a['y_pred'])\\\\n   180\\\\t        pypb.extend(tc_b['y_pred'])\\\\n   181\\\\t    \\\\n   182\\\\t    pooled_diff, pooled_pval = paired_permutation_test(np.array(pyt), np.array(pypa), np.array(pypb))\\\\n   183\\\\t    \\\\n   184\\\\t    # Fisher's method\\\\n   185\\\\t    chi2_stat = -2 * np.sum(np.log(np.array(seed_pvals)))\\\\n   186\\\\t    fisher_pval = float(1 - sp_stats.chi2.cdf(chi2_stat, df=2 * len(SEEDS)))\\\\n   187\\\\t    \\\\n   188\\\\t    perm_results[label] = {\\\\n   189\\\\t        'pooled_diff': round(pooled_diff, 4),\\\\n   190\\\\t        'pooled_p_value': round(pooled_pval, 6),\\\\n   191\\\\t        'per_seed': {\\\\n   192\\\\t            seed: {'diff': round(d, 4), 'p_value': round(p, 6)}\\\\n   193\\\\t            for seed, d, p in zip(SEEDS, seed_diffs, seed_pvals)\\\\n   194\\\\t        },\\\\n   195\\\\t        'fisher_combined_p': round(fisher_pval, 6)\\\\n   196\\\\t    }\\\\n   197\\\\t    \\\\n   198\\\\t    sig = \\\\\\\"***\\\\\\\" if pooled_pval < 0.001 else \\\\\\\"**\\\\\\\" if pooled_pval < 0.01 else \\\\\\\"*\\\\\\\" if pooled_pval < 0.05 else \\\\\\\"n.s.\\\\\\\"\\\\n   199\\\\t    print(f\\\\\\\"\\\\\\\\n{label:>25s}: diff={pooled_diff:+.4f}  p={pooled_pval:.6f} {sig}\\\\\\\")\\\\n   200\\\\t    print(f\\\\\\\"{'':>25s}  Fisher combined p={fisher_pval:.6f}\\\\\\\")\\\\n   201\\\\t    for seed, d, p in zip(SEEDS, seed_diffs, seed_pvals):\\\\n   202\\\\t        print(f\\\\\\\"{'':>25s}  seed {seed}: diff={d:+.4f}  p={p:.6f}\\\\\\\")\\\\n   203\\\\t\\\\n   204\\\\tprint(f\\\\\\\"\\\\\\\\nPermutation tests done in {time.time()-t1:.1f}s\\\\\\\")\\\\n   205\\\\tprint(f\\\\\\\"Total time: {time.time()-t0:.1f}s\\\\\\\")\\\\n   206\\\\t\\\\n   207\\\\t# ====== Verify against sklearn ======\\\\n   208\\\\tprint(\\\\\\\"\\\\\\\\n--- Verification: fast_macro_f1 vs sklearn ---\\\\\\\")\\\\n   209\\\\tfor variant in ['jb_mlm', 'vanilla', '9class']:\\\\n   210\\\\t    tc = data[variant]['42']['toxicchat']\\\\n   211\\\\t    yt, yp = np.array(tc['y_true']), np.array(tc['y_pred'])\\\\n   212\\\\t    sk = f1_score(yt, yp, average='macro')\\\\n   213\\\\t    fast = fast_macro_f1(yt, yp)\\\\n   214\\\\t    print(f\\\\\\\"{variant}: sklearn={sk:.6f}  fast={fast:.6f}  match={abs(sk-fast)<1e-10}\\\\\\\")\\\\n   215\\\\t\\\\n   216\\\\t# ====== Save ======\\\\n   217\\\\toutput = {\\\\n   218\\\\t    'bootstrap_ci': bootstrap_results,\\\\n   219\\\\t    'permutation_tests': perm_results,\\\\n   220\\\\t    'metric': 'f1_macro',\\\\n   221\\\\t    'n_resamples': N_RESAMPLES,\\\\n   222\\\\t    'n_samples_per_seed': 408,\\\\n   223\\\\t    'seeds': SEEDS,\\\\n   224\\\\t    'random_seed': 42\\\\n   225\\\\t}\\\\n   226\\\\t\\\\n   227\\\\twith open('results/exp12_toxicchat_bootstrap.json', 'w') as f:\\\\n   228\\\\t    json.dump(output, f, indent=2)\\\\n   229\\\\t\\\\n   230\\\\tprint(f\\\\\\\"\\\\\\\\nResults saved to results/exp12_toxicchat_bootstrap.json\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"     1\\timport json\\n     2\\timport numpy as np\\n     3\\tfrom sklearn.metrics import f1_score\\n     4\\tfrom scipy import stats as sp_stats\\n     5\\timport time\\n     6\\t\\n     7\\tnp.random.seed(42)\\n     8\\tt0 = time.time()\\n     9\\t\\n    10\\twith open('results/exp8_raw_predictions.json') as f:\\n    11\\t    data = json.load(f)\\n    12\\t\\n    13\\tVARIANTS = ['vanilla', '9class', 'binary', 'scrambled', 'jb_mlm', 'wiki_mlm', 'topic']\\n    14\\tSEEDS = ['42', '123', '456']\\n    15\\tN_RESAMPLES = 10000\\n    16\\t\\n    17\\tdef fast_macro_f1(y_true, y_pred):\\n    18\\t    \\\"\\\"\\\"Vectorized macro F1 for binary classification.\\\"\\\"\\\"\\n    19\\t    tp = np.sum((y_true == 1) & (y_pred == 1))\\n    20\\t    fp = np.sum((y_true == 0) & (y_pred == 1))\\n    21\\t    fn = np.sum((y_true == 1) & (y_pred == 0))\\n    22\\t    tn = np.sum((y_true == 0) & (y_pred == 0))\\n    23\\t    \\n    24\\t    prec1 = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    25\\t    rec1 = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    26\\t    f1_1 = 2 * prec1 * rec1 / (prec1 + rec1) if (prec1 + rec1) > 0 else 0.0\\n    27\\t    \\n    28\\t    prec0 = tn / (tn + fn) if (tn + fn) > 0 else 0.0\\n    29\\t    rec0 = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\n    30\\t    f1_0 = 2 * prec0 * rec0 / (prec0 + rec0) if (prec0 + rec0) > 0 else 0.0\\n    31\\t    \\n    32\\t    return (f1_0 + f1_1) / 2.0\\n    33\\t\\n    34\\tdef bca_bootstrap_ci(y_true, y_pred, n_resamples=N_RESAMPLES, alpha=0.05):\\n    35\\t    n = len(y_true)\\n    36\\t    y_true = np.asarray(y_true)\\n    37\\t    y_pred = np.asarray(y_pred)\\n    38\\t    \\n    39\\t    theta_hat = fast_macro_f1(y_true, y_pred)\\n    40\\t    \\n    41\\t    # Vectorized bootstrap: generate all indices at once\\n    42\\t    all_idx = np.random.randint(0, n, (n_resamples, n))\\n    43\\t    boot_stats = np.empty(n_resamples)\\n    44\\t    for i in range(n_resamples):\\n    45\\t        idx = all_idx[i]\\n    46\\t        boot_stats[i] = fast_macro_f1(y_true[idx], y_pred[idx])\\n    47\\t    \\n    48\\t    valid = ~np.isnan(boot_stats)\\n    49\\t    boot_stats_valid = boot_stats[valid]\\n    50\\t    \\n    51\\t    # Bias correction (z0)\\n    52\\t    prop_below = np.mean(boot_stats_valid < theta_hat)\\n    53\\t    prop_below = np.clip(prop_below, 1e-10, 1 - 1e-10)\\n    54\\t    z0 = sp_stats.norm.ppf(prop_below)\\n    55\\t    \\n    56\\t    # Acceleration (jackknife)\\n    57\\t    jack_stats = np.empty(n)\\n    58\\t    for i in range(n):\\n    59\\t        mask = np.ones(n, dtype=bool)\\n    60\\t        mask[i] = False\\n    61\\t        jack_stats[i] = fast_macro_f1(y_true[mask], y_pred[mask])\\n    62\\t    \\n    63\\t    jack_mean = np.mean(jack_stats)\\n    64\\t    diff = jack_mean - jack_stats\\n    65\\t    a = np.sum(diff**3) / (6.0 * (np.sum(diff**2)**1.5) + 1e-15)\\n    66\\t    \\n    67\\t    z_lo = sp_stats.norm.ppf(alpha / 2)\\n    68\\t    z_hi = sp_stats.norm.ppf(1 - alpha / 2)\\n    69\\t    \\n    70\\t    a1 = sp_stats.norm.cdf(z0 + (z0 + z_lo) / (1 - a * (z0 + z_lo)))\\n    71\\t    a2 = sp_stats.norm.cdf(z0 + (z0 + z_hi) / (1 - a * (z0 + z_hi)))\\n    72\\t    \\n    73\\t    lower = float(np.percentile(boot_stats_valid, 100 * a1))\\n    74\\t    upper = float(np.percentile(boot_stats_valid, 100 * a2))\\n    75\\t    \\n    76\\t    return lower, upper, float(theta_hat)\\n    77\\t\\n    78\\t\\n    79\\tdef paired_permutation_test(y_true, y_pred_a, y_pred_b, n_permutations=N_RESAMPLES):\\n    80\\t    y_true = np.asarray(y_true)\\n    81\\t    y_pred_a = np.asarray(y_pred_a)\\n    82\\t    y_pred_b = np.asarray(y_pred_b)\\n    83\\t    n = len(y_true)\\n    84\\t    \\n    85\\t    observed_diff = fast_macro_f1(y_true, y_pred_a) - fast_macro_f1(y_true, y_pred_b)\\n    86\\t    \\n    87\\t    # Vectorized: generate all swap masks at once\\n    88\\t    swaps = np.random.randint(0, 2, (n_permutations, n)).astype(bool)\\n    89\\t    count = 0\\n    90\\t    for i in range(n_permutations):\\n    91\\t        s = swaps[i]\\n    92\\t        pa = np.where(s, y_pred_b, y_pred_a)\\n    93\\t        pb = np.where(s, y_pred_a, y_pred_b)\\n    94\\t        perm_diff = fast_macro_f1(y_true, pa) - fast_macro_f1(y_true, pb)\\n    95\\t        if abs(perm_diff) >= abs(observed_diff):\\n    96\\t            count += 1\\n    97\\t    \\n    98\\t    p\\n\\n... [截断: 输出过长，省略 1516 字符] ...\\n\\n print(f\\\"\\\\n{variant:>12s}: pooled F1={pooled_f1:.4f}  CI=[{pooled_lower:.4f}, {pooled_upper:.4f}]  \\\"\\n   138\\t          f\\\"seed mean={seed_mean:.4f} +/- {seed_std:.4f}\\\")\\n   139\\t    for seed in SEEDS:\\n   140\\t        ps = per_seed[seed]\\n   141\\t        print(f\\\"{'':>12s}  seed {seed}: F1={ps['f1']:.4f}  CI=[{ps['ci_95'][0]:.4f}, {ps['ci_95'][1]:.4f}]\\\")\\n   142\\t\\n   143\\tprint(f\\\"\\\\nBootstrap done in {time.time()-t0:.1f}s\\\")\\n   144\\t\\n   145\\t# ====== Permutation Tests ======\\n   146\\tt1 = time.time()\\n   147\\tprint(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n   148\\tprint(\\\"Paired Permutation Tests (10,000 permutations)\\\")\\n   149\\tprint(\\\"=\\\" * 70)\\n   150\\t\\n   151\\tcomparisons = [\\n   152\\t    ('jb_mlm', '9class', 'jb_mlm_vs_9class'),\\n   153\\t    ('jb_mlm', 'vanilla', 'jb_mlm_vs_vanilla'),\\n   154\\t    ('wiki_mlm', '9class', 'wiki_mlm_vs_9class'),\\n   155\\t]\\n   156\\t\\n   157\\tperm_results = {}\\n   158\\t\\n   159\\tfor var_a, var_b, label in comparisons:\\n   160\\t    seed_diffs = []\\n   161\\t    seed_pvals = []\\n   162\\t    \\n   163\\t    for seed in SEEDS:\\n   164\\t        tc_a = data[var_a][seed]['toxicchat']\\n   165\\t        tc_b = data[var_b][seed]['toxicchat']\\n   166\\t        yt = np.array(tc_a['y_true'])\\n   167\\t        yp_a = np.array(tc_a['y_pred'])\\n   168\\t        yp_b = np.array(tc_b['y_pred'])\\n   169\\t        diff, pval = paired_permutation_test(yt, yp_a, yp_b)\\n   170\\t        seed_diffs.append(diff)\\n   171\\t        seed_pvals.append(pval)\\n   172\\t    \\n   173\\t    # Pooled\\n   174\\t    pyt, pypa, pypb = [], [], []\\n   175\\t    for seed in SEEDS:\\n   176\\t        tc_a = data[var_a][seed]['toxicchat']\\n   177\\t        tc_b = data[var_b][seed]['toxicchat']\\n   178\\t        pyt.extend(tc_a['y_true'])\\n   179\\t        pypa.extend(tc_a['y_pred'])\\n   180\\t        pypb.extend(tc_b['y_pred'])\\n   181\\t    \\n   182\\t    pooled_diff, pooled_pval = paired_permutation_test(np.array(pyt), np.array(pypa), np.array(pypb))\\n   183\\t    \\n   184\\t    # Fisher's method\\n   185\\t    chi2_stat = -2 * np.sum(np.log(np.array(seed_pvals)))\\n   186\\t    fisher_pval = float(1 - sp_stats.chi2.cdf(chi2_stat, df=2 * len(SEEDS)))\\n   187\\t    \\n   188\\t    perm_results[label] = {\\n   189\\t        'pooled_diff': round(pooled_diff, 4),\\n   190\\t        'pooled_p_value': round(pooled_pval, 6),\\n   191\\t        'per_seed': {\\n   192\\t            seed: {'diff': round(d, 4), 'p_value': round(p, 6)}\\n   193\\t            for seed, d, p in zip(SEEDS, seed_diffs, seed_pvals)\\n   194\\t        },\\n   195\\t        'fisher_combined_p': round(fisher_pval, 6)\\n   196\\t    }\\n   197\\t    \\n   198\\t    sig = \\\"***\\\" if pooled_pval < 0.001 else \\\"**\\\" if pooled_pval < 0.01 else \\\"*\\\" if pooled_pval < 0.05 else \\\"n.s.\\\"\\n   199\\t    print(f\\\"\\\\n{label:>25s}: diff={pooled_diff:+.4f}  p={pooled_pval:.6f} {sig}\\\")\\n   200\\t    print(f\\\"{'':>25s}  Fisher combined p={fisher_pval:.6f}\\\")\\n   201\\t    for seed, d, p in zip(SEEDS, seed_diffs, seed_pvals):\\n   202\\t        print(f\\\"{'':>25s}  seed {seed}: diff={d:+.4f}  p={p:.6f}\\\")\\n   203\\t\\n   204\\tprint(f\\\"\\\\nPermutation tests done in {time.time()-t1:.1f}s\\\")\\n   205\\tprint(f\\\"Total time: {time.time()-t0:.1f}s\\\")\\n   206\\t\\n   207\\t# ====== Verify against sklearn ======\\n   208\\tprint(\\\"\\\\n--- Verification: fast_macro_f1 vs sklearn ---\\\")\\n   209\\tfor variant in ['jb_mlm', 'vanilla', '9class']:\\n   210\\t    tc = data[variant]['42']['toxicchat']\\n   211\\t    yt, yp = np.array(tc['y_true']), np.array(tc['y_pred'])\\n   212\\t    sk = f1_score(yt, yp, average='macro')\\n   213\\t    fast = fast_macro_f1(yt, yp)\\n   214\\t    print(f\\\"{variant}: sklearn={sk:.6f}  fast={fast:.6f}  match={abs(sk-fast)<1e-10}\\\")\\n   215\\t\\n   216\\t# ====== Save ======\\n   217\\toutput = {\\n   218\\t    'bootstrap_ci': bootstrap_results,\\n   219\\t    'permutation_tests': perm_results,\\n   220\\t    'metric': 'f1_macro',\\n   221\\t    'n_resamples': N_RESAMPLES,\\n   222\\t    'n_samples_per_seed': 408,\\n   223\\t    'seeds': SEEDS,\\n   224\\t    'random_seed': 42\\n   225\\t}\\n   226\\t\\n   227\\twith open('results/exp12_toxicchat_bootstrap.json', 'w') as f:\\n   228\\t    json.dump(output, f, indent=2)\\n   229\\t\\n   230\\tprint(f\\\"\\\\nResults saved to results/exp12_toxicchat_bootstrap.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T05:31:12.492Z_
+
+<details><summary>↩ Tool result · `toolu_0135pFtZJhaUed7rNsYw6Dfz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/results/exp12_log.txt\\n/root/persuasion_turn_jailbreak_detect/results/exp12_toxicchat_bootstrap.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "6bd8308a-8266-4a93-a9d1-a28ee4d045a9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/persuasion_turn_jailbreak_detect/results/exp12_log.txt\\\\n/root/persuasion_turn_jailbreak_detect/results/exp12_toxicchat_bootstrap.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/persuasion_turn_jailbreak_detect/results/exp12_log.txt\\n/root/persuasion_turn_jailbreak_detect/results/exp12_toxicchat_bootstrap.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. I need to see lines around 127 where `ddof=1` is used. Let me look at the part that was truncated - it seems to be around lines 98-137. Let me read that section specifically, and also look at the JSON results file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "6d5ca5ff-e6f4-4d0b-9b29-73830368e769",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QWSxMy1fbfSdLfNk686sBc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4582,
+      "cache_read_input_tokens": 24431,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4582
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Output was truncated. Let me read the missing section (lines 98-137) and the results JSON.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "e9c4080a-9fb6-4edf-b391-676faea73e8a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QWSxMy1fbfSdLfNk686sBc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4582,
+      "cache_read_input_tokens": 24431,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4582
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013WtrX5a9wBTmPBJw8wzFD8`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "head -137 /root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "c038170c-a2ad-4329-a4f5-3819b479860b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QWSxMy1fbfSdLfNk686sBc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4582,
+      "cache_read_input_tokens": 24431,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4582
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T05:31:20.259Z_
+
+<details><summary>↩ Tool result · `toolu_013WtrX5a9wBTmPBJw8wzFD8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\nfrom sklearn.metrics import f1_score\\nfrom scipy import stats as sp_stats\\nimport time\\n\\nnp.random.seed(42)\\nt0 = time.time()\\n\\nwith open('results/exp8_raw_predictions.json') as f:\\n    data = json.load(f)\\n\\nVARIANTS = ['vanilla', '9class', 'binary', 'scrambled', 'jb_mlm', 'wiki_mlm', 'topic']\\nSEEDS = ['42', '123', '456']\\nN_RESAMPLES = 10000\\n\\ndef fast_macro_f1(y_true, y_pred):\\n    \\\"\\\"\\\"Vectorized macro F1 for binary classification.\\\"\\\"\\\"\\n    tp = np.sum((y_true == 1) & (y_pred == 1))\\n    fp = np.sum((y_true == 0) & (y_pred == 1))\\n    fn = np.sum((y_true == 1) & (y_pred == 0))\\n    tn = np.sum((y_true == 0) & (y_pred == 0))\\n    \\n    prec1 = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    rec1 = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    f1_1 = 2 * prec1 * rec1 / (prec1 + rec1) if (prec1 + rec1) > 0 else 0.0\\n    \\n    prec0 = tn / (tn + fn) if (tn + fn) > 0 else 0.0\\n    rec0 = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\n    f1_0 = 2 * prec0 * rec0 / (prec0 + rec0) if (prec0 + rec0) > 0 else 0.0\\n    \\n    return (f1_0 + f1_1) / 2.0\\n\\ndef bca_bootstrap_ci(y_true, y_pred, n_resamples=N_RESAMPLES, alpha=0.05):\\n    n = len(y_true)\\n    y_true = np.asarray(y_true)\\n    y_pred = np.asarray(y_pred)\\n    \\n    theta_hat = fast_macro_f1(y_true, y_pred)\\n    \\n    # Vectorized bootstrap: generate all indices at once\\n    all_idx = np.random.randint(0, n, (n_resamples, n))\\n    boot_stats = np.empty(n_resamples)\\n    for i in range(n_resamples):\\n        idx = all_idx[i]\\n        boot_stats[i] = fast_macro_f1(y_true[idx], y_pred[idx])\\n    \\n    valid = ~np.isnan(boot_stats)\\n    boot_stats_valid = boot_stats[valid]\\n    \\n    # Bias correction (z0)\\n    prop_below = np.mean(boot_stats_valid < theta_hat)\\n    prop_below = np.clip(prop_below, 1e-10, 1 - 1e-10)\\n    z0 = sp_stats.norm.ppf(prop_below)\\n    \\n    # Acceleration (jackknife)\\n    jack_stats = np.empty(n)\\n    for i in range(n):\\n        mask = np.ones(n, dtype=bool)\\n        mask[i] = False\\n        jack_stats[i] = fast_macro_f1(y_true[mask], y_pred[mask])\\n    \\n    jack_mean = np.mean(jack_stats)\\n    diff = jack_mean - jack_stats\\n    a = np.sum(diff**3) / (6.0 * (np.sum(diff**2)**1.5) + 1e-15)\\n    \\n    z_lo = sp_stats.norm.ppf(alpha / 2)\\n    z_hi = sp_stats.norm.ppf(1 - alpha / 2)\\n    \\n    a1 = sp_stats.norm.cdf(z0 + (z0 + z_lo) / (1 - a * (z0 + z_lo)))\\n    a2 = sp_stats.norm.cdf(z0 + (z0 + z_hi) / (1 - a * (z0 + z_hi)))\\n    \\n    lower = float(np.percentile(boot_stats_valid, 100 * a1))\\n    upper = float(np.percentile(boot_stats_valid, 100 * a2))\\n    \\n    return lower, upper, float(theta_hat)\\n\\n\\ndef paired_permutation_test(y_true, y_pred_a, y_pred_b, n_permutations=N_RESAMPLES):\\n    y_true = np.asarray(y_true)\\n    y_pred_a = np.asarray(y_pred_a)\\n    y_pred_b = np.asarray(y_pred_b)\\n    n = len(y_true)\\n    \\n    observed_diff = fast_macro_f1(y_true, y_pred_a) - fast_macro_f1(y_true, y_pred_b)\\n    \\n    # Vectorized: generate all swap masks at once\\n    swaps = np.random.randint(0, 2, (n_permutations, n)).astype(bool)\\n    count = 0\\n    for i in range(n_permutations):\\n        s = swaps[i]\\n        pa = np.where(s, y_pred_b, y_pred_a)\\n        pb = np.where(s, y_pred_a, y_pred_b)\\n        perm_diff = fast_macro_f1(y_true, pa) - fast_macro_f1(y_true, pb)\\n        if abs(perm_diff) >= abs(observed_diff):\\n            count += 1\\n    \\n    p_value = (count + 1) / (n_permutations + 1)\\n    return float(observed_diff), float(p_value)\\n\\n\\n# ====== Bootstrap CI ======\\nprint(\\\"=\\\" * 70)\\nprint(\\\"BCa Bootstrap 95% CI for Macro F1 on ToxicChat (10,000 resamples)\\\")\\nprint(\\\"=\\\" * 70)\\n\\nbootstrap_results = {}\\n\\nfor variant in VARIANTS:\\n    per_seed = {}\\n    seed_f1s = []\\n    pooled_yt, pooled_yp = [], []\\n    \\n    for seed in SEEDS:\\n        tc = data[variant][seed]['toxicchat']\\n        yt = np.array(tc['y_true'])\\n        yp = np.array(tc['y_pred'])\\n        \\n        lower, upper, f1_val = bca_bootstrap_ci(yt, yp)\\n        per_seed[seed] = {'f1': round(f1_val, 4), 'ci_95': [round(lower, 4), round(upper, 4)]}\\n        seed_f1s.append(f1_val)\\n        pooled_yt.extend(tc['y_true'])\\n        pooled_yp.extend(tc['y_pred'])\\n    \\n    pooled_lower, pooled_upper, pooled_f1 = bca_bootstrap_ci(np.array(pooled_yt), np.array(pooled_yp))\\n    seed_mean = float(np.mean(seed_f1s))\\n    seed_std = float(np.std(seed_f1s, ddof=1))\\n    \\n    bootstrap_results[variant] = {\\n        'pooled_f1': round(pooled_f1, 4),\\n        'pooled_ci_95': [round(pooled_lower, 4), round(pooled_upper, 4)],\\n        'seed_mean': round(seed_mean, 4),\\n        'seed_std': round(seed_std, 4),\\n        'per_seed': per_seed\\n    }\\n    \\n    print(f\\\"\\\\n{variant:>12s}: pooled F1={pooled_f1:.4f}  CI=[{pooled_lower:.4f}, {pooled_upper:.4f}]  \\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "857c80aa-7ad6-4243-ba3e-420100b635e2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport numpy as np\\\\nfrom sklearn.metrics import f1_score\\\\nfrom scipy import stats as sp_stats\\\\nimport time\\\\n\\\\nnp.random.seed(42)\\\\nt0 = time.time()\\\\n\\\\nwith open('results/exp8_raw_predictions.json') as f:\\\\n    data = json.load(f)\\\\n\\\\nVARIANTS = ['vanilla', '9class', 'binary', 'scrambled', 'jb_mlm', 'wiki_mlm', 'topic']\\\\nSEEDS = ['42', '123', '456']\\\\nN_RESAMPLES = 10000\\\\n\\\\ndef fast_macro_f1(y_true, y_pred):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Vectorized macro F1 for binary classification.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    tp = np.sum((y_true == 1) & (y_pred == 1))\\\\n    fp = np.sum((y_true == 0) & (y_pred == 1))\\\\n    fn = np.sum((y_true == 1) & (y_pred == 0))\\\\n    tn = np.sum((y_true == 0) & (y_pred == 0))\\\\n    \\\\n    prec1 = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\\\n    rec1 = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\\\n    f1_1 = 2 * prec1 * rec1 / (prec1 + rec1) if (prec1 + rec1) > 0 else 0.0\\\\n    \\\\n    prec0 = tn / (tn + fn) if (tn + fn) > 0 else 0.0\\\\n    rec0 = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\\\n    f1_0 = 2 * prec0 * rec0 / (prec0 + rec0) if (prec0 + rec0) > 0 else 0.0\\\\n    \\\\n    return (f1_0 + f1_1) / 2.0\\\\n\\\\ndef bca_bootstrap_ci(y_true, y_pred, n_resamples=N_RESAMPLES, alpha=0.05):\\\\n    n = len(y_true)\\\\n    y_true = np.asarray(y_true)\\\\n    y_pred = np.asarray(y_pred)\\\\n    \\\\n    theta_hat = fast_macro_f1(y_true, y_pred)\\\\n    \\\\n    # Vectorized bootstrap: generate all indices at once\\\\n    all_idx = np.random.randint(0, n, (n_resamples, n))\\\\n    boot_stats = np.empty(n_resamples)\\\\n    for i in range(n_resamples):\\\\n        idx = all_idx[i]\\\\n        boot_stats[i] = fast_macro_f1(y_true[idx], y_pred[idx])\\\\n    \\\\n    valid = ~np.isnan(boot_stats)\\\\n    boot_stats_valid = boot_stats[valid]\\\\n    \\\\n    # Bias correction (z0)\\\\n    prop_below = np.mean(boot_stats_valid < theta_hat)\\\\n    prop_below = np.clip(prop_below, 1e-10, 1 - 1e-10)\\\\n    z0 = sp_stats.norm.ppf(prop_below)\\\\n    \\\\n    # Acceleration (jackknife)\\\\n    jack_stats = np.empty(n)\\\\n    for i in range(n):\\\\n        mask = np.ones(n, dtype=bool)\\\\n        mask[i] = False\\\\n        jack_stats[i] = fast_macro_f1(y_true[mask], y_pred[mask])\\\\n    \\\\n    jack_mean = np.mean(jack_stats)\\\\n    diff = jack_mean - jack_stats\\\\n    a = np.sum(diff**3) / (6.0 * (np.sum(diff**2)**1.5) + 1e-15)\\\\n    \\\\n    z_lo = sp_stats.norm.ppf(alpha / 2)\\\\n    z_hi = sp_stats.norm.ppf(1 - alpha / 2)\\\\n    \\\\n    a1 = sp_stats.norm.cdf(z0 + (z0 + z_lo) / (1 - a * (z0 + z_lo)))\\\\n    a2 = sp_stats.norm.cdf(z0 + (z0 + z_hi) / (1 - a * (z0 + z_hi)))\\\\n    \\\\n    lower = float(np.percentile(boot_stats_valid, 100 * a1))\\\\n    upper = float(np.percentile(boot_stats_valid, 100 * a2))\\\\n    \\\\n    return lower, upper, float(theta_hat)\\\\n\\\\n\\\\ndef paired_permutation_test(y_true, y_pred_a, y_pred_b, n_permutations=N_RESAMPLES):\\\\n    y_true = np.asarray(y_true)\\\\n    y_pred_a = np.asarray(y_pred_a)\\\\n    y_pred_b = np.asarray(y_pred_b)\\\\n    n = len(y_true)\\\\n    \\\\n    observed_diff = fast_macro_f1(y_true, y_pred_a) - fast_macro_f1(y_true, y_pred_b)\\\\n    \\\\n    # Vectorized: generate all swap masks at once\\\\n    swaps = np.random.randint(0, 2, (n_permutations, n)).astype(bool)\\\\n    count = 0\\\\n    for i in range(n_permutations):\\\\n        s = swaps[i]\\\\n        pa = np.where(s, y_pred_b, y_pred_a)\\\\n        pb = np.where(s, y_pred_a, y_pred_b)\\\\n        perm_diff = fast_macro_f1(y_true, pa) - fast_macro_f1(y_true, pb)\\\\n        if abs(perm_diff) >= abs(observed_diff):\\\\n            count += 1\\\\n    \\\\n    p_value = (count + 1) / (n_permutations + 1)\\\\n    return float(observed_diff), float(p_value)\\\\n\\\\n\\\\n# ====== Bootstrap CI ======\\\\nprint(\\\\\\\"=\\\\\\\" * 70)\\\\nprint(\\\\\\\"BCa Bootstrap 95% CI for Macro F1 on ToxicChat (10,000 resamples)\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\" * 70)\\\\n\\\\nbootstrap_results = {}\\\\n\\\\nfor variant in VARIANTS:\\\\n    per_seed = {}\\\\n    seed_f1s = []\\\\n    pooled_yt, pooled_yp = [], []\\\\n    \\\\n    for seed in SEEDS:\\\\n        tc = data[variant][seed]['toxicchat']\\\\n        yt = np.array(tc['y_true'])\\\\n        yp = np.array(tc['y_pred'])\\\\n        \\\\n        lower, upper, f1_val = bca_bootstrap_ci(yt, yp)\\\\n        per_seed[seed] = {'f1': round(f1_val, 4), 'ci_95': [round(lower, 4), round(upper, 4)]}\\\\n        seed_f1s.append(f1_val)\\\\n        pooled_yt.extend(tc['y_true'])\\\\n        pooled_yp.extend(tc['y_pred'])\\\\n    \\\\n    pooled_lower, pooled_upper, pooled_f1 = bca_bootstrap_ci(np.array(pooled_yt), np.array(pooled_yp))\\\\n    seed_mean = float(np.mean(seed_f1s))\\\\n    seed_std = float(np.std(seed_f1s, ddof=1))\\\\n    \\\\n    bootstrap_results[variant] = {\\\\n        'pooled_f1': round(pooled_f1, 4),\\\\n        'pooled_ci_95': [round(pooled_lower, 4), round(pooled_upper, 4)],\\\\n        'seed_mean': round(seed_mean, 4),\\\\n        'seed_std': round(seed_std, 4),\\\\n        'per_seed': per_seed\\\\n    }\\\\n    \\\\n    print(f\\\\\\\"\\\\\\\\n{variant:>12s}: pooled F1={pooled_f1:.4f}  CI=[{pooled_lower:.4f}, {pooled_upper:.4f}]  \\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\nfrom sklearn.metrics import f1_score\\nfrom scipy import stats as sp_stats\\nimport time\\n\\nnp.random.seed(42)\\nt0 = time.time()\\n\\nwith open('results/exp8_raw_predictions.json') as f:\\n    data = json.load(f)\\n\\nVARIANTS = ['vanilla', '9class', 'binary', 'scrambled', 'jb_mlm', 'wiki_mlm', 'topic']\\nSEEDS = ['42', '123', '456']\\nN_RESAMPLES = 10000\\n\\ndef fast_macro_f1(y_true, y_pred):\\n    \\\"\\\"\\\"Vectorized macro F1 for binary classification.\\\"\\\"\\\"\\n    tp = np.sum((y_true == 1) & (y_pred == 1))\\n    fp = np.sum((y_true == 0) & (y_pred == 1))\\n    fn = np.sum((y_true == 1) & (y_pred == 0))\\n    tn = np.sum((y_true == 0) & (y_pred == 0))\\n    \\n    prec1 = tp / (tp + fp) if (tp + fp) > 0 else 0.0\\n    rec1 = tp / (tp + fn) if (tp + fn) > 0 else 0.0\\n    f1_1 = 2 * prec1 * rec1 / (prec1 + rec1) if (prec1 + rec1) > 0 else 0.0\\n    \\n    prec0 = tn / (tn + fn) if (tn + fn) > 0 else 0.0\\n    rec0 = tn / (tn + fp) if (tn + fp) > 0 else 0.0\\n    f1_0 = 2 * prec0 * rec0 / (prec0 + rec0) if (prec0 + rec0) > 0 else 0.0\\n    \\n    return (f1_0 + f1_1) / 2.0\\n\\ndef bca_bootstrap_ci(y_true, y_pred, n_resamples=N_RESAMPLES, alpha=0.05):\\n    n = len(y_true)\\n    y_true = np.asarray(y_true)\\n    y_pred = np.asarray(y_pred)\\n    \\n    theta_hat = fast_macro_f1(y_true, y_pred)\\n    \\n    # Vectorized bootstrap: generate all indices at once\\n    all_idx = np.random.randint(0, n, (n_resamples, n))\\n    boot_stats = np.empty(n_resamples)\\n    for i in range(n_resamples):\\n        idx = all_idx[i]\\n        boot_stats[i] = fast_macro_f1(y_true[idx], y_pred[idx])\\n    \\n    valid = ~np.isnan(boot_stats)\\n    boot_stats_valid = boot_stats[valid]\\n    \\n    # Bias correction (z0)\\n    prop_below = np.mean(boot_stats_valid < theta_hat)\\n    prop_below = np.clip(prop_below, 1e-10, 1 - 1e-10)\\n    z0 = sp_stats.norm.ppf(prop_below)\\n    \\n    # Acceleration (jackknife)\\n    jack_stats = np.empty(n)\\n    for i in range(n):\\n        mask = np.ones(n, dtype=bool)\\n        mask[i] = False\\n        jack_stats[i] = fast_macro_f1(y_true[mask], y_pred[mask])\\n    \\n    jack_mean = np.mean(jack_stats)\\n    diff = jack_mean - jack_stats\\n    a = np.sum(diff**3) / (6.0 * (np.sum(diff**2)**1.5) + 1e-15)\\n    \\n    z_lo = sp_stats.norm.ppf(alpha / 2)\\n    z_hi = sp_stats.norm.ppf(1 - alpha / 2)\\n    \\n    a1 = sp_stats.norm.cdf(z0 + (z0 + z_lo) / (1 - a * (z0 + z_lo)))\\n    a2 = sp_stats.norm.cdf(z0 + (z0 + z_hi) / (1 - a * (z0 + z_hi)))\\n    \\n    lower = float(np.percentile(boot_stats_valid, 100 * a1))\\n    upper = float(np.percentile(boot_stats_valid, 100 * a2))\\n    \\n    return lower, upper, float(theta_hat)\\n\\n\\ndef paired_permutation_test(y_true, y_pred_a, y_pred_b, n_permutations=N_RESAMPLES):\\n    y_true = np.asarray(y_true)\\n    y_pred_a = np.asarray(y_pred_a)\\n    y_pred_b = np.asarray(y_pred_b)\\n    n = len(y_true)\\n    \\n    observed_diff = fast_macro_f1(y_true, y_pred_a) - fast_macro_f1(y_true, y_pred_b)\\n    \\n    # Vectorized: generate all swap masks at once\\n    swaps = np.random.randint(0, 2, (n_permutations, n)).astype(bool)\\n    count = 0\\n    for i in range(n_permutations):\\n        s = swaps[i]\\n        pa = np.where(s, y_pred_b, y_pred_a)\\n        pb = np.where(s, y_pred_a, y_pred_b)\\n        perm_diff = fast_macro_f1(y_true, pa) - fast_macro_f1(y_true, pb)\\n        if abs(perm_diff) >= abs(observed_diff):\\n            count += 1\\n    \\n    p_value = (count + 1) / (n_permutations + 1)\\n    return float(observed_diff), float(p_value)\\n\\n\\n# ====== Bootstrap CI ======\\nprint(\\\"=\\\" * 70)\\nprint(\\\"BCa Bootstrap 95% CI for Macro F1 on ToxicChat (10,000 resamples)\\\")\\nprint(\\\"=\\\" * 70)\\n\\nbootstrap_results = {}\\n\\nfor variant in VARIANTS:\\n    per_seed = {}\\n    seed_f1s = []\\n    pooled_yt, pooled_yp = [], []\\n    \\n    for seed in SEEDS:\\n        tc = data[variant][seed]['toxicchat']\\n        yt = np.array(tc['y_true'])\\n        yp = np.array(tc['y_pred'])\\n        \\n        lower, upper, f1_val = bca_bootstrap_ci(yt, yp)\\n        per_seed[seed] = {'f1': round(f1_val, 4), 'ci_95': [round(lower, 4), round(upper, 4)]}\\n        seed_f1s.append(f1_val)\\n        pooled_yt.extend(tc['y_true'])\\n        pooled_yp.extend(tc['y_pred'])\\n    \\n    pooled_lower, pooled_upper, pooled_f1 = bca_bootstrap_ci(np.array(pooled_yt), np.array(pooled_yp))\\n    seed_mean = float(np.mean(seed_f1s))\\n    seed_std = float(np.std(seed_f1s, ddof=1))\\n    \\n    bootstrap_results[variant] = {\\n        'pooled_f1': round(pooled_f1, 4),\\n        'pooled_ci_95': [round(pooled_lower, 4), round(pooled_upper, 4)],\\n        'seed_mean': round(seed_mean, 4),\\n        'seed_std': round(seed_std, 4),\\n        'per_seed': per_seed\\n    }\\n    \\n    print(f\\\"\\\\n{variant:>12s}: pooled F1={pooled_f1:.4f}  CI=[{pooled_lower:.4f}, {pooled_upper:.4f}]  \\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Eji4ZD46tS8aRG3ENcWFnD`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/results/exp12_toxicchat_bootstrap.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "35d939b4-cce7-4eaa-934b-b5a468b54144",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QWSxMy1fbfSdLfNk686sBc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4582,
+      "cache_read_input_tokens": 24431,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4582
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T05:31:20.912Z_
+
+<details><summary>↩ Tool result · `toolu_01Eji4ZD46tS8aRG3ENcWFnD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"bootstrap_ci\\\": {\\n    \\\"vanilla\\\": {\\n      \\\"pooled_f1\\\": 0.4147,\\n      \\\"pooled_ci_95\\\": [\\n        0.3895,\\n        0.4429\\n      ],\\n      \\\"seed_mean\\\": 0.4127,\\n      \\\"seed_std\\\": 0.026,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"f1\\\": 0.424,\\n          \\\"ci_95\\\": [\\n            0.3789,\\n            0.4726\\n          ]\\n        },\\n        \\\"123\\\": {\\n          \\\"f1\\\": 0.4312,\\n          \\\"ci_95\\\": [\\n            0.3877,\\n            0.4805\\n          ]\\n        },\\n        \\\"456\\\": {\\n          \\\"f1\\\": 0.383,\\n          \\\"ci_95\\\": [\\n            0.3441,\\n            0.4265\\n          ]\\n        }\\n      }\\n    },\\n    \\\"9class\\\": {\\n      \\\"pooled_f1\\\": 0.5962,\\n      \\\"pooled_ci_95\\\": [\\n        0.5685,\\n        0.6235\\n      ],\\n      \\\"seed_mean\\\": 0.5956,\\n      \\\"seed_std\\\": 0.1065,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"f1\\\": 0.5959,\\n          \\\"ci_95\\\": [\\n            0.5466,\\n            0.6433\\n          ]\\n        },\\n        \\\"123\\\": {\\n          \\\"f1\\\": 0.4889,\\n          \\\"ci_95\\\": [\\n            0.4404,\\n            0.5373\\n          ]\\n        },\\n        \\\"456\\\": {\\n          \\\"f1\\\": 0.702,\\n          \\\"ci_95\\\": [\\n            0.6561,\\n            0.7463\\n          ]\\n        }\\n      }\\n    },\\n    \\\"binary\\\": {\\n      \\\"pooled_f1\\\": 0.7092,\\n      \\\"pooled_ci_95\\\": [\\n        0.6831,\\n        0.7351\\n      ],\\n      \\\"seed_mean\\\": 0.7046,\\n      \\\"seed_std\\\": 0.0881,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"f1\\\": 0.6967,\\n          \\\"ci_95\\\": [\\n            0.6496,\\n            0.7402\\n          ]\\n        },\\n        \\\"123\\\": {\\n          \\\"f1\\\": 0.7964,\\n          \\\"ci_95\\\": [\\n            0.7558,\\n            0.8339\\n          ]\\n        },\\n        \\\"456\\\": {\\n          \\\"f1\\\": 0.6207,\\n          \\\"ci_95\\\": [\\n            0.57,\\n            0.6687\\n          ]\\n        }\\n      }\\n    },\\n    \\\"scrambled\\\": {\\n      \\\"pooled_f1\\\": 0.6174,\\n      \\\"pooled_ci_95\\\": [\\n        0.5899,\\n        0.6448\\n      ],\\n      \\\"seed_mean\\\": 0.616,\\n      \\\"seed_std\\\": 0.0682,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"f1\\\": 0.5373,\\n          \\\"ci_95\\\": [\\n            0.4879,\\n            0.588\\n          ]\\n        },\\n        \\\"123\\\": {\\n          \\\"f1\\\": 0.6536,\\n          \\\"ci_95\\\": [\\n            0.6054,\\n            0.6985\\n          ]\\n        },\\n        \\\"456\\\": {\\n          \\\"f1\\\": 0.657,\\n          \\\"ci_95\\\": [\\n            0.6104,\\n            0.7015\\n          ]\\n        }\\n      }\\n    },\\n    \\\"jb_mlm\\\": {\\n      \\\"pooled_f1\\\": 0.8373,\\n      \\\"pooled_ci_95\\\": [\\n        0.8162,\\n        0.8576\\n      ],\\n      \\\"seed_mean\\\": 0.8371,\\n      \\\"seed_std\\\": 0.0154,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"f1\\\": 0.8202,\\n          \\\"ci_95\\\": [\\n            0.7804,\\n            0.8553\\n          ]\\n        },\\n        \\\"123\\\": {\\n          \\\"f1\\\": 0.8406,\\n          \\\"ci_95\\\": [\\n            0.8037,\\n            0.8748\\n          ]\\n        },\\n        \\\"456\\\": {\\n          \\\"f1\\\": 0.8504,\\n          \\\"ci_95\\\": [\\n            0.8134,\\n            0.8823\\n          ]\\n        }\\n      }\\n    },\\n    \\\"wiki_mlm\\\": {\\n      \\\"pooled_f1\\\": 0.7969,\\n      \\\"pooled_ci_95\\\": [\\n        0.7737,\\n        0.8195\\n      ],\\n      \\\"seed_mean\\\": 0.7913,\\n      \\\"seed_std\\\": 0.114,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"f1\\\": 0.661,\\n          \\\"ci_95\\\": [\\n            0.614,\\n            0.7079\\n          ]\\n        },\\n        \\\"123\\\": {\\n          \\\"f1\\\": 0.8724,\\n          \\\"ci_95\\\": [\\n            0.8358,\\n            0.9019\\n          ]\\n        },\\n        \\\"456\\\": {\\n          \\\"f1\\\": 0.8405,\\n          \\\"ci_95\\\": [\\n            0.8019,\\n            0.8737\\n          ]\\n        }\\n      }\\n    },\\n    \\\"topic\\\": {\\n      \\\"pooled_f1\\\": 0.4975,\\n      \\\"pooled_ci_95\\\": [\\n        0.4693,\\n        0.5252\\n      ],\\n      \\\"seed_mean\\\": 0.4955,\\n      \\\"seed_std\\\": 0.0512,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"f1\\\": 0.4933,\\n          \\\"ci_95\\\": [\\n            0.4451,\\n            0.5419\\n          ]\\n        },\\n        \\\"123\\\": {\\n          \\\"f1\\\": 0.5477,\\n          \\\"ci_95\\\": [\\n            0.4982,\\n            0.5969\\n          ]\\n        },\\n        \\\"456\\\": {\\n          \\\"f1\\\": 0.4454,\\n          \\\"ci_95\\\": [\\n            0.398,\\n            0.4938\\n          ]\\n        }\\n      }\\n    }\\n  },\\n  \\\"permutation_tests\\\": {\\n    \\\"jb_mlm_vs_9class\\\": {\\n      \\\"pooled_diff\\\": 0.2411,\\n      \\\"pooled_p_value\\\": 0.0001,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"diff\\\": 0.2243,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        \\\"123\\\": {\\n          \\\"diff\\\": 0.3517,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        \\\"456\\\": {\\n          \\\"diff\\\": 0.1484,\\n          \\\"p_value\\\": 0.0001\\n        }\\n      },\\n      \\\"fisher_combined_p\\\": 0.0\\n    },\\n    \\\"jb_mlm_vs_vanilla\\\": {\\n      \\\"pooled_diff\\\": 0.4226,\\n      \\\"pooled_p_value\\\": 0.0001,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"diff\\\": 0.3961,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        \\\"123\\\": {\\n          \\\"diff\\\": 0.4095,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        \\\"456\\\": {\\n          \\\"diff\\\": 0.4674,\\n          \\\"p_value\\\": 0.0001\\n        }\\n      },\\n      \\\"fisher_combined_p\\\": 0.0\\n    },\\n    \\\"wiki_mlm_vs_9class\\\": {\\n      \\\"pooled_diff\\\": 0.2007,\\n      \\\"pooled_p_value\\\": 0.0001,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"diff\\\": 0.0652,\\n          \\\"p_value\\\": 0.056994\\n        },\\n        \\\"123\\\": {\\n          \\\"diff\\\": 0.3835,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        \\\"456\\\": {\\n          \\\"diff\\\": 0.1385,\\n          \\\"p_value\\\": 0.0001\\n        }\\n      },\\n      \\\"fisher_combined_p\\\": 0.0\\n    }\\n  },\\n  \\\"metric\\\": \\\"f1_macro\\\",\\n  \\\"n_resamples\\\": 10000,\\n  \\\"n_samples_per_seed\\\": 408,\\n  \\\"seeds\\\": [\\n    \\\"42\\\",\\n    \\\"123\\\",\\n    \\\"456\\\"\\n  ],\\n  \\\"random_seed\\\": 42\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "347ca0fb-ff8d-4031-807a-bb775f19ca73",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n    \\\\\\\"vanilla\\\\\\\": {\\\\n      \\\\\\\"pooled_f1\\\\\\\": 0.4147,\\\\n      \\\\\\\"pooled_ci_95\\\\\\\": [\\\\n        0.3895,\\\\n        0.4429\\\\n      ],\\\\n      \\\\\\\"seed_mean\\\\\\\": 0.4127,\\\\n      \\\\\\\"seed_std\\\\\\\": 0.026,\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.424,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.3789,\\\\n            0.4726\\\\n          ]\\\\n        },\\\\n        \\\\\\\"123\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.4312,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.3877,\\\\n            0.4805\\\\n          ]\\\\n        },\\\\n        \\\\\\\"456\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.383,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.3441,\\\\n            0.4265\\\\n          ]\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"9class\\\\\\\": {\\\\n      \\\\\\\"pooled_f1\\\\\\\": 0.5962,\\\\n      \\\\\\\"pooled_ci_95\\\\\\\": [\\\\n        0.5685,\\\\n        0.6235\\\\n      ],\\\\n      \\\\\\\"seed_mean\\\\\\\": 0.5956,\\\\n      \\\\\\\"seed_std\\\\\\\": 0.1065,\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.5959,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.5466,\\\\n            0.6433\\\\n          ]\\\\n        },\\\\n        \\\\\\\"123\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.4889,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.4404,\\\\n            0.5373\\\\n          ]\\\\n        },\\\\n        \\\\\\\"456\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.702,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.6561,\\\\n            0.7463\\\\n          ]\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"binary\\\\\\\": {\\\\n      \\\\\\\"pooled_f1\\\\\\\": 0.7092,\\\\n      \\\\\\\"pooled_ci_95\\\\\\\": [\\\\n        0.6831,\\\\n        0.7351\\\\n      ],\\\\n      \\\\\\\"seed_mean\\\\\\\": 0.7046,\\\\n      \\\\\\\"seed_std\\\\\\\": 0.0881,\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.6967,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.6496,\\\\n            0.7402\\\\n          ]\\\\n        },\\\\n        \\\\\\\"123\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.7964,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.7558,\\\\n            0.8339\\\\n          ]\\\\n        },\\\\n        \\\\\\\"456\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.6207,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.57,\\\\n            0.6687\\\\n          ]\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"scrambled\\\\\\\": {\\\\n      \\\\\\\"pooled_f1\\\\\\\": 0.6174,\\\\n      \\\\\\\"pooled_ci_95\\\\\\\": [\\\\n        0.5899,\\\\n        0.6448\\\\n      ],\\\\n      \\\\\\\"seed_mean\\\\\\\": 0.616,\\\\n      \\\\\\\"seed_std\\\\\\\": 0.0682,\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.5373,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.4879,\\\\n            0.588\\\\n          ]\\\\n        },\\\\n        \\\\\\\"123\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.6536,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.6054,\\\\n            0.6985\\\\n          ]\\\\n        },\\\\n        \\\\\\\"456\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.657,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.6104,\\\\n            0.7015\\\\n          ]\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"jb_mlm\\\\\\\": {\\\\n      \\\\\\\"pooled_f1\\\\\\\": 0.8373,\\\\n      \\\\\\\"pooled_ci_95\\\\\\\": [\\\\n        0.8162,\\\\n        0.8576\\\\n      ],\\\\n      \\\\\\\"seed_mean\\\\\\\": 0.8371,\\\\n      \\\\\\\"seed_std\\\\\\\": 0.0154,\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.8202,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.7804,\\\\n            0.8553\\\\n          ]\\\\n        },\\\\n        \\\\\\\"123\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.8406,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.8037,\\\\n            0.8748\\\\n          ]\\\\n        },\\\\n        \\\\\\\"456\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.8504,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.8134,\\\\n            0.8823\\\\n          ]\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"wiki_mlm\\\\\\\": {\\\\n      \\\\\\\"pooled_f1\\\\\\\": 0.7969,\\\\n      \\\\\\\"pooled_ci_95\\\\\\\": [\\\\n        0.7737,\\\\n        0.8195\\\\n      ],\\\\n      \\\\\\\"seed_mean\\\\\\\": 0.7913,\\\\n      \\\\\\\"seed_std\\\\\\\": 0.114,\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.661,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.614,\\\\n            0.7079\\\\n          ]\\\\n        },\\\\n        \\\\\\\"123\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.8724,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.8358,\\\\n            0.9019\\\\n          ]\\\\n        },\\\\n        \\\\\\\"456\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.8405,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.8019,\\\\n            0.8737\\\\n          ]\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"topic\\\\\\\": {\\\\n      \\\\\\\"pooled_f1\\\\\\\": 0.4975,\\\\n      \\\\\\\"pooled_ci_95\\\\\\\": [\\\\n        0.4693,\\\\n        0.5252\\\\n      ],\\\\n      \\\\\\\"seed_mean\\\\\\\": 0.4955,\\\\n      \\\\\\\"seed_std\\\\\\\": 0.0512,\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.4933,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.4451,\\\\n            0.5419\\\\n          ]\\\\n        },\\\\n        \\\\\\\"123\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.5477,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.4982,\\\\n            0.5969\\\\n          ]\\\\n        },\\\\n        \\\\\\\"456\\\\\\\": {\\\\n          \\\\\\\"f1\\\\\\\": 0.4454,\\\\n          \\\\\\\"ci_95\\\\\\\": [\\\\n            0.398,\\\\n            0.4938\\\\n          ]\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"permutation_tests\\\\\\\": {\\\\n    \\\\\\\"jb_mlm_vs_9class\\\\\\\": {\\\\n      \\\\\\\"pooled_diff\\\\\\\": 0.2411,\\\\n      \\\\\\\"pooled_p_value\\\\\\\": 0.0001,\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": {\\\\n          \\\\\\\"diff\\\\\\\": 0.2243,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        \\\\\\\"123\\\\\\\": {\\\\n          \\\\\\\"diff\\\\\\\": 0.3517,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        \\\\\\\"456\\\\\\\": {\\\\n          \\\\\\\"diff\\\\\\\": 0.1484,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        }\\\\n      },\\\\n      \\\\\\\"fisher_combined_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"jb_mlm_vs_vanilla\\\\\\\": {\\\\n      \\\\\\\"pooled_diff\\\\\\\": 0.4226,\\\\n      \\\\\\\"pooled_p_value\\\\\\\": 0.0001,\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": {\\\\n          \\\\\\\"diff\\\\\\\": 0.3961,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        \\\\\\\"123\\\\\\\": {\\\\n          \\\\\\\"diff\\\\\\\": 0.4095,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        \\\\\\\"456\\\\\\\": {\\\\n          \\\\\\\"diff\\\\\\\": 0.4674,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        }\\\\n      },\\\\n      \\\\\\\"fisher_combined_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"wiki_mlm_vs_9class\\\\\\\": {\\\\n      \\\\\\\"pooled_diff\\\\\\\": 0.2007,\\\\n      \\\\\\\"pooled_p_value\\\\\\\": 0.0001,\\\\n      \\\\\\\"per_seed\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": {\\\\n          \\\\\\\"diff\\\\\\\": 0.0652,\\\\n          \\\\\\\"p_value\\\\\\\": 0.056994\\\\n        },\\\\n        \\\\\\\"123\\\\\\\": {\\\\n          \\\\\\\"diff\\\\\\\": 0.3835,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        },\\\\n        \\\\\\\"456\\\\\\\": {\\\\n          \\\\\\\"diff\\\\\\\": 0.1385,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0001\\\\n        }\\\\n      },\\\\n      \\\\\\\"fisher_combined_p\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"metric\\\\\\\": \\\\\\\"f1_macro\\\\\\\",\\\\n  \\\\\\\"n_resamples\\\\\\\": 10000,\\\\n  \\\\\\\"n_samples_per_seed\\\\\\\": 408,\\\\n  \\\\\\\"seeds\\\\\\\": [\\\\n    \\\\\\\"42\\\\\\\",\\\\n    \\\\\\\"123\\\\\\\",\\\\n    \\\\\\\"456\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"random_seed\\\\\\\": 42\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"bootstrap_ci\\\": {\\n    \\\"vanilla\\\": {\\n      \\\"pooled_f1\\\": 0.4147,\\n      \\\"pooled_ci_95\\\": [\\n        0.3895,\\n        0.4429\\n      ],\\n      \\\"seed_mean\\\": 0.4127,\\n      \\\"seed_std\\\": 0.026,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"f1\\\": 0.424,\\n          \\\"ci_95\\\": [\\n            0.3789,\\n            0.4726\\n          ]\\n        },\\n        \\\"123\\\": {\\n          \\\"f1\\\": 0.4312,\\n          \\\"ci_95\\\": [\\n            0.3877,\\n            0.4805\\n          ]\\n        },\\n        \\\"456\\\": {\\n          \\\"f1\\\": 0.383,\\n          \\\"ci_95\\\": [\\n            0.3441,\\n            0.4265\\n          ]\\n        }\\n      }\\n    },\\n    \\\"9class\\\": {\\n      \\\"pooled_f1\\\": 0.5962,\\n      \\\"pooled_ci_95\\\": [\\n        0.5685,\\n        0.6235\\n      ],\\n      \\\"seed_mean\\\": 0.5956,\\n      \\\"seed_std\\\": 0.1065,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"f1\\\": 0.5959,\\n          \\\"ci_95\\\": [\\n            0.5466,\\n            0.6433\\n          ]\\n        },\\n        \\\"123\\\": {\\n          \\\"f1\\\": 0.4889,\\n          \\\"ci_95\\\": [\\n            0.4404,\\n            0.5373\\n          ]\\n        },\\n        \\\"456\\\": {\\n          \\\"f1\\\": 0.702,\\n          \\\"ci_95\\\": [\\n            0.6561,\\n            0.7463\\n          ]\\n        }\\n      }\\n    },\\n    \\\"binary\\\": {\\n      \\\"pooled_f1\\\": 0.7092,\\n      \\\"pooled_ci_95\\\": [\\n        0.6831,\\n        0.7351\\n      ],\\n      \\\"seed_mean\\\": 0.7046,\\n      \\\"seed_std\\\": 0.0881,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"f1\\\": 0.6967,\\n          \\\"ci_95\\\": [\\n            0.6496,\\n            0.7402\\n          ]\\n        },\\n        \\\"123\\\": {\\n          \\\"f1\\\": 0.7964,\\n          \\\"ci_95\\\": [\\n            0.7558,\\n            0.8339\\n          ]\\n        },\\n        \\\"456\\\": {\\n          \\\"f1\\\": 0.6207,\\n          \\\"ci_95\\\": [\\n            0.57,\\n            0.6687\\n          ]\\n        }\\n      }\\n    },\\n    \\\"scrambled\\\": {\\n      \\\"pooled_f1\\\": 0.6174,\\n      \\\"pooled_ci_95\\\": [\\n        0.5899,\\n        0.6448\\n      ],\\n      \\\"seed_mean\\\": 0.616,\\n      \\\"seed_std\\\": 0.0682,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"f1\\\": 0.5373,\\n          \\\"ci_95\\\": [\\n            0.4879,\\n            0.588\\n          ]\\n        },\\n        \\\"123\\\": {\\n          \\\"f1\\\": 0.6536,\\n          \\\"ci_95\\\": [\\n            0.6054,\\n            0.6985\\n          ]\\n        },\\n        \\\"456\\\": {\\n          \\\"f1\\\": 0.657,\\n          \\\"ci_95\\\": [\\n            0.6104,\\n            0.7015\\n          ]\\n        }\\n      }\\n    },\\n    \\\"jb_mlm\\\": {\\n      \\\"pooled_f1\\\": 0.8373,\\n      \\\"pooled_ci_95\\\": [\\n        0.8162,\\n        0.8576\\n      ],\\n      \\\"seed_mean\\\": 0.8371,\\n      \\\"seed_std\\\": 0.0154,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"f1\\\": 0.8202,\\n          \\\"ci_95\\\": [\\n            0.7804,\\n            0.8553\\n          ]\\n        },\\n        \\\"123\\\": {\\n          \\\"f1\\\": 0.8406,\\n          \\\"ci_95\\\": [\\n            0.8037,\\n            0.8748\\n          ]\\n        },\\n        \\\"456\\\": {\\n          \\\"f1\\\": 0.8504,\\n          \\\"ci_95\\\": [\\n            0.8134,\\n            0.8823\\n          ]\\n        }\\n      }\\n    },\\n    \\\"wiki_mlm\\\": {\\n      \\\"pooled_f1\\\": 0.7969,\\n      \\\"pooled_ci_95\\\": [\\n        0.7737,\\n        0.8195\\n      ],\\n      \\\"seed_mean\\\": 0.7913,\\n      \\\"seed_std\\\": 0.114,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"f1\\\": 0.661,\\n          \\\"ci_95\\\": [\\n            0.614,\\n            0.7079\\n          ]\\n        },\\n        \\\"123\\\": {\\n          \\\"f1\\\": 0.8724,\\n          \\\"ci_95\\\": [\\n            0.8358,\\n            0.9019\\n          ]\\n        },\\n        \\\"456\\\": {\\n          \\\"f1\\\": 0.8405,\\n          \\\"ci_95\\\": [\\n            0.8019,\\n            0.8737\\n          ]\\n        }\\n      }\\n    },\\n    \\\"topic\\\": {\\n      \\\"pooled_f1\\\": 0.4975,\\n      \\\"pooled_ci_95\\\": [\\n        0.4693,\\n        0.5252\\n      ],\\n      \\\"seed_mean\\\": 0.4955,\\n      \\\"seed_std\\\": 0.0512,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"f1\\\": 0.4933,\\n          \\\"ci_95\\\": [\\n            0.4451,\\n            0.5419\\n          ]\\n        },\\n        \\\"123\\\": {\\n          \\\"f1\\\": 0.5477,\\n          \\\"ci_95\\\": [\\n            0.4982,\\n            0.5969\\n          ]\\n        },\\n        \\\"456\\\": {\\n          \\\"f1\\\": 0.4454,\\n          \\\"ci_95\\\": [\\n            0.398,\\n            0.4938\\n          ]\\n        }\\n      }\\n    }\\n  },\\n  \\\"permutation_tests\\\": {\\n    \\\"jb_mlm_vs_9class\\\": {\\n      \\\"pooled_diff\\\": 0.2411,\\n      \\\"pooled_p_value\\\": 0.0001,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"diff\\\": 0.2243,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        \\\"123\\\": {\\n          \\\"diff\\\": 0.3517,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        \\\"456\\\": {\\n          \\\"diff\\\": 0.1484,\\n          \\\"p_value\\\": 0.0001\\n        }\\n      },\\n      \\\"fisher_combined_p\\\": 0.0\\n    },\\n    \\\"jb_mlm_vs_vanilla\\\": {\\n      \\\"pooled_diff\\\": 0.4226,\\n      \\\"pooled_p_value\\\": 0.0001,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"diff\\\": 0.3961,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        \\\"123\\\": {\\n          \\\"diff\\\": 0.4095,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        \\\"456\\\": {\\n          \\\"diff\\\": 0.4674,\\n          \\\"p_value\\\": 0.0001\\n        }\\n      },\\n      \\\"fisher_combined_p\\\": 0.0\\n    },\\n    \\\"wiki_mlm_vs_9class\\\": {\\n      \\\"pooled_diff\\\": 0.2007,\\n      \\\"pooled_p_value\\\": 0.0001,\\n      \\\"per_seed\\\": {\\n        \\\"42\\\": {\\n          \\\"diff\\\": 0.0652,\\n          \\\"p_value\\\": 0.056994\\n        },\\n        \\\"123\\\": {\\n          \\\"diff\\\": 0.3835,\\n          \\\"p_value\\\": 0.0001\\n        },\\n        \\\"456\\\": {\\n          \\\"diff\\\": 0.1385,\\n          \\\"p_value\\\": 0.0001\\n        }\\n      },\\n      \\\"fisher_combined_p\\\": 0.0\\n    }\\n  },\\n  \\\"metric\\\": \\\"f1_macro\\\",\\n  \\\"n_resamples\\\": 10000,\\n  \\\"n_samples_per_seed\\\": 408,\\n  \\\"seeds\\\": [\\n    \\\"42\\\",\\n    \\\"123\\\",\\n    \\\"456\\\"\\n  ],\\n  \\\"random_seed\\\": 42\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found it. Line 127 has `seed_std = float(np.std(seed_f1s, ddof=1))`. Now I have all the per-seed F1 values from the JSON. Let me:
+
+1. Fix the script (sed ddof=1 → ddof=0)
+2. Compute new std values for all 7 variants
+
+From the JSON, the per-seed F1 values are:
+
+- vanilla: [0.424, 0.4312, 0.383] → seed_std=0.026 (old, ddof=1)
+
+
+- 9class: [0.5959, 0.4889, 0.702] → seed_std=0.1065
+- binary: [0.6967, 0.7964, 0.6207] → seed_std=0.0881
+- scrambled: [0.5373, 0.6536, 0.657] → seed_std=0.0682
+- jb_mlm: [0.8202, 0.8406, 0.8504] → seed_std=0.0154
+- wiki_mlm: [0.661, 0.8724, 0.8405] → seed_std=0.114
+- topic: [0.4933, 0.5477, 0.4454] → seed_std appears to be cut off
+
+I need to fix the script and recalculate the missing standard deviation value for the topic dataset.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "58d3e9fe-c293-4c76-b60e-ee5fd5dafa73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6dCrx7TMRUdkHwjnDRxha",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5905,
+      "cache_read_input_tokens": 29013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5905
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+Found `ddof=1` at line 127: `seed_std = float(np.std(seed_f1s, ddof=1))`. Fixing and computing new values.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "c7cda2da-0171-4e16-b990-48b7dc0e7f6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6dCrx7TMRUdkHwjnDRxha",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5905,
+      "cache_read_input_tokens": 29013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5905
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EqQ7Livgrt78qRiw1nwGLB`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && sed -i 's/np.std(seed_f1s, ddof=1)/np.std(seed_f1s, ddof=0)/' scripts/exp12_toxicchat_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "36e17c16-ce63-4d22-ac69-3cb02d7853ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6dCrx7TMRUdkHwjnDRxha",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5905,
+      "cache_read_input_tokens": 29013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5905
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T05:31:32.271Z_
+
+<details><summary>↩ Tool result · `toolu_01EqQ7Livgrt78qRiw1nwGLB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "14c9a041-2c79-4be0-92ff-15d19cd58d93",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ULWaQurxhCKfdnQPKpsRJy`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "python3 -c \"\nimport numpy as np\nvariants = {\n    'vanilla': [0.4240, 0.4312, 0.3830],\n    '9class': [0.5959, 0.4889, 0.7020],\n    'binary': [0.6967, 0.7964, 0.6207],\n    'scrambled': [0.5373, 0.6536, 0.6570],\n    'jb_mlm': [0.8202, 0.8406, 0.8504],\n    'wiki_mlm': [0.6610, 0.8724, 0.8405],\n    'topic': [0.4933, 0.5477, 0.4454],\n}\nprint(f'{'Variant':>12s}  {'Old(ddof=1)':>11s}  {'New(ddof=0)':>11s}  {'Ratio':>6s}')\nprint('-'*50)\nfor name, vals in variants.items():\n    old = np.std(vals, ddof=1)\n    new = np.std(vals, ddof=0)\n    print(f'{name:>12s}  {old:11.4f}  {new:11.4f}  {new/old:.4f}')\nprint(f'\\nRatio is always sqrt(2/3) = {np.sqrt(2/3):.4f} for n=3')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "87b22acc-d36b-472b-9c3f-8479c47b6490",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6dCrx7TMRUdkHwjnDRxha",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5905,
+      "cache_read_input_tokens": 29013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5905
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T05:31:36.676Z_
+
+<details><summary>↩ Tool result · `toolu_01ULWaQurxhCKfdnQPKpsRJy`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "0e248558-80bd-44a5-89ba-05ada7ec5352",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The read_only tool blocks `>` character which was part of the f-string. Let me use ssh_execute instead for the python calculation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "8f24a058-b750-4037-8ea0-6f9bc0f3bc44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5AxRDMKFj6wCBfex2tcGB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1337,
+      "cache_read_input_tokens": 34918,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1337
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MBA5AzSLosJuyBL6zn1tsA`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\nvariants = {\n    'vanilla': [0.4240, 0.4312, 0.3830],\n    '9class': [0.5959, 0.4889, 0.7020],\n    'binary': [0.6967, 0.7964, 0.6207],\n    'scrambled': [0.5373, 0.6536, 0.6570],\n    'jb_mlm': [0.8202, 0.8406, 0.8504],\n    'wiki_mlm': [0.6610, 0.8724, 0.8405],\n    'topic': [0.4933, 0.5477, 0.4454],\n}\nprint(f\\\"{'Variant':>12s}  {'Old(ddof=1)':>11s}  {'New(ddof=0)':>11s}  {'Ratio':>6s}\\\")\nprint('-'*50)\nfor name, vals in variants.items():\n    old = np.std(vals, ddof=1)\n    new = np.std(vals, ddof=0)\n    print(f'{name:>12s}  {old:11.4f}  {new:11.4f}  {new/old:.4f}')\nprint(f\\\"\\nRatio is always sqrt(2/3) = {np.sqrt(2/3):.4f} for n=3\\\")\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "d56821a1-7ae9-4bf0-949a-ce3ad70101ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5AxRDMKFj6wCBfex2tcGB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1337,
+      "cache_read_input_tokens": 34918,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1337
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T05:31:50.985Z_
+
+<details><summary>↩ Tool result · `toolu_01MBA5AzSLosJuyBL6zn1tsA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     Variant  Old(ddof=1)  New(ddof=0)   Ratio\\n--------------------------------------------------\\n     vanilla       0.0260       0.0212  0.8165\\n      9class       0.1066       0.0870  0.8165\\n      binary       0.0881       0.0719  0.8165\\n   scrambled       0.0681       0.0556  0.8165\\n      jb_mlm       0.0154       0.0126  0.8165\\n    wiki_mlm       0.1140       0.0931  0.8165\\n       topic       0.0512       0.0418  0.8165\\n\\nRatio is always sqrt(2/3) = 0.8165 for n=3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.62}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "85036974-39a1-4b9f-9e24-82d06f9db014",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     Variant  Old(ddof=1)  New(ddof=0)   Ratio\\\\n--------------------------------------------------\\\\n     vanilla       0.0260       0.0212  0.8165\\\\n      9class       0.1066       0.0870  0.8165\\\\n      binary       0.0881       0.0719  0.8165\\\\n   scrambled       0.0681       0.0556  0.8165\\\\n      jb_mlm       0.0154       0.0126  0.8165\\\\n    wiki_mlm       0.1140       0.0931  0.8165\\\\n       topic       0.0512       0.0418  0.8165\\\\n\\\\nRatio is always sqrt(2/3) = 0.8165 for n=3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"     Variant  Old(ddof=1)  New(ddof=0)   Ratio\\n--------------------------------------------------\\n     vanilla       0.0260       0.0212  0.8165\\n      9class       0.1066       0.0870  0.8165\\n      binary       0.0881       0.0719  0.8165\\n   scrambled       0.0681       0.0556  0.8165\\n      jb_mlm       0.0154       0.0126  0.8165\\n    wiki_mlm       0.1140       0.0931  0.8165\\n       topic       0.0512       0.0418  0.8165\\n\\nRatio is always sqrt(2/3) = 0.8165 for n=3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.62}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+Now let me verify the fix and update the JSON results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "180d8346-9b85-4727-9f22-9b54c3973535",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PT6k99x71TTbqb6wt8mrKJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 817,
+      "cache_read_input_tokens": 36255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 817
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WmB8mx5pmRWSkKvbK95PhQ`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -n \"ddof\" /root/persuasion_turn_jailbreak_detect/scripts/exp12_toxicchat_bootstrap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "4e9bbe94-167a-4d89-9182-cbf2337cd56c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PT6k99x71TTbqb6wt8mrKJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 817,
+      "cache_read_input_tokens": 36255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 817
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T05:31:56.086Z_
+
+<details><summary>↩ Tool result · `toolu_01WmB8mx5pmRWSkKvbK95PhQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"127:    seed_std = float(np.std(seed_f1s, ddof=0))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "041240e1-84de-4af6-b18b-c21ff6b7b9d5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"127:    seed_std = float(np.std(seed_f1s, ddof=0))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"127:    seed_std = float(np.std(seed_f1s, ddof=0))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011JDzKLoqKqn7X5tTA7AKoP`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cd /root/persuasion_turn_jailbreak_detect && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, numpy as np\n\nwith open('results/exp12_toxicchat_bootstrap.json') as f:\n    data = json.load(f)\n\n# Recompute seed_std with ddof=0 for each variant\nfor variant, info in data['bootstrap_ci'].items():\n    seed_f1s = [info['per_seed'][s]['f1'] for s in ['42','123','456']]\n    info['seed_std'] = round(float(np.std(seed_f1s, ddof=0)), 4)\n\nwith open('results/exp12_toxicchat_bootstrap.json', 'w') as f:\n    json.dump(data, f, indent=2)\n\nprint('Updated JSON seed_std values:')\nfor v, info in data['bootstrap_ci'].items():\n    print(f'  {v}: {info[\\\"seed_std\\\"]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "115956cc-5bf2-47e1-abcc-8ce67a371cec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PT6k99x71TTbqb6wt8mrKJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 817,
+      "cache_read_input_tokens": 36255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 817
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T05:31:59.903Z_
+
+<details><summary>↩ Tool result · `toolu_011JDzKLoqKqn7X5tTA7AKoP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Updated JSON seed_std values:\\n  vanilla: 0.0212\\n  9class: 0.087\\n  binary: 0.0719\\n  scrambled: 0.0556\\n  jb_mlm: 0.0126\\n  wiki_mlm: 0.0931\\n  topic: 0.0418\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "c4d2f282-3b84-44f8-9406-e6795283d1d4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Updated JSON seed_std values:\\\\n  vanilla: 0.0212\\\\n  9class: 0.087\\\\n  binary: 0.0719\\\\n  scrambled: 0.0556\\\\n  jb_mlm: 0.0126\\\\n  wiki_mlm: 0.0931\\\\n  topic: 0.0418\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Updated JSON seed_std values:\\n  vanilla: 0.0212\\n  9class: 0.087\\n  binary: 0.0719\\n  scrambled: 0.0556\\n  jb_mlm: 0.0126\\n  wiki_mlm: 0.0931\\n  topic: 0.0418\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+完成。修改汇总：
+
+**脚本修改**: `scripts/exp12_toxicchat_bootstrap.py` 第 127 行 `ddof=1` → `ddof=0`
+
+**所有受影响 seed_std 的新旧值对比**（`results/exp12_toxicchat_bootstrap.json` 已更新）:
+
+| Variant | Old (ddof=1) | New (ddof=0) | Ratio |
+|---------|-------------|-------------|-------|
+| vanilla | 0.0260 | 0.0212 | 0.8165 |
+| 9class | 0.1065 | 0.0870 | 0.8165 |
+| binary | 0.0881 | 0.0719 | 0.8165 |
+| scrambled | 0.0682 | 0.0556 | 0.8165 |
+| jb_mlm | 0.0154 | 0.0126 | 0.8165 |
+| wiki_mlm | 0.1140 | 0.0931 | 0.8165 |
+| topic | 0.0512 | 0.0418 | 0.8165 |
+
+所有 std 统一缩小为原来的 √(2/3) ≈ 0.8165 倍（n=3 时 population std vs sample std 的固定比值）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "uuid": "0e9be59c-a20d-4ceb-a04a-c4982fc0e0d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D3fy2zsmiK9MRKyf3e4QPu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 812,
+      "cache_read_input_tokens": 37072,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 812
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 33_
+
+完成。修改汇总：
+
+**脚本修改**: `scripts/exp12_toxicchat_bootstrap.py` 第 127 行 `ddof=1` → `ddof=0`
+
+**所有受影响 seed_std 的新旧值对比**（`results/exp12_toxicchat_bootstrap.json` 已更新）:
+
+| Variant | Old (ddof=1) | New (ddof=0) | Ratio |
+|---------|-------------|-------------|-------|
+| vanilla | 0.0260 | 0.0212 | 0.8165 |
+| 9class | 0.1065 | 0.0870 | 0.8165 |
+| binary | 0.0881 | 0.0719 | 0.8165 |
+| scrambled | 0.0682 | 0.0556 | 0.8165 |
+| jb_mlm | 0.0154 | 0.0126 | 0.8165 |
+| wiki_mlm | 0.1140 | 0.0931 | 0.8165 |
+| topic | 0.0512 | 0.0418 | 0.8165 |
+
+所有 std 统一缩小为原来的 √(2/3) ≈ 0.8165 倍（n=3 时 population std vs sample std 的固定比值）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 66599,
+  "duration_api_ms": 66021,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "6119b4a2-7026-4bc1-8a99-3960bf1a2b52",
+  "total_cost_usd": 0.34205875,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 26043,
+    "cache_read_input_tokens": 197270,
+    "output_tokens": 3170,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 26043,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 370,
+        "cache_read_input_tokens": 37072,
+        "cache_creation_input_tokens": 812,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 812
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1255,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001355,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 3170,
+      "cacheReadInputTokens": 197270,
+      "cacheCreationInputTokens": 26043,
+      "webSearchRequests": 0,
+      "costUSD": 0.34070375,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "28bdcd06-9a3a-43b0-862f-981c84e798f5"
+}
+```
+
+</details>
+
+---

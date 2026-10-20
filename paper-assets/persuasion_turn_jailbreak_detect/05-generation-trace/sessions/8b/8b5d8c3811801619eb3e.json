@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b5d8c3811801619eb3e",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper fig1 architecture v2",
+  "task_key": "worker_paper_fig1-architecture-v2_20260518T190342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig1-architecture-v2_20260518T190342_result.json",
+    "occurrence": 1,
+    "bytes": 855,
+    "sha256": "c2727ef96caf34520271259ce6b10a3b9a426be9f64644e08d6db53bec46f924"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 生成完成。\n\n**输出文件：**\n- PDF: `/root/persuasion_turn_jailbreak_detect/paper/figures/fig1_architecture.pdf` (43.9 KB)\n- PNG: `/root/persuasion_turn_jailbreak_detect/paper/figures/fig1_architecture.png` (116.2 KB)\n\n**图表结构：**\n- Stage 1 顶部：DeBERTa-v3-base (pretrained) 蓝色主框\n- 三路分叉到三个分组框：\n  - No Adaptation (灰色)：vanilla\n  - MLM Adaptation (黄色)：JB-MLM, wiki-MLM\n  - Classification (绿色)：topic, scrambled, binary, 9-class（加粗高亮，标注 2 heads: persuasion(9) + intent(binary)）\n- 虚线分隔 \"frozen [CLS] embeddings\"\n- Stage 2：[CLS]₁ [CLS]₂ ··· [CLS]ₖ → BiGRU (h=256, L=2, drop=0.3) → Jailbreak/Benign\n- 标注 K-prefix evaluation\n\n单栏宽度 3.25 inches，300 DPI，DejaVu Sans 字体，所有文字 ≥ 4.5pt。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig1-architecture-v2.md"
+}

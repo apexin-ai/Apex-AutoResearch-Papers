@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63e6a955882192534ff6",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train mf1 binary seed456",
+  "task_key": "worker_train_mf1-binary-seed456_20260518T091234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_mf1-binary-seed456_20260518T091234_result.json",
+    "occurrence": 1,
+    "bytes": 597,
+    "sha256": "747de4fc6825959442506ba4ebca6ae424824b00c8a9cff8d25806e1cac8bcd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MF1 Binary Persuasion DeBERTa+GRU+DD OOD Eval (seed=456) 全部完成。\n\n**结果摘要：**\n\n| 阶段 | 指标 |\n|------|------|\n| Stage 1 DeBERTa | val_persuasion_acc=1.0, val_intent_acc=1.0 |\n| Stage 2 GRU | val_acc=1.0 |\n| Stage 3 DD OOD | F1@K1=1.0, K2=1.0, K3=0.9904, K5=1.0, Full=1.0 |\n\n**产出文件：**\n- DeBERTa checkpoint: `checkpoints/mf1_binary_seed456/deberta_multitask/best/`\n- GRU checkpoint: `checkpoints/mf1_binary_seed456/gru/treatment/best.pt`\n- 评估结果: `results/mf1_binary_seed456.json`\n- Registry: `mf1_binary_seed456` → DONE (success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-mf1-binary-seed456.md"
+}

@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp63_toxicchat_fpfn",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:32:28.699Z",
+    "updated_at": "2026-05-22T18:32:53.950Z",
+    "hypothesis": "9-class ToxicChat performance gap vs MLM is dominated by false positives (>70%), because classification DAPT over-encodes synthetic distributional features that trigger on human benign text",
+    "spec": {
+      "command": "python scripts/exp63_toxicchat_fpfn_decomposition.py",
+      "server": "westd-33183",
+      "data_path": "data/mhj/toxicchat_eval.jsonl",
+      "data_count": 408,
+      "model_name": "deberta-v3-base (9-class DAPT + JB-MLM DAPT)",
+      "seed": "42,123,456",
+      "checkpoint_source": "exp26_frozen + exp36_frozen_mlm",
+      "eval_data": "toxicchat_eval.jsonl (204 jailbreak + 204 benign)"
+    }
+  },
+  "timestamp": "2026-05-22T18:32:54.175769+00:00",
+  "trigger": "update_registry"
+}

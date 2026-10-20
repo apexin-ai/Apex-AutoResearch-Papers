@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b0922ca45c7dc5c9c65",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp26 frozen probing",
+  "task_key": "worker_code_exp26-frozen-probing_20260520T144105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp26-frozen-probing_20260520T144105_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "3654339124906e3bde84f4c2ce8f7983c492957cb7f202d1d55e6267de9e8ca2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp26 完成。结果摘要：\n\n**Frozen Probing (mean ± std, 3 seeds)**\n\n| Metric | Frozen Probing | E2E (exp18) |\n|--------|---------------|-------------|\n| IID | 1.000 ± 0.000 | 1.000 |\n| DD OOD k1 | 0.990 ± 0.013 | — |\n| DD OOD k2 | 0.981 ± 0.013 | — |\n| DD OOD k3 | 0.972 ± 0.026 | — |\n| DD OOD k5 | 0.997 ± 0.005 | — |\n| DD OOD full | 0.997 ± 0.005 | 1.000 |\n| AA OOD full | 0.972 ± 0.026 | 0.997 |\n| FITD OOD full | 1.000 ± 0.000 | — |\n\n冻结 DAPT encoder + 随机初始化 BiGRU 即可达到接近 e2e 微调的 OOD 泛化性能。AA OOD 上有 ~2.5pp 差距，但在方差范围内。DAPT representation quality alone 足以携带跨攻击类型的泛化信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp26-frozen-probing.md"
+}

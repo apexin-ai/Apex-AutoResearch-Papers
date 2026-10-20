@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f46a8150bcc0cb2cafc",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp17 mlm fix",
+  "task_key": "worker_code_exp17-mlm-fix_20260519T234304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp17-mlm-fix_20260519T234304_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "ad9c26ee8922fbce862c6d86822c8604ffe690855b6fcf999a8435304c86cb40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 GPU 都在正常训练。\n\n**根因**: `train_classifier.py` 的 `treatment` mode（line 57）用 `torch.load(\"model.pt\")` 加载 checkpoint，但 `train_deberta_mlm.py` 用 HuggingFace `save_pretrained()` 保存为 `model.safetensors` 格式，文件名不匹配导致 `FileNotFoundError`。\n\n**修复**: 和 exp16 一样，Stage 2 改用 `--mode baseline --model_name <mlm_checkpoint_path>`，通过 `AutoModel.from_pretrained()` 加载（原生支持 safetensors）。\n\n**启动确认**:\n- `exp17_mlm_gpu0` (GPU 0): seed42 Stage 2 已跑到 Epoch 14/20 (val_loss=0.0734, acc=0.98)，进展正常\n- `exp17_mlm_gpu1` (GPU 1): seed456 Stage 1 MLM 训练中 (Epoch 1)，进展正常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp17-mlm-fix.md"
+}

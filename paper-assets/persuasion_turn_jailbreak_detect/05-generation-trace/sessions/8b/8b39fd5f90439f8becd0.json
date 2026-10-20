@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "8b39fd5f90439f8becd0",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp63 toxicchat fpfn",
+  "task_key": "worker_code_exp63_toxicchat_fpfn_20260522T181539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp63_toxicchat_fpfn_20260522T181539.log",
+    "occurrence": 1,
+    "bytes": 642467,
+    "sha256": "49ed35f929180618d5609197bb0722e26bbffdfeab83c3e4b143fe425e94be53"
+  },
+  "statistics": {
+    "messages": 429,
+    "user_turns": 0,
+    "tool_calls": 189,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 189,
+      "tool_result": 189,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 429,
+      "chunks": [
+        {
+          "path": "8b39fd5f90439f8becd0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8b39fd5f90439f8becd0-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8b39fd5f90439f8becd0-part-0003.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp63-toxicchat-fpfn.md"
+}

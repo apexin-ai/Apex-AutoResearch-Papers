@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "533deae5cb59d2294e43",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "sync results to local",
+  "task_key": "worker_sync_results-to-local_20260518T234040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_results-to-local_20260518T234040_result.json",
+    "occurrence": 1,
+    "bytes": 374,
+    "sha256": "d6ac31054689c641c33119a638acd28535280ae2becb2e9b9f4d0f372bbee8c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个文件全部同步完成，均为有效 JSON：\n\n| 文件 | 大小 | 本地路径 |\n|------|------|----------|\n| exp12_toxicchat_bootstrap.json | 5,348 B | `artifacts/exp12_toxicchat_bootstrap/` |\n| meanpool_multiseed.json | 1,268 B | `artifacts/exp13_meanpool_multiseed/` |\n| tost_equivalence.json | 4,500 B | `artifacts/exp11_tost_equivalence/` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-results-to-local.md"
+}

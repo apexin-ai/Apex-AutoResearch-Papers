@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b458570de3d87ead58e5",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train phase b pilot",
+  "task_key": "worker_train_phase-b-pilot_20260517T161130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_phase-b-pilot_20260517T161130_result.json",
+    "occurrence": 1,
+    "bytes": 1502,
+    "sha256": "233f4c4b795e751b4266debc1d933fc7308d8cf6622a98c8f052afc29304ca78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase B Mini Pilot 端到端 pipeline 验证完成。\n\n---\n\n### 结果汇总\n\n```\n=== Phase B Pilot Results (N=270, test=41) ===\n\nFull Conversation:\n  Treatment (DeBERTa-FT + GRU): F1=1.000, FPR@95TPR=0.000\n  Baseline (DeBERTa-vanilla + GRU): F1=0.737, FPR@95TPR=0.000\n  TF-IDF + LR:                      F1=1.000\n\nEarly Detection:\n  K=2: Treatment=1.000, Baseline=0.737, TF-IDF=0.894\n  K=3: Treatment=1.000, Baseline=0.894, TF-IDF=0.894\n  K=5: Treatment=1.000, Baseline=0.894, TF-IDF=0.894\n```\n\n### 关键发现\n\n1. **Pipeline 端到端跑通** — DeBERTa multi-task → embedding extraction → GRU classifier 全链路正常\n2. **DeBERTa Stage 1** — 5 epoch 后 persuasion acc 0.718, intent acc 0.984 (best at epoch 4)\n3. **Treatment 完美分类** — 小数据集上 F1=1.0，包括 K=2（仅前 2 轮）\n4. **Baseline 明显弱于 treatment** — vanilla DeBERTa 的 GRU F1=0.737，主要问题是把 benign 误分为 jailbreak（benign 只有 3 条 test 样本，命中 1 条）\n5. **TF-IDF baseline 出乎意料地强** — full conversation F1=1.0，但 early detection (K=2) 降到 0.894\n\n### 注意事项\n\n- Test set 只有 41 条（3 benign + 38 jailbreak），结果不具统计显著性\n- Treatment 的完美分数可能反映数据太少 + 类别不平衡，而非方法的真实上限\n- Baseline 训练时磁盘满导致提前终止（epoch 29/50），但 best.pt 已保存\n- 下一步应扩充 benign 数据以获得更可靠的评估"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-phase-b-pilot.md"
+}

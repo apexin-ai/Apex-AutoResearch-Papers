@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f71578e042102007db22",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp45 eval fix",
+  "task_key": "worker_code_exp45_eval_fix_20260522T065355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp45_eval_fix_20260522T065355_result.json",
+    "occurrence": 1,
+    "bytes": 875,
+    "sha256": "5693354538b215f044f658ffd2320d5abb7c6fe43e351ce968b7bbdb613d4fdb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results JSON 已经包含全部 7 个 N 值的完整数据，无需修复。\n\n当前 `exp45_benign_adaptation_curve.json` 内容：\n\n| N | wildchat_fpr | ood_dd_f1 | ood_aa_f1 | ood_fitd_f1 | train_size | time_min |\n|---|---|---|---|---|---|---|\n| 0 | 0.653 | 1.000 | 0.981 | 1.000 | 350 | 3.0 |\n| 5 | 0.163 | 0.990 | 0.981 | 1.000 | 355 | 3.0 |\n| 10 | 0.000 | 1.000 | 1.000 | 1.000 | 360 | 2.4 |\n| 25 | 0.000 | 1.000 | 0.953 | 1.000 | 375 | 1.7 |\n| 50 | 0.000 | 1.000 | 1.000 | 1.000 | 400 | 1.9 |\n| **100** | **0.000** | **1.000** | **1.000** | **1.000** | **450** | **2.1** |\n| **150** | **0.000** | **1.000** | **0.981** | **1.000** | **500** | **2.1** |\n\nN=100 和 N=150 的数据完整存在，checkpoint 路径也已记录（在 `/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/` 下）。可能之前已有人补跑过了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp45-eval-fix.md"
+}

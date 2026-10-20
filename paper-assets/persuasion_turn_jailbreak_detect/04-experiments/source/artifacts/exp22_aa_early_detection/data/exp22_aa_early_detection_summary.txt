@@ -1,0 +1,1 @@
+Server path: /root/persuasion_turn_jailbreak_detect/results/exp22_aa_early_detection.json\nSummary (mean±std):\n9class: k1=0.773±0.041 k2=0.855±0.048 k3=0.921±0.046 k5=0.966±0.028 full=0.972±0.026\nmlm:    k1=0.736±0.150 k2=0.909±0.058 k3=0.945±0.039 k5=0.929±0.033 full=0.893±0.080\nvanilla:k1=0.337±0.049 k2=0.306±0.026 k3=0.284±0.011 k5=0.262±0.006 full=0.258±0.000

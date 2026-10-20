@@ -1,0 +1,685 @@
+# paper writing abstract d019d020
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 12
+- **Recorded user turns:** 0
+- **Tool calls:** 3
+- **Original source:** `logs/workers/worker_paper_writing_abstract_d019d020_20260518T062839.log`
+- **Structured JSON:** [`d49f740c3e2c817cf3b6.json`](../../sessions/d4/d49f740c3e2c817cf3b6.json)
+
+## Before a recorded user message
+
+12 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "session_id": "bc331ead-9c63-4748-b013-f26947b45712",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__auto_build_provenance",
+    "mcp__agent-ml-research__bootstrap_provenance",
+    "mcp__agent-ml-research__check_paper_consistency",
+    "mcp__agent-ml-research__check_provenance_completeness",
+    "mcp__agent-ml-research__cleanup_pdf_images",
+    "mcp__agent-ml-research__compute_coverage_matrix",
+    "mcp__agent-ml-research__edit_paper_section",
+    "mcp__agent-ml-research__get_image_info",
+    "mcp__agent-ml-research__get_worker_status",
+    "mcp__agent-ml-research__list_artifacts",
+    "mcp__agent-ml-research__list_workers",
+    "mcp__agent-ml-research__load_project_config",
+    "mcp__agent-ml-research__overleaf_init",
+    "mcp__agent-ml-research__overleaf_pull",
+    "mcp__agent-ml-research__overleaf_push",
+    "mcp__agent-ml-research__overleaf_status",
+    "mcp__agent-ml-research__overleaf_sync",
+    "mcp__agent-ml-research__paper_agent_post_to_director",
+    "mcp__agent-ml-research__paper_agent_request_review",
+    "mcp__agent-ml-research__paper_compile_and_check",
+    "mcp__agent-ml-research__pdf_to_images",
+    "mcp__agent-ml-research__read_experiment_plan_with_status",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__read_roadmap",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__send_progress",
+    "mcp__agent-ml-research__spawn_worker",
+    "mcp__agent-ml-research__verify_references",
+    "mcp__agent-ml-research__write_paper_section"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "8b6299ae-95ae-4afa-8ac5-7976e444bc19",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779100200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "b56075c8-3117-4965-a034-6cac825800e5",
+  "session_id": "bc331ead-9c63-4748-b013-f26947b45712"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me write the abstract.tex file following the detailed instructions. Let me craft this carefully.
+
+Key points to hit:
+1. Problem: Multi-turn jailbreaks defeat per-turn filters and vanilla semantic modeling (F1=0.28 OOD)
+2. Approach: Six controlled DeBERTa variants to decompose cross-attack generalization
+3. Key finding: MLM pretraining alone (no labels) matches full model at F1=1.0; domain exposure is the mechanism, not classification
+4. Additional: Zero perturbation degradation, taxonomy provides interpretability not accuracy
+
+Writing rules: no dashes, no -ing trailing phrases, no stacking transitions, no banned words, define abbreviations, max 2-3 numbers, self-contained.
+
+
+Now I'm drafting the opening: multi-turn jailbreaks distribute adversarial intent across benign conversational turns to evade per-turn safety filters, and vanilla DeBERTa detectors fail badly on unseen attack types (F1=0.28). I'm designing six controlled model variants to isolate what drives generalization, and the key insight is that masked language modeling pretraining on jailbreak text alone, without any labels, reaches F1=1.00 on held-out attacks and matches the full supervised approach. This reveals that domain exposure, not the classification objective itself, is what matters.
+
+The follow-up finding is that domain-adaptive pretraining closes the entire 72-point OOD gap, while misaligned supervision like topic classification actually hurts performance (F1=0.73). Even scrambled or binary labels preserve generalization once the model sees the domain, suggesting the label signal is almost irrelevant. The persuasion taxonomy provides interpretability—different attack types show distinct strategy patterns—and the models stay robust under input perturbations. This reframes the problem as domain adaptation rather than a classification challenge. I'm deciding which numbers are essential to the narrative—the vanilla baseline of 0.28 and the MLM result of 1.00 are critical, but I could drop the percentage point gain since it's already implied by those two values. The topic generalization number of 0.73 supports the claim about misaligned supervision hurting performance, so keeping that might be worth it. Let me see if I can tighten this without losing the key evidence for the main argument. Verifying the phrasing is clean—no trailing -ing constructions, no dashes, and the key metrics are preserved. The file path checks out, so I'm ready to write this.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc331ead-9c63-4748-b013-f26947b45712",
+  "uuid": "2c17a11c-bcd4-4d46-9ebc-f7564f40a3f3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EEENMQKaEfnmxfrrnGitdH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13431,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13431
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017xWUYLPzzDtJkW4axq5Ej8`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/",
+  "description": "Check paper directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc331ead-9c63-4748-b013-f26947b45712",
+  "uuid": "f49ed253-521f-4ca8-a230-36de313bc8ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EEENMQKaEfnmxfrrnGitdH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13431,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13431
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T06:29:16.916Z_
+
+<details><summary>↩ Tool result · `toolu_017xWUYLPzzDtJkW4axq5Ej8`</summary>
+
+```text
+abstract.tex
+conclusion.tex
+experiments.tex
+introduction.tex
+method.tex
+references.bib
+related_work.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc331ead-9c63-4748-b013-f26947b45712",
+  "uuid": "56f03adb-83b4-41ab-855f-76748f9bb5dd",
+  "tool_use_result": {
+    "stdout": "abstract.tex\nconclusion.tex\nexperiments.tex\nintroduction.tex\nmethod.tex\nreferences.bib\nrelated_work.tex",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FWNkHtRtMYSmhBCzyFd5F5`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc331ead-9c63-4748-b013-f26947b45712",
+  "uuid": "8ef1c441-195e-4ad8-a87e-60bfadfa9ba8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A16rsQxK8A5yzHGXJDwnDD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1596,
+      "cache_read_input_tokens": 25272,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1596
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T06:29:19.573Z_
+
+<details><summary>↩ Tool result · `toolu_01FWNkHtRtMYSmhBCzyFd5F5`</summary>
+
+```text
+1	\begin{abstract}
+2	Multi-turn jailbreak attacks distribute adversarial intent across a sequence of individually benign turns, and both per-turn safety filters and content-level reasoning fail to detect this distributed threat.
+3	The natural defense of encoding conversations with a pretrained language model and aggregating turn embeddings achieves near-perfect in-distribution detection but collapses on unseen attack types: a vanilla DeBERTa encoder trained on Crescendo conversations drops from F1 = 1.000 to 0.284 on out-of-distribution Deceptive Delight data.
+4	Using a large language model (LLM) as judge fares no better, with GPT-5.5 reaching only F1 = 0.191--0.449 on in-distribution detection.
+5	We introduce DisPeD (Discourse-level Persuasion Detection), a two-stage framework that fine-tunes DeBERTa-v3-base with a multi-task objective combining 9-class persuasion strategy classification, grounded in the Persuasion Attack Paradigm and Cialdini's influence principles, with binary jailbreak-intent classification.
+6	Turn-level \texttt{[CLS]} embeddings are aggregated via a bidirectional GRU for conversation-level detection.
+7	The persuasion objective teaches the encoder to attend to pragmatic features shared across attack families rather than surface patterns specific to a single attack type.
+8	DisPeD achieves F1 = 1.000 on unseen Deceptive Delight attacks (+72 percentage points over vanilla DeBERTa).
+9	Ablation experiments show that scrambled strategy labels reduce out-of-distribution F1 by only 1 percentage point; fine-tuning on persuasion-related text, not label accuracy, bridges the generalization gap.
+10	DisPeD also maintains zero degradation under adversarial paraphrasing and provides interpretable detection through strategy trajectory analysis.
+11	\end{abstract}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc331ead-9c63-4748-b013-f26947b45712",
+  "uuid": "0d253faf-5940-4930-b245-1d6577cf95bd",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex",
+      "content": "\\begin{abstract}\nMulti-turn jailbreak attacks distribute adversarial intent across a sequence of individually benign turns, and both per-turn safety filters and content-level reasoning fail to detect this distributed threat.\nThe natural defense of encoding conversations with a pretrained language model and aggregating turn embeddings achieves near-perfect in-distribution detection but collapses on unseen attack types: a vanilla DeBERTa encoder trained on Crescendo conversations drops from F1 = 1.000 to 0.284 on out-of-distribution Deceptive Delight data.\nUsing a large language model (LLM) as judge fares no better, with GPT-5.5 reaching only F1 = 0.191--0.449 on in-distribution detection.\nWe introduce DisPeD (Discourse-level Persuasion Detection), a two-stage framework that fine-tunes DeBERTa-v3-base with a multi-task objective combining 9-class persuasion strategy classification, grounded in the Persuasion Attack Paradigm and Cialdini's influence principles, with binary jailbreak-intent classification.\nTurn-level \\texttt{[CLS]} embeddings are aggregated via a bidirectional GRU for conversation-level detection.\nThe persuasion objective teaches the encoder to attend to pragmatic features shared across attack families rather than surface patterns specific to a single attack type.\nDisPeD achieves F1 = 1.000 on unseen Deceptive Delight attacks (+72 percentage points over vanilla DeBERTa).\nAblation experiments show that scrambled strategy labels reduce out-of-distribution F1 by only 1 percentage point; fine-tuning on persuasion-related text, not label accuracy, bridges the generalization gap.\nDisPeD also maintains zero degradation under adversarial paraphrasing and provides interpretable detection through strategy trajectory analysis.\n\\end{abstract}",
+      "numLines": 11,
+      "startLine": 1,
+      "totalLines": 11
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01RsMwVGNoEGyDRQE6eyMFbF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex",
+  "content": "% abstract.tex — D019+D020 Reframe\n\\begin{abstract}\nMulti-turn jailbreak attacks against Large Language Models (LLMs) distribute adversarial intent across seemingly benign conversational turns and evade per-turn safety filters.\nStandard temporal classifiers fail to generalize: a vanilla DeBERTa encoder achieves only F1\\,=\\,0.28 on out-of-distribution (OOD) attack types unseen during training.\nWe design six controlled variants of a DeBERTa-based detection framework to systematically decompose what enables cross-attack generalization.\nOur central finding is that masked language modeling (MLM) continued pretraining on jailbreak conversation text, without any classification labels, achieves F1\\,=\\,1.00 on unseen attacks and matches the full supervised model.\nDomain-adaptive pretraining bridges the entire +72 percentage point OOD gap; classification supervision is non-essential, while misaligned supervision actively impedes generalization.\nScrambled-label and binary variants confirm that even arbitrary label assignments preserve generalization once domain exposure is present.\nThe persuasion taxonomy contributes interpretability rather than detection accuracy: distinct strategy trajectories emerge per attack type, and classification variants show zero degradation under input perturbation.\nThese results reframe multi-turn jailbreak detection as a domain adaptation problem rather than a classification design problem.\n\\end{abstract}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc331ead-9c63-4748-b013-f26947b45712",
+  "uuid": "78d08215-92d5-4483-848e-c6f0736c919b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DtQ79TomamJDT4UENj1gqQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 573,
+      "cache_read_input_tokens": 26868,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 573
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T06:29:24.856Z_
+
+<details><summary>↩ Tool result · `toolu_01RsMwVGNoEGyDRQE6eyMFbF`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc331ead-9c63-4748-b013-f26947b45712",
+  "uuid": "1fed58db-35f0-4903-bf7a-9b50961de30a",
+  "tool_use_result": {
+    "type": "update",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex",
+    "content": "% abstract.tex — D019+D020 Reframe\n\\begin{abstract}\nMulti-turn jailbreak attacks against Large Language Models (LLMs) distribute adversarial intent across seemingly benign conversational turns and evade per-turn safety filters.\nStandard temporal classifiers fail to generalize: a vanilla DeBERTa encoder achieves only F1\\,=\\,0.28 on out-of-distribution (OOD) attack types unseen during training.\nWe design six controlled variants of a DeBERTa-based detection framework to systematically decompose what enables cross-attack generalization.\nOur central finding is that masked language modeling (MLM) continued pretraining on jailbreak conversation text, without any classification labels, achieves F1\\,=\\,1.00 on unseen attacks and matches the full supervised model.\nDomain-adaptive pretraining bridges the entire +72 percentage point OOD gap; classification supervision is non-essential, while misaligned supervision actively impedes generalization.\nScrambled-label and binary variants confirm that even arbitrary label assignments preserve generalization once domain exposure is present.\nThe persuasion taxonomy contributes interpretability rather than detection accuracy: distinct strategy trajectories emerge per attack type, and classification variants show zero degradation under input perturbation.\nThese results reframe multi-turn jailbreak detection as a domain adaptation problem rather than a classification design problem.\n\\end{abstract}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 11,
+        "newStart": 1,
+        "newLines": 11,
+        "lines": [
+          "+% abstract.tex — D019+D020 Reframe",
+          " \\begin{abstract}",
+          "-Multi-turn jailbreak attacks distribute adversarial intent across a sequence of individually benign turns, and both per-turn safety filters and content-level reasoning fail to detect this distributed threat.",
+          "-The natural defense of encoding conversations with a pretrained language model and aggregating turn embeddings achieves near-perfect in-distribution detection but collapses on unseen attack types: a vanilla DeBERTa encoder trained on Crescendo conversations drops from F1 = 1.000 to 0.284 on out-of-distribution Deceptive Delight data.",
+          "-Using a large language model (LLM) as judge fares no better, with GPT-5.5 reaching only F1 = 0.191--0.449 on in-distribution detection.",
+          "-We introduce DisPeD (Discourse-level Persuasion Detection), a two-stage framework that fine-tunes DeBERTa-v3-base with a multi-task objective combining 9-class persuasion strategy classification, grounded in the Persuasion Attack Paradigm and Cialdini's influence principles, with binary jailbreak-intent classification.",
+          "-Turn-level \\texttt{[CLS]} embeddings are aggregated via a bidirectional GRU for conversation-level detection.",
+          "-The persuasion objective teaches the encoder to attend to pragmatic features shared across attack families rather than surface patterns specific to a single attack type.",
+          "-DisPeD achieves F1 = 1.000 on unseen Deceptive Delight attacks (+72 percentage points over vanilla DeBERTa).",
+          "-Ablation experiments show that scrambled strategy labels reduce out-of-distribution F1 by only 1 percentage point; fine-tuning on persuasion-related text, not label accuracy, bridges the generalization gap.",
+          "-DisPeD also maintains zero degradation under adversarial paraphrasing and provides interpretable detection through strategy trajectory analysis.",
+          "-\\end{abstract}",
+          "\\ No newline at end of file",
+          "+Multi-turn jailbreak attacks against Large Language Models (LLMs) distribute adversarial intent across seemingly benign conversational turns and evade per-turn safety filters.",
+          "+Standard temporal classifiers fail to generalize: a vanilla DeBERTa encoder achieves only F1\\,=\\,0.28 on out-of-distribution (OOD) attack types unseen during training.",
+          "+We design six controlled variants of a DeBERTa-based detection framework to systematically decompose what enables cross-attack generalization.",
+          "+Our central finding is that masked language modeling (MLM) continued pretraining on jailbreak conversation text, without any classification labels, achieves F1\\,=\\,1.00 on unseen attacks and matches the full supervised model.",
+          "+Domain-adaptive pretraining bridges the entire +72 percentage point OOD gap; classification supervision is non-essential, while misaligned supervision actively impedes generalization.",
+          "+Scrambled-label and binary variants confirm that even arbitrary label assignments preserve generalization once domain exposure is present.",
+          "+The persuasion taxonomy contributes interpretability rather than detection accuracy: distinct strategy trajectories emerge per attack type, and classification variants show zero degradation under input perturbation.",
+          "+These results reframe multi-turn jailbreak detection as a domain adaptation problem rather than a classification design problem.",
+          "+\\end{abstract}"
+        ]
+      }
+    ],
+    "originalFile": "\\begin{abstract}\nMulti-turn jailbreak attacks distribute adversarial intent across a sequence of individually benign turns, and both per-turn safety filters and content-level reasoning fail to detect this distributed threat.\nThe natural defense of encoding conversations with a pretrained language model and aggregating turn embeddings achieves near-perfect in-distribution detection but collapses on unseen attack types: a vanilla DeBERTa encoder trained on Crescendo conversations drops from F1 = 1.000 to 0.284 on out-of-distribution Deceptive Delight data.\nUsing a large language model (LLM) as judge fares no better, with GPT-5.5 reaching only F1 = 0.191--0.449 on in-distribution detection.\nWe introduce DisPeD (Discourse-level Persuasion Detection), a two-stage framework that fine-tunes DeBERTa-v3-base with a multi-task objective combining 9-class persuasion strategy classification, grounded in the Persuasion Attack Paradigm and Cialdini's influence principles, with binary jailbreak-intent classification.\nTurn-level \\texttt{[CLS]} embeddings are aggregated via a bidirectional GRU for conversation-level detection.\nThe persuasion objective teaches the encoder to attend to pragmatic features shared across attack families rather than surface patterns specific to a single attack type.\nDisPeD achieves F1 = 1.000 on unseen Deceptive Delight attacks (+72 percentage points over vanilla DeBERTa).\nAblation experiments show that scrambled strategy labels reduce out-of-distribution F1 by only 1 percentage point; fine-tuning on persuasion-related text, not label accuracy, bridges the generalization gap.\nDisPeD also maintains zero degradation under adversarial paraphrasing and provides interpretable detection through strategy trajectory analysis.\n\\end{abstract}",
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Abstract written (168 words). Three key numbers (0.28, 1.00, +72pp) serve the central claim. All abbreviations defined inline. No dashes, no trailing -ing phrases, no banned words. The narrative arc: failure of vanilla approach → six-variant ablation → domain exposure as mechanism → taxonomy for interpretability, not accuracy → reframing the problem.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc331ead-9c63-4748-b013-f26947b45712",
+  "uuid": "7426b0bc-8485-4869-97a9-9be583fede1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HnvjUmozTNYaCw1emAQWjj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 489,
+      "cache_read_input_tokens": 27441,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 489
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 12_
+
+Abstract written (168 words). Three key numbers (0.28, 1.00, +72pp) serve the central claim. All abbreviations defined inline. No dashes, no trailing -ing phrases, no banned words. The narrative arc: failure of vanilla approach → six-variant ablation → domain exposure as mechanism → taxonomy for interpretability, not accuracy → reframing the problem.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 42476,
+  "duration_api_ms": 43200,
+  "num_turns": 4,
+  "stop_reason": "end_turn",
+  "session_id": "bc331ead-9c63-4748-b013-f26947b45712",
+  "total_cost_usd": 0.20205925,
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 16089,
+    "cache_read_input_tokens": 91422,
+    "output_tokens": 2164,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 16089,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 86,
+        "cache_read_input_tokens": 27441,
+        "cache_creation_input_tokens": 489,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 489
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1587,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001667,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 5,
+      "outputTokens": 2164,
+      "cacheReadInputTokens": 91422,
+      "cacheCreationInputTokens": 16089,
+      "webSearchRequests": 0,
+      "costUSD": 0.20039225,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "a18fc6d1-1b14-412d-b71f-76f40fb09326"
+}
+```
+
+</details>
+
+---

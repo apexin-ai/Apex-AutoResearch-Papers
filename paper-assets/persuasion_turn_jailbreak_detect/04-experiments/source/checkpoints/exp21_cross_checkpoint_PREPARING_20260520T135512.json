@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp21_cross_checkpoint",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:55:11.906Z",
+    "updated_at": "2026-05-20T13:55:12.618Z",
+    "hypothesis": "Downstream OOD performance (DD OOD and AA OOD F1) is insensitive to Stage-1 DAPT early stopping point: checkpoints from epoch 2/3/4/best will produce <2pp variance in OOD F1, demonstrating training robustness and reducing sensitivity to hyperparameter tuning"
+  },
+  "timestamp": "2026-05-20T13:55:12.775836+00:00",
+  "trigger": "update_registry"
+}

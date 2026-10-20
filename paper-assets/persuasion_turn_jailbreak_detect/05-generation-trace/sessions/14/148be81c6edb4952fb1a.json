@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "148be81c6edb4952fb1a",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp28 data efficiency",
+  "task_key": "worker_code_exp28-data-efficiency_20260520T152040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp28-data-efficiency_20260520T152040.log",
+    "occurrence": 1,
+    "bytes": 1083630,
+    "sha256": "d65219b4ada735ca14a810b41fb178fbb5503a320d8fffde7fa02160b9fa7db4"
+  },
+  "statistics": {
+    "messages": 383,
+    "user_turns": 0,
+    "tool_calls": 152,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 152,
+      "tool_result": 152,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 383,
+      "chunks": [
+        {
+          "path": "148be81c6edb4952fb1a-part-0001.json",
+          "message_count": 135
+        },
+        {
+          "path": "148be81c6edb4952fb1a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "148be81c6edb4952fb1a-part-0003.json",
+          "message_count": 68
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp28-data-efficiency.md"
+}

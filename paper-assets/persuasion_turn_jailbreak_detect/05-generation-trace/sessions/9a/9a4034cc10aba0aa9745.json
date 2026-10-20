@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "9a4034cc10aba0aa9745",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp44 multi llm mixed",
+  "task_key": "worker_code_exp44_multi_llm_mixed_20260522T044223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp44_multi_llm_mixed_20260522T044223.log",
+    "occurrence": 1,
+    "bytes": 1101640,
+    "sha256": "85bc7d30d425a57aac4fc380eb52538e0a9e867917941442dc327ba74a2e7d91"
+  },
+  "statistics": {
+    "messages": 458,
+    "user_turns": 1,
+    "tool_calls": 189,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 72,
+      "tool_call": 189,
+      "tool_result": 189,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 439,
+      "chunks": [
+        {
+          "path": "9a4034cc10aba0aa9745-part-0001.json",
+          "message_count": 122
+        },
+        {
+          "path": "9a4034cc10aba0aa9745-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9a4034cc10aba0aa9745-part-0003.json",
+          "message_count": 137
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "9a4034cc10aba0aa9745-part-0003.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp44-multi-llm-mixed.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "584177978c69b6ffbcc9",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp15c status check",
+  "task_key": "worker_eval_exp15c-status-check_20260519T122132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp15c-status-check_20260519T122132_result.json",
+    "occurrence": 1,
+    "bytes": 839,
+    "sha256": "148da019c77c6f6d854f010fd327e8a10799c0cde63200a68a880890ba0dc750"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新至 DONE (negative)。\n\n## exp15c_roberta_large_mlm 结果\n\n**结论：negative** — 假设被否定。\n\n| 指标 | MLM (exp15c) | Vanilla (exp15) | 9class (exp15) |\n|------|:-----------:|:---------------:|:--------------:|\n| **DD OOD Full** | 0.884 | 0.927 | **0.987** |\n| DD OOD K=1 | 0.876 | 0.878 | 0.965 |\n| DD OOD K=3 | 0.902 | 0.915 | 0.960 |\n| **AA Full** | 0.874 | **1.000** | 0.946 |\n| AA K=1 | 0.876 | 0.977 | 0.718 |\n| AA K=3 | 0.881 | 0.990 | 0.881 |\n\n**关键发现：** MLM-only DAPT 在 AA 和 DD OOD 上都是三者最差。AA Full: MLM 0.874 < 9class 0.946 < vanilla 1.000。这排除了\"classification fine-tuning 导致退化\"的假设。是 continued pretraining 本身的表征偏移与 frozen-encoder GRU 评估框架冲突，而非 classification head 的干扰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp15c-status-check.md"
+}

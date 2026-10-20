@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99ab9202c93b1e71586d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "audit data integrity",
+  "task_key": "worker_audit_data-integrity_20260525T194250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-integrity_20260525T194250_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "0cbf11f28cee9a2fd6148822db4285d1058e31b3d08922685c94e9c0b205790a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。\n\n**审计结果**: ~210 个数值，~195 个验证通过。\n\n**已修复 (appendix.tex)**:\n1. LLM-judge 表 9-class DD: `.994` → `.997`（与 Table 2 一致，源: round7_seed_level_stats.json）\n2. E2E 表 frozen 行: DD `.994±.005` → `.997±.005`，AA `.939±.047` → `.972±.026`（源: exp26_frozen_probing.json）\n3. E2E Δ 行: `+.006/+.058` → `+.003/+.025`\n4. 正文: \"+5.8pp\" → \"+2.5pp\"\n5. E2E caption: 移除了与 frozen_verify 的冗余对比描述\n\n**需你决定的 2 个 UNVERIFIABLE 项**:\n- **TOST 10-seed**: 服务器仅有 5-seed 数据 (d=0.0/DD, d=0.09/AA)，论文声称 10-seed (d=−0.136, d=0.440)。需补做实验或降级为 5-seed。\n- **κ=0.78 (n=50)**: 无对应源数据文件。需补充人工标注数据。\n\n审计报告: `artifacts/data_audit_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-data-integrity.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp9_bootstrap_ci",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:16:19.153Z",
+    "updated_at": "2026-05-18T17:38:07.663Z",
+    "hypothesis": "BCa bootstrap CIs and paired permutation tests will confirm that multitask 9-class persuasion pre-training significantly outperforms vanilla (frozen) baseline on OOD jailbreak detection, while the difference against domain-specific pre-training (jb_mlm, scrambled) is not statistically significant, supporting the claim that persuasion-aware representations provide robust detection capabilities."
+  },
+  "timestamp": "2026-05-18T17:38:07.785082+00:00",
+  "trigger": "update_registry"
+}

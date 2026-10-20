@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp16b_llama_only_mlm",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:11:21.743Z",
+    "updated_at": "2026-05-20T00:11:32.424Z",
+    "spec": {
+      "command": "bash scripts/exp16_llama_only_mlm.sh (S1 MLM DAPT + S2 GRU, seed 42)",
+      "server": "westd-33183",
+      "data_path": "data/llama_only_splits/ (350 train / 74 val / 77 test)",
+      "data_count": 501,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": "42",
+      "gpu": "cuda:2"
+    },
+    "hypothesis": "MLM DAPT on Llama-only data (250 conversations) will produce stable intermediate performance between vanilla and 9-class on DD OOD and AA OOD, distinguishing whether MLM instability in exp16 mixed training is caused by multi-source data mixing or is inherent to MLM DAPT",
+    "parent": "exp16_multi_llm"
+  },
+  "timestamp": "2026-05-20T00:11:32.582073+00:00",
+  "trigger": "update_registry"
+}

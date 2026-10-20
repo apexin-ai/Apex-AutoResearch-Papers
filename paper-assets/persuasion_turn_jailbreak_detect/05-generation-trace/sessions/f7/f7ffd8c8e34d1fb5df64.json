@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7ffd8c8e34d1fb5df64",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper maintext recovery BCD",
+  "task_key": "worker_paper_maintext_recovery_BCD_20260523T053500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_maintext_recovery_BCD_20260523T053500_result.json",
+    "occurrence": 1,
+    "bytes": 1452,
+    "sha256": "2704acd4305a15b7d197df0bad0d92e7ee7a744c7739273d07d871ddc6ff2905"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits are complete and verified. Here's the summary:\n\n**B1 Terminology**: Replaced \"structurally complex\" → \"strategy-diverse\" in experiments.tex (3 occurrences) and introduction.tex (1 occurrence).\n\n**B2 Abstract**: Lines 6-9 replaced with 3 concise sentences covering classification DAPT recovery, mixed-LLM degradation, and condition specificity.\n\n**B3 Introduction**: Contribution 2 expanded with SVD partial necessity content (3 SVD dimensions in layers 8-12, probe sufficiency, removal degrades DD by 17pp).\n\n**B4 Conclusion**: \n- Added §Evidence consistent with discriminative compression (partial necessity)\n- Added §Boundaries (FPR 48.1% vanilla → 68.1% 9-class)\n- Conclusion sentence extended with condition specificity clause\n- Limitations: added dual-OOD F1 reference (Appendix~\\ref{app:dual_ood})\n\n**B5 Experiments**: \n- TOST expanded to n=10 seeds with difficulty gradient\n- Summary paragraph compressed\n- Table 2 and 3 wrapped with \\resizebox\n- Metrics/Training paragraphs split\n\n**C items**: C1-C3, C6-C8 already present in current files. C4 (em-dashes) clean in main text. C5: 4 -ing participles fixed to complete sentences.\n\n**D**: Figure path confirmed at `figures/paper/fig1_architecture.pdf`.\n\n**Compilation**: PDF produces 25 pages, zero undefined references. Two pre-existing \"Counter too large\" errors from appendix table counter overflow (not introduced by these edits)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-maintext-recovery-bcd.md"
+}

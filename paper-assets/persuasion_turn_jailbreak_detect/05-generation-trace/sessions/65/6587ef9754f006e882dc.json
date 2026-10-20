@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6587ef9754f006e882dc",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16 precision recall",
+  "task_key": "worker_code_exp16-precision-recall_20260520T060847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-precision-recall_20260520T060847_result.json",
+    "occurrence": 1,
+    "bytes": 1627,
+    "sha256": "00b88c4a2d57514d6a8c9fabbd654238818cca669056577d4bad57c381732170"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here are the results:\n\n**Important note:** DD OOD contains only jailbreak samples (80 attack conversations, 0 benign). The confusion matrix row for class 0 is `[0, 0]` in all files, meaning **precision is trivially 1.000 for all models** (no benign samples → no false positives possible). The discriminative metric is **recall** (jailbreak detection rate).\n\n---\n\n```\nexp16 DD OOD Precision/Recall 分解:\n\n注意: DD OOD 仅含 jailbreak 样本 (n=80), 无 benign 样本\n      Precision 均为 1.000 (trivial, 无 FP 可能)\n      核心对比指标为 Recall (= detection rate)\n\n9-class:\n  seed42:  P=1.000  R=0.613  F1=0.760  (TP=49, FN=31)\n  seed123: P=1.000  R=0.938  F1=0.968  (TP=75, FN=5)\n  seed456: P=1.000  R=0.675  F1=0.806  (TP=54, FN=26)\n  mean:    P=1.000±0.000  R=0.742±0.141  F1=0.844±0.089\n\nvanilla:\n  seed42:  P=1.000  R=0.025  F1=0.049  (TP=2, FN=78)\n  seed123: P=1.000  R=0.038  F1=0.072  (TP=3, FN=77)\n  seed456: P=1.000  R=0.213  F1=0.351  (TP=17, FN=63)\n  mean:    P=1.000±0.000  R=0.092±0.086  F1=0.157±0.137\n```\n\n**论文要点：** 对于 \"relative ranking\" vs \"absolute deployability\" 的论述：\n- 9-class recall (0.742) 远高于 vanilla (0.092)，relative ranking 清晰\n- 但 9-class 的 seed variance 很大（0.613–0.938），且 seed42 只有 61.3% recall，说明 absolute deployability 仍有提升空间\n- 由于 DD OOD 无 benign 样本，precision 对比需看 mixed_test 或其他含 benign 的测试集\n\n如需 mixed_test 上的 precision/recall 分解来补充 deployability 论述，可以继续提取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16-precision-recall.md"
+}

@@ -1,0 +1,603 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d163fa7476193022eafe",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TRVMoZjtekZeFPJ4QKyL3L",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp31_lambda_ablation_results",
+                "type": "data",
+                "description": "Lambda ablation results: lambda ∈ {0, 0.1, 0.5, 1.0, 2.0} with IID/DD/AA/FITD F1 scores",
+                "project": "persuasion_turn_jailbreak_detect",
+                "exp_id": "exp31_lambda_ablation_aa",
+                "source_path": "/root/persuasion_turn_jailbreak_detect/results/exp31_lambda_ablation.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "15e5a860-373b-49ea-8377-25e0412b8f17",
+            "uuid": "9eabe01b-9460-461c-bc32-770886ebdea1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BCNKwEYwDJajJCroEzbReT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1740,
+                "cache_read_input_tokens": 126491,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1740
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": "2026-05-20T19:28:19.597Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TRVMoZjtekZeFPJ4QKyL3L",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/persuasion_turn_jailbreak_detect/results/exp31_lambda_ablation.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "15e5a860-373b-49ea-8377-25e0412b8f17",
+            "uuid": "4f49c80b-2472-4bb0-96dc-3acef7cc80af",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/persuasion_turn_jailbreak_detect/results/exp31_lambda_ablation.json\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/persuasion_turn_jailbreak_detect/results/exp31_lambda_ablation.json\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The artifact registration failed because the path is on the remote server, not the local machine. Let me register using `content` parameter instead, or use the remote path convention.\n\nLet me read the file content from the server and pass it as content.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "15e5a860-373b-49ea-8377-25e0412b8f17",
+            "uuid": "c56b33e0-2354-45aa-91a9-1a0c25867dbc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XxYwUcQUrK67p1xYht8Hpt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2111,
+                "cache_read_input_tokens": 128231,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2111
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WLKy9jiWizrQBxJCB7r595",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp31_lambda_ablation_results",
+                "type": "data",
+                "description": "Lambda ablation results: lambda ∈ {0, 0.1, 0.5, 1.0, 2.0} with IID/DD/AA/FITD F1 scores. Higher lambda monotonically hurts AA OOD.",
+                "project": "persuasion_turn_jailbreak_detect",
+                "exp_id": "exp31_lambda_ablation_aa",
+                "content": "[\n  {\"lambda\": 0, \"seed\": 42, \"iid_f1\": 1.0, \"dd_ood_f1\": 1.0, \"aa_ood_f1\": 1.0, \"fitd_ood_f1\": 1.0, \"best_epoch\": 1, \"best_val_f1\": 1.0},\n  {\"lambda\": 0.1, \"seed\": 42, \"iid_f1\": 1.0, \"dd_ood_f1\": 1.0, \"aa_ood_f1\": 0.9904, \"fitd_ood_f1\": 1.0, \"best_epoch\": 1, \"best_val_f1\": 1.0},\n  {\"lambda\": 0.5, \"seed\": 42, \"iid_f1\": 1.0, \"dd_ood_f1\": 1.0, \"aa_ood_f1\": 0.9809, \"fitd_ood_f1\": 1.0, \"best_epoch\": 1, \"best_val_f1\": 1.0},\n  {\"lambda\": 1.0, \"seed\": 42, \"iid_f1\": 1.0, \"dd_ood_f1\": 1.0, \"aa_ood_f1\": 0.9809, \"fitd_ood_f1\": 1.0, \"best_epoch\": 1, \"best_val_f1\": 1.0},\n  {\"lambda\": 2.0, \"seed\": 42, \"iid_f1\": 1.0, \"dd_ood_f1\": 1.0, \"aa_ood_f1\": 0.9439, \"fitd_ood_f1\": 1.0, \"best_epoch\": 1, \"best_val_f1\": 1.0}\n]",
+                "content_filename": "exp31_lambda_ablation.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "15e5a860-373b-49ea-8377-25e0412b8f17",
+            "uuid": "b1498ece-3788-4bac-b5aa-1a031740791d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XxYwUcQUrK67p1xYht8Hpt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2111,
+                "cache_read_input_tokens": 128231,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2111
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": "2026-05-20T19:28:30.261Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value=[{'lambda': 0, 'seed': 42... 1, 'best_val_f1': 1.0}], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01WLKy9jiWizrQBxJCB7r595"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "15e5a860-373b-49ea-8377-25e0412b8f17",
+            "uuid": "a61f20ae-9cc6-4df9-ad93-7ef6c0a9e78d",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value=[{'lambda': 0, 'seed': 42... 1, 'best_val_f1': 1.0}], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BuoS3hQUFyfVLm17q6af9k",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp31_lambda_ablation_results",
+                "type": "data",
+                "description": "Lambda ablation results: lambda in {0, 0.1, 0.5, 1.0, 2.0} with IID/DD/AA/FITD F1 scores. Higher lambda monotonically hurts AA OOD.",
+                "project": "persuasion_turn_jailbreak_detect",
+                "exp_id": "exp31_lambda_ablation_aa",
+                "content": "{\"results\": [{\"lambda\": 0, \"aa_ood_f1\": 1.0}, {\"lambda\": 0.1, \"aa_ood_f1\": 0.9904}, {\"lambda\": 0.5, \"aa_ood_f1\": 0.9809}, {\"lambda\": 1.0, \"aa_ood_f1\": 0.9809}, {\"lambda\": 2.0, \"aa_ood_f1\": 0.9439}], \"iid_all\": 1.0, \"dd_all\": 1.0, \"fitd_all\": 1.0, \"path_on_server\": \"/root/persuasion_turn_jailbreak_detect/results/exp31_lambda_ablation.json\"}",
+                "content_filename": "exp31_lambda_ablation.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "15e5a860-373b-49ea-8377-25e0412b8f17",
+            "uuid": "d425f516-7d54-4eb9-8fc3-c8d874d6dcb0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018jHBu16wXinJKhpndRqGYW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 913,
+                "cache_read_input_tokens": 130342,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 913
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": "2026-05-20T19:28:35.933Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'results': [{'lambda': 0...1_lambda_ablation.json'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01BuoS3hQUFyfVLm17q6af9k"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "15e5a860-373b-49ea-8377-25e0412b8f17",
+            "uuid": "53794aef-9103-4a3e-9e71-7d7440d7f1cd",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'results': [{'lambda': 0...1_lambda_ablation.json'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016nXmkEtfuiNEgzDG1DW4PJ",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp31_lambda_ablation_results",
+                "type": "data",
+                "description": "Lambda ablation results: lambda in {0, 0.1, 0.5, 1.0, 2.0} with IID/DD/AA/FITD F1. Higher lambda monotonically hurts AA OOD.",
+                "project": "persuasion_turn_jailbreak_detect",
+                "exp_id": "exp31_lambda_ablation_aa",
+                "content": "Lambda | IID | DD_OOD | AA_OOD | FITD_OOD\n0.0    | 1.0 | 1.0    | 1.0    | 1.0\n0.1    | 1.0 | 1.0    | 0.9904 | 1.0\n0.5    | 1.0 | 1.0    | 0.9809 | 1.0\n1.0    | 1.0 | 1.0    | 0.9809 | 1.0\n2.0    | 1.0 | 1.0    | 0.9439 | 1.0\n\nServer path: /root/persuasion_turn_jailbreak_detect/results/exp31_lambda_ablation.json",
+                "content_filename": "exp31_lambda_ablation.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "15e5a860-373b-49ea-8377-25e0412b8f17",
+            "uuid": "e3b59544-a52d-4ef4-ac51-7fb40eacd852",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q1RFumZpwyBjs8oHeXynFd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 550,
+                "cache_read_input_tokens": 131255,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 550
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": "2026-05-20T19:28:42.333Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016nXmkEtfuiNEgzDG1DW4PJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_085130\\\", \\\"name\\\": \\\"exp31_lambda_ablation_results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Lambda ablation results: lambda in {0, 0.1, 0.5, 1.0, 2.0} with IID/DD/AA/FITD F1. Higher lambda monotonically hurts AA OOD.\\\", \\\"path\\\": \\\"projects/persuasion_turn_jailbreak_detect/artifacts/exp31_lambda_ablation_aa/data/exp31_lambda_ablation.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"persuasion_turn_jailbreak_detect\\\", \\\"exp_id\\\": \\\"exp31_lambda_ablation_aa\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T19:28:42.218603+00:00\\\", \\\"tags\\\": []}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "15e5a860-373b-49ea-8377-25e0412b8f17",
+            "uuid": "4be600bf-9951-4069-a22d-8b3bcfe883aa",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_085130\\\", \\\"name\\\": \\\"exp31_lambda_ablation_results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Lambda ablation results: lambda in {0, 0.1, 0.5, 1.0, 2.0} with IID/DD/AA/FITD F1. Higher lambda monotonically hurts AA OOD.\\\", \\\"path\\\": \\\"projects/persuasion_turn_jailbreak_detect/artifacts/exp31_lambda_ablation_aa/data/exp31_lambda_ablation.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"persuasion_turn_jailbreak_detect\\\", \\\"exp_id\\\": \\\"exp31_lambda_ablation_aa\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T19:28:42.218603+00:00\\\", \\\"tags\\\": []}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260520_085130\", \"name\": \"exp31_lambda_ablation_results\", \"type\": \"data\", \"description\": \"Lambda ablation results: lambda in {0, 0.1, 0.5, 1.0, 2.0} with IID/DD/AA/FITD F1. Higher lambda monotonically hurts AA OOD.\", \"path\": \"projects/persuasion_turn_jailbreak_detect/artifacts/exp31_lambda_ablation_aa/data/exp31_lambda_ablation.txt\", \"url\": null, \"project\": \"persuasion_turn_jailbreak_detect\", \"exp_id\": \"exp31_lambda_ablation_aa\", \"skill\": \"\", \"created_at\": \"2026-05-20T19:28:42.218603+00:00\", \"tags\": []}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now update registry status to DONE."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "15e5a860-373b-49ea-8377-25e0412b8f17",
+            "uuid": "68e7bb30-6973-4259-9171-0ed893fe7624",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RSQYgn72bWFayBPh91ZR2j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 771,
+                "cache_read_input_tokens": 131805,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 771
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WwL81JE9W5AHzFyeMHCwEt",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp31_lambda_ablation_aa",
+                "field": "status",
+                "value": "DONE",
+                "project": "persuasion_turn_jailbreak_detect"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "15e5a860-373b-49ea-8377-25e0412b8f17",
+            "uuid": "fe983e6e-5728-4059-ac29-fa30f0e0ee26",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RSQYgn72bWFayBPh91ZR2j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 771,
+                "cache_read_input_tokens": 131805,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 771
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": "2026-05-20T19:28:46.899Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WwL81JE9W5AHzFyeMHCwEt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp31_lambda_ablation_aa\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:29:23.924Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:28:46.306Z\\\", \\\"hypothesis\\\": \\\"Multi-task persuasion loss weight (lambda) affects OOD generalization in E2E fine-tuning: lambda=0 (intent-only) will underperform on hard OOD (ActorAttack) compared to lambda>0, because the persuasion auxiliary signal provides a regularization effect that preserves OOD-relevant features in the encoder. There exists an optimal lambda that maximizes AA OOD without sacrificing IID performance.\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/persuasion_turn_jailbreak_detect && python scripts/exp31_lambda_ablation.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/plan_002_splits/\\\", \\\"data_count\\\": 350, \\\"model_name\\\": \\\"microsoft/deberta-v3-base\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"plan_002 DAPT seed42\\\", \\\"eval_data\\\": \\\"IID test + DD OOD + AA OOD + FITD OOD\\\", \\\"checkpoint_path\\\": \\\"checkpoints/exp31_lambda*_seed42/best.pt\\\", \\\"log_path\\\": \\\"/tmp/exp31.log\\\", \\\"lambdas\\\": [0, 0.1, 0.5, 1, 2], \\\"pid\\\": 84095}, \\\"metrics\\\": {\\\"lambda_0_aa\\\": 1, \\\"lambda_0.1_aa\\\": 0.9904, \\\"lambda_0.5_aa\\\": 0.9809, \\\"lambda_1.0_aa\\\": 0.9809, \\\"lambda_2.0_aa\\\": 0.9439, \\\"iid_all\\\": 1, \\\"dd_all\\\": 1, \\\"fitd_all\\\": 1, \\\"note\\\": \\\"Higher lambda monotonically hurts AA OOD. lambda=0 (intent-only E2E) achieves perfect AA. Persuasion aux loss acts as a distractor during E2E.\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T19:28:46.306Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8427}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "15e5a860-373b-49ea-8377-25e0412b8f17",
+            "uuid": "ee8a7084-2f9a-43e2-933a-dfdadbb7bb79",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp31_lambda_ablation_aa\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:29:23.924Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:28:46.306Z\\\", \\\"hypothesis\\\": \\\"Multi-task persuasion loss weight (lambda) affects OOD generalization in E2E fine-tuning: lambda=0 (intent-only) will underperform on hard OOD (ActorAttack) compared to lambda>0, because the persuasion auxiliary signal provides a regularization effect that preserves OOD-relevant features in the encoder. There exists an optimal lambda that maximizes AA OOD without sacrificing IID performance.\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/persuasion_turn_jailbreak_detect && python scripts/exp31_lambda_ablation.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/plan_002_splits/\\\", \\\"data_count\\\": 350, \\\"model_name\\\": \\\"microsoft/deberta-v3-base\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"plan_002 DAPT seed42\\\", \\\"eval_data\\\": \\\"IID test + DD OOD + AA OOD + FITD OOD\\\", \\\"checkpoint_path\\\": \\\"checkpoints/exp31_lambda*_seed42/best.pt\\\", \\\"log_path\\\": \\\"/tmp/exp31.log\\\", \\\"lambdas\\\": [0, 0.1, 0.5, 1, 2], \\\"pid\\\": 84095}, \\\"metrics\\\": {\\\"lambda_0_aa\\\": 1, \\\"lambda_0.1_aa\\\": 0.9904, \\\"lambda_0.5_aa\\\": 0.9809, \\\"lambda_1.0_aa\\\": 0.9809, \\\"lambda_2.0_aa\\\": 0.9439, \\\"iid_all\\\": 1, \\\"dd_all\\\": 1, \\\"fitd_all\\\": 1, \\\"note\\\": \\\"Higher lambda monotonically hurts AA OOD. lambda=0 (intent-only E2E) achieves perfect AA. Persuasion aux loss acts as a distractor during E2E.\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T19:28:46.306Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8427}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp31_lambda_ablation_aa\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:29:23.924Z\", \"updated_at\": \"2026-05-20T19:28:46.306Z\", \"hypothesis\": \"Multi-task persuasion loss weight (lambda) affects OOD generalization in E2E fine-tuning: lambda=0 (intent-only) will underperform on hard OOD (ActorAttack) compared to lambda>0, because the persuasion auxiliary signal provides a regularization effect that preserves OOD-relevant features in the encoder. There exists an optimal lambda that maximizes AA OOD without sacrificing IID performance.\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/persuasion_turn_jailbreak_detect && python scripts/exp31_lambda_ablation.py\", \"server\": \"westd-33183\", \"data_path\": \"data/plan_002_splits/\", \"data_count\": 350, \"model_name\": \"microsoft/deberta-v3-base\", \"seed\": 42, \"checkpoint_source\": \"plan_002 DAPT seed42\", \"eval_data\": \"IID test + DD OOD + AA OOD + FITD OOD\", \"checkpoint_path\": \"checkpoints/exp31_lambda*_seed42/best.pt\", \"log_path\": \"/tmp/exp31.log\", \"lambdas\": [0, 0.1, 0.5, 1, 2], \"pid\": 84095}, \"metrics\": {\"lambda_0_aa\": 1, \"lambda_0.1_aa\": 0.9904, \"lambda_0.5_aa\": 0.9809, \"lambda_1.0_aa\": 0.9809, \"lambda_2.0_aa\": 0.9439, \"iid_all\": 1, \"dd_all\": 1, \"fitd_all\": 1, \"note\": \"Higher lambda monotonically hurts AA OOD. lambda=0 (intent-only E2E) achieves perfect AA. Persuasion aux loss acts as a distractor during E2E.\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T19:28:46.306Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8427}}"
+              }
+            }
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both tasks complete. Summary:\n\n---\n\n## Part A: exp28b Results\n\nexp28b crashed during evaluation (float16 dtype in GRU), but all **9-class seed123 + seed456 runs completed**. Combined with exp28 seed42:\n\n| N | IID | DD_OOD | AA_OOD |\n|--:|:---:|:------:|:------:|\n| 50 | 1.000±0.000 | 1.000±0.000 | 0.969±0.037 |\n| 125 | 1.000±0.000 | 1.000±0.000 | 0.975±0.019 |\n| 250 | 1.000±0.000 | 1.000±0.000 | 0.975±0.035 |\n| 350 | 1.000±0.000 | 0.978±0.030 | 0.972±0.033 |\n\nVanilla (seed42 only): N=125 aa=0.244, N=350 aa=0.489. Vanilla N=50/250 missing (crash).\n\nRegistry: exp28b → **DONE (success)**.\n\n## Part B: exp31 Lambda Ablation\n\n| Lambda | IID | DD_OOD | **AA_OOD** | FITD_OOD |\n|-------:|:---:|:------:|:----------:|:--------:|\n| 0 | 1.0 | 1.0 | **1.0** | 1.0 |\n| 0.1 | 1.0 | 1.0 | **0.990** | 1.0 |\n| 0.5 | 1.0 | 1.0 | **0.981** | 1.0 |\n| 1.0 | 1.0 | 1.0 | **0.981** | 1.0 |\n| 2.0 | 1.0 | 1.0 | **0.944** | 1.0 |\n\n**Hypothesis falsified (negative result)**: Higher lambda **monotonically hurts** AA OOD. lambda=0 (intent-only E2E, no persuasion aux loss) achieves perfect scores everywhere. The persuasion auxiliary loss acts as a distractor during E2E fine-tuning rather than a regularizer.\n\nRegistry: exp31 → **DONE (negative)**.\n\nOutput files:\n- `results/exp28_combined_data_efficiency.json`\n- `results/exp31_lambda_ablation.json`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "15e5a860-373b-49ea-8377-25e0412b8f17",
+            "uuid": "04cee5c9-33e5-4ae2-95f6-304d74d7c294",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ACNutkKXiErjY99Fjrh8rc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 862,
+                "cache_read_input_tokens": 132576,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 862
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both tasks complete. Summary:\n\n---\n\n## Part A: exp28b Results\n\nexp28b crashed during evaluation (float16 dtype in GRU), but all **9-class seed123 + seed456 runs completed**. Combined with exp28 seed42:\n\n| N | IID | DD_OOD | AA_OOD |\n|--:|:---:|:------:|:------:|\n| 50 | 1.000±0.000 | 1.000±0.000 | 0.969±0.037 |\n| 125 | 1.000±0.000 | 1.000±0.000 | 0.975±0.019 |\n| 250 | 1.000±0.000 | 1.000±0.000 | 0.975±0.035 |\n| 350 | 1.000±0.000 | 0.978±0.030 | 0.972±0.033 |\n\nVanilla (seed42 only): N=125 aa=0.244, N=350 aa=0.489. Vanilla N=50/250 missing (crash).\n\nRegistry: exp28b → **DONE (success)**.\n\n## Part B: exp31 Lambda Ablation\n\n| Lambda | IID | DD_OOD | **AA_OOD** | FITD_OOD |\n|-------:|:---:|:------:|:----------:|:--------:|\n| 0 | 1.0 | 1.0 | **1.0** | 1.0 |\n| 0.1 | 1.0 | 1.0 | **0.990** | 1.0 |\n| 0.5 | 1.0 | 1.0 | **0.981** | 1.0 |\n| 1.0 | 1.0 | 1.0 | **0.981** | 1.0 |\n| 2.0 | 1.0 | 1.0 | **0.944** | 1.0 |\n\n**Hypothesis falsified (negative result)**: Higher lambda **monotonically hurts** AA OOD. lambda=0 (intent-only E2E, no persuasion aux loss) achieves perfect scores everywhere. The persuasion auxiliary loss acts as a distractor during E2E fine-tuning rather than a regularizer.\n\nRegistry: exp31 → **DONE (negative)**.\n\nOutput files:\n- `results/exp28_combined_data_efficiency.json`\n- `results/exp31_lambda_ablation.json`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1091244,
+            "duration_api_ms": 889982,
+            "num_turns": 141,
+            "stop_reason": "end_turn",
+            "session_id": "15e5a860-373b-49ea-8377-25e0412b8f17",
+            "total_cost_usd": 7.362596750000003,
+            "usage": {
+              "input_tokens": 114,
+              "cache_creation_input_tokens": 121991,
+              "cache_read_input_tokens": 10730234,
+              "output_tokens": 49274,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 121991,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 632,
+                  "cache_read_input_tokens": 132576,
+                  "cache_creation_input_tokens": 862,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 862
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2511,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0026160000000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 114,
+                "outputTokens": 49274,
+                "cacheReadInputTokens": 10730234,
+                "cacheCreationInputTokens": 121991,
+                "webSearchRequests": 0,
+                "costUSD": 7.359980750000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "549393f3-afcb-431f-9fec-b9c00701bb35"
+          },
+          "id": "event-000374"
+        }
+      ]
+    }
+  ]
+}

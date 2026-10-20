@@ -1,0 +1,60 @@
+{
+  "exp_id": "exp9_bootstrap_ci",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:16:19.153Z",
+    "updated_at": "2026-05-18T17:38:38.873Z",
+    "hypothesis": "BCa bootstrap CIs and paired permutation tests will confirm that multitask 9-class persuasion pre-training significantly outperforms vanilla (frozen) baseline on OOD jailbreak detection, while the difference against domain-specific pre-training (jb_mlm, scrambled) is not statistically significant, supporting the claim that persuasion-aware representations provide robust detection capabilities.",
+    "spec": {
+      "command": "python scripts/exp9_bootstrap_ci.py",
+      "server": "westd-33183",
+      "data_path": "data/generated/deceptive_delight_all.jsonl + data/generated/actorattack_all.jsonl + data/plan_002_splits/test.jsonl",
+      "data_count": 118,
+      "model_name": "DeBERTa-v3-base + RoBERTa-base (10 variants x 3 seeds)",
+      "seed": "42,123,456"
+    },
+    "log_path": "results/exp9_run.log",
+    "checkpoint_path": "results/exp9_bootstrap_ci.json",
+    "metrics": {
+      "dd_ood_9class_full": {
+        "mean": 0.9968,
+        "ci": [
+          0.9426,
+          1
+        ]
+      },
+      "dd_ood_vanilla_full": {
+        "mean": 0.2698,
+        "ci": [
+          0.2017,
+          0.3414
+        ]
+      },
+      "actorattack_9class_full": {
+        "mean": 0.9718,
+        "ci": [
+          0.8554,
+          1
+        ]
+      },
+      "actorattack_vanilla_full": {
+        "mean": 0.2565,
+        "ci": [
+          0.2027,
+          0.3139
+        ]
+      },
+      "perm_9class_vs_vanilla_dd_full_p": 0,
+      "perm_9class_vs_vanilla_aa_full_p": 0,
+      "perm_9class_vs_jb_mlm_dd_full_max_p": 1,
+      "perm_9class_vs_scrambled_dd_full_max_p": 1
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T17:38:38.976824+00:00",
+  "trigger": "update_registry"
+}

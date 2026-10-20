@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "d09961a0126f323a0340",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "eval exp9 bootstrap ci v2",
+  "task_key": "worker_eval_exp9-bootstrap-ci-v2_20260518T164825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp9-bootstrap-ci-v2_20260518T164825.log",
+    "occurrence": 1,
+    "bytes": 1754001,
+    "sha256": "66cf21602a64088c47c8555a9f876695ad92152c9ed62a8c2b1dda989072ed79"
+  },
+  "statistics": {
+    "messages": 1257,
+    "user_turns": 1,
+    "tool_calls": 570,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 109,
+      "tool_call": 570,
+      "tool_result": 570,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 789,
+      "chunks": [
+        {
+          "path": "d09961a0126f323a0340-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d09961a0126f323a0340-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d09961a0126f323a0340-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d09961a0126f323a0340-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d09961a0126f323a0340-part-0005.json",
+          "message_count": 69
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 468,
+      "chunks": [
+        {
+          "path": "d09961a0126f323a0340-part-0005.json",
+          "message_count": 111
+        },
+        {
+          "path": "d09961a0126f323a0340-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "d09961a0126f323a0340-part-0007.json",
+          "message_count": 177
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-exp9-bootstrap-ci-v2.md"
+}

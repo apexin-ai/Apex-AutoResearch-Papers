@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "eebd1f190647a775cced",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "data plan001 quality fix",
+  "task_key": "worker_data_plan001-quality-fix_20260517T170413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_plan001-quality-fix_20260517T170413.log",
+    "occurrence": 1,
+    "bytes": 1705190,
+    "sha256": "7cacb89b992c2698f8fc6a389cb46a2e19c032f9bd7e9ce86ca4813db065ed93"
+  },
+  "statistics": {
+    "messages": 1315,
+    "user_turns": 1,
+    "tool_calls": 579,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 149,
+      "tool_call": 579,
+      "tool_result": 579,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 749,
+      "chunks": [
+        {
+          "path": "eebd1f190647a775cced-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "eebd1f190647a775cced-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "eebd1f190647a775cced-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "eebd1f190647a775cced-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "eebd1f190647a775cced-part-0005.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 566,
+      "chunks": [
+        {
+          "path": "eebd1f190647a775cced-part-0005.json",
+          "message_count": 151
+        },
+        {
+          "path": "eebd1f190647a775cced-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "eebd1f190647a775cced-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "eebd1f190647a775cced-part-0008.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-plan001-quality-fix.md"
+}

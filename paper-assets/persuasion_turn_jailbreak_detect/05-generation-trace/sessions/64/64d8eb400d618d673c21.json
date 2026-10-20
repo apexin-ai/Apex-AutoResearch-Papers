@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64d8eb400d618d673c21",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp10 macro f1 fix",
+  "task_key": "worker_eval_exp10-macro-f1-fix_20260518T171132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp10-macro-f1-fix_20260518T171132_result.json",
+    "occurrence": 1,
+    "bytes": 1300,
+    "sha256": "5ffdd80f330340e261c2489be0ffc2c5fc34ee6662e7b158ef561e2f39941886"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### exp10 few-shot (Qwen3-8B, 3-shot) — macro F1 补算\n\nPer-sample predictions 仅保存了 `full`，k1-k5 通过 precision/recall/样本数反推 confusion matrix 计算。`full` 两种方法交叉验证一致。\n\n**DD (Dangerous Demonstrations):**\n\n| K | binary_f1 | macro_f1 | TP | FP | FN | TN |\n|---|-----------|----------|----|----|----|----|\n| k1 | 0.0247 | **0.2575** | 1 | 0 | 79 | 38 |\n| k2 | 0.1609 | **0.3355** | 7 | 0 | 73 | 38 |\n| k3 | 0.3838 | **0.4693** | 19 | 0 | 61 | 38 |\n| k5 | 0.4158 | **0.4894** | 21 | 0 | 59 | 38 |\n| full | 0.5405 | **0.5663** | 30 | 1 | 50 | 37 |\n\n**ActorAttack:**\n\n| K | binary_f1 | macro_f1 | TP | FP | FN | TN |\n|---|-----------|----------|----|----|----|----|\n| k1 | 0.2796 | **0.4055** | 13 | 0 | 67 | 38 |\n| k2 | 0.3158 | **0.4274** | 15 | 0 | 65 | 38 |\n| k3 | 0.4906 | **0.5376** | 26 | 0 | 54 | 38 |\n| k5 | 0.6325 | **0.6356** | 37 | 0 | 43 | 38 |\n| full | 0.6612 | **0.6523** | 40 | 1 | 40 | 37 |\n\n### exp5 zero-shot (Qwen3-8B)\n\n- DD: binary_f1 = 0.0000, **macro_f1 = 0.2436** (全部预测为 benign，TP=0)\n- ActorAttack: exp5 中没有 ActorAttack 数据集（只有 dd_ood 和 fitd_ood）\n\n零-shot 的 `llm_judge_ood.py` 同样使用 `average=\"binary\"`，也需要统一为 macro。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp10-macro-f1-fix.md"
+}

@@ -1,0 +1,30 @@
+paper_key: "A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks"
+title: "A Representation Engineering Perspective on the Effectiveness of Multi-Turn Jailbreaks"
+venue: "arXiv 2025"
+full_text_available: false
+analysis_level: "abstract_only"
+
+research:
+  baselines:
+    - single-turn jailbreak attacks
+    - single-turn defenses
+  metrics:
+    - {name: "attack success rate", direction: "context_dependent"}
+    - {name: "representation space analysis (benign vs harmful region)", direction: "N/A"}
+  datasets:
+    - {name: "Crescendo attack conversations", size: "unknown"}
+    - {name: "harmful/benign prompt pairs", size: "unknown"}
+  ablation_dimensions:
+    - number of conversation turns
+    - representation space trajectory
+    - single-turn vs multi-turn defense effectiveness
+  training_recipe: {info_available: false}
+  method_family: "representation engineering / probing for safety"
+
+positioning:
+  core_claim: "Safety-aligned LMs represent Crescendo multi-turn jailbreak responses as increasingly benign in representation space as turns increase, explaining why single-turn defenses fail against multi-turn attacks."
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

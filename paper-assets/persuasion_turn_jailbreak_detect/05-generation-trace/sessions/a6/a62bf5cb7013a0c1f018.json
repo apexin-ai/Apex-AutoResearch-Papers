@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a62bf5cb7013a0c1f018",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16b cron check",
+  "task_key": "worker_code_exp16b-cron-check_20260520T001430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16b-cron-check_20260520T001430_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "0d9aa49061df3d5ebb0319a175c004d5ac37af288b1622bf2357355061a68dd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nexp16b Llama-only MLM: SUCCESS (正常完成)\n- S1 MLM checkpoint: ✅ exists (checkpoints/exp16_llama_only_mlm/mlm_seed42/best/)\n- S2 GRU checkpoint: ✅ exists (checkpoints/exp16_llama_only_mlm/mlm_gru_seed42/baseline/)\n- S1 best val_loss: 5.1489 (epoch 4/4)\n- S2 best val_loss: 0.3776, val_acc: 0.8514 (epoch 19/20)\n\nexp17 MLM fix: BOTH DONE\n- GPU0: ✅ 完成 (07:50:20), best val_loss=0.0492, val_acc=0.9933\n- GPU1: ✅ 完成 (07:50:00), best val_loss=0.0524, val_acc=0.9867\n\nGPU 0-3: 全部空闲 (0% util, 0 MiB)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16b-cron-check.md"
+}

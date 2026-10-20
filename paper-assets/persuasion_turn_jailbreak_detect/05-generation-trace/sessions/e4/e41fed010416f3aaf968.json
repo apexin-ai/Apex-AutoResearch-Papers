@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e41fed010416f3aaf968",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp64 confidence script",
+  "task_key": "worker_code_exp64_confidence_script_20260522T213004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp64_confidence_script_20260522T213004_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "97ddebc6692292324b1c5caf7307f8258b9b429fb721d126bc8e03d78c61f6ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建：`/root/jailbreak_detect/scripts/exp64_toxicchat_confidence_analysis.py`（256 行）。\n\n功能概要：\n- 从 `exp8_raw_predictions.json` 读取 `9class` 和 `jb_mlm` 两个 variant 在 ToxicChat 上的逐样本预测\n- **Majority vote**（3 seeds ≥2票判正）+ **per-seed** 两个维度识别 FP（y_pred=1, y_true=0）\n- 将 FP 的 jailbreak probability 按三档（0.5–0.7 / 0.7–0.9 / >0.9）统计 count、ratio、mean、median\n- 输出：主直方图 PDF、per-seed 直方图 PDF、统计 JSON、stdout 对比表格\n- 支持 `--input` 和 `--output_dir` 参数，默认输出到 `results/exp64/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp64-confidence-script.md"
+}

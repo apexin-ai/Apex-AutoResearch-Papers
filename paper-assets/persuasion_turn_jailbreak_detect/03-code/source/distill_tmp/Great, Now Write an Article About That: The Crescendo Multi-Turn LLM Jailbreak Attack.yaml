@@ -1,0 +1,32 @@
+paper_key: "Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack"
+title: "Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack"
+venue: "USENIX Security 2025"
+full_text_available: false
+analysis_level: "abstract_only"
+
+research:
+  baselines:
+    - "existing jailbreak techniques (state-of-the-art)"
+    - "ChatGPT safety mechanisms"
+    - "Gemini Pro / Gemini-Ultra safety mechanisms"
+    - "LlaMA-2 70b / LlaMA-3 70b Chat safety mechanisms"
+    - "Anthropic Chat safety mechanisms"
+  metrics:
+    - {name: "attack success rate", direction: "higher_better"}
+    - {name: "performance improvement over baselines on AdvBench", direction: "higher_better"}
+  datasets:
+    - {name: "AdvBench subset", size: "N/A"}
+  ablation_dimensions:
+    - "manual Crescendo vs automated Crescendomation"
+    - "target model variation"
+    - "text-only vs multimodal jailbreak"
+  training_recipe: {info_available: false}
+  method_family: "multi-turn gradual escalation jailbreak attack"
+
+positioning:
+  core_claim: "Crescendo is a simple multi-turn jailbreak that gradually escalates dialogue from benign to harmful by referencing the model's own replies, achieving 29-71% higher attack success than state-of-the-art single-turn methods across GPT-4 and Gemini-Pro."
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,15 @@
+exp20 DeepContext Proxy (BERT-base + BiGRU) Results:
+
+BERT-base (no DAPT):
+  seed42:  IID=1.000  DD_OOD=0.285  AA_OOD=0.244
+  seed123: IID=0.987  DD_OOD=0.310  AA_OOD=0.271
+  seed456: IID=1.000  DD_OOD=0.360  AA_OOD=0.310
+  mean:    IID=0.996±0.006  DD_OOD=0.318±0.031  AA_OOD=0.275±0.027
+
+Comparison with DeBERTa-v3 (exp1):
+  BERT-base (no DAPT):    IID=0.996±0.006  DD_OOD=0.318±0.031  AA_OOD=0.275±0.027
+  DeBERTa vanilla:        IID=1.000±0.000  DD_OOD=0.312±0.043  AA_OOD=???
+  DeBERTa 9-class:        IID=1.000±0.000  DD_OOD=0.994±0.005  AA_OOD=0.939±0.047
+
+Checkpoints: checkpoints/exp20_bert_base_seed{42,123,456}/best.pt
+Results JSON: results/exp20_deepcontext_proxy.json

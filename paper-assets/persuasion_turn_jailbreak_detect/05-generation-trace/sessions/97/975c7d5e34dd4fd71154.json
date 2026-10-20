@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "975c7d5e34dd4fd71154",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp56 crossllm 10shot",
+  "task_key": "worker_code_exp56_crossllm_10shot_20260522T115411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp56_crossllm_10shot_20260522T115411_result.json",
+    "occurrence": 1,
+    "bytes": 1241,
+    "sha256": "29cf08c98001c8df8204272ce9b52f388ce34011eda401d3e101e062968cce7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp56 complete. Results:\n\n**Adaptation Curve (Llama-benign FPR / Qwen-OOD / Llama-OOD):**\n\n| N | Llama FPR | DD F1 | AA F1 | FITD F1 | DD_llama | AA_llama | FITD_llama |\n|---|-----------|-------|-------|---------|----------|----------|------------|\n| 0 | **94.5%** | 1.00 | 0.99 | 1.00 | 1.00 | 0.74 | 1.00 |\n| 5 | **5.5%** | 0.69 | 0.84 | 0.99 | 0.64 | 0.04 | 0.76 |\n| 10 | **3.0%** | 0.82 | 0.60 | 1.00 | 0.60 | 0.00 | 0.80 |\n| 25 | **0.5%** | 0.56 | 0.27 | 0.99 | 0.08 | 0.00 | 0.52 |\n\n**Conclusion: negative.** Benign adaptation fixes cross-LLM FPR (94.5% → 3%) but **severely degrades jailbreak detection recall**, especially for same-LLM jailbreaks (AA_llama: 0.74 → 0%). This is fundamentally different from the WildChat/OASST2 adaptation (exp45/exp51) where OOD F1 stayed near 1.0.\n\nThe root cause: unlike human-population shift (WildChat vs OASST2), cross-LLM shift creates a **confound** — benign and jailbreak conversations from Llama share stylistic features. Adding Llama-benign teaches the model \"Llama style = benign\", which suppresses detection of Llama-origin jailbreaks. The two-axis framework's benign-only adaptation mechanism does not extend cleanly to cross-LLM distributional shift."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp56-crossllm-10shot.md"
+}

@@ -1,0 +1,13 @@
+Server path: /root/persuasion_turn_jailbreak_detect/results/plan_017_mlm_perturbation.json
+
+Key results:
+- Clean full F1: 1.0, Perturbed full F1: 0.9737, Delta: -0.0263
+- Clean k=1 F1: 0.9605, Perturbed k=1 F1: 0.8683, Delta: -0.0922
+- Clean k=2 F1: 0.9737, Perturbed k=2 F1: 0.9341, Delta: -0.0396
+- Clean k=3 F1: 0.9868, Perturbed k=3 F1: 0.9473, Delta: -0.0395
+- Clean k=5 F1: 1.0, Perturbed k=5 F1: 0.9605, Delta: -0.0395
+
+Reference (plan_004):
+- Treatment delta (full): 0.0
+- Baseline delta (full): -0.1176
+- TF-IDF delta (full): -0.0133

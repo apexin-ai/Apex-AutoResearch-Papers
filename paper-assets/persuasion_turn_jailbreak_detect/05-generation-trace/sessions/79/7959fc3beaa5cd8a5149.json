@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "7959fc3beaa5cd8a5149",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "viz fig1 matplotlib v3",
+  "task_key": "worker_viz_fig1_matplotlib_v3_20260524T101646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig1_matplotlib_v3_20260524T101646_result.json",
+    "occurrence": 1,
+    "bytes": 2109691,
+    "sha256": "273aecfec56a5154c7ea559bd90b059e6d14234601b6e14f3e28524cd90acf11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2109711,
+                "serialized_sha256": "6d60a6b76ec59f119078f10bb8faee77ecdb50c396d22e43a84cc6b28a29a617",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig1-matplotlib-v3.md"
+}

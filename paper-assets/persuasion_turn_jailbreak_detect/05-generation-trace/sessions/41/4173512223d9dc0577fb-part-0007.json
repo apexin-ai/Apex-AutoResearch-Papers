@@ -1,0 +1,3662 @@
+{
+  "schema_version": "1.0",
+  "session_id": "4173512223d9dc0577fb",
+  "rounds": [
+    {
+      "number": 20,
+      "messages": [
+        {
+          "source_line": 1081,
+          "timestamp": "2026-05-18T05:48:51.269920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "8-class",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001081"
+        },
+        {
+          "source_line": 1082,
+          "timestamp": "2026-05-18T05:48:51.572059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 302
+          },
+          "id": "event-001082"
+        },
+        {
+          "source_line": 1083,
+          "timestamp": "2026-05-18T05:48:52.175363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "10 epochs",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001083"
+        },
+        {
+          "source_line": 1084,
+          "timestamp": "2026-05-18T05:48:52.577500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 402
+          },
+          "id": "event-001084"
+        },
+        {
+          "source_line": 1085,
+          "timestamp": "2026-05-18T05:48:53.531701+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "mean pooling|Mean pooling|Mean Pooling",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001085"
+        },
+        {
+          "source_line": 1086,
+          "timestamp": "2026-05-18T05:48:54.134602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex:12:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:120:Mean pooling & \\textbf{1.000} & \\textbf{.990} & 1.000 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:141:Replacing BiGRU with orderless mean pooling over the [CLS] sequence yields DD-Full F1 = 1.000, matching the BiGRU default.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:250:We emphasize that strategy trajectories are an interpretability contribution, not a detection mechanism: the ablation in Section~\\ref{sec:ablation} shows that replacing BiGRU with mean pooling (which discards turn order) yields identical performance, so DisPeD detects persuasion presence per turn rather than relying on temporal trajectory patterns.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex:9:Scrambled persuasion strategy labels reduce OOD F1 by only 1 percentage point, and replacing BiGRU with mean pooling yields identical performance.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex:60:Despite using a sequential model, the ablation in Section~\\ref{sec:ablation} confirms that replacing BiGRU with orderless mean pooling yields equivalent OOD performance. The model therefore functions as a persuasion-presence detector that identifies whether individual turns carry persuasive intent, rather than a trajectory detector that exploits temporal ordering across turns.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex:73:\\paragraph{Why does BiGRU not outperform mean pooling?}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/per\n…[truncated 78 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 602
+          },
+          "id": "event-001086"
+        },
+        {
+          "source_line": 1087,
+          "timestamp": "2026-05-18T05:48:54.889742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "1.pp|1~pp|1 pp",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001087"
+        },
+        {
+          "source_line": 1088,
+          "timestamp": "2026-05-18T05:48:55.141626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex:28:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:131:Replacing the 9-class persuasion taxonomy with randomly scrambled labels reduces DD-Full F1 from 1.000 to 0.990, a gap of just 1 pp.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex:45:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex:77:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex:16:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 251
+          },
+          "id": "event-001088"
+        },
+        {
+          "source_line": 1089,
+          "timestamp": "2026-05-18T05:49:04.066432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/abstract.tex"
+            }
+          },
+          "id": "event-001089"
+        },
+        {
+          "source_line": 1090,
+          "timestamp": "2026-05-18T05:49:04.067048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex"
+            }
+          },
+          "id": "event-001090"
+        },
+        {
+          "source_line": 1091,
+          "timestamp": "2026-05-18T05:49:04.519125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tMulti-turn jailbreak attacks distribute adversarial intent across a sequence of individually benign turns, and both per-turn safety filters and content-level reasoning fail to detect this distributed threat.\n3\tThe natural defense of encoding conversations with a pretrained language model and aggregating turn embeddings achieves near-perfect in-distribution detection but collapses on unseen attack types: a vanilla DeBERTa encoder trained on Crescendo conversations drops from F1 = 1.000 to 0.284 on out-of-distribution Deceptive Delight data.\n4\tLLM-as-judge approaches fare no better, with GPT-5.5 reaching only F1 = 0.191--0.449 on in-distribution detection.\n5\tWe introduce DisPeD (Discourse-level Persuasion Detection), a two-stage framework that fine-tunes DeBERTa-v3-base with a multi-task objective combining 9-class persuasion strategy classification, grounded in the Persuasion Attack Paradigm and Cialdini's influence principles, with binary jailbreak-intent classification.\n6\tTurn-level \\texttt{[CLS]} embeddings are aggregated via a bidirectional GRU for conversation-level detection.\n7\tThe persuasion objective teaches the encoder to attend to pragmatic features shared across attack families rather than surface patterns specific to a single attack type.\n8\tDisPeD achieves F1 = 1.000 on unseen Deceptive Delight attacks (+72 percentage points over vanilla DeBERTa).\n9\tAblation experiments show that scrambled strategy labels reduce out-of-distribution F1 by only 1 percentage point; fine-tuning on persuasion-related text, not label accuracy, bridges the generalization gap.\n10\tDisPeD also maintains zero degradation under adversarial paraphrasing and provides interpretable detection through strategy trajectory analysis.\n11\t\\end{abstract}\n12\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-001091"
+        },
+        {
+          "source_line": 1092,
+          "timestamp": "2026-05-18T05:49:04.519687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% conclusion.tex — DisPeD Conclusion Section\n2\t\n3\t\\section{Conclusion}\n4\t\\label{sec:conclusion}\n5\t\n6\tWe presented DisPeD, a two-stage framework that fine-tunes DeBERTa-v3-base with a multi-task objective combining 9-class persuasion strategy classification and binary jailbreak-intent classification.\n7\tThe central result is that persuasion-aware fine-tuning bridges the cross-attack generalization gap that vanilla semantic temporal modeling cannot: DisPeD achieves F1 = 1.000 on unseen Deceptive Delight conversations, a +72 percentage point improvement over vanilla DeBERTa (F1 = 0.284), with zero degradation under adversarial paraphrasing.\n8\tAblation experiments isolate the mechanism behind this gain.\n9\tScrambled persuasion strategy labels reduce OOD F1 by only 1 percentage point, and replacing BiGRU with mean pooling yields identical performance.\n10\tThese results establish that fine-tuning on persuasion-related text, not specific label assignments or temporal modeling, is the critical ingredient.\n11\tThe encoder functions as a persuasion-presence detector: exposure to persuasion-domain conversations during multi-task training teaches it to attend to pragmatic cues that transfer across attack families, regardless of supervision quality.\n12\tBinary fine-tuning on persuasion-domain text without the strategy classification head also achieves competitive detection performance, confirming that domain exposure drives the generalization gain.\n13\tThe 9-class taxonomy is retained not for detection accuracy but for interpretability: distinct attack types produce recognizable persuasion signatures in strategy trajectory analysis that security analysts can inspect without post-hoc explanation methods.\n14\t\n15\tSeveral limitations constrain the conclusions that can be drawn from this work.\n16\tFirst, the dataset is small: 500 training conversations and 160 OOD test conversations.\n17\tThese results require validation at larger scale before deployment claims are warranted.\n18\tSecond, all\n…[truncated 1196 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-001092"
+        },
+        {
+          "source_line": 1093,
+          "timestamp": "2026-05-18T05:49:04.570320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex"
+            }
+          },
+          "id": "event-001093"
+        },
+        {
+          "source_line": 1094,
+          "timestamp": "2026-05-18T05:49:04.571094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% introduction.tex -- DisPeD Introduction Section\n2\t\n3\t\\section{Introduction}\n4\t\\label{sec:introduction}\n5\t\n6\tMulti-turn jailbreak attacks pose a qualitatively different threat to large language model (LLM) safety than their single-turn counterparts. Attacks such as Crescendo~\\citep{russinovich2024crescendo}, Foot-in-the-Door (FITD)~\\citep{fitd2024}, and Deceptive Delight~\\citep{deceptivedelight2024} achieve high attack success rates by distributing adversarial intent across a sequence of individually benign turns. No single turn contains an explicit harmful request; instead, the attacker gradually steers the conversation toward a forbidden goal through rapport building, logical reframing, and incremental escalation. A Crescendo attacker, for instance, might begin with a factual question about historical chemistry, follow up with a request for ``educational'' synthesis procedures, and only in the final turn request instructions for producing a controlled substance. Each intermediate turn is indistinguishable from a legitimate query. Representation engineering analyses confirm that individual attack turns occupy the same embedding region as genuinely benign text in pretrained encoders~\\citep{bullwinkel2025repeng}, rendering per-turn safety filters ineffective. The common mechanism underlying these attacks is \\emph{persuasion}: each attack type implements a distinct but systematic strategy for manipulating the model's compliance over multiple conversational exchanges~\\citep{li2024mhj}. Detecting these attacks therefore requires moving beyond content-level analysis to capture the pragmatic dynamics of the conversation.\n7\t\n8\tCurrent defenses fail to address this challenge along two axes: granularity and representation. Production safety classifiers such as Llama Guard~\\citep{inan2023llamaguard}, WildGuard~\\citep{han2024wildguard}, and ShieldGemma~\\citep{zeng2024shieldgemma} operate on individual turns and cannot model manipulation trajectories that unfold across multi\n…[truncated 6709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001094"
+        },
+        {
+          "source_line": 1095,
+          "timestamp": "2026-05-18T05:49:05.126367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+              "offset": "105",
+              "limit": "50"
+            }
+          },
+          "id": "event-001095"
+        },
+        {
+          "source_line": 1096,
+          "timestamp": "2026-05-18T05:49:05.177288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "105\t\\subsection{Ablation Study}\n106\t\\label{sec:ablation}\n107\t\n108\t\\begin{table}[t]\n109\t\\centering\n110\t\\small\n111\t\\caption{Ablation study on OOD Deceptive Delight and IID. All variants trained on Crescendo. The persuasion fine-tuning process is the critical factor; label granularity and temporal modeling are not.}\n112\t\\label{tab:ablation}\n113\t\\begin{tabular}{@{}lccc@{}}\n114\t\\toprule\n115\t\\textbf{Variant} & DD-Full & DD-$K$=2 & IID-Full \\\\\n116\t\\midrule\n117\tDisPeD (9-class) & \\textbf{1.000} & \\textbf{.990} & 1.000 \\\\\n118\tScrambled labels & .990 & .981 & 1.000 \\\\\n119\tBinary (2-class) & .990 & .981 & 1.000 \\\\\n120\tMean pooling & \\textbf{1.000} & \\textbf{.990} & 1.000 \\\\\n121\t\\midrule\n122\tVanilla DeBERTa & .284 & .438 & 1.000 \\\\\n123\t\\bottomrule\n124\t\\end{tabular}\n125\t\\end{table}\n126\t\n127\tThe fine-tuning process on persuasion-related text, not specific label assignments, is what drives cross-attack generalization.\n128\tTable~\\ref{tab:ablation} reports DD-OOD and IID F1 for several model variants, grouped into fine-tuned variants (above the mid-rule) and the unfine-tuned baseline (below).\n129\t\n130\t\\paragraph{Label granularity.}\n131\tReplacing the 9-class persuasion taxonomy with randomly scrambled labels reduces DD-Full F1 from 1.000 to 0.990, a gap of just 1 pp.\n132\tCollapsing the taxonomy to binary (persuasion-present vs.\\ absent) yields the same 0.990.\n133\tBoth variants remain far above the vanilla baseline (F1 = 0.284), a gap exceeding 70 pp.\n134\tThese results confirm that the encoder learns useful pragmatic features from exposure to persuasion-domain text during fine-tuning, regardless of whether strategy labels are correct, coarse, or random.\n135\tThe data domain matters more than the specific supervision signal.\n136\tIn our setting, multi-task fine-tuning on persuasion-related conversations teaches the encoder to attend to pragmatic features (e.g., implicit requests, escalation cues, rapport-building patterns) that transfer across attack types.\n137\tThe 9-class taxonomy provi\n…[truncated 2399 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001096"
+        },
+        {
+          "source_line": 1097,
+          "timestamp": "2026-05-18T05:49:56.973948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "li2024mhj",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001097"
+        },
+        {
+          "source_line": 1098,
+          "timestamp": "2026-05-18T05:49:57.026709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:219:Multi-turn jailbreak attacks distribute adversarial intent across individually benign turns~\\citep{russinovich2024crescendo,li2024mhj}, and each turn maintains surface-level coherence with an innocuous cover topic.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex:6:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/references.bib:282:@article{li2024mhj,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 52
+          },
+          "id": "event-001098"
+        },
+        {
+          "source_line": 1099,
+          "timestamp": "2026-05-18T05:49:57.830595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "gururangan2018|gururangan2020",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001099"
+        },
+        {
+          "source_line": 1100,
+          "timestamp": "2026-05-18T05:49:57.881353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex:26:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex:32:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/references.bib:295:@inproceedings{gururangan2018artifacts,\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/references.bib:360:@inproceedings{gururangan2020dontstop,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001100"
+        },
+        {
+          "source_line": 1101,
+          "timestamp": "2026-05-18T05:49:58.835589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\bpp\\b|~pp",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001101"
+        },
+        {
+          "source_line": 1102,
+          "timestamp": "2026-05-18T05:49:58.886335+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex:28:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex:34:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex:12:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex:16:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex:20:  \\item \\textbf{Robustness to adversarial perturbation.} DisPeD maintains zero degradation (0~pp) under adversarial paraphrasing, while vanilla DeBERTa degrades by 11.8~pp and TF-IDF by 1.3~pp. Combined with cross-attack robustness, this confirms that persuasion-aware representations are invariant to both surface variation and attack-type shift (Section~\\ref{sec:perturbation}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:90:The gap over Vanilla DeBERTa ranges from +42 pp at $K$=1 to +72 pp at Full.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:95:First, DisPeD bridges the representation-level gap that vanilla semantic embeddings cannot (+72 pp on DD), validating persuasion-aware fine-tuning as the mechanism for cross-attack generalization.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:131:Replacing the 9-class persuasion taxonomy with randomly scrambled labels reduces DD-Full F1 from 1.000 to 0.990, a gap of just 1 pp.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex:133:Both variants remain far above the vanilla baseline (F1\n…[truncated 1664 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001102"
+        },
+        {
+          "source_line": 1103,
+          "timestamp": "2026-05-18T05:50:00.558623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "LLM",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/abstract.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001103"
+        },
+        {
+          "source_line": 1104,
+          "timestamp": "2026-05-18T05:50:01.011089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4:LLM-as-judge approaches fare no better, with GPT-5.5 reaching only F1 = 0.191--0.449 on in-distribution detection."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 452
+          },
+          "id": "event-001104"
+        },
+        {
+          "source_line": 1105,
+          "timestamp": "2026-05-18T05:50:25.771175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex",
+              "offset": "43",
+              "limit": "5"
+            }
+          },
+          "id": "event-001105"
+        },
+        {
+          "source_line": 1106,
+          "timestamp": "2026-05-18T05:50:26.274364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "43\t\\end{enumerate}\n44\t\n45\tThis taxonomy is not exhaustive but covers the dominant strategies identified in existing multi-turn attack analyses~\\citep{zeng2024pap,russinovich2024crescendo,fitd2024,deceptivedelight2024}. Turn-level strategy annotations are produced by Qwen3-8B, a procedure we validate through ablation in Section~\\ref{sec:ablation}: scrambled labels yield only a 1~pp reduction in OOD detection performance, confirming that the fine-tuning process on persuasion-related text, rather than label accuracy, is the primary driver of cross-attack generalization.\n46\t\n47\t\\subsection{Stage 2: Conversation-Level Classification}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 503
+          },
+          "id": "event-001106"
+        },
+        {
+          "source_line": 1107,
+          "timestamp": "2026-05-18T05:50:26.274760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex",
+              "offset": "75",
+              "limit": "5"
+            }
+          },
+          "id": "event-001107"
+        },
+        {
+          "source_line": 1108,
+          "timestamp": "2026-05-18T05:50:26.777435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "75\t\n76\t\\paragraph{Why retain the 9-class taxonomy?}\n77\tThe ablation shows that scrambled labels and binary labels both yield OOD detection performance within 1~pp of the full 9-class taxonomy. The value of the 9-class taxonomy is interpretability, not detection accuracy. The predicted strategy labels enable trajectory analysis (Section~\\ref{sec:strategy}) that exposes how different attack types employ distinct persuasion sequences. This interpretability allows security analysts to inspect and understand detection decisions, a property absent from black-box LLM-based detectors and lexical baselines.\n78\t\n79\t\\paragraph{Vanilla DeBERTa as a controlled baseline.}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-001108"
+        },
+        {
+          "source_line": 1109,
+          "timestamp": "2026-05-18T05:50:27.431434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex",
+              "offset": "6",
+              "limit": "5"
+            }
+          },
+          "id": "event-001109"
+        },
+        {
+          "source_line": 1110,
+          "timestamp": "2026-05-18T05:50:27.432761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6\t\\subsection{Multi-Turn Jailbreak Attacks}\n7\t\n8\tMulti-turn jailbreak attacks distribute adversarial intent across a sequence of individually benign conversational turns, exploiting the inability of safety systems to track manipulation over time. These attacks draw on distinct persuasion strategies: Crescendo~\\citep{russinovich2024crescendo} implements gradual escalation, building rapport before incrementally steering the conversation toward harmful content; FITD~\\citep{fitd2024} exploits commitment-consistency bias by eliciting small compliances that anchor the model before requesting forbidden output; Deceptive Delight~\\citep{deceptivedelight2024} combines emotional manipulation with role assignment to bypass safety training. ActorAttack~\\citep{ren2024actorattack} constructs actor networks where multiple personas collaboratively steer conversations, and PAIR~\\citep{chao2023pair} automates the iterative refinement of attack prompts through attacker-judge feedback loops. \\citet{wei2023jailbroken} provide a taxonomy grounded in two failure modes (competing objectives and mismatched generalization), offering a unifying framework for understanding why these attacks succeed. Across this diverse landscape, a shared structural pattern emerges: successful multi-turn attacks rely on systematic persuasion dynamics~\\citep{zeng2024pap,hagendorff2026reasoning} rather than token-level adversarial optimization. This distinguishes them from single-turn attacks such as GCG~\\citep{zou2023gcg}, where gradient-based suffix optimization operates at the token level without conversational persuasion. DisPeD specifically targets the persuasion-grounded attack family, treating their shared reliance on pragmatic manipulation as the signal for cross-attack detection.\n9\t\n10\t\\subsection{Multi-Turn Defenses}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 1
+          },
+          "id": "event-001110"
+        },
+        {
+          "source_line": 1111,
+          "timestamp": "2026-05-18T05:50:27.885220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex",
+              "offset": "32",
+              "limit": "5"
+            }
+          },
+          "id": "event-001111"
+        },
+        {
+          "source_line": 1112,
+          "timestamp": "2026-05-18T05:50:27.935990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "32\tMachine learning classifiers are susceptible to dataset artifacts: spurious correlations between surface features and labels that inflate performance without genuine understanding~\\citep{gururangan2018artifacts,niven2019probing,poliak2018hypothesis}. Debiasing methods~\\citep{schuster2019debiasing} mitigate this by training against known artifacts, but the problem persists for safety-critical applications where attackers actively adapt. \\citet{nasr2025attackermovessecond} demonstrate that BERT-based safety classifiers can be bypassed by adaptive adversaries who optimize against the classifier's decision boundary, and \\citet{andriushchenko2024adaptive} show similar vulnerabilities in broader evaluation contexts. Red-teaming methodologies~\\citep{perez2022redteaming,ganguli2022redteaming} and systematic attack benchmarks~\\citep{mazeika2024harmbench} provide structured evaluation protocols but do not solve the underlying robustness problem.\n33\t\n34\tWe acknowledge an important empirical observation: TF-IDF achieves F1 = 0.944 on our OOD evaluation, indicating inherent lexical separability between attack and benign conversations in current datasets. DisPeD's contribution over bag-of-words methods is not higher accuracy on static benchmarks but robustness under adversarial perturbation (0~pp degradation vs. 1.3~pp for TF-IDF and 11.8~pp for vanilla DeBERTa) and interpretable detection through persuasion strategy trajectories. Adaptive attacks that specifically target persuasion-level features represent an open challenge for future work.\n35\t\n36\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001112"
+        },
+        {
+          "source_line": 1113,
+          "timestamp": "2026-05-18T05:51:24.984268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/abstract.tex",
+              "old_string": "LLM-as-judge approaches fare no better, with GPT-5.5 reaching only F1 = 0.191--0.449 on in-distribution detection.",
+              "new_string": "Using a large language model (LLM) as judge fares no better, with GPT-5.5 reaching only F1 = 0.191--0.449 on in-distribution detection."
+            }
+          },
+          "id": "event-001113"
+        },
+        {
+          "source_line": 1114,
+          "timestamp": "2026-05-18T05:51:25.085307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-001114"
+        },
+        {
+          "source_line": 1115,
+          "timestamp": "2026-05-18T05:51:29.152919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex",
+              "old_string": "scrambled labels yield only a 1~pp reduction in OOD detection performance",
+              "new_string": "scrambled labels yield only a 1 percentage point reduction in OOD detection performance"
+            }
+          },
+          "id": "event-001115"
+        },
+        {
+          "source_line": 1116,
+          "timestamp": "2026-05-18T05:51:29.203772+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001116"
+        },
+        {
+          "source_line": 1117,
+          "timestamp": "2026-05-18T05:51:32.804654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex",
+              "old_string": "scrambled labels and binary labels both yield OOD detection performance within 1~pp of the full 9-class taxonomy",
+              "new_string": "scrambled labels and binary labels both yield OOD detection performance within 1 percentage point of the full 9-class taxonomy"
+            }
+          },
+          "id": "event-001117"
+        },
+        {
+          "source_line": 1118,
+          "timestamp": "2026-05-18T05:51:32.908730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 104
+          },
+          "id": "event-001118"
+        },
+        {
+          "source_line": 1119,
+          "timestamp": "2026-05-18T05:51:37.175005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+              "old_string": "The gap over Vanilla DeBERTa ranges from +42 pp at $K$=1 to +72 pp at Full.",
+              "new_string": "The gap over Vanilla DeBERTa ranges from +42 percentage points at $K$=1 to +72 percentage points at Full."
+            }
+          },
+          "id": "event-001119"
+        },
+        {
+          "source_line": 1120,
+          "timestamp": "2026-05-18T05:51:37.225890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001120"
+        },
+        {
+          "source_line": 1121,
+          "timestamp": "2026-05-18T05:51:40.388141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+              "old_string": "(+72 pp on DD)",
+              "new_string": "(+72 percentage points on DD)"
+            }
+          },
+          "id": "event-001121"
+        },
+        {
+          "source_line": 1122,
+          "timestamp": "2026-05-18T05:51:40.439033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001122"
+        },
+        {
+          "source_line": 1123,
+          "timestamp": "2026-05-18T05:51:43.611430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+              "old_string": "a gap of just 1 pp",
+              "new_string": "a gap of just 1 percentage point"
+            }
+          },
+          "id": "event-001123"
+        },
+        {
+          "source_line": 1124,
+          "timestamp": "2026-05-18T05:51:43.663086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001124"
+        },
+        {
+          "source_line": 1125,
+          "timestamp": "2026-05-18T05:51:47.077816+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+              "old_string": "a gap exceeding 70 pp",
+              "new_string": "a gap exceeding 70 percentage points"
+            }
+          },
+          "id": "event-001125"
+        },
+        {
+          "source_line": 1126,
+          "timestamp": "2026-05-18T05:51:47.078577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-001126"
+        },
+        {
+          "source_line": 1127,
+          "timestamp": "2026-05-18T05:51:51.496242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+              "old_string": "This 70+ pp gap on OOD data",
+              "new_string": "This 70+ percentage point gap on OOD data"
+            }
+          },
+          "id": "event-001127"
+        },
+        {
+          "source_line": 1128,
+          "timestamp": "2026-05-18T05:51:51.547235+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001128"
+        },
+        {
+          "source_line": 1129,
+          "timestamp": "2026-05-18T05:51:55.116265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+              "old_string": "a loss of 11.8 pp, consistent",
+              "new_string": "a loss of 11.8 percentage points, consistent"
+            }
+          },
+          "id": "event-001129"
+        },
+        {
+          "source_line": 1130,
+          "timestamp": "2026-05-18T05:51:55.167439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001130"
+        },
+        {
+          "source_line": 1131,
+          "timestamp": "2026-05-18T05:51:58.683039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+              "old_string": "(1.3 pp)",
+              "new_string": "(1.3 percentage points)"
+            }
+          },
+          "id": "event-001131"
+        },
+        {
+          "source_line": 1132,
+          "timestamp": "2026-05-18T05:51:58.734064+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001132"
+        },
+        {
+          "source_line": 1133,
+          "timestamp": "2026-05-18T05:52:02.459376+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+              "old_string": "the 11.8 pp degradation of Vanilla DeBERTa",
+              "new_string": "the 11.8 percentage point degradation of Vanilla DeBERTa"
+            }
+          },
+          "id": "event-001133"
+        },
+        {
+          "source_line": 1134,
+          "timestamp": "2026-05-18T05:52:02.460146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-001134"
+        },
+        {
+          "source_line": 1135,
+          "timestamp": "2026-05-18T05:52:06.225997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex",
+              "old_string": "The data domain matters more than the specific supervision signal.",
+              "new_string": "The data domain matters more than the specific supervision signal~\\citep{gururangan2020dontstop}."
+            }
+          },
+          "id": "event-001135"
+        },
+        {
+          "source_line": 1136,
+          "timestamp": "2026-05-18T05:52:06.327029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-001136"
+        },
+        {
+          "source_line": 1137,
+          "timestamp": "2026-05-18T05:52:12.012604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex",
+              "old_string": "only 1 percentage point (pp) relative to the full taxonomy, while vanilla DeBERTa without fine-tuning trails by over 70~pp",
+              "new_string": "only 1 percentage point relative to the full taxonomy, while vanilla DeBERTa without fine-tuning trails by over 70 percentage points"
+            }
+          },
+          "id": "event-001137"
+        },
+        {
+          "source_line": 1138,
+          "timestamp": "2026-05-18T05:52:12.013130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-001138"
+        },
+        {
+          "source_line": 1139,
+          "timestamp": "2026-05-18T05:52:15.376880+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex",
+              "old_string": "reduce OOD F1 by only 1~pp",
+              "new_string": "reduce OOD F1 by only 1 percentage point"
+            }
+          },
+          "id": "event-001139"
+        },
+        {
+          "source_line": 1140,
+          "timestamp": "2026-05-18T05:52:15.428852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001140"
+        },
+        {
+          "source_line": 1141,
+          "timestamp": "2026-05-18T05:52:20.499739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex",
+              "old_string": "DisPeD maintains zero degradation (0~pp) under adversarial paraphrasing, while vanilla DeBERTa degrades by 11.8~pp and TF-IDF by 1.3~pp",
+              "new_string": "DisPeD maintains zero degradation (0 percentage points) under adversarial paraphrasing, while vanilla DeBERTa degrades by 11.8 percentage points and TF-IDF by 1.3 percentage points"
+            }
+          },
+          "id": "event-001141"
+        },
+        {
+          "source_line": 1142,
+          "timestamp": "2026-05-18T05:52:20.550568+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001142"
+        },
+        {
+          "source_line": 1143,
+          "timestamp": "2026-05-18T05:52:24.317988+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex",
+              "old_string": "a +72~pp improvement over vanilla DeBERTa",
+              "new_string": "a +72 percentage point improvement over vanilla DeBERTa"
+            }
+          },
+          "id": "event-001143"
+        },
+        {
+          "source_line": 1144,
+          "timestamp": "2026-05-18T05:52:24.368655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001144"
+        },
+        {
+          "source_line": 1145,
+          "timestamp": "2026-05-18T05:52:29.646972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex",
+              "old_string": "successful multi-turn attacks rely on systematic persuasion dynamics~\\citep{zeng2024pap,hagendorff2026reasoning}",
+              "new_string": "successful multi-turn attacks rely on systematic persuasion dynamics~\\citep{zeng2024pap,hagendorff2026reasoning,li2024mhj}"
+            }
+          },
+          "id": "event-001145"
+        },
+        {
+          "source_line": 1146,
+          "timestamp": "2026-05-18T05:52:29.697839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001146"
+        },
+        {
+          "source_line": 1147,
+          "timestamp": "2026-05-18T05:52:42.771980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex",
+              "old_string": "(0~pp degradation vs. 1.3~pp for TF-IDF and 11.8~pp for vanilla DeBERTa)",
+              "new_string": "(0 percentage point degradation vs. 1.3 percentage points for TF-IDF and 11.8 percentage points for vanilla DeBERTa)"
+            }
+          },
+          "id": "event-001147"
+        },
+        {
+          "source_line": 1148,
+          "timestamp": "2026-05-18T05:52:43.023801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 251
+          },
+          "id": "event-001148"
+        },
+        {
+          "source_line": 1149,
+          "timestamp": "2026-05-18T05:52:47.044209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex",
+              "old_string": "within 1~pp of correct labels",
+              "new_string": "within 1 percentage point of correct labels"
+            }
+          },
+          "id": "event-001149"
+        },
+        {
+          "source_line": 1150,
+          "timestamp": "2026-05-18T05:52:47.095083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001150"
+        },
+        {
+          "source_line": 1151,
+          "timestamp": "2026-05-18T05:52:55.186358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex",
+              "old_string": "The 9-class taxonomy is retained not for detection accuracy but for interpretability: distinct attack types produce recognizable persuasion signatures in strategy trajectory analysis that security analysts can inspect without post-hoc explanation methods.",
+              "new_string": "LLM-as-judge baselines confirm the insufficiency of content-level reasoning: GPT-5.5 achieves F1 of only 0.191 to 0.449 on in-distribution Crescendo detection, with 30 to 47\\% of responses unparseable.\nThe 9-class taxonomy is retained not for detection accuracy but for interpretability: distinct attack types produce recognizable persuasion signatures in strategy trajectory analysis that security analysts can inspect without post-hoc explanation methods."
+            }
+          },
+          "id": "event-001151"
+        },
+        {
+          "source_line": 1152,
+          "timestamp": "2026-05-18T05:52:55.237212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001152"
+        },
+        {
+          "source_line": 1153,
+          "timestamp": "2026-05-18T05:52:58.826314+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/abstract.tex"
+            }
+          },
+          "id": "event-001153"
+        },
+        {
+          "source_line": 1154,
+          "timestamp": "2026-05-18T05:52:59.077905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tMulti-turn jailbreak attacks distribute adversarial intent across a sequence of individually benign turns, and both per-turn safety filters and content-level reasoning fail to detect this distributed threat.\n3\tThe natural defense of encoding conversations with a pretrained language model and aggregating turn embeddings achieves near-perfect in-distribution detection but collapses on unseen attack types: a vanilla DeBERTa encoder trained on Crescendo conversations drops from F1 = 1.000 to 0.284 on out-of-distribution Deceptive Delight data.\n4\tUsing a large language model (LLM) as judge fares no better, with GPT-5.5 reaching only F1 = 0.191--0.449 on in-distribution detection.\n5\tWe introduce DisPeD (Discourse-level Persuasion Detection), a two-stage framework that fine-tunes DeBERTa-v3-base with a multi-task objective combining 9-class persuasion strategy classification, grounded in the Persuasion Attack Paradigm and Cialdini's influence principles, with binary jailbreak-intent classification.\n6\tTurn-level \\texttt{[CLS]} embeddings are aggregated via a bidirectional GRU for conversation-level detection.\n7\tThe persuasion objective teaches the encoder to attend to pragmatic features shared across attack families rather than surface patterns specific to a single attack type.\n8\tDisPeD achieves F1 = 1.000 on unseen Deceptive Delight attacks (+72 percentage points over vanilla DeBERTa).\n9\tAblation experiments show that scrambled strategy labels reduce out-of-distribution F1 by only 1 percentage point; fine-tuning on persuasion-related text, not label accuracy, bridges the generalization gap.\n10\tDisPeD also maintains zero degradation under adversarial paraphrasing and provides interpretable detection through strategy trajectory analysis.\n11\t\\end{abstract}\n12\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-001154"
+        },
+        {
+          "source_line": 1155,
+          "timestamp": "2026-05-18T05:52:59.128631+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/paper/conclusion.tex"
+            }
+          },
+          "id": "event-001155"
+        },
+        {
+          "source_line": 1156,
+          "timestamp": "2026-05-18T05:52:59.179378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% conclusion.tex — DisPeD Conclusion Section\n2\t\n3\t\\section{Conclusion}\n4\t\\label{sec:conclusion}\n5\t\n6\tWe presented DisPeD, a two-stage framework that fine-tunes DeBERTa-v3-base with a multi-task objective combining 9-class persuasion strategy classification and binary jailbreak-intent classification.\n7\tThe central result is that persuasion-aware fine-tuning bridges the cross-attack generalization gap that vanilla semantic temporal modeling cannot: DisPeD achieves F1 = 1.000 on unseen Deceptive Delight conversations, a +72 percentage point improvement over vanilla DeBERTa (F1 = 0.284), with zero degradation under adversarial paraphrasing.\n8\tAblation experiments isolate the mechanism behind this gain.\n9\tScrambled persuasion strategy labels reduce OOD F1 by only 1 percentage point, and replacing BiGRU with mean pooling yields identical performance.\n10\tThese results establish that fine-tuning on persuasion-related text, not specific label assignments or temporal modeling, is the critical ingredient.\n11\tThe encoder functions as a persuasion-presence detector: exposure to persuasion-domain conversations during multi-task training teaches it to attend to pragmatic cues that transfer across attack families, regardless of supervision quality.\n12\tBinary fine-tuning on persuasion-domain text without the strategy classification head also achieves competitive detection performance, confirming that domain exposure drives the generalization gain.\n13\tLLM-as-judge baselines confirm the insufficiency of content-level reasoning: GPT-5.5 achieves F1 of only 0.191 to 0.449 on in-distribution Crescendo detection, with 30 to 47\\% of responses unparseable.\n14\tThe 9-class taxonomy is retained not for detection accuracy but for interpretability: distinct attack types produce recognizable persuasion signatures in strategy trajectory analysis that security analysts can inspect without post-hoc explanation methods.\n15\t\n16\tSeveral limitations constrain the conclusions that can be drawn from thi\n…[truncated 1401 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001156"
+        },
+        {
+          "source_line": 1157,
+          "timestamp": "2026-05-18T05:53:02.887999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-001157"
+        },
+        {
+          "source_line": 1158,
+          "timestamp": "2026-05-18T05:53:03.289641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tMulti-turn jailbreak attacks distribute adversarial intent across a sequence of individually benign turns, and both per-turn safety filters and content-level reasoning fail to detect this distributed threat.\n3\tThe natural defense of encoding conversations with a pretrained language model and aggregating turn embeddings achieves near-perfect in-distribution detection but collapses on unseen attack types: a vanilla DeBERTa encoder trained on Crescendo conversations drops from F1 = 1.000 to 0.284 on out-of-distribution Deceptive Delight data.\n4\tLLM-as-judge approaches fare no better, with GPT-5.5 reaching only F1 = 0.191--0.449 on in-distribution detection.\n5\tWe introduce DisPeD (Discourse-level Persuasion Detection), a two-stage framework that fine-tunes DeBERTa-v3-base with a multi-task objective combining 9-class persuasion strategy classification, grounded in the Persuasion Attack Paradigm and Cialdini's influence principles, with binary jailbreak-intent classification.\n6\tTurn-level \\texttt{[CLS]} embeddings are aggregated via a bidirectional GRU for conversation-level detection.\n7\tThe persuasion objective teaches the encoder to attend to pragmatic features shared across attack families rather than surface patterns specific to a single attack type.\n8\tDisPeD achieves F1 = 1.000 on unseen Deceptive Delight attacks (+72 percentage points over vanilla DeBERTa).\n9\tAblation experiments show that scrambled strategy labels reduce out-of-distribution F1 by only 1 percentage point; fine-tuning on persuasion-related text, not label accuracy, bridges the generalization gap.\n10\tDisPeD also maintains zero degradation under adversarial paraphrasing and provides interpretable detection through strategy trajectory analysis.\n11\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 401
+          },
+          "id": "event-001158"
+        },
+        {
+          "source_line": 1159,
+          "timestamp": "2026-05-18T05:53:03.290034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-001159"
+        },
+        {
+          "source_line": 1160,
+          "timestamp": "2026-05-18T05:53:04.294376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% conclusion.tex — DisPeD Conclusion Section\n2\t\n3\t\\section{Conclusion}\n4\t\\label{sec:conclusion}\n5\t\n6\tWe presented DisPeD, a two-stage framework that fine-tunes DeBERTa-v3-base with a multi-task objective combining 9-class persuasion strategy classification and binary jailbreak-intent classification.\n7\tThe central result is that persuasion-aware fine-tuning bridges the cross-attack generalization gap that vanilla semantic temporal modeling cannot: DisPeD achieves F1 = 1.000 on unseen Deceptive Delight conversations, a +72 percentage point improvement over vanilla DeBERTa (F1 = 0.284), with zero degradation under adversarial paraphrasing.\n8\tAblation experiments isolate the mechanism behind this gain.\n9\tScrambled persuasion strategy labels reduce OOD F1 by only 1 percentage point, and replacing BiGRU with mean pooling yields identical performance.\n10\tThese results establish that fine-tuning on persuasion-related text, not specific label assignments or temporal modeling, is the critical ingredient.\n11\tThe encoder functions as a persuasion-presence detector: exposure to persuasion-domain conversations during multi-task training teaches it to attend to pragmatic cues that transfer across attack families, regardless of supervision quality.\n12\tBinary fine-tuning on persuasion-domain text without the strategy classification head also achieves competitive detection performance, confirming that domain exposure drives the generalization gain.\n13\tThe 9-class taxonomy is retained not for detection accuracy but for interpretability: distinct attack types produce recognizable persuasion signatures in strategy trajectory analysis that security analysts can inspect without post-hoc explanation methods.\n14\t\n15\tSeveral limitations constrain the conclusions that can be drawn from this work.\n16\tFirst, the dataset is small: 500 training conversations and 160 OOD test conversations.\n17\tThese results require validation at larger scale before deployment claims are warranted.\n18\tSecond, all\n…[truncated 1192 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 1004
+          },
+          "id": "event-001160"
+        },
+        {
+          "source_line": 1161,
+          "timestamp": "2026-05-18T05:53:04.294885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex",
+              "offset": "10",
+              "limit": "15"
+            }
+          },
+          "id": "event-001161"
+        },
+        {
+          "source_line": 1162,
+          "timestamp": "2026-05-18T05:53:05.149594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "10\tThe key observation motivating our approach is that persuasion in jailbreak attacks is both \\emph{systematic} and \\emph{extractable}. \\citet{zeng2024pap} identify 40 persuasion techniques across jailbreak attacks through their Persuasion Attack Paradigm (PAP), and \\citet{hagendorff2026reasoning} find identifiable persuasion strategies in 97\\% of successful attacks. These findings establish that multi-turn attacks are not ad hoc manipulation but structured persuasion campaigns that follow recognizable patterns. On the extraction side, recent work on LLM persuasion demonstrates that these pragmatic dynamics leave detectable traces in turn-level representations~\\citep{jaipersaud2025howdollmspersuade}, and that the persuasion literature offers well-established taxonomies (e.g., Cialdini's six principles of influence~\\citep{cialdini2001influence}) to categorize these strategies. If persuasion is systematic (attacks follow identifiable strategy patterns) and extractable (representations can encode these patterns), then fine-tuning an encoder on persuasion-related text should teach it to attend to pragmatic features rather than topical content. The resulting representations would capture the functional structure of manipulation, a structure shared across attack types regardless of their surface realization. This is not a new theoretical claim but an operationalization of observations already established in the literature: our contribution is to demonstrate that this operationalization produces measurable gains in cross-attack generalization.\n11\t\n12\tWe propose \\textbf{DisPeD} (Discourse-level Persuasion Detection), a two-stage framework that implements this idea. In Stage~1, we fine-tune a DeBERTa-v3-base encoder~\\citep{he2021deberta} with a multi-task objective that combines 9-class persuasion strategy classification and binary jailbreak-intent classification at the turn level. The 9-class taxonomy is grounded in PAP~\\citep{zeng2024pap} and Cialdini's principles of infl\n…[truncated 3031 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 854
+          },
+          "id": "event-001162"
+        },
+        {
+          "source_line": 1163,
+          "timestamp": "2026-05-18T05:53:05.200695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/method.tex",
+              "offset": "43",
+              "limit": "5"
+            }
+          },
+          "id": "event-001163"
+        },
+        {
+          "source_line": 1164,
+          "timestamp": "2026-05-18T05:53:05.251342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "43\t\\end{enumerate}\n44\t\n45\tThis taxonomy is not exhaustive but covers the dominant strategies identified in existing multi-turn attack analyses~\\citep{zeng2024pap,russinovich2024crescendo,fitd2024,deceptivedelight2024}. Turn-level strategy annotations are produced by Qwen3-8B, a procedure we validate through ablation in Section~\\ref{sec:ablation}: scrambled labels yield only a 1~pp reduction in OOD detection performance, confirming that the fine-tuning process on persuasion-related text, rather than label accuracy, is the primary driver of cross-attack generalization.\n46\t\n47\t\\subsection{Stage 2: Conversation-Level Classification}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001164"
+        },
+        {
+          "source_line": 1165,
+          "timestamp": "2026-05-18T05:53:19.298824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex",
+              "old_string": "LLM-as-judge approaches fare no better, with GPT-5.5 reaching only F1 = 0.191--0.449 on in-distribution detection.",
+              "new_string": "Using a large language model (LLM) as judge fares no better, with GPT-5.5 reaching only F1 = 0.191--0.449 on in-distribution detection."
+            }
+          },
+          "id": "event-001165"
+        },
+        {
+          "source_line": 1166,
+          "timestamp": "2026-05-18T05:53:19.349962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001166"
+        },
+        {
+          "source_line": 1167,
+          "timestamp": "2026-05-18T05:53:24.577649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex",
+              "old_string": "The 9-class taxonomy is retained not for detection accuracy but for interpretability: distinct attack types produce recognizable persuasion signatures in strategy trajectory analysis that security analysts can inspect without post-hoc explanation methods.",
+              "new_string": "LLM-as-judge baselines confirm the insufficiency of content-level reasoning: GPT-5.5 achieves F1 of only 0.191 to 0.449 on in-distribution Crescendo detection, with 30 to 47\\% of responses unparseable.\nThe 9-class taxonomy is retained not for detection accuracy but for interpretability: distinct attack types produce recognizable persuasion signatures in strategy trajectory analysis that security analysts can inspect without post-hoc explanation methods."
+            }
+          },
+          "id": "event-001167"
+        },
+        {
+          "source_line": 1168,
+          "timestamp": "2026-05-18T05:53:24.628313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001168"
+        },
+        {
+          "source_line": 1169,
+          "timestamp": "2026-05-18T05:53:28.443814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex",
+              "old_string": "only 1 percentage point (pp) relative to the full taxonomy, while vanilla DeBERTa without fine-tuning trails by over 70~pp",
+              "new_string": "only 1 percentage point relative to the full taxonomy, while vanilla DeBERTa without fine-tuning trails by over 70 percentage points"
+            }
+          },
+          "id": "event-001169"
+        },
+        {
+          "source_line": 1170,
+          "timestamp": "2026-05-18T05:53:28.494649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001170"
+        },
+        {
+          "source_line": 1171,
+          "timestamp": "2026-05-18T05:53:32.031873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex",
+              "old_string": "reduce OOD F1 by only 1~pp",
+              "new_string": "reduce OOD F1 by only 1 percentage point"
+            }
+          },
+          "id": "event-001171"
+        },
+        {
+          "source_line": 1172,
+          "timestamp": "2026-05-18T05:53:32.082559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001172"
+        },
+        {
+          "source_line": 1173,
+          "timestamp": "2026-05-18T05:53:38.308718+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex",
+              "old_string": "DisPeD maintains zero degradation (0~pp) under adversarial paraphrasing, while vanilla DeBERTa degrades by 11.8~pp and TF-IDF by 1.3~pp",
+              "new_string": "DisPeD maintains zero degradation (0 percentage points) under adversarial paraphrasing, while vanilla DeBERTa degrades by 11.8 percentage points and TF-IDF by 1.3 percentage points"
+            }
+          },
+          "id": "event-001173"
+        },
+        {
+          "source_line": 1174,
+          "timestamp": "2026-05-18T05:53:38.409797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-001174"
+        },
+        {
+          "source_line": 1175,
+          "timestamp": "2026-05-18T05:53:41.732791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex",
+              "old_string": "a +72~pp improvement over vanilla DeBERTa",
+              "new_string": "a +72 percentage point improvement over vanilla DeBERTa"
+            }
+          },
+          "id": "event-001175"
+        },
+        {
+          "source_line": 1176,
+          "timestamp": "2026-05-18T05:53:41.783821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001176"
+        },
+        {
+          "source_line": 1177,
+          "timestamp": "2026-05-18T05:53:45.451457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/method.tex",
+              "old_string": "scrambled labels yield only a 1~pp reduction in OOD detection performance",
+              "new_string": "scrambled labels yield only a 1 percentage point reduction in OOD detection performance"
+            }
+          },
+          "id": "event-001177"
+        },
+        {
+          "source_line": 1178,
+          "timestamp": "2026-05-18T05:53:45.502201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001178"
+        },
+        {
+          "source_line": 1179,
+          "timestamp": "2026-05-18T05:53:48.769002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/method.tex",
+              "offset": "75",
+              "limit": "5"
+            }
+          },
+          "id": "event-001179"
+        },
+        {
+          "source_line": 1180,
+          "timestamp": "2026-05-18T05:53:48.869783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "75\t\n76\t\\paragraph{Why retain the 9-class taxonomy?}\n77\tThe ablation shows that scrambled labels and binary labels both yield OOD detection performance within 1~pp of the full 9-class taxonomy. The value of the 9-class taxonomy is interpretability, not detection accuracy. The predicted strategy labels enable trajectory analysis (Section~\\ref{sec:strategy}) that exposes how different attack types employ distinct persuasion sequences. This interpretability allows security analysts to inspect and understand detection decisions, a property absent from black-box LLM-based detectors and lexical baselines.\n78\t\n79\t\\paragraph{Vanilla DeBERTa as a controlled baseline.}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001180"
+        },
+        {
+          "source_line": 1181,
+          "timestamp": "2026-05-18T05:53:52.439785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/method.tex",
+              "old_string": "within 1~pp of the full 9-class taxonomy",
+              "new_string": "within 1 percentage point of the full 9-class taxonomy"
+            }
+          },
+          "id": "event-001181"
+        },
+        {
+          "source_line": 1182,
+          "timestamp": "2026-05-18T05:53:52.490418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001182"
+        },
+        {
+          "source_line": 1183,
+          "timestamp": "2026-05-18T05:53:55.957400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "offset": "88",
+              "limit": "15"
+            }
+          },
+          "id": "event-001183"
+        },
+        {
+          "source_line": 1184,
+          "timestamp": "2026-05-18T05:53:56.008173+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "88\tThe gap over Vanilla DeBERTa ranges from +42 pp at $K$=1 to +72 pp at Full.\n89\t\n90\tTF-IDF LR achieves F1 = 0.944 on full DD conversations, which confirms substantial lexical separability even across attack families.\n91\tWe acknowledge this result openly: the primary contribution of DisPeD over TF-IDF is not raw detection performance but rather three complementary advantages.\n92\tFirst, DisPeD bridges the representation-level gap that vanilla semantic embeddings cannot (+72 pp on DD), validating persuasion-aware fine-tuning as the mechanism for cross-attack generalization.\n93\tSecond, DisPeD achieves zero degradation under adversarial perturbation (Section~\\ref{sec:perturbation}).\n94\tThird, DisPeD provides interpretable strategy trajectories for detection decisions (Section~\\ref{sec:strategy}).\n95\t\n96\t\\paragraph{OOD: FITD.}\n97\tFITD conversations are easier to detect across all methods.\n98\tDisPeD and Vanilla DeBERTa both reach F1 $\\geq$ 0.990 at all evaluated prefixes, and TF-IDF LR achieves 1.000 on $K$=1 and full conversations.\n99\tThe limited differentiation on FITD suggests this attack family shares more surface-level features with the Crescendo training data than DD does, reducing the cross-attack generalization challenge.\n100\t\n101\t%----------------------------------------------------------------------\n102\t\\subsection{Ablation Study}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001184"
+        },
+        {
+          "source_line": 1185,
+          "timestamp": "2026-05-18T05:53:59.472527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "old_string": "The gap over Vanilla DeBERTa ranges from +42 pp at $K$=1 to +72 pp at Full.",
+              "new_string": "The gap over Vanilla DeBERTa ranges from +42 percentage points at $K$=1 to +72 percentage points at Full."
+            }
+          },
+          "id": "event-001185"
+        },
+        {
+          "source_line": 1186,
+          "timestamp": "2026-05-18T05:53:59.573442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-001186"
+        },
+        {
+          "source_line": 1187,
+          "timestamp": "2026-05-18T05:54:03.995507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "old_string": "(+72 pp on DD)",
+              "new_string": "(+72 percentage points on DD)"
+            }
+          },
+          "id": "event-001187"
+        },
+        {
+          "source_line": 1188,
+          "timestamp": "2026-05-18T05:54:04.046999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001188"
+        },
+        {
+          "source_line": 1189,
+          "timestamp": "2026-05-18T05:54:07.263511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "offset": "127",
+              "limit": "30"
+            }
+          },
+          "id": "event-001189"
+        },
+        {
+          "source_line": 1190,
+          "timestamp": "2026-05-18T05:54:07.266005+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "127\t\\paragraph{Label granularity.}\n128\tReplacing the 9-class persuasion taxonomy with randomly scrambled labels reduces DD-Full F1 from 1.000 to 0.990, a gap of just 1 pp.\n129\tCollapsing the taxonomy to binary (persuasion-present vs.\\ absent) yields the same 0.990.\n130\tBoth variants remain far above the vanilla baseline (F1 = 0.284), a gap exceeding 70 pp.\n131\tThese results confirm that the encoder learns useful pragmatic features from exposure to persuasion-domain text during fine-tuning, regardless of whether strategy labels are correct, coarse, or random.\n132\tThe 9-class taxonomy provides interpretability through strategy trajectory analysis (Section~\\ref{sec:strategy}) rather than a detection advantage over coarser alternatives.\n133\t\n134\t\\paragraph{Temporal modeling.}\n135\tReplacing BiGRU with orderless mean pooling over the [CLS] sequence yields DD-Full F1 = 1.000, matching the BiGRU default.\n136\tThis equivalence confirms that the model detects persuasion presence in individual turns rather than relying on the temporal ordering of strategies across the conversation.\n137\tBiGRU is the default aggregator in all other experiments.\n138\t\n139\t\\paragraph{Fine-tuning as the critical factor.}\n140\tThe most informative comparison spans all ablation rows.\n141\tEvery variant that includes persuasion-domain fine-tuning achieves DD-Full F1 $\\geq$ 0.990, while Vanilla DeBERTa collapses to 0.284.\n142\tAll fine-tuned variants also maintain IID-Full F1 = 1.000.\n143\tThis 70+ pp gap on OOD data establishes that persuasion-aware fine-tuning is both necessary and sufficient for cross-attack generalization; architecture choices and label granularity are secondary factors.\n144\tWe also evaluated an $\\alpha=0$ variant (persuasion strategy classification only, no intent task), which achieves IID-Full F1 = 1.000. OOD evaluation was not conducted for this variant, but the IID result confirms that the persuasion task alone suffices for in-distribution detection. The intent head provides a comple\n…[truncated 1279 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 2
+          },
+          "id": "event-001190"
+        },
+        {
+          "source_line": 1191,
+          "timestamp": "2026-05-18T05:54:11.002725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "old_string": "a gap of just 1 pp",
+              "new_string": "a gap of just 1 percentage point"
+            }
+          },
+          "id": "event-001191"
+        },
+        {
+          "source_line": 1192,
+          "timestamp": "2026-05-18T05:54:11.108966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 106
+          },
+          "id": "event-001192"
+        },
+        {
+          "source_line": 1193,
+          "timestamp": "2026-05-18T05:54:21.958089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "old_string": "a gap exceeding 70 pp",
+              "new_string": "a gap exceeding 70 percentage points"
+            }
+          },
+          "id": "event-001193"
+        },
+        {
+          "source_line": 1194,
+          "timestamp": "2026-05-18T05:54:22.060090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 102
+          },
+          "id": "event-001194"
+        },
+        {
+          "source_line": 1195,
+          "timestamp": "2026-05-18T05:54:25.740768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "old_string": "This 70+ pp gap on OOD data",
+              "new_string": "This 70+ percentage point gap on OOD data"
+            }
+          },
+          "id": "event-001195"
+        },
+        {
+          "source_line": 1196,
+          "timestamp": "2026-05-18T05:54:25.842139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-001196"
+        },
+        {
+          "source_line": 1197,
+          "timestamp": "2026-05-18T05:54:30.965945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "offset": "130",
+              "limit": "5"
+            }
+          },
+          "id": "event-001197"
+        },
+        {
+          "source_line": 1198,
+          "timestamp": "2026-05-18T05:54:31.167220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "130\tBoth variants remain far above the vanilla baseline (F1 = 0.284), a gap exceeding 70 percentage points.\n131\tThese results confirm that the encoder learns useful pragmatic features from exposure to persuasion-domain text during fine-tuning, regardless of whether strategy labels are correct, coarse, or random.\n132\tThe 9-class taxonomy provides interpretability through strategy trajectory analysis (Section~\\ref{sec:strategy}) rather than a detection advantage over coarser alternatives.\n133\t\n134\t\\paragraph{Temporal modeling.}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-001198"
+        },
+        {
+          "source_line": 1199,
+          "timestamp": "2026-05-18T05:54:35.211192+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "data domain matters",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001199"
+        },
+        {
+          "source_line": 1200,
+          "timestamp": "2026-05-18T05:54:35.211761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-001200"
+        },
+        {
+          "source_line": 1201,
+          "timestamp": "2026-05-18T05:54:40.087615+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "offset": "126",
+              "limit": "10"
+            }
+          },
+          "id": "event-001201"
+        },
+        {
+          "source_line": 1202,
+          "timestamp": "2026-05-18T05:54:40.138268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "126\t\n127\t\\paragraph{Label granularity.}\n128\tReplacing the 9-class persuasion taxonomy with randomly scrambled labels reduces DD-Full F1 from 1.000 to 0.990, a gap of just 1 percentage point.\n129\tCollapsing the taxonomy to binary (persuasion-present vs.\\ absent) yields the same 0.990.\n130\tBoth variants remain far above the vanilla baseline (F1 = 0.284), a gap exceeding 70 percentage points.\n131\tThese results confirm that the encoder learns useful pragmatic features from exposure to persuasion-domain text during fine-tuning, regardless of whether strategy labels are correct, coarse, or random.\n132\tThe 9-class taxonomy provides interpretability through strategy trajectory analysis (Section~\\ref{sec:strategy}) rather than a detection advantage over coarser alternatives.\n133\t\n134\t\\paragraph{Temporal modeling.}\n135\tReplacing BiGRU with orderless mean pooling over the [CLS] sequence yields DD-Full F1 = 1.000, matching the BiGRU default."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001202"
+        },
+        {
+          "source_line": 1203,
+          "timestamp": "2026-05-18T05:54:57.442896+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "old_string": "These results confirm that the encoder learns useful pragmatic features from exposure to persuasion-domain text during fine-tuning, regardless of whether strategy labels are correct, coarse, or random.\nThe 9-class taxonomy provides interpretability through strategy trajectory analysis (Section~\\ref{sec:strategy}) rather than a detection advantage over coarser alternatives.",
+              "new_string": "These results confirm that the encoder learns useful pragmatic features from exposure to persuasion-domain text during fine-tuning, regardless of whether strategy labels are correct, coarse, or random.\nThe data domain matters more than the specific supervision signal~\\citep{gururangan2020dontstop}.\nIn our setting, multi-task fine-tuning on persuasion-related conversations teaches the encoder to attend to pragmatic features (e.g., implicit requests, escalation cues, rapport-building patterns) that transfer across attack types.\nThe 9-class taxonomy provides interpretability through strategy trajectory analysis (Section~\\ref{sec:strategy}) rather than a detection advantage over coarser alternatives.\nFrom a practical standpoint, this result lowers the annotation barrier: coarse or imperfect persuasion labels suffice for training an effective cross-attack detector."
+            }
+          },
+          "id": "event-001203"
+        },
+        {
+          "source_line": 1204,
+          "timestamp": "2026-05-18T05:54:57.493914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001204"
+        },
+        {
+          "source_line": 1205,
+          "timestamp": "2026-05-18T05:55:09.755770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "offset": "170",
+              "limit": "20"
+            }
+          },
+          "id": "event-001205"
+        },
+        {
+          "source_line": 1206,
+          "timestamp": "2026-05-18T05:55:09.856699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "170\t\\end{table}\n171\t\n172\tDisPeD maintains perfect detection under adversarial paraphrasing while both baselines degrade.\n173\tTable~\\ref{tab:perturbation} reports F1 on the original and perturbed IID test sets (76 samples each).\n174\tThe perturbed set was constructed via automated paraphrasing that preserves semantic content (BERTScore 0.92) while substantially altering surface forms (lexical overlap 0.20).\n175\t\n176\tDisPeD achieves F1 = 1.000 on both original and perturbed data, with zero degradation.\n177\tVanilla DeBERTa drops from 1.000 to 0.882, a loss of 11.8 pp, consistent with its reliance on surface-level features from the unfine-tuned encoder.\n178\tTF-IDF LR shows a smaller but measurable decline from 1.000 to 0.987 (1.3 pp).\n179\tThe ordering follows the expected robustness hierarchy: features learned through persuasion-aware fine-tuning capture pragmatic patterns that are invariant to surface rephrasing, while generic embeddings and lexical features are more sensitive to word-level changes.\n180\tCombined with the cross-attack results in Table~\\ref{tab:main_results}, the perturbation evaluation confirms that persuasion-aware fine-tuning produces representations robust to both unseen attack types and adversarial surface variation.\n181\t\n182\t%----------------------------------------------------------------------\n183\t\\subsection{LLM-as-Judge Baseline}\n184\t\\label{sec:llm_judge}\n185\t\n186\t\\begin{table}[t]\n187\t\\centering\n188\t\\small\n189\t\\caption{LLM-as-judge zero-shot Crescendo detection (IID test set). F1 values exclude unparseable responses and therefore represent upper bounds.$^{\\dagger}$Unparseable rate increases with context length: 30\\% at $K$=2 to 47\\% at Full.}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001206"
+        },
+        {
+          "source_line": 1207,
+          "timestamp": "2026-05-18T05:55:13.681758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "old_string": "a loss of 11.8 pp, consistent",
+              "new_string": "a loss of 11.8 percentage points, consistent"
+            }
+          },
+          "id": "event-001207"
+        },
+        {
+          "source_line": 1208,
+          "timestamp": "2026-05-18T05:55:13.732736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001208"
+        },
+        {
+          "source_line": 1209,
+          "timestamp": "2026-05-18T05:55:17.300897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "old_string": "(1.3 pp)",
+              "new_string": "(1.3 percentage points)"
+            }
+          },
+          "id": "event-001209"
+        },
+        {
+          "source_line": 1210,
+          "timestamp": "2026-05-18T05:55:17.351825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001210"
+        },
+        {
+          "source_line": 1211,
+          "timestamp": "2026-05-18T05:55:20.967880+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\bpp\\b|~pp",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001211"
+        },
+        {
+          "source_line": 1212,
+          "timestamp": "2026-05-18T05:55:21.018653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "163:\\textbf{Method} & Original & Perturbed & $\\Delta$ (pp) \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001212"
+        },
+        {
+          "source_line": 1213,
+          "timestamp": "2026-05-18T05:55:25.994597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "11\\.8 pp",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001213"
+        },
+        {
+          "source_line": 1214,
+          "timestamp": "2026-05-18T05:55:25.995021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-001214"
+        },
+        {
+          "source_line": 1215,
+          "timestamp": "2026-05-18T05:55:29.211830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "11\\.8 p",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/experiments.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001215"
+        },
+        {
+          "source_line": 1216,
+          "timestamp": "2026-05-18T05:55:29.312926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "177:Vanilla DeBERTa drops from 1.000 to 0.882, a loss of 11.8 percentage points, consistent with its reliance on surface-level features from the unfine-tuned encoder."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 101
+          },
+          "id": "event-001216"
+        },
+        {
+          "source_line": 1217,
+          "timestamp": "2026-05-18T05:55:34.111242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "li2024mhj",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/related_work.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001217"
+        },
+        {
+          "source_line": 1218,
+          "timestamp": "2026-05-18T05:55:34.161925+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001218"
+        },
+        {
+          "source_line": 1219,
+          "timestamp": "2026-05-18T05:55:38.481507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/related_work.tex",
+              "old_string": "successful multi-turn attacks rely on systematic persuasion dynamics~\\citep{zeng2024pap,hagendorff2026reasoning}",
+              "new_string": "successful multi-turn attacks rely on systematic persuasion dynamics~\\citep{zeng2024pap,hagendorff2026reasoning,li2024mhj}"
+            }
+          },
+          "id": "event-001219"
+        },
+        {
+          "source_line": 1220,
+          "timestamp": "2026-05-18T05:55:38.532441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001220"
+        },
+        {
+          "source_line": 1221,
+          "timestamp": "2026-05-18T05:55:42.675162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "~pp|0 pp|1\\.3.pp|11\\.8.pp",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/related_work.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001221"
+        },
+        {
+          "source_line": 1222,
+          "timestamp": "2026-05-18T05:55:42.729015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "28:[Omitted long matching line]\n34:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 53
+          },
+          "id": "event-001222"
+        },
+        {
+          "source_line": 1223,
+          "timestamp": "2026-05-18T05:55:45.645227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/related_work.tex",
+              "offset": "26",
+              "limit": "12"
+            }
+          },
+          "id": "event-001223"
+        },
+        {
+          "source_line": 1224,
+          "timestamp": "2026-05-18T05:55:45.696025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "26\tDomain-adaptive pretraining (DAPT) improves downstream task performance by continuing pretraining on unlabeled text from the target domain before task-specific fine-tuning~\\citep{gururangan2020dontstop}. \\citet{gururangan2020dontstop} show that DAPT yields consistent gains across four domains (biomedical, computer science, news, reviews), with further improvements from task-adaptive pretraining on the unlabeled task data itself. Supplementary training on intermediate labeled tasks (STILTs) extends this principle by fine-tuning on a related labeled dataset before the target task~\\citep{phang2018stilts}, and multi-task learning jointly optimizes across related objectives to learn shared representations~\\citep{caruana1997multitask,liu2019mtdnn}.\n27\t\n28\tDisPeD's Stage-1 fine-tuning shares structural similarities with both STILTs and multi-task learning: the encoder is trained on persuasion strategy classification (an intermediate task) jointly with binary intent detection before being used for conversation-level classification. The motivation differs from standard DAPT. General DAPT adapts representations to a domain's vocabulary and distributional patterns, while DisPeD's persuasion-aware fine-tuning targets a specific pragmatic capability, distinguishing persuasion strategies in conversational text. The ablation in Section~\\ref{sec:ablation} provides evidence for this distinction: scrambled strategy labels yield OOD performance within 1~pp of correct labels, suggesting that exposure to persuasion-domain text during fine-tuning, rather than accurate strategy supervision, is the primary mechanism. Ongoing control experiments (Section~\\ref{sec:ablation}) will test whether fine-tuning on non-persuasion auxiliary tasks (e.g., sentiment classification or masked language modeling on the same data) produces comparable transfer, isolating whether the gains are attributable to persuasion-specific pragmatic features or to domain adaptation more broadly.\n29\t\n30\t\\subsection{Dat\n…[truncated 1597 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001224"
+        },
+        {
+          "source_line": 1225,
+          "timestamp": "2026-05-18T05:55:49.510127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/related_work.tex",
+              "old_string": "within 1~pp of correct labels",
+              "new_string": "within 1 percentage point of correct labels"
+            }
+          },
+          "id": "event-001225"
+        },
+        {
+          "source_line": 1226,
+          "timestamp": "2026-05-18T05:55:49.561602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001226"
+        },
+        {
+          "source_line": 1227,
+          "timestamp": "2026-05-18T05:55:53.608778+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/related_work.tex",
+              "old_string": "(0~pp degradation vs. 1.3~pp for TF-IDF and 11.8~pp for vanilla DeBERTa)",
+              "new_string": "(0 percentage point degradation vs. 1.3 percentage points for TF-IDF and 11.8 percentage points for vanilla DeBERTa)"
+            }
+          },
+          "id": "event-001227"
+        },
+        {
+          "source_line": 1228,
+          "timestamp": "2026-05-18T05:55:53.659809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001228"
+        },
+        {
+          "source_line": 1229,
+          "timestamp": "2026-05-18T05:55:57.527742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper"
+            }
+          },
+          "id": "event-001229"
+        },
+        {
+          "source_line": 1230,
+          "timestamp": "2026-05-18T05:55:57.578449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-001230"
+        },
+        {
+          "source_line": 1231,
+          "timestamp": "2026-05-18T05:56:02.513615+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\bpp\\b|~pp",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001231"
+        },
+        {
+          "source_line": 1232,
+          "timestamp": "2026-05-18T05:56:02.564259+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex:90:The gap over Vanilla DeBERTa ranges from +42 pp at $K$=1 to +72 pp at Full.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex:95:First, DisPeD bridges the representation-level gap that vanilla semantic embeddings cannot (+72 pp on DD), validating persuasion-aware fine-tuning as the mechanism for cross-attack generalization.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex:131:Replacing the 9-class persuasion taxonomy with randomly scrambled labels reduces DD-Full F1 from 1.000 to 0.990, a gap of just 1 pp.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex:133:Both variants remain far above the vanilla baseline (F1 = 0.284), a gap exceeding 70 pp.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex:148:This 70+ pp gap on OOD data establishes that persuasion-aware fine-tuning is both necessary and sufficient for cross-attack generalization; architecture choices and label granularity are secondary factors.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex:165:\\textbf{Method} & Original & Perturbed & $\\Delta$ (pp) \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex:179:Vanilla DeBERTa drops from 1.000 to 0.882, a loss of 11.8 pp, consistent with its reliance on surface-level features from the unfine-tuned encoder.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex:180:TF-IDF LR shows\n…[truncated 796 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001232"
+        },
+        {
+          "source_line": 1233,
+          "timestamp": "2026-05-18T05:56:06.787891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex",
+              "old_string": "The gap over Vanilla DeBERTa ranges from +42 pp at $K$=1 to +72 pp at Full.",
+              "new_string": "The gap over Vanilla DeBERTa ranges from +42 percentage points at $K$=1 to +72 percentage points at Full."
+            }
+          },
+          "id": "event-001233"
+        },
+        {
+          "source_line": 1234,
+          "timestamp": "2026-05-18T05:56:06.788666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-001234"
+        },
+        {
+          "source_line": 1235,
+          "timestamp": "2026-05-18T05:56:10.261310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex",
+              "old_string": "(+72 pp on DD)",
+              "new_string": "(+72 percentage points on DD)"
+            }
+          },
+          "id": "event-001235"
+        },
+        {
+          "source_line": 1236,
+          "timestamp": "2026-05-18T05:56:10.362341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-001236"
+        },
+        {
+          "source_line": 1237,
+          "timestamp": "2026-05-18T05:56:15.631634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex",
+              "old_string": "a gap of just 1 pp",
+              "new_string": "a gap of just 1 percentage point"
+            }
+          },
+          "id": "event-001237"
+        },
+        {
+          "source_line": 1238,
+          "timestamp": "2026-05-18T05:56:15.682992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001238"
+        },
+        {
+          "source_line": 1239,
+          "timestamp": "2026-05-18T05:56:18.899932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex",
+              "old_string": "a gap exceeding 70 pp",
+              "new_string": "a gap exceeding 70 percentage points"
+            }
+          },
+          "id": "event-001239"
+        },
+        {
+          "source_line": 1240,
+          "timestamp": "2026-05-18T05:56:18.950986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001240"
+        },
+        {
+          "source_line": 1241,
+          "timestamp": "2026-05-18T05:56:22.266463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "70\\+ pp",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001241"
+        },
+        {
+          "source_line": 1242,
+          "timestamp": "2026-05-18T05:56:22.317251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "148:This 70+ pp gap on OOD data establishes that persuasion-aware fine-tuning is both necessary and sufficient for cross-attack generalization; architecture choices and label granularity are secondary factors."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001242"
+        },
+        {
+          "source_line": 1243,
+          "timestamp": "2026-05-18T05:56:25.633907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex",
+              "old_string": "This 70+ pp gap on OOD data",
+              "new_string": "This 70+ percentage point gap on OOD data"
+            }
+          },
+          "id": "event-001243"
+        },
+        {
+          "source_line": 1244,
+          "timestamp": "2026-05-18T05:56:25.684802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001244"
+        },
+        {
+          "source_line": 1245,
+          "timestamp": "2026-05-18T05:56:29.804692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex",
+              "old_string": "a loss of 11.8 pp, consistent",
+              "new_string": "a loss of 11.8 percentage points, consistent"
+            }
+          },
+          "id": "event-001245"
+        },
+        {
+          "source_line": 1246,
+          "timestamp": "2026-05-18T05:56:29.855677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001246"
+        },
+        {
+          "source_line": 1247,
+          "timestamp": "2026-05-18T05:56:33.378309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex",
+              "old_string": "(1.3 pp)",
+              "new_string": "(1.3 percentage points)"
+            }
+          },
+          "id": "event-001247"
+        },
+        {
+          "source_line": 1248,
+          "timestamp": "2026-05-18T05:56:33.430113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001248"
+        },
+        {
+          "source_line": 1249,
+          "timestamp": "2026-05-18T05:56:38.909495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex",
+              "old_string": "the 11.8 pp degradation of Vanilla DeBERTa",
+              "new_string": "the 11.8 percentage point degradation of Vanilla DeBERTa"
+            }
+          },
+          "id": "event-001249"
+        },
+        {
+          "source_line": 1250,
+          "timestamp": "2026-05-18T05:56:38.960707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001250"
+        },
+        {
+          "source_line": 1251,
+          "timestamp": "2026-05-18T05:56:43.034687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "data domain matters",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001251"
+        },
+        {
+          "source_line": 1252,
+          "timestamp": "2026-05-18T05:56:43.135629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-001252"
+        },
+        {
+          "source_line": 1253,
+          "timestamp": "2026-05-18T05:56:48.262883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex",
+              "offset": "130",
+              "limit": "15"
+            }
+          },
+          "id": "event-001253"
+        },
+        {
+          "source_line": 1254,
+          "timestamp": "2026-05-18T05:56:48.313526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "130\t\\paragraph{Label granularity.}\n131\tReplacing the 9-class persuasion taxonomy with randomly scrambled labels reduces DD-Full F1 from 1.000 to 0.990, a gap of just 1 percentage point.\n132\tCollapsing the taxonomy to binary (persuasion-present vs.\\ absent) yields the same 0.990.\n133\tBoth variants remain far above the vanilla baseline (F1 = 0.284), a gap exceeding 70 percentage points.\n134\tThese results confirm that the encoder learns useful pragmatic features from exposure to persuasion-domain text during fine-tuning, regardless of whether strategy labels are correct, coarse, or random.\n135\tIn our setting, multi-task fine-tuning on persuasion-related conversations teaches the encoder to attend to pragmatic features (e.g., implicit requests, escalation cues, rapport-building patterns) that transfer across attack types.\n136\tThe 9-class taxonomy provides interpretability through strategy trajectory analysis (Section~\\ref{sec:strategy}) rather than a detection advantage over coarser alternatives.\n137\tFrom a practical standpoint, this result lowers the annotation barrier: coarse or imperfect persuasion labels suffice for training an effective cross-attack detector.\n138\t\n139\t\\paragraph{Temporal modeling.}\n140\tReplacing BiGRU with orderless mean pooling over the [CLS] sequence yields DD-Full F1 = 1.000, matching the BiGRU default.\n141\tThis equivalence confirms that the model detects persuasion presence in individual turns rather than relying on the temporal ordering of strategies across the conversation.\n142\tBiGRU is the default aggregator in all other experiments.\n143\t\n144\t\\paragraph{Fine-tuning as the critical factor.}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001254"
+        },
+        {
+          "source_line": 1255,
+          "timestamp": "2026-05-18T05:56:52.538993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex",
+              "old_string": "These results confirm that the encoder learns useful pragmatic features from exposure to persuasion-domain text during fine-tuning, regardless of whether strategy labels are correct, coarse, or random.\nIn our setting, multi-task fine-tuning",
+              "new_string": "These results confirm that the encoder learns useful pragmatic features from exposure to persuasion-domain text during fine-tuning, regardless of whether strategy labels are correct, coarse, or random.\nThe data domain matters more than the specific supervision signal~\\citep{gururangan2020dontstop}.\nIn our setting, multi-task fine-tuning"
+            }
+          },
+          "id": "event-001255"
+        },
+        {
+          "source_line": 1256,
+          "timestamp": "2026-05-18T05:56:52.590111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001256"
+        },
+        {
+          "source_line": 1257,
+          "timestamp": "2026-05-18T05:56:56.759825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/method.tex",
+              "old_string": "scrambled labels yield only a 1~pp reduction in OOD detection performance",
+              "new_string": "scrambled labels yield only a 1 percentage point reduction in OOD detection performance"
+            }
+          },
+          "id": "event-001257"
+        },
+        {
+          "source_line": 1258,
+          "timestamp": "2026-05-18T05:56:56.810494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-001258"
+        },
+        {
+          "source_line": 1259,
+          "timestamp": "2026-05-18T05:57:00.184571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/_project/paper/method.tex",
+              "offset": "43",
+              "limit": "5"
+            }
+          },
+          "id": "event-001259"
+        },
+        {
+          "source_line": 1260,
+          "timestamp": "2026-05-18T05:57:00.335711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "43\t\\end{enumerate}\n44\t\n45\tThis taxonomy is not exhaustive but covers the dominant strategies identified in existing multi-turn attack analyses~\\citep{zeng2024pap,russinovich2024crescendo,fitd2024,deceptivedelight2024}. Turn-level strategy annotations are produced by Qwen3-8B, a procedure we validate through ablation in Section~\\ref{sec:ablation}: scrambled labels yield only a 1~pp reduction in OOD detection performance, confirming that the fine-tuning process on persuasion-related text, rather than label accuracy, is the primary driver of cross-attack generalization.\n46\t\n47\t\\subsection{Stage 2: Conversation-Level Classification}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_68ab8931ec4907f792551ec1fb03c882:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-001260"
+        }
+      ]
+    }
+  ]
+}

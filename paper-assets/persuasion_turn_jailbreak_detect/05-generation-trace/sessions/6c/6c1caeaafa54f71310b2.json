@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "6c1caeaafa54f71310b2",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper fig1 paperbanana",
+  "task_key": "worker_paper_fig1_paperbanana_20260523T043632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig1_paperbanana_20260523T043632_result.json",
+    "occurrence": 1,
+    "bytes": 2109980,
+    "sha256": "86f1ce1baae24bd8518e64233890682af2ed5283ddbb4b5ae19445736cd23d47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2135734,
+                "serialized_sha256": "a29516d75d937129d062e4da8d1aa82bbc1aa974a56952796f04c7d0c5976f50",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig1-paperbanana.md"
+}

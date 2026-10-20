@@ -1,0 +1,151 @@
+{
+  "exp_id": "exp2_actorattack_ood",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:41:47.379Z",
+    "updated_at": "2026-05-18T12:21:09.733Z",
+    "hypothesis": "Persuasion-grounded DeBERTa will generalize to ActorAttack (a structurally distinct multi-persona attack), extending cross-attack OOD evidence beyond DD and FITD to a third unseen attack type",
+    "spec": {
+      "command": "generate_actorattack.py + evaluate all variants",
+      "server": "westd-33183",
+      "data_path": "data/generated/actorattack_all.jsonl (80 jailbreak) + plan_002_splits/test.jsonl (38 benign)",
+      "data_count": 118,
+      "model_name": "DeBERTa-v3-base (7 variants × 3 seeds) + RoBERTa-base (3 variants × 3 seeds)",
+      "seed": "42,123,456",
+      "checkpoint_path": "checkpoints/*/",
+      "log_path": "results/exp2_actorattack_ood.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "deberta_9class": {
+        "k1": 0.773,
+        "k1_std": 0.041,
+        "k2": 0.855,
+        "k2_std": 0.048,
+        "k3": 0.921,
+        "k3_std": 0.046,
+        "k5": 0.966,
+        "k5_std": 0.028,
+        "full": 0.972,
+        "full_std": 0.026
+      },
+      "deberta_binary": {
+        "k1": 0.788,
+        "k1_std": 0.02,
+        "k2": 0.935,
+        "k2_std": 0.018,
+        "k3": 0.976,
+        "k3_std": 0.005,
+        "k5": 0.995,
+        "k5_std": 0.005,
+        "full": 0.995,
+        "full_std": 0.005
+      },
+      "deberta_scrambled": {
+        "k1": 0.652,
+        "k1_std": 0.034,
+        "k2": 0.804,
+        "k2_std": 0.053,
+        "k3": 0.854,
+        "k3_std": 0.046,
+        "k5": 0.91,
+        "k5_std": 0.052,
+        "full": 0.931,
+        "full_std": 0.04
+      },
+      "deberta_mlm": {
+        "k1": 0.736,
+        "k1_std": 0.15,
+        "k2": 0.909,
+        "k2_std": 0.058,
+        "k3": 0.945,
+        "k3_std": 0.039,
+        "k5": 0.929,
+        "k5_std": 0.033,
+        "full": 0.893,
+        "full_std": 0.08
+      },
+      "deberta_wiki_mlm": {
+        "k1": 0.656,
+        "k1_std": 0.224,
+        "k2": 0.672,
+        "k2_std": 0.252,
+        "k3": 0.693,
+        "k3_std": 0.28,
+        "k5": 0.689,
+        "k5_std": 0.285,
+        "full": 0.686,
+        "full_std": 0.297
+      },
+      "deberta_topic": {
+        "k1": 0.513,
+        "k1_std": 0.077,
+        "k2": 0.58,
+        "k2_std": 0.109,
+        "k3": 0.565,
+        "k3_std": 0.1,
+        "k5": 0.615,
+        "k5_std": 0.111,
+        "full": 0.625,
+        "full_std": 0.141
+      },
+      "deberta_vanilla": {
+        "k1": 0.337,
+        "k1_std": 0.049,
+        "k2": 0.306,
+        "k2_std": 0.026,
+        "k3": 0.284,
+        "k3_std": 0.011,
+        "k5": 0.262,
+        "k5_std": 0.006,
+        "full": 0.258,
+        "full_std": 0
+      },
+      "roberta_9class": {
+        "k1": 0.738,
+        "k1_std": 0.033,
+        "k2": 0.805,
+        "k2_std": 0.033,
+        "k3": 0.884,
+        "k3_std": 0.066,
+        "k5": 0.925,
+        "k5_std": 0.066,
+        "full": 0.939,
+        "full_std": 0.046
+      },
+      "roberta_mlm": {
+        "k1": 0.633,
+        "k1_std": 0.133,
+        "k2": 0.665,
+        "k2_std": 0.15,
+        "k3": 0.713,
+        "k3_std": 0.174,
+        "k5": 0.719,
+        "k5_std": 0.184,
+        "full": 0.73,
+        "full_std": 0.201
+      },
+      "roberta_vanilla": {
+        "k1": 0.41,
+        "k1_std": 0.126,
+        "k2": 0.425,
+        "k2_std": 0.143,
+        "k3": 0.432,
+        "k3_std": 0.144,
+        "k5": 0.466,
+        "k5_std": 0.144,
+        "full": 0.466,
+        "full_std": 0.163
+      },
+      "n_samples": 118,
+      "note": "ActorAttack harder than DD OOD. Binary > 9-class. Scrambled clearly worse than 9-class (0.931 vs 0.972). Evidence hierarchy holds on both encoders."
+    },
+    "completed_at": "2026-05-18T12:21:09.733Z"
+  },
+  "timestamp": "2026-05-18T12:21:09.827324+00:00",
+  "trigger": "update_registry"
+}

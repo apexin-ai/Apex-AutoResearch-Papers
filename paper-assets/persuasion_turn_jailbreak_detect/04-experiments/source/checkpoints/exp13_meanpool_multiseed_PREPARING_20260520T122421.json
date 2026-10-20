@@ -1,0 +1,77 @@
+{
+  "exp_id": "exp13_meanpool_multiseed",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:35:41.779Z",
+    "updated_at": "2026-05-20T12:24:21.733Z",
+    "hypothesis": "Mean pooling classifier (without temporal modeling) will perform comparably to BiGRU across 3 seeds on DeBERTa-v3 9-class, confirming that per-turn representations alone drive detection and GRU temporal modeling is unnecessary — cross-validating shuffle ablation results",
+    "parent": "plan_015_dd_eval",
+    "spec": {
+      "command": "python scripts/meanpool_multiseed.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/ + data/generated/",
+      "data_count": 586,
+      "model_name": "DeBERTa-v3-base 9-class (3 seeds)",
+      "seed": "42,123,456",
+      "checkpoint_path": "checkpoints/plan_002_seed*/",
+      "log_path": "results/meanpool_multiseed.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "dd_ood": {
+        "k1": {
+          "mean": 0.9905,
+          "std": 0.0134
+        },
+        "k2": {
+          "mean": 0.9936,
+          "std": 0.009
+        },
+        "k3": {
+          "mean": 0.9842,
+          "std": 0.016
+        },
+        "k5": {
+          "mean": 0.9968,
+          "std": 0.0045
+        },
+        "full": {
+          "mean": 0.9905,
+          "std": 0.0134
+        }
+      },
+      "actorattack": {
+        "k1": {
+          "mean": 0.8301,
+          "std": 0.0272
+        },
+        "k2": {
+          "mean": 0.903,
+          "std": 0.0229
+        },
+        "k3": {
+          "mean": 0.9622,
+          "std": 0.0076
+        },
+        "k5": {
+          "mean": 0.9716,
+          "std": 0.0153
+        },
+        "full": {
+          "mean": 0.9623,
+          "std": 0.0151
+        }
+      },
+      "metric": "f1_macro",
+      "classifier": "mean_pooling + linear",
+      "encoder": "9-class DeBERTa-v3-base",
+      "note": "Mean pooling matches BiGRU on DD OOD (all K ≥0.98). ActorAttack K≥3 also ≥0.96. Confirms temporal modeling not necessary."
+    }
+  },
+  "timestamp": "2026-05-20T12:24:21.866813+00:00",
+  "trigger": "update_registry"
+}

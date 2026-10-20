@@ -1,0 +1,933 @@
+{
+  "schema_version": "1.0",
+  "id": "8b2a20251c085c3121e3",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "figure fig1 architecture v2",
+  "task_key": "worker_figure_fig1-architecture-v2_20260518T082453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig1-architecture-v2_20260518T082453.log",
+    "occurrence": 1,
+    "bytes": 62766,
+    "sha256": "0e2f9d4a35428045a43f9a903b227b665786b7562b1e3a7b0552e2ea2d56369d"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+                "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "83fc82d0-cdb6-4798-b52f-3f489b33b63d",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779108000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "bbb974d0-25f8-45a2-b479-e4271ba95a74",
+                "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the draw-paper-figure skill for best practices, then write and execute the figure generation script on the remote server.",
+              "signature": "Es0CClkIDRgCKkDUVU5dvc8/dU42315xbHKtZDpNCLazoeoBBMecV5GsGsQguWcbvqC+1VyWlaO3xCwqb3bFH3O+rWrFNdldqWmUMg9jbGF1ZGUtb3B1cy00LTY4ABIMh/BJAKPfBNeC45ZFGgyntIiryGFIT0cTedIiMAvjTV1NFCPzwKADdvHxloe1MlqzzW0eeD8pTiyGYhvC3uUTgH6bAKnj0+jOI2oZviqhAdr/nKIePZwb4wg6a3YNu5TYLE+hD1MrdyvoQI+2nY1fXApO9Zekyyvx+QvlkMe4uSIrPBU/bSGVIZ3hIxemYcwrP4btqSLIhl9ktENGtDRuaI+zeF8pXnTPMNe5tAAou7e1c94sHR9sCeCvOqfML0oGtm2Xp8osAah2fPlr/cvyKx2v/qLcxNYi8chHXVhhaa/EkMEdaqofqrwLYmoY9duOGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "f8accb7a-9ae3-4dfe-87b9-e52bcb31d38a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KA4krwYyv66iHGGH2PsMws",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13964,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13964
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the figure drawing skill first, then generate the architecture diagram."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "46e8f8e3-de09-4c76-8c8d-5857b84b5a3f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KA4krwYyv66iHGGH2PsMws",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13964,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13964
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R5FGR1sJKPoeXyieTdn7h6",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "7b141994-0260-48c7-8ca2-79f952050d39",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KA4krwYyv66iHGGH2PsMws",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13964,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13964
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T08:25:07.503Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R5FGR1sJKPoeXyieTdn7h6",
+              "type": "tool_result",
+              "content": "1\t---\n2\tdescription: 生成学术论文级 matplotlib 图表——按 narrative_intent + design_notes 设计，从 pattern 库选用技法，远程 SSH 执行输出 PDF/PNG\n3\tname: draw-paper-figure\n4\tscope: global\n5\ttags:\n6\t  - research\n7\t  - visualization\n8\t  - paper\n9\t  - matplotlib\n10\tversion: 2\n11\ttools:\n12\t  - ssh_execute\n13\t---\n14\t\n15\t# Draw Paper Figure — 学术图表生成（Worker 执行）\n16\t\n17\tWorker 收到画图任务时读本 skill。**画图前必读** `skills/global/paper-visualization.skill.md` 的 L1/L2 原则和 L3 pattern 库。\n18\t\n19\t本 skill 提供：\n20\t- 通用样式（rcParams + 色板）\n21\t- 三个常用图表的起点模板（reliability/heatmap/scatter）\n22\t- NeurIPS 经验提炼的 pattern 实现示例\n23\t\n24\t## 输入字段（从 Paper Agent 传入）\n25\t\n26\t- `fig_id` / `type` / `placement` / `data_source` / `aspect_ratio` / 输出路径\n27\t- **`narrative_intent`**：一句话，这张图要让读者相信什么\n28\t- **`design_notes`**：从 paper-visualization L3 选的 pattern 列表\n29\t\n30\t## 画图工作流\n31\t\n32\t1. 读 paper-visualization skill 的 L1 防丑原则 + L2 叙事原则\n33\t2. 根据 `narrative_intent` 选起点模板（本 skill §模板）\n34\t3. 按 `design_notes` 中每个 pattern 添加相应技法（本 skill §pattern 实现）\n35\t4. 提交前过本 skill §checklist\n36\t\n37\t## 通用样式标准（所有图表必须遵守）\n38\t\n39\t```python\n40\timport matplotlib\n41\tmatplotlib.use('Agg')\n42\timport matplotlib.pyplot as plt\n43\timport matplotlib.patches as mpatches\n44\timport numpy as np\n45\t\n46\t# 字体和全局样式\n47\tplt.rcParams.update({\n48\t    'font.family': 'DejaVu Sans',\n49\t    'font.size': 11,\n50\t    'axes.titlesize': 13,\n51\t    'axes.labelsize': 12,\n52\t    'xtick.labelsize': 10,\n53\t    'ytick.labelsize': 10,\n54\t    'legend.fontsize': 10,\n55\t    'figure.dpi': 300,\n56\t    'savefig.dpi': 300,\n57\t    'savefig.bbox': 'tight',\n58\t    'savefig.pad_inches': 0.05,\n59\t    'axes.spines.top': False,\n60\t    'axes.spines.right': False,\n61\t    'lines.linewidth': 1.8,\n62\t})\n63\t\n64\t# 色盲友好配色（Okabe-Ito）\n65\tCOLORS = {\n66\t    'fp16':   '#E69F00',  # 橙黄\n67\t    'nf4':    '#56B4E9',  # 天蓝\n68\t    'int8':   '#009E73',  # 绿\n69\t    'gptq':   '#F0E442',  # 黄\n70\t    'awq':    '#CC79A7',  # 粉紫\n71\t    'llama':  '#0072B2',  # 深蓝\n72\t    'qwen3':  '#D55E00',  # 橙红\n73\t    'gemma':  '#009E73',  # 绿\n74\t    'mistral':'#CC79A7',  # 粉紫\n75\t    'phi3':   '#F0E442',  # 黄\n76\t}\n77\t\n78\t# 方法标签\n79\tMETHOD_LABELS = {\n80\t    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n81\t    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n82\t}\n83\t```\n84\t\n85\t---\n86\t\n87\t## 1. Reliability Diagram（校准图）\n88\t\n89\t**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n90\t\n91\t```python\n92\tdef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n93\t                              label='', color='#0072B2',\n94\t                              title='Reliability Diagram',\n95\t                              outpath='reliability.pdf'):\n96\t    \"\"\"\n97\t    confidences, accuracies: 各样本的 confidence 和 binary correct (0/1)\n98\t    \"\"\"\n99\t    bin_edges = np.linspace(0, 1, n_bins + 1)\n100\t    bin_accs, bin_confs, bin_counts = [], [], []\n101\t\n102\t    for i in range(n_bins):\n103\t        lo, hi = bin_edges[i], bin_edges[i+1]\n104\t        mask = (confidences >= lo) & (confidences < hi)\n105\t        if mask.sum() > 0:\n106\t            bin_accs.append(accuracies[mask].mean())\n107\t            bin_confs.append(confidences[mask].mean())\n108\t            bin_counts.append(mask.sum())\n109\t        else:\n110\t            bin_accs.append(float('nan'))\n111\t            bin_confs.append((lo + hi) / 2)\n112\t            bin_counts.append(0)\n113\t\n114\t    bin_accs = np.array(bin_accs)\n115\t    bin_confs = np.array(bin_confs)\n116\t\n117\t    fig, (ax_main, ax_hist) = plt.subplots(\n118\t        2, 1, figsize=(4, 4.5), gridspec_kw={'height_ratios': [3, 1]},\n119\t        sharex=True\n120\t    )\n121\t\n122\t    # 主图：gaps\n123\t    ax_main.bar(bin_edges[:-1], bin_accs, width=1/n_bins, align='edge',\n124\t                color=color, alpha=0.7, label='Accuracy', zorder=2)\n125\t    ax_main.bar(bin_edges[:-1], bin_confs - bin_accs, width=1/n_bins, align='edge',\n126\t                bottom=bin_accs, color='red', alpha=0.3, label='Gap', zorder=2)\n127\t    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, zorder=3, label='Perfect')\n128\t    ax_main.set_xlim(0, 1); ax_main.set_ylim(0, 1)\n129\t    ax_main.set_ylabel('Accuracy')\n130\t    ax_main.set_title(title)\n131\t    ax_main.legend(loc='upper left', fontsize=9)\n132\t    ax_main.grid(True, alpha=0.3, zorder=1)\n133\t\n134\t    # ECE annotation\n135\t    ece = np.nansum(np.array(bin_counts) / sum(bin_counts) *\n136\t                    np.abs(bin_accs - bin_confs))\n137\t    ax_main.text(0.98, 0.02, f'ECE={ece:.3f}', transform=ax_main.transAxes,\n138\t                 ha='right', va='bottom', fontsize=9,\n139\t                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8))\n140\t\n141\t    # 直方图（样本密度）\n142\t    ax_hist.bar(bin_edges[:-1], bin_counts, width=1/n_bins, align='edge',\n143\t                color=color, alpha=0.5)\n144\t    ax_hist.set_ylabel('Count', fontsize=9)\n145\t    ax_hist.set_xlabel('Confidence')\n146\t\n147\t    plt.tight_layout()\n148\t    plt.savefig(outpath)\n149\t    plt.close()\n150\t    print(f'Saved: {outpath}')\n151\t```\n152\t\n153\t### 批量生成 6 张对比图（EMNLP 论文用）\n154\t\n155\t选图策略：每 Regime 选最大 ΔECE 的量化方法 vs FP16，LLaMA + Qwen3 各一。\n156\t\n157\t```python\n158\t# 在 A6000 服务器上执行\n159\tFIGURE_PLAN = [\n160\t    # (dataset, model, quant, regime, title)\n161\t    ('hellaswag',   'llama',  'nf4',  'A', 'HellaSwag (Regime A) — LLaMA'),\n162\t    ('hellaswag',   'qwen3',  'nf4',  'A', 'HellaSwag (Regime A) — Qwen3'),\n163\t    ('arc_c',       'llama',  'gptq', 'B', 'ARC-C (Regime B) — LLaMA'),\n164\t    ('arc_c',       'qwen3',  'gptq', 'B', 'ARC-C (Regime B) — Qwen3'),\n165\t    ('truthfulqa',  'llama',  'awq',  'C', 'TruthfulQA (Regime C) — LLaMA'),\n166\t    ('truthfulqa',  'qwen3',  'awq',  'C', 'TruthfulQA (Regime C) — Qwen3'),\n167\t]\n168\t```\n169\t\n170\t---\n171\t\n172\t## 2. ECE Heatmap（方法 × 数据集 ΔECE）\n173\t\n174\t**用途**：Main Results Table 的可视化版本，颜色 = ΔECE（红=恶化，蓝=改善）。\n175\t\n176\t```python\n177\tdef plot_ece_heatmap(delta_ece_matrix, methods, datasets,\n178\t                     title='ΔECE Heatmap (vs FP16)',\n179\t                     outpath='ece_heatmap.pdf'):\n180\t    \"\"\"\n181\t    delta_ece_matrix: shape (n_methods, n_datasets), 正=ECE 恶化, 负=改善\n182\t    \"\"\"\n183\t    import matplotlib.colors as mcolors\n184\t\n185\t    fig, ax = plt.subplots(figsize=(len(datasets) * 1.2, len(methods) * 0.8 + 1))\n186\t\n187\t    # 发散色图（中心=0, 红=恶化, 蓝=改善）\n188\t    vmax = np.nanmax(np.abs(delta_ece_matrix))\n189\t    norm = mcolors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)\n190\t    cmap = plt.cm.RdBu_r\n191\t\n192\t    im = ax.imshow(delta_ece_matrix, cmap=cmap, norm=norm, aspect='auto')\n193\t\n194\t    # 数值标注\n195\t    for i in range(len(methods)):\n196\t        for j in range(len(datasets)):\n197\t            val = delta_ece_matrix[i, j]\n198\t            if not np.isnan(val):\n199\t                color = 'white' if abs(val) > vmax * 0.6 else 'black'\n200\t                sign = '+' if val > 0 else ''\n201\t                ax.text(j, i, f'{sign}{val:.1%}', ha='center', va='center',\n202\t                        fontsize=9, color=color, fontweight='bold')\n203\t\n204\t    ax.set_xticks(range(len(datasets)))\n205\t    ax.set_yticks(range(len(methods)))\n206\t    ax.set_xticklabels(datasets, rotation=30, ha='right')\n207\t    ax.set_yticklabels(methods)\n208\t    ax.set_title(title)\n209\t\n210\t    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n211\t    cbar.set_label('ΔECE (quantized − FP16)')\n212\t    cbar.ax.axhline(0, color='k', linewidth=0.8)\n213\t\n214\t    plt.tight_layout()\n215\t    plt.savefig(outpath)\n216\t    plt.close()\n217\t    print(f'Saved: {outpath}')\n218\t```\n219\t\n220\t---\n221\t\n222\t## 3. T* Scatter Plot（任务 Regime 可视化）\n223\t\n224\t**用途**：展示 5 个模型的 FP16 T* 分布，证明 Regime 跨模型一致性。\n225\t\n226\t```python\n227\tdef plot_tstar_scatter(tstar_data, outpath='tstar_scatter.pdf'):\n228\t    \"\"\"\n229\t    tstar_data: dict of {model_name: {dataset: T*_value}}\n230\t    \"\"\"\n231\t    DATASETS = ['HellaSwag', 'ARC-C', 'MMLU', 'BoolQ', 'TruthfulQA', 'NQ-Open']\n232\t    MODELS = ['LLaMA-3.1-8B', 'Qwen3-4B', 'Gemma-3-12B', 'Mistral-7B', 'Phi-3-mini']\n233\t    REGIME_BANDS = [\n234\t        (0, 1,    '#EBF5FB', 'Regime A\\n(T*<1)'),\n235\t        (1, 5,    '#EAFAF1', 'Regime B\\n(1≤T*<5)'),\n236\t        (5, 10.5, '#FDF2F8', 'Regime C\\n(T*≥5)'),\n237\t    ]\n238\t\n239\t    fig, ax = plt.subplots(figsize=(8, 4))\n240\t\n241\t    # 背景色区\n242\t    for lo, hi, color, label in REGIME_BANDS:\n243\t        ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n244\t        ax.text(5.8, (lo + hi) / 2, label, va='center', fontsize=9,\n245\t                color='gray', zorder=1)\n246\t\n247\t    model_colors = [COLORS.get(m.split('-')[0].lower(), '#333333') for m in MODELS]\n248\t\n249\t    x = np.arange(len(DATASETS))\n250\t    for mi, (model, color) in enumerate(zip(MODELS, model_colors)):\n251\t        y = [tstar_data.get(model, {}).get(ds, np.nan) for ds in DATASETS]\n252\t        ax.plot(x, y, 'o-', color=color, label=model,\n253\t                markersize=7, alpha=0.85, zorder=2)\n254\t\n255\t    ax.set_xticks(x)\n256\t    ax.set_xticklabels(DATASETS, rotation=15, ha='right')\n257\t    ax.set_ylabel('T* (FP16)')\n258\t    ax.set_ylim(0, 10.5)\n259\t    ax.set_title('Calibration Regime by Task — 5 Models (FP16)')\n260\t    ax.axhline(1, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n261\t    ax.axhline(5, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n262\t    ax.legend(loc='upper left', fontsize=9, ncol=2)\n263\t    ax.grid(True, alpha=0.2, axis='y', zorder=1)\n264\t\n265\t    plt.tight_layout()\n266\t    plt.savefig(outpath)\n267\t    plt.close()\n268\t    print(f'Saved: {outpath}')\n269\t```\n270\t\n271\t---\n272\t\n273\t## 4. 生成流程（SSH 执行）\n274\t\n275\t```python\n276\t# Step 1: 写脚本到服务器\n277\tssh_execute(\"\"\"cat > /tmp/gen_figures.py << 'PYEOF'\n278\t# ... 粘贴上方代码 + 调用逻辑 ...\n279\tPYEOF\"\"\")\n280\t\n281\t# Step 2: 安装依赖（如有）\n282\tssh_execute(\"pip install matplotlib numpy -q\")\n283\t\n284\t# Step 3: 执行\n285\tssh_execute(\"cd ~/quant-calibration-gap && python /tmp/gen_figures.py\")\n286\t\n287\t# Step 4: PNG → PDF（LaTeX 用 PDF 更清晰）\n288\tssh_execute(\"\"\"\n289\tfor f in ~/quant-calibration-gap/figures/paper/*.png; do\n290\t    convert \"$f\" \"${f%.png}.pdf\" 2>/dev/null || \\\n291\t    python3 -c \"\n292\timport matplotlib.pyplot as plt\n293\timport matplotlib.image as mpimg\n294\timg = mpimg.imread('$f')\n295\tfig = plt.figure(figsize=(img.shape[1]/300, img.shape[0]/300))\n296\tax = fig.add_axes([0,0,1,1])\n297\tax.imshow(img); ax.axis('off')\n298\tplt.savefig('${f%.png}.pdf', dpi=300, bbox_inches='tight', pad_inches=0)\n299\tplt.close()\"\n300\tdone\n301\t\"\"\")\n302\t\n303\t# Step 5: 验证\n304\tssh_execute(\"ls ~/quant-calibration-gap/figures/paper/\")\n305\t```\n306\t\n307\t---\n308\t\n309\t## 5. Pattern 实现（按 design_notes 选用）\n310\t\n311\t完整 pattern 目录和何时用见 `paper-visualization.skill.md` L3。这里给可直接复制的实现。\n312\t\n313\t### Pattern A：Regime Background Bands\n314\t\n315\t```python\n316\timport matplotlib.patheffects as pe\n317\t# 横向 regime bands\n318\tREGIME_BANDS = [(0, 1, '#EBF5FB', 'Regime A'),\n319\t                (1, 5, '#EAFAF1', 'Regime B'),\n320\t                (5, 10.5, '#FDF2F8', 'Regime C')]\n321\tfor lo, hi, color, label in REGIME_BANDS:\n322\t    ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n323\t    ax.text(x_label_pos, (lo+hi)/2, label, va='center',\n324\t            fontsize=9, color='gray', zorder=1)\n325\t\n326\t# 单一 collapse zone\n327\tax.axhspan(-5, 5, color='#FDEDEC', alpha=0.5, zorder=0)\n328\tax.text(0.02, 2.5, 'collapse zone', fontsize=8,\n329\t        color='#ccaaaa', fontstyle='italic', va='center')\n330\t```\n331\t\n332\t### Pattern B：发散面积 fill_between\n333\t\n334\t```python\n335\t# alpha 极低（0.06）：不抢眼但有面积\n336\tax.fill_between(x_range, curve_upper, curve_lower,\n337\t                alpha=0.06, color='#555555', zorder=1, label='_nolegend_')\n338\t```\n339\t\n340\t### Pattern C：参考线锚定真实值\n341\t\n342\t```python\n343\tax.axhline(y=actual_value, color=color, linestyle=':',\n344\t           linewidth=0.8, alpha=0.3, zorder=1)\n345\tt = ax.text(x_pos, actual_value + 1, 'actual W3A16',\n346\t            fontsize=7, color=color, alpha=0.5, ha='center')\n347\tt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n348\t```\n349\t\n350\t### Pattern D：信息层级 marker（hollow vs solid by sample size）\n351\t\n352\t```python\n353\t# 实心 = n >= 50, 空心带 n 标注 = n < 50\n354\tsolid_mask = [n >= 50 for n in n_vals]\n355\tfor x, y, n, solid in zip(xs, ys, n_vals, solid_mask):\n356\t    if solid:\n357\t        ax.plot(x, y, marker=marker, color=color, markersize=6,\n358\t                markerfacecolor=color, markeredgewidth=0)\n359\t    else:\n360\t        ax.plot(x, y, marker=marker, color=color, markersize=6,\n361\t                markerfacecolor='white', markeredgecolor=color,\n362\t                markeredgewidth=1.2, zorder=4)\n363\t        ax.annotate(f'n={n}', (x, y), textcoords='offset points',\n364\t                    xytext=(0, 7), fontsize=5, color=color,\n365\t                    ha='center', fontstyle='italic')\n366\t```\n367\t\n368\t### Pattern E：Wilson Binomial CI\n369\t\n370\t```python\n371\tdef wilson_ci(p, n, z=1.96):\n372\t    if n == 0: return 0, 0\n373\t    denom = 1 + z**2 / n\n374\t    center = (p + z**2 / (2*n)) / denom\n375\t    half = z * np.sqrt((p*(1-p) + z**2/(4*n)) / n) / denom\n376\t    return max(0, center - half), min(1, center + half)\n377\t\n378\t# 用法\n379\tlo, hi = wilson_ci(accuracy, n)\n380\tax.errorbar(x, accuracy*100, yerr=[[accuracy*100 - lo*100], [hi*100 - accuracy*100]],\n381\t            fmt='o', capsize=4, capthick=0.8, elinewidth=0.8,\n382\t            markeredgecolor='white', markeredgewidth=1.0)\n383\t```\n384\t\n385\t### Pattern F：Per-label offset dict（防标注重叠）\n386\t\n387\t```python\n388\tlabel_offsets = {\n389\t    'Qwen3-8B':  (6, -12),\n390\t    'Qwen3-4B':  (-55, 4),\n391\t    'Llama-8B':  (6, 6),\n392\t}\n393\tfor name, (x, y) in data.items():\n394\t    ox, oy = label_offsets.get(name, (6, 6))\n395\t    ax.annotate(name, (x, y), xytext=(ox, oy),\n396\t                textcoords='offset points', fontsize=7,\n397\t                arrowprops=dict(arrowstyle='-', color='gray',\n398\t                                lw=0.4) if abs(ox) > 20 else None)\n399\t```\n400\t\n401\t### Pattern G：Hatching 加分类维度\n402\t\n403\t```python\n404\tfrom matplotlib.patches import Patch\n405\tfor is_collapse, bar in zip(collapse_flags, bars):\n406\t    if is_collapse:\n407\t        bar.set_hatch('///')\n408\t        bar.set_alpha(0.7)\n409\t# Legend 加 hatching 说明\n410\tlegend_patch = Patch(facecolor='gray', hatch='///', alpha=0.7, label='Collapse')\n411\tax.legend(handles=[legend_patch], loc='lower right')\n412\t```\n413\t\n414\t### Pattern H：Multi-panel 非对称布局\n415\t\n416\t```python\n417\tfig, axes = plt.subplots(1, 2, figsize=(6.5, 3.2),\n418\t                          gridspec_kw={'width_ratios': [1.4, 1]})\n419\t# axes[0] 是主面板（1.4x 宽），axes[1] 副面板\n420\t# 给每个 panel 写 insight subtitle\n421\taxes[0].set_title('(a) Quantization shifts confidence', fontsize=9, pad=6)\n422\taxes[1].set_title('(b) Temperature scaling recovers it', fontsize=9, pad=6)\n423\t```\n424\t\n425\t### Pattern I：Broken axis（异常值或对数 0）\n426\t\n427\t```python\n428\td = 0.012  # 斜线长度\n429\tkwargs = dict(transform=ax.transAxes, color='black',\n430\t              clip_on=False, linewidth=0.6)\n431\tax.plot((1-d, 1+d), (-d, +d), **kwargs)\n432\tax.plot((1-d, 1+d), (1-d, 1+d), **kwargs)\n433\t```\n434\t\n435\t### Pattern J：Path-effect 文字描边\n436\t\n437\t```python\n438\timport matplotlib.patheffects as pe\n439\tt = ax.text(x, y, 'label', fontsize=8, color='red')\n440\tt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n441\t```\n442\t\n443\t### Pattern K：Concept curve（合成轨迹建立直觉）\n444\t\n445\t```python\n446\t# 完全不基于实验数据的概念曲线\n447\tx = np.linspace(0, 1, 100)\n448\ttrajectory = baseline * (1 - np.cos(np.pi * x)) / 2\n449\tax.plot(x, trajectory, color='#0072B2', linewidth=2,\n450\t        solid_capstyle='round', label='Theoretical trajectory')\n451\t\n452\t# 关键节点用 insight 标注\n453\tax.annotate('gap eliminated', xy=(1.0, final_y),\n454\t            xytext=(0.7, final_y - 5), color='#388E3C',\n455\t            fontstyle='italic', fontsize=9,\n456\t            arrowprops=dict(arrowstyle='->', color='#388E3C', lw=0.8))\n457\t```\n458\t\n459\t### Pattern L：Forest Plot（meta-analysis 风格）\n460\t\n461\t```python\n462\t# 3-column GridSpec: label | CI plot | inline stats\n463\tfig = plt.figure(figsize=(7, 3.5))\n464\tgs = fig.add_gridspec(1, 3, width_ratios=[0.8, 2, 1.2], wspace=0.1)\n465\tax_label = fig.add_subplot(gs[0]); ax_label.axis('off')\n466\tax_main = fig.add_subplot(gs[1])\n467\tax_stat = fig.add_subplot(gs[2]); ax_stat.axis('off')\n468\t\n469\t# 等价带（半透明 axvspan）\n470\tax_main.axvspan(-1, 1, alpha=0.1, color='gray', label='±1pp equivalence')\n471\t\n472\t# 每行：dot + horizontal CI line\n473\tfor i, (name, mean, lo, hi, pval) in enumerate(rows):\n474\t    ax_label.text(0.5, i, name, fontsize=9, va='center', ha='center')\n475\t    ax_main.plot([lo, hi], [i, i], color='black', linewidth=1)\n476\t    ax_main.plot(mean, i, 'D', color='#0072B2', markersize=7)\n477\t    ax_stat.text(0.5, i, f'{mean:+.2f} [{lo:+.2f}, {hi:+.2f}]  p={pval:.3f}',\n478\t                 fontsize=8, va='center', ha='center', family='monospace')\n479\t\n480\tax_main.axvline(0, color='black', linestyle='--', linewidth=0.6)\n481\tax_main.invert_yaxis()\n482\t```\n483\t\n484\t---\n485\t\n486\t## 6. 图表 Checklist（提交前）\n487\t\n488\t### L1 防丑（底线）\n489\t- [ ] 300 DPI（`savefig.dpi=300`）+ PDF 矢量\n490\t- [ ] 色盲友好配色（Okabe-Ito 或语义色板）\n491\t- [ ] 所有轴有 label + 单位\n492\t- [ ] 字号 ≥ 10pt（缩到 column width 后仍可读）\n493\t- [ ] 无 dual y-axis、无 3D、无 pie\n494\t- [ ] Bar chart 从 0 起（line/scatter 可非 0）\n495\t- [ ] 文字水平不旋转\n496\t\n497\t### L2 叙事（说服力）\n498\t- [ ] 能用一句话写出 figure takeaway（应等于 `narrative_intent`）\n499\t- [ ] `design_notes` 中的 pattern 都已实现\n500\t- [ ] Subtitle / panel label 是 insight 不是描述\n501\t- [ ] 数据质量差异视觉可见（n < 50 用空心 / OOS 用 diamond 等）\n502\t- [ ] 颜色绑定语义而非数据顺序（整篇论文一致）\n503\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "3191f8a6-b4fe-4b4d-a32c-ca60a29142cf",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md",
+                "content": "---\ndescription: 生成学术论文级 matplotlib 图表——按 narrative_intent + design_notes 设计，从 pattern 库选用技法，远程 SSH 执行输出 PDF/PNG\nname: draw-paper-figure\nscope: global\ntags:\n  - research\n  - visualization\n  - paper\n  - matplotlib\nversion: 2\ntools:\n  - ssh_execute\n---\n\n# Draw Paper Figure — 学术图表生成（Worker 执行）\n\nWorker 收到画图任务时读本 skill。**画图前必读** `skills/global/paper-visualization.skill.md` 的 L1/L2 原则和 L3 pattern 库。\n\n本 skill 提供：\n- 通用样式（rcParams + 色板）\n- 三个常用图表的起点模板（reliability/heatmap/scatter）\n- NeurIPS 经验提炼的 pattern 实现示例\n\n## 输入字段（从 Paper Agent 传入）\n\n- `fig_id` / `type` / `placement` / `data_source` / `aspect_ratio` / 输出路径\n- **`narrative_intent`**：一句话，这张图要让读者相信什么\n- **`design_notes`**：从 paper-visualization L3 选的 pattern 列表\n\n## 画图工作流\n\n1. 读 paper-visualization skill 的 L1 防丑原则 + L2 叙事原则\n2. 根据 `narrative_intent` 选起点模板（本 skill §模板）\n3. 按 `design_notes` 中每个 pattern 添加相应技法（本 skill §pattern 实现）\n4. 提交前过本 skill §checklist\n\n## 通用样式标准（所有图表必须遵守）\n\n```python\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport numpy as np\n\n# 字体和全局样式\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# 色盲友好配色（Okabe-Ito）\nCOLORS = {\n    'fp16':   '#E69F00',  # 橙黄\n    'nf4':    '#56B4E9',  # 天蓝\n    'int8':   '#009E73',  # 绿\n    'gptq':   '#F0E442',  # 黄\n    'awq':    '#CC79A7',  # 粉紫\n    'llama':  '#0072B2',  # 深蓝\n    'qwen3':  '#D55E00',  # 橙红\n    'gemma':  '#009E73',  # 绿\n    'mistral':'#CC79A7',  # 粉紫\n    'phi3':   '#F0E442',  # 黄\n}\n\n# 方法标签\nMETHOD_LABELS = {\n    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n}\n```\n\n---\n\n## 1. Reliability Diagram（校准图）\n\n**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n\n```python\ndef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n                              label='', color='#0072B2',\n                              title='Reliability Diagram',\n                              outpath='reliability.pdf'):\n    \"\"\"\n    confidences, accuracies: 各样本的 confidence 和 binary correct (0/1)\n    \"\"\"\n    bin_edges = np.linspace(0, 1, n_bins + 1)\n    bin_accs, bin_confs, bin_counts = [], [], []\n\n    for i in range(n_bins):\n        lo, hi = bin_edges[i], bin_edges[i+1]\n        mask = (confidences >= lo) & (confidences < hi)\n        if mask.sum() > 0:\n            bin_accs.append(accuracies[mask].mean())\n            bin_confs.append(confidences[mask].mean())\n            bin_counts.append(mask.sum())\n        else:\n            bin_accs.append(float('nan'))\n            bin_confs.append((lo + hi) / 2)\n            bin_counts.append(0)\n\n    bin_accs = np.array(bin_accs)\n    bin_confs = np.array(bin_confs)\n\n    fig, (ax_main, ax_hist) = plt.subplots(\n        2, 1, figsize=(4, 4.5), gridspec_kw={'height_ratios': [3, 1]},\n        sharex=True\n    )\n\n    # 主图：gaps\n    ax_main.bar(bin_edges[:-1], bin_accs, width=1/n_bins, align='edge',\n                color=color, alpha=0.7, label='Accuracy', zorder=2)\n    ax_main.bar(bin_edges[:-1], bin_confs - bin_accs, width=1/n_bins, align='edge',\n                bottom=bin_accs, color='red', alpha=0.3, label='Gap', zorder=2)\n    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, zorder=3, label='Perfect')\n    ax_main.set_xlim(0, 1); ax_main.set_ylim(0, 1)\n    ax_main.set_ylabel('Accuracy')\n    ax_main.set_title(title)\n    ax_main.legend(loc='upper left', fontsize=9)\n    ax_main.grid(True, alpha=0.3, zorder=1)\n\n    # ECE annotation\n    ece = np.nansum(np.array(bin_counts) / sum(bin_counts) *\n                    np.abs(bin_accs - bin_confs))\n    ax_main.text(0.98, 0.02, f'ECE={ece:.3f}', transform=ax_main.transAxes,\n                 ha='right', va='bottom', fontsize=9,\n                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8))\n\n    # 直方图（样本密度）\n    ax_hist.bar(bin_edges[:-1], bin_counts, width=1/n_bins, align='edge',\n                color=color, alpha=0.5)\n    ax_hist.set_ylabel('Count', fontsize=9)\n    ax_hist.set_xlabel('Confidence')\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n### 批量生成 6 张对比图（EMNLP 论文用）\n\n选图策略：每 Regime 选最大 ΔECE 的量化方法 vs FP16，LLaMA + Qwen3 各一。\n\n```python\n# 在 A6000 服务器上执行\nFIGURE_PLAN = [\n    # (dataset, model, quant, regime, title)\n    ('hellaswag',   'llama',  'nf4',  'A', 'HellaSwag (Regime A) — LLaMA'),\n    ('hellaswag',   'qwen3',  'nf4',  'A', 'HellaSwag (Regime A) — Qwen3'),\n    ('arc_c',       'llama',  'gptq', 'B', 'ARC-C (Regime B) — LLaMA'),\n    ('arc_c',       'qwen3',  'gptq', 'B', 'ARC-C (Regime B) — Qwen3'),\n    ('truthfulqa',  'llama',  'awq',  'C', 'TruthfulQA (Regime C) — LLaMA'),\n    ('truthfulqa',  'qwen3',  'awq',  'C', 'TruthfulQA (Regime C) — Qwen3'),\n]\n```\n\n---\n\n## 2. ECE Heatmap（方法 × 数据集 ΔECE）\n\n**用途**：Main Results Table 的可视化版本，颜色 = ΔECE（红=恶化，蓝=改善）。\n\n```python\ndef plot_ece_heatmap(delta_ece_matrix, methods, datasets,\n                     title='ΔECE Heatmap (vs FP16)',\n                     outpath='ece_heatmap.pdf'):\n    \"\"\"\n    delta_ece_matrix: shape (n_methods, n_datasets), 正=ECE 恶化, 负=改善\n    \"\"\"\n    import matplotlib.colors as mcolors\n\n    fig, ax = plt.subplots(figsize=(len(datasets) * 1.2, len(methods) * 0.8 + 1))\n\n    # 发散色图（中心=0, 红=恶化, 蓝=改善）\n    vmax = np.nanmax(np.abs(delta_ece_matrix))\n    norm = mcolors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)\n    cmap = plt.cm.RdBu_r\n\n    im = ax.imshow(delta_ece_matrix, cmap=cmap, norm=norm, aspect='auto')\n\n    # 数值标注\n    for i in range(len(methods)):\n        for j in range(len(datasets)):\n            val = delta_ece_matrix[i, j]\n            if not np.isnan(val):\n                color = 'white' if abs(val) > vmax * 0.6 else 'black'\n                sign = '+' if val > 0 else ''\n                ax.text(j, i, f'{sign}{val:.1%}', ha='center', va='center',\n                        fontsize=9, color=color, fontweight='bold')\n\n    ax.set_xticks(range(len(datasets)))\n    ax.set_yticks(range(len(methods)))\n    ax.set_xticklabels(datasets, rotation=30, ha='right')\n    ax.set_yticklabels(methods)\n    ax.set_title(title)\n\n    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n    cbar.set_label('ΔECE (quantized − FP16)')\n    cbar.ax.axhline(0, color='k', linewidth=0.8)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n---\n\n## 3. T* Scatter Plot（任务 Regime 可视化）\n\n**用途**：展示 5 个模型的 FP16 T* 分布，证明 Regime 跨模型一致性。\n\n```python\ndef plot_tstar_scatter(tstar_data, outpath='tstar_scatter.pdf'):\n    \"\"\"\n    tstar_data: dict of {model_name: {dataset: T*_value}}\n    \"\"\"\n    DATASETS = ['HellaSwag', 'ARC-C', 'MMLU', 'BoolQ', 'TruthfulQA', 'NQ-Open']\n    MODELS = ['LLaMA-3.1-8B', 'Qwen3-4B', 'Gemma-3-12B', 'Mistral-7B', 'Phi-3-mini']\n    REGIME_BANDS = [\n        (0, 1,    '#EBF5FB', 'Regime A\\n(T*<1)'),\n        (1, 5,    '#EAFAF1', 'Regime B\\n(1≤T*<5)'),\n        (5, 10.5, '#FDF2F8', 'Regime C\\n(T*≥5)'),\n    ]\n\n    fig, ax = plt.subplots(figsize=(8, 4))\n\n    # 背景色区\n    for lo, hi, color, label in REGIME_BANDS:\n        ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n        ax.text(5.8, (lo + hi) / 2, label, va='center', fontsize=9,\n                color='gray', zorder=1)\n\n    model_colors = [COLORS.get(m.split('-')[0].lower(), '#333333') for m in MODELS]\n\n    x = np.arange(len(DATASETS))\n    for mi, (model, color) in enumerate(zip(MODELS, model_colors)):\n        y = [tstar_data.get(model, {}).get(ds, np.nan) for ds in DATASETS]\n        ax.plot(x, y, 'o-', color=color, label=model,\n                markersize=7, alpha=0.85, zorder=2)\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(DATASETS, rotation=15, ha='right')\n    ax.set_ylabel('T* (FP16)')\n    ax.set_ylim(0, 10.5)\n    ax.set_title('Calibration Regime by Task — 5 Models (FP16)')\n    ax.axhline(1, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n    ax.axhline(5, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n    ax.legend(loc='upper left', fontsize=9, ncol=2)\n    ax.grid(True, alpha=0.2, axis='y', zorder=1)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n---\n\n## 4. 生成流程（SSH 执行）\n\n```python\n# Step 1: 写脚本到服务器\nssh_execute(\"\"\"cat > /tmp/gen_figures.py << 'PYEOF'\n# ... 粘贴上方代码 + 调用逻辑 ...\nPYEOF\"\"\")\n\n# Step 2: 安装依赖（如有）\nssh_execute(\"pip install matplotlib numpy -q\")\n\n# Step 3: 执行\nssh_execute(\"cd ~/quant-calibration-gap && python /tmp/gen_figures.py\")\n\n# Step 4: PNG → PDF（LaTeX 用 PDF 更清晰）\nssh_execute(\"\"\"\nfor f in ~/quant-calibration-gap/figures/paper/*.png; do\n    convert \"$f\" \"${f%.png}.pdf\" 2>/dev/null || \\\n    python3 -c \"\nimport matplotlib.pyplot as plt\nimport matplotlib.image as mpimg\nimg = mpimg.imread('$f')\nfig = plt.figure(figsize=(img.shape[1]/300, img.shape[0]/300))\nax = fig.add_axes([0,0,1,1])\nax.imshow(img); ax.axis('off')\nplt.savefig('${f%.png}.pdf', dpi=300, bbox_inches='tight', pad_inches=0)\nplt.close()\"\ndone\n\"\"\")\n\n# Step 5: 验证\nssh_execute(\"ls ~/quant-calibration-gap/figures/paper/\")\n```\n\n---\n\n## 5. Pattern 实现（按 design_notes 选用）\n\n完整 pattern 目录和何时用见 `paper-visualization.skill.md` L3。这里给可直接复制的实现。\n\n### Pattern A：Regime Background Bands\n\n```python\nimport matplotlib.patheffects as pe\n# 横向 regime bands\nREGIME_BANDS = [(0, 1, '#EBF5FB', 'Regime A'),\n                (1, 5, '#EAFAF1', 'Regime B'),\n                (5, 10.5, '#FDF2F8', 'Regime C')]\nfor lo, hi, color, label in REGIME_BANDS:\n    ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n    ax.text(x_label_pos, (lo+hi)/2, label, va='center',\n            fontsize=9, color='gray', zorder=1)\n\n# 单一 collapse zone\nax.axhspan(-5, 5, color='#FDEDEC', alpha=0.5, zorder=0)\nax.text(0.02, 2.5, 'collapse zone', fontsize=8,\n        color='#ccaaaa', fontstyle='italic', va='center')\n```\n\n### Pattern B：发散面积 fill_between\n\n```python\n# alpha 极低（0.06）：不抢眼但有面积\nax.fill_between(x_range, curve_upper, curve_lower,\n                alpha=0.06, color='#555555', zorder=1, label='_nolegend_')\n```\n\n### Pattern C：参考线锚定真实值\n\n```python\nax.axhline(y=actual_value, color=color, linestyle=':',\n           linewidth=0.8, alpha=0.3, zorder=1)\nt = ax.text(x_pos, actual_value + 1, 'actual W3A16',\n            fontsize=7, color=color, alpha=0.5, ha='center')\nt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n```\n\n### Pattern D：信息层级 marker（hollow vs solid by sample size）\n\n```python\n# 实心 = n >= 50, 空心带 n 标注 = n < 50\nsolid_mask = [n >= 50 for n in n_vals]\nfor x, y, n, solid in zip(xs, ys, n_vals, solid_mask):\n    if solid:\n        ax.plot(x, y, marker=marker, color=color, markersize=6,\n                markerfacecolor=color, markeredgewidth=0)\n    else:\n        ax.plot(x, y, marker=marker, color=color, markersize=6,\n                markerfacecolor='white', markeredgecolor=color,\n                markeredgewidth=1.2, zorder=4)\n        ax.annotate(f'n={n}', (x, y), textcoords='offset points',\n                    xytext=(0, 7), fontsize=5, color=color,\n                    ha='center', fontstyle='italic')\n```\n\n### Pattern E：Wilson Binomial CI\n\n```python\ndef wilson_ci(p, n, z=1.96):\n    if n == 0: return 0, 0\n    denom = 1 + z**2 / n\n    center = (p + z**2 / (2*n)) / denom\n    half = z * np.sqrt((p*(1-p) + z**2/(4*n)) / n) / denom\n    return max(0, center - half), min(1, center + half)\n\n# 用法\nlo, hi = wilson_ci(accuracy, n)\nax.errorbar(x, accuracy*100, yerr=[[accuracy*100 - lo*100], [hi*100 - accuracy*100]],\n            fmt='o', capsize=4, capthick=0.8, elinewidth=0.8,\n            markeredgecolor='white', markeredgewidth=1.0)\n```\n\n### Pattern F：Per-label offset dict（防标注重叠）\n\n```python\nlabel_offsets = {\n    'Qwen3-8B':  (6, -12),\n    'Qwen3-4B':  (-55, 4),\n    'Llama-8B':  (6, 6),\n}\nfor name, (x, y) in data.items():\n    ox, oy = label_offsets.get(name, (6, 6))\n    ax.annotate(name, (x, y), xytext=(ox, oy),\n                textcoords='offset points', fontsize=7,\n                arrowprops=dict(arrowstyle='-', color='gray',\n                                lw=0.4) if abs(ox) > 20 else None)\n```\n\n### Pattern G：Hatching 加分类维度\n\n```python\nfrom matplotlib.patches import Patch\nfor is_collapse, bar in zip(collapse_flags, bars):\n    if is_collapse:\n        bar.set_hatch('///')\n        bar.set_alpha(0.7)\n# Legend 加 hatching 说明\nlegend_patch = Patch(facecolor='gray', hatch='///', alpha=0.7, label='Collapse')\nax.legend(handles=[legend_patch], loc='lower right')\n```\n\n### Pattern H：Multi-panel 非对称布局\n\n```python\nfig, axes = plt.subplots(1, 2, figsize=(6.5, 3.2),\n                          gridspec_kw={'width_ratios': [1.4, 1]})\n# axes[0] 是主面板（1.4x 宽），axes[1] 副面板\n# 给每个 panel 写 insight subtitle\naxes[0].set_title('(a) Quantization shifts confidence', fontsize=9, pad=6)\naxes[1].set_title('(b) Temperature scaling recovers it', fontsize=9, pad=6)\n```\n\n### Pattern I：Broken axis（异常值或对数 0）\n\n```python\nd = 0.012  # 斜线长度\nkwargs = dict(transform=ax.transAxes, color='black',\n              clip_on=False, linewidth=0.6)\nax.plot((1-d, 1+d), (-d, +d), **kwargs)\nax.plot((1-d, 1+d), (1-d, 1+d), **kwargs)\n```\n\n### Pattern J：Path-effect 文字描边\n\n```python\nimport matplotlib.patheffects as pe\nt = ax.text(x, y, 'label', fontsize=8, color='red')\nt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n```\n\n### Pattern K：Concept curve（合成轨迹建立直觉）\n\n```python\n# 完全不基于实验数据的概念曲线\nx = np.linspace(0, 1, 100)\ntrajectory = baseline * (1 - np.cos(np.pi * x)) / 2\nax.plot(x, trajectory, color='#0072B2', linewidth=2,\n        solid_capstyle='round', label='Theoretical trajectory')\n\n# 关键节点用 insight 标注\nax.annotate('gap eliminated', xy=(1.0, final_y),\n            xytext=(0.7, final_y - 5), color='#388E3C',\n            fontstyle='italic', fontsize=9,\n            arrowprops=dict(arrowstyle='->', color='#388E3C', lw=0.8))\n```\n\n### Pattern L：Forest Plot（meta-analysis 风格）\n\n```python\n# 3-column GridSpec: label | CI plot | inline stats\nfig = plt.figure(figsize=(7, 3.5))\ngs = fig.add_gridspec(1, 3, width_ratios=[0.8, 2, 1.2], wspace=0.1)\nax_label = fig.add_subplot(gs[0]); ax_label.axis('off')\nax_main = fig.add_subplot(gs[1])\nax_stat = fig.add_subplot(gs[2]); ax_stat.axis('off')\n\n# 等价带（半透明 axvspan）\nax_main.axvspan(-1, 1, alpha=0.1, color='gray', label='±1pp equivalence')\n\n# 每行：dot + horizontal CI line\nfor i, (name, mean, lo, hi, pval) in enumerate(rows):\n    ax_label.text(0.5, i, name, fontsize=9, va='center', ha='center')\n    ax_main.plot([lo, hi], [i, i], color='black', linewidth=1)\n    ax_main.plot(mean, i, 'D', color='#0072B2', markersize=7)\n    ax_stat.text(0.5, i, f'{mean:+.2f} [{lo:+.2f}, {hi:+.2f}]  p={pval:.3f}',\n                 fontsize=8, va='center', ha='center', family='monospace')\n\nax_main.axvline(0, color='black', linestyle='--', linewidth=0.6)\nax_main.invert_yaxis()\n```\n\n---\n\n## 6. 图表 Checklist（提交前）\n\n### L1 防丑（底线）\n- [ ] 300 DPI（`savefig.dpi=300`）+ PDF 矢量\n- [ ] 色盲友好配色（Okabe-Ito 或语义色板）\n- [ ] 所有轴有 label + 单位\n- [ ] 字号 ≥ 10pt（缩到 column width 后仍可读）\n- [ ] 无 dual y-axis、无 3D、无 pie\n- [ ] Bar chart 从 0 起（line/scatter 可非 0）\n- [ ] 文字水平不旋转\n\n### L2 叙事（说服力）\n- [ ] 能用一句话写出 figure takeaway（应等于 `narrative_intent`）\n- [ ] `design_notes` 中的 pattern 都已实现\n- [ ] Subtitle / panel label 是 insight 不是描述\n- [ ] 数据质量差异视觉可见（n < 50 用空心 / OOS 用 diamond 等）\n- [ ] 颜色绑定语义而非数据顺序（整篇论文一致）\n",
+                "numLines": 503,
+                "startLine": 1,
+                "totalLines": 503
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011o2oY9FtsUiwJTQHKWBKdk",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "74ca31d5-d4e8-409d-9b12-743818a7c4e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KA4krwYyv66iHGGH2PsMws",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13964,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13964
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T08:25:08.060Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_011o2oY9FtsUiwJTQHKWBKdk",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "13c8b95a-b97a-4b3c-9371-e1b45ea37e3b",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me create the figure script and execute it on the server. First, let me ensure the directory exists, then write and run the script.",
+              "signature": "EsMCClkIDRgCKkBJRFUqSiDA94W+KtGcH17jSt7kFPH0RYwm7lxKYlcZFb7oGFJajZqS9nph2Xc43ayB7LddMuL8qFdwYX7Of8LpMg9jbGF1ZGUtb3B1cy00LTY4ABIMiW8EI0GkSfsahCGJGgxl10wNbJ9izk8LsuUiMOtQQnhWkpKOYxyhV93UFzDzaNb8JmVZXcEU3fkWh3IFn3yD/5QUjAHnMPWPCyYT+CqXAePq5D+P5/UuU+702mdXIViMWE6N0YGGXukZctk/jQJx/+CYcQpHoODNcYUeoMTnwj9lbuUJ+peFDXNxdlop6oOZfK610Qb6x6J0hyXIvpDh8YfdKI3yEAKfoUI2qgvpHGPoKZA2/F0m39K6Lj+mqtWLojY4O0AALGOOKP3IREzv9P9sDwsB329tnAb92StlD+UxF48/8A4YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "fc755c6b-5e00-4ded-bb50-db0391d3a949",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019D4XyPt3P3ZCj8Pgk1SQsn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8493,
+                "cache_read_input_tokens": 25411,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8493
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Creating the architecture diagram. Let me set up the directory and write the script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "bec86590-b4d1-4828-a22b-8fe6b6ef1b13",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019D4XyPt3P3ZCj8Pgk1SQsn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8493,
+                "cache_read_input_tokens": 25411,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8493
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jo57NHk9i8ms4hmPJUGfEw",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-33183",
+                "command": "mkdir -p /root/persuasion_turn_jailbreak_detect/figures/paper",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "0c79dbea-934a-42af-8468-a5a017528258",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019D4XyPt3P3ZCj8Pgk1SQsn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8493,
+                "cache_read_input_tokens": 25411,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8493
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T08:25:14.756Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jo57NHk9i8ms4hmPJUGfEw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "db189dcd-4ce8-42e9-8628-84d436d4e992",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01STa8XwpHQ17uJarqpwSrm9",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-33183",
+                "command": "cat > /tmp/gen_fig1_architecture.py << 'PYEOF'\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\nimport matplotlib.patheffects as pe\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\nfig, ax = plt.subplots(figsize=(6.5, 2.8))\nax.set_xlim(0, 10)\nax.set_ylim(0, 3.5)\nax.axis('off')\nax.set_aspect('equal')\n\n# ── Helper functions ──\ndef draw_box(ax, xy, w, h, text, fontsize=8, fc='white', ec='#555555', lw=0.8,\n             text_weight='normal', text_color='black', zorder=3, boxstyle='round,pad=0.15'):\n    box = FancyBboxPatch(xy, w, h, boxstyle=boxstyle,\n                         facecolor=fc, edgecolor=ec, linewidth=lw, zorder=zorder)\n    ax.add_patch(box)\n    cx, cy = xy[0] + w/2, xy[1] + h/2\n    ax.text(cx, cy, text, ha='center', va='center', fontsize=fontsize,\n            fontweight=text_weight, color=text_color, zorder=zorder+1)\n    return box\n\ndef draw_arrow(ax, xy_start, xy_end, label=None, fontsize=7):\n    arrow = FancyArrowPatch(xy_start, xy_end,\n                            arrowstyle='->', mutation_scale=12,\n                            color='#333333', linewidth=1.2, zorder=5)\n    ax.add_patch(arrow)\n    if label:\n        mx = (xy_start[0] + xy_end[0]) / 2\n        my = (xy_start[1] + xy_end[1]) / 2 + 0.18\n        t = ax.text(mx, my, label, ha='center', va='center', fontsize=fontsize,\n                    color='#333333', fontstyle='italic', zorder=6)\n        t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n\n# ── 1. Input box (left) ──\ndraw_box(ax, (0.1, 1.15), 1.3, 1.2, '', fc='#FDEBD0', ec='#D4A74A')\nax.text(0.75, 2.05, 'Multi-turn\\nConversation', ha='center', va='center',\n        fontsize=8, fontweight='bold', color='#7D5A00', zorder=4)\nax.text(0.75, 1.45, r'User$_1$ $\\rightarrow$ Asst$_1$' + '\\n' + r'User$_2$ $\\rightarrow$ Asst$_2$' + '\\n...',\n        ha='center', va='center', fontsize=6.5, color='#996600', zorder=4, linespacing=1.3)\n\n# ── Arrow: input → Stage 1 ──\ndraw_arrow(ax, (1.45, 1.75), (2.05, 1.75), label='Extract\\nuser turns', fontsize=6.5)\n\n# ── 2. Stage 1 background ──\ns1_bg = FancyBboxPatch((2.1, 0.3), 3.55, 2.9, boxstyle='round,pad=0.12',\n                        facecolor='#D6EAF8', edgecolor='#85C1E9', linewidth=1.0, zorder=1)\nax.add_patch(s1_bg)\nax.text(3.875, 3.0, 'Stage 1: Turn-Level Encoder Adaptation',\n        ha='center', va='center', fontsize=8, fontweight='bold', color='#1A5276', zorder=2)\n\n# DeBERTa box\ndraw_box(ax, (2.35, 1.55), 1.7, 0.7, 'DeBERTa-v3-base',\n         fontsize=7.5, fc='white', ec='#2980B9', lw=1.0, text_weight='bold')\n\n# Training objectives list box\nobj_x, obj_y = 4.25, 0.55\nobj_w, obj_h = 1.2, 2.15\nobj_bg = FancyBboxPatch((obj_x, obj_y), obj_w, obj_h, boxstyle='round,pad=0.1',\n                         facecolor='white', edgecolor='#2980B9', linewidth=0.8, zorder=2)\nax.add_patch(obj_bg)\n\nax.text(obj_x + obj_w/2, obj_y + obj_h - 0.15, 'Training\\nObjectives',\n        ha='center', va='center', fontsize=7, fontweight='bold', color='#1A5276',\n        zorder=3, linespacing=1.1)\n\nobjectives = [\n    ('●', '9-class Persuasion', True),   # star variant\n    ('●', 'Binary Persuasion', False),\n    ('●', 'Scrambled Labels', False),\n    ('●', 'Jailbreak MLM', False),\n    ('●', 'Wikipedia MLM', False),\n    ('●', 'Topic Classification', False),\n    ('○', 'Vanilla (no adapt.)', False),\n]\n\ny_start = obj_y + obj_h - 0.58\nfor i, (bullet, name, is_star) in enumerate(objectives):\n    yi = y_start - i * 0.22\n    txt = f'{bullet} {name}'\n    if is_star:\n        txt += ' ★'\n    ax.text(obj_x + 0.12, yi, txt, ha='left', va='center', fontsize=5.8,\n            color='#1A5276', zorder=3, fontweight='bold' if is_star else 'normal')\n\n# Bottom note Stage 1\nax.text(3.875, 0.48, 'Only training objective differs',\n        ha='center', va='center', fontsize=6, color='#5B7FA5', fontstyle='italic', zorder=2)\n\n# ── Arrow: Stage 1 → Stage 2 ──\ndraw_arrow(ax, (5.7, 1.75), (6.25, 1.75), label='Frozen [CLS]\\nembeddings', fontsize=6.5)\n\n# ── 3. Stage 2 background ──\ns2_bg = FancyBboxPatch((6.3, 0.6), 2.35, 2.6, boxstyle='round,pad=0.12',\n                        facecolor='#F2F3F4', edgecolor='#AEB6BF', linewidth=1.0, zorder=1)\nax.add_patch(s2_bg)\nax.text(7.475, 2.95, 'Stage 2: Sequence Classifier',\n        ha='center', va='center', fontsize=8, fontweight='bold', color='#333333', zorder=2)\n\n# BiGRU box\ndraw_box(ax, (6.55, 1.45), 1.0, 0.6, 'BiGRU',\n         fontsize=8, fc='white', ec='#7F8C8D', lw=1.0, text_weight='bold')\n\n# Internal arrow BiGRU → Softmax\ndraw_arrow(ax, (7.6, 1.75), (7.85, 1.75))\n\n# Softmax box\ndraw_box(ax, (7.9, 1.45), 0.55, 0.6, 'Softmax',\n         fontsize=7, fc='white', ec='#7F8C8D', lw=1.0, text_weight='bold')\n\n# Bottom note Stage 2\nax.text(7.475, 0.82, 'Shared across all 7 variants',\n        ha='center', va='center', fontsize=6, color='#707B7C', fontstyle='italic', zorder=2)\n\n# ── Arrow: Stage 2 → Output ──\ndraw_arrow(ax, (8.5, 1.75), (9.0, 1.75))\n\n# ── 4. Output box ──\ndraw_box(ax, (9.05, 1.25), 0.85, 1.0, 'Jailbreak\\n/\\nBenign',\n         fontsize=8, fc='#D5F5E3', ec='#27AE60', lw=1.0, text_weight='bold', text_color='#1E8449')\n\nplt.savefig('/root/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.pdf')\nplt.savefig('/root/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png')\nplt.close()\nprint('Saved fig1_architecture.pdf and .png')\nPYEOF\necho \"Script written\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "4de3bd08-870e-4237-b2d9-345bb838f3de",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016gt1uEHk8ecJqAkw2ceV55",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 256,
+                "cache_read_input_tokens": 33904,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 256
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T08:25:52.094Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01STa8XwpHQ17uJarqpwSrm9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "a26321ce-0613-41dc-ac81-6c6870f49158",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018W3TpjVJR3o2aMTA6yd4Cw",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-33183",
+                "command": "source /root/miniconda3/bin/activate && python /tmp/gen_fig1_architecture.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "295e6465-63d9-4196-9e6a-2247626dff55",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NhApQGJ1xfyWmAhLfvker4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2600,
+                "cache_read_input_tokens": 34160,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2600
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T08:25:57.298Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018W3TpjVJR3o2aMTA6yd4Cw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved fig1_architecture.pdf and .png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "c14f52e4-5fa7-4cc1-b365-b3b43a2e0367",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved fig1_architecture.pdf and .png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Saved fig1_architecture.pdf and .png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QqJ8zDi84p2GPq7cdyF4Jh",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-33183",
+                "command": "ls -la /root/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.*",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "13d9170a-a783-418c-9341-8eda92d57615",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017zm9AZqmP7FpPCcTHXWK4t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 210,
+                "cache_read_input_tokens": 36760,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 210
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T08:26:00.578Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QqJ8zDi84p2GPq7cdyF4Jh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  55640 May 18 16:25 /root/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.pdf\\\\n-rw-r--r-- 1 root root 146890 May 18 16:25 /root/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "9006477d-e0ca-4331-baa9-83699f5b1961",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  55640 May 18 16:25 /root/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.pdf\\\\n-rw-r--r-- 1 root root 146890 May 18 16:25 /root/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  55640 May 18 16:25 /root/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.pdf\\n-rw-r--r-- 1 root root 146890 May 18 16:25 /root/persuasion_turn_jailbreak_detect/figures/paper/fig1_architecture.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成完成。\n\n- **PDF**: 55.6 KB (`fig1_architecture.pdf`)\n- **PNG**: 146.9 KB (`fig1_architecture.png`)\n\n布局：Multi-turn Conversation → Extract user turns → Stage 1 (DeBERTa-v3-base + 7 training objectives 列表) → Frozen [CLS] embeddings → Stage 2 (BiGRU → Softmax) → Jailbreak/Benign。Stage 1 浅蓝背景，Stage 2 灰色背景，单条 pipeline 流程，7 variant 以紧凑列表呈现。\n\nDONE"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "uuid": "820df54d-f76d-47f8-8e38-3ef7be713ccb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jh2qT8qUZkBwTYVMb5K6sK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 303,
+                "cache_read_input_tokens": 36970,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 303
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成完成。\n\n- **PDF**: 55.6 KB (`fig1_architecture.pdf`)\n- **PNG**: 146.9 KB (`fig1_architecture.png`)\n\n布局：Multi-turn Conversation → Extract user turns → Stage 1 (DeBERTa-v3-base + 7 training objectives 列表) → Frozen [CLS] embeddings → Stage 2 (BiGRU → Softmax) → Jailbreak/Benign。Stage 1 浅蓝背景，Stage 2 灰色背景，单条 pipeline 流程，7 variant 以紧凑列表呈现。\n\nDONE"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 68764,
+            "duration_api_ms": 67084,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "bd8118e3-e253-479a-a566-d20e1fa9aa69",
+            "total_cost_usd": 0.3367645000000001,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 25826,
+              "cache_read_input_tokens": 178652,
+              "output_tokens": 3350,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25826,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 167,
+                  "cache_read_input_tokens": 36970,
+                  "cache_creation_input_tokens": 303,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 303
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2126,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002231,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 3350,
+                "cacheReadInputTokens": 178652,
+                "cacheCreationInputTokens": 25826,
+                "webSearchRequests": 0,
+                "costUSD": 0.3345335000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "4b85d0bc-3d49-4b76-8f18-4c2e09efddc8"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/worker-executions/figure-fig1-architecture-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d609badcdcf0d24ed68d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "research persuasion taxonomy",
+  "task_key": "worker_research_persuasion-taxonomy_20260517T060621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_persuasion-taxonomy_20260517T060621_result.json",
+    "occurrence": 1,
+    "bytes": 1207,
+    "sha256": "4492c9a8b3706a95d47fe85236b9749780aab2f1cb27fe27448d142f3fb49af8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出：\n\n1. **`memory.md`** — 完整的 8-class Persuasion Strategy Taxonomy，包含每个类别的定义、jailbreak/benign 示例、边界判断规则、标注指南（优先级规则+特殊情况）、文献映射表。\n\n2. **`artifacts/taxonomy/persuasion_taxonomy.json`** — 结构化 JSON schema，包含 `id/name/definition/examples/boundary_rules/theoretical_basis` 字段，可直接用于标注系统。\n\n**8 类别总览**：\n\n| ID | Name | 理论来源 |\n|---|---|---|\n| 0 | Rapport Building | Cialdini:Liking + PAP:Positive Emotional |\n| 1 | Authority Appeal | Cialdini:Authority + PAP:Expert Endorsement |\n| 2 | Emotional Manipulation | Cialdini:Scarcity + PAP:Threat/Negative Emotion |\n| 3 | Logical Reframing | PAP:Logical Appeal + Evidence-based |\n| 4 | Role Assignment | DAN/Impersonation family |\n| 5 | Gradual Escalation | Crescendo + FITD + Cialdini:Commitment |\n| 6 | Obfuscation | PAP:Linguistics-based + Encoding family |\n| 7 | Direct Request | Baseline (neutral) |\n\n设计确保：jailbreak 攻击中 0-6 类均有文献证据，benign 对话中 Direct Request 覆盖绝大多数 turns，类别间通过优先级规则消除重叠。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-persuasion-taxonomy.md"
+}

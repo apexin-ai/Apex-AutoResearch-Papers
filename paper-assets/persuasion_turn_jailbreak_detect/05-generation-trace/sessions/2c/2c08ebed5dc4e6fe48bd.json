@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c08ebed5dc4e6fe48bd",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train exp3 probing",
+  "task_key": "worker_train_exp3-probing_20260518T104339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_exp3-probing_20260518T104339_result.json",
+    "occurrence": 1,
+    "bytes": 1460,
+    "sha256": "326475e3fb23dd99fe9b621fcd5f44d9484751afecb1a58465c83ae0b82ee300"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Results summary:\n\n**Linear Probing (5-fold CV accuracy +/- population std):**\n\n| Task | Vanilla | MLM | 9-class |\n|---|---|---|---|\n| Turn Position | 0.7867 +/- 0.0339 | 0.7915 +/- 0.0609 | **0.8280** +/- 0.0987 |\n| Escalation Level | 0.7319 +/- 0.0226 | 0.7315 +/- 0.0262 | **0.7817** +/- 0.0267 |\n| Persuasion Presence | 0.9377 +/- 0.0854 | 0.9429 +/- 0.0873 | **0.9494** +/- 0.0926 |\n\n**CKA (last layer CLS):**\n\n| Pair | IID | DD OOD |\n|---|---|---|\n| vanilla vs mlm | 1.0000 | 1.0000 |\n| vanilla vs 9class | 0.3668 | 0.8849 |\n| mlm vs 9class | 0.3684 | 0.8847 |\n\n**Layer-wise CKA key pattern:** All pairs are CKA~1.0 through layers 0-10. Divergence appears only in layers 11-12, concentrated at the final layer. The 9-class finetuning dramatically reshapes layer 12 representations (IID CKA drops to 0.37), while MLM pretraining leaves the representation space virtually unchanged (CKA=1.0 at all layers).\n\nKey takeaways:\n- 9-class multitask finetuning creates meaningfully different representations that encode more task-relevant features (turn position, escalation, persuasion)\n- MLM continued pretraining has negligible effect on representation geometry\n- Representation changes from 9-class training are concentrated in the top 2 layers\n- DD OOD representations are more similar across encoders (CKA 0.88) than IID (CKA 0.37), suggesting the IID data has more diverse signal that fine-tuning can exploit"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-exp3-probing.md"
+}

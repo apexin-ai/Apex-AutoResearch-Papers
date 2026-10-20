@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb860cfa070ba125155f",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "util get generation pids",
+  "task_key": "worker_util_get-generation-pids_20260519T061731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_util_get-generation-pids_20260519T061731_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "11cdd6c5a6345def380af13bb4a7ad929199042af0886468a979ce7b8062e761"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程 PID：**\n```\nDD PID:     217077  (generate_dd_llama.py --count 50 --gpu 0)\nAA PID:     217747  (generate_aa_llama.py --gpu 1 --num_per_goal 5)\nBenign PID: 218417  (generate_benign_llama.py --count 50 --gpu 2)\n```\n\n**当前进度：**\n三个 JSONL 文件均在写入中（in progress），尚未完成：\n\n| 文件 | 大小 |\n|------|------|\n| dd_llama.jsonl | 225,619 bytes |\n| aa_llama.jsonl | 227,383 bytes |\n| benign_llama.jsonl | 230,913 bytes |\n\n三个进程均已运行约 13-17 分钟，CPU 占用 123-125%，各占用约 2.6GB 内存，分别在 GPU 0/1/2 上执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/util-get-generation-pids.md"
+}

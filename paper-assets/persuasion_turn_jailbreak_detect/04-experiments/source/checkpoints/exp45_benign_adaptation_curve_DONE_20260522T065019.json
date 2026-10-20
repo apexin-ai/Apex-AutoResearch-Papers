@@ -1,0 +1,88 @@
+{
+  "exp_id": "exp45_benign_adaptation_curve",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T06:14:46.955Z",
+    "updated_at": "2026-05-22T06:50:19.707Z",
+    "hypothesis": "Adding N WildChat benign samples (N in {0,5,10,25,50,100,150}) to training data will show a monotonic FPR reduction curve, with substantial FPR drop achievable with as few as 10-25 samples while maintaining OOD F1 above 0.95.",
+    "parent": "exp42_ood_benign_mixed",
+    "spec": {
+      "command": "python /root/persuasion_turn_jailbreak_detect/scripts/exp45_benign_adaptation_curve.py",
+      "server": "westd-33183",
+      "gpu": "cuda:0",
+      "pid": 47802,
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/exp45_benign_adaptation_curve.json",
+      "submitted_at": "2026-05-22T06:34:49.435Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/persuasion_turn_jailbreak_detect/data/",
+      "data_count": "350 Qwen + up to 150 WildChat benign, 7 runs (N=0,5,10,25,50,100,150)",
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": 42,
+      "checkpoint_source": "trained from scratch per N value",
+      "eval_data": "IID test + WildChat FPR (49) + OOD DD/AA/FITD (80 each)",
+      "checkpoint_path": "N/A (7 intermediate checkpoints, not saved)",
+      "wall_clock_seconds": 930.3,
+      "gpu_hours": 0.26
+    },
+    "conclusion": "success",
+    "metrics": {
+      "curve": {
+        "n0": {
+          "fpr": 0.653,
+          "dd_f1": 1,
+          "aa_f1": 0.981,
+          "fitd_f1": 1
+        },
+        "n5": {
+          "fpr": 0.163,
+          "dd_f1": 0.99,
+          "aa_f1": 0.981,
+          "fitd_f1": 1
+        },
+        "n10": {
+          "fpr": 0,
+          "dd_f1": 1,
+          "aa_f1": 1,
+          "fitd_f1": 1
+        },
+        "n25": {
+          "fpr": 0,
+          "dd_f1": 1,
+          "aa_f1": 0.953,
+          "fitd_f1": 1
+        },
+        "n50": {
+          "fpr": 0,
+          "dd_f1": 1,
+          "aa_f1": 1,
+          "fitd_f1": 1
+        },
+        "n100": {
+          "fpr": 0,
+          "dd_f1": 1,
+          "aa_f1": 0.99,
+          "fitd_f1": 1
+        },
+        "n150": {
+          "fpr": 0,
+          "dd_f1": 1,
+          "aa_f1": 0.981,
+          "fitd_f1": 1
+        }
+      },
+      "key_finding": "FPR drops from 65.3% to 0% at N=10, all OOD F1 >= 0.953",
+      "wildchat_eval_n": 49,
+      "ood_eval_n": 80,
+      "seed": 42
+    },
+    "completed_at": "2026-05-22T06:50:19.707Z"
+  },
+  "timestamp": "2026-05-22T06:50:19.917386+00:00",
+  "trigger": "update_registry"
+}

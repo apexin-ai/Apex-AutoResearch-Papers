@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "id": "9755b18ea60ff223e82a",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp40 llama guard baseline",
+  "task_key": "worker_code_exp40-llama-guard-baseline_20260521T105949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp40-llama-guard-baseline_20260521T105949.log",
+    "occurrence": 1,
+    "bytes": 2369399,
+    "sha256": "4e841087e06e5bfb2b3172d6f1766eed6bf905cecec6e90c96a4e72318e8feed"
+  },
+  "statistics": {
+    "messages": 1589,
+    "user_turns": 2,
+    "tool_calls": 633,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 311,
+      "tool_call": 633,
+      "tool_result": 633,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 561,
+      "chunks": [
+        {
+          "path": "9755b18ea60ff223e82a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9755b18ea60ff223e82a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9755b18ea60ff223e82a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9755b18ea60ff223e82a-part-0004.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 982,
+      "chunks": [
+        {
+          "path": "9755b18ea60ff223e82a-part-0004.json",
+          "message_count": 159
+        },
+        {
+          "path": "9755b18ea60ff223e82a-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "9755b18ea60ff223e82a-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "9755b18ea60ff223e82a-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "9755b18ea60ff223e82a-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "9755b18ea60ff223e82a-part-0009.json",
+          "message_count": 103
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 46,
+      "chunks": [
+        {
+          "path": "9755b18ea60ff223e82a-part-0009.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp40-llama-guard-baseline.md"
+}

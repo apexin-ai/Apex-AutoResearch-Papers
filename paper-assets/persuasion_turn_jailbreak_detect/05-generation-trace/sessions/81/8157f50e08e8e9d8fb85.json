@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8157f50e08e8e9d8fb85",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp6 actorattack perturbation",
+  "task_key": "worker_eval_exp6-actorattack-perturbation_20260518T133835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp6-actorattack-perturbation_20260518T133835_result.json",
+    "occurrence": 1,
+    "bytes": 157,
+    "sha256": "03cfb736ebc6a92907b505cce1f6adc4c36f3791096250b435c760040a4cc14b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Paraphrasing is running on cuda:0. Qwen3-8B loaded successfully, now processing 118 conversations. I'll check back in ~3 minutes for progress."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp6-actorattack-perturbation.md"
+}

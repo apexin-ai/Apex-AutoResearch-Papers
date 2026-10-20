@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2dee5f27a02b95fb205",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan016v2 topic multiseed",
+  "task_key": "worker_train_plan016v2-topic-multiseed_20260518T061237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan016v2-topic-multiseed_20260518T061237_result.json",
+    "occurrence": 1,
+    "bytes": 1060,
+    "sha256": "163264b3c76cddb5fbe0315216e0913fa6f2c2a5bd56c0903dc54d127e1e51af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n**Plan 016v2 Topic Control — 3-seed (42/123/456) 统计**\n\n| K | DD OOD F1 (mean±std) | IID F1 (mean±std) |\n|---|---|---|\n| k=1 | 0.591 ± 0.132 | 0.811 ± 0.062 |\n| k=2 | 0.593 ± 0.166 | 0.899 ± 0.035 |\n| k=3 | 0.568 ± 0.167 | 0.930 ± 0.035 |\n| k=5 | 0.573 ± 0.206 | 0.982 ± 0.016 |\n| full | 0.541 ± 0.207 | 0.974 ± 0.022 |\n\n关键发现：\n- DD OOD F1 均值 0.54-0.59，**远低于 persuasion treatment 的 1.0**，但标准差很大（0.13-0.21），seed=123 是明显异常值（full F1=0.25）\n- IID F1 稳定高（0.81-0.97），说明 topic encoder 在分布内任务上有效，但 OOD 泛化不稳定\n- 这更加强了结论：**persuasion-specific features 是跨攻击泛化的关键驱动力，topic classification 不够**\n\n已更新 registry metrics 和注册 artifact。远程结果文件：\n- `results/plan_016v2_topic_seed42.json`\n- `results/plan_016v2_topic_seed123.json`\n- `results/plan_016v2_topic_seed456.json`\n- `results/plan_016v2_topic_3seed_summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan016v2-topic-multiseed.md"
+}

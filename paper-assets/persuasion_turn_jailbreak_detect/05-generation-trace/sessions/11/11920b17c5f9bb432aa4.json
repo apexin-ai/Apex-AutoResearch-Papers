@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11920b17c5f9bb432aa4",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp42 ood benign mixed",
+  "task_key": "worker_code_exp42_ood_benign_mixed_20260522T035847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp42_ood_benign_mixed_20260522T035847_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "23fa5331cb2141e4dd6b866754c4b3e8ef14c7341b10eeb748b9fed02b8993ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp42_ood_benign_mixed 执行完成。\n\n**结果汇总：**\n\n| Metric | Baseline (plan_002) | exp42 (mixed) | Target |\n|--------|--------------------:|-------------:|-------:|\n| WildChat FPR | 68.1% | **0.0%** | <30% |\n| IID F1 | ~1.0 | 1.0 | — |\n| OOD DD F1 | ~1.0 | 1.0 | >0.95 |\n| OOD AA F1 | ~0.96 | 0.956 | >0.95 |\n| OOD FITD F1 | ~1.0 | 1.0 | >0.95 |\n\n**关键发现：** 混入仅 150 条 WildChat benign 对话（占训练集 30%）就将 FPR 从 68.1% 完全消除到 0%，同时 OOD jailbreak 检测性能无退化。这证实 exp38 的判断：高 FPR 纯粹是 benign 分布不匹配导致，而非模型架构缺陷。\n\n**注意事项：** 评估集只有 49 条 WildChat benign（226 总数中 27 条因含 jailbreak 模式被过滤，199 条中 150 用于训练），属于小样本。但从 68.1%→0% 的跨越式改进来看，信号非常强。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp42-ood-benign-mixed.md"
+}

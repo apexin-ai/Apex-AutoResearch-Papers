@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b6f8a33692e966f23d9",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code verify vanilla aa ood std",
+  "task_key": "worker_code_verify-vanilla-aa-ood-std_20260520T135947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify-vanilla-aa-ood-std_20260520T135947_result.json",
+    "occurrence": 1,
+    "bytes": 2242,
+    "sha256": "801865bad553255b68761f43742e5e471f451abbf6dffd5476aa4e9ee1221248"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the report:\n\n---\n\n## 报告：DeBERTa vanilla AA OOD = 0.258±0.000 的来源\n\n### 1. 0.258 的实际来源\n\n**`exp2_actorattack_ood.json` → variant `vanilla` → `full` metric**，不是 exp16。\n\n论文 `paper/experiments.tex:135` 引用了这个值：\n> \"DAPT provides ~71pp over both vanilla (0.258) and TF-IDF (0.261)\"\n\n以及排序公式（同文件）：\n> \"TF-IDF (0.26) ≈ vanilla (0.26±0.00) < topic (0.63±0.14) < ...\"\n\n### 2. std=0.000 — 算术上正确，但底层数据异常\n\nexp2 vanilla per-seed `full` 原始值：\n\n| Seed | full F1 |\n|------|---------|\n| 42 | 0.25750696933492634 |\n| 123 | 0.25750696933492634 |\n| 456 | 0.25750696933492634 |\n| **mean** | **0.2575 (≈0.258)** |\n| **std** | **0.0** |\n\n三个 seed 的 full F1 **完全相同**，所以 std=0.0 在数学上没错。但早期检测指标 k=1 有差异（0.388 / 0.353 / 0.271），说明 3 个 checkpoint 不同。推测原因：vanilla 模型无 domain adaptation，面对 ActorAttack 全对话时 3 个 seed 都退化到相同的预测模式（几乎全判为同一类），导致 F1 收敛到同一值。\n\n### 3. exp16 的正确 vanilla AA OOD 值\n\n来源：`exp16_balanced_ood_reeval.json` → aggregated → vanilla → aa_ood\n\n| Seed | AA OOD F1 (balanced, n=118) |\n|------|---------------------------|\n| 42 | 0.346 |\n| 123 | 0.330 |\n| 456 | 0.492 |\n| **mean** | **0.389** |\n| **std** | **0.073** |\n\n### 4. 与 0.258 的混淆可能\n\nexp16 的 **MLM** AA OOD 恰好也约等于 0.258：\n- per_seed_f1: [0.197, 0.364, 0.213]\n- mean = 0.258, std = **0.075**（不是 0.000）\n\n### 结论\n\n| | 值 | 来源 | std |\n|--|---|------|-----|\n| \"0.258±0.000\" | exp2 vanilla full | `exp2_actorattack_ood.json` | 0.000（3 seed 退化到相同预测） |\n| exp16 vanilla AA OOD (正确) | 0.389±0.073 | `exp16_balanced_ood_reeval.json` | per-seed: 0.346/0.330/0.492 |\n| exp16 MLM AA OOD（易混淆） | 0.258±0.075 | `exp16_balanced_ood_reeval.json` | per-seed: 0.197/0.364/0.213 |\n\n**0.258±0.000 来自 exp2（旧实验），不是 exp16 的 vanilla。** 如果论文需要引用 exp16 DeBERTa vanilla 的 AA OOD，正确值是 **0.389±0.073**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-vanilla-aa-ood-std.md"
+}

@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp43_mhj_human_eval",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:12:23.950Z",
+    "updated_at": "2026-05-22T04:22:46.316Z",
+    "hypothesis": "9-class DAPT representations encode transferable persuasion signals that generalize to real human multi-turn jailbreak attempts (MHJ dataset), achieving higher detection recall than vanilla DeBERTa because human attackers use similar persuasion strategies as synthetic attacks.",
+    "parent": "exp42_ood_benign_mixed",
+    "spec": {
+      "command": "N/A - dataset gated, evaluated on available human jailbreak data",
+      "server": "westd-33183",
+      "data_path": "ScaleAI/mhj (gated) + data/mhj/human_jailbreak_eval.jsonl (879 samples)",
+      "data_count": 879,
+      "model_name": "plan_002 9-class DAPT + BiGRU",
+      "seed": "42,123,456",
+      "checkpoint_source": "/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints_archive/plan_002*/",
+      "eval_data": "verazuo/jailbreak_llms single-turn human jailbreaks (666 jb + 213 benign)",
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/exp8_human_jailbreak_verazuo.json",
+      "checkpoint_path": "/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints_archive/plan_002/"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "data_note": "MHJ (ScaleAI/mhj) gated - evaluated on verazuo/jailbreak_llms single-turn human jailbreaks (666 jb + 213 benign)",
+      "9class_f1_mean": 0.812,
+      "9class_f1_std": 0.135,
+      "9class_recall_mean": 0.706,
+      "9class_recall_std": 0.2,
+      "9class_precision_mean": 1,
+      "vanilla_f1_mean": 0.131,
+      "vanilla_recall_mean": 0.071,
+      "delta_f1_over_vanilla": 0.681,
+      "jb_mlm_f1_mean": 0.968,
+      "jb_mlm_recall_mean": 0.955,
+      "evidence_hierarchy_holds": true,
+      "mhj_multi_turn_accessible": false
+    },
+    "completed_at": "2026-05-22T04:22:46.316Z"
+  },
+  "timestamp": "2026-05-22T04:22:46.512061+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c3105f9c3b45c768fff",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper mr citations",
+  "task_key": "worker_paper_mr_citations_20260522T073223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_mr_citations_20260522T073223_result.json",
+    "occurrence": 1,
+    "bytes": 2303,
+    "sha256": "f35a723050b26d98233c841c579df0cdb140a17a39d44904410bc345067f2dd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，无 undefined citation warning。\n\n---\n\n## 产出汇总\n\n### MR1: Maennel et al. 2020\n- **Bib**: `maennel2020random` 已存在（`references.bib:653-658`），NeurIPS 2020，7 位作者完整\n- **引用位置**: `conclusion.tex:19` — `~\\citep{zhang2021understanding,maennel2020random}`，在 \"Regularization mechanism\" 段\n- **无需修改**\n\n### MR2: JailDAM (Nian et al., COLM 2025)\n- **Bib key**: `nian2025jaildam`\n- **作者**: Yi Nian, Shenzhe Zhu, Yuehan Qin, Li Li, Ziyi Wang, Chaowei Xiao, Yue Zhao\n- **Venue**: Conference on Language Modeling (COLM 2025), arXiv:2504.03770\n- **引用位置**: `related_work.tex:9` — 加入 conversation-level systems 列表：`SafeDream~\\citep{safedream2026}, JailDAM~\\citep{nian2025jaildam})`\n\n### MR3: Anil et al. (NeurIPS 2024)\n- **Bib key**: `anil2024manyshot`\n- **作者**: Cem Anil, Esin Durmus, Nina Panickssery, Mrinank Sharma 等 34 位（完整列表已入 bib）\n- **Venue**: NeurIPS 2024\n- **引用位置**: `related_work.tex:6` — 攻击段落中 automated methods 后：`and many-shot attacks~\\citep{anil2024manyshot} exploit long-context in-context learning`\n\n### MR4: Jain et al. (2023)\n- **Bib key**: `jain2023baseline`\n- **作者**: Neel Jain, Avi Schwarzschild, Yuxin Wen, Gowthami Somepalli, John Kirchenbauer, Ping-yeh Chiang, Micah Goldblum, Aniruddha Saha, Jonas Geiping, Tom Goldstein\n- **Venue**: arXiv preprint, arXiv:2309.00614\n- **引用位置**: `related_work.tex:9` — single-turn defenses 列表：`\\citep{robey2024smoothllm,xu2024safedecoding,jain2023baseline}`\n\n### MR5: Activation-based jailbreak detection (2 篇)\n1. **Jailbreak Antidote** — `shen2025antidote`\n   - 作者: Guobin Shen, Dongcheng Zhao, Yiting Dong, Xiang He, Yi Zeng\n   - Venue: ICLR 2025, arXiv:2410.02298\n2. **RepE Jailbreak Perspective** — `li2025repejailbreak`\n   - 作者: Tianlong Li, Zhenghua Wang, Wenhao Liu, Muling Wu, Shihan Dou, Changze Lv, Xiaohua Wang, Xiaoqing Zheng, Xuanjing Huang\n   - Venue: COLING 2025, arXiv:2401.06824\n- **引用位置**: `related_work.tex:9` — representation-level approaches 列表末尾：`...,shen2025antidote,li2025repejailbreak}`\n\n### 编译验证\n`pdflatex + bibtex + pdflatex×2` 通过，**0 undefined citation warnings**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-mr-citations.md"
+}

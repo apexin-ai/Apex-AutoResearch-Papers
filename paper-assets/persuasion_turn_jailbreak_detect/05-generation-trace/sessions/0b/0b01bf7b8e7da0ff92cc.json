@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b01bf7b8e7da0ff92cc",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp60 turncount baseline",
+  "task_key": "worker_code_exp60_turncount_baseline_20260522T164013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp60_turncount_baseline_20260522T164013_result.json",
+    "occurrence": 1,
+    "bytes": 2034,
+    "sha256": "7dfc3e30051494a4175d287697b6620ddd0d47364e619be1a1e347126e398a95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results are in. The findings are **stronger than expected** — turn count has almost zero discriminative power even at full length:\n\n```\n=== Turn Count Statistics ===\niid:       jailbreak=8.7±2.1 (5-12), benign=7.9±1.5 (6-10)\ndd:        jailbreak=8.1±1.5 (6-10), benign=7.9±1.5 (6-10)  ← almost identical\nfitd:      jailbreak=7.8±1.4 (6-10), benign=7.9±1.5 (6-10)  ← almost identical\naa:        jailbreak=5.1±1.7 (3-8),  benign=7.9±1.5 (6-10)\ntoxicchat: all 1 turn\n\n=== Results ===\nTest Set     TC Full    TC K=1     DisPeD Full  DisPeD K=1\n--------------------------------------------------------\niid          0.5429     0.0000     1.0000       N/A\ndd           0.5581     0.0000     0.9968       N/A\nfitd         0.4237     0.0000     1.0000       1.0000\naa           0.0000     0.0000     0.9719       0.7730\ntoxicchat    0.0000     0.0000     0.5960       0.5960\n```\n\nKey takeaways:\n\n1. **Turn counts overlap heavily** between jailbreak and benign for IID/DD/FITD (both ~6-10 user turns). The data was well-constructed to avoid this confound.\n\n2. **Turn-count-only classifier fails across the board**: Full F1 is 0.00–0.56 (not ~1.0 as hypothesized), while DisPeD achieves 0.97–1.0. The gap is massive.\n\n3. **K=1 F1 = 0.0** for all test sets (LR predicts all benign since the intercept drives the decision when all features are identical at 1).\n\n4. **AA inversion**: AA jailbreaks have *fewer* turns (5.1) than benign (7.9), opposite to the training distribution, so the classifier gets 0.0 F1 even at full length.\n\nThe original hypothesis assumed \"benign 12-20 vs jailbreak 3-10\" but the actual data shows near-identical turn counts. This makes the argument even stronger — turn count is **not** a confound at all, and DisPeD's performance is entirely content-driven.\n\nResults saved to `/root/persuasion_turn_jailbreak_detect/results/exp60_turncount_baseline.json`. DisPeD IID/DD K=1 values are marked null — those early detection experiments don't exist yet."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp60-turncount-baseline.md"
+}

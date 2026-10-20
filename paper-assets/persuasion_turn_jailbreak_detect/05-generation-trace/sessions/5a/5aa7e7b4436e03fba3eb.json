@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5aa7e7b4436e03fba3eb",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan016v2 topic control",
+  "task_key": "worker_train_plan016v2-topic-control_20260518T054507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan016v2-topic-control_20260518T054507_result.json",
+    "occurrence": 1,
+    "bytes": 1244,
+    "sha256": "6da2c64cb78e5971c51b2561d2c04a6341e5cea24c82803b522b15bf0e2ae714"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan 016v2 Topic Classification Control 实验完成。\n\n## 结果汇总\n\n| K | Topic Control | Persuasion (006) | Vanilla Baseline (006) |\n|---|---|---|---|\n| K=1 | **0.697** | 1.000 | 0.575 |\n| K=2 | **0.716** | 0.990 | 0.438 |\n| K=3 | **0.717** | 0.990 | N/A |\n| K=5 | **0.750** | 1.000 | N/A |\n| Full | **0.727** | 1.000 | 0.285 |\n\n**结论**：Topic control F1=0.727 远低于 persuasion treatment (1.0)，但高于 vanilla baseline (0.285)。\n\n- Topic 分类 fine-tuning 比不 fine-tuning 好（+44pp vs vanilla），说明任何 fine-tuning 都能提供一些帮助\n- 但与 persuasion treatment 相比差距巨大（-27pp），证明 **persuasion-specific learning 是 cross-attack 泛化的关键驱动力**，generic classification fine-tuning 不够\n\n标签泄漏检查：Train Cramer's V=0.228（弱），无泄漏。\n\n**产出**：\n- `src/models/deberta_topic.py` — 5-class topic model (无 intent head)\n- `src/label_topics.py` — 关键词标注 + 交叉表验证\n- `src/train_deberta_topic.py` — Stage 1 训练\n- `src/plan_016v2_dd_eval.py` — Stage 2 + DD OOD 评估\n- `checkpoints/plan_016v2_topic/` — 模型 checkpoint\n- `results/plan_016v2_topic_control.json` — 完整结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan016v2-topic-control.md"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp43_mhj_human_eval",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:12:23.950Z",
+    "updated_at": "2026-05-22T04:22:11.748Z",
+    "hypothesis": "9-class DAPT representations encode transferable persuasion signals that generalize to real human multi-turn jailbreak attempts (MHJ dataset), achieving higher detection recall than vanilla DeBERTa because human attackers use similar persuasion strategies as synthetic attacks.",
+    "parent": "exp42_ood_benign_mixed",
+    "spec": {
+      "command": "N/A - dataset gated, evaluated on available human jailbreak data",
+      "server": "westd-33183",
+      "data_path": "ScaleAI/mhj (gated) + data/mhj/human_jailbreak_eval.jsonl (879 samples)",
+      "data_count": 879,
+      "model_name": "plan_002 9-class DAPT + BiGRU",
+      "seed": "42,123,456",
+      "checkpoint_source": "/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints_archive/plan_002*/",
+      "eval_data": "verazuo/jailbreak_llms single-turn human jailbreaks (666 jb + 213 benign)",
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/exp8_human_jailbreak_verazuo.json",
+      "checkpoint_path": "/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints_archive/plan_002/"
+    }
+  },
+  "timestamp": "2026-05-22T04:22:11.951357+00:00",
+  "trigger": "update_registry"
+}

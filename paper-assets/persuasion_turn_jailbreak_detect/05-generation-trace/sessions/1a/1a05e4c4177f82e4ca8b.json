@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a05e4c4177f82e4ca8b",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code dual ood f1 calc",
+  "task_key": "worker_code_dual_ood_f1_calc_20260522T233122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dual_ood_f1_calc_20260522T233122_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "b08c84c6fa86838293d7e49131ddd62c2d4522a08782de91159bbe463a019619"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。在 `appendix.tex` 的 `\\label{app:oasst2}` section 末尾（`tab:benign_summary` 之后）插入了 `\\subsection{Estimated Dual-OOD Detection Performance}`（`\\label{tab:dual_ood}`），包含：\n\n| Benign condition | DD OOD F1 | AA OOD F1 |\n|---|---|---|\n| IID (FPR=0) | .994±.009 | .981±.019 |\n| WildChat, no adapt | .855±.020 | .842±.012 |\n| OASST2, no adapt | .874±.009 | .861±.018 |\n| WildChat + 10-shot | .994±.009 | .981±.019 |\n| OASST2 + 25-shot | .991±.009 | .978±.018 |\n\n核心结论：无 adaptation 时 dual-OOD F1 下降 12-14pp（由 benign FP 驱动），few-shot adaptation 后恢复到 IID upper bound 的 0.3pp 以内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dual-ood-f1-calc.md"
+}

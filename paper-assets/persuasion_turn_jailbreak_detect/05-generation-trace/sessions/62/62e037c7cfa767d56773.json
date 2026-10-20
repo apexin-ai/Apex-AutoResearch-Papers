@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62e037c7cfa767d56773",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper writing abstract",
+  "task_key": "worker_paper_writing_abstract_20260518T045403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_abstract_20260518T045403_result.json",
+    "occurrence": 1,
+    "bytes": 819,
+    "sha256": "812555fa22230a1eca852b73564299b214f87c5c1ae64ddf1da8c8ecd347a73e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Zero em-dashes, zero explanatory en-dashes, no -ing phrase endings. 218 words, within target.\n\nAbstract written to `paper/abstract.tex`. 218 words. Covers all four required questions in order:\n\n1. **Problem** (sentences 1-2): distributed adversarial intent across benign turns, existing approaches collapse\n2. **Why important** (sentence 3): vanilla DeBERTa F1 drops from 1.000 to 0.284 OOD; GPT-5.5 reaches only 0.191-0.449\n3. **What we propose** (sentences 4-6): DisPeD two-stage framework with multi-task persuasion + intent objective, mean-pooled [CLS] embeddings\n4. **Results** (sentences 7-9): F1=1.000 on DD (+72pp), scrambled labels only 1pp gap, zero perturbation degradation + interpretability\n\nAll key numbers match `experiments.tex`. No dashes, no -ing endings, no blacklisted words."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-abstract.md"
+}

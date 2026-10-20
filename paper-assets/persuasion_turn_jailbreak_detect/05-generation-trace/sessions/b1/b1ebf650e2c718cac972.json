@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1ebf650e2c718cac972",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan014 lambda ablation",
+  "task_key": "worker_train_plan014-lambda-ablation_20260518T011638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan014-lambda-ablation_20260518T011638_result.json",
+    "occurrence": 1,
+    "bytes": 215,
+    "sha256": "2a42653ffb35b914e7ecac1f165b58441bb15c47df074abd3fef1f5c0cd2564b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动。alpha=0 的 DeBERTa 训练正在 cuda:1 上进行（预计~20min），之后会依次执行 GRU 训练+评估，再处理 alpha=0.5 和 alpha=2.0。4.5 分钟后我会检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan014-lambda-ablation.md"
+}

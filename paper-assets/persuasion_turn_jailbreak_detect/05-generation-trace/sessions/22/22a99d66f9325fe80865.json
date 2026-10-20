@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22a99d66f9325fe80865",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train mf1 scrambled seed123",
+  "task_key": "worker_train_mf1-scrambled-seed123_20260518T091249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_mf1-scrambled-seed123_20260518T091249_result.json",
+    "occurrence": 1,
+    "bytes": 1038,
+    "sha256": "8f0feda64c5987b45f42b9204f293a420b4a195c225e664226917a998a1687c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MF1 pipeline complete. Summary:\n\n**MF1 Scrambled Labels seed=123 — Results**\n\n| Stage | Metric | Value |\n|-------|--------|-------|\n| DeBERTa | val_persuasion_acc | 0.6724 |\n| DeBERTa | val_intent_acc | 1.0 |\n| DeBERTa | val_loss | 0.7906 |\n| DD OOD | F1 @ K=1 | 1.0 |\n| DD OOD | F1 @ K=2 | 1.0 |\n| DD OOD | F1 @ K=3 | 1.0 |\n| DD OOD | F1 @ K=5 | 1.0 |\n| DD OOD | F1 Full | 1.0 |\n\n**Artifacts on server:**\n- Scrambled data: `data/plan_002_splits/train_scrambled_seed123.jsonl`\n- DeBERTa checkpoint: `checkpoints/mf1_scrambled_seed123/deberta_multitask/best/`\n- GRU checkpoint: `checkpoints/mf1_scrambled_seed123/gru/best.pt`\n- Results JSON: `results/mf1_scrambled_seed123.json`\n\n**Comparison with seed=42:** DeBERTa persuasion acc similar (0.6724 vs 0.6792). DD OOD F1 slightly higher (1.0 vs 0.9904 for seed=42). Both seeds show that the scrambled model retains strong jailbreak detection because the intent classification head (val_intent_acc=1.0) provides sufficient signal for the GRU classifier."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-mf1-scrambled-seed123.md"
+}

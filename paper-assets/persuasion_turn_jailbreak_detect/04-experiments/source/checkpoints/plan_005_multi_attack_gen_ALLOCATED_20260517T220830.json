@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan_005_multi_attack_gen",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:49:00.605Z",
+    "updated_at": "2026-05-17T22:08:30.961Z",
+    "hypothesis": "FITD and Deceptive Delight attack conversations can be generated with prescribed strategy sequences using Qwen3-8B, producing 80+80 conversations with distinct strategy distributions from Crescendo"
+  },
+  "timestamp": "2026-05-17T22:08:30.974301+00:00",
+  "trigger": "update_registry"
+}

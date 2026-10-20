@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9ccb937c93210eb533be",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "audit final table numbers",
+  "task_key": "worker_audit_final_table_numbers_20260524T042827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_final_table_numbers_20260524T042827.log",
+    "occurrence": 1,
+    "bytes": 736735,
+    "sha256": "c5332de42a91b304ab08ee694b5f1f4cae2d3aca0bf3d5ab7669b63dc287ea13"
+  },
+  "statistics": {
+    "messages": 83,
+    "user_turns": 0,
+    "tool_calls": 33,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 33,
+      "tool_result": 33,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 83,
+      "chunks": [
+        {
+          "path": "9ccb937c93210eb533be-part-0001.json",
+          "message_count": 62
+        },
+        {
+          "path": "9ccb937c93210eb533be-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-final-table-numbers.md"
+}

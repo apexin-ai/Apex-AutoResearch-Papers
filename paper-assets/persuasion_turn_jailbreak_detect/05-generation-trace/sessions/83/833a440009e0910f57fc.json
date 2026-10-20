@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "833a440009e0910f57fc",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval roberta centered cka",
+  "task_key": "worker_eval_roberta-centered-cka_20260518T113006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_roberta-centered-cka_20260518T113006_result.json",
+    "occurrence": 1,
+    "bytes": 838,
+    "sha256": "a1933cdf7bedd262d7d5aa309285753c395b3f128b7a9dc658a251ef6984a85b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。RoBERTa centered CKA 结果：\n\n| Pair | Split | Centered | Uncentered | Delta |\n|---|---|---|---|---|\n| vanilla_vs_mlm | IID | **0.393** | 0.998 | -0.605 |\n| vanilla_vs_mlm | DD OOD | **0.255** | 0.998 | -0.743 |\n| vanilla_vs_9class | IID | **0.592** | 0.511 | +0.081 |\n| vanilla_vs_9class | DD OOD | **0.735** | 0.624 | +0.111 |\n| mlm_vs_9class | IID | **0.351** | 0.502 | -0.151 |\n| mlm_vs_9class | DD OOD | **0.183** | 0.626 | -0.443 |\n\n与 DeBERTa 一致：uncentered CKA 严重高估 vanilla vs MLM 的相似性（0.998 → centered 后降至 0.393/0.255）。RoBERTa 的 centered CKA 甚至比 DeBERTa（0.442）更低，说明 MLM 微调对 RoBERTa 的表示几何变化更大。\n\n结果已保存至服务器 `results/roberta_centered_cka.json` 和本地 artifact（`art_20260518_5a2d2e`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-roberta-centered-cka.md"
+}

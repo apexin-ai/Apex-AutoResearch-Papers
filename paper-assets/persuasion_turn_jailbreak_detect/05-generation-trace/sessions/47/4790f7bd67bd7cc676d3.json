@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4790f7bd67bd7cc676d3",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "data plan005 multi attack gen",
+  "task_key": "worker_data_plan005-multi-attack-gen_20260517T170605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_plan005-multi-attack-gen_20260517T170605_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "16ca811d9c876c838d909cceb750625e888d31a487ca867ed552f17c39074b51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成进行中，进度稳定。当前状态：\n\n**FITD:** 12/80, ETA ~84min  \n**DD:** ~8/80, ETA ~95min\n\n两个进程在后台自动运行，输出即时保存到 JSONL 文件。即使出现单条错误也会跳过继续。如果需要检查最终结果，可以等约 90 分钟后运行：\n\n```bash\n# 查进度\ntail -3 /root/persuasion_turn_jailbreak_detect/logs/gen_fitd_full.log\ntail -3 /root/persuasion_turn_jailbreak_detect/logs/gen_dd_full.log\n\n# 查已生成条数\nwc -l /root/persuasion_turn_jailbreak_detect/data/generated/fitd_all.jsonl\nwc -l /root/persuasion_turn_jailbreak_detect/data/generated/deceptive_delight_all.jsonl\n```\n\n质量已通过 5 条样本验证：\n- 无 `<think>` 泄漏\n- 无重复内容（similarity check + repetition_penalty）\n- 策略标注符合 playbook 设计\n- 对话递进自然\n\n完成后我会运行 Step 5/6 的验证和报告。需要我现在检查还是稍后？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-plan005-multi-attack-gen.md"
+}

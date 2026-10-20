@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp35_cross_seed_ensemble",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T20:12:07.318Z",
+    "updated_at": "2026-05-20T20:12:07.318Z"
+  },
+  "timestamp": "2026-05-20T20:12:07.486594+00:00",
+  "trigger": "update_registry"
+}

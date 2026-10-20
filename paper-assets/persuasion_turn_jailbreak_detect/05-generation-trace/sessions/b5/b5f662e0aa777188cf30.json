@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5f662e0aa777188cf30",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan002 seed123",
+  "task_key": "worker_train_plan002-seed123_20260518T001245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan002-seed123_20260518T001245_result.json",
+    "occurrence": 1,
+    "bytes": 1088,
+    "sha256": "10f9891f4ee75df1240f6ce40421537a5cef270f792e5c4a51d2d4a1d2872059"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan_002 seed=123 全部 4 个阶段完成。**\n\n### 结果汇总\n\n**Stage 1: DeBERTa Multi-task Fine-tuning**\n- Best epoch: 3 (seed=42 是 epoch 2)\n- Val persuasion acc: 0.8302 (seed=42: 0.8285)\n- Val intent acc: 1.0\n- Val loss: 0.4515 (seed=42: 0.4759)\n\n**Stage 2-3: GRU Classifiers**\n- Treatment GRU: val_acc=1.0, loss=0.0\n- Baseline GRU: val_acc=0.9865, best_loss=0.0324\n\n**Stage 4: Early Detection Evaluation (test set, N=76)**\n\n| K | Treatment F1 | Baseline F1 | TF-IDF F1 |\n|---|---|---|---|\n| 1 | 1.0000 | 0.9870 | 1.0000 |\n| 2 | 1.0000 | 0.9867 | 1.0000 |\n| 3 | 1.0000 | 1.0000 | 1.0000 |\n| 5 | 1.0000 | 1.0000 | 1.0000 |\n| full | 1.0000 | 1.0000 | 1.0000 |\n\n与 seed=42 一致：Treatment 和 TF-IDF 在所有 K 值上完美，Baseline 在 K=1,2 时略低。结果稳定。\n\n**产出文件：**\n- `checkpoints/plan_002_seed123/deberta_multitask/best/` (model + training_metrics.json)\n- `checkpoints/plan_002_seed123/gru/treatment/best.pt`\n- `checkpoints/plan_002_seed123/gru/baseline/best.pt`\n- `results/plan_002_seed123_eval.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan002-seed123.md"
+}

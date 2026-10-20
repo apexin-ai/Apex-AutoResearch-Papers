@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp55_5seed_mlm_vs_9class_aa",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:11:41.549Z",
+    "updated_at": "2026-05-22T11:44:18.954Z",
+    "hypothesis": "9-class persuasion-grounded DeBERTa DAPT produces significantly better OOD generalization than domain-exposure-only MLM DAPT, with the advantage being robust across 5 random seeds (expanding from 3 to address reviewer W2 concern about insufficient seed count)"
+  },
+  "timestamp": "2026-05-22T11:44:19.189467+00:00",
+  "trigger": "update_registry"
+}

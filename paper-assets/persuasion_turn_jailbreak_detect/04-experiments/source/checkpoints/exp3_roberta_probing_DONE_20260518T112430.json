@@ -1,0 +1,59 @@
+{
+  "exp_id": "exp3_roberta_probing",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T11:23:53.615Z",
+    "updated_at": "2026-05-18T11:24:30.009Z",
+    "hypothesis": "RoBERTa 9-class persuasion encoder encodes richer discourse structure than vanilla/MLM variants (matching DeBERTa pattern), as measured by linear probing accuracy and CKA divergence, confirming findings are encoder-agnostic",
+    "spec": {
+      "command": "python exp3_roberta_probing.py + CKA audit",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits + data/dd_ood",
+      "data_count": 118,
+      "model_name": "RoBERTa-base (9-class/MLM/vanilla)",
+      "seed": 42,
+      "checkpoint_path": "checkpoints/exp1_roberta_*/",
+      "log_path": "results/exp3_roberta_probing.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "linear_probing": {
+        "turn_position": {
+          "vanilla": 0.7665,
+          "mlm": 0.7526,
+          "9class": 0.8294
+        },
+        "escalation_level": {
+          "vanilla": 0.7272,
+          "mlm": 0.7243,
+          "9class": 0.7448
+        },
+        "persuasion_presence": {
+          "vanilla": 0.942,
+          "mlm": 0.9411,
+          "9class": 0.9509
+        }
+      },
+      "cka": {
+        "iid": {
+          "vanilla_vs_mlm": 0.9991,
+          "vanilla_vs_9class": 0.5564,
+          "mlm_vs_9class": 0.5529
+        },
+        "dd_ood": {
+          "vanilla_vs_mlm": 0.9985,
+          "vanilla_vs_9class": 0.9599,
+          "mlm_vs_9class": 0.9598
+        }
+      },
+      "note": "Same pattern as DeBERTa: 9-class > vanilla ≈ MLM. MLM barely changes representations (CKA≈0.999)."
+    },
+    "completed_at": "2026-05-18T11:24:30.010Z"
+  },
+  "timestamp": "2026-05-18T11:24:30.103018+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22db350082cf745b4b43",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan015 mean pooling",
+  "task_key": "worker_train_plan015-mean-pooling_20260518T013615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan015-mean-pooling_20260518T013615_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "9298b23c16a1b35823f395ce39e60b26c0ffab7e9de9719157897ccab9d29e6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果**：Mean Pooling 在所有 K 值（1,2,3,5,full）上 F1=1.0，与 GRU treatment 完全一致（delta=0.0）。\n\n**结论**：BiGRU 时序建模对 treatment 条件下的分类性能没有贡献。Mean pooling（简单平均 turn embeddings）即可达到相同效果，说明方法的核心在于 per-turn DeBERTa 特征质量，而非序列建模。\n\n产出：\n- Checkpoint: `checkpoints/plan_015_meanpool/treatment/best.pt`\n- 结果: `results/plan_015_mean_pooling_eval.json`\n- 训练日志: `results/plan_015_nohup.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan015-mean-pooling.md"
+}

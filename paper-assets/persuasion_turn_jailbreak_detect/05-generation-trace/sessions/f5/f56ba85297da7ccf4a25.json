@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f56ba85297da7ccf4a25",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper text rewording p4 p5 p6 p7 p8 p10",
+  "task_key": "worker_paper_text_rewording_p4_p5_p6_p7_p8_p10_20260522T134314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_text_rewording_p4_p5_p6_p7_p8_p10_20260522T134314_result.json",
+    "occurrence": 1,
+    "bytes": 1250,
+    "sha256": "3cf3b803f9f6a1bfbc1247d17822c60069621d444afeea15f64c1d45f3476416"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 changes complete. Summary:\n\n| Task | Files modified | Net line change |\n|------|---------------|----------------|\n| **P4** DisPeD footnote | `introduction.tex` | +0 (inline) |\n| **P5** Causal→Discriminative probe | `introduction.tex`, `conclusion.tex`, `appendix.tex` (×3 edits + 1 new sentence) | +1 |\n| **P6** Zhang/Maennel framing | `conclusion.tex`, `introduction.tex` | ~0 (rewrite in place) |\n| **P7** Abstract refinement | `abstract.tex` | −2 (shorter) |\n| **P8** C2 → observation | `introduction.tex` | ~0 (rewrite in place) |\n| **P10** Variance softening | `experiments.tex` (×2) | ~0 |\n\n**Net change: ~−1 line** (safe within 8-page budget). Compilation clean — 25 pages total, no errors, no warnings.\n\nKey details:\n- All `app:causal_probe` / `tab:causal_probe` references renamed to `app:discriminative_probe` / `tab:discriminative_probe` across all 5 tex files — grep confirms zero remaining instances\n- `Table~\\ref{tab:svd_iid}` removed from the IID SVD sentence since that table doesn't exist yet; numbers are inline\n- Zhang/Maennel framing changed from \"extending...from memorization to generalization\" → \"consistent with...framework\" in both introduction.tex and conclusion.tex"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-text-rewording-p4-p5-p6-p7-p8-p10.md"
+}

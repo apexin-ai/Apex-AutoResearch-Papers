@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c2f71a02f58470a6c24",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan003 scrambled retrain perturbation",
+  "task_key": "worker_train_plan003-scrambled-retrain-perturbation_20260518T070024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan003-scrambled-retrain-perturbation_20260518T070024_result.json",
+    "occurrence": 1,
+    "bytes": 1243,
+    "sha256": "34a07ab2b02aca074305b9d82ea1196fa3a6a7c1ed00ed9b14ef3cbcf220e1a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**DeBERTa 训练 (Stage 1):**\n- 4 epochs, best_epoch=4, val_persuasion_acc=0.613 (vs plan_002 原始 0.829), val_intent_acc=0.967\n- Persuasion acc 下降符合预期（scrambled labels 无法学到真实 label 对应关系）\n\n**GRU 训练 (Stage 2):**\n- IID test F1=1.0 (full turns), k=2 时 0.986\n\n**Perturbation Eval (Stage 3):**\n| Model | Clean F1 | Perturbed F1 | Delta |\n|---|---|---|---|\n| 9-class persuasion | 1.000 | 1.000 | 0.000 |\n| **Scrambled** | **0.333** | **0.333** | **0.000** |\n| Jailbreak MLM | - | - | -0.026 |\n| Vanilla baseline | 1.000 | 0.882 | -0.118 |\n\n**关键发现:** Scrambled delta=0 但本质不同于 9-class persuasion 的 delta=0。9-class 模型在 OOD perturbed data 上 clean 和 perturbed 都达到 F1=1.0（真正 robust），而 scrambled 模型在 OOD 数据上完全崩溃（F1=0.333，预测全部为 benign）。这说明 random labels + classification structure **不足以**提供泛化能力，正确的 persuasion label 内容对 OOD robustness 至关重要。\n\nCheckpoints: `checkpoints/plan_003_scrambled_retrain/`\nResults: `results/plan_003_scrambled_perturbation.json`\nRegistry: `plan_003_scrambled_perturbation` (DONE, negative)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan003-scrambled-retrain-perturbation.md"
+}

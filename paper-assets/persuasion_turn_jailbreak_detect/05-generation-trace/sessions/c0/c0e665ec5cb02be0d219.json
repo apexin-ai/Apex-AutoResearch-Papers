@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0e665ec5cb02be0d219",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16b vanilla baseline",
+  "task_key": "worker_code_exp16b-vanilla-baseline_20260520T003800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16b-vanilla-baseline_20260520T003800_result.json",
+    "occurrence": 1,
+    "bytes": 559,
+    "sha256": "1289f3c19416c622849ffdfe235905c473f51e355fe30cc4ce25011161b63bc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练和评估完成。\n\n```\n训练: val_loss=0.4227, val_acc=0.8243 (epoch 19/20)\n\neval (vanilla baseline vs MLM DAPT):\n                      Vanilla    MLM\n  llama_only_test F1: 0.8556    (对比 MLM 的值)\n  mixed_test F1:      0.6491\n  dd_ood F1:          0.4570\n  aa_ood F1:          0.7920    (MLM: 0.8152)\n  toxicchat F1:       0.2092\n```\n\nMLM DAPT 在 aa_ood 上 0.8152 vs vanilla 0.7920，增量 +0.023。其他 benchmark 的 MLM 值需要对比 `exp16b_llama_mlm_results.json`，要我拉出来做完整对比表吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16b-vanilla-baseline.md"
+}

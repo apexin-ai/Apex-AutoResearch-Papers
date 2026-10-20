@@ -1,0 +1,30 @@
+{
+  "exp_id": "plan_015_dd_eval",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T03:17:34.913Z",
+    "updated_at": "2026-05-18T03:18:07.156Z",
+    "hypothesis": "Mean pooling classifier (without temporal modeling) will perform comparably to BiGRU on DD OOD data, proving GRU temporal modeling is not necessary and persuasion embeddings alone drive cross-attack generalization",
+    "parent": "plan_006_cross_attack_clean",
+    "spec": {
+      "command": "python src/eval_meanpool_dd.py",
+      "server": "westd-33183",
+      "data_path": "deceptive_delight_all.jsonl + plan_002_splits/test.jsonl benign",
+      "data_count": 80,
+      "model_name": "DeBERTa-v3-base (plan_002 fine-tuned) + MeanPooling",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/plan_015/",
+      "eval_data": "DD 80 + plan_002 test benign",
+      "checkpoint_path": "checkpoints/plan_015/",
+      "log_path": "/root/persuasion_turn_jailbreak_detect/results/plan_015_dd_eval.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T03:18:07.156Z"
+  },
+  "timestamp": "2026-05-18T03:18:07.191252+00:00",
+  "trigger": "update_registry"
+}

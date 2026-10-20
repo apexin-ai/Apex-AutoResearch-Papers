@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "799bd3aaae3b2d2e6c7a",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "data benign v4c fullgen 230",
+  "task_key": "worker_data_benign-v4c-fullgen-230_20260517T161042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_benign-v4c-fullgen-230_20260517T161042_result.json",
+    "occurrence": 1,
+    "bytes": 559,
+    "sha256": "32517c573df8cabe20a4b33125e72aa3ff823c0e46c29e6ad51fe8a3d2414fbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 指标 | 结果 |\n|------|------|\n| 总对话数 | **230** (115 + 115) |\n| ID 范围 | benign_v4c_001 ~ benign_v4c_230 |\n| 平均 user turns | 6.5 / 6.7 |\n| `<think>` token 泄漏 | **0** |\n| 失败数 | **0** |\n| 总耗时 | ~12.5min (GPU 0: 12.6m, GPU 2: 12.3m) |\n| ID 重叠 | **0** |\n\n输出文件：\n- `/root/persuasion_turn_jailbreak_detect/data/generated/benign_v4c_full_gpu0.jsonl` (IDs 001-115)\n- `/root/persuasion_turn_jailbreak_detect/data/generated/benign_v4c_full_gpu2.jsonl` (IDs 116-230)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-benign-v4c-fullgen-230.md"
+}

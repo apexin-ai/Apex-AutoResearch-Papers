@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5d541c28d2deb4431ec",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp57 svd iid only",
+  "task_key": "worker_code_exp57_svd_iid_only_20260522T132458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp57_svd_iid_only_20260522T132458_result.json",
+    "occurrence": 1,
+    "bytes": 1127,
+    "sha256": "3f0eca10f391a61e6fa35b1f53a93ffaec6cf9f23d036b0fea883133a78c394c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果如下：\n\n## IID-only SVD vs All-data SVD — F1 对比\n\n| Condition | IID_test | DD | AA | FITD |\n|---|---|---|---|---|\n| **svd_iid_only_top3** | 1.0000 | **1.0000** | **0.9474** | 1.0000 |\n| svd_all_data_top3 | 1.0000 | 0.9937 | 0.9041 | 1.0000 |\n| **svd_iid_only_top5** | 1.0000 | **1.0000** | **0.9333** | 1.0000 |\n| svd_all_data_top5 | 1.0000 | 0.9937 | 0.8966 | 1.0000 |\n| **svd_iid_only_top10** | 1.0000 | **1.0000** | **0.9333** | 1.0000 |\n| svd_all_data_top10 | 1.0000 | 0.9937 | 0.8966 | 1.0000 |\n| random_3 | 1.0000 | 1.0000 | 0.9542 | 1.0000 |\n| full_768 | 1.0000 | 1.0000 | 0.9333 | 1.0000 |\n\n**结论：数据泄漏顾虑消除。** IID-only SVD 在所有 OOD 测试集上表现等于或优于 all-data SVD：\n- DD: 1.000 vs 0.9937（IID-only 更好）\n- AA: 0.9474 vs 0.9041（IID-only 高 +4.3pp）\n- FITD: 1.000 vs 1.000（持平）\n\n子空间对齐分析显示 top-3 方向高度一致（mean cos=0.9739, min cos=0.9332），说明 OOD 数据对 SVD 方向的影响很小。IID train 的 top-3 方向已捕获 96.78% 方差，足以支撑 OOD 泛化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp57-svd-iid-only.md"
+}

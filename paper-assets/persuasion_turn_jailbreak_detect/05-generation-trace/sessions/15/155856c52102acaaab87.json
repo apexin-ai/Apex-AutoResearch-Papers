@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "155856c52102acaaab87",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16 llama datagen run",
+  "task_key": "worker_code_exp16-llama-datagen-run_20260519T143719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-llama-datagen-run_20260519T143719_result.json",
+    "occurrence": 1,
+    "bytes": 495,
+    "sha256": "d7e9b97cb9e79892af90aa583462ca75a3cef82fbd7457f6d200e874a2a29cc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务均已成功启动：\n\n| 任务 | tmux session | GPU | 状态 |\n|------|-------------|-----|------|\n| Jailbreak (crescendo) | `exp16_llama_jailbreak_gen` | cuda:0 (15.5GB) | 模型已加载，从第 3 条续传（248 remaining） |\n| Benign | `exp16_llama_benign_gen` | cuda:1 | 模型加载中，250 条 |\n\nJailbreak 脚本正确识别了 2 条已有数据并从第 3 条续传。benign 输出到 `data/cross_llm/benign_llama.jsonl`。预计 ~4 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16-llama-datagen-run.md"
+}

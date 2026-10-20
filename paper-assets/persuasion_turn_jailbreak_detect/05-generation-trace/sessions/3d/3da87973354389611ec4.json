@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3da87973354389611ec4",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp7 tfidf perprefix",
+  "task_key": "worker_eval_exp7-tfidf-perprefix_20260518T161655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp7-tfidf-perprefix_20260518T161655_result.json",
+    "occurrence": 1,
+    "bytes": 838,
+    "sha256": "1f1af69306b375984f433f77ee2ffce8326d67294f2cda90b3cc5ead989e9dc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果保存在 `results/exp7_tfidf_perprefix.json`，registry 已更新。\n\n```\nDataset        | K1     | K2     | K3     | K5     | Full\n─────────────────────────────────────────────────────────────\nDD OOD         | 1.0000 | 1.0000 | 0.9937 | 1.0000 | 0.9610\nActorAttack    | 0.6325 | 0.7302 | 0.5714 | 0.2418 | 0.2609\n```\n\n关键发现：\n- **DD OOD**: TF-IDF 全 K 值近乎完美 (0.96-1.0)，说明 Deceptive Delight 的词汇特征足以被表层方法捕获\n- **ActorAttack**: TF-IDF 严重失效，F1 从 K2 的 0.73 持续下降到 Full 的 0.26。Precision=1.0 但 Recall 极低 (Full 仅 0.15)，说明 ActorAttack 的角色扮演策略有效规避了词汇级检测器"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp7-tfidf-perprefix.md"
+}

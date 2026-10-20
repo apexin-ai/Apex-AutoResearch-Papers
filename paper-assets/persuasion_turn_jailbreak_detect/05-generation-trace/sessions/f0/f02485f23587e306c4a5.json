@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f02485f23587e306c4a5",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp29 inference efficiency",
+  "task_key": "worker_code_exp29-inference-efficiency_20260520T153941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp29-inference-efficiency_20260520T153941_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "4bf883da2f54371ae8e6b8def14698a2cc071c73a3ef703a31d352297cd68350"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp29 完成。\n\n**结果总结**：\n\n| Model | Latency (ms) | Throughput (conv/s) | Params | AA OOD F1 |\n|---|---|---|---|---|\n| **DeBERTa+BiGRU (ours)** | **12.12 ± 1.22** | **82.5** | 186.7M | **0.972** |\n| TF-IDF+LR | 0.43 ± 0.05 | 2,345 | 10K | 0.261 |\n| Qwen3-8B 3-shot | 902 | 1.11 | 8B | 0.661 |\n| Qwen3-8B zero-shot | 3,229 | 0.31 | 8B | 0.0 |\n| GPT-4o (est.) | 2,000-5,000 | 0.2-0.5 | ~200B+ | N/A |\n\n- GPU 显存：862 MB（RTX PRO 6000 Blackwell）\n- **vs LLM judge**: 266x faster than Qwen3-8B, 165-413x faster than GPT-4o API\n- **vs TF-IDF**: TF-IDF 28x faster but OOD F1 仅 0.261（完全无法泛化）\n\n结果已保存到 `results/exp29_inference_efficiency.json`，registry 和 artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp29-inference-efficiency.md"
+}

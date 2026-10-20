@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0863d6f79a21b0cbde0e",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval plan016v2 topic perturbation",
+  "task_key": "worker_eval_plan016v2-topic-perturbation_20260518T064402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan016v2-topic-perturbation_20260518T064402_result.json",
+    "occurrence": 1,
+    "bytes": 805,
+    "sha256": "f3ebcb8bd7c22aa0f5f5960ea887f132aef00c7b18b5ad5114ba91d2c9f37af7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**结果总结：**\n\n| Model | Delta (full) | 排序 |\n|---|---|---|\n| Persuasion treatment | 0.000 | 最佳（零退化） |\n| Jailbreak MLM (017) | -0.026 | 轻度退化 |\n| **Topic (016v2)** | **-0.040** | 中度退化 |\n| Vanilla baseline | -0.118 | 严重退化 |\n| Wikipedia MLM (018) | -0.121 | 严重退化 |\n\n**假设被拒**：Topic model delta=-0.040，远好于预期的 vanilla 水平（-0.118）。Topic classification fine-tuning 确实学到了一定程度的 lexically-invariant features，但 persuasion treatment（0.000）仍然严格优于所有其他方法。\n\n产出：\n- 脚本：`src/plan_016v2_perturbed_eval.py`\n- 结果：`results/plan_016v2_topic_perturbation.json`\n- Registry：`plan_016v2_topic_perturbation` (DONE, negative)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan016v2-topic-perturbation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79a45a657d11da518c7e",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan013 none collapse",
+  "task_key": "worker_train_plan013-none-collapse_20260518T005249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan013-none-collapse_20260518T005249_result.json",
+    "occurrence": 1,
+    "bytes": 950,
+    "sha256": "84892a8eacd57f3b1821b461c753e500c694533c2733184c9f152415faacde56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Plan 013 完成 — 结果总结\n\n| K | Binary collapse (plan_013) | 9-class (plan_002) | Baseline (vanilla) |\n|---|---|---|---|\n| 1 | F1=1.000 | F1=1.000 | F1=0.987 |\n| 2 | F1=1.000 | F1=1.000 | F1=0.987 |\n| 3 | F1=1.000 | F1=1.000 | F1=0.987 |\n| 5 | F1=1.000 | F1=1.000 | F1=1.000 |\n| full | F1=1.000 | F1=1.000 | F1=1.000 |\n\n**结论：binary ≈ 8-class**（两者在所有 K 值上完全相同，均为 F1=1.0）。模型本质上是 **persuasion-presence detector**，不依赖细粒度策略区分。8 种策略的额外分类信号对下游 jailbreak detection 没有提供增量价值。\n\n**产出文件：**\n- DeBERTa checkpoint: `checkpoints/plan_013_none_collapse/deberta_multitask/best/`\n- GRU checkpoint: `checkpoints/plan_013_none_collapse/gru/treatment/best.pt`\n- 评估结果: `results/plan_013_none_collapse_eval.json`\n- 训练脚本: `src/train_deberta_binary.py`, `src/train_classifier_binary.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan013-none-collapse.md"
+}

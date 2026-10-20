@@ -1,0 +1,407 @@
+{
+  "schema_version": "1.0",
+  "session_id": "1590aa2767fd9b33447d",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-22T23:43:11.747Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019KvdNMpSWthVVXZeVzJ26p",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"remote_only\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "29731c97-d159-418d-b2b8-5d459fd14ea0",
+            "uuid": "8de1450e-fded-4a46-8e94-e2b71cf174c6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"remote_only\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"remote_only\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UM4DVUUNVMp3aRFr7cQyrz",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp65_svd_necessity_ablation_results",
+                "type": "data",
+                "description": "SVD dimension necessity ablation: original vs remove-top3-SVD vs remove-random3, evaluated on DD/AA/FITD OOD with BiGRU retrained per condition, 3 seeds",
+                "project": "persuasion_turn_jailbreak_detect",
+                "exp_id": "exp65_svd_necessity_ablation",
+                "content": "{\n  \"experiment\": \"exp65_svd_necessity_ablation\",\n  \"svd_info\": {\"variance_explained_top3\": 0.8981},\n  \"results_summary\": {\n    \"original\": {\"DD_F1\": \"1.0000±0.0000\", \"AA_F1\": \"0.9936±0.0045\", \"FITD_F1\": \"1.0000±0.0000\"},\n    \"remove_top3_svd\": {\"DD_F1\": \"0.8308±0.0642\", \"AA_F1\": \"0.9380±0.0112\", \"FITD_F1\": \"1.0000±0.0000\"},\n    \"remove_random3\": {\"DD_F1\": \"1.0000±0.0000\", \"AA_F1\": \"0.9936±0.0045\", \"FITD_F1\": \"1.0000±0.0000\"}\n  },\n  \"full_results_path\": \"westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp65_svd_ablation.json\"\n}",
+                "content_filename": "exp65_svd_ablation_summary.json",
+                "tags": [
+                  "svd",
+                  "ablation",
+                  "necessity",
+                  "ood"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "29731c97-d159-418d-b2b8-5d459fd14ea0",
+            "uuid": "5602df05-8bf9-4c80-93a3-08eb018baebc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P29ktnix78mahjrR2jw7s1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 281,
+                "cache_read_input_tokens": 112611,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 281
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-22T23:43:20.157Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment': 'exp65_svd...xp65_svd_ablation.json'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01UM4DVUUNVMp3aRFr7cQyrz"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "29731c97-d159-418d-b2b8-5d459fd14ea0",
+            "uuid": "5285ff61-9428-4ff7-9980-04f1a03f1eda",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment': 'exp65_svd...xp65_svd_ablation.json'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XhWNFdp9NXQkwbAseAD5jo",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp65_svd_necessity_ablation_results",
+                "type": "data",
+                "description": "SVD dimension necessity ablation: original vs remove-top3-SVD vs remove-random3, BiGRU retrained per condition, 3 seeds. DD F1: 1.0→0.83 after removing top-3 SVD; random-3 removal has no effect.",
+                "project": "persuasion_turn_jailbreak_detect",
+                "exp_id": "exp65_svd_necessity_ablation",
+                "content": "{\"experiment\":\"exp65_svd_necessity_ablation\",\"svd_info\":{\"variance_explained_top3\":0.8981},\"results\":{\"original\":{\"DD_F1\":\"1.0000+-0.0000\",\"AA_F1\":\"0.9936+-0.0045\",\"FITD_F1\":\"1.0000+-0.0000\"},\"remove_top3_svd\":{\"DD_F1\":\"0.8308+-0.0642\",\"AA_F1\":\"0.9380+-0.0112\",\"FITD_F1\":\"1.0000+-0.0000\"},\"remove_random3\":{\"DD_F1\":\"1.0000+-0.0000\",\"AA_F1\":\"0.9936+-0.0045\",\"FITD_F1\":\"1.0000+-0.0000\"}},\"full_results\":\"westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp65_svd_ablation.json\"}",
+                "content_filename": "exp65_svd_ablation_summary.json",
+                "tags": [
+                  "svd",
+                  "ablation",
+                  "necessity",
+                  "ood"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "29731c97-d159-418d-b2b8-5d459fd14ea0",
+            "uuid": "f997c364-ecbb-495f-b45c-9ef396fba844",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0162TUP5x8R7EbvLh2Qf1KFM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 678,
+                "cache_read_input_tokens": 112892,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 678
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-22T23:43:27.359Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment': 'exp65_svd...xp65_svd_ablation.json'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01XhWNFdp9NXQkwbAseAD5jo"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "29731c97-d159-418d-b2b8-5d459fd14ea0",
+            "uuid": "cef633e9-2545-41dd-ad13-0c823a5a10d5",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'experiment': 'exp65_svd...xp65_svd_ablation.json'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0162gNdDmtE5bKd5g9psBkUP",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp65_svd_necessity_ablation_results",
+                "type": "data",
+                "description": "SVD dimension necessity ablation results. DD F1: 1.0→0.83 after removing top-3 SVD; random-3 removal no effect.",
+                "project": "persuasion_turn_jailbreak_detect",
+                "exp_id": "exp65_svd_necessity_ablation",
+                "url": "westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp65_svd_ablation.json",
+                "tags": [
+                  "svd",
+                  "ablation",
+                  "necessity",
+                  "ood"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "29731c97-d159-418d-b2b8-5d459fd14ea0",
+            "uuid": "854d8fd1-a422-46f2-a0e9-b29d89b81632",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S6UezaQJVzg1BEm6a9HMfX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 757,
+                "cache_read_input_tokens": 113570,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 757
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-22T23:43:31.790Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0162gNdDmtE5bKd5g9psBkUP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260522_12ed3f\\\", \\\"name\\\": \\\"exp65_svd_necessity_ablation_results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"SVD dimension necessity ablation results. DD F1: 1.0→0.83 after removing top-3 SVD; random-3 removal no effect.\\\", \\\"path\\\": null, \\\"url\\\": \\\"westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp65_svd_ablation.json\\\", \\\"project\\\": \\\"persuasion_turn_jailbreak_detect\\\", \\\"exp_id\\\": \\\"exp65_svd_necessity_ablation\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-22T23:43:31.623449+00:00\\\", \\\"tags\\\": [\\\"svd\\\", \\\"ablation\\\", \\\"necessity\\\", \\\"ood\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "29731c97-d159-418d-b2b8-5d459fd14ea0",
+            "uuid": "011466a2-280c-40df-b8af-4f32cbc9beb2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260522_12ed3f\\\", \\\"name\\\": \\\"exp65_svd_necessity_ablation_results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"SVD dimension necessity ablation results. DD F1: 1.0→0.83 after removing top-3 SVD; random-3 removal no effect.\\\", \\\"path\\\": null, \\\"url\\\": \\\"westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp65_svd_ablation.json\\\", \\\"project\\\": \\\"persuasion_turn_jailbreak_detect\\\", \\\"exp_id\\\": \\\"exp65_svd_necessity_ablation\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-22T23:43:31.623449+00:00\\\", \\\"tags\\\": [\\\"svd\\\", \\\"ablation\\\", \\\"necessity\\\", \\\"ood\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260522_12ed3f\", \"name\": \"exp65_svd_necessity_ablation_results\", \"type\": \"data\", \"description\": \"SVD dimension necessity ablation results. DD F1: 1.0→0.83 after removing top-3 SVD; random-3 removal no effect.\", \"path\": null, \"url\": \"westd-33183:/root/persuasion_turn_jailbreak_detect/results/exp65_svd_ablation.json\", \"project\": \"persuasion_turn_jailbreak_detect\", \"exp_id\": \"exp65_svd_necessity_ablation\", \"skill\": \"\", \"created_at\": \"2026-05-22T23:43:31.623449+00:00\", \"tags\": [\"svd\", \"ablation\", \"necessity\", \"ood\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果如下：\n\n## 结果表格（mean±std，3 seeds）\n\n| Condition | DD F1 | FITD F1 | AA F1 |\n|---|---|---|---|\n| Original 768-dim | **1.0000±0.0000** | **1.0000±0.0000** | **0.9936±0.0045** |\n| Remove top-3 SVD | 0.8308±0.0642 | 1.0000±0.0000 | 0.9380±0.0112 |\n| Remove random-3 | 1.0000±0.0000 | 1.0000±0.0000 | 0.9936±0.0045 |\n\nSVD info: top-3 方向解释了训练 turn embeddings 89.81% 的方差。\n\n## 分析\n\n1. **DD**: 移除 top-3 SVD 导致 F1 从 1.0 暴跌至 0.83（**Δ=-0.17**），而移除 random-3 零影响。**强因果证据**——3/768 维度的移除造成 17 点下降。\n\n2. **AA**: 移除 top-3 SVD 导致 F1 从 0.994 降至 0.938（**Δ=-0.056**），random-3 零影响。效果显著但比 DD 弱，说明 AA 的判别信息在更多维度上有冗余。\n\n3. **FITD**: 两种 ablation 均无影响（F1=1.0）。FITD 的判别信息更分散，不集中在 top-3 方向。\n\n4. **因果证据成立**：random-3 对照组完美复现 original 结果（数值完全一致），排除了\"移除任意 3 个维度都会降低性能\"的混淆解释。\n\n5. **与 exp54 的互补**：exp54 证明 3 维足够（sufficiency），exp65 证明 3 维必要（necessity，至少对 DD）。Top-3 SVD 方向对 DD 检测既充分又必要，对 AA 充分但部分冗余，对 FITD 充分但非必要。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "29731c97-d159-418d-b2b8-5d459fd14ea0",
+            "uuid": "568680c1-5fc3-45b5-a632-ae07e027e1c4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RBbsRVgqmq3sKWNZ6EJYgo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 597,
+                "cache_read_input_tokens": 114327,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 597
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果如下：\n\n## 结果表格（mean±std，3 seeds）\n\n| Condition | DD F1 | FITD F1 | AA F1 |\n|---|---|---|---|\n| Original 768-dim | **1.0000±0.0000** | **1.0000±0.0000** | **0.9936±0.0045** |\n| Remove top-3 SVD | 0.8308±0.0642 | 1.0000±0.0000 | 0.9380±0.0112 |\n| Remove random-3 | 1.0000±0.0000 | 1.0000±0.0000 | 0.9936±0.0045 |\n\nSVD info: top-3 方向解释了训练 turn embeddings 89.81% 的方差。\n\n## 分析\n\n1. **DD**: 移除 top-3 SVD 导致 F1 从 1.0 暴跌至 0.83（**Δ=-0.17**），而移除 random-3 零影响。**强因果证据**——3/768 维度的移除造成 17 点下降。\n\n2. **AA**: 移除 top-3 SVD 导致 F1 从 0.994 降至 0.938（**Δ=-0.056**），random-3 零影响。效果显著但比 DD 弱，说明 AA 的判别信息在更多维度上有冗余。\n\n3. **FITD**: 两种 ablation 均无影响（F1=1.0）。FITD 的判别信息更分散，不集中在 top-3 方向。\n\n4. **因果证据成立**：random-3 对照组完美复现 original 结果（数值完全一致），排除了\"移除任意 3 个维度都会降低性能\"的混淆解释。\n\n5. **与 exp54 的互补**：exp54 证明 3 维足够（sufficiency），exp65 证明 3 维必要（necessity，至少对 DD）。Top-3 SVD 方向对 DD 检测既充分又必要，对 AA 充分但部分冗余，对 FITD 充分但非必要。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 716540,
+            "duration_api_ms": 700057,
+            "num_turns": 74,
+            "stop_reason": "end_turn",
+            "session_id": "29731c97-d159-418d-b2b8-5d459fd14ea0",
+            "total_cost_usd": 3.7444112499999993,
+            "usage": {
+              "input_tokens": 60,
+              "cache_creation_input_tokens": 103083,
+              "cache_read_input_tokens": 4294605,
+              "output_tokens": 38018,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 103083,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 615,
+                  "cache_read_input_tokens": 114327,
+                  "cache_creation_input_tokens": 597,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 597
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2000,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00209,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 60,
+                "outputTokens": 38018,
+                "cacheReadInputTokens": 4294605,
+                "cacheCreationInputTokens": 103083,
+                "webSearchRequests": 0,
+                "costUSD": 3.7423212499999994,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "a13d6dfc-6c17-44a5-8821-d8b12dc5015e"
+          },
+          "id": "event-000189"
+        }
+      ]
+    }
+  ]
+}

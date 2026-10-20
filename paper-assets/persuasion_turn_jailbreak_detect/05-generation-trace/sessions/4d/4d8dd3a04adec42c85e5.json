@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d8dd3a04adec42c85e5",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16 fp16 check and toxicchat diag",
+  "task_key": "worker_code_exp16-fp16-check-and-toxicchat-diag_20260520T005802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-fp16-check-and-toxicchat-diag_20260520T005802_result.json",
+    "occurrence": 1,
+    "bytes": 2676,
+    "sha256": "f6c94f48a3afadfa606bfcb49ede15a6f88ffafae9177b13f6cfaeb0731b25f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "根因完全清楚了。汇报结果：\n\n---\n\n## fp16 影响: **不需要重跑**\n\n- exp16 所有 checkpoint 均为 **torch.float32** 存储\n- exp17 checkpoint 同样是 float32\n- `src/evaluate.py`（exp16 用）的 baseline 路径显式指定 `dtype=torch.float32`，treatment 路径通过 `DeBERTaMultiTask`（fp32 初始化）+ `load_state_dict` 加载 fp32 权重\n- exp17 eval 中的 `.float()` 是 no-op\n- **结论：exp16 的 64 个结果不受影响，无需重跑**\n\n---\n\n## ToxicChat 低分诊断\n\n### 数据路径\n- exp16 和 exp17 用 **同一文件**: `data/mhj/toxicchat_plan002_eval.jsonl`（242 条：204 jailbreak + 38 benign）\n- eval 逻辑功能等价（都提取 user turns、binary label）\n- **不是 eval 代码 bug**\n\n### 根因：单轮 jailbreak 检测失败\n\nToxicChat 的结构特殊：\n| 类别 | 数量 | user turns | 来源 |\n|------|------|-----------|------|\n| jailbreak | 204 | **全部 1 轮** | toxicchat-human |\n| benign | 38 | 6-10 轮 | qwen3-8b 合成 |\n\n训练数据分布：\n| 数据集 | JB 单轮 | BN 单轮 | JB 轮数范围 | BN 轮数范围 |\n|--------|---------|---------|------------|------------|\n| mixed_500 | **0/174** | 0/176 | 5-12 | 5-10 |\n| expanded_1000 | **0/350** | 0/350 | 5-12 | 6-14 |\n\n**两个训练集都没有任何单轮对话。** 模型在单轮输入上的行为是 OOD 外推。\n\n抽样验证（9class seed42 on ToxicChat）：\n\n| 模型 | 1-turn JB 检出 | multi-turn BN 检出 |\n|------|---------------|-------------------|\n| **exp16** | 183/204 (89.7%) | 38/38 (100%) |\n| **exp17** | 37/204 (18.1%) | 38/38 (100%) |\n\nexp17 模型把 **167/204 单轮 jailbreak 错判为 benign**，而 multi-turn benign 全对。\n\n### 为什么 exp17 比 exp16 差\n\n两个模型都从未见过单轮数据，单轮行为是外推。exp16 \"碰巧\" 能检测单轮 jailbreak（DeBERTa embedding 恰好落在 GRU 判别区域的 jailbreak 侧），exp17 则不行。expanded_1000 数据量更大、轮数更多（均值 8.5-9.1 vs 7.9-8.2），GRU 更强地学到了\"序列长度\"这个 spurious feature，导致单轮外推行为恶化。\n\nDD/AA OOD 不受影响，因为它们都是多轮 jailbreak。\n\n### 建议\n1. **训练集加入单轮 jailbreak 样本**（从 ToxicChat 采样加入训练集，或合成单轮 jailbreak 数据）\n2. 或者在论文中将 ToxicChat 标注为 **\"zero-shot single-turn transfer\"** 而非标准 OOD benchmark，因为当前模型架构（GRU 序列分类器）天然不适合单轮场景\n3. 当前 exp17 DD/AA OOD 结果可信（多轮对多轮），ToxicChat 低分是 distribution shift 而非模型退化"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16-fp16-check-and-toxicchat-diag.md"
+}

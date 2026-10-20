@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "743edf5aae71a3f538ee",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "ops disk cleanup",
+  "task_key": "worker_ops_disk-cleanup_20260517T163118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup_20260517T163118_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "547dda149cb92ab49c7e8844905ff771abb7d3644e3f96220da6ea6f47540e04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== Disk Cleanup Report ===\nBefore: 26 GB used / 30 GB total (86% usage)\nAfter:  24 GB used / 30 GB total (79% usage)\nFreed:  ~2.1 GB\n\nDeleted items:\n- checkpoints/treatment_dryrun/:  1.4 GB\n- checkpoints/pilot_deberta/:     710 MB\n- checkpoints/pilot_gru/:         23 MB\n- checkpoints/baseline_gru/:      12 MB\n- data/embeddings/baseline_*.pt:  11.2 MB\n- data/pilot/:                    6 MB\n- data/generated/benign_v4b*.jsonl: 874 KB\n- data/mock*.jsonl:               95 KB\n\nPreserved (verified):\n- crescendo_all.jsonl: OK (250 lines)\n- crescendo_part1.jsonl: OK (2.9M)\n- crescendo_part2.jsonl: OK (2.8M)\n- benign_v4c_full_gpu0.jsonl: 115 lines (idle)\n- benign_v4c_full_gpu2.jsonl: 115 lines (idle)\n- src/, scripts/, taxonomy/: untouched\n\n⚠️ Note: Generation processes are NOT running — no python processes found. The v4c files appear idle (last modified ~00:31).\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9868f56203c5cdfb6f72",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp42b balanced ratio",
+  "task_key": "worker_code_exp42b_balanced_ratio_20260522T042135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp42b_balanced_ratio_20260522T042135_result.json",
+    "occurrence": 1,
+    "bytes": 335,
+    "sha256": "06bf5e8be20e068b6a3db9990fcb58f643ab48b7db726537e3455422142833ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training is running. Data composition verified:\n- **exp42b**: 175 jailbreak + 87 orig benign + 88 WC benign = 350 (50:50)\n- **exp42** (baseline): 175 jailbreak + 175 orig benign + 150 WC benign = 500 (35:65)\n\nSame WildChat eval set (49 samples). I'll check back in ~4 minutes when the first seed should be finishing."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp42b-balanced-ratio.md"
+}

@@ -1,0 +1,3940 @@
+# code exp42b balanced ratio
+
+**DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 82
+- **Recorded user turns:** 0
+- **Tool calls:** 27
+- **Original source:** `logs/workers/worker_code_exp42b_balanced_ratio_20260522T042135.log`
+- **Structured JSON:** [`a92ebf5ec7188430a4f0.json`](../../sessions/a9/a92ebf5ec7188430a4f0.json)
+
+## Before a recorded user message
+
+82 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect",
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "fba7f18c-8298-406c-a034-133ecbe741b1",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-2-projects-persuasion-turn-jailbreak-detect/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779432000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "3b0176ab-e7cb-4137-9b79-2d390a48d751",
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the exp42 script to understand the data setup, then create the exp42b script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "ffd6eac4-0f66-4f03-9ac5-55bcaee441e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013djYbMp1rdv4258VPo619r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12529,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12529
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+I'll read the exp42 script first, then check GPU availability and exp42 results in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "a8ce5887-78ac-4a19-beb2-c912ee1f95fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013djYbMp1rdv4258VPo619r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12529,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12529
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UPLe3UGnX8Wt23MGhNLKhc`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "0b37c658-7351-4246-903b-8bd2eec67ef7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013djYbMp1rdv4258VPo619r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12529,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12529
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-22T04:21:49.583Z_
+
+<details><summary>↩ Tool result · `toolu_01UPLe3UGnX8Wt23MGhNLKhc`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "a09b50da-2119-40b2-a2e4-cdd534318d02",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Reading the exp42 script, checking GPU availability, and reading exp42 results in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "67ebc2d8-7043-4a4a-a6fb-8fb292a0f88c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhsytfxnyxnD1tENwwZNQg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2185,
+      "cache_read_input_tokens": 24370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2185
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TghR37TMLVnQivdnhnC3o1`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/scripts/exp42_ood_benign_mixed.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "43075fc3-a95c-4bba-a1b4-0789a791bd9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhsytfxnyxnD1tENwwZNQg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2185,
+      "cache_read_input_tokens": 24370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2185
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HRsoU2tc4puTsAvMzyGBni`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat /root/persuasion_turn_jailbreak_detect/results/exp42_ood_benign_mixed.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "dec66603-5cd3-47a3-822a-b39fdb15227d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhsytfxnyxnD1tENwwZNQg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2185,
+      "cache_read_input_tokens": 24370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2185
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T04:21:55.345Z_
+
+<details><summary>↩ Tool result · `toolu_01TghR37TMLVnQivdnhnC3o1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp42: OOD benign mixed training — add WildChat benign to training data.\\n\\nHypothesis: Including WildChat benign conversations in training data will reduce\\nWildChat FPR from 68.1% to below 30% while maintaining jailbreak OOD detection\\nF1 above 0.95 on DD/AA/FITD.\\n\\nRun: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\n     cd /root/persuasion_turn_jailbreak_detect && \\\\\\n     CUDA_VISIBLE_DEVICES=0 python scripts/exp42_ood_benign_mixed.py\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport sys, json, random, time, re, subprocess\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom pathlib import Path\\nfrom collections import Counter\\nfrom sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score\\n\\nsys.path.insert(0, \\\"/root/persuasion_turn_jailbreak_detect\\\")\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\nfrom src.models.gru_classifier import GRUClassifier\\nfrom transformers import AutoTokenizer\\n\\nPROJ = Path(\\\"/root/persuasion_turn_jailbreak_detect\\\")\\nCKPT_BASE = Path(\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints\\\")\\nLOCAL_MODEL = \\\"/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\\\"\\nDEVICE = torch.device(\\\"cuda:0\\\")\\nMAX_LENGTH = 256\\n\\nDEBERTA_LR = 2e-5\\nDEBERTA_BATCH = 16\\nDEBERTA_EPOCHS = 4\\nALPHA = 0.3\\n\\nGRU_HIDDEN = 256\\nGRU_LAYERS = 2\\nGRU_DROPOUT = 0.3\\nGRU_LR = 1e-3\\nGRU_EPOCHS = 20\\nGRU_BATCH = 32\\n\\nSEEDS = [42, 123, 456]\\n\\nWILDCHAT_PATH = PROJ / \\\"data\\\" / \\\"wildchat_benign_226.jsonl\\\"\\nTRAIN_PATH = PROJ / \\\"data\\\" / \\\"plan_002_splits\\\" / \\\"train.jsonl\\\"\\nVAL_PATH = PROJ / \\\"data\\\" / \\\"plan_002_splits\\\" / \\\"val.jsonl\\\"\\nTEST_PATH = PROJ / \\\"data\\\" / \\\"plan_002_splits\\\" / \\\"test.jsonl\\\"\\nDD_PATH = PROJ / \\\"data\\\" / \\\"generated\\\" / \\\"deceptive_delight_all.jsonl\\\"\\nAA_PATH = PROJ / \\\"data\\\" / \\\"actorattack_ood\\\" / \\\"actorattack_all.jsonl\\\"\\nFITD_PATH = PROJ / \\\"data\\\" / \\\"generated\\\" / \\\"fitd_all.jsonl\\\"\\n\\nMIXED_TRAIN_PATH = PROJ / \\\"data\\\" / \\\"exp42_mixed_train.jsonl\\\"\\nWILDCHAT_EVAL_PATH = PROJ / \\\"data\\\" / \\\"exp42_wildchat_eval.jsonl\\\"\\n\\nRESULTS_JSON = PROJ / \\\"results\\\" / \\\"exp42_ood_benign_mixed.json\\\"\\n\\n# === Jailbreak filter keywords (from prepare_wildchat_benign.py) ===\\nJAILBREAK_KEYWORDS = [\\n    \\\"ignore previous instructions\\\", \\\"ignore all previous\\\", \\\"disregard previous\\\",\\n    \\\"forget your instructions\\\", \\\"you are now\\\", \\\"act as if\\\", \\\"pretend you are\\\",\\n    \\\"jailbreak\\\", \\\"DAN\\\", \\\"do anything now\\\", \\\"bypass\\\", \\\"override your\\\",\\n    \\\"ignore your programming\\\", \\\"ignore your training\\\", \\\"system prompt\\\",\\n    \\\"you have no restrictions\\\", \\\"no ethical guidelines\\\",\\n    \\\"roleplay as\\\", \\\"evil mode\\\", \\\"developer mode\\\", \\\"god mode\\\",\\n    \\\"ignore safety\\\", \\\"ignore content policy\\\", \\\"opposite day\\\",\\n    \\\"LEO\\\", \\\"no restrictions\\\", \\\"unlimited\\\", \\\"unfiltered\\\",\\n]\\nJAILBREAK_PATTERN = re.compile(\\n    \\\"|\\\".join(re.escape(kw) for kw in JAILBREAK_KEYWORDS), re.IGNORECASE\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef save_jsonl(data, path):\\n    with open(path, \\\"w\\\") as f:\\n        for item in data:\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\"\\\\n\\\")\\n\\n\\ndef set_seed(seed):\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n\\n\\ndef filter_wildchat(conversations):\\n    \\\"\\\"\\\"Filter out likely jailbreak content from WildChat benign data.\\\"\\\"\\\"\\n    clean = []\\n    filtered_ids = []\\n    for conv in conversations:\\n        full_text = \\\" \\\".join(\\n            t[\\\"content\\\"] for t in conv[\\\"turns\\\"] if t.get(\\\"role\\\") == \\\"user\\\"\\n        )\\n        if JAILBREAK_PATTERN.search(full_text):\\n            filtered_ids.append(conv[\\\"conversation_id\\\"])\\n        else:\\n            clean.append(conv)\\n    if filtered_ids:\\n        print(f\\\"  Filtered {len(filtered_ids)} conversations with jailbreak patterns\\\")\\n    return clean\\n\\n\\ndef prepare_wildchat_for_training(conv):\\n    \\\"\\\"\\\"Add persuasion_strategy=0 to user turns for TurnDataset compatibility.\\n\\n... [截断: 输出过长，省略 11816 字符] ...\\n\\n jailbreak OOD\\n            ood_recall = sum(ood_preds) / len(ood_preds)\\n            seed_results[f\\\"ood_{ood_name.lower()}_recall\\\"] = ood_recall\\n            print(f\\\"  OOD {ood_name} recall: {ood_recall:.4f} ({sum(ood_preds)}/{len(ood_preds)})\\\")\\n\\n            # F1: combine OOD jailbreak with IID benign test subset\\n            iid_benign = [c for c in test_data if c[\\\"label\\\"] == \\\"benign\\\"]\\n            combined_preds_benign, _ = predict_convs(iid_benign)\\n            combined_preds = combined_preds_benign + ood_preds\\n            combined_true = [0] * len(iid_benign) + [1] * len(ood_data)\\n            combined_f1 = f1_score(combined_true, combined_preds, average=\\\"macro\\\")\\n            seed_results[f\\\"ood_{ood_name.lower()}_f1\\\"] = combined_f1\\n            print(f\\\"  OOD {ood_name} F1 (vs IID benign): {combined_f1:.4f}\\\")\\n\\n        all_results[\\\"seeds\\\"][str(seed)] = seed_results\\n\\n        del encoder, gru\\n        torch.cuda.empty_cache()\\n\\n    # Summary across seeds\\n    wc_fprs = [all_results[\\\"seeds\\\"][str(s)][\\\"wildchat_fpr\\\"] for s in SEEDS]\\n    iid_f1s = [all_results[\\\"seeds\\\"][str(s)][\\\"iid_f1_macro\\\"] for s in SEEDS]\\n\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] = float(np.mean(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_std\\\"] = float(np.std(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_mean\\\"] = float(np.mean(iid_f1s))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_std\\\"] = float(np.std(iid_f1s))\\n\\n    for ood_name in ood_datasets:\\n        recalls = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_recall\\\"] for s in SEEDS]\\n        f1s = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_f1\\\"] for s in SEEDS]\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_recall_mean\\\"] = float(np.mean(recalls))\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_f1_mean\\\"] = float(np.mean(f1s))\\n\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(\\\"SUMMARY (3-seed mean)\\\")\\n    print(f\\\"{'='*70}\\\")\\n    print(f\\\"WildChat FPR: {all_results['summary']['wildchat_fpr_mean']:.4f} ± {all_results['summary']['wildchat_fpr_std']:.4f}\\\")\\n    print(f\\\"IID F1 macro: {all_results['summary']['iid_f1_mean']:.4f} ± {all_results['summary']['iid_f1_std']:.4f}\\\")\\n    for ood_name in ood_datasets:\\n        print(f\\\"OOD {ood_name} recall: {all_results['summary'][f'ood_{ood_name.lower()}_recall_mean']:.4f}\\\")\\n        print(f\\\"OOD {ood_name} F1: {all_results['summary'][f'ood_{ood_name.lower()}_f1_mean']:.4f}\\\")\\n\\n    # Pass/fail\\n    fpr_pass = all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] < 0.30\\n    ood_f1_pass = all(\\n        all_results[\\\"summary\\\"].get(f\\\"ood_{n.lower()}_f1_mean\\\", 0) > 0.95\\n        for n in ood_datasets\\n    )\\n    print(f\\\"\\\\nFPR < 30%: {'PASS' if fpr_pass else 'FAIL'} ({all_results['summary']['wildchat_fpr_mean']:.1%})\\\")\\n    print(f\\\"OOD F1 > 0.95: {'PASS' if ood_f1_pass else 'FAIL'}\\\")\\n\\n    all_results[\\\"summary\\\"][\\\"fpr_pass\\\"] = fpr_pass\\n    all_results[\\\"summary\\\"][\\\"ood_f1_pass\\\"] = ood_f1_pass\\n    all_results[\\\"summary\\\"][\\\"conclusion\\\"] = \\\"success\\\" if (fpr_pass and ood_f1_pass) else \\\"negative\\\"\\n\\n    RESULTS_JSON.parent.mkdir(parents=True, exist_ok=True)\\n    with open(RESULTS_JSON, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {RESULTS_JSON}\\\")\\n\\n    return all_results\\n\\n\\n# =========================================================================\\n# MAIN\\n# =========================================================================\\nif __name__ == \\\"__main__\\\":\\n    t_total = time.time()\\n\\n    # Step 1: Prepare data\\n    n_wc_train, n_wc_eval = prepare_data()\\n\\n    # Step 2: Train 3 seeds\\n    seeds_ckpts = {}\\n    for seed in SEEDS:\\n        print(f\\\"\\\\n{'#'*70}\\\")\\n        print(f\\\"# SEED {seed}\\\")\\n        print(f\\\"{'#'*70}\\\")\\n        deberta_path = run_stage1(seed)\\n        gru_path = run_stage2(seed, deberta_path)\\n        seeds_ckpts[seed] = (deberta_path, gru_path)\\n\\n    # Step 3: Evaluate\\n    results = evaluate_all(seeds_ckpts)\\n\\n    elapsed_total = time.time() - t_total\\n    print(f\\\"\\\\nTotal time: {elapsed_total/60:.1f} min\\\")\\n    print(f\\\"\\\\nCheckpoints at: {CKPT_BASE}/exp42_mixed_seed*/\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "8ddfedfd-176e-40d0-a9a8-bc4ebd65b30c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp42: OOD benign mixed training — add WildChat benign to training data.\\\\n\\\\nHypothesis: Including WildChat benign conversations in training data will reduce\\\\nWildChat FPR from 68.1% to below 30% while maintaining jailbreak OOD detection\\\\nF1 above 0.95 on DD/AA/FITD.\\\\n\\\\nRun: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\\\\\\\n     cd /root/persuasion_turn_jailbreak_detect && \\\\\\\\\\\\n     CUDA_VISIBLE_DEVICES=0 python scripts/exp42_ood_benign_mixed.py\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HUB_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport sys, json, random, time, re, subprocess\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom pathlib import Path\\\\nfrom collections import Counter\\\\nfrom sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/persuasion_turn_jailbreak_detect\\\\\\\")\\\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\\\nfrom src.models.gru_classifier import GRUClassifier\\\\nfrom transformers import AutoTokenizer\\\\n\\\\nPROJ = Path(\\\\\\\"/root/persuasion_turn_jailbreak_detect\\\\\\\")\\\\nCKPT_BASE = Path(\\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints\\\\\\\")\\\\nLOCAL_MODEL = \\\\\\\"/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\\\\\\\"\\\\nDEVICE = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\nMAX_LENGTH = 256\\\\n\\\\nDEBERTA_LR = 2e-5\\\\nDEBERTA_BATCH = 16\\\\nDEBERTA_EPOCHS = 4\\\\nALPHA = 0.3\\\\n\\\\nGRU_HIDDEN = 256\\\\nGRU_LAYERS = 2\\\\nGRU_DROPOUT = 0.3\\\\nGRU_LR = 1e-3\\\\nGRU_EPOCHS = 20\\\\nGRU_BATCH = 32\\\\n\\\\nSEEDS = [42, 123, 456]\\\\n\\\\nWILDCHAT_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"wildchat_benign_226.jsonl\\\\\\\"\\\\nTRAIN_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"plan_002_splits\\\\\\\" / \\\\\\\"train.jsonl\\\\\\\"\\\\nVAL_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"plan_002_splits\\\\\\\" / \\\\\\\"val.jsonl\\\\\\\"\\\\nTEST_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"plan_002_splits\\\\\\\" / \\\\\\\"test.jsonl\\\\\\\"\\\\nDD_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"generated\\\\\\\" / \\\\\\\"deceptive_delight_all.jsonl\\\\\\\"\\\\nAA_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"actorattack_ood\\\\\\\" / \\\\\\\"actorattack_all.jsonl\\\\\\\"\\\\nFITD_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"generated\\\\\\\" / \\\\\\\"fitd_all.jsonl\\\\\\\"\\\\n\\\\nMIXED_TRAIN_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"exp42_mixed_train.jsonl\\\\\\\"\\\\nWILDCHAT_EVAL_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"exp42_wildchat_eval.jsonl\\\\\\\"\\\\n\\\\nRESULTS_JSON = PROJ / \\\\\\\"results\\\\\\\" / \\\\\\\"exp42_ood_benign_mixed.json\\\\\\\"\\\\n\\\\n# === Jailbreak filter keywords (from prepare_wildchat_benign.py) ===\\\\nJAILBREAK_KEYWORDS = [\\\\n    \\\\\\\"ignore previous instructions\\\\\\\", \\\\\\\"ignore all previous\\\\\\\", \\\\\\\"disregard previous\\\\\\\",\\\\n    \\\\\\\"forget your instructions\\\\\\\", \\\\\\\"you are now\\\\\\\", \\\\\\\"act as if\\\\\\\", \\\\\\\"pretend you are\\\\\\\",\\\\n    \\\\\\\"jailbreak\\\\\\\", \\\\\\\"DAN\\\\\\\", \\\\\\\"do anything now\\\\\\\", \\\\\\\"bypass\\\\\\\", \\\\\\\"override your\\\\\\\",\\\\n    \\\\\\\"ignore your programming\\\\\\\", \\\\\\\"ignore your training\\\\\\\", \\\\\\\"system prompt\\\\\\\",\\\\n    \\\\\\\"you have no restrictions\\\\\\\", \\\\\\\"no ethical guidelines\\\\\\\",\\\\n    \\\\\\\"roleplay as\\\\\\\", \\\\\\\"evil mode\\\\\\\", \\\\\\\"developer mode\\\\\\\", \\\\\\\"god mode\\\\\\\",\\\\n    \\\\\\\"ignore safety\\\\\\\", \\\\\\\"ignore content policy\\\\\\\", \\\\\\\"opposite day\\\\\\\",\\\\n    \\\\\\\"LEO\\\\\\\", \\\\\\\"no restrictions\\\\\\\", \\\\\\\"unlimited\\\\\\\", \\\\\\\"unfiltered\\\\\\\",\\\\n]\\\\nJAILBREAK_PATTERN = re.compile(\\\\n    \\\\\\\"|\\\\\\\".join(re.escape(kw) for kw in JAILBREAK_KEYWORDS), re.IGNORECASE\\\\n)\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(l) for l in f if l.strip()]\\\\n\\\\n\\\\ndef save_jsonl(data, path):\\\\n    with open(path, \\\\\\\"w\\\\\\\") as f:\\\\n        for item in data:\\\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n\\\\ndef set_seed(seed):\\\\n    random.seed(seed)\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef filter_wildchat(conversations):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Filter out likely jailbreak content from WildChat benign data.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    clean = []\\\\n    filtered_ids = []\\\\n    for conv in conversations:\\\\n        full_text = \\\\\\\" \\\\\\\".join(\\\\n            t[\\\\\\\"content\\\\\\\"] for t in conv[\\\\\\\"turns\\\\\\\"] if t.get(\\\\\\\"role\\\\\\\") == \\\\\\\"user\\\\\\\"\\\\n        )\\\\n        if JAILBREAK_PATTERN.search(full_text):\\\\n            filtered_ids.append(conv[\\\\\\\"conversation_id\\\\\\\"])\\\\n        else:\\\\n            clean.append(conv)\\\\n    if filtered_ids:\\\\n        print(f\\\\\\\"  Filtered {len(filtered_ids)} conversations with jailbreak patterns\\\\\\\")\\\\n    return clean\\\\n\\\\n\\\\ndef prepare_wildchat_for_training(conv):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Add persuasion_strategy=0 to user turns for TurnDataset compatibility.\\\\n\\\\n... [截断: 输出过长，省略 11816 字符] ...\\\\n\\\\n jailbreak OOD\\\\n            ood_recall = sum(ood_preds) / len(ood_preds)\\\\n            seed_results[f\\\\\\\"ood_{ood_name.lower()}_recall\\\\\\\"] = ood_recall\\\\n            print(f\\\\\\\"  OOD {ood_name} recall: {ood_recall:.4f} ({sum(ood_preds)}/{len(ood_preds)})\\\\\\\")\\\\n\\\\n            # F1: combine OOD jailbreak with IID benign test subset\\\\n            iid_benign = [c for c in test_data if c[\\\\\\\"label\\\\\\\"] == \\\\\\\"benign\\\\\\\"]\\\\n            combined_preds_benign, _ = predict_convs(iid_benign)\\\\n            combined_preds = combined_preds_benign + ood_preds\\\\n            combined_true = [0] * len(iid_benign) + [1] * len(ood_data)\\\\n            combined_f1 = f1_score(combined_true, combined_preds, average=\\\\\\\"macro\\\\\\\")\\\\n            seed_results[f\\\\\\\"ood_{ood_name.lower()}_f1\\\\\\\"] = combined_f1\\\\n            print(f\\\\\\\"  OOD {ood_name} F1 (vs IID benign): {combined_f1:.4f}\\\\\\\")\\\\n\\\\n        all_results[\\\\\\\"seeds\\\\\\\"][str(seed)] = seed_results\\\\n\\\\n        del encoder, gru\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    # Summary across seeds\\\\n    wc_fprs = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][\\\\\\\"wildchat_fpr\\\\\\\"] for s in SEEDS]\\\\n    iid_f1s = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][\\\\\\\"iid_f1_macro\\\\\\\"] for s in SEEDS]\\\\n\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"wildchat_fpr_mean\\\\\\\"] = float(np.mean(wc_fprs))\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"wildchat_fpr_std\\\\\\\"] = float(np.std(wc_fprs))\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"iid_f1_mean\\\\\\\"] = float(np.mean(iid_f1s))\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"iid_f1_std\\\\\\\"] = float(np.std(iid_f1s))\\\\n\\\\n    for ood_name in ood_datasets:\\\\n        recalls = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][f\\\\\\\"ood_{ood_name.lower()}_recall\\\\\\\"] for s in SEEDS]\\\\n        f1s = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][f\\\\\\\"ood_{ood_name.lower()}_f1\\\\\\\"] for s in SEEDS]\\\\n        all_results[\\\\\\\"summary\\\\\\\"][f\\\\\\\"ood_{ood_name.lower()}_recall_mean\\\\\\\"] = float(np.mean(recalls))\\\\n        all_results[\\\\\\\"summary\\\\\\\"][f\\\\\\\"ood_{ood_name.lower()}_f1_mean\\\\\\\"] = float(np.mean(f1s))\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\")\\\\n    print(\\\\\\\"SUMMARY (3-seed mean)\\\\\\\")\\\\n    print(f\\\\\\\"{'='*70}\\\\\\\")\\\\n    print(f\\\\\\\"WildChat FPR: {all_results['summary']['wildchat_fpr_mean']:.4f} ± {all_results['summary']['wildchat_fpr_std']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"IID F1 macro: {all_results['summary']['iid_f1_mean']:.4f} ± {all_results['summary']['iid_f1_std']:.4f}\\\\\\\")\\\\n    for ood_name in ood_datasets:\\\\n        print(f\\\\\\\"OOD {ood_name} recall: {all_results['summary'][f'ood_{ood_name.lower()}_recall_mean']:.4f}\\\\\\\")\\\\n        print(f\\\\\\\"OOD {ood_name} F1: {all_results['summary'][f'ood_{ood_name.lower()}_f1_mean']:.4f}\\\\\\\")\\\\n\\\\n    # Pass/fail\\\\n    fpr_pass = all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"wildchat_fpr_mean\\\\\\\"] < 0.30\\\\n    ood_f1_pass = all(\\\\n        all_results[\\\\\\\"summary\\\\\\\"].get(f\\\\\\\"ood_{n.lower()}_f1_mean\\\\\\\", 0) > 0.95\\\\n        for n in ood_datasets\\\\n    )\\\\n    print(f\\\\\\\"\\\\\\\\nFPR < 30%: {'PASS' if fpr_pass else 'FAIL'} ({all_results['summary']['wildchat_fpr_mean']:.1%})\\\\\\\")\\\\n    print(f\\\\\\\"OOD F1 > 0.95: {'PASS' if ood_f1_pass else 'FAIL'}\\\\\\\")\\\\n\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"fpr_pass\\\\\\\"] = fpr_pass\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"ood_f1_pass\\\\\\\"] = ood_f1_pass\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"conclusion\\\\\\\"] = \\\\\\\"success\\\\\\\" if (fpr_pass and ood_f1_pass) else \\\\\\\"negative\\\\\\\"\\\\n\\\\n    RESULTS_JSON.parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(RESULTS_JSON, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {RESULTS_JSON}\\\\\\\")\\\\n\\\\n    return all_results\\\\n\\\\n\\\\n# =========================================================================\\\\n# MAIN\\\\n# =========================================================================\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    t_total = time.time()\\\\n\\\\n    # Step 1: Prepare data\\\\n    n_wc_train, n_wc_eval = prepare_data()\\\\n\\\\n    # Step 2: Train 3 seeds\\\\n    seeds_ckpts = {}\\\\n    for seed in SEEDS:\\\\n        print(f\\\\\\\"\\\\\\\\n{'#'*70}\\\\\\\")\\\\n        print(f\\\\\\\"# SEED {seed}\\\\\\\")\\\\n        print(f\\\\\\\"{'#'*70}\\\\\\\")\\\\n        deberta_path = run_stage1(seed)\\\\n        gru_path = run_stage2(seed, deberta_path)\\\\n        seeds_ckpts[seed] = (deberta_path, gru_path)\\\\n\\\\n    # Step 3: Evaluate\\\\n    results = evaluate_all(seeds_ckpts)\\\\n\\\\n    elapsed_total = time.time() - t_total\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {elapsed_total/60:.1f} min\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nCheckpoints at: {CKPT_BASE}/exp42_mixed_seed*/\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp42: OOD benign mixed training — add WildChat benign to training data.\\n\\nHypothesis: Including WildChat benign conversations in training data will reduce\\nWildChat FPR from 68.1% to below 30% while maintaining jailbreak OOD detection\\nF1 above 0.95 on DD/AA/FITD.\\n\\nRun: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\n     cd /root/persuasion_turn_jailbreak_detect && \\\\\\n     CUDA_VISIBLE_DEVICES=0 python scripts/exp42_ood_benign_mixed.py\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport sys, json, random, time, re, subprocess\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom pathlib import Path\\nfrom collections import Counter\\nfrom sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score\\n\\nsys.path.insert(0, \\\"/root/persuasion_turn_jailbreak_detect\\\")\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\nfrom src.models.gru_classifier import GRUClassifier\\nfrom transformers import AutoTokenizer\\n\\nPROJ = Path(\\\"/root/persuasion_turn_jailbreak_detect\\\")\\nCKPT_BASE = Path(\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints\\\")\\nLOCAL_MODEL = \\\"/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\\\"\\nDEVICE = torch.device(\\\"cuda:0\\\")\\nMAX_LENGTH = 256\\n\\nDEBERTA_LR = 2e-5\\nDEBERTA_BATCH = 16\\nDEBERTA_EPOCHS = 4\\nALPHA = 0.3\\n\\nGRU_HIDDEN = 256\\nGRU_LAYERS = 2\\nGRU_DROPOUT = 0.3\\nGRU_LR = 1e-3\\nGRU_EPOCHS = 20\\nGRU_BATCH = 32\\n\\nSEEDS = [42, 123, 456]\\n\\nWILDCHAT_PATH = PROJ / \\\"data\\\" / \\\"wildchat_benign_226.jsonl\\\"\\nTRAIN_PATH = PROJ / \\\"data\\\" / \\\"plan_002_splits\\\" / \\\"train.jsonl\\\"\\nVAL_PATH = PROJ / \\\"data\\\" / \\\"plan_002_splits\\\" / \\\"val.jsonl\\\"\\nTEST_PATH = PROJ / \\\"data\\\" / \\\"plan_002_splits\\\" / \\\"test.jsonl\\\"\\nDD_PATH = PROJ / \\\"data\\\" / \\\"generated\\\" / \\\"deceptive_delight_all.jsonl\\\"\\nAA_PATH = PROJ / \\\"data\\\" / \\\"actorattack_ood\\\" / \\\"actorattack_all.jsonl\\\"\\nFITD_PATH = PROJ / \\\"data\\\" / \\\"generated\\\" / \\\"fitd_all.jsonl\\\"\\n\\nMIXED_TRAIN_PATH = PROJ / \\\"data\\\" / \\\"exp42_mixed_train.jsonl\\\"\\nWILDCHAT_EVAL_PATH = PROJ / \\\"data\\\" / \\\"exp42_wildchat_eval.jsonl\\\"\\n\\nRESULTS_JSON = PROJ / \\\"results\\\" / \\\"exp42_ood_benign_mixed.json\\\"\\n\\n# === Jailbreak filter keywords (from prepare_wildchat_benign.py) ===\\nJAILBREAK_KEYWORDS = [\\n    \\\"ignore previous instructions\\\", \\\"ignore all previous\\\", \\\"disregard previous\\\",\\n    \\\"forget your instructions\\\", \\\"you are now\\\", \\\"act as if\\\", \\\"pretend you are\\\",\\n    \\\"jailbreak\\\", \\\"DAN\\\", \\\"do anything now\\\", \\\"bypass\\\", \\\"override your\\\",\\n    \\\"ignore your programming\\\", \\\"ignore your training\\\", \\\"system prompt\\\",\\n    \\\"you have no restrictions\\\", \\\"no ethical guidelines\\\",\\n    \\\"roleplay as\\\", \\\"evil mode\\\", \\\"developer mode\\\", \\\"god mode\\\",\\n    \\\"ignore safety\\\", \\\"ignore content policy\\\", \\\"opposite day\\\",\\n    \\\"LEO\\\", \\\"no restrictions\\\", \\\"unlimited\\\", \\\"unfiltered\\\",\\n]\\nJAILBREAK_PATTERN = re.compile(\\n    \\\"|\\\".join(re.escape(kw) for kw in JAILBREAK_KEYWORDS), re.IGNORECASE\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef save_jsonl(data, path):\\n    with open(path, \\\"w\\\") as f:\\n        for item in data:\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\"\\\\n\\\")\\n\\n\\ndef set_seed(seed):\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n\\n\\ndef filter_wildchat(conversations):\\n    \\\"\\\"\\\"Filter out likely jailbreak content from WildChat benign data.\\\"\\\"\\\"\\n    clean = []\\n    filtered_ids = []\\n    for conv in conversations:\\n        full_text = \\\" \\\".join(\\n            t[\\\"content\\\"] for t in conv[\\\"turns\\\"] if t.get(\\\"role\\\") == \\\"user\\\"\\n        )\\n        if JAILBREAK_PATTERN.search(full_text):\\n            filtered_ids.append(conv[\\\"conversation_id\\\"])\\n        else:\\n            clean.append(conv)\\n    if filtered_ids:\\n        print(f\\\"  Filtered {len(filtered_ids)} conversations with jailbreak patterns\\\")\\n    return clean\\n\\n\\ndef prepare_wildchat_for_training(conv):\\n    \\\"\\\"\\\"Add persuasion_strategy=0 to user turns for TurnDataset compatibility.\\n\\n... [截断: 输出过长，省略 11816 字符] ...\\n\\n jailbreak OOD\\n            ood_recall = sum(ood_preds) / len(ood_preds)\\n            seed_results[f\\\"ood_{ood_name.lower()}_recall\\\"] = ood_recall\\n            print(f\\\"  OOD {ood_name} recall: {ood_recall:.4f} ({sum(ood_preds)}/{len(ood_preds)})\\\")\\n\\n            # F1: combine OOD jailbreak with IID benign test subset\\n            iid_benign = [c for c in test_data if c[\\\"label\\\"] == \\\"benign\\\"]\\n            combined_preds_benign, _ = predict_convs(iid_benign)\\n            combined_preds = combined_preds_benign + ood_preds\\n            combined_true = [0] * len(iid_benign) + [1] * len(ood_data)\\n            combined_f1 = f1_score(combined_true, combined_preds, average=\\\"macro\\\")\\n            seed_results[f\\\"ood_{ood_name.lower()}_f1\\\"] = combined_f1\\n            print(f\\\"  OOD {ood_name} F1 (vs IID benign): {combined_f1:.4f}\\\")\\n\\n        all_results[\\\"seeds\\\"][str(seed)] = seed_results\\n\\n        del encoder, gru\\n        torch.cuda.empty_cache()\\n\\n    # Summary across seeds\\n    wc_fprs = [all_results[\\\"seeds\\\"][str(s)][\\\"wildchat_fpr\\\"] for s in SEEDS]\\n    iid_f1s = [all_results[\\\"seeds\\\"][str(s)][\\\"iid_f1_macro\\\"] for s in SEEDS]\\n\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] = float(np.mean(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_std\\\"] = float(np.std(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_mean\\\"] = float(np.mean(iid_f1s))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_std\\\"] = float(np.std(iid_f1s))\\n\\n    for ood_name in ood_datasets:\\n        recalls = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_recall\\\"] for s in SEEDS]\\n        f1s = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_f1\\\"] for s in SEEDS]\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_recall_mean\\\"] = float(np.mean(recalls))\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_f1_mean\\\"] = float(np.mean(f1s))\\n\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(\\\"SUMMARY (3-seed mean)\\\")\\n    print(f\\\"{'='*70}\\\")\\n    print(f\\\"WildChat FPR: {all_results['summary']['wildchat_fpr_mean']:.4f} ± {all_results['summary']['wildchat_fpr_std']:.4f}\\\")\\n    print(f\\\"IID F1 macro: {all_results['summary']['iid_f1_mean']:.4f} ± {all_results['summary']['iid_f1_std']:.4f}\\\")\\n    for ood_name in ood_datasets:\\n        print(f\\\"OOD {ood_name} recall: {all_results['summary'][f'ood_{ood_name.lower()}_recall_mean']:.4f}\\\")\\n        print(f\\\"OOD {ood_name} F1: {all_results['summary'][f'ood_{ood_name.lower()}_f1_mean']:.4f}\\\")\\n\\n    # Pass/fail\\n    fpr_pass = all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] < 0.30\\n    ood_f1_pass = all(\\n        all_results[\\\"summary\\\"].get(f\\\"ood_{n.lower()}_f1_mean\\\", 0) > 0.95\\n        for n in ood_datasets\\n    )\\n    print(f\\\"\\\\nFPR < 30%: {'PASS' if fpr_pass else 'FAIL'} ({all_results['summary']['wildchat_fpr_mean']:.1%})\\\")\\n    print(f\\\"OOD F1 > 0.95: {'PASS' if ood_f1_pass else 'FAIL'}\\\")\\n\\n    all_results[\\\"summary\\\"][\\\"fpr_pass\\\"] = fpr_pass\\n    all_results[\\\"summary\\\"][\\\"ood_f1_pass\\\"] = ood_f1_pass\\n    all_results[\\\"summary\\\"][\\\"conclusion\\\"] = \\\"success\\\" if (fpr_pass and ood_f1_pass) else \\\"negative\\\"\\n\\n    RESULTS_JSON.parent.mkdir(parents=True, exist_ok=True)\\n    with open(RESULTS_JSON, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {RESULTS_JSON}\\\")\\n\\n    return all_results\\n\\n\\n# =========================================================================\\n# MAIN\\n# =========================================================================\\nif __name__ == \\\"__main__\\\":\\n    t_total = time.time()\\n\\n    # Step 1: Prepare data\\n    n_wc_train, n_wc_eval = prepare_data()\\n\\n    # Step 2: Train 3 seeds\\n    seeds_ckpts = {}\\n    for seed in SEEDS:\\n        print(f\\\"\\\\n{'#'*70}\\\")\\n        print(f\\\"# SEED {seed}\\\")\\n        print(f\\\"{'#'*70}\\\")\\n        deberta_path = run_stage1(seed)\\n        gru_path = run_stage2(seed, deberta_path)\\n        seeds_ckpts[seed] = (deberta_path, gru_path)\\n\\n    # Step 3: Evaluate\\n    results = evaluate_all(seeds_ckpts)\\n\\n    elapsed_total = time.time() - t_total\\n    print(f\\\"\\\\nTotal time: {elapsed_total/60:.1f} min\\\")\\n    print(f\\\"\\\\nCheckpoints at: {CKPT_BASE}/exp42_mixed_seed*/\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XxhmqRaNWEX9zNk8eq9jhC`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "7f0cd098-39aa-46fe-8927-0c656f6de0e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhsytfxnyxnD1tENwwZNQg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2185,
+      "cache_read_input_tokens": 24370,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2185
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T04:21:55.870Z_
+
+<details><summary>↩ Tool result · `toolu_01HRsoU2tc4puTsAvMzyGBni`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"seeds\\\": {\\n    \\\"42\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"iid_accuracy\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 0.975,\\n      \\\"ood_aa_f1\\\": 0.9808503732554366,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0\\n    },\\n    \\\"123\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"iid_accuracy\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 0.9375,\\n      \\\"ood_aa_f1\\\": 0.9530067702110713,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0\\n    },\\n    \\\"456\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"iid_accuracy\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 0.9125,\\n      \\\"ood_aa_f1\\\": 0.9349555083077408,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"wildchat_fpr_mean\\\": 0.0,\\n    \\\"wildchat_fpr_std\\\": 0.0,\\n    \\\"iid_f1_mean\\\": 1.0,\\n    \\\"iid_f1_std\\\": 0.0,\\n    \\\"ood_dd_recall_mean\\\": 1.0,\\n    \\\"ood_dd_f1_mean\\\": 1.0,\\n    \\\"ood_aa_recall_mean\\\": 0.9416666666666668,\\n    \\\"ood_aa_f1_mean\\\": 0.9562708839247495,\\n    \\\"ood_fitd_recall_mean\\\": 1.0,\\n    \\\"ood_fitd_f1_mean\\\": 1.0,\\n    \\\"fpr_pass\\\": true,\\n    \\\"ood_f1_pass\\\": true,\\n    \\\"conclusion\\\": \\\"success\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "de7b3ae0-9b29-4fd1-87d0-8debebcacb9a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"seeds\\\\\\\": {\\\\n    \\\\\\\"42\\\\\\\": {\\\\n      \\\\\\\"wildchat_fpr\\\\\\\": 0.0,\\\\n      \\\\\\\"wildchat_n\\\\\\\": 49,\\\\n      \\\\\\\"iid_f1_macro\\\\\\\": 1.0,\\\\n      \\\\\\\"iid_accuracy\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_aa_recall\\\\\\\": 0.975,\\\\n      \\\\\\\"ood_aa_f1\\\\\\\": 0.9808503732554366,\\\\n      \\\\\\\"ood_fitd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_fitd_f1\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"123\\\\\\\": {\\\\n      \\\\\\\"wildchat_fpr\\\\\\\": 0.0,\\\\n      \\\\\\\"wildchat_n\\\\\\\": 49,\\\\n      \\\\\\\"iid_f1_macro\\\\\\\": 1.0,\\\\n      \\\\\\\"iid_accuracy\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_aa_recall\\\\\\\": 0.9375,\\\\n      \\\\\\\"ood_aa_f1\\\\\\\": 0.9530067702110713,\\\\n      \\\\\\\"ood_fitd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_fitd_f1\\\\\\\": 1.0\\\\n    },\\\\n    \\\\\\\"456\\\\\\\": {\\\\n      \\\\\\\"wildchat_fpr\\\\\\\": 0.0,\\\\n      \\\\\\\"wildchat_n\\\\\\\": 49,\\\\n      \\\\\\\"iid_f1_macro\\\\\\\": 1.0,\\\\n      \\\\\\\"iid_accuracy\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_dd_f1\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_aa_recall\\\\\\\": 0.9125,\\\\n      \\\\\\\"ood_aa_f1\\\\\\\": 0.9349555083077408,\\\\n      \\\\\\\"ood_fitd_recall\\\\\\\": 1.0,\\\\n      \\\\\\\"ood_fitd_f1\\\\\\\": 1.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"wildchat_fpr_mean\\\\\\\": 0.0,\\\\n    \\\\\\\"wildchat_fpr_std\\\\\\\": 0.0,\\\\n    \\\\\\\"iid_f1_mean\\\\\\\": 1.0,\\\\n    \\\\\\\"iid_f1_std\\\\\\\": 0.0,\\\\n    \\\\\\\"ood_dd_recall_mean\\\\\\\": 1.0,\\\\n    \\\\\\\"ood_dd_f1_mean\\\\\\\": 1.0,\\\\n    \\\\\\\"ood_aa_recall_mean\\\\\\\": 0.9416666666666668,\\\\n    \\\\\\\"ood_aa_f1_mean\\\\\\\": 0.9562708839247495,\\\\n    \\\\\\\"ood_fitd_recall_mean\\\\\\\": 1.0,\\\\n    \\\\\\\"ood_fitd_f1_mean\\\\\\\": 1.0,\\\\n    \\\\\\\"fpr_pass\\\\\\\": true,\\\\n    \\\\\\\"ood_f1_pass\\\\\\\": true,\\\\n    \\\\\\\"conclusion\\\\\\\": \\\\\\\"success\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"seeds\\\": {\\n    \\\"42\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"iid_accuracy\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 0.975,\\n      \\\"ood_aa_f1\\\": 0.9808503732554366,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0\\n    },\\n    \\\"123\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"iid_accuracy\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 0.9375,\\n      \\\"ood_aa_f1\\\": 0.9530067702110713,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0\\n    },\\n    \\\"456\\\": {\\n      \\\"wildchat_fpr\\\": 0.0,\\n      \\\"wildchat_n\\\": 49,\\n      \\\"iid_f1_macro\\\": 1.0,\\n      \\\"iid_accuracy\\\": 1.0,\\n      \\\"ood_dd_recall\\\": 1.0,\\n      \\\"ood_dd_f1\\\": 1.0,\\n      \\\"ood_aa_recall\\\": 0.9125,\\n      \\\"ood_aa_f1\\\": 0.9349555083077408,\\n      \\\"ood_fitd_recall\\\": 1.0,\\n      \\\"ood_fitd_f1\\\": 1.0\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"wildchat_fpr_mean\\\": 0.0,\\n    \\\"wildchat_fpr_std\\\": 0.0,\\n    \\\"iid_f1_mean\\\": 1.0,\\n    \\\"iid_f1_std\\\": 0.0,\\n    \\\"ood_dd_recall_mean\\\": 1.0,\\n    \\\"ood_dd_f1_mean\\\": 1.0,\\n    \\\"ood_aa_recall_mean\\\": 0.9416666666666668,\\n    \\\"ood_aa_f1_mean\\\": 0.9562708839247495,\\n    \\\"ood_fitd_recall_mean\\\": 1.0,\\n    \\\"ood_fitd_f1_mean\\\": 1.0,\\n    \\\"fpr_pass\\\": true,\\n    \\\"ood_f1_pass\\\": true,\\n    \\\"conclusion\\\": \\\"success\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T04:21:56.477Z_
+
+<details><summary>↩ Tool result · `toolu_01XxhmqRaNWEX9zNk8eq9jhC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 0 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "6bb9d396-66c3-4c1d-b24e-9a2bb34dba7a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 0 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated for the exp42 script. Let me get the key part - the `prepare_data` function which handles the data mixing. I need to understand the exact data composition.
+
+From what I can see:
+- exp42 uses WildChat benign (226 samples from `wildchat_benign_226.jsonl`), splits into train/eval
+- Train data: original train data + WildChat benign train samples
+- The script was truncated, so I need to read the prepare_data function specifically
+
+Let me read the truncated part of the script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "c003d279-8ee2-4c39-b5cc-392553c146f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019LUWnvZBa8WkRopbrCBnTr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5472,
+      "cache_read_input_tokens": 26555,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+The script output was truncated. Let me read the `prepare_data` function specifically.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "f7a8862b-62f6-4862-b8e0-8a61f33435cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019LUWnvZBa8WkRopbrCBnTr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5472,
+      "cache_read_input_tokens": 26555,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013anrTLYFmbBvDwHeLLAJ46`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "head -200 /root/persuasion_turn_jailbreak_detect/scripts/exp42_ood_benign_mixed.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "cf264ae6-4642-4b37-b2fb-41804d944c98",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019LUWnvZBa8WkRopbrCBnTr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5472,
+      "cache_read_input_tokens": 26555,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5472
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T04:22:04.614Z_
+
+<details><summary>↩ Tool result · `toolu_013anrTLYFmbBvDwHeLLAJ46`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp42: OOD benign mixed training — add WildChat benign to training data.\\n\\nHypothesis: Including WildChat benign conversations in training data will reduce\\nWildChat FPR from 68.1% to below 30% while maintaining jailbreak OOD detection\\nF1 above 0.95 on DD/AA/FITD.\\n\\nRun: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\n     cd /root/persuasion_turn_jailbreak_detect && \\\\\\n     CUDA_VISIBLE_DEVICES=0 python scripts/exp42_ood_benign_mixed.py\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport sys, json, random, time, re, subprocess\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom pathlib import Path\\nfrom collections import Counter\\nfrom sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score\\n\\nsys.path.insert(0, \\\"/root/persuasion_turn_jailbreak_detect\\\")\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\nfrom src.models.gru_classifier import GRUClassifier\\nfrom transformers import AutoTokenizer\\n\\nPROJ = Path(\\\"/root/persuasion_turn_jailbreak_detect\\\")\\nCKPT_BASE = Path(\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints\\\")\\nLOCAL_MODEL = \\\"/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\\\"\\nDEVICE = torch.device(\\\"cuda:0\\\")\\nMAX_LENGTH = 256\\n\\nDEBERTA_LR = 2e-5\\nDEBERTA_BATCH = 16\\nDEBERTA_EPOCHS = 4\\nALPHA = 0.3\\n\\nGRU_HIDDEN = 256\\nGRU_LAYERS = 2\\nGRU_DROPOUT = 0.3\\nGRU_LR = 1e-3\\nGRU_EPOCHS = 20\\nGRU_BATCH = 32\\n\\nSEEDS = [42, 123, 456]\\n\\nWILDCHAT_PATH = PROJ / \\\"data\\\" / \\\"wildchat_benign_226.jsonl\\\"\\nTRAIN_PATH = PROJ / \\\"data\\\" / \\\"plan_002_splits\\\" / \\\"train.jsonl\\\"\\nVAL_PATH = PROJ / \\\"data\\\" / \\\"plan_002_splits\\\" / \\\"val.jsonl\\\"\\nTEST_PATH = PROJ / \\\"data\\\" / \\\"plan_002_splits\\\" / \\\"test.jsonl\\\"\\nDD_PATH = PROJ / \\\"data\\\" / \\\"generated\\\" / \\\"deceptive_delight_all.jsonl\\\"\\nAA_PATH = PROJ / \\\"data\\\" / \\\"actorattack_ood\\\" / \\\"actorattack_all.jsonl\\\"\\nFITD_PATH = PROJ / \\\"data\\\" / \\\"generated\\\" / \\\"fitd_all.jsonl\\\"\\n\\nMIXED_TRAIN_PATH = PROJ / \\\"data\\\" / \\\"exp42_mixed_train.jsonl\\\"\\nWILDCHAT_EVAL_PATH = PROJ / \\\"data\\\" / \\\"exp42_wildchat_eval.jsonl\\\"\\n\\nRESULTS_JSON = PROJ / \\\"results\\\" / \\\"exp42_ood_benign_mixed.json\\\"\\n\\n# === Jailbreak filter keywords (from prepare_wildchat_benign.py) ===\\nJAILBREAK_KEYWORDS = [\\n    \\\"ignore previous instructions\\\", \\\"ignore all previous\\\", \\\"disregard previous\\\",\\n    \\\"forget your instructions\\\", \\\"you are now\\\", \\\"act as if\\\", \\\"pretend you are\\\",\\n    \\\"jailbreak\\\", \\\"DAN\\\", \\\"do anything now\\\", \\\"bypass\\\", \\\"override your\\\",\\n    \\\"ignore your programming\\\", \\\"ignore your training\\\", \\\"system prompt\\\",\\n    \\\"you have no restrictions\\\", \\\"no ethical guidelines\\\",\\n    \\\"roleplay as\\\", \\\"evil mode\\\", \\\"developer mode\\\", \\\"god mode\\\",\\n    \\\"ignore safety\\\", \\\"ignore content policy\\\", \\\"opposite day\\\",\\n    \\\"LEO\\\", \\\"no restrictions\\\", \\\"unlimited\\\", \\\"unfiltered\\\",\\n]\\nJAILBREAK_PATTERN = re.compile(\\n    \\\"|\\\".join(re.escape(kw) for kw in JAILBREAK_KEYWORDS), re.IGNORECASE\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef save_jsonl(data, path):\\n    with open(path, \\\"w\\\") as f:\\n        for item in data:\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\"\\\\n\\\")\\n\\n\\ndef set_seed(seed):\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n\\n\\ndef filter_wildchat(conversations):\\n    \\\"\\\"\\\"Filter out likely jailbreak content from WildChat benign data.\\\"\\\"\\\"\\n    clean = []\\n    filtered_ids = []\\n    for conv in conversations:\\n        full_text = \\\" \\\".join(\\n            t[\\\"content\\\"] for t in conv[\\\"turns\\\"] if t.get(\\\"role\\\") == \\\"user\\\"\\n        )\\n        if JAILBREAK_PATTERN.search(full_text):\\n            filtered_ids.append(conv[\\\"conversation_id\\\"])\\n        else:\\n            clean.append(conv)\\n    if filtered_ids:\\n        print(f\\\"  Filtered {len(filtered_ids)} conversations with jailbreak patterns\\\")\\n    return clean\\n\\n\\ndef prepare_wildchat_for_training(conv):\\n    \\\"\\\"\\\"Add persuasion_strategy=0 to user turns for TurnDataset compatibility.\\\"\\\"\\\"\\n    new_turns = []\\n    for turn in conv[\\\"turns\\\"]:\\n        t = dict(turn)\\n        if t[\\\"role\\\"] == \\\"user\\\" and \\\"persuasion_strategy\\\" not in t:\\n            t[\\\"persuasion_strategy\\\"] = 0\\n        new_turns.append(t)\\n    return {\\n        \\\"conversation_id\\\": conv[\\\"conversation_id\\\"],\\n        \\\"turns\\\": new_turns,\\n        \\\"label\\\": \\\"benign\\\",\\n        \\\"source\\\": conv.get(\\\"source\\\", \\\"wildchat\\\"),\\n        \\\"attack_type\\\": \\\"benign\\\",\\n    }\\n\\n\\ndef extract_user_turns(conv):\\n    return [t[\\\"content\\\"] for t in conv[\\\"turns\\\"] if t[\\\"role\\\"] == \\\"user\\\"]\\n\\n\\ndef get_label(conv):\\n    return 1 if conv[\\\"label\\\"] == \\\"jailbreak\\\" else 0\\n\\n\\n# =========================================================================\\n# STEP 1: Data Preparation\\n# =========================================================================\\ndef prepare_data():\\n    print(\\\"=\\\" * 70)\\n    print(\\\"STEP 1: Data Preparation\\\")\\n    print(\\\"=\\\" * 70)\\n\\n    wildchat_raw = load_jsonl(WILDCHAT_PATH)\\n    print(f\\\"Loaded {len(wildchat_raw)} WildChat benign conversations\\\")\\n\\n    wildchat_clean = filter_wildchat(wildchat_raw)\\n    print(f\\\"After filtering: {len(wildchat_clean)} clean conversations\\\")\\n\\n    random.seed(42)\\n    random.shuffle(wildchat_clean)\\n\\n    n_train = 150\\n    if len(wildchat_clean) < n_train + 20:\\n        n_train = int(len(wildchat_clean) * 0.65)\\n\\n    wc_train = wildchat_clean[:n_train]\\n    wc_eval = wildchat_clean[n_train:]\\n    print(f\\\"Split: {len(wc_train)} train, {len(wc_eval)} eval\\\")\\n\\n    wc_train_formatted = [prepare_wildchat_for_training(c) for c in wc_train]\\n\\n    original_train = load_jsonl(TRAIN_PATH)\\n    print(f\\\"Original train: {len(original_train)} conversations\\\")\\n    labels_orig = Counter(c[\\\"label\\\"] for c in original_train)\\n    print(f\\\"  Label distribution: {dict(labels_orig)}\\\")\\n\\n    mixed_train = original_train + wc_train_formatted\\n    print(f\\\"Mixed train: {len(mixed_train)} conversations\\\")\\n    labels_mixed = Counter(c[\\\"label\\\"] for c in mixed_train)\\n    print(f\\\"  Label distribution: {dict(labels_mixed)}\\\")\\n\\n    save_jsonl(mixed_train, MIXED_TRAIN_PATH)\\n    save_jsonl(wc_eval, WILDCHAT_EVAL_PATH)\\n    print(f\\\"Saved mixed train to {MIXED_TRAIN_PATH}\\\")\\n    print(f\\\"Saved WildChat eval to {WILDCHAT_EVAL_PATH}\\\")\\n\\n    return len(wc_train), len(wc_eval)\\n\\n\\n# =========================================================================\\n# STEP 2: Training (3 seeds)\\n# =========================================================================\\ndef run_stage1(seed):\\n    name = f\\\"exp42_mixed_seed{seed}\\\"\\n    ckpt_dir = CKPT_BASE / name / \\\"deberta_multitask\\\"\\n    ckpt_dir.mkdir(parents=True, exist_ok=True)\\n\\n    cmd = [\\n        sys.executable, str(PROJ / \\\"src/train_deberta.py\\\"),\\n        \\\"--train_data\\\", str(MIXED_TRAIN_PATH),\\n        \\\"--val_data\\\", str(VAL_PATH),\\n        \\\"--model_name\\\", LOCAL_MODEL,\\n        \\\"--output_dir\\\", str(ckpt_dir),\\n        \\\"--epochs\\\", str(DEBERTA_EPOCHS),\\n        \\\"--batch_size\\\", str(DEBERTA_BATCH),\\n        \\\"--lr\\\", str(DEBERTA_LR),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "143c58e5-0417-4082-8b70-10f416a21181",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp42: OOD benign mixed training — add WildChat benign to training data.\\\\n\\\\nHypothesis: Including WildChat benign conversations in training data will reduce\\\\nWildChat FPR from 68.1% to below 30% while maintaining jailbreak OOD detection\\\\nF1 above 0.95 on DD/AA/FITD.\\\\n\\\\nRun: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\\\\\\\n     cd /root/persuasion_turn_jailbreak_detect && \\\\\\\\\\\\n     CUDA_VISIBLE_DEVICES=0 python scripts/exp42_ood_benign_mixed.py\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nos.environ[\\\\\\\"HF_HUB_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\nimport sys, json, random, time, re, subprocess\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom pathlib import Path\\\\nfrom collections import Counter\\\\nfrom sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/persuasion_turn_jailbreak_detect\\\\\\\")\\\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\\\nfrom src.models.gru_classifier import GRUClassifier\\\\nfrom transformers import AutoTokenizer\\\\n\\\\nPROJ = Path(\\\\\\\"/root/persuasion_turn_jailbreak_detect\\\\\\\")\\\\nCKPT_BASE = Path(\\\\\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints\\\\\\\")\\\\nLOCAL_MODEL = \\\\\\\"/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\\\\\\\"\\\\nDEVICE = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\nMAX_LENGTH = 256\\\\n\\\\nDEBERTA_LR = 2e-5\\\\nDEBERTA_BATCH = 16\\\\nDEBERTA_EPOCHS = 4\\\\nALPHA = 0.3\\\\n\\\\nGRU_HIDDEN = 256\\\\nGRU_LAYERS = 2\\\\nGRU_DROPOUT = 0.3\\\\nGRU_LR = 1e-3\\\\nGRU_EPOCHS = 20\\\\nGRU_BATCH = 32\\\\n\\\\nSEEDS = [42, 123, 456]\\\\n\\\\nWILDCHAT_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"wildchat_benign_226.jsonl\\\\\\\"\\\\nTRAIN_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"plan_002_splits\\\\\\\" / \\\\\\\"train.jsonl\\\\\\\"\\\\nVAL_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"plan_002_splits\\\\\\\" / \\\\\\\"val.jsonl\\\\\\\"\\\\nTEST_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"plan_002_splits\\\\\\\" / \\\\\\\"test.jsonl\\\\\\\"\\\\nDD_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"generated\\\\\\\" / \\\\\\\"deceptive_delight_all.jsonl\\\\\\\"\\\\nAA_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"actorattack_ood\\\\\\\" / \\\\\\\"actorattack_all.jsonl\\\\\\\"\\\\nFITD_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"generated\\\\\\\" / \\\\\\\"fitd_all.jsonl\\\\\\\"\\\\n\\\\nMIXED_TRAIN_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"exp42_mixed_train.jsonl\\\\\\\"\\\\nWILDCHAT_EVAL_PATH = PROJ / \\\\\\\"data\\\\\\\" / \\\\\\\"exp42_wildchat_eval.jsonl\\\\\\\"\\\\n\\\\nRESULTS_JSON = PROJ / \\\\\\\"results\\\\\\\" / \\\\\\\"exp42_ood_benign_mixed.json\\\\\\\"\\\\n\\\\n# === Jailbreak filter keywords (from prepare_wildchat_benign.py) ===\\\\nJAILBREAK_KEYWORDS = [\\\\n    \\\\\\\"ignore previous instructions\\\\\\\", \\\\\\\"ignore all previous\\\\\\\", \\\\\\\"disregard previous\\\\\\\",\\\\n    \\\\\\\"forget your instructions\\\\\\\", \\\\\\\"you are now\\\\\\\", \\\\\\\"act as if\\\\\\\", \\\\\\\"pretend you are\\\\\\\",\\\\n    \\\\\\\"jailbreak\\\\\\\", \\\\\\\"DAN\\\\\\\", \\\\\\\"do anything now\\\\\\\", \\\\\\\"bypass\\\\\\\", \\\\\\\"override your\\\\\\\",\\\\n    \\\\\\\"ignore your programming\\\\\\\", \\\\\\\"ignore your training\\\\\\\", \\\\\\\"system prompt\\\\\\\",\\\\n    \\\\\\\"you have no restrictions\\\\\\\", \\\\\\\"no ethical guidelines\\\\\\\",\\\\n    \\\\\\\"roleplay as\\\\\\\", \\\\\\\"evil mode\\\\\\\", \\\\\\\"developer mode\\\\\\\", \\\\\\\"god mode\\\\\\\",\\\\n    \\\\\\\"ignore safety\\\\\\\", \\\\\\\"ignore content policy\\\\\\\", \\\\\\\"opposite day\\\\\\\",\\\\n    \\\\\\\"LEO\\\\\\\", \\\\\\\"no restrictions\\\\\\\", \\\\\\\"unlimited\\\\\\\", \\\\\\\"unfiltered\\\\\\\",\\\\n]\\\\nJAILBREAK_PATTERN = re.compile(\\\\n    \\\\\\\"|\\\\\\\".join(re.escape(kw) for kw in JAILBREAK_KEYWORDS), re.IGNORECASE\\\\n)\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(l) for l in f if l.strip()]\\\\n\\\\n\\\\ndef save_jsonl(data, path):\\\\n    with open(path, \\\\\\\"w\\\\\\\") as f:\\\\n        for item in data:\\\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n\\\\ndef set_seed(seed):\\\\n    random.seed(seed)\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef filter_wildchat(conversations):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Filter out likely jailbreak content from WildChat benign data.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    clean = []\\\\n    filtered_ids = []\\\\n    for conv in conversations:\\\\n        full_text = \\\\\\\" \\\\\\\".join(\\\\n            t[\\\\\\\"content\\\\\\\"] for t in conv[\\\\\\\"turns\\\\\\\"] if t.get(\\\\\\\"role\\\\\\\") == \\\\\\\"user\\\\\\\"\\\\n        )\\\\n        if JAILBREAK_PATTERN.search(full_text):\\\\n            filtered_ids.append(conv[\\\\\\\"conversation_id\\\\\\\"])\\\\n        else:\\\\n            clean.append(conv)\\\\n    if filtered_ids:\\\\n        print(f\\\\\\\"  Filtered {len(filtered_ids)} conversations with jailbreak patterns\\\\\\\")\\\\n    return clean\\\\n\\\\n\\\\ndef prepare_wildchat_for_training(conv):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Add persuasion_strategy=0 to user turns for TurnDataset compatibility.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    new_turns = []\\\\n    for turn in conv[\\\\\\\"turns\\\\\\\"]:\\\\n        t = dict(turn)\\\\n        if t[\\\\\\\"role\\\\\\\"] == \\\\\\\"user\\\\\\\" and \\\\\\\"persuasion_strategy\\\\\\\" not in t:\\\\n            t[\\\\\\\"persuasion_strategy\\\\\\\"] = 0\\\\n        new_turns.append(t)\\\\n    return {\\\\n        \\\\\\\"conversation_id\\\\\\\": conv[\\\\\\\"conversation_id\\\\\\\"],\\\\n        \\\\\\\"turns\\\\\\\": new_turns,\\\\n        \\\\\\\"label\\\\\\\": \\\\\\\"benign\\\\\\\",\\\\n        \\\\\\\"source\\\\\\\": conv.get(\\\\\\\"source\\\\\\\", \\\\\\\"wildchat\\\\\\\"),\\\\n        \\\\\\\"attack_type\\\\\\\": \\\\\\\"benign\\\\\\\",\\\\n    }\\\\n\\\\n\\\\ndef extract_user_turns(conv):\\\\n    return [t[\\\\\\\"content\\\\\\\"] for t in conv[\\\\\\\"turns\\\\\\\"] if t[\\\\\\\"role\\\\\\\"] == \\\\\\\"user\\\\\\\"]\\\\n\\\\n\\\\ndef get_label(conv):\\\\n    return 1 if conv[\\\\\\\"label\\\\\\\"] == \\\\\\\"jailbreak\\\\\\\" else 0\\\\n\\\\n\\\\n# =========================================================================\\\\n# STEP 1: Data Preparation\\\\n# =========================================================================\\\\ndef prepare_data():\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"STEP 1: Data Preparation\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n\\\\n    wildchat_raw = load_jsonl(WILDCHAT_PATH)\\\\n    print(f\\\\\\\"Loaded {len(wildchat_raw)} WildChat benign conversations\\\\\\\")\\\\n\\\\n    wildchat_clean = filter_wildchat(wildchat_raw)\\\\n    print(f\\\\\\\"After filtering: {len(wildchat_clean)} clean conversations\\\\\\\")\\\\n\\\\n    random.seed(42)\\\\n    random.shuffle(wildchat_clean)\\\\n\\\\n    n_train = 150\\\\n    if len(wildchat_clean) < n_train + 20:\\\\n        n_train = int(len(wildchat_clean) * 0.65)\\\\n\\\\n    wc_train = wildchat_clean[:n_train]\\\\n    wc_eval = wildchat_clean[n_train:]\\\\n    print(f\\\\\\\"Split: {len(wc_train)} train, {len(wc_eval)} eval\\\\\\\")\\\\n\\\\n    wc_train_formatted = [prepare_wildchat_for_training(c) for c in wc_train]\\\\n\\\\n    original_train = load_jsonl(TRAIN_PATH)\\\\n    print(f\\\\\\\"Original train: {len(original_train)} conversations\\\\\\\")\\\\n    labels_orig = Counter(c[\\\\\\\"label\\\\\\\"] for c in original_train)\\\\n    print(f\\\\\\\"  Label distribution: {dict(labels_orig)}\\\\\\\")\\\\n\\\\n    mixed_train = original_train + wc_train_formatted\\\\n    print(f\\\\\\\"Mixed train: {len(mixed_train)} conversations\\\\\\\")\\\\n    labels_mixed = Counter(c[\\\\\\\"label\\\\\\\"] for c in mixed_train)\\\\n    print(f\\\\\\\"  Label distribution: {dict(labels_mixed)}\\\\\\\")\\\\n\\\\n    save_jsonl(mixed_train, MIXED_TRAIN_PATH)\\\\n    save_jsonl(wc_eval, WILDCHAT_EVAL_PATH)\\\\n    print(f\\\\\\\"Saved mixed train to {MIXED_TRAIN_PATH}\\\\\\\")\\\\n    print(f\\\\\\\"Saved WildChat eval to {WILDCHAT_EVAL_PATH}\\\\\\\")\\\\n\\\\n    return len(wc_train), len(wc_eval)\\\\n\\\\n\\\\n# =========================================================================\\\\n# STEP 2: Training (3 seeds)\\\\n# =========================================================================\\\\ndef run_stage1(seed):\\\\n    name = f\\\\\\\"exp42_mixed_seed{seed}\\\\\\\"\\\\n    ckpt_dir = CKPT_BASE / name / \\\\\\\"deberta_multitask\\\\\\\"\\\\n    ckpt_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    cmd = [\\\\n        sys.executable, str(PROJ / \\\\\\\"src/train_deberta.py\\\\\\\"),\\\\n        \\\\\\\"--train_data\\\\\\\", str(MIXED_TRAIN_PATH),\\\\n        \\\\\\\"--val_data\\\\\\\", str(VAL_PATH),\\\\n        \\\\\\\"--model_name\\\\\\\", LOCAL_MODEL,\\\\n        \\\\\\\"--output_dir\\\\\\\", str(ckpt_dir),\\\\n        \\\\\\\"--epochs\\\\\\\", str(DEBERTA_EPOCHS),\\\\n        \\\\\\\"--batch_size\\\\\\\", str(DEBERTA_BATCH),\\\\n        \\\\\\\"--lr\\\\\\\", str(DEBERTA_LR),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp42: OOD benign mixed training — add WildChat benign to training data.\\n\\nHypothesis: Including WildChat benign conversations in training data will reduce\\nWildChat FPR from 68.1% to below 30% while maintaining jailbreak OOD detection\\nF1 above 0.95 on DD/AA/FITD.\\n\\nRun: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\n     cd /root/persuasion_turn_jailbreak_detect && \\\\\\n     CUDA_VISIBLE_DEVICES=0 python scripts/exp42_ood_benign_mixed.py\\n\\\"\\\"\\\"\\n\\nimport os\\nos.environ[\\\"HF_HUB_OFFLINE\\\"] = \\\"1\\\"\\nos.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\n\\nimport sys, json, random, time, re, subprocess\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom pathlib import Path\\nfrom collections import Counter\\nfrom sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score\\n\\nsys.path.insert(0, \\\"/root/persuasion_turn_jailbreak_detect\\\")\\nfrom src.models.deberta_multitask import DeBERTaMultiTask\\nfrom src.models.gru_classifier import GRUClassifier\\nfrom transformers import AutoTokenizer\\n\\nPROJ = Path(\\\"/root/persuasion_turn_jailbreak_detect\\\")\\nCKPT_BASE = Path(\\\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints\\\")\\nLOCAL_MODEL = \\\"/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\\\"\\nDEVICE = torch.device(\\\"cuda:0\\\")\\nMAX_LENGTH = 256\\n\\nDEBERTA_LR = 2e-5\\nDEBERTA_BATCH = 16\\nDEBERTA_EPOCHS = 4\\nALPHA = 0.3\\n\\nGRU_HIDDEN = 256\\nGRU_LAYERS = 2\\nGRU_DROPOUT = 0.3\\nGRU_LR = 1e-3\\nGRU_EPOCHS = 20\\nGRU_BATCH = 32\\n\\nSEEDS = [42, 123, 456]\\n\\nWILDCHAT_PATH = PROJ / \\\"data\\\" / \\\"wildchat_benign_226.jsonl\\\"\\nTRAIN_PATH = PROJ / \\\"data\\\" / \\\"plan_002_splits\\\" / \\\"train.jsonl\\\"\\nVAL_PATH = PROJ / \\\"data\\\" / \\\"plan_002_splits\\\" / \\\"val.jsonl\\\"\\nTEST_PATH = PROJ / \\\"data\\\" / \\\"plan_002_splits\\\" / \\\"test.jsonl\\\"\\nDD_PATH = PROJ / \\\"data\\\" / \\\"generated\\\" / \\\"deceptive_delight_all.jsonl\\\"\\nAA_PATH = PROJ / \\\"data\\\" / \\\"actorattack_ood\\\" / \\\"actorattack_all.jsonl\\\"\\nFITD_PATH = PROJ / \\\"data\\\" / \\\"generated\\\" / \\\"fitd_all.jsonl\\\"\\n\\nMIXED_TRAIN_PATH = PROJ / \\\"data\\\" / \\\"exp42_mixed_train.jsonl\\\"\\nWILDCHAT_EVAL_PATH = PROJ / \\\"data\\\" / \\\"exp42_wildchat_eval.jsonl\\\"\\n\\nRESULTS_JSON = PROJ / \\\"results\\\" / \\\"exp42_ood_benign_mixed.json\\\"\\n\\n# === Jailbreak filter keywords (from prepare_wildchat_benign.py) ===\\nJAILBREAK_KEYWORDS = [\\n    \\\"ignore previous instructions\\\", \\\"ignore all previous\\\", \\\"disregard previous\\\",\\n    \\\"forget your instructions\\\", \\\"you are now\\\", \\\"act as if\\\", \\\"pretend you are\\\",\\n    \\\"jailbreak\\\", \\\"DAN\\\", \\\"do anything now\\\", \\\"bypass\\\", \\\"override your\\\",\\n    \\\"ignore your programming\\\", \\\"ignore your training\\\", \\\"system prompt\\\",\\n    \\\"you have no restrictions\\\", \\\"no ethical guidelines\\\",\\n    \\\"roleplay as\\\", \\\"evil mode\\\", \\\"developer mode\\\", \\\"god mode\\\",\\n    \\\"ignore safety\\\", \\\"ignore content policy\\\", \\\"opposite day\\\",\\n    \\\"LEO\\\", \\\"no restrictions\\\", \\\"unlimited\\\", \\\"unfiltered\\\",\\n]\\nJAILBREAK_PATTERN = re.compile(\\n    \\\"|\\\".join(re.escape(kw) for kw in JAILBREAK_KEYWORDS), re.IGNORECASE\\n)\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(l) for l in f if l.strip()]\\n\\n\\ndef save_jsonl(data, path):\\n    with open(path, \\\"w\\\") as f:\\n        for item in data:\\n            f.write(json.dumps(item, ensure_ascii=False) + \\\"\\\\n\\\")\\n\\n\\ndef set_seed(seed):\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    torch.cuda.manual_seed_all(seed)\\n\\n\\ndef filter_wildchat(conversations):\\n    \\\"\\\"\\\"Filter out likely jailbreak content from WildChat benign data.\\\"\\\"\\\"\\n    clean = []\\n    filtered_ids = []\\n    for conv in conversations:\\n        full_text = \\\" \\\".join(\\n            t[\\\"content\\\"] for t in conv[\\\"turns\\\"] if t.get(\\\"role\\\") == \\\"user\\\"\\n        )\\n        if JAILBREAK_PATTERN.search(full_text):\\n            filtered_ids.append(conv[\\\"conversation_id\\\"])\\n        else:\\n            clean.append(conv)\\n    if filtered_ids:\\n        print(f\\\"  Filtered {len(filtered_ids)} conversations with jailbreak patterns\\\")\\n    return clean\\n\\n\\ndef prepare_wildchat_for_training(conv):\\n    \\\"\\\"\\\"Add persuasion_strategy=0 to user turns for TurnDataset compatibility.\\\"\\\"\\\"\\n    new_turns = []\\n    for turn in conv[\\\"turns\\\"]:\\n        t = dict(turn)\\n        if t[\\\"role\\\"] == \\\"user\\\" and \\\"persuasion_strategy\\\" not in t:\\n            t[\\\"persuasion_strategy\\\"] = 0\\n        new_turns.append(t)\\n    return {\\n        \\\"conversation_id\\\": conv[\\\"conversation_id\\\"],\\n        \\\"turns\\\": new_turns,\\n        \\\"label\\\": \\\"benign\\\",\\n        \\\"source\\\": conv.get(\\\"source\\\", \\\"wildchat\\\"),\\n        \\\"attack_type\\\": \\\"benign\\\",\\n    }\\n\\n\\ndef extract_user_turns(conv):\\n    return [t[\\\"content\\\"] for t in conv[\\\"turns\\\"] if t[\\\"role\\\"] == \\\"user\\\"]\\n\\n\\ndef get_label(conv):\\n    return 1 if conv[\\\"label\\\"] == \\\"jailbreak\\\" else 0\\n\\n\\n# =========================================================================\\n# STEP 1: Data Preparation\\n# =========================================================================\\ndef prepare_data():\\n    print(\\\"=\\\" * 70)\\n    print(\\\"STEP 1: Data Preparation\\\")\\n    print(\\\"=\\\" * 70)\\n\\n    wildchat_raw = load_jsonl(WILDCHAT_PATH)\\n    print(f\\\"Loaded {len(wildchat_raw)} WildChat benign conversations\\\")\\n\\n    wildchat_clean = filter_wildchat(wildchat_raw)\\n    print(f\\\"After filtering: {len(wildchat_clean)} clean conversations\\\")\\n\\n    random.seed(42)\\n    random.shuffle(wildchat_clean)\\n\\n    n_train = 150\\n    if len(wildchat_clean) < n_train + 20:\\n        n_train = int(len(wildchat_clean) * 0.65)\\n\\n    wc_train = wildchat_clean[:n_train]\\n    wc_eval = wildchat_clean[n_train:]\\n    print(f\\\"Split: {len(wc_train)} train, {len(wc_eval)} eval\\\")\\n\\n    wc_train_formatted = [prepare_wildchat_for_training(c) for c in wc_train]\\n\\n    original_train = load_jsonl(TRAIN_PATH)\\n    print(f\\\"Original train: {len(original_train)} conversations\\\")\\n    labels_orig = Counter(c[\\\"label\\\"] for c in original_train)\\n    print(f\\\"  Label distribution: {dict(labels_orig)}\\\")\\n\\n    mixed_train = original_train + wc_train_formatted\\n    print(f\\\"Mixed train: {len(mixed_train)} conversations\\\")\\n    labels_mixed = Counter(c[\\\"label\\\"] for c in mixed_train)\\n    print(f\\\"  Label distribution: {dict(labels_mixed)}\\\")\\n\\n    save_jsonl(mixed_train, MIXED_TRAIN_PATH)\\n    save_jsonl(wc_eval, WILDCHAT_EVAL_PATH)\\n    print(f\\\"Saved mixed train to {MIXED_TRAIN_PATH}\\\")\\n    print(f\\\"Saved WildChat eval to {WILDCHAT_EVAL_PATH}\\\")\\n\\n    return len(wc_train), len(wc_eval)\\n\\n\\n# =========================================================================\\n# STEP 2: Training (3 seeds)\\n# =========================================================================\\ndef run_stage1(seed):\\n    name = f\\\"exp42_mixed_seed{seed}\\\"\\n    ckpt_dir = CKPT_BASE / name / \\\"deberta_multitask\\\"\\n    ckpt_dir.mkdir(parents=True, exist_ok=True)\\n\\n    cmd = [\\n        sys.executable, str(PROJ / \\\"src/train_deberta.py\\\"),\\n        \\\"--train_data\\\", str(MIXED_TRAIN_PATH),\\n        \\\"--val_data\\\", str(VAL_PATH),\\n        \\\"--model_name\\\", LOCAL_MODEL,\\n        \\\"--output_dir\\\", str(ckpt_dir),\\n        \\\"--epochs\\\", str(DEBERTA_EPOCHS),\\n        \\\"--batch_size\\\", str(DEBERTA_BATCH),\\n        \\\"--lr\\\", str(DEBERTA_LR),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the exp42 data setup:
+
+- Original train data from `plan_002_splits/train.jsonl` 
+- 150 WildChat benign added to training
+- WildChat eval: remaining (226 - filtered - 150 = ~49 for eval)
+
+I need to check the exact composition of the original training data to understand the class balance. The original train has some benign and some jailbreak labels.
+
+Let me check the original train data composition and understand the numbers:
+- Original train: need to know the breakdown (benign vs jailbreak)
+
+
+- exp42 added 150 WildChat benign to that
+
+For exp42b, I'm working through the math on the class balance—I need 175 jailbreak and 175 benign total, which means downsampling the WildChat benign from 150 to around 88 while keeping 87 from the original benign samples. I'm trying to figure out if I should keep all original data or downsample that too based on the task requirements. I need to verify the exact composition of the original training data. The context mentions 500 total samples (350 original + 150 WildChat benign), so the original 350 must be split between jailbreak and benign. If it's 175 jailbreak and 175 benign, then for exp42b I'd need to downsample the original benign from 175 to 87 to hit the 50:50 ratio with 175 jailbreak samples. :40. Not 50:50.
+
+The task explicitly specifies 175 jailbreak paired with 175 benign (88 WildChat + 87 original), so I need to follow that exactly. I'll load the original training data, separate benign from jailbreak samples, downsample the original benign from 175 to 87, keep all 175 jailbreak, and add the 88 WildChat benign samples to reach 350 total with a 50:50 split. Though this does change the original benign count alongside the WildChat addition, which introduces a confound when testing whether ratio matters.
+
+The real question is whether exp42b's FPR stays near zero like exp42 did—if it does, that suggests the WildChat coverage is what matters, not the class ratio. If it increases, then the ratio shift is the driver. Let me verify the exact counts in the original training data first.
+
+Actually, I have what I need. GPU 0 is available, so I'll write the exp42b script now with the key modifications: updated output paths, downsampled WildChat benign to 88 and original benign to 87, same eval split, everything else unchanged.
+
+Writing the training script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "b838fe57-cf4d-44e9-b4ab-e020fd808e83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011cLg5TzXoqdquwYLWr57Rz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3509,
+      "cache_read_input_tokens": 32027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3509
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+GPU 0 is free. Let me check original train data composition to confirm the numbers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "5d935a4d-744e-44ff-bd3d-1e53173aa50b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011cLg5TzXoqdquwYLWr57Rz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3509,
+      "cache_read_input_tokens": 32027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3509
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QJvjCsVWkGbJ4a9ALkV8rf`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "python3 -c \"import json; data=[json.loads(l) for l in open('/root/persuasion_turn_jailbreak_detect/data/plan_002_splits/train.jsonl') if l.strip()]; from collections import Counter; print(f'Total: {len(data)}'); print(Counter(c['label'] for c in data))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "99223023-ac23-4a61-b3ec-f13792d3021c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011cLg5TzXoqdquwYLWr57Rz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3509,
+      "cache_read_input_tokens": 32027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3509
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T04:22:36.957Z_
+
+<details><summary>↩ Tool result · `toolu_01QJvjCsVWkGbJ4a9ALkV8rf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "d02d811d-70cf-4ca3-8066-c766b62984a8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JG4Wt9vgSmgduim7kkF5Si`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -c \"jailbreak\" /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/train.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "1e9ce85b-69ac-43c2-8fc9-8acb043ca762",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U1nWV9h7riimp7Vzz7FtLr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1860,
+      "cache_read_input_tokens": 35536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1860
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T04:22:40.922Z_
+
+<details><summary>↩ Tool result · `toolu_01JG4Wt9vgSmgduim7kkF5Si`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"350\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "12ed40c0-9e30-4996-8d9c-76c544c96265",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"350\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"350\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GegDMEkQYAmATnQtvnjzMa`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -c \"benign\" /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/train.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "9b12d08f-31f6-4cae-8dcf-0c3716e222bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U1nWV9h7riimp7Vzz7FtLr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1860,
+      "cache_read_input_tokens": 35536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1860
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T04:22:41.833Z_
+
+<details><summary>↩ Tool result · `toolu_01GegDMEkQYAmATnQtvnjzMa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"185\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "a99774a9-d273-481f-9e9a-b2a1b2b5cebf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"185\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"185\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012PT29jebJXmtCL2fN7b2ND`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "wc -l /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/train.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "7c2e1a11-76c7-4d01-a882-10fa8e2ed4f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U1nWV9h7riimp7Vzz7FtLr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1860,
+      "cache_read_input_tokens": 35536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1860
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T04:22:42.434Z_
+
+<details><summary>↩ Tool result · `toolu_012PT29jebJXmtCL2fN7b2ND`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"350 /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/train.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "0204ca0a-e193-4d0a-b4eb-6b93f37db612",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"350 /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"350 /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/train.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Hmm, "jailbreak" appears 350 times and "benign" appears 185 times. But the file has 350 lines. This is because grep counts lines containing the pattern, and "jailbreak" could also appear in conversation content (not just the label field). Let me check the actual label distribution more carefully.
+
+Actually, every line is a conversation, and each one has a "label" field. So "jailbreak" might appear both as a label and in content. Let me try a more precise grep.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "3dbeb741-3c3f-4d61-8fe4-a94ea23068a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BXxfRCEuftm98M9TzB7BNB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 710,
+      "cache_read_input_tokens": 37396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 710
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Bm9oeazZVMSE7H4RooTW6K`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -c '\"label\": \"jailbreak\"' /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/train.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "0bd263de-0da6-4656-8770-93905cce0dde",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BXxfRCEuftm98M9TzB7BNB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 710,
+      "cache_read_input_tokens": 37396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 710
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-22T04:22:48.930Z_
+
+<details><summary>↩ Tool result · `toolu_01Bm9oeazZVMSE7H4RooTW6K`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"175\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "533d24bb-9465-44cd-b41e-cb771cfb2f35",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"175\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"175\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MEChiisbbPSmkgSoxUnYL8`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "grep -c '\"label\": \"benign\"' /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/train.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "a4b7c4c8-a64f-4639-a1fb-4d1980ea6501",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BXxfRCEuftm98M9TzB7BNB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 710,
+      "cache_read_input_tokens": 37396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 710
+      },
+      "output_tokens": 33,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T04:22:49.657Z_
+
+<details><summary>↩ Tool result · `toolu_01MEChiisbbPSmkgSoxUnYL8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"175\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "5624ca42-5c08-4277-b951-98a8dd61033b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"175\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"175\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Original train data: 175 jailbreak + 175 benign = 350 total (50:50).
+
+exp42 added 150 WildChat benign → 175 jailbreak + 325 benign = 500 (35:65 ratio).
+
+For exp42b (50:50 with WildChat): 175 jailbreak, need 175 benign total.
+- 88 WildChat benign + 87 original benign = 175 benign.
+
+
+- So I'm keeping all 175 jailbreaks, downsampling the original benign to 87, and adding 88 WildChat benign samples to hit the 350 total with a 50:50 split.
+
+Now I need to check the training and evaluation functions in the exp42 script to understand the full pipeline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "98d0296e-8e7e-4ea0-a9f9-977bff1a6f95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTSPsQVT4P9NbJ56TjkaBL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 606,
+      "cache_read_input_tokens": 38106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 606
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+Original train: 175 jailbreak + 175 benign = 350 (50:50). exp42 added 150 WC benign → 500 (35:65). Now I'll read the rest of the exp42 script and create exp42b.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "b1782c26-cebe-4032-a707-329298799662",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTSPsQVT4P9NbJ56TjkaBL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 606,
+      "cache_read_input_tokens": 38106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 606
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FfSNuYwgubP9CiJbNLbBUF`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -n +200 /root/persuasion_turn_jailbreak_detect/scripts/exp42_ood_benign_mixed.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "46344acd-7a9d-47ac-87d6-435e2c636009",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTSPsQVT4P9NbJ56TjkaBL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 606,
+      "cache_read_input_tokens": 38106,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 606
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T04:22:57.739Z_
+
+<details><summary>↩ Tool result · `toolu_01FfSNuYwgubP9CiJbNLbBUF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        \\\"--lr\\\", str(DEBERTA_LR),\\n        \\\"--max_length\\\", str(MAX_LENGTH),\\n        \\\"--seed\\\", str(seed),\\n        \\\"--alpha\\\", str(ALPHA),\\n    ]\\n\\n    print(f\\\"\\\\n{'='*70}\\\", flush=True)\\n    print(f\\\"STAGE 1: DeBERTa DAPT - seed={seed}\\\", flush=True)\\n    print(f\\\"{'='*70}\\\", flush=True)\\n    print(f\\\"Command: {' '.join(cmd)}\\\", flush=True)\\n\\n    t0 = time.time()\\n    result = subprocess.run(cmd, text=True)\\n    elapsed = time.time() - t0\\n    print(f\\\"Stage 1 seed={seed} completed in {elapsed/60:.1f} min (exit={result.returncode})\\\", flush=True)\\n\\n    if result.returncode != 0:\\n        raise RuntimeError(f\\\"Stage 1 failed for seed={seed}\\\")\\n\\n    best_path = ckpt_dir / \\\"best\\\"\\n    assert (best_path / \\\"model.pt\\\").exists(), f\\\"Checkpoint not found: {best_path / 'model.pt'}\\\"\\n    return best_path\\n\\n\\ndef run_stage2(seed, deberta_ckpt_path):\\n    name = f\\\"exp42_mixed_seed{seed}\\\"\\n    set_seed(seed)\\n\\n    gru_dir = CKPT_BASE / name / \\\"gru\\\"\\n    gru_dir.mkdir(parents=True, exist_ok=True)\\n\\n    tokenizer = AutoTokenizer.from_pretrained(LOCAL_MODEL)\\n\\n    print(f\\\"\\\\nLoading DeBERTa encoder (seed={seed})...\\\", flush=True)\\n    model = DeBERTaMultiTask(model_name=LOCAL_MODEL, num_persuasion_classes=9)\\n    state = torch.load(deberta_ckpt_path / \\\"model.pt\\\", map_location=\\\"cpu\\\")\\n    model.load_state_dict(state)\\n    encoder = model.deberta.to(DEVICE).float().eval()\\n    for p in encoder.parameters():\\n        p.requires_grad = False\\n    embed_dim = encoder.config.hidden_size\\n    del model\\n    torch.cuda.empty_cache()\\n\\n    train_data = load_jsonl(MIXED_TRAIN_PATH)\\n    val_data = load_jsonl(VAL_PATH)\\n\\n    def embed_dataset(data):\\n        all_embs, all_labels, all_lengths = [], [], []\\n        for conv in data:\\n            turns = extract_user_turns(conv)\\n            if not turns:\\n                turns = [\\\"\\\"]\\n            enc = tokenizer(turns, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\\\"pt\\\").to(DEVICE)\\n            with torch.no_grad():\\n                out = encoder(input_ids=enc[\\\"input_ids\\\"], attention_mask=enc[\\\"attention_mask\\\"])\\n                embs = out.last_hidden_state[:, 0, :].cpu().float()\\n            all_embs.append(embs)\\n            all_labels.append(get_label(conv))\\n            all_lengths.append(embs.size(0))\\n        return all_embs, all_labels, all_lengths\\n\\n    print(\\\"Precomputing train embeddings...\\\", flush=True)\\n    t_embs, t_labels, t_lens = embed_dataset(train_data)\\n    print(\\\"Precomputing val embeddings...\\\", flush=True)\\n    v_embs, v_labels, v_lens = embed_dataset(val_data)\\n\\n    def pad_batch(embs_list, labels, lengths):\\n        max_len = max(lengths)\\n        dim = embs_list[0].size(1)\\n        padded = torch.zeros(len(embs_list), max_len, dim)\\n        for i, e in enumerate(embs_list):\\n            padded[i, :e.size(0), :] = e\\n        return padded, torch.tensor(labels, dtype=torch.long), torch.tensor(lengths, dtype=torch.long)\\n\\n    n = len(t_embs)\\n    gru = GRUClassifier(input_dim=embed_dim, hidden_dim=GRU_HIDDEN, num_layers=GRU_LAYERS, dropout=GRU_DROPOUT).to(DEVICE)\\n    optimizer = torch.optim.Adam(gru.parameters(), lr=GRU_LR)\\n    criterion = nn.CrossEntropyLoss()\\n\\n    best_val_f1 = 0\\n    best_state = None\\n    patience = 5\\n    no_improve = 0\\n\\n    print(f\\\"\\\\n--- Training GRU (seed={seed}) ---\\\", flush=True)\\n    for epoch in range(GRU_EPOCHS):\\n        gru.train()\\n        indices = list(range(n))\\n        random.shuffle(indices)\\n        epoch_loss = 0.0\\n        steps = 0\\n\\n        for start in range(0, n, GRU_BATCH):\\n            end = min(start + GRU_BATCH, n)\\n            batch_idx = indices[start:end]\\n            b_embs = [t_embs[i] for i in batch_idx]\\n            b_labels = [t_labels[i] for i in batch_idx]\\n            b_lens = [t_lens[i] for i in batch_idx]\\n\\n            X, y, lens = pad_batch(b_embs, b_labels, b_lens)\\n            X, y, lens = X.to(DEVICE), y.to(DEVICE), lens.to(DEVICE)\\n\\n            logits = gru(X, lens)\\n            loss = criterion(logits, y)\\n            optimizer.zero_grad()\\n            loss.backward()\\n            optimizer.step()\\n\\n... [截断: 输出过长，省略 4937 字符] ...\\n\\n jailbreak OOD\\n            ood_recall = sum(ood_preds) / len(ood_preds)\\n            seed_results[f\\\"ood_{ood_name.lower()}_recall\\\"] = ood_recall\\n            print(f\\\"  OOD {ood_name} recall: {ood_recall:.4f} ({sum(ood_preds)}/{len(ood_preds)})\\\")\\n\\n            # F1: combine OOD jailbreak with IID benign test subset\\n            iid_benign = [c for c in test_data if c[\\\"label\\\"] == \\\"benign\\\"]\\n            combined_preds_benign, _ = predict_convs(iid_benign)\\n            combined_preds = combined_preds_benign + ood_preds\\n            combined_true = [0] * len(iid_benign) + [1] * len(ood_data)\\n            combined_f1 = f1_score(combined_true, combined_preds, average=\\\"macro\\\")\\n            seed_results[f\\\"ood_{ood_name.lower()}_f1\\\"] = combined_f1\\n            print(f\\\"  OOD {ood_name} F1 (vs IID benign): {combined_f1:.4f}\\\")\\n\\n        all_results[\\\"seeds\\\"][str(seed)] = seed_results\\n\\n        del encoder, gru\\n        torch.cuda.empty_cache()\\n\\n    # Summary across seeds\\n    wc_fprs = [all_results[\\\"seeds\\\"][str(s)][\\\"wildchat_fpr\\\"] for s in SEEDS]\\n    iid_f1s = [all_results[\\\"seeds\\\"][str(s)][\\\"iid_f1_macro\\\"] for s in SEEDS]\\n\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] = float(np.mean(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_std\\\"] = float(np.std(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_mean\\\"] = float(np.mean(iid_f1s))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_std\\\"] = float(np.std(iid_f1s))\\n\\n    for ood_name in ood_datasets:\\n        recalls = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_recall\\\"] for s in SEEDS]\\n        f1s = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_f1\\\"] for s in SEEDS]\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_recall_mean\\\"] = float(np.mean(recalls))\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_f1_mean\\\"] = float(np.mean(f1s))\\n\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(\\\"SUMMARY (3-seed mean)\\\")\\n    print(f\\\"{'='*70}\\\")\\n    print(f\\\"WildChat FPR: {all_results['summary']['wildchat_fpr_mean']:.4f} ± {all_results['summary']['wildchat_fpr_std']:.4f}\\\")\\n    print(f\\\"IID F1 macro: {all_results['summary']['iid_f1_mean']:.4f} ± {all_results['summary']['iid_f1_std']:.4f}\\\")\\n    for ood_name in ood_datasets:\\n        print(f\\\"OOD {ood_name} recall: {all_results['summary'][f'ood_{ood_name.lower()}_recall_mean']:.4f}\\\")\\n        print(f\\\"OOD {ood_name} F1: {all_results['summary'][f'ood_{ood_name.lower()}_f1_mean']:.4f}\\\")\\n\\n    # Pass/fail\\n    fpr_pass = all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] < 0.30\\n    ood_f1_pass = all(\\n        all_results[\\\"summary\\\"].get(f\\\"ood_{n.lower()}_f1_mean\\\", 0) > 0.95\\n        for n in ood_datasets\\n    )\\n    print(f\\\"\\\\nFPR < 30%: {'PASS' if fpr_pass else 'FAIL'} ({all_results['summary']['wildchat_fpr_mean']:.1%})\\\")\\n    print(f\\\"OOD F1 > 0.95: {'PASS' if ood_f1_pass else 'FAIL'}\\\")\\n\\n    all_results[\\\"summary\\\"][\\\"fpr_pass\\\"] = fpr_pass\\n    all_results[\\\"summary\\\"][\\\"ood_f1_pass\\\"] = ood_f1_pass\\n    all_results[\\\"summary\\\"][\\\"conclusion\\\"] = \\\"success\\\" if (fpr_pass and ood_f1_pass) else \\\"negative\\\"\\n\\n    RESULTS_JSON.parent.mkdir(parents=True, exist_ok=True)\\n    with open(RESULTS_JSON, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {RESULTS_JSON}\\\")\\n\\n    return all_results\\n\\n\\n# =========================================================================\\n# MAIN\\n# =========================================================================\\nif __name__ == \\\"__main__\\\":\\n    t_total = time.time()\\n\\n    # Step 1: Prepare data\\n    n_wc_train, n_wc_eval = prepare_data()\\n\\n    # Step 2: Train 3 seeds\\n    seeds_ckpts = {}\\n    for seed in SEEDS:\\n        print(f\\\"\\\\n{'#'*70}\\\")\\n        print(f\\\"# SEED {seed}\\\")\\n        print(f\\\"{'#'*70}\\\")\\n        deberta_path = run_stage1(seed)\\n        gru_path = run_stage2(seed, deberta_path)\\n        seeds_ckpts[seed] = (deberta_path, gru_path)\\n\\n    # Step 3: Evaluate\\n    results = evaluate_all(seeds_ckpts)\\n\\n    elapsed_total = time.time() - t_total\\n    print(f\\\"\\\\nTotal time: {elapsed_total/60:.1f} min\\\")\\n    print(f\\\"\\\\nCheckpoints at: {CKPT_BASE}/exp42_mixed_seed*/\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "34694cab-b96c-4cc1-ac9c-d93f7133c8ba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        \\\\\\\"--lr\\\\\\\", str(DEBERTA_LR),\\\\n        \\\\\\\"--max_length\\\\\\\", str(MAX_LENGTH),\\\\n        \\\\\\\"--seed\\\\\\\", str(seed),\\\\n        \\\\\\\"--alpha\\\\\\\", str(ALPHA),\\\\n    ]\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"STAGE 1: DeBERTa DAPT - seed={seed}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"{'='*70}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Command: {' '.join(cmd)}\\\\\\\", flush=True)\\\\n\\\\n    t0 = time.time()\\\\n    result = subprocess.run(cmd, text=True)\\\\n    elapsed = time.time() - t0\\\\n    print(f\\\\\\\"Stage 1 seed={seed} completed in {elapsed/60:.1f} min (exit={result.returncode})\\\\\\\", flush=True)\\\\n\\\\n    if result.returncode != 0:\\\\n        raise RuntimeError(f\\\\\\\"Stage 1 failed for seed={seed}\\\\\\\")\\\\n\\\\n    best_path = ckpt_dir / \\\\\\\"best\\\\\\\"\\\\n    assert (best_path / \\\\\\\"model.pt\\\\\\\").exists(), f\\\\\\\"Checkpoint not found: {best_path / 'model.pt'}\\\\\\\"\\\\n    return best_path\\\\n\\\\n\\\\ndef run_stage2(seed, deberta_ckpt_path):\\\\n    name = f\\\\\\\"exp42_mixed_seed{seed}\\\\\\\"\\\\n    set_seed(seed)\\\\n\\\\n    gru_dir = CKPT_BASE / name / \\\\\\\"gru\\\\\\\"\\\\n    gru_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(LOCAL_MODEL)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nLoading DeBERTa encoder (seed={seed})...\\\\\\\", flush=True)\\\\n    model = DeBERTaMultiTask(model_name=LOCAL_MODEL, num_persuasion_classes=9)\\\\n    state = torch.load(deberta_ckpt_path / \\\\\\\"model.pt\\\\\\\", map_location=\\\\\\\"cpu\\\\\\\")\\\\n    model.load_state_dict(state)\\\\n    encoder = model.deberta.to(DEVICE).float().eval()\\\\n    for p in encoder.parameters():\\\\n        p.requires_grad = False\\\\n    embed_dim = encoder.config.hidden_size\\\\n    del model\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    train_data = load_jsonl(MIXED_TRAIN_PATH)\\\\n    val_data = load_jsonl(VAL_PATH)\\\\n\\\\n    def embed_dataset(data):\\\\n        all_embs, all_labels, all_lengths = [], [], []\\\\n        for conv in data:\\\\n            turns = extract_user_turns(conv)\\\\n            if not turns:\\\\n                turns = [\\\\\\\"\\\\\\\"]\\\\n            enc = tokenizer(turns, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\\\\\\\"pt\\\\\\\").to(DEVICE)\\\\n            with torch.no_grad():\\\\n                out = encoder(input_ids=enc[\\\\\\\"input_ids\\\\\\\"], attention_mask=enc[\\\\\\\"attention_mask\\\\\\\"])\\\\n                embs = out.last_hidden_state[:, 0, :].cpu().float()\\\\n            all_embs.append(embs)\\\\n            all_labels.append(get_label(conv))\\\\n            all_lengths.append(embs.size(0))\\\\n        return all_embs, all_labels, all_lengths\\\\n\\\\n    print(\\\\\\\"Precomputing train embeddings...\\\\\\\", flush=True)\\\\n    t_embs, t_labels, t_lens = embed_dataset(train_data)\\\\n    print(\\\\\\\"Precomputing val embeddings...\\\\\\\", flush=True)\\\\n    v_embs, v_labels, v_lens = embed_dataset(val_data)\\\\n\\\\n    def pad_batch(embs_list, labels, lengths):\\\\n        max_len = max(lengths)\\\\n        dim = embs_list[0].size(1)\\\\n        padded = torch.zeros(len(embs_list), max_len, dim)\\\\n        for i, e in enumerate(embs_list):\\\\n            padded[i, :e.size(0), :] = e\\\\n        return padded, torch.tensor(labels, dtype=torch.long), torch.tensor(lengths, dtype=torch.long)\\\\n\\\\n    n = len(t_embs)\\\\n    gru = GRUClassifier(input_dim=embed_dim, hidden_dim=GRU_HIDDEN, num_layers=GRU_LAYERS, dropout=GRU_DROPOUT).to(DEVICE)\\\\n    optimizer = torch.optim.Adam(gru.parameters(), lr=GRU_LR)\\\\n    criterion = nn.CrossEntropyLoss()\\\\n\\\\n    best_val_f1 = 0\\\\n    best_state = None\\\\n    patience = 5\\\\n    no_improve = 0\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n--- Training GRU (seed={seed}) ---\\\\\\\", flush=True)\\\\n    for epoch in range(GRU_EPOCHS):\\\\n        gru.train()\\\\n        indices = list(range(n))\\\\n        random.shuffle(indices)\\\\n        epoch_loss = 0.0\\\\n        steps = 0\\\\n\\\\n        for start in range(0, n, GRU_BATCH):\\\\n            end = min(start + GRU_BATCH, n)\\\\n            batch_idx = indices[start:end]\\\\n            b_embs = [t_embs[i] for i in batch_idx]\\\\n            b_labels = [t_labels[i] for i in batch_idx]\\\\n            b_lens = [t_lens[i] for i in batch_idx]\\\\n\\\\n            X, y, lens = pad_batch(b_embs, b_labels, b_lens)\\\\n            X, y, lens = X.to(DEVICE), y.to(DEVICE), lens.to(DEVICE)\\\\n\\\\n            logits = gru(X, lens)\\\\n            loss = criterion(logits, y)\\\\n            optimizer.zero_grad()\\\\n            loss.backward()\\\\n            optimizer.step()\\\\n\\\\n... [截断: 输出过长，省略 4937 字符] ...\\\\n\\\\n jailbreak OOD\\\\n            ood_recall = sum(ood_preds) / len(ood_preds)\\\\n            seed_results[f\\\\\\\"ood_{ood_name.lower()}_recall\\\\\\\"] = ood_recall\\\\n            print(f\\\\\\\"  OOD {ood_name} recall: {ood_recall:.4f} ({sum(ood_preds)}/{len(ood_preds)})\\\\\\\")\\\\n\\\\n            # F1: combine OOD jailbreak with IID benign test subset\\\\n            iid_benign = [c for c in test_data if c[\\\\\\\"label\\\\\\\"] == \\\\\\\"benign\\\\\\\"]\\\\n            combined_preds_benign, _ = predict_convs(iid_benign)\\\\n            combined_preds = combined_preds_benign + ood_preds\\\\n            combined_true = [0] * len(iid_benign) + [1] * len(ood_data)\\\\n            combined_f1 = f1_score(combined_true, combined_preds, average=\\\\\\\"macro\\\\\\\")\\\\n            seed_results[f\\\\\\\"ood_{ood_name.lower()}_f1\\\\\\\"] = combined_f1\\\\n            print(f\\\\\\\"  OOD {ood_name} F1 (vs IID benign): {combined_f1:.4f}\\\\\\\")\\\\n\\\\n        all_results[\\\\\\\"seeds\\\\\\\"][str(seed)] = seed_results\\\\n\\\\n        del encoder, gru\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    # Summary across seeds\\\\n    wc_fprs = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][\\\\\\\"wildchat_fpr\\\\\\\"] for s in SEEDS]\\\\n    iid_f1s = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][\\\\\\\"iid_f1_macro\\\\\\\"] for s in SEEDS]\\\\n\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"wildchat_fpr_mean\\\\\\\"] = float(np.mean(wc_fprs))\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"wildchat_fpr_std\\\\\\\"] = float(np.std(wc_fprs))\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"iid_f1_mean\\\\\\\"] = float(np.mean(iid_f1s))\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"iid_f1_std\\\\\\\"] = float(np.std(iid_f1s))\\\\n\\\\n    for ood_name in ood_datasets:\\\\n        recalls = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][f\\\\\\\"ood_{ood_name.lower()}_recall\\\\\\\"] for s in SEEDS]\\\\n        f1s = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][f\\\\\\\"ood_{ood_name.lower()}_f1\\\\\\\"] for s in SEEDS]\\\\n        all_results[\\\\\\\"summary\\\\\\\"][f\\\\\\\"ood_{ood_name.lower()}_recall_mean\\\\\\\"] = float(np.mean(recalls))\\\\n        all_results[\\\\\\\"summary\\\\\\\"][f\\\\\\\"ood_{ood_name.lower()}_f1_mean\\\\\\\"] = float(np.mean(f1s))\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\")\\\\n    print(\\\\\\\"SUMMARY (3-seed mean)\\\\\\\")\\\\n    print(f\\\\\\\"{'='*70}\\\\\\\")\\\\n    print(f\\\\\\\"WildChat FPR: {all_results['summary']['wildchat_fpr_mean']:.4f} ± {all_results['summary']['wildchat_fpr_std']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"IID F1 macro: {all_results['summary']['iid_f1_mean']:.4f} ± {all_results['summary']['iid_f1_std']:.4f}\\\\\\\")\\\\n    for ood_name in ood_datasets:\\\\n        print(f\\\\\\\"OOD {ood_name} recall: {all_results['summary'][f'ood_{ood_name.lower()}_recall_mean']:.4f}\\\\\\\")\\\\n        print(f\\\\\\\"OOD {ood_name} F1: {all_results['summary'][f'ood_{ood_name.lower()}_f1_mean']:.4f}\\\\\\\")\\\\n\\\\n    # Pass/fail\\\\n    fpr_pass = all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"wildchat_fpr_mean\\\\\\\"] < 0.30\\\\n    ood_f1_pass = all(\\\\n        all_results[\\\\\\\"summary\\\\\\\"].get(f\\\\\\\"ood_{n.lower()}_f1_mean\\\\\\\", 0) > 0.95\\\\n        for n in ood_datasets\\\\n    )\\\\n    print(f\\\\\\\"\\\\\\\\nFPR < 30%: {'PASS' if fpr_pass else 'FAIL'} ({all_results['summary']['wildchat_fpr_mean']:.1%})\\\\\\\")\\\\n    print(f\\\\\\\"OOD F1 > 0.95: {'PASS' if ood_f1_pass else 'FAIL'}\\\\\\\")\\\\n\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"fpr_pass\\\\\\\"] = fpr_pass\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"ood_f1_pass\\\\\\\"] = ood_f1_pass\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"conclusion\\\\\\\"] = \\\\\\\"success\\\\\\\" if (fpr_pass and ood_f1_pass) else \\\\\\\"negative\\\\\\\"\\\\n\\\\n    RESULTS_JSON.parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(RESULTS_JSON, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {RESULTS_JSON}\\\\\\\")\\\\n\\\\n    return all_results\\\\n\\\\n\\\\n# =========================================================================\\\\n# MAIN\\\\n# =========================================================================\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    t_total = time.time()\\\\n\\\\n    # Step 1: Prepare data\\\\n    n_wc_train, n_wc_eval = prepare_data()\\\\n\\\\n    # Step 2: Train 3 seeds\\\\n    seeds_ckpts = {}\\\\n    for seed in SEEDS:\\\\n        print(f\\\\\\\"\\\\\\\\n{'#'*70}\\\\\\\")\\\\n        print(f\\\\\\\"# SEED {seed}\\\\\\\")\\\\n        print(f\\\\\\\"{'#'*70}\\\\\\\")\\\\n        deberta_path = run_stage1(seed)\\\\n        gru_path = run_stage2(seed, deberta_path)\\\\n        seeds_ckpts[seed] = (deberta_path, gru_path)\\\\n\\\\n    # Step 3: Evaluate\\\\n    results = evaluate_all(seeds_ckpts)\\\\n\\\\n    elapsed_total = time.time() - t_total\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {elapsed_total/60:.1f} min\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nCheckpoints at: {CKPT_BASE}/exp42_mixed_seed*/\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        \\\"--lr\\\", str(DEBERTA_LR),\\n        \\\"--max_length\\\", str(MAX_LENGTH),\\n        \\\"--seed\\\", str(seed),\\n        \\\"--alpha\\\", str(ALPHA),\\n    ]\\n\\n    print(f\\\"\\\\n{'='*70}\\\", flush=True)\\n    print(f\\\"STAGE 1: DeBERTa DAPT - seed={seed}\\\", flush=True)\\n    print(f\\\"{'='*70}\\\", flush=True)\\n    print(f\\\"Command: {' '.join(cmd)}\\\", flush=True)\\n\\n    t0 = time.time()\\n    result = subprocess.run(cmd, text=True)\\n    elapsed = time.time() - t0\\n    print(f\\\"Stage 1 seed={seed} completed in {elapsed/60:.1f} min (exit={result.returncode})\\\", flush=True)\\n\\n    if result.returncode != 0:\\n        raise RuntimeError(f\\\"Stage 1 failed for seed={seed}\\\")\\n\\n    best_path = ckpt_dir / \\\"best\\\"\\n    assert (best_path / \\\"model.pt\\\").exists(), f\\\"Checkpoint not found: {best_path / 'model.pt'}\\\"\\n    return best_path\\n\\n\\ndef run_stage2(seed, deberta_ckpt_path):\\n    name = f\\\"exp42_mixed_seed{seed}\\\"\\n    set_seed(seed)\\n\\n    gru_dir = CKPT_BASE / name / \\\"gru\\\"\\n    gru_dir.mkdir(parents=True, exist_ok=True)\\n\\n    tokenizer = AutoTokenizer.from_pretrained(LOCAL_MODEL)\\n\\n    print(f\\\"\\\\nLoading DeBERTa encoder (seed={seed})...\\\", flush=True)\\n    model = DeBERTaMultiTask(model_name=LOCAL_MODEL, num_persuasion_classes=9)\\n    state = torch.load(deberta_ckpt_path / \\\"model.pt\\\", map_location=\\\"cpu\\\")\\n    model.load_state_dict(state)\\n    encoder = model.deberta.to(DEVICE).float().eval()\\n    for p in encoder.parameters():\\n        p.requires_grad = False\\n    embed_dim = encoder.config.hidden_size\\n    del model\\n    torch.cuda.empty_cache()\\n\\n    train_data = load_jsonl(MIXED_TRAIN_PATH)\\n    val_data = load_jsonl(VAL_PATH)\\n\\n    def embed_dataset(data):\\n        all_embs, all_labels, all_lengths = [], [], []\\n        for conv in data:\\n            turns = extract_user_turns(conv)\\n            if not turns:\\n                turns = [\\\"\\\"]\\n            enc = tokenizer(turns, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\\\"pt\\\").to(DEVICE)\\n            with torch.no_grad():\\n                out = encoder(input_ids=enc[\\\"input_ids\\\"], attention_mask=enc[\\\"attention_mask\\\"])\\n                embs = out.last_hidden_state[:, 0, :].cpu().float()\\n            all_embs.append(embs)\\n            all_labels.append(get_label(conv))\\n            all_lengths.append(embs.size(0))\\n        return all_embs, all_labels, all_lengths\\n\\n    print(\\\"Precomputing train embeddings...\\\", flush=True)\\n    t_embs, t_labels, t_lens = embed_dataset(train_data)\\n    print(\\\"Precomputing val embeddings...\\\", flush=True)\\n    v_embs, v_labels, v_lens = embed_dataset(val_data)\\n\\n    def pad_batch(embs_list, labels, lengths):\\n        max_len = max(lengths)\\n        dim = embs_list[0].size(1)\\n        padded = torch.zeros(len(embs_list), max_len, dim)\\n        for i, e in enumerate(embs_list):\\n            padded[i, :e.size(0), :] = e\\n        return padded, torch.tensor(labels, dtype=torch.long), torch.tensor(lengths, dtype=torch.long)\\n\\n    n = len(t_embs)\\n    gru = GRUClassifier(input_dim=embed_dim, hidden_dim=GRU_HIDDEN, num_layers=GRU_LAYERS, dropout=GRU_DROPOUT).to(DEVICE)\\n    optimizer = torch.optim.Adam(gru.parameters(), lr=GRU_LR)\\n    criterion = nn.CrossEntropyLoss()\\n\\n    best_val_f1 = 0\\n    best_state = None\\n    patience = 5\\n    no_improve = 0\\n\\n    print(f\\\"\\\\n--- Training GRU (seed={seed}) ---\\\", flush=True)\\n    for epoch in range(GRU_EPOCHS):\\n        gru.train()\\n        indices = list(range(n))\\n        random.shuffle(indices)\\n        epoch_loss = 0.0\\n        steps = 0\\n\\n        for start in range(0, n, GRU_BATCH):\\n            end = min(start + GRU_BATCH, n)\\n            batch_idx = indices[start:end]\\n            b_embs = [t_embs[i] for i in batch_idx]\\n            b_labels = [t_labels[i] for i in batch_idx]\\n            b_lens = [t_lens[i] for i in batch_idx]\\n\\n            X, y, lens = pad_batch(b_embs, b_labels, b_lens)\\n            X, y, lens = X.to(DEVICE), y.to(DEVICE), lens.to(DEVICE)\\n\\n            logits = gru(X, lens)\\n            loss = criterion(logits, y)\\n            optimizer.zero_grad()\\n            loss.backward()\\n            optimizer.step()\\n\\n... [截断: 输出过长，省略 4937 字符] ...\\n\\n jailbreak OOD\\n            ood_recall = sum(ood_preds) / len(ood_preds)\\n            seed_results[f\\\"ood_{ood_name.lower()}_recall\\\"] = ood_recall\\n            print(f\\\"  OOD {ood_name} recall: {ood_recall:.4f} ({sum(ood_preds)}/{len(ood_preds)})\\\")\\n\\n            # F1: combine OOD jailbreak with IID benign test subset\\n            iid_benign = [c for c in test_data if c[\\\"label\\\"] == \\\"benign\\\"]\\n            combined_preds_benign, _ = predict_convs(iid_benign)\\n            combined_preds = combined_preds_benign + ood_preds\\n            combined_true = [0] * len(iid_benign) + [1] * len(ood_data)\\n            combined_f1 = f1_score(combined_true, combined_preds, average=\\\"macro\\\")\\n            seed_results[f\\\"ood_{ood_name.lower()}_f1\\\"] = combined_f1\\n            print(f\\\"  OOD {ood_name} F1 (vs IID benign): {combined_f1:.4f}\\\")\\n\\n        all_results[\\\"seeds\\\"][str(seed)] = seed_results\\n\\n        del encoder, gru\\n        torch.cuda.empty_cache()\\n\\n    # Summary across seeds\\n    wc_fprs = [all_results[\\\"seeds\\\"][str(s)][\\\"wildchat_fpr\\\"] for s in SEEDS]\\n    iid_f1s = [all_results[\\\"seeds\\\"][str(s)][\\\"iid_f1_macro\\\"] for s in SEEDS]\\n\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] = float(np.mean(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_std\\\"] = float(np.std(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_mean\\\"] = float(np.mean(iid_f1s))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_std\\\"] = float(np.std(iid_f1s))\\n\\n    for ood_name in ood_datasets:\\n        recalls = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_recall\\\"] for s in SEEDS]\\n        f1s = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_f1\\\"] for s in SEEDS]\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_recall_mean\\\"] = float(np.mean(recalls))\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_f1_mean\\\"] = float(np.mean(f1s))\\n\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(\\\"SUMMARY (3-seed mean)\\\")\\n    print(f\\\"{'='*70}\\\")\\n    print(f\\\"WildChat FPR: {all_results['summary']['wildchat_fpr_mean']:.4f} ± {all_results['summary']['wildchat_fpr_std']:.4f}\\\")\\n    print(f\\\"IID F1 macro: {all_results['summary']['iid_f1_mean']:.4f} ± {all_results['summary']['iid_f1_std']:.4f}\\\")\\n    for ood_name in ood_datasets:\\n        print(f\\\"OOD {ood_name} recall: {all_results['summary'][f'ood_{ood_name.lower()}_recall_mean']:.4f}\\\")\\n        print(f\\\"OOD {ood_name} F1: {all_results['summary'][f'ood_{ood_name.lower()}_f1_mean']:.4f}\\\")\\n\\n    # Pass/fail\\n    fpr_pass = all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] < 0.30\\n    ood_f1_pass = all(\\n        all_results[\\\"summary\\\"].get(f\\\"ood_{n.lower()}_f1_mean\\\", 0) > 0.95\\n        for n in ood_datasets\\n    )\\n    print(f\\\"\\\\nFPR < 30%: {'PASS' if fpr_pass else 'FAIL'} ({all_results['summary']['wildchat_fpr_mean']:.1%})\\\")\\n    print(f\\\"OOD F1 > 0.95: {'PASS' if ood_f1_pass else 'FAIL'}\\\")\\n\\n    all_results[\\\"summary\\\"][\\\"fpr_pass\\\"] = fpr_pass\\n    all_results[\\\"summary\\\"][\\\"ood_f1_pass\\\"] = ood_f1_pass\\n    all_results[\\\"summary\\\"][\\\"conclusion\\\"] = \\\"success\\\" if (fpr_pass and ood_f1_pass) else \\\"negative\\\"\\n\\n    RESULTS_JSON.parent.mkdir(parents=True, exist_ok=True)\\n    with open(RESULTS_JSON, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {RESULTS_JSON}\\\")\\n\\n    return all_results\\n\\n\\n# =========================================================================\\n# MAIN\\n# =========================================================================\\nif __name__ == \\\"__main__\\\":\\n    t_total = time.time()\\n\\n    # Step 1: Prepare data\\n    n_wc_train, n_wc_eval = prepare_data()\\n\\n    # Step 2: Train 3 seeds\\n    seeds_ckpts = {}\\n    for seed in SEEDS:\\n        print(f\\\"\\\\n{'#'*70}\\\")\\n        print(f\\\"# SEED {seed}\\\")\\n        print(f\\\"{'#'*70}\\\")\\n        deberta_path = run_stage1(seed)\\n        gru_path = run_stage2(seed, deberta_path)\\n        seeds_ckpts[seed] = (deberta_path, gru_path)\\n\\n    # Step 3: Evaluate\\n    results = evaluate_all(seeds_ckpts)\\n\\n    elapsed_total = time.time() - t_total\\n    print(f\\\"\\\\nTotal time: {elapsed_total/60:.1f} min\\\")\\n    print(f\\\"\\\\nCheckpoints at: {CKPT_BASE}/exp42_mixed_seed*/\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full exp42 script. Let me also get the truncated middle part (around lines 300-400) to see the GRU validation and eval code.
+
+Actually, I think I have enough. Let me also check the part that was truncated between lines 300-360 approximately. The validation loop and evaluate_all function. Let me piece it together.
+
+From the first read (lines 1-200):
+- Imports, constants, data paths
+- filter_wildchat, prepare_wildchat_for_training, extract_user_turns, get_label
+- prepare_data: loads 226 WC, filters, takes 150 for train, rest for eval, mixes with original train
+
+
+- run_stage1: trains DeBERTa via subprocess call to train_deberta.py
+
+From the second read (lines 200+):
+- run_stage2: loads DeBERTa encoder, embeds data, trains GRU with early stopping on validation loss
+- evaluate_all: loads trained models, evaluates on test/wildchat/OOD datasets
+- main: prepare_data → 3 seeds train → evaluate_all
+
+The truncated part (around lines 300-350) would have the GRU validation loop completion and start of evaluate_all.
+
+Now I'm ready to write the exp42b script. The main changes are in prepare_data: I'll downsample WildChat train to 88 and original benign to 87 while keeping all 175 jailbreak samples, giving me a balanced 350-sample dataset. Everything else stays the same as exp42, just with different output paths and checkpoint names.
+
+Writing exp42b script... split (same random seed 42 for shuffling), to keep eval comparable.
+
+Actually, looking more carefully at the exp42 prepare_data flow:
+1. Load 226 WC, filter → ~199 clean
+2. Shuffle with seed=42
+3. Take first 150 for train, rest for eval (~49)
+
+For exp42b, I should use the SAME eval split. So I should:
+1. Load 226 WC, filter → same ~199 clean
+2. Shuffle with seed=42 (same)
+3. Take first 150 for WC train pool (same as exp42), rest for eval (same 49)
+4. Then downsample the 150 WC train to 88 using a different random seed
+
+Wait, but the task says "Use random seed for downsampling (seed=42)". So I'll use seed=42 for downsampling from the 150 WC train.
+
+For the original benign downsampling, I need to load the original train set, separate it into benign and jailbreak samples (175 each), then downsample the benign class to 87 using seed=42. Now I'll write the script as a clean modification of exp42.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "1b1d8be4-fa4b-49fa-ba6d-bb7675eaea9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018i2XRSYCggHRWLWEcvEhW9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4052,
+      "cache_read_input_tokens": 38712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4052
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+I have all the info I need. Let me also check the middle truncated section for the GRU validation loop.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "689bee5b-aa2d-4315-84ee-45900cd881a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018i2XRSYCggHRWLWEcvEhW9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4052,
+      "cache_read_input_tokens": 38712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4052
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V8pJneboyCnt4bQ5iPrYi9`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -n +300 /root/persuasion_turn_jailbreak_detect/scripts/exp42_ood_benign_mixed.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "38187050-9efa-4262-b512-2e90f4eafff1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018i2XRSYCggHRWLWEcvEhW9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4052,
+      "cache_read_input_tokens": 38712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4052
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-22T04:23:20.088Z_
+
+<details><summary>↩ Tool result · `toolu_01V8pJneboyCnt4bQ5iPrYi9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            X, y, lens = pad_batch(b_embs, b_labels, b_lens)\\n            X, y, lens = X.to(DEVICE), y.to(DEVICE), lens.to(DEVICE)\\n\\n            logits = gru(X, lens)\\n            loss = criterion(logits, y)\\n            optimizer.zero_grad()\\n            loss.backward()\\n            optimizer.step()\\n            epoch_loss += loss.item()\\n            steps += 1\\n\\n        # Validation\\n        gru.eval()\\n        with torch.no_grad():\\n            vX, vy, vlens = pad_batch(v_embs, v_labels, v_lens)\\n            vX, vy, vlens = vX.to(DEVICE), vy.to(DEVICE), vlens.to(DEVICE)\\n            v_logits = gru(vX, vlens)\\n            v_preds = v_logits.argmax(dim=1).cpu().numpy()\\n            v_true = vy.cpu().numpy()\\n            val_f1 = f1_score(v_true, v_preds, average=\\\"macro\\\")\\n\\n        if val_f1 > best_val_f1:\\n            best_val_f1 = val_f1\\n            best_state = {k: v.cpu().clone() for k, v in gru.state_dict().items()}\\n            no_improve = 0\\n        else:\\n            no_improve += 1\\n\\n        if (epoch + 1) % 5 == 0 or epoch == 0:\\n            print(f\\\"  Epoch {epoch+1}/{GRU_EPOCHS}: loss={epoch_loss/steps:.4f}, val_f1={val_f1:.4f}, best={best_val_f1:.4f}\\\", flush=True)\\n\\n        if no_improve >= patience:\\n            print(f\\\"  Early stop at epoch {epoch+1}\\\", flush=True)\\n            break\\n\\n    gru_path = gru_dir / \\\"best.pt\\\"\\n    torch.save(best_state, gru_path)\\n    print(f\\\"Saved GRU checkpoint to {gru_path} (best val F1={best_val_f1:.4f})\\\", flush=True)\\n\\n    del encoder, gru, t_embs, v_embs\\n    torch.cuda.empty_cache()\\n\\n    return gru_path\\n\\n\\n# =========================================================================\\n# STEP 3: Evaluation\\n# =========================================================================\\ndef evaluate_all(seeds_ckpts):\\n    print(f\\\"\\\\n{'='*70}\\\", flush=True)\\n    print(\\\"STEP 3: Evaluation\\\", flush=True)\\n    print(f\\\"{'='*70}\\\", flush=True)\\n\\n    tokenizer = AutoTokenizer.from_pretrained(LOCAL_MODEL)\\n\\n    wildchat_eval = load_jsonl(WILDCHAT_EVAL_PATH)\\n    test_data = load_jsonl(TEST_PATH)\\n\\n    ood_datasets = {}\\n    if DD_PATH.exists():\\n        ood_datasets[\\\"DD\\\"] = load_jsonl(DD_PATH)\\n    if AA_PATH.exists():\\n        ood_datasets[\\\"AA\\\"] = load_jsonl(AA_PATH)\\n    if FITD_PATH.exists():\\n        ood_datasets[\\\"FITD\\\"] = load_jsonl(FITD_PATH)\\n\\n    print(f\\\"WildChat eval: {len(wildchat_eval)}\\\")\\n    print(f\\\"IID test: {len(test_data)}\\\")\\n    for name, data in ood_datasets.items():\\n        print(f\\\"OOD {name}: {len(data)}\\\")\\n\\n    all_results = {\\\"seeds\\\": {}, \\\"summary\\\": {}}\\n\\n    for seed, (deberta_path, gru_path) in seeds_ckpts.items():\\n        print(f\\\"\\\\n--- Evaluating seed={seed} ---\\\", flush=True)\\n        set_seed(seed)\\n\\n        model = DeBERTaMultiTask(model_name=LOCAL_MODEL, num_persuasion_classes=9)\\n        state = torch.load(deberta_path / \\\"model.pt\\\", map_location=\\\"cpu\\\")\\n        model.load_state_dict(state)\\n        encoder = model.deberta.to(DEVICE).float().eval()\\n        for p in encoder.parameters():\\n            p.requires_grad = False\\n        embed_dim = encoder.config.hidden_size\\n        del model\\n\\n        gru = GRUClassifier(input_dim=embed_dim, hidden_dim=GRU_HIDDEN, num_layers=GRU_LAYERS, dropout=GRU_DROPOUT)\\n        gru.load_state_dict(torch.load(gru_path, map_location=\\\"cpu\\\", weights_only=True))\\n        gru = gru.float().to(DEVICE).eval()\\n\\n        @torch.no_grad()\\n        def predict_convs(convs):\\n            preds = []\\n            probs = []\\n            for conv in convs:\\n                turns = extract_user_turns(conv)\\n                if not turns:\\n                    turns = [\\\"\\\"]\\n                tok = tokenizer(turns, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\\\"pt\\\").to(DEVICE)\\n                out = encoder(input_ids=tok[\\\"input_ids\\\"], attention_mask=tok[\\\"attention_mask\\\"])\\n                embs = out.last_hidden_state[:, 0, :].unsqueeze(0)\\n                lens = torch.tensor([embs.size(1)], device=DEVICE)\\n                logits = gru(embs, lens)\\n                prob = torch.softmax(logits, dim=1)[0, 1].item()\\n  \\n\\n... [截断: 输出过长，省略 1232 字符] ...\\n\\n jailbreak OOD\\n            ood_recall = sum(ood_preds) / len(ood_preds)\\n            seed_results[f\\\"ood_{ood_name.lower()}_recall\\\"] = ood_recall\\n            print(f\\\"  OOD {ood_name} recall: {ood_recall:.4f} ({sum(ood_preds)}/{len(ood_preds)})\\\")\\n\\n            # F1: combine OOD jailbreak with IID benign test subset\\n            iid_benign = [c for c in test_data if c[\\\"label\\\"] == \\\"benign\\\"]\\n            combined_preds_benign, _ = predict_convs(iid_benign)\\n            combined_preds = combined_preds_benign + ood_preds\\n            combined_true = [0] * len(iid_benign) + [1] * len(ood_data)\\n            combined_f1 = f1_score(combined_true, combined_preds, average=\\\"macro\\\")\\n            seed_results[f\\\"ood_{ood_name.lower()}_f1\\\"] = combined_f1\\n            print(f\\\"  OOD {ood_name} F1 (vs IID benign): {combined_f1:.4f}\\\")\\n\\n        all_results[\\\"seeds\\\"][str(seed)] = seed_results\\n\\n        del encoder, gru\\n        torch.cuda.empty_cache()\\n\\n    # Summary across seeds\\n    wc_fprs = [all_results[\\\"seeds\\\"][str(s)][\\\"wildchat_fpr\\\"] for s in SEEDS]\\n    iid_f1s = [all_results[\\\"seeds\\\"][str(s)][\\\"iid_f1_macro\\\"] for s in SEEDS]\\n\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] = float(np.mean(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_std\\\"] = float(np.std(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_mean\\\"] = float(np.mean(iid_f1s))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_std\\\"] = float(np.std(iid_f1s))\\n\\n    for ood_name in ood_datasets:\\n        recalls = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_recall\\\"] for s in SEEDS]\\n        f1s = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_f1\\\"] for s in SEEDS]\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_recall_mean\\\"] = float(np.mean(recalls))\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_f1_mean\\\"] = float(np.mean(f1s))\\n\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(\\\"SUMMARY (3-seed mean)\\\")\\n    print(f\\\"{'='*70}\\\")\\n    print(f\\\"WildChat FPR: {all_results['summary']['wildchat_fpr_mean']:.4f} ± {all_results['summary']['wildchat_fpr_std']:.4f}\\\")\\n    print(f\\\"IID F1 macro: {all_results['summary']['iid_f1_mean']:.4f} ± {all_results['summary']['iid_f1_std']:.4f}\\\")\\n    for ood_name in ood_datasets:\\n        print(f\\\"OOD {ood_name} recall: {all_results['summary'][f'ood_{ood_name.lower()}_recall_mean']:.4f}\\\")\\n        print(f\\\"OOD {ood_name} F1: {all_results['summary'][f'ood_{ood_name.lower()}_f1_mean']:.4f}\\\")\\n\\n    # Pass/fail\\n    fpr_pass = all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] < 0.30\\n    ood_f1_pass = all(\\n        all_results[\\\"summary\\\"].get(f\\\"ood_{n.lower()}_f1_mean\\\", 0) > 0.95\\n        for n in ood_datasets\\n    )\\n    print(f\\\"\\\\nFPR < 30%: {'PASS' if fpr_pass else 'FAIL'} ({all_results['summary']['wildchat_fpr_mean']:.1%})\\\")\\n    print(f\\\"OOD F1 > 0.95: {'PASS' if ood_f1_pass else 'FAIL'}\\\")\\n\\n    all_results[\\\"summary\\\"][\\\"fpr_pass\\\"] = fpr_pass\\n    all_results[\\\"summary\\\"][\\\"ood_f1_pass\\\"] = ood_f1_pass\\n    all_results[\\\"summary\\\"][\\\"conclusion\\\"] = \\\"success\\\" if (fpr_pass and ood_f1_pass) else \\\"negative\\\"\\n\\n    RESULTS_JSON.parent.mkdir(parents=True, exist_ok=True)\\n    with open(RESULTS_JSON, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {RESULTS_JSON}\\\")\\n\\n    return all_results\\n\\n\\n# =========================================================================\\n# MAIN\\n# =========================================================================\\nif __name__ == \\\"__main__\\\":\\n    t_total = time.time()\\n\\n    # Step 1: Prepare data\\n    n_wc_train, n_wc_eval = prepare_data()\\n\\n    # Step 2: Train 3 seeds\\n    seeds_ckpts = {}\\n    for seed in SEEDS:\\n        print(f\\\"\\\\n{'#'*70}\\\")\\n        print(f\\\"# SEED {seed}\\\")\\n        print(f\\\"{'#'*70}\\\")\\n        deberta_path = run_stage1(seed)\\n        gru_path = run_stage2(seed, deberta_path)\\n        seeds_ckpts[seed] = (deberta_path, gru_path)\\n\\n    # Step 3: Evaluate\\n    results = evaluate_all(seeds_ckpts)\\n\\n    elapsed_total = time.time() - t_total\\n    print(f\\\"\\\\nTotal time: {elapsed_total/60:.1f} min\\\")\\n    print(f\\\"\\\\nCheckpoints at: {CKPT_BASE}/exp42_mixed_seed*/\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "8a92f4c0-10d0-430f-9aab-39899cddfb6a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            X, y, lens = pad_batch(b_embs, b_labels, b_lens)\\\\n            X, y, lens = X.to(DEVICE), y.to(DEVICE), lens.to(DEVICE)\\\\n\\\\n            logits = gru(X, lens)\\\\n            loss = criterion(logits, y)\\\\n            optimizer.zero_grad()\\\\n            loss.backward()\\\\n            optimizer.step()\\\\n            epoch_loss += loss.item()\\\\n            steps += 1\\\\n\\\\n        # Validation\\\\n        gru.eval()\\\\n        with torch.no_grad():\\\\n            vX, vy, vlens = pad_batch(v_embs, v_labels, v_lens)\\\\n            vX, vy, vlens = vX.to(DEVICE), vy.to(DEVICE), vlens.to(DEVICE)\\\\n            v_logits = gru(vX, vlens)\\\\n            v_preds = v_logits.argmax(dim=1).cpu().numpy()\\\\n            v_true = vy.cpu().numpy()\\\\n            val_f1 = f1_score(v_true, v_preds, average=\\\\\\\"macro\\\\\\\")\\\\n\\\\n        if val_f1 > best_val_f1:\\\\n            best_val_f1 = val_f1\\\\n            best_state = {k: v.cpu().clone() for k, v in gru.state_dict().items()}\\\\n            no_improve = 0\\\\n        else:\\\\n            no_improve += 1\\\\n\\\\n        if (epoch + 1) % 5 == 0 or epoch == 0:\\\\n            print(f\\\\\\\"  Epoch {epoch+1}/{GRU_EPOCHS}: loss={epoch_loss/steps:.4f}, val_f1={val_f1:.4f}, best={best_val_f1:.4f}\\\\\\\", flush=True)\\\\n\\\\n        if no_improve >= patience:\\\\n            print(f\\\\\\\"  Early stop at epoch {epoch+1}\\\\\\\", flush=True)\\\\n            break\\\\n\\\\n    gru_path = gru_dir / \\\\\\\"best.pt\\\\\\\"\\\\n    torch.save(best_state, gru_path)\\\\n    print(f\\\\\\\"Saved GRU checkpoint to {gru_path} (best val F1={best_val_f1:.4f})\\\\\\\", flush=True)\\\\n\\\\n    del encoder, gru, t_embs, v_embs\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    return gru_path\\\\n\\\\n\\\\n# =========================================================================\\\\n# STEP 3: Evaluation\\\\n# =========================================================================\\\\ndef evaluate_all(seeds_ckpts):\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\", flush=True)\\\\n    print(\\\\\\\"STEP 3: Evaluation\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"{'='*70}\\\\\\\", flush=True)\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(LOCAL_MODEL)\\\\n\\\\n    wildchat_eval = load_jsonl(WILDCHAT_EVAL_PATH)\\\\n    test_data = load_jsonl(TEST_PATH)\\\\n\\\\n    ood_datasets = {}\\\\n    if DD_PATH.exists():\\\\n        ood_datasets[\\\\\\\"DD\\\\\\\"] = load_jsonl(DD_PATH)\\\\n    if AA_PATH.exists():\\\\n        ood_datasets[\\\\\\\"AA\\\\\\\"] = load_jsonl(AA_PATH)\\\\n    if FITD_PATH.exists():\\\\n        ood_datasets[\\\\\\\"FITD\\\\\\\"] = load_jsonl(FITD_PATH)\\\\n\\\\n    print(f\\\\\\\"WildChat eval: {len(wildchat_eval)}\\\\\\\")\\\\n    print(f\\\\\\\"IID test: {len(test_data)}\\\\\\\")\\\\n    for name, data in ood_datasets.items():\\\\n        print(f\\\\\\\"OOD {name}: {len(data)}\\\\\\\")\\\\n\\\\n    all_results = {\\\\\\\"seeds\\\\\\\": {}, \\\\\\\"summary\\\\\\\": {}}\\\\n\\\\n    for seed, (deberta_path, gru_path) in seeds_ckpts.items():\\\\n        print(f\\\\\\\"\\\\\\\\n--- Evaluating seed={seed} ---\\\\\\\", flush=True)\\\\n        set_seed(seed)\\\\n\\\\n        model = DeBERTaMultiTask(model_name=LOCAL_MODEL, num_persuasion_classes=9)\\\\n        state = torch.load(deberta_path / \\\\\\\"model.pt\\\\\\\", map_location=\\\\\\\"cpu\\\\\\\")\\\\n        model.load_state_dict(state)\\\\n        encoder = model.deberta.to(DEVICE).float().eval()\\\\n        for p in encoder.parameters():\\\\n            p.requires_grad = False\\\\n        embed_dim = encoder.config.hidden_size\\\\n        del model\\\\n\\\\n        gru = GRUClassifier(input_dim=embed_dim, hidden_dim=GRU_HIDDEN, num_layers=GRU_LAYERS, dropout=GRU_DROPOUT)\\\\n        gru.load_state_dict(torch.load(gru_path, map_location=\\\\\\\"cpu\\\\\\\", weights_only=True))\\\\n        gru = gru.float().to(DEVICE).eval()\\\\n\\\\n        @torch.no_grad()\\\\n        def predict_convs(convs):\\\\n            preds = []\\\\n            probs = []\\\\n            for conv in convs:\\\\n                turns = extract_user_turns(conv)\\\\n                if not turns:\\\\n                    turns = [\\\\\\\"\\\\\\\"]\\\\n                tok = tokenizer(turns, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\\\\\\\"pt\\\\\\\").to(DEVICE)\\\\n                out = encoder(input_ids=tok[\\\\\\\"input_ids\\\\\\\"], attention_mask=tok[\\\\\\\"attention_mask\\\\\\\"])\\\\n                embs = out.last_hidden_state[:, 0, :].unsqueeze(0)\\\\n                lens = torch.tensor([embs.size(1)], device=DEVICE)\\\\n                logits = gru(embs, lens)\\\\n                prob = torch.softmax(logits, dim=1)[0, 1].item()\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 1232 字符] ...\\\\n\\\\n jailbreak OOD\\\\n            ood_recall = sum(ood_preds) / len(ood_preds)\\\\n            seed_results[f\\\\\\\"ood_{ood_name.lower()}_recall\\\\\\\"] = ood_recall\\\\n            print(f\\\\\\\"  OOD {ood_name} recall: {ood_recall:.4f} ({sum(ood_preds)}/{len(ood_preds)})\\\\\\\")\\\\n\\\\n            # F1: combine OOD jailbreak with IID benign test subset\\\\n            iid_benign = [c for c in test_data if c[\\\\\\\"label\\\\\\\"] == \\\\\\\"benign\\\\\\\"]\\\\n            combined_preds_benign, _ = predict_convs(iid_benign)\\\\n            combined_preds = combined_preds_benign + ood_preds\\\\n            combined_true = [0] * len(iid_benign) + [1] * len(ood_data)\\\\n            combined_f1 = f1_score(combined_true, combined_preds, average=\\\\\\\"macro\\\\\\\")\\\\n            seed_results[f\\\\\\\"ood_{ood_name.lower()}_f1\\\\\\\"] = combined_f1\\\\n            print(f\\\\\\\"  OOD {ood_name} F1 (vs IID benign): {combined_f1:.4f}\\\\\\\")\\\\n\\\\n        all_results[\\\\\\\"seeds\\\\\\\"][str(seed)] = seed_results\\\\n\\\\n        del encoder, gru\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    # Summary across seeds\\\\n    wc_fprs = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][\\\\\\\"wildchat_fpr\\\\\\\"] for s in SEEDS]\\\\n    iid_f1s = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][\\\\\\\"iid_f1_macro\\\\\\\"] for s in SEEDS]\\\\n\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"wildchat_fpr_mean\\\\\\\"] = float(np.mean(wc_fprs))\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"wildchat_fpr_std\\\\\\\"] = float(np.std(wc_fprs))\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"iid_f1_mean\\\\\\\"] = float(np.mean(iid_f1s))\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"iid_f1_std\\\\\\\"] = float(np.std(iid_f1s))\\\\n\\\\n    for ood_name in ood_datasets:\\\\n        recalls = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][f\\\\\\\"ood_{ood_name.lower()}_recall\\\\\\\"] for s in SEEDS]\\\\n        f1s = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][f\\\\\\\"ood_{ood_name.lower()}_f1\\\\\\\"] for s in SEEDS]\\\\n        all_results[\\\\\\\"summary\\\\\\\"][f\\\\\\\"ood_{ood_name.lower()}_recall_mean\\\\\\\"] = float(np.mean(recalls))\\\\n        all_results[\\\\\\\"summary\\\\\\\"][f\\\\\\\"ood_{ood_name.lower()}_f1_mean\\\\\\\"] = float(np.mean(f1s))\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\")\\\\n    print(\\\\\\\"SUMMARY (3-seed mean)\\\\\\\")\\\\n    print(f\\\\\\\"{'='*70}\\\\\\\")\\\\n    print(f\\\\\\\"WildChat FPR: {all_results['summary']['wildchat_fpr_mean']:.4f} ± {all_results['summary']['wildchat_fpr_std']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"IID F1 macro: {all_results['summary']['iid_f1_mean']:.4f} ± {all_results['summary']['iid_f1_std']:.4f}\\\\\\\")\\\\n    for ood_name in ood_datasets:\\\\n        print(f\\\\\\\"OOD {ood_name} recall: {all_results['summary'][f'ood_{ood_name.lower()}_recall_mean']:.4f}\\\\\\\")\\\\n        print(f\\\\\\\"OOD {ood_name} F1: {all_results['summary'][f'ood_{ood_name.lower()}_f1_mean']:.4f}\\\\\\\")\\\\n\\\\n    # Pass/fail\\\\n    fpr_pass = all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"wildchat_fpr_mean\\\\\\\"] < 0.30\\\\n    ood_f1_pass = all(\\\\n        all_results[\\\\\\\"summary\\\\\\\"].get(f\\\\\\\"ood_{n.lower()}_f1_mean\\\\\\\", 0) > 0.95\\\\n        for n in ood_datasets\\\\n    )\\\\n    print(f\\\\\\\"\\\\\\\\nFPR < 30%: {'PASS' if fpr_pass else 'FAIL'} ({all_results['summary']['wildchat_fpr_mean']:.1%})\\\\\\\")\\\\n    print(f\\\\\\\"OOD F1 > 0.95: {'PASS' if ood_f1_pass else 'FAIL'}\\\\\\\")\\\\n\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"fpr_pass\\\\\\\"] = fpr_pass\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"ood_f1_pass\\\\\\\"] = ood_f1_pass\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"conclusion\\\\\\\"] = \\\\\\\"success\\\\\\\" if (fpr_pass and ood_f1_pass) else \\\\\\\"negative\\\\\\\"\\\\n\\\\n    RESULTS_JSON.parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(RESULTS_JSON, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {RESULTS_JSON}\\\\\\\")\\\\n\\\\n    return all_results\\\\n\\\\n\\\\n# =========================================================================\\\\n# MAIN\\\\n# =========================================================================\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    t_total = time.time()\\\\n\\\\n    # Step 1: Prepare data\\\\n    n_wc_train, n_wc_eval = prepare_data()\\\\n\\\\n    # Step 2: Train 3 seeds\\\\n    seeds_ckpts = {}\\\\n    for seed in SEEDS:\\\\n        print(f\\\\\\\"\\\\\\\\n{'#'*70}\\\\\\\")\\\\n        print(f\\\\\\\"# SEED {seed}\\\\\\\")\\\\n        print(f\\\\\\\"{'#'*70}\\\\\\\")\\\\n        deberta_path = run_stage1(seed)\\\\n        gru_path = run_stage2(seed, deberta_path)\\\\n        seeds_ckpts[seed] = (deberta_path, gru_path)\\\\n\\\\n    # Step 3: Evaluate\\\\n    results = evaluate_all(seeds_ckpts)\\\\n\\\\n    elapsed_total = time.time() - t_total\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {elapsed_total/60:.1f} min\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nCheckpoints at: {CKPT_BASE}/exp42_mixed_seed*/\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"            X, y, lens = pad_batch(b_embs, b_labels, b_lens)\\n            X, y, lens = X.to(DEVICE), y.to(DEVICE), lens.to(DEVICE)\\n\\n            logits = gru(X, lens)\\n            loss = criterion(logits, y)\\n            optimizer.zero_grad()\\n            loss.backward()\\n            optimizer.step()\\n            epoch_loss += loss.item()\\n            steps += 1\\n\\n        # Validation\\n        gru.eval()\\n        with torch.no_grad():\\n            vX, vy, vlens = pad_batch(v_embs, v_labels, v_lens)\\n            vX, vy, vlens = vX.to(DEVICE), vy.to(DEVICE), vlens.to(DEVICE)\\n            v_logits = gru(vX, vlens)\\n            v_preds = v_logits.argmax(dim=1).cpu().numpy()\\n            v_true = vy.cpu().numpy()\\n            val_f1 = f1_score(v_true, v_preds, average=\\\"macro\\\")\\n\\n        if val_f1 > best_val_f1:\\n            best_val_f1 = val_f1\\n            best_state = {k: v.cpu().clone() for k, v in gru.state_dict().items()}\\n            no_improve = 0\\n        else:\\n            no_improve += 1\\n\\n        if (epoch + 1) % 5 == 0 or epoch == 0:\\n            print(f\\\"  Epoch {epoch+1}/{GRU_EPOCHS}: loss={epoch_loss/steps:.4f}, val_f1={val_f1:.4f}, best={best_val_f1:.4f}\\\", flush=True)\\n\\n        if no_improve >= patience:\\n            print(f\\\"  Early stop at epoch {epoch+1}\\\", flush=True)\\n            break\\n\\n    gru_path = gru_dir / \\\"best.pt\\\"\\n    torch.save(best_state, gru_path)\\n    print(f\\\"Saved GRU checkpoint to {gru_path} (best val F1={best_val_f1:.4f})\\\", flush=True)\\n\\n    del encoder, gru, t_embs, v_embs\\n    torch.cuda.empty_cache()\\n\\n    return gru_path\\n\\n\\n# =========================================================================\\n# STEP 3: Evaluation\\n# =========================================================================\\ndef evaluate_all(seeds_ckpts):\\n    print(f\\\"\\\\n{'='*70}\\\", flush=True)\\n    print(\\\"STEP 3: Evaluation\\\", flush=True)\\n    print(f\\\"{'='*70}\\\", flush=True)\\n\\n    tokenizer = AutoTokenizer.from_pretrained(LOCAL_MODEL)\\n\\n    wildchat_eval = load_jsonl(WILDCHAT_EVAL_PATH)\\n    test_data = load_jsonl(TEST_PATH)\\n\\n    ood_datasets = {}\\n    if DD_PATH.exists():\\n        ood_datasets[\\\"DD\\\"] = load_jsonl(DD_PATH)\\n    if AA_PATH.exists():\\n        ood_datasets[\\\"AA\\\"] = load_jsonl(AA_PATH)\\n    if FITD_PATH.exists():\\n        ood_datasets[\\\"FITD\\\"] = load_jsonl(FITD_PATH)\\n\\n    print(f\\\"WildChat eval: {len(wildchat_eval)}\\\")\\n    print(f\\\"IID test: {len(test_data)}\\\")\\n    for name, data in ood_datasets.items():\\n        print(f\\\"OOD {name}: {len(data)}\\\")\\n\\n    all_results = {\\\"seeds\\\": {}, \\\"summary\\\": {}}\\n\\n    for seed, (deberta_path, gru_path) in seeds_ckpts.items():\\n        print(f\\\"\\\\n--- Evaluating seed={seed} ---\\\", flush=True)\\n        set_seed(seed)\\n\\n        model = DeBERTaMultiTask(model_name=LOCAL_MODEL, num_persuasion_classes=9)\\n        state = torch.load(deberta_path / \\\"model.pt\\\", map_location=\\\"cpu\\\")\\n        model.load_state_dict(state)\\n        encoder = model.deberta.to(DEVICE).float().eval()\\n        for p in encoder.parameters():\\n            p.requires_grad = False\\n        embed_dim = encoder.config.hidden_size\\n        del model\\n\\n        gru = GRUClassifier(input_dim=embed_dim, hidden_dim=GRU_HIDDEN, num_layers=GRU_LAYERS, dropout=GRU_DROPOUT)\\n        gru.load_state_dict(torch.load(gru_path, map_location=\\\"cpu\\\", weights_only=True))\\n        gru = gru.float().to(DEVICE).eval()\\n\\n        @torch.no_grad()\\n        def predict_convs(convs):\\n            preds = []\\n            probs = []\\n            for conv in convs:\\n                turns = extract_user_turns(conv)\\n                if not turns:\\n                    turns = [\\\"\\\"]\\n                tok = tokenizer(turns, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\\\"pt\\\").to(DEVICE)\\n                out = encoder(input_ids=tok[\\\"input_ids\\\"], attention_mask=tok[\\\"attention_mask\\\"])\\n                embs = out.last_hidden_state[:, 0, :].unsqueeze(0)\\n                lens = torch.tensor([embs.size(1)], device=DEVICE)\\n                logits = gru(embs, lens)\\n                prob = torch.softmax(logits, dim=1)[0, 1].item()\\n  \\n\\n... [截断: 输出过长，省略 1232 字符] ...\\n\\n jailbreak OOD\\n            ood_recall = sum(ood_preds) / len(ood_preds)\\n            seed_results[f\\\"ood_{ood_name.lower()}_recall\\\"] = ood_recall\\n            print(f\\\"  OOD {ood_name} recall: {ood_recall:.4f} ({sum(ood_preds)}/{len(ood_preds)})\\\")\\n\\n            # F1: combine OOD jailbreak with IID benign test subset\\n            iid_benign = [c for c in test_data if c[\\\"label\\\"] == \\\"benign\\\"]\\n            combined_preds_benign, _ = predict_convs(iid_benign)\\n            combined_preds = combined_preds_benign + ood_preds\\n            combined_true = [0] * len(iid_benign) + [1] * len(ood_data)\\n            combined_f1 = f1_score(combined_true, combined_preds, average=\\\"macro\\\")\\n            seed_results[f\\\"ood_{ood_name.lower()}_f1\\\"] = combined_f1\\n            print(f\\\"  OOD {ood_name} F1 (vs IID benign): {combined_f1:.4f}\\\")\\n\\n        all_results[\\\"seeds\\\"][str(seed)] = seed_results\\n\\n        del encoder, gru\\n        torch.cuda.empty_cache()\\n\\n    # Summary across seeds\\n    wc_fprs = [all_results[\\\"seeds\\\"][str(s)][\\\"wildchat_fpr\\\"] for s in SEEDS]\\n    iid_f1s = [all_results[\\\"seeds\\\"][str(s)][\\\"iid_f1_macro\\\"] for s in SEEDS]\\n\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] = float(np.mean(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_std\\\"] = float(np.std(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_mean\\\"] = float(np.mean(iid_f1s))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_std\\\"] = float(np.std(iid_f1s))\\n\\n    for ood_name in ood_datasets:\\n        recalls = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_recall\\\"] for s in SEEDS]\\n        f1s = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_f1\\\"] for s in SEEDS]\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_recall_mean\\\"] = float(np.mean(recalls))\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_f1_mean\\\"] = float(np.mean(f1s))\\n\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(\\\"SUMMARY (3-seed mean)\\\")\\n    print(f\\\"{'='*70}\\\")\\n    print(f\\\"WildChat FPR: {all_results['summary']['wildchat_fpr_mean']:.4f} ± {all_results['summary']['wildchat_fpr_std']:.4f}\\\")\\n    print(f\\\"IID F1 macro: {all_results['summary']['iid_f1_mean']:.4f} ± {all_results['summary']['iid_f1_std']:.4f}\\\")\\n    for ood_name in ood_datasets:\\n        print(f\\\"OOD {ood_name} recall: {all_results['summary'][f'ood_{ood_name.lower()}_recall_mean']:.4f}\\\")\\n        print(f\\\"OOD {ood_name} F1: {all_results['summary'][f'ood_{ood_name.lower()}_f1_mean']:.4f}\\\")\\n\\n    # Pass/fail\\n    fpr_pass = all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] < 0.30\\n    ood_f1_pass = all(\\n        all_results[\\\"summary\\\"].get(f\\\"ood_{n.lower()}_f1_mean\\\", 0) > 0.95\\n        for n in ood_datasets\\n    )\\n    print(f\\\"\\\\nFPR < 30%: {'PASS' if fpr_pass else 'FAIL'} ({all_results['summary']['wildchat_fpr_mean']:.1%})\\\")\\n    print(f\\\"OOD F1 > 0.95: {'PASS' if ood_f1_pass else 'FAIL'}\\\")\\n\\n    all_results[\\\"summary\\\"][\\\"fpr_pass\\\"] = fpr_pass\\n    all_results[\\\"summary\\\"][\\\"ood_f1_pass\\\"] = ood_f1_pass\\n    all_results[\\\"summary\\\"][\\\"conclusion\\\"] = \\\"success\\\" if (fpr_pass and ood_f1_pass) else \\\"negative\\\"\\n\\n    RESULTS_JSON.parent.mkdir(parents=True, exist_ok=True)\\n    with open(RESULTS_JSON, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {RESULTS_JSON}\\\")\\n\\n    return all_results\\n\\n\\n# =========================================================================\\n# MAIN\\n# =========================================================================\\nif __name__ == \\\"__main__\\\":\\n    t_total = time.time()\\n\\n    # Step 1: Prepare data\\n    n_wc_train, n_wc_eval = prepare_data()\\n\\n    # Step 2: Train 3 seeds\\n    seeds_ckpts = {}\\n    for seed in SEEDS:\\n        print(f\\\"\\\\n{'#'*70}\\\")\\n        print(f\\\"# SEED {seed}\\\")\\n        print(f\\\"{'#'*70}\\\")\\n        deberta_path = run_stage1(seed)\\n        gru_path = run_stage2(seed, deberta_path)\\n        seeds_ckpts[seed] = (deberta_path, gru_path)\\n\\n    # Step 3: Evaluate\\n    results = evaluate_all(seeds_ckpts)\\n\\n    elapsed_total = time.time() - t_total\\n    print(f\\\"\\\\nTotal time: {elapsed_total/60:.1f} min\\\")\\n    print(f\\\"\\\\nCheckpoints at: {CKPT_BASE}/exp42_mixed_seed*/\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I also need the part that was truncated between the predict_convs function and the OOD evaluation. Let me get lines around 390-420.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "15e754ea-6ee9-4197-88a1-f5256b7f79ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHrp9nVqkRbFRtrLP1BNT1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4512,
+      "cache_read_input_tokens": 42764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4512
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019hKxJXH4JwrTKoRsb7kDYF`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -n +393 /root/persuasion_turn_jailbreak_detect/scripts/exp42_ood_benign_mixed.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "25a5f5a4-2bbd-4915-9c9d-5dc09ce81e0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BHrp9nVqkRbFRtrLP1BNT1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4512,
+      "cache_read_input_tokens": 42764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4512
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T04:23:24.917Z_
+
+<details><summary>↩ Tool result · `toolu_019hKxJXH4JwrTKoRsb7kDYF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            probs = []\\n            for conv in convs:\\n                turns = extract_user_turns(conv)\\n                if not turns:\\n                    turns = [\\\"\\\"]\\n                tok = tokenizer(turns, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\\\"pt\\\").to(DEVICE)\\n                out = encoder(input_ids=tok[\\\"input_ids\\\"], attention_mask=tok[\\\"attention_mask\\\"])\\n                embs = out.last_hidden_state[:, 0, :].unsqueeze(0)\\n                lens = torch.tensor([embs.size(1)], device=DEVICE)\\n                logits = gru(embs, lens)\\n                prob = torch.softmax(logits, dim=1)[0, 1].item()\\n                pred = logits.argmax(dim=1).item()\\n                preds.append(pred)\\n                probs.append(prob)\\n            return preds, probs\\n\\n        seed_results = {}\\n\\n        # WildChat FPR (all should be benign=0, any predicted as 1 is FP)\\n        wc_preds, wc_probs = predict_convs(wildchat_eval)\\n        wc_fpr = sum(wc_preds) / len(wc_preds)\\n        seed_results[\\\"wildchat_fpr\\\"] = wc_fpr\\n        seed_results[\\\"wildchat_n\\\"] = len(wildchat_eval)\\n        print(f\\\"  WildChat FPR: {wc_fpr:.4f} ({sum(wc_preds)}/{len(wc_preds)})\\\")\\n\\n        # IID test\\n        iid_preds, _ = predict_convs(test_data)\\n        iid_true = [get_label(c) for c in test_data]\\n        iid_f1 = f1_score(iid_true, iid_preds, average=\\\"macro\\\")\\n        iid_acc = accuracy_score(iid_true, iid_preds)\\n        seed_results[\\\"iid_f1_macro\\\"] = iid_f1\\n        seed_results[\\\"iid_accuracy\\\"] = iid_acc\\n        print(f\\\"  IID: F1={iid_f1:.4f}, Acc={iid_acc:.4f}\\\")\\n\\n        # OOD evaluation\\n        for ood_name, ood_data in ood_datasets.items():\\n            # OOD data is all jailbreak — combine with IID benign test for F1 calc\\n            ood_preds, _ = predict_convs(ood_data)\\n            ood_true = [1] * len(ood_data)  # all jailbreak\\n            # Recall on jailbreak OOD\\n            ood_recall = sum(ood_preds) / len(ood_preds)\\n            seed_results[f\\\"ood_{ood_name.lower()}_recall\\\"] = ood_recall\\n            print(f\\\"  OOD {ood_name} recall: {ood_recall:.4f} ({sum(ood_preds)}/{len(ood_preds)})\\\")\\n\\n            # F1: combine OOD jailbreak with IID benign test subset\\n            iid_benign = [c for c in test_data if c[\\\"label\\\"] == \\\"benign\\\"]\\n            combined_preds_benign, _ = predict_convs(iid_benign)\\n            combined_preds = combined_preds_benign + ood_preds\\n            combined_true = [0] * len(iid_benign) + [1] * len(ood_data)\\n            combined_f1 = f1_score(combined_true, combined_preds, average=\\\"macro\\\")\\n            seed_results[f\\\"ood_{ood_name.lower()}_f1\\\"] = combined_f1\\n            print(f\\\"  OOD {ood_name} F1 (vs IID benign): {combined_f1:.4f}\\\")\\n\\n        all_results[\\\"seeds\\\"][str(seed)] = seed_results\\n\\n        del encoder, gru\\n        torch.cuda.empty_cache()\\n\\n    # Summary across seeds\\n    wc_fprs = [all_results[\\\"seeds\\\"][str(s)][\\\"wildchat_fpr\\\"] for s in SEEDS]\\n    iid_f1s = [all_results[\\\"seeds\\\"][str(s)][\\\"iid_f1_macro\\\"] for s in SEEDS]\\n\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] = float(np.mean(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_std\\\"] = float(np.std(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_mean\\\"] = float(np.mean(iid_f1s))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_std\\\"] = float(np.std(iid_f1s))\\n\\n    for ood_name in ood_datasets:\\n        recalls = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_recall\\\"] for s in SEEDS]\\n        f1s = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_f1\\\"] for s in SEEDS]\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_recall_mean\\\"] = float(np.mean(recalls))\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_f1_mean\\\"] = float(np.mean(f1s))\\n\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(\\\"SUMMARY (3-seed mean)\\\")\\n    print(f\\\"{'='*70}\\\")\\n    print(f\\\"WildChat FPR: {all_results['summary']['wildchat_fpr_mean']:.4f} ± {all_results['summary']['wildchat_fpr_std']:.4f}\\\")\\n    print(f\\\"IID F1 macro: {all_results['summary']['iid_f1_mean']:.4f} ± {all_results['summary']['iid_f1_std']:.4f}\\\")\\n    for ood_name in ood_datasets:\\n        print(f\\\"OOD {ood_name} recall: {all_results['summary'][f'ood_{ood_name.lower()}_recall_mean']:.4f}\\\")\\n        print(f\\\"OOD {ood_name} F1: {all_results['summary'][f'ood_{ood_name.lower()}_f1_mean']:.4f}\\\")\\n\\n    # Pass/fail\\n    fpr_pass = all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] < 0.30\\n    ood_f1_pass = all(\\n        all_results[\\\"summary\\\"].get(f\\\"ood_{n.lower()}_f1_mean\\\", 0) > 0.95\\n        for n in ood_datasets\\n    )\\n    print(f\\\"\\\\nFPR < 30%: {'PASS' if fpr_pass else 'FAIL'} ({all_results['summary']['wildchat_fpr_mean']:.1%})\\\")\\n    print(f\\\"OOD F1 > 0.95: {'PASS' if ood_f1_pass else 'FAIL'}\\\")\\n\\n    all_results[\\\"summary\\\"][\\\"fpr_pass\\\"] = fpr_pass\\n    all_results[\\\"summary\\\"][\\\"ood_f1_pass\\\"] = ood_f1_pass\\n    all_results[\\\"summary\\\"][\\\"conclusion\\\"] = \\\"success\\\" if (fpr_pass and ood_f1_pass) else \\\"negative\\\"\\n\\n    RESULTS_JSON.parent.mkdir(parents=True, exist_ok=True)\\n    with open(RESULTS_JSON, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {RESULTS_JSON}\\\")\\n\\n    return all_results\\n\\n\\n# =========================================================================\\n# MAIN\\n# =========================================================================\\nif __name__ == \\\"__main__\\\":\\n    t_total = time.time()\\n\\n    # Step 1: Prepare data\\n    n_wc_train, n_wc_eval = prepare_data()\\n\\n    # Step 2: Train 3 seeds\\n    seeds_ckpts = {}\\n    for seed in SEEDS:\\n        print(f\\\"\\\\n{'#'*70}\\\")\\n        print(f\\\"# SEED {seed}\\\")\\n        print(f\\\"{'#'*70}\\\")\\n        deberta_path = run_stage1(seed)\\n        gru_path = run_stage2(seed, deberta_path)\\n        seeds_ckpts[seed] = (deberta_path, gru_path)\\n\\n    # Step 3: Evaluate\\n    results = evaluate_all(seeds_ckpts)\\n\\n    elapsed_total = time.time() - t_total\\n    print(f\\\"\\\\nTotal time: {elapsed_total/60:.1f} min\\\")\\n    print(f\\\"\\\\nCheckpoints at: {CKPT_BASE}/exp42_mixed_seed*/\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "53f8160d-28ea-480f-a589-e4e4e9f4f63d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            probs = []\\\\n            for conv in convs:\\\\n                turns = extract_user_turns(conv)\\\\n                if not turns:\\\\n                    turns = [\\\\\\\"\\\\\\\"]\\\\n                tok = tokenizer(turns, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\\\\\\\"pt\\\\\\\").to(DEVICE)\\\\n                out = encoder(input_ids=tok[\\\\\\\"input_ids\\\\\\\"], attention_mask=tok[\\\\\\\"attention_mask\\\\\\\"])\\\\n                embs = out.last_hidden_state[:, 0, :].unsqueeze(0)\\\\n                lens = torch.tensor([embs.size(1)], device=DEVICE)\\\\n                logits = gru(embs, lens)\\\\n                prob = torch.softmax(logits, dim=1)[0, 1].item()\\\\n                pred = logits.argmax(dim=1).item()\\\\n                preds.append(pred)\\\\n                probs.append(prob)\\\\n            return preds, probs\\\\n\\\\n        seed_results = {}\\\\n\\\\n        # WildChat FPR (all should be benign=0, any predicted as 1 is FP)\\\\n        wc_preds, wc_probs = predict_convs(wildchat_eval)\\\\n        wc_fpr = sum(wc_preds) / len(wc_preds)\\\\n        seed_results[\\\\\\\"wildchat_fpr\\\\\\\"] = wc_fpr\\\\n        seed_results[\\\\\\\"wildchat_n\\\\\\\"] = len(wildchat_eval)\\\\n        print(f\\\\\\\"  WildChat FPR: {wc_fpr:.4f} ({sum(wc_preds)}/{len(wc_preds)})\\\\\\\")\\\\n\\\\n        # IID test\\\\n        iid_preds, _ = predict_convs(test_data)\\\\n        iid_true = [get_label(c) for c in test_data]\\\\n        iid_f1 = f1_score(iid_true, iid_preds, average=\\\\\\\"macro\\\\\\\")\\\\n        iid_acc = accuracy_score(iid_true, iid_preds)\\\\n        seed_results[\\\\\\\"iid_f1_macro\\\\\\\"] = iid_f1\\\\n        seed_results[\\\\\\\"iid_accuracy\\\\\\\"] = iid_acc\\\\n        print(f\\\\\\\"  IID: F1={iid_f1:.4f}, Acc={iid_acc:.4f}\\\\\\\")\\\\n\\\\n        # OOD evaluation\\\\n        for ood_name, ood_data in ood_datasets.items():\\\\n            # OOD data is all jailbreak — combine with IID benign test for F1 calc\\\\n            ood_preds, _ = predict_convs(ood_data)\\\\n            ood_true = [1] * len(ood_data)  # all jailbreak\\\\n            # Recall on jailbreak OOD\\\\n            ood_recall = sum(ood_preds) / len(ood_preds)\\\\n            seed_results[f\\\\\\\"ood_{ood_name.lower()}_recall\\\\\\\"] = ood_recall\\\\n            print(f\\\\\\\"  OOD {ood_name} recall: {ood_recall:.4f} ({sum(ood_preds)}/{len(ood_preds)})\\\\\\\")\\\\n\\\\n            # F1: combine OOD jailbreak with IID benign test subset\\\\n            iid_benign = [c for c in test_data if c[\\\\\\\"label\\\\\\\"] == \\\\\\\"benign\\\\\\\"]\\\\n            combined_preds_benign, _ = predict_convs(iid_benign)\\\\n            combined_preds = combined_preds_benign + ood_preds\\\\n            combined_true = [0] * len(iid_benign) + [1] * len(ood_data)\\\\n            combined_f1 = f1_score(combined_true, combined_preds, average=\\\\\\\"macro\\\\\\\")\\\\n            seed_results[f\\\\\\\"ood_{ood_name.lower()}_f1\\\\\\\"] = combined_f1\\\\n            print(f\\\\\\\"  OOD {ood_name} F1 (vs IID benign): {combined_f1:.4f}\\\\\\\")\\\\n\\\\n        all_results[\\\\\\\"seeds\\\\\\\"][str(seed)] = seed_results\\\\n\\\\n        del encoder, gru\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    # Summary across seeds\\\\n    wc_fprs = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][\\\\\\\"wildchat_fpr\\\\\\\"] for s in SEEDS]\\\\n    iid_f1s = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][\\\\\\\"iid_f1_macro\\\\\\\"] for s in SEEDS]\\\\n\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"wildchat_fpr_mean\\\\\\\"] = float(np.mean(wc_fprs))\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"wildchat_fpr_std\\\\\\\"] = float(np.std(wc_fprs))\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"iid_f1_mean\\\\\\\"] = float(np.mean(iid_f1s))\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"iid_f1_std\\\\\\\"] = float(np.std(iid_f1s))\\\\n\\\\n    for ood_name in ood_datasets:\\\\n        recalls = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][f\\\\\\\"ood_{ood_name.lower()}_recall\\\\\\\"] for s in SEEDS]\\\\n        f1s = [all_results[\\\\\\\"seeds\\\\\\\"][str(s)][f\\\\\\\"ood_{ood_name.lower()}_f1\\\\\\\"] for s in SEEDS]\\\\n        all_results[\\\\\\\"summary\\\\\\\"][f\\\\\\\"ood_{ood_name.lower()}_recall_mean\\\\\\\"] = float(np.mean(recalls))\\\\n        all_results[\\\\\\\"summary\\\\\\\"][f\\\\\\\"ood_{ood_name.lower()}_f1_mean\\\\\\\"] = float(np.mean(f1s))\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\")\\\\n    print(\\\\\\\"SUMMARY (3-seed mean)\\\\\\\")\\\\n    print(f\\\\\\\"{'='*70}\\\\\\\")\\\\n    print(f\\\\\\\"WildChat FPR: {all_results['summary']['wildchat_fpr_mean']:.4f} ± {all_results['summary']['wildchat_fpr_std']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"IID F1 macro: {all_results['summary']['iid_f1_mean']:.4f} ± {all_results['summary']['iid_f1_std']:.4f}\\\\\\\")\\\\n    for ood_name in ood_datasets:\\\\n        print(f\\\\\\\"OOD {ood_name} recall: {all_results['summary'][f'ood_{ood_name.lower()}_recall_mean']:.4f}\\\\\\\")\\\\n        print(f\\\\\\\"OOD {ood_name} F1: {all_results['summary'][f'ood_{ood_name.lower()}_f1_mean']:.4f}\\\\\\\")\\\\n\\\\n    # Pass/fail\\\\n    fpr_pass = all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"wildchat_fpr_mean\\\\\\\"] < 0.30\\\\n    ood_f1_pass = all(\\\\n        all_results[\\\\\\\"summary\\\\\\\"].get(f\\\\\\\"ood_{n.lower()}_f1_mean\\\\\\\", 0) > 0.95\\\\n        for n in ood_datasets\\\\n    )\\\\n    print(f\\\\\\\"\\\\\\\\nFPR < 30%: {'PASS' if fpr_pass else 'FAIL'} ({all_results['summary']['wildchat_fpr_mean']:.1%})\\\\\\\")\\\\n    print(f\\\\\\\"OOD F1 > 0.95: {'PASS' if ood_f1_pass else 'FAIL'}\\\\\\\")\\\\n\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"fpr_pass\\\\\\\"] = fpr_pass\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"ood_f1_pass\\\\\\\"] = ood_f1_pass\\\\n    all_results[\\\\\\\"summary\\\\\\\"][\\\\\\\"conclusion\\\\\\\"] = \\\\\\\"success\\\\\\\" if (fpr_pass and ood_f1_pass) else \\\\\\\"negative\\\\\\\"\\\\n\\\\n    RESULTS_JSON.parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(RESULTS_JSON, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {RESULTS_JSON}\\\\\\\")\\\\n\\\\n    return all_results\\\\n\\\\n\\\\n# =========================================================================\\\\n# MAIN\\\\n# =========================================================================\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    t_total = time.time()\\\\n\\\\n    # Step 1: Prepare data\\\\n    n_wc_train, n_wc_eval = prepare_data()\\\\n\\\\n    # Step 2: Train 3 seeds\\\\n    seeds_ckpts = {}\\\\n    for seed in SEEDS:\\\\n        print(f\\\\\\\"\\\\\\\\n{'#'*70}\\\\\\\")\\\\n        print(f\\\\\\\"# SEED {seed}\\\\\\\")\\\\n        print(f\\\\\\\"{'#'*70}\\\\\\\")\\\\n        deberta_path = run_stage1(seed)\\\\n        gru_path = run_stage2(seed, deberta_path)\\\\n        seeds_ckpts[seed] = (deberta_path, gru_path)\\\\n\\\\n    # Step 3: Evaluate\\\\n    results = evaluate_all(seeds_ckpts)\\\\n\\\\n    elapsed_total = time.time() - t_total\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {elapsed_total/60:.1f} min\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nCheckpoints at: {CKPT_BASE}/exp42_mixed_seed*/\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"            probs = []\\n            for conv in convs:\\n                turns = extract_user_turns(conv)\\n                if not turns:\\n                    turns = [\\\"\\\"]\\n                tok = tokenizer(turns, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\\\"pt\\\").to(DEVICE)\\n                out = encoder(input_ids=tok[\\\"input_ids\\\"], attention_mask=tok[\\\"attention_mask\\\"])\\n                embs = out.last_hidden_state[:, 0, :].unsqueeze(0)\\n                lens = torch.tensor([embs.size(1)], device=DEVICE)\\n                logits = gru(embs, lens)\\n                prob = torch.softmax(logits, dim=1)[0, 1].item()\\n                pred = logits.argmax(dim=1).item()\\n                preds.append(pred)\\n                probs.append(prob)\\n            return preds, probs\\n\\n        seed_results = {}\\n\\n        # WildChat FPR (all should be benign=0, any predicted as 1 is FP)\\n        wc_preds, wc_probs = predict_convs(wildchat_eval)\\n        wc_fpr = sum(wc_preds) / len(wc_preds)\\n        seed_results[\\\"wildchat_fpr\\\"] = wc_fpr\\n        seed_results[\\\"wildchat_n\\\"] = len(wildchat_eval)\\n        print(f\\\"  WildChat FPR: {wc_fpr:.4f} ({sum(wc_preds)}/{len(wc_preds)})\\\")\\n\\n        # IID test\\n        iid_preds, _ = predict_convs(test_data)\\n        iid_true = [get_label(c) for c in test_data]\\n        iid_f1 = f1_score(iid_true, iid_preds, average=\\\"macro\\\")\\n        iid_acc = accuracy_score(iid_true, iid_preds)\\n        seed_results[\\\"iid_f1_macro\\\"] = iid_f1\\n        seed_results[\\\"iid_accuracy\\\"] = iid_acc\\n        print(f\\\"  IID: F1={iid_f1:.4f}, Acc={iid_acc:.4f}\\\")\\n\\n        # OOD evaluation\\n        for ood_name, ood_data in ood_datasets.items():\\n            # OOD data is all jailbreak — combine with IID benign test for F1 calc\\n            ood_preds, _ = predict_convs(ood_data)\\n            ood_true = [1] * len(ood_data)  # all jailbreak\\n            # Recall on jailbreak OOD\\n            ood_recall = sum(ood_preds) / len(ood_preds)\\n            seed_results[f\\\"ood_{ood_name.lower()}_recall\\\"] = ood_recall\\n            print(f\\\"  OOD {ood_name} recall: {ood_recall:.4f} ({sum(ood_preds)}/{len(ood_preds)})\\\")\\n\\n            # F1: combine OOD jailbreak with IID benign test subset\\n            iid_benign = [c for c in test_data if c[\\\"label\\\"] == \\\"benign\\\"]\\n            combined_preds_benign, _ = predict_convs(iid_benign)\\n            combined_preds = combined_preds_benign + ood_preds\\n            combined_true = [0] * len(iid_benign) + [1] * len(ood_data)\\n            combined_f1 = f1_score(combined_true, combined_preds, average=\\\"macro\\\")\\n            seed_results[f\\\"ood_{ood_name.lower()}_f1\\\"] = combined_f1\\n            print(f\\\"  OOD {ood_name} F1 (vs IID benign): {combined_f1:.4f}\\\")\\n\\n        all_results[\\\"seeds\\\"][str(seed)] = seed_results\\n\\n        del encoder, gru\\n        torch.cuda.empty_cache()\\n\\n    # Summary across seeds\\n    wc_fprs = [all_results[\\\"seeds\\\"][str(s)][\\\"wildchat_fpr\\\"] for s in SEEDS]\\n    iid_f1s = [all_results[\\\"seeds\\\"][str(s)][\\\"iid_f1_macro\\\"] for s in SEEDS]\\n\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] = float(np.mean(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"wildchat_fpr_std\\\"] = float(np.std(wc_fprs))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_mean\\\"] = float(np.mean(iid_f1s))\\n    all_results[\\\"summary\\\"][\\\"iid_f1_std\\\"] = float(np.std(iid_f1s))\\n\\n    for ood_name in ood_datasets:\\n        recalls = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_recall\\\"] for s in SEEDS]\\n        f1s = [all_results[\\\"seeds\\\"][str(s)][f\\\"ood_{ood_name.lower()}_f1\\\"] for s in SEEDS]\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_recall_mean\\\"] = float(np.mean(recalls))\\n        all_results[\\\"summary\\\"][f\\\"ood_{ood_name.lower()}_f1_mean\\\"] = float(np.mean(f1s))\\n\\n    print(f\\\"\\\\n{'='*70}\\\")\\n    print(\\\"SUMMARY (3-seed mean)\\\")\\n    print(f\\\"{'='*70}\\\")\\n    print(f\\\"WildChat FPR: {all_results['summary']['wildchat_fpr_mean']:.4f} ± {all_results['summary']['wildchat_fpr_std']:.4f}\\\")\\n    print(f\\\"IID F1 macro: {all_results['summary']['iid_f1_mean']:.4f} ± {all_results['summary']['iid_f1_std']:.4f}\\\")\\n    for ood_name in ood_datasets:\\n        print(f\\\"OOD {ood_name} recall: {all_results['summary'][f'ood_{ood_name.lower()}_recall_mean']:.4f}\\\")\\n        print(f\\\"OOD {ood_name} F1: {all_results['summary'][f'ood_{ood_name.lower()}_f1_mean']:.4f}\\\")\\n\\n    # Pass/fail\\n    fpr_pass = all_results[\\\"summary\\\"][\\\"wildchat_fpr_mean\\\"] < 0.30\\n    ood_f1_pass = all(\\n        all_results[\\\"summary\\\"].get(f\\\"ood_{n.lower()}_f1_mean\\\", 0) > 0.95\\n        for n in ood_datasets\\n    )\\n    print(f\\\"\\\\nFPR < 30%: {'PASS' if fpr_pass else 'FAIL'} ({all_results['summary']['wildchat_fpr_mean']:.1%})\\\")\\n    print(f\\\"OOD F1 > 0.95: {'PASS' if ood_f1_pass else 'FAIL'}\\\")\\n\\n    all_results[\\\"summary\\\"][\\\"fpr_pass\\\"] = fpr_pass\\n    all_results[\\\"summary\\\"][\\\"ood_f1_pass\\\"] = ood_f1_pass\\n    all_results[\\\"summary\\\"][\\\"conclusion\\\"] = \\\"success\\\" if (fpr_pass and ood_f1_pass) else \\\"negative\\\"\\n\\n    RESULTS_JSON.parent.mkdir(parents=True, exist_ok=True)\\n    with open(RESULTS_JSON, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {RESULTS_JSON}\\\")\\n\\n    return all_results\\n\\n\\n# =========================================================================\\n# MAIN\\n# =========================================================================\\nif __name__ == \\\"__main__\\\":\\n    t_total = time.time()\\n\\n    # Step 1: Prepare data\\n    n_wc_train, n_wc_eval = prepare_data()\\n\\n    # Step 2: Train 3 seeds\\n    seeds_ckpts = {}\\n    for seed in SEEDS:\\n        print(f\\\"\\\\n{'#'*70}\\\")\\n        print(f\\\"# SEED {seed}\\\")\\n        print(f\\\"{'#'*70}\\\")\\n        deberta_path = run_stage1(seed)\\n        gru_path = run_stage2(seed, deberta_path)\\n        seeds_ckpts[seed] = (deberta_path, gru_path)\\n\\n    # Step 3: Evaluate\\n    results = evaluate_all(seeds_ckpts)\\n\\n    elapsed_total = time.time() - t_total\\n    print(f\\\"\\\\nTotal time: {elapsed_total/60:.1f} min\\\")\\n    print(f\\\"\\\\nCheckpoints at: {CKPT_BASE}/exp42_mixed_seed*/\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me write the exp42b script. The key changes from exp42:
+
+1. `prepare_data()` changes:
+   - Same WC filtering and train/eval split (150/49 using seed=42)
+   - Downsample WC train from 150 to 88 (seed=42)
+   - Downsample original benign from 175 to 87 (seed=42)
+   - Keep all 175 jailbreak
+   - Total: 175 + 87 + 88 = 350 (50:50)
+
+
+2. I'll update the output paths to use exp42b naming conventions, reuse the eval set from exp42, and adjust checkpoint and results file names accordingly. Now I'm writing the full script with minimal modifications from exp42.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "d96280fb-dc2d-43d3-b20a-957eff6df9ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5d2yEGeo62trbtuDuwosg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2957,
+      "cache_read_input_tokens": 47276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2957
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+Now I have the full exp42 script. Creating the exp42b script with the balanced ratio modification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "181ef10f-197c-4e1d-b214-712be426c494",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5d2yEGeo62trbtuDuwosg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2957,
+      "cache_read_input_tokens": 47276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2957
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0122xBrTdA2SaePz8Ud4N5rE`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "cat > /root/persuasion_turn_jailbreak_detect/scripts/exp42b_balanced_ratio_ablation.py << 'PYTHON_EOF'\n#!/usr/bin/env python3\n\"\"\"exp42b: Balanced ratio ablation — same WildChat benign mix but 50:50 ratio.\n\nHypothesis: exp42's WildChat FPR reduction (68.1%→0%) is driven by benign\ndistribution coverage, not the shifted class ratio (50:50→65:35). If FPR\nstays near 0% with balanced 50:50 ratio, ratio is not the explanation.\n\nChanges from exp42:\n  - Downsample WildChat benign train: 150 → 88\n  - Downsample original benign train: 175 → 87\n  - Keep all 175 jailbreak\n  - Total: 175 jailbreak + 175 benign (87 orig + 88 WC) = 350 (50:50)\n  - Same WildChat eval split (49 samples)\n\nRun: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\n     cd /root/persuasion_turn_jailbreak_detect && \\\n     CUDA_VISIBLE_DEVICES=0 python scripts/exp42b_balanced_ratio_ablation.py\n\"\"\"\n\nimport os\nos.environ[\"HF_HUB_OFFLINE\"] = \"1\"\nos.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n\nimport sys, json, random, time, re, subprocess\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom pathlib import Path\nfrom collections import Counter\nfrom sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score\n\nsys.path.insert(0, \"/root/persuasion_turn_jailbreak_detect\")\nfrom src.models.deberta_multitask import DeBERTaMultiTask\nfrom src.models.gru_classifier import GRUClassifier\nfrom transformers import AutoTokenizer\n\nPROJ = Path(\"/root/persuasion_turn_jailbreak_detect\")\nCKPT_BASE = Path(\"/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints\")\nLOCAL_MODEL = \"/root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3\"\nDEVICE = torch.device(\"cuda:0\")\nMAX_LENGTH = 256\n\nDEBERTA_LR = 2e-5\nDEBERTA_BATCH = 16\nDEBERTA_EPOCHS = 4\nALPHA = 0.3\n\nGRU_HIDDEN = 256\nGRU_LAYERS = 2\nGRU_DROPOUT = 0.3\nGRU_LR = 1e-3\nGRU_EPOCHS = 20\nGRU_BATCH = 32\n\nSEEDS = [42, 123, 456]\n\nWILDCHAT_PATH = PROJ / \"data\" / \"wildchat_benign_226.jsonl\"\nTRAIN_PATH = PROJ / \"data\" / \"plan_002_splits\" / \"train.jsonl\"\nVAL_PATH = PROJ / \"data\" / \"plan_002_splits\" / \"val.jsonl\"\nTEST_PATH = PROJ / \"data\" / \"plan_002_splits\" / \"test.jsonl\"\nDD_PATH = PROJ / \"data\" / \"generated\" / \"deceptive_delight_all.jsonl\"\nAA_PATH = PROJ / \"data\" / \"actorattack_ood\" / \"actorattack_all.jsonl\"\nFITD_PATH = PROJ / \"data\" / \"generated\" / \"fitd_all.jsonl\"\n\nMIXED_TRAIN_PATH = PROJ / \"data\" / \"exp42b_balanced_train.jsonl\"\nWILDCHAT_EVAL_PATH = PROJ / \"data\" / \"exp42_wildchat_eval.jsonl\"\n\nRESULTS_JSON = PROJ / \"results\" / \"exp42b_balanced_ratio_ablation.json\"\n\nN_WC_TRAIN = 88\nN_ORIG_BENIGN = 87\n\nJAILBREAK_KEYWORDS = [\n    \"ignore previous instructions\", \"ignore all previous\", \"disregard previous\",\n    \"forget your instructions\", \"you are now\", \"act as if\", \"pretend you are\",\n    \"jailbreak\", \"DAN\", \"do anything now\", \"bypass\", \"override your\",\n    \"ignore your programming\", \"ignore your training\", \"system prompt\",\n    \"you have no restrictions\", \"no ethical guidelines\",\n    \"roleplay as\", \"evil mode\", \"developer mode\", \"god mode\",\n    \"ignore safety\", \"ignore content policy\", \"opposite day\",\n    \"LEO\", \"no restrictions\", \"unlimited\", \"unfiltered\",\n]\nJAILBREAK_PATTERN = re.compile(\n    \"|\".join(re.escape(kw) for kw in JAILBREAK_KEYWORDS), re.IGNORECASE\n)\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(l) for l in f if l.strip()]\n\n\ndef save_jsonl(data, path):\n    with open(path, \"w\") as f:\n        for item in data:\n            f.write(json.dumps(item, ensure_ascii=False) + \"\\n\")\n\n\ndef set_seed(seed):\n    random.seed(seed)\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    torch.cuda.manual_seed_all(seed)\n\n\ndef filter_wildchat(conversations):\n    clean = []\n    filtered_ids = []\n    for conv in conversations:\n        full_text = \" \".join(\n            t[\"content\"] for t in conv[\"turns\"] if t.get(\"role\") == \"user\"\n        )\n        if JAILBREAK_PATTERN.search(full_text):\n            filtered_ids.append(conv[\"conversation_id\"])\n        else:\n            clean.append(conv)\n    if filtered_ids:\n        print(f\"  Filtered {len(filtered_ids)} conversations with jailbreak patterns\")\n    return clean\n\n\ndef prepare_wildchat_for_training(conv):\n    new_turns = []\n    for turn in conv[\"turns\"]:\n        t = dict(turn)\n        if t[\"role\"] == \"user\" and \"persuasion_strategy\" not in t:\n            t[\"persuasion_strategy\"] = 0\n        new_turns.append(t)\n    return {\n        \"conversation_id\": conv[\"conversation_id\"],\n        \"turns\": new_turns,\n        \"label\": \"benign\",\n        \"source\": conv.get(\"source\", \"wildchat\"),\n        \"attack_type\": \"benign\",\n    }\n\n\ndef extract_user_turns(conv):\n    return [t[\"content\"] for t in conv[\"turns\"] if t[\"role\"] == \"user\"]\n\n\ndef get_label(conv):\n    return 1 if conv[\"label\"] == \"jailbreak\" else 0\n\n\n# =========================================================================\n# STEP 1: Data Preparation (balanced 50:50 ratio)\n# =========================================================================\ndef prepare_data():\n    print(\"=\" * 70)\n    print(\"STEP 1: Data Preparation (balanced 50:50 ratio)\")\n    print(\"=\" * 70)\n\n    # Same WC filtering and train/eval split as exp42\n    wildchat_raw = load_jsonl(WILDCHAT_PATH)\n    print(f\"Loaded {len(wildchat_raw)} WildChat benign conversations\")\n\n    wildchat_clean = filter_wildchat(wildchat_raw)\n    print(f\"After filtering: {len(wildchat_clean)} clean conversations\")\n\n    random.seed(42)\n    random.shuffle(wildchat_clean)\n\n    n_wc_pool = 150\n    if len(wildchat_clean) < n_wc_pool + 20:\n        n_wc_pool = int(len(wildchat_clean) * 0.65)\n\n    wc_train_pool = wildchat_clean[:n_wc_pool]\n    wc_eval = wildchat_clean[n_wc_pool:]\n    print(f\"WC pool: {len(wc_train_pool)} train candidates, {len(wc_eval)} eval\")\n\n    # Downsample WC train from 150 to 88\n    random.seed(42)\n    wc_train = random.sample(wc_train_pool, N_WC_TRAIN)\n    print(f\"Downsampled WC train: {len(wc_train)}\")\n\n    wc_train_formatted = [prepare_wildchat_for_training(c) for c in wc_train]\n\n    # Load original train and split by label\n    original_train = load_jsonl(TRAIN_PATH)\n    orig_benign = [c for c in original_train if c[\"label\"] == \"benign\"]\n    orig_jailbreak = [c for c in original_train if c[\"label\"] == \"jailbreak\"]\n    print(f\"Original train: {len(original_train)} ({len(orig_benign)} benign, {len(orig_jailbreak)} jailbreak)\")\n\n    # Downsample original benign from 175 to 87\n    random.seed(42)\n    orig_benign_sampled = random.sample(orig_benign, N_ORIG_BENIGN)\n    print(f\"Downsampled original benign: {len(orig_benign_sampled)}\")\n\n    # Combine: 175 jailbreak + 87 orig benign + 88 WC benign = 350 (50:50)\n    mixed_train = orig_jailbreak + orig_benign_sampled + wc_train_formatted\n    labels_mixed = Counter(c[\"label\"] for c in mixed_train)\n    print(f\"Mixed train: {len(mixed_train)} conversations\")\n    print(f\"  Label distribution: {dict(labels_mixed)}\")\n    print(f\"  Ratio: {labels_mixed['jailbreak']}:{labels_mixed['benign']} = 50:50\")\n\n    save_jsonl(mixed_train, MIXED_TRAIN_PATH)\n    # Reuse exp42's eval split (same shuffling seed=42, same split point)\n    if not WILDCHAT_EVAL_PATH.exists():\n        save_jsonl(wc_eval, WILDCHAT_EVAL_PATH)\n        print(f\"Saved WildChat eval to {WILDCHAT_EVAL_PATH}\")\n    else:\n        print(f\"Reusing existing WildChat eval at {WILDCHAT_EVAL_PATH}\")\n    print(f\"Saved balanced train to {MIXED_TRAIN_PATH}\")\n\n    return len(wc_train), len(wc_eval)\n\n\n# =========================================================================\n# STEP 2: Training (3 seeds)\n# =========================================================================\ndef run_stage1(seed):\n    name = f\"exp42b_balanced_seed{seed}\"\n    ckpt_dir = CKPT_BASE / name / \"deberta_multitask\"\n    ckpt_dir.mkdir(parents=True, exist_ok=True)\n\n    cmd = [\n        sys.executable, str(PROJ / \"src/train_deberta.py\"),\n        \"--train_data\", str(MIXED_TRAIN_PATH),\n        \"--val_data\", str(VAL_PATH),\n        \"--model_name\", LOCAL_MODEL,\n        \"--output_dir\", str(ckpt_dir),\n        \"--epochs\", str(DEBERTA_EPOCHS),\n        \"--batch_size\", str(DEBERTA_BATCH),\n        \"--lr\", str(DEBERTA_LR),\n        \"--max_length\", str(MAX_LENGTH),\n        \"--seed\", str(seed),\n        \"--alpha\", str(ALPHA),\n    ]\n\n    print(f\"\\n{'='*70}\", flush=True)\n    print(f\"STAGE 1: DeBERTa DAPT - seed={seed}\", flush=True)\n    print(f\"{'='*70}\", flush=True)\n    print(f\"Command: {' '.join(cmd)}\", flush=True)\n\n    t0 = time.time()\n    result = subprocess.run(cmd, text=True)\n    elapsed = time.time() - t0\n    print(f\"Stage 1 seed={seed} completed in {elapsed/60:.1f} min (exit={result.returncode})\", flush=True)\n\n    if result.returncode != 0:\n        raise RuntimeError(f\"Stage 1 failed for seed={seed}\")\n\n    best_path = ckpt_dir / \"best\"\n    assert (best_path / \"model.pt\").exists(), f\"Checkpoint not found: {best_path / 'model.pt'}\"\n    return best_path\n\n\ndef run_stage2(seed, deberta_ckpt_path):\n    name = f\"exp42b_balanced_seed{seed}\"\n    set_seed(seed)\n\n    gru_dir = CKPT_BASE / name / \"gru\"\n    gru_dir.mkdir(parents=True, exist_ok=True)\n\n    tokenizer = AutoTokenizer.from_pretrained(LOCAL_MODEL)\n\n    print(f\"\\nLoading DeBERTa encoder (seed={seed})...\", flush=True)\n    model = DeBERTaMultiTask(model_name=LOCAL_MODEL, num_persuasion_classes=9)\n    state = torch.load(deberta_ckpt_path / \"model.pt\", map_location=\"cpu\")\n    model.load_state_dict(state)\n    encoder = model.deberta.to(DEVICE).float().eval()\n    for p in encoder.parameters():\n        p.requires_grad = False\n    embed_dim = encoder.config.hidden_size\n    del model\n    torch.cuda.empty_cache()\n\n    train_data = load_jsonl(MIXED_TRAIN_PATH)\n    val_data = load_jsonl(VAL_PATH)\n\n    def embed_dataset(data):\n        all_embs, all_labels, all_lengths = [], [], []\n        for conv in data:\n            turns = extract_user_turns(conv)\n            if not turns:\n                turns = [\"\"]\n            enc = tokenizer(turns, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\"pt\").to(DEVICE)\n            with torch.no_grad():\n                out = encoder(input_ids=enc[\"input_ids\"], attention_mask=enc[\"attention_mask\"])\n                embs = out.last_hidden_state[:, 0, :].cpu().float()\n            all_embs.append(embs)\n            all_labels.append(get_label(conv))\n            all_lengths.append(embs.size(0))\n        return all_embs, all_labels, all_lengths\n\n    print(\"Precomputing train embeddings...\", flush=True)\n    t_embs, t_labels, t_lens = embed_dataset(train_data)\n    print(\"Precomputing val embeddings...\", flush=True)\n    v_embs, v_labels, v_lens = embed_dataset(val_data)\n\n    def pad_batch(embs_list, labels, lengths):\n        max_len = max(lengths)\n        dim = embs_list[0].size(1)\n        padded = torch.zeros(len(embs_list), max_len, dim)\n        for i, e in enumerate(embs_list):\n            padded[i, :e.size(0), :] = e\n        return padded, torch.tensor(labels, dtype=torch.long), torch.tensor(lengths, dtype=torch.long)\n\n    n = len(t_embs)\n    gru = GRUClassifier(input_dim=embed_dim, hidden_dim=GRU_HIDDEN, num_layers=GRU_LAYERS, dropout=GRU_DROPOUT).to(DEVICE)\n    optimizer = torch.optim.Adam(gru.parameters(), lr=GRU_LR)\n    criterion = nn.CrossEntropyLoss()\n\n    best_val_f1 = 0\n    best_state = None\n    patience = 5\n    no_improve = 0\n\n    print(f\"\\n--- Training GRU (seed={seed}) ---\", flush=True)\n    for epoch in range(GRU_EPOCHS):\n        gru.train()\n        indices = list(range(n))\n        random.shuffle(indices)\n        epoch_loss = 0.0\n        steps = 0\n\n        for start in range(0, n, GRU_BATCH):\n            end = min(start + GRU_BATCH, n)\n            batch_idx = indices[start:end]\n            b_embs = [t_embs[i] for i in batch_idx]\n            b_labels = [t_labels[i] for i in batch_idx]\n            b_lens = [t_lens[i] for i in batch_idx]\n\n            X, y, lens = pad_batch(b_embs, b_labels, b_lens)\n            X, y, lens = X.to(DEVICE), y.to(DEVICE), lens.to(DEVICE)\n\n            logits = gru(X, lens)\n            loss = criterion(logits, y)\n            optimizer.zero_grad()\n            loss.backward()\n            optimizer.step()\n            epoch_loss += loss.item()\n            steps += 1\n\n        # Validation\n        gru.eval()\n        with torch.no_grad():\n            vX, vy, vlens = pad_batch(v_embs, v_labels, v_lens)\n            vX, vy, vlens = vX.to(DEVICE), vy.to(DEVICE), vlens.to(DEVICE)\n            v_logits = gru(vX, vlens)\n            v_preds = v_logits.argmax(dim=1).cpu().numpy()\n            v_true = vy.cpu().numpy()\n            val_f1 = f1_score(v_true, v_preds, average=\"macro\")\n\n        if val_f1 > best_val_f1:\n            best_val_f1 = val_f1\n            best_state = {k: v.cpu().clone() for k, v in gru.state_dict().items()}\n            no_improve = 0\n        else:\n            no_improve += 1\n\n        if (epoch + 1) % 5 == 0 or epoch == 0:\n            print(f\"  Epoch {epoch+1}/{GRU_EPOCHS}: loss={epoch_loss/steps:.4f}, val_f1={val_f1:.4f}, best={best_val_f1:.4f}\", flush=True)\n\n        if no_improve >= patience:\n            print(f\"  Early stop at epoch {epoch+1}\", flush=True)\n            break\n\n    gru_path = gru_dir / \"best.pt\"\n    torch.save(best_state, gru_path)\n    print(f\"Saved GRU checkpoint to {gru_path} (best val F1={best_val_f1:.4f})\", flush=True)\n\n    del encoder, gru, t_embs, v_embs\n    torch.cuda.empty_cache()\n\n    return gru_path\n\n\n# =========================================================================\n# STEP 3: Evaluation\n# =========================================================================\ndef evaluate_all(seeds_ckpts):\n    print(f\"\\n{'='*70}\", flush=True)\n    print(\"STEP 3: Evaluation\", flush=True)\n    print(f\"{'='*70}\", flush=True)\n\n    tokenizer = AutoTokenizer.from_pretrained(LOCAL_MODEL)\n\n    wildchat_eval = load_jsonl(WILDCHAT_EVAL_PATH)\n    test_data = load_jsonl(TEST_PATH)\n\n    ood_datasets = {}\n    if DD_PATH.exists():\n        ood_datasets[\"DD\"] = load_jsonl(DD_PATH)\n    if AA_PATH.exists():\n        ood_datasets[\"AA\"] = load_jsonl(AA_PATH)\n    if FITD_PATH.exists():\n        ood_datasets[\"FITD\"] = load_jsonl(FITD_PATH)\n\n    print(f\"WildChat eval: {len(wildchat_eval)}\")\n    print(f\"IID test: {len(test_data)}\")\n    for name, data in ood_datasets.items():\n        print(f\"OOD {name}: {len(data)}\")\n\n    all_results = {\"seeds\": {}, \"summary\": {}, \"config\": {\n        \"n_wc_train\": N_WC_TRAIN,\n        \"n_orig_benign\": N_ORIG_BENIGN,\n        \"n_jailbreak\": 175,\n        \"total_train\": N_WC_TRAIN + N_ORIG_BENIGN + 175,\n        \"ratio\": \"50:50\",\n        \"parent\": \"exp42\",\n    }}\n\n    for seed, (deberta_path, gru_path) in seeds_ckpts.items():\n        print(f\"\\n--- Evaluating seed={seed} ---\", flush=True)\n        set_seed(seed)\n\n        model = DeBERTaMultiTask(model_name=LOCAL_MODEL, num_persuasion_classes=9)\n        state = torch.load(deberta_path / \"model.pt\", map_location=\"cpu\")\n        model.load_state_dict(state)\n        encoder = model.deberta.to(DEVICE).float().eval()\n        for p in encoder.parameters():\n            p.requires_grad = False\n        embed_dim = encoder.config.hidden_size\n        del model\n\n        gru = GRUClassifier(input_dim=embed_dim, hidden_dim=GRU_HIDDEN, num_layers=GRU_LAYERS, dropout=GRU_DROPOUT)\n        gru.load_state_dict(torch.load(gru_path, map_location=\"cpu\", weights_only=True))\n        gru = gru.float().to(DEVICE).eval()\n\n        @torch.no_grad()\n        def predict_convs(convs):\n            preds = []\n            probs = []\n            for conv in convs:\n                turns = extract_user_turns(conv)\n                if not turns:\n                    turns = [\"\"]\n                tok = tokenizer(turns, max_length=MAX_LENGTH, padding=True, truncation=True, return_tensors=\"pt\").to(DEVICE)\n                out = encoder(input_ids=tok[\"input_ids\"], attention_mask=tok[\"attention_mask\"])\n                embs = out.last_hidden_state[:, 0, :].unsqueeze(0)\n                lens = torch.tensor([embs.size(1)], device=DEVICE)\n                logits = gru(embs, lens)\n                prob = torch.softmax(logits, dim=1)[0, 1].item()\n                pred = logits.argmax(dim=1).item()\n                preds.append(pred)\n                probs.append(prob)\n            return preds, probs\n\n        seed_results = {}\n\n        # WildChat FPR\n        wc_preds, wc_probs = predict_convs(wildchat_eval)\n        wc_fpr = sum(wc_preds) / len(wc_preds)\n        seed_results[\"wildchat_fpr\"] = wc_fpr\n        seed_results[\"wildchat_n\"] = len(wildchat_eval)\n        print(f\"  WildChat FPR: {wc_fpr:.4f} ({sum(wc_preds)}/{len(wc_preds)})\")\n\n        # IID test\n        iid_preds, _ = predict_convs(test_data)\n        iid_true = [get_label(c) for c in test_data]\n        iid_f1 = f1_score(iid_true, iid_preds, average=\"macro\")\n        iid_acc = accuracy_score(iid_true, iid_preds)\n        seed_results[\"iid_f1_macro\"] = iid_f1\n        seed_results[\"iid_accuracy\"] = iid_acc\n        print(f\"  IID: F1={iid_f1:.4f}, Acc={iid_acc:.4f}\")\n\n        # OOD evaluation\n        for ood_name, ood_data in ood_datasets.items():\n            ood_preds, _ = predict_convs(ood_data)\n            ood_recall = sum(ood_preds) / len(ood_preds)\n            seed_results[f\"ood_{ood_name.lower()}_recall\"] = ood_recall\n            print(f\"  OOD {ood_name} recall: {ood_recall:.4f} ({sum(ood_preds)}/{len(ood_preds)})\")\n\n            iid_benign = [c for c in test_data if c[\"label\"] == \"benign\"]\n            combined_preds_benign, _ = predict_convs(iid_benign)\n            combined_preds = combined_preds_benign + ood_preds\n            combined_true = [0] * len(iid_benign) + [1] * len(ood_data)\n            combined_f1 = f1_score(combined_true, combined_preds, average=\"macro\")\n            seed_results[f\"ood_{ood_name.lower()}_f1\"] = combined_f1\n            print(f\"  OOD {ood_name} F1 (vs IID benign): {combined_f1:.4f}\")\n\n        all_results[\"seeds\"][str(seed)] = seed_results\n\n        del encoder, gru\n        torch.cuda.empty_cache()\n\n    # Summary\n    wc_fprs = [all_results[\"seeds\"][str(s)][\"wildchat_fpr\"] for s in SEEDS]\n    iid_f1s = [all_results[\"seeds\"][str(s)][\"iid_f1_macro\"] for s in SEEDS]\n\n    all_results[\"summary\"][\"wildchat_fpr_mean\"] = float(np.mean(wc_fprs))\n    all_results[\"summary\"][\"wildchat_fpr_std\"] = float(np.std(wc_fprs))\n    all_results[\"summary\"][\"iid_f1_mean\"] = float(np.mean(iid_f1s))\n    all_results[\"summary\"][\"iid_f1_std\"] = float(np.std(iid_f1s))\n\n    for ood_name in ood_datasets:\n        recalls = [all_results[\"seeds\"][str(s)][f\"ood_{ood_name.lower()}_recall\"] for s in SEEDS]\n        f1s = [all_results[\"seeds\"][str(s)][f\"ood_{ood_name.lower()}_f1\"] for s in SEEDS]\n        all_results[\"summary\"][f\"ood_{ood_name.lower()}_recall_mean\"] = float(np.mean(recalls))\n        all_results[\"summary\"][f\"ood_{ood_name.lower()}_f1_mean\"] = float(np.mean(f1s))\n\n    print(f\"\\n{'='*70}\")\n    print(\"SUMMARY (3-seed mean)\")\n    print(f\"{'='*70}\")\n    print(f\"WildChat FPR: {all_results['summary']['wildchat_fpr_mean']:.4f} +/- {all_results['summary']['wildchat_fpr_std']:.4f}\")\n    print(f\"IID F1 macro: {all_results['summary']['iid_f1_mean']:.4f} +/- {all_results['summary']['iid_f1_std']:.4f}\")\n    for ood_name in ood_datasets:\n        print(f\"OOD {ood_name} recall: {all_results['summary'][f'ood_{ood_name.lower()}_recall_mean']:.4f}\")\n        print(f\"OOD {ood_name} F1: {all_results['summary'][f'ood_{ood_name.lower()}_f1_mean']:.4f}\")\n\n    fpr_pass = all_results[\"summary\"][\"wildchat_fpr_mean\"] < 0.30\n    ood_f1_pass = all(\n        all_results[\"summary\"].get(f\"ood_{n.lower()}_f1_mean\", 0) > 0.95\n        for n in ood_datasets\n    )\n    print(f\"\\nFPR < 30%: {'PASS' if fpr_pass else 'FAIL'} ({all_results['summary']['wildchat_fpr_mean']:.1%})\")\n    print(f\"OOD F1 > 0.95: {'PASS' if ood_f1_pass else 'FAIL'}\")\n\n    all_results[\"summary\"][\"fpr_pass\"] = fpr_pass\n    all_results[\"summary\"][\"ood_f1_pass\"] = ood_f1_pass\n    all_results[\"summary\"][\"conclusion\"] = \"success\" if (fpr_pass and ood_f1_pass) else \"negative\"\n\n    RESULTS_JSON.parent.mkdir(parents=True, exist_ok=True)\n    with open(RESULTS_JSON, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    print(f\"\\nResults saved to {RESULTS_JSON}\")\n\n    return all_results\n\n\n# =========================================================================\n# MAIN\n# =========================================================================\nif __name__ == \"__main__\":\n    t_total = time.time()\n\n    n_wc_train, n_wc_eval = prepare_data()\n\n    seeds_ckpts = {}\n    for seed in SEEDS:\n        print(f\"\\n{'#'*70}\")\n        print(f\"# SEED {seed}\")\n        print(f\"{'#'*70}\")\n        deberta_path = run_stage1(seed)\n        gru_path = run_stage2(seed, deberta_path)\n        seeds_ckpts[seed] = (deberta_path, gru_path)\n\n    results = evaluate_all(seeds_ckpts)\n\n    elapsed_total = time.time() - t_total\n    print(f\"\\nTotal time: {elapsed_total/60:.1f} min\")\n    print(f\"\\nCheckpoints at: {CKPT_BASE}/exp42b_balanced_seed*/\")\nPYTHON_EOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "1691ddc4-71bd-48c2-a043-3773531296df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N5d2yEGeo62trbtuDuwosg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2957,
+      "cache_read_input_tokens": 47276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2957
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T04:25:03.984Z_
+
+<details><summary>↩ Tool result · `toolu_0122xBrTdA2SaePz8Ud4N5rE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "6072bf8e-0ced-4c3f-a5a8-c511597b69b2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+Script created. Now registering the experiment and submitting the training job.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "5828e5d0-2830-48db-90f7-e65ff1ab84b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nhhjc5HVzoTeENWqGLUjkH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8012,
+      "cache_read_input_tokens": 50233,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8012
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01733pXtNrrGArsf29v6Ub7R`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__detect_image",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "92debede-be78-4fcd-adb3-6d4e0e6865e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nhhjc5HVzoTeENWqGLUjkH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8012,
+      "cache_read_input_tokens": 50233,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8012
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-22T04:25:07.526Z_
+
+<details><summary>↩ Tool result · `toolu_01733pXtNrrGArsf29v6Ub7R`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "2e6a0bd9-681c-4932-8f27-cdd7a06f206f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01CuUYcwpbHXn2qHcYmMGuEB`</summary>
+
+```json
+{
+  "exp_id": "exp42b_balanced_ratio_ablation",
+  "field": "hypothesis",
+  "value": "exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "8bd6022a-883d-4f88-9bd5-5f404625108d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWCC8vW7GqnXxaMb4KFpQq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 316,
+      "cache_read_input_tokens": 58245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 316
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-22T04:25:14.347Z_
+
+<details><summary>↩ Tool result · `toolu_01CuUYcwpbHXn2qHcYmMGuEB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp42b_balanced_ratio_ablation\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:17:59.853Z\", \"updated_at\": \"2026-05-22T04:25:14.145Z\", \"hypothesis\": \"exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.\", \"parent\": \"exp42_ood_benign_mixed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4902}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "a9c9f327-1a1f-4f40-89cc-3078d48bf3fc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp42b_balanced_ratio_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T04:17:59.853Z\\\", \\\"updated_at\\\": \\\"2026-05-22T04:25:14.145Z\\\", \\\"hypothesis\\\": \\\"exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.\\\", \\\"parent\\\": \\\"exp42_ood_benign_mixed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4902}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp42b_balanced_ratio_ablation\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:17:59.853Z\", \"updated_at\": \"2026-05-22T04:25:14.145Z\", \"hypothesis\": \"exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.\", \"parent\": \"exp42_ood_benign_mixed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4902}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_0172XKZkXBmdywoRGAZrn59G`</summary>
+
+```json
+{
+  "exp_id": "exp42b_balanced_ratio_ablation",
+  "field": "parent",
+  "value": "exp42",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "724a4fc4-b6bd-4cd5-8c0c-5dd9d854e133",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWCC8vW7GqnXxaMb4KFpQq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 316,
+      "cache_read_input_tokens": 58245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 316
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-22T04:25:15.206Z_
+
+<details><summary>↩ Tool result · `toolu_0172XKZkXBmdywoRGAZrn59G`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp42b_balanced_ratio_ablation\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:17:59.853Z\", \"updated_at\": \"2026-05-22T04:25:15.011Z\", \"hypothesis\": \"exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.\", \"parent\": \"exp42\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5134}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "57b1e586-b441-4fba-9337-237ddb38eed1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp42b_balanced_ratio_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T04:17:59.853Z\\\", \\\"updated_at\\\": \\\"2026-05-22T04:25:15.011Z\\\", \\\"hypothesis\\\": \\\"exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.\\\", \\\"parent\\\": \\\"exp42\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5134}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp42b_balanced_ratio_ablation\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:17:59.853Z\", \"updated_at\": \"2026-05-22T04:25:15.011Z\", \"hypothesis\": \"exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.\", \"parent\": \"exp42\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5134}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RjRZNKT6H1QF9mjJJwJsGx`</summary>
+
+```json
+{
+  "query": "submit training job",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "4ded4d34-786b-401f-97b8-4370cbc47125",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012TKiMoGZZfiooAZwsQf5wD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 878,
+      "cache_read_input_tokens": 58561,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 878
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-22T04:25:18.411Z_
+
+<details><summary>↩ Tool result · `toolu_01RjRZNKT6H1QF9mjJJwJsGx`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__kill_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronDelete"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "CronCreate"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "680ec9b5-a1ec-4390-8728-e233fe3a2926",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__kill_job",
+      "CronDelete",
+      "CronCreate"
+    ],
+    "query": "submit training job",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's no `submit_training_job` tool available. The task says to use `submit_training_job` but it doesn't exist in the tool list. Let me check if there's a different way to submit training jobs. I'll need to use `ssh_execute` with nohup instead, or check if there's another tool.
+
+Actually, let me re-read the task: "Use `submit_training_job` for the actual training command, not nohup."
+
+But this tool doesn't exist. Let me search for it more specifically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "f9f837a6-d9b0-4b91-bd2c-ac2108a92962",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017o5BtZTWoYyZN7BVKGof4U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1512,
+      "cache_read_input_tokens": 59439,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1512
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LhBuZEBK4ExMeN4FbYgYnG`</summary>
+
+```json
+{
+  "query": "submit training",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "801641f8-2b3c-47c4-a407-006d0339dcdf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017o5BtZTWoYyZN7BVKGof4U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1512,
+      "cache_read_input_tokens": 59439,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1512
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T04:25:24.222Z_
+
+<details><summary>↩ Tool result · `toolu_01LhBuZEBK4ExMeN4FbYgYnG`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__kill_job"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "15d8a9b8-062e-4974-a5de-adb53093a449",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__kill_job"
+    ],
+    "query": "submit training",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's no `submit_training_job` tool available. I'll use `ssh_execute` to run the training in a tmux session so it doesn't get interrupted by SSH timeout. The script runs for ~20 min total. Let me use nohup or tmux via ssh_execute.
+
+Actually, looking at the task again: "Use `submit_training_job` for the actual training command, not nohup. The training command should include the conda activation prefix."
+
+But this tool doesn't exist. I'll use `ssh_execute` with a tmux session instead, which gives us persistence and log monitoring capability.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "0a9510b7-bed2-4fac-9afa-1e33f6856228",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F7eWYqJSGwVg2bsiqwy66c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 461,
+      "cache_read_input_tokens": 60951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 461
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+`submit_training_job` tool isn't available. I'll run via `ssh_execute` with tmux for persistence and log capture.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "180724f7-03d2-482e-ae30-d0330e9869bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F7eWYqJSGwVg2bsiqwy66c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 461,
+      "cache_read_input_tokens": 60951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 461
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01F9DvsQZoSP9M5rGuXMxSab`</summary>
+
+```json
+{
+  "exp_id": "exp42b_balanced_ratio_ablation",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "persuasion_turn_jailbreak_detect",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python scripts/exp42b_balanced_ratio_ablation.py",
+    "server": "westd-33183",
+    "data_path": "data/plan_002_splits/train.jsonl + data/wildchat_benign_226.jsonl",
+    "data_count": 350,
+    "model_name": "deberta-v3-base + GRU",
+    "seed": "42,123,456"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "306d36cc-19bb-47ce-aebf-24a708bc393f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F7eWYqJSGwVg2bsiqwy66c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 461,
+      "cache_read_input_tokens": 60951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 461
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-22T04:25:35.813Z_
+
+<details><summary>↩ Tool result · `toolu_01F9DvsQZoSP9M5rGuXMxSab`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.297}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "f23ac682-99c0-4a90-899d-4ba43c0967ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.297}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.297}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_012af8YuC8XdoEbHjbzekqkz`</summary>
+
+```json
+{
+  "exp_id": "exp42b_balanced_ratio_ablation",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "persuasion_turn_jailbreak_detect"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "36138984-3257-4ad8-b5fc-01796edd74f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011f4Fd4Ry9XjgLLjBYFKRRP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 620,
+      "cache_read_input_tokens": 61412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 620
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T04:25:39.826Z_
+
+<details><summary>↩ Tool result · `toolu_012af8YuC8XdoEbHjbzekqkz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp42b_balanced_ratio_ablation\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:17:59.853Z\", \"updated_at\": \"2026-05-22T04:25:39.104Z\", \"hypothesis\": \"exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.\", \"parent\": \"exp42\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0192}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "5c786438-ca69-43b3-b813-85956c5cf5da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp42b_balanced_ratio_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T04:17:59.853Z\\\", \\\"updated_at\\\": \\\"2026-05-22T04:25:39.104Z\\\", \\\"hypothesis\\\": \\\"exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.\\\", \\\"parent\\\": \\\"exp42\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0192}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp42b_balanced_ratio_ablation\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:17:59.853Z\", \"updated_at\": \"2026-05-22T04:25:39.104Z\", \"hypothesis\": \"exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.\", \"parent\": \"exp42\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0192}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Kn3vw5U1PZQYcLqFqkPEjz`</summary>
+
+```json
+{
+  "exp_id": "exp42b_balanced_ratio_ablation",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "persuasion_turn_jailbreak_detect",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python scripts/exp42b_balanced_ratio_ablation.py",
+    "server": "westd-33183",
+    "data_path": "data/plan_002_splits/train.jsonl + data/wildchat_benign_226.jsonl",
+    "data_count": 350,
+    "model_name": "deberta-v3-base + GRU",
+    "seed": "42,123,456"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "10195570-d99c-4ba9-9b9d-db12afbcae4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QtFaJnAMB1sz75MP6Ve83L",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 376,
+      "cache_read_input_tokens": 62032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 376
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-22T04:25:43.984Z_
+
+<details><summary>↩ Tool result · `toolu_01Kn3vw5U1PZQYcLqFqkPEjz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.3628}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "79df5ec4-802e-4ac7-bd0e-162bfe076857",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3628}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.3628}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is being treated as an eval experiment because it has a parent. Let me add the required eval fields.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "2761f26c-0f7d-4c1d-ab02-fc19fbae2601",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PDPKJu8GvB3hFe3n5Ndn1V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 350,
+      "cache_read_input_tokens": 62408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 350
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01887A7oGrFw2zEL8o9Vv3wo`</summary>
+
+```json
+{
+  "exp_id": "exp42b_balanced_ratio_ablation",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "persuasion_turn_jailbreak_detect",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python scripts/exp42b_balanced_ratio_ablation.py",
+    "server": "westd-33183",
+    "data_path": "data/plan_002_splits/train.jsonl + data/wildchat_benign_226.jsonl",
+    "data_count": 350,
+    "model_name": "deberta-v3-base + GRU",
+    "seed": "42,123,456",
+    "checkpoint_source": "trained from scratch (ablation of exp42)",
+    "eval_data": "wildchat_eval(49) + IID test + OOD DD/AA/FITD"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "6564bb02-865a-4932-bf4b-23e51ee3746a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PDPKJu8GvB3hFe3n5Ndn1V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 350,
+      "cache_read_input_tokens": 62408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 350
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-22T04:25:51.385Z_
+
+<details><summary>↩ Tool result · `toolu_01887A7oGrFw2zEL8o9Vv3wo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp42b_balanced_ratio_ablation\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:17:59.853Z\", \"updated_at\": \"2026-05-22T04:25:50.647Z\", \"hypothesis\": \"exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.\", \"parent\": \"exp42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python scripts/exp42b_balanced_ratio_ablation.py\", \"server\": \"westd-33183\", \"data_path\": \"data/plan_002_splits/train.jsonl + data/wildchat_benign_226.jsonl\", \"data_count\": 350, \"model_name\": \"deberta-v3-base + GRU\", \"seed\": \"42,123,456\", \"checkpoint_source\": \"trained from scratch (ablation of exp42)\", \"eval_data\": \"wildchat_eval(49) + IID test + OOD DD/AA/FITD\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.034}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "54ef49b9-5ea2-41d3-afa7-3e6d1a05ab3a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp42b_balanced_ratio_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T04:17:59.853Z\\\", \\\"updated_at\\\": \\\"2026-05-22T04:25:50.647Z\\\", \\\"hypothesis\\\": \\\"exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.\\\", \\\"parent\\\": \\\"exp42\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python scripts/exp42b_balanced_ratio_ablation.py\\\", \\\"server\\\": \\\"westd-33183\\\", \\\"data_path\\\": \\\"data/plan_002_splits/train.jsonl + data/wildchat_benign_226.jsonl\\\", \\\"data_count\\\": 350, \\\"model_name\\\": \\\"deberta-v3-base + GRU\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"checkpoint_source\\\": \\\"trained from scratch (ablation of exp42)\\\", \\\"eval_data\\\": \\\"wildchat_eval(49) + IID test + OOD DD/AA/FITD\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.034}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp42b_balanced_ratio_ablation\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:17:59.853Z\", \"updated_at\": \"2026-05-22T04:25:50.647Z\", \"hypothesis\": \"exp42's WildChat FPR reduction (68.1%→0%) is driven by benign distribution coverage, not the shifted class ratio (50:50→65:35). With balanced 50:50 ratio (88 WC benign + 87 orig benign vs 175 jailbreak), FPR should still drop to near 0%.\", \"parent\": \"exp42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python scripts/exp42b_balanced_ratio_ablation.py\", \"server\": \"westd-33183\", \"data_path\": \"data/plan_002_splits/train.jsonl + data/wildchat_benign_226.jsonl\", \"data_count\": 350, \"model_name\": \"deberta-v3-base + GRU\", \"seed\": \"42,123,456\", \"checkpoint_source\": \"trained from scratch (ablation of exp42)\", \"eval_data\": \"wildchat_eval(49) + IID test + OOD DD/AA/FITD\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.034}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+Now launching the training.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "42310541-2f4f-4039-9f18-968465a6f949",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CZi2kfvLBCVX1No58wyhTr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 754,
+      "cache_read_input_tokens": 62758,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 754
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01ECyAhH5MUnHoQH9J93cdws`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tmux new-session -d -s exp42b 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/persuasion_turn_jailbreak_detect && CUDA_VISIBLE_DEVICES=0 python scripts/exp42b_balanced_ratio_ablation.py 2>&1 | tee /tmp/exp42b.log'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "374e8e63-9138-482e-9a6f-80df0d8f9960",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CZi2kfvLBCVX1No58wyhTr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 754,
+      "cache_read_input_tokens": 62758,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 754
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-22T04:25:56.141Z_
+
+<details><summary>↩ Tool result · `toolu_01ECyAhH5MUnHoQH9J93cdws`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "497d145e-e58c-454e-84bd-4defaf5ab6a2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+Training launched in tmux session `exp42b`. Let me check it started correctly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "f8409ded-bad9-4236-ab29-8c67aca6384c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TJspBvgjAbSrfecYQc5xnN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 274,
+      "cache_read_input_tokens": 63512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 274
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019orcTaWbtUcoFhroyHLSmg`</summary>
+
+```json
+{
+  "server": "westd-33183",
+  "command": "tail -30 /tmp/exp42b.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "a5f7e369-9915-49f5-8a09-209c7ef3c651",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TJspBvgjAbSrfecYQc5xnN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 274,
+      "cache_read_input_tokens": 63512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 274
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-22T04:26:00.455Z_
+
+<details><summary>↩ Tool result · `toolu_019orcTaWbtUcoFhroyHLSmg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nSTEP 1: Data Preparation (balanced 50:50 ratio)\\n======================================================================\\nLoaded 226 WildChat benign conversations\\n  Filtered 27 conversations with jailbreak patterns\\nAfter filtering: 199 clean conversations\\nWC pool: 150 train candidates, 49 eval\\nDownsampled WC train: 88\\nOriginal train: 350 (175 benign, 175 jailbreak)\\nDownsampled original benign: 87\\nMixed train: 350 conversations\\n  Label distribution: {'jailbreak': 175, 'benign': 175}\\n  Ratio: 175:175 = 50:50\\nReusing existing WildChat eval at /root/persuasion_turn_jailbreak_detect/data/exp42_wildchat_eval.jsonl\\nSaved balanced train to /root/persuasion_turn_jailbreak_detect/data/exp42b_balanced_train.jsonl\\n\\n######################################################################\\n# SEED 42\\n######################################################################\\n\\n======================================================================\\nSTAGE 1: DeBERTa DAPT - seed=42\\n======================================================================\\nCommand: /root/miniconda3/bin/python /root/persuasion_turn_jailbreak_detect/src/train_deberta.py --train_data /root/persuasion_turn_jailbreak_detect/data/exp42b_balanced_train.jsonl --val_data /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/val.jsonl --model_name /root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3 --output_dir /root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp42b_balanced_seed42/deberta_multitask --epochs 4 --batch_size 16 --lr 2e-05 --max_length 256 --seed 42 --alpha 0.3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "2fd95c37-ac1a-4c7e-a8a6-60aa041b27d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nSTEP 1: Data Preparation (balanced 50:50 ratio)\\\\n======================================================================\\\\nLoaded 226 WildChat benign conversations\\\\n  Filtered 27 conversations with jailbreak patterns\\\\nAfter filtering: 199 clean conversations\\\\nWC pool: 150 train candidates, 49 eval\\\\nDownsampled WC train: 88\\\\nOriginal train: 350 (175 benign, 175 jailbreak)\\\\nDownsampled original benign: 87\\\\nMixed train: 350 conversations\\\\n  Label distribution: {'jailbreak': 175, 'benign': 175}\\\\n  Ratio: 175:175 = 50:50\\\\nReusing existing WildChat eval at /root/persuasion_turn_jailbreak_detect/data/exp42_wildchat_eval.jsonl\\\\nSaved balanced train to /root/persuasion_turn_jailbreak_detect/data/exp42b_balanced_train.jsonl\\\\n\\\\n######################################################################\\\\n# SEED 42\\\\n######################################################################\\\\n\\\\n======================================================================\\\\nSTAGE 1: DeBERTa DAPT - seed=42\\\\n======================================================================\\\\nCommand: /root/miniconda3/bin/python /root/persuasion_turn_jailbreak_detect/src/train_deberta.py --train_data /root/persuasion_turn_jailbreak_detect/data/exp42b_balanced_train.jsonl --val_data /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/val.jsonl --model_name /root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3 --output_dir /root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp42b_balanced_seed42/deberta_multitask --epochs 4 --batch_size 16 --lr 2e-05 --max_length 256 --seed 42 --alpha 0.3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nSTEP 1: Data Preparation (balanced 50:50 ratio)\\n======================================================================\\nLoaded 226 WildChat benign conversations\\n  Filtered 27 conversations with jailbreak patterns\\nAfter filtering: 199 clean conversations\\nWC pool: 150 train candidates, 49 eval\\nDownsampled WC train: 88\\nOriginal train: 350 (175 benign, 175 jailbreak)\\nDownsampled original benign: 87\\nMixed train: 350 conversations\\n  Label distribution: {'jailbreak': 175, 'benign': 175}\\n  Ratio: 175:175 = 50:50\\nReusing existing WildChat eval at /root/persuasion_turn_jailbreak_detect/data/exp42_wildchat_eval.jsonl\\nSaved balanced train to /root/persuasion_turn_jailbreak_detect/data/exp42b_balanced_train.jsonl\\n\\n######################################################################\\n# SEED 42\\n######################################################################\\n\\n======================================================================\\nSTAGE 1: DeBERTa DAPT - seed=42\\n======================================================================\\nCommand: /root/miniconda3/bin/python /root/persuasion_turn_jailbreak_detect/src/train_deberta.py --train_data /root/persuasion_turn_jailbreak_detect/data/exp42b_balanced_train.jsonl --val_data /root/persuasion_turn_jailbreak_detect/data/plan_002_splits/val.jsonl --model_name /root/autodl-tmp/hf_cache/hub/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3 --output_dir /root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/exp42b_balanced_seed42/deberta_multitask --epochs 4 --batch_size 16 --lr 2e-05 --max_length 256 --seed 42 --alpha 0.3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+Data prep confirmed: 175 jailbreak + 175 benign (87 orig + 88 WC) = 350 (50:50). Seed 42 DeBERTa training is running. I'll check progress in a few minutes.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "9f9384b4-201a-4b67-94bf-3c1fbce7e1b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BT5gYidrVvCVvuxJT24Xin",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 738,
+      "cache_read_input_tokens": 63786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 738
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — ScheduleWakeup · `toolu_01TwuSNMH9SDEiPDxutAd86X`</summary>
+
+```json
+{
+  "delaySeconds": 270,
+  "reason": "Checking exp42b training progress after ~4.5 min (first seed DeBERTa should be done)",
+  "prompt": "Check exp42b training progress: `tail -50 /tmp/exp42b.log` on westd-33183. If done, read results from `/root/persuasion_turn_jailbreak_detect/results/exp42b_balanced_ratio_ablation.json`, update registry, and report. If still running, check again later."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "a916a4fa-709c-4666-b97f-7a93652fa942",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BT5gYidrVvCVvuxJT24Xin",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 738,
+      "cache_read_input_tokens": 63786,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 738
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-22T04:26:07.038Z_
+
+<details><summary>↩ Tool result · `toolu_01TwuSNMH9SDEiPDxutAd86X`</summary>
+
+```text
+Next wakeup scheduled for 04:30:00 (in 233s).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "da693c5e-5f50-4577-98ab-6bf3f166c184",
+  "tool_use_result": {
+    "scheduledFor": 1779424200000,
+    "clampedDelaySeconds": 270,
+    "wasClamped": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+Training is running. Data composition verified:
+- **exp42b**: 175 jailbreak + 87 orig benign + 88 WC benign = 350 (50:50)
+- **exp42** (baseline): 175 jailbreak + 175 orig benign + 150 WC benign = 500 (35:65)
+
+Same WildChat eval set (49 samples). I'll check back in ~4 minutes when the first seed should be finishing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "uuid": "4a927f74-f908-4f4c-96ce-546ef52377eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EgVkwA2gC6rYpaLE53SSAF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 283,
+      "cache_read_input_tokens": 64524,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 283
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 82_
+
+Training is running. Data composition verified:
+- **exp42b**: 175 jailbreak + 87 orig benign + 88 WC benign = 350 (50:50)
+- **exp42** (baseline): 175 jailbreak + 175 orig benign + 150 WC benign = 500 (35:65)
+
+Same WildChat eval set (49 samples). I'll check back in ~4 minutes when the first seed should be finishing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 270088,
+  "duration_api_ms": 263722,
+  "num_turns": 28,
+  "stop_reason": "end_turn",
+  "session_id": "9c48e579-f683-4e43-ad07-4c939d1e8fe2",
+  "total_cost_usd": 1.2508685000000002,
+  "usage": {
+    "input_tokens": 32,
+    "cache_creation_input_tokens": 52966,
+    "cache_read_input_tokens": 1062444,
+    "output_tokens": 15465,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 52966,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 116,
+        "cache_read_input_tokens": 64524,
+        "cache_creation_input_tokens": 283,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 283
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1739,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001824,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 32,
+      "outputTokens": 15465,
+      "cacheReadInputTokens": 1062444,
+      "cacheCreationInputTokens": 52966,
+      "webSearchRequests": 0,
+      "costUSD": 1.2490445000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "53c34327-c8b3-4a0a-b6bb-6c6332cdb984"
+}
+```
+
+</details>
+
+---

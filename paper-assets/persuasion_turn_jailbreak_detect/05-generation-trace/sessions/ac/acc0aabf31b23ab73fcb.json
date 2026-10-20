@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "acc0aabf31b23ab73fcb",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code round7 seed level stats",
+  "task_key": "worker_code_round7-seed-level-stats_20260521T073134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_round7-seed-level-stats_20260521T073134.log",
+    "occurrence": 1,
+    "bytes": 776708,
+    "sha256": "8deeb927a808d98f3aabc8d96e68fe6fa91a40dcd309c5856d2b328cfb040d1d"
+  },
+  "statistics": {
+    "messages": 198,
+    "user_turns": 0,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 77,
+      "tool_result": 77,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 198,
+      "chunks": [
+        {
+          "path": "acc0aabf31b23ab73fcb-part-0001.json",
+          "message_count": 148
+        },
+        {
+          "path": "acc0aabf31b23ab73fcb-part-0002.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-round7-seed-level-stats.md"
+}

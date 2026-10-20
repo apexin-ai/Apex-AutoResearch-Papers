@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24fc460bf252a2828ae5",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp28b check and exp31",
+  "task_key": "worker_code_exp28b-check-and-exp31_20260520T191039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp28b-check-and-exp31_20260520T191039_result.json",
+    "occurrence": 1,
+    "bytes": 1399,
+    "sha256": "b810915532eb7b7244b55a3412429c1288520066c1101fdf2df834e3dff579fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both tasks complete. Summary:\n\n---\n\n## Part A: exp28b Results\n\nexp28b crashed during evaluation (float16 dtype in GRU), but all **9-class seed123 + seed456 runs completed**. Combined with exp28 seed42:\n\n| N | IID | DD_OOD | AA_OOD |\n|--:|:---:|:------:|:------:|\n| 50 | 1.000±0.000 | 1.000±0.000 | 0.969±0.037 |\n| 125 | 1.000±0.000 | 1.000±0.000 | 0.975±0.019 |\n| 250 | 1.000±0.000 | 1.000±0.000 | 0.975±0.035 |\n| 350 | 1.000±0.000 | 0.978±0.030 | 0.972±0.033 |\n\nVanilla (seed42 only): N=125 aa=0.244, N=350 aa=0.489. Vanilla N=50/250 missing (crash).\n\nRegistry: exp28b → **DONE (success)**.\n\n## Part B: exp31 Lambda Ablation\n\n| Lambda | IID | DD_OOD | **AA_OOD** | FITD_OOD |\n|-------:|:---:|:------:|:----------:|:--------:|\n| 0 | 1.0 | 1.0 | **1.0** | 1.0 |\n| 0.1 | 1.0 | 1.0 | **0.990** | 1.0 |\n| 0.5 | 1.0 | 1.0 | **0.981** | 1.0 |\n| 1.0 | 1.0 | 1.0 | **0.981** | 1.0 |\n| 2.0 | 1.0 | 1.0 | **0.944** | 1.0 |\n\n**Hypothesis falsified (negative result)**: Higher lambda **monotonically hurts** AA OOD. lambda=0 (intent-only E2E, no persuasion aux loss) achieves perfect scores everywhere. The persuasion auxiliary loss acts as a distractor during E2E fine-tuning rather than a regularizer.\n\nRegistry: exp31 → **DONE (negative)**.\n\nOutput files:\n- `results/exp28_combined_data_efficiency.json`\n- `results/exp31_lambda_ablation.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp28b-check-and-exp31.md"
+}

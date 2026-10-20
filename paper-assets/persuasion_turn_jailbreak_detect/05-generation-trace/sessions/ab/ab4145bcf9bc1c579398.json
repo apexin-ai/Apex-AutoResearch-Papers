@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "ab4145bcf9bc1c579398",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp20 deepcontext proxy",
+  "task_key": "worker_code_exp20-deepcontext-proxy_20260520T133408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp20-deepcontext-proxy_20260520T133408.log",
+    "occurrence": 1,
+    "bytes": 851199,
+    "sha256": "16133d01c7dc42cd3f8b9a547f9caa774f54dd24133f31e1679912f77303f940"
+  },
+  "statistics": {
+    "messages": 374,
+    "user_turns": 1,
+    "tool_calls": 130,
+    "roles": {
+      "log": 1,
+      "system": 40,
+      "record": 1,
+      "assistant": 70,
+      "tool_call": 130,
+      "user": 1,
+      "tool_result": 130,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "ab4145bcf9bc1c579398-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 367,
+      "chunks": [
+        {
+          "path": "ab4145bcf9bc1c579398-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "ab4145bcf9bc1c579398-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ab4145bcf9bc1c579398-part-0003.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp20-deepcontext-proxy.md"
+}

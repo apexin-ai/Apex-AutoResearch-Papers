@@ -1,0 +1,68 @@
+{
+  "exp_id": "exp15c_roberta_large_mlm",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:24:40.278Z",
+    "updated_at": "2026-05-19T12:22:54.764Z",
+    "hypothesis": "MLM-only continued pretraining on RoBERTa-large (without classification head) will NOT cause the same performance regression as 9-class DAPT, because the regression stems from classification fine-tuning conflicting with frozen-encoder GRU evaluation, not from domain adaptation itself.",
+    "parent": "exp15_roberta_large",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/persuasion_turn_jailbreak_detect && CUDA_VISIBLE_DEVICES=0 python scripts/exp15c_roberta_large_mlm.py\"",
+      "server": "westd-33183",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "/root/persuasion_turn_jailbreak_detect/data/plan_002_splits/",
+      "data_count": 500,
+      "model_name": "roberta-large",
+      "seed": "42,123,456",
+      "checkpoint_path": "/root/autodl-tmp/persuasion_turn_jailbreak_detect/checkpoints/roberta_large_mlm/",
+      "log_path": "~/runs/persuasion_turn_jailbreak_detect/exp15c_roberta_large_mlm.log"
+    },
+    "metrics": {
+      "dd_ood": {
+        "mlm": {
+          "k1": 0.876,
+          "k3": 0.902,
+          "full": 0.884
+        },
+        "vanilla_exp15": {
+          "k1": 0.878,
+          "k3": 0.915,
+          "full": 0.927
+        },
+        "9class_exp15": {
+          "k1": 0.965,
+          "k3": 0.96,
+          "full": 0.987
+        }
+      },
+      "actorattack": {
+        "mlm": {
+          "k1": 0.876,
+          "k3": 0.881,
+          "full": 0.874
+        },
+        "vanilla_exp15": {
+          "k1": 0.977,
+          "k3": 0.99,
+          "full": 1
+        },
+        "9class_exp15": {
+          "k1": 0.718,
+          "k3": 0.881,
+          "full": 0.946
+        }
+      },
+      "key_finding": "MLM DAPT hurts both DD OOD and AA vs vanilla. AA: MLM 0.874 < 9class 0.946 < vanilla 1.000. Representation shift from continued pretraining itself conflicts with frozen-encoder GRU, not classification head interference."
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-19T12:22:54.764Z"
+  },
+  "timestamp": "2026-05-19T12:22:54.886193+00:00",
+  "trigger": "update_registry"
+}

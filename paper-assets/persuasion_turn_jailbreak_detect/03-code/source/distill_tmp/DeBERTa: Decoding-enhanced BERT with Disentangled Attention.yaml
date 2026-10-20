@@ -1,0 +1,36 @@
+paper_key: "DeBERTa: Decoding-enhanced BERT with Disentangled Attention"
+title: "DeBERTa: Decoding-enhanced BERT with Disentangled Attention"
+venue: "ICLR 2021"
+full_text_available: false
+analysis_level: "abstract_only"
+
+research:
+  baselines:
+    - BERT
+    - RoBERTa-Large
+    - human performance (SuperGLUE)
+  metrics:
+    - {name: "SuperGLUE score", direction: "higher_better"}
+    - {name: "NLU task accuracy", direction: "higher_better"}
+    - {name: "NLG task performance", direction: "higher_better"}
+  datasets:
+    - {name: "SuperGLUE", size: "benchmark suite"}
+    - {name: "GLUE", size: "benchmark suite"}
+    - {name: "SQuAD", size: "benchmark"}
+  ablation_dimensions:
+    - disentangled attention (content vs position)
+    - enhanced mask decoder
+    - virtual adversarial training
+    - model scale (base vs large vs 1.5B)
+  training_recipe:
+    info_available: true
+    notes: "Trained on half the data of RoBERTa; 1.5B parameter variant; virtual adversarial training for fine-tuning"
+  method_family: "pre-trained language model / disentangled attention"
+
+positioning:
+  core_claim: "Disentangled content-position attention plus an enhanced mask decoder outperforms RoBERTa-Large with half the training data and surpasses human performance on SuperGLUE at 1.5B scale."
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

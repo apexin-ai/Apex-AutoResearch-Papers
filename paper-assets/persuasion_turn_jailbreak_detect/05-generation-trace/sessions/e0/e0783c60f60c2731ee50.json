@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0783c60f60c2731ee50",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code phase b training",
+  "task_key": "worker_code_phase-b-training_20260517T063023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase-b-training_20260517T063023_result.json",
+    "occurrence": 1,
+    "bytes": 1101,
+    "sha256": "2ba2afdc35556f1033131a942dcbf94b3055c82b7d6f09447cc68b42c2ffc440"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。最终代码结构和验证结果：\n\n```\n/root/persuasion_turn_jailbreak_detect/\n├── data/\n│   ├── mock_train.jsonl    # 5条对话 mock 数据\n│   └── mock_val.jsonl\n└── src/\n    ├── data/\n    │   ├── dataset.py      # TurnDataset + ConversationDataset ✓\n    │   └── collator.py     # TurnCollator + ConversationCollator ✓\n    ├── models/\n    │   ├── deberta_multitask.py  # DeBERTa 8-class persuasion + binary intent ✓\n    │   ├── gru_classifier.py     # Bi-GRU + attention pooling + MLP ✓\n    │   └── baseline.py           # Frozen vanilla DeBERTa + GRU ✓\n    ├── train_deberta.py    # Stage 1 dry-run 通过 (loss=2.34) ✓\n    ├── train_classifier.py # Stage 2 dry-run 通过 (loss=0.68) ✓\n    └── evaluate.py         # F1/early detection/FPR/per-attack metrics ✓\n```\n\n关键修复：DeBERTa-v3 权重默认加载为 FP16，所有 `from_pretrained` 调用已加 `dtype=torch.float32`，mixed precision 设为 `\"no\"` 避免精度冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase-b-training.md"
+}

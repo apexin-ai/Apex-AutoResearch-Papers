@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "89bd9870afcad992f544",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp18 e2e finetune",
+  "task_key": "worker_code_exp18-e2e-finetune_20260520T122621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp18-e2e-finetune_20260520T122621.log",
+    "occurrence": 1,
+    "bytes": 583290,
+    "sha256": "d60e5867855dd9ab10573af241238a1c8d94702655cd26f20b3dd01415cfdf9b"
+  },
+  "statistics": {
+    "messages": 222,
+    "user_turns": 0,
+    "tool_calls": 84,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 84,
+      "tool_result": 84,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 222,
+      "chunks": [
+        {
+          "path": "89bd9870afcad992f544-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "89bd9870afcad992f544-part-0002.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp18-e2e-finetune.md"
+}

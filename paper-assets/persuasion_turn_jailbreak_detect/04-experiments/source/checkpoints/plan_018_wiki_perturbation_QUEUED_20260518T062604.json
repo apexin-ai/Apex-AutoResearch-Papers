@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan_018_wiki_perturbation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:25:52.733Z",
+    "updated_at": "2026-05-18T06:26:04.774Z",
+    "hypothesis": "Wikipedia MLM model will show significant perturbation degradation (worse than jailbreak MLM -0.026), as out-of-domain pretraining provides even less robustness to surface-level perturbation",
+    "parent": "plan_018_wiki_mlm_control"
+  },
+  "timestamp": "2026-05-18T06:26:04.876509+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35cc4a02ea68d6f78d70",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "data collect datasets",
+  "task_key": "worker_data_collect_datasets_20260517T054341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_collect_datasets_20260517T054341_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "9067de17edd066fd95ce8a9a763e6d7b3053df343b14602759c890fbbeefd2af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完成。最终结果：\n\n**产出文件：**\n- `artifacts/data/processed/conversations.jsonl` — 3.7MB, 500 条对话\n\n**统计：**\n\n| 指标 | 值 |\n|------|-----|\n| 总对话数 | 500 |\n| jailbreak | 250 (50%) |\n| benign | 250 (50%) |\n| 平均 turns | 15.1 |\n| 中位数 turns | 12.0 |\n| 范围 | 10–72 |\n\n**各来源贡献：**\n- `tom-gibbs`: 115 条 jailbreak（完整对话含真实 assistant 回复，cipher-based 多轮攻击）\n- `safemtdata`: 135 条 jailbreak（ActorAttack 方法的多轮渐进式攻击，user-turn 序列）\n- `wildchat`: 250 条 benign（WildChat-1M 中 topic-drift 最高的 top-10%，作为困难负样本）\n\n**无法获取的数据集：**\n- ScaleAI/mhj — gated（需申请）\n- MultiBreak — 论文已发但无公开数据\n- XGuard-Train、SoftAge — gated"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-collect-datasets.md"
+}

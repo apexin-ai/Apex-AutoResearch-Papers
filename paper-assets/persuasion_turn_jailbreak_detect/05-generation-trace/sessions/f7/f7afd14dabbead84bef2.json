@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7afd14dabbead84bef2",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "ops disk cleanup and rerun",
+  "task_key": "worker_ops_disk-cleanup-and-rerun_20260517T225608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-and-rerun_20260517T225608_result.json",
+    "occurrence": 1,
+    "bytes": 1889,
+    "sha256": "b7442475344b17966edf4499e2016dfc8a925c17036022a897ea40a3ea333b8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 最终汇报\n\n### 1. 磁盘清理\n| 来源 | 释放空间 |\n|------|---------|\n| phase_b_deberta/ | 710 MB |\n| phase_b_gru/ | 23 MB |\n| plan_002/gru/ (旧损坏) | 464 MB |\n| plan003_deberta_scrambled/ | 710 MB |\n| plan003_gru_scrambled/ | 232 MB |\n| ~/.cache/huggingface/ (冗余) | 2.1 GB |\n| epoch checkpoints 清理 | ~200 MB |\n| **总计** | **~4.4 GB** |\n\n**最终磁盘**: 7.1 GB 可用（从 3.6 GB → 7.1 GB）\n\n### 2. Plan_002: Treatment vs Baseline\n\n| K | Treatment (FT-DeBERTa+GRU) F1 | Baseline (Vanilla+GRU) F1 | TF-IDF+LR F1 |\n|---|---|---|---|\n| 1 | **1.0000** | 0.9620 | 1.0000 |\n| 2 | **1.0000** | 0.9870 | 1.0000 |\n| 3 | 1.0000 | 1.0000 | 1.0000 |\n| 5 | 1.0000 | 1.0000 | 1.0000 |\n| full | 1.0000 | 1.0000 | 1.0000 |\n\nTreatment 在所有 K 完美检测。Baseline 仅在 K=1,2 有轻微下降。\n\n### 3. Plan_003: Scrambled vs Proper Treatment\n\n| K | Proper Treatment F1 (plan_002) | Scrambled Treatment F1 (plan_003) | Baseline F1 |\n|---|---|---|---|\n| 1 | 1.0000 | 1.0000 | 0.9870 |\n| 2 | 1.0000 | 1.0000 | 0.9867 |\n| 3 | 1.0000 | 1.0000 | 0.9867 |\n| 5 | 1.0000 | 1.0000 | 1.0000 |\n| full | 1.0000 | 1.0000 | 1.0000 |\n\n**关键发现**: Scrambled labels 和 proper labels 产生相同的完美检测结果。TF-IDF+LR 也在所有 K 得到 F1=1.0。这表明当前数据集的 jailbreak/benign 分类任务过于简单——文本内容本身已提供完美的分离信号，persuasion strategy 信息对检测性能没有增量贡献。\n\n### 4. 最终磁盘状态\n**7.1 GB 可用**（远超 3 GB headroom 要求）\n\n### 产出文件\n- `results/plan_002_eval.json`\n- `results/plan_003_v2_eval.json`\n- `checkpoints/plan_002/gru/treatment/best.pt`\n- `checkpoints/plan_002/gru/baseline/best.pt`\n- `checkpoints/plan_003_v2/gru/treatment/best.pt`\n- `checkpoints/plan_003_v2/deberta_multitask/best/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-and-rerun.md"
+}

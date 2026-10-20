@@ -1,0 +1,10 @@
+% abstract.tex
+\begin{abstract}
+Detecting unseen multi-turn jailbreaks requires domain adaptation, but the form of adaptation matters.
+Multi-turn jailbreak attacks spread adversarial intent across benign-seeming turns, and existing defenses fail to generalize across attack families: Llama Guard~3, a widely deployed safety classifier, detects only 1.8\% of multi-turn jailbreaks in our evaluation.
+We isolate the factors behind cross-attack generalization on synthetic multi-turn data through controlled ablation: thirteen encoder configurations at three scales (125 to 355M parameters) decompose the contributions of domain exposure, classification supervision, label quality, and granularity on three out-of-distribution (OOD) attack families and two training compositions.
+On single-source synthetic data, continued pretraining closes roughly 60 percentage points of the OOD gap without labels. This effectiveness is condition-dependent: on mixed-LLM training data, unsupervised pretraining collapses while classification-based adaptation remains the strongest variant (DD OOD F1\,=\,0.818 vs.\ 0.291 without adaptation).
+Across three architectures (125--355M), the set of attacks requiring adaptation shrinks with scale, though architecture and pretraining differences prevent isolating scale as the sole factor.
+Classification supervision is associated with substantially lower prediction variance on synthetic evaluations (observed across 3 seeds), with limited sensitivity to label correctness, but this benefit reverses on human-authored data.
+These findings suggest classification DAPT provides robustness through optimization regularization, not semantic feature learning\footnote{Code and data are available at \url{https://anonymous.4open.science/r/persuasion_turn_jailbreak_detect-C207/}.}.
+\end{abstract}

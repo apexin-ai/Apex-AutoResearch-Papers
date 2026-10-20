@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "9acfdc144a7d2f203924",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp40 llama guard baseline",
+  "task_key": "worker_code_exp40-llama-guard-baseline_20260521T105949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp40-llama-guard-baseline_20260521T105949_result.json",
+    "occurrence": 1,
+    "bytes": 2401197,
+    "sha256": "2ce1cfb8df3406f865b344e3355d855ca5dfc825d787119bf8f52cd50fe6c6d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2401217,
+                "serialized_sha256": "96cdc2fa98bb686ae64aa84ce613a5af580dd4549726a92e634e56a8552264aa",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp40-llama-guard-baseline.md"
+}

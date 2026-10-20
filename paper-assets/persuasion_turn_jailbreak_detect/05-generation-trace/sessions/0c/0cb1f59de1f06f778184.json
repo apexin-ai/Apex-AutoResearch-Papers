@@ -1,0 +1,169 @@
+{
+  "schema_version": "1.0",
+  "id": "0cb1f59de1f06f778184",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "conversation",
+  "title": "paper writing abstract d019d020",
+  "task_key": "worker_paper_writing_abstract_d019d020_20260518T062839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_abstract_d019d020_20260518T062839.jsonl",
+    "occurrence": 1,
+    "bytes": 5505,
+    "sha256": "a728ae84024e952034ecc7eaa795e4f16654b68e2a486b8b9ef0022639915824"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T06:29:29.816513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_d019d020_20260518T062839",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/",
+              "description": "Check paper directory exists"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T06:29:29.817395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "abstract.tex\nconclusion.tex\nexperiments.tex\nintroduction.tex\nmethod.tex\nreferences.bib\nrelated_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_d019d020_20260518T062839",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T06:29:29.817705+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_d019d020_20260518T062839",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T06:29:29.817898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tMulti-turn jailbreak attacks distribute adversarial intent across a sequence of individually benign turns, and both per-turn safety filters and content-level reasoning fail to detect this distributed threat.\n3\tThe natural defense of encoding conversations with a pretrained language model and aggregating turn embeddings achieves near-perfect in-distribution detection but collapses on unseen attack types: a vanilla DeBERTa encoder trained on Crescendo conversations drops from F1 = 1.000 to 0.284 on out-of-distribution Deceptive Delight data.\n4\tUsing a large language model (LLM) as judge fares no better, with GPT-5.5 reaching only F1 = 0.191--0.449 on in-distribution detection.\n5\tWe introduce DisPeD (Discourse-level Persuasion Detection), a two-stage framework that fine-tunes DeBERTa-v3-base with a multi-task objective combining 9-class persuasion strategy classification, grounded in the Persuasion Attack Paradigm and Cialdini's influence principles, with binary jailbreak-intent classification.\n6\tTurn-level \\texttt{[CLS]} embeddings are aggregated via a bidirectional GRU for conversation-level detection.\n7\tThe persuasion objective teaches the encoder to attend to pragmatic features shared across attack families rather than surface patterns specific to a single attack type.\n8\tDisPeD achieves F1 = 1.000 on unseen Deceptive Delight attacks (+72 percentage points over vanilla DeBERTa).\n9\tAblation experiments show that scrambled strategy labels reduce out-of-distribution F1 by only 1 percentage point; fine-tuning on persuasion-related text, not label accuracy, bridges the generalization gap.\n10\tDisPeD also maintains zero degradation under adversarial paraphrasing and provides interpretable detection through strategy trajectory analysis.\n11\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_d019d020_20260518T062839",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T06:29:29.818070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_d019d020_20260518T062839",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex",
+              "content": "% abstract.tex — D019+D020 Reframe\n\\begin{abstract}\nMulti-turn jailbreak attacks against Large Language Models (LLMs) distribute adversarial intent across seemingly benign conversational turns and evade per-turn safety filters.\nStandard temporal classifiers fail to generalize: a vanilla DeBERTa encoder achieves only F1\\,=\\,0.28 on out-of-distribution (OOD) attack types unseen during training.\nWe design six controlled variants of a DeBERTa-based detection framework to systematically decompose what enables cross-attack generalization.\nOur central finding is that masked language modeling (MLM) continued pretraining on jailbreak conversation text, without any classification labels, achieves F1\\,=\\,1.00 on unseen attacks and matches the full supervised model.\nDomain-adaptive pretraining bridges the entire +72 percentage point OOD gap; classification supervision is non-essential, while misaligned supervision actively impedes generalization.\nScrambled-label and binary variants confirm that even arbitrary label assignments preserve generalization once domain exposure is present.\nThe persuasion taxonomy contributes interpretability rather than detection accuracy: distinct strategy trajectories emerge per attack type, and classification variants show zero degradation under input perturbation.\nThese results reframe multi-turn jailbreak detection as a domain adaptation problem rather than a classification design problem.\n\\end{abstract}\n"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T06:29:29.818265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_d019d020_20260518T062839",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T06:29:29.818437+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract written (168 words). Three key numbers (0.28, 1.00, +72pp) serve the central claim. All abbreviations defined inline. No dashes, no trailing -ing phrases, no banned words. The narrative arc: failure of vanilla approach → six-variant ablation → domain exposure as mechanism → taxonomy for interpretability, not accuracy → reframing the problem."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_d019d020_20260518T062839"
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-abstract-d019d020.md"
+}

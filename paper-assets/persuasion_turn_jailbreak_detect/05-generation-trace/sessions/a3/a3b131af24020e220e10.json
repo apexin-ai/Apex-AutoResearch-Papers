@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3b131af24020e220e10",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper p1 edits",
+  "task_key": "worker_paper_p1_edits_20260522T073205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p1_edits_20260522T073205_result.json",
+    "occurrence": 1,
+    "bytes": 2189,
+    "sha256": "bb3de7a7b0093f212dcaaf0c41e712b6a60cb23ffad8b7f40c48c911e2cbf545"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No undefined references. All modifications are complete and verified. Here's the summary:\n\n---\n\n### Modifications completed\n\n| # | Item | File | What changed |\n|---|------|------|-------------|\n| 4 | N2(d) DAPT bias | `conclusion.tex:19` | Added \"classification DAPT increases WildChat FPR from 48.1% (vanilla) to 68.1%...confirming adaptation amplifies benign sensitivity\" in Two-axis paragraph |\n| 5 | Q2 Task-structure | `conclusion.tex:16` | Added at end of Regularization mechanism: \"This advantage is condition-specific: classification DAPT outperforms MLM only under multi-turn synthetic evaluation; on single-turn human data (ToxicChat), MLM generalizes better\" |\n| 6 | W4 Cross-architecture | `experiments.tex:22,144,150,174,177` | Renamed \"Cross-Encoder Validation\" to \"Cross-Architecture Observation\"; added architecture confound acknowledgment; reframed RoBERTa-large as \"DAPT may be unnecessary or mildly harmful for strong pretrained encoders\" |\n| 7 | W5 Mixed-LLM caveat | `experiments.tex:189` | Reframed: \"ActorAttack remains challenging under mixed-LLM conditions (9-class F1=0.504±0.107...)\" |\n| 8 | W6 FITD disclaimer | `experiments.tex:63` | \"FITD serves as a near-ceiling baseline where all variants achieve F1≥0.990, providing limited discriminative power\" |\n| 9 | Q3 Limitations | `conclusion.tex:30` | Added: \"The 10-conversation benign adaptation result is validated only on WildChat (GPT-3.5 user conversations); whether it generalizes to other LLM assistants or enterprise chat systems is unevaluated\" |\n| 11 | VL1 Table font | `appendix.tex` | No change needed: Tables 7 & 8 already use `\\small` (larger than `\\footnotesize`) |\n\n### Space compression (to maintain 8-page limit)\n- Merged \"Variance reversal\" and \"Encoder capacity\" into single paragraph\n- Compressed Regularization mechanism, Two-axis generalization, and Conclusion paragraphs\n- Trimmed abstract by ~2 lines (removed verbose phrasings)\n- No data or claims deleted; all original content preserved in compressed form\n\n### Compilation verification\n- Conclusion: page 8\n- Limitations: page 9\n- No LaTeX errors, no undefined references"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-p1-edits.md"
+}

@@ -1,0 +1,51 @@
+{
+  "exp_id": "plan_006_cross_attack_clean",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T00:10:28.564Z",
+    "updated_at": "2026-05-18T02:11:23.809Z",
+    "hypothesis": "Persuasion-grounded DeBERTa fine-tuning (trained on Crescendo) produces transferable structural signals that generalize to unseen attack types (FITD/DD), outperforming vanilla DeBERTa baseline especially on structurally different attacks like Deceptive Delight",
+    "parent": "plan_002_clean_training",
+    "spec": {
+      "command": "python src/cross_attack_eval.py",
+      "server": "westd-33183",
+      "data_path": "fitd_all.jsonl + deceptive_delight_all.jsonl + plan_002 test benign",
+      "data_count": "160 jailbreak (80 FITD + 80 DD) + plan_002 test benign",
+      "model_name": "DeBERTa-v3-base (plan_002 fine-tuned) + BiGRU",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/plan_002/deberta_multitask/best/ + gru/treatment/best.pt + gru/baseline/best.pt",
+      "eval_data": "FITD 80 + DD 80 + plan_002 test benign"
+    },
+    "conclusion": "failed",
+    "metrics": {
+      "dd_treatment_full_f1": 1,
+      "dd_baseline_full_f1": 0.2845,
+      "dd_treatment_k1_f1": 1,
+      "dd_baseline_k1_f1": 0.5752,
+      "dd_treatment_k2_f1": 0.9904,
+      "dd_baseline_k2_f1": 0.4381,
+      "dd_treatment_k3_f1": 0.9904,
+      "dd_baseline_k3_f1": 0.3596,
+      "dd_treatment_k5_f1": 1,
+      "dd_baseline_k5_f1": 0.3105,
+      "fitd_treatment_full_f1": 1,
+      "fitd_baseline_full_f1": 1,
+      "fitd_treatment_k1_f1": 1,
+      "fitd_baseline_k1_f1": 0.9902,
+      "fitd_treatment_k2_f1": 1,
+      "fitd_baseline_k2_f1": 1,
+      "tfidf_dd_full_f1": 0.9439,
+      "tfidf_fitd_k1_f1": 1,
+      "max_dd_delta_pp": 71.55,
+      "pass_criteria": true
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "completed_at": "2026-05-18T02:11:23.809Z"
+  },
+  "timestamp": "2026-05-18T02:11:23.836515+00:00",
+  "trigger": "update_registry"
+}

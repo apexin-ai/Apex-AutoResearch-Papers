@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9a3996f43ca534c36fa",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16 wait merge train",
+  "task_key": "worker_code_exp16-wait-merge-train_20260519T194603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-wait-merge-train_20260519T194603_result.json",
+    "occurrence": 1,
+    "bytes": 96,
+    "sha256": "b74e6f5cc881c8ebaf4040ec04bface64e9d0b1659a50dc87f249488e93ef58c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Llama benign 当前 240/250，还差 10 条。已设置 2.5 分钟后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16-wait-merge-train.md"
+}

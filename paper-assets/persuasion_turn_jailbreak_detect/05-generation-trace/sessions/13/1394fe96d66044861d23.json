@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1394fe96d66044861d23",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "figure fig1 architecture v2",
+  "task_key": "worker_figure_fig1-architecture-v2_20260518T082453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig1-architecture-v2_20260518T082453_result.json",
+    "occurrence": 1,
+    "bytes": 442,
+    "sha256": "03929ffbbad051738b615d100dd2c9b0b81bcfd1fea770426f57f095e71a0e3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成完成。\n\n- **PDF**: 55.6 KB (`fig1_architecture.pdf`)\n- **PNG**: 146.9 KB (`fig1_architecture.png`)\n\n布局：Multi-turn Conversation → Extract user turns → Stage 1 (DeBERTa-v3-base + 7 training objectives 列表) → Frozen [CLS] embeddings → Stage 2 (BiGRU → Softmax) → Jailbreak/Benign。Stage 1 浅蓝背景，Stage 2 灰色背景，单条 pipeline 流程，7 variant 以紧凑列表呈现。\n\nDONE"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig1-architecture-v2.md"
+}

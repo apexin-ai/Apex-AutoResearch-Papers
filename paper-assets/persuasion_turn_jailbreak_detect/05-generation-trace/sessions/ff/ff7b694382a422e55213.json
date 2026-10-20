@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff7b694382a422e55213",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "diagnose exp44 multi llm mixed",
+  "task_key": "worker_diagnose_exp44_multi_llm_mixed_20260522T055445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp44_multi_llm_mixed_20260522T055445_result.json",
+    "occurrence": 1,
+    "bytes": 785,
+    "sha256": "21e73d8edcb84e5a66531af054b4df6124c36a6a0e540459c4194953c24c91f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**exp44 没有崩溃，是监控误报。** 进程 PID 31463 当前仍在正常运行。\n\n核心发现：\n- 3 个 seed 的训练**全部完成**，当前处于**评估阶段**（Seed 42 评估完毕，Seed 123 正在推理中）\n- Seed 42 评估结果极好：IID F1=1.0, WildChat FPR=0, 所有 OOD recall=1.0, 所有 Llama cross-LLM recall=1.0\n- 日志中**无任何错误**（无 Traceback、OOM、Killed）\n- GPU 状态正常（2.2GB / 97.8GB, 76% util），磁盘充足\n\n**误报原因**：脚本不使用 W&B（仅在完成后写 JSON），监控系统检测不到心跳，加上可能跟踪了已结束的 FITD generation 进程 PID 而非当前训练 PID。\n\n报告已保存到 `artifacts/exp44_multi_llm_mixed/diagnosis_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp44-multi-llm-mixed.md"
+}

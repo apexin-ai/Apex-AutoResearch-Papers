@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55ca253ac01ff11d746a",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp44 multi llm resume",
+  "task_key": "worker_code_exp44_multi_llm_resume_20260522T050323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp44_multi_llm_resume_20260522T050323_result.json",
+    "occurrence": 1,
+    "bytes": 142,
+    "sha256": "53548db39651c21d94485d7af33336bf7c8c2b2a138aaa24ff8b529b6333dce3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "FITD generation is at 38/50. The wrapper script will auto-start training once generation finishes. Checking back in 20 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp44-multi-llm-resume.md"
+}

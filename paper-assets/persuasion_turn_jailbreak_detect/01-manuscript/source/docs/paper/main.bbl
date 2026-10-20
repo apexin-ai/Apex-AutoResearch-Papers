@@ -1,0 +1,549 @@
+\begin{thebibliography}{73}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Albrethsen et~al.(2026)Albrethsen, Datta, Kumar, and
+  Rajasekar}]{deepcontext2026}
+Justin Albrethsen, Yash Datta, Kunal Kumar, and Sharath Rajasekar. 2026.
+\newblock \href {https://arxiv.org/abs/2602.16935} {Deepcontext: Stateful
+  real-time detection of multi-turn adversarial intent drift in llms}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Alobaid et~al.(2026)}]{alobaid2026echochamber}
+Ahmad Alobaid and 1 others. 2026.
+\newblock \href {https://arxiv.org/abs/2601.05742} {The echo chamber multi-turn
+  {LLM} jailbreak}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Andriushchenko et~al.(2025)Andriushchenko, Croce, and
+  Flammarion}]{andriushchenko2024adaptive}
+Maksym Andriushchenko, Francesco Croce, and Nicolas Flammarion. 2025.
+\newblock Jailbreaking leading safety-aligned llms with simple adaptive
+  attacks.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Austin(1962)}]{austin1962speechacts}
+J.~L. Austin. 1962.
+\newblock \emph{How to Do Things with Words}.
+\newblock Harvard University Press.
+
+\bibitem[{Beltagy et~al.(2019)Beltagy, Lo, and Cohan}]{beltagy2019scibert}
+Iz~Beltagy, Kyle Lo, and Arman Cohan. 2019.
+\newblock {SciBERT}: A pretrained language model for scientific text.
+\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, pages 3615--3620.
+
+\bibitem[{Bullwinkel et~al.(2025)Bullwinkel, Russinovich, Salem,
+  Zanella-Beguelin, Jones, Severi, Kim, Hines, Minnich, Zunger, and
+  Kumar}]{bullwinkel2025repeng}
+Blake Bullwinkel, Mark Russinovich, Ahmed Salem, Santiago Zanella-Beguelin,
+  Daniel Jones, Giorgio Severi, Eugenia Kim, Keegan Hines, Amanda Minnich,
+  Yonatan Zunger, and Ram Shankar~Siva Kumar. 2025.
+\newblock \href {https://arxiv.org/abs/2507.02956} {A representation
+  engineering perspective on the effectiveness of multi-turn jailbreaks}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Caruana(1997)}]{caruana1997multitask}
+Rich Caruana. 1997.
+\newblock Multitask learning.
+\newblock \emph{Machine Learning}, 28(1):41--75.
+
+\bibitem[{Chao et~al.(2024)Chao, Robey, Dobriban, Hassani, Pappas, and
+  Wong}]{chao2024jailbreakbench}
+Patrick Chao, Alexander Robey, Edgar Dobriban, Hamed Hassani, George~J. Pappas,
+  and Eric Wong. 2024.
+\newblock Jailbreakbench: An open robustness benchmark for jailbreaking large
+  language models.
+\newblock In \emph{Advances in Neural Information Processing Systems (Datasets
+  and Benchmarks Track)}.
+
+\bibitem[{Chao et~al.(2025)Chao, Robey, Dobriban, Hassani, Pappas, and
+  Wong}]{chao2023pair}
+Patrick Chao, Alexander Robey, Edgar Dobriban, Hamed Hassani, George~J. Pappas,
+  and Eric Wong. 2025.
+\newblock \href {https://arxiv.org/abs/2310.08419} {Jailbreaking black box
+  large language models in twenty queries}.
+\newblock In \emph{IEEE Conference on Secure and Trustworthy Machine Learning}.
+
+\bibitem[{Cialdini(2001)}]{cialdini2001influence}
+Robert~B. Cialdini. 2001.
+\newblock \emph{Influence: Science and Practice}, 4th edition.
+\newblock Allyn \& Bacon.
+
+\bibitem[{Conneau et~al.(2018)Conneau, Kruszewski, Lample, Barrault, and
+  Baroni}]{conneau2018probing}
+Alexis Conneau, German Kruszewski, Guillaume Lample, Lo\"{i}c Barrault, and
+  Marco Baroni. 2018.
+\newblock What you can cram into a single \$\&!\#* vector: Probing sentence
+  embeddings for linguistic properties.
+\newblock In \emph{Proceedings of the 56th Annual Meeting of the Association
+  for Computational Linguistics}, pages 2126--2136.
+
+\bibitem[{Da~San~Martino et~al.(2020)Da~San~Martino, Barr\'{o}n-Cede\~{n}o,
+  Wachsmuth, Petrov, and Nakov}]{dasanmartino2020semeval}
+Giovanni Da~San~Martino, Alberto Barr\'{o}n-Cede\~{n}o, Henning Wachsmuth,
+  Rostislav Petrov, and Preslav Nakov. 2020.
+\newblock {SemEval-2020 Task 11}: Detection of propaganda techniques in news
+  articles.
+\newblock In \emph{Proceedings of the Fourteenth Workshop on Semantic
+  Evaluation}, pages 1377--1414.
+
+\bibitem[{Da~San~Martino et~al.(2019)Da~San~Martino, Yu, Barr\'{o}n-Cede\~{n}o,
+  Petrov, and Nakov}]{dasanmartino2019fine}
+Giovanni Da~San~Martino, Seunghak Yu, Alberto Barr\'{o}n-Cede\~{n}o, Rostislav
+  Petrov, and Preslav Nakov. 2019.
+\newblock Fine-grained analysis of propaganda in news articles.
+\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
+  Natural Language Processing}, pages 5636--5646.
+
+\bibitem[{Derya and Sunar(2026)}]{derya2026revisitingjbshield}
+Kemal Derya and Berk Sunar. 2026.
+\newblock \href {https://arxiv.org/abs/2605.03095} {Revisiting {JBShield}:
+  Breaking and rebuilding representation-level jailbreak defenses}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Grattafiori et~al.(2024)Grattafiori, Dubey, Jauhri
+  et~al.}]{metallamaguard3_2024}
+Aaron Grattafiori, Abhimanyu Dubey, Abhinav Jauhri, and 1 others. 2024.
+\newblock \href {https://arxiv.org/abs/2407.21783} {The llama 3 herd of
+  models}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Gururangan et~al.(2020)Gururangan, Marasovi{\'c}, Swayamdipta, Lo,
+  Beltagy, Downey, and Smith}]{gururangan2020dontstop}
+Suchin Gururangan, Ana Marasovi{\'c}, Swabha Swayamdipta, Kyle Lo, Iz~Beltagy,
+  Doug Downey, and Noah~A. Smith. 2020.
+\newblock Don't stop pretraining: Adapt language models to domains and tasks.
+\newblock In \emph{Proceedings of the 58th Annual Meeting of the Association
+  for Computational Linguistics}, pages 8342--8360.
+
+\bibitem[{Gururangan et~al.(2018)Gururangan, Swayamdipta, Levy, Schwartz,
+  Bowman, and Smith}]{gururangan2018artifacts}
+Suchin Gururangan, Swabha Swayamdipta, Omer Levy, Roy Schwartz, Samuel Bowman,
+  and Noah~A. Smith. 2018.
+\newblock Annotation artifacts in natural language inference data.
+\newblock In \emph{Proceedings of the Conference of the North American Chapter
+  of the Association for Computational Linguistics}.
+
+\bibitem[{Hagendorff et~al.(2026)Hagendorff, Derner, and
+  Oliver}]{hagendorff2026reasoning}
+Thilo Hagendorff, Erik Derner, and Nuria Oliver. 2026.
+\newblock \href {https://doi.org/10.1038/s41467-026-69010-1} {Large reasoning
+  models are autonomous jailbreak agents}.
+\newblock \emph{Nature Communications}, 17:1435.
+
+\bibitem[{Han et~al.(2024)Han, Rao, Ettinger, Jiang, Lin, Lambert, Choi, and
+  Dziri}]{han2024wildguard}
+Seungju Han, Kavel Rao, Allyson Ettinger, Liwei Jiang, Bill~Yuchen Lin, Nathan
+  Lambert, Yejin Choi, and Nouha Dziri. 2024.
+\newblock Wildguard: Open one-stop moderation tools for safety risks,
+  jailbreaks, and refusals of llms.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{He et~al.(2023)He, Gao, and Chen}]{he2023debertav3}
+Pengcheng He, Jianfeng Gao, and Weizhu Chen. 2023.
+\newblock {DeBERTaV3}: Improving {DeBERTa} using {ELECTRA}-style pre-training
+  with gradient-disentangled embedding sharing.
+\newblock In \emph{International Conference on Learning Representations}.
+
+\bibitem[{Hewitt and Manning(2019)}]{hewitt2019structural}
+John Hewitt and Christopher~D. Manning. 2019.
+\newblock A structural probe for finding syntax in word representations.
+\newblock In \emph{Proceedings of the 2019 Conference of the North American
+  Chapter of the Association for Computational Linguistics}, pages 4129--4138.
+
+\bibitem[{Howard and Ruder(2018)}]{howard2018ulmfit}
+Jeremy Howard and Sebastian Ruder. 2018.
+\newblock Universal language model fine-tuning for text classification.
+\newblock In \emph{Proceedings of the 56th Annual Meeting of the Association
+  for Computational Linguistics}, pages 328--339.
+
+\bibitem[{Hua et~al.(2026)Hua, Li, Shi, Yu, and Zhang}]{hua2026rcs}
+Peichun Hua, Hao Li, Shanghao Shi, Zhiyuan Yu, and Ning Zhang. 2026.
+\newblock \href {https://arxiv.org/abs/2512.12069} {Rethinking jailbreak
+  detection of large vision language models with representational contrastive
+  scoring}.
+\newblock In \emph{Proceedings of the 64th Annual Meeting of the Association
+  for Computational Linguistics}.
+
+\bibitem[{Huang et~al.(2025)Huang, Huang, Yin, He, Zhen, Yuan, and
+  Shao}]{gguard2025}
+Zixuan Huang, Kecheng Huang, Lihao Yin, Bowei He, Huiling Zhen, Mingxuan Yuan,
+  and Zili Shao. 2025.
+\newblock \href {https://arxiv.org/abs/2507.07146} {Attention-aware gnn-based
+  input defense against multi-turn llm jailbreak}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Inan et~al.(2023)Inan, Upasani, Chi, Rungta, Iyer, Mao, Tontchev, Hu,
+  Fuller, Testuggine, and Khabsa}]{inan2023llamaguard}
+Hakan Inan, Kartikeya Upasani, Jianfeng Chi, Rashi Rungta, Krithika Iyer,
+  Yuning Mao, Michael Tontchev, Qing Hu, Brian Fuller, Davide Testuggine, and
+  Madian Khabsa. 2023.
+\newblock \href {https://arxiv.org/abs/2312.06674} {Llama guard: Llm-based
+  input-output safeguard for human-ai conversations}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Jiang et~al.(2025)Jiang, Aggarwal, Laud, Munir, Pujara, and
+  Mukherjee}]{jiang2024redqueen}
+Yifan Jiang, Kriti Aggarwal, Tanmay Laud, Kashif Munir, Jay Pujara, and
+  Subhabrata Mukherjee. 2025.
+\newblock Red queen: Exposing latent multi-turn risks in large language models.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2025}, pages 25554--25591.
+
+\bibitem[{Jin et~al.(2020)Jin, Jin, Zhou, and Szolovits}]{jin2020textfooler}
+Di~Jin, Zhijing Jin, Joey~Tianyi Zhou, and Peter Szolovits. 2020.
+\newblock Is {BERT} really robust? a strong baseline for natural language
+  attack on text classification and entailment.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~34, pages 8018--8025.
+
+\bibitem[{Kadali and Papalexakis(2025)}]{kadali2025internallayers}
+Sri Durga Sai~Sowmya Kadali and Evangelos~E. Papalexakis. 2025.
+\newblock \href {https://arxiv.org/abs/2510.06594} {Do internal layers of
+  {LLMs} reveal patterns for jailbreak detection?}
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Kadali and Papalexakis(2026)}]{kadali2026trace}
+Sri Durga Sai~Sowmya Kadali and Evangelos~E. Papalexakis. 2026.
+\newblock \href {https://arxiv.org/abs/2602.11495} {Jailbreaking leaves a
+  trace: Understanding and detecting jailbreak attacks from internal
+  representations of large language models}.
+\newblock \emph{arXiv preprint arXiv:2602.11495}.
+
+\bibitem[{K{\"o}pf et~al.(2023)K{\"o}pf, Kilcher, von R{\"u}tte, Anagnostidis,
+  Tam, Stevens, Barhoum, Nguyen, Stanley, Nagyfi
+  et~al.}]{kopf2023openassistant}
+Andreas K{\"o}pf, Yannic Kilcher, Dimitri von R{\"u}tte, Sotiris Anagnostidis,
+  Zhi-Rui Tam, Keith Stevens, Abdullah Barhoum, Duc Nguyen, Oliver Stanley,
+  Rich{\'a}rd Nagyfi, and 1 others. 2023.
+\newblock {OpenAssistant Conversations -- Democratizing Large Language Model
+  Alignment}.
+\newblock \emph{Advances in Neural Information Processing Systems}, 36.
+
+\bibitem[{Kornblith et~al.(2019)Kornblith, Norouzi, Lee, and
+  Hinton}]{kornblith2019cka}
+Simon Kornblith, Mohammad Norouzi, Honglak Lee, and Geoffrey Hinton. 2019.
+\newblock Similarity of neural network representations revisited.
+\newblock In \emph{International Conference on Machine Learning}, pages
+  3519--3529.
+
+\bibitem[{Kulkarni(2026)}]{kulkarni2026latentadversarial}
+Prashant Kulkarni. 2026.
+\newblock \href {https://arxiv.org/abs/2604.28129} {Latent adversarial
+  detection: Adaptive probing of {LLM} activations for multi-turn attack
+  detection}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Lee et~al.(2020)Lee, Yoon, Kim, Kim, Kim, So, and
+  Kang}]{lee2020biobert}
+Jinhyuk Lee, Wonjin Yoon, Sungdong Kim, Donghyeon Kim, Sunkyu Kim, Chan~Ho So,
+  and Jaewoo Kang. 2020.
+\newblock {BioBERT}: A pre-trained biomedical language representation model for
+  biomedical text mining.
+\newblock \emph{Bioinformatics}, 36(4):1234--1240.
+
+\bibitem[{Li et~al.(2020)Li, Ma, Guo, Xue, and Qiu}]{li2020bertattack}
+Linyang Li, Ruotian Ma, Qipeng Guo, Xiangyang Xue, and Xipeng Qiu. 2020.
+\newblock {BERT-ATTACK}: Adversarial attack against {BERT} using {BERT}.
+\newblock In \emph{Proceedings of the 2020 Conference on Empirical Methods in
+  Natural Language Processing}, pages 6193--6202.
+
+\bibitem[{Li et~al.(2024)Li, Han, Steneker, Primack, Goodside, Zhang, Wang,
+  Menghini, and Yue}]{li2024mhj}
+Nathaniel Li, Ziwen Han, Ian Steneker, Willow Primack, Riley Goodside, Hugh
+  Zhang, Zifan Wang, Cristina Menghini, and Summer Yue. 2024.
+\newblock \href {https://arxiv.org/abs/2408.15221} {Llm defenses are not robust
+  to multi-turn human jailbreaks yet}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Lin et~al.(2023)Lin, Wang, Tong, Wang, Guo, Wang, and
+  Shang}]{lin2023toxicchat}
+Zi~Lin, Zihan Wang, Yongqi Tong, Yangkun Wang, Yuxin Guo, Yujia Wang, and
+  Jingbo Shang. 2023.
+\newblock Toxicchat: Unveiling hidden challenges of toxicity detection in
+  real-world user-{AI} conversation.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2023}, pages 4694--4702.
+
+\bibitem[{Liu et~al.(2019{\natexlab{a}})Liu, He, Chen, and Gao}]{liu2019mtdnn}
+Xiaodong Liu, Pengcheng He, Weizhu Chen, and Jianfeng Gao. 2019{\natexlab{a}}.
+\newblock Multi-task deep neural networks for natural language understanding.
+\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
+  for Computational Linguistics}, pages 4487--4496.
+
+\bibitem[{Liu et~al.(2019{\natexlab{b}})Liu, Ott, Goyal, Du, Joshi, Chen, Levy,
+  Lewis, Zettlemoyer, and Stoyanov}]{liu2019roberta}
+Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer
+  Levy, Mike Lewis, Luke Zettlemoyer, and Veselin Stoyanov. 2019{\natexlab{b}}.
+\newblock Roberta: A robustly optimized bert pretraining approach.
+\newblock \emph{arXiv preprint arXiv:1907.11692}.
+
+\bibitem[{Lu et~al.(2025)Lu, Liu, Yu, Xu, and Shao}]{lu2025xboundary}
+Xiaoya Lu, Dongrui Liu, Yi~Yu, Luxin Xu, and Jing Shao. 2025.
+\newblock \href {https://arxiv.org/abs/2502.09990} {X-boundary: Establishing
+  exact safety boundary to shield {LLMs} from jailbreak attacks without
+  compromising usability}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2025}.
+
+\bibitem[{Maennel et~al.(2020)Maennel, Alabdulmohsin, Tolstikhin, Baldock,
+  Bousquet, Gelly, and Keysers}]{maennel2020random}
+Hartmut Maennel, Ibrahim~M. Alabdulmohsin, Ilya~O. Tolstikhin, Robert J.~N.
+  Baldock, Olivier Bousquet, Sylvain Gelly, and Daniel Keysers. 2020.
+\newblock What do neural networks learn when trained with random labels?
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Mann and Thompson(1988)}]{mann1988rst}
+William~C. Mann and Sandra~A. Thompson. 1988.
+\newblock Rhetorical structure theory: Toward a functional theory of text
+  organization.
+\newblock \emph{Text \& Talk}, 8(3):243--281.
+
+\bibitem[{Markov et~al.(2023)Markov, Zhang, Agarwal, Eloundou, Lee, Adler,
+  Jiang, and Weng}]{markov2023holistic}
+Todor Markov, Chong Zhang, Sandhini Agarwal, Tyna Eloundou, Teddy Lee, Steven
+  Adler, Angela Jiang, and Lilian Weng. 2023.
+\newblock A holistic approach to undesired content detection in the real world.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, volume~37, pages 15009--15018.
+
+\bibitem[{Mazeika et~al.(2024)Mazeika, Phan, Yin, Zou, Wang, Mu, Sakhaee, Li,
+  Basart, Li, Forsyth, and Hendrycks}]{mazeika2024harmbench}
+Mantas Mazeika, Long Phan, Xuwang Yin, Andy Zou, Zifan Wang, Norman Mu, Elham
+  Sakhaee, Nathaniel Li, Steven Basart, Bo~Li, David Forsyth, and Dan
+  Hendrycks. 2024.
+\newblock Harmbench: A standardized evaluation framework for automated red
+  teaming and robust refusal.
+\newblock In \emph{Proceedings of the 41st International Conference on Machine
+  Learning}.
+
+\bibitem[{Mehrotra et~al.(2024)Mehrotra, Zampetakis, Kassianik, Nelson,
+  Anderson, Singer, and Karbasi}]{mehrotra2024tap}
+Anay Mehrotra, Manolis Zampetakis, Paul Kassianik, Blaine Nelson, Hyrum
+  Anderson, Yaron Singer, and Amin Karbasi. 2024.
+\newblock Tree of attacks: Jailbreaking black-box llms automatically.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Nasr et~al.(2025)Nasr, Carlini, Sitawarin, Schulhoff, Hayes, Ilie,
+  Pluto, Song, Chaudhari, Shumailov, Thakurta, Xiao, Terzis, and
+  Tram{\`e}r}]{nasr2025attackermovessecond}
+Milad Nasr, Nicholas Carlini, Chawin Sitawarin, Sander~V. Schulhoff, Jamie
+  Hayes, Michael Ilie, Juliette Pluto, Shuang Song, Harsh Chaudhari, Ilia
+  Shumailov, Abhradeep Thakurta, Kai~Yuanqing Xiao, Andreas Terzis, and Florian
+  Tram{\`e}r. 2025.
+\newblock \href {https://arxiv.org/abs/2510.09023} {The attacker moves second:
+  Stronger adaptive attacks bypass defenses against llm jailbreaks and prompt
+  injections}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Niven and Kao(2019)}]{niven2019probing}
+Timothy Niven and Hung-Yu Kao. 2019.
+\newblock Probing neural network comprehension of natural language arguments.
+\newblock In \emph{Proceedings of the Association for Computational
+  Linguistics}.
+
+\bibitem[{{Palo Alto Networks Unit 42}(2024)}]{deceptivedelight2024}
+{Palo Alto Networks Unit 42}. 2024.
+\newblock Deceptive delight: Jailbreak llms through camouflage and distraction.
+\newblock Technical report, Palo Alto Networks.
+
+\bibitem[{Perez et~al.(2022)Perez, Huang, Song, Cai, Ring, Aslanides, Glaese,
+  McAleese, and Irving}]{perez2022redteaming}
+Ethan Perez, Saffron Huang, Francis Song, Trevor Cai, Roman Ring, John
+  Aslanides, Amelia Glaese, Nat McAleese, and Geoffrey Irving. 2022.
+\newblock Red teaming language models with language models.
+\newblock In \emph{Proceedings of the 2022 Conference on Empirical Methods in
+  Natural Language Processing}, pages 3419--3448.
+
+\bibitem[{Phang et~al.(2018)Phang, F{\'e}vry, and Bowman}]{phang2018stilts}
+Jason Phang, Thibault F{\'e}vry, and Samuel~R. Bowman. 2018.
+\newblock Sentence encoders on {STILTs}: Supplementary training on intermediate
+  labeled-data tasks.
+\newblock \emph{arXiv preprint arXiv:1811.01088}.
+
+\bibitem[{Prasad et~al.(2008)Prasad, Dinesh, Lee, Miltsakaki, Robaldo, Joshi,
+  and Webber}]{prasad2008pdtb}
+Rashmi Prasad, Nikhil Dinesh, Alan Lee, Eleni Miltsakaki, Livio Robaldo,
+  Aravind Joshi, and Bonnie Webber. 2008.
+\newblock The penn discourse treebank 2.0.
+\newblock In \emph{Proceedings of the International Conference on Language
+  Resources and Evaluation}.
+
+\bibitem[{Ren et~al.(2024)Ren, Li, Liu, Xie, Lu, Qiao, Sha, Yan, Ma, and
+  Shao}]{ren2024actorattack}
+Qibing Ren, Hao Li, Dongrui Liu, Zhanxu Xie, Xiaoya Lu, Yu~Qiao, Lei Sha,
+  Junchi Yan, Lizhuang Ma, and Jing Shao. 2024.
+\newblock \href {https://arxiv.org/abs/2410.10700} {Derail yourself: Multi-turn
+  llm jailbreak attack through self-discovered clues}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Robey et~al.(2025)Robey, Wong, Hassani, and
+  Pappas}]{robey2024smoothllm}
+Alexander Robey, Eric Wong, Hamed Hassani, and George~J. Pappas. 2025.
+\newblock Smoothllm: Defending large language models against jailbreaking
+  attacks.
+\newblock \emph{Transactions on Machine Learning Research}.
+
+\bibitem[{Russinovich et~al.(2025)Russinovich, Salem, and
+  Eldan}]{russinovich2024crescendo}
+Mark Russinovich, Ahmed Salem, and Ronen Eldan. 2025.
+\newblock \href {https://arxiv.org/abs/2404.01833} {Great, now write an article
+  about that: The crescendo multi-turn llm jailbreak attack}.
+\newblock In \emph{USENIX Security Symposium}.
+
+\bibitem[{Searle(1969)}]{searle1969speechacts}
+J.~R. Searle. 1969.
+\newblock \emph{Speech Acts: An Essay in the Philosophy of Language}.
+\newblock Cambridge University Press.
+
+\bibitem[{Sharma et~al.(2025)Sharma, Tong, Mu, Wei
+  et~al.}]{anthropic2025constitutional}
+Mrinank Sharma, Meg Tong, Jesse Mu, Jerry Wei, and 1 others. 2025.
+\newblock \href {https://arxiv.org/abs/2501.18837} {Constitutional classifiers:
+  Defending against universal jailbreaks across thousands of hours of red
+  teaming}.
+\newblock Technical report, Anthropic.
+
+\bibitem[{Shen et~al.(2024)Shen, Zhao, Dong, He, and
+  Zeng}]{shen2024jailbreakantidote}
+Guobin Shen, Dongcheng Zhao, Yiting Dong, Xiang He, and Yi~Zeng. 2024.
+\newblock \href {https://arxiv.org/abs/2410.02298} {Jailbreak antidote: Runtime
+  safety-utility balance via sparse representation adjustment in large language
+  models}.
+\newblock \emph{arXiv preprint}.
+\newblock ICLR 2025.
+
+\bibitem[{Song et~al.(2026)Song, Liu, Yang, Chen, Feng, Zhu, and
+  Gao}]{song2026multibreak}
+Jialin Song, Xiaodong Liu, Weiwei Yang, Wuyang Chen, Mingqian Feng, Xuekai Zhu,
+  and Jianfeng Gao. 2026.
+\newblock \href {https://arxiv.org/abs/2605.01687} {{MultiBreak}: A scalable
+  and diverse multi-turn jailbreak benchmark for stress-testing {LLM} safety}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Stolcke et~al.(2000)Stolcke, Ries, Coccaro, Shriberg, Bates,
+  Jurafsky, Taylor, Martin, Van Ess-Dykema, and
+  Meteer}]{stolcke2000dialogueact}
+Andreas Stolcke, Klaus Ries, Noah Coccaro, Elizabeth Shriberg, Rebecca Bates,
+  Daniel Jurafsky, Paul Taylor, Rachel Martin, Carol Van Ess-Dykema, and Marie
+  Meteer. 2000.
+\newblock Dialogue act modeling for automatic tagging and recognition of
+  conversational speech.
+\newblock \emph{Computational Linguistics}, 26(3):339--374.
+
+\bibitem[{Tong et~al.(2025)Tong, Zhao, Shen, He, Lin, Zhao, and
+  Zeng}]{tong2025biid}
+Haibo Tong, Dongcheng Zhao, Guobin Shen, Xiang He, Dachuan Lin, Feifei Zhao,
+  and Yi~Zeng. 2025.
+\newblock \href {https://arxiv.org/abs/2509.22732} {Bidirectional intention
+  inference enhances llms' defense against multi-turn jailbreak attacks}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Wang et~al.(2019)Wang, Shi, Kim, Oh, Yang, Zhang, and
+  Yu}]{wang2019persuasion}
+Xuewei Wang, Weiyan Shi, Richard Kim, Yoojung Oh, Sijia Yang, Jingwen Zhang,
+  and Zhou Yu. 2019.
+\newblock Persuasion for good: Towards a personalized persuasive dialogue
+  system for social good.
+\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
+  for Computational Linguistics}, pages 5635--5649.
+
+\bibitem[{Wang et~al.(2024)Wang, Xie, Wang, Wang, Gui, Ma, and Chen}]{fitd2024}
+Zhenhua Wang, Wei Xie, Baosheng Wang, Enze Wang, Zhiwen Gui, Shuoyoucheng Ma,
+  and Kai Chen. 2024.
+\newblock \href {https://arxiv.org/abs/2402.15690} {Foot in the door:
+  Understanding large language model jailbreaking via cognitive psychology}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Wei et~al.(2023)Wei, Haghtalab, and Steinhardt}]{wei2023jailbroken}
+Alexander Wei, Nika Haghtalab, and Jacob Steinhardt. 2023.
+\newblock Jailbroken: How does llm safety training fail?
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Wu et~al.(2025)Wu, Chen, Hou, and Yuan}]{wu2025safeint}
+Jiaqi Wu, Chen Chen, Chunyan Hou, and Xiaojie Yuan. 2025.
+\newblock \href {https://arxiv.org/abs/2502.15594} {Safeint: Shielding large
+  language models from jailbreak attacks via safety-aware representation
+  intervention}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Xie et~al.(2024)Xie, Fang, Pi, and Gong}]{xie2024gradsafe}
+Yueqi Xie, Minghong Fang, Renjie Pi, and Neil Gong. 2024.
+\newblock {GradSafe}: Detecting jailbreak prompts for {LLMs} via
+  safety-critical gradient analysis.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics}, pages 507--518.
+
+\bibitem[{Xu et~al.(2024)Xu, Jiang, Niu, Jia, Lin, and
+  Poovendran}]{xu2024safedecoding}
+Zhangchen Xu, Fengqing Jiang, Luyao Niu, Jinyuan Jia, Bill~Yuchen Lin, and
+  Radha Poovendran. 2024.
+\newblock {SafeDecoding}: Defending against jailbreak attacks via safety-aware
+  decoding.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics}.
+
+\bibitem[{Yan et~al.(2026)Yan, Lin, Zhu, and Wang}]{safedream2026}
+Bo~Yan, Weikai Lin, Yada Zhu, and Song Wang. 2026.
+\newblock \href {https://arxiv.org/abs/2604.16824} {Safedream: Safety world
+  model for proactive early jailbreak detection}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Yang et~al.(2025)Yang, Li, Yang, Zhang, Hui, Zheng
+  et~al.}]{qwen3_2025}
+An~Yang, Anfeng Li, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo~Zheng, and 1
+  others. 2025.
+\newblock \href {https://arxiv.org/abs/2505.09388} {Qwen3 technical report}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Yousefpour et~al.(2025)}]{yousefpour2025repbend}
+Ashkan Yousefpour and 1 others. 2025.
+\newblock Representation bending for large language model safety.
+\newblock In \emph{Proceedings of the 63rd Annual Meeting of the Association
+  for Computational Linguistics}.
+
+\bibitem[{Zeng et~al.(2024{\natexlab{a}})Zeng, Liu, Mullins, Peran, Fernandez,
+  Harkous, Narasimhan, Proud, Kumar, Radharapu, Sturman, and
+  Wahltinez}]{zeng2024shieldgemma}
+Wenjun Zeng, Yuchi Liu, Ryan Mullins, Ludovic Peran, Joe Fernandez, Hamza
+  Harkous, Karthik Narasimhan, Drew Proud, Piyush Kumar, Bhaktipriya Radharapu,
+  Olivia Sturman, and Oscar Wahltinez. 2024{\natexlab{a}}.
+\newblock \href {https://arxiv.org/abs/2407.21772} {Shieldgemma: Generative ai
+  content moderation based on gemma}.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[{Zeng et~al.(2024{\natexlab{b}})Zeng, Lin, Zhang, Yang, Jia, and
+  Shi}]{zeng2024pap}
+Yi~Zeng, Hongpeng Lin, Jingwen Zhang, Diyi Yang, Ruoxi Jia, and Weiyan Shi.
+  2024{\natexlab{b}}.
+\newblock How johnny can persuade llms to jailbreak them: Rethinking persuasion
+  to challenge ai safety by humanizing llms.
+\newblock In \emph{Proceedings of the Association for Computational
+  Linguistics}.
+
+\bibitem[{Zhang et~al.(2021)Zhang, Bengio, Hardt, Recht, and
+  Vinyals}]{zhang2021understanding}
+Chiyuan Zhang, Samy Bengio, Moritz Hardt, Benjamin Recht, and Oriol Vinyals.
+  2021.
+\newblock \href {https://doi.org/10.1145/3446776} {Understanding deep learning
+  (still) requires rethinking generalization}.
+\newblock \emph{Communications of the ACM}, 64(3):107--115.
+
+\bibitem[{Zhang et~al.(2025)Zhang, Zhai, Guo, Hu, Guo, Fang, Zhao, Shen, Wang,
+  and Wang}]{zhang2025jbshield}
+Shenyi Zhang, Yuchen Zhai, Keyan Guo, Hongxin Hu, Shengnan Guo, Zheng Fang,
+  Lingchen Zhao, Chao Shen, Cong Wang, and Qian Wang. 2025.
+\newblock \href {https://arxiv.org/abs/2502.07557} {{JBShield}: Defending large
+  language models from jailbreak attacks through activated concept analysis and
+  manipulation}.
+\newblock In \emph{USENIX Security Symposium}.
+
+\bibitem[{Zou et~al.(2024)Zou, Phan, Wang, Duenas, Lin, Andriushchenko, Wang,
+  Kolter, Fredrikson, and Hendrycks}]{zou2024circuitbreakers}
+Andy Zou, Long Phan, Justin Wang, Derek Duenas, Maxwell Lin, Maksym
+  Andriushchenko, Rowan Wang, Zico Kolter, Matt Fredrikson, and Dan Hendrycks.
+  2024.
+\newblock Improving alignment and robustness with circuit breakers.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\end{thebibliography}

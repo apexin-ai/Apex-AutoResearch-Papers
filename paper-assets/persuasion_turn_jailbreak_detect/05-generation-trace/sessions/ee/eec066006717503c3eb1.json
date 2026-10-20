@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eec066006717503c3eb1",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code subset baseline train",
+  "task_key": "worker_code_subset-baseline-train_20260517T080317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_subset-baseline-train_20260517T080317_result.json",
+    "occurrence": 1,
+    "bytes": 1163,
+    "sha256": "64a79086ed0143b2ae5fe61cb1ae0c0711e639eee900ffc4110425c6f686ba8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练完成。结果汇总：\n\n## Subset 数据统计\n\n| Split | persuasion-based | benign | Total |\n|-------|-----------------|--------|-------|\n| Train | 94 | 175 | 269 |\n| Val | 20 | 38 | 58 |\n| Test | 21 | 37 | 58 |\n\n## Test 结果\n\n| Metric | Value |\n|--------|-------|\n| **Test F1 (macro)** | **1.0000** |\n| **Test Accuracy** | **1.0000** |\n| Precision (benign) | 1.0000 |\n| Recall (benign) | 1.0000 |\n| Precision (jailbreak) | 1.0000 |\n| Recall (jailbreak) | 1.0000 |\n| **FPR@95TPR** | **0.0000** |\n\n## 与 Full-dataset Baseline 对比\n\n| | Full Dataset | Subset (persuasion+benign) |\n|---|---|---|\n| F1 (macro) | 0.987 | 1.000 |\n| Delta | — | +0.013 |\n\nSubset baseline 在 test set 上达到完美分类。这符合预期：去掉 cipher-based 样本后，persuasion-based 和 benign 之间的区分度更高（cipher-based 是 full dataset 中主要的混淆源）。test set 仅 58 条，完美分数需要注意小样本方差。\n\n产出文件：\n- `data/embeddings/subset_baseline_{train,val,test}.pt`\n- `checkpoints/subset_baseline_gru/best.pt`\n- `checkpoints/subset_baseline_gru/test_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-subset-baseline-train.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "54d8fa47070481186747",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "eval exp8 human jailbreak v3",
+  "task_key": "worker_eval_exp8-human-jailbreak-v3_20260518T164902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp8-human-jailbreak-v3_20260518T164902.log",
+    "occurrence": 1,
+    "bytes": 871576,
+    "sha256": "43c9e8c71b0db220d483c9d56f20ba52026371f80f6c750ace6cca3b15c5163e"
+  },
+  "statistics": {
+    "messages": 297,
+    "user_turns": 1,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 30,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 100,
+      "user": 1,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "54d8fa47070481186747-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 290,
+      "chunks": [
+        {
+          "path": "54d8fa47070481186747-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "54d8fa47070481186747-part-0002.json",
+          "message_count": 117
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-exp8-human-jailbreak-v3.md"
+}

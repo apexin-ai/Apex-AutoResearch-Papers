@@ -1,0 +1,32 @@
+paper_key: "How Do LLMs Persuade? Linear Probes Can Uncover Persuasion Dynamics in Multi-Turn Conversations"
+title: "How Do LLMs Persuade? Linear Probes Can Uncover Persuasion Dynamics in Multi-Turn Conversations"
+venue: "arXiv 2025"
+full_text_available: false
+analysis_level: "abstract_only"
+
+research:
+  baselines:
+    - prompting-based persuasion detection
+  metrics:
+    - {name: "probe accuracy (persuasion success prediction)", direction: "higher_better"}
+    - {name: "probe accuracy (personality prediction)", direction: "higher_better"}
+    - {name: "probe accuracy (strategy identification)", direction: "higher_better"}
+    - {name: "inference speed vs prompting", direction: "higher_better"}
+  datasets:
+    - {name: "multi-turn persuasion dialogues", size: "unknown"}
+  ablation_dimensions:
+    - persuasion success prediction
+    - persuadee personality prediction
+    - persuasion strategy identification
+    - linear probes vs prompting-based approaches
+    - critical conversation moments
+  training_recipe: {info_available: false}
+  method_family: "linear probing / representation analysis for persuasion"
+
+positioning:
+  core_claim: "Simple linear probes on LLM representations can identify persuasion dynamics (success, personality, strategy) in multi-turn conversations, matching or exceeding prompting-based approaches while being faster."
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

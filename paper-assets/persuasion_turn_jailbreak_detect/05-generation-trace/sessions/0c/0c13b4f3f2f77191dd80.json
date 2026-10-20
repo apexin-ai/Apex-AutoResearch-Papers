@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "0c13b4f3f2f77191dd80",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train exp2 actorattack ood",
+  "task_key": "worker_train_exp2-actorattack-ood_20260518T104314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_exp2-actorattack-ood_20260518T104314_result.json",
+    "occurrence": 1,
+    "bytes": 2426393,
+    "sha256": "24277be98fcf78b0a2640e79a6070731eecec75027cca30f9a7ab1f39265c21f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2426413,
+                "serialized_sha256": "4f7db67716718bd2a6c20a67d298d12d19de6058dfc10781c8e5552e292f05ca",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-exp2-actorattack-ood.md"
+}

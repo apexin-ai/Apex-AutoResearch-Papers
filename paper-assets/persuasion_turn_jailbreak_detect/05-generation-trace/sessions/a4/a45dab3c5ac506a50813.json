@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a45dab3c5ac506a50813",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "fix fitd dd strategy shift",
+  "task_key": "worker_fix_fitd-dd-strategy-shift_20260517T205447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_fitd-dd-strategy-shift_20260517T205447_result.json",
+    "occurrence": 1,
+    "bytes": 1519,
+    "sha256": "0fc3cee1943b092d3bf5bfd69bdf1d513b1e604fb01dc63a2fec6484454d7635"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n### 1. 修复前后 intended_strategy 值域对比\n\n| 文件 | 修复前 | 修复后 | 操作 |\n|------|--------|--------|------|\n| fitd_all.jsonl | {1, 2, 4, 6} | {0, 1, 3, 5} | -1 |\n| deceptive_delight_all.jsonl | {1, 3, 4, 5, 6, 7} | {0, 2, 3, 4, 5, 6} | -1 |\n| crescendo_all.jsonl | {0, 1, 2, 3, 4, 5, 6, 7} | 未修改 | 已是 0-based |\n\n### 2. 转移矩阵摘要\n\n**Crescendo** (250 convs, 1818 transitions, strategies: none/rapport_building/authority_appeal/emotional_manipulation/logical_reframing/role_assignment/gradual_escalation/obfuscation)\n- role_assignment → role_assignment: 545 (自循环最强)\n- obfuscation → obfuscation: 173\n- emotional_manipulation → role_assignment: 95\n\n**FITD** (80 convs, 541 transitions, strategies: none/rapport_building/emotional_manipulation/role_assignment)\n- role_assignment → role_assignment: 161\n- none → role_assignment: 80\n- rapport_building → emotional_manipulation: 80\n\n**Deceptive Delight** (80 convs, 565 transitions, strategies: none/authority_appeal/emotional_manipulation/logical_reframing/role_assignment/gradual_escalation)\n- emotional_manipulation → role_assignment: 129\n- none → gradual_escalation: 80\n- gradual_escalation → emotional_manipulation: 80\n\n### 3. 编码一致性确认\n\n三个文件现在均为 **0-based 编码**。`merge_and_split.py` 的 +1 逻辑将作为唯一的 shift 入口，统一将所有策略映射到 1-based 供下游使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-fitd-dd-strategy-shift.md"
+}

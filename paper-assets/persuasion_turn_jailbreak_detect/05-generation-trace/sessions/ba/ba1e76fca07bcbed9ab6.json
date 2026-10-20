@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba1e76fca07bcbed9ab6",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval vanilla multiseed dd ood",
+  "task_key": "worker_eval_vanilla-multiseed-dd-ood_20260518T110133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_vanilla-multiseed-dd-ood_20260518T110133_result.json",
+    "occurrence": 1,
+    "bytes": 1495,
+    "sha256": "56b1558b84209d9d1a4b769abb974dabe0e84a790849f9f0c63a5111ef4676ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary:\n\n## Part A: Vanilla DeBERTa DD OOD (3 seeds)\n\n| K | Seed42 | Seed123 | Seed456 | Mean±Std |\n|---|--------|---------|---------|----------|\n| k1 | 0.575 | 0.658 | 0.652 | **0.628±0.038** |\n| k2 | 0.438 | 0.530 | 0.469 | **0.479±0.038** |\n| k3 | 0.359 | 0.424 | 0.383 | **0.389±0.027** |\n| k5 | 0.311 | 0.383 | 0.360 | **0.351±0.030** |\n| full | 0.285 | 0.305 | 0.348 | **0.312±0.026** |\n\nSeed 42 was the worst of the three. Multi-seed mean is slightly higher than the single-seed estimate.\n\n## Part B: Centered CKA Fix\n\n**Last-layer CLS (centered vs uncentered):**\n\n| Pair | Split | Centered | Uncentered |\n|------|-------|----------|------------|\n| vanilla vs MLM | IID | **0.442** | 1.000 |\n| vanilla vs 9class | IID | **0.393** | 0.421 |\n| MLM vs 9class | IID | **0.586** | 0.422 |\n| vanilla vs MLM | DD OOD | **0.797** | 1.000 |\n| vanilla vs 9class | DD OOD | **0.649** | 0.523 |\n| MLM vs 9class | DD OOD | **0.773** | 0.523 |\n\nThe vanilla\\_vs\\_MLM CKA=1.0 was indeed a centering bug. After centering: 0.44 (IID), 0.80 (DD OOD). MLM does change the representation space meaningfully. Layer-wise CKA shows divergence starts around layer 6 and accelerates in layers 11-12.\n\nAll results saved to:\n- Server: `results/vanilla_multiseed_dd_ood.json`, `results/centered_cka.json`, `results/vanilla_multiseed_dd_ood_combined.json`\n- Local artifact: `artifacts/vanilla_multiseed_dd_ood.json` (registered as `art_20260518_c8bb60`)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-vanilla-multiseed-dd-ood.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12beef5f884a49d7d4d9",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval plan013 dd crossattack",
+  "task_key": "worker_eval_plan013-dd-crossattack_20260518T011543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan013-dd-crossattack_20260518T011543_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "79c0086791de8a63dfc7ce800abdc20945d06c3e3edf362134c9898e1140c395"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。结果：\n\n## Plan 013 Binary Model DD Cross-Attack Results\n\n| K | Binary (plan_013) | 9-class (plan_006) | Scrambled | Baseline |\n|---|---|---|---|---|\n| full | 0.9904 | 1.0000 | 0.9809 | 0.2845 |\n| 1 | 0.9809 | 1.0000 | 0.9904 | 0.5752 |\n| 2 | 0.9809 | 0.9904 | 0.9350 | 0.4381 |\n| 3 | 0.9715 | 0.9904 | 0.9350 | 0.3596 |\n| 5 | 1.0000 | 1.0000 | 0.9904 | 0.3105 |\n\n**结论**：\n- Binary model (plan_013) 在 DD 上 F1 = 0.97-1.0，远超 baseline (0.28-0.58)\n- 与 9-class treatment 相比仅有微小差距（~0.01-0.02 lower at K=1-3），K=5 时完美\n- Binary 在 K=2,3 时略优于 Scrambled（0.98 vs 0.935）\n- Binary collapse 几乎不损失泛化能力，cross-attack 性能依然很强\n\n结果已保存到 `results/plan_013_dd_crossattack_eval.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan013-dd-crossattack.md"
+}

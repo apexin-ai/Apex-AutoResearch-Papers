@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abf3a906a99aa9c595a5",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16 mlm toxicchat balanced eval",
+  "task_key": "worker_code_exp16-mlm-toxicchat-balanced-eval_20260520T012933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-mlm-toxicchat-balanced-eval_20260520T012933_result.json",
+    "occurrence": 1,
+    "bytes": 296,
+    "sha256": "1f187b4847bb760c4f89c8869fc277df919e4e951bea9b9b98d7d1fd11b33383"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。参考：vanilla 在同数据上 mean=0.3555，9class mean=0.5497，MLM 结果与这个趋势一致（低于 vanilla）。\n\n```\nMLM on toxicchat_eval.jsonl (408, balanced):\n  seed42:  0.2344\n  seed123: 0.2037\n  seed456: 0.3289\n  mean±std: 0.2557±0.0533\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16-mlm-toxicchat-balanced-eval.md"
+}

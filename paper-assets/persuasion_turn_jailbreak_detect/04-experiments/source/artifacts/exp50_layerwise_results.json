@@ -1,0 +1,229 @@
+{
+  "experiment": "exp50_layerwise_representation",
+  "data": {
+    "iid_test": 76,
+    "dd_ood": 80,
+    "aa_ood": 80
+  },
+  "total_samples": 236,
+  "n_jailbreak": 198,
+  "n_benign": 38,
+  "variants": {
+    "vanilla": {
+      "layer_0": {
+        "pr": 1.0,
+        "fisher": 0.0
+      },
+      "layer_1": {
+        "pr": 1.1084,
+        "fisher": 0.433389
+      },
+      "layer_2": {
+        "pr": 4.9974,
+        "fisher": 0.779465
+      },
+      "layer_3": {
+        "pr": 3.579,
+        "fisher": 0.462009
+      },
+      "layer_4": {
+        "pr": 3.2614,
+        "fisher": 0.290552
+      },
+      "layer_5": {
+        "pr": 9.8665,
+        "fisher": 0.522613
+      },
+      "layer_6": {
+        "pr": 3.7597,
+        "fisher": 1.519931
+      },
+      "layer_7": {
+        "pr": 7.4087,
+        "fisher": 1.077261
+      },
+      "layer_8": {
+        "pr": 3.8496,
+        "fisher": 1.469025
+      },
+      "layer_9": {
+        "pr": 6.6844,
+        "fisher": 1.041267
+      },
+      "layer_10": {
+        "pr": 9.6962,
+        "fisher": 0.728622
+      },
+      "layer_11": {
+        "pr": 1.5035,
+        "fisher": 2.276958
+      },
+      "layer_12": {
+        "pr": 1.364,
+        "fisher": 2.832892
+      }
+    },
+    "9-class": {
+      "layer_0": {
+        "pr": 1.0,
+        "fisher": 0.0
+      },
+      "layer_1": {
+        "pr": 1.1135,
+        "fisher": 0.55429
+      },
+      "layer_2": {
+        "pr": 5.7379,
+        "fisher": 0.844433
+      },
+      "layer_3": {
+        "pr": 3.5269,
+        "fisher": 0.47291
+      },
+      "layer_4": {
+        "pr": 3.2125,
+        "fisher": 0.345064
+      },
+      "layer_5": {
+        "pr": 9.0045,
+        "fisher": 0.709956
+      },
+      "layer_6": {
+        "pr": 3.9292,
+        "fisher": 2.049529
+      },
+      "layer_7": {
+        "pr": 6.5689,
+        "fisher": 1.458892
+      },
+      "layer_8": {
+        "pr": 3.3565,
+        "fisher": 3.195037
+      },
+      "layer_9": {
+        "pr": 2.8757,
+        "fisher": 4.034809
+      },
+      "layer_10": {
+        "pr": 1.4723,
+        "fisher": 10.918251
+      },
+      "layer_11": {
+        "pr": 1.78,
+        "fisher": 9.096382
+      },
+      "layer_12": {
+        "pr": 2.0199,
+        "fisher": 6.528426
+      }
+    },
+    "scrambled": {
+      "layer_0": {
+        "pr": 1.0,
+        "fisher": 0.0
+      },
+      "layer_1": {
+        "pr": 1.106,
+        "fisher": 0.495765
+      },
+      "layer_2": {
+        "pr": 5.3334,
+        "fisher": 0.811556
+      },
+      "layer_3": {
+        "pr": 4.1884,
+        "fisher": 0.495487
+      },
+      "layer_4": {
+        "pr": 3.3153,
+        "fisher": 0.330212
+      },
+      "layer_5": {
+        "pr": 9.4031,
+        "fisher": 0.750365
+      },
+      "layer_6": {
+        "pr": 4.3439,
+        "fisher": 1.698032
+      },
+      "layer_7": {
+        "pr": 7.3615,
+        "fisher": 1.267195
+      },
+      "layer_8": {
+        "pr": 4.1212,
+        "fisher": 2.495361
+      },
+      "layer_9": {
+        "pr": 2.7925,
+        "fisher": 3.755209
+      },
+      "layer_10": {
+        "pr": 1.871,
+        "fisher": 5.926178
+      },
+      "layer_11": {
+        "pr": 1.7374,
+        "fisher": 7.369079
+      },
+      "layer_12": {
+        "pr": 1.4726,
+        "fisher": 7.908287
+      }
+    },
+    "JB-MLM": {
+      "layer_0": {
+        "pr": 1.0,
+        "fisher": 1.244201
+      },
+      "layer_1": {
+        "pr": 1.1038,
+        "fisher": 0.454859
+      },
+      "layer_2": {
+        "pr": 4.46,
+        "fisher": 0.847212
+      },
+      "layer_3": {
+        "pr": 3.6473,
+        "fisher": 0.456666
+      },
+      "layer_4": {
+        "pr": 2.8913,
+        "fisher": 0.301501
+      },
+      "layer_5": {
+        "pr": 8.9694,
+        "fisher": 0.528978
+      },
+      "layer_6": {
+        "pr": 3.66,
+        "fisher": 1.526438
+      },
+      "layer_7": {
+        "pr": 6.79,
+        "fisher": 1.107834
+      },
+      "layer_8": {
+        "pr": 3.519,
+        "fisher": 1.404712
+      },
+      "layer_9": {
+        "pr": 7.0917,
+        "fisher": 1.072353
+      },
+      "layer_10": {
+        "pr": 8.9474,
+        "fisher": 0.931828
+      },
+      "layer_11": {
+        "pr": 1.3515,
+        "fisher": 3.329456
+      },
+      "layer_12": {
+        "pr": 1.6727,
+        "fisher": 2.613423
+      }
+    }
+  }
+}

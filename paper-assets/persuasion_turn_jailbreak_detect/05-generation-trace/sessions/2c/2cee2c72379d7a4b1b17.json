@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cee2c72379d7a4b1b17",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code baseline embeddings gru",
+  "task_key": "worker_code_baseline-embeddings-gru_20260517T074816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_baseline-embeddings-gru_20260517T074816_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "cbb1dec18195c9e26be4c8e8f7fe3e940ede99e478e4f2d02d8dda4454f212d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both steps completed successfully.\n\n**Results:**\n\n| Metric | Value |\n|--------|-------|\n| Test F1 | 0.9870 |\n| Test Accuracy | 0.9868 |\n| FPR@95TPR | 0.0000 |\n| Test Loss | 0.0954 |\n| Best Val F1 | 0.9730 (epoch 15) |\n\nThe baseline GRU achieves very strong performance. Training converged well: loss dropped from 0.70 to 0.03 over 20 epochs, with best validation F1 of 0.973 at epoch 15.\n\nOutputs on server:\n- Embeddings: `/root/persuasion_turn_jailbreak_detect/data/embeddings/baseline_{train,val,test}.pt`\n- Best model: `/root/persuasion_turn_jailbreak_detect/checkpoints/baseline_gru/best.pt`\n- Results JSON: `/root/persuasion_turn_jailbreak_detect/checkpoints/baseline_gru/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-baseline-embeddings-gru.md"
+}

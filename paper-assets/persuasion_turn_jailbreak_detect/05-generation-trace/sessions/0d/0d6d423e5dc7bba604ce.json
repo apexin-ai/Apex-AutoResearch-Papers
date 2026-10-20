@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d6d423e5dc7bba604ce",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp13 eval protocol verify",
+  "task_key": "worker_code_exp13-eval-protocol-verify_20260520T122633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp13-eval-protocol-verify_20260520T122633_result.json",
+    "occurrence": 1,
+    "bytes": 1100,
+    "sha256": "51861f5b65d4e7afb5484c0ce55eb3ef06484dc007aa0341a205e6320f309075"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论明确：\n\n## exp13 评估协议验证结果\n\n**评估代码无 bug，协议正确。**\n\n关键证据 — `scripts/meanpool_multiseed.py` 第 54-57 行的 `load_ood_eval_set` 函数：\n\n```python\ndef load_ood_eval_set(ood_path, test_path):\n    ood_convs = load_conversations(ood_path)\n    test_convs = load_conversations(test_path)\n    benign_test = [c for c in test_convs if c[\"label\"] == 0]\n    return ood_convs + benign_test\n```\n\n`main()` 中调用：\n```python\ndd_ood_convs = load_ood_eval_set(DD_OOD_DATA, TEST_DATA)\naa_convs = load_ood_eval_set(AA_DATA, TEST_DATA)\n```\n\n### 评估集组成\n\n| 评估集 | Jailbreak | Benign | Total |\n|--------|-----------|--------|-------|\n| DD OOD | 80 (deceptive_delight_all.jsonl) | 38 (test.jsonl benign) | **118** |\n| AA OOD | 80 (actorattack_all.jsonl) | 38 (test.jsonl benign) | **118** |\n\n1. **DD OOD**: 80 jailbreak + 38 benign = 118 total\n2. **AA OOD**: 80 jailbreak + 38 benign = 118 total\n3. **伪影**: 否 — 评估集包含两类样本，macro F1 有意义\n4. **已报告 F1 无需修正**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp13-eval-protocol-verify.md"
+}

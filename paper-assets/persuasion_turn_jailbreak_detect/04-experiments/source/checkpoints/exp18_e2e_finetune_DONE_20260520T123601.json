@@ -1,0 +1,64 @@
+{
+  "exp_id": "exp18_e2e_finetune",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:24:17.917Z",
+    "updated_at": "2026-05-20T12:36:01.458Z",
+    "hypothesis": "Unfreezing DeBERTa-v3-base encoder for end-to-end fine-tuning (Stage 1 DAPT + Stage 2 GRU joint training) will produce comparable or better OOD F1 vs frozen probing, quantifying the performance gap of the frozen approach and validating probing methodology",
+    "server": "westd-33183",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-33183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T12:25:18.715Z"
+    },
+    "spec": {
+      "command": "python scripts/exp18_e2e_finetune.py --seed {42,123,456}",
+      "server": "westd-33183",
+      "gpu": "cuda:0",
+      "pid": "26113",
+      "log_path": "results/exp18_e2e_results.json",
+      "submitted_at": "2026-05-20T12:32:22.610Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/plan_002_splits/ (train/val/test)",
+      "data_count": 500,
+      "model_name": "microsoft/deberta-v3-base (9-class DAPT, unfrozen)",
+      "seed": "42,123,456",
+      "checkpoint_path": "checkpoints/exp18_e2e_seed{42,123,456}/best.pt",
+      "wall_clock_seconds": 218.8,
+      "gpu_hours": 0.06
+    },
+    "conclusion": "success",
+    "metrics": {
+      "e2e_mean": {
+        "iid": 1,
+        "iid_std": 0,
+        "dd_ood": 1,
+        "dd_ood_std": 0,
+        "aa_ood": 0.997,
+        "aa_ood_std": 0.005
+      },
+      "frozen_probing_ref": {
+        "iid": 1,
+        "dd_ood": 0.994,
+        "aa_ood": 0.939
+      },
+      "delta": {
+        "iid": 0,
+        "dd_ood": 0.006,
+        "aa_ood": 0.058
+      },
+      "note": "E2E fine-tuning improves AA OOD by +5.8pp (0.939→0.997) and reduces variance (0.047→0.005). Frozen probing validated as competitive methodology."
+    },
+    "completed_at": "2026-05-20T12:36:01.458Z"
+  },
+  "timestamp": "2026-05-20T12:36:01.598368+00:00",
+  "trigger": "update_registry"
+}

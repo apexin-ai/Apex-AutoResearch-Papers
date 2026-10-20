@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3549d42dbe5195841d85",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16 llama only mlm",
+  "task_key": "worker_code_exp16-llama-only-mlm_20260520T000909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-llama-only-mlm_20260520T000909_result.json",
+    "occurrence": 1,
+    "bytes": 626,
+    "sha256": "536fdb2b612a2267f8d20d0ee5c6f171eb719b9e00c668509ba8697f1dfc78a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已在 GPU 2 上正常运行。\n\n**汇报**:\n- **Llama 数据**: 251 jailbreak + 250 benign = 501 条对话\n- **Splits**: train 350 (jb=175, bn=175) / val 74 (jb=37, bn=37) / test 77 (jb=39, bn=38)\n- **训练脚本**: `scripts/exp16_llama_only_mlm.sh`，Stage 1 MLM DAPT → Stage 2 GRU，seed 42，CUDA_VISIBLE_DEVICES=2\n- **tmux session**: `exp16_llama_mlm`\n- **GPU 2 状态**: 99% utilization, 20613 MiB 已用，MLM Stage 1 进行中 (Epoch 1, step 100/173, loss 从 11.66 降到 9.36)\n- **Checkpoint 输出**: `checkpoints/exp16_llama_only_mlm/`\n- **日志**: `logs/exp16_llama_only_mlm.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16-llama-only-mlm.md"
+}

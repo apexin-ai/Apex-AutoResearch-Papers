@@ -1,0 +1,16 @@
+{
+  "exp_id": "cross_attack_baseline",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T21:15:33.333Z",
+    "updated_at": "2026-05-17T21:15:38.259Z",
+    "hypothesis": "Persuasion-grounded DeBERTa embeddings (trained on Crescendo) generalize to unseen attack types (FITD/DD) for early detection, outperforming vanilla DeBERTa baseline especially at low K",
+    "parent": "phase_b_full"
+  },
+  "timestamp": "2026-05-17T21:15:38.291286+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1 @@
+DD OOD F1 (3-seed mean±std): k=1: 0.591±0.132, k=2: 0.593±0.166, k=3: 0.568±0.167, k=5: 0.573±0.206, full: 0.541±0.207. IID F1: k=1: 0.811±0.062, full: 0.974±0.022. Seeds: 42, 123, 456. Full data at westd-33183:/root/persuasion_turn_jailbreak_detect/results/plan_016v2_topic_3seed_summary.json

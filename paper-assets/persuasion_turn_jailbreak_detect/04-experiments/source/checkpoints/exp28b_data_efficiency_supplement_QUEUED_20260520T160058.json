@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp28b_data_efficiency_supplement",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:40:53.186Z",
+    "updated_at": "2026-05-20T16:00:58.262Z",
+    "hypothesis": "9-class DAPT maintains robust OOD performance across different random seeds (model initialization), and vanilla DeBERTa shows poor OOD generalization even at smaller training sizes (N=50, N=250), confirming that the data efficiency advantage of 9-class DAPT is not an artifact of a single seed.",
+    "parent": "exp28_data_efficiency"
+  },
+  "timestamp": "2026-05-20T16:00:58.450138+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp11_tost_equivalence",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:55:11.384Z",
+    "updated_at": "2026-05-18T20:55:19.986Z",
+    "hypothesis": "Classification-supervised DeBERTa variants (9-class, scrambled, binary) are statistically equivalent on DD OOD (within Δ=5pp margin), formally proving that persuasion label content does not matter — any classification structure on domain text produces equivalent cross-attack generalization.",
+    "parent": "exp9_bootstrap_ci",
+    "spec": {
+      "command": "python scripts/tost_equivalence.py",
+      "server": "westd-33183",
+      "data_path": "results/exp9_bootstrap_ci.json (per-seed predictions)",
+      "data_count": 236,
+      "model_name": "DeBERTa-v3-base variants",
+      "seed": "42,123,456",
+      "checkpoint_path": "N/A (analysis only)",
+      "log_path": "results/tost_equivalence.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T20:55:20.133830+00:00",
+  "trigger": "update_registry"
+}

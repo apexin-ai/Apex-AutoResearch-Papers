@@ -1,0 +1,7 @@
+See remote: /root/persuasion_turn_jailbreak_detect/results/plan_012_gpt55_judge.json
+
+Summary:
+- gpt55_k2_f1: 0.1905 (precision=1.0, recall=0.1053, unparseable=23)
+- gpt55_k3_f1: 0.2727 (precision=1.0, recall=0.1579, unparseable=23)
+- gpt55_k5_f1: 0.4490 (precision=1.0, recall=0.2895, unparseable=28)
+- gpt55_full_f1: 0.3830 (precision=1.0, recall=0.2368, unparseable=36)

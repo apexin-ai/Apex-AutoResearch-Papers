@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c40ba1eb8a3614e42e60",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16 fix gpu0",
+  "task_key": "worker_code_exp16-fix-gpu0_20260519T202759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-fix-gpu0_20260519T202759_result.json",
+    "occurrence": 1,
+    "bytes": 774,
+    "sha256": "b58d8aafe2044a224caffab84974d84ca3727706eacf85083b4699c7c39f7ec2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并在运行。\n\n**汇报**：\n\n| 项目 | 状态 |\n|------|------|\n| 模型缓存 | DeBERTa-v3-base 离线缓存完整，`TRANSFORMERS_OFFLINE=1` 验证通过 |\n| vanilla checkpoints | **3 个 seeds 全部已完成**（42/123/456 均有 12M best.pt），已跳过 |\n| 恢复脚本 | `scripts/run_exp16_gpu0_recovery.sh` — 仅跑 MLM 3 seeds（42→123→456），每个 seed 跑 Stage 1 DAPT + Stage 2 GRU classifier，设置了 `TRANSFORMERS_OFFLINE=1` + `CUDA_VISIBLE_DEVICES=0` |\n| tmux session | `exp16_gpu0_recovery` 运行中 |\n| GPU 0 | 82% utilization, 20.6GB/97.9GB 已占用，MLM seed 42 Stage 1 正在训练 |\n| 预估总时长 | ~3.75 小时（3 seeds × ~75min） |\n| 日志 | `logs/exp16_gpu0_recovery.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16-fix-gpu0.md"
+}

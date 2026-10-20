@@ -1,0 +1,76 @@
+{
+  "exp_id": "exp71_mixed_llm_disentangle",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T02:55:46.965Z",
+    "updated_at": "2026-05-24T03:16:42.817Z",
+    "hypothesis": "The mixed-LLM 9-class AA OOD F1 collapse (0.504±0.107 at 250+250) is primarily driven by distribution heterogeneity rather than per-source data quantity insufficiency: if the collapse were quantity-driven, scaling from 250→350 per source (matching the single-source 350 Qwen-only condition) should recover AA F1 to >0.8; if heterogeneity-driven, 350+350 mixed will show persistent AA degradation (~0.5).",
+    "parent": "exp69_mixed_llm_aa_error",
+    "spec": {
+      "command": "bash scripts/exp71_run_all.sh",
+      "server": "westd-33183",
+      "data_path": "data/mixed_llm_350/",
+      "data_count": 700,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": "42,123,456",
+      "checkpoint_source": "trained from scratch (350+350 mixed)",
+      "eval_data": "DD OOD (80) + AA OOD (80) + FITD OOD (80) + IID test (76)",
+      "checkpoint_path": "checkpoints/mixed_350_350/",
+      "log_path": "results/exp71_aggregate.json"
+    },
+    "metrics": {
+      "dd_ood_f1": {
+        "mean": 0.944,
+        "std": 0.007,
+        "seeds": [
+          0.953,
+          0.944,
+          0.935
+        ]
+      },
+      "aa_ood_f1": {
+        "mean": 0.709,
+        "std": 0.085,
+        "seeds": [
+          0.719,
+          0.808,
+          0.601
+        ]
+      },
+      "fitd_ood_f1": {
+        "mean": 1,
+        "std": 0
+      },
+      "iid_f1": {
+        "mean": 1,
+        "std": 0
+      },
+      "comparison": {
+        "350_qwen_only": {
+          "dd": "0.997±0.005",
+          "aa": "0.972±0.026"
+        },
+        "250_250_mixed": {
+          "dd": "0.818±0.096",
+          "aa": "0.504±0.107"
+        },
+        "350_350_mixed": {
+          "dd": "0.944±0.007",
+          "aa": "0.709±0.085"
+        }
+      },
+      "aa_recovery_from_250": 0.205,
+      "aa_remaining_gap_to_single": 0.263,
+      "wall_clock_seconds": 648,
+      "gpu_hours": 0.18
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-24T03:16:42.817Z"
+  },
+  "timestamp": "2026-05-24T03:16:43.054136+00:00",
+  "trigger": "update_registry"
+}

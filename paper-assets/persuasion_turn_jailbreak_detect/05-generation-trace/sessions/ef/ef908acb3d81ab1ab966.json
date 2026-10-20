@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ef908acb3d81ab1ab966",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp49 repr analysis",
+  "task_key": "worker_code_exp49_repr_analysis_20260522T071133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp49_repr_analysis_20260522T071133.log",
+    "occurrence": 1,
+    "bytes": 554348,
+    "sha256": "c0f7f31217e48c932aad932ce63571c9057668ef4d6249c104535b451abfb6f3"
+  },
+  "statistics": {
+    "messages": 232,
+    "user_turns": 0,
+    "tool_calls": 88,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 88,
+      "tool_result": 88,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 232,
+      "chunks": [
+        {
+          "path": "ef908acb3d81ab1ab966-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ef908acb3d81ab1ab966-part-0002.json",
+          "message_count": 52
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp49-repr-analysis.md"
+}

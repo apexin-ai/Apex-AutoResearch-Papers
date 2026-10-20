@@ -1,0 +1,1 @@
+meanpool_treatment_k1_f1: 1.0, meanpool_treatment_k2_f1: 1.0, meanpool_treatment_k3_f1: 0.9937, meanpool_treatment_k5_f1: 1.0, meanpool_treatment_full_f1: 1.0, meanpool_baseline_k1_f1: 0.8286, meanpool_baseline_full_f1: 0.2947, gru_vs_meanpool_conclusion: comparable

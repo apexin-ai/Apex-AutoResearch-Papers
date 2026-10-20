@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-05-17 08:18:42",
+  "method": "smart_heuristic_fallback (GPT-5.5 API 403)",
+  "approach": "3-tier keyword system: Tier1=auto-remove, Tier2=remove with jailbreak context, Tier3=remove only with strong context",
+  "total_benign_before": 250,
+  "total_removed": 24,
+  "remaining_benign": 226,
+  "removed_ids_with_reasons": {
+    "wildchat_66d94c8ae54f": "Tier2+role_assign: ['you are now']",
+    "wildchat_1f06b6dc4a3e": "Tier1: ['\\\\bDAN\\\\b', 'Do Anything Now', '\\\\bjailbreak\\\\b']",
+    "wildchat_327b49ebd09c": "Tier1: ['\\\\bDAN\\\\b', 'Do Anything Now', '\\\\bjailbreak\\\\b', 'from now on you']",
+    "wildchat_f08d565dbe55": "Tier3+strong_context(3): ['\\\\bcharacter\\\\b']",
+    "wildchat_1c9137821a11": "Tier1: ['\\\\bDAN\\\\b', 'Do Anything Now']",
+    "wildchat_7f881b9566f9": "Tier1: ['\\\\bDAN\\\\b', 'Do Anything Now', '\\\\bjailbreak\\\\b', 'from now on you']",
+    "wildchat_99d257349cf7": "Tier1: ['without any restrictions']",
+    "wildchat_a6f0898c7728": "Tier1: ['Developer Mode']",
+    "wildchat_6584b0862df5": "Tier1: ['\\\\bDAN\\\\b']",
+    "wildchat_a5912cebb1c7": "Tier3+strong_context(3): ['\\\\bcharacter\\\\b']",
+    "wildchat_54264d1de629": "Tier3+strong_context(7): ['\\\\bcharacter\\\\b']",
+    "wildchat_b4b836eaac40": "Tier3+strong_context(3): ['\\\\bcharacter\\\\b']",
+    "wildchat_44d7923265a9": "Tier1: ['Developer Mode']",
+    "wildchat_11c8427bdf9c": "Tier1: ['\\\\bDAN\\\\b', 'Do Anything Now', '\\\\bjailbreak\\\\b']",
+    "wildchat_4df9cce28bcd": "AutoGPT/agent prompt injection",
+    "wildchat_3c0c5dd1f225": "AutoGPT/agent prompt injection",
+    "wildchat_5d0af1f4e361": "AutoGPT/agent prompt injection",
+    "wildchat_0abc1a36c012": "AutoGPT/agent prompt injection",
+    "wildchat_9abdbce60c16": "AutoGPT/agent prompt injection",
+    "wildchat_84191d8b74f2": "AutoGPT/agent prompt injection",
+    "wildchat_61ef521d5f65": "AutoGPT/agent prompt injection",
+    "wildchat_540e9bf76d39": "AutoGPT/agent prompt injection",
+    "wildchat_5c10df3975eb": "AutoGPT/agent prompt injection",
+    "wildchat_538283f8ba47": "AutoGPT/agent prompt injection"
+  },
+  "final_splits": {
+    "train": 336,
+    "val": 70,
+    "test": 70
+  }
+}

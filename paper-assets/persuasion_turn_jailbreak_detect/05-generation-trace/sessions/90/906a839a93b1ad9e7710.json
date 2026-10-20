@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "906a839a93b1ad9e7710",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp6 actorattack perturbation v2",
+  "task_key": "worker_eval_exp6-actorattack-perturbation-v2_20260518T135631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp6-actorattack-perturbation-v2_20260518T135631_result.json",
+    "occurrence": 1,
+    "bytes": 1291,
+    "sha256": "db296357d45c95cbb78d2a01e24fde1e71e6003319bd7c64b82325d203930943"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the summary:\n\n**EXP-6 ActorAttack Adversarial Perturbation Results**\n\n| Variant | Clean K1 | Pert K1 | Δ K1 | Clean Full | Pert Full | Δ Full |\n|---------|----------|---------|------|------------|-----------|--------|\n| 9class | 0.773 | 0.633 | -0.140 | 0.972 | 0.768 | -0.204 |\n| binary | 0.765 | 0.639 | -0.126 | 0.994 | 0.640 | -0.353 |\n| scrambled | 0.721 | 0.616 | -0.104 | 0.951 | 0.779 | -0.172 |\n| jb_mlm | 0.736 | 0.657 | -0.079 | 0.893 | 0.541 | -0.353 |\n| wiki_mlm | 0.656 | 0.601 | -0.055 | 0.686 | 0.545 | -0.141 |\n| topic | 0.514 | 0.526 | +0.012 | 0.625 | 0.577 | -0.049 |\n| vanilla | 0.439 | 0.292 | -0.146 | 0.365 | 0.248 | -0.116 |\n\n**McNemar 9class vs vanilla**: All seeds, all K values: p < 0.001 (both clean and perturbed), direction 9class > vanilla.\n\n**Conclusion: Negative** — Unlike DD OOD (where classification-supervised variants had near-zero perturbation delta), ALL variants show substantial degradation on ActorAttack perturbation (Δ = -0.05 to -0.35). However, 9class still significantly outperforms vanilla even on perturbed data (McNemar all p<0.001).\n\n**Registry updated**: `exp6_actorattack_perturbation` → DONE (negative), `exp2_actorattack_mcnemar` → metrics updated with clean McNemar results."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp6-actorattack-perturbation-v2.md"
+}

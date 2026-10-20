@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb0902c87c209a000f0d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "viz fig1 paperbanana",
+  "task_key": "worker_viz_fig1_paperbanana_20260524T092626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig1_paperbanana_20260524T092626_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "060501763be00d7b2fdb7438ffa08224fd913776b8a4dd04b5e478e7bcf521fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。经过 5 轮迭代，最终 v5 通过了所有检查：\n\n- 4 个 User 对话气泡（User₁–User₃ + Userₖ）\n- ×7 Objectives 名称全部正确（9-Class, Binary, Scrambled, MLM, Wiki-MLM, Topic, Vanilla）\n- frozen [CLS] ❄ 标注清晰\n- BiGRU ← → + MLP → Jailbreak/Benign 流程完整\n- 顶会级别视觉质量\n\n产出文件：\n- `docs/paper/figures/paper/fig1_architecture.png`\n- `docs/paper/figures/paper/fig1_architecture.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig1-paperbanana.md"
+}

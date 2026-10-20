@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39e9836bf49588294b7a",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp28c vanilla supplement",
+  "task_key": "worker_code_exp28c-vanilla-supplement_20260520T195018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp28c-vanilla-supplement_20260520T195018_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "a2a3ed01fd4daba662c1e173b88ce1ed6b81989b542b6b61fd99051f6c2081b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp28c 完成。最终完整表：\n\n**9-class（3-seed mean±std）:**\n\n| N | IID | DD OOD | AA OOD |\n|---|-----|--------|--------|\n| 50 | 1.000±0.000 | 1.000±0.000 | 0.969±0.030 |\n| 125 | 1.000±0.000 | 1.000±0.000 | 0.975±0.016 |\n| 250 | 1.000±0.000 | 1.000±0.000 | 0.975±0.029 |\n| 350 | 1.000±0.000 | 0.978±0.024 | 0.972±0.027 |\n\n**Vanilla（seed=42）:**\n\n| N | IID | DD OOD | AA OOD |\n|---|-----|--------|--------|\n| 50 | 0.646 | 0.529 | 0.234 |\n| 125 | 0.532 | 0.244 | 0.244 |\n| 250 | 0.987 | 0.365 | 0.502 |\n| 350 | 1.000 | 0.360 | 0.489 |\n\n结果已保存到 `results/exp28_final_data_efficiency.json`，registry 已更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp28c-vanilla-supplement.md"
+}

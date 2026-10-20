@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe45bcfce989d0bda443",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "ops sync fig3 scp",
+  "task_key": "worker_ops_sync_fig3_scp_20260518T050430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_fig3_scp_20260518T050430_result.json",
+    "occurrence": 1,
+    "bytes": 146,
+    "sha256": "206467cfebec3a164a708767c20f8bc097c43fabd30d499c1c7a64997aacd3e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个 fig3 文件已从远程服务器下载到本地，文件大小与预期完全一致。临时 SSH 密钥已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-fig3-scp.md"
+}

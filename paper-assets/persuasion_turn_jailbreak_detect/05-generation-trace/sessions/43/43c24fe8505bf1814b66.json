@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43c24fe8505bf1814b66",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "analysis exp69 mixed llm aa error",
+  "task_key": "worker_analysis_exp69_mixed_llm_aa_error_20260523T230252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp69_mixed_llm_aa_error_20260523T230252_result.json",
+    "occurrence": 1,
+    "bytes": 1377,
+    "sha256": "94ca27a0109cead52b6fbf17f5531e02981c7d9ca4f405542d7e79432fa2319d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇总：\n\n## exp69 Mixed-LLM ActorAttack Error Analysis 结论\n\n**F1=0.504 的根因是 recall 极低，不是 precision 问题：**\n\n| | Precision | Recall | Avg FP | Avg FN |\n|---|---|---|---|---|\n| Jailbreak | 97.8% | **29.2%** | 0.3 | **56.7** |\n\n- 几乎所有错误都是 **FN（漏检 jailbreak）**，FP 接近于零\n- Recall 在 seed 间差异巨大（17.5% ~ 48.8%），模型行为不稳定\n\n**关键对比：**\n- 单源 9-class AA F1 = 0.972（recall ~96%）→ 混合训练后 F1 = 0.504（recall ~29%），**delta = -0.468**\n- 混合训练的 9-class 在 AA 上的 recall 水平（29%）接近于单源 **vanilla**（无策略监督）的水平（1.3%），说明策略监督的增益被混合训练大幅削弱\n- 跨 OOD 对比：FITD 不受影响（F1=0.997），DD 中等影响（F1=0.818），**AA 受损最严重**\n\n**根因假设：**\nActorAttack 依赖 role-play 和 persona-switching 等风格化策略模式，这些模式在不同 LLM 之间表达差异大。混合训练引入的分布噪声破坏了模型对这些策略的判别能力。FITD 的 false information injection 模式更依赖内容而非风格，因此对 LLM 来源不敏感。\n\n输出文件在服务器 `results/rebuttal/mixed_llm_error_analysis/`（error_analysis.json + analysis_summary.md）。Registry 已更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp69-mixed-llm-aa-error.md"
+}

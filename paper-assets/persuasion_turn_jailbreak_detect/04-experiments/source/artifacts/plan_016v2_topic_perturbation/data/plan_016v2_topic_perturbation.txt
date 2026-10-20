@@ -1,0 +1,21 @@
+Plan 016v2 Topic Perturbation Results
+
+Delta F1 (perturbed - clean):
+- full: -0.0395
+- k=1: -0.0271
+- k=2: -0.0267
+- k=3: 0.0000
+- k=5: -0.0263
+
+Clean F1: full=1.0, k1=0.895, k2=0.947, k3=0.961, k5=0.987
+Perturbed F1: full=0.961, k1=0.868, k2=0.921, k3=0.961, k5=0.961
+Sample count: 76 (38 jailbreak, 38 benign)
+
+Comparison (full delta):
+- Persuasion treatment: 0.000
+- Jailbreak MLM (017): -0.026
+- Topic (016v2): -0.040
+- Vanilla baseline: -0.118
+- Wikipedia MLM (018): -0.121
+
+Conclusion: Hypothesis rejected. Topic model shows moderate robustness, not vanilla-level degradation.

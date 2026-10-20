@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "635b8055058503b6b52d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code d058 analysis batch",
+  "task_key": "worker_code_d058-analysis-batch_20260520T201310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d058-analysis-batch_20260520T201310.log",
+    "occurrence": 1,
+    "bytes": 929034,
+    "sha256": "487e707cb1adbbb58131092235d02514f04aa79bebc9d79f520a52edbec3007a"
+  },
+  "statistics": {
+    "messages": 212,
+    "user_turns": 0,
+    "tool_calls": 84,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 84,
+      "tool_result": 84,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 212,
+      "chunks": [
+        {
+          "path": "635b8055058503b6b52d-part-0001.json",
+          "message_count": 114
+        },
+        {
+          "path": "635b8055058503b6b52d-part-0002.json",
+          "message_count": 98
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d058-analysis-batch.md"
+}

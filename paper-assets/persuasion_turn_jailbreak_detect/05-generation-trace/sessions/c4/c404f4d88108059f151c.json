@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c404f4d88108059f151c",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "code exp42 ood benign mixed",
+  "task_key": "worker_code_exp42_ood_benign_mixed_20260522T035847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp42_ood_benign_mixed_20260522T035847.log",
+    "occurrence": 1,
+    "bytes": 714707,
+    "sha256": "9ba370d7953f62a30aa31e4e074c9047284686d5913f5e6f8c66f5bc8b9ad457"
+  },
+  "statistics": {
+    "messages": 304,
+    "user_turns": 0,
+    "tool_calls": 116,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 3,
+      "assistant": 64,
+      "tool_call": 116,
+      "tool_result": 116,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 304,
+      "chunks": [
+        {
+          "path": "c404f4d88108059f151c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c404f4d88108059f151c-part-0002.json",
+          "message_count": 124
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp42-ood-benign-mixed.md"
+}

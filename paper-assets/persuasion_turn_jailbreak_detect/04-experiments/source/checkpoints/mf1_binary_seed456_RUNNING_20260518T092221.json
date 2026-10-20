@@ -1,0 +1,35 @@
+{
+  "exp_id": "mf1_binary_seed456",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T09:11:46.513Z",
+    "updated_at": "2026-05-18T09:22:21.553Z",
+    "hypothesis": "Binary persuasion DeBERTa+GRU pipeline with seed=456 will produce DD OOD performance consistent with seed=42, confirming reproducibility of the binary collapse approach.",
+    "spec": {
+      "command": "train_deberta_binary.py + train_classifier_binary.py + dd_ood_eval",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/",
+      "data_count": 0,
+      "model_name": "microsoft/deberta-v3-base",
+      "seed": 456
+    },
+    "checkpoint_path": "checkpoints/mf1_binary_seed456/",
+    "log_path": "logs/mf1_binary_seed456_pipeline.log",
+    "metrics": {
+      "dd_ood_f1_k1": 1,
+      "dd_ood_f1_k2": 1,
+      "dd_ood_f1_k3": 0.9904,
+      "dd_ood_f1_k5": 1,
+      "dd_ood_f1_full": 1,
+      "val_persuasion_acc": 1,
+      "val_intent_acc": 1
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T09:22:21.631204+00:00",
+  "trigger": "update_registry"
+}

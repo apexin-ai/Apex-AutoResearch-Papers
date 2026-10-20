@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a392f23761d098bccc2e",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp9 metric check",
+  "task_key": "worker_eval_exp9-metric-check_20260518T174049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp9-metric-check_20260518T174049_result.json",
+    "occurrence": 1,
+    "bytes": 339,
+    "sha256": "5322f1e01c786a4bfc5320ddd6081179a9fb201ff61484ab277a84cf715e63d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：exp9 bootstrap CI 使用的是 `f1_score(average=\"macro\")`，无需修改。**\n\n具体证据：\n- 脚本 `scripts/exp9_bootstrap_ci.py` 中所有 `f1_score` 调用（共 8 处，行 265/275/301/305/318/358/364）均使用 `average=\"macro\"`\n- 结果 JSON 第 1147 行也标注了 `\"metric\": \"f1_macro\"`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp9-metric-check.md"
+}

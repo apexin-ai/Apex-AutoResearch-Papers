@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c336f5bdc5f5d7f76e3d",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "train plan002 seed456",
+  "task_key": "worker_train_plan002-seed456_20260518T005229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan002-seed456_20260518T005229_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "59ae3484057e4cb8f5bd5b6df96df19ab1079bd35181ed9b29b1dd46fef46a9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan_002 seed=456 全部完成。** 结果已保存到 `results/plan_002_seed456_eval.json`。\n\n## 汇总\n\n| K | Treatment F1 | Baseline F1 | TF-IDF F1 |\n|---|---|---|---|\n| 1 | 1.0000 | 0.9296 | 1.0000 |\n| 2 | 1.0000 | 0.9589 | 1.0000 |\n| 3 | 1.0000 | 0.9867 | 1.0000 |\n| 5 | 1.0000 | 0.9867 | 1.0000 |\n| full | 1.0000 | 1.0000 | 1.0000 |\n\n**Stage 1**: DeBERTa best at epoch 2 (val_loss=0.4256, persuasion_acc=0.8593, intent_acc=1.0)  \n**Treatment GRU**: F1=1.0 across all K values  \n**Baseline GRU**: 从 K=1 的 0.93 逐步提升至 full 的 1.0（与 seed=42/123 结果一致）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan002-seed456.md"
+}

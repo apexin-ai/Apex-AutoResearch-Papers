@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48fb474d38a73bdd7662",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp50 figure beautify",
+  "task_key": "worker_code_exp50_figure_beautify_20260522T100955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp50_figure_beautify_20260522T100955_result.json",
+    "occurrence": 1,
+    "bytes": 636,
+    "sha256": "3580858f6911d03f33b56298f3c25cbd03fef4ce9cc2b9712d27ddce83786490"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure is clean and publication-ready. No more overlaps — region labels use axis-relative positioning at the top, legends are mid-left to avoid collision, and the \"15× vanilla\" annotation arrow points clearly to the 9-class spike at layer 10.\n\nOutput files:\n- **Server**: `/root/persuasion_turn_jailbreak_detect/figures/paper/fig_layerwise_representation.{pdf,png}`\n- **Local**: `/home/ubuntu/.agent-ml-research-idea_gen_0514_2/projects/persuasion_turn_jailbreak_detect/figures/paper/fig_layerwise_representation.{pdf,png}`\n- **Script**: `/root/persuasion_turn_jailbreak_detect/scripts/exp50_figure_beautify.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp50-figure-beautify.md"
+}

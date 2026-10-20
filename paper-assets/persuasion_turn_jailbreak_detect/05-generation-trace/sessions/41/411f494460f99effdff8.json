@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "411f494460f99effdff8",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code deberta 9class shuffle",
+  "task_key": "worker_code_deberta-9class-shuffle_20260520T092737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_deberta-9class-shuffle_20260520T092737_result.json",
+    "occurrence": 1,
+    "bytes": 846,
+    "sha256": "90fbcd567ad599665ecafb1facf40e7244528024f319cf70cf6e93a4d45fbdf6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n```\nDeBERTa-v3-base (exp1) 9-class Turn-Shuffle Results:\n\n=== IID Test (76 samples) ===\n  Original:  F1 = 1.0000±0.0000\n  Shuffled:  F1 = 1.0000±0.0000 (9 runs)\n  Δ = +0.0000\n\n=== DD OOD (118 samples) ===\n  Original:  F1 = 0.9936±0.0045\n  Shuffled:  F1 = 0.9936±0.0045 (9 runs)\n  Δ = +0.0000\n\n=== AA OOD (118 samples) ===\n  Original:  F1 = 0.9391±0.0465\n  Shuffled:  F1 = 0.9306±0.0562 (9 runs)\n  Δ = -0.0085\n```\n\n**验证通过**: Original DD OOD F1=0.9936，与已知值 0.994 一致（seed42=1.0, seed123=0.9904, seed456=0.9904）。\n\n**结论**: DD OOD shuffle Δ=0.0000，IID shuffle Δ=0.0000，AA OOD shuffle Δ=-0.0085（微小）。跨 encoder 确认了 order-invariance——与 RoBERTa-large (exp15) 的结论一致，turn 顺序对检测性能几乎无影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-deberta-9class-shuffle.md"
+}

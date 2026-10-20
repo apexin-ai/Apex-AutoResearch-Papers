@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "f04ea23b0a885d836ba1",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "data crescendo generation",
+  "task_key": "worker_data_crescendo-generation_20260517T082054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_crescendo-generation_20260517T082054.log",
+    "occurrence": 1,
+    "bytes": 1543656,
+    "sha256": "33da3fec76f507732d6be8b245a93a971be005867e7f9acb6271b2a448815047"
+  },
+  "statistics": {
+    "messages": 1023,
+    "user_turns": 1,
+    "tool_calls": 386,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 244,
+      "tool_call": 386,
+      "tool_result": 386,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 618,
+      "chunks": [
+        {
+          "path": "f04ea23b0a885d836ba1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f04ea23b0a885d836ba1-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f04ea23b0a885d836ba1-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f04ea23b0a885d836ba1-part-0004.json",
+          "message_count": 78
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 405,
+      "chunks": [
+        {
+          "path": "f04ea23b0a885d836ba1-part-0004.json",
+          "message_count": 102
+        },
+        {
+          "path": "f04ea23b0a885d836ba1-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "f04ea23b0a885d836ba1-part-0006.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-crescendo-generation-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca327150de29208c2675",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp45 monitor setup",
+  "task_key": "worker_code_exp45_monitor_setup_20260522T063124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp45_monitor_setup_20260522T063124_result.json",
+    "occurrence": 1,
+    "bytes": 962,
+    "sha256": "d246eb042035fdedfe22f72d73a623f563773239fb683d1de5164368fa1d4469"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告如下：\n\n## exp45 训练状态\n\n| 项目 | 值 |\n|------|-----|\n| **主进程 PID** | **40296** (python scripts/exp45_benign_adaptation_curve.py) |\n| **子进程 PID** | 45369 (train_deberta.py, N=25 的 Stage 1 DeBERTa DAPT) |\n| **启动时间** | 14:26 CST，已运行 ~6 分钟 |\n| **GPU** | cuda:0 (CUDA_VISIBLE_DEVICES=0) |\n| **当前进度** | **N=25** 的 Stage 1 (DeBERTa DAPT) 正在训练 |\n\n### 已完成\n\n| N 值 | 耗时 |\n|------|------|\n| N=0 | 1.7 min |\n| N=5 | 1.7 min |\n| N=10 | 1.7 min |\n\n### 待完成\n\nN=25（进行中）→ N=50 → N=100 → N=150\n\n### 预估剩余时间\n\n每个 N 值约 1.7 min（前 3 个一致）。N 越大训练数据越多，后面的可能稍慢，但数据量增幅不大（350 Qwen 固定，只加 WildChat）。保守估计：\n\n- 剩余 4 个 N 值（含当前 N=25）× ~2 min ≈ **8 分钟**\n- 总运行时间约 **13-15 分钟**，预计 ~14:40 CST 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp45-monitor-setup.md"
+}

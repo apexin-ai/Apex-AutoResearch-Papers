@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb97708133ef9927a8ff",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp58 truncated single turn",
+  "task_key": "worker_code_exp58_truncated_single_turn_20260522T132513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp58_truncated_single_turn_20260522T132513_result.json",
+    "occurrence": 1,
+    "bytes": 1458,
+    "sha256": "666eb9e4f29d865de18c6a01df9e79b38bba7daecd153ace922f1b018b363f81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果汇总：\n\n### exp58 结果：9-class DAPT vs MLM DAPT (3-seed 均值 F1)\n\n| Dataset | Mode | 9-class | MLM | Delta |\n|---------|------|---------|-----|-------|\n| IID | full | 1.000 | 0.983 | +0.018 |\n| IID | last_turn | **0.991** | 0.894 | **+0.097** |\n| DD OOD | full | 0.997 | 0.993 | +0.003 |\n| DD OOD | last_turn | **0.942** | 0.924 | +0.018 |\n| AA OOD | full | 0.972 | 0.941 | +0.031 |\n| AA OOD | last_turn | **0.978** | 0.927 | **+0.051** |\n| FITD OOD | full | 1.000 | 0.987 | +0.013 |\n| FITD OOD | last_turn | **1.000** | 0.927 | **+0.073** |\n\n### 分析\n\n**假设得到支持。** 9-class DAPT 在所有数据集、所有条件下均优于 MLM。关键发现：\n\n1. **截断后差距扩大**：full 模式下平均 delta=+0.016，last_turn 模式下平均 delta=+0.060。9-class 的单轮表征质量远优于 MLM。\n\n2. **AA OOD 特殊现象**：9-class 在截断后 F1 反而从 0.972 升至 0.978（最后一轮包含更直接的恶意请求，去掉前面的伪装轮次反而更好分类）。\n\n3. **对 R15 的解释**：既然 9-class 在单轮截断后仍大幅领先 MLM，说明 ToxicChat 上的逆转（MLM > classification）并非因为 MLM 的单轮语义更好，而是因为 ToxicChat 数据的多轮结构与合成数据差异大，9-class 的多轮结构建模反而成为负担。但需注意合成 vs 人类写作风格差异仍然是混淆因子，无法完全解耦。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp58-truncated-single-turn.md"
+}

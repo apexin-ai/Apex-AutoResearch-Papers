@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f248d212e8e83eefa81",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "paper cka heatmap",
+  "task_key": "worker_paper_cka-heatmap_20260518T190351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_cka-heatmap_20260518T190351_result.json",
+    "occurrence": 1,
+    "bytes": 360,
+    "sha256": "03e8b26ec488f7d63f43fa363d91ad02df244b603d9d1c54721b85204e72a791"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已生成：\n\n- **PDF**: `/root/persuasion_turn_jailbreak_detect/paper/figures/cka_heatmap.pdf` (18.8 KB)\n- **PNG**: `/root/persuasion_turn_jailbreak_detect/paper/figures/cka_heatmap.png` (139 KB)\n\n2×2 布局，单栏宽度 (3.4 inch)，YlOrRd colormap，对角线 1.0，所有格子标注数值，字体 ≥ 7pt，共享 colorbar。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-cka-heatmap.md"
+}

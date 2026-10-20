@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f470418cdd9ebe48d1a",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp19 wildchat fpr",
+  "task_key": "worker_code_exp19-wildchat-fpr_20260520T123904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp19-wildchat-fpr_20260520T123904_result.json",
+    "occurrence": 1,
+    "bytes": 89,
+    "sha256": "e1d3f288aac56c4a15f5751767620d1372825539d0c6c1a1d7b9a980971e3f58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(后台等待任务已完成，评估结果已在上条消息中报告。)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp19-wildchat-fpr.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp27_mean_pooling",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:40:18.175Z",
+    "updated_at": "2026-05-20T15:04:46.241Z",
+    "hypothesis": "Mean pooling (no temporal modeling) with end-to-end fine-tuning will match BiGRU E2E on easy OOD (DD) but degrade on hard OOD (ActorAttack), demonstrating that temporal modeling via BiGRU is necessary for detecting multi-turn adaptive attacks."
+  },
+  "timestamp": "2026-05-20T15:04:46.414769+00:00",
+  "trigger": "update_registry"
+}

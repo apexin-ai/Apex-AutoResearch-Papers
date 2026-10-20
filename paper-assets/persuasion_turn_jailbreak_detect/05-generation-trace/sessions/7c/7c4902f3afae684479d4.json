@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c4902f3afae684479d4",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "audit mf5 data split",
+  "task_key": "worker_audit_mf5-data-split_20260518T192403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_mf5-data-split_20260518T192403_result.json",
+    "occurrence": 1,
+    "bytes": 1952,
+    "sha256": "7a127866ab89b0f5f9bcbb471d685ef5094a7460f795c1182583abe2529c1208"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the complete table:\n\n---\n\n| Dataset | Split | Jailbreak | Benign | Total | Benign Source | Turns |\n|---------|-------|-----------|--------|-------|---------------|-------|\n| Crescendo | Train | 175 | 175 | 350 | Synthetic (Qwen3-8B topic-anchored) | Multi (avg 16.3, range 10–24) |\n| Crescendo | Val | 37 | 37 | 74 | Synthetic (Qwen3-8B topic-anchored) | Multi |\n| Crescendo | Test (IID) | 38 | 38 | 76 | Synthetic (Qwen3-8B topic-anchored) | Multi (avg 16.6, range 10–24) |\n| DD | OOD | 80 | 38 | 118 | plan_002 test split benign | Multi (avg 16.1, range 12–20) |\n| FITD | OOD | 80 | 38 | 118 | plan_002 test split benign | Multi (avg 15.5, range 12–20) |\n| ActorAttack | OOD | 80 | 38 | 118 | plan_002 test split benign | Multi (avg 10.3, range 6–16) |\n| ToxicChat | Ext | 204 | 204 | 408 | ToxicChat dataset itself (LMSYS) | Single (1 user + 1 assistant) |\n| verazuo | Ext | 666 | 213 | 879 | plan_002 benign first-turns (**LEAKED**) | Single (user query only) |\n\n**关键发现：**\n\n1. **OOD benign 来源统一**：DD、FITD、ActorAttack 三个 OOD 数据集的 38 个 benign 都来自 `plan_002_splits/test.jsonl` 的 benign 部分。这意味着 OOD 评估中 benign 与 IID test 的 benign 完全相同。代码确认：`plan_006_cross_attack_eval.py:160`、`exp6_actorattack_perturbation.py:172`、`exp7_tfidf_perprefix.py:77`。\n\n2. **verazuo benign 泄漏确认**：213 个 benign 是 plan_002 benign 多轮对话的第一轮 user turn 提取（ID 格式 `plan002_bn_XXX`）。内容匹配检查显示 115 个独特的首轮内容全部能在 plan_002 的 train/test/val 中找到对应，其中大量来自 train split（102/115 前缀匹配 train）。总 plan_002 benign 250 个，verazuo 用了其中 213 个。\n\n3. **ToxicChat 无泄漏**：jailbreak 和 benign 全部来自 ToxicChat 数据集本身（source: `toxicchat-human`），与训练数据无重叠。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-mf5-data-split.md"
+}

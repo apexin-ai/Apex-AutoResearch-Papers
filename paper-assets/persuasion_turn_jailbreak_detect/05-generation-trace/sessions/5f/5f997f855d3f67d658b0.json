@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f997f855d3f67d658b0",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp50 layerwise",
+  "task_key": "worker_code_exp50_layerwise_20260522T092001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp50_layerwise_20260522T092001_result.json",
+    "occurrence": 1,
+    "bytes": 2301,
+    "sha256": "5455e06111275931efa7ab2d9c90d28660f65b9cb788f81d8adb9b773ff587d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp50 结果汇报\n\n实验已完成，脚本和结果均已在服务器上。\n\n### 产出文件\n- `results/exp50_layerwise_results.json`\n- `figures/paper/fig_layerwise_pr_fisher.pdf`\n\n### 关键发现 — **强支持 hypothesis**\n\n**Participation Ratio (PR):**\n\n| Layer | vanilla | 9-class | scrambled | JB-MLM |\n|-------|---------|---------|-----------|--------|\n| 0-8   | ~1-10   | ~1-9    | ~1-9      | ~1-9   |\n| **9** | **6.68** | **2.88** | **2.79** | 7.09 |\n| **10** | **9.70** | **1.47** | **1.87** | 8.95 |\n| 11-12 | 1.4-1.5 | 1.8-2.0 | 1.5-1.7  | 1.4-1.7 |\n\n- Layers 0-8: 四个变体 PR 相似（无显著差异）\n- **Layers 9-10: 9-class 和 scrambled 的 PR 急剧下降**（从 ~3-9 降到 1.5-2.9），而 vanilla 和 JB-MLM 维持高 PR（7-10）\n- 分类训练引发的 **dimensional compression 集中在 layer 9-10** ✓\n\n**Fisher Ratio:**\n\n| Layer | vanilla | 9-class | scrambled | JB-MLM |\n|-------|---------|---------|-----------|--------|\n| 0-5   | 0-0.78  | 0-0.84  | 0-0.81    | 0.3-0.85 |\n| 6-7   | 1.1-1.5 | 1.5-2.0 | 1.3-1.7   | 1.1-1.5 |\n| **8** | 1.47    | **3.20** | **2.50**  | 1.40 |\n| **9** | 1.04    | **4.03** | **3.76**  | 1.07 |\n| **10** | 0.73   | **10.92**| **5.93**  | 0.93 |\n| **11** | 2.28   | **9.10** | **7.37**  | 3.33 |\n| **12** | 2.83   | **6.53** | **7.91**  | 2.61 |\n\n- Layers 0-7: 判别力弱且变体间相似\n- **Layer 8 开始分叉，9-class 在 layer 10 达到峰值 Fisher=10.92（vanilla 同层仅 0.73，相差 15 倍）**\n- scrambled 峰值在 layer 12（Fisher=7.91 vs vanilla 2.83）\n- **JB-MLM 全程跟踪 vanilla**，确认 MLM 不产生判别性压缩\n\n### 结论\n\n1. **Discriminative compression 是后期层现象** — PR 在 layer 9-10 对分类变体急剧下降，与 Maennel 2020 的\"早期层统计量标签无关\"机制形成区分 ✓\n2. **判别力集中在 layers 8-12** — 9-class 的 Fisher ratio 在 layer 10 达到 10.92，是 vanilla 的 15 倍 ✓\n3. **MLM 不产生此效应** — JB-MLM 全程与 vanilla 趋势一致，说明 compression 是分类监督的特有产物 ✓\n4. **scrambled 也展现后期层 compression**（虽然幅度略低于 9-class）— 说明任何分类信号（即使标签被打乱）都足以引发后期层结构重组"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp50-layerwise-copy-2.md"
+}

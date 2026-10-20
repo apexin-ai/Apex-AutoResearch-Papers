@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4acc972239d8cd723ac8",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code exp16 training prep",
+  "task_key": "worker_code_exp16-training-prep_20260519T160522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp16-training-prep_20260519T160522_result.json",
+    "occurrence": 1,
+    "bytes": 2017,
+    "sha256": "41e7dfb8bc91c2a1e3a2996d813cec1912e1a57aaeea570e3e97f8ee05f50ba2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个脚本全部创建并验证通过。\n\n---\n\n### 汇报\n\n**脚本路径：**\n\n| 脚本 | 路径 | 功能 |\n|------|------|------|\n| 数据合并 | `scripts/prepare_mixed_data.py` | 从 Qwen 取 125jb+125bn，Llama 取 125jb+125bn，归一化格式后 stratified split 为 350/74/76 |\n| 批量训练 | `scripts/run_exp16_training.sh` | 9 个配置（3 variant × 3 seed），自动运行 Stage 1 + Stage 2 |\n| 批量评估 | `scripts/eval_exp16.py` | 9 个 checkpoint × 7 个测试集，输出 summary table |\n\n**数据格式差异（已在脚本中处理）：**\n- Qwen user turns 有 `persuasion_strategy` 字段\n- Llama jailbreak turns 用 `intended_strategy`（脚本重命名为 `persuasion_strategy`）\n- Llama benign turns 无策略字段（脚本默认设为 0）\n- 统一输出字段：`conversation_id`, `turns`, `label`, `source`(qwen/llama), `original_source`, `attack_type`\n\n**MLM→classifier 兼容性修正：**\nMLM 保存 HF `save_pretrained` 格式，classifier 的 treatment 模式期望 DeBERTaMultiTask `model.pt` — 不兼容。训练脚本中 MLM variant 改用 `--mode baseline --model_name {mlm_ckpt}` 通过 `AutoModel.from_pretrained` 加载。\n\n**测试数据路径：**\n\n| 测试集 | 路径 |\n|--------|------|\n| mixed_test (in-domain) | `data/mixed_llm/test.jsonl` |\n| qwen_test | `data/plan_002_splits/test.jsonl` |\n| dd_ood | `data/dd_ood_perturbed/perturbed.jsonl` |\n| aa_ood | `data/actorattack_ood/actorattack_all.jsonl` |\n| llama_dd | `data/cross_llm/dd_llama.jsonl` |\n| llama_aa | `data/cross_llm/aa_llama.jsonl` |\n| toxicchat | `data/mhj/toxicchat_plan002_eval.jsonl` |\n\n**预估 GPU 时间（单 GPU）：**\n\n| Variant | Stage 1 | Stage 2 (GRU) | 单 seed | 3 seeds |\n|---------|---------|---------------|---------|---------|\n| vanilla | — | ~10 min | ~10 min | ~30 min |\n| MLM-only | ~12 min | ~10 min | ~22 min | ~66 min |\n| 9-class | ~15 min | ~10 min | ~25 min | ~75 min |\n| **总计** | | | | **~2.5–3h** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp16-training-prep.md"
+}

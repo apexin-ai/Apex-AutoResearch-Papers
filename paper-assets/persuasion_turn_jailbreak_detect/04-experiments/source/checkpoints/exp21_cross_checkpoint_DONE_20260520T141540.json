@@ -1,0 +1,68 @@
+{
+  "exp_id": "exp21_cross_checkpoint",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T13:55:11.906Z",
+    "updated_at": "2026-05-20T14:15:39.963Z",
+    "hypothesis": "Downstream OOD performance is insensitive to Stage-1 DAPT training variation: different DAPT seeds should yield cross-checkpoint F1 std < 2pp on IID, DD OOD, and AA OOD benchmarks.",
+    "server": "westd-33183",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-33183",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T14:00:45.661Z"
+    },
+    "conclusion": "success",
+    "spec": {
+      "command": "python scripts/exp21_cross_checkpoint.py",
+      "server": "westd-33183",
+      "data_path": "data/plan_002_splits/ + data/generated/ (DD+AA OOD 118 samples each)",
+      "data_count": "76 IID + 118 DD + 118 AA = 312 eval samples",
+      "model_name": "microsoft/deberta-v3-base (9-class DAPT, 3 seeds)",
+      "seed": "42,123,456",
+      "checkpoint_source": "checkpoints/plan_002_seed{42,123,456}/best",
+      "eval_data": "IID test + DD OOD (80atk+38bn) + AA OOD (80atk+38bn)",
+      "checkpoint_path": "checkpoints/plan_002_seed{42,123,456}/best",
+      "log_path": "results/exp21_cross_checkpoint.json",
+      "gpu": "cuda:0"
+    },
+    "completed_at": "2026-05-20T14:14:04.676Z",
+    "metrics": {
+      "cross_checkpoint": {
+        "seed42": {
+          "iid": 1,
+          "dd_ood": 0.9,
+          "aa_ood": 0.926
+        },
+        "seed123": {
+          "iid": 1,
+          "dd_ood": 0.917,
+          "aa_ood": 0.926
+        },
+        "seed456": {
+          "iid": 1,
+          "dd_ood": 0.962,
+          "aa_ood": 0.953
+        },
+        "mean": {
+          "iid": 1,
+          "dd_ood": 0.926,
+          "aa_ood": 0.935
+        },
+        "std": {
+          "iid": 0,
+          "dd_ood": 0.026,
+          "aa_ood": 0.013
+        }
+      },
+      "note": "Used 3 seeds' best DAPT checkpoints (no intermediate epoch checkpoints saved). IID variance=0pp, AA OOD variance=1.3pp (<2pp), DD OOD variance=2.6pp (slightly above 2pp threshold, driven by seed42=0.900)."
+    }
+  },
+  "timestamp": "2026-05-20T14:15:40.110321+00:00",
+  "trigger": "update_registry"
+}

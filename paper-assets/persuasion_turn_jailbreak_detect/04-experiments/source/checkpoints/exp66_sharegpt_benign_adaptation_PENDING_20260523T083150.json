@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp66_sharegpt_benign_adaptation",
+  "project": "persuasion_turn_jailbreak_detect",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T08:31:43.399Z",
+    "updated_at": "2026-05-23T08:31:50.034Z",
+    "hypothesis": "9-class DeBERTa-v3-base encoder's few-shot benign adaptation mechanism generalizes to a third independent platform (ShareGPT multi-turn conversations): N=5-25 ShareGPT benign conversations will reduce FPR from >20% to near 0%, replicating the WildChat (68.1%→0% at N=10) and OASST2 (57.5%→1.0% at N=25) pattern and strengthening Claim 3's generalization evidence for rebuttal.",
+    "parent": "exp45_benign_adaptation_curve"
+  },
+  "timestamp": "2026-05-23T08:31:50.477869+00:00",
+  "trigger": "update_registry"
+}

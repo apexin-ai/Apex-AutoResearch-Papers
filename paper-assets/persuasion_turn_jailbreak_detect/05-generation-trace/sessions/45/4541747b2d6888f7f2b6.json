@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4541747b2d6888f7f2b6",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "audit tost provenance",
+  "task_key": "worker_audit_tost-provenance_20260525T202512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_tost-provenance_20260525T202512_result.json",
+    "occurrence": 1,
+    "bytes": 2784,
+    "sha256": "cadf39e9d8630fc0cf67b6810ab01cae72b6a817da2c951f045bced73c135aea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完毕。以下是完整追溯结果。\n\n---\n\n## 结论：d=0.44 来源已确认\n\n**d=0.440 来自 exp41_tost_10seed，于 2026-05-22T03:27–03:53 执行，数据真实存在且可验证。**\n\n---\n\n## 完整追溯链\n\n| 层级 | 文件/位置 | 内容 |\n|------|-----------|------|\n| 论文 | `docs/paper/appendix.tex:325` | `ActorAttack & .183 & 0.440 & --` |\n| 本地 summary | `artifacts/exp41_tost_10seed/data/exp41_tost_10seed_summary.txt` | `AA OOD: p=0.183, NOT EQUIV, Cohen d=0.440` |\n| 本地 checkpoint | `checkpoints/exp41_tost_10seed_DONE_20260522T035353.json` | `tost_AA.cohens_d: 0.44` |\n| 服务器结果 | `/root/.../results/exp41_tost_10seed_analysis.json` | `cohens_d: 0.4397329954223104` |\n| 服务器脚本 | `/root/.../scripts/exp41_tost_10seed.py` | 完整训练+TOST计算代码 |\n\n---\n\n## 实验机制\n\nexp41 的做法：\n1. 从 exp39 继承 **前 5 seeds** (42, 123, 456, 789, 1000) 的 F1 值（hardcoded 在脚本的 `PRIOR_F1` dict 中）\n2. 新训练 **5 seeds** (2024, 2025, 2026, 314, 628)，每个 seed 训练 9-class 和 scrambled 两个模型\n3. 合并 10 seeds 的 F1 值跑 paired TOST\n\n### 关键数值（服务器验证）\n\n**AA OOD F1 (10 seeds)**:\n- 9-class: `[0.990, 0.935, 0.990, 0.972, 0.972, 1.000, 0.981, 1.000, 0.981, 0.972]`\n- Scrambled: `[0.891, 0.990, 0.971, 0.990, 0.990, 0.981, 1.000, 0.990, 0.833, 0.858]`\n- Mean diff: 0.0297 (≈3pp)\n- Cohen's d: **0.4397** → 四舍五入 0.440\n\n---\n\n## 为什么早期审计说\"只有 5-seed\"\n\n- `tost_equivalence.json`（exp11 时代）：5 seeds, AA d=0.092\n- `exp39_tost_analysis.json`：5 seeds, AA d=0.084\n- **exp41 是后续补跑** (2026-05-22)，训练 5 个新 seed 并合并为 10 seeds\n\n`data_audit_report.md` 中的 \"UNVERIFIABLE\" 结论是在 **exp41 运行之前**写的。后来 `audit_experiments.md` 已更新标注为 ✓。\n\n---\n\n## 5-seed → 10-seed 的 d 值变化原因\n\n5-seed 时 AA Cohen's d ≈ 0.08（效应极小），但 10-seed 时 d=0.44（中等效应）。原因是新增 5 seeds 中有两个极端值：\n- **seed 314**: scrambled AA = 0.833（远低于 9-class 的 0.981）\n- **seed 628**: scrambled AA = 0.858（远低于 9-class 的 0.972）\n\n这两个 seed 的 scrambled 模型在 AA 上表现异常差，拉大了整体 mean diff 并放大了 effect size。\n\n---\n\n## 总结\n\n| 问题 | 答案 |\n|------|------|\n| d=0.44 来自哪里？ | exp41_tost_10seed (2026-05-22) |\n| 10-seed 数据是否存在？ | **是**，服务器上有完整 JSON（含逐 seed F1 值） |\n| 为什么之前审计找不到？ | 审计在 exp41 运行之前；exp41 是补跑实验 |\n| 数据是否可信？ | 脚本逻辑清晰，10 个 F1 值可独立验证，Cohen's d 计算正确 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-tost-provenance.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbb8e483237a85dbea67",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "audit ref verify A",
+  "task_key": "worker_audit_ref-verify-A_20260526T101601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_ref-verify-A_20260526T101601_result.json",
+    "occurrence": 1,
+    "bytes": 936,
+    "sha256": "55bcf0fc9f5b647fdc82e59a98b5dc6e0b84f2edaba4be8e876c3cd364a1967c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/artifacts/ref_audit_worker_A.md`。\n\n**核心发现汇总：**\n\n**P0 必须修复（4 条被引用条目有严重错误）：**\n1. **ren2024actorattack** — 标题伪造（实际是 \"Derail Yourself\"），venue 错（ICLR 2025→ACL 2025），缺 arXiv ID\n2. **robey2024smoothllm** — venue 错（不在 ICML 2024，应为 arXiv/TMLR 2025）\n3. **mehrotra2024tap** — 副标题伪造（\"with the Pruning of Candidate Outputs\"→\"Automatically\"）\n4. **jiang2024redqueen** — 标题/年份/venue 全错（应为 ACL 2025 Findings，标题已改）\n\n**P1 建议修复（5 条）：** metallamaguard3_2024（无独立论文）、gguard2025/lu2025xboundary（标题已更新）、chao2024jailbreakbench（venue 不完整）、song2026multibreak（ICML 2026 未确认）\n\n**P2 清理：** 18 条未被引用条目，2 对重复（shen2025antidote、hsu2024improved 含伪造作者名）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-ref-verify-a.md"
+}

@@ -1,0 +1,4 @@
+Script at: /root/persuasion_turn_jailbreak_detect/scripts/exp53_llm_judge_optimized.py
+Run: python scripts/exp53_llm_judge_optimized.py --device cuda:0
+Dry-run: python scripts/exp53_llm_judge_optimized.py --dry-run 3 --device cuda:0
+Output: results/exp53_llm_judge_optimized.json

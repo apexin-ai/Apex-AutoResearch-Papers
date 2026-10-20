@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bef523d7206c05e4f646",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "eval exp4 vanilla 3seed perturbation",
+  "task_key": "worker_eval_exp4-vanilla-3seed-perturbation_20260518T114621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp4-vanilla-3seed-perturbation_20260518T114621_result.json",
+    "occurrence": 1,
+    "bytes": 2249,
+    "sha256": "efaa91409ee4b037a8b410f9340b3f3d7a47d096bbcd21955a1fd944adb66611"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Part A: Vanilla 3-seed DD OOD Perturbation\n\n| K | Clean (mean±std) | Perturbed (mean±std) | Delta (mean±std) |\n|---|---|---|---|\n| k1 | 0.6283±0.0376 | 0.5602±0.0283 | **-0.0681±0.0109** |\n| k2 | 0.4824±0.0375 | 0.4829±0.0318 | +0.0004±0.0236 |\n| k3 | 0.3889±0.0267 | 0.3961±0.0344 | +0.0072±0.0193 |\n| k5 | 0.3472±0.0264 | 0.3463±0.0439 | -0.0009±0.0201 |\n| full | 0.3123±0.0263 | 0.3394±0.0549 | +0.0271±0.0299 |\n\nVanilla shows consistent K1 degradation under perturbation (-6.8 pp), but overall performance is poor (F1 ~0.28-0.63) regardless of perturbation.\n\n## Part B: McNemar Tests on Perturbed DD OOD\n\n**K=1:**\n\n| Comparison | Seed | b | c | p-value | Dir |\n|---|---|---|---|---|---|\n| 9class vs vanilla | 42 | 56 | 0 | <0.001* | 9class |\n| 9class vs vanilla | 123 | 50 | 0 | <0.001* | 9class |\n| 9class vs vanilla | 456 | 49 | 1 | <0.001* | 9class |\n| 9class vs jb_mlm | 42 | 0 | 0 | 1.0 | tie |\n| 9class vs jb_mlm | 123 | 4 | 0 | 0.125 | n.s. |\n| 9class vs jb_mlm | 456 | 4 | 1 | 0.375 | n.s. |\n| 9class vs scrambled | 42 | 2 | 0 | 0.5 | n.s. |\n| 9class vs scrambled | 123 | 0 | 0 | 1.0 | tie |\n| 9class vs scrambled | 456 | 0 | 1 | 1.0 | n.s. |\n\n**K=Full:**\n\n| Comparison | Seed | b | c | p-value | Dir |\n|---|---|---|---|---|---|\n| 9class vs vanilla | 42 | 78 | 0 | <0.001* | 9class |\n| 9class vs vanilla | 123 | 73 | 0 | <0.001* | 9class |\n| 9class vs vanilla | 456 | 67 | 0 | <0.001* | 9class |\n| 9class vs jb_mlm | 42 | 0 | 0 | 1.0 | tie |\n| 9class vs jb_mlm | 123 | 1 | 0 | 1.0 | n.s. |\n| 9class vs jb_mlm | 456 | 19 | 0 | **4e-06*** | 9class |\n| 9class vs scrambled | all | 0 | 0 | 1.0 | tie |\n\n**Summary:**\n- **9class vs vanilla**: Highly significant across all seeds and K values (p<0.001). 9class dominates with 49-78 discordant samples in its favor.\n- **9class vs jb_mlm**: Not significant at K=1. At K=Full, seed456 shows significant difference (b=19, p=4e-06), other seeds tied.\n- **9class vs scrambled**: No significant difference at any seed or K. Near-perfect agreement on perturbed data.\n\nSaved to server (`results/exp4_vanilla_3seed_perturbation.json`, `results/exp4_mcnemar_perturbed.json`) and registered as artifact `art_20260518_6a9182`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp4-vanilla-3seed-perturbation.md"
+}

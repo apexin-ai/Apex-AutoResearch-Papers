@@ -1,0 +1,56 @@
+{
+  "experiment": "exp56_crossllm_10shot_adaptation",
+  "hypothesis": "10-shot benign adaptation with Llama-origin conversations reduces cross-LLM FPR",
+  "baseline_fpr": 0.945,
+  "baseline_llama_jb_recall": {
+    "dd_llama": 1.0,
+    "aa_llama": 0.74,
+    "fitd_llama": 1.0
+  },
+  "n_eval": 200,
+  "n_adapt_pool": 50,
+  "adaptation_curve": {
+    "n0": {
+      "llama_benign_fpr": 0.945,
+      "iid_f1_macro": 1.0,
+      "ood_dd_f1": 1.0,
+      "ood_aa_f1": 0.9904,
+      "ood_fitd_f1": 1.0,
+      "ood_dd_llama_recall": 1.0,
+      "ood_aa_llama_recall": 0.74,
+      "ood_fitd_llama_recall": 1.0
+    },
+    "n5": {
+      "llama_benign_fpr": 0.055,
+      "iid_f1_macro": 1.0,
+      "ood_dd_f1": 0.694,
+      "ood_aa_f1": 0.841,
+      "ood_fitd_f1": 0.990,
+      "ood_dd_llama_recall": 0.64,
+      "ood_aa_llama_recall": 0.04,
+      "ood_fitd_llama_recall": 0.76
+    },
+    "n10": {
+      "llama_benign_fpr": 0.03,
+      "iid_f1_macro": 1.0,
+      "ood_dd_f1": 0.816,
+      "ood_aa_f1": 0.601,
+      "ood_fitd_f1": 1.0,
+      "ood_dd_llama_recall": 0.60,
+      "ood_aa_llama_recall": 0.0,
+      "ood_fitd_llama_recall": 0.80
+    },
+    "n25": {
+      "llama_benign_fpr": 0.005,
+      "iid_f1_macro": 1.0,
+      "ood_dd_f1": 0.556,
+      "ood_aa_f1": 0.271,
+      "ood_fitd_f1": 0.990,
+      "ood_dd_llama_recall": 0.08,
+      "ood_aa_llama_recall": 0.0,
+      "ood_fitd_llama_recall": 0.52
+    }
+  },
+  "seed": 42,
+  "elapsed_minutes": 6.78
+}

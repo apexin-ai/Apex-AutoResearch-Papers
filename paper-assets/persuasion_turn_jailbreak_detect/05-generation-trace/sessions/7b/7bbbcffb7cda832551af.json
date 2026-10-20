@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bbbcffb7cda832551af",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "audit appendix tables",
+  "task_key": "worker_audit_appendix-tables_20260523T104152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_appendix-tables_20260523T104152_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "83fffeadcb533e53800d4c3ce3baca540af33114609bd2d7dae5d78a3fc26433"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。~80项数字交叉验证结果：\n\n- **0项不一致**\n- **73项完全一致**\n- **7项需注意**（均为低-中严重度的记录完整性问题）\n\n主要注意项：\n1. **效率表 latency std ±1.2**：exp29 无 std 记录，exp46 std=1.61（不同硬件），来源不明\n2. **Qwen3-8B ~5,200 ms**：exp10 registry 无 latency 数据，无法验证\n3. **Ensemble 表 MLM AA single=.897**：seed-level 均值计算为 .893，差 0.4pp（可能 pooled F1 vs mean-of-F1 差异）\n4. **exp62 silhouette 值**：registry 仅存 Fisher，silhouette 无记录\n\n报告已写入 `artifacts/audit_appendix.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-appendix-tables.md"
+}

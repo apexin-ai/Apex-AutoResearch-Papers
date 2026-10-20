@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d6648ff27300bde72247",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "worker",
+  "title": "data topic anchored benign v3",
+  "task_key": "worker_data_topic-anchored-benign-v3_20260517T221500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_topic-anchored-benign-v3_20260517T221500.log",
+    "occurrence": 1,
+    "bytes": 906486,
+    "sha256": "a59fef231eafe8c9a43308c1d1cb8b6f8f5cc4ae83b02b9b53822c3d84401e80"
+  },
+  "statistics": {
+    "messages": 488,
+    "user_turns": 0,
+    "tool_calls": 210,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 210,
+      "tool_result": 210,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 488,
+      "chunks": [
+        {
+          "path": "d6648ff27300bde72247-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d6648ff27300bde72247-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d6648ff27300bde72247-part-0003.json",
+          "message_count": 128
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-topic-anchored-benign-v3.md"
+}

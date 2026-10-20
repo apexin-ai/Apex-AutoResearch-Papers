@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08222f7ffe573be54bb4",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "code plan004 enhancement",
+  "task_key": "worker_code_plan004-enhancement_20260517T224427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan004-enhancement_20260517T224427_result.json",
+    "occurrence": 1,
+    "bytes": 1034,
+    "sha256": "aaf4864f088d1b7fc96b88e41409364cdd53b7273245be39f66f6150e5c3e1c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`adversarial_perturbation.py` 已从 378 行增强到 603 行，新增：\n\n**增强 1 — TF-IDF Baseline**\n- `train_tfidf_classifier()`: 在 train split 上训练 TF-IDF + LogisticRegression\n- `eval_tfidf()`: 在原始/扰动数据上分别评估\n- 通过 `--train_path` 参数激活\n\n**增强 2 — 扰动质量指标**\n- `compute_quality_metrics()`: 计算 BERTScore F1、sentence-transformers cosine similarity、Jaccard lexical overlap\n- BERTScore < threshold 的 turn 所属 conversation 被标记为低质量并在评估中排除\n- 参数: `--quality_check`（默认 True）、`--bertscore_threshold`（默认 0.6）\n\n**增强 3 — 三层对比输出表**\n- 格式: `K | Model | Original F1 | Perturbed F1 | Delta (drop) | Robustness`\n- 三行: TF-IDF / Vanilla DeBERTa / Persuasion DeBERTa\n- 每个 K=1,2,3,full 分别输出\n\nM001 约束（`enable_thinking=False` + `strip_thinking` regex）保持不变。依赖（`bert-score`, `sentence-transformers`）在 docstring 中已注明。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan004-enhancement.md"
+}

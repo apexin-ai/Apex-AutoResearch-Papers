@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c79e01461049e6869ddf",
+  "project": "persuasion_turn_jailbreak_detect",
+  "kind": "result",
+  "title": "data crescendo parallel gpu23",
+  "task_key": "worker_data_crescendo-parallel-gpu23_20260517T100414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_crescendo-parallel-gpu23_20260517T100414_result.json",
+    "occurrence": 1,
+    "bytes": 1049,
+    "sha256": "ca8cbf379dff4870ab1600d952bdc9e0949b6318184e8cffa54376f5738b352c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both processes running and utilizing all 4 GPUs. Summary:\n\n**Status: Both processes running**\n\n| Process | Screen | GPUs | Playbooks | Conversations | First conv time |\n|---------|--------|------|-----------|---------------|-----------------|\n| Part 1 | `crescendo1` | cuda:0+1 | A,B,C,D | 128 total | 88.9s (10 turns) |\n| Part 2 | `crescendo2` | cuda:2+3 | E,F,G,H | 122 total | 51.9s (6 turns) |\n\n**GPU Memory**: ~19GB (attacker/Qwen3-8B) + ~17.6GB (target/Qwen2.5-7B-Instruct) per pair\n\n**Conv ID scheme**: Part 1 = `crescendo_0000`-`crescendo_0127`, Part 2 = `crescendo_0128`-`crescendo_0249`\n\n**Output files**: `data/generated/crescendo_part1.jsonl`, `data/generated/crescendo_part2.jsonl`\n\n**ETA**: Initial estimates are ~105-190min but these are based on only 1 sample each. Average should improve as shorter conversations (5-7 turns) dominate. Realistic estimate: ~2-2.5 hours for all 250 conversations across both processes.\n\n**Auto-restart**: Both wrapped with retry logic (up to 10 retries with 10s delay)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-crescendo-parallel-gpu23.md"
+}

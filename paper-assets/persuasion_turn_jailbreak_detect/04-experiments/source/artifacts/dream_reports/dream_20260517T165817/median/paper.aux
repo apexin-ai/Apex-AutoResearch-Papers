@@ -1,0 +1,105 @@
+\relax 
+\citation{russinovich2024greatwritearticle}
+\citation{zhou2024speak}
+\citation{jiang2024deceptivedelight}
+\citation{deepcontext2026}
+\citation{bullwinkel2025multiturnjailbreaks}
+\citation{zeng2024pap,hagendorff2026persuasion}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
+\citation{russinovich2024greatwritearticle}
+\citation{zhou2024speak}
+\citation{jiang2024deceptivedelight}
+\citation{bullwinkel2025multiturnjailbreaks}
+\citation{deepcontext2026}
+\citation{zeng2024pap}
+\citation{hagendorff2026persuasion}
+\citation{howdollmspersuade2025}
+\citation{austin1962things,searle1969speech}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn jailbreak attacks.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn jailbreak detection.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Persuasion in adversarial contexts.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Theoretical grounding.}{2}{}\protected@file@percent }
+\citation{he2021debertav3}
+\citation{deepcontext2026}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Stage 1: Persuasion-Grounded Turn Encoder}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stage 2: Temporal Sequence Classifier}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Baselines}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Register normalization.}{3}{}\protected@file@percent }
+\citation{wildchat2024}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces TF-IDF separability through the data cleaning pipeline.}}{4}{}\protected@file@percent }
+\newlabel{tab:tfidf}{{1}{4}{}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces DeBERTa multi-task performance on original vs.\ clean data.}}{4}{}\protected@file@percent }
+\newlabel{tab:deberta_clean}{{2}{4}{}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-attack data.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hard negatives.}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Evaluation Protocol}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Core Detection Performance}{4}{}\protected@file@percent }
+\newlabel{sec:core}{{5.1}{4}{}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Generated attack data statistics.}}{5}{}\protected@file@percent }
+\newlabel{tab:attack_gen}{{3}{5}{}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Detection F1 by conversation prefix length on clean data. $^*p{<}0.05$ (bootstrap).}}{5}{}\protected@file@percent }
+\newlabel{tab:core}{{4}{5}{}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Scrambled-Label Ablation}{5}{}\protected@file@percent }
+\newlabel{sec:ablation}{{5.2}{5}{}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Robustness Under Adversarial Perturbation}{5}{}\protected@file@percent }
+\newlabel{sec:perturbation}{{5.3}{5}{}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Attack Generalization}{5}{}\protected@file@percent }
+\newlabel{sec:crossattack}{{5.4}{5}{}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces False positive rate at 95\% TPR on clean data.}}{6}{}\protected@file@percent }
+\newlabel{tab:fpr}{{5}{6}{}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Scrambled-label ablation. Proper = correct persuasion labels; scrambled = randomly shuffled labels.}}{6}{}\protected@file@percent }
+\newlabel{tab:scrambled}{{6}{6}{}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Persuasion Strategy Trajectory Analysis}{6}{}\protected@file@percent }
+\newlabel{sec:trajectory}{{5.5}{6}{}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Hard Negative Evaluation}{6}{}\protected@file@percent }
+\newlabel{sec:hardneg}{{5.6}{6}{}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Performance under adversarial paraphrasing (full conversation). $\Delta $-$\Delta $ measures the relative robustness advantage over DisPeD.}}{7}{}\protected@file@percent }
+\newlabel{tab:perturbation}{{7}{7}{}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Performance under adversarial paraphrasing at $K{=}3$.}}{7}{}\protected@file@percent }
+\newlabel{tab:perturbation_k3}{{8}{7}{}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Comparison Across Feature Levels}{7}{}\protected@file@percent }
+\newlabel{sec:hierarchy}{{5.7}{7}{}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Stability Analysis}{7}{}\protected@file@percent }
+\newlabel{sec:stability}{{5.8}{7}{}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Limitations}{7}{}\protected@file@percent }
+\newlabel{sec:limitations}{{6}{7}{}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dataset scale.}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Persuasion classifier bottleneck.}{7}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-attack zero-shot generalization. Models trained on Crescendo only. $^*p{<}0.05$.}}{8}{}\protected@file@percent }
+\newlabel{tab:crossattack}{{9}{8}{}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Persuasion strategy distribution (\%) across attack types.}}{8}{}\protected@file@percent }
+\newlabel{tab:strategy_dist}{{10}{8}{}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Attack type coverage.}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Individual-level trajectory variance.}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Synthetic data.}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hard negative false positives.}{8}{}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{austin1962things}{{1}{1962}{{Austin}}{{}}}
+\bibcite{bullwinkel2025multiturnjailbreaks}{{2}{2025}{{Bullwinkel et~al.}}{{}}}
+\bibcite{deepcontext2026}{{3}{2026}{{DeepContext}}{{}}}
+\bibcite{hagendorff2026persuasion}{{4}{2026}{{Hagendorff}}{{}}}
+\bibcite{he2021debertav3}{{5}{2021}{{He et~al.}}{{}}}
+\bibcite{jiang2024deceptivedelight}{{6}{2024}{{Jiang et~al.}}{{}}}
+\bibcite{russinovich2024greatwritearticle}{{7}{2024}{{Russinovich and Salem}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Persuasion strategy trajectory analysis. $^*p{<}0.01$.}}{9}{}\protected@file@percent }
+\newlabel{tab:trajectory}{{11}{9}{}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces False positive rate on WildChat hard negatives ($n{=}85$).}}{9}{}\protected@file@percent }
+\newlabel{tab:wildchat}{{12}{9}{}{table.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Reproducibility.}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{}\protected@file@percent }
+\bibcite{searle1969speech}{{8}{1969}{{Searle}}{{}}}
+\bibcite{wildchat2024}{{9}{2024}{{WildChat}}{{}}}
+\bibcite{zeng2024pap}{{10}{2024}{{Zeng et~al.}}{{}}}
+\bibcite{zhou2024speak}{{11}{2024}{{Zhou et~al.}}{{}}}
+\bibcite{howdollmspersuade2025}{{12}{2025}{{How Do LLMs Persuade}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Comparison across feature levels (full conversation). The DeepContext proxy uses BERT-base rather than DeBERTa, introducing a capacity confound (see text).}}{10}{}\protected@file@percent }
+\newlabel{tab:hierarchy}{{13}{10}{}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Cross-checkpoint stability. Max spread $\leq $ 2 pp across all metrics.}}{10}{}\protected@file@percent }
+\newlabel{tab:stability}{{14}{10}{}{table.14}{}}
+\gdef \@abspage@last{10}
