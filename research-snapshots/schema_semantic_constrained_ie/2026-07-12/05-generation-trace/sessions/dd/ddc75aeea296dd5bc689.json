@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "ddc75aeea296dd5bc689",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器 SSH 配置名：westd-21461。项目代码在 /root/autodl-tmp/OntoCoDec/。SciERC 有 6 entity types, 7 relation types。DocR",
+  "task_key": "a5e747bb-d1eb-4aa1-8233-1be85b80a6f9",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/a5e747bb-d1eb-4aa1-8233-1be85b80a6f9.jsonl",
+    "occurrence": 1,
+    "bytes": 609096,
+    "sha256": "1c34859d3738aadcd6c4fb3fa84a222cd7b074de7a30360adc9867f1642e2043"
+  },
+  "statistics": {
+    "messages": 121,
+    "user_turns": 1,
+    "tool_calls": 29,
+    "roles": {
+      "record": 35,
+      "user": 1,
+      "assistant": 27,
+      "tool_call": 29,
+      "tool_result": 29
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ddc75aeea296dd5bc689-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 119,
+      "chunks": [
+        {
+          "path": "ddc75aeea296dd5bc689-part-0001.json",
+          "message_count": 115
+        },
+        {
+          "path": "ddc75aeea296dd5bc689-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-ssh-westd-21461-root-autodl-tmp-ontocodec-scierc-6-entity-types.md"
+}

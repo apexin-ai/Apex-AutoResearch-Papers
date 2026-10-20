@@ -1,0 +1,1529 @@
+{
+  "schema_version": "1.0",
+  "session_id": "dd1aa7591729b2ca3df6",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-15T15:32:22.586Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D2uTcymcUANGPV8ym3Hz4b",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md",
+                "old_string": "The CF-priority fallback policy in W1 was designed to eliminate cross-field-consistency (CF) violations by preferring previously-registered entity types over fresh domain/range masks. The pilot confirms CF is nearly eradicated (9.90 % → **0.04 %**, a 244-of-245 reduction), but at a severe cost: per-triple domain-range (DR) violation rate explodes from **0.93 % → 14.78 %** (+13.85 pp, ×15.9). Of 17 024 semantic-mask invocations, only **58.9 % (10 024)** were \"effective\" — the remaining **36.6 % (6 237)** were silently overridden by the grammar-first guard (semantic ∩ grammar = ∅) and another **4.5 % (763)** by the CF registry. R-F1 / E-F1 are statistically unchanged (8.36 → 8.23, 30.98 → 30.98), so the move is a pure DR-vs-CF trade with no quality win. The CF residual (a single mention `eigenvectors` typed both as `Material` and `OtherScientificTerm`) is intrinsic to ambiguous lexical items the model emits inside multiple relations. Together the numbers show that **mask invocation counts are misleading as a proxy for semantic enforcement** — a substantial fraction of mask calls are no-ops — and that **decoupling CF from DR via fallback transfers, rather than removes, the violation budget**.",
+                "new_string": "The CF-priority fallback policy in W1 was designed to eliminate cross-field-consistency (CF) violations by preferring previously-registered entity types over fresh domain/range masks. The pilot confirms CF is nearly eradicated (9.90 % → **0.04 %**, a 244-of-245 reduction), but at a severe cost: per-triple domain-range (DR) violation rate explodes from **0.93 % → 14.78 %** (+13.85 pp, ×15.9). Of 17 024 semantic-mask invocations, only **58.9 % (10 024)** were \"effective\" — the remaining **36.6 % (6 237)** were silently overridden by the grammar-first guard (semantic ∩ grammar = ∅) and another **4.5 % (763)** by the CF registry. R-F1 / E-F1 are statistically unchanged (8.36 → 8.23, 30.98 → 30.98), so the move is a pure DR-vs-CF trade with no quality win.\n\nThe most striking result: **the pilot's DR rate (14.78 %) recovers 96.2 % of the fully unconstrained DR rate (15.37 %)**. Per-relation, Feature-of reaches 95.3 %, Compare 93.0 %, Part-of 93.5 %, Hyponym-of 99.2 %, Evaluate-for 96.1 % of their respective unconstrained rates. Only Used-for (32.9 % of unconstrained) retains meaningful constraint enforcement, because its tightness is so low (0.028) that the grammar-first guard rarely fires. The CF fallback thus does not merely degrade semantic enforcement — **it effectively neutralizes it**, returning the system to near-unconstrained behavior while achieving CF elimination.\n\nThe CF residual (a single mention `eigenvectors` typed both as `Material` and `OtherScientificTerm`) is intrinsic to ambiguous lexical items the model emits inside multiple relations. Together the numbers show that **mask invocation counts are misleading as a proxy for semantic enforcement** — a substantial fraction of mask calls are no-ops — and that **decoupling CF from DR via fallback transfers, rather than removes, the violation budget**."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e2a710f2-b141-4bf0-8c81-d4f3fd95f040",
+            "isSidechain": false,
+            "requestId": "req_011Cb4bWxDs7v9UzEYqqjA9J",
+            "type": "assistant",
+            "uuid": "2f8cd779-488b-4cf5-b5e1-60e560270c7b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018TepzeFcLffeu1yYgNbCoL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1853,
+                "cache_read_input_tokens": 93034,
+                "output_tokens": 1181,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1853,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1181,
+                    "cache_read_input_tokens": 93034,
+                    "cache_creation_input_tokens": 1853,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1853
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-15T15:32:22.606Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D2uTcymcUANGPV8ym3Hz4b",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2f8cd779-488b-4cf5-b5e1-60e560270c7b",
+            "isSidechain": false,
+            "promptId": "450850ba-b75b-4c42-9cc9-a40801fab825",
+            "type": "user",
+            "uuid": "2f6f0fd2-1375-430a-a91f-c74a29a90ecb",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md",
+              "oldString": "The CF-priority fallback policy in W1 was designed to eliminate cross-field-consistency (CF) violations by preferring previously-registered entity types over fresh domain/range masks. The pilot confirms CF is nearly eradicated (9.90 % → **0.04 %**, a 244-of-245 reduction), but at a severe cost: per-triple domain-range (DR) violation rate explodes from **0.93 % → 14.78 %** (+13.85 pp, ×15.9). Of 17 024 semantic-mask invocations, only **58.9 % (10 024)** were \"effective\" — the remaining **36.6 % (6 237)** were silently overridden by the grammar-first guard (semantic ∩ grammar = ∅) and another **4.5 % (763)** by the CF registry. R-F1 / E-F1 are statistically unchanged (8.36 → 8.23, 30.98 → 30.98), so the move is a pure DR-vs-CF trade with no quality win. The CF residual (a single mention `eigenvectors` typed both as `Material` and `OtherScientificTerm`) is intrinsic to ambiguous lexical items the model emits inside multiple relations. Together the numbers show that **mask invocation counts are misleading as a proxy for semantic enforcement** — a substantial fraction of mask calls are no-ops — and that **decoupling CF from DR via fallback transfers, rather than removes, the violation budget**.",
+              "newString": "The CF-priority fallback policy in W1 was designed to eliminate cross-field-consistency (CF) violations by preferring previously-registered entity types over fresh domain/range masks. The pilot confirms CF is nearly eradicated (9.90 % → **0.04 %**, a 244-of-245 reduction), but at a severe cost: per-triple domain-range (DR) violation rate explodes from **0.93 % → 14.78 %** (+13.85 pp, ×15.9). Of 17 024 semantic-mask invocations, only **58.9 % (10 024)** were \"effective\" — the remaining **36.6 % (6 237)** were silently overridden by the grammar-first guard (semantic ∩ grammar = ∅) and another **4.5 % (763)** by the CF registry. R-F1 / E-F1 are statistically unchanged (8.36 → 8.23, 30.98 → 30.98), so the move is a pure DR-vs-CF trade with no quality win.\n\nThe most striking result: **the pilot's DR rate (14.78 %) recovers 96.2 % of the fully unconstrained DR rate (15.37 %)**. Per-relation, Feature-of reaches 95.3 %, Compare 93.0 %, Part-of 93.5 %, Hyponym-of 99.2 %, Evaluate-for 96.1 % of their respective unconstrained rates. Only Used-for (32.9 % of unconstrained) retains meaningful constraint enforcement, because its tightness is so low (0.028) that the grammar-first guard rarely fires. The CF fallback thus does not merely degrade semantic enforcement — **it effectively neutralizes it**, returning the system to near-unconstrained behavior while achieving CF elimination.\n\nThe CF residual (a single mention `eigenvectors` typed both as `Material` and `OtherScientificTerm`) is intrinsic to ambiguous lexical items the model emits inside multiple relations. Together the numbers show that **mask invocation counts are misleading as a proxy for semantic enforcement** — a substantial fraction of mask calls are no-ops — and that **decoupling CF from DR via fallback transfers, rather than removes, the violation budget**.",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 8,
+                  "oldLines": 8,
+                  "newStart": 8,
+                  "newLines": 12,
+                  "lines": [
+                    " ",
+                    " ## 1. Executive Summary",
+                    " ",
+                    "-The CF-priority fallback policy in W1 was designed to eliminate cross-field-consistency (CF) violations by preferring previously-registered entity types over fresh domain/range masks. The pilot confirms CF is nearly eradicated (9.90 % → **0.04 %**, a 244-of-245 reduction), but at a severe cost: per-triple domain-range (DR) violation rate explodes from **0.93 % → 14.78 %** (+13.85 pp, ×15.9). Of 17 024 semantic-mask invocations, only **58.9 % (10 024)** were \"effective\" — the remaining **36.6 % (6 237)** were silently overridden by the grammar-first guard (semantic ∩ grammar = ∅) and another **4.5 % (763)** by the CF registry. R-F1 / E-F1 are statistically unchanged (8.36 → 8.23, 30.98 → 30.98), so the move is a pure DR-vs-CF trade with no quality win. The CF residual (a single mention `eigenvectors` typed both as `Material` and `OtherScientificTerm`) is intrinsic to ambiguous lexical items the model emits inside multiple relations. Together the numbers show that **mask invocation counts are misleading as a proxy for semantic enforcement** — a substantial fraction of mask calls are no-ops — and that **decoupling CF from DR via fallback transfers, rather than removes, the violation budget**.",
+                    "+The CF-priority fallback policy in W1 was designed to eliminate cross-field-consistency (CF) violations by preferring previously-registered entity types over fresh domain/range masks. The pilot confirms CF is nearly eradicated (9.90 % → **0.04 %**, a 244-of-245 reduction), but at a severe cost: per-triple domain-range (DR) violation rate explodes from **0.93 % → 14.78 %** (+13.85 pp, ×15.9). Of 17 024 semantic-mask invocations, only **58.9 % (10 024)** were \"effective\" — the remaining **36.6 % (6 237)** were silently overridden by the grammar-first guard (semantic ∩ grammar = ∅) and another **4.5 % (763)** by the CF registry. R-F1 / E-F1 are statistically unchanged (8.36 → 8.23, 30.98 → 30.98), so the move is a pure DR-vs-CF trade with no quality win.",
+                    " ",
+                    "+The most striking result: **the pilot's DR rate (14.78 %) recovers 96.2 % of the fully unconstrained DR rate (15.37 %)**. Per-relation, Feature-of reaches 95.3 %, Compare 93.0 %, Part-of 93.5 %, Hyponym-of 99.2 %, Evaluate-for 96.1 % of their respective unconstrained rates. Only Used-for (32.9 % of unconstrained) retains meaningful constraint enforcement, because its tightness is so low (0.028) that the grammar-first guard rarely fires. The CF fallback thus does not merely degrade semantic enforcement — **it effectively neutralizes it**, returning the system to near-unconstrained behavior while achieving CF elimination.",
+                    "+",
+                    "+The CF residual (a single mention `eigenvectors` typed both as `Material` and `OtherScientificTerm`) is intrinsic to ambiguous lexical items the model emits inside multiple relations. Together the numbers show that **mask invocation counts are misleading as a proxy for semantic enforcement** — a substantial fraction of mask calls are no-ops — and that **decoupling CF from DR via fallback transfers, rather than removes, the violation budget**.",
+                    "+",
+                    " ---",
+                    " ",
+                    " ## 2. Per-Relation DR Comparison"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "2f8cd779-488b-4cf5-b5e1-60e560270c7b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-15T15:32:37.281Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014E1bopRxo3vh69CUUTZG63",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md",
+                "old_string": "(OST = OtherScientificTerm; B = baseline, P = pilot.)\n\n**Observation.** ΔDR scales monotonically with tightness for the head-heavy relations (Feature-of, Compare, Part-of, Hyponym-of). The Spearman rank correlation between tightness and ΔDR is essentially 1.0 across the five non-trivial relations (Used-for, Conjunction are tiny by construction). The reading: when the semantic mask is *most* restrictive, the grammar-first guard fires *most* often, and the fallback path emits triples that violate exactly the constraints the mask was supposed to enforce. Tightness is therefore both a feasibility indicator and a fallback-risk indicator.",
+                "new_string": "(OST = OtherScientificTerm; B = baseline, P = pilot.)\n\n**Comparison with unconstrained baseline.** The pilot DR rate tracks the unconstrained DR rate with remarkable fidelity:\n\n| Relation       | Unconstrained DR | Pilot DR | Pilot / Unc |\n|----------------|------------------|----------|-------------|\n| Used-for       | 0.76 % | 0.25 % | 32.9 % ← still constrained |\n| Feature-of     | 33.54 % | 31.98 % | 95.3 % |\n| Hyponym-of     | 14.52 % | 14.40 % | 99.2 % |\n| Part-of        | 25.00 % | 23.38 % | 93.5 % |\n| Compare        | 42.42 % | 39.44 % | 93.0 % |\n| Conjunction    | 0.00 % | 0.00 % | — |\n| Evaluate-for   | 24.06 % | 23.13 % | 96.1 % |\n| **Overall**    | **15.37 %** | **14.78 %** | **96.2 %** |\n\nFor every relation with tightness > 0.25, the pilot recovers > 93 % of the unconstrained DR rate. The fallback does not partially degrade enforcement; it effectively removes it.\n\n**Observation.** ΔDR scales monotonically with tightness for the head-heavy relations (Feature-of, Compare, Part-of, Hyponym-of). Spearman rank correlation between tightness and ΔDR: ρ = 0.50 (p = 0.25, n = 7) — the trend is clear but the small number of relations limits statistical significance. Pearson r = 0.67 (p = 0.098). The reading: when the semantic mask is *most* restrictive, the grammar-first guard fires *most* often, and the fallback path emits triples that violate exactly the constraints the mask was supposed to enforce. Tightness is therefore both a feasibility indicator and a fallback-risk indicator."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2f6f0fd2-1375-430a-a91f-c74a29a90ecb",
+            "isSidechain": false,
+            "requestId": "req_011Cb4bYeQrgpzPGmvtr3tdD",
+            "type": "assistant",
+            "uuid": "b6219818-ea85-49cb-9f8e-a4768bd9271d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C7nPCpftJbzQBCNuKG9D4x",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1266,
+                "cache_read_input_tokens": 94887,
+                "output_tokens": 861,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1266,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 861,
+                    "cache_read_input_tokens": 94887,
+                    "cache_creation_input_tokens": 1266,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1266
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-15T15:32:37.295Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014E1bopRxo3vh69CUUTZG63",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6219818-ea85-49cb-9f8e-a4768bd9271d",
+            "isSidechain": false,
+            "promptId": "450850ba-b75b-4c42-9cc9-a40801fab825",
+            "type": "user",
+            "uuid": "67a10c10-61f2-4fc7-adc2-63687b7ac1bf",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md",
+              "oldString": "(OST = OtherScientificTerm; B = baseline, P = pilot.)\n\n**Observation.** ΔDR scales monotonically with tightness for the head-heavy relations (Feature-of, Compare, Part-of, Hyponym-of). The Spearman rank correlation between tightness and ΔDR is essentially 1.0 across the five non-trivial relations (Used-for, Conjunction are tiny by construction). The reading: when the semantic mask is *most* restrictive, the grammar-first guard fires *most* often, and the fallback path emits triples that violate exactly the constraints the mask was supposed to enforce. Tightness is therefore both a feasibility indicator and a fallback-risk indicator.",
+              "newString": "(OST = OtherScientificTerm; B = baseline, P = pilot.)\n\n**Comparison with unconstrained baseline.** The pilot DR rate tracks the unconstrained DR rate with remarkable fidelity:\n\n| Relation       | Unconstrained DR | Pilot DR | Pilot / Unc |\n|----------------|------------------|----------|-------------|\n| Used-for       | 0.76 % | 0.25 % | 32.9 % ← still constrained |\n| Feature-of     | 33.54 % | 31.98 % | 95.3 % |\n| Hyponym-of     | 14.52 % | 14.40 % | 99.2 % |\n| Part-of        | 25.00 % | 23.38 % | 93.5 % |\n| Compare        | 42.42 % | 39.44 % | 93.0 % |\n| Conjunction    | 0.00 % | 0.00 % | — |\n| Evaluate-for   | 24.06 % | 23.13 % | 96.1 % |\n| **Overall**    | **15.37 %** | **14.78 %** | **96.2 %** |\n\nFor every relation with tightness > 0.25, the pilot recovers > 93 % of the unconstrained DR rate. The fallback does not partially degrade enforcement; it effectively removes it.\n\n**Observation.** ΔDR scales monotonically with tightness for the head-heavy relations (Feature-of, Compare, Part-of, Hyponym-of). Spearman rank correlation between tightness and ΔDR: ρ = 0.50 (p = 0.25, n = 7) — the trend is clear but the small number of relations limits statistical significance. Pearson r = 0.67 (p = 0.098). The reading: when the semantic mask is *most* restrictive, the grammar-first guard fires *most* often, and the fallback path emits triples that violate exactly the constraints the mask was supposed to enforce. Tightness is therefore both a feasibility indicator and a fallback-risk indicator.",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 32,
+                  "oldLines": 8,
+                  "newStart": 32,
+                  "newLines": 23,
+                  "lines": [
+                    " ",
+                    " (OST = OtherScientificTerm; B = baseline, P = pilot.)",
+                    " ",
+                    "-**Observation.** ΔDR scales monotonically with tightness for the head-heavy relations (Feature-of, Compare, Part-of, Hyponym-of). The Spearman rank correlation between tightness and ΔDR is essentially 1.0 across the five non-trivial relations (Used-for, Conjunction are tiny by construction). The reading: when the semantic mask is *most* restrictive, the grammar-first guard fires *most* often, and the fallback path emits triples that violate exactly the constraints the mask was supposed to enforce. Tightness is therefore both a feasibility indicator and a fallback-risk indicator.",
+                    "+**Comparison with unconstrained baseline.** The pilot DR rate tracks the unconstrained DR rate with remarkable fidelity:",
+                    " ",
+                    "+| Relation       | Unconstrained DR | Pilot DR | Pilot / Unc |",
+                    "+|----------------|------------------|----------|-------------|",
+                    "+| Used-for       | 0.76 % | 0.25 % | 32.9 % ← still constrained |",
+                    "+| Feature-of     | 33.54 % | 31.98 % | 95.3 % |",
+                    "+| Hyponym-of     | 14.52 % | 14.40 % | 99.2 % |",
+                    "+| Part-of        | 25.00 % | 23.38 % | 93.5 % |",
+                    "+| Compare        | 42.42 % | 39.44 % | 93.0 % |",
+                    "+| Conjunction    | 0.00 % | 0.00 % | — |",
+                    "+| Evaluate-for   | 24.06 % | 23.13 % | 96.1 % |",
+                    "+| **Overall**    | **15.37 %** | **14.78 %** | **96.2 %** |",
+                    "+",
+                    "+For every relation with tightness > 0.25, the pilot recovers > 93 % of the unconstrained DR rate. The fallback does not partially degrade enforcement; it effectively removes it.",
+                    "+",
+                    "+**Observation.** ΔDR scales monotonically with tightness for the head-heavy relations (Feature-of, Compare, Part-of, Hyponym-of). Spearman rank correlation between tightness and ΔDR: ρ = 0.50 (p = 0.25, n = 7) — the trend is clear but the small number of relations limits statistical significance. Pearson r = 0.67 (p = 0.098). The reading: when the semantic mask is *most* restrictive, the grammar-first guard fires *most* often, and the fallback path emits triples that violate exactly the constraints the mask was supposed to enforce. Tightness is therefore both a feasibility indicator and a fallback-risk indicator.",
+                    "+",
+                    " ---",
+                    " ",
+                    " ## 3. Attempted vs Effective Semantic Masking (Reviewer-Requested Framing)"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "b6219818-ea85-49cb-9f8e-a4768bd9271d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "67a10c10-61f2-4fc7-adc2-63687b7ac1bf",
+                "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3"
+              }
+            }
+          ],
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze W1 CF Fallback Pilot results",
+                "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3"
+              }
+            }
+          ],
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-15T15:32:40.213Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me update Section 4 with actual CF type-pair distribution from data."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "67a10c10-61f2-4fc7-adc2-63687b7ac1bf",
+            "isSidechain": false,
+            "requestId": "req_011Cb4bZi7sks8nfSEcb5AfB",
+            "type": "assistant",
+            "uuid": "81d0a022-74e6-4078-90ac-63281330affe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ca3oTNqwag6JQU6eudtUuE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 927,
+                "cache_read_input_tokens": 96153,
+                "output_tokens": 636,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 927,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 636,
+                    "cache_read_input_tokens": 96153,
+                    "cache_creation_input_tokens": 927,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 927
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-15T15:32:49.499Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H2PeiUHUdJtohkBQNNkrxt",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md",
+                "old_string": "**Top conflicting type pairs in the baseline 245** (what the fallback successfully erased):\n\n| Conflicting pair | Count |\n|------------------|-------|\n| Generic ↔ OtherScientificTerm | 85 |\n| Generic ↔ Material | 35 |\n| Generic ↔ Metric | 30 |\n| Method ↔ Task | 20 |\n| Material ↔ Method | 17 |\n| OtherScientificTerm ↔ Task | 12 |\n| Method ↔ OtherScientificTerm | 8 |",
+                "new_string": "**Baseline within-relation CF violations by type pair** (from `cf_violation_analysis.json`, `s1_detailed`; 10 within-relation violations across 15 samples):\n\n| Relation pair | Count |\n|---------------|-------|\n| Part-of ↔ Used-for | 5 |\n| Feature-of ↔ Used-for | 3 |\n| Feature-of ↔ Hyponym-of | 2 |\n| (8 other singleton patterns) | 8 |\n\n**Baseline EVR (entity-vs-relation) CF type-pair distribution** (245 unique entities with drift):\n\n| Conflicting pair | Count |\n|------------------|-------|\n| Generic ↔ OtherScientificTerm | 3 |\n| Material ↔ OtherScientificTerm | 3 |\n| Material ↔ Method | 3 |\n| Material ↔ Task | 2 |\n| Generic ↔ Material | 1 |\n| Generic ↔ Method | 1 |\n| (+ other pairs) | |\n\n`Generic` is the dominant flip-target — consistent with `Generic` being the \"fallback\" semantic type the model reaches for whenever the head/tail is ambiguous, which then conflicts with a more specific later mention."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "81d0a022-74e6-4078-90ac-63281330affe",
+            "isSidechain": false,
+            "requestId": "req_011Cb4bZi7sks8nfSEcb5AfB",
+            "type": "assistant",
+            "uuid": "ba16a0ef-0edf-4b2a-83da-fa22fa8ffc81",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ca3oTNqwag6JQU6eudtUuE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 927,
+                "cache_read_input_tokens": 96153,
+                "output_tokens": 636,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 927,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 636,
+                    "cache_read_input_tokens": 96153,
+                    "cache_creation_input_tokens": 927,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 927
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-15T15:32:49.516Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H2PeiUHUdJtohkBQNNkrxt",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba16a0ef-0edf-4b2a-83da-fa22fa8ffc81",
+            "isSidechain": false,
+            "promptId": "450850ba-b75b-4c42-9cc9-a40801fab825",
+            "type": "user",
+            "uuid": "e6e39518-e7c7-4bf0-83b6-255887afa205",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md",
+              "oldString": "**Top conflicting type pairs in the baseline 245** (what the fallback successfully erased):\n\n| Conflicting pair | Count |\n|------------------|-------|\n| Generic ↔ OtherScientificTerm | 85 |\n| Generic ↔ Material | 35 |\n| Generic ↔ Metric | 30 |\n| Method ↔ Task | 20 |\n| Material ↔ Method | 17 |\n| OtherScientificTerm ↔ Task | 12 |\n| Method ↔ OtherScientificTerm | 8 |",
+              "newString": "**Baseline within-relation CF violations by type pair** (from `cf_violation_analysis.json`, `s1_detailed`; 10 within-relation violations across 15 samples):\n\n| Relation pair | Count |\n|---------------|-------|\n| Part-of ↔ Used-for | 5 |\n| Feature-of ↔ Used-for | 3 |\n| Feature-of ↔ Hyponym-of | 2 |\n| (8 other singleton patterns) | 8 |\n\n**Baseline EVR (entity-vs-relation) CF type-pair distribution** (245 unique entities with drift):\n\n| Conflicting pair | Count |\n|------------------|-------|\n| Generic ↔ OtherScientificTerm | 3 |\n| Material ↔ OtherScientificTerm | 3 |\n| Material ↔ Method | 3 |\n| Material ↔ Task | 2 |\n| Generic ↔ Material | 1 |\n| Generic ↔ Method | 1 |\n| (+ other pairs) | |\n\n`Generic` is the dominant flip-target — consistent with `Generic` being the \"fallback\" semantic type the model reaches for whenever the head/tail is ambiguous, which then conflicts with a more specific later mention.",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 91,
+                  "oldLines": 20,
+                  "newStart": 91,
+                  "newLines": 31,
+                  "lines": [
+                    " ",
+                    " For Reviewer framing: CF can be made vanishingly small but never strictly zero whenever the schema is non-trivial and the model emits the same lexical item across mutually exclusive domain/range cells.",
+                    " ",
+                    "-**Top conflicting type pairs in the baseline 245** (what the fallback successfully erased):",
+                    "+**Baseline within-relation CF violations by type pair** (from `cf_violation_analysis.json`, `s1_detailed`; 10 within-relation violations across 15 samples):",
+                    " ",
+                    "+| Relation pair | Count |",
+                    "+|---------------|-------|",
+                    "+| Part-of ↔ Used-for | 5 |",
+                    "+| Feature-of ↔ Used-for | 3 |",
+                    "+| Feature-of ↔ Hyponym-of | 2 |",
+                    "+| (8 other singleton patterns) | 8 |",
+                    "+",
+                    "+**Baseline EVR (entity-vs-relation) CF type-pair distribution** (245 unique entities with drift):",
+                    "+",
+                    " | Conflicting pair | Count |",
+                    " |------------------|-------|",
+                    "-| Generic ↔ OtherScientificTerm | 85 |",
+                    "-| Generic ↔ Material | 35 |",
+                    "-| Generic ↔ Metric | 30 |",
+                    "-| Method ↔ Task | 20 |",
+                    "-| Material ↔ Method | 17 |",
+                    "-| OtherScientificTerm ↔ Task | 12 |",
+                    "-| Method ↔ OtherScientificTerm | 8 |",
+                    "+| Generic ↔ OtherScientificTerm | 3 |",
+                    "+| Material ↔ OtherScientificTerm | 3 |",
+                    "+| Material ↔ Method | 3 |",
+                    "+| Material ↔ Task | 2 |",
+                    "+| Generic ↔ Material | 1 |",
+                    "+| Generic ↔ Method | 1 |",
+                    "+| (+ other pairs) | |",
+                    " ",
+                    " `Generic` is the dominant flip-target — consistent with `Generic` being the \"fallback\" semantic type the model reaches for whenever the head/tail is ambiguous, which then conflicts with a more specific later mention.",
+                    " ",
+                    "+`Generic` is the dominant flip-target — consistent with `Generic` being the \"fallback\" semantic type the model reaches for whenever the head/tail is ambiguous, which then conflicts with a more specific later mention.",
+                    "+",
+                    " ---",
+                    " ",
+                    " ## 5. DR Escalation Root Cause"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "ba16a0ef-0edf-4b2a-83da-fa22fa8ffc81",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-15T15:32:49.524Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e6e39518-e7c7-4bf0-83b6-255887afa205",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "d14a6216-6217-4b26-848d-6a3c48f7a3a2",
+                "timestamp": "2026-05-15T15:32:49.524Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-15T15:32:52.190Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now update Section 5 with the unconstrained comparison insight."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d14a6216-6217-4b26-848d-6a3c48f7a3a2",
+            "isSidechain": false,
+            "requestId": "req_011Cb4bacHAqvb5ZGgLKd1ro",
+            "type": "assistant",
+            "uuid": "131b1a4f-f402-49fa-be53-5a6f4bd8db79",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013FJoDakZqZGHRFZFrz4zqu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 806,
+                "cache_read_input_tokens": 97080,
+                "output_tokens": 936,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 806,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 936,
+                    "cache_read_input_tokens": 97080,
+                    "cache_creation_input_tokens": 806,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 806
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-15T15:33:09.698Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LQH7vfRaHBckugMESHSjRN",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md",
+                "old_string": "### 5.2 Why grammar-first dominates\n\nThe grammar-first guard activates when the **per-relation domain/range constraint at the current token position would leave the grammar-valid token set empty**. Concretely, this happens when:\n1. The model has already committed `relation=R, head_type=H` (or it is about to emit `tail_type` in a tight relation), **and**\n2. No valid `tail_type` token under `valid_pairs(R, H, *)` is also currently grammar-valid (e.g., next-token must start with `O` for `OtherScientificTerm` because of grammar prefix state, but `OtherScientificTerm` isn't in `range(R, H)`).\n\nFor a relation like Compare with only 17/36 valid pairs, the probability that a randomly-arrived-at head_type leaves a non-empty tail_type intersection is structurally low — hence Compare's 39.4 % pilot DR.\n\nVerification of channel attribution requires the per-mask-call relation-tagged log (see §3); we recommend adding it before W3 (Llama × SciERC, Llama × DocRED) runs so the same analysis on Llama is directly attributable.",
+                "new_string": "### 5.2 Why grammar-first dominates — the \"return to unconstrained\" phenomenon\n\nThe grammar-first guard activates when the **per-relation domain/range constraint at the current token position would leave the grammar-valid token set empty**. Concretely, this happens when:\n1. The model has already committed `relation=R, head_type=H` (or it is about to emit `tail_type` in a tight relation), **and**\n2. No valid `tail_type` token under `valid_pairs(R, H, *)` is also currently grammar-valid (e.g., next-token must start with `O` for `OtherScientificTerm` because of grammar prefix state, but `OtherScientificTerm` isn't in `range(R, H)`).\n\nFor a relation like Compare with only 17/36 valid pairs, the probability that a randomly-arrived-at head_type leaves a non-empty tail_type intersection is structurally low — hence Compare's 39.4 % pilot DR.\n\n**Critical finding: the pilot DR rate (14.78 %) is 96.2 % of the fully unconstrained rate (15.37 %).** The per-relation recovery rates (see §2) confirm this is not a coincidence — for every relation with tightness > 0.25, the pilot's DR exceeds 93 % of the unconstrained level. The grammar-first fallback does not add a small number of new violations; it *restores* the system to its pre-constraint behavior. The 3.8 % residual gap (15.37 − 14.78 = 0.59 pp) corresponds almost entirely to Used-for, the loosest relation, where semantic masking still operates on the majority of mask calls.\n\nVerification of channel attribution requires the per-mask-call relation-tagged log (see §3); we recommend adding it before W3 (Llama × SciERC, Llama × DocRED) runs so the same analysis on Llama is directly attributable."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "131b1a4f-f402-49fa-be53-5a6f4bd8db79",
+            "isSidechain": false,
+            "requestId": "req_011Cb4bacHAqvb5ZGgLKd1ro",
+            "type": "assistant",
+            "uuid": "b1b27e1b-1b75-4498-b06f-2a19f5129af1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013FJoDakZqZGHRFZFrz4zqu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 806,
+                "cache_read_input_tokens": 97080,
+                "output_tokens": 936,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 806,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 936,
+                    "cache_read_input_tokens": 97080,
+                    "cache_creation_input_tokens": 806,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 806
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-15T15:33:09.717Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LQH7vfRaHBckugMESHSjRN",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b1b27e1b-1b75-4498-b06f-2a19f5129af1",
+            "isSidechain": false,
+            "promptId": "450850ba-b75b-4c42-9cc9-a40801fab825",
+            "type": "user",
+            "uuid": "abb5851b-c6a4-47c2-bb8e-b5e59c3272a3",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md",
+              "oldString": "### 5.2 Why grammar-first dominates\n\nThe grammar-first guard activates when the **per-relation domain/range constraint at the current token position would leave the grammar-valid token set empty**. Concretely, this happens when:\n1. The model has already committed `relation=R, head_type=H` (or it is about to emit `tail_type` in a tight relation), **and**\n2. No valid `tail_type` token under `valid_pairs(R, H, *)` is also currently grammar-valid (e.g., next-token must start with `O` for `OtherScientificTerm` because of grammar prefix state, but `OtherScientificTerm` isn't in `range(R, H)`).\n\nFor a relation like Compare with only 17/36 valid pairs, the probability that a randomly-arrived-at head_type leaves a non-empty tail_type intersection is structurally low — hence Compare's 39.4 % pilot DR.\n\nVerification of channel attribution requires the per-mask-call relation-tagged log (see §3); we recommend adding it before W3 (Llama × SciERC, Llama × DocRED) runs so the same analysis on Llama is directly attributable.",
+              "newString": "### 5.2 Why grammar-first dominates — the \"return to unconstrained\" phenomenon\n\nThe grammar-first guard activates when the **per-relation domain/range constraint at the current token position would leave the grammar-valid token set empty**. Concretely, this happens when:\n1. The model has already committed `relation=R, head_type=H` (or it is about to emit `tail_type` in a tight relation), **and**\n2. No valid `tail_type` token under `valid_pairs(R, H, *)` is also currently grammar-valid (e.g., next-token must start with `O` for `OtherScientificTerm` because of grammar prefix state, but `OtherScientificTerm` isn't in `range(R, H)`).\n\nFor a relation like Compare with only 17/36 valid pairs, the probability that a randomly-arrived-at head_type leaves a non-empty tail_type intersection is structurally low — hence Compare's 39.4 % pilot DR.\n\n**Critical finding: the pilot DR rate (14.78 %) is 96.2 % of the fully unconstrained rate (15.37 %).** The per-relation recovery rates (see §2) confirm this is not a coincidence — for every relation with tightness > 0.25, the pilot's DR exceeds 93 % of the unconstrained level. The grammar-first fallback does not add a small number of new violations; it *restores* the system to its pre-constraint behavior. The 3.8 % residual gap (15.37 − 14.78 = 0.59 pp) corresponds almost entirely to Used-for, the loosest relation, where semantic masking still operates on the majority of mask calls.\n\nVerification of channel attribution requires the per-mask-call relation-tagged log (see §3); we recommend adding it before W3 (Llama × SciERC, Llama × DocRED) runs so the same analysis on Llama is directly attributable.",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 134,
+                  "oldLines": 7,
+                  "newStart": 134,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " The strict lower bound on the \"effective\" channel = baseline DR (16) — semantic masking actively enforced on those 10 024 steps still left 16 violations because the per-step token-level mask cannot prevent every multi-step type-pair combination once the head_type is committed (intra-triple coupling). All other DR escalation must come from the two override channels.",
+                    " ",
+                    "-### 5.2 Why grammar-first dominates",
+                    "+### 5.2 Why grammar-first dominates — the \"return to unconstrained\" phenomenon",
+                    " ",
+                    " The grammar-first guard activates when the **per-relation domain/range constraint at the current token position would leave the grammar-valid token set empty**. Concretely, this happens when:",
+                    " 1. The model has already committed `relation=R, head_type=H` (or it is about to emit `tail_type` in a tight relation), **and**"
+                  ]
+                },
+                {
+                  "oldStart": 142,
+                  "oldLines": 6,
+                  "newStart": 142,
+                  "newLines": 8,
+                  "lines": [
+                    " ",
+                    " For a relation like Compare with only 17/36 valid pairs, the probability that a randomly-arrived-at head_type leaves a non-empty tail_type intersection is structurally low — hence Compare's 39.4 % pilot DR.",
+                    " ",
+                    "+**Critical finding: the pilot DR rate (14.78 %) is 96.2 % of the fully unconstrained rate (15.37 %).** The per-relation recovery rates (see §2) confirm this is not a coincidence — for every relation with tightness > 0.25, the pilot's DR exceeds 93 % of the unconstrained level. The grammar-first fallback does not add a small number of new violations; it *restores* the system to its pre-constraint behavior. The 3.8 % residual gap (15.37 − 14.78 = 0.59 pp) corresponds almost entirely to Used-for, the loosest relation, where semantic masking still operates on the majority of mask calls.",
+                    "+",
+                    " Verification of channel attribution requires the per-mask-call relation-tagged log (see §3); we recommend adding it before W3 (Llama × SciERC, Llama × DocRED) runs so the same analysis on Llama is directly attributable.",
+                    " ",
+                    " ### 5.3 Per-relation new DR violation type-pair signatures"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "b1b27e1b-1b75-4498-b06f-2a19f5129af1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-15T15:33:13.789Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now update the Appendix A table to include the unconstrained row."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "abb5851b-c6a4-47c2-bb8e-b5e59c3272a3",
+            "isSidechain": false,
+            "requestId": "req_011Cb4bc6eWg7wrLSMLvUAFV",
+            "type": "assistant",
+            "uuid": "0c4cf174-2b05-4234-a138-de674df6046c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EP1fubSdy4zaZBGQZNJKzD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1002,
+                "cache_read_input_tokens": 97886,
+                "output_tokens": 940,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1002,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 940,
+                    "cache_read_input_tokens": 97886,
+                    "cache_creation_input_tokens": 1002,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1002
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-15T15:33:27.510Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011HSPV7kLJCaT1b6mgDRHya",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md",
+                "old_string": "## Appendix A — Raw Numbers\n\n| Metric | Baseline (`phase2_scierc_full_s1`) | Pilot (`w1_cf_fallback_scierc_pilot`) |\n|--------|-----------------------------------|---------------------------------------|\n| Total samples | 551 | 551 |\n| Total triples extracted | 1 729 | 1 725 |\n| Total entities extracted | 2 474 | 2 474 |\n| DR violations | 16 | 255 |\n| DR rate | 0.93 % | 14.78 % |\n| CF violations | 245 | 1 |\n| CF rate | 9.90 % | 0.04 % |\n| Total violation rate | 6.21 % | 6.10 % |\n| Entity F1 | 30.98 | 30.98 |\n| Relation F1 | 8.36 | 8.23 |\n| Grammar-first fallback events | (n/a) | 6 237 |\n| CF-registry fallback events | (n/a) | 763 |\n| Total semantic-mask calls | (n/a) | 17 024 |\n| Effective semantic-mask share | (n/a) | 58.85 % |",
+                "new_string": "## Appendix A — Raw Numbers\n\n| Metric | Unconstrained | Baseline (`phase2_scierc_full_s1`) | Pilot (`w1_cf_fallback_scierc_pilot`) |\n|--------|---------------|-----------------------------------|---------------------------------------|\n| Total samples | 551 | 551 | 551 |\n| Total triples extracted | 1 724 | 1 729 | 1 725 |\n| Total entities extracted | 2 474 | 2 474 | 2 474 |\n| DR violations | 265 | 16 | 255 |\n| DR rate | 15.37 % | 0.93 % | 14.78 % |\n| CF violations | 2 | 245 | 1 |\n| CF rate | 0.08 % | 9.90 % | 0.04 % |\n| ET violations | 10 | 0 | 0 |\n| RV violations | 24 | 0 | 0 |\n| Total violation rate | 7.17 % | 6.21 % | 6.10 % |\n| Entity F1 | 31.01 | 30.98 | 30.98 |\n| Relation F1 | 8.23 | 8.36 | 8.23 |\n| Pilot DR / Unc DR | — | — | **96.2 %** |\n| Grammar-first fallback events | (n/a) | (n/a) | 6 237 |\n| CF-registry fallback events | (n/a) | (n/a) | 763 |\n| Total semantic-mask calls | (n/a) | (n/a) | 17 024 |\n| Effective semantic-mask share | (n/a) | (n/a) | 58.85 % |"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0c4cf174-2b05-4234-a138-de674df6046c",
+            "isSidechain": false,
+            "requestId": "req_011Cb4bc6eWg7wrLSMLvUAFV",
+            "type": "assistant",
+            "uuid": "8004d6e9-f78f-4809-9488-7112b87321c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EP1fubSdy4zaZBGQZNJKzD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1002,
+                "cache_read_input_tokens": 97886,
+                "output_tokens": 940,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1002,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 940,
+                    "cache_read_input_tokens": 97886,
+                    "cache_creation_input_tokens": 1002,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1002
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-15T15:33:27.533Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011HSPV7kLJCaT1b6mgDRHya",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8004d6e9-f78f-4809-9488-7112b87321c0",
+            "isSidechain": false,
+            "promptId": "450850ba-b75b-4c42-9cc9-a40801fab825",
+            "type": "user",
+            "uuid": "4de4415b-3f99-4fa6-9257-1c31e85b6b50",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md",
+              "oldString": "## Appendix A — Raw Numbers\n\n| Metric | Baseline (`phase2_scierc_full_s1`) | Pilot (`w1_cf_fallback_scierc_pilot`) |\n|--------|-----------------------------------|---------------------------------------|\n| Total samples | 551 | 551 |\n| Total triples extracted | 1 729 | 1 725 |\n| Total entities extracted | 2 474 | 2 474 |\n| DR violations | 16 | 255 |\n| DR rate | 0.93 % | 14.78 % |\n| CF violations | 245 | 1 |\n| CF rate | 9.90 % | 0.04 % |\n| Total violation rate | 6.21 % | 6.10 % |\n| Entity F1 | 30.98 | 30.98 |\n| Relation F1 | 8.36 | 8.23 |\n| Grammar-first fallback events | (n/a) | 6 237 |\n| CF-registry fallback events | (n/a) | 763 |\n| Total semantic-mask calls | (n/a) | 17 024 |\n| Effective semantic-mask share | (n/a) | 58.85 % |",
+              "newString": "## Appendix A — Raw Numbers\n\n| Metric | Unconstrained | Baseline (`phase2_scierc_full_s1`) | Pilot (`w1_cf_fallback_scierc_pilot`) |\n|--------|---------------|-----------------------------------|---------------------------------------|\n| Total samples | 551 | 551 | 551 |\n| Total triples extracted | 1 724 | 1 729 | 1 725 |\n| Total entities extracted | 2 474 | 2 474 | 2 474 |\n| DR violations | 265 | 16 | 255 |\n| DR rate | 15.37 % | 0.93 % | 14.78 % |\n| CF violations | 2 | 245 | 1 |\n| CF rate | 0.08 % | 9.90 % | 0.04 % |\n| ET violations | 10 | 0 | 0 |\n| RV violations | 24 | 0 | 0 |\n| Total violation rate | 7.17 % | 6.21 % | 6.10 % |\n| Entity F1 | 31.01 | 30.98 | 30.98 |\n| Relation F1 | 8.23 | 8.36 | 8.23 |\n| Pilot DR / Unc DR | — | — | **96.2 %** |\n| Grammar-first fallback events | (n/a) | (n/a) | 6 237 |\n| CF-registry fallback events | (n/a) | (n/a) | 763 |\n| Total semantic-mask calls | (n/a) | (n/a) | 17 024 |\n| Effective semantic-mask share | (n/a) | (n/a) | 58.85 % |",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 172,
+                  "oldLines": 22,
+                  "newStart": 172,
+                  "newLines": 25,
+                  "lines": [
+                    " ",
+                    " ## Appendix A — Raw Numbers",
+                    " ",
+                    "-| Metric | Baseline (`phase2_scierc_full_s1`) | Pilot (`w1_cf_fallback_scierc_pilot`) |",
+                    "-|--------|-----------------------------------|---------------------------------------|",
+                    "-| Total samples | 551 | 551 |",
+                    "-| Total triples extracted | 1 729 | 1 725 |",
+                    "-| Total entities extracted | 2 474 | 2 474 |",
+                    "-| DR violations | 16 | 255 |",
+                    "-| DR rate | 0.93 % | 14.78 % |",
+                    "-| CF violations | 245 | 1 |",
+                    "-| CF rate | 9.90 % | 0.04 % |",
+                    "-| Total violation rate | 6.21 % | 6.10 % |",
+                    "-| Entity F1 | 30.98 | 30.98 |",
+                    "-| Relation F1 | 8.36 | 8.23 |",
+                    "-| Grammar-first fallback events | (n/a) | 6 237 |",
+                    "-| CF-registry fallback events | (n/a) | 763 |",
+                    "-| Total semantic-mask calls | (n/a) | 17 024 |",
+                    "-| Effective semantic-mask share | (n/a) | 58.85 % |",
+                    "+| Metric | Unconstrained | Baseline (`phase2_scierc_full_s1`) | Pilot (`w1_cf_fallback_scierc_pilot`) |",
+                    "+|--------|---------------|-----------------------------------|---------------------------------------|",
+                    "+| Total samples | 551 | 551 | 551 |",
+                    "+| Total triples extracted | 1 724 | 1 729 | 1 725 |",
+                    "+| Total entities extracted | 2 474 | 2 474 | 2 474 |",
+                    "+| DR violations | 265 | 16 | 255 |",
+                    "+| DR rate | 15.37 % | 0.93 % | 14.78 % |",
+                    "+| CF violations | 2 | 245 | 1 |",
+                    "+| CF rate | 0.08 % | 9.90 % | 0.04 % |",
+                    "+| ET violations | 10 | 0 | 0 |",
+                    "+| RV violations | 24 | 0 | 0 |",
+                    "+| Total violation rate | 7.17 % | 6.21 % | 6.10 % |",
+                    "+| Entity F1 | 31.01 | 30.98 | 30.98 |",
+                    "+| Relation F1 | 8.23 | 8.36 | 8.23 |",
+                    "+| Pilot DR / Unc DR | — | — | **96.2 %** |",
+                    "+| Grammar-first fallback events | (n/a) | (n/a) | 6 237 |",
+                    "+| CF-registry fallback events | (n/a) | (n/a) | 763 |",
+                    "+| Total semantic-mask calls | (n/a) | (n/a) | 17 024 |",
+                    "+| Effective semantic-mask share | (n/a) | (n/a) | 58.85 % |",
+                    " ",
+                    " ## Appendix B — Data Sources",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "8004d6e9-f78f-4809-9488-7112b87321c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-15T15:33:31.322Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now update Section 6 to incorporate the \"return to unconstrained\" insight."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4de4415b-3f99-4fa6-9257-1c31e85b6b50",
+            "isSidechain": false,
+            "requestId": "req_011Cb4bdRTNstzGnH8f36ZeB",
+            "type": "assistant",
+            "uuid": "a1c3c6bd-2bb6-4a5b-9136-18e2bb252d6c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011TE3fLnFEjviXW95E2qyAA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1006,
+                "cache_read_input_tokens": 98888,
+                "output_tokens": 1274,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1006,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1274,
+                    "cache_read_input_tokens": 98888,
+                    "cache_creation_input_tokens": 1006,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1006
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-15T15:33:53.808Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wi2pUbYd9GhodvfbyXrh8M",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md",
+                "old_string": "The Reviewer's suggestion was to make the **attempted vs effective** decomposition explicit in the paper. This pilot directly supports three load-bearing claims for the methods section:\n\n1. **Mask-invocation count is not enforcement strength.** On Qwen-SciERC, only 58.9 % of semantic-mask calls were effective; 36.6 % were silently overridden by the grammar-first guard and 4.5 % by the CF registry. Papers that report \"constrained decoding was applied at 100 % of decoding steps\" without this decomposition systematically overstate the contribution of semantic constraints.\n\n2. **CF and DR live in a single violation budget.** Baseline violation budget (DR + CF) = 10.83 %. Pilot budget = 14.82 % (DR 14.78 + CF 0.04). Eliminating CF cost +3.99 pp of total violations — the constraint did not vanish, it moved. This is a clean negative result motivating a *joint* CF + DR scheduler instead of a hierarchical fallback.\n\n3. **Tightness predicts fallback risk.** Across relations the per-relation ΔDR rank-correlates with tightness (Compare ≫ Part-of ≈ Hyponym-of ≈ Feature-of ≫ Used-for). Schemas with high-tightness relations need an alternative enforcement strategy (joint product mask, beam-search with backtracking, or training-time alignment) — fallback-style decoding cannot maintain DR on tight schemas without a quality penalty.\n\nThe downstream F1 numbers (R-F1 ±0.13, E-F1 ±0.00) confirm that the move is policy-neutral for end-task accuracy. The *paper-level* contribution of W1 is therefore the negative finding plus the decomposition — both of which strengthen, rather than weaken, the framing of OntoCoDec's joint-mask design as the principled alternative.",
+                "new_string": "The Reviewer's suggestion was to make the **attempted vs effective** decomposition explicit in the paper. This pilot directly supports four load-bearing claims for the methods section:\n\n1. **Mask-invocation count is not enforcement strength.** On Qwen-SciERC, only 58.9 % of semantic-mask calls were effective; 36.6 % were silently overridden by the grammar-first guard and 4.5 % by the CF registry. Papers that report \"constrained decoding was applied at 100 % of decoding steps\" without this decomposition systematically overstate the contribution of semantic constraints.\n\n2. **CF and DR live in a single violation budget.** Baseline violation budget (DR + CF) = 10.83 %. Pilot budget = 14.82 % (DR 14.78 + CF 0.04). Eliminating CF cost +3.99 pp of total violations — the constraint did not vanish, it moved. This is a clean negative result motivating a *joint* CF + DR scheduler instead of a hierarchical fallback.\n\n3. **Hierarchical fallback ≈ no constraint at all.** The pilot's DR rate (14.78 %) recovers 96.2 % of the unconstrained DR rate (15.37 %). Per-relation, the recovery exceeds 93 % for every relation with tightness > 0.25. This is not a partial degradation — the grammar-first fallback mechanism effectively *disables* semantic enforcement whenever a schema has non-trivial constraints. The only relation where enforcement survives is Used-for (tightness = 0.03), which is loose enough that semantic ∩ grammar is almost never empty.\n\n4. **Tightness predicts fallback risk.** Across relations the per-relation ΔDR rank-correlates with tightness (Compare ≫ Part-of ≈ Hyponym-of ≈ Feature-of ≫ Used-for). Spearman ρ = 0.50 (n = 7), Pearson r = 0.67 (p = 0.098). Schemas with high-tightness relations need an alternative enforcement strategy (joint product mask, beam-search with backtracking, or training-time alignment) — fallback-style decoding cannot maintain DR on tight schemas without a quality penalty.\n\nThe downstream F1 numbers (R-F1 ±0.13, E-F1 ±0.00) confirm that the move is policy-neutral for end-task accuracy. The *paper-level* contribution of W1 is therefore the negative finding plus the decomposition — both of which strengthen, rather than weaken, the framing of OntoCoDec's joint-mask design as the principled alternative."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a1c3c6bd-2bb6-4a5b-9136-18e2bb252d6c",
+            "isSidechain": false,
+            "requestId": "req_011Cb4bdRTNstzGnH8f36ZeB",
+            "type": "assistant",
+            "uuid": "7b174f8b-e574-436f-bf5b-94ae7a5c6428",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011TE3fLnFEjviXW95E2qyAA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1006,
+                "cache_read_input_tokens": 98888,
+                "output_tokens": 1274,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1006,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1274,
+                    "cache_read_input_tokens": 98888,
+                    "cache_creation_input_tokens": 1006,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1006
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-15T15:33:53.836Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wi2pUbYd9GhodvfbyXrh8M",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b174f8b-e574-436f-bf5b-94ae7a5c6428",
+            "isSidechain": false,
+            "promptId": "450850ba-b75b-4c42-9cc9-a40801fab825",
+            "type": "user",
+            "uuid": "e4870dc7-8d90-4c1d-a74a-001dadf52d4c",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md",
+              "oldString": "The Reviewer's suggestion was to make the **attempted vs effective** decomposition explicit in the paper. This pilot directly supports three load-bearing claims for the methods section:\n\n1. **Mask-invocation count is not enforcement strength.** On Qwen-SciERC, only 58.9 % of semantic-mask calls were effective; 36.6 % were silently overridden by the grammar-first guard and 4.5 % by the CF registry. Papers that report \"constrained decoding was applied at 100 % of decoding steps\" without this decomposition systematically overstate the contribution of semantic constraints.\n\n2. **CF and DR live in a single violation budget.** Baseline violation budget (DR + CF) = 10.83 %. Pilot budget = 14.82 % (DR 14.78 + CF 0.04). Eliminating CF cost +3.99 pp of total violations — the constraint did not vanish, it moved. This is a clean negative result motivating a *joint* CF + DR scheduler instead of a hierarchical fallback.\n\n3. **Tightness predicts fallback risk.** Across relations the per-relation ΔDR rank-correlates with tightness (Compare ≫ Part-of ≈ Hyponym-of ≈ Feature-of ≫ Used-for). Schemas with high-tightness relations need an alternative enforcement strategy (joint product mask, beam-search with backtracking, or training-time alignment) — fallback-style decoding cannot maintain DR on tight schemas without a quality penalty.\n\nThe downstream F1 numbers (R-F1 ±0.13, E-F1 ±0.00) confirm that the move is policy-neutral for end-task accuracy. The *paper-level* contribution of W1 is therefore the negative finding plus the decomposition — both of which strengthen, rather than weaken, the framing of OntoCoDec's joint-mask design as the principled alternative.",
+              "newString": "The Reviewer's suggestion was to make the **attempted vs effective** decomposition explicit in the paper. This pilot directly supports four load-bearing claims for the methods section:\n\n1. **Mask-invocation count is not enforcement strength.** On Qwen-SciERC, only 58.9 % of semantic-mask calls were effective; 36.6 % were silently overridden by the grammar-first guard and 4.5 % by the CF registry. Papers that report \"constrained decoding was applied at 100 % of decoding steps\" without this decomposition systematically overstate the contribution of semantic constraints.\n\n2. **CF and DR live in a single violation budget.** Baseline violation budget (DR + CF) = 10.83 %. Pilot budget = 14.82 % (DR 14.78 + CF 0.04). Eliminating CF cost +3.99 pp of total violations — the constraint did not vanish, it moved. This is a clean negative result motivating a *joint* CF + DR scheduler instead of a hierarchical fallback.\n\n3. **Hierarchical fallback ≈ no constraint at all.** The pilot's DR rate (14.78 %) recovers 96.2 % of the unconstrained DR rate (15.37 %). Per-relation, the recovery exceeds 93 % for every relation with tightness > 0.25. This is not a partial degradation — the grammar-first fallback mechanism effectively *disables* semantic enforcement whenever a schema has non-trivial constraints. The only relation where enforcement survives is Used-for (tightness = 0.03), which is loose enough that semantic ∩ grammar is almost never empty.\n\n4. **Tightness predicts fallback risk.** Across relations the per-relation ΔDR rank-correlates with tightness (Compare ≫ Part-of ≈ Hyponym-of ≈ Feature-of ≫ Used-for). Spearman ρ = 0.50 (n = 7), Pearson r = 0.67 (p = 0.098). Schemas with high-tightness relations need an alternative enforcement strategy (joint product mask, beam-search with backtracking, or training-time alignment) — fallback-style decoding cannot maintain DR on tight schemas without a quality penalty.\n\nThe downstream F1 numbers (R-F1 ±0.13, E-F1 ±0.00) confirm that the move is policy-neutral for end-task accuracy. The *paper-level* contribution of W1 is therefore the negative finding plus the decomposition — both of which strengthen, rather than weaken, the framing of OntoCoDec's joint-mask design as the principled alternative.",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 158,
+                  "oldLines": 14,
+                  "newStart": 158,
+                  "newLines": 16,
+                  "lines": [
+                    " ",
+                    " ## 6. Paper Implications (Reviewer Framing)",
+                    " ",
+                    "-The Reviewer's suggestion was to make the **attempted vs effective** decomposition explicit in the paper. This pilot directly supports three load-bearing claims for the methods section:",
+                    "+The Reviewer's suggestion was to make the **attempted vs effective** decomposition explicit in the paper. This pilot directly supports four load-bearing claims for the methods section:",
+                    " ",
+                    " 1. **Mask-invocation count is not enforcement strength.** On Qwen-SciERC, only 58.9 % of semantic-mask calls were effective; 36.6 % were silently overridden by the grammar-first guard and 4.5 % by the CF registry. Papers that report \"constrained decoding was applied at 100 % of decoding steps\" without this decomposition systematically overstate the contribution of semantic constraints.",
+                    " ",
+                    " 2. **CF and DR live in a single violation budget.** Baseline violation budget (DR + CF) = 10.83 %. Pilot budget = 14.82 % (DR 14.78 + CF 0.04). Eliminating CF cost +3.99 pp of total violations — the constraint did not vanish, it moved. This is a clean negative result motivating a *joint* CF + DR scheduler instead of a hierarchical fallback.",
+                    " ",
+                    "-3. **Tightness predicts fallback risk.** Across relations the per-relation ΔDR rank-correlates with tightness (Compare ≫ Part-of ≈ Hyponym-of ≈ Feature-of ≫ Used-for). Schemas with high-tightness relations need an alternative enforcement strategy (joint product mask, beam-search with backtracking, or training-time alignment) — fallback-style decoding cannot maintain DR on tight schemas without a quality penalty.",
+                    "+3. **Hierarchical fallback ≈ no constraint at all.** The pilot's DR rate (14.78 %) recovers 96.2 % of the unconstrained DR rate (15.37 %). Per-relation, the recovery exceeds 93 % for every relation with tightness > 0.25. This is not a partial degradation — the grammar-first fallback mechanism effectively *disables* semantic enforcement whenever a schema has non-trivial constraints. The only relation where enforcement survives is Used-for (tightness = 0.03), which is loose enough that semantic ∩ grammar is almost never empty.",
+                    " ",
+                    "+4. **Tightness predicts fallback risk.** Across relations the per-relation ΔDR rank-correlates with tightness (Compare ≫ Part-of ≈ Hyponym-of ≈ Feature-of ≫ Used-for). Spearman ρ = 0.50 (n = 7), Pearson r = 0.67 (p = 0.098). Schemas with high-tightness relations need an alternative enforcement strategy (joint product mask, beam-search with backtracking, or training-time alignment) — fallback-style decoding cannot maintain DR on tight schemas without a quality penalty.",
+                    "+",
+                    " The downstream F1 numbers (R-F1 ±0.13, E-F1 ±0.00) confirm that the move is policy-neutral for end-task accuracy. The *paper-level* contribution of W1 is therefore the negative finding plus the decomposition — both of which strengthen, rather than weaken, the framing of OntoCoDec's joint-mask design as the principled alternative.",
+                    " ",
+                    " ---"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "7b174f8b-e574-436f-bf5b-94ae7a5c6428",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "e4870dc7-8d90-4c1d-a74a-001dadf52d4c",
+                "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3"
+              }
+            }
+          ],
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze W1 CF Fallback Pilot results",
+                "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3"
+              }
+            }
+          ],
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-15T15:33:58.735Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me register the artifact."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e4870dc7-8d90-4c1d-a74a-001dadf52d4c",
+            "isSidechain": false,
+            "requestId": "req_011Cb4bfMK9Y4KsxPUp6vhaE",
+            "type": "assistant",
+            "uuid": "ec880d40-4240-482a-bb05-102f0f5f38d5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Npe6VjREUJGrDNFPGH8dy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1340,
+                "cache_read_input_tokens": 99894,
+                "output_tokens": 341,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1340,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 341,
+                    "cache_read_input_tokens": 99894,
+                    "cache_creation_input_tokens": 1340,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1340
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-15T15:34:02.745Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UVyXam795wDhdVd59CPTDa",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "W1 CF Fallback Pilot Detailed Analysis",
+                "type": "report",
+                "description": "Detailed analysis of w1_cf_fallback_scierc_pilot vs baseline: per-relation DR comparison, attempted vs effective semantic masking decomposition, CF residual analysis, DR escalation root cause (pilot DR = 96.2% of unconstrained), paper implications for Reviewer framing",
+                "project": "schema_semantic_constrained_ie",
+                "exp_id": "w1_cf_fallback_scierc_pilot",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_pilot_detailed_analysis.md",
+                "tags": [
+                  "paper",
+                  "negative-result",
+                  "cf-fallback",
+                  "violation-analysis",
+                  "reviewer-response"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec880d40-4240-482a-bb05-102f0f5f38d5",
+            "isSidechain": false,
+            "requestId": "req_011Cb4bfMK9Y4KsxPUp6vhaE",
+            "type": "assistant",
+            "uuid": "4229376f-42b3-4426-a10d-b8615bb1115c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Npe6VjREUJGrDNFPGH8dy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1340,
+                "cache_read_input_tokens": 99894,
+                "output_tokens": 341,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1340,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 341,
+                    "cache_read_input_tokens": 99894,
+                    "cache_creation_input_tokens": 1340,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1340
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-15T15:34:02.853Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UVyXam795wDhdVd59CPTDa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_6b2c65\\\", \\\"name\\\": \\\"W1 CF Fallback Pilot Detailed Analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Detailed analysis of w1_cf_fallback_scierc_pilot vs baseline: per-relation DR comparison, attempted vs effective semantic masking decomposition, CF residual analysis, DR escalation root cause (pilot DR = 96.2% of unconstrained), paper implications for Reviewer framing\\\", \\\"path\\\": \\\"projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_scierc_pilot/report/w1_cf_fallback_pilot_detailed_analysis_6b2c65.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"exp_id\\\": \\\"w1_cf_fallback_scierc_pilot\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T15:34:02.751394+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"negative-result\\\", \\\"cf-fallback\\\", \\\"violation-analysis\\\", \\\"reviewer-response\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4229376f-42b3-4426-a10d-b8615bb1115c",
+            "isSidechain": false,
+            "promptId": "450850ba-b75b-4c42-9cc9-a40801fab825",
+            "type": "user",
+            "uuid": "9d7b3f82-261e-4472-b2db-112873ee5440",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_6b2c65\\\", \\\"name\\\": \\\"W1 CF Fallback Pilot Detailed Analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Detailed analysis of w1_cf_fallback_scierc_pilot vs baseline: per-relation DR comparison, attempted vs effective semantic masking decomposition, CF residual analysis, DR escalation root cause (pilot DR = 96.2% of unconstrained), paper implications for Reviewer framing\\\", \\\"path\\\": \\\"projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_scierc_pilot/report/w1_cf_fallback_pilot_detailed_analysis_6b2c65.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"exp_id\\\": \\\"w1_cf_fallback_scierc_pilot\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T15:34:02.751394+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"negative-result\\\", \\\"cf-fallback\\\", \\\"violation-analysis\\\", \\\"reviewer-response\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_6b2c65\", \"name\": \"W1 CF Fallback Pilot Detailed Analysis\", \"type\": \"report\", \"description\": \"Detailed analysis of w1_cf_fallback_scierc_pilot vs baseline: per-relation DR comparison, attempted vs effective semantic masking decomposition, CF residual analysis, DR escalation root cause (pilot DR = 96.2% of unconstrained), paper implications for Reviewer framing\", \"path\": \"projects/schema_semantic_constrained_ie/artifacts/w1_cf_fallback_scierc_pilot/report/w1_cf_fallback_pilot_detailed_analysis_6b2c65.md\", \"url\": null, \"project\": \"schema_semantic_constrained_ie\", \"exp_id\": \"w1_cf_fallback_scierc_pilot\", \"skill\": \"\", \"created_at\": \"2026-05-15T15:34:02.751394+00:00\", \"tags\": [\"paper\", \"negative-result\", \"cf-fallback\", \"violation-analysis\", \"reviewer-response\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "4229376f-42b3-4426-a10d-b8615bb1115c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-15T15:34:13.029Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已更新并注册。核心发现：\n\n**Pilot DR = 96.2% of unconstrained DR** — CF fallback 不是\"部分降级\"语义约束，而是**有效地消除了约束**。逐 relation 的 recovery rate：\n- Feature-of 95.3%, Compare 93.0%, Part-of 93.5%, Hyponym-of 99.2%, Evaluate-for 96.1%\n- 唯一保留约束效力的是 Used-for（tightness=0.03，极宽松）\n\n报告包含完整的：\n1. Per-relation DR 对比表（含 tightness 关联 + unconstrained 对照）\n2. Attempted vs Effective 分解（58.9% / 36.6% / 4.5%）\n3. CF 残余分析（唯一残余：eigenvectors，Material↔OtherScientificTerm）\n4. DR 恶化根因（grammar-first fallback 占主导，完整 type-pair 分布）\n5. 四条论文可用 claims（含新增的 \"hierarchical fallback ≈ no constraint\"）"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d7b3f82-261e-4472-b2db-112873ee5440",
+            "isSidechain": false,
+            "requestId": "req_011Cb4bg1vN4hTNAfpQmSpjh",
+            "type": "assistant",
+            "uuid": "9ad9bb82-39d2-4645-a8b4-66f175848054",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Awevi4UuM9TRLfRQE2Ltz1",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 716,
+                "cache_read_input_tokens": 101234,
+                "output_tokens": 311,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 716,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 311,
+                    "cache_read_input_tokens": 101234,
+                    "cache_creation_input_tokens": 716,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 716
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "9ad9bb82-39d2-4645-a8b4-66f175848054",
+                "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3"
+              }
+            }
+          ],
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze W1 CF Fallback Pilot results",
+                "sessionId": "8ba0f075-c238-4247-a47e-a5530a4612a3"
+              }
+            }
+          ],
+          "id": "event-000142"
+        }
+      ]
+    }
+  ]
+}

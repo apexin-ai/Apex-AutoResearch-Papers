@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "fb18ddf11039c034de82",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You need to transfer a PDF file from a remote server to local by reading base64 chunks. **Background**: A compiled PDF a",
+  "task_key": "agent-ac046bdfce03e802e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ac046bdfce03e802e.jsonl",
+    "occurrence": 1,
+    "bytes": 1080050,
+    "sha256": "b5ec551fc6180ce72ee18d2c648d1b9f9de63de3b6dd4fc2d091daf8968e6a45"
+  },
+  "statistics": {
+    "messages": 319,
+    "user_turns": 4,
+    "tool_calls": 135,
+    "roles": {
+      "user": 4,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 135,
+      "tool_result": 135,
+      "system": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 69,
+      "chunks": [
+        {
+          "path": "fb18ddf11039c034de82-part-0001.json",
+          "message_count": 69
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 72,
+      "chunks": [
+        {
+          "path": "fb18ddf11039c034de82-part-0001.json",
+          "message_count": 66
+        },
+        {
+          "path": "fb18ddf11039c034de82-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 118,
+      "chunks": [
+        {
+          "path": "fb18ddf11039c034de82-part-0002.json",
+          "message_count": 118
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 60,
+      "chunks": [
+        {
+          "path": "fb18ddf11039c034de82-part-0002.json",
+          "message_count": 56
+        },
+        {
+          "path": "fb18ddf11039c034de82-part-0003.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-need-to-transfer-a-pdf-file-from-a-remote-server-to-local-by-reading-base6.md"
+}

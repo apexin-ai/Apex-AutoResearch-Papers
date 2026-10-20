@@ -1,0 +1,1381 @@
+{
+  "schema_version": "1.0",
+  "id": "fee750a57b333470514f",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_proj",
+  "task_key": "agent-ac815ea01fdb02efe",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-ac815ea01fdb02efe.jsonl",
+    "occurrence": 1,
+    "bytes": 81293,
+    "sha256": "a095009530490e63ea148e68460b8c58817af5160cc924ec49209d6dc2028e5c"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 1,
+    "tool_calls": 8,
+    "roles": {
+      "user": 1,
+      "assistant": 9,
+      "tool_call": 8,
+      "tool_result": 8
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T20:18:03.413Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/, I need to find orphan bib entries — keys defined in .bib files but never cited in any .tex file.\n\nSteps:\n1. Extract all bib keys from relwork_new_entries.bib (the only .bib file). Look for lines matching `@...{KEY,` pattern.\n2. For each key, grep across all .tex files in the same directory for `\\cite{...KEY...}` or `\\citet{KEY}` or `\\citealt{KEY}` or `\\citep{KEY}` or any cite variant containing the key.\n3. Report which keys are NOT found in any .tex file (orphans).\n\nBe thorough — check ALL keys. Report the complete list of orphan keys."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "3d6d114d-4a62-4f7b-b05c-eb3cd0d2a305",
+            "agentId": "ac815ea01fdb02efe",
+            "type": "user",
+            "uuid": "04f704eb-55a9-42bd-a4f9-54ac5e9f4174",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T20:18:05.356Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find orphan bib entries. Let me start by exploring the directory structure and then systematically extract and check all bib keys."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04f704eb-55a9-42bd-a4f9-54ac5e9f4174",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESNj5MnoqU1DgjAUKMH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "af0cdd2a-00af-488f-877f-04e17ddf30d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01J6SLzkpqajrh5Try173YZr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25472,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25472,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T20:18:05.508Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VNbbTvK699opXYnenmvVdc",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/ -type f -name \"*.bib\" -o -name \"*.tex\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "af0cdd2a-00af-488f-877f-04e17ddf30d0",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESNj5MnoqU1DgjAUKMH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ce6698be-c57a-41fe-9770-0b2a3272024d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01J6SLzkpqajrh5Try173YZr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25472,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 143,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 25472
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 143,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 25472,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 25472,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T20:18:05.697Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VNbbTvK699opXYnenmvVdc",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_case_studies.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/case_study_kappa_dr.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract_fd4b26.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract_d3264e.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_wikievents_draft.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/paper_tables_draft.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft_4796e8.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_scalability.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/discussion_paragraphs.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_llama_per_relation.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_prompt_sensitivity.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce6698be-c57a-41fe-9770-0b2a3272024d",
+            "isSidechain": true,
+            "promptId": "3d6d114d-4a62-4f7b-b05c-eb3cd0d2a305",
+            "agentId": "ac815ea01fdb02efe",
+            "type": "user",
+            "uuid": "f9ef5166-2884-41be-a322-4c868b3f3232",
+            "sourceToolAssistantUUID": "ce6698be-c57a-41fe-9770-0b2a3272024d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T20:18:07.272Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the .bib file and extract all bib keys:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f9ef5166-2884-41be-a322-4c868b3f3232",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESNtuwm7gPEza3oDGGH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "251bb423-722e-4ca4-a99c-3ec773594ceb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DZqroJd71Y1RRFiEreWnYY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1916,
+                "cache_read_input_tokens": 25472,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1916,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T20:18:07.641Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QXhr8W9Ljowo5vBG9WcJeZ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "251bb423-722e-4ca4-a99c-3ec773594ceb",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESNtuwm7gPEza3oDGGH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "18e5cb64-784d-4285-9419-6f1141ed1df6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DZqroJd71Y1RRFiEreWnYY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1916,
+                "cache_read_input_tokens": 25472,
+                "output_tokens": 115,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1916
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 115,
+                    "cache_read_input_tokens": 25472,
+                    "cache_creation_input_tokens": 1916,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1916,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T20:18:08.069Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QXhr8W9Ljowo5vBG9WcJeZ",
+              "type": "tool_result",
+              "content": "1\t% ============================================================\n2\t% Merged authoritative BibTeX references (9 entries)\n3\t% Merged 2026-05-14 from relwork_new_entries.bib + new_references.bib\n4\t% ============================================================\n5\t\n6\t% Confirmed via: Semantic Scholar, arXiv:2201.11227, OpenReview\n7\t% Venue: ICLR 2022 (cite key corrected from synchromesh_neurips2022)\n8\t@inproceedings{synchromesh_iclr2022,\n9\t  title     = {Synchromesh: Reliable Code Generation from Pre-trained Language Models},\n10\t  author    = {Poesia, Gabriel and Polozov, Oleksandr and Le, Vu and Tiwari, Ashish and Soares, Gustavo and Meek, Christopher and Gulwani, Sumit},\n11\t  booktitle = {International Conference on Learning Representations},\n12\t  year      = {2022},\n13\t  url       = {https://openreview.net/forum?id=KmtVD97J43e}\n14\t}\n15\t\n16\t% Confirmed via: NeurIPS 2023 proceedings, microsoft/monitors4codegen GitHub\n17\t@inproceedings{mgd_neurips2023,\n18\t  title     = {Monitor-Guided Decoding of Code {LMs} with Static Analysis of Repository Context},\n19\t  author    = {Agrawal, Lakshya A. and Kanade, Aditya and Goyal, Navin and Lahiri, Shuvendu K. and Rajamani, Sriram K.},\n20\t  booktitle = {Advances in Neural Information Processing Systems},\n21\t  volume    = {36},\n22\t  year      = {2023},\n23\t  url       = {https://proceedings.neurips.cc/paper_files/paper/2023/hash/662b1774ba8845fc1fa3d1fc0177ceeb-Abstract-Conference.html}\n24\t}\n25\t\n26\t% Confirmed via: ACM DL doi:10.1145/3729274, arXiv:2504.09246, SRI Lab ETH\n27\t@article{pldi2025_type_constrained_codegen,\n28\t  title     = {Type-Constrained Code Generation with Language Models},\n29\t  author    = {M\\\"{u}ndler, Niels and He, Jingxuan and Wang, Hao and Sen, Koushik and Song, Dawn and Vechev, Martin},\n30\t  journal   = {Proceedings of the ACM on Programming Languages},\n31\t  volume    = {9},\n32\t  number    = {PLDI},\n33\t  year      = {2025},\n34\t  doi       = {10.1145/3729274},\n35\t  url       = {https://dl.acm.org/doi/10.1145/3729274}\n36\t}\n37\t\n38\t% Confirmed via: ACL Anthology W04-2401, scottyih.org\n39\t% WARNING: cite key suggests AAAI 2004, but actual venue is CoNLL 2004 at HLT-NAACL\n40\t@inproceedings{roth_yih_2004,\n41\t  title     = {A Linear Programming Formulation for Global Inference in Natural Language Tasks},\n42\t  author    = {Roth, Dan and Yih, Wen-tau},\n43\t  booktitle = {Proceedings of the Eighth Conference on Computational Natural Language Learning ({CoNLL}-2004) at {HLT}-{NAACL} 2004},\n44\t  pages     = {1--8},\n45\t  year      = {2004},\n46\t  address   = {Boston, Massachusetts, USA},\n47\t  url       = {https://aclanthology.org/W04-2401/}\n48\t}\n49\t\n50\t% Confirmed via: ACL Anthology 2023.findings-emnlp.425, zjunlp/AdaKGC GitHub\n51\t@inproceedings{adakgc_emnlp2023,\n52\t  title     = {Schema-adaptable Knowledge Graph Construction},\n53\t  author    = {Ye, Hongbin and Gui, Honghao and Xu, Xin and Chen, Xi and Chen, Huajun and Zhang, Ningyu},\n54\t  booktitle = {Findings of the Association for Computational Linguistics: {EMNLP} 2023},\n55\t  pages     = {6408--6431},\n56\t  year      = {2023},\n57\t  url       = {https://aclanthology.org/2023.findings-emnlp.425/}\n58\t}\n59\t\n60\t% Confirmed via: ACL Anthology 2024.acl-long.475, arXiv:2403.07969\n61\t@inproceedings{knowcoder_acl2024,\n62\t  title     = {{KnowCoder}: Coding Structured Knowledge into {LLMs} for Universal Information Extraction},\n63\t  author    = {Li, Zixuan and Zeng, Yutao and Zuo, Yuxin and Ren, Weicheng and Liu, Wenxuan and Su, Miao and Guo, Yucan and Liu, Yantao and Li, Xiang and Hu, Zhilei and Bai, Long and Li, Wei and Liu, Yidan and Yang, Pan and Jin, Xiaolong and Guo, Jiafeng and Cheng, Xueqi},\n64\t  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n65\t  pages     = {8758--8779},\n66\t  year      = {2024},\n67\t  address   = {Bangkok, Thailand},\n68\t  url       = {https://aclanthology.org/2024.acl-long.475/}\n69\t}\n70\t\n71\t% Confirmed via: Oxford Academic Bioinformatics btae104, PubMed 38383067\n72\t@article{spires_2024,\n73\t  title     = {Structured Prompt Interrogation and Recursive Extraction of Semantics ({SPIRES}): A Method for Populating Knowledge Bases Using Zero-shot Learning},\n74\t  author    = {Caufield, J. Harry and Hegde, Harshad and Emonet, Vincent and Harris, Nomi L. and Joachimiak, Marcin P. and Matentzoglu, Nicolas and Kim, HyeongSik and Moxon, Sierra and Reese, Justin T. and Haendel, Melissa A. and Robinson, Peter N. and Mungall, Christopher J.},\n75\t  journal   = {Bioinformatics},\n76\t  volume    = {40},\n77\t  number    = {3},\n78\t  pages     = {btae104},\n79\t  year      = {2024},\n80\t  doi       = {10.1093/bioinformatics/btae104},\n81\t  url       = {https://academic.oup.com/bioinformatics/article/40/3/btae104/7612230}\n82\t}\n83\t\n84\t% Confirmed via: arXiv:2510.01409, Wiley Advanced Intelligent Systems doi:10.1002/aisy.202501381\n85\t@misc{ontologx_2025,\n86\t  title         = {{OntoLogX}: Ontology-Guided Knowledge Graph Extraction from Cybersecurity Logs with Large Language Models},\n87\t  author        = {Cotti, Luca and Drago, Idilio and Rula, Anisa and Bianchini, Devis and Cerutti, Federico},\n88\t  year          = {2025},\n89\t  eprint        = {2510.01409},\n90\t  archiveprefix = {arXiv},\n91\t  primaryclass  = {cs.AI},\n92\t  url           = {https://arxiv.org/abs/2510.01409}\n93\t}\n94\t\n95\t% Confirmed via: Springer LNCS 15370, arXiv:2411.15666, Lama-West GitHub\n96\t@inproceedings{ekaw2024_ontology_beam,\n97\t  title     = {Ontology-Constrained Generation of Domain-Specific Clinical Summaries},\n98\t  author    = {Mehenni, Gaya and Zouaq, Amal},\n99\t  booktitle = {Knowledge Engineering and Knowledge Management ({EKAW} 2024)},\n100\t  series    = {Lecture Notes in Computer Science},\n101\t  volume    = {15370},\n102\t  pages     = {382--398},\n103\t  year      = {2024},\n104\t  publisher = {Springer},\n105\t  doi       = {10.1007/978-3-031-77792-9_23}\n106\t}\n107\t\n108\t% ============================================================\n109\t% New entries added 2026-05-14 for §6 related work expansion\n110\t% ============================================================\n111\t\n112\t% Confirmed via: ACL Anthology 2021.emnlp-main.779, arXiv:2109.05093, GitHub ServiceNow/picard\n113\t@inproceedings{scholak2021picard,\n114\t  title     = {{PICARD}: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models},\n115\t  author    = {Scholak, Torsten and Schucher, Nathan and Bahdanau, Dzmitry},\n116\t  booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},\n117\t  year      = {2021},\n118\t  url       = {https://aclanthology.org/2021.emnlp-main.779/}\n119\t}\n120\t\n121\t% Confirmed via: arXiv:2509.19057, ResearchGate, OpenReview gcG8dmAUNh\n122\t@article{olasunkanmi2025relate,\n123\t  title   = {{RELATE}: Relation Extraction in Biomedical Abstracts with {LLMs} and Ontology Constraints},\n124\t  author  = {Olasunkanmi, Olawumi and Satusky, Mathew and Yi, Hong and Bizon, Chris and Lee, Harlin and Ahalt, Stanley},\n125\t  journal = {arXiv preprint arXiv:2509.19057},\n126\t  year    = {2025},\n127\t  url     = {https://arxiv.org/abs/2509.19057}\n128\t}\n129\t\n130\t% Confirmed via: arXiv:2602.03439, University of Cambridge / The World Avatar project\n131\t@article{zhou2026ontologytools,\n132\t  title   = {Ontology-to-tools compilation for executable semantic constraint enforcement in {LLM} agents},\n133\t  author  = {Zhou, Xiaochi and Bulter, Patrick and Yang, Changxuan and Rihm, Simon D. and Angkanaporn, Thitikarn and Akroyd, Jethro and Mosbach, Sebastian and Kraft, Markus},\n134\t  journal = {arXiv preprint arXiv:2602.03439},\n135\t  year    = {2026},\n136\t  url     = {https://arxiv.org/abs/2602.03439}\n137\t}\n138\t\n139\t% Confirmed via: IOS Press ECAI 2020 FAIA vol.325, arXiv:1909.07755, GitHub lavis-nlp/spert\n140\t@inproceedings{eberts2020spert,\n141\t  title     = {Span-based Joint Entity and Relation Extraction with Transformer Pre-training},\n142\t  author    = {Eberts, Markus and Ulges, Adrian},\n143\t  booktitle = {Proceedings of the 24th European Conference on Artificial Intelligence ({ECAI} 2020)},\n144\t  series    = {Frontiers in Artificial Intelligence and Applications},\n145\t  volume    = {325},\n146\t  pages     = {2006--2013},\n147\t  year      = {2020},\n148\t  doi       = {10.3233/FAIA200321}\n149\t}\n150\t\n151\t% Confirmed via: ACL Anthology 2021.emnlp-main.17, arXiv:2108.12202\n152\t% NOTE: venue is EMNLP 2021 (NOT AAAI 2021)\n153\t@inproceedings{yan2021pfn,\n154\t  title     = {A Partition Filter Network for Joint Entity and Relation Extraction},\n155\t  author    = {Yan, Zhiheng and Zhang, Chong and Fu, Jinlan and Zhang, Qi and Wei, Zhongyu},\n156\t  booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},\n157\t  pages     = {185--197},\n158\t  year      = {2021},\n159\t  url       = {https://aclanthology.org/2021.emnlp-main.17/}\n160\t}\n161\t\n162\t% Confirmed via: ACL Anthology 2021.naacl-main.5, GitHub princeton-nlp/PURE\n163\t@inproceedings{zhong2021frustratingly,\n164\t  title     = {A Frustratingly Easy Approach for Entity and Relation Extraction},\n165\t  author    = {Zhong, Zexuan and Chen, Danqi},\n166\t  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},\n167\t  pages     = {50--61},\n168\t  year      = {2021},\n169\t  address   = {Online},\n170\t  publisher = {Association for Computational Linguistics},\n171\t  url       = {https://aclanthology.org/2021.naacl-main.5}\n172\t}\n173\t\n174\t% Confirmed via: ACL Anthology 2022.acl-long.337, GitHub thunlp/PL-Marker\n175\t@inproceedings{ye2022packed,\n176\t  title     = {Packed Levitated Marker for Entity and Relation Extraction},\n177\t  author    = {Ye, Deming and Lin, Yankai and Li, Peng and Sun, Maosong},\n178\t  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n179\t  pages     = {4904--4917},\n180\t  year      = {2022},\n181\t  address   = {Dublin, Ireland},\n182\t  publisher = {Association for Computational Linguistics},\n183\t  url       = {https://aclanthology.org/2022.acl-long.337}\n184\t}\n185\t\n186\t% Confirmed via: arXiv:2604.06066 (previously PENDING AUDIT — now verified)\n187\t@article{zhou2026snowballing,\n188\t  title   = {From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in {LLM} Reflection},\n189\t  author  = {Zhou, Hongxu},\n190\t  journal = {arXiv preprint arXiv:2604.06066},\n191\t  year    = {2026},\n192\t  url     = {https://arxiv.org/abs/2604.06066}\n193\t}\n194\t\n195\t% ============================================================\n196\t% Batch 1: Constrained decoding + IE foundations (10 entries)\n197\t% ============================================================\n198\t\n199\t% Confirmed via: arXiv 2411.15100, MLSys 2025 proceedings\n200\t@inproceedings{dong2025xgrammar,\n201\t  title     = {{XGrammar}: Flexible and Efficient Structured Generation Engine for Large Language Models},\n202\t  author    = {Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi and Zhao, Yilong and Chen, Tianqi},\n203\t  booktitle = {Proceedings of Machine Learning and Systems (MLSys)},\n204\t  year      = {2025},\n205\t  url       = {https://arxiv.org/abs/2411.15100}\n206\t}\n207\t\n208\t% Confirmed via: arXiv 2307.09702\n209\t@article{willard2023outlines,\n210\t  title   = {Efficient Guided Generation for Large Language Models},\n211\t  author  = {Willard, Brandon T. and Louf, R{\\'e}mi},\n212\t  journal = {arXiv preprint arXiv:2307.09702},\n213\t  year    = {2023},\n214\t  url     = {https://arxiv.org/abs/2307.09702}\n215\t}\n216\t\n217\t% Confirmed via: ACM DL 10.1145/3591300, PLDI 2023\n218\t@inproceedings{beurer-kellner2023lmql,\n219\t  title     = {Prompting Is Programming: A Query Language for Large Language Models},\n220\t  author    = {Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin},\n221\t  booktitle = {Proceedings of the ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI)},\n222\t  year      = {2023},\n223\t  url       = {https://doi.org/10.1145/3591300}\n224\t}\n225\t\n226\t% Confirmed via: PMLR v235, ICML 2024\n227\t@inproceedings{beurer-kellner2024domino,\n228\t  title     = {Guiding {LLMs} The Right Way: Fast, Non-Invasive Constrained Generation},\n229\t  author    = {Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin},\n230\t  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},\n231\t  pages     = {3658--3673},\n232\t  year      = {2024},\n233\t  series    = {PMLR},\n234\t  volume    = {235},\n235\t  url       = {https://proceedings.mlr.press/v235/beurer-kellner24a.html}\n236\t}\n237\t\n238\t% Confirmed via: NeurIPS 2024 proceedings, OpenReview\n239\t@inproceedings{park2024grammar,\n240\t  title     = {Grammar-Aligned Decoding},\n241\t  author    = {Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadia and D'Antoni, Loris},\n242\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n243\t  year      = {2024},\n244\t  url       = {https://arxiv.org/abs/2405.21047}\n245\t}\n246\t\n247\t% Confirmed via: OpenReview, ICLR 2021\n248\t@inproceedings{decao2021genre,\n249\t  title     = {Autoregressive Entity Retrieval},\n250\t  author    = {De Cao, Nicola and Izacard, Gautier and Riedel, Sebastian and Petroni, Fabio},\n251\t  booktitle = {International Conference on Learning Representations (ICLR)},\n252\t  year      = {2021},\n253\t  url       = {https://openreview.net/forum?id=5k8F6UU39V}\n254\t}\n255\t\n256\t% Confirmed via: ACL Anthology 2022.naacl-main.342\n257\t@inproceedings{josifoski2022genie,\n258\t  title     = {{GenIE}: Generative Information Extraction},\n259\t  author    = {Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and West, Robert},\n260\t  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n261\t  pages     = {4626--4643},\n262\t  year      = {2022},\n263\t  url       = {https://aclanthology.org/2022.naacl-main.342/}\n264\t}\n265\t\n266\t% Confirmed via: ACL Anthology 2023.emnlp-main.674\n267\t@inproceedings{geng2023gcd,\n268\t  title     = {Grammar-Constrained Decoding for Structured {NLP} Tasks without Finetuning},\n269\t  author    = {Geng, Saibo and Josifoski, Martin and Peyrard, Maxime and West, Robert},\n270\t  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n271\t  year      = {2023},\n272\t  url       = {https://aclanthology.org/2023.emnlp-main.674/}\n273\t}\n274\t\n275\t% Confirmed via: ACL Anthology 2021.naacl-main.339\n276\t@inproceedings{lu2021neurologic,\n277\t  title     = {{NeuroLogic} Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints},\n278\t  author    = {Lu, Ximing and West, Peter and Zellers, Rowan and Le Bras, Ronan and Bhagavatula, Chandra and Choi, Yejin},\n279\t  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n280\t  pages     = {4288--4299},\n281\t  year      = {2021},\n282\t  url       = {https://aclanthology.org/2021.naacl-main.339/}\n283\t}\n284\t\n285\t% Confirmed via: ACL Anthology 2022.acl-long.395\n286\t@inproceedings{lu2022uie,\n287\t  title     = {Unified Structure Generation for Universal Information Extraction},\n288\t  author    = {Lu, Yaojie and Liu, Qing and Dai, Dai and Xiao, Xinyan and Lin, Hongyu and Han, Xianpei and Sun, Le and Wu, Hua},\n289\t  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},\n290\t  pages     = {5755--5772},\n291\t  year      = {2022},\n292\t  url       = {https://aclanthology.org/2022.acl-long.395/}\n293\t}\n294\t\n295\t% ============================================================\n296\t% Batch 2: 10 entries added 2026-05-14\n297\t% ============================================================\n298\t\n299\t% Confirmed via: ICLR 2024 proceedings, OpenReview Y3wpuxd7u9, arXiv:2310.03668\n300\t@inproceedings{sainz2024gollie,\n301\t  title     = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling},\n302\t  author    = {Sainz, Oscar and Garc{\\'\\i}a-Ferrero, Iker and Agerri, Rodrigo and Lopez de Lacalle, Oier and Rigau, German and Agirre, Eneko},\n303\t  booktitle = {The Twelfth International Conference on Learning Representations},\n304\t  year      = {2024},\n305\t  url       = {https://openreview.net/forum?id=Y3wpuxd7u9}\n306\t}\n307\t\n308\t% Confirmed via: ACL Anthology 2023.acl-long.855, arXiv:2305.05711\n309\t@inproceedings{li2023codeie,\n310\t  title     = {{CodeIE}: Large Code Generation Models are Better Few-Shot Information Extractors},\n311\t  author    = {Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Huang, Xuanjing and Qiu, Xipeng},\n312\t  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n313\t  pages     = {15339--15353},\n314\t  year      = {2023},\n315\t  address   = {Toronto, Canada},\n316\t  url       = {https://aclanthology.org/2023.acl-long.855/}\n317\t}\n318\t\n319\t% Confirmed via: ACL Anthology 2024.emnlp-main.419, arXiv:2405.05008, GitHub THU-KEG/ADELIE\n320\t@inproceedings{qi2024adelie,\n321\t  title     = {{ADELIE}: Aligning Large Language Models on Information Extraction},\n322\t  author    = {Qi, Yunjia and Peng, Hao and Wang, Xiaozhi and Xu, Bin and Hou, Lei and Li, Juanzi},\n323\t  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},\n324\t  year      = {2024},\n325\t  address   = {Miami, Florida, USA},\n326\t  url       = {https://aclanthology.org/2024.emnlp-main.419/}\n327\t}\n328\t\n329\t% Confirmed via: arXiv:2404.12493, GitHub urchade/EnriCo\n330\t% NOTE: arXiv preprint; no conference publication found\n331\t@article{zaratiana2024enrico,\n332\t  title   = {{EnriCo}: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction},\n333\t  author  = {Zaratiana, Urchade and Tomeh, Nadi and Dauxais, Yann and Holat, Pierre and Charnois, Thierry},\n334\t  journal = {arXiv preprint arXiv:2404.12493},\n335\t  year    = {2024},\n336\t  url     = {https://arxiv.org/abs/2404.12493}\n337\t}\n338\t\n339\t% Confirmed via: arXiv:2509.04696, Apple ML Research machinelearning.apple.com/research/odke\n340\t% NOTE: cite key uses \"odke\"; actual paper title is \"ODKE+\"\n341\t@article{khorshidi2025odke,\n342\t  title   = {{ODKE+}: Ontology-Guided Open-Domain Knowledge Extraction with {LLMs}},\n343\t  author  = {Khorshidi, Samira and Nikfarjam, Azadeh and Shankar, Suprita and Sang, Yisi and Govind, Yash and Jang, Hyun and Kasgari, Ali and McClimans, Alexis and Soliman, Mohamed and Konda, Vishnu and Fakhry, Ahmed and Qi, Xiaoguang},\n344\t  journal = {arXiv preprint arXiv:2509.04696},\n345\t  year    = {2025},\n346\t  url     = {https://arxiv.org/abs/2509.04696}\n347\t}\n348\t\n349\t% Confirmed via: ACL Anthology 2023.findings-eacl.95\n350\t@inproceedings{upadhyay2023openie,\n351\t  title     = {Open Information Extraction with Entity Focused Constraints},\n352\t  author    = {Upadhyay, Prajna and Balalau, Oana and Manolescu, Ioana},\n353\t  booktitle = {Findings of the Association for Computational Linguistics: {EACL} 2023},\n354\t  year      = {2023},\n355\t  url       = {https://aclanthology.org/2023.findings-eacl.95/}\n356\t}\n357\t\n358\t% Confirmed via: ACL Anthology 2025.genaik-1.10, GenAIK Workshop at COLING 2025\n359\t@inproceedings{regino2025kgcurator,\n360\t  title     = {Can {LLMs} be Knowledge Graph Curators for Validating Triple Insertions?},\n361\t  author    = {Regino, Andr{\\'e} Gomes and dos Reis, Julio Cesar},\n362\t  booktitle = {Proceedings of the Workshop on Generative {AI} and Knowledge Graphs ({GenAIK}) at {COLING} 2025},\n363\t  pages     = {87--99},\n364\t  year      = {2025},\n365\t  address   = {Abu Dhabi, UAE},\n366\t  url       = {https://aclanthology.org/2025.genaik-1.10/}\n367\t}\n368\t\n369\t% Confirmed via: ACL Anthology 2024.emnlp-industry.91, arXiv:2408.02442\n370\t@inproceedings{tam2024letmespeak,\n371\t  title     = {Let Me Speak Freely? {A} Study on the Impact of Format Restrictions on Performance of Large Language Models},\n372\t  author    = {Tam, Zhi Rui and Wu, Cheng-Kuang and Tsai, Yi-Lin and Lin, Chieh-Yen and Lee, Hung-yi and Chen, Yun-Nung},\n373\t  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: Industry Track},\n374\t  pages     = {1218--1236},\n375\t  year      = {2024},\n376\t  address   = {Miami, Florida, US},\n377\t  url       = {https://aclanthology.org/2024.emnlp-industry.91/}\n378\t}\n379\t\n380\t% Confirmed via: PMLR v267/banerjee25a, ICML 2025, arXiv:2502.09061\n381\t@inproceedings{banerjee2025crane,\n382\t  title     = {{CRANE}: Reasoning with Constrained {LLM} Generation},\n383\t  author    = {Banerjee, Debangshu and Suresh, Tarun and Ugare, Shubham and Misailovic, Sasa and Singh, Gagandeep},\n384\t  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},\n385\t  pages     = {2836--2857},\n386\t  year      = {2025},\n387\t  url       = {https://proceedings.mlr.press/v267/banerjee25a.html}\n388\t}\n389\t\n390\t% Confirmed via: ACL Anthology 2025.ranlp-1.124\n391\t@inproceedings{schall2025hiddencost,\n392\t  title     = {The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance},\n393\t  author    = {Schall, Maximilian and de Melo, Gerard},\n394\t  booktitle = {Proceedings of the 15th International Conference on Recent Advances in Natural Language Processing ({RANLP} 2025)},\n395\t  year      = {2025},\n396\t  address   = {Varna, Bulgaria},\n397\t  url       = {https://aclanthology.org/2025.ranlp-1.124/}\n398\t}\n399\t\n400\t% ============================================================\n401\t% D015 reviewer-requested references (5 entries)\n402\t% ============================================================\n403\t\n404\t% Confirmed via: ACL Anthology 2021.findings-emnlp.204, GitHub Babelscape/rebel\n405\t@inproceedings{cabot2021rebel,\n406\t  title     = {{REBEL}: Relation Extraction By End-to-end Language Generation},\n407\t  author    = {Huguet Cabot, Pere-Llu{\\'\\i}s and Navigli, Roberto},\n408\t  booktitle = {Findings of the Association for Computational Linguistics: {EMNLP} 2021},\n409\t  pages     = {2370--2381},\n410\t  year      = {2021},\n411\t  url       = {https://aclanthology.org/2021.findings-emnlp.204/}\n412\t}\n413\t\n414\t% ============================================================\n415\t% Batch 3: New entries added 2026-05-16 (3 entries, Director-requested)\n416\t% ============================================================\n417\t\n418\t% Confirmed via: arXiv:2403.01632, OpenReview HiUZtgAPoH, Illinois Experts page\n419\t% NOTE: Director specified ICML 2024 — verify volume/pages\n420\t@inproceedings{ugare2024syncode,\n421\t  title     = {{SynCode}: {LLM} Generation with Grammar Augmentation},\n422\t  author    = {Ugare, Shubham and Suresh, Tarun and Kang, Hangoo and Misailovic, Sasa and Singh, Gagandeep},\n423\t  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},\n424\t  year      = {2024},\n425\t  series    = {PMLR},\n426\t  volume    = {235},\n427\t  url       = {https://arxiv.org/abs/2403.01632}\n428\t}\n429\t\n430\t% Confirmed via: OpenReview ac93gRzxxV, ICLR 2025 poster page, arXiv:2410.07295\n431\t@inproceedings{ugare2025itergen,\n432\t  title     = {{IterGen}: Iterative Semantic-aware Structured {LLM} Generation with Backtracking},\n433\t  author    = {Ugare, Shubham and Suresh, Tarun and Banerjee, Debangshu and Misailovic, Sasa and Singh, Gagandeep},\n434\t  booktitle = {The Thirteenth International Conference on Learning Representations},\n435\t  year      = {2025},\n436\t  url       = {https://openreview.net/forum?id=ac93gRzxxV}\n437\t}\n438\t\n439\t% Confirmed via: ACL Anthology 2025.emnlp-main.926, arXiv:2506.14901, EPFL dlab\n440\t@inproceedings{boostcd2025,\n441\t  title     = {Combining Constrained and Unconstrained Decoding via Boosting: {BoostCD} and Its Application to Information Extraction},\n442\t  author    = {Sakota, Marija and Geng, Saibo and Josifoski, Martin and West, Robert},\n443\t  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},\n444\t  year      = {2025},\n445\t  url       = {https://aclanthology.org/2025.emnlp-main.926/}\n446\t}\n447\t\n448\t% ============================================================\n449\t% Dataset & model references (5 entries)\n450\t% ============================================================\n451\t\n452\t% Confirmed via: ACL Anthology D18-1360, arXiv:1808.09602\n453\t@inproceedings{luan2018scierc,\n454\t  title     = {Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction},\n455\t  author    = {Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh},\n456\t  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing},\n457\t  pages     = {3219--3232},\n458\t  year      = {2018},\n459\t  address   = {Brussels, Belgium},\n460\t  url       = {https://aclanthology.org/D18-1360/}\n461\t}\n462\t\n463\t% Confirmed via: ACL Anthology P19-1074, arXiv:1906.06127\n464\t@inproceedings{yao2019docred,\n465\t  title     = {{DocRED}: A Large-Scale Document-Level Relation Extraction Dataset},\n466\t  author    = {Yao, Yuan and Ye, Deming and Li, Peng and Han, Xu and Lin, Yankai and Liu, Zhenghao and Liu, Zhiyuan and Huang, Lixin and Zhou, Jie and Sun, Maosong},\n467\t  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},\n468\t  pages     = {764--777},\n469\t  year      = {2019},\n470\t  address   = {Florence, Italy},\n471\t  url       = {https://aclanthology.org/P19-1074/}\n472\t}\n473\t\n474\t% Confirmed via: arXiv:2302.10205, Semantic Scholar\n475\t@article{wei2023zeroshot,\n476\t  title   = {{ChatIE}: Zero-Shot Information Extraction via Chatting with {ChatGPT}},\n477\t  author  = {Wei, Xiang and Cui, Xingyu and Cheng, Ning and Wang, Xiaobin and Zhang, Xin and Huang, Shen and Xie, Pengjun and Xu, Jinan and Chen, Yufeng and Zhang, Meishan and Jiang, Yong and Han, Wenjuan},\n478\t  journal = {arXiv preprint arXiv:2302.10205},\n479\t  year    = {2023},\n480\t  url     = {https://arxiv.org/abs/2302.10205}\n481\t}\n482\t\n483\t% Confirmed via: arXiv:2505.09388, Hugging Face model cards\n484\t@article{qwen2025qwen3,\n485\t  title   = {Qwen3 Technical Report},\n486\t  author  = {{Qwen Team}},\n487\t  journal = {arXiv preprint arXiv:2505.09388},\n488\t  year    = {2025},\n489\t  url     = {https://arxiv.org/abs/2505.09388}\n490\t}\n491\t\n492\t% Confirmed via: NeurIPS 2024 proceedings, arXiv:2312.07104\n493\t@inproceedings{zheng2024sglang,\n494\t  title     = {{SGLang}: Efficient Execution of Structured Language Model Programs},\n495\t  author    = {Zheng, Lianmin and Yin, Liangsheng and Xie, Zhiqiang and Sun, Chuyue and Huang, Jeff and Yu, Cody Hao and Cao, Shiyi and Kozyrakis, Christos and Stoica, Ion and Gonzalez, Joseph E. and Barrett, Clark and Sheng, Ying},\n496\t  booktitle = {Advances in Neural Information Processing Systems},\n497\t  volume    = {37},\n498\t  year      = {2024},\n499\t  url       = {https://arxiv.org/abs/2312.07104}\n500\t}\n501\t\n502\t% Confirmed via: ACL Anthology 2021.naacl-main.69\n503\t@inproceedings{li2021document,\n504\t  title     = {Document-Level Event Argument Extraction by Conditional Generation},\n505\t  author    = {Li, Sha and Ji, Heng and Han, Jiawei},\n506\t  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n507\t  pages     = {894--908},\n508\t  year      = {2021},\n509\t  url       = {https://aclanthology.org/2021.naacl-main.69/}\n510\t}\n511\t\n512\t% ============================================================\n513\t% New citations added 2026-05-18 (literature freshness check)\n514\t% ============================================================\n515\t\n516\t% grammar_aligned_2024 removed: duplicate of park2024grammar (same paper)\n517\t\n518\t@article{formattax2026,\n519\t    author    = {Ivan Yee Lee and Loris D'Antoni and Taylor Berg-Kirkpatrick},\n520\t    title     = {The Format Tax},\n521\t    journal   = {arXiv preprint arXiv:2604.03616},\n522\t    year      = {2026},\n523\t    url       = {https://arxiv.org/abs/2604.03616},\n524\t}\n525\t\n526\t@article{dccd2026,\n527\t    author    = {Avinash Reddy and Thayne T. Walker and James S. Ide and Amrit Singh Bedi},\n528\t    title     = {Draft-Conditioned Constrained Decoding for Structured Generation in {LLMs}},\n529\t    journal   = {arXiv preprint arXiv:2603.03305},\n530\t    year      = {2026},\n531\t    url       = {https://arxiv.org/abs/2603.03305},\n532\t}\n533\t\n534\t@inproceedings{guidex2025,\n535\t    author    = {Neil De La Fuente and Oscar Sainz and Iker Garc{\\'\\i}a-Ferrero and Eneko Agirre},\n536\t    title     = {{GUIDEX}: Guided Synthetic Data Generation for Zero-Shot Information Extraction},\n537\t    booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},\n538\t    year      = {2025},\n539\t    publisher = {Association for Computational Linguistics},\n540\t    url       = {https://aclanthology.org/2025.findings-acl.1245/},\n541\t}\n542\t\n543\t@article{jsonschemabench2025,\n544\t    author    = {Saibo Geng and Hudson Cooper and Micha{\\l} Moskal and Samuel Jenkins and Julian Berman and Nathan Ranchin and Robert West and Eric Horvitz and Harsha Nori},\n545\t    title     = {{JSONSchemaBench}: A Rigorous Benchmark of Structured Outputs for Language Models},\n546\t    journal   = {arXiv preprint arXiv:2501.10868},\n547\t    year      = {2025},\n548\t    url       = {https://arxiv.org/abs/2501.10868},\n549\t}\n550\t\n551\t% ============================================================\n552\t% Round 9 SF6 references (5 entries)\n553\t% ============================================================\n554\t\n555\t% Confirmed via: arXiv:2304.08085\n556\t@article{wang2023instructuie,\n557\t  title     = {{InstructUIE}: Multi-task Instruction Tuning for Unified Information Extraction},\n558\t  author    = {Wang, Xiao and Zhou, Weikang and Zu, Can and Xia, Han and Chen, Tianze and Zhang, Yuansen and Zheng, Rui and Ye, Junjie and Zhang, Qi and Gui, Tao and Kang, Jihua and Yang, Jingsheng and Li, Siyuan and Du, Chunsai},\n559\t  journal   = {arXiv preprint arXiv:2304.08085},\n560\t  year      = {2023},\n561\t  url       = {https://arxiv.org/abs/2304.08085}\n562\t}\n563\t\n564\t% Confirmed via: ACL Anthology 2022.findings-acl.67\n565\t@inproceedings{wang2022deepstruct,\n566\t  title     = {{DeepStruct}: Pretraining of Language Models for Structure Prediction},\n567\t  author    = {Wang, Chenguang and Liu, Xiao and Chen, Zui and Hong, Haoyun and Tang, Jie and Song, Dawn},\n568\t  booktitle = {Findings of the Association for Computational Linguistics: ACL 2022},\n569\t  pages     = {803--823},\n570\t  year      = {2022},\n571\t  doi       = {10.18653/v1/2022.findings-acl.67},\n572\t  url       = {https://aclanthology.org/2022.findings-acl.67}\n573\t}\n574\t\n575\t% Confirmed via: OpenReview r65xfUb76p, ICLR 2024\n576\t@inproceedings{zhou2024universalner,\n577\t  title     = {{UniversalNER}: Targeted Distillation from Large Language Models for Open Named Entity Recognition},\n578\t  author    = {Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung},\n579\t  booktitle = {The Twelfth International Conference on Learning Representations},\n580\t  year      = {2024},\n581\t  url       = {https://openreview.net/forum?id=r65xfUb76p}\n582\t}\n583\t\n584\t% Confirmed via: AAAI 2023 proceedings, doi:10.1609/aaai.v37i11.26563\n585\t@inproceedings{lou2023usm,\n586\t  title     = {Universal Information Extraction as Unified Semantic Matching},\n587\t  author    = {Lou, Jie and Lu, Yaojie and Dai, Dai and Jia, Wei and Lin, Hongyu and Han, Xianpei and Sun, Le and Wu, Hua},\n588\t  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n589\t  volume    = {37},\n590\t  number    = {11},\n591\t  pages     = {13318--13326},\n592\t  year      = {2023},\n593\t  doi       = {10.1609/aaai.v37i11.26563},\n594\t  url       = {https://ojs.aaai.org/index.php/AAAI/article/view/26563}\n595\t}\n596\t\n597\t% Confirmed via: ACL Anthology 2023.acl-long.868\n598\t@inproceedings{wadhwa2023revisiting,\n599\t  title     = {Revisiting Relation Extraction in the era of Large Language Models},\n600\t  author    = {Wadhwa, Somin and Amir, Silvio and Wallace, Byron},\n601\t  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n602\t  pages     = {15566--15589},\n603\t  year      = {2023},\n604\t  doi       = {10.18653/v1/2023.acl-long.868},\n605\t  url       = {https://aclanthology.org/2023.acl-long.868}\n606\t}\n607\t\n608\t% ============================================================\n609\t% R12 reviewer-requested references\n610\t% ============================================================\n611\t\n612\t% ============================================================\n613\t% R13 SF5 references (F1 anchoring)\n614\t% ============================================================\n615\t\n616\t% Confirmed via: arXiv:2409.01854, ACM DL CIKM 2024\n617\t@inproceedings{chen2024agentre,\n618\t  title     = {{AgentRE}: An Agent-Based Framework for Navigating Complex Information Landscapes in Relation Extraction},\n619\t  author    = {Chen, Yuchen and Shi, Guanzhi and Sun, Qingping},\n620\t  booktitle = {Proceedings of the 33rd ACM International Conference on Information and Knowledge Management ({CIKM})},\n621\t  year      = {2024},\n622\t  url       = {https://arxiv.org/abs/2409.01854}\n623\t}\n624\t\n625\t% Confirmed via: MDPI Entropy 2024, PMC10887558\n626\t@article{fan2024fsn,\n627\t  title     = {{FSN}: Joint Entity and Relation Extraction Based on Filter Separator Network},\n628\t  author    = {Fan, Yongfei and Yan, Lianshan and Yu, Shaobin and Li, Yijia},\n629\t  journal   = {Entropy},\n630\t  volume    = {26},\n631\t  number    = {2},\n632\t  pages     = {162},\n633\t  year      = {2024},\n634\t  doi       = {10.3390/e26020162}\n635\t}\n636\t\n637\t% ============================================================\n638\t% R12 reviewer-requested references\n639\t% ============================================================\n640\t\n641\t% Confirmed via: NeurIPS 2022 proceedings, arXiv:2304.06248\n642\t@inproceedings{fei2022lasuie,\n643\t  title     = {{LasUIE}: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model},\n644\t  author    = {Fei, Hao and Wu, Shengqiong and Li, Jingye and Li, Bobo and Li, Fei and Qin, Libo and Zhang, Meishan and Zhang, Min and Chua, Tat-Seng},\n645\t  booktitle = {Advances in Neural Information Processing Systems},\n646\t  volume    = {35},\n647\t  year      = {2022},\n648\t  url       = {https://arxiv.org/abs/2304.06248}\n649\t}\n650\t\n651\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18e5cb64-784d-4285-9419-6f1141ed1df6",
+            "isSidechain": true,
+            "promptId": "3d6d114d-4a62-4f7b-b05c-eb3cd0d2a305",
+            "agentId": "ac815ea01fdb02efe",
+            "type": "user",
+            "uuid": "ad427a0c-7214-4589-bf0c-3b513360c4fc",
+            "sourceToolAssistantUUID": "18e5cb64-784d-4285-9419-6f1141ed1df6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T20:18:10.411Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me extract all the bib keys from this file using a regex pattern:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad427a0c-7214-4589-bf0c-3b513360c4fc",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESP4xwF8MAUTZzuKDwJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "aa633c67-dd11-4f27-8b68-6a2f8a2c5709",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Cxqv19sjzk3AxAxqG9tgaF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 12879,
+                "cache_read_input_tokens": 27388,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12879,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T20:18:11.504Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012jFEKPoXfGC7LH7R675Qwh",
+              "name": "Bash",
+              "input": {
+                "command": "grep -oE '@[a-zA-Z]+\\{[^,]+' /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib | sed 's/@[a-zA-Z]*{//' | sort"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa633c67-dd11-4f27-8b68-6a2f8a2c5709",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESP4xwF8MAUTZzuKDwJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "99bc0bf9-8435-4a77-9ab3-79f3096694b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Cxqv19sjzk3AxAxqG9tgaF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 12879,
+                "cache_read_input_tokens": 27388,
+                "output_tokens": 151,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12879
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 151,
+                    "cache_read_input_tokens": 27388,
+                    "cache_creation_input_tokens": 12879,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 12879,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T20:18:11.579Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012jFEKPoXfGC7LH7R675Qwh",
+              "type": "tool_result",
+              "content": "adakgc_emnlp2023\nbanerjee2025crane\nbeurer-kellner2023lmql\nbeurer-kellner2024domino\nboostcd2025\ncabot2021rebel\nchen2024agentre\ndccd2026\ndecao2021genre\ndong2025xgrammar\neberts2020spert\nekaw2024_ontology_beam\nfan2024fsn\nfei2022lasuie\nformattax2026\ngeng2023gcd\nguidex2025\njosifoski2022genie\njsonschemabench2025\nkhorshidi2025odke\nknowcoder_acl2024\nli2021document\nli2023codeie\nlou2023usm\nlu2021neurologic\nlu2022uie\nluan2018scierc\nmgd_neurips2023\nolasunkanmi2025relate\nontologx_2025\npark2024grammar\npldi2025_type_constrained_codegen\nqi2024adelie\nqwen2025qwen3\nregino2025kgcurator\nroth_yih_2004\nsainz2024gollie\nschall2025hiddencost\nscholak2021picard\nspires_2024\nsynchromesh_iclr2022\ntam2024letmespeak\nugare2024syncode\nugare2025itergen\nupadhyay2023openie\nwadhwa2023revisiting\nwang2022deepstruct\nwang2023instructuie\nwei2023zeroshot\nwillard2023outlines\nyan2021pfn\nyao2019docred\nye2022packed\nzaratiana2024enrico\nzheng2024sglang\nzhong2021frustratingly\nzhou2024universalner\nzhou2026ontologytools\nzhou2026snowballing",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "99bc0bf9-8435-4a77-9ab3-79f3096694b7",
+            "isSidechain": true,
+            "promptId": "3d6d114d-4a62-4f7b-b05c-eb3cd0d2a305",
+            "agentId": "ac815ea01fdb02efe",
+            "type": "user",
+            "uuid": "09c8cb3c-2a41-4c5b-9d93-c77925e3ba02",
+            "sourceToolAssistantUUID": "99bc0bf9-8435-4a77-9ab3-79f3096694b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T20:18:13.034Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have all 58 bib keys. Let me search for each key across all .tex files to find which ones are NOT cited:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "09c8cb3c-2a41-4c5b-9d93-c77925e3ba02",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESPL5XPgPcX6carpsu6",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9bc50007-c38a-49c3-891f-5b4b50f1ce29",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SAJ6c9U4Aqse7NRndC3QZf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 606,
+                "cache_read_input_tokens": 40267,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 606,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T20:18:13.561Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jj8BL22de7si3hfsWHfvvL",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper && find . -type f -name \"*.tex\" | wc -l"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9bc50007-c38a-49c3-891f-5b4b50f1ce29",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESPL5XPgPcX6carpsu6",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d3c384e0-b0e5-4ce9-ad5c-f2822edfde3b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SAJ6c9U4Aqse7NRndC3QZf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 606,
+                "cache_read_input_tokens": 40267,
+                "output_tokens": 138,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 606
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 138,
+                    "cache_read_input_tokens": 40267,
+                    "cache_creation_input_tokens": 606,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 606,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T20:18:13.620Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jj8BL22de7si3hfsWHfvvL",
+              "type": "tool_result",
+              "content": "45",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3c384e0-b0e5-4ce9-ad5c-f2822edfde3b",
+            "isSidechain": true,
+            "promptId": "3d6d114d-4a62-4f7b-b05c-eb3cd0d2a305",
+            "agentId": "ac815ea01fdb02efe",
+            "type": "user",
+            "uuid": "2a775dd8-ff34-4bc5-ae20-8d4a0ba3f216",
+            "sourceToolAssistantUUID": "d3c384e0-b0e5-4ce9-ad5c-f2822edfde3b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T20:18:15.384Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check which bib keys appear in the .tex files. I'll use grep to search for each key in any cite command:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2a775dd8-ff34-4bc5-ae20-8d4a0ba3f216",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESPUgwx2PjnoD3rqLwN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9e147d93-3612-4468-9e7d-f2c8de7939ea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01L3WAJRgiKAvMpMpcYESrwz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 151,
+                "cache_read_input_tokens": 40873,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 151,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T20:18:19.143Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0122PghL1XpevKEqt61Fqdoy",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\n\n# Create a temporary file with all bib keys\ncat > /tmp/bib_keys.txt << 'EOF'\nadakgc_emnlp2023\nbanerjee2025crane\nbeurer-kellner2023lmql\nbeurer-kellner2024domino\nboostcd2025\ncabot2021rebel\nchen2024agentre\ndccd2026\ndecao2021genre\ndong2025xgrammar\neberts2020spert\nekaw2024_ontology_beam\nfan2024fsn\nfei2022lasuie\nformattax2026\ngeng2023gcd\nguidex2025\njosifoski2022genie\njsonschemabench2025\nkhorshidi2025odke\nknowcoder_acl2024\nli2021document\nli2023codeie\nlou2023usm\nlu2021neurologic\nlu2022uie\nluan2018scierc\nmgd_neurips2023\nolasunkanmi2025relate\nontologx_2025\npark2024grammar\npldi2025_type_constrained_codegen\nqi2024adelie\nqwen2025qwen3\nregino2025kgcurator\nroth_yih_2004\nsainz2024gollie\nschall2025hiddencost\nscholak2021picard\nspires_2024\nsynchromesh_iclr2022\ntam2024letmespeak\nugare2024syncode\nugare2025itergen\nupadhyay2023openie\nwadhwa2023revisiting\nwang2022deepstruct\nwang2023instructuie\nwei2023zeroshot\nwillard2023outlines\nyan2021pfn\nyao2019docred\nye2022packed\nzaratiana2024enrico\nzheng2024sglang\nzhong2021frustratingly\nzhou2024universalner\nzhou2026ontologytools\nzhou2026snowballing\nEOF\n\n# For each key, check if it appears in any .tex file\n# A key is cited if it appears in \\cite{...key...} or any cite variant\norphans=()\nwhile IFS= read -r key; do\n  # Search for the key in cite commands across all .tex files\n  # This pattern looks for \\cite variants with the key\n  if ! grep -r \"\\\\\\\\cite[a-z]*{[^}]*${key}[^}]*}\" . --include=\"*.tex\" > /dev/null 2>&1; then\n    orphans+=(\"$key\")\n  fi\ndone < /tmp/bib_keys.txt\n\necho \"Orphan bib keys (${#orphans[@]} total):\"\nprintf '%s\\n' \"${orphans[@]}\" | sort\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e147d93-3612-4468-9e7d-f2c8de7939ea",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESPUgwx2PjnoD3rqLwN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f6a90f99-7cf4-4c43-b7a5-94312f9150b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01L3WAJRgiKAvMpMpcYESrwz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 151,
+                "cache_read_input_tokens": 40873,
+                "output_tokens": 778,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 151
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 778,
+                    "cache_read_input_tokens": 40873,
+                    "cache_creation_input_tokens": 151,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 151,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T20:18:19.404Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0122PghL1XpevKEqt61Fqdoy",
+              "type": "tool_result",
+              "content": "Orphan bib keys (0 total):",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f6a90f99-7cf4-4c43-b7a5-94312f9150b1",
+            "isSidechain": true,
+            "promptId": "3d6d114d-4a62-4f7b-b05c-eb3cd0d2a305",
+            "agentId": "ac815ea01fdb02efe",
+            "type": "user",
+            "uuid": "7009c550-8ef8-4501-8a03-86596487a9fe",
+            "sourceToolAssistantUUID": "f6a90f99-7cf4-4c43-b7a5-94312f9150b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T20:18:22.075Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify this result by checking a few specific keys manually to ensure my grep pattern is working correctly:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7009c550-8ef8-4501-8a03-86596487a9fe",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESPuTTwbDQk2r54PoxP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9b953988-ec8e-4108-adbc-7e929beb5203",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DGMvo8LxY1xecDZQKMLC7f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 801,
+                "cache_read_input_tokens": 41024,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 801,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T20:18:23.464Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HQECA732aXRD9qYAHA8jst",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\n\n# Test a few keys to verify the grep is working\necho \"=== Checking for synchromesh_iclr2022 ===\"\ngrep -r \"synchromesh_iclr2022\" . --include=\"*.tex\"\n\necho \"\"\necho \"=== Checking for lu2022uie ===\"\ngrep -r \"lu2022uie\" . --include=\"*.tex\"\n\necho \"\"\necho \"=== Checking for guidex2025 ===\"\ngrep -r \"guidex2025\" . --include=\"*.tex\"\n\necho \"\"\necho \"=== Checking for jsonschemabench2025 ===\"\ngrep -r \"jsonschemabench2025\" . --include=\"*.tex\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b953988-ec8e-4108-adbc-7e929beb5203",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESPuTTwbDQk2r54PoxP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0301887c-4375-4e0c-8b9b-6064a1d8c3bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DGMvo8LxY1xecDZQKMLC7f",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 801,
+                "cache_read_input_tokens": 41024,
+                "output_tokens": 279,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 801
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 279,
+                    "cache_read_input_tokens": 41024,
+                    "cache_creation_input_tokens": 801,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 801,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T20:18:23.547Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HQECA732aXRD9qYAHA8jst",
+              "type": "tool_result",
+              "content": "=== Checking for synchromesh_iclr2022 ===\n./section6_relwork_outline.tex:Synchromesh~\\cite{synchromesh_iclr2022} pioneers Constrained Semantic Decoding (CSD), which enforces syntax, type, and scope constraints simultaneously during code generation from pre-trained LMs, establishing that semantic constraints can be compiled into token-level filtering without fine-tuning.\n./section6_relwork_additions.tex:% BEFORE: \"Synchromesh~\\cite{synchromesh_iclr2022}...\" (line 23)\n./appendix_related_work.tex:Synchromesh~\\cite{synchromesh_iclr2022} pioneers Constrained Semantic Decoding (CSD), which enforces syntax, type, and scope constraints simultaneously during code generation from pre-trained LMs without fine-tuning; this establishes that semantic constraints can be expressed as dynamic token masks conditioned on the generation prefix.\n\n=== Checking for lu2022uie ===\n./section6_related_work.tex:GoLLIE~\\cite{sainz2024gollie}, KnowCoder~\\cite{knowcoder_acl2024}, GUIDEX~\\cite{guidex2025}, and GenIE~\\cite{josifoski2022genie} encode ontology structure as typed code or trie-based decoding; REBEL~\\cite{cabot2021rebel}, InstructUIE~\\cite{wang2023instructuie}, LasUIE~\\cite{fei2022lasuie}, and others~\\cite{wang2022deepstruct,lu2022uie,lou2023usm,zhou2024universalner} unify extraction via structured training, though schema compliance gaps persist~\\cite{wadhwa2023revisiting}.\n./section6_relwork_outline.tex:UIE~\\cite{lu2022uie} defines a Structured Extraction Language and trains a unified text-to-structure model across 13 IE datasets, relying on large-scale pre-training to produce schema-compliant outputs.\n./appendix_related_work.tex:UIE~\\cite{lu2022uie} defines a Structured Extraction Language and trains a unified text-to-structure model across 13 IE datasets, relying on large-scale pre-training to internalize output format constraints.\n./section1_introduction_draft.tex:Training-based approaches~\\cite{sainz2024gollie,lu2022uie} internalize schema knowledge but provide only soft guidance without runtime guarantees; no method provides both semantic awareness and runtime enforcement.\n\n=== Checking for guidex2025 ===\n./section6_related_work.tex:GoLLIE~\\cite{sainz2024gollie}, KnowCoder~\\cite{knowcoder_acl2024}, GUIDEX~\\cite{guidex2025}, and GenIE~\\cite{josifoski2022genie} encode ontology structure as typed code or trie-based decoding; REBEL~\\cite{cabot2021rebel}, InstructUIE~\\cite{wang2023instructuie}, LasUIE~\\cite{fei2022lasuie}, and others~\\cite{wang2022deepstruct,lu2022uie,lou2023usm,zhou2024universalner} unify extraction via structured training, though schema compliance gaps persist~\\cite{wadhwa2023revisiting}.\n\n=== Checking for jsonschemabench2025 ===\n./section6_related_work.tex:XGrammar~\\cite{dong2025xgrammar}, Outlines~\\cite{willard2023outlines}, SynCode~\\cite{ugare2024syncode}, and related systems~\\cite{beurer-kellner2023lmql,park2024grammar,jsonschemabench2025} guarantee format validity via CFG-based token masking; GCD~\\cite{geng2023gcd} applies this to IE.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0301887c-4375-4e0c-8b9b-6064a1d8c3bc",
+            "isSidechain": true,
+            "promptId": "3d6d114d-4a62-4f7b-b05c-eb3cd0d2a305",
+            "agentId": "ac815ea01fdb02efe",
+            "type": "user",
+            "uuid": "b8649d2e-b642-48bd-bdbd-f5be985055de",
+            "sourceToolAssistantUUID": "0301887c-4375-4e0c-8b9b-6064a1d8c3bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T20:18:25.560Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! The grep is working correctly. Let me do a more thorough verification by checking all keys one by one with explicit output:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8649d2e-b642-48bd-bdbd-f5be985055de",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESQDFnpkRHsEubqn9iN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c048091f-d9f5-4da5-a9cc-c112be98d46c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NSd4ftLsVvUtMsMAi2FSfi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1240,
+                "cache_read_input_tokens": 41825,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1240,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T20:18:33.038Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VWb3EiBM76v6CAubgbNTjk",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\n\n# More robust check: for each key, search for it in cite commands\ncat > /tmp/check_orphans.sh << 'EOF'\n#!/bin/bash\n\nkeys=(\nadakgc_emnlp2023\nbanerjee2025crane\nbeurer-kellner2023lmql\nbeurer-kellner2024domino\nboostcd2025\ncabot2021rebel\nchen2024agentre\ndccd2026\ndecao2021genre\ndong2025xgrammar\neberts2020spert\nekaw2024_ontology_beam\nfan2024fsn\nfei2022lasuie\nformattax2026\ngeng2023gcd\nguidex2025\njosifoski2022genie\njsonschemabench2025\nkhorshidi2025odke\nknowcoder_acl2024\nli2021document\nli2023codeie\nlou2023usm\nlu2021neurologic\nlu2022uie\nluan2018scierc\nmgd_neurips2023\nolasunkanmi2025relate\nontologx_2025\npark2024grammar\npldi2025_type_constrained_codegen\nqi2024adelie\nqwen2025qwen3\nregino2025kgcurator\nroth_yih_2004\nsainz2024gollie\nschall2025hiddencost\nscholak2021picard\nspires_2024\nsynchromesh_iclr2022\ntam2024letmespeak\nugare2024syncode\nugare2025itergen\nupadhyay2023openie\nwadhwa2023revisiting\nwang2022deepstruct\nwang2023instructuie\nwei2023zeroshot\nwillard2023outlines\nyan2021pfn\nyao2019docred\nye2022packed\nzaratiana2024enrico\nzheng2024sglang\nzhong2021frustratingly\nzhou2024universalner\nzhou2026ontologytools\nzhou2026snowballing\n)\n\norphan_count=0\nfor key in \"${keys[@]}\"; do\n  if ! grep -r \"$key\" . --include=\"*.tex\" > /dev/null 2>&1; then\n    echo \"ORPHAN: $key\"\n    ((orphan_count++))\n  fi\ndone\n\necho \"\"\necho \"Total orphan entries: $orphan_count\"\nEOF\n\nchmod +x /tmp/check_orphans.sh\n/tmp/check_orphans.sh\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c048091f-d9f5-4da5-a9cc-c112be98d46c",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESQDFnpkRHsEubqn9iN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4b992c88-558c-4ac3-9673-fac2d0c0e970",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NSd4ftLsVvUtMsMAi2FSfi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1240,
+                "cache_read_input_tokens": 41825,
+                "output_tokens": 717,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1240
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 717,
+                    "cache_read_input_tokens": 41825,
+                    "cache_creation_input_tokens": 1240,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1240,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T20:18:33.303Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VWb3EiBM76v6CAubgbNTjk",
+              "type": "tool_result",
+              "content": "Total orphan entries: 0",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4b992c88-558c-4ac3-9673-fac2d0c0e970",
+            "isSidechain": true,
+            "promptId": "3d6d114d-4a62-4f7b-b05c-eb3cd0d2a305",
+            "agentId": "ac815ea01fdb02efe",
+            "type": "user",
+            "uuid": "00abe063-2124-4433-9d97-fe75fc824fab",
+            "sourceToolAssistantUUID": "4b992c88-558c-4ac3-9673-fac2d0c0e970",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T20:18:34.852Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Let me do a final comprehensive verification by listing all files and checking the total coverage:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "00abe063-2124-4433-9d97-fe75fc824fab",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESQvsKvQ1tcAw7MpVdG",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1c1b509b-6710-4c04-a577-bf61ca214724",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015jQaCszcSY1G9eiD8Qo5rT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 736,
+                "cache_read_input_tokens": 43065,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 736,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T20:18:38.311Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0119EHeiSnoCrtjTyr259yp3",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper\n\necho \"=== Total bib keys in relwork_new_entries.bib ===\"\ngrep -oE '@[a-zA-Z]+\\{[^,]+' relwork_new_entries.bib | sed 's/@[a-zA-Z]*{//' | wc -l\n\necho \"\"\necho \"=== Checking each key for citations ===\"\n\ncat > /tmp/final_check.sh << 'EOF'\n#!/bin/bash\n\nkeys=(\nadakgc_emnlp2023\nbanerjee2025crane\nbeurer-kellner2023lmql\nbeurer-kellner2024domino\nboostcd2025\ncabot2021rebel\nchen2024agentre\ndccd2026\ndecao2021genre\ndong2025xgrammar\neberts2020spert\nekaw2024_ontology_beam\nfan2024fsn\nfei2022lasuie\nformattax2026\ngeng2023gcd\nguidex2025\njosifoski2022genie\njsonschemabench2025\nkhorshidi2025odke\nknowcoder_acl2024\nli2021document\nli2023codeie\nlou2023usm\nlu2021neurologic\nlu2022uie\nluan2018scierc\nmgd_neurips2023\nolasunkanmi2025relate\nontologx_2025\npark2024grammar\npldi2025_type_constrained_codegen\nqi2024adelie\nqwen2025qwen3\nregino2025kgcurator\nroth_yih_2004\nsainz2024gollie\nschall2025hiddencost\nscholak2021picard\nspires_2024\nsynchromesh_iclr2022\ntam2024letmespeak\nugare2024syncode\nugare2025itergen\nupadhyay2023openie\nwadhwa2023revisiting\nwang2022deepstruct\nwang2023instructuie\nwei2023zeroshot\nwillard2023outlines\nyan2021pfn\nyao2019docred\nye2022packed\nzaratiana2024enrico\nzheng2024sglang\nzhong2021frustratingly\nzhou2024universalner\nzhou2026ontologytools\nzhou2026snowballing\n)\n\ncited=0\norphan_list=()\n\nfor key in \"${keys[@]}\"; do\n  if grep -r \"$key\" . --include=\"*.tex\" > /dev/null 2>&1; then\n    ((cited++))\n  else\n    orphan_list+=(\"$key\")\n  fi\ndone\n\necho \"Cited keys: $cited\"\necho \"Orphan keys: ${#orphan_list[@]}\"\n\nif [ ${#orphan_list[@]} -gt 0 ]; then\n  echo \"\"\n  echo \"=== ORPHAN ENTRIES ===\"\n  printf '%s\\n' \"${orphan_list[@]}\"\nfi\nEOF\n\nchmod +x /tmp/final_check.sh\n/tmp/final_check.sh\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c1b509b-6710-4c04-a577-bf61ca214724",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESQvsKvQ1tcAw7MpVdG",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "63f0d90d-a699-4219-8390-ca2597c57bae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015jQaCszcSY1G9eiD8Qo5rT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 736,
+                "cache_read_input_tokens": 43065,
+                "output_tokens": 842,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 736
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 842,
+                    "cache_read_input_tokens": 43065,
+                    "cache_creation_input_tokens": 736,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 736,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T20:18:38.582Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0119EHeiSnoCrtjTyr259yp3",
+              "type": "tool_result",
+              "content": "=== Total bib keys in relwork_new_entries.bib ===\n59\n\n=== Checking each key for citations ===\nCited keys: 59\nOrphan keys: 0",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63f0d90d-a699-4219-8390-ca2597c57bae",
+            "isSidechain": true,
+            "promptId": "3d6d114d-4a62-4f7b-b05c-eb3cd0d2a305",
+            "agentId": "ac815ea01fdb02efe",
+            "type": "user",
+            "uuid": "633d817d-4783-476a-bbfa-a6c5b49b5962",
+            "sourceToolAssistantUUID": "63f0d90d-a699-4219-8390-ca2597c57bae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T20:18:43.052Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Let me create a summary report of the findings:\n\n## Summary Report: Orphan Bib Entry Check\n\n**Directory:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/`\n\n**Analysis Results:**\n\n- **Total bib keys extracted from `relwork_new_entries.bib`:** 59 keys\n- **Tex files scanned:** 45 .tex files in the directory\n- **Keys found in citations:** 59 (100%)\n- **Orphan keys (defined in .bib but never cited):** 0\n\n**Complete List of All Bib Keys (All Cited):**\n\n1. adakgc_emnlp2023\n2. banerjee2025crane\n3. beurer-kellner2023lmql\n4. beurer-kellner2024domino\n5. boostcd2025\n6. cabot2021rebel\n7. chen2024agentre\n8. dccd2026\n9. decao2021genre\n10. dong2025xgrammar\n11. eberts2020spert\n12. ekaw2024_ontology_beam\n13. fan2024fsn\n14. fei2022lasuie\n15. formattax2026\n16. geng2023gcd\n17. guidex2025\n18. josifoski2022genie\n19. jsonschemabench2025\n20. khorshidi2025odke\n21. knowcoder_acl2024\n22. li2021document\n23. li2023codeie\n24. lou2023usm\n25. lu2021neurologic\n26. lu2022uie\n27. luan2018scierc\n28. mgd_neurips2023\n29. olasunkanmi2025relate\n30. ontologx_2025\n31. park2024grammar\n32. pldi2025_type_constrained_codegen\n33. qi2024adelie\n34. qwen2025qwen3\n35. regino2025kgcurator\n36. roth_yih_2004\n37. sainz2024gollie\n38. schall2025hiddencost\n39. scholak2021picard\n40. spires_2024\n41. synchromesh_iclr2022\n42. tam2024letmespeak\n43. ugare2024syncode\n44. ugare2025itergen\n45. upadhyay2023openie\n46. wadhwa2023revisiting\n47. wang2022deepstruct\n48. wang2023instructuie\n49. wei2023zeroshot\n50. willard2023outlines\n51. yan2021pfn\n52. yao2019docred\n53. ye2022packed\n54. zaratiana2024enrico\n55. zheng2024sglang\n56. zhong2021frustratingly\n57. zhou2024universalner\n58. zhou2026ontologytools\n59. zhou2026snowballing\n\n**Conclusion:** The bibliography is clean with no orphan entries. Every single bib key defined in `relwork_new_entries.bib` is cited at least once in the .tex files in this directory."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "633d817d-4783-476a-bbfa-a6c5b49b5962",
+            "isSidechain": true,
+            "agentId": "ac815ea01fdb02efe",
+            "requestId": "req_011CbESRKReCMvhDQfc3pCfD",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8690c8e6-5225-413a-8fa1-ba4f806607a1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/paper_agent_f22286a3",
+            "sessionId": "d063980f-b4b2-49ab-9b28-9f6be8c46fb1",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "cheeky-mixing-quill",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Je9ww88ZbJAiXppCxQCt2C",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 899,
+                "cache_read_input_tokens": 43801,
+                "output_tokens": 778,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 899
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 778,
+                    "cache_read_input_tokens": 43801,
+                    "cache_creation_input_tokens": 899,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 899,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-the-directory-home-ubuntu-agent-ml-research-idea-gen-0509-6-projects-schema-copy-6.md"
+}
