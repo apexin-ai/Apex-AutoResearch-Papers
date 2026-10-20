@@ -56,6 +56,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1917
+        },
+        "persuasion_turn_jailbreak_detect": {
+          "status": "uploaded",
+          "project": "persuasion_turn_jailbreak_detect",
+          "collection": "persuasion_turn_jailbreak_detect--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "974d4c54709a8fc3ea6d14d6cfd1f86f69dc1100266bbd1e09f6a37cc272b246",
+          "indexed_members": 1429,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1424
         }
       },
       "status": "in_progress",

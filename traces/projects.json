@@ -806,6 +806,19 @@
       }
     },
     {
+      "project": "persuasion_turn_jailbreak_detect--export-20260712",
+      "title": "DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection (July export snapshot)",
+      "catalog": "../research-snapshots/persuasion_turn_jailbreak_detect/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1424,
+        "messages": 264733,
+        "user_turns": 11695,
+        "tool_calls": 70426,
+        "unparsed_lines": 7,
+        "conversation": 1424
+      }
+    },
+    {
       "project": "pgpf-collapse-filter",
       "title": "pgpf collapse filter",
       "catalog": "../paper-assets/pgpf-collapse-filter/05-generation-trace/catalog.json",

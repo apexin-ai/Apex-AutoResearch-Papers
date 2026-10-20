@@ -8,4 +8,5 @@ These snapshots preserve later project exports alongside the initial workspace r
 | distill_sparse_swiglu | 2026-07-12 | No PDF in snapshot | [Assets](distill_sparse_swiglu/2026-07-12/README.md) · [Conversations](distill_sparse_swiglu/2026-07-12/05-generation-trace/readable/README.md) |
 | distrib_canary_collapse | 2026-07-12 | No PDF in snapshot | [Assets](distrib_canary_collapse/2026-07-12/README.md) · [Conversations](distrib_canary_collapse/2026-07-12/05-generation-trace/readable/README.md) |
 | gen-depth-fingerprint | 2026-07-12 | No PDF in snapshot | [Assets](gen-depth-fingerprint/2026-07-12/README.md) · [Conversations](gen-depth-fingerprint/2026-07-12/05-generation-trace/readable/README.md) |
+| persuasion_turn_jailbreak_detect | 2026-07-12 | No PDF in snapshot | [Assets](persuasion_turn_jailbreak_detect/2026-07-12/README.md) · [Conversations](persuasion_turn_jailbreak_detect/2026-07-12/05-generation-trace/readable/README.md) |
 | policy_ambiguity_safety | 2026-07-12 | No PDF in snapshot | [Assets](policy_ambiguity_safety/2026-07-12/README.md) · [Conversations](policy_ambiguity_safety/2026-07-12/05-generation-trace/readable/README.md) |
