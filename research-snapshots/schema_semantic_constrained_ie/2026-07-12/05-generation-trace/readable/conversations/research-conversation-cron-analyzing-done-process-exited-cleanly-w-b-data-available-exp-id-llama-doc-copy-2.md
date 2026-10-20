@@ -1,0 +1,2961 @@
+# Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: llama_docred
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 54
+- **Recorded user turns:** 3
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-1/c81e2b04-e5e5-46dd-955a-7d08b4a732b1.jsonl`
+- **Structured JSON:** [`d1679598ed1e7a30130e.json`](../../sessions/d1/d1679598ed1e7a30130e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T19:39:08.041Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T19:39:08.041Z",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "content": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: llama_docred_unconstrained\n- project: schema_semantic_constrained_ie\n- server: westd-16980\n- log_path: ~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained.log"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T19:39:08.045Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T19:39:08.045Z",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1"
+}
+```
+
+---
+
+## Round 1
+
+49 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T19:39:08.100Z_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: llama_docred_unconstrained
+- project: schema_semantic_constrained_ie
+- server: westd-16980
+- log_path: ~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "341989cb-2dee-4ef7-9eda-6e4aaaba3288",
+  "type": "user",
+  "uuid": "2827549d-f575-4ba9-a924-0d1304400cff",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T19:39:08.099Z_
+
+```json
+{
+  "parentUuid": "2827549d-f575-4ba9-a924-0d1304400cff",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "e763a5df-df05-497f-9466-50427c9a60b6",
+  "timestamp": "2026-05-14T19:39:08.099Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T19:39:08.099Z_
+
+```json
+{
+  "parentUuid": "e763a5df-df05-497f-9466-50427c9a60b6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "b9051c6a-e734-41b1-b236-ed4feb28fc1a",
+  "timestamp": "2026-05-14T19:39:08.099Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-14T19:39:08.099Z_
+
+```json
+{
+  "parentUuid": "b9051c6a-e734-41b1-b236-ed4feb28fc1a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "fe6590ba-2a2b-452e-a9c3-5cf6cd91ce17",
+  "timestamp": "2026-05-14T19:39:08.099Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark as done",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T19:39:12.375Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+收到实验完成的 CRON 回调，需要按 session-start 和 on-experiment-done 流程处理。
+
+先执行 session-start 初始化，然后分析实验结果。
+
+让我先加载必要的工具，然后并行执行初始化步骤。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe6590ba-2a2b-452e-a9c3-5cf6cd91ce17",
+  "isSidechain": false,
+  "requestId": "req_011Cb32Z628L33orsrYV2q2A",
+  "type": "assistant",
+  "uuid": "0e20cacb-45ef-42c0-90c6-7cd201ebe5bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CxNMSsriPmWQ2oEgH2bbM1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23004,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 410,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 410,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 23004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-14T19:39:12.908Z_
+
+收到 CRON 回调，开始 session-start 初始化 + 实验分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e20cacb-45ef-42c0-90c6-7cd201ebe5bb",
+  "isSidechain": false,
+  "requestId": "req_011Cb32Z628L33orsrYV2q2A",
+  "type": "assistant",
+  "uuid": "ed2afde4-e986-4f24-bd0a-dbca041cf986",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CxNMSsriPmWQ2oEgH2bbM1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23004,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 410,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 410,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 23004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T19:39:16.831Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012nEypzncjcrXZQMJSp9jno`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__compute_coverage_matrix,mcp__agent-ml-research__load_project_config",
+  "max_results": 14
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed2afde4-e986-4f24-bd0a-dbca041cf986",
+  "isSidechain": false,
+  "requestId": "req_011Cb32Z628L33orsrYV2q2A",
+  "type": "assistant",
+  "uuid": "7371271e-1c24-4a0a-886d-5d67ce941a38",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CxNMSsriPmWQ2oEgH2bbM1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23004,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 410,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 410,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 23004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T19:39:16.842Z_
+
+<details><summary>↩ Tool result · `toolu_012nEypzncjcrXZQMJSp9jno`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__fetch_wandb_metrics"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_worker_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__compute_coverage_matrix"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__load_project_config"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7371271e-1c24-4a0a-886d-5d67ce941a38",
+  "isSidechain": false,
+  "promptId": "341989cb-2dee-4ef7-9eda-6e4aaaba3288",
+  "type": "user",
+  "uuid": "81facc59-74c0-4276-b70d-e3243c592261",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__load_project_config"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__compute_coverage_matrix,mcp__agent-ml-research__load_project_config",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "7371271e-1c24-4a0a-886d-5d67ce941a38",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-14T19:39:20.218Z_
+
+执行 session-start 初始化，并行拉取项目状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81facc59-74c0-4276-b70d-e3243c592261",
+  "isSidechain": false,
+  "requestId": "req_011Cb32ZjmkXUuEEwwNTCvHa",
+  "type": "assistant",
+  "uuid": "dc2e4ca0-f558-469e-a7df-f67a71a44fe4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MatvqSarJ2irbTDWpUQY9g",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4705,
+      "cache_read_input_tokens": 34845,
+      "output_tokens": 392,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4705,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 392,
+          "cache_read_input_tokens": 34845,
+          "cache_creation_input_tokens": 4705,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4705
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T19:39:21.633Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_019he5ziyjkqWj9p8ddP62H3`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc2e4ca0-f558-469e-a7df-f67a71a44fe4",
+  "isSidechain": false,
+  "requestId": "req_011Cb32ZjmkXUuEEwwNTCvHa",
+  "type": "assistant",
+  "uuid": "22d6f030-92e8-4572-acca-0a051f07892a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MatvqSarJ2irbTDWpUQY9g",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4705,
+      "cache_read_input_tokens": 34845,
+      "output_tokens": 392,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4705,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 392,
+          "cache_read_input_tokens": 34845,
+          "cache_creation_input_tokens": 4705,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4705
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T19:39:21.638Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01DK4nnd8q5a8eYARjUERZkP`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22d6f030-92e8-4572-acca-0a051f07892a",
+  "isSidechain": false,
+  "requestId": "req_011Cb32ZjmkXUuEEwwNTCvHa",
+  "type": "assistant",
+  "uuid": "29ad036d-7df0-4e86-97c9-c9a35dfe7b45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MatvqSarJ2irbTDWpUQY9g",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4705,
+      "cache_read_input_tokens": 34845,
+      "output_tokens": 392,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4705,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 392,
+          "cache_read_input_tokens": 34845,
+          "cache_creation_input_tokens": 4705,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4705
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T19:39:21.730Z_
+
+<details><summary>↩ Tool result · `toolu_019he5ziyjkqWj9p8ddP62H3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"llama_docred_unconstrained\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:42:58.719Z\", \"updated_at\": \"2026-05-14T19:39:03.420Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"193605\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained.log\", \"submitted_at\": \"2026-05-14T14:35:57.755Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Llama-3.1-8B-Instruct 在 DocRED unconstrained baseline。与 Qwen3-8B DocRED unconstrained 对比 violation 分布。验证不同模型在复杂 schema (96 relations) 上的 violation 模式差异。\", \"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-14T14:15:03.413Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"finished_at\": \"2026-05-14T19:39:03.154Z\", \"training_hours\": 5.4}, \"pid\": \"193605\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T19:39:05.142651+00:00\"}]}}, \"phase2_docred_grammar_only\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:55:50.031Z\", \"updated_at\": \"2026-05-14T18:52:55.527Z\", \"hypothesis\": \"Grammar-only constrained decoding 在 DocRED (96 relation types) 上能否消除 RV violations (28.9%) 和 ET violations (7.5%)？与 SciERC grammar_only (RV 1.4%→0%, ET 0.4%→0%) 对比，验证 grammar 层在复杂 schema 上的泛化性。\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 nohup python3 run_constrained_extraction.py --mode grammar_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_grammar_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"150766\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"log_path\": \"/root/runs/schema_semantic_constrained_ie/docred_grammar_only.log\"}, \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 985, \"parse_failures\": 13, \"total_entities\": 20150, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.2617, \"cross_field_consistency_violation_rate\": 0.0007, \"relation_f1\": 8.31, \"relation_precision\": 7.06, \"relation_recall\": 10.12, \"entity_f1\": 59.38, \"entity_precision\": 58.47, \"entity_recall\": 60.32, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/docred_grammar_only.jsonl\", \"completed_at\": \"2026-05-14T07:40:10.382Z\"}, \"posthoc_filtering_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:46:07.823Z\", \"updated_at\": \"2026-05-14T18:46:28.485Z\", \"spec\": {\"hypothesis\": \"Post-hoc filtering baseline: generate unconstrained triples then remove DR/RV/ET violations. Comparison with OntoCoDec decoding-time enforcement on precision, recall, coverage, and residual violations.\", \"command\": \"python posthoc_filter.py\", \"server\": \"westd-16980\", \"data_path\": \"/root/schema_semantic_constrained_ie/outputs/\", \"data_count\": 2, \"model_name\": \"Qwen3-8B (unconstrained outputs)\", \"seed\": 42, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/posthoc_report_docred.json\", \"log_path\": \"/root/schema_semantic_constrained_ie/outputs/posthoc_report_scierc.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T18:46:23.429Z\", \"metrics\": {\"docred_f1_before\": 7.74, \"docred_f1_after\": 9.61, \"docred_precision_before\": 6.55, \"docred_precision_after\": 11.22, \"docred_recall_before\": 9.46, \"docred_recall_after\": 8.4, \"docred_rejection_rate\": 0.481, \"docred_tp_before\": 1137, \"docred_tp_after\": 1010, \"docred_tp_lost\": 127, \"docred_et_residual\": 0.0247, \"scierc_f1_before\": 8.23, \"scierc_f1_after\": 8.63, \"scierc_rejection_rate\": 0.168, \"scierc_recall_before\": 11.4, \"scierc_recall_after\": 10.68, \"scierc_tp_before\": 111, \"scierc_tp_after\": 104}}, \"llama_scierc_full_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:42:56.936Z\", \"updated_at\": \"2026-05-14T18:31:43.217Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/llama_scierc_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"190648\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_scierc_full_s1.log\", \"submitted_at\": \"2026-05-14T13:50:35.755Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Llama-3.1-8B-Instruct\", \"seed\": 42, \"wall_clock_seconds\": 1249.5, \"gpu_hours\": 0.35}, \"hypothesis\": \"Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 SciERC 上的效果。与 Qwen3-8B full_s1 (DR 0.93%) 对比，验证 OntoCoDec 的 model-agnostic 特性。零代码修改。D009 cross-model 验证核心实验。\", \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T13:50:33.979Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/llama_scierc_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"finished_at\": \"2026-05-14T14:11:24.215Z\", \"training_hours\": 0.35}, \"pid\": \"190648\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_scierc_full_s1.log\", \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T14:11:25.248Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T14:11:26.755217+00:00\"}]}, \"metrics\": {\"samples\": 550, \"entities_extracted\": 2469, \"relations_extracted\": 1315, \"domain_range_violation_rate\": 0.0008, \"relation_vocab_violation_rate\": 0, \"entity_type_violation_rate\": 0, \"cross_field_consistency_violation_rate\": 0.0656, \"total_violation_rate\": 0.0431, \"entity_f1\": 0.2349, \"entity_precision\": 0.1972, \"entity_recall\": 0.2902, \"relation_f1\": 0.0254, \"relation_precision\": 0.0221, \"relation_recall\": 0.0298, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl\", \"notes\": \"550/551 samples (1 corrupt line from duplicate PID removed). DR 0.08% — 约束合规性极好，优于 Qwen3-8B full_s1 (0.93%)。但 E-F1=23.49% (vs Qwen 30.98%), R-F1=2.54% (vs Qwen 8.36%)，Llama 在 IE 质量上显著弱于 Qwen。对比 Llama unconstrained: DR 13.3%→0.08% (约束生效), E-F1 23.56%→23.49% (持平), R-F1 2.68%→2.54% (微降)。约束大幅降低违规率但未提升抽取质量。Cross-field consistency violations 较高 (6.56%)。\"}, \"llama_scierc_unconstrained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:42:55.421Z\", \"updated_at\": \"2026-05-14T18:31:40.240Z\", \"spec\": {\"data_path\": \"scierc_test\", \"data_count\": 551, \"model_name\": \"Llama-3.1-8B-Instruct\", \"seed\": 42, \"command\": \"python3 run_extraction.py --config configs/llama_scierc_unconstrained.yaml\", \"server\": \"westd-16980\"}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T13:19:48.866Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/llama_scierc_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"finished_at\": \"2026-05-14T13:46:24.376Z\", \"training_hours\": 0.44}, \"pid\": \"188367\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_scierc_unconstrained.log\", \"hypothesis\": \"Llama-3.1-8B-Instruct 在 SciERC unconstrained baseline — 验证 OntoCoDec 跨模型泛化性。零代码修改，与 Qwen3-8B unconstrained 对比 violation 分布差异。预期 DR~15%, RV~1.4%, ET~0.4%（Llama instruction-following 可能更好）。D009 cross-model 验证的第一步。\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T13:46:25.548989+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl\", \"metrics\": {\"entity_type_violation_rate\": 0, \"relation_vocab_violation_rate\": 0.0055, \"domain_range_violation_rate\": 0.1334, \"cross_field_consistency_violations\": 6, \"entity_f1\": 0.2356, \"entity_precision\": 0.1983, \"entity_recall\": 0.2902, \"relation_f1\": 0.0268, \"relation_precision\": 0.0236, \"relation_recall\": 0.031, \"total_entities\": 2451, \"total_relations\": 1274, \"json_parse_failures\": 1, \"samples\": 551, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"completed_at\": \"2026-05-14T13:49:13.425Z\", \"notes\": \"Llama-3.1-8B-Instruct SciERC unconstrained baseline 完成。551 样本（550成功/1失败）。Violation: ET=0%, RV=0.5%, DR=13.3%。F1: E-F1=23.56%, R-F1=2.68%。与 Qwen3-8B unconstrained 对比：Llama violation 略低（DR 13.3% vs 15.4%），但 F1 明显更差（E-F1 低7.5pp, R-F1 低5.5pp）。Llama 更倾向保守提取——提取数量少、violation 低但 recall 也低。Qwen3 在 unconstrained 设定下提取质量优于 Llama。\"}, \"phase2_scierc_full_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:36:35.941Z\", \"updated_at\": \"2026-05-14T18:31:38.701Z\", \"spec\": {\"command\": \"bash -c \\\"tmux kill-session -t phase2_scierc_full_s2 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s2 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s2.jsonl --device cuda:0 --batch_size 1 --resume\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s2.log\", \"submitted_at\": \"2026-05-14T01:07:00.401Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 368.6, \"gpu_hours\": 0.1}, \"hypothesis\": \"S2 两通道约束解码全量验证 — Grammar (Pass 1) + Semantic (Pass 2) 分离式约束。S2 pilot50 已验证 D/R violation=0%，全量运行检验 F1 稳定性和 per-relation 效果。与 S1 对比验证两种架构的 F1-violation trade-off。\", \"notes\": \"✅ 全量完成 551/551 via --resume. S2 两通道约束解码结果。DR=0.97% (vs S1 0.93%), RV=0%, ET=0%, R-F1=0.0803, E-F1=0.319.\", \"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-14T01:06:58.685Z\", \"command\": \"bash -c \\\"tmux kill-session -t phase2_scierc_full_s2 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s2 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s2.jsonl --device cuda:0 --batch_size 1 --resume\\\"\", \"finished_at\": \"2026-05-14T01:13:08.809Z\", \"training_hours\": 0.1}, \"pid\": 144858, \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s2.log\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T01:13:09.036Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T01:13:12.640712+00:00\"}]}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s2.jsonl\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1644, \"total_entities\": 2228, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0097, \"cross_field_consistency_violation_rate\": 0.0803, \"entity_precision\": 0.2797, \"entity_recall\": 0.3712, \"entity_f1\": 0.319, \"relation_precision\": 0.064, \"relation_recall\": 0.1078, \"relation_f1\": 0.0803, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_full_s1\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-13T21:48:44.785Z\", \"updated_at\": \"2026-05-14T18:31:34.603Z\", \"hypothesis\": \"Grammar + Semantic 双层约束 (S1 单通道) 能否同时消除 rv + dr violations？F1 变化是关键：<2pp 降=完美，2-5pp=可接受 trade-off，>5pp=需要 S2 策略\", \"notes\": \"✅ _v2 干净数据全量完成 551/551. DR violation = 0.93% (baseline 15.37%, -14.44pp). ET=0%, RV=0%. 数据来源: phase2_scierc_full_s1_v2.jsonl\", \"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-13T23:49:56.383Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python3 && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s1.jsonl --device cuda:0 --batch_size 1\\\"\", \"finished_at\": \"2026-05-14T00:33:47.489Z\", \"training_hours\": 0.73}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-13T23:45:41.906Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:45:42.821098+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T00:33:48.999924+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: submit_training_job 未在命令前加 conda 环境激活。修复方案: 命令前缀加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base。retry_count=0, 自动重试中。\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 run_constrained_extraction.py --mode full_s1 ...\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"note\": \"retry #2: bash -c wrapping fixes EXIT_CODE=127\"}, \"pid\": \"134593\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s1.log\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1729, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0093, \"cross_field_consistency_violation_rate\": 0.099, \"entity_f1\": 0.3098, \"entity_precision\": 0.2598, \"entity_recall\": 0.3837, \"relation_f1\": 0.0836, \"relation_precision\": 0.0654, \"relation_recall\": 0.116, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\"}, \"phase2_scierc_semantic_only\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-13T21:48:44.427Z\", \"updated_at\": \"2026-05-14T18:31:31.811Z\", \"hypothesis\": \"Semantic-only constrained decoding (TypeConstraintProcessor) 能否消除 domain/range violations？预期 dr_violation→0%，但可能影响 F1（约束过强导致生成偏移）\", \"notes\": \"✅ _v2 干净数据全量完成 551/551. DR violation = 11.65% (baseline 15.37%, -3.72pp). ET=0.4%, RV=1.51%.\", \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T23:49:33.935Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python3 && python3 run_constrained_extraction.py --mode semantic_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_semantic_only.jsonl --device cuda:0 --batch_size 1\\\"\", \"finished_at\": \"2026-05-14T00:33:32.617Z\", \"training_hours\": 0.73}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-13T23:45:39.272Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:45:40.115539+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T00:33:34.349694+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: 同 phase2_scierc_full_s1, submit 未激活 conda。修复方案同上。retry_count=0, 自动重试中。\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 run_constrained_extraction.py --mode semantic_only ...\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"note\": \"retry #2: bash -c wrapping fixes EXIT_CODE=127\"}, \"pid\": \"134202\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_semantic_only.log\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1726, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0151, \"domain_range_violation_rate\": 0.1165, \"cross_field_consistency_violation_rate\": 0.0271, \"entity_f1\": 0.3101, \"entity_precision\": 0.2605, \"entity_recall\": 0.3831, \"relation_f1\": 0.0815, \"relation_precision\": 0.0637, \"relation_recall\": 0.1129, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_semantic_only_v2.jsonl\"}, \"phase2_scierc_grammar_only\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-13T21:48:43.487Z\", \"updated_at\": \"2026-05-14T18:31:29.442Z\", \"hypothesis\": \"Grammar-only constrained decoding (XGrammar JSON schema + enum) 能否消除 relation vocabulary violations 同时不影响 F1？预期 rv_violation→0%, dr_violation 不变\", \"reproduce\": {\"finished_at\": \"2026-05-13T23:39:02.641Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-13T22:38:46.650Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T22:38:47.328842+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:39:03.395560+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"诊断中: 进程到 176/551 无 traceback 静默退出。cron 追踪 stale PID 导致 5× dead 判定。已派 Worker diagnose:phase2_scierc_grammar_only 深查。\"}}, \"notes\": \"进程从未崩溃。原 'crash' 判定是 cron 追踪 stale PID 123425（已杀的 batch script）导致 5× dead 误报。实际进程 PID 126473 一直在 GPU 1 正常运行。nvidia-smi 确认: GPU 1 上 grammar_only(126473) + unconstrained(126948) 共享，各占 ~16.5GB，利用率 92%。\", \"spec\": {\"command\": \"python3 run_constrained_extraction.py --mode grammar_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_grammar_only.jsonl --device cuda:0 --batch_size 1\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"126473\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_grammar_only.log\", \"note\": \"CUDA_VISIBLE_DEVICES=1 by submit_training_job. 进程从未崩溃 — 'crash' 是 cron 追踪 stale PID 123425 的误报。PID 126473 一直在跑。两个 Phase 2 实验共享 GPU 1（各 ~16.5GB），利用率 92%。\"}, \"metrics\": {\"total_samples\": 551, \"total_triples\": 1725, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.1484, \"cross_field_consistency_violation_rate\": 0.0008, \"entity_f1\": 0.3098, \"entity_precision\": 0.2598, \"entity_recall\": 0.3837, \"relation_f1\": 0.0823, \"relation_precision\": 0.0643, \"relation_recall\": 0.114, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_grammar_only.jsonl\", \"conclusion\": \"success\"}, \"phase2_scierc_unconstrained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:19:07.120Z\", \"updated_at\": \"2026-05-14T18:31:26.645Z\", \"hypothesis\": \"Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的代码路径和 prompt，确保 F1 对比公平。预期结果接近 Phase 0 (entity_f1=0.31, relation_f1=0.08)\", \"spec\": {\"command\": \"python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_unconstrained.jsonl --device cuda:0 --batch_size 1\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"126948\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_unconstrained.log\", \"submitted_at\": \"2026-05-13T22:20:28.660Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"note\": \"CUDA_VISIBLE_DEVICES=1 injected by submit_training_job. Progress 353/551 at 23:10 UTC\", \"wall_clock_seconds\": 5186.0, \"gpu_hours\": 1.44}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:44:02.820Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:44:06.470330+00:00\"}]}, \"metrics\": {\"json_parse_rate\": 1, \"entity_f1\": 0.3101, \"entity_precision\": 0.2605, \"entity_recall\": 0.3831, \"relation_f1\": 0.0823, \"relation_precision\": 0.0644, \"relation_recall\": 0.114, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0139, \"domain_range_violation_rate\": 0.1537, \"cross_field_consistency_violation_rate\": 0.0008, \"total_triples\": 1724, \"total_entities\": 2474, \"total_samples\": 551, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_unconstrained.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T23:46:54.651Z\"}, \"phase2_docred_full_s1\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T02:07:20.166Z\", \"updated_at\": \"2026-05-14T18:31:19.721Z\", \"hypothesis\": \"Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上能否复现 SciERC 的 DR 消除效果 (15.37%→0.93%)？DocRED 约束更紧 (avg 5.68 valid pairs)，DR baseline 更高 (18.7%)，验证 OntoCoDec 在复杂 schema 上的泛化性。\", \"notes\": \"DR 18.46%→10.19% (↓44.8%). RV 29.66%→0.03% (↓99.9%), ET 8.18%→0% (↓100%). R-F1 7.74%→8.23% (+0.49pp), E-F1 58.15%→59.37% (+1.22pp). F1 method: all_set (OOV predictions included in denominator). 之前 recognized_set 方法 (R-F1=9.33%→8.17%, -1.16pp) 是错误的——它过滤了 unconstrained 的 5189 个 OOV predictions，人为抬高 precision。Grammar-only DR 上升(18.46→26.17%)是审稿必问点：grammar 强制 valid relation name 后 entity type 与新 relation 的 domain/range 不匹配加剧，恰好证明 semantic 层必要性。\", \"completed_at\": \"2026-05-14T02:55:47.271Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"修复后重启 (PID 157042, tmux: phase2_docred_full_s1, cuda:1)。根因: TypeConstraintProcessor._apply_type_mask 在 allowed_types 与 grammar-valid tokens 无交集时，把所有 grammar-valid tokens 设为 -inf，导致 argmax 选中 grammar-invalid token (logit=-1e10 > -inf)。修复: _apply_type_mask 增加安全检查，若无 semantically-allowed type 有非 grammar-masked logit，跳过 semantic masking 交由 grammar 控制。Dry-run 验证 doc 88(原崩溃点)+7 docs 全部通过。--resume 从 87 继续，当前 89/998。\"}, \"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:29:08.943533+00:00\"}]}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096 --resume\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"157042\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_docred_full_s1.log\", \"fix_applied\": \"type_mask_processor.py: semantic mask safety check — skip semantic masking when allowed_types have no non-grammar-masked logits\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T08:29:07.765Z\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/docred_full_s1.jsonl\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_docred_full_s1.log\", \"metrics\": {\"documents_checked\": 987, \"parse_failures\": 11, \"total_entities\": 20187, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.1021, \"cross_field_consistency_violation_rate\": 0.0257, \"entity_f1\": 59.37, \"entity_precision\": 58.45, \"entity_recall\": 59.63, \"relation_f1\": 8.23, \"relation_precision\": 6.99, \"relation_recall\": 10.01, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_docred_semantic_only\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:40:51.107Z\", \"updated_at\": \"2026-05-14T18:31:13.783Z\", \"hypothesis\": \"Semantic-only constrained decoding 在 DocRED (96 relations, avg 5.68 valid pairs) 上的 DR 降低幅度。SciERC semantic_only DR↓24% (15.37→11.65%)，DocRED 约束更紧预期效果更明显。关键验证 Claim 3 enabling dependency：semantic_only 无法消除 RV/ET（需 grammar），证明两层互补非替代。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_semantic_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"172859\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_docred_semantic_only.log\", \"submitted_at\": \"2026-05-14T08:30:43.644Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 21989.5, \"gpu_hours\": 6.11}, \"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"pid\": \"172859\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_docred_semantic_only.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_semantic_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"finished_at\": \"2026-05-14T14:13:58.319Z\"}, \"notes\": \"DocRED semantic-only（checker 修复后定稿数字）。ET 10.44% (修复前 18.44%, -8pp: strip 修 507 假阳性 + PERSON alias 修 1108 假阳性)。DR 13.84% (修复前 15.05%, -1.21pp: normalize 也修正了 DR pair 匹配)。CF 1.05% (修复前 2.29%)。残余 ET 2107 violations 是真实退化：WORK(823)/EVENT(743)/ETHNIC_GROUP(137) 等非标类型。F1 无变化。998 lines, 0 duplicates。\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T14:13:59.612547+00:00\"}]}, \"metrics\": {\"documents_checked\": 987, \"parse_failures\": 11, \"total_entities\": 20185, \"total_triples\": 17571, \"entity_type_violation_rate\": 0.0422, \"relation_vocabulary_violation_rate\": 0.2987, \"domain_range_violation_rate\": 0.1384, \"cross_field_consistency_violation_rate\": 0.0105, \"entity_f1\": 57.81, \"entity_precision\": 57.27, \"entity_recall\": 58.37, \"relation_f1\": 7.7, \"relation_precision\": 6.54, \"relation_recall\": 9.37, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"et_v1\": 0.1044, \"et_fix_note\": \"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/docred_semantic_only.jsonl\", \"completed_at\": \"2026-05-14T14:37:13.158Z\"}, \"phase2_docred_unconstrained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:40:50.853Z\", \"updated_at\": \"2026-05-14T18:31:10.378Z\", \"hypothesis\": \"DocRED Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的 Phase 2 pipeline 和 prompt，确保消融表 F1/violation 对比公平。预期 DR~18.7%, RV~28.9%, ET~7.5%（接近 Phase 0）。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"170502\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_docred_unconstrained.log\", \"submitted_at\": \"2026-05-14T07:40:49.115Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 20601.7, \"gpu_hours\": 5.72}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"pid\": \"170502\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_docred_unconstrained.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"finished_at\": \"2026-05-14T13:10:49.905Z\"}, \"notes\": \"✅ Phase 2 重新分析完成。998 lines, 0 duplicates — 文件干净无残留。正确值: DR=18.5%, RV=29.7%, ET=8.2%, E-F1=58.15%, R-F1=7.74%。F1 method: all_set (Reviewer 2026-05-14 确认正确)。论文可 claim: constrained decoding 不损失 R-F1。\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T13:10:51.383206+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 986, \"parse_failures\": 12, \"total_entities\": 20171, \"total_triples\": 17497, \"entity_type_violation_rate\": 0.0248, \"relation_vocabulary_violation_rate\": 0.2966, \"domain_range_violation_rate\": 0.1846, \"cross_field_consistency_violation_rate\": 0.001, \"entity_f1\": 58.15, \"entity_precision\": 57.26, \"entity_recall\": 58.32, \"relation_f1\": 7.74, \"relation_precision\": 6.55, \"relation_recall\": 9.46, \"unrecognized_relations\": 5189, \"f1_method\": \"all_set (includes OOV predictions in denominator)\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"et_v1\": 0.0818, \"et_fix_note\": \"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\"}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/docred_unconstrained.jsonl\", \"completed_at\": \"2026-05-14T13:24:10.838Z\"}, \"llama_docred_full_s1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:42:59.855Z\", \"updated_at\": \"2026-05-14T14:41:23.350Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"194295\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_full_s1.log\", \"submitted_at\": \"2026-05-14T14:41:22.992Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上的效果。与 Qwen3-8B DocRED full_s1 (DR 10.19%) 对比，验证约束解码在不同模型+复杂 schema 上的泛化性。\", \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T14:39:33.737Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\"}, \"pid\": \"194295\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_full_s1.log\"}, \"mvp_phase0_docred_schema_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:36:06.125Z\", \"updated_at\": \"2026-05-14T02:56:53.324Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4 --resume\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"note\": \"Resume from killed mvp_phase0_docred_schema. Original ran ~3.5h before being killed by cleanup Worker.\"}, \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心。（从被误杀的 mvp_phase0_docred_schema 恢复，--resume）\", \"notes\": \"归档：mvp_phase0_docred_schema 已完成全量 998/998 并有完整 metrics，此 r2 续跑实验不再需要。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T02:56:53.324Z\"}, \"phase2_s2_pilot50\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:25:10.566Z\", \"updated_at\": \"2026-05-14T02:04:44.195Z\", \"spec\": {\"command\": \"python3 run_constrained_extraction.py --mode full_s2 --dataset scierc --num_samples 50 --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --device cuda:0\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 50, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_s2_pilot50.jsonl\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_s2_pilot50.log\", \"note\": \"S2 50-sample pilot run. D/R violation=0% verified. relation_f1=0.0 root cause under investigation by Worker analysis:s2_relation_f1_rootcause.\"}, \"hypothesis\": \"S2 两通道约束解码 50 样本 pilot — 验证 PositionDetector 修复后 D/R violation=0%，评估 relation_f1 质量\", \"conclusion\": \"success\", \"metrics\": {\"domain_range_violation_rate\": 0.0205, \"relation_vocabulary_violation_rate\": 0, \"relation_f1\": 0.1008, \"samples\": 50, \"predicted_relations\": 146, \"true_positives\": 13, \"gold_relations\": 112, \"entity_f1_approx\": 0.29, \"note\": \"DR 修正: 原值 0 来自 dryrun (n=25 triples)。实际 pilot50 DR=3/146=2.05% (来自 violation_report_s2_pilot50.json)。\"}, \"completed_at\": \"2026-05-13T23:26:16.718Z\", \"notes\": \"S2 pilot 实际 relation_f1=0.1008（非此前误报的 0.0）。根因：原 F1=0 来自 10 样本 dryrun 的 violation_report，不是 pilot50 评估结果。S2 架构无问题，F1 与 unconstrained 持平。FP 分析: entity span 质量差是主因(52.6% head+tail 都不匹配 gold)。改进方向: few-shot entity prompt / 编号引用格式 / 阻止自引用。\"}, \"mvp_phase0_docred_schema\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:58:18.184Z\", \"updated_at\": \"2026-05-14T01:49:57.097Z\", \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\", \"spec\": {\"command\": \"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"116365\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\", \"submitted_at\": \"2026-05-13T20:13:18.695Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"wall_clock_seconds\": 13513.6, \"gpu_hours\": 3.75}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:58:31.565Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T23:58:32.325Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:58:33.241310+00:00\"}]}, \"notes\": \"Resume 完成 998/998 docs. Schema-informed prompt 结果: ET=0.61% (baseline 7.5%, Δ-6.89%), RV=18.4% (baseline 28.9%, Δ-10.5%), DR=12.8% (baseline 18.7%, Δ-5.9%). 全维度显著改善。\", \"metrics\": {\"total_documents\": 998, \"documents_checked\": 943, \"parse_failures\": 55, \"json_parse_rate\": 0.9449, \"total_entities\": 19524, \"total_triples\": 16782, \"entity_type_violations\": 119, \"entity_type_violation_rate\": 0.0061, \"relation_vocabulary_violations\": 3090, \"relation_vocabulary_violation_rate\": 0.1841, \"relation_fuzzy_matches\": 85, \"domain_range_violations\": 2154, \"domain_range_violation_rate\": 0.1284, \"cross_field_consistency_violations\": 29, \"cross_field_consistency_violation_rate\": 0.0015, \"total_violations_any\": 5392, \"total_violation_rate\": 0.1485, \"go_nogo_metric_dr\": 0.1284}, \"checkpoint_path\": \"outputs/raw_outputs_docred_schema.jsonl\"}, \"mvp_phase0_violation_rate_docred\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:38:05.075Z\", \"updated_at\": \"2026-05-13T21:46:35.193Z\", \"hypothesis\": \"DocRED 有 96 relation types，约束空间远大于 SciERC (7 types)，预期 unconstrained LLM 的 per-triple violation rate 显著高于 SciERC，验证违规率与约束空间复杂度正相关\", \"spec\": {\"command\": \"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred.jsonl --device cuda:0 --batch_size 4 --resume\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"pid\": 113148, \"resumed_from_doc\": 265, \"batch_size\": 4, \"current_progress\": 281, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/raw_outputs_docred.jsonl\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_violation_rate_docred.log\"}, \"metrics\": {\"total_docs\": 998, \"parsed_docs\": 962, \"json_parse_rate\": 0.964, \"total_entities\": 19099, \"total_triples\": 16540, \"entity_type_violation_rate\": 0.075, \"relation_vocabulary_violation_rate\": 0.289, \"domain_range_violation_rate\": 0.187, \"cross_field_consistency_violation_rate\": 0.0008, \"go_nogo_metric\": 0.187, \"fuzzy_matches\": 126, \"top_dr_violations_by_rate\": {\"P35_head_of_state\": 1, \"P710_participant\": 0.919, \"P172_ethnic_group\": 0.875}, \"top_dr_violations_by_count\": {\"P31_instance_of\": {\"violations\": 322, \"total\": 533, \"rate\": 0.604}, \"P1001_applies_to_jurisdiction\": {\"violations\": 264, \"total\": 594, \"rate\": 0.444}, \"P1344_participant_in\": {\"violations\": 194, \"total\": 312, \"rate\": 0.622}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T21:46:35.193Z\"}, \"mvp_phase0_scierc_schema\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:58:17.259Z\", \"updated_at\": \"2026-05-13T20:58:13.410Z\", \"hypothesis\": \"Schema-informed prompt（显式给出 domain/range 约束）能否降低违规率？与 minimal prompt 对比，若违规率仍 >5% 则证明 prompt 级干预不足以替代 decoding-time enforcement\", \"spec\": {\"command\": \"python3 run_extraction.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --output_path outputs/raw_outputs_schema.jsonl --backend transformers --prompt_mode schema_informed --constraints_path ontology_constraints.json\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"110676\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_scierc_schema.log\", \"submitted_at\": \"2026-05-13T19:11:32.249Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/raw_outputs_schema.jsonl\", \"wall_clock_seconds\": 3650.3, \"gpu_hours\": 1.01}, \"metrics\": {\"domain_range_violation_rate\": 0.0578, \"relation_vocabulary_violation_rate\": 0.003, \"entity_type_violation_rate\": 0, \"total_violation_rate\": 0.0253, \"go_nogo_metric\": 0.0578, \"total_triples\": 1661, \"vs_minimal_dr_reduction\": -0.624, \"per_relation\": {\"Used-for\": {\"rate\": \"TBD\"}, \"Feature-of\": {\"delta_pp\": -22.3}, \"Part-of\": {\"delta_pp\": -22.5}, \"Compare\": {\"delta_pp\": -14.8}, \"Evaluate-for\": {\"delta_pp\": 5.8}}, \"mcnemar_all_significant\": true}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T20:12:22.502Z\"}, \"mvp_phase0_violation_rate\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:35:38.680Z\", \"updated_at\": \"2026-05-13T19:13:34.510Z\", \"hypothesis\": \"Unconstrained LLM (Qwen3-8B) 在 SciERC zero-shot IE 任务上的本体类型约束违反率 >5%，证明解码时约束强制的必要性\", \"spec\": {\"command\": \"python3 run_extraction.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --output_path outputs/raw_outputs.jsonl --backend transformers\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"106528\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_violation_rate.log\", \"submitted_at\": \"2026-05-13T18:05:45.748Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/raw_outputs.jsonl\", \"wall_clock_seconds\": 4068.8, \"gpu_hours\": 1.13}, \"metrics\": {\"total_triples\": 1724, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0139, \"domain_range_violation_rate\": 0.1537, \"cross_field_consistency_violation_rate\": 0.0008, \"go_nogo_metric\": 0.1537, \"entity_f1\": 0.3101, \"relation_f1\": 0.0823, \"per_relation\": {\"Used-for\": {\"total\": 787, \"dr_violations\": 6, \"rate\": 0.0076}, \"Conjunction\": {\"total\": 32, \"dr_violations\": 0, \"rate\": 0}, \"Hyponym-of\": {\"total\": 124, \"dr_violations\": 18, \"rate\": 0.1452}, \"Evaluate-for\": {\"total\": 133, \"dr_violations\": 32, \"rate\": 0.2406}, \"Part-of\": {\"total\": 72, \"dr_violations\": 18, \"rate\": 0.25}, \"Feature-of\": {\"total\": 486, \"dr_violations\": 163, \"rate\": 0.3354}, \"Compare\": {\"total\": 66, \"dr_violations\": 28, \"rate\": 0.4242}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T19:13:34.510Z\"}}, \"count\": 20, \"total\": 20, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0784}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "22d6f030-92e8-4572-acca-0a051f07892a",
+  "isSidechain": false,
+  "promptId": "341989cb-2dee-4ef7-9eda-6e4aaaba3288",
+  "type": "user",
+  "uuid": "8e405b29-e019-407a-8dbd-ba21857423be",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"llama_docred_unconstrained\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T10:42:58.719Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:39:03.420Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"193605\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T14:35:57.755Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Llama-3.1-8B-Instruct 在 DocRED unconstrained baseline。与 Qwen3-8B DocRED unconstrained 对比 violation 分布。验证不同模型在复杂 schema (96 relations) 上的 violation 模式差异。\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-14T14:15:03.413Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T19:39:03.154Z\\\", \\\"training_hours\\\": 5.4}, \\\"pid\\\": \\\"193605\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T19:39:05.142651+00:00\\\"}]}}, \\\"phase2_docred_grammar_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:55:50.031Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:52:55.527Z\\\", \\\"hypothesis\\\": \\\"Grammar-only constrained decoding 在 DocRED (96 relation types) 上能否消除 RV violations (28.9%) 和 ET violations (7.5%)？与 SciERC grammar_only (RV 1.4%→0%, ET 0.4%→0%) 对比，验证 grammar 层在复杂 schema 上的泛化性。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 nohup python3 run_constrained_extraction.py --mode grammar_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_grammar_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"150766\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/docred/dev.json\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"/root/runs/schema_semantic_constrained_ie/docred_grammar_only.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"documents_checked\\\": 985, \\\"parse_failures\\\": 13, \\\"total_entities\\\": 20150, \\\"total_triples\\\": 17341, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0.0003, \\\"domain_range_violation_rate\\\": 0.2617, \\\"cross_field_consistency_violation_rate\\\": 0.0007, \\\"relation_f1\\\": 8.31, \\\"relation_precision\\\": 7.06, \\\"relation_recall\\\": 10.12, \\\"entity_f1\\\": 59.38, \\\"entity_precision\\\": 58.47, \\\"entity_recall\\\": 60.32, \\\"unrecognized_relations\\\": 5, \\\"f1_method\\\": \\\"all_set\\\", \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/docred_grammar_only.jsonl\\\", \\\"completed_at\\\": \\\"2026-05-14T07:40:10.382Z\\\"}, \\\"posthoc_filtering_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:46:07.823Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:46:28.485Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Post-hoc filtering baseline: generate unconstrained triples then remove DR/RV/ET violations. Comparison with OntoCoDec decoding-time enforcement on precision, recall, coverage, and residual violations.\\\", \\\"command\\\": \\\"python posthoc_filter.py\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/\\\", \\\"data_count\\\": 2, \\\"model_name\\\": \\\"Qwen3-8B (unconstrained outputs)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/posthoc_report_docred.json\\\", \\\"log_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/posthoc_report_scierc.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T18:46:23.429Z\\\", \\\"metrics\\\": {\\\"docred_f1_before\\\": 7.74, \\\"docred_f1_after\\\": 9.61, \\\"docred_precision_before\\\": 6.55, \\\"docred_precision_after\\\": 11.22, \\\"docred_recall_before\\\": 9.46, \\\"docred_recall_after\\\": 8.4, \\\"docred_rejection_rate\\\": 0.481, \\\"docred_tp_before\\\": 1137, \\\"docred_tp_after\\\": 1010, \\\"docred_tp_lost\\\": 127, \\\"docred_et_residual\\\": 0.0247, \\\"scierc_f1_before\\\": 8.23, \\\"scierc_f1_after\\\": 8.63, \\\"scierc_rejection_rate\\\": 0.168, \\\"scierc_recall_before\\\": 11.4, \\\"scierc_recall_after\\\": 10.68, \\\"scierc_tp_before\\\": 111, \\\"scierc_tp_after\\\": 104}}, \\\"llama_scierc_full_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T10:42:56.936Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:43.217Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/llama_scierc_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"190648\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/llama_scierc_full_s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:50:35.755Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Llama-3.1-8B-Instruct\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 1249.5, \\\"gpu_hours\\\": 0.35}, \\\"hypothesis\\\": \\\"Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 SciERC 上的效果。与 Qwen3-8B full_s1 (DR 0.93%) 对比，验证 OntoCoDec 的 model-agnostic 特性。零代码修改。D009 cross-model 验证核心实验。\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T13:50:33.979Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/llama_scierc_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T14:11:24.215Z\\\", \\\"training_hours\\\": 0.35}, \\\"pid\\\": \\\"190648\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/llama_scierc_full_s1.log\\\", \\\"failure_reason\\\": \\\"EXIT_CODE=143 (SIGTERM — graceful kill)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T14:11:25.248Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T14:11:26.755217+00:00\\\"}]}, \\\"metrics\\\": {\\\"samples\\\": 550, \\\"entities_extracted\\\": 2469, \\\"relations_extracted\\\": 1315, \\\"domain_range_violation_rate\\\": 0.0008, \\\"relation_vocab_violation_rate\\\": 0, \\\"entity_type_violation_rate\\\": 0, \\\"cross_field_consistency_violation_rate\\\": 0.0656, \\\"total_violation_rate\\\": 0.0431, \\\"entity_f1\\\": 0.2349, \\\"entity_precision\\\": 0.1972, \\\"entity_recall\\\": 0.2902, \\\"relation_f1\\\": 0.0254, \\\"relation_precision\\\": 0.0221, \\\"relation_recall\\\": 0.0298, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl\\\", \\\"notes\\\": \\\"550/551 samples (1 corrupt line from duplicate PID removed). DR 0.08% — 约束合规性极好，优于 Qwen3-8B full_s1 (0.93%)。但 E-F1=23.49% (vs Qwen 30.98%), R-F1=2.54% (vs Qwen 8.36%)，Llama 在 IE 质量上显著弱于 Qwen。对比 Llama unconstrained: DR 13.3%→0.08% (约束生效), E-F1 23.56%→23.49% (持平), R-F1 2.68%→2.54% (微降)。约束大幅降低违规率但未提升抽取质量。Cross-field consistency violations 较高 (6.56%)。\\\"}, \\\"llama_scierc_unconstrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T10:42:55.421Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:40.240Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"scierc_test\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Llama-3.1-8B-Instruct\\\", \\\"seed\\\": 42, \\\"command\\\": \\\"python3 run_extraction.py --config configs/llama_scierc_unconstrained.yaml\\\", \\\"server\\\": \\\"westd-16980\\\"}, \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T13:19:48.866Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/llama_scierc_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T13:46:24.376Z\\\", \\\"training_hours\\\": 0.44}, \\\"pid\\\": \\\"188367\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/llama_scierc_unconstrained.log\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B-Instruct 在 SciERC unconstrained baseline — 验证 OntoCoDec 跨模型泛化性。零代码修改，与 Qwen3-8B unconstrained 对比 violation 分布差异。预期 DR~15%, RV~1.4%, ET~0.4%（Llama instruction-following 可能更好）。D009 cross-model 验证的第一步。\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T13:46:25.548989+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl\\\", \\\"metrics\\\": {\\\"entity_type_violation_rate\\\": 0, \\\"relation_vocab_violation_rate\\\": 0.0055, \\\"domain_range_violation_rate\\\": 0.1334, \\\"cross_field_consistency_violations\\\": 6, \\\"entity_f1\\\": 0.2356, \\\"entity_precision\\\": 0.1983, \\\"entity_recall\\\": 0.2902, \\\"relation_f1\\\": 0.0268, \\\"relation_precision\\\": 0.0236, \\\"relation_recall\\\": 0.031, \\\"total_entities\\\": 2451, \\\"total_relations\\\": 1274, \\\"json_parse_failures\\\": 1, \\\"samples\\\": 551, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}, \\\"completed_at\\\": \\\"2026-05-14T13:49:13.425Z\\\", \\\"notes\\\": \\\"Llama-3.1-8B-Instruct SciERC unconstrained baseline 完成。551 样本（550成功/1失败）。Violation: ET=0%, RV=0.5%, DR=13.3%。F1: E-F1=23.56%, R-F1=2.68%。与 Qwen3-8B unconstrained 对比：Llama violation 略低（DR 13.3% vs 15.4%），但 F1 明显更差（E-F1 低7.5pp, R-F1 低5.5pp）。Llama 更倾向保守提取——提取数量少、violation 低但 recall 也低。Qwen3 在 unconstrained 设定下提取质量优于 Llama。\\\"}, \\\"phase2_scierc_full_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:36:35.941Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:38.701Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"tmux kill-session -t phase2_scierc_full_s2 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s2 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s2.jsonl --device cuda:0 --batch_size 1 --resume\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T01:07:00.401Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 368.6, \\\"gpu_hours\\\": 0.1}, \\\"hypothesis\\\": \\\"S2 两通道约束解码全量验证 — Grammar (Pass 1) + Semantic (Pass 2) 分离式约束。S2 pilot50 已验证 D/R violation=0%，全量运行检验 F1 稳定性和 per-relation 效果。与 S1 对比验证两种架构的 F1-violation trade-off。\\\", \\\"notes\\\": \\\"✅ 全量完成 551/551 via --resume. S2 两通道约束解码结果。DR=0.97% (vs S1 0.93%), RV=0%, ET=0%, R-F1=0.0803, E-F1=0.319.\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-14T01:06:58.685Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"tmux kill-session -t phase2_scierc_full_s2 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s2 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s2.jsonl --device cuda:0 --batch_size 1 --resume\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T01:13:08.809Z\\\", \\\"training_hours\\\": 0.1}, \\\"pid\\\": 144858, \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s2.log\\\", \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T01:13:09.036Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T01:13:12.640712+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s2.jsonl\\\", \\\"metrics\\\": {\\\"total_samples\\\": 551, \\\"total_triples\\\": 1644, \\\"total_entities\\\": 2228, \\\"json_parse_rate\\\": 1, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0, \\\"domain_range_violation_rate\\\": 0.0097, \\\"cross_field_consistency_violation_rate\\\": 0.0803, \\\"entity_precision\\\": 0.2797, \\\"entity_recall\\\": 0.3712, \\\"entity_f1\\\": 0.319, \\\"relation_precision\\\": 0.064, \\\"relation_recall\\\": 0.1078, \\\"relation_f1\\\": 0.0803, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}}, \\\"phase2_scierc_full_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-13T21:48:44.785Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:34.603Z\\\", \\\"hypothesis\\\": \\\"Grammar + Semantic 双层约束 (S1 单通道) 能否同时消除 rv + dr violations？F1 变化是关键：<2pp 降=完美，2-5pp=可接受 trade-off，>5pp=需要 S2 策略\\\", \\\"notes\\\": \\\"✅ _v2 干净数据全量完成 551/551. DR violation = 0.93% (baseline 15.37%, -14.44pp). ET=0%, RV=0%. 数据来源: phase2_scierc_full_s1_v2.jsonl\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-13T23:49:56.383Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python3 && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s1.jsonl --device cuda:0 --batch_size 1\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T00:33:47.489Z\\\", \\\"training_hours\\\": 0.73}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"completed_at\\\": \\\"2026-05-13T23:45:41.906Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:45:42.821098+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T00:33:48.999924+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: submit_training_job 未在命令前加 conda 环境激活。修复方案: 命令前缀加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base。retry_count=0, 自动重试中。\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 run_constrained_extraction.py --mode full_s1 ...\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"note\\\": \\\"retry #2: bash -c wrapping fixes EXIT_CODE=127\\\"}, \\\"pid\\\": \\\"134593\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s1.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_samples\\\": 551, \\\"total_triples\\\": 1729, \\\"total_entities\\\": 2474, \\\"json_parse_rate\\\": 1, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0, \\\"domain_range_violation_rate\\\": 0.0093, \\\"cross_field_consistency_violation_rate\\\": 0.099, \\\"entity_f1\\\": 0.3098, \\\"entity_precision\\\": 0.2598, \\\"entity_recall\\\": 0.3837, \\\"relation_f1\\\": 0.0836, \\\"relation_precision\\\": 0.0654, \\\"relation_recall\\\": 0.116, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\\\"}, \\\"phase2_scierc_semantic_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-13T21:48:44.427Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:31.811Z\\\", \\\"hypothesis\\\": \\\"Semantic-only constrained decoding (TypeConstraintProcessor) 能否消除 domain/range violations？预期 dr_violation→0%，但可能影响 F1（约束过强导致生成偏移）\\\", \\\"notes\\\": \\\"✅ _v2 干净数据全量完成 551/551. DR violation = 11.65% (baseline 15.37%, -3.72pp). ET=0.4%, RV=1.51%.\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-13T23:49:33.935Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python3 && python3 run_constrained_extraction.py --mode semantic_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_semantic_only.jsonl --device cuda:0 --batch_size 1\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T00:33:32.617Z\\\", \\\"training_hours\\\": 0.73}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"completed_at\\\": \\\"2026-05-13T23:45:39.272Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:45:40.115539+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T00:33:34.349694+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: 同 phase2_scierc_full_s1, submit 未激活 conda。修复方案同上。retry_count=0, 自动重试中。\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 run_constrained_extraction.py --mode semantic_only ...\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"note\\\": \\\"retry #2: bash -c wrapping fixes EXIT_CODE=127\\\"}, \\\"pid\\\": \\\"134202\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_scierc_semantic_only.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_samples\\\": 551, \\\"total_triples\\\": 1726, \\\"total_entities\\\": 2474, \\\"json_parse_rate\\\": 1, \\\"entity_type_violation_rate\\\": 0.004, \\\"relation_vocabulary_violation_rate\\\": 0.0151, \\\"domain_range_violation_rate\\\": 0.1165, \\\"cross_field_consistency_violation_rate\\\": 0.0271, \\\"entity_f1\\\": 0.3101, \\\"entity_precision\\\": 0.2605, \\\"entity_recall\\\": 0.3831, \\\"relation_f1\\\": 0.0815, \\\"relation_precision\\\": 0.0637, \\\"relation_recall\\\": 0.1129, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_semantic_only_v2.jsonl\\\"}, \\\"phase2_scierc_grammar_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-13T21:48:43.487Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:29.442Z\\\", \\\"hypothesis\\\": \\\"Grammar-only constrained decoding (XGrammar JSON schema + enum) 能否消除 relation vocabulary violations 同时不影响 F1？预期 rv_violation→0%, dr_violation 不变\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:39:02.641Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"completed_at\\\": \\\"2026-05-13T22:38:46.650Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T22:38:47.328842+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:39:03.395560+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"诊断中: 进程到 176/551 无 traceback 静默退出。cron 追踪 stale PID 导致 5× dead 判定。已派 Worker diagnose:phase2_scierc_grammar_only 深查。\\\"}}, \\\"notes\\\": \\\"进程从未崩溃。原 'crash' 判定是 cron 追踪 stale PID 123425（已杀的 batch script）导致 5× dead 误报。实际进程 PID 126473 一直在 GPU 1 正常运行。nvidia-smi 确认: GPU 1 上 grammar_only(126473) + unconstrained(126948) 共享，各占 ~16.5GB，利用率 92%。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py --mode grammar_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_grammar_only.jsonl --device cuda:0 --batch_size 1\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"126473\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_scierc_grammar_only.log\\\", \\\"note\\\": \\\"CUDA_VISIBLE_DEVICES=1 by submit_training_job. 进程从未崩溃 — 'crash' 是 cron 追踪 stale PID 123425 的误报。PID 126473 一直在跑。两个 Phase 2 实验共享 GPU 1（各 ~16.5GB），利用率 92%。\\\"}, \\\"metrics\\\": {\\\"total_samples\\\": 551, \\\"total_triples\\\": 1725, \\\"total_entities\\\": 2474, \\\"json_parse_rate\\\": 1, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0, \\\"domain_range_violation_rate\\\": 0.1484, \\\"cross_field_consistency_violation_rate\\\": 0.0008, \\\"entity_f1\\\": 0.3098, \\\"entity_precision\\\": 0.2598, \\\"entity_recall\\\": 0.3837, \\\"relation_f1\\\": 0.0823, \\\"relation_precision\\\": 0.0643, \\\"relation_recall\\\": 0.114, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_grammar_only.jsonl\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"phase2_scierc_unconstrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:19:07.120Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:26.645Z\\\", \\\"hypothesis\\\": \\\"Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的代码路径和 prompt，确保 F1 对比公平。预期结果接近 Phase 0 (entity_f1=0.31, relation_f1=0.08)\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_unconstrained.jsonl --device cuda:0 --batch_size 1\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"126948\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_scierc_unconstrained.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T22:20:28.660Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"note\\\": \\\"CUDA_VISIBLE_DEVICES=1 injected by submit_training_job. Progress 353/551 at 23:10 UTC\\\", \\\"wall_clock_seconds\\\": 5186.0, \\\"gpu_hours\\\": 1.44}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:44:02.820Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:44:06.470330+00:00\\\"}]}, \\\"metrics\\\": {\\\"json_parse_rate\\\": 1, \\\"entity_f1\\\": 0.3101, \\\"entity_precision\\\": 0.2605, \\\"entity_recall\\\": 0.3831, \\\"relation_f1\\\": 0.0823, \\\"relation_precision\\\": 0.0644, \\\"relation_recall\\\": 0.114, \\\"entity_type_violation_rate\\\": 0.004, \\\"relation_vocabulary_violation_rate\\\": 0.0139, \\\"domain_range_violation_rate\\\": 0.1537, \\\"cross_field_consistency_violation_rate\\\": 0.0008, \\\"total_triples\\\": 1724, \\\"total_entities\\\": 2474, \\\"total_samples\\\": 551, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_scierc_unconstrained.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T23:46:54.651Z\\\"}, \\\"phase2_docred_full_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-14T02:07:20.166Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:19.721Z\\\", \\\"hypothesis\\\": \\\"Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上能否复现 SciERC 的 DR 消除效果 (15.37%→0.93%)？DocRED 约束更紧 (avg 5.68 valid pairs)，DR baseline 更高 (18.7%)，验证 OntoCoDec 在复杂 schema 上的泛化性。\\\", \\\"notes\\\": \\\"DR 18.46%→10.19% (↓44.8%). RV 29.66%→0.03% (↓99.9%), ET 8.18%→0% (↓100%). R-F1 7.74%→8.23% (+0.49pp), E-F1 58.15%→59.37% (+1.22pp). F1 method: all_set (OOV predictions included in denominator). 之前 recognized_set 方法 (R-F1=9.33%→8.17%, -1.16pp) 是错误的——它过滤了 unconstrained 的 5189 个 OOV predictions，人为抬高 precision。Grammar-only DR 上升(18.46→26.17%)是审稿必问点：grammar 强制 valid relation name 后 entity type 与新 relation 的 domain/range 不匹配加剧，恰好证明 semantic 层必要性。\\\", \\\"completed_at\\\": \\\"2026-05-14T02:55:47.271Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"修复后重启 (PID 157042, tmux: phase2_docred_full_s1, cuda:1)。根因: TypeConstraintProcessor._apply_type_mask 在 allowed_types 与 grammar-valid tokens 无交集时，把所有 grammar-valid tokens 设为 -inf，导致 argmax 选中 grammar-invalid token (logit=-1e10 > -inf)。修复: _apply_type_mask 增加安全检查，若无 semantically-allowed type 有非 grammar-masked logit，跳过 semantic masking 交由 grammar 控制。Dry-run 验证 doc 88(原崩溃点)+7 docs 全部通过。--resume 从 87 继续，当前 89/998。\\\"}, \\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T08:29:08.943533+00:00\\\"}]}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096 --resume\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"157042\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/docred/dev.json\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_docred_full_s1.log\\\", \\\"fix_applied\\\": \\\"type_mask_processor.py: semantic mask safety check — skip semantic masking when allowed_types have no non-grammar-masked logits\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T08:29:07.765Z\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/docred_full_s1.jsonl\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_docred_full_s1.log\\\", \\\"metrics\\\": {\\\"documents_checked\\\": 987, \\\"parse_failures\\\": 11, \\\"total_entities\\\": 20187, \\\"total_triples\\\": 17341, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0.0003, \\\"domain_range_violation_rate\\\": 0.1021, \\\"cross_field_consistency_violation_rate\\\": 0.0257, \\\"entity_f1\\\": 59.37, \\\"entity_precision\\\": 58.45, \\\"entity_recall\\\": 59.63, \\\"relation_f1\\\": 8.23, \\\"relation_precision\\\": 6.99, \\\"relation_recall\\\": 10.01, \\\"unrecognized_relations\\\": 5, \\\"f1_method\\\": \\\"all_set\\\", \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}}, \\\"phase2_docred_semantic_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T04:40:51.107Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:13.783Z\\\", \\\"hypothesis\\\": \\\"Semantic-only constrained decoding 在 DocRED (96 relations, avg 5.68 valid pairs) 上的 DR 降低幅度。SciERC semantic_only DR↓24% (15.37→11.65%)，DocRED 约束更紧预期效果更明显。关键验证 Claim 3 enabling dependency：semantic_only 无法消除 RV/ET（需 grammar），证明两层互补非替代。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_semantic_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"172859\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_docred_semantic_only.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T08:30:43.644Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 21989.5, \\\"gpu_hours\\\": 6.11}, \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"172859\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_docred_semantic_only.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_semantic_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T14:13:58.319Z\\\"}, \\\"notes\\\": \\\"DocRED semantic-only（checker 修复后定稿数字）。ET 10.44% (修复前 18.44%, -8pp: strip 修 507 假阳性 + PERSON alias 修 1108 假阳性)。DR 13.84% (修复前 15.05%, -1.21pp: normalize 也修正了 DR pair 匹配)。CF 1.05% (修复前 2.29%)。残余 ET 2107 violations 是真实退化：WORK(823)/EVENT(743)/ETHNIC_GROUP(137) 等非标类型。F1 无变化。998 lines, 0 duplicates。\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T14:13:59.612547+00:00\\\"}]}, \\\"metrics\\\": {\\\"documents_checked\\\": 987, \\\"parse_failures\\\": 11, \\\"total_entities\\\": 20185, \\\"total_triples\\\": 17571, \\\"entity_type_violation_rate\\\": 0.0422, \\\"relation_vocabulary_violation_rate\\\": 0.2987, \\\"domain_range_violation_rate\\\": 0.1384, \\\"cross_field_consistency_violation_rate\\\": 0.0105, \\\"entity_f1\\\": 57.81, \\\"entity_precision\\\": 57.27, \\\"entity_recall\\\": 58.37, \\\"relation_f1\\\": 7.7, \\\"relation_precision\\\": 6.54, \\\"relation_recall\\\": 9.37, \\\"f1_method\\\": \\\"all_set\\\", \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\", \\\"et_v1\\\": 0.1044, \\\"et_fix_note\\\": \\\"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/docred_semantic_only.jsonl\\\", \\\"completed_at\\\": \\\"2026-05-14T14:37:13.158Z\\\"}, \\\"phase2_docred_unconstrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T04:40:50.853Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:10.378Z\\\", \\\"hypothesis\\\": \\\"DocRED Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的 Phase 2 pipeline 和 prompt，确保消融表 F1/violation 对比公平。预期 DR~18.7%, RV~28.9%, ET~7.5%（接近 Phase 0）。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"170502\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_docred_unconstrained.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T07:40:49.115Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 20601.7, \\\"gpu_hours\\\": 5.72}, \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"170502\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_docred_unconstrained.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T13:10:49.905Z\\\"}, \\\"notes\\\": \\\"✅ Phase 2 重新分析完成。998 lines, 0 duplicates — 文件干净无残留。正确值: DR=18.5%, RV=29.7%, ET=8.2%, E-F1=58.15%, R-F1=7.74%。F1 method: all_set (Reviewer 2026-05-14 确认正确)。论文可 claim: constrained decoding 不损失 R-F1。\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T13:10:51.383206+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"documents_checked\\\": 986, \\\"parse_failures\\\": 12, \\\"total_entities\\\": 20171, \\\"total_triples\\\": 17497, \\\"entity_type_violation_rate\\\": 0.0248, \\\"relation_vocabulary_violation_rate\\\": 0.2966, \\\"domain_range_violation_rate\\\": 0.1846, \\\"cross_field_consistency_violation_rate\\\": 0.001, \\\"entity_f1\\\": 58.15, \\\"entity_precision\\\": 57.26, \\\"entity_recall\\\": 58.32, \\\"relation_f1\\\": 7.74, \\\"relation_precision\\\": 6.55, \\\"relation_recall\\\": 9.46, \\\"unrecognized_relations\\\": 5189, \\\"f1_method\\\": \\\"all_set (includes OOV predictions in denominator)\\\", \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\", \\\"et_v1\\\": 0.0818, \\\"et_fix_note\\\": \\\"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\\\"}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/docred_unconstrained.jsonl\\\", \\\"completed_at\\\": \\\"2026-05-14T13:24:10.838Z\\\"}, \\\"llama_docred_full_s1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T10:42:59.855Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:41:23.350Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"194295\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/llama_docred_full_s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T14:41:22.992Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上的效果。与 Qwen3-8B DocRED full_s1 (DR 10.19%) 对比，验证约束解码在不同模型+复杂 schema 上的泛化性。\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T14:39:33.737Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\\\\\"\\\"}, \\\"pid\\\": \\\"194295\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/llama_docred_full_s1.log\\\"}, \\\"mvp_phase0_docred_schema_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:36:06.125Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:56:53.324Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4 --resume\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/docred/dev.json\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"note\\\": \\\"Resume from killed mvp_phase0_docred_schema. Original ran ~3.5h before being killed by cleanup Worker.\\\"}, \\\"hypothesis\\\": \\\"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心。（从被误杀的 mvp_phase0_docred_schema 恢复，--resume）\\\", \\\"notes\\\": \\\"归档：mvp_phase0_docred_schema 已完成全量 998/998 并有完整 metrics，此 r2 续跑实验不再需要。\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-14T02:56:53.324Z\\\"}, \\\"phase2_s2_pilot50\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:25:10.566Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:04:44.195Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_constrained_extraction.py --mode full_s2 --dataset scierc --num_samples 50 --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --device cuda:0\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/processed_data/test.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/phase2_s2_pilot50.jsonl\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/phase2_s2_pilot50.log\\\", \\\"note\\\": \\\"S2 50-sample pilot run. D/R violation=0% verified. relation_f1=0.0 root cause under investigation by Worker analysis:s2_relation_f1_rootcause.\\\"}, \\\"hypothesis\\\": \\\"S2 两通道约束解码 50 样本 pilot — 验证 PositionDetector 修复后 D/R violation=0%，评估 relation_f1 质量\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"domain_range_violation_rate\\\": 0.0205, \\\"relation_vocabulary_violation_rate\\\": 0, \\\"relation_f1\\\": 0.1008, \\\"samples\\\": 50, \\\"predicted_relations\\\": 146, \\\"true_positives\\\": 13, \\\"gold_relations\\\": 112, \\\"entity_f1_approx\\\": 0.29, \\\"note\\\": \\\"DR 修正: 原值 0 来自 dryrun (n=25 triples)。实际 pilot50 DR=3/146=2.05% (来自 violation_report_s2_pilot50.json)。\\\"}, \\\"completed_at\\\": \\\"2026-05-13T23:26:16.718Z\\\", \\\"notes\\\": \\\"S2 pilot 实际 relation_f1=0.1008（非此前误报的 0.0）。根因：原 F1=0 来自 10 样本 dryrun 的 violation_report，不是 pilot50 评估结果。S2 架构无问题，F1 与 unconstrained 持平。FP 分析: entity span 质量差是主因(52.6% head+tail 都不匹配 gold)。改进方向: few-shot entity prompt / 编号引用格式 / 阻止自引用。\\\"}, \\\"mvp_phase0_docred_schema\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T17:58:18.184Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:49:57.097Z\\\", \\\"hypothesis\\\": \\\"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"116365\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:13:18.695Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/docred/dev.json\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 13513.6, \\\"gpu_hours\\\": 3.75}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:58:31.565Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=143 (SIGTERM — graceful kill)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T23:58:32.325Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:58:33.241310+00:00\\\"}]}, \\\"notes\\\": \\\"Resume 完成 998/998 docs. Schema-informed prompt 结果: ET=0.61% (baseline 7.5%, Δ-6.89%), RV=18.4% (baseline 28.9%, Δ-10.5%), DR=12.8% (baseline 18.7%, Δ-5.9%). 全维度显著改善。\\\", \\\"metrics\\\": {\\\"total_documents\\\": 998, \\\"documents_checked\\\": 943, \\\"parse_failures\\\": 55, \\\"json_parse_rate\\\": 0.9449, \\\"total_entities\\\": 19524, \\\"total_triples\\\": 16782, \\\"entity_type_violations\\\": 119, \\\"entity_type_violation_rate\\\": 0.0061, \\\"relation_vocabulary_violations\\\": 3090, \\\"relation_vocabulary_violation_rate\\\": 0.1841, \\\"relation_fuzzy_matches\\\": 85, \\\"domain_range_violations\\\": 2154, \\\"domain_range_violation_rate\\\": 0.1284, \\\"cross_field_consistency_violations\\\": 29, \\\"cross_field_consistency_violation_rate\\\": 0.0015, \\\"total_violations_any\\\": 5392, \\\"total_violation_rate\\\": 0.1485, \\\"go_nogo_metric_dr\\\": 0.1284}, \\\"checkpoint_path\\\": \\\"outputs/raw_outputs_docred_schema.jsonl\\\"}, \\\"mvp_phase0_violation_rate_docred\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T17:38:05.075Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:46:35.193Z\\\", \\\"hypothesis\\\": \\\"DocRED 有 96 relation types，约束空间远大于 SciERC (7 types)，预期 unconstrained LLM 的 per-triple violation rate 显著高于 SciERC，验证违规率与约束空间复杂度正相关\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred.jsonl --device cuda:0 --batch_size 4 --resume\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/docred/dev.json\\\", \\\"data_count\\\": 998, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"pid\\\": 113148, \\\"resumed_from_doc\\\": 265, \\\"batch_size\\\": 4, \\\"current_progress\\\": 281, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/raw_outputs_docred.jsonl\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/mvp_phase0_violation_rate_docred.log\\\"}, \\\"metrics\\\": {\\\"total_docs\\\": 998, \\\"parsed_docs\\\": 962, \\\"json_parse_rate\\\": 0.964, \\\"total_entities\\\": 19099, \\\"total_triples\\\": 16540, \\\"entity_type_violation_rate\\\": 0.075, \\\"relation_vocabulary_violation_rate\\\": 0.289, \\\"domain_range_violation_rate\\\": 0.187, \\\"cross_field_consistency_violation_rate\\\": 0.0008, \\\"go_nogo_metric\\\": 0.187, \\\"fuzzy_matches\\\": 126, \\\"top_dr_violations_by_rate\\\": {\\\"P35_head_of_state\\\": 1, \\\"P710_participant\\\": 0.919, \\\"P172_ethnic_group\\\": 0.875}, \\\"top_dr_violations_by_count\\\": {\\\"P31_instance_of\\\": {\\\"violations\\\": 322, \\\"total\\\": 533, \\\"rate\\\": 0.604}, \\\"P1001_applies_to_jurisdiction\\\": {\\\"violations\\\": 264, \\\"total\\\": 594, \\\"rate\\\": 0.444}, \\\"P1344_participant_in\\\": {\\\"violations\\\": 194, \\\"total\\\": 312, \\\"rate\\\": 0.622}}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T21:46:35.193Z\\\"}, \\\"mvp_phase0_scierc_schema\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T17:58:17.259Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:58:13.410Z\\\", \\\"hypothesis\\\": \\\"Schema-informed prompt（显式给出 domain/range 约束）能否降低违规率？与 minimal prompt 对比，若违规率仍 >5% 则证明 prompt 级干预不足以替代 decoding-time enforcement\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_extraction.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --output_path outputs/raw_outputs_schema.jsonl --backend transformers --prompt_mode schema_informed --constraints_path ontology_constraints.json\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"110676\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/mvp_phase0_scierc_schema.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T19:11:32.249Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/raw_outputs_schema.jsonl\\\", \\\"wall_clock_seconds\\\": 3650.3, \\\"gpu_hours\\\": 1.01}, \\\"metrics\\\": {\\\"domain_range_violation_rate\\\": 0.0578, \\\"relation_vocabulary_violation_rate\\\": 0.003, \\\"entity_type_violation_rate\\\": 0, \\\"total_violation_rate\\\": 0.0253, \\\"go_nogo_metric\\\": 0.0578, \\\"total_triples\\\": 1661, \\\"vs_minimal_dr_reduction\\\": -0.624, \\\"per_relation\\\": {\\\"Used-for\\\": {\\\"rate\\\": \\\"TBD\\\"}, \\\"Feature-of\\\": {\\\"delta_pp\\\": -22.3}, \\\"Part-of\\\": {\\\"delta_pp\\\": -22.5}, \\\"Compare\\\": {\\\"delta_pp\\\": -14.8}, \\\"Evaluate-for\\\": {\\\"delta_pp\\\": 5.8}}, \\\"mcnemar_all_significant\\\": true}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T20:12:22.502Z\\\"}, \\\"mvp_phase0_violation_rate\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T17:35:38.680Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:13:34.510Z\\\", \\\"hypothesis\\\": \\\"Unconstrained LLM (Qwen3-8B) 在 SciERC zero-shot IE 任务上的本体类型约束违反率 >5%，证明解码时约束强制的必要性\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_extraction.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --output_path outputs/raw_outputs.jsonl --backend transformers\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"106528\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/mvp_phase0_violation_rate.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T18:05:45.748Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/schema_semantic_constrained_ie/data/processed_data/test.json\\\", \\\"data_count\\\": 551, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/raw_outputs.jsonl\\\", \\\"wall_clock_seconds\\\": 4068.8, \\\"gpu_hours\\\": 1.13}, \\\"metrics\\\": {\\\"total_triples\\\": 1724, \\\"total_entities\\\": 2474, \\\"json_parse_rate\\\": 1, \\\"entity_type_violation_rate\\\": 0.004, \\\"relation_vocabulary_violation_rate\\\": 0.0139, \\\"domain_range_violation_rate\\\": 0.1537, \\\"cross_field_consistency_violation_rate\\\": 0.0008, \\\"go_nogo_metric\\\": 0.1537, \\\"entity_f1\\\": 0.3101, \\\"relation_f1\\\": 0.0823, \\\"per_relation\\\": {\\\"Used-for\\\": {\\\"total\\\": 787, \\\"dr_violations\\\": 6, \\\"rate\\\": 0.0076}, \\\"Conjunction\\\": {\\\"total\\\": 32, \\\"dr_violations\\\": 0, \\\"rate\\\": 0}, \\\"Hyponym-of\\\": {\\\"total\\\": 124, \\\"dr_violations\\\": 18, \\\"rate\\\": 0.1452}, \\\"Evaluate-for\\\": {\\\"total\\\": 133, \\\"dr_violations\\\": 32, \\\"rate\\\": 0.2406}, \\\"Part-of\\\": {\\\"total\\\": 72, \\\"dr_violations\\\": 18, \\\"rate\\\": 0.25}, \\\"Feature-of\\\": {\\\"total\\\": 486, \\\"dr_violations\\\": 163, \\\"rate\\\": 0.3354}, \\\"Compare\\\": {\\\"total\\\": 66, \\\"dr_violations\\\": 28, \\\"rate\\\": 0.4242}}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T19:13:34.510Z\\\"}}, \\\"count\\\": 20, \\\"total\\\": 20, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0784}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"llama_docred_unconstrained\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:42:58.719Z\", \"updated_at\": \"2026-05-14T19:39:03.420Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"193605\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained.log\", \"submitted_at\": \"2026-05-14T14:35:57.755Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Llama-3.1-8B-Instruct 在 DocRED unconstrained baseline。与 Qwen3-8B DocRED unconstrained 对比 violation 分布。验证不同模型在复杂 schema (96 relations) 上的 violation 模式差异。\", \"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-14T14:15:03.413Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"finished_at\": \"2026-05-14T19:39:03.154Z\", \"training_hours\": 5.4}, \"pid\": \"193605\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T19:39:05.142651+00:00\"}]}}, \"phase2_docred_grammar_only\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:55:50.031Z\", \"updated_at\": \"2026-05-14T18:52:55.527Z\", \"hypothesis\": \"Grammar-only constrained decoding 在 DocRED (96 relation types) 上能否消除 RV violations (28.9%) 和 ET violations (7.5%)？与 SciERC grammar_only (RV 1.4%→0%, ET 0.4%→0%) 对比，验证 grammar 层在复杂 schema 上的泛化性。\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 nohup python3 run_constrained_extraction.py --mode grammar_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_grammar_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"150766\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"log_path\": \"/root/runs/schema_semantic_constrained_ie/docred_grammar_only.log\"}, \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 985, \"parse_failures\": 13, \"total_entities\": 20150, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.2617, \"cross_field_consistency_violation_rate\": 0.0007, \"relation_f1\": 8.31, \"relation_precision\": 7.06, \"relation_recall\": 10.12, \"entity_f1\": 59.38, \"entity_precision\": 58.47, \"entity_recall\": 60.32, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/docred_grammar_only.jsonl\", \"completed_at\": \"2026-05-14T07:40:10.382Z\"}, \"posthoc_filtering_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:46:07.823Z\", \"updated_at\": \"2026-05-14T18:46:28.485Z\", \"spec\": {\"hypothesis\": \"Post-hoc filtering baseline: generate unconstrained triples then remove DR/RV/ET violations. Comparison with OntoCoDec decoding-time enforcement on precision, recall, coverage, and residual violations.\", \"command\": \"python posthoc_filter.py\", \"server\": \"westd-16980\", \"data_path\": \"/root/schema_semantic_constrained_ie/outputs/\", \"data_count\": 2, \"model_name\": \"Qwen3-8B (unconstrained outputs)\", \"seed\": 42, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/posthoc_report_docred.json\", \"log_path\": \"/root/schema_semantic_constrained_ie/outputs/posthoc_report_scierc.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T18:46:23.429Z\", \"metrics\": {\"docred_f1_before\": 7.74, \"docred_f1_after\": 9.61, \"docred_precision_before\": 6.55, \"docred_precision_after\": 11.22, \"docred_recall_before\": 9.46, \"docred_recall_after\": 8.4, \"docred_rejection_rate\": 0.481, \"docred_tp_before\": 1137, \"docred_tp_after\": 1010, \"docred_tp_lost\": 127, \"docred_et_residual\": 0.0247, \"scierc_f1_before\": 8.23, \"scierc_f1_after\": 8.63, \"scierc_rejection_rate\": 0.168, \"scierc_recall_before\": 11.4, \"scierc_recall_after\": 10.68, \"scierc_tp_before\": 111, \"scierc_tp_after\": 104}}, \"llama_scierc_full_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:42:56.936Z\", \"updated_at\": \"2026-05-14T18:31:43.217Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/llama_scierc_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"190648\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_scierc_full_s1.log\", \"submitted_at\": \"2026-05-14T13:50:35.755Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Llama-3.1-8B-Instruct\", \"seed\": 42, \"wall_clock_seconds\": 1249.5, \"gpu_hours\": 0.35}, \"hypothesis\": \"Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 SciERC 上的效果。与 Qwen3-8B full_s1 (DR 0.93%) 对比，验证 OntoCoDec 的 model-agnostic 特性。零代码修改。D009 cross-model 验证核心实验。\", \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T13:50:33.979Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/llama_scierc_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"finished_at\": \"2026-05-14T14:11:24.215Z\", \"training_hours\": 0.35}, \"pid\": \"190648\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_scierc_full_s1.log\", \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T14:11:25.248Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T14:11:26.755217+00:00\"}]}, \"metrics\": {\"samples\": 550, \"entities_extracted\": 2469, \"relations_extracted\": 1315, \"domain_range_violation_rate\": 0.0008, \"relation_vocab_violation_rate\": 0, \"entity_type_violation_rate\": 0, \"cross_field_consistency_violation_rate\": 0.0656, \"total_violation_rate\": 0.0431, \"entity_f1\": 0.2349, \"entity_precision\": 0.1972, \"entity_recall\": 0.2902, \"relation_f1\": 0.0254, \"relation_precision\": 0.0221, \"relation_recall\": 0.0298, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_scierc_full_s1.jsonl\", \"notes\": \"550/551 samples (1 corrupt line from duplicate PID removed). DR 0.08% — 约束合规性极好，优于 Qwen3-8B full_s1 (0.93%)。但 E-F1=23.49% (vs Qwen 30.98%), R-F1=2.54% (vs Qwen 8.36%)，Llama 在 IE 质量上显著弱于 Qwen。对比 Llama unconstrained: DR 13.3%→0.08% (约束生效), E-F1 23.56%→23.49% (持平), R-F1 2.68%→2.54% (微降)。约束大幅降低违规率但未提升抽取质量。Cross-field consistency violations 较高 (6.56%)。\"}, \"llama_scierc_unconstrained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:42:55.421Z\", \"updated_at\": \"2026-05-14T18:31:40.240Z\", \"spec\": {\"data_path\": \"scierc_test\", \"data_count\": 551, \"model_name\": \"Llama-3.1-8B-Instruct\", \"seed\": 42, \"command\": \"python3 run_extraction.py --config configs/llama_scierc_unconstrained.yaml\", \"server\": \"westd-16980\"}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T13:19:48.866Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/llama_scierc_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 2048\\\"\", \"finished_at\": \"2026-05-14T13:46:24.376Z\", \"training_hours\": 0.44}, \"pid\": \"188367\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_scierc_unconstrained.log\", \"hypothesis\": \"Llama-3.1-8B-Instruct 在 SciERC unconstrained baseline — 验证 OntoCoDec 跨模型泛化性。零代码修改，与 Qwen3-8B unconstrained 对比 violation 分布差异。预期 DR~15%, RV~1.4%, ET~0.4%（Llama instruction-following 可能更好）。D009 cross-model 验证的第一步。\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T13:46:25.548989+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_scierc_unconstrained.jsonl\", \"metrics\": {\"entity_type_violation_rate\": 0, \"relation_vocab_violation_rate\": 0.0055, \"domain_range_violation_rate\": 0.1334, \"cross_field_consistency_violations\": 6, \"entity_f1\": 0.2356, \"entity_precision\": 0.1983, \"entity_recall\": 0.2902, \"relation_f1\": 0.0268, \"relation_precision\": 0.0236, \"relation_recall\": 0.031, \"total_entities\": 2451, \"total_relations\": 1274, \"json_parse_failures\": 1, \"samples\": 551, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"completed_at\": \"2026-05-14T13:49:13.425Z\", \"notes\": \"Llama-3.1-8B-Instruct SciERC unconstrained baseline 完成。551 样本（550成功/1失败）。Violation: ET=0%, RV=0.5%, DR=13.3%。F1: E-F1=23.56%, R-F1=2.68%。与 Qwen3-8B unconstrained 对比：Llama violation 略低（DR 13.3% vs 15.4%），但 F1 明显更差（E-F1 低7.5pp, R-F1 低5.5pp）。Llama 更倾向保守提取——提取数量少、violation 低但 recall 也低。Qwen3 在 unconstrained 设定下提取质量优于 Llama。\"}, \"phase2_scierc_full_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:36:35.941Z\", \"updated_at\": \"2026-05-14T18:31:38.701Z\", \"spec\": {\"command\": \"bash -c \\\"tmux kill-session -t phase2_scierc_full_s2 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s2 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s2.jsonl --device cuda:0 --batch_size 1 --resume\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s2.log\", \"submitted_at\": \"2026-05-14T01:07:00.401Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 368.6, \"gpu_hours\": 0.1}, \"hypothesis\": \"S2 两通道约束解码全量验证 — Grammar (Pass 1) + Semantic (Pass 2) 分离式约束。S2 pilot50 已验证 D/R violation=0%，全量运行检验 F1 稳定性和 per-relation 效果。与 S1 对比验证两种架构的 F1-violation trade-off。\", \"notes\": \"✅ 全量完成 551/551 via --resume. S2 两通道约束解码结果。DR=0.97% (vs S1 0.93%), RV=0%, ET=0%, R-F1=0.0803, E-F1=0.319.\", \"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-14T01:06:58.685Z\", \"command\": \"bash -c \\\"tmux kill-session -t phase2_scierc_full_s2 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s2 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s2.jsonl --device cuda:0 --batch_size 1 --resume\\\"\", \"finished_at\": \"2026-05-14T01:13:08.809Z\", \"training_hours\": 0.1}, \"pid\": 144858, \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s2.log\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T01:13:09.036Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T01:13:12.640712+00:00\"}]}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s2.jsonl\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1644, \"total_entities\": 2228, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0097, \"cross_field_consistency_violation_rate\": 0.0803, \"entity_precision\": 0.2797, \"entity_recall\": 0.3712, \"entity_f1\": 0.319, \"relation_precision\": 0.064, \"relation_recall\": 0.1078, \"relation_f1\": 0.0803, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_full_s1\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-13T21:48:44.785Z\", \"updated_at\": \"2026-05-14T18:31:34.603Z\", \"hypothesis\": \"Grammar + Semantic 双层约束 (S1 单通道) 能否同时消除 rv + dr violations？F1 变化是关键：<2pp 降=完美，2-5pp=可接受 trade-off，>5pp=需要 S2 策略\", \"notes\": \"✅ _v2 干净数据全量完成 551/551. DR violation = 0.93% (baseline 15.37%, -14.44pp). ET=0%, RV=0%. 数据来源: phase2_scierc_full_s1_v2.jsonl\", \"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-13T23:49:56.383Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python3 && python3 run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_full_s1.jsonl --device cuda:0 --batch_size 1\\\"\", \"finished_at\": \"2026-05-14T00:33:47.489Z\", \"training_hours\": 0.73}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-13T23:45:41.906Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:45:42.821098+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T00:33:48.999924+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: submit_training_job 未在命令前加 conda 环境激活。修复方案: 命令前缀加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base。retry_count=0, 自动重试中。\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 run_constrained_extraction.py --mode full_s1 ...\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"note\": \"retry #2: bash -c wrapping fixes EXIT_CODE=127\"}, \"pid\": \"134593\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_full_s1.log\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1729, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0093, \"cross_field_consistency_violation_rate\": 0.099, \"entity_f1\": 0.3098, \"entity_precision\": 0.2598, \"entity_recall\": 0.3837, \"relation_f1\": 0.0836, \"relation_precision\": 0.0654, \"relation_recall\": 0.116, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_full_s1_v2.jsonl\"}, \"phase2_scierc_semantic_only\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-13T21:48:44.427Z\", \"updated_at\": \"2026-05-14T18:31:31.811Z\", \"hypothesis\": \"Semantic-only constrained decoding (TypeConstraintProcessor) 能否消除 domain/range violations？预期 dr_violation→0%，但可能影响 F1（约束过强导致生成偏移）\", \"notes\": \"✅ _v2 干净数据全量完成 551/551. DR violation = 11.65% (baseline 15.37%, -3.72pp). ET=0.4%, RV=1.51%.\", \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T23:49:33.935Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python3 && python3 run_constrained_extraction.py --mode semantic_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_semantic_only.jsonl --device cuda:0 --batch_size 1\\\"\", \"finished_at\": \"2026-05-14T00:33:32.617Z\", \"training_hours\": 0.73}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-13T23:45:39.272Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:45:40.115539+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T00:33:34.349694+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"诊断完成: EXIT_CODE=127, bash: line 1: python3: command not found。Root cause: 同 phase2_scierc_full_s1, submit 未激活 conda。修复方案同上。retry_count=0, 自动重试中。\"}}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 run_constrained_extraction.py --mode semantic_only ...\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"note\": \"retry #2: bash -c wrapping fixes EXIT_CODE=127\"}, \"pid\": \"134202\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_semantic_only.log\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1726, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0151, \"domain_range_violation_rate\": 0.1165, \"cross_field_consistency_violation_rate\": 0.0271, \"entity_f1\": 0.3101, \"entity_precision\": 0.2605, \"entity_recall\": 0.3831, \"relation_f1\": 0.0815, \"relation_precision\": 0.0637, \"relation_recall\": 0.1129, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_semantic_only_v2.jsonl\"}, \"phase2_scierc_grammar_only\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-13T21:48:43.487Z\", \"updated_at\": \"2026-05-14T18:31:29.442Z\", \"hypothesis\": \"Grammar-only constrained decoding (XGrammar JSON schema + enum) 能否消除 relation vocabulary violations 同时不影响 F1？预期 rv_violation→0%, dr_violation 不变\", \"reproduce\": {\"finished_at\": \"2026-05-13T23:39:02.641Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-13T22:38:46.650Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T22:38:47.328842+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:39:03.395560+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"诊断中: 进程到 176/551 无 traceback 静默退出。cron 追踪 stale PID 导致 5× dead 判定。已派 Worker diagnose:phase2_scierc_grammar_only 深查。\"}}, \"notes\": \"进程从未崩溃。原 'crash' 判定是 cron 追踪 stale PID 123425（已杀的 batch script）导致 5× dead 误报。实际进程 PID 126473 一直在 GPU 1 正常运行。nvidia-smi 确认: GPU 1 上 grammar_only(126473) + unconstrained(126948) 共享，各占 ~16.5GB，利用率 92%。\", \"spec\": {\"command\": \"python3 run_constrained_extraction.py --mode grammar_only --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_grammar_only.jsonl --device cuda:0 --batch_size 1\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"126473\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_grammar_only.log\", \"note\": \"CUDA_VISIBLE_DEVICES=1 by submit_training_job. 进程从未崩溃 — 'crash' 是 cron 追踪 stale PID 123425 的误报。PID 126473 一直在跑。两个 Phase 2 实验共享 GPU 1（各 ~16.5GB），利用率 92%。\"}, \"metrics\": {\"total_samples\": 551, \"total_triples\": 1725, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.1484, \"cross_field_consistency_violation_rate\": 0.0008, \"entity_f1\": 0.3098, \"entity_precision\": 0.2598, \"entity_recall\": 0.3837, \"relation_f1\": 0.0823, \"relation_precision\": 0.0643, \"relation_recall\": 0.114, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_grammar_only.jsonl\", \"conclusion\": \"success\"}, \"phase2_scierc_unconstrained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:19:07.120Z\", \"updated_at\": \"2026-05-14T18:31:26.645Z\", \"hypothesis\": \"Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的代码路径和 prompt，确保 F1 对比公平。预期结果接近 Phase 0 (entity_f1=0.31, relation_f1=0.08)\", \"spec\": {\"command\": \"python3 run_constrained_extraction.py --mode unconstrained --dataset scierc --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/phase2_scierc_unconstrained.jsonl --device cuda:0 --batch_size 1\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"126948\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_unconstrained.log\", \"submitted_at\": \"2026-05-13T22:20:28.660Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"note\": \"CUDA_VISIBLE_DEVICES=1 injected by submit_training_job. Progress 353/551 at 23:10 UTC\", \"wall_clock_seconds\": 5186.0, \"gpu_hours\": 1.44}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:44:02.820Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:44:06.470330+00:00\"}]}, \"metrics\": {\"json_parse_rate\": 1, \"entity_f1\": 0.3101, \"entity_precision\": 0.2605, \"entity_recall\": 0.3831, \"relation_f1\": 0.0823, \"relation_precision\": 0.0644, \"relation_recall\": 0.114, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0139, \"domain_range_violation_rate\": 0.1537, \"cross_field_consistency_violation_rate\": 0.0008, \"total_triples\": 1724, \"total_entities\": 2474, \"total_samples\": 551, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_scierc_unconstrained.jsonl\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_scierc_unconstrained.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T23:46:54.651Z\"}, \"phase2_docred_full_s1\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T02:07:20.166Z\", \"updated_at\": \"2026-05-14T18:31:19.721Z\", \"hypothesis\": \"Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上能否复现 SciERC 的 DR 消除效果 (15.37%→0.93%)？DocRED 约束更紧 (avg 5.68 valid pairs)，DR baseline 更高 (18.7%)，验证 OntoCoDec 在复杂 schema 上的泛化性。\", \"notes\": \"DR 18.46%→10.19% (↓44.8%). RV 29.66%→0.03% (↓99.9%), ET 8.18%→0% (↓100%). R-F1 7.74%→8.23% (+0.49pp), E-F1 58.15%→59.37% (+1.22pp). F1 method: all_set (OOV predictions included in denominator). 之前 recognized_set 方法 (R-F1=9.33%→8.17%, -1.16pp) 是错误的——它过滤了 unconstrained 的 5189 个 OOV predictions，人为抬高 precision。Grammar-only DR 上升(18.46→26.17%)是审稿必问点：grammar 强制 valid relation name 后 entity type 与新 relation 的 domain/range 不匹配加剧，恰好证明 semantic 层必要性。\", \"completed_at\": \"2026-05-14T02:55:47.271Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"修复后重启 (PID 157042, tmux: phase2_docred_full_s1, cuda:1)。根因: TypeConstraintProcessor._apply_type_mask 在 allowed_types 与 grammar-valid tokens 无交集时，把所有 grammar-valid tokens 设为 -inf，导致 argmax 选中 grammar-invalid token (logit=-1e10 > -inf)。修复: _apply_type_mask 增加安全检查，若无 semantically-allowed type 有非 grammar-masked logit，跳过 semantic masking 交由 grammar 控制。Dry-run 验证 doc 88(原崩溃点)+7 docs 全部通过。--resume 从 87 继续，当前 89/998。\"}, \"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:29:08.943533+00:00\"}]}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096 --resume\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"157042\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_docred_full_s1.log\", \"fix_applied\": \"type_mask_processor.py: semantic mask safety check — skip semantic masking when allowed_types have no non-grammar-masked logits\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T08:29:07.765Z\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/docred_full_s1.jsonl\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_docred_full_s1.log\", \"metrics\": {\"documents_checked\": 987, \"parse_failures\": 11, \"total_entities\": 20187, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.1021, \"cross_field_consistency_violation_rate\": 0.0257, \"entity_f1\": 59.37, \"entity_precision\": 58.45, \"entity_recall\": 59.63, \"relation_f1\": 8.23, \"relation_precision\": 6.99, \"relation_recall\": 10.01, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_docred_semantic_only\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:40:51.107Z\", \"updated_at\": \"2026-05-14T18:31:13.783Z\", \"hypothesis\": \"Semantic-only constrained decoding 在 DocRED (96 relations, avg 5.68 valid pairs) 上的 DR 降低幅度。SciERC semantic_only DR↓24% (15.37→11.65%)，DocRED 约束更紧预期效果更明显。关键验证 Claim 3 enabling dependency：semantic_only 无法消除 RV/ET（需 grammar），证明两层互补非替代。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_semantic_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"172859\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_docred_semantic_only.log\", \"submitted_at\": \"2026-05-14T08:30:43.644Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 21989.5, \"gpu_hours\": 6.11}, \"server\": \"westd-16980\", \"gpu\": \"cuda:1\", \"pid\": \"172859\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_docred_semantic_only.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode semantic_only --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_semantic_only.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"finished_at\": \"2026-05-14T14:13:58.319Z\"}, \"notes\": \"DocRED semantic-only（checker 修复后定稿数字）。ET 10.44% (修复前 18.44%, -8pp: strip 修 507 假阳性 + PERSON alias 修 1108 假阳性)。DR 13.84% (修复前 15.05%, -1.21pp: normalize 也修正了 DR pair 匹配)。CF 1.05% (修复前 2.29%)。残余 ET 2107 violations 是真实退化：WORK(823)/EVENT(743)/ETHNIC_GROUP(137) 等非标类型。F1 无变化。998 lines, 0 duplicates。\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T14:13:59.612547+00:00\"}]}, \"metrics\": {\"documents_checked\": 987, \"parse_failures\": 11, \"total_entities\": 20185, \"total_triples\": 17571, \"entity_type_violation_rate\": 0.0422, \"relation_vocabulary_violation_rate\": 0.2987, \"domain_range_violation_rate\": 0.1384, \"cross_field_consistency_violation_rate\": 0.0105, \"entity_f1\": 57.81, \"entity_precision\": 57.27, \"entity_recall\": 58.37, \"relation_f1\": 7.7, \"relation_precision\": 6.54, \"relation_recall\": 9.37, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"et_v1\": 0.1044, \"et_fix_note\": \"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/docred_semantic_only.jsonl\", \"completed_at\": \"2026-05-14T14:37:13.158Z\"}, \"phase2_docred_unconstrained\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:40:50.853Z\", \"updated_at\": \"2026-05-14T18:31:10.378Z\", \"hypothesis\": \"DocRED Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的 Phase 2 pipeline 和 prompt，确保消融表 F1/violation 对比公平。预期 DR~18.7%, RV~28.9%, ET~7.5%（接近 Phase 0）。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"170502\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_docred_unconstrained.log\", \"submitted_at\": \"2026-05-14T07:40:49.115Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 20601.7, \"gpu_hours\": 5.72}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"pid\": \"170502\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_docred_unconstrained.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/docred_unconstrained.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"finished_at\": \"2026-05-14T13:10:49.905Z\"}, \"notes\": \"✅ Phase 2 重新分析完成。998 lines, 0 duplicates — 文件干净无残留。正确值: DR=18.5%, RV=29.7%, ET=8.2%, E-F1=58.15%, R-F1=7.74%。F1 method: all_set (Reviewer 2026-05-14 确认正确)。论文可 claim: constrained decoding 不损失 R-F1。\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T13:10:51.383206+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 986, \"parse_failures\": 12, \"total_entities\": 20171, \"total_triples\": 17497, \"entity_type_violation_rate\": 0.0248, \"relation_vocabulary_violation_rate\": 0.2966, \"domain_range_violation_rate\": 0.1846, \"cross_field_consistency_violation_rate\": 0.001, \"entity_f1\": 58.15, \"entity_precision\": 57.26, \"entity_recall\": 58.32, \"relation_f1\": 7.74, \"relation_precision\": 6.55, \"relation_recall\": 9.46, \"unrecognized_relations\": 5189, \"f1_method\": \"all_set (includes OOV predictions in denominator)\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"et_v1\": 0.0818, \"et_fix_note\": \"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\"}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/docred_unconstrained.jsonl\", \"completed_at\": \"2026-05-14T13:24:10.838Z\"}, \"llama_docred_full_s1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:42:59.855Z\", \"updated_at\": \"2026-05-14T14:41:23.350Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"194295\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_full_s1.log\", \"submitted_at\": \"2026-05-14T14:41:22.992Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上的效果。与 Qwen3-8B DocRED full_s1 (DR 10.19%) 对比，验证约束解码在不同模型+复杂 schema 上的泛化性。\", \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T14:39:33.737Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_full_s1.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 4096\\\"\"}, \"pid\": \"194295\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_full_s1.log\"}, \"mvp_phase0_docred_schema_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:36:06.125Z\", \"updated_at\": \"2026-05-14T02:56:53.324Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4 --resume\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"note\": \"Resume from killed mvp_phase0_docred_schema. Original ran ~3.5h before being killed by cleanup Worker.\"}, \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心。（从被误杀的 mvp_phase0_docred_schema 恢复，--resume）\", \"notes\": \"归档：mvp_phase0_docred_schema 已完成全量 998/998 并有完整 metrics，此 r2 续跑实验不再需要。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T02:56:53.324Z\"}, \"phase2_s2_pilot50\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:25:10.566Z\", \"updated_at\": \"2026-05-14T02:04:44.195Z\", \"spec\": {\"command\": \"python3 run_constrained_extraction.py --mode full_s2 --dataset scierc --num_samples 50 --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --device cuda:0\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 50, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/phase2_s2_pilot50.jsonl\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/phase2_s2_pilot50.log\", \"note\": \"S2 50-sample pilot run. D/R violation=0% verified. relation_f1=0.0 root cause under investigation by Worker analysis:s2_relation_f1_rootcause.\"}, \"hypothesis\": \"S2 两通道约束解码 50 样本 pilot — 验证 PositionDetector 修复后 D/R violation=0%，评估 relation_f1 质量\", \"conclusion\": \"success\", \"metrics\": {\"domain_range_violation_rate\": 0.0205, \"relation_vocabulary_violation_rate\": 0, \"relation_f1\": 0.1008, \"samples\": 50, \"predicted_relations\": 146, \"true_positives\": 13, \"gold_relations\": 112, \"entity_f1_approx\": 0.29, \"note\": \"DR 修正: 原值 0 来自 dryrun (n=25 triples)。实际 pilot50 DR=3/146=2.05% (来自 violation_report_s2_pilot50.json)。\"}, \"completed_at\": \"2026-05-13T23:26:16.718Z\", \"notes\": \"S2 pilot 实际 relation_f1=0.1008（非此前误报的 0.0）。根因：原 F1=0 来自 10 样本 dryrun 的 violation_report，不是 pilot50 评估结果。S2 架构无问题，F1 与 unconstrained 持平。FP 分析: entity span 质量差是主因(52.6% head+tail 都不匹配 gold)。改进方向: few-shot entity prompt / 编号引用格式 / 阻止自引用。\"}, \"mvp_phase0_docred_schema\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:58:18.184Z\", \"updated_at\": \"2026-05-14T01:49:57.097Z\", \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\", \"spec\": {\"command\": \"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred_schema.jsonl --device cuda:0 --constraints_path data/docred/ontology_constraints_docred.json --prompt_mode schema_informed --batch_size 4\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"116365\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_docred_schema.log\", \"submitted_at\": \"2026-05-13T20:13:18.695Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"wall_clock_seconds\": 13513.6, \"gpu_hours\": 3.75}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:58:31.565Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T23:58:32.325Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:58:33.241310+00:00\"}]}, \"notes\": \"Resume 完成 998/998 docs. Schema-informed prompt 结果: ET=0.61% (baseline 7.5%, Δ-6.89%), RV=18.4% (baseline 28.9%, Δ-10.5%), DR=12.8% (baseline 18.7%, Δ-5.9%). 全维度显著改善。\", \"metrics\": {\"total_documents\": 998, \"documents_checked\": 943, \"parse_failures\": 55, \"json_parse_rate\": 0.9449, \"total_entities\": 19524, \"total_triples\": 16782, \"entity_type_violations\": 119, \"entity_type_violation_rate\": 0.0061, \"relation_vocabulary_violations\": 3090, \"relation_vocabulary_violation_rate\": 0.1841, \"relation_fuzzy_matches\": 85, \"domain_range_violations\": 2154, \"domain_range_violation_rate\": 0.1284, \"cross_field_consistency_violations\": 29, \"cross_field_consistency_violation_rate\": 0.0015, \"total_violations_any\": 5392, \"total_violation_rate\": 0.1485, \"go_nogo_metric_dr\": 0.1284}, \"checkpoint_path\": \"outputs/raw_outputs_docred_schema.jsonl\"}, \"mvp_phase0_violation_rate_docred\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:38:05.075Z\", \"updated_at\": \"2026-05-13T21:46:35.193Z\", \"hypothesis\": \"DocRED 有 96 relation types，约束空间远大于 SciERC (7 types)，预期 unconstrained LLM 的 per-triple violation rate 显著高于 SciERC，验证违规率与约束空间复杂度正相关\", \"spec\": {\"command\": \"python3 run_extraction_docred.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/docred/dev.json --output_path outputs/raw_outputs_docred.jsonl --device cuda:0 --batch_size 4 --resume\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"data_path\": \"/root/schema_semantic_constrained_ie/data/docred/dev.json\", \"data_count\": 998, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"pid\": 113148, \"resumed_from_doc\": 265, \"batch_size\": 4, \"current_progress\": 281, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/raw_outputs_docred.jsonl\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_violation_rate_docred.log\"}, \"metrics\": {\"total_docs\": 998, \"parsed_docs\": 962, \"json_parse_rate\": 0.964, \"total_entities\": 19099, \"total_triples\": 16540, \"entity_type_violation_rate\": 0.075, \"relation_vocabulary_violation_rate\": 0.289, \"domain_range_violation_rate\": 0.187, \"cross_field_consistency_violation_rate\": 0.0008, \"go_nogo_metric\": 0.187, \"fuzzy_matches\": 126, \"top_dr_violations_by_rate\": {\"P35_head_of_state\": 1, \"P710_participant\": 0.919, \"P172_ethnic_group\": 0.875}, \"top_dr_violations_by_count\": {\"P31_instance_of\": {\"violations\": 322, \"total\": 533, \"rate\": 0.604}, \"P1001_applies_to_jurisdiction\": {\"violations\": 264, \"total\": 594, \"rate\": 0.444}, \"P1344_participant_in\": {\"violations\": 194, \"total\": 312, \"rate\": 0.622}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T21:46:35.193Z\"}, \"mvp_phase0_scierc_schema\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:58:17.259Z\", \"updated_at\": \"2026-05-13T20:58:13.410Z\", \"hypothesis\": \"Schema-informed prompt（显式给出 domain/range 约束）能否降低违规率？与 minimal prompt 对比，若违规率仍 >5% 则证明 prompt 级干预不足以替代 decoding-time enforcement\", \"spec\": {\"command\": \"python3 run_extraction.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --output_path outputs/raw_outputs_schema.jsonl --backend transformers --prompt_mode schema_informed --constraints_path ontology_constraints.json\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"110676\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_scierc_schema.log\", \"submitted_at\": \"2026-05-13T19:11:32.249Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/raw_outputs_schema.jsonl\", \"wall_clock_seconds\": 3650.3, \"gpu_hours\": 1.01}, \"metrics\": {\"domain_range_violation_rate\": 0.0578, \"relation_vocabulary_violation_rate\": 0.003, \"entity_type_violation_rate\": 0, \"total_violation_rate\": 0.0253, \"go_nogo_metric\": 0.0578, \"total_triples\": 1661, \"vs_minimal_dr_reduction\": -0.624, \"per_relation\": {\"Used-for\": {\"rate\": \"TBD\"}, \"Feature-of\": {\"delta_pp\": -22.3}, \"Part-of\": {\"delta_pp\": -22.5}, \"Compare\": {\"delta_pp\": -14.8}, \"Evaluate-for\": {\"delta_pp\": 5.8}}, \"mcnemar_all_significant\": true}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T20:12:22.502Z\"}, \"mvp_phase0_violation_rate\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:35:38.680Z\", \"updated_at\": \"2026-05-13T19:13:34.510Z\", \"hypothesis\": \"Unconstrained LLM (Qwen3-8B) 在 SciERC zero-shot IE 任务上的本体类型约束违反率 >5%，证明解码时约束强制的必要性\", \"spec\": {\"command\": \"python3 run_extraction.py --model_path /root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B --data_path data/processed_data/test.json --output_path outputs/raw_outputs.jsonl --backend transformers\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"106528\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/mvp_phase0_violation_rate.log\", \"submitted_at\": \"2026-05-13T18:05:45.748Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/schema_semantic_constrained_ie/data/processed_data/test.json\", \"data_count\": 551, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/raw_outputs.jsonl\", \"wall_clock_seconds\": 4068.8, \"gpu_hours\": 1.13}, \"metrics\": {\"total_triples\": 1724, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0139, \"domain_range_violation_rate\": 0.1537, \"cross_field_consistency_violation_rate\": 0.0008, \"go_nogo_metric\": 0.1537, \"entity_f1\": 0.3101, \"relation_f1\": 0.0823, \"per_relation\": {\"Used-for\": {\"total\": 787, \"dr_violations\": 6, \"rate\": 0.0076}, \"Conjunction\": {\"total\": 32, \"dr_violations\": 0, \"rate\": 0}, \"Hyponym-of\": {\"total\": 124, \"dr_violations\": 18, \"rate\": 0.1452}, \"Evaluate-for\": {\"total\": 133, \"dr_violations\": 32, \"rate\": 0.2406}, \"Part-of\": {\"total\": 72, \"dr_violations\": 18, \"rate\": 0.25}, \"Feature-of\": {\"total\": 486, \"dr_violations\": 163, \"rate\": 0.3354}, \"Compare\": {\"total\": 66, \"dr_violations\": 28, \"rate\": 0.4242}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T19:13:34.510Z\"}}, \"count\": 20, \"total\": 20, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0784}}"
+    }
+  },
+  "sourceToolAssistantUUID": "22d6f030-92e8-4572-acca-0a051f07892a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T19:39:22.932Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01UdjhcWxZMAPgMmo9dgseXB`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e405b29-e019-407a-8dbd-ba21857423be",
+  "isSidechain": false,
+  "requestId": "req_011Cb32ZjmkXUuEEwwNTCvHa",
+  "type": "assistant",
+  "uuid": "efc344dc-06b9-4717-8e43-1dcb2087651a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MatvqSarJ2irbTDWpUQY9g",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4705,
+      "cache_read_input_tokens": 34845,
+      "output_tokens": 392,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4705,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 392,
+          "cache_read_input_tokens": 34845,
+          "cache_creation_input_tokens": 4705,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4705
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T19:39:23.290Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01Rz9ct3qGYQrrueUt77CULc`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "efc344dc-06b9-4717-8e43-1dcb2087651a",
+  "isSidechain": false,
+  "requestId": "req_011Cb32ZjmkXUuEEwwNTCvHa",
+  "type": "assistant",
+  "uuid": "e5a76065-bb98-4588-a4bc-22c1d6638ce7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MatvqSarJ2irbTDWpUQY9g",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4705,
+      "cache_read_input_tokens": 34845,
+      "output_tokens": 392,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4705,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 392,
+          "cache_read_input_tokens": 34845,
+          "cache_creation_input_tokens": 4705,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4705
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T19:39:23.744Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_01CrXYBQjtQZQYr8YssC6486`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5a76065-bb98-4588-a4bc-22c1d6638ce7",
+  "isSidechain": false,
+  "requestId": "req_011Cb32ZjmkXUuEEwwNTCvHa",
+  "type": "assistant",
+  "uuid": "1a49f33f-0e8c-41fc-bcf5-4bd1188b37fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MatvqSarJ2irbTDWpUQY9g",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4705,
+      "cache_read_input_tokens": 34845,
+      "output_tokens": 392,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4705,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 392,
+          "cache_read_input_tokens": 34845,
+          "cache_creation_input_tokens": 4705,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4705
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T19:39:23.819Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config · `toolu_01WrVYPkUAE79wbXVWW9ukVY`</summary>
+
+```json
+{
+  "project_name": "schema_semantic_constrained_ie",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a49f33f-0e8c-41fc-bcf5-4bd1188b37fe",
+  "isSidechain": false,
+  "requestId": "req_011Cb32ZjmkXUuEEwwNTCvHa",
+  "type": "assistant",
+  "uuid": "33a6dbcc-9f61-4e36-aa49-3528c86d9a90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MatvqSarJ2irbTDWpUQY9g",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4705,
+      "cache_read_input_tokens": 34845,
+      "output_tokens": 392,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4705,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 392,
+          "cache_read_input_tokens": 34845,
+          "cache_creation_input_tokens": 4705,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4705
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T19:39:23.947Z_
+
+<details><summary>↩ Tool result · `toolu_01DK4nnd8q5a8eYARjUERZkP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"llama_docred_full_s1\", \"success\": true, \"actions\": [\"Job still running (pid=194295)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "29ad036d-7df0-4e86-97c9-c9a35dfe7b45",
+  "isSidechain": false,
+  "promptId": "341989cb-2dee-4ef7-9eda-6e4aaaba3288",
+  "type": "user",
+  "uuid": "236a39de-f563-43c5-a018-d63cb13c2604",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"llama_docred_full_s1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=194295)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"llama_docred_full_s1\", \"success\": true, \"actions\": [\"Job still running (pid=194295)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "29ad036d-7df0-4e86-97c9-c9a35dfe7b45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T19:39:23.959Z_
+
+<details><summary>↩ Tool result · `toolu_01UdjhcWxZMAPgMmo9dgseXB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T19:39:04Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 20 个实验 — ANALYZING 1, DONE 18, RUNNING 1\\n**DONE 分布**: killed 1, success 17\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-16980:cuda:0, westd-16980:cuda:1\\n- **实际运行**: 1 张 — westd-16980:cuda:0(llama_docred_full_s1)\\n- **空闲（分配了没跑）**: westd-16980:cuda:1\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `llama_docred_full_s1` | westd-16980 | cuda:0 | 194295 | `…uns/schema_semantic_constrained_ie/llama_docred_full_s1.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `phase2_docred_grammar_only` [success] — 2026-05-14T18:52:55\\n- `posthoc_filtering_baseline` [success] — 2026-05-14T18:46:28\\n- `llama_scierc_full_s1` [success] — 2026-05-14T18:31:43 — EXIT_CODE=143 (SIGTERM — graceful kill)\\n- `llama_scierc_unconstrained` [success] — 2026-05-14T18:31:40\\n- `phase2_scierc_full_s2` [success] — 2026-05-14T18:31:38 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| llama_docred_full_s1 | Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上的效果。与 Qwen3-8B DocRED full_s1 (DR 10.19%) 对比，验证约束解码在不同模型+复杂 schema 上的泛化性。 | — | — | — |\\n| llama_docred_unconstrained | Llama-3.1-8B-Instruct 在 DocRED unconstrained baseline。与 Qwen3-8B DocRED unconstrained 对比 violation 分布。验证不同模型在复杂 schema (96 relations) 上的 violation 模式差异。 | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **phase2_docred_grammar_only** (success): Grammar-only constrained decoding 在 DocRED (96 relation types) 上能否消除 RV violations (28.9%) 和 ET violations (7.5%)？与 SciERC grammar_only (RV 1.4%→0%, ET 0.4%→0%) 对比，验证 grammar 层在复杂 schema 上的泛化性。\\n- **posthoc_filtering_baseline** (success): —\\n- **llama_scierc_full_s1** (success): Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 SciERC 上的效果。与 Qwen3-8B full_s1 (DR 0.93%) 对比，验证 OntoCoDec 的 model-agnostic 特性。零代码修改。D009 cross-model 验证核心实验。\\n\\n## 趋势\\n成功 17 / 负向 0 / 失败 0 / 共 18\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-16980: 无 GPU 信息\\n\\n## 告警\\n- mvp_phase0_docred_schema_r2: 已被终止 — unknown\\n\", \"total_chars\": 2262, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "efc344dc-06b9-4717-8e43-1dcb2087651a",
+  "isSidechain": false,
+  "promptId": "341989cb-2dee-4ef7-9eda-6e4aaaba3288",
+  "type": "user",
+  "uuid": "6ca11f04-9648-4178-86ea-45026402b298",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md\\\", \\\"content\\\": \\\"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T19:39:04Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 20 个实验 — ANALYZING 1, DONE 18, RUNNING 1\\\\n**DONE 分布**: killed 1, success 17\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-16980:cuda:0, westd-16980:cuda:1\\\\n- **实际运行**: 1 张 — westd-16980:cuda:0(llama_docred_full_s1)\\\\n- **空闲（分配了没跑）**: westd-16980:cuda:1\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `llama_docred_full_s1` | westd-16980 | cuda:0 | 194295 | `…uns/schema_semantic_constrained_ie/llama_docred_full_s1.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `phase2_docred_grammar_only` [success] — 2026-05-14T18:52:55\\\\n- `posthoc_filtering_baseline` [success] — 2026-05-14T18:46:28\\\\n- `llama_scierc_full_s1` [success] — 2026-05-14T18:31:43 — EXIT_CODE=143 (SIGTERM — graceful kill)\\\\n- `llama_scierc_unconstrained` [success] — 2026-05-14T18:31:40\\\\n- `phase2_scierc_full_s2` [success] — 2026-05-14T18:31:38 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n\\\\n&lt;!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| llama_docred_full_s1 | Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上的效果。与 Qwen3-8B DocRED full_s1 (DR 10.19%) 对比，验证约束解码在不同模型+复杂 schema 上的泛化性。 | — | — | — |\\\\n| llama_docred_unconstrained | Llama-3.1-8B-Instruct 在 DocRED unconstrained baseline。与 Qwen3-8B DocRED unconstrained 对比 violation 分布。验证不同模型在复杂 schema (96 relations) 上的 violation 模式差异。 | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **phase2_docred_grammar_only** (success): Grammar-only constrained decoding 在 DocRED (96 relation types) 上能否消除 RV violations (28.9%) 和 ET violations (7.5%)？与 SciERC grammar_only (RV 1.4%→0%, ET 0.4%→0%) 对比，验证 grammar 层在复杂 schema 上的泛化性。\\\\n- **posthoc_filtering_baseline** (success): —\\\\n- **llama_scierc_full_s1** (success): Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 SciERC 上的效果。与 Qwen3-8B full_s1 (DR 0.93%) 对比，验证 OntoCoDec 的 model-agnostic 特性。零代码修改。D009 cross-model 验证核心实验。\\\\n\\\\n## 趋势\\\\n成功 17 / 负向 0 / 失败 0 / 共 18\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-16980: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- mvp_phase0_docred_schema_r2: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 2262, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T19:39:04Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 20 个实验 — ANALYZING 1, DONE 18, RUNNING 1\\n**DONE 分布**: killed 1, success 17\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-16980:cuda:0, westd-16980:cuda:1\\n- **实际运行**: 1 张 — westd-16980:cuda:0(llama_docred_full_s1)\\n- **空闲（分配了没跑）**: westd-16980:cuda:1\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `llama_docred_full_s1` | westd-16980 | cuda:0 | 194295 | `…uns/schema_semantic_constrained_ie/llama_docred_full_s1.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `phase2_docred_grammar_only` [success] — 2026-05-14T18:52:55\\n- `posthoc_filtering_baseline` [success] — 2026-05-14T18:46:28\\n- `llama_scierc_full_s1` [success] — 2026-05-14T18:31:43 — EXIT_CODE=143 (SIGTERM — graceful kill)\\n- `llama_scierc_unconstrained` [success] — 2026-05-14T18:31:40\\n- `phase2_scierc_full_s2` [success] — 2026-05-14T18:31:38 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| llama_docred_full_s1 | Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上的效果。与 Qwen3-8B DocRED full_s1 (DR 10.19%) 对比，验证约束解码在不同模型+复杂 schema 上的泛化性。 | — | — | — |\\n| llama_docred_unconstrained | Llama-3.1-8B-Instruct 在 DocRED unconstrained baseline。与 Qwen3-8B DocRED unconstrained 对比 violation 分布。验证不同模型在复杂 schema (96 relations) 上的 violation 模式差异。 | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **phase2_docred_grammar_only** (success): Grammar-only constrained decoding 在 DocRED (96 relation types) 上能否消除 RV violations (28.9%) 和 ET violations (7.5%)？与 SciERC grammar_only (RV 1.4%→0%, ET 0.4%→0%) 对比，验证 grammar 层在复杂 schema 上的泛化性。\\n- **posthoc_filtering_baseline** (success): —\\n- **llama_scierc_full_s1** (success): Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 SciERC 上的效果。与 Qwen3-8B full_s1 (DR 0.93%) 对比，验证 OntoCoDec 的 model-agnostic 特性。零代码修改。D009 cross-model 验证核心实验。\\n\\n## 趋势\\n成功 17 / 负向 0 / 失败 0 / 共 18\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-16980: 无 GPU 信息\\n\\n## 告警\\n- mvp_phase0_docred_schema_r2: 已被终止 — unknown\\n\", \"total_chars\": 2262, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "efc344dc-06b9-4717-8e43-1dcb2087651a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: llama_docred_unconstrained - project: schema_semantic_constrained_ie - server: westd-16980…",
+  "leafUuid": "48f81647-fd42-491b-8728-e7400d626171",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark as done",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T19:39:23.983Z_
+
+<details><summary>↩ Tool result · `toolu_01Rz9ct3qGYQrrueUt77CULc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\", \"content\": \"# OntoCoDec — Research Dashboard\\n\\n> 最后更新: 2026-05-14 18:39 UTC | 更新原因: D012/D013 后更新：F1 framing 从零代价改为 neutral-to-positive，bootstrap filter 修复纳入任务\\n\\n## 核心方向\\n两层约束解码（grammar + semantic）近完全消除 LLM-based IE 的本体类型违规，F1-neutral (SciERC) to positive (DocRED, +0.50pp p<0.001)。详见 paper_framing.md。\\n\\n## 当前阶段\\nResearch — 实验完成，进入论文数字修正 + 写作收尾阶段。目标 May 19 内部稿 → May 25 EMNLP ARR。\\n\\n## 实验完成度\\n- 总计: 19 个实验，16 success，1 killed，2 RUNNING\\n- SciERC 全矩阵: ✅ (5 configs × Qwen + Llama cross-model ✅)\\n- DocRED 4-way ablation: ✅ (Qwen) + 🔄 Llama DocRED 2组 RUNNING\\n- Phase 0 violation landscape: ✅ SciERC + DocRED\\n- Post-hoc baseline: ✅ 完成（未注册 registry，需补）\\n- D011 ET fix (v2 checker): ✅ 全量重跑完成，registry 已更新\\n\\n## 关键决策摘要\\n- D012: Bootstrap CI → SciERC F1-neutral (p=0.58), DocRED Rel F1 显著提升 (+0.50pp, p<0.001)\\n- D013: Post-hoc framing → 不争 F1，多维对比 (recall + coverage + operational)\\n\\n## 活跃工作流 (May 14 ~19:00 UTC)\\n\\n### GPU 实验\\n- `llama_docred_unconstrained` — 🔄 RUNNING, ETA ~19:40 UTC\\n- `llama_docred_full_s1` — 🔄 RUNNING, ETA ~20:25 UTC\\n\\n### Agent Workers\\n- §5 unified update — 🔄 v2 ET 数字 + bootstrap CI + post-hoc comparison + per-relation fallback\\n- §6 relwork merge — 🔄 4 段补充文本合入主文件\\n- Bib verification — 🔄 检查引用一致性\\n\\n## 近期任务\\n- [ ] D011 v2 数字已更新 → §5 统一修正（Worker 执行中）\\n- [ ] §6 related work 合并 + 修复（Worker 执行中）\\n- [ ] Bootstrap entity type filter 修复 + Entity F1 CI 重跑（指令已发 Agent）\\n- [ ] Post-hoc baseline registry 补全（需通知 Agent）\\n- [ ] Llama DocRED 完成 → violation analysis + §5 Cross-model 子节\\n- [ ] Discussion 段落：低 F1 实际意义 + CF severity + fallback frequency + post-hoc 对比\\n- [ ] May 19: 内部稿 → submit_paper_to_review\\n\\n## GPU 预算\\nwestd-16980: cuda:0 + cuda:1 分配给本项目。当前 2 张卡被 Llama DocRED 占用。\\n\\n## Dream 后行动完成度 (6/6)\\n1. Post-hoc baseline — ✅ D013\\n2. Bootstrap CI — ✅ D012 (entity F1 CI 需修复重跑)\\n3. Related work 20+ refs — ✅ 合并中\\n4. PICARD detailed comparison — ✅\\n5. CF/F1 discussion — 🔄 discussion writer 完成，待整合\\n6. Variance estimates — ✅ bootstrap CI 覆盖\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D013 | 2026-05-14 | Post-hoc baseline framing: 不以 F1 论高低，多维对比 (recall  | phase2_scierc_unconstrained, phase2_scierc_full_s1, phase2_docred_unconstrained, phase2_docred_full_s1 |\\n| D012 | 2026-05-14 | Bootstrap CI framing: 选 (B) 逐数据集报告 F1 significance | phase2_docred_full_s1, phase2_scierc_full_s1 |\\n| D011 | 2026-05-14 | 推翻之前 ET 计数口径决定——修正 ET triple-counting，每个 entity 只计 | phase2_docred_unconstrained, phase2_docred_semantic_only |\\n| D010 | 2026-05-14 | Dream 三档 Weak Reject (3/6) → 制定 6 项结构性补强计划：post-ho | llama_docred_full_s1, llama_docred_unconstrained, llama_scierc_full_s1 |\\n| D009 | 2026-05-14 | Llama-3.1-8B cross-model 验证升级为 should-have，SciERC- | phase2_scierc_full_s1, phase2_scierc_unconstrained |\\n| D008 | 2026-05-14 | 补跑 DocRED semantic_only 完成跨数据集全消融；论文写作提前至 DocRED 分 | phase2_docred_grammar_only, phase2_docred_full_s1, phase2_scierc_semantic_only |\\n| D007 | 2026-05-14 | S2 降级为架构 ablation，S1 为主推策略；标题去掉 \\\"Guaranteed\\\" 改 \\\"Ne | phase2_scierc_full_s2, phase2_scierc_full_s1 |\\n| D006 | 2026-05-14 | Phase 2 SciERC 核心结果确认：Full S1 DR -94% 且 F1 无损，CF v | phase2_scierc_unconstrained, phase2_scierc_grammar_only, phase2_scierc_semantic_only, phase2_scierc_full_s1, mvp_phase0_docred_schema |\\n| D005 | 2026-05-14 | Phase 2 SciERC 核心结果确认：Full S1 DR↓94% F1无损，CF viola | phase2_scierc_unconstrained, phase2_scierc_grammar_only, phase2_scierc_semantic_only, phase2_scierc_full_s1 |\\n| D004 | 2026-05-14 | Phase 2 SciERC 核心结果确认：grammar+semantic (full_s1) D | phase2_scierc_unconstrained, phase2_scierc_grammar_only, phase2_scierc_semantic_only, phase2_scierc_full_s1 |\\n\\n\\n\", \"lines\": 70}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e5a76065-bb98-4588-a4bc-22c1d6638ce7",
+  "isSidechain": false,
+  "promptId": "341989cb-2dee-4ef7-9eda-6e4aaaba3288",
+  "type": "user",
+  "uuid": "48f81647-fd42-491b-8728-e7400d626171",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\\\", \\\"content\\\": \\\"# OntoCoDec — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 18:39 UTC | 更新原因: D012/D013 后更新：F1 framing 从零代价改为 neutral-to-positive，bootstrap filter 修复纳入任务\\\\n\\\\n## 核心方向\\\\n两层约束解码（grammar + semantic）近完全消除 LLM-based IE 的本体类型违规，F1-neutral (SciERC) to positive (DocRED, +0.50pp p<0.001)。详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\nResearch — 实验完成，进入论文数字修正 + 写作收尾阶段。目标 May 19 内部稿 → May 25 EMNLP ARR。\\\\n\\\\n## 实验完成度\\\\n- 总计: 19 个实验，16 success，1 killed，2 RUNNING\\\\n- SciERC 全矩阵: ✅ (5 configs × Qwen + Llama cross-model ✅)\\\\n- DocRED 4-way ablation: ✅ (Qwen) + 🔄 Llama DocRED 2组 RUNNING\\\\n- Phase 0 violation landscape: ✅ SciERC + DocRED\\\\n- Post-hoc baseline: ✅ 完成（未注册 registry，需补）\\\\n- D011 ET fix (v2 checker): ✅ 全量重跑完成，registry 已更新\\\\n\\\\n## 关键决策摘要\\\\n- D012: Bootstrap CI → SciERC F1-neutral (p=0.58), DocRED Rel F1 显著提升 (+0.50pp, p<0.001)\\\\n- D013: Post-hoc framing → 不争 F1，多维对比 (recall + coverage + operational)\\\\n\\\\n## 活跃工作流 (May 14 ~19:00 UTC)\\\\n\\\\n### GPU 实验\\\\n- `llama_docred_unconstrained` — 🔄 RUNNING, ETA ~19:40 UTC\\\\n- `llama_docred_full_s1` — 🔄 RUNNING, ETA ~20:25 UTC\\\\n\\\\n### Agent Workers\\\\n- §5 unified update — 🔄 v2 ET 数字 + bootstrap CI + post-hoc comparison + per-relation fallback\\\\n- §6 relwork merge — 🔄 4 段补充文本合入主文件\\\\n- Bib verification — 🔄 检查引用一致性\\\\n\\\\n## 近期任务\\\\n- [ ] D011 v2 数字已更新 → §5 统一修正（Worker 执行中）\\\\n- [ ] §6 related work 合并 + 修复（Worker 执行中）\\\\n- [ ] Bootstrap entity type filter 修复 + Entity F1 CI 重跑（指令已发 Agent）\\\\n- [ ] Post-hoc baseline registry 补全（需通知 Agent）\\\\n- [ ] Llama DocRED 完成 → violation analysis + §5 Cross-model 子节\\\\n- [ ] Discussion 段落：低 F1 实际意义 + CF severity + fallback frequency + post-hoc 对比\\\\n- [ ] May 19: 内部稿 → submit_paper_to_review\\\\n\\\\n## GPU 预算\\\\nwestd-16980: cuda:0 + cuda:1 分配给本项目。当前 2 张卡被 Llama DocRED 占用。\\\\n\\\\n## Dream 后行动完成度 (6/6)\\\\n1. Post-hoc baseline — ✅ D013\\\\n2. Bootstrap CI — ✅ D012 (entity F1 CI 需修复重跑)\\\\n3. Related work 20+ refs — ✅ 合并中\\\\n4. PICARD detailed comparison — ✅\\\\n5. CF/F1 discussion — 🔄 discussion writer 完成，待整合\\\\n6. Variance estimates — ✅ bootstrap CI 覆盖\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D013 | 2026-05-14 | Post-hoc baseline framing: 不以 F1 论高低，多维对比 (recall  | phase2_scierc_unconstrained, phase2_scierc_full_s1, phase2_docred_unconstrained, phase2_docred_full_s1 |\\\\n| D012 | 2026-05-14 | Bootstrap CI framing: 选 (B) 逐数据集报告 F1 significance | phase2_docred_full_s1, phase2_scierc_full_s1 |\\\\n| D011 | 2026-05-14 | 推翻之前 ET 计数口径决定——修正 ET triple-counting，每个 entity 只计 | phase2_docred_unconstrained, phase2_docred_semantic_only |\\\\n| D010 | 2026-05-14 | Dream 三档 Weak Reject (3/6) → 制定 6 项结构性补强计划：post-ho | llama_docred_full_s1, llama_docred_unconstrained, llama_scierc_full_s1 |\\\\n| D009 | 2026-05-14 | Llama-3.1-8B cross-model 验证升级为 should-have，SciERC- | phase2_scierc_full_s1, phase2_scierc_unconstrained |\\\\n| D008 | 2026-05-14 | 补跑 DocRED semantic_only 完成跨数据集全消融；论文写作提前至 DocRED 分 | phase2_docred_grammar_only, phase2_docred_full_s1, phase2_scierc_semantic_only |\\\\n| D007 | 2026-05-14 | S2 降级为架构 ablation，S1 为主推策略；标题去掉 \\\\\\\"Guaranteed\\\\\\\" 改 \\\\\\\"Ne | phase2_scierc_full_s2, phase2_scierc_full_s1 |\\\\n| D006 | 2026-05-14 | Phase 2 SciERC 核心结果确认：Full S1 DR -94% 且 F1 无损，CF v | phase2_scierc_unconstrained, phase2_scierc_grammar_only, phase2_scierc_semantic_only, phase2_scierc_full_s1, mvp_phase0_docred_schema |\\\\n| D005 | 2026-05-14 | Phase 2 SciERC 核心结果确认：Full S1 DR↓94% F1无损，CF viola | phase2_scierc_unconstrained, phase2_scierc_grammar_only, phase2_scierc_semantic_only, phase2_scierc_full_s1 |\\\\n| D004 | 2026-05-14 | Phase 2 SciERC 核心结果确认：grammar+semantic (full_s1) D | phase2_scierc_unconstrained, phase2_scierc_grammar_only, phase2_scierc_semantic_only, phase2_scierc_full_s1 |\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 70}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\", \"content\": \"# OntoCoDec — Research Dashboard\\n\\n> 最后更新: 2026-05-14 18:39 UTC | 更新原因: D012/D013 后更新：F1 framing 从零代价改为 neutral-to-positive，bootstrap filter 修复纳入任务\\n\\n## 核心方向\\n两层约束解码（grammar + semantic）近完全消除 LLM-based IE 的本体类型违规，F1-neutral (SciERC) to positive (DocRED, +0.50pp p<0.001)。详见 paper_framing.md。\\n\\n## 当前阶段\\nResearch — 实验完成，进入论文数字修正 + 写作收尾阶段。目标 May 19 内部稿 → May 25 EMNLP ARR。\\n\\n## 实验完成度\\n- 总计: 19 个实验，16 success，1 killed，2 RUNNING\\n- SciERC 全矩阵: ✅ (5 configs × Qwen + Llama cross-model ✅)\\n- DocRED 4-way ablation: ✅ (Qwen) + 🔄 Llama DocRED 2组 RUNNING\\n- Phase 0 violation landscape: ✅ SciERC + DocRED\\n- Post-hoc baseline: ✅ 完成（未注册 registry，需补）\\n- D011 ET fix (v2 checker): ✅ 全量重跑完成，registry 已更新\\n\\n## 关键决策摘要\\n- D012: Bootstrap CI → SciERC F1-neutral (p=0.58), DocRED Rel F1 显著提升 (+0.50pp, p<0.001)\\n- D013: Post-hoc framing → 不争 F1，多维对比 (recall + coverage + operational)\\n\\n## 活跃工作流 (May 14 ~19:00 UTC)\\n\\n### GPU 实验\\n- `llama_docred_unconstrained` — 🔄 RUNNING, ETA ~19:40 UTC\\n- `llama_docred_full_s1` — 🔄 RUNNING, ETA ~20:25 UTC\\n\\n### Agent Workers\\n- §5 unified update — 🔄 v2 ET 数字 + bootstrap CI + post-hoc comparison + per-relation fallback\\n- §6 relwork merge — 🔄 4 段补充文本合入主文件\\n- Bib verification — 🔄 检查引用一致性\\n\\n## 近期任务\\n- [ ] D011 v2 数字已更新 → §5 统一修正（Worker 执行中）\\n- [ ] §6 related work 合并 + 修复（Worker 执行中）\\n- [ ] Bootstrap entity type filter 修复 + Entity F1 CI 重跑（指令已发 Agent）\\n- [ ] Post-hoc baseline registry 补全（需通知 Agent）\\n- [ ] Llama DocRED 完成 → violation analysis + §5 Cross-model 子节\\n- [ ] Discussion 段落：低 F1 实际意义 + CF severity + fallback frequency + post-hoc 对比\\n- [ ] May 19: 内部稿 → submit_paper_to_review\\n\\n## GPU 预算\\nwestd-16980: cuda:0 + cuda:1 分配给本项目。当前 2 张卡被 Llama DocRED 占用。\\n\\n## Dream 后行动完成度 (6/6)\\n1. Post-hoc baseline — ✅ D013\\n2. Bootstrap CI — ✅ D012 (entity F1 CI 需修复重跑)\\n3. Related work 20+ refs — ✅ 合并中\\n4. PICARD detailed comparison — ✅\\n5. CF/F1 discussion — 🔄 discussion writer 完成，待整合\\n6. Variance estimates — ✅ bootstrap CI 覆盖\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D013 | 2026-05-14 | Post-hoc baseline framing: 不以 F1 论高低，多维对比 (recall  | phase2_scierc_unconstrained, phase2_scierc_full_s1, phase2_docred_unconstrained, phase2_docred_full_s1 |\\n| D012 | 2026-05-14 | Bootstrap CI framing: 选 (B) 逐数据集报告 F1 significance | phase2_docred_full_s1, phase2_scierc_full_s1 |\\n| D011 | 2026-05-14 | 推翻之前 ET 计数口径决定——修正 ET triple-counting，每个 entity 只计 | phase2_docred_unconstrained, phase2_docred_semantic_only |\\n| D010 | 2026-05-14 | Dream 三档 Weak Reject (3/6) → 制定 6 项结构性补强计划：post-ho | llama_docred_full_s1, llama_docred_unconstrained, llama_scierc_full_s1 |\\n| D009 | 2026-05-14 | Llama-3.1-8B cross-model 验证升级为 should-have，SciERC- | phase2_scierc_full_s1, phase2_scierc_unconstrained |\\n| D008 | 2026-05-14 | 补跑 DocRED semantic_only 完成跨数据集全消融；论文写作提前至 DocRED 分 | phase2_docred_grammar_only, phase2_docred_full_s1, phase2_scierc_semantic_only |\\n| D007 | 2026-05-14 | S2 降级为架构 ablation，S1 为主推策略；标题去掉 \\\"Guaranteed\\\" 改 \\\"Ne | phase2_scierc_full_s2, phase2_scierc_full_s1 |\\n| D006 | 2026-05-14 | Phase 2 SciERC 核心结果确认：Full S1 DR -94% 且 F1 无损，CF v | phase2_scierc_unconstrained, phase2_scierc_grammar_only, phase2_scierc_semantic_only, phase2_scierc_full_s1, mvp_phase0_docred_schema |\\n| D005 | 2026-05-14 | Phase 2 SciERC 核心结果确认：Full S1 DR↓94% F1无损，CF viola | phase2_scierc_unconstrained, phase2_scierc_grammar_only, phase2_scierc_semantic_only, phase2_scierc_full_s1 |\\n| D004 | 2026-05-14 | Phase 2 SciERC 核心结果确认：grammar+semantic (full_s1) D | phase2_scierc_unconstrained, phase2_scierc_grammar_only, phase2_scierc_semantic_only, phase2_scierc_full_s1 |\\n\\n\\n\", \"lines\": 70}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e5a76065-bb98-4588-a4bc-22c1d6638ce7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T19:39:24.021Z_
+
+<details><summary>↩ Tool result · `toolu_01CrXYBQjtQZQYr8YssC6486`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_fix_checker_et_normalization_20260514T144616\", \"task_type\": \"fix:checker_et_normalization\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T14:46:16.497185+00:00\", \"ended_at\": \"2026-05-14T14:51:52.381884+00:00\"}, {\"worker_id\": \"worker_write_section5_docred_20260514T175414\", \"task_type\": \"write:section5_docred\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T17:54:14.142540+00:00\", \"ended_at\": \"2026-05-14T18:00:25.702382+00:00\"}, {\"worker_id\": \"worker_check_llama_docred_progress_20260514T175425\", \"task_type\": \"check:llama_docred_progress\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T17:54:25.588307+00:00\", \"ended_at\": \"2026-05-14T17:55:14.690009+00:00\"}, {\"worker_id\": \"worker_analysis_bootstrap_ci_20260514T181218\", \"task_type\": \"analysis:bootstrap_ci\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:12:18.628331+00:00\", \"ended_at\": \"2026-05-14T18:20:25.549297+00:00\"}, {\"worker_id\": \"worker_experiment_posthoc_filtering_baseline_20260514T181438\", \"task_type\": \"experiment:posthoc_filtering_baseline\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:14:38.764245+00:00\", \"ended_at\": \"2026-05-14T18:22:24.426514+00:00\"}, {\"worker_id\": \"worker_write_relwork_expansion_20260514T181500\", \"task_type\": \"write:relwork_expansion\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:15:00.775572+00:00\", \"ended_at\": \"2026-05-14T18:20:54.343348+00:00\"}, {\"worker_id\": \"worker_analysis_qwen_fallback_estimation_20260514T181647\", \"task_type\": \"analysis:qwen_fallback_estimation\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:16:47.830203+00:00\", \"ended_at\": \"2026-05-14T18:20:24.335666+00:00\"}, {\"worker_id\": \"worker_fix_et_triplecount_and_rerun_all_20260514T182039\", \"task_type\": \"fix:et_triplecount_and_rerun_all\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:20:39.851391+00:00\", \"ended_at\": \"2026-05-14T18:32:25.013201+00:00\"}, {\"worker_id\": \"worker_write_discussion_sections_20260514T182852\", \"task_type\": \"write:discussion_sections\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:28:52.325139+00:00\", \"ended_at\": \"2026-05-14T18:30:24.900249+00:00\"}, {\"worker_id\": \"worker_write_section5_unified_update_20260514T183710\", \"task_type\": \"write:section5_unified_update\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:37:10.823747+00:00\", \"ended_at\": \"2026-05-14T18:43:55.668004+00:00\"}, {\"worker_id\": \"worker_write_section6_relwork_merge_20260514T183725\", \"task_type\": \"write:section6_relwork_merge\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:37:25.871811+00:00\", \"ended_at\": \"2026-05-14T18:38:56.464863+00:00\"}, {\"worker_id\": \"worker_research_bib_verification_20260514T183737\", \"task_type\": \"research:bib_verification\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:37:37.696853+00:00\", \"ended_at\": \"2026-05-14T18:40:25.444339+00:00\"}, {\"worker_id\": \"worker_fix_bootstrap_ci_entity_filter_20260514T184012\", \"task_type\": \"fix:bootstrap_ci_entity_filter\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:40:12.266815+00:00\", \"ended_at\": \"2026-05-14T18:52:26.336364+00:00\"}, {\"worker_id\": \"worker_write_section6_reviewer_fixes_20260514T184201\", \"task_type\": \"write:section6_reviewer_fixes\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:42:01.230988+00:00\", \"ended_at\": \"2026-05-14T18:45:25.780149+00:00\"}, {\"worker_id\": \"worker_write_section4_tightness_definition_20260514T184734\", \"task_type\": \"write:section4_tightness_definition\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:47:34.451053+00:00\", \"ended_at\": \"2026-05-14T18:49:26.069765+00:00\"}, {\"worker_id\": \"worker_research_bib_missing_entries_batch1_20260514T185357\", \"task_type\": \"research:bib_missing_entries_batch1\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:53:57.207465+00:00\", \"ended_at\": \"2026-05-14T18:56:42.138165+00:00\"}, {\"worker_id\": \"worker_research_bib_missing_entries_batch2_20260514T185405\", \"task_type\": \"research:bib_missing_entries_batch2\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:54:06.030906+00:00\", \"ended_at\": \"2026-05-14T18:57:47.466485+00:00\"}, {\"worker_id\": \"worker_research_scan_all_cite_keys_20260514T185439\", \"task_type\": \"research:scan_all_cite_keys\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:54:39.901903+00:00\", \"ended_at\": \"2026-05-14T18:57:09.514019+00:00\"}, {\"worker_id\": \"worker_research_bib_missing_entries_extra_20260514T191511\", \"task_type\": \"research:bib_missing_entries_extra\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T19:15:11.418975+00:00\", \"ended_at\": \"2026-05-14T19:17:23.032914+00:00\"}, {\"worker_id\": \"worker_fix_tightness_definition_and_scierc_recompute_20260514T193635\", \"task_type\": \"fix:tightness_definition_and_scierc_recompute\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T19:36:35.418865+00:00\", \"ended_at\": \"2026-05-14T19:39:01.485614+00:00\"}], \"count\": 20}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a49f33f-0e8c-41fc-bcf5-4bd1188b37fe",
+  "isSidechain": false,
+  "promptId": "341989cb-2dee-4ef7-9eda-6e4aaaba3288",
+  "type": "user",
+  "uuid": "9c962b66-1217-40b1-af50-bd269e4b9433",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_fix_checker_et_normalization_20260514T144616\\\", \\\"task_type\\\": \\\"fix:checker_et_normalization\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T14:46:16.497185+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T14:51:52.381884+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_write_section5_docred_20260514T175414\\\", \\\"task_type\\\": \\\"write:section5_docred\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T17:54:14.142540+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:00:25.702382+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_check_llama_docred_progress_20260514T175425\\\", \\\"task_type\\\": \\\"check:llama_docred_progress\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T17:54:25.588307+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T17:55:14.690009+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_bootstrap_ci_20260514T181218\\\", \\\"task_type\\\": \\\"analysis:bootstrap_ci\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T18:12:18.628331+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:20:25.549297+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_experiment_posthoc_filtering_baseline_20260514T181438\\\", \\\"task_type\\\": \\\"experiment:posthoc_filtering_baseline\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T18:14:38.764245+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:22:24.426514+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_write_relwork_expansion_20260514T181500\\\", \\\"task_type\\\": \\\"write:relwork_expansion\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T18:15:00.775572+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:20:54.343348+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_qwen_fallback_estimation_20260514T181647\\\", \\\"task_type\\\": \\\"analysis:qwen_fallback_estimation\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T18:16:47.830203+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:20:24.335666+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_fix_et_triplecount_and_rerun_all_20260514T182039\\\", \\\"task_type\\\": \\\"fix:et_triplecount_and_rerun_all\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T18:20:39.851391+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:32:25.013201+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_write_discussion_sections_20260514T182852\\\", \\\"task_type\\\": \\\"write:discussion_sections\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T18:28:52.325139+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:30:24.900249+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_write_section5_unified_update_20260514T183710\\\", \\\"task_type\\\": \\\"write:section5_unified_update\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T18:37:10.823747+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:43:55.668004+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_write_section6_relwork_merge_20260514T183725\\\", \\\"task_type\\\": \\\"write:section6_relwork_merge\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T18:37:25.871811+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:38:56.464863+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_research_bib_verification_20260514T183737\\\", \\\"task_type\\\": \\\"research:bib_verification\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T18:37:37.696853+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:40:25.444339+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_fix_bootstrap_ci_entity_filter_20260514T184012\\\", \\\"task_type\\\": \\\"fix:bootstrap_ci_entity_filter\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T18:40:12.266815+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:52:26.336364+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_write_section6_reviewer_fixes_20260514T184201\\\", \\\"task_type\\\": \\\"write:section6_reviewer_fixes\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T18:42:01.230988+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:45:25.780149+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_write_section4_tightness_definition_20260514T184734\\\", \\\"task_type\\\": \\\"write:section4_tightness_definition\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T18:47:34.451053+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:49:26.069765+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_research_bib_missing_entries_batch1_20260514T185357\\\", \\\"task_type\\\": \\\"research:bib_missing_entries_batch1\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T18:53:57.207465+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:56:42.138165+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_research_bib_missing_entries_batch2_20260514T185405\\\", \\\"task_type\\\": \\\"research:bib_missing_entries_batch2\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T18:54:06.030906+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:57:47.466485+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_research_scan_all_cite_keys_20260514T185439\\\", \\\"task_type\\\": \\\"research:scan_all_cite_keys\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T18:54:39.901903+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T18:57:09.514019+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_research_bib_missing_entries_extra_20260514T191511\\\", \\\"task_type\\\": \\\"research:bib_missing_entries_extra\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T19:15:11.418975+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T19:17:23.032914+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_fix_tightness_definition_and_scierc_recompute_20260514T193635\\\", \\\"task_type\\\": \\\"fix:tightness_definition_and_scierc_recompute\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T19:36:35.418865+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T19:39:01.485614+00:00\\\"}], \\\"count\\\": 20}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_fix_checker_et_normalization_20260514T144616\", \"task_type\": \"fix:checker_et_normalization\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T14:46:16.497185+00:00\", \"ended_at\": \"2026-05-14T14:51:52.381884+00:00\"}, {\"worker_id\": \"worker_write_section5_docred_20260514T175414\", \"task_type\": \"write:section5_docred\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T17:54:14.142540+00:00\", \"ended_at\": \"2026-05-14T18:00:25.702382+00:00\"}, {\"worker_id\": \"worker_check_llama_docred_progress_20260514T175425\", \"task_type\": \"check:llama_docred_progress\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T17:54:25.588307+00:00\", \"ended_at\": \"2026-05-14T17:55:14.690009+00:00\"}, {\"worker_id\": \"worker_analysis_bootstrap_ci_20260514T181218\", \"task_type\": \"analysis:bootstrap_ci\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:12:18.628331+00:00\", \"ended_at\": \"2026-05-14T18:20:25.549297+00:00\"}, {\"worker_id\": \"worker_experiment_posthoc_filtering_baseline_20260514T181438\", \"task_type\": \"experiment:posthoc_filtering_baseline\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:14:38.764245+00:00\", \"ended_at\": \"2026-05-14T18:22:24.426514+00:00\"}, {\"worker_id\": \"worker_write_relwork_expansion_20260514T181500\", \"task_type\": \"write:relwork_expansion\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:15:00.775572+00:00\", \"ended_at\": \"2026-05-14T18:20:54.343348+00:00\"}, {\"worker_id\": \"worker_analysis_qwen_fallback_estimation_20260514T181647\", \"task_type\": \"analysis:qwen_fallback_estimation\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:16:47.830203+00:00\", \"ended_at\": \"2026-05-14T18:20:24.335666+00:00\"}, {\"worker_id\": \"worker_fix_et_triplecount_and_rerun_all_20260514T182039\", \"task_type\": \"fix:et_triplecount_and_rerun_all\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:20:39.851391+00:00\", \"ended_at\": \"2026-05-14T18:32:25.013201+00:00\"}, {\"worker_id\": \"worker_write_discussion_sections_20260514T182852\", \"task_type\": \"write:discussion_sections\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:28:52.325139+00:00\", \"ended_at\": \"2026-05-14T18:30:24.900249+00:00\"}, {\"worker_id\": \"worker_write_section5_unified_update_20260514T183710\", \"task_type\": \"write:section5_unified_update\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:37:10.823747+00:00\", \"ended_at\": \"2026-05-14T18:43:55.668004+00:00\"}, {\"worker_id\": \"worker_write_section6_relwork_merge_20260514T183725\", \"task_type\": \"write:section6_relwork_merge\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:37:25.871811+00:00\", \"ended_at\": \"2026-05-14T18:38:56.464863+00:00\"}, {\"worker_id\": \"worker_research_bib_verification_20260514T183737\", \"task_type\": \"research:bib_verification\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:37:37.696853+00:00\", \"ended_at\": \"2026-05-14T18:40:25.444339+00:00\"}, {\"worker_id\": \"worker_fix_bootstrap_ci_entity_filter_20260514T184012\", \"task_type\": \"fix:bootstrap_ci_entity_filter\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:40:12.266815+00:00\", \"ended_at\": \"2026-05-14T18:52:26.336364+00:00\"}, {\"worker_id\": \"worker_write_section6_reviewer_fixes_20260514T184201\", \"task_type\": \"write:section6_reviewer_fixes\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:42:01.230988+00:00\", \"ended_at\": \"2026-05-14T18:45:25.780149+00:00\"}, {\"worker_id\": \"worker_write_section4_tightness_definition_20260514T184734\", \"task_type\": \"write:section4_tightness_definition\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:47:34.451053+00:00\", \"ended_at\": \"2026-05-14T18:49:26.069765+00:00\"}, {\"worker_id\": \"worker_research_bib_missing_entries_batch1_20260514T185357\", \"task_type\": \"research:bib_missing_entries_batch1\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:53:57.207465+00:00\", \"ended_at\": \"2026-05-14T18:56:42.138165+00:00\"}, {\"worker_id\": \"worker_research_bib_missing_entries_batch2_20260514T185405\", \"task_type\": \"research:bib_missing_entries_batch2\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:54:06.030906+00:00\", \"ended_at\": \"2026-05-14T18:57:47.466485+00:00\"}, {\"worker_id\": \"worker_research_scan_all_cite_keys_20260514T185439\", \"task_type\": \"research:scan_all_cite_keys\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T18:54:39.901903+00:00\", \"ended_at\": \"2026-05-14T18:57:09.514019+00:00\"}, {\"worker_id\": \"worker_research_bib_missing_entries_extra_20260514T191511\", \"task_type\": \"research:bib_missing_entries_extra\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T19:15:11.418975+00:00\", \"ended_at\": \"2026-05-14T19:17:23.032914+00:00\"}, {\"worker_id\": \"worker_fix_tightness_definition_and_scierc_recompute_20260514T193635\", \"task_type\": \"fix:tightness_definition_and_scierc_recompute\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"done\", \"started_at\": \"2026-05-14T19:36:35.418865+00:00\", \"ended_at\": \"2026-05-14T19:39:01.485614+00:00\"}], \"count\": 20}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1a49f33f-0e8c-41fc-bcf5-4bd1188b37fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T19:39:24.038Z_
+
+<details><summary>↩ Tool result · `toolu_01WrVYPkUAE79wbXVWW9ukVY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"project\": \"schema_semantic_constrained_ie\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_constraint\": \"cuda:0, cuda:1 on westd-16980 only\", \"gpu_ids\": [0, 1], \"project_path\": \"/root/schema_semantic_constrained_ie\", \"servers\": [{\"account\": \"root\", \"server\": \"westd-16980\"}]}}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "33a6dbcc-9f61-4e36-aa49-3528c86d9a90",
+  "isSidechain": false,
+  "promptId": "341989cb-2dee-4ef7-9eda-6e4aaaba3288",
+  "type": "user",
+  "uuid": "59abd1b4-5931-4985-8afa-bd4f3218c36c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_constraint\\\": \\\"cuda:0, cuda:1 on westd-16980 only\\\", \\\"gpu_ids\\\": [0, 1], \\\"project_path\\\": \\\"/root/schema_semantic_constrained_ie\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westd-16980\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"project\": \"schema_semantic_constrained_ie\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_constraint\": \"cuda:0, cuda:1 on westd-16980 only\", \"gpu_ids\": [0, 1], \"project_path\": \"/root/schema_semantic_constrained_ie\", \"servers\": [{\"account\": \"root\", \"server\": \"westd-16980\"}]}}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "33a6dbcc-9f61-4e36-aa49-3528c86d9a90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: llama_docred_unconstrained - project: schema_semantic_constrained_ie - server: westd-16980…",
+  "leafUuid": "59abd1b4-5931-4985-8afa-bd4f3218c36c",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark as done",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-14T19:39:41.725Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Session-start 初始化完成。让我分析当前状态：
+
+1. **llama_docred_unconstrained** — 状态 ANALYZING，需要我分析结果并推进到 DONE
+2. **llama_docred_full_s1** — 仍在 RUNNING（PID 194295）
+3. 所有 Worker 都已完成
+4. GPU 分配：cuda:0 和 cuda:1 on westd-16980
+
+当前任务：分析 llama_docred_unconstrained 实验结果。
+
+
+我需要获取实验输出和日志，用 checker 评估 violation rate 和 F1 指标，与 Qwen3-8B 的结果对比，然后更新 registry 和 report.md，最后向 Director 汇报——但这些操作应该由系统自动处理而不是我手动执行。
+
+我应该派遣一个 Worker 来完成这些任务：连接到远程服务器读取日志确认实验完成，运行 violation checker 和 F1 评估工具，然后收集所有指标数据。
+
+同时我注意到 cuda:1 现在空闲了（llama_docred_unconstrained 刚完成），而 llama_docred_full_s1 还在 cuda:0 上运行。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59abd1b4-5931-4985-8afa-bd4f3218c36c",
+  "isSidechain": false,
+  "requestId": "req_011Cb32aG4efy7k1Q3aNWvQv",
+  "type": "assistant",
+  "uuid": "cbad0334-3a74-420a-885b-4ba2efa38dd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CjbJNYxCiYcY61s7HuApD4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 27204,
+      "cache_read_input_tokens": 39550,
+      "output_tokens": 2234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27204,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2234,
+          "cache_read_input_tokens": 39550,
+          "cache_creation_input_tokens": 27204,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27204
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-14T19:39:42.845Z_
+
+Session 初始化完成。状态概览：
+- `llama_docred_unconstrained` → ANALYZING（需分析）
+- `llama_docred_full_s1` → RUNNING（cuda:0，仍在跑）
+- cuda:1 空闲
+- 所有 Worker 已完成
+
+派 Worker 分析 llama_docred_unconstrained 实验结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cbad0334-3a74-420a-885b-4ba2efa38dd1",
+  "isSidechain": false,
+  "requestId": "req_011Cb32aG4efy7k1Q3aNWvQv",
+  "type": "assistant",
+  "uuid": "b194e12d-8a48-40e6-ae06-c704a87c0710",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CjbJNYxCiYcY61s7HuApD4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 27204,
+      "cache_read_input_tokens": 39550,
+      "output_tokens": 2234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27204,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2234,
+          "cache_read_input_tokens": 39550,
+          "cache_creation_input_tokens": 27204,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27204
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T19:40:07.625Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_011LRtBHhnNdvVTqRAEPD1ad`</summary>
+
+````json
+{
+  "task_type": "analysis:llama_docred_unconstrained",
+  "project": "schema_semantic_constrained_ie",
+  "task_prompt": "## 任务\n分析 `llama_docred_unconstrained` 实验的输出，获取完整的 violation 和 F1 指标。\n\n## 背景\n这是 Llama-3.1-8B-Instruct 在 DocRED 数据集上的 unconstrained baseline 实验。实验已在 westd-16980 上正常退出。\n\n## 步骤\n\n### 1. SSH 检查实验完成状态\n连接 westd-16980，检查日志确认实验正常完成：\n```bash\ntail -30 ~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained.log\n```\n\n### 2. 检查输出文件\n```bash\nwc -l /root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained.jsonl\nhead -1 /root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained.jsonl\n```\n\n### 3. 运行 violation checker\n用项目的 checker 脚本评估 violation rate。项目有一个 `run_checker.py` 或类似脚本。先查看可用的评估脚本：\n```bash\nls /root/schema_semantic_constrained_ie/*.py | grep -i \"check\\|eval\\|violation\\|analyze\"\n```\n\n根据之前实验的经验，应该激活 conda 环境后运行：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/schema_semantic_constrained_ie\n```\n\n之前的 DocRED 实验用的 checker 命令类似：\n```bash\npython3 analyze_violations.py --input outputs/llama_docred_unconstrained.jsonl --constraints data/docred/ontology_constraints_docred.json --dataset docred --gold data/docred/dev.json\n```\n\n如果找不到这个脚本，搜索之前的实验日志确认用的什么 checker：\n```bash\ngrep -r \"analyze\\|check\\|violation\" ~/runs/schema_semantic_constrained_ie/phase2_docred_unconstrained.log | head -10\n```\n\n也可以看看之前 Worker 是怎么运行 checker 的：\n```bash\nls /root/schema_semantic_constrained_ie/scripts/ 2>/dev/null\nls /root/schema_semantic_constrained_ie/evaluate*.py 2>/dev/null\n```\n\n### 4. 获取 F1 指标\n运行 F1 评估（entity F1 和 relation F1）：确保使用 **all_set** F1 method（包含 OOV predictions in denominator），这是 Reviewer 确认的正确方法。\n\nchecker_version 应为 `fixed_20260514_v2 (strip + alias + unique_et)`。\n\n### 5. 对比参考\nQwen3-8B DocRED unconstrained 的关键指标（用于对比）：\n- DR: 18.5%, RV: 29.7%, ET: 2.48% (v2), CF: 0.10%\n- E-F1: 58.15%, R-F1: 7.74%\n- parse_failures: 12, total_entities: 20171, total_triples: 17497\n\nLlama SciERC unconstrained 的对比：\n- DR: 13.3%, RV: 0.5%, ET: 0%\n- E-F1: 23.56%, R-F1: 2.68%\n\n### 6. 输出要求\n最终以 JSON 格式返回所有指标：\n- documents_checked, parse_failures\n- total_entities, total_triples\n- entity_type_violation_rate, relation_vocabulary_violation_rate, domain_range_violation_rate, cross_field_consistency_violation_rate\n- entity_f1, entity_precision, entity_recall\n- relation_f1, relation_precision, relation_recall\n- unrecognized_relations (if applicable)\n- f1_method: \"all_set\"\n- checker_version\n- 与 Qwen3-8B DocRED unconstrained 的对比分析（1-2句）\n\n### 环境\n- 服务器: westd-16980, account: root\n- conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: /root/schema_semantic_constrained_ie\n- 输出文件: outputs/llama_docred_unconstrained.jsonl\n- 日志: ~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained.log\n\n### 关键\n- 使用 ssh_read_only 查看文件/日志，ssh_execute 运行 checker\n- 确保 checker 版本是 v2（strip + alias + unique_et）\n- F1 method 必须是 all_set\n",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ]
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b194e12d-8a48-40e6-ae06-c704a87c0710",
+  "isSidechain": false,
+  "requestId": "req_011Cb32aG4efy7k1Q3aNWvQv",
+  "type": "assistant",
+  "uuid": "55c9cb7f-1922-426c-a9f4-dc5c4e1b04b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CjbJNYxCiYcY61s7HuApD4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 27204,
+      "cache_read_input_tokens": 39550,
+      "output_tokens": 2234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27204,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2234,
+          "cache_read_input_tokens": 39550,
+          "cache_creation_input_tokens": 27204,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27204
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T19:40:09.265Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Fj2sDMaLjCdsCir93gpHyR`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55c9cb7f-1922-426c-a9f4-dc5c4e1b04b4",
+  "isSidechain": false,
+  "requestId": "req_011Cb32aG4efy7k1Q3aNWvQv",
+  "type": "assistant",
+  "uuid": "20100a33-2c37-4449-95d8-0babf3e102b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CjbJNYxCiYcY61s7HuApD4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 27204,
+      "cache_read_input_tokens": 39550,
+      "output_tokens": 2234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27204,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2234,
+          "cache_read_input_tokens": 39550,
+          "cache_creation_input_tokens": 27204,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27204
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T19:40:11.603Z_
+
+<details><summary>↩ Tool result · `toolu_011LRtBHhnNdvVTqRAEPD1ad`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_llama_docred_unconstrained_20260514T194008\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_analysis_llama_docred_unconstrained_20260514T194008.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_llama_docred_unconstrained_20260514T194008 started. Use get_worker_status('worker_analysis_llama_docred_unconstrained_20260514T194008') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "55c9cb7f-1922-426c-a9f4-dc5c4e1b04b4",
+  "isSidechain": false,
+  "promptId": "341989cb-2dee-4ef7-9eda-6e4aaaba3288",
+  "type": "user",
+  "uuid": "2ebb0d1d-f092-4273-8558-2e78e296c263",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_llama_docred_unconstrained_20260514T194008\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_analysis_llama_docred_unconstrained_20260514T194008.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_llama_docred_unconstrained_20260514T194008 started. Use get_worker_status('worker_analysis_llama_docred_unconstrained_20260514T194008') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_llama_docred_unconstrained_20260514T194008\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_analysis_llama_docred_unconstrained_20260514T194008.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_llama_docred_unconstrained_20260514T194008 started. Use get_worker_status('worker_analysis_llama_docred_unconstrained_20260514T194008') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "55c9cb7f-1922-426c-a9f4-dc5c4e1b04b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T19:40:11.646Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Fj2sDMaLjCdsCir93gpHyR`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "20100a33-2c37-4449-95d8-0babf3e102b8",
+  "isSidechain": false,
+  "promptId": "341989cb-2dee-4ef7-9eda-6e4aaaba3288",
+  "type": "user",
+  "uuid": "a2a63ffd-783a-42b2-9731-059376b7bc92",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7.",
+  "sourceToolAssistantUUID": "20100a33-2c37-4449-95d8-0babf3e102b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-14T19:40:11.658Z_
+
+```json
+{
+  "parentUuid": "a2a63ffd-783a-42b2-9731-059376b7bc92",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "9839975e-a5c4-47e1-8aae-c2e41c35d277",
+  "timestamp": "2026-05-14T19:40:11.658Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-14T19:40:15.273Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The resource-saturation skill wasn't found at that path. Let me try the correct path.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9839975e-a5c4-47e1-8aae-c2e41c35d277",
+  "isSidechain": false,
+  "requestId": "req_011Cb32dmkBE4TWTyny1XVBb",
+  "type": "assistant",
+  "uuid": "785b04be-7b0f-405c-b886-53a7e1f7c840",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VGP4D2pJTESes3b1GKdAYy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2663,
+      "cache_read_input_tokens": 66754,
+      "output_tokens": 131,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2663,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 131,
+          "cache_read_input_tokens": 66754,
+          "cache_creation_input_tokens": 2663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2663
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T19:40:15.859Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01E1AApa1f7xPQM5i3PZrzEW`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "785b04be-7b0f-405c-b886-53a7e1f7c840",
+  "isSidechain": false,
+  "requestId": "req_011Cb32dmkBE4TWTyny1XVBb",
+  "type": "assistant",
+  "uuid": "2735c932-1655-4f70-bebd-7cda7a2378ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VGP4D2pJTESes3b1GKdAYy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2663,
+      "cache_read_input_tokens": 66754,
+      "output_tokens": 131,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2663,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 131,
+          "cache_read_input_tokens": 66754,
+          "cache_creation_input_tokens": 2663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2663
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T19:40:15.954Z_
+
+<details><summary>↩ Tool result · `toolu_01E1AApa1f7xPQM5i3PZrzEW`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2735c932-1655-4f70-bebd-7cda7a2378ac",
+  "isSidechain": false,
+  "promptId": "341989cb-2dee-4ef7-9eda-6e4aaaba3288",
+  "type": "user",
+  "uuid": "f766b68d-c1c5-4b54-aa4d-88ea01068a28",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 89,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "2735c932-1655-4f70-bebd-7cda7a2378ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T19:40:21.301Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_011rybtQyYncrXbpJLVs4fWi`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f766b68d-c1c5-4b54-aa4d-88ea01068a28",
+  "isSidechain": false,
+  "requestId": "req_011Cb32e62Wx13tjTEnr5Ewa",
+  "type": "assistant",
+  "uuid": "816298b1-0761-4bb4-8a9c-6addd542d7bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JaGAzN3z3gZ2q82eD6QX3P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 146,
+      "cache_read_input_tokens": 69417,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 146,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 69417,
+          "cache_creation_input_tokens": 146,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 146
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T19:40:21.418Z_
+
+<details><summary>↩ Tool result · `toolu_011rybtQyYncrXbpJLVs4fWi`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "816298b1-0761-4bb4-8a9c-6addd542d7bc",
+  "isSidechain": false,
+  "promptId": "341989cb-2dee-4ef7-9eda-6e4aaaba3288",
+  "type": "user",
+  "uuid": "111a5934-1296-4505-8162-2af47fad4213",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 107,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "816298b1-0761-4bb4-8a9c-6addd542d7bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T19:40:23.907Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_019zDpVpqbXGWGfXmPz661TL`</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "111a5934-1296-4505-8162-2af47fad4213",
+  "isSidechain": false,
+  "requestId": "req_011Cb32eVNxCGSgbEbSnHmP9",
+  "type": "assistant",
+  "uuid": "cc5e7e40-6951-428b-b678-5d874973ef70",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNsgZjyZGGs7zPR6kA4aGH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 108,
+      "cache_read_input_tokens": 69563,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 69563,
+          "cache_creation_input_tokens": 108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T19:40:24.003Z_
+
+<details><summary>↩ Tool result · `toolu_019zDpVpqbXGWGfXmPz661TL`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc5e7e40-6951-428b-b678-5d874973ef70",
+  "isSidechain": false,
+  "promptId": "341989cb-2dee-4ef7-9eda-6e4aaaba3288",
+  "type": "user",
+  "uuid": "a4a574dd-edb8-4857-ae2a-b4b7446825ae",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 92,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "cc5e7e40-6951-428b-b678-5d874973ef70",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-14T19:40:47.719Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Skills don't exist as files on disk. They're referenced in the CLAUDE.md but the actual files don't exist. That's fine, the resource-saturation skill content is embedded in my instructions.
+
+Let me review what I know from the CLAUDE.md about resource-saturation:
+- GPU 分配率（分配了没跑=失职）
+- GPU 效率
+- 非 GPU 任务并行（Worker 池<2=失职）
+- 汇报必须带 [资源] 行
+
+Current state:
+- GPU: cuda:0 running llama_docred_full_s1, cuda:1 IDLE (llama_docred_unconstrained just finished)
+
+
+- Worker pool: 1 running (analysis:llama_docred_unconstrained)
+
+I need to spawn another Worker since the pool is below 2, which counts as dereliction. Looking at the near-term roadmap, I could start violation analysis or the entity type filter fix while cuda:0 finishes its experiment, but cuda:1 is idle and I can't launch new GPU tasks right now. I realize cuda:1 has no more experiments queued up, so there's nothing else to run there right now. While I'm technically violating the Worker pool rule with only one running, I could spawn another Worker to monitor the llama_docred_full_s1 experiment's progress and get an ETA, which would be useful while I wait for the analysis results to come back.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4a574dd-edb8-4857-ae2a-b4b7446825ae",
+  "isSidechain": false,
+  "requestId": "req_011Cb32egSDcMKjDKwGgLqNS",
+  "type": "assistant",
+  "uuid": "d4220940-bfd3-45c7-9753-c4cf3bb94b0d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XkgQ7N9JKjZwZxfEsyiugL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 109,
+      "cache_read_input_tokens": 69671,
+      "output_tokens": 1414,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 109,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1414,
+          "cache_read_input_tokens": 69671,
+          "cache_creation_input_tokens": 109,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 109
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-14T19:40:47.749Z_
+
+cuda:1 空闲，Worker 池只有 1 个。派第二个 Worker 检查 llama_docred_full_s1 进度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4220940-bfd3-45c7-9753-c4cf3bb94b0d",
+  "isSidechain": false,
+  "requestId": "req_011Cb32egSDcMKjDKwGgLqNS",
+  "type": "assistant",
+  "uuid": "d90adcc3-a4eb-48ba-a0f4-92114de0eaae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XkgQ7N9JKjZwZxfEsyiugL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 109,
+      "cache_read_input_tokens": 69671,
+      "output_tokens": 1414,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 109,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1414,
+          "cache_read_input_tokens": 69671,
+          "cache_creation_input_tokens": 109,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 109
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T19:40:59.194Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01CgSJWghkcEgTgQpoeSHFj1`</summary>
+
+````json
+{
+  "task_type": "check:llama_docred_full_s1_progress",
+  "project": "schema_semantic_constrained_ie",
+  "task_prompt": "## 任务\n检查 `llama_docred_full_s1` 实验的当前进度和 ETA。\n\n## 背景\n这是 Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 DocRED (998 docs) 上的实验。\n- 服务器: westd-16980, account: root\n- PID: 194295\n- 开始时间: 2026-05-14T14:39:33 UTC（已运行约 5 小时）\n- 日志: ~/runs/schema_semantic_constrained_ie/llama_docred_full_s1.log\n- Qwen3-8B 同配置实验 (phase2_docred_full_s1) 耗时约 5.5 小时\n\n## 检查步骤（全部用 ssh_read_only）\n\n1. 确认进程存活：\n```bash\nps -p 194295 -o pid,etime,pcpu,pmem --no-headers 2>/dev/null || echo \"PROCESS_DEAD\"\n```\n\n2. 查看 GPU 使用：\n```bash\nnvidia-smi --query-gpu=index,gpu_name,utilization.gpu,memory.used,memory.total --format=csv,noheader\n```\n\n3. 读取日志尾部看进度（最后 20 行）：\n```bash\ntail -20 ~/runs/schema_semantic_constrained_ie/llama_docred_full_s1.log\n```\n\n4. 统计已处理文档数：\n```bash\nwc -l /root/schema_semantic_constrained_ie/outputs/llama_docred_full_s1.jsonl 2>/dev/null\n```\n\n5. 估算 ETA：\n- 总文档 998\n- 根据已处理数量和已用时间计算\n\n## 输出\n- 进程状态（alive/dead）\n- 已处理/总文档数\n- GPU 利用率\n- 预估 ETA\n",
+  "tool_groups": [
+    "ssh"
+  ]
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d90adcc3-a4eb-48ba-a0f4-92114de0eaae",
+  "isSidechain": false,
+  "requestId": "req_011Cb32egSDcMKjDKwGgLqNS",
+  "type": "assistant",
+  "uuid": "be82ba2a-cf49-4f1f-bedd-339b6bfe7710",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XkgQ7N9JKjZwZxfEsyiugL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 109,
+      "cache_read_input_tokens": 69671,
+      "output_tokens": 1414,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 109,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1414,
+          "cache_read_input_tokens": 69671,
+          "cache_creation_input_tokens": 109,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 109
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: llama_docred_unconstrained - project: schema_semantic_constrained_ie - server: westd-16980…",
+  "leafUuid": "be82ba2a-cf49-4f1f-bedd-339b6bfe7710",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark as done",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1"
+}
+```
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T19:41:01.560Z_
+
+<details><summary>↩ Tool result · `toolu_01CgSJWghkcEgTgQpoeSHFj1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_check_llama_docred_full_s1_progress_20260514T194059\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_check_llama_docred_full_s1_progress_20260514T194059.log\", \"setup_data\": {}, \"message\": \"Worker worker_check_llama_docred_full_s1_progress_20260514T194059 started. Use get_worker_status('worker_check_llama_docred_full_s1_progress_20260514T194059') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "be82ba2a-cf49-4f1f-bedd-339b6bfe7710",
+  "isSidechain": false,
+  "promptId": "341989cb-2dee-4ef7-9eda-6e4aaaba3288",
+  "type": "user",
+  "uuid": "d7aecf14-12ba-4653-8f55-952d8b2ae27f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_llama_docred_full_s1_progress_20260514T194059\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_check_llama_docred_full_s1_progress_20260514T194059.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_check_llama_docred_full_s1_progress_20260514T194059 started. Use get_worker_status('worker_check_llama_docred_full_s1_progress_20260514T194059') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_check_llama_docred_full_s1_progress_20260514T194059\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_check_llama_docred_full_s1_progress_20260514T194059.log\", \"setup_data\": {}, \"message\": \"Worker worker_check_llama_docred_full_s1_progress_20260514T194059 started. Use get_worker_status('worker_check_llama_docred_full_s1_progress_20260514T194059') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "be82ba2a-cf49-4f1f-bedd-339b6bfe7710",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark as done",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50 · 2026-05-14T22:49:54.546Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T22:49:54.546Z",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "content": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n&lt;handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n&lt;/handoff>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51 · 2026-05-14T22:49:54.547Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T22:49:54.547Z",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 52 · 2026-05-14T22:49:54.537Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7aecf14-12ba-4653-8f55-952d8b2ae27f",
+  "isSidechain": false,
+  "promptId": "94bb3238-957f-4edd-bc74-0452b8c4fa4b",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "e3cb035d-9ae3-44ee-b092-ab990b54607e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-14T22:49:54.537Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3cb035d-9ae3-44ee-b092-ab990b54607e",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "11fdec6b-d5e2-4892-9914-fdd87fc2587a",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "a8e9825d-ec29-4d1c-8898-aa6a0e3b37d0",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+1 recorded events
+
+### User
+
+_source line 54 · 2026-05-14T22:49:54.677Z_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "11fdec6b-d5e2-4892-9914-fdd87fc2587a",
+  "isSidechain": false,
+  "promptId": "94bb3238-957f-4edd-bc74-0452b8c4fa4b",
+  "type": "user",
+  "uuid": "30aad18a-a3df-4047-8701-c15bdd0f69bf",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_d19997c7",
+  "sessionId": "c81e2b04-e5e5-46dd-955a-7d08b4a732b1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

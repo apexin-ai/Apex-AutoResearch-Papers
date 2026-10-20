@@ -1,0 +1,510 @@
+_next_id: 35
+mistakes:
+- id: M001
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 启动实验前未检查是否已有同名进程在跑，导致双进程写同一输出文件
+  root_cause: 多个 Worker 或重复指令导致同一实验被启动两次，两个进程同时写入同一 JSONL 文件。这是第二次出现（首次是 DocRED sampling
+    race condition）。
+  prevention: Worker 启动任何 GPU 实验前必须先 `ps aux | grep` 检查是否已有同命令进程在跑。如已有，汇报而非重复启动。输出文件已存在且非空时也应检查而非直接覆盖。
+  status: active
+  context: 'P3 Qwen DocRED beam 50 docs: PID 409855 + 410078 同时写 w9_qwen_docred_beam_50.jsonl。与
+    2026-05-16 DocRED sampling race condition 完全相同的 pattern。'
+  fix: Kill 后启动的 PID 410078，检查文件完整性，必要时重启单进程。
+- id: M002
+  date: '2026-05-17'
+  category: experiment_design
+  severity: high
+  summary: Llama DocRED beam 实验参数错误导致 grammar 约束失效，RV=100% 被误报为 DR=0% success
+  root_cause: beam search 参数不一致：Llama SciERC beam 用 --beam_size 4（grammar adapter
+    正确 hook），Llama DocRED beam 用 --decoding_strategy beam --num_beams 4（可能绕过 grammar
+    adapter state replay）。Agent 收集结果时只看 DR=0% 没有检查 RV%，漏过了 RV=100% 的致命异常。
+  prevention: 1. 结果收集时必须同时检查 RV% — RV>0 说明 grammar 约束失效，所有下游指标（DR/CF）不可信。2. beam search
+    实验必须使用与已验证成功的实验完全相同的参数格式（--beam_size 而非 --decoding_strategy beam --num_beams）。3.
+    新 model-dataset 组合的 beam 实验先 dry-run 5 docs 验证 RV=0% 再全量跑。
+  status: active
+  context: 'w10_llama_docred_beam_50: Llama 生成自然语言 relation 标签而非 DocRED Wikidata P-codes。对照组证明
+    bug 仅在 Llama tokenizer + DocRED multi-token P-codes + beam state replay 组合下触发。Qwen
+    DocRED beam 和 Llama SciERC beam 均正常。'
+  fix: 排查中：对比参数差异，用正确参数（--beam_size 4）重跑。
+- id: M003
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: medium
+  summary: M002 根因更正：Reviewer 用 SciERC checker 评估 DocRED beam 输出导致误报 RV=100%，实验数据实际有效
+  root_cause: Reviewer 复核 w10_llama_docred_beam_50 时使用了 violation_checker.py（SciERC
+    版，无 relation name→P-code 映射），而非 violation_checker_docred.py（有 build_relation_name_to_id()）。SciERC
+    checker 将模型输出的自然语言 relation 名称全部标记为 RV 违规。区分标志：SciERC checker 输出含 total_samples，DocRED
+    checker 输出含 total_documents。
+  prevention: 1. DocRED 实验评估必须用 violation_checker_docred.py，已在 evaluation/ 目录添加 README
+    说明。2. Reviewer 复核 DocRED 实验时先确认 checker 版本（检查输出字段 total_documents vs total_samples）。3.
+    发现异常（如 RV=100%）时先排查工具链再下结论。
+  status: active
+  context: 原 M002 将根因归咎于 beam search 参数差异（--beam_size vs --decoding_strategy），实际不存在此差异。数据全程有效，经
+    Reviewer 用正确 checker 独立验证确认 DR=0%, RV=0%, CF=0.94%。
+  fix: Reviewer 用 violation_checker_docred.py 重新验证，确认所有指标与 Agent 首次报告一致。Registry 恢复
+    success，appendix 表格恢复。evaluation/ 目录添加 checker 选择文档。
+- id: M004
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: 'R4 MF1 fix reversed: Agent upgraded R² from 0.886 to 0.99 in Abstract
+    instead of removing it; F-test p-value not updated (old p=0.058 kept with new
+    F=198.0)'
+  root_cause: 'Three compounding errors: (1) MF1 instructed "改为定性描述" but Agent interpreted
+    as "use calibrated-only R²=0.99" — strengthening the claim instead of removing
+    it; (2) Agent updated F-statistic from ~15.54 to 198.0 for the new fit but copy-pasted
+    the old p≈0.058 without recalculating (F(1,2)=198 → p≈0.005); (3) M1 (RV=0.03%
+    unification) was marked done but paper still says "partial JSON recovery" not
+    matching rebuttal''s "XGrammar bug". Root issue: batch of 21 fixes across 3 batches
+    lacked per-fix verification against the original instruction.'
+  prevention: 'For critical fixes (MF-level): (1) Director must specify exact target
+    text, not just intent ("remove R² value entirely, replace with: residual DR correlates
+    with..."); (2) After fix batch, Director reads the specific lines to verify critical
+    fixes before submitting to review; (3) Statistical claims require mathematical
+    consistency check (if F changes, p must be recalculated)'
+  status: active
+  context: R4 审稿 MF1 要求 Abstract 移除 R²=0.886 数值改为定性描述。Agent 执行后改为 R²=0.99 (n=4 calibrated
+    models)，反而更突出了统计声明。同时 Appendix 中 F(1,2)=198.0 对应 p≈0.005 而非 p≈0.058（0.058 是旧版
+    R²=0.886 的 p 值）。M1 (RV=0.03%) 同样未完成：论文仍写 "partial JSON recovery"。Round 5 R1 reviewer
+    全部抓出。
+  related_decisions:
+  - D038
+- id: M005
+  date: '2026-05-17'
+  category: experiment_design
+  severity: high
+  summary: WikiEvents 数据下载不完整——仅 12 docs 而非预期 246 docs，所有 EE 实验在极小样本上运行
+  root_cause: 数据下载任务未验证完整性。Feasibility research 报告 246 docs，但实际 train.jsonl 仅 12 行，dev/test
+    缺失。Agent 未在启动实验前确认数据量。
+  prevention: 新数据集下载后必须立即验证：(1) 文件数和大小 (2) 各 split 文档/样本计数 (3) 与 feasibility report
+    预期数量对比。验证不通过不启动实验。
+  status: active
+  context: 'D040/D041 WikiEvents EE 扩展。Feasibility worker 报告 ~246 docs，但数据从 S3 下载可能中断或仅下载了部分。Reviewer
+    巡检在 Loop #15 发现。'
+  related_decisions:
+  - D040
+  - D041
+- id: M006
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: medium
+  summary: Llama 重启缺少 --skip_on_error，Director 两次指令均未被执行
+  root_cause: Agent 队列深度过大（6条），指令在排队中被新消息淹没。Agent 处理 crash fix worker 时可能只做了 --resume
+    未加 --skip_on_error。Director 指令措辞包含多个选项（降 max_new_tokens / skip_on_error / resume），Agent
+    可能只选了部分执行。
+  prevention: 1. 关键参数（如 --skip_on_error）单独列为硬要求，不与其他选项混排；2. 队列深度 >3 时考虑用 replace_agent_queue
+    合并；3. 重启类指令完成后 Reviewer 验证实际命令行参数
+  status: active
+  context: Llama WikiEvents unconstrained 第一次崩溃 doc 11，第二次崩溃 doc 52，均为 AttributeError
+    (parsed 返回 list 而非 dict)。Director 两次指令要求加 --skip_on_error，但 crash fix worker 只加了
+    --resume。当前进程 78/246 在跑，如再遇到同类文档将第三次崩溃。
+  fix: replace_agent_queue 综合指令中明确要求代码层面 isinstance check + 后续实验强制 --skip_on_error
+- id: M007
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: 逐文件代码同步遗漏关键组件，导致 westd-21461 constrained dry-run 使用旧版 type_mask_processor.py
+  root_cause: Agent 逐文件 rsync 只同步了 run_constrained_extraction.py，遗漏了 compiler/type_mask_processor.py（含
+    continuation masking v2 核心代码）。两台服务器代码版本不一致（17:34 vs 17:51），差恰好是 v2 fix 窗口。
+  prevention: 硬规则：跨服务器实验启动前必须 rsync 整个源码目录（排除 outputs/和大数据文件），禁止逐文件同步。同步后 grep 关键函数名验证。
+  status: active
+  context: westd-21461 constrained dry-run (20 docs) 结果显示大量 RoV violations (Patient
+    角色频繁出现在不允许它的 event types 中)，与 westd-16980 10-doc RoV=0% 结果矛盾。Reviewer 追查发现 type_mask_processor.py
+    版本差异。dry-run 结果无效，需重跑。
+  fix: rsync 整个项目目录 westd-16980→westd-21461 + 重跑 dry-run
+- id: M008
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: rsync/scp 同步将 westd-21461 上 type_mask_processor.py 截断为 0 bytes
+  root_cause: 同步命令可能使用了错误的重定向或不完整的 scp，导致目标文件被清空而非覆盖。连续两次同步失败（M007 遗漏文件 + 本次截断文件）表明
+    Agent 对跨服务器文件同步操作不可靠。
+  prevention: 1. 同步后必须验证文件大小和关键内容（wc -l + grep 关键函数）；2. 优先使用 rsync --checksum 而非 scp；3.
+    同步前备份目标文件；4. 考虑 git-based 代码同步替代手动文件拷贝
+  status: active
+  context: M007 的后续：Agent 尝试修复 M007（文件遗漏）时执行了同步操作，但结果更糟——文件从旧版本变成了空文件（0 bytes）。westd-21461
+    无法运行任何 constrained 实验。westd-16980 代码正确，可先启动 constrained。
+  fix: 从 westd-16980 重新 scp 正确文件 + 验证行数和关键函数
+- id: M009
+  date: '2026-05-17'
+  category: code_bug
+  severity: high
+  summary: SentencePiece tokenizer 上下文依赖导致 continuation masking 对 Mistral 完全失效
+  root_cause: _build_role_prefix_map 用 bare encode('Subject') 构建 token map，SentencePiece
+    返回 ▁Subject (ID=26326)。但在 JSON value 位置（after双引号），实际生成的是 Subject (ID=22978)。11/11
+    roles 的首 token 全部未覆盖，masking 等效于空操作。Qwen/Llama 用 byte-level BPE 不受上下文影响所以正常。
+  prevention: 1. 构建 token prefix map 时禁止依赖 encode()——必须用词表扫描（get_vocab() + decode()
+    匹配）确保覆盖所有可能的 tokenization 变体。2. 新模型接入 constrained decoding 前必须跑 tokenizer 兼容性测试：对比
+    bare encode vs in-context encode 的 token ID 差异。3. 这是一个通用教训：SentencePiece/Unigram
+    tokenizer 的 context-dependent tokenization 会破坏任何依赖 bare encode 构建 token set 的逻辑。
+  status: active
+  context: D044 Mistral constrained RoV 大量违规。Reviewer critical 发现后 Agent 诊断确认。修复改动
+    type_mask_processor.py 796→812 行，3 处改动：_build_role_prefix_map、_build_entity_type_prefix_map、_build_role_continuation_tokens。5-doc
+    dry-run 验证 RoV=0%，Qwen 3-doc 回归通过。
+  fix: 词表扫描替代 encode()，只依赖 get_vocab() + decode()，不依赖特定 BPE 实现。type_mask_processor.py
+    新基准 812 行。
+  related_decisions:
+  - D044
+- id: M010
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: medium
+  summary: Retry 实验可能未传 --max_new_tokens 8192，用了默认 2048 等于白跑
+  root_cause: run_constrained_extraction.py 的 max_new_tokens 默认值是 2048 而非预期的 4096/8192。Director
+    指令说"用 max_new_tokens=8192 补跑"但未验证 Agent 是否在命令行中显式传了该参数。Agent 可能只加了 --resume 没加
+    --max_new_tokens 8192。
+  prevention: 1. 关键参数（max_new_tokens, skip_on_error 等）必须在 Director 指令中要求 Agent 启动后汇报实际命令行（ps
+    aux 截取）。2. retry/补跑类实验启动后立即验证参数，不要等结果出来才发现参数错误。3. 脚本默认值应在实验设计阶段确认（argparse --help）。
+  status: active
+  context: Llama retry 对 34 个 parse failure docs 重跑，仅恢复 3 个（31 docs 仍失败）。Agent 发现脚本默认
+    max_new_tokens=2048，怀疑 retry 未显式传 8192。如果属实，retry 等于用相同参数重跑，浪费了 GPU 时间。
+  related_decisions:
+  - D044
+- id: M011
+  date: '2026-05-18'
+  category: experiment_design
+  severity: medium
+  summary: Qwen RoV=0.4% 根因分析错误——归因为"旧代码截断伪影"，实际是系统性 continuation masking 缺陷
+  root_cause: Reviewer 首次分析时基于时间线推断（eval 在旧代码时间窗，新代码用不同 tokenizer 无此问题）。但新代码新 run
+    仍得 0.34% (18/5330)，PlaceOfEmployment 在不支持的 event types 中出现，证明是系统性问题。根因分析偏向了最容易解释的假说（截断伪影），未要求
+    Agent 实际检查 violation 内容。
+  prevention: 1. 根因分析必须基于 violation 内容的逐条检查，不能仅基于时间线推断。2. 声称问题已解决前，必须在新数据上验证（而非假设新
+    run 会自动修复）。3. RoV/AC 非零时，即使数值很小（0.3%），也必须逐条分析 violation pattern 后才能声称"可忽略"。
+  status: active
+  context: 'Reviewer Loop #17 发现 Qwen 新 run RoV=0.34% 与旧 run 0.4% 几乎相同，18 个 violation
+    中 PlaceOfEmployment 是常见角色。同时 Mistral AC=16.6% 说明 entity_type 约束也有 tokenizer 相关问题（D044
+    只修了 role，未完全修 entity type）。'
+  related_decisions:
+  - D044
+- id: M012
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: Worker 覆写 type_mask_processor.py 整个文件，删除了 20 分钟前的 D047 collision fix
+  root_cause: 两个 Worker 并发修改同一文件。RoV exact-match fix Worker 从旧版本（collision fix 之前）重写了整个文件而非
+    patch 修改。无 git 版本控制，无 .bak 可恢复 collision 版本。这是 M007(遗漏文件)/M008(截断文件) 后的第三次文件管理事故，pattern
+    相同：Worker 不擅长文件级操作。
+  prevention: 1. 修改关键文件前必须 cp 备份带时间戳；2. 使用 patch/sed/定点插入 而非重写整个文件；3. 修改后立即 grep 验证所有关键功能是否存在；4.
+    在远程服务器初始化 git repo（git init + 每次修改 commit）防止覆写丢失；5. 并发修改同一文件时必须串行化（一个 Worker 完成+验证后另一个再开始）
+  status: active
+  context: D047 collision group continuation mask 实现在 westd-21461 上完成并验证（5-doc dry-run
+    零碰撞泄漏）。随后 RoV exact-match fix Worker 在 westd-16980 上覆写了整个文件。inode 变更确认是重新创建而非编辑。collision
+    相关所有方法（_apply_entity_type_continuation_mask, _build_entity_type_collision_groups,
+    GenerationState entity type tracking）全部丢失。
+  fix: 检查 westd-21461 是否保留 collision fix 版本，从该服务器恢复。后续在两台服务器上 git init。
+  related_decisions:
+  - D047
+- id: M013
+  date: '2026-05-18'
+  category: resource_misuse
+  severity: medium
+  summary: 两个 Worker 并行派到两台服务器，各自独立启动了 Qwen v3 + Mistral v3，导致 4 卡全跑重复实验（2 unique
+    × 2 copies），浪费 50% 算力
+  root_cause: Director 派给 Agent 的指令是"两台服务器并行检查+启动"，Agent 分别派了 v3_launch_16980 和 v3_launch_21461
+    两个 Worker，每个 Worker 独立决定在自己的服务器上启动 Qwen + Mistral，没有跨服务器协调机制
+  prevention: 多服务器并行启动实验时，Director 指令必须明确指定"哪个实验跑在哪台服务器的哪张卡"，不能让 Worker 自行决定。或者用单个
+    Worker 统一调度，避免独立决策冲突
+  status: active
+  fix: Kill 进度落后的重复副本（westd-16980:1 Mistral PID 536272, westd-21461:1 Qwen PID 6529），保留进度领先的（westd-16980:0
+    Qwen 31/246, westd-21461:0 Mistral 6/246）
+- id: M014
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 两次在 70B 模型下载仍在进行中时报告 status=done，虚假完成导致后续 dry-run/启动依赖链断裂
+  root_cause: Worker 启动 ModelScope snapshot_download 后台进程后即报告完成，未等待下载实际结束。ModelScope
+    下载先写入 ._____temp/ 目录，全部完成后才移到主目录。Worker 仅检查了进程是否启动，未验证权重文件是否到位。
+  prevention: 下载任务的 Worker 必须验证模型完整性（权重文件在主目录而非 temp、config.json + safetensors 齐全、文件大小合理）才能报告完成。或者用
+    foreground 执行下载（不 nohup），进程退出即完成。
+  status: active
+  fix: 当前下载在正常推进（PID 17630, ~33/37GB），预计 ~20min 完成，无需干预。后续 Agent 指令已要求验证模型文件完整性后再启动实验。
+- id: M015
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: medium
+  summary: violation_report_ee.json 通用文件名再次被 posthoc 结果覆盖（D050 反模式重现），导致后续读取者误判数据来源
+  root_cause: Worker 运行 violation_checker 时输出到通用文件名 violation_report_ee.json，posthoc
+    和 constrained 结果互相覆盖。无命名规范强制区分。
+  prevention: violation report 文件名必须包含模型+版本+模式标识，如 violation_report_{model}_{version}_{mode}.json。禁止覆盖通用文件名
+    violation_report_ee.json。Director 指令中需明确指定 --output_path。
+  status: active
+  fix: 已有带标识的 violation report（如 violation_report_mistral_v3.json）作为 registry 数据来源。通用文件不可信，以
+    registry 为准。
+- id: M016
+  date: '2026-05-18'
+  category: resource_misuse
+  severity: medium
+  summary: westd-16980 两卡空闲 40+ 分钟，70B scp 未启动——Agent 被 worker callback 队列阻塞，忽略了并行
+    scp 任务
+  root_cause: Director 的 scp 指令包含在一条综合指令中（与 GPU 分配、分析任务混在一起），Agent 优先处理了分析 worker
+    spawn 和 callback，未单独并行启动 scp。scp 是阻塞后续 DocRED 实验的关键路径，但未被标记为独立最高优先级任务。
+  prevention: 1. 关键路径任务（scp、模型下载等阻塞后续实验的操作）必须作为独立 urgent 消息发送，不混入综合指令中。2. Director
+    派发多任务时，阻塞项单独一条 urgent，非阻塞分析任务另一条。3. scp 启动后立即汇报 ETA，不要等其他任务完成再开始。
+  status: active
+  context: 70B 模型在 westd-21461 下载完成后，Director 在综合指令中要求 scp 到 westd-16980。Agent 优先
+    spawn 了 R2-N3/R4-N3/R2-N10 三个分析 worker 并处理 callback，scp 被延后 40+ 分钟。westd-16980
+    两卡 (cuda:0, cuda:1) 全程 0% 利用率。
+  fix: 发送 urgent_agent_message 插队要求立即 scp。
+  related_decisions:
+  - D053
+- id: M017
+  date: '2026-05-18'
+  category: experiment_design
+  severity: high
+  summary: 'P1 EE FT data leakage: SFT dev set = official test set (19/20 overlap)'
+  root_cause: Worker 在创建 SFT splits 时未对齐官方 WikiEvents train/dev/test 划分，将官方 test set
+    作为 SFT dev，导致 dev 与 test 19/20 docs 重叠。总数 253 > 246 说明还有跨 split 重复。
+  prevention: FT 实验创建 SFT splits 时必须：(1) 明确使用数据集官方 splits，(2) 验证三组 doc_id 零重叠，(3)
+    验证总数 = 原始数据集大小。Director 审批前要求 Agent 报告 split 统计和重叠检查结果。
+  status: active
+  context: 'Reviewer Report #25 独立发现。实验已 ALLOCATED 但未开始训练，无实际损害。训练 ~16 min，修复后重跑代价低。'
+  fix: 要求 Agent 按官方 WikiEvents splits 重建 sft_train/sft_dev/test，验证零重叠后再启动训练。
+- id: M018
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: P1 EE FT pipeline 三次启动失败：python not found + 无错误检查 + 虚假完成标记
+  root_cause: Pipeline 脚本用 `python` 而非 `python3`（westd-21461 无 python alias）；`| tee`
+    吞掉错误码；脚本不检查每步输出文件存在性，直接写 COMPLETE 标记。三层缺陷叠加导致静默失败且误报完成。
+  prevention: 远程服务器上永远用 `python3` 不用 `python`。Pipeline 脚本必须 `set -eo pipefail` 且每步检查输出文件存在。首次在新服务器上跑实验时，先手动逐步执行验证环境，不要直接一键
+    pipeline。
+  status: active
+  context: 三次失败：(1) wandb 未安装崩溃 (2) 未知原因未启动 (3) python not found + 静默失败。每次 Worker
+    都声称成功。
+  fix: 要求 Agent 手动逐步执行，每步确认输出后再进下一步。
+- id: M019
+  date: '2026-05-18'
+  category: code_bug
+  severity: medium
+  summary: 'P1 EE FT r3 wandb crash: transformers 5.8.1 ignores WANDB_DISABLED=true'
+  root_cause: transformers 5.8.1 的 SFTTrainer 忽略环境变量 WANDB_DISABLED=true，仍尝试实例化 WandbCallback。服务器无外网无法安装
+    wandb。
+  prevention: 训练脚本 TrainingArguments 中始终显式设置 report_to="none"（不依赖环境变量）。westd-21461
+    无外网环境的标准 header 应包含此设置。
+  status: active
+  fix: 在 TrainingArguments 中加 report_to="none"，重跑 r4。
+- id: M020
+  date: '2026-05-18'
+  category: resource_misuse
+  severity: high
+  summary: P1 EE FT r4 merge 磁盘满：模型保存到根分区(30G)而非数据卷(250G)
+  root_cause: merged 模型写入 /root/schema_semantic_constrained_ie/checkpoints/（根分区 30G），写入
+    11G 后磁盘耗尽。数据卷 /root/autodl-tmp/ 有 135G 空闲未使用。
+  prevention: 所有 checkpoint/merged 模型路径必须指向大容量数据卷（/root/autodl-tmp/）。训练脚本提交前用 df -h
+    检查目标分区可用空间。
+  status: active
+  fix: 删除部分写入的 merged 目录释放 11G，改路径到 /root/autodl-tmp/，从 adapter 重新 merge（跳过训练）。
+- id: M021
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: d064 greedy runs 使用 max_new_tokens=2048 而非 Table 2 的 4096，导致 DocRED 长文档截断，E-F1
+    虚降 1.83pp，DR 虚降至 0%
+  root_cause: d064 greedy 脚本从 beam 脚本复制时，beam 脚本使用 max_new_tokens=2048（beam early_stopping
+    使实际输出短于 2048 故无影响），但 greedy 无 early_stopping，DocRED 长文档输出常超 2048 tokens。Table
+    2 原始 w5 runs 使用 4096。参数不一致未被审查。
+  prevention: 1. 新增 eval run 时必须与论文主表使用的原始 run 参数完全对齐——尤其 max_new_tokens、temperature、top_p、seed。提交实验方案时
+    Agent 必须列出关键生成参数并与 Table 原始 run 对比。2. 从其他脚本复制参数时，检查上下文差异（beam vs greedy 的 early_stopping
+    行为不同）。3. 新 run 完成后先与已有数据做 sanity check（E-F1 差异 > 1pp 立即 flag）。
+  status: active
+  context: 'd064 Llama greedy con: E-F1=83.40 (2048) vs 85.23 (4096 Table 2)。PF 从
+    2.5% 升至 5.0%，少提取 667 entities + 1341 relations。beam-4 不受影响（early_stopping 使输出
+    < 2048）。Qwen greedy unc+con 也用了 2048，已跑 ~2h 需废弃重跑。'
+  fix: 停掉 Qwen greedy 2048 进程，全部用 max_new_tokens=4096 重跑 Llama+Qwen greedy unc+con
+    4 个 run。
+  related_decisions:
+  - D064
+- id: M022
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: Table 2 跨模型 eval 方法不一致：Qwen 用 E_F1（PF 计入 FN），Llama 用 entity_f1（排除 PF），导致跨模型
+    E-F1 比较不公平
+  root_cause: 不同实验阶段（w5 Qwen vs w5 Llama）使用了不同的 registry 字段记录 E-F1。Qwen 用 E_F1（含 PF
+    惩罚），Llama 用 entity_f1（排除 PF 文档）。Table 2 直接引用 registry 字段未做一致性校验。Qwen PF=8.52%
+    vs Llama PF=2.51%，导致 Qwen E-F1 被 PF 额外惩罚约 4pp。
+  prevention: 1. 论文主表数据入稿前必须验证所有模型使用同一 eval 脚本和同一指标定义。2. Registry 字段命名必须统一——E_F1/entity_f1/E_F1_excl_fail
+    三个名字代表不同指标，入稿时做 field-name 一致性检查。3. 跨模型比较的表格审查清单加一项：PF 处理方式是否统一。
+  status: active
+  context: Table 2 Llama DocRED S1 E-F1=85.23 (entity_f1, 排除 PF), Qwen DocRED S1 E-F1=81.43
+    (E_F1, 含 PF 惩罚)。用统一方法 (PF as FN) 重算后 Llama E-F1 ~83.94, Qwen 不变。
+  fix: 'Option A: 用 eval_d064.py (PF as FN) 统一重评所有 w5 文件，更新 Table 2 全部数字。'
+  related_decisions:
+  - D065
+- id: M023
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: Table 2 Llama con 行误用 beam-4 实验的 E-F1=85.23 替代 greedy 的 83.94，虚高 1.29pp
+  root_cause: d064 beam-4 实验结果（E-F1=85.23）被复制到 Table 2 的 greedy 行，未验证数据来源是否与表格配置（greedy
+    decoding）匹配。Registry 字段命名不统一（E_F1 vs entity_f1）加剧了混淆。
+  prevention: 1. Table 2 每个数字必须可追溯到具体的 JSONL 文件 + eval 脚本 + 配置参数（decoding_strategy,
+    beam_size, max_new_tokens），入稿时做 provenance 检查。2. 同一张表的所有行必须用同一个 eval 脚本评估，且 decoding
+    策略必须一致。3. Registry 字段名统一（禁止 E_F1/entity_f1/E_F1_excl_fail 混用）。4. 新数据入表前先与同配置的
+    unc baseline 做 sanity check（con E-F1 不应远高于 unc）。
+  status: active
+  context: 统一 eval (eval_d064.py) 重评所有 w5 JSONL 后发现。Table 2 Llama con E-F1=85.23 与
+    d064_llama_beam4_constrained 完全吻合，而 w5 greedy constrained 实际为 83.94。同时 Qwen CF%
+    两处偏差（violation_checker.py vs eval_d064.py 的 CF 计算逻辑不同）。叙事从"DocRED F1 显著提升"改为"F1-neutral"。
+  fix: 用 eval_d064.py 统一重评所有 w5 文件，修正 Table 2 全部 DocRED 数字，调整叙事为 F1-neutral。
+  related_decisions:
+  - D068
+  - D069
+- id: M024
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: 两个进程同时写同一输出文件导致 ~5h GPU 计算结果丢失
+  root_cause: Agent 手动在 GPU1 启动 d065 Qwen con 加速并行，但原脚本在 GPU0 上顺序执行 unc→con，unc 完成后自动启动
+    con 写入同一文件。两个 con 进程同时写同一 jsonl 文件，后启动的进程以 write mode 打开文件，截断了前一个进程 5.5h 的输出（~823
+    docs → 130 行）。
+  prevention: 1. 并行化实验时，必须禁用或修改原顺序脚本，防止脚本自动启动已手动启动的步骤。2. 输出文件名应包含 GPU ID 或 run ID
+    以避免冲突。3. 脚本启动前检查是否已有同名进程在运行。4. 长时间实验用 flock 文件锁保护输出文件。
+  status: active
+  context: d065 Qwen greedy 4096 constrained on westd-21461。PID 174618 (GPU1, 11:56
+    启动, 823/998 docs) vs PID 190489 (GPU0, 17:03 启动, ~130 docs)。文件仅 130 行，说明 PID 190489
+    截断了 PID 174618 的输出。
+- id: M025
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: Agent 执行过时指令，kill 了正确的 clean rerun 进程并尝试已被否决的 /proc 恢复
+  root_cause: Agent 队列中有多条指令，先收到 /proc 恢复指令（后来被 Reviewer 否决），后收到 clean rerun 指令。Agent
+    处理时选择了过时的 /proc 恢复路径，取消了正在运行的 clean rerun (PID 193786)，导致正确修复被回滚。
+  prevention: 1. 方案被否决后，用 replace_agent_queue 清空队列发新指令，而非追加新消息。2. 指令中明确标注"此前的 X 方案已取消"避免
+    Agent 执行旧版本。3. Agent 在执行涉及 kill 进程的操作前应确认该进程是否是 Director 最新指令要求保留的。
+  status: active
+  context: Director 先发了 /proc 恢复指令，Reviewer 随后确认 sparse file 不可恢复，Director 改为 clean
+    rerun 方案。但 Agent 处理队列时按旧指令执行了 /proc 恢复，kill 了 clean rerun PID 193786。
+- id: M026
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: medium
+  summary: 4 GPU 空转 5-7 小时：5 个实验完成但 cron 未触发 registry 更新和 GPU 释放
+  root_cause: 实验完成的 cron 回调未正确触发或 Agent 队列堵塞导致回调未被处理。Agent 在处理 D072 cascade update
+    时 idle 18min，pending 队列堆积 5 条（含 3 个重复 cron），无法及时处理完成回调。
+  prevention: 1. 实验完成 cron 回调应有独立的超时机制，不依赖 Agent 队列空闲；2. Director 收到 GPU 满载但无 Agent
+    活动超过 30min 时应主动检查 GPU 实际状态；3. 重大级联更新应拆分为更小的 Worker 任务避免长时间占用 Agent 处理能力。
+  status: active
+  context: 5 experiments (d065 Qwen con, 4x d066 beam sweep) completed between 21:42-00:17
+    CST but registry stayed RUNNING. 4x RTX PRO 6000 96GB idle for 5-7 hours. Agent
+    was processing D072 cascade update with queue depth 5.
+  fix: replace_agent_queue with consolidated instruction covering registry cleanup
+    + batch eval + text fixes
+- id: M027
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: medium
+  summary: Regression Checklist grep 模式不完整——"formal guarantee" 单数匹配漏掉 "formal guarantees"
+    复数形式，导致 Check 1 误报 PASS
+  root_cause: Agent 编写 checklist 验证脚本时，grep 模式只匹配精确字符串而非正则变体（单数/复数/过去式）。同一份 Task A
+    报告明确找到 "formal guarantees at each level" 但 Task E checklist 报 PASS，说明两个任务使用了不同的搜索逻辑。
+  prevention: 所有文本验证 checklist 的 grep 模式必须覆盖词形变体（guarantee/guarantees/guaranteed）。Checklist
+    脚本应使用正则而非精确匹配。Director 审查 checklist 结果时对照同批次其他任务结果做交叉验证。
+  status: active
+  context: 'R15 Regression Prevention Checklist Task E Check 1: "no_formal_guarantee_in_contributions"
+    报 PASS，但 Task A 验证明确找到 section1_introduction_draft.tex 第 27 行 "formal guarantees
+    at each level"。矛盾被 Director 发现后要求 Agent 修正。'
+  fix: 要求 Agent 重新 grep 含复数形式，修正 Check 1 为 FAIL，更新 regression_checklist.json
+  related_decisions:
+  - D078
+- id: M028
+  date: '2026-05-21'
+  category: communication
+  severity: medium
+  summary: DocRED LoRA 被误杀：Director 修正指令到达前 Agent 已执行 kill
+  root_cause: Agent 队列深度高（5+），Director 的 GPU 分配修正指令（不杀 DocRED，Option A）排在队列后方。Agent
+    先处理了早期的 kill 指令，等到修正指令到达时 kill 已执行，进度全部丢失。
+  prevention: 1. 需要紧急撤销/修正已排队指令时，使用 urgent_agent_message 插队或 replace_agent_queue 清空队列，不要用普通
+    director_post_to_main_agent 排在末尾。2. 涉及不可逆操作（kill 进程、删数据）的指令，Agent 应在执行前确认队列中无更新的矛盾指令。
+  status: active
+  fix: 在 westd-16980 cuda:1 从头重启 DocRED LoRA，加 CUDA_VISIBLE_DEVICES=1 隔离 + log_level=info。丢失约
+    30 分钟进度。
+- id: M029
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: 'violation_checker.py F1 计算 bug: JSON parse failure 样本跳过 gold 不计入分母，导致
+    recall/F1 偏高'
+  root_cause: 'violation_checker.py L142-144 对 parse failure 执行 continue 跳过整个样本，gold
+    relations 不计入 recall 分母。当 parse_fail>0% 时 F1 被系统性高估（SciERC Qwen FT: +3.3pp）'
+  prevention: eval 脚本必须对 parse failure 样本保留 gold 计入分母、pred=0。新增 eval 脚本时写单元测试覆盖 parse
+    failure 场景。所有 F1 数字入论文前用独立脚本交叉验证。
+  status: active
+  context: 'Report #68 确认。bootstrap 脚本已正确实现（parse failure 时 gold 计入分母），与 violation_checker
+    产生差异（43.86 vs 47.15）。影响范围：所有 parse_fail>0% 的配置的 R-F1 表格数字。'
+  fix: 方案：修复 violation_checker.py 后重跑所有配置，或统一使用 bootstrap 脚本 F1。
+- id: M030
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: §5.1 CF 段落将 ZS 数据(245/248 violations)标为 FT 数据——跨 R23-R24 两轮未被发现
+  root_cause: R23 Paper Agent 写 CF quantification 段时，从错误的实验 ID 提取了数字（phase2_scierc_full_s1
+    是 ZS 实验，w5_lora_scierc_full_s1_eval 是 FT 实验）。"245 cross-field violations on fine-tuned
+    SciERC" 中的 245 实际来自 ZS。R23 Reviewer 验证时关注了 63.9%→63.3% 的数值精度但没有交叉核对数据来源（ZS vs
+    FT）。R24 Review Director 也沿用了错误数据。直到 SF4 cascade 分析需要深入拆解 CF 数据时才被独立脚本发现。
+  prevention: '论文中引用具体实验数字时，Paper Agent 必须在 exp_id 注释中标注数据来源（如 % exp_id: w5_lora_xxx）。Reviewer
+    验证数值时不仅检查计算正确性，还要交叉核对来源实验的 setting（ZS/FT/beam）是否与正文叙述一致。'
+  status: active
+  context: FT 实际只有 22 CF violations (20 docs)，而非 245。ZS 有 248 violations (167 docs)。63.3%
+    Generic 参与来自 ZS (157/248)，FT Generic 参与仅 7/22。此错误从 R23 MF1 修复时引入，持续到 R24。
+  fix: Paper Agent 收到 URGENT 修正指令，将段落改为明确标注 ZS 数据来源，并补充 FT 实际数字（22 violations, cascade_error=0）。
+- id: M031
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: Table 2 DocRED 四行使用 parse-failure bug 修复前的旧数据——Llama S1 DR 0.00%→0.21%，推翻
+    Abstract "<0.1%" claim
+  root_cause: violation_checker.py 和 unified_f1_eval.py 存在 parse-failure bug，2026-05-20/22
+    用 eval_d064.py 修正。但 Table 2 的 DocRED 数据未从 registry 修正值同步更新。Paper Agent 写论文时引用了旧的实验结果，没有检查
+    registry notes 中的 bugfix 标记。
+  prevention: 1. Paper Agent 引用实验数据时必须检查 registry notes 中是否有 bugfix/correction 标记。2.
+    全文数据审计应在每轮 review 修复后自动执行，不能等 PI 提醒。3. Table 数据应有自动化脚本从 registry 生成，而非手动录入。
+  status: active
+  context: 16 个 DocRED cells 全部错误。最严重：Llama DocRED S1 DR 0.00%→0.21%（ΔDR ↓100%→↓57%），直接推翻
+    Abstract 核心 claim。Qwen DocRED 变化较小但也有偏差（DR 0.00→0.01, ΔDR ↓100%→↓98.7%）。
+  fix: Paper Agent 更新 Table 2 + 所有受影响 claims。Abstract "<0.1%" → "≤0.21%" 或 "near-zero"。
+- id: M032
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: Table 2 parse-failure bugfix 未级联到附录表格和 inline claims
+  root_cause: Table 2 DocRED 数据修正后，Paper Agent 仅更新了 Table 2 和直接引用的 claim（DR≤0.21%、±0.3pp），但未搜索全文所有引用旧值的位置。附录
+    4 张表、beam4 "eliminates all" claim、TCR "18-92%" 等均未同步更新。
+  prevention: 数据修正后必须执行全局搜索替换旧值（所有数值变体），而不是仅修改已知引用点。Paper Agent 修数据时应附带"全局搜索清单"列出所有旧值，Reviewer
+    验证时也应搜索旧值确认无遗漏。
+  status: active
+  fix: 派 Paper Agent 全局搜索旧值（44.55, 44.70, 84.77, 84.71, 40.89, 82.35, 0.56）逐一替换为 registry
+    修正值，同时修正 beam4 claim 和 TCR claim。
+- id: M033
+  date: '2026-05-23'
+  category: experiment_design
+  severity: high
+  summary: §7 L16 "total violations decrease >90% under fine-tuning" 是数据错误，实际为 26-52%
+  root_cause: 混淆了 DR reduction（确实 >90%）和 total violation reduction（DR+CF，仅 26-52%）。因为
+    DR 大幅下降但 CF 增加，net total 下降远小于 DR 下降。这个错误数字从 §7 写入时就存在，历经多轮审稿未被发现，差点被推进 Abstract。
+  prevention: 论文中引用百分比变化时，必须明确指标定义（DR reduction vs total violation reduction）。任何 claim
+    >X% reduction 在写入前必须用原始数据表重新计算验证。特别是当一个指标下降但另一个指标上升时（如 DR↓ 但 CF↑），net effect 不等于单指标变化。
+  status: active
+  context: '§7 L16 原文 "Net effect: total violations decrease ~31% in zero-shot and
+    >90% under fine-tuning"。实际 greedy S1 FT total (DR+CF): Qwen SciERC 1.95→1.18 (39.5%),
+    Llama SciERC 1.11→0.55 (50.5%), Qwen DocRED 0.88→0.42 (52.3%), Llama DocRED 0.57→0.42
+    (26.3%)。范围 26-52%。">90%" 仅对 beam k=4 成立（消除所有违规）。'
+  fix: §7 L16 修正为 "26-52% under fine-tuned greedy S1; beam k=4 eliminates all"。Abstract
+    改用 severity-framing (irrecoverable→correctable) 而非 total violation 百分比。
+- id: M034
+  date: '2026-05-26'
+  category: communication
+  severity: medium
+  summary: Director 基于单一 Reviewer 报告直接下达 bib 作者删除指令，未交叉核实即执行，导致删除了真实作者
+  root_cause: Reviewer 首次报告称 luo2025kgtrie 有幽灵作者 Li Yuan-Fang（基于 arXiv v1 元数据），Director
+    未等 Agent 仲裁结果或要求二次核实就直接下达删除指令。arXiv 论文会在版本更新中增加作者，仅看 v1 不够权威。
+  prevention: bib 作者修改涉及"删除作者"时，必须交叉核对至少 2 个独立来源（arXiv 最新版 + 会议/期刊官方页面）后才能下达指令。Reviewer
+    与 Agent 仲裁结论冲突时，先要求双方提供具体验证 URL 再判断，不急于执行。
+  status: active
+  context: luo2025kgtrie (arXiv:2410.13080) 在 v1 有 5 位作者，后续版本增加 Li Yuan-Fang 成为 6
+    人，ICML 2025 官方页面确认 6 人。Alpha worker 基于旧版本标记幽灵作者，Reviewer 首次 WebSearch 也只看到 5 人结果，Director
+    据此下令删除。Agent 原本仲裁正确（6 人）但被 Director 覆盖。
+  fix: Reviewer 二次核实后撤回 critical，Director 已指令 Agent 恢复 Li Yuan-Fang 到作者列表。

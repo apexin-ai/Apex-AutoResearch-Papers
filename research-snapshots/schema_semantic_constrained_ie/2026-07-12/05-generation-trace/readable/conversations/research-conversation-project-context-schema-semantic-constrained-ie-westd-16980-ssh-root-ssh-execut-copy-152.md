@@ -1,0 +1,3533 @@
+# Research conversation: <project_context> # 项目: schema_semantic_constrained_ie ## 运行环境 - 服务器名: westd-16980 - SSH 账户: root（调用 ssh_execute / submi
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 63
+- **Recorded user turns:** 1
+- **Tool calls:** 15
+- **Original source:** `logs/chats/exported-trajectories/account-2/140958bb-da6c-4f0d-b3b0-0c03dd6b6269.jsonl`
+- **Structured JSON:** [`8d96d2fa28b2bd182b82.json`](../../sessions/8d/8d96d2fa28b2bd182b82.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T14:07:11.943Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T14:07:11.943Z",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "content": "&lt;project_context>\n# 项目: schema_semantic_constrained_ie\n\n## 运行环境\n- 服务器名: westd-16980\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/schema_semantic_constrained_ie\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：llama_docred_unconstrained_mt6144 完成分析\n\nllama_docred_unconstrained_mt6144 实验已完成（Llama-3.1-8B-Instruct, DocRED unconstrained, max_new_tokens=6144）。需要做 violation report + F1 计算 + metrics 入 registry。\n\n### 服务器环境\n- 服务器: westd-16980\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: `/root/schema_semantic_constrained_ie`\n\n### 实验信息\n- exp_id: `llama_docred_unconstrained_mt6144`\n- 模型: Llama-3.1-8B-Instruct\n- 数据集: DocRED (998 docs)\n- 模式: unconstrained\n- max_new_tokens: 6144（对比原来的 4096）\n- 输出文件: `outputs/llama_docred_unconstrained_mt6144.jsonl`（确认路径）\n\n### 分析步骤\n\n#### 1. 确认输出文件完整性\n```bash\ncd /root/schema_semantic_constrained_ie\nls -la outputs/llama_docred_unconstrained_mt6144.jsonl\nwc -l outputs/llama_docred_unconstrained_mt6144.jsonl\n# 预期 998 行\n```\n\n#### 2. 运行 violation checker\n```bash\npython3 violation_checker_docred.py outputs/llama_docred_unconstrained_mt6144.jsonl data/docred/ontology_constraints_docred.json\n```\n\n记录输出的所有指标：ET, RV, DR, CF, parse_failures, documents_checked, total_entities, total_triples。\n\n#### 3. 计算 F1\nDocRED checker 可能不输出 F1。如果没有，用现有的 F1 计算方式（参考 `analyze_cf_fallback.py` 或其他分析脚本中的 F1 计算函数）。\n\n需要 gold labels 对比。检查 JSONL 中是否有 `gold_relations` 字段，或者需要从 `data/docred/dev.json` 加载。\n\n#### 4. 与原 mt4096 对比\n原 llama_docred_unconstrained（mt4096）的指标（从 registry）：\n- ET: 0.13%\n- RV: 16.03%\n- DR: 26.07%\n- CF: 0.17%\n- E-F1: 55.65%\n- R-F1: 5.98%\n- parse_failures: 68/998\n\n关注：mt6144 是否减少 parse failures（更长的 token 允许更完整的输出）？violation 率是否变化？\n\n#### 5. 更新 Registry\n用 `update_registry` 写入：\n- metrics（所有 violation rates + F1）\n- conclusion（success/negative）\n- checkpoint_path\n- notes（与 mt4096 的对比说明）\n\n调用示例：\n```\nupdate_registry(exp_id=\"llama_docred_unconstrained_mt6144\", field=\"metrics\", value={...}, project=\"schema_semantic_constrained_ie\")\nupdate_registry(exp_id=\"llama_docred_unconstrained_mt6144\", field=\"conclusion\", value=\"success\", project=\"schema_semantic_constrained_ie\")\n```\n\n### 产出\n1. 完整 violation report\n2. F1 计算结果\n3. 与 mt4096 对比表\n4. Registry 已更新\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T14:07:11.947Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T14:07:11.947Z",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269"
+}
+```
+
+---
+
+## Round 1
+
+61 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T14:07:11.986Z_
+
+&lt;project_context>
+# 项目: schema_semantic_constrained_ie
+
+## 运行环境
+- 服务器名: westd-16980
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/schema_semantic_constrained_ie
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：llama_docred_unconstrained_mt6144 完成分析
+
+llama_docred_unconstrained_mt6144 实验已完成（Llama-3.1-8B-Instruct, DocRED unconstrained, max_new_tokens=6144）。需要做 violation report + F1 计算 + metrics 入 registry。
+
+### 服务器环境
+- 服务器: westd-16980
+- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 项目路径: `/root/schema_semantic_constrained_ie`
+
+### 实验信息
+- exp_id: `llama_docred_unconstrained_mt6144`
+- 模型: Llama-3.1-8B-Instruct
+- 数据集: DocRED (998 docs)
+- 模式: unconstrained
+- max_new_tokens: 6144（对比原来的 4096）
+- 输出文件: `outputs/llama_docred_unconstrained_mt6144.jsonl`（确认路径）
+
+### 分析步骤
+
+#### 1. 确认输出文件完整性
+```bash
+cd /root/schema_semantic_constrained_ie
+ls -la outputs/llama_docred_unconstrained_mt6144.jsonl
+wc -l outputs/llama_docred_unconstrained_mt6144.jsonl
+# 预期 998 行
+```
+
+#### 2. 运行 violation checker
+```bash
+python3 violation_checker_docred.py outputs/llama_docred_unconstrained_mt6144.jsonl data/docred/ontology_constraints_docred.json
+```
+
+记录输出的所有指标：ET, RV, DR, CF, parse_failures, documents_checked, total_entities, total_triples。
+
+#### 3. 计算 F1
+DocRED checker 可能不输出 F1。如果没有，用现有的 F1 计算方式（参考 `analyze_cf_fallback.py` 或其他分析脚本中的 F1 计算函数）。
+
+需要 gold labels 对比。检查 JSONL 中是否有 `gold_relations` 字段，或者需要从 `data/docred/dev.json` 加载。
+
+#### 4. 与原 mt4096 对比
+原 llama_docred_unconstrained（mt4096）的指标（从 registry）：
+- ET: 0.13%
+- RV: 16.03%
+- DR: 26.07%
+- CF: 0.17%
+- E-F1: 55.65%
+- R-F1: 5.98%
+- parse_failures: 68/998
+
+关注：mt6144 是否减少 parse failures（更长的 token 允许更完整的输出）？violation 率是否变化？
+
+#### 5. 更新 Registry
+用 `update_registry` 写入：
+- metrics（所有 violation rates + F1）
+- conclusion（success/negative）
+- checkpoint_path
+- notes（与 mt4096 的对比说明）
+
+调用示例：
+```
+update_registry(exp_id="llama_docred_unconstrained_mt6144", field="metrics", value={...}, project="schema_semantic_constrained_ie")
+update_registry(exp_id="llama_docred_unconstrained_mt6144", field="conclusion", value="success", project="schema_semantic_constrained_ie")
+```
+
+### 产出
+1. 完整 violation report
+2. F1 计算结果
+3. 与 mt4096 对比表
+4. Registry 已更新
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "85533015-7528-4037-ab3c-5437a4883796",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T14:07:11.985Z_
+
+```json
+{
+  "parentUuid": "85533015-7528-4037-ab3c-5437a4883796",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "6dec4a1e-ab1d-4116-965c-3a0077493582",
+  "timestamp": "2026-05-15T14:07:11.985Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T14:07:11.985Z_
+
+```json
+{
+  "parentUuid": "6dec4a1e-ab1d-4116-965c-3a0077493582",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "6956052a-b7fd-4630-bf94-9cd14039b4dd",
+  "timestamp": "2026-05-15T14:07:11.985Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T14:07:11.985Z_
+
+```json
+{
+  "parentUuid": "6956052a-b7fd-4630-bf94-9cd14039b4dd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "730d6d79-1185-4d42-868a-80724c988f63",
+  "timestamp": "2026-05-15T14:07:11.985Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7 · 2026-05-15T14:07:11.985Z_
+
+```json
+{
+  "parentUuid": "730d6d79-1185-4d42-868a-80724c988f63",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "118c817d-7264-48ea-929e-19b9b9702916",
+  "timestamp": "2026-05-15T14:07:11.985Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze llama_docred_unconstrained_mt6144 experiment",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-15T14:07:15.259Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "118c817d-7264-48ea-929e-19b9b9702916",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V3uGoyuytNbiV8Vt54",
+  "type": "assistant",
+  "uuid": "474b1946-d67f-428e-948c-290aa3764444",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01KSHLZ7KJUswByacBZSjKas",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 15537,
+      "cache_read_input_tokens": 15664,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15537,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 5,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 15664,
+          "cache_creation_input_tokens": 15537,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15537
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T14:07:16.908Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CSjXUMoz7uMtKg5osktUMQ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,TodoWrite",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "474b1946-d67f-428e-948c-290aa3764444",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V3uGoyuytNbiV8Vt54",
+  "type": "assistant",
+  "uuid": "c1aeae06-7c17-492c-9bb3-9772a5131ee6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01KSHLZ7KJUswByacBZSjKas",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 15537,
+      "cache_read_input_tokens": 15664,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15537,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 5,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 15664,
+          "cache_creation_input_tokens": 15537,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15537
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T14:07:16.916Z_
+
+<details><summary>↩ Tool result · `toolu_01CSjXUMoz7uMtKg5osktUMQ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "TodoWrite"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c1aeae06-7c17-492c-9bb3-9772a5131ee6",
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "0d3282f2-57d3-44ae-95ce-a6c5f210fb60",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__detect_image",
+      "TodoWrite"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,TodoWrite",
+    "total_deferred_tools": 26
+  },
+  "sourceToolAssistantUUID": "c1aeae06-7c17-492c-9bb3-9772a5131ee6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T14:07:21.024Z_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_013wqyqqkg5jC4rs1MqeTgHS`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Confirm output file integrity",
+      "status": "in_progress",
+      "activeForm": "Confirming output file integrity"
+    },
+    {
+      "content": "Run violation checker",
+      "status": "pending",
+      "activeForm": "Running violation checker"
+    },
+    {
+      "content": "Compute F1 metrics",
+      "status": "pending",
+      "activeForm": "Computing F1 metrics"
+    },
+    {
+      "content": "Compare with mt4096 baseline",
+      "status": "pending",
+      "activeForm": "Comparing with mt4096 baseline"
+    },
+    {
+      "content": "Update registry with metrics",
+      "status": "pending",
+      "activeForm": "Updating registry with metrics"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d3282f2-57d3-44ae-95ce-a6c5f210fb60",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V4GD96T86NrbSbHs2c",
+  "type": "assistant",
+  "uuid": "ccc791b5-dd58-4c92-9057-64ad77444a9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01UBMAFodN5eEgksRxy4Apmi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 21172,
+      "cache_read_input_tokens": 15757,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21172,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 15757,
+          "cache_creation_input_tokens": 21172,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21172
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "tools_changed",
+        "cache_missed_input_tokens": 28907
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T14:07:21.049Z_
+
+<details><summary>↩ Tool result · `toolu_013wqyqqkg5jC4rs1MqeTgHS`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ccc791b5-dd58-4c92-9057-64ad77444a9c",
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "46c164a0-0100-4de8-a1f3-4425a0df120f",
+  "toolUseResult": {
+    "oldTodos": [],
+    "newTodos": [
+      {
+        "content": "Confirm output file integrity",
+        "status": "in_progress",
+        "activeForm": "Confirming output file integrity"
+      },
+      {
+        "content": "Run violation checker",
+        "status": "pending",
+        "activeForm": "Running violation checker"
+      },
+      {
+        "content": "Compute F1 metrics",
+        "status": "pending",
+        "activeForm": "Computing F1 metrics"
+      },
+      {
+        "content": "Compare with mt4096 baseline",
+        "status": "pending",
+        "activeForm": "Comparing with mt4096 baseline"
+      },
+      {
+        "content": "Update registry with metrics",
+        "status": "pending",
+        "activeForm": "Updating registry with metrics"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  },
+  "sourceToolAssistantUUID": "ccc791b5-dd58-4c92-9057-64ad77444a9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T14:07:24.878Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013ffDv2vgVsF262YuqNVzzL`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls -la /root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46c164a0-0100-4de8-a1f3-4425a0df120f",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V4a6B5zoccSw6dcL1G",
+  "type": "assistant",
+  "uuid": "7554fc82-d1b0-4dac-8929-c37258f79be6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01RMVZvcFP1sUBWbb8dCHUZp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 338,
+      "cache_read_input_tokens": 36929,
+      "output_tokens": 382,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 338,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 382,
+          "cache_read_input_tokens": 36929,
+          "cache_creation_input_tokens": 338,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 338
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T14:07:25.774Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EENzZY7NU2qGbn3zqEw6sv`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "wc -l /root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7554fc82-d1b0-4dac-8929-c37258f79be6",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V4a6B5zoccSw6dcL1G",
+  "type": "assistant",
+  "uuid": "0727e864-dd37-44a5-94cc-80ac39013c55",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01RMVZvcFP1sUBWbb8dCHUZp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 338,
+      "cache_read_input_tokens": 36929,
+      "output_tokens": 382,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 338,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 382,
+          "cache_read_input_tokens": 36929,
+          "cache_creation_input_tokens": 338,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 338
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T14:07:26.241Z_
+
+<details><summary>↩ Tool result · `toolu_013ffDv2vgVsF262YuqNVzzL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 10835716 May 15 21:58 /root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7554fc82-d1b0-4dac-8929-c37258f79be6",
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "f467a412-7336-4356-a3e7-fe9cca1fcb3b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 10835716 May 15 21:58 /root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 10835716 May 15 21:58 /root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.34}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7554fc82-d1b0-4dac-8929-c37258f79be6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T14:07:26.288Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RzQewaAfdr1G56smzChQ4Q`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "ls /root/schema_semantic_constrained_ie/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f467a412-7336-4356-a3e7-fe9cca1fcb3b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V4a6B5zoccSw6dcL1G",
+  "type": "assistant",
+  "uuid": "52662a06-c0fa-46fc-b3b5-4d2540d7a31a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01RMVZvcFP1sUBWbb8dCHUZp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 338,
+      "cache_read_input_tokens": 36929,
+      "output_tokens": 382,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 338,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 382,
+          "cache_read_input_tokens": 36929,
+          "cache_creation_input_tokens": 338,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 338
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T14:07:26.781Z_
+
+<details><summary>↩ Tool result · `toolu_01EENzZY7NU2qGbn3zqEw6sv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"998 /root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0727e864-dd37-44a5-94cc-80ac39013c55",
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "ad19aa03-3621-4e1f-b864-0c444171f92a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"998 /root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"998 /root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0727e864-dd37-44a5-94cc-80ac39013c55",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T14:07:27.320Z_
+
+<details><summary>↩ Tool result · `toolu_01RzQewaAfdr1G56smzChQ4Q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nanalyze_cf_fallback.py\\nanalyze_cf_violations.py\\nanalyze_compare.py\\nanalyze_docred_semantic_only.py\\nanalyze_dr_residual.py\\nanalyze_dr_residual_v2.py\\nanalyze_llama_docred.py\\nanalyze_llama_docred_mt6144.py\\nanalyze_ontology.py\\nanalyze_ontology_docred.py\\nanalyze_phase2.py\\nartifacts\\ncompare_prompts.py\\ncompiler\\ncompute_bootstrap_ci.py\\ncompute_bootstrap_ci_llama.py\\ndata\\nestimate_fallback_rate.py\\nontology_constraints.json\\noutputs\\npaper\\nposthoc_filter.py\\nrun_bootstrap_llama.py\\nrun_constrained_extraction.py\\nrun_constrained_extraction.py.bak\\nrun_extraction.py\\nrun_extraction_docred.py\\nrun_phase2_scierc_batch.sh\\nscripts\\nunified_f1_eval.py\\nunified_violation_recalc.py\\nviolation_checker.py\\nviolation_checker.py.bak2\\nviolation_checker_docred.py\\nviolation_checker_docred.py.bak\\nviolation_checker_docred.py.bak2\\nwait_and_analyze.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "52662a06-c0fa-46fc-b3b5-4d2540d7a31a",
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "1c8c8b41-b30b-47eb-82ea-6373b8acbd42",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nanalyze_cf_fallback.py\\\\nanalyze_cf_violations.py\\\\nanalyze_compare.py\\\\nanalyze_docred_semantic_only.py\\\\nanalyze_dr_residual.py\\\\nanalyze_dr_residual_v2.py\\\\nanalyze_llama_docred.py\\\\nanalyze_llama_docred_mt6144.py\\\\nanalyze_ontology.py\\\\nanalyze_ontology_docred.py\\\\nanalyze_phase2.py\\\\nartifacts\\\\ncompare_prompts.py\\\\ncompiler\\\\ncompute_bootstrap_ci.py\\\\ncompute_bootstrap_ci_llama.py\\\\ndata\\\\nestimate_fallback_rate.py\\\\nontology_constraints.json\\\\noutputs\\\\npaper\\\\nposthoc_filter.py\\\\nrun_bootstrap_llama.py\\\\nrun_constrained_extraction.py\\\\nrun_constrained_extraction.py.bak\\\\nrun_extraction.py\\\\nrun_extraction_docred.py\\\\nrun_phase2_scierc_batch.sh\\\\nscripts\\\\nunified_f1_eval.py\\\\nunified_violation_recalc.py\\\\nviolation_checker.py\\\\nviolation_checker.py.bak2\\\\nviolation_checker_docred.py\\\\nviolation_checker_docred.py.bak\\\\nviolation_checker_docred.py.bak2\\\\nwait_and_analyze.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nanalyze_cf_fallback.py\\nanalyze_cf_violations.py\\nanalyze_compare.py\\nanalyze_docred_semantic_only.py\\nanalyze_dr_residual.py\\nanalyze_dr_residual_v2.py\\nanalyze_llama_docred.py\\nanalyze_llama_docred_mt6144.py\\nanalyze_ontology.py\\nanalyze_ontology_docred.py\\nanalyze_phase2.py\\nartifacts\\ncompare_prompts.py\\ncompiler\\ncompute_bootstrap_ci.py\\ncompute_bootstrap_ci_llama.py\\ndata\\nestimate_fallback_rate.py\\nontology_constraints.json\\noutputs\\npaper\\nposthoc_filter.py\\nrun_bootstrap_llama.py\\nrun_constrained_extraction.py\\nrun_constrained_extraction.py.bak\\nrun_extraction.py\\nrun_extraction_docred.py\\nrun_phase2_scierc_batch.sh\\nscripts\\nunified_f1_eval.py\\nunified_violation_recalc.py\\nviolation_checker.py\\nviolation_checker.py.bak2\\nviolation_checker_docred.py\\nviolation_checker_docred.py.bak\\nviolation_checker_docred.py.bak2\\nwait_and_analyze.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  },
+  "sourceToolAssistantUUID": "52662a06-c0fa-46fc-b3b5-4d2540d7a31a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "1c8c8b41-b30b-47eb-82ea-6373b8acbd42",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze llama_docred_unconstrained_mt6144 experiment",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-15T14:07:29.645Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c8c8b41-b30b-47eb-82ea-6373b8acbd42",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V52p26aLQ7qKfhGTk6",
+  "type": "assistant",
+  "uuid": "56b0a615-e8f8-41f2-83e8-4325b54fccc1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_0149Lvx6cAL7hKa4ixXvMJoD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1409,
+      "cache_read_input_tokens": 37267,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1409,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 37267,
+          "cache_creation_input_tokens": 1409,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1409
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-15T14:07:30.680Z_
+
+File complete: 998 lines. Found `analyze_llama_docred_mt6144.py` — likely already designed for this run. Let me check it and run violation_checker.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56b0a615-e8f8-41f2-83e8-4325b54fccc1",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V52p26aLQ7qKfhGTk6",
+  "type": "assistant",
+  "uuid": "00a40af7-334d-4eb9-bbe3-94a276eee32a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_0149Lvx6cAL7hKa4ixXvMJoD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1409,
+      "cache_read_input_tokens": 37267,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1409,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 37267,
+          "cache_creation_input_tokens": 1409,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1409
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T14:07:31.701Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BVi21BLjBaiBoKETxKHD22`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/schema_semantic_constrained_ie/analyze_llama_docred_mt6144.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00a40af7-334d-4eb9-bbe3-94a276eee32a",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V52p26aLQ7qKfhGTk6",
+  "type": "assistant",
+  "uuid": "f97216aa-1d0c-4e11-8c17-c58a4509b87f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_0149Lvx6cAL7hKa4ixXvMJoD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1409,
+      "cache_read_input_tokens": 37267,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1409,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 37267,
+          "cache_creation_input_tokens": 1409,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1409
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T14:07:32.229Z_
+
+<details><summary>↩ Tool result · `toolu_01BVi21BLjBaiBoKETxKHD22`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Analyze Llama DocRED unconstrained: violations (v2) + F1 (all_set).\\nSelf-contained to handle int head/tail edge cases.\\n\\\"\\\"\\\"\\nimport json\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nVALID_ENTITY_TYPES = {\\\"PER\\\", \\\"ORG\\\", \\\"LOC\\\", \\\"TIME\\\", \\\"NUM\\\", \\\"MISC\\\"}\\nENTITY_TYPE_ALIASES = {\\n    'PERSON': 'PER', 'PEOPLE': 'PER',\\n    'ORGANIZATION': 'ORG', 'ORGANISATION': 'ORG',\\n    'LOCATION': 'LOC', 'NUMBER': 'NUM', 'NUMERICAL': 'NUM',\\n    'MISCELLANEOUS': 'MISC',\\n}\\n\\ndef _levenshtein(s1, s2):\\n    if len(s1) < len(s2): return _levenshtein(s2, s1)\\n    if len(s2) == 0: return len(s1)\\n    prev_row = range(len(s2) + 1)\\n    for i, c1 in enumerate(s1):\\n        curr_row = [i + 1]\\n        for j, c2 in enumerate(s2):\\n            curr_row.append(min(prev_row[j+1]+1, curr_row[j]+1, prev_row[j]+(c1!=c2)))\\n        prev_row = curr_row\\n    return prev_row[-1]\\n\\ndef load_constraints(path):\\n    with open(path) as f: return json.load(f)\\n\\ndef build_name_to_id(rel_types):\\n    m = {}\\n    for rid, rname in rel_types.items():\\n        m[rname.lower().strip()] = rid\\n        m[rid.lower()] = rid\\n    return m\\n\\ndef normalize_relation(rel_name, rel_types, name_to_id):\\n    key = name_to_id.get(rel_name.lower().strip())\\n    if key: return key, rel_types.get(key, rel_name), False\\n    rel_tokens = set(rel_name.strip().lower().split())\\n    best_pid, best_name, best_overlap = None, None, 0.0\\n    for rid, rname in rel_types.items():\\n        rname_tokens = set(rname.lower().split())\\n        if rel_tokens and rname_tokens:\\n            overlap = len(rel_tokens & rname_tokens) / len(rel_tokens | rname_tokens)\\n            if overlap > 0.8 and overlap > best_overlap:\\n                best_overlap = overlap\\n                best_pid, best_name = rid, rname\\n    if best_pid: return best_pid, best_name, True\\n    for rid, rname in rel_types.items():\\n        if _levenshtein(rel_name.strip().lower(), rname.lower()) <= 2:\\n            return rid, rname, True\\n    return None, None, False\\n\\ndef normalize_etype(raw):\\n    t = str(raw).strip().upper()\\n    return ENTITY_TYPE_ALIASES.get(t, t)\\n\\n# ============================================================\\n# VIOLATION CHECKER (v2)\\n# ============================================================\\ndef check_violations(records, constraints, rel_types, name_to_id):\\n    total_docs = len(records)\\n    parse_failures = 0\\n    total_entities = 0\\n    entity_type_violations = 0\\n    total_triples = 0\\n    rv_violations = 0\\n    dr_violations = 0\\n    dr_eligible_triples = 0\\n    fuzzy_matches = 0\\n    cross_field_violations = 0\\n    triple_head_et = 0\\n    triple_tail_et = 0\\n    triple_either_et = 0\\n    invalid_type_dist = defaultdict(int)\\n\\n    # ET: per-unique-entity (text, normalized_type) dedup\\n    global_entity_set = set()\\n    global_entity_invalid_set = set()\\n\\n    for rec in records:\\n        parsed = rec.get(\\\"parsed_output\\\")\\n        if parsed is None:\\n            parse_failures += 1\\n            continue\\n\\n        entities = parsed.get(\\\"entities\\\", [])\\n        relations = parsed.get(\\\"relations\\\", [])\\n\\n        # Entity-level ET (unique entity dedup)\\n        for ent in entities:\\n            text = str(ent.get(\\\"text\\\", \\\"\\\")).strip().lower()\\n            raw_type = str(ent.get(\\\"type\\\", \\\"\\\"))\\n            norm_type = normalize_etype(raw_type)\\n            key = (text, norm_type)\\n            global_entity_set.add(key)\\n            if norm_type not in VALID_ENTITY_TYPES:\\n                global_entity_invalid_set.add(key)\\n                invalid_type_dist[raw_type] += 1\\n\\n        total_triples += len(relations)\\n\\n        # Cross-field consistency\\n        entity_type_assignments = defaultdict(set)\\n\\n        for rel in relations:\\n            h_type = normalize_etype(rel.get(\\\"head_type\\\", \\\"\\\"))\\n            t_type = normalize_etype(rel.get(\\\"tail_type\\\", \\\"\\\"))\\n            rel_type = str(rel.get(\\\"type\\\", \\\"\\\"))\\n            head = str(rel.get(\\\"head\\\", \\\"\\\"))\\n            tail = str(rel.get(\\\"tail\\\", \\\"\\\"))\\n\\n            if head and h_type:\\n                entity_type_assignments[head.lower()].add(h_type\\n\\n... [截断: 输出过长，省略 5238 字符] ...\\n\\n=================================================\\ninput_path = \\\"outputs/llama_docred_unconstrained_mt6144.jsonl\\\"\\nconstraints_path = \\\"data/docred/ontology_constraints_docred.json\\\"\\n\\nconstraints = load_constraints(constraints_path)\\nrel_types = constraints.get(\\\"relation_types\\\", {})\\nname_to_id = build_name_to_id(rel_types)\\n\\nrecords = []\\nwith open(input_path) as f:\\n    for line in f:\\n        line = line.strip()\\n        if line:\\n            records.append(json.loads(line))\\n\\n# --- Violations ---\\nv = check_violations(records, constraints, rel_types, name_to_id)\\n\\nprint(\\\"=\\\" * 60)\\nprint(\\\"VIOLATION CHECK (v2, unique_et) - Llama DocRED Unconstrained\\\")\\nprint(\\\"=\\\" * 60)\\nprint(f\\\"Docs: {v['documents_checked']}/{v['total_documents']}, Parse fail: {v['parse_failures']}\\\")\\nprint(f\\\"Unique entities: {v['total_entities_unique']}, Triples: {v['total_triples']}\\\")\\nprint(f\\\"ET: {v['entity_type_violations']}/{v['total_entities_unique']} = {100*v['ET_rate']:.2f}%\\\")\\nprint(f\\\"RV: {v['relation_vocabulary_violations']}/{v['total_triples']} = {100*v['RV_rate']:.2f}%\\\")\\nprint(f\\\"DR (all): {v['domain_range_violations']}/{v['total_triples']} = {100*v['DR_rate_all']:.2f}%\\\")\\nprint(f\\\"DR (eligible): {v['domain_range_violations']}/{v['dr_eligible_triples']} = {100*v['DR_rate_eligible']:.2f}%\\\")\\nprint(f\\\"CF: {v['cross_field_violations']}/{v['total_entities_unique']} = {100*v['CF_rate']:.2f}%\\\")\\nif v['invalid_type_distribution']:\\n    print(f\\\"Top invalid types: {v['invalid_type_distribution']}\\\")\\n\\n# --- F1 ---\\nf1_result = evaluate_f1(records, constraints, rel_types, name_to_id)\\nep, er, ef1 = prf(f1_result[\\\"entity\\\"])\\nrp, rr, rf1 = prf(f1_result[\\\"relation\\\"])\\n\\nprint()\\nprint(\\\"=\\\" * 60)\\nprint(\\\"F1 EVALUATION (all_set) - Llama DocRED Unconstrained\\\")\\nprint(\\\"=\\\" * 60)\\nprint(f\\\"Entity:   P={ep:.4f} R={er:.4f} F1={ef1:.4f} (tp={f1_result['entity']['tp']}, gold={f1_result['entity']['gold']}, pred={f1_result['entity']['pred']})\\\")\\nprint(f\\\"Relation: P={rp:.4f} R={rr:.4f} F1={rf1:.4f} (tp={f1_result['relation']['tp']}, gold={f1_result['relation']['gold']}, pred={f1_result['relation']['pred']})\\\")\\n\\n# --- Comparison with Qwen3-8B ---\\nprint()\\nprint(\\\"=\\\" * 60)\\nprint(\\\"COMPARISON: Llama-3.1-8B vs Qwen3-8B (DocRED Unconstrained)\\\")\\nprint(\\\"=\\\" * 60)\\nqwen = {\\\"DR\\\": 18.46, \\\"RV\\\": 29.66, \\\"ET\\\": 2.48, \\\"CF\\\": 0.10, \\\"R-F1\\\": 7.74, \\\"E-F1\\\": 58.15}\\nllama = {\\n    \\\"DR\\\": round(100*v['DR_rate_all'], 2),\\n    \\\"RV\\\": round(100*v['RV_rate'], 2),\\n    \\\"ET\\\": round(100*v['ET_rate'], 2),\\n    \\\"CF\\\": round(100*v['CF_rate'], 2),\\n    \\\"R-F1\\\": round(100*rf1, 2),\\n    \\\"E-F1\\\": round(100*ef1, 2),\\n}\\nprint(f\\\"{'Metric':<10} {'Qwen3-8B':>10} {'Llama-3.1':>10} {'Delta':>10}\\\")\\nprint(\\\"-\\\" * 42)\\nfor k in [\\\"DR\\\", \\\"RV\\\", \\\"ET\\\", \\\"CF\\\", \\\"R-F1\\\", \\\"E-F1\\\"]:\\n    delta = llama[k] - qwen[k]\\n    print(f\\\"{k:<10} {qwen[k]:>9.2f}% {llama[k]:>9.2f}% {delta:>+9.2f}pp\\\")\\n\\n# Save summary JSON\\nsummary = {\\n    \\\"checker_version\\\": \\\"fixed_20260514_v2\\\",\\n    \\\"f1_method\\\": \\\"all_set\\\",\\n    \\\"model\\\": \\\"Llama-3.1-8B-Instruct\\\",\\n    \\\"dataset\\\": \\\"DocRED\\\",\\n    \\\"mode\\\": \\\"unconstrained\\\",\\n    \\\"violations\\\": {\\n        \\\"DR_rate\\\": llama[\\\"DR\\\"],\\n        \\\"RV_rate\\\": llama[\\\"RV\\\"],\\n        \\\"ET_rate\\\": llama[\\\"ET\\\"],\\n        \\\"CF_rate\\\": llama[\\\"CF\\\"],\\n    },\\n    \\\"f1\\\": {\\n        \\\"entity_precision\\\": round(100*ep, 2),\\n        \\\"entity_recall\\\": round(100*er, 2),\\n        \\\"entity_f1\\\": llama[\\\"E-F1\\\"],\\n        \\\"relation_precision\\\": round(100*rp, 2),\\n        \\\"relation_recall\\\": round(100*rr, 2),\\n        \\\"relation_f1\\\": llama[\\\"R-F1\\\"],\\n    },\\n    \\\"counts\\\": {\\n        \\\"documents\\\": v[\\\"total_documents\\\"],\\n        \\\"documents_checked\\\": v[\\\"documents_checked\\\"],\\n        \\\"parse_failures\\\": v[\\\"parse_failures\\\"],\\n        \\\"unique_entities\\\": v[\\\"total_entities_unique\\\"],\\n        \\\"triples\\\": v[\\\"total_triples\\\"],\\n        \\\"dr_eligible_triples\\\": v[\\\"dr_eligible_triples\\\"],\\n        \\\"fuzzy_relation_matches\\\": v[\\\"fuzzy_matches\\\"],\\n    },\\n}\\nwith open(\\\"outputs/analysis_llama_docred_unconstrained_mt6144_v2.json\\\", \\\"w\\\") as f:\\n    json.dump(summary, f, indent=2)\\nprint(f\\\"\\\\nSaved: outputs/analysis_llama_docred_unconstrained_mt6144_v2.json\\\")\\nprint(json.dumps(summary, indent=2))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f97216aa-1d0c-4e11-8c17-c58a4509b87f",
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "e4ecbb17-2279-4a78-9d8f-6f0dee46771e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Analyze Llama DocRED unconstrained: violations (v2) + F1 (all_set).\\\\nSelf-contained to handle int head/tail edge cases.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nVALID_ENTITY_TYPES = {\\\\\\\"PER\\\\\\\", \\\\\\\"ORG\\\\\\\", \\\\\\\"LOC\\\\\\\", \\\\\\\"TIME\\\\\\\", \\\\\\\"NUM\\\\\\\", \\\\\\\"MISC\\\\\\\"}\\\\nENTITY_TYPE_ALIASES = {\\\\n    'PERSON': 'PER', 'PEOPLE': 'PER',\\\\n    'ORGANIZATION': 'ORG', 'ORGANISATION': 'ORG',\\\\n    'LOCATION': 'LOC', 'NUMBER': 'NUM', 'NUMERICAL': 'NUM',\\\\n    'MISCELLANEOUS': 'MISC',\\\\n}\\\\n\\\\ndef _levenshtein(s1, s2):\\\\n    if len(s1) < len(s2): return _levenshtein(s2, s1)\\\\n    if len(s2) == 0: return len(s1)\\\\n    prev_row = range(len(s2) + 1)\\\\n    for i, c1 in enumerate(s1):\\\\n        curr_row = [i + 1]\\\\n        for j, c2 in enumerate(s2):\\\\n            curr_row.append(min(prev_row[j+1]+1, curr_row[j]+1, prev_row[j]+(c1!=c2)))\\\\n        prev_row = curr_row\\\\n    return prev_row[-1]\\\\n\\\\ndef load_constraints(path):\\\\n    with open(path) as f: return json.load(f)\\\\n\\\\ndef build_name_to_id(rel_types):\\\\n    m = {}\\\\n    for rid, rname in rel_types.items():\\\\n        m[rname.lower().strip()] = rid\\\\n        m[rid.lower()] = rid\\\\n    return m\\\\n\\\\ndef normalize_relation(rel_name, rel_types, name_to_id):\\\\n    key = name_to_id.get(rel_name.lower().strip())\\\\n    if key: return key, rel_types.get(key, rel_name), False\\\\n    rel_tokens = set(rel_name.strip().lower().split())\\\\n    best_pid, best_name, best_overlap = None, None, 0.0\\\\n    for rid, rname in rel_types.items():\\\\n        rname_tokens = set(rname.lower().split())\\\\n        if rel_tokens and rname_tokens:\\\\n            overlap = len(rel_tokens & rname_tokens) / len(rel_tokens | rname_tokens)\\\\n            if overlap > 0.8 and overlap > best_overlap:\\\\n                best_overlap = overlap\\\\n                best_pid, best_name = rid, rname\\\\n    if best_pid: return best_pid, best_name, True\\\\n    for rid, rname in rel_types.items():\\\\n        if _levenshtein(rel_name.strip().lower(), rname.lower()) <= 2:\\\\n            return rid, rname, True\\\\n    return None, None, False\\\\n\\\\ndef normalize_etype(raw):\\\\n    t = str(raw).strip().upper()\\\\n    return ENTITY_TYPE_ALIASES.get(t, t)\\\\n\\\\n# ============================================================\\\\n# VIOLATION CHECKER (v2)\\\\n# ============================================================\\\\ndef check_violations(records, constraints, rel_types, name_to_id):\\\\n    total_docs = len(records)\\\\n    parse_failures = 0\\\\n    total_entities = 0\\\\n    entity_type_violations = 0\\\\n    total_triples = 0\\\\n    rv_violations = 0\\\\n    dr_violations = 0\\\\n    dr_eligible_triples = 0\\\\n    fuzzy_matches = 0\\\\n    cross_field_violations = 0\\\\n    triple_head_et = 0\\\\n    triple_tail_et = 0\\\\n    triple_either_et = 0\\\\n    invalid_type_dist = defaultdict(int)\\\\n\\\\n    # ET: per-unique-entity (text, normalized_type) dedup\\\\n    global_entity_set = set()\\\\n    global_entity_invalid_set = set()\\\\n\\\\n    for rec in records:\\\\n        parsed = rec.get(\\\\\\\"parsed_output\\\\\\\")\\\\n        if parsed is None:\\\\n            parse_failures += 1\\\\n            continue\\\\n\\\\n        entities = parsed.get(\\\\\\\"entities\\\\\\\", [])\\\\n        relations = parsed.get(\\\\\\\"relations\\\\\\\", [])\\\\n\\\\n        # Entity-level ET (unique entity dedup)\\\\n        for ent in entities:\\\\n            text = str(ent.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\")).strip().lower()\\\\n            raw_type = str(ent.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n            norm_type = normalize_etype(raw_type)\\\\n            key = (text, norm_type)\\\\n            global_entity_set.add(key)\\\\n            if norm_type not in VALID_ENTITY_TYPES:\\\\n                global_entity_invalid_set.add(key)\\\\n                invalid_type_dist[raw_type] += 1\\\\n\\\\n        total_triples += len(relations)\\\\n\\\\n        # Cross-field consistency\\\\n        entity_type_assignments = defaultdict(set)\\\\n\\\\n        for rel in relations:\\\\n            h_type = normalize_etype(rel.get(\\\\\\\"head_type\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n            t_type = normalize_etype(rel.get(\\\\\\\"tail_type\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n            rel_type = str(rel.get(\\\\\\\"type\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n            head = str(rel.get(\\\\\\\"head\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n            tail = str(rel.get(\\\\\\\"tail\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n\\\\n            if head and h_type:\\\\n                entity_type_assignments[head.lower()].add(h_type\\\\n\\\\n... [截断: 输出过长，省略 5238 字符] ...\\\\n\\\\n=================================================\\\\ninput_path = \\\\\\\"outputs/llama_docred_unconstrained_mt6144.jsonl\\\\\\\"\\\\nconstraints_path = \\\\\\\"data/docred/ontology_constraints_docred.json\\\\\\\"\\\\n\\\\nconstraints = load_constraints(constraints_path)\\\\nrel_types = constraints.get(\\\\\\\"relation_types\\\\\\\", {})\\\\nname_to_id = build_name_to_id(rel_types)\\\\n\\\\nrecords = []\\\\nwith open(input_path) as f:\\\\n    for line in f:\\\\n        line = line.strip()\\\\n        if line:\\\\n            records.append(json.loads(line))\\\\n\\\\n# --- Violations ---\\\\nv = check_violations(records, constraints, rel_types, name_to_id)\\\\n\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\nprint(\\\\\\\"VIOLATION CHECK (v2, unique_et) - Llama DocRED Unconstrained\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\nprint(f\\\\\\\"Docs: {v['documents_checked']}/{v['total_documents']}, Parse fail: {v['parse_failures']}\\\\\\\")\\\\nprint(f\\\\\\\"Unique entities: {v['total_entities_unique']}, Triples: {v['total_triples']}\\\\\\\")\\\\nprint(f\\\\\\\"ET: {v['entity_type_violations']}/{v['total_entities_unique']} = {100*v['ET_rate']:.2f}%\\\\\\\")\\\\nprint(f\\\\\\\"RV: {v['relation_vocabulary_violations']}/{v['total_triples']} = {100*v['RV_rate']:.2f}%\\\\\\\")\\\\nprint(f\\\\\\\"DR (all): {v['domain_range_violations']}/{v['total_triples']} = {100*v['DR_rate_all']:.2f}%\\\\\\\")\\\\nprint(f\\\\\\\"DR (eligible): {v['domain_range_violations']}/{v['dr_eligible_triples']} = {100*v['DR_rate_eligible']:.2f}%\\\\\\\")\\\\nprint(f\\\\\\\"CF: {v['cross_field_violations']}/{v['total_entities_unique']} = {100*v['CF_rate']:.2f}%\\\\\\\")\\\\nif v['invalid_type_distribution']:\\\\n    print(f\\\\\\\"Top invalid types: {v['invalid_type_distribution']}\\\\\\\")\\\\n\\\\n# --- F1 ---\\\\nf1_result = evaluate_f1(records, constraints, rel_types, name_to_id)\\\\nep, er, ef1 = prf(f1_result[\\\\\\\"entity\\\\\\\"])\\\\nrp, rr, rf1 = prf(f1_result[\\\\\\\"relation\\\\\\\"])\\\\n\\\\nprint()\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\nprint(\\\\\\\"F1 EVALUATION (all_set) - Llama DocRED Unconstrained\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\nprint(f\\\\\\\"Entity:   P={ep:.4f} R={er:.4f} F1={ef1:.4f} (tp={f1_result['entity']['tp']}, gold={f1_result['entity']['gold']}, pred={f1_result['entity']['pred']})\\\\\\\")\\\\nprint(f\\\\\\\"Relation: P={rp:.4f} R={rr:.4f} F1={rf1:.4f} (tp={f1_result['relation']['tp']}, gold={f1_result['relation']['gold']}, pred={f1_result['relation']['pred']})\\\\\\\")\\\\n\\\\n# --- Comparison with Qwen3-8B ---\\\\nprint()\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\nprint(\\\\\\\"COMPARISON: Llama-3.1-8B vs Qwen3-8B (DocRED Unconstrained)\\\\\\\")\\\\nprint(\\\\\\\"=\\\\\\\" * 60)\\\\nqwen = {\\\\\\\"DR\\\\\\\": 18.46, \\\\\\\"RV\\\\\\\": 29.66, \\\\\\\"ET\\\\\\\": 2.48, \\\\\\\"CF\\\\\\\": 0.10, \\\\\\\"R-F1\\\\\\\": 7.74, \\\\\\\"E-F1\\\\\\\": 58.15}\\\\nllama = {\\\\n    \\\\\\\"DR\\\\\\\": round(100*v['DR_rate_all'], 2),\\\\n    \\\\\\\"RV\\\\\\\": round(100*v['RV_rate'], 2),\\\\n    \\\\\\\"ET\\\\\\\": round(100*v['ET_rate'], 2),\\\\n    \\\\\\\"CF\\\\\\\": round(100*v['CF_rate'], 2),\\\\n    \\\\\\\"R-F1\\\\\\\": round(100*rf1, 2),\\\\n    \\\\\\\"E-F1\\\\\\\": round(100*ef1, 2),\\\\n}\\\\nprint(f\\\\\\\"{'Metric':<10} {'Qwen3-8B':>10} {'Llama-3.1':>10} {'Delta':>10}\\\\\\\")\\\\nprint(\\\\\\\"-\\\\\\\" * 42)\\\\nfor k in [\\\\\\\"DR\\\\\\\", \\\\\\\"RV\\\\\\\", \\\\\\\"ET\\\\\\\", \\\\\\\"CF\\\\\\\", \\\\\\\"R-F1\\\\\\\", \\\\\\\"E-F1\\\\\\\"]:\\\\n    delta = llama[k] - qwen[k]\\\\n    print(f\\\\\\\"{k:<10} {qwen[k]:>9.2f}% {llama[k]:>9.2f}% {delta:>+9.2f}pp\\\\\\\")\\\\n\\\\n# Save summary JSON\\\\nsummary = {\\\\n    \\\\\\\"checker_version\\\\\\\": \\\\\\\"fixed_20260514_v2\\\\\\\",\\\\n    \\\\\\\"f1_method\\\\\\\": \\\\\\\"all_set\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Llama-3.1-8B-Instruct\\\\\\\",\\\\n    \\\\\\\"dataset\\\\\\\": \\\\\\\"DocRED\\\\\\\",\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"unconstrained\\\\\\\",\\\\n    \\\\\\\"violations\\\\\\\": {\\\\n        \\\\\\\"DR_rate\\\\\\\": llama[\\\\\\\"DR\\\\\\\"],\\\\n        \\\\\\\"RV_rate\\\\\\\": llama[\\\\\\\"RV\\\\\\\"],\\\\n        \\\\\\\"ET_rate\\\\\\\": llama[\\\\\\\"ET\\\\\\\"],\\\\n        \\\\\\\"CF_rate\\\\\\\": llama[\\\\\\\"CF\\\\\\\"],\\\\n    },\\\\n    \\\\\\\"f1\\\\\\\": {\\\\n        \\\\\\\"entity_precision\\\\\\\": round(100*ep, 2),\\\\n        \\\\\\\"entity_recall\\\\\\\": round(100*er, 2),\\\\n        \\\\\\\"entity_f1\\\\\\\": llama[\\\\\\\"E-F1\\\\\\\"],\\\\n        \\\\\\\"relation_precision\\\\\\\": round(100*rp, 2),\\\\n        \\\\\\\"relation_recall\\\\\\\": round(100*rr, 2),\\\\n        \\\\\\\"relation_f1\\\\\\\": llama[\\\\\\\"R-F1\\\\\\\"],\\\\n    },\\\\n    \\\\\\\"counts\\\\\\\": {\\\\n        \\\\\\\"documents\\\\\\\": v[\\\\\\\"total_documents\\\\\\\"],\\\\n        \\\\\\\"documents_checked\\\\\\\": v[\\\\\\\"documents_checked\\\\\\\"],\\\\n        \\\\\\\"parse_failures\\\\\\\": v[\\\\\\\"parse_failures\\\\\\\"],\\\\n        \\\\\\\"unique_entities\\\\\\\": v[\\\\\\\"total_entities_unique\\\\\\\"],\\\\n        \\\\\\\"triples\\\\\\\": v[\\\\\\\"total_triples\\\\\\\"],\\\\n        \\\\\\\"dr_eligible_triples\\\\\\\": v[\\\\\\\"dr_eligible_triples\\\\\\\"],\\\\n        \\\\\\\"fuzzy_relation_matches\\\\\\\": v[\\\\\\\"fuzzy_matches\\\\\\\"],\\\\n    },\\\\n}\\\\nwith open(\\\\\\\"outputs/analysis_llama_docred_unconstrained_mt6144_v2.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(summary, f, indent=2)\\\\nprint(f\\\\\\\"\\\\\\\\nSaved: outputs/analysis_llama_docred_unconstrained_mt6144_v2.json\\\\\\\")\\\\nprint(json.dumps(summary, indent=2))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Analyze Llama DocRED unconstrained: violations (v2) + F1 (all_set).\\nSelf-contained to handle int head/tail edge cases.\\n\\\"\\\"\\\"\\nimport json\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nVALID_ENTITY_TYPES = {\\\"PER\\\", \\\"ORG\\\", \\\"LOC\\\", \\\"TIME\\\", \\\"NUM\\\", \\\"MISC\\\"}\\nENTITY_TYPE_ALIASES = {\\n    'PERSON': 'PER', 'PEOPLE': 'PER',\\n    'ORGANIZATION': 'ORG', 'ORGANISATION': 'ORG',\\n    'LOCATION': 'LOC', 'NUMBER': 'NUM', 'NUMERICAL': 'NUM',\\n    'MISCELLANEOUS': 'MISC',\\n}\\n\\ndef _levenshtein(s1, s2):\\n    if len(s1) < len(s2): return _levenshtein(s2, s1)\\n    if len(s2) == 0: return len(s1)\\n    prev_row = range(len(s2) + 1)\\n    for i, c1 in enumerate(s1):\\n        curr_row = [i + 1]\\n        for j, c2 in enumerate(s2):\\n            curr_row.append(min(prev_row[j+1]+1, curr_row[j]+1, prev_row[j]+(c1!=c2)))\\n        prev_row = curr_row\\n    return prev_row[-1]\\n\\ndef load_constraints(path):\\n    with open(path) as f: return json.load(f)\\n\\ndef build_name_to_id(rel_types):\\n    m = {}\\n    for rid, rname in rel_types.items():\\n        m[rname.lower().strip()] = rid\\n        m[rid.lower()] = rid\\n    return m\\n\\ndef normalize_relation(rel_name, rel_types, name_to_id):\\n    key = name_to_id.get(rel_name.lower().strip())\\n    if key: return key, rel_types.get(key, rel_name), False\\n    rel_tokens = set(rel_name.strip().lower().split())\\n    best_pid, best_name, best_overlap = None, None, 0.0\\n    for rid, rname in rel_types.items():\\n        rname_tokens = set(rname.lower().split())\\n        if rel_tokens and rname_tokens:\\n            overlap = len(rel_tokens & rname_tokens) / len(rel_tokens | rname_tokens)\\n            if overlap > 0.8 and overlap > best_overlap:\\n                best_overlap = overlap\\n                best_pid, best_name = rid, rname\\n    if best_pid: return best_pid, best_name, True\\n    for rid, rname in rel_types.items():\\n        if _levenshtein(rel_name.strip().lower(), rname.lower()) <= 2:\\n            return rid, rname, True\\n    return None, None, False\\n\\ndef normalize_etype(raw):\\n    t = str(raw).strip().upper()\\n    return ENTITY_TYPE_ALIASES.get(t, t)\\n\\n# ============================================================\\n# VIOLATION CHECKER (v2)\\n# ============================================================\\ndef check_violations(records, constraints, rel_types, name_to_id):\\n    total_docs = len(records)\\n    parse_failures = 0\\n    total_entities = 0\\n    entity_type_violations = 0\\n    total_triples = 0\\n    rv_violations = 0\\n    dr_violations = 0\\n    dr_eligible_triples = 0\\n    fuzzy_matches = 0\\n    cross_field_violations = 0\\n    triple_head_et = 0\\n    triple_tail_et = 0\\n    triple_either_et = 0\\n    invalid_type_dist = defaultdict(int)\\n\\n    # ET: per-unique-entity (text, normalized_type) dedup\\n    global_entity_set = set()\\n    global_entity_invalid_set = set()\\n\\n    for rec in records:\\n        parsed = rec.get(\\\"parsed_output\\\")\\n        if parsed is None:\\n            parse_failures += 1\\n            continue\\n\\n        entities = parsed.get(\\\"entities\\\", [])\\n        relations = parsed.get(\\\"relations\\\", [])\\n\\n        # Entity-level ET (unique entity dedup)\\n        for ent in entities:\\n            text = str(ent.get(\\\"text\\\", \\\"\\\")).strip().lower()\\n            raw_type = str(ent.get(\\\"type\\\", \\\"\\\"))\\n            norm_type = normalize_etype(raw_type)\\n            key = (text, norm_type)\\n            global_entity_set.add(key)\\n            if norm_type not in VALID_ENTITY_TYPES:\\n                global_entity_invalid_set.add(key)\\n                invalid_type_dist[raw_type] += 1\\n\\n        total_triples += len(relations)\\n\\n        # Cross-field consistency\\n        entity_type_assignments = defaultdict(set)\\n\\n        for rel in relations:\\n            h_type = normalize_etype(rel.get(\\\"head_type\\\", \\\"\\\"))\\n            t_type = normalize_etype(rel.get(\\\"tail_type\\\", \\\"\\\"))\\n            rel_type = str(rel.get(\\\"type\\\", \\\"\\\"))\\n            head = str(rel.get(\\\"head\\\", \\\"\\\"))\\n            tail = str(rel.get(\\\"tail\\\", \\\"\\\"))\\n\\n            if head and h_type:\\n                entity_type_assignments[head.lower()].add(h_type\\n\\n... [截断: 输出过长，省略 5238 字符] ...\\n\\n=================================================\\ninput_path = \\\"outputs/llama_docred_unconstrained_mt6144.jsonl\\\"\\nconstraints_path = \\\"data/docred/ontology_constraints_docred.json\\\"\\n\\nconstraints = load_constraints(constraints_path)\\nrel_types = constraints.get(\\\"relation_types\\\", {})\\nname_to_id = build_name_to_id(rel_types)\\n\\nrecords = []\\nwith open(input_path) as f:\\n    for line in f:\\n        line = line.strip()\\n        if line:\\n            records.append(json.loads(line))\\n\\n# --- Violations ---\\nv = check_violations(records, constraints, rel_types, name_to_id)\\n\\nprint(\\\"=\\\" * 60)\\nprint(\\\"VIOLATION CHECK (v2, unique_et) - Llama DocRED Unconstrained\\\")\\nprint(\\\"=\\\" * 60)\\nprint(f\\\"Docs: {v['documents_checked']}/{v['total_documents']}, Parse fail: {v['parse_failures']}\\\")\\nprint(f\\\"Unique entities: {v['total_entities_unique']}, Triples: {v['total_triples']}\\\")\\nprint(f\\\"ET: {v['entity_type_violations']}/{v['total_entities_unique']} = {100*v['ET_rate']:.2f}%\\\")\\nprint(f\\\"RV: {v['relation_vocabulary_violations']}/{v['total_triples']} = {100*v['RV_rate']:.2f}%\\\")\\nprint(f\\\"DR (all): {v['domain_range_violations']}/{v['total_triples']} = {100*v['DR_rate_all']:.2f}%\\\")\\nprint(f\\\"DR (eligible): {v['domain_range_violations']}/{v['dr_eligible_triples']} = {100*v['DR_rate_eligible']:.2f}%\\\")\\nprint(f\\\"CF: {v['cross_field_violations']}/{v['total_entities_unique']} = {100*v['CF_rate']:.2f}%\\\")\\nif v['invalid_type_distribution']:\\n    print(f\\\"Top invalid types: {v['invalid_type_distribution']}\\\")\\n\\n# --- F1 ---\\nf1_result = evaluate_f1(records, constraints, rel_types, name_to_id)\\nep, er, ef1 = prf(f1_result[\\\"entity\\\"])\\nrp, rr, rf1 = prf(f1_result[\\\"relation\\\"])\\n\\nprint()\\nprint(\\\"=\\\" * 60)\\nprint(\\\"F1 EVALUATION (all_set) - Llama DocRED Unconstrained\\\")\\nprint(\\\"=\\\" * 60)\\nprint(f\\\"Entity:   P={ep:.4f} R={er:.4f} F1={ef1:.4f} (tp={f1_result['entity']['tp']}, gold={f1_result['entity']['gold']}, pred={f1_result['entity']['pred']})\\\")\\nprint(f\\\"Relation: P={rp:.4f} R={rr:.4f} F1={rf1:.4f} (tp={f1_result['relation']['tp']}, gold={f1_result['relation']['gold']}, pred={f1_result['relation']['pred']})\\\")\\n\\n# --- Comparison with Qwen3-8B ---\\nprint()\\nprint(\\\"=\\\" * 60)\\nprint(\\\"COMPARISON: Llama-3.1-8B vs Qwen3-8B (DocRED Unconstrained)\\\")\\nprint(\\\"=\\\" * 60)\\nqwen = {\\\"DR\\\": 18.46, \\\"RV\\\": 29.66, \\\"ET\\\": 2.48, \\\"CF\\\": 0.10, \\\"R-F1\\\": 7.74, \\\"E-F1\\\": 58.15}\\nllama = {\\n    \\\"DR\\\": round(100*v['DR_rate_all'], 2),\\n    \\\"RV\\\": round(100*v['RV_rate'], 2),\\n    \\\"ET\\\": round(100*v['ET_rate'], 2),\\n    \\\"CF\\\": round(100*v['CF_rate'], 2),\\n    \\\"R-F1\\\": round(100*rf1, 2),\\n    \\\"E-F1\\\": round(100*ef1, 2),\\n}\\nprint(f\\\"{'Metric':<10} {'Qwen3-8B':>10} {'Llama-3.1':>10} {'Delta':>10}\\\")\\nprint(\\\"-\\\" * 42)\\nfor k in [\\\"DR\\\", \\\"RV\\\", \\\"ET\\\", \\\"CF\\\", \\\"R-F1\\\", \\\"E-F1\\\"]:\\n    delta = llama[k] - qwen[k]\\n    print(f\\\"{k:<10} {qwen[k]:>9.2f}% {llama[k]:>9.2f}% {delta:>+9.2f}pp\\\")\\n\\n# Save summary JSON\\nsummary = {\\n    \\\"checker_version\\\": \\\"fixed_20260514_v2\\\",\\n    \\\"f1_method\\\": \\\"all_set\\\",\\n    \\\"model\\\": \\\"Llama-3.1-8B-Instruct\\\",\\n    \\\"dataset\\\": \\\"DocRED\\\",\\n    \\\"mode\\\": \\\"unconstrained\\\",\\n    \\\"violations\\\": {\\n        \\\"DR_rate\\\": llama[\\\"DR\\\"],\\n        \\\"RV_rate\\\": llama[\\\"RV\\\"],\\n        \\\"ET_rate\\\": llama[\\\"ET\\\"],\\n        \\\"CF_rate\\\": llama[\\\"CF\\\"],\\n    },\\n    \\\"f1\\\": {\\n        \\\"entity_precision\\\": round(100*ep, 2),\\n        \\\"entity_recall\\\": round(100*er, 2),\\n        \\\"entity_f1\\\": llama[\\\"E-F1\\\"],\\n        \\\"relation_precision\\\": round(100*rp, 2),\\n        \\\"relation_recall\\\": round(100*rr, 2),\\n        \\\"relation_f1\\\": llama[\\\"R-F1\\\"],\\n    },\\n    \\\"counts\\\": {\\n        \\\"documents\\\": v[\\\"total_documents\\\"],\\n        \\\"documents_checked\\\": v[\\\"documents_checked\\\"],\\n        \\\"parse_failures\\\": v[\\\"parse_failures\\\"],\\n        \\\"unique_entities\\\": v[\\\"total_entities_unique\\\"],\\n        \\\"triples\\\": v[\\\"total_triples\\\"],\\n        \\\"dr_eligible_triples\\\": v[\\\"dr_eligible_triples\\\"],\\n        \\\"fuzzy_relation_matches\\\": v[\\\"fuzzy_matches\\\"],\\n    },\\n}\\nwith open(\\\"outputs/analysis_llama_docred_unconstrained_mt6144_v2.json\\\", \\\"w\\\") as f:\\n    json.dump(summary, f, indent=2)\\nprint(f\\\"\\\\nSaved: outputs/analysis_llama_docred_unconstrained_mt6144_v2.json\\\")\\nprint(json.dumps(summary, indent=2))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f97216aa-1d0c-4e11-8c17-c58a4509b87f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T14:07:32.237Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UHUGpyfm6E38W5BcH3Scbd`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "head -1 /root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4ecbb17-2279-4a78-9d8f-6f0dee46771e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V52p26aLQ7qKfhGTk6",
+  "type": "assistant",
+  "uuid": "6899808f-1a1c-4c6a-9739-788f6ed7fa54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_0149Lvx6cAL7hKa4ixXvMJoD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1409,
+      "cache_read_input_tokens": 37267,
+      "output_tokens": 367,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1409,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 367,
+          "cache_read_input_tokens": 37267,
+          "cache_creation_input_tokens": 1409,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1409
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "6899808f-1a1c-4c6a-9739-788f6ed7fa54",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze llama_docred_unconstrained_mt6144 experiment",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269"
+}
+```
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T14:07:32.766Z_
+
+<details><summary>↩ Tool result · `toolu_01UHUGpyfm6E38W5BcH3Scbd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": \\\"Skai TV\\\", \\\"input_text\\\": \\\"Skai TV is a Greek free - to - air television network based in Piraeus . It is part of the Skai Group , one of the largest media groups in the country . It was relaunched in its present form on 1st of April 2006 in the Athens metropolitan area , and gradually spread its coverage nationwide . Besides digital terrestrial transmission , it is available on the subscription - based encrypted services of Nova and Cosmote TV . Skai TV is also a member of Digea , a consortium of private television networks introducing digital terrestrial transmission in Greece . At launch , Skai TV opted for dubbing all foreign language content into Greek , instead of using subtitles . This is very uncommon in Greece for anything except documentaries ( using voiceover dubbing ) and children 's programmes ( using lip - synced dubbing ) , so after intense criticism the station switched to using subtitles for almost all foreign shows .\\\", \\\"gold_entities\\\": [{\\\"text\\\": \\\"Skai TV\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Greek\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Piraeus\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Skai Group\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"1st of April 2006\\\", \\\"type\\\": \\\"TIME\\\"}, {\\\"text\\\": \\\"Athens\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Nova\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Cosmote TV\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Digea\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Greece\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Greek\\\", \\\"type\\\": \\\"MISC\\\"}], \\\"gold_relations\\\": [{\\\"head\\\": \\\"Piraeus\\\", \\\"tail\\\": \\\"Greece\\\", \\\"type\\\": \\\"P17\\\", \\\"head_type\\\": \\\"LOC\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Skai Group\\\", \\\"tail\\\": \\\"Greece\\\", \\\"type\\\": \\\"P17\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Athens\\\", \\\"tail\\\": \\\"Greece\\\", \\\"type\\\": \\\"P17\\\", \\\"head_type\\\": \\\"LOC\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Piraeus\\\", \\\"type\\\": \\\"P159\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Skai Group\\\", \\\"type\\\": \\\"P127\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"ORG\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Athens\\\", \\\"type\\\": \\\"P159\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Greece\\\", \\\"type\\\": \\\"P17\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"LOC\\\"}], \\\"raw_output\\\": \\\"{\\\\n  \\\\\\\"entities\\\\\\\": [\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Skai Group\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Piraeus\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Athens\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"April\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"TIME\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"2006\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"NUM\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Nova\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Cosmote TV\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Digea\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}\\\\n  ],\\\\n  \\\\\\\"relations\\\\\\\": [\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Skai Group\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"part of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"ORG\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"country of origin\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Piraeus\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"headquarters location\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Athens\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"located in the administrative territorial entity\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"April\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"start time\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"TIME\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"2006\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"start time\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"NUM\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Nova\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"available on\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"ORG\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Cosmote TV\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"available on\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"ORG\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Digea\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"member of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"ORG\\\\\\\"}\\\\n  ]\\\\n}\\\", \\\"parsed_output\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Skai TV\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Skai Group\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Greece\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Piraeus\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Athens\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"April\\\", \\\"type\\\": \\\"TIME\\\"}, {\\\"text\\\": \\\"2006\\\", \\\"type\\\": \\\"NUM\\\"}, {\\\"text\\\": \\\"Nova\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Cosmote TV\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Digea\\\", \\\"type\\\": \\\"ORG\\\"}], \\\"relations\\\": [{\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Skai Group\\\", \\\"type\\\": \\\"part of\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"ORG\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Greece\\\", \\\"type\\\": \\\"country of origin\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Piraeus\\\", \\\"type\\\": \\\"headquarters location\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Athens\\\", \\\"type\\\": \\\"located in the administrative territorial entity\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"April\\\", \\\"type\\\": \\\"start time\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"TIME\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"2006\\\", \\\"type\\\": \\\"start time\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"NUM\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Nova\\\", \\\"type\\\": \\\"available on\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"ORG\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Cosmote TV\\\", \\\"type\\\": \\\"available on\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"ORG\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Digea\\\", \\\"type\\\": \\\"member of\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"ORG\\\"}]}, \\\"inference_time_seconds\\\": 8.394, \\\"mode\\\": \\\"unconstrained\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6899808f-1a1c-4c6a-9739-788f6ed7fa54",
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "17209a82-3d5d-454c-9328-603081e72bd0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"input_text\\\\\\\": \\\\\\\"Skai TV is a Greek free - to - air television network based in Piraeus . It is part of the Skai Group , one of the largest media groups in the country . It was relaunched in its present form on 1st of April 2006 in the Athens metropolitan area , and gradually spread its coverage nationwide . Besides digital terrestrial transmission , it is available on the subscription - based encrypted services of Nova and Cosmote TV . Skai TV is also a member of Digea , a consortium of private television networks introducing digital terrestrial transmission in Greece . At launch , Skai TV opted for dubbing all foreign language content into Greek , instead of using subtitles . This is very uncommon in Greece for anything except documentaries ( using voiceover dubbing ) and children 's programmes ( using lip - synced dubbing ) , so after intense criticism the station switched to using subtitles for almost all foreign shows .\\\\\\\", \\\\\\\"gold_entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Greek\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Piraeus\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Skai Group\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"1st of April 2006\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"TIME\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Athens\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Nova\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Cosmote TV\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Digea\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Greek\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"MISC\\\\\\\"}], \\\\\\\"gold_relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Piraeus\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"P17\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai Group\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"P17\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"Athens\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"P17\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"LOC\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Piraeus\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"P159\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Skai Group\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"P127\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Athens\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"P159\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"P17\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"}], \\\\\\\"raw_output\\\\\\\": \\\\\\\"{\\\\\\\\n  \\\\\\\\\\\\\\\"entities\\\\\\\\\\\\\\\": [\\\\\\\\n    {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai Group\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Greece\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"LOC\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Piraeus\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"LOC\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Athens\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"LOC\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"April\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"TIME\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"2006\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"NUM\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Nova\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Cosmote TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"text\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Digea\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\"}\\\\\\\\n  ],\\\\\\\\n  \\\\\\\\\\\\\\\"relations\\\\\\\\\\\\\\\": [\\\\\\\\n    {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai Group\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"part of\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"head_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Greece\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"country of origin\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"head_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"LOC\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Piraeus\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"headquarters location\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"head_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"LOC\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Athens\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"located in the administrative territorial entity\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"head_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"LOC\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"April\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"start time\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"head_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"TIME\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"2006\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"start time\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"head_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"NUM\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Nova\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"available on\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"head_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Cosmote TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"available on\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"head_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\"},\\\\\\\\n    {\\\\\\\\\\\\\\\"head\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Skai TV\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"Digea\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"member of\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"head_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\", \\\\\\\\\\\\\\\"tail_type\\\\\\\\\\\\\\\": \\\\\\\\\\\\\\\"ORG\\\\\\\\\\\\\\\"}\\\\\\\\n  ]\\\\\\\\n}\\\\\\\", \\\\\\\"parsed_output\\\\\\\": {\\\\\\\"entities\\\\\\\": [{\\\\\\\"text\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Skai Group\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Piraeus\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Athens\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"April\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"TIME\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"2006\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"NUM\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Nova\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Cosmote TV\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"text\\\\\\\": \\\\\\\"Digea\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}], \\\\\\\"relations\\\\\\\": [{\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Skai Group\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"part of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"country of origin\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Piraeus\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"headquarters location\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Athens\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"located in the administrative territorial entity\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"April\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"start time\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"TIME\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"2006\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"start time\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"NUM\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Nova\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"available on\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Cosmote TV\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"available on\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"ORG\\\\\\\"}, {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Digea\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"member of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"ORG\\\\\\\"}]}, \\\\\\\"inference_time_seconds\\\\\\\": 8.394, \\\\\\\"mode\\\\\\\": \\\\\\\"unconstrained\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": \\\"Skai TV\\\", \\\"input_text\\\": \\\"Skai TV is a Greek free - to - air television network based in Piraeus . It is part of the Skai Group , one of the largest media groups in the country . It was relaunched in its present form on 1st of April 2006 in the Athens metropolitan area , and gradually spread its coverage nationwide . Besides digital terrestrial transmission , it is available on the subscription - based encrypted services of Nova and Cosmote TV . Skai TV is also a member of Digea , a consortium of private television networks introducing digital terrestrial transmission in Greece . At launch , Skai TV opted for dubbing all foreign language content into Greek , instead of using subtitles . This is very uncommon in Greece for anything except documentaries ( using voiceover dubbing ) and children 's programmes ( using lip - synced dubbing ) , so after intense criticism the station switched to using subtitles for almost all foreign shows .\\\", \\\"gold_entities\\\": [{\\\"text\\\": \\\"Skai TV\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Greek\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Piraeus\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Skai Group\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"1st of April 2006\\\", \\\"type\\\": \\\"TIME\\\"}, {\\\"text\\\": \\\"Athens\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Nova\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Cosmote TV\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Digea\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Greece\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Greek\\\", \\\"type\\\": \\\"MISC\\\"}], \\\"gold_relations\\\": [{\\\"head\\\": \\\"Piraeus\\\", \\\"tail\\\": \\\"Greece\\\", \\\"type\\\": \\\"P17\\\", \\\"head_type\\\": \\\"LOC\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Skai Group\\\", \\\"tail\\\": \\\"Greece\\\", \\\"type\\\": \\\"P17\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Athens\\\", \\\"tail\\\": \\\"Greece\\\", \\\"type\\\": \\\"P17\\\", \\\"head_type\\\": \\\"LOC\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Piraeus\\\", \\\"type\\\": \\\"P159\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Skai Group\\\", \\\"type\\\": \\\"P127\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"ORG\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Athens\\\", \\\"type\\\": \\\"P159\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Greece\\\", \\\"type\\\": \\\"P17\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"LOC\\\"}], \\\"raw_output\\\": \\\"{\\\\n  \\\\\\\"entities\\\\\\\": [\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Skai Group\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Piraeus\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Athens\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"LOC\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"April\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"TIME\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"2006\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"NUM\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Nova\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Cosmote TV\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"},\\\\n    {\\\\\\\"text\\\\\\\": \\\\\\\"Digea\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"ORG\\\\\\\"}\\\\n  ],\\\\n  \\\\\\\"relations\\\\\\\": [\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Skai Group\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"part of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"ORG\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Greece\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"country of origin\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Piraeus\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"headquarters location\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Athens\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"located in the administrative territorial entity\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"LOC\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"April\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"start time\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"TIME\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"2006\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"start time\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"NUM\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Nova\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"available on\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"ORG\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Cosmote TV\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"available on\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"ORG\\\\\\\"},\\\\n    {\\\\\\\"head\\\\\\\": \\\\\\\"Skai TV\\\\\\\", \\\\\\\"tail\\\\\\\": \\\\\\\"Digea\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"member of\\\\\\\", \\\\\\\"head_type\\\\\\\": \\\\\\\"ORG\\\\\\\", \\\\\\\"tail_type\\\\\\\": \\\\\\\"ORG\\\\\\\"}\\\\n  ]\\\\n}\\\", \\\"parsed_output\\\": {\\\"entities\\\": [{\\\"text\\\": \\\"Skai TV\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Skai Group\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Greece\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Piraeus\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"Athens\\\", \\\"type\\\": \\\"LOC\\\"}, {\\\"text\\\": \\\"April\\\", \\\"type\\\": \\\"TIME\\\"}, {\\\"text\\\": \\\"2006\\\", \\\"type\\\": \\\"NUM\\\"}, {\\\"text\\\": \\\"Nova\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Cosmote TV\\\", \\\"type\\\": \\\"ORG\\\"}, {\\\"text\\\": \\\"Digea\\\", \\\"type\\\": \\\"ORG\\\"}], \\\"relations\\\": [{\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Skai Group\\\", \\\"type\\\": \\\"part of\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"ORG\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Greece\\\", \\\"type\\\": \\\"country of origin\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Piraeus\\\", \\\"type\\\": \\\"headquarters location\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Athens\\\", \\\"type\\\": \\\"located in the administrative territorial entity\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"LOC\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"April\\\", \\\"type\\\": \\\"start time\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"TIME\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"2006\\\", \\\"type\\\": \\\"start time\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"NUM\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Nova\\\", \\\"type\\\": \\\"available on\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"ORG\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Cosmote TV\\\", \\\"type\\\": \\\"available on\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"ORG\\\"}, {\\\"head\\\": \\\"Skai TV\\\", \\\"tail\\\": \\\"Digea\\\", \\\"type\\\": \\\"member of\\\", \\\"head_type\\\": \\\"ORG\\\", \\\"tail_type\\\": \\\"ORG\\\"}]}, \\\"inference_time_seconds\\\": 8.394, \\\"mode\\\": \\\"unconstrained\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6899808f-1a1c-4c6a-9739-788f6ed7fa54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "17209a82-3d5d-454c-9328-603081e72bd0",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze llama_docred_unconstrained_mt6144 experiment",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269"
+}
+```
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-15T14:07:37.108Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17209a82-3d5d-454c-9328-603081e72bd0",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V5SHePE3D7XpxtyMG2",
+  "type": "assistant",
+  "uuid": "a749ad75-ce9f-443f-aefc-914152447b5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01BcGSCMpHNJ4w7eFc6UDRaR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11395,
+      "cache_read_input_tokens": 38676,
+      "output_tokens": 379,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11395,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 379,
+          "cache_read_input_tokens": 38676,
+          "cache_creation_input_tokens": 11395,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11395
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-15T14:07:37.689Z_
+
+Analysis script is already custom-built for this experiment. Let me run it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a749ad75-ce9f-443f-aefc-914152447b5d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V5SHePE3D7XpxtyMG2",
+  "type": "assistant",
+  "uuid": "3ba0c243-ca06-4408-a7ab-881686b6d908",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01BcGSCMpHNJ4w7eFc6UDRaR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11395,
+      "cache_read_input_tokens": 38676,
+      "output_tokens": 379,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11395,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 379,
+          "cache_read_input_tokens": 38676,
+          "cache_creation_input_tokens": 11395,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11395
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T14:07:39.268Z_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01PGvSdrFLb3eNFRJqEHEpK1`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Confirm output file integrity",
+      "status": "completed",
+      "activeForm": "Confirming output file integrity"
+    },
+    {
+      "content": "Run violation checker + F1",
+      "status": "in_progress",
+      "activeForm": "Running violation checker + F1"
+    },
+    {
+      "content": "Compare with mt4096 baseline",
+      "status": "pending",
+      "activeForm": "Comparing with mt4096 baseline"
+    },
+    {
+      "content": "Update registry with metrics",
+      "status": "pending",
+      "activeForm": "Updating registry with metrics"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ba0c243-ca06-4408-a7ab-881686b6d908",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V5SHePE3D7XpxtyMG2",
+  "type": "assistant",
+  "uuid": "851202de-0ae5-4592-ba16-02af556e2363",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01BcGSCMpHNJ4w7eFc6UDRaR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11395,
+      "cache_read_input_tokens": 38676,
+      "output_tokens": 379,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11395,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 379,
+          "cache_read_input_tokens": 38676,
+          "cache_creation_input_tokens": 11395,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11395
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T14:07:39.277Z_
+
+<details><summary>↩ Tool result · `toolu_01PGvSdrFLb3eNFRJqEHEpK1`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "851202de-0ae5-4592-ba16-02af556e2363",
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "b9cdb967-99e0-4cfe-9438-af4a9a638904",
+  "toolUseResult": {
+    "oldTodos": [
+      {
+        "content": "Confirm output file integrity",
+        "status": "in_progress",
+        "activeForm": "Confirming output file integrity"
+      },
+      {
+        "content": "Run violation checker",
+        "status": "pending",
+        "activeForm": "Running violation checker"
+      },
+      {
+        "content": "Compute F1 metrics",
+        "status": "pending",
+        "activeForm": "Computing F1 metrics"
+      },
+      {
+        "content": "Compare with mt4096 baseline",
+        "status": "pending",
+        "activeForm": "Comparing with mt4096 baseline"
+      },
+      {
+        "content": "Update registry with metrics",
+        "status": "pending",
+        "activeForm": "Updating registry with metrics"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Confirm output file integrity",
+        "status": "completed",
+        "activeForm": "Confirming output file integrity"
+      },
+      {
+        "content": "Run violation checker + F1",
+        "status": "in_progress",
+        "activeForm": "Running violation checker + F1"
+      },
+      {
+        "content": "Compare with mt4096 baseline",
+        "status": "pending",
+        "activeForm": "Comparing with mt4096 baseline"
+      },
+      {
+        "content": "Update registry with metrics",
+        "status": "pending",
+        "activeForm": "Updating registry with metrics"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  },
+  "sourceToolAssistantUUID": "851202de-0ae5-4592-ba16-02af556e2363",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T14:07:43.904Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FtcAtSgozGmRwGens35MnZ`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cd /root/schema_semantic_constrained_ie && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 analyze_llama_docred_mt6144.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b9cdb967-99e0-4cfe-9438-af4a9a638904",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V5v7Di1yQuo3Zj8aGA",
+  "type": "assistant",
+  "uuid": "648ea328-13fe-40ad-9a09-0d31e7bdd8cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01A3gNHKMnnz9XUaUjSd7mxs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 437,
+      "cache_read_input_tokens": 50071,
+      "output_tokens": 306,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 437,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 306,
+          "cache_read_input_tokens": 50071,
+          "cache_creation_input_tokens": 437,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 437
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T14:07:44.656Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_016d6kN4EG9vMu5xHemSxns8`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "llama_docred_unconstrained"
+  },
+  "project": "schema_semantic_constrained_ie",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "648ea328-13fe-40ad-9a09-0d31e7bdd8cc",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V5v7Di1yQuo3Zj8aGA",
+  "type": "assistant",
+  "uuid": "874fdc78-38a3-4994-8e71-1003ec188fa9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01A3gNHKMnnz9XUaUjSd7mxs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 437,
+      "cache_read_input_tokens": 50071,
+      "output_tokens": 306,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 437,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 306,
+          "cache_read_input_tokens": 50071,
+          "cache_creation_input_tokens": 437,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 437
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T14:07:54.317Z_
+
+<details><summary>↩ Tool result · `toolu_01FtcAtSgozGmRwGens35MnZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nVIOLATION CHECK (v2, unique_et) - Llama DocRED Unconstrained\\n============================================================\\nDocs: 931/998, Parse fail: 67\\nUnique entities: 11534, Triples: 16584\\nET: 15/11534 = 0.13%\\nRV: 2635/16584 = 15.89%\\nDR (all): 4341/16584 = 26.18%\\nDR (eligible): 4341/13936 = 31.15%\\nCF: 20/11534 = 0.17%\\nTop invalid types: {'': 24, 'CONTINENT': 5, 'SERIES': 4, 'RIVER': 1, 'ETHNIC_GROUP': 1, 'EVENT': 1}\\n\\n============================================================\\nF1 EVALUATION (all_set) - Llama DocRED Unconstrained\\n============================================================\\nEntity:   P=0.6119 R=0.5106 F1=0.5567 (tp=9941, gold=19471, pred=16246)\\nRelation: P=0.0518 R=0.0700 F1=0.0595 (tp=850, gold=12151, pred=16418)\\n\\n============================================================\\nCOMPARISON: Llama-3.1-8B vs Qwen3-8B (DocRED Unconstrained)\\n============================================================\\nMetric       Qwen3-8B  Llama-3.1      Delta\\n------------------------------------------\\nDR             18.46%     26.18%     +7.72pp\\nRV             29.66%     15.89%    -13.77pp\\nET              2.48%      0.13%     -2.35pp\\nCF              0.10%      0.17%     +0.07pp\\nR-F1            7.74%      5.95%     -1.79pp\\nE-F1           58.15%     55.67%     -2.48pp\\n\\nSaved: outputs/analysis_llama_docred_unconstrained_mt6144_v2.json\\n{\\n  \\\"checker_version\\\": \\\"fixed_20260514_v2\\\",\\n  \\\"f1_method\\\": \\\"all_set\\\",\\n  \\\"model\\\": \\\"Llama-3.1-8B-Instruct\\\",\\n  \\\"dataset\\\": \\\"DocRED\\\",\\n  \\\"mode\\\": \\\"unconstrained\\\",\\n  \\\"violations\\\": {\\n    \\\"DR_rate\\\": 26.18,\\n    \\\"RV_rate\\\": 15.89,\\n    \\\"ET_rate\\\": 0.13,\\n    \\\"CF_rate\\\": 0.17\\n  },\\n  \\\"f1\\\": {\\n    \\\"entity_precision\\\": 61.19,\\n    \\\"entity_recall\\\": 51.06,\\n    \\\"entity_f1\\\": 55.67,\\n    \\\"relation_precision\\\": 5.18,\\n    \\\"relation_recall\\\": 7.0,\\n    \\\"relation_f1\\\": 5.95\\n  },\\n  \\\"counts\\\": {\\n    \\\"documents\\\": 998,\\n    \\\"documents_checked\\\": 931,\\n    \\\"parse_failures\\\": 67,\\n    \\\"unique_entities\\\": 11534,\\n    \\\"triples\\\": 16584,\\n    \\\"dr_eligible_triples\\\": 13936,\\n    \\\"fuzzy_relation_matches\\\": 121\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "648ea328-13fe-40ad-9a09-0d31e7bdd8cc",
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "68553ec5-7cb3-41d2-8e5b-b575ff77f3e6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nVIOLATION CHECK (v2, unique_et) - Llama DocRED Unconstrained\\\\n============================================================\\\\nDocs: 931/998, Parse fail: 67\\\\nUnique entities: 11534, Triples: 16584\\\\nET: 15/11534 = 0.13%\\\\nRV: 2635/16584 = 15.89%\\\\nDR (all): 4341/16584 = 26.18%\\\\nDR (eligible): 4341/13936 = 31.15%\\\\nCF: 20/11534 = 0.17%\\\\nTop invalid types: {'': 24, 'CONTINENT': 5, 'SERIES': 4, 'RIVER': 1, 'ETHNIC_GROUP': 1, 'EVENT': 1}\\\\n\\\\n============================================================\\\\nF1 EVALUATION (all_set) - Llama DocRED Unconstrained\\\\n============================================================\\\\nEntity:   P=0.6119 R=0.5106 F1=0.5567 (tp=9941, gold=19471, pred=16246)\\\\nRelation: P=0.0518 R=0.0700 F1=0.0595 (tp=850, gold=12151, pred=16418)\\\\n\\\\n============================================================\\\\nCOMPARISON: Llama-3.1-8B vs Qwen3-8B (DocRED Unconstrained)\\\\n============================================================\\\\nMetric       Qwen3-8B  Llama-3.1      Delta\\\\n------------------------------------------\\\\nDR             18.46%     26.18%     +7.72pp\\\\nRV             29.66%     15.89%    -13.77pp\\\\nET              2.48%      0.13%     -2.35pp\\\\nCF              0.10%      0.17%     +0.07pp\\\\nR-F1            7.74%      5.95%     -1.79pp\\\\nE-F1           58.15%     55.67%     -2.48pp\\\\n\\\\nSaved: outputs/analysis_llama_docred_unconstrained_mt6144_v2.json\\\\n{\\\\n  \\\\\\\"checker_version\\\\\\\": \\\\\\\"fixed_20260514_v2\\\\\\\",\\\\n  \\\\\\\"f1_method\\\\\\\": \\\\\\\"all_set\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Llama-3.1-8B-Instruct\\\\\\\",\\\\n  \\\\\\\"dataset\\\\\\\": \\\\\\\"DocRED\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"unconstrained\\\\\\\",\\\\n  \\\\\\\"violations\\\\\\\": {\\\\n    \\\\\\\"DR_rate\\\\\\\": 26.18,\\\\n    \\\\\\\"RV_rate\\\\\\\": 15.89,\\\\n    \\\\\\\"ET_rate\\\\\\\": 0.13,\\\\n    \\\\\\\"CF_rate\\\\\\\": 0.17\\\\n  },\\\\n  \\\\\\\"f1\\\\\\\": {\\\\n    \\\\\\\"entity_precision\\\\\\\": 61.19,\\\\n    \\\\\\\"entity_recall\\\\\\\": 51.06,\\\\n    \\\\\\\"entity_f1\\\\\\\": 55.67,\\\\n    \\\\\\\"relation_precision\\\\\\\": 5.18,\\\\n    \\\\\\\"relation_recall\\\\\\\": 7.0,\\\\n    \\\\\\\"relation_f1\\\\\\\": 5.95\\\\n  },\\\\n  \\\\\\\"counts\\\\\\\": {\\\\n    \\\\\\\"documents\\\\\\\": 998,\\\\n    \\\\\\\"documents_checked\\\\\\\": 931,\\\\n    \\\\\\\"parse_failures\\\\\\\": 67,\\\\n    \\\\\\\"unique_entities\\\\\\\": 11534,\\\\n    \\\\\\\"triples\\\\\\\": 16584,\\\\n    \\\\\\\"dr_eligible_triples\\\\\\\": 13936,\\\\n    \\\\\\\"fuzzy_relation_matches\\\\\\\": 121\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.4}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nVIOLATION CHECK (v2, unique_et) - Llama DocRED Unconstrained\\n============================================================\\nDocs: 931/998, Parse fail: 67\\nUnique entities: 11534, Triples: 16584\\nET: 15/11534 = 0.13%\\nRV: 2635/16584 = 15.89%\\nDR (all): 4341/16584 = 26.18%\\nDR (eligible): 4341/13936 = 31.15%\\nCF: 20/11534 = 0.17%\\nTop invalid types: {'': 24, 'CONTINENT': 5, 'SERIES': 4, 'RIVER': 1, 'ETHNIC_GROUP': 1, 'EVENT': 1}\\n\\n============================================================\\nF1 EVALUATION (all_set) - Llama DocRED Unconstrained\\n============================================================\\nEntity:   P=0.6119 R=0.5106 F1=0.5567 (tp=9941, gold=19471, pred=16246)\\nRelation: P=0.0518 R=0.0700 F1=0.0595 (tp=850, gold=12151, pred=16418)\\n\\n============================================================\\nCOMPARISON: Llama-3.1-8B vs Qwen3-8B (DocRED Unconstrained)\\n============================================================\\nMetric       Qwen3-8B  Llama-3.1      Delta\\n------------------------------------------\\nDR             18.46%     26.18%     +7.72pp\\nRV             29.66%     15.89%    -13.77pp\\nET              2.48%      0.13%     -2.35pp\\nCF              0.10%      0.17%     +0.07pp\\nR-F1            7.74%      5.95%     -1.79pp\\nE-F1           58.15%     55.67%     -2.48pp\\n\\nSaved: outputs/analysis_llama_docred_unconstrained_mt6144_v2.json\\n{\\n  \\\"checker_version\\\": \\\"fixed_20260514_v2\\\",\\n  \\\"f1_method\\\": \\\"all_set\\\",\\n  \\\"model\\\": \\\"Llama-3.1-8B-Instruct\\\",\\n  \\\"dataset\\\": \\\"DocRED\\\",\\n  \\\"mode\\\": \\\"unconstrained\\\",\\n  \\\"violations\\\": {\\n    \\\"DR_rate\\\": 26.18,\\n    \\\"RV_rate\\\": 15.89,\\n    \\\"ET_rate\\\": 0.13,\\n    \\\"CF_rate\\\": 0.17\\n  },\\n  \\\"f1\\\": {\\n    \\\"entity_precision\\\": 61.19,\\n    \\\"entity_recall\\\": 51.06,\\n    \\\"entity_f1\\\": 55.67,\\n    \\\"relation_precision\\\": 5.18,\\n    \\\"relation_recall\\\": 7.0,\\n    \\\"relation_f1\\\": 5.95\\n  },\\n  \\\"counts\\\": {\\n    \\\"documents\\\": 998,\\n    \\\"documents_checked\\\": 931,\\n    \\\"parse_failures\\\": 67,\\n    \\\"unique_entities\\\": 11534,\\n    \\\"triples\\\": 16584,\\n    \\\"dr_eligible_triples\\\": 13936,\\n    \\\"fuzzy_relation_matches\\\": 121\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.4}}"
+    }
+  },
+  "sourceToolAssistantUUID": "648ea328-13fe-40ad-9a09-0d31e7bdd8cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T14:07:54.454Z_
+
+<details><summary>↩ Tool result · `toolu_016d6kN4EG9vMu5xHemSxns8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1204}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "874fdc78-38a3-4994-8e71-1003ec188fa9",
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "20156567-e6a9-4d1b-86fa-fe85af03cb50",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1204}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1204}}"
+    }
+  },
+  "sourceToolAssistantUUID": "874fdc78-38a3-4994-8e71-1003ec188fa9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-15T14:07:56.650Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "20156567-e6a9-4d1b-86fa-fe85af03cb50",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V72oaAZXe8Y31zsF2K",
+  "type": "assistant",
+  "uuid": "f27632d1-b028-4952-8bde-9a789e5aa7ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01MpUR4noXU4Abc1mLzxz4sv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1836,
+      "cache_read_input_tokens": 50508,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1836,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 50508,
+          "cache_creation_input_tokens": 1836,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1836
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-15T14:07:57.611Z_
+
+Got the metrics. Let me find the mt4096 baseline record.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f27632d1-b028-4952-8bde-9a789e5aa7ca",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V72oaAZXe8Y31zsF2K",
+  "type": "assistant",
+  "uuid": "dfed83fe-fb99-4be4-809d-bb9230b3d7fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01MpUR4noXU4Abc1mLzxz4sv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1836,
+      "cache_read_input_tokens": 50508,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1836,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 50508,
+          "cache_creation_input_tokens": 1836,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1836
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T14:07:58.276Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_016cHothXswP7vR83SYdthbD`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "fields": [
+    "exp_id",
+    "status",
+    "conclusion",
+    "metrics"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dfed83fe-fb99-4be4-809d-bb9230b3d7fa",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V72oaAZXe8Y31zsF2K",
+  "type": "assistant",
+  "uuid": "019fb36d-d6d9-447f-a940-7c809f6bb5da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01MpUR4noXU4Abc1mLzxz4sv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1836,
+      "cache_read_input_tokens": 50508,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1836,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 50508,
+          "cache_creation_input_tokens": 1836,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1836
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T14:07:58.485Z_
+
+<details><summary>↩ Tool result · `toolu_016cHothXswP7vR83SYdthbD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"w1_cf_fallback_scierc_pilot\": {\"status\": \"RUNNING\"}, \"llama_docred_unconstrained_mt6144\": {\"status\": \"ANALYZING\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"f1_method\": \"all_set\", \"documents_total\": 998, \"documents_checked\": 931, \"parse_failures\": 67, \"unique_entities\": 11534, \"total_triples\": 16584, \"dr_eligible_triples\": 13936, \"fuzzy_relation_matches\": 121, \"ET_rate\": 0.13, \"RV_rate\": 15.89, \"DR_rate_all\": 26.18, \"DR_rate_eligible\": 31.15, \"CF_rate\": 0.17, \"entity_precision\": 61.19, \"entity_recall\": 51.06, \"entity_f1\": 55.67, \"relation_precision\": 5.18, \"relation_recall\": 7, \"relation_f1\": 5.95}, \"conclusion\": \"success\"}, \"w1_cf_fallback_llama_scierc\": {\"status\": \"PREPARING\"}, \"w1_cf_fallback_docred\": {\"status\": \"PREPARING\"}, \"w1_cf_fallback_llama_docred\": {\"status\": \"PREPARING\"}, \"llama_docred_full_s1_mt6144\": {\"status\": \"RUNNING\"}, \"llama_docred_full_s1\": {\"status\": \"DONE\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"f1_method\": \"all_set\", \"violations\": {\"ET\": 0, \"RV\": 0, \"DR\": 2.55, \"CF\": 12.02}, \"f1\": {\"entity_f1\": 55.01, \"entity_precision\": 61.41, \"entity_recall\": 49.82, \"relation_f1\": 6.27, \"relation_precision\": 5.49, \"relation_recall\": 7.32}, \"counts\": {\"documents\": 998, \"documents_checked\": 907, \"parse_failures\": 91, \"unique_entities\": 11296, \"triples\": 16368}}, \"conclusion\": \"success\"}, \"llama_docred_unconstrained\": {\"status\": \"DONE\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"f1_method\": \"all_set\", \"documents\": 998, \"documents_checked\": 930, \"parse_failures\": 68, \"unique_entities\": 11525, \"total_triples\": 16437, \"dr_eligible_triples\": 13789, \"ET_rate_pct\": 0.13, \"RV_rate_pct\": 16.03, \"DR_rate_pct\": 26.07, \"CF_rate_pct\": 0.17, \"entity_precision\": 61.22, \"entity_recall\": 51.02, \"entity_f1\": 55.65, \"relation_precision\": 5.22, \"relation_recall\": 7, \"relation_f1\": 5.98, \"fuzzy_relation_matches\": 121}, \"conclusion\": \"success\"}, \"phase2_docred_grammar_only\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 985, \"parse_failures\": 13, \"total_entities\": 20150, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.2617, \"cross_field_consistency_violation_rate\": 0.0007, \"relation_f1\": 8.31, \"relation_precision\": 7.06, \"relation_recall\": 10.12, \"entity_f1\": 59.38, \"entity_precision\": 58.47, \"entity_recall\": 60.32, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"posthoc_filtering_baseline\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"docred_f1_before\": 7.74, \"docred_f1_after\": 9.61, \"docred_precision_before\": 6.55, \"docred_precision_after\": 11.22, \"docred_recall_before\": 9.46, \"docred_recall_after\": 8.4, \"docred_rejection_rate\": 0.481, \"docred_tp_before\": 1137, \"docred_tp_after\": 1010, \"docred_tp_lost\": 127, \"docred_et_residual\": 0.0247, \"scierc_f1_before\": 8.23, \"scierc_f1_after\": 8.63, \"scierc_rejection_rate\": 0.168, \"scierc_recall_before\": 11.4, \"scierc_recall_after\": 10.68, \"scierc_tp_before\": 111, \"scierc_tp_after\": 104}}, \"llama_scierc_full_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"samples\": 550, \"entities_extracted\": 2469, \"relations_extracted\": 1315, \"domain_range_violation_rate\": 0.0008, \"relation_vocab_violation_rate\": 0, \"entity_type_violation_rate\": 0, \"cross_field_consistency_violation_rate\": 0.0656, \"total_violation_rate\": 0.0431, \"entity_f1\": 0.2349, \"entity_precision\": 0.1972, \"entity_recall\": 0.2902, \"relation_f1\": 0.0254, \"relation_precision\": 0.0221, \"relation_recall\": 0.0298, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"llama_scierc_unconstrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"entity_type_violation_rate\": 0, \"relation_vocab_violation_rate\": 0.0055, \"domain_range_violation_rate\": 0.1334, \"cross_field_consistency_violations\": 6, \"entity_f1\": 0.2356, \"entity_precision\": 0.1983, \"entity_recall\": 0.2902, \"relation_f1\": 0.0268, \"relation_precision\": 0.0236, \"relation_recall\": 0.031, \"total_entities\": 2451, \"total_relations\": 1274, \"json_parse_failures\": 1, \"samples\": 551, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_full_s2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1644, \"total_entities\": 2228, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0097, \"cross_field_consistency_violation_rate\": 0.0803, \"entity_precision\": 0.2797, \"entity_recall\": 0.3712, \"entity_f1\": 0.319, \"relation_precision\": 0.064, \"relation_recall\": 0.1078, \"relation_f1\": 0.0803, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_full_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1729, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0093, \"cross_field_consistency_violation_rate\": 0.099, \"entity_f1\": 0.3098, \"entity_precision\": 0.2598, \"entity_recall\": 0.3837, \"relation_f1\": 0.0836, \"relation_precision\": 0.0654, \"relation_recall\": 0.116, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_semantic_only\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1726, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0151, \"domain_range_violation_rate\": 0.1165, \"cross_field_consistency_violation_rate\": 0.0271, \"entity_f1\": 0.3101, \"entity_precision\": 0.2605, \"entity_recall\": 0.3831, \"relation_f1\": 0.0815, \"relation_precision\": 0.0637, \"relation_recall\": 0.1129, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_grammar_only\": {\"status\": \"DONE\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1725, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.1484, \"cross_field_consistency_violation_rate\": 0.0008, \"entity_f1\": 0.3098, \"entity_precision\": 0.2598, \"entity_recall\": 0.3837, \"relation_f1\": 0.0823, \"relation_precision\": 0.0643, \"relation_recall\": 0.114, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"conclusion\": \"success\"}, \"phase2_scierc_unconstrained\": {\"status\": \"DONE\", \"metrics\": {\"json_parse_rate\": 1, \"entity_f1\": 0.3101, \"entity_precision\": 0.2605, \"entity_recall\": 0.3831, \"relation_f1\": 0.0823, \"relation_precision\": 0.0644, \"relation_recall\": 0.114, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0139, \"domain_range_violation_rate\": 0.1537, \"cross_field_consistency_violation_rate\": 0.0008, \"total_triples\": 1724, \"total_entities\": 2474, \"total_samples\": 551, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"conclusion\": \"success\"}, \"phase2_docred_full_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 987, \"parse_failures\": 11, \"total_entities\": 20187, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.1021, \"cross_field_consistency_violation_rate\": 0.0257, \"entity_f1\": 59.37, \"entity_precision\": 58.45, \"entity_recall\": 59.63, \"relation_f1\": 8.23, \"relation_precision\": 6.99, \"relation_recall\": 10.01, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_docred_semantic_only\": {\"status\": \"DONE\", \"metrics\": {\"documents_checked\": 987, \"parse_failures\": 11, \"total_entities\": 20185, \"total_triples\": 17571, \"entity_type_violation_rate\": 0.0422, \"relation_vocabulary_violation_rate\": 0.2987, \"domain_range_violation_rate\": 0.1384, \"cross_field_consistency_violation_rate\": 0.0105, \"entity_f1\": 57.81, \"entity_precision\": 57.27, \"entity_recall\": 58.37, \"relation_f1\": 7.7, \"relation_precision\": 6.54, \"relation_recall\": 9.37, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"et_v1\": 0.1044, \"et_fix_note\": \"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\"}, \"conclusion\": \"success\"}, \"phase2_docred_unconstrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 986, \"parse_failures\": 12, \"total_entities\": 20171, \"total_triples\": 17497, \"entity_type_violation_rate\": 0.0248, \"relation_vocabulary_violation_rate\": 0.2966, \"domain_range_violation_rate\": 0.1846, \"cross_field_consistency_violation_rate\": 0.001, \"entity_f1\": 58.15, \"entity_precision\": 57.26, \"entity_recall\": 58.32, \"relation_f1\": 7.74, \"relation_precision\": 6.55, \"relation_recall\": 9.46, \"unrecognized_relations\": 5189, \"f1_method\": \"all_set (includes OOV predictions in denominator)\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"et_v1\": 0.0818, \"et_fix_note\": \"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\"}}, \"mvp_phase0_docred_schema_r2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"phase2_s2_pilot50\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"domain_range_violation_rate\": 0.0205, \"relation_vocabulary_violation_rate\": 0, \"relation_f1\": 0.1008, \"samples\": 50, \"predicted_relations\": 146, \"true_positives\": 13, \"gold_relations\": 112, \"entity_f1_approx\": 0.29, \"note\": \"DR 修正: 原值 0 来自 dryrun (n=25 triples)。实际 pilot50 DR=3/146=2.05% (来自 violation_report_s2_pilot50.json)。\"}}, \"mvp_phase0_docred_schema\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_documents\": 998, \"documents_checked\": 943, \"parse_failures\": 55, \"json_parse_rate\": 0.9449, \"total_entities\": 19524, \"total_triples\": 16782, \"entity_type_violations\": 119, \"entity_type_violation_rate\": 0.0061, \"relation_vocabulary_violations\": 3090, \"relation_vocabulary_violation_rate\": 0.1841, \"relation_fuzzy_matches\": 85, \"domain_range_violations\": 2154, \"domain_range_violation_rate\": 0.1284, \"cross_field_consistency_violations\": 29, \"cross_field_consistency_violation_rate\": 0.0015, \"total_violations_any\": 5392, \"total_violation_rate\": 0.1485, \"go_nogo_metric_dr\": 0.1284}}, \"mvp_phase0_violation_rate_docred\": {\"status\": \"DONE\", \"metrics\": {\"total_docs\": 998, \"parsed_docs\": 962, \"json_parse_rate\": 0.964, \"total_entities\": 19099, \"total_triples\": 16540, \"entity_type_violation_rate\": 0.075, \"relation_vocabulary_violation_rate\": 0.289, \"domain_range_violation_rate\": 0.187, \"cross_field_consistency_violation_rate\": 0.0008, \"go_nogo_metric\": 0.187, \"fuzzy_matches\": 126, \"top_dr_violations_by_rate\": {\"P35_head_of_state\": 1, \"P710_participant\": 0.919, \"P172_ethnic_group\": 0.875}, \"top_dr_violations_by_count\": {\"P31_instance_of\": {\"violations\": 322, \"total\": 533, \"rate\": 0.604}, \"P1001_applies_to_jurisdiction\": {\"violations\": 264, \"total\": 594, \"rate\": 0.444}, \"P1344_participant_in\": {\"violations\": 194, \"total\": 312, \"rate\": 0.622}}}, \"conclusion\": \"success\"}, \"mvp_phase0_scierc_schema\": {\"status\": \"DONE\", \"metrics\": {\"domain_range_violation_rate\": 0.0578, \"relation_vocabulary_violation_rate\": 0.003, \"entity_type_violation_rate\": 0, \"total_violation_rate\": 0.0253, \"go_nogo_metric\": 0.0578, \"total_triples\": 1661, \"vs_minimal_dr_reduction\": -0.624, \"per_relation\": {\"Used-for\": {\"rate\": \"TBD\"}, \"Feature-of\": {\"delta_pp\": -22.3}, \"Part-of\": {\"delta_pp\": -22.5}, \"Compare\": {\"delta_pp\": -14.8}, \"Evaluate-for\": {\"delta_pp\": 5.8}}, \"mcnemar_all_significant\": true}, \"conclusion\": \"success\"}, \"mvp_phase0_violation_rate\": {\"status\": \"DONE\", \"metrics\": {\"total_triples\": 1724, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0139, \"domain_range_violation_rate\": 0.1537, \"cross_field_consistency_violation_rate\": 0.0008, \"go_nogo_metric\": 0.1537, \"entity_f1\": 0.3101, \"relation_f1\": 0.0823, \"per_relation\": {\"Used-for\": {\"total\": 787, \"dr_violations\": 6, \"rate\": 0.0076}, \"Conjunction\": {\"total\": 32, \"dr_violations\": 0, \"rate\": 0}, \"Hyponym-of\": {\"total\": 124, \"dr_violations\": 18, \"rate\": 0.1452}, \"Evaluate-for\": {\"total\": 133, \"dr_violations\": 32, \"rate\": 0.2406}, \"Part-of\": {\"total\": 72, \"dr_violations\": 18, \"rate\": 0.25}, \"Feature-of\": {\"total\": 486, \"dr_violations\": 163, \"rate\": 0.3354}, \"Compare\": {\"total\": 66, \"dr_violations\": 28, \"rate\": 0.4242}}}, \"conclusion\": \"success\"}}, \"count\": 26, \"total\": 26, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1728}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "019fb36d-d6d9-447f-a940-7c809f6bb5da",
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "9c2618a8-c724-438d-b882-50fcb15b0304",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"w1_cf_fallback_scierc_pilot\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"llama_docred_unconstrained_mt6144\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"metrics\\\": {\\\"checker_version\\\": \\\"fixed_20260514_v2\\\", \\\"f1_method\\\": \\\"all_set\\\", \\\"documents_total\\\": 998, \\\"documents_checked\\\": 931, \\\"parse_failures\\\": 67, \\\"unique_entities\\\": 11534, \\\"total_triples\\\": 16584, \\\"dr_eligible_triples\\\": 13936, \\\"fuzzy_relation_matches\\\": 121, \\\"ET_rate\\\": 0.13, \\\"RV_rate\\\": 15.89, \\\"DR_rate_all\\\": 26.18, \\\"DR_rate_eligible\\\": 31.15, \\\"CF_rate\\\": 0.17, \\\"entity_precision\\\": 61.19, \\\"entity_recall\\\": 51.06, \\\"entity_f1\\\": 55.67, \\\"relation_precision\\\": 5.18, \\\"relation_recall\\\": 7, \\\"relation_f1\\\": 5.95}, \\\"conclusion\\\": \\\"success\\\"}, \\\"w1_cf_fallback_llama_scierc\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"w1_cf_fallback_docred\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"w1_cf_fallback_llama_docred\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"llama_docred_full_s1_mt6144\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"llama_docred_full_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\", \\\"f1_method\\\": \\\"all_set\\\", \\\"violations\\\": {\\\"ET\\\": 0, \\\"RV\\\": 0, \\\"DR\\\": 2.55, \\\"CF\\\": 12.02}, \\\"f1\\\": {\\\"entity_f1\\\": 55.01, \\\"entity_precision\\\": 61.41, \\\"entity_recall\\\": 49.82, \\\"relation_f1\\\": 6.27, \\\"relation_precision\\\": 5.49, \\\"relation_recall\\\": 7.32}, \\\"counts\\\": {\\\"documents\\\": 998, \\\"documents_checked\\\": 907, \\\"parse_failures\\\": 91, \\\"unique_entities\\\": 11296, \\\"triples\\\": 16368}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"llama_docred_unconstrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"checker_version\\\": \\\"fixed_20260514_v2\\\", \\\"f1_method\\\": \\\"all_set\\\", \\\"documents\\\": 998, \\\"documents_checked\\\": 930, \\\"parse_failures\\\": 68, \\\"unique_entities\\\": 11525, \\\"total_triples\\\": 16437, \\\"dr_eligible_triples\\\": 13789, \\\"ET_rate_pct\\\": 0.13, \\\"RV_rate_pct\\\": 16.03, \\\"DR_rate_pct\\\": 26.07, \\\"CF_rate_pct\\\": 0.17, \\\"entity_precision\\\": 61.22, \\\"entity_recall\\\": 51.02, \\\"entity_f1\\\": 55.65, \\\"relation_precision\\\": 5.22, \\\"relation_recall\\\": 7, \\\"relation_f1\\\": 5.98, \\\"fuzzy_relation_matches\\\": 121}, \\\"conclusion\\\": \\\"success\\\"}, \\\"phase2_docred_grammar_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"documents_checked\\\": 985, \\\"parse_failures\\\": 13, \\\"total_entities\\\": 20150, \\\"total_triples\\\": 17341, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0.0003, \\\"domain_range_violation_rate\\\": 0.2617, \\\"cross_field_consistency_violation_rate\\\": 0.0007, \\\"relation_f1\\\": 8.31, \\\"relation_precision\\\": 7.06, \\\"relation_recall\\\": 10.12, \\\"entity_f1\\\": 59.38, \\\"entity_precision\\\": 58.47, \\\"entity_recall\\\": 60.32, \\\"unrecognized_relations\\\": 5, \\\"f1_method\\\": \\\"all_set\\\", \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}}, \\\"posthoc_filtering_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"docred_f1_before\\\": 7.74, \\\"docred_f1_after\\\": 9.61, \\\"docred_precision_before\\\": 6.55, \\\"docred_precision_after\\\": 11.22, \\\"docred_recall_before\\\": 9.46, \\\"docred_recall_after\\\": 8.4, \\\"docred_rejection_rate\\\": 0.481, \\\"docred_tp_before\\\": 1137, \\\"docred_tp_after\\\": 1010, \\\"docred_tp_lost\\\": 127, \\\"docred_et_residual\\\": 0.0247, \\\"scierc_f1_before\\\": 8.23, \\\"scierc_f1_after\\\": 8.63, \\\"scierc_rejection_rate\\\": 0.168, \\\"scierc_recall_before\\\": 11.4, \\\"scierc_recall_after\\\": 10.68, \\\"scierc_tp_before\\\": 111, \\\"scierc_tp_after\\\": 104}}, \\\"llama_scierc_full_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"samples\\\": 550, \\\"entities_extracted\\\": 2469, \\\"relations_extracted\\\": 1315, \\\"domain_range_violation_rate\\\": 0.0008, \\\"relation_vocab_violation_rate\\\": 0, \\\"entity_type_violation_rate\\\": 0, \\\"cross_field_consistency_violation_rate\\\": 0.0656, \\\"total_violation_rate\\\": 0.0431, \\\"entity_f1\\\": 0.2349, \\\"entity_precision\\\": 0.1972, \\\"entity_recall\\\": 0.2902, \\\"relation_f1\\\": 0.0254, \\\"relation_precision\\\": 0.0221, \\\"relation_recall\\\": 0.0298, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}}, \\\"llama_scierc_unconstrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"entity_type_violation_rate\\\": 0, \\\"relation_vocab_violation_rate\\\": 0.0055, \\\"domain_range_violation_rate\\\": 0.1334, \\\"cross_field_consistency_violations\\\": 6, \\\"entity_f1\\\": 0.2356, \\\"entity_precision\\\": 0.1983, \\\"entity_recall\\\": 0.2902, \\\"relation_f1\\\": 0.0268, \\\"relation_precision\\\": 0.0236, \\\"relation_recall\\\": 0.031, \\\"total_entities\\\": 2451, \\\"total_relations\\\": 1274, \\\"json_parse_failures\\\": 1, \\\"samples\\\": 551, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}}, \\\"phase2_scierc_full_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_samples\\\": 551, \\\"total_triples\\\": 1644, \\\"total_entities\\\": 2228, \\\"json_parse_rate\\\": 1, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0, \\\"domain_range_violation_rate\\\": 0.0097, \\\"cross_field_consistency_violation_rate\\\": 0.0803, \\\"entity_precision\\\": 0.2797, \\\"entity_recall\\\": 0.3712, \\\"entity_f1\\\": 0.319, \\\"relation_precision\\\": 0.064, \\\"relation_recall\\\": 0.1078, \\\"relation_f1\\\": 0.0803, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}}, \\\"phase2_scierc_full_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_samples\\\": 551, \\\"total_triples\\\": 1729, \\\"total_entities\\\": 2474, \\\"json_parse_rate\\\": 1, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0, \\\"domain_range_violation_rate\\\": 0.0093, \\\"cross_field_consistency_violation_rate\\\": 0.099, \\\"entity_f1\\\": 0.3098, \\\"entity_precision\\\": 0.2598, \\\"entity_recall\\\": 0.3837, \\\"relation_f1\\\": 0.0836, \\\"relation_precision\\\": 0.0654, \\\"relation_recall\\\": 0.116, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}}, \\\"phase2_scierc_semantic_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_samples\\\": 551, \\\"total_triples\\\": 1726, \\\"total_entities\\\": 2474, \\\"json_parse_rate\\\": 1, \\\"entity_type_violation_rate\\\": 0.004, \\\"relation_vocabulary_violation_rate\\\": 0.0151, \\\"domain_range_violation_rate\\\": 0.1165, \\\"cross_field_consistency_violation_rate\\\": 0.0271, \\\"entity_f1\\\": 0.3101, \\\"entity_precision\\\": 0.2605, \\\"entity_recall\\\": 0.3831, \\\"relation_f1\\\": 0.0815, \\\"relation_precision\\\": 0.0637, \\\"relation_recall\\\": 0.1129, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}}, \\\"phase2_scierc_grammar_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"total_samples\\\": 551, \\\"total_triples\\\": 1725, \\\"total_entities\\\": 2474, \\\"json_parse_rate\\\": 1, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0, \\\"domain_range_violation_rate\\\": 0.1484, \\\"cross_field_consistency_violation_rate\\\": 0.0008, \\\"entity_f1\\\": 0.3098, \\\"entity_precision\\\": 0.2598, \\\"entity_recall\\\": 0.3837, \\\"relation_f1\\\": 0.0823, \\\"relation_precision\\\": 0.0643, \\\"relation_recall\\\": 0.114, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"phase2_scierc_unconstrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"json_parse_rate\\\": 1, \\\"entity_f1\\\": 0.3101, \\\"entity_precision\\\": 0.2605, \\\"entity_recall\\\": 0.3831, \\\"relation_f1\\\": 0.0823, \\\"relation_precision\\\": 0.0644, \\\"relation_recall\\\": 0.114, \\\"entity_type_violation_rate\\\": 0.004, \\\"relation_vocabulary_violation_rate\\\": 0.0139, \\\"domain_range_violation_rate\\\": 0.1537, \\\"cross_field_consistency_violation_rate\\\": 0.0008, \\\"total_triples\\\": 1724, \\\"total_entities\\\": 2474, \\\"total_samples\\\": 551, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"phase2_docred_full_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"documents_checked\\\": 987, \\\"parse_failures\\\": 11, \\\"total_entities\\\": 20187, \\\"total_triples\\\": 17341, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0.0003, \\\"domain_range_violation_rate\\\": 0.1021, \\\"cross_field_consistency_violation_rate\\\": 0.0257, \\\"entity_f1\\\": 59.37, \\\"entity_precision\\\": 58.45, \\\"entity_recall\\\": 59.63, \\\"relation_f1\\\": 8.23, \\\"relation_precision\\\": 6.99, \\\"relation_recall\\\": 10.01, \\\"unrecognized_relations\\\": 5, \\\"f1_method\\\": \\\"all_set\\\", \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}}, \\\"phase2_docred_semantic_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"documents_checked\\\": 987, \\\"parse_failures\\\": 11, \\\"total_entities\\\": 20185, \\\"total_triples\\\": 17571, \\\"entity_type_violation_rate\\\": 0.0422, \\\"relation_vocabulary_violation_rate\\\": 0.2987, \\\"domain_range_violation_rate\\\": 0.1384, \\\"cross_field_consistency_violation_rate\\\": 0.0105, \\\"entity_f1\\\": 57.81, \\\"entity_precision\\\": 57.27, \\\"entity_recall\\\": 58.37, \\\"relation_f1\\\": 7.7, \\\"relation_precision\\\": 6.54, \\\"relation_recall\\\": 9.37, \\\"f1_method\\\": \\\"all_set\\\", \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\", \\\"et_v1\\\": 0.1044, \\\"et_fix_note\\\": \\\"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"phase2_docred_unconstrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"documents_checked\\\": 986, \\\"parse_failures\\\": 12, \\\"total_entities\\\": 20171, \\\"total_triples\\\": 17497, \\\"entity_type_violation_rate\\\": 0.0248, \\\"relation_vocabulary_violation_rate\\\": 0.2966, \\\"domain_range_violation_rate\\\": 0.1846, \\\"cross_field_consistency_violation_rate\\\": 0.001, \\\"entity_f1\\\": 58.15, \\\"entity_precision\\\": 57.26, \\\"entity_recall\\\": 58.32, \\\"relation_f1\\\": 7.74, \\\"relation_precision\\\": 6.55, \\\"relation_recall\\\": 9.46, \\\"unrecognized_relations\\\": 5189, \\\"f1_method\\\": \\\"all_set (includes OOV predictions in denominator)\\\", \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\", \\\"et_v1\\\": 0.0818, \\\"et_fix_note\\\": \\\"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\\\"}}, \\\"mvp_phase0_docred_schema_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"phase2_s2_pilot50\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"domain_range_violation_rate\\\": 0.0205, \\\"relation_vocabulary_violation_rate\\\": 0, \\\"relation_f1\\\": 0.1008, \\\"samples\\\": 50, \\\"predicted_relations\\\": 146, \\\"true_positives\\\": 13, \\\"gold_relations\\\": 112, \\\"entity_f1_approx\\\": 0.29, \\\"note\\\": \\\"DR 修正: 原值 0 来自 dryrun (n=25 triples)。实际 pilot50 DR=3/146=2.05% (来自 violation_report_s2_pilot50.json)。\\\"}}, \\\"mvp_phase0_docred_schema\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_documents\\\": 998, \\\"documents_checked\\\": 943, \\\"parse_failures\\\": 55, \\\"json_parse_rate\\\": 0.9449, \\\"total_entities\\\": 19524, \\\"total_triples\\\": 16782, \\\"entity_type_violations\\\": 119, \\\"entity_type_violation_rate\\\": 0.0061, \\\"relation_vocabulary_violations\\\": 3090, \\\"relation_vocabulary_violation_rate\\\": 0.1841, \\\"relation_fuzzy_matches\\\": 85, \\\"domain_range_violations\\\": 2154, \\\"domain_range_violation_rate\\\": 0.1284, \\\"cross_field_consistency_violations\\\": 29, \\\"cross_field_consistency_violation_rate\\\": 0.0015, \\\"total_violations_any\\\": 5392, \\\"total_violation_rate\\\": 0.1485, \\\"go_nogo_metric_dr\\\": 0.1284}}, \\\"mvp_phase0_violation_rate_docred\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"total_docs\\\": 998, \\\"parsed_docs\\\": 962, \\\"json_parse_rate\\\": 0.964, \\\"total_entities\\\": 19099, \\\"total_triples\\\": 16540, \\\"entity_type_violation_rate\\\": 0.075, \\\"relation_vocabulary_violation_rate\\\": 0.289, \\\"domain_range_violation_rate\\\": 0.187, \\\"cross_field_consistency_violation_rate\\\": 0.0008, \\\"go_nogo_metric\\\": 0.187, \\\"fuzzy_matches\\\": 126, \\\"top_dr_violations_by_rate\\\": {\\\"P35_head_of_state\\\": 1, \\\"P710_participant\\\": 0.919, \\\"P172_ethnic_group\\\": 0.875}, \\\"top_dr_violations_by_count\\\": {\\\"P31_instance_of\\\": {\\\"violations\\\": 322, \\\"total\\\": 533, \\\"rate\\\": 0.604}, \\\"P1001_applies_to_jurisdiction\\\": {\\\"violations\\\": 264, \\\"total\\\": 594, \\\"rate\\\": 0.444}, \\\"P1344_participant_in\\\": {\\\"violations\\\": 194, \\\"total\\\": 312, \\\"rate\\\": 0.622}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_phase0_scierc_schema\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"domain_range_violation_rate\\\": 0.0578, \\\"relation_vocabulary_violation_rate\\\": 0.003, \\\"entity_type_violation_rate\\\": 0, \\\"total_violation_rate\\\": 0.0253, \\\"go_nogo_metric\\\": 0.0578, \\\"total_triples\\\": 1661, \\\"vs_minimal_dr_reduction\\\": -0.624, \\\"per_relation\\\": {\\\"Used-for\\\": {\\\"rate\\\": \\\"TBD\\\"}, \\\"Feature-of\\\": {\\\"delta_pp\\\": -22.3}, \\\"Part-of\\\": {\\\"delta_pp\\\": -22.5}, \\\"Compare\\\": {\\\"delta_pp\\\": -14.8}, \\\"Evaluate-for\\\": {\\\"delta_pp\\\": 5.8}}, \\\"mcnemar_all_significant\\\": true}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_phase0_violation_rate\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"total_triples\\\": 1724, \\\"total_entities\\\": 2474, \\\"json_parse_rate\\\": 1, \\\"entity_type_violation_rate\\\": 0.004, \\\"relation_vocabulary_violation_rate\\\": 0.0139, \\\"domain_range_violation_rate\\\": 0.1537, \\\"cross_field_consistency_violation_rate\\\": 0.0008, \\\"go_nogo_metric\\\": 0.1537, \\\"entity_f1\\\": 0.3101, \\\"relation_f1\\\": 0.0823, \\\"per_relation\\\": {\\\"Used-for\\\": {\\\"total\\\": 787, \\\"dr_violations\\\": 6, \\\"rate\\\": 0.0076}, \\\"Conjunction\\\": {\\\"total\\\": 32, \\\"dr_violations\\\": 0, \\\"rate\\\": 0}, \\\"Hyponym-of\\\": {\\\"total\\\": 124, \\\"dr_violations\\\": 18, \\\"rate\\\": 0.1452}, \\\"Evaluate-for\\\": {\\\"total\\\": 133, \\\"dr_violations\\\": 32, \\\"rate\\\": 0.2406}, \\\"Part-of\\\": {\\\"total\\\": 72, \\\"dr_violations\\\": 18, \\\"rate\\\": 0.25}, \\\"Feature-of\\\": {\\\"total\\\": 486, \\\"dr_violations\\\": 163, \\\"rate\\\": 0.3354}, \\\"Compare\\\": {\\\"total\\\": 66, \\\"dr_violations\\\": 28, \\\"rate\\\": 0.4242}}}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 26, \\\"total\\\": 26, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1728}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"w1_cf_fallback_scierc_pilot\": {\"status\": \"RUNNING\"}, \"llama_docred_unconstrained_mt6144\": {\"status\": \"ANALYZING\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"f1_method\": \"all_set\", \"documents_total\": 998, \"documents_checked\": 931, \"parse_failures\": 67, \"unique_entities\": 11534, \"total_triples\": 16584, \"dr_eligible_triples\": 13936, \"fuzzy_relation_matches\": 121, \"ET_rate\": 0.13, \"RV_rate\": 15.89, \"DR_rate_all\": 26.18, \"DR_rate_eligible\": 31.15, \"CF_rate\": 0.17, \"entity_precision\": 61.19, \"entity_recall\": 51.06, \"entity_f1\": 55.67, \"relation_precision\": 5.18, \"relation_recall\": 7, \"relation_f1\": 5.95}, \"conclusion\": \"success\"}, \"w1_cf_fallback_llama_scierc\": {\"status\": \"PREPARING\"}, \"w1_cf_fallback_docred\": {\"status\": \"PREPARING\"}, \"w1_cf_fallback_llama_docred\": {\"status\": \"PREPARING\"}, \"llama_docred_full_s1_mt6144\": {\"status\": \"RUNNING\"}, \"llama_docred_full_s1\": {\"status\": \"DONE\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"f1_method\": \"all_set\", \"violations\": {\"ET\": 0, \"RV\": 0, \"DR\": 2.55, \"CF\": 12.02}, \"f1\": {\"entity_f1\": 55.01, \"entity_precision\": 61.41, \"entity_recall\": 49.82, \"relation_f1\": 6.27, \"relation_precision\": 5.49, \"relation_recall\": 7.32}, \"counts\": {\"documents\": 998, \"documents_checked\": 907, \"parse_failures\": 91, \"unique_entities\": 11296, \"triples\": 16368}}, \"conclusion\": \"success\"}, \"llama_docred_unconstrained\": {\"status\": \"DONE\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"f1_method\": \"all_set\", \"documents\": 998, \"documents_checked\": 930, \"parse_failures\": 68, \"unique_entities\": 11525, \"total_triples\": 16437, \"dr_eligible_triples\": 13789, \"ET_rate_pct\": 0.13, \"RV_rate_pct\": 16.03, \"DR_rate_pct\": 26.07, \"CF_rate_pct\": 0.17, \"entity_precision\": 61.22, \"entity_recall\": 51.02, \"entity_f1\": 55.65, \"relation_precision\": 5.22, \"relation_recall\": 7, \"relation_f1\": 5.98, \"fuzzy_relation_matches\": 121}, \"conclusion\": \"success\"}, \"phase2_docred_grammar_only\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 985, \"parse_failures\": 13, \"total_entities\": 20150, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.2617, \"cross_field_consistency_violation_rate\": 0.0007, \"relation_f1\": 8.31, \"relation_precision\": 7.06, \"relation_recall\": 10.12, \"entity_f1\": 59.38, \"entity_precision\": 58.47, \"entity_recall\": 60.32, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"posthoc_filtering_baseline\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"docred_f1_before\": 7.74, \"docred_f1_after\": 9.61, \"docred_precision_before\": 6.55, \"docred_precision_after\": 11.22, \"docred_recall_before\": 9.46, \"docred_recall_after\": 8.4, \"docred_rejection_rate\": 0.481, \"docred_tp_before\": 1137, \"docred_tp_after\": 1010, \"docred_tp_lost\": 127, \"docred_et_residual\": 0.0247, \"scierc_f1_before\": 8.23, \"scierc_f1_after\": 8.63, \"scierc_rejection_rate\": 0.168, \"scierc_recall_before\": 11.4, \"scierc_recall_after\": 10.68, \"scierc_tp_before\": 111, \"scierc_tp_after\": 104}}, \"llama_scierc_full_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"samples\": 550, \"entities_extracted\": 2469, \"relations_extracted\": 1315, \"domain_range_violation_rate\": 0.0008, \"relation_vocab_violation_rate\": 0, \"entity_type_violation_rate\": 0, \"cross_field_consistency_violation_rate\": 0.0656, \"total_violation_rate\": 0.0431, \"entity_f1\": 0.2349, \"entity_precision\": 0.1972, \"entity_recall\": 0.2902, \"relation_f1\": 0.0254, \"relation_precision\": 0.0221, \"relation_recall\": 0.0298, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"llama_scierc_unconstrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"entity_type_violation_rate\": 0, \"relation_vocab_violation_rate\": 0.0055, \"domain_range_violation_rate\": 0.1334, \"cross_field_consistency_violations\": 6, \"entity_f1\": 0.2356, \"entity_precision\": 0.1983, \"entity_recall\": 0.2902, \"relation_f1\": 0.0268, \"relation_precision\": 0.0236, \"relation_recall\": 0.031, \"total_entities\": 2451, \"total_relations\": 1274, \"json_parse_failures\": 1, \"samples\": 551, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_full_s2\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1644, \"total_entities\": 2228, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0097, \"cross_field_consistency_violation_rate\": 0.0803, \"entity_precision\": 0.2797, \"entity_recall\": 0.3712, \"entity_f1\": 0.319, \"relation_precision\": 0.064, \"relation_recall\": 0.1078, \"relation_f1\": 0.0803, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_full_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1729, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0093, \"cross_field_consistency_violation_rate\": 0.099, \"entity_f1\": 0.3098, \"entity_precision\": 0.2598, \"entity_recall\": 0.3837, \"relation_f1\": 0.0836, \"relation_precision\": 0.0654, \"relation_recall\": 0.116, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_semantic_only\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1726, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0151, \"domain_range_violation_rate\": 0.1165, \"cross_field_consistency_violation_rate\": 0.0271, \"entity_f1\": 0.3101, \"entity_precision\": 0.2605, \"entity_recall\": 0.3831, \"relation_f1\": 0.0815, \"relation_precision\": 0.0637, \"relation_recall\": 0.1129, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_grammar_only\": {\"status\": \"DONE\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1725, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.1484, \"cross_field_consistency_violation_rate\": 0.0008, \"entity_f1\": 0.3098, \"entity_precision\": 0.2598, \"entity_recall\": 0.3837, \"relation_f1\": 0.0823, \"relation_precision\": 0.0643, \"relation_recall\": 0.114, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"conclusion\": \"success\"}, \"phase2_scierc_unconstrained\": {\"status\": \"DONE\", \"metrics\": {\"json_parse_rate\": 1, \"entity_f1\": 0.3101, \"entity_precision\": 0.2605, \"entity_recall\": 0.3831, \"relation_f1\": 0.0823, \"relation_precision\": 0.0644, \"relation_recall\": 0.114, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0139, \"domain_range_violation_rate\": 0.1537, \"cross_field_consistency_violation_rate\": 0.0008, \"total_triples\": 1724, \"total_entities\": 2474, \"total_samples\": 551, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"conclusion\": \"success\"}, \"phase2_docred_full_s1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 987, \"parse_failures\": 11, \"total_entities\": 20187, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.1021, \"cross_field_consistency_violation_rate\": 0.0257, \"entity_f1\": 59.37, \"entity_precision\": 58.45, \"entity_recall\": 59.63, \"relation_f1\": 8.23, \"relation_precision\": 6.99, \"relation_recall\": 10.01, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_docred_semantic_only\": {\"status\": \"DONE\", \"metrics\": {\"documents_checked\": 987, \"parse_failures\": 11, \"total_entities\": 20185, \"total_triples\": 17571, \"entity_type_violation_rate\": 0.0422, \"relation_vocabulary_violation_rate\": 0.2987, \"domain_range_violation_rate\": 0.1384, \"cross_field_consistency_violation_rate\": 0.0105, \"entity_f1\": 57.81, \"entity_precision\": 57.27, \"entity_recall\": 58.37, \"relation_f1\": 7.7, \"relation_precision\": 6.54, \"relation_recall\": 9.37, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"et_v1\": 0.1044, \"et_fix_note\": \"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\"}, \"conclusion\": \"success\"}, \"phase2_docred_unconstrained\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 986, \"parse_failures\": 12, \"total_entities\": 20171, \"total_triples\": 17497, \"entity_type_violation_rate\": 0.0248, \"relation_vocabulary_violation_rate\": 0.2966, \"domain_range_violation_rate\": 0.1846, \"cross_field_consistency_violation_rate\": 0.001, \"entity_f1\": 58.15, \"entity_precision\": 57.26, \"entity_recall\": 58.32, \"relation_f1\": 7.74, \"relation_precision\": 6.55, \"relation_recall\": 9.46, \"unrecognized_relations\": 5189, \"f1_method\": \"all_set (includes OOV predictions in denominator)\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"et_v1\": 0.0818, \"et_fix_note\": \"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\"}}, \"mvp_phase0_docred_schema_r2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"phase2_s2_pilot50\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"domain_range_violation_rate\": 0.0205, \"relation_vocabulary_violation_rate\": 0, \"relation_f1\": 0.1008, \"samples\": 50, \"predicted_relations\": 146, \"true_positives\": 13, \"gold_relations\": 112, \"entity_f1_approx\": 0.29, \"note\": \"DR 修正: 原值 0 来自 dryrun (n=25 triples)。实际 pilot50 DR=3/146=2.05% (来自 violation_report_s2_pilot50.json)。\"}}, \"mvp_phase0_docred_schema\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"total_documents\": 998, \"documents_checked\": 943, \"parse_failures\": 55, \"json_parse_rate\": 0.9449, \"total_entities\": 19524, \"total_triples\": 16782, \"entity_type_violations\": 119, \"entity_type_violation_rate\": 0.0061, \"relation_vocabulary_violations\": 3090, \"relation_vocabulary_violation_rate\": 0.1841, \"relation_fuzzy_matches\": 85, \"domain_range_violations\": 2154, \"domain_range_violation_rate\": 0.1284, \"cross_field_consistency_violations\": 29, \"cross_field_consistency_violation_rate\": 0.0015, \"total_violations_any\": 5392, \"total_violation_rate\": 0.1485, \"go_nogo_metric_dr\": 0.1284}}, \"mvp_phase0_violation_rate_docred\": {\"status\": \"DONE\", \"metrics\": {\"total_docs\": 998, \"parsed_docs\": 962, \"json_parse_rate\": 0.964, \"total_entities\": 19099, \"total_triples\": 16540, \"entity_type_violation_rate\": 0.075, \"relation_vocabulary_violation_rate\": 0.289, \"domain_range_violation_rate\": 0.187, \"cross_field_consistency_violation_rate\": 0.0008, \"go_nogo_metric\": 0.187, \"fuzzy_matches\": 126, \"top_dr_violations_by_rate\": {\"P35_head_of_state\": 1, \"P710_participant\": 0.919, \"P172_ethnic_group\": 0.875}, \"top_dr_violations_by_count\": {\"P31_instance_of\": {\"violations\": 322, \"total\": 533, \"rate\": 0.604}, \"P1001_applies_to_jurisdiction\": {\"violations\": 264, \"total\": 594, \"rate\": 0.444}, \"P1344_participant_in\": {\"violations\": 194, \"total\": 312, \"rate\": 0.622}}}, \"conclusion\": \"success\"}, \"mvp_phase0_scierc_schema\": {\"status\": \"DONE\", \"metrics\": {\"domain_range_violation_rate\": 0.0578, \"relation_vocabulary_violation_rate\": 0.003, \"entity_type_violation_rate\": 0, \"total_violation_rate\": 0.0253, \"go_nogo_metric\": 0.0578, \"total_triples\": 1661, \"vs_minimal_dr_reduction\": -0.624, \"per_relation\": {\"Used-for\": {\"rate\": \"TBD\"}, \"Feature-of\": {\"delta_pp\": -22.3}, \"Part-of\": {\"delta_pp\": -22.5}, \"Compare\": {\"delta_pp\": -14.8}, \"Evaluate-for\": {\"delta_pp\": 5.8}}, \"mcnemar_all_significant\": true}, \"conclusion\": \"success\"}, \"mvp_phase0_violation_rate\": {\"status\": \"DONE\", \"metrics\": {\"total_triples\": 1724, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0139, \"domain_range_violation_rate\": 0.1537, \"cross_field_consistency_violation_rate\": 0.0008, \"go_nogo_metric\": 0.1537, \"entity_f1\": 0.3101, \"relation_f1\": 0.0823, \"per_relation\": {\"Used-for\": {\"total\": 787, \"dr_violations\": 6, \"rate\": 0.0076}, \"Conjunction\": {\"total\": 32, \"dr_violations\": 0, \"rate\": 0}, \"Hyponym-of\": {\"total\": 124, \"dr_violations\": 18, \"rate\": 0.1452}, \"Evaluate-for\": {\"total\": 133, \"dr_violations\": 32, \"rate\": 0.2406}, \"Part-of\": {\"total\": 72, \"dr_violations\": 18, \"rate\": 0.25}, \"Feature-of\": {\"total\": 486, \"dr_violations\": 163, \"rate\": 0.3354}, \"Compare\": {\"total\": 66, \"dr_violations\": 28, \"rate\": 0.4242}}}, \"conclusion\": \"success\"}}, \"count\": 26, \"total\": 26, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1728}}"
+    }
+  },
+  "sourceToolAssistantUUID": "019fb36d-d6d9-447f-a940-7c809f6bb5da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "9c2618a8-c724-438d-b882-50fcb15b0304",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze llama_docred_unconstrained_mt6144 experiment",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269"
+}
+```
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-15T14:08:07.781Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c2618a8-c724-438d-b882-50fcb15b0304",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V7KzvjzvQoFHzetdze",
+  "type": "assistant",
+  "uuid": "587bf27c-7326-4ae2-8873-2400afb9037b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01LwngFyggHWKNyWS7UhUnpv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7432,
+      "cache_read_input_tokens": 52344,
+      "output_tokens": 770,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7432,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 770,
+          "cache_read_input_tokens": 52344,
+          "cache_creation_input_tokens": 7432,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7432
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-15T14:08:08.892Z_
+
+Registry already has metrics populated. Status is "ANALYZING" — need to transition to DONE and add comparison notes.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "587bf27c-7326-4ae2-8873-2400afb9037b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V7KzvjzvQoFHzetdze",
+  "type": "assistant",
+  "uuid": "4e19fef7-df02-4651-9544-25ac197484c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01LwngFyggHWKNyWS7UhUnpv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7432,
+      "cache_read_input_tokens": 52344,
+      "output_tokens": 770,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7432,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 770,
+          "cache_read_input_tokens": 52344,
+          "cache_creation_input_tokens": 7432,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7432
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-15T14:08:09.984Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01RyNdzracx8JBz5j4KxDwka`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "llama_docred_unconstrained_mt6144"
+  },
+  "project": "schema_semantic_constrained_ie",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4e19fef7-df02-4651-9544-25ac197484c0",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V7KzvjzvQoFHzetdze",
+  "type": "assistant",
+  "uuid": "0e4b1293-fa68-4837-a693-a63cc1be2257",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01LwngFyggHWKNyWS7UhUnpv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7432,
+      "cache_read_input_tokens": 52344,
+      "output_tokens": 770,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7432,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 770,
+          "cache_read_input_tokens": 52344,
+          "cache_creation_input_tokens": 7432,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7432
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T14:08:10.119Z_
+
+<details><summary>↩ Tool result · `toolu_01RyNdzracx8JBz5j4KxDwka`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.117}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0e4b1293-fa68-4837-a693-a63cc1be2257",
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "1c315e8c-a46a-4a6b-97e6-f9bd5ebe071d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.117}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.117}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0e4b1293-fa68-4837-a693-a63cc1be2257",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-15T14:08:13.729Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c315e8c-a46a-4a6b-97e6-f9bd5ebe071d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V8BfQbnPpFAChQ7NgK",
+  "type": "assistant",
+  "uuid": "b55ad32b-d93d-4bbe-bc88-b6b26c5f486b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PtWwXiVP5n2L17d4vrieB1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 872,
+      "cache_read_input_tokens": 59776,
+      "output_tokens": 185,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 872,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 185,
+          "cache_read_input_tokens": 59776,
+          "cache_creation_input_tokens": 872,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 872
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T14:08:14.185Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01PLTfa7T7FhAMNCLjN8S99u`</summary>
+
+```json
+{
+  "filters": {
+    "status": "ANALYZING"
+  },
+  "project": "schema_semantic_constrained_ie",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b55ad32b-d93d-4bbe-bc88-b6b26c5f486b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V8BfQbnPpFAChQ7NgK",
+  "type": "assistant",
+  "uuid": "50f3c7c0-6d3c-4362-b7a2-abfb1cbaeb21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PtWwXiVP5n2L17d4vrieB1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 872,
+      "cache_read_input_tokens": 59776,
+      "output_tokens": 185,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 872,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 185,
+          "cache_read_input_tokens": 59776,
+          "cache_creation_input_tokens": 872,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 872
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T14:08:14.318Z_
+
+<details><summary>↩ Tool result · `toolu_01PLTfa7T7FhAMNCLjN8S99u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"llama_docred_unconstrained_mt6144\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:17:33.154Z\", \"updated_at\": \"2026-05-15T14:03:50.752Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"246947\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\", \"submitted_at\": \"2026-05-15T08:19:27.565Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"pid\": \"246947\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"finished_at\": \"2026-05-15T13:59:24.508Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:59:25.767053+00:00\"}]}, \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"f1_method\": \"all_set\", \"documents_total\": 998, \"documents_checked\": 931, \"parse_failures\": 67, \"unique_entities\": 11534, \"total_triples\": 16584, \"dr_eligible_triples\": 13936, \"fuzzy_relation_matches\": 121, \"ET_rate\": 0.13, \"RV_rate\": 15.89, \"DR_rate_all\": 26.18, \"DR_rate_eligible\": 31.15, \"CF_rate\": 0.17, \"entity_precision\": 61.19, \"entity_recall\": 51.06, \"entity_f1\": 55.67, \"relation_precision\": 5.18, \"relation_recall\": 7, \"relation_f1\": 5.95}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\", \"notes\": \"mt6144 vs mt4096 对比: parse_failures 68→67 (-1, 几乎无变化); unique_entities 11525→11534 (+9); triples 16437→16584 (+147, +0.9%); E-F1 55.65%→55.67% (+0.02pp); R-F1 5.98%→5.95% (-0.03pp); DR 26.07%→26.18% (+0.11pp); RV 16.03%→15.89% (-0.14pp); ET/CF 不变. 67 个 FAIL 中绝大多数 inference time ~96s (仍触发 max_tokens cap), 说明这些失败主要源于模型陷入重复循环直到 token 上限, 而非文档过长. 增加 max_new_tokens 不能挽救此类失败. 训练 wall clock 约 5h39m, 比 mt4096 (~5h02m) 多约 37 分钟. 结论: max_new_tokens 4096→6144 对 unconstrained 生成无实质影响, 不建议采用作为后续 baseline.\", \"conclusion\": \"success\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1159}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50f3c7c0-6d3c-4362-b7a2-abfb1cbaeb21",
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "49cc60a4-0b19-4a71-8129-f4cf5d8e255d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"llama_docred_unconstrained_mt6144\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:17:33.154Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:03:50.752Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"246947\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T08:19:27.565Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"246947\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T13:59:24.508Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:59:25.767053+00:00\\\"}]}, \\\"metrics\\\": {\\\"checker_version\\\": \\\"fixed_20260514_v2\\\", \\\"f1_method\\\": \\\"all_set\\\", \\\"documents_total\\\": 998, \\\"documents_checked\\\": 931, \\\"parse_failures\\\": 67, \\\"unique_entities\\\": 11534, \\\"total_triples\\\": 16584, \\\"dr_eligible_triples\\\": 13936, \\\"fuzzy_relation_matches\\\": 121, \\\"ET_rate\\\": 0.13, \\\"RV_rate\\\": 15.89, \\\"DR_rate_all\\\": 26.18, \\\"DR_rate_eligible\\\": 31.15, \\\"CF_rate\\\": 0.17, \\\"entity_precision\\\": 61.19, \\\"entity_recall\\\": 51.06, \\\"entity_f1\\\": 55.67, \\\"relation_precision\\\": 5.18, \\\"relation_recall\\\": 7, \\\"relation_f1\\\": 5.95}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\\\", \\\"notes\\\": \\\"mt6144 vs mt4096 对比: parse_failures 68→67 (-1, 几乎无变化); unique_entities 11525→11534 (+9); triples 16437→16584 (+147, +0.9%); E-F1 55.65%→55.67% (+0.02pp); R-F1 5.98%→5.95% (-0.03pp); DR 26.07%→26.18% (+0.11pp); RV 16.03%→15.89% (-0.14pp); ET/CF 不变. 67 个 FAIL 中绝大多数 inference time ~96s (仍触发 max_tokens cap), 说明这些失败主要源于模型陷入重复循环直到 token 上限, 而非文档过长. 增加 max_new_tokens 不能挽救此类失败. 训练 wall clock 约 5h39m, 比 mt4096 (~5h02m) 多约 37 分钟. 结论: max_new_tokens 4096→6144 对 unconstrained 生成无实质影响, 不建议采用作为后续 baseline.\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1159}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"llama_docred_unconstrained_mt6144\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:17:33.154Z\", \"updated_at\": \"2026-05-15T14:03:50.752Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"246947\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\", \"submitted_at\": \"2026-05-15T08:19:27.565Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"pid\": \"246947\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"finished_at\": \"2026-05-15T13:59:24.508Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:59:25.767053+00:00\"}]}, \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"f1_method\": \"all_set\", \"documents_total\": 998, \"documents_checked\": 931, \"parse_failures\": 67, \"unique_entities\": 11534, \"total_triples\": 16584, \"dr_eligible_triples\": 13936, \"fuzzy_relation_matches\": 121, \"ET_rate\": 0.13, \"RV_rate\": 15.89, \"DR_rate_all\": 26.18, \"DR_rate_eligible\": 31.15, \"CF_rate\": 0.17, \"entity_precision\": 61.19, \"entity_recall\": 51.06, \"entity_f1\": 55.67, \"relation_precision\": 5.18, \"relation_recall\": 7, \"relation_f1\": 5.95}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\", \"notes\": \"mt6144 vs mt4096 对比: parse_failures 68→67 (-1, 几乎无变化); unique_entities 11525→11534 (+9); triples 16437→16584 (+147, +0.9%); E-F1 55.65%→55.67% (+0.02pp); R-F1 5.98%→5.95% (-0.03pp); DR 26.07%→26.18% (+0.11pp); RV 16.03%→15.89% (-0.14pp); ET/CF 不变. 67 个 FAIL 中绝大多数 inference time ~96s (仍触发 max_tokens cap), 说明这些失败主要源于模型陷入重复循环直到 token 上限, 而非文档过长. 增加 max_new_tokens 不能挽救此类失败. 训练 wall clock 约 5h39m, 比 mt4096 (~5h02m) 多约 37 分钟. 结论: max_new_tokens 4096→6144 对 unconstrained 生成无实质影响, 不建议采用作为后续 baseline.\", \"conclusion\": \"success\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1159}}"
+    }
+  },
+  "sourceToolAssistantUUID": "50f3c7c0-6d3c-4362-b7a2-abfb1cbaeb21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-15T14:08:17.705Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "49cc60a4-0b19-4a71-8129-f4cf5d8e255d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V8VdeXTCE5Thho1UJ4",
+  "type": "assistant",
+  "uuid": "85669ed2-3844-4d5e-8059-0db9ffc096ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Up3KgLb1W1jiZmecDm6d4X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1962,
+      "cache_read_input_tokens": 60648,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1962,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 60648,
+          "cache_creation_input_tokens": 1962,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1962
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-15T14:08:18.689Z_
+
+Registry already has metrics, conclusion, checkpoint_path, and detailed mt6144 vs mt4096 comparison notes. Only the status needs transition to DONE.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85669ed2-3844-4d5e-8059-0db9ffc096ae",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V8VdeXTCE5Thho1UJ4",
+  "type": "assistant",
+  "uuid": "6ae15065-1d40-4bee-bf0e-b90436ab834d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Up3KgLb1W1jiZmecDm6d4X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1962,
+      "cache_read_input_tokens": 60648,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1962,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 60648,
+          "cache_creation_input_tokens": 1962,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1962
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T14:08:19.396Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UuQUsxN9ouAXWQMRPSPnvx`</summary>
+
+```json
+{
+  "exp_id": "llama_docred_unconstrained_mt6144",
+  "field": "status",
+  "value": "DONE",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ae15065-1d40-4bee-bf0e-b90436ab834d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V8VdeXTCE5Thho1UJ4",
+  "type": "assistant",
+  "uuid": "ec5163dc-f93a-4889-a24d-2e7187afca63",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Up3KgLb1W1jiZmecDm6d4X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1962,
+      "cache_read_input_tokens": 60648,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1962,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 60648,
+          "cache_creation_input_tokens": 1962,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1962
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T14:08:20.432Z_
+
+<details><summary>↩ Tool result · `toolu_01UuQUsxN9ouAXWQMRPSPnvx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"llama_docred_unconstrained_mt6144\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:17:33.154Z\", \"updated_at\": \"2026-05-15T14:08:19.680Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"246947\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\", \"submitted_at\": \"2026-05-15T08:19:27.565Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 20932.1, \"gpu_hours\": 5.81}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"pid\": \"246947\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"finished_at\": \"2026-05-15T13:59:24.508Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:59:25.767053+00:00\"}]}, \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"f1_method\": \"all_set\", \"documents_total\": 998, \"documents_checked\": 931, \"parse_failures\": 67, \"unique_entities\": 11534, \"total_triples\": 16584, \"dr_eligible_triples\": 13936, \"fuzzy_relation_matches\": 121, \"ET_rate\": 0.13, \"RV_rate\": 15.89, \"DR_rate_all\": 26.18, \"DR_rate_eligible\": 31.15, \"CF_rate\": 0.17, \"entity_precision\": 61.19, \"entity_recall\": 51.06, \"entity_f1\": 55.67, \"relation_precision\": 5.18, \"relation_recall\": 7, \"relation_f1\": 5.95}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\", \"notes\": \"mt6144 vs mt4096 对比: parse_failures 68→67 (-1, 几乎无变化); unique_entities 11525→11534 (+9); triples 16437→16584 (+147, +0.9%); E-F1 55.65%→55.67% (+0.02pp); R-F1 5.98%→5.95% (-0.03pp); DR 26.07%→26.18% (+0.11pp); RV 16.03%→15.89% (-0.14pp); ET/CF 不变. 67 个 FAIL 中绝大多数 inference time ~96s (仍触发 max_tokens cap), 说明这些失败主要源于模型陷入重复循环直到 token 上限, 而非文档过长. 增加 max_new_tokens 不能挽救此类失败. 训练 wall clock 约 5h39m, 比 mt4096 (~5h02m) 多约 37 分钟. 结论: max_new_tokens 4096→6144 对 unconstrained 生成无实质影响, 不建议采用作为后续 baseline.\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T14:08:19.680Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0004}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec5163dc-f93a-4889-a24d-2e7187afca63",
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "f1d9c572-f42b-49c8-b044-65112fb5d22d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"llama_docred_unconstrained_mt6144\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:17:33.154Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:08:19.680Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"246947\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T08:19:27.565Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 20932.1, \\\"gpu_hours\\\": 5.81}, \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"246947\\\", \\\"log_path\\\": \\\"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T13:59:24.508Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T13:59:25.767053+00:00\\\"}]}, \\\"metrics\\\": {\\\"checker_version\\\": \\\"fixed_20260514_v2\\\", \\\"f1_method\\\": \\\"all_set\\\", \\\"documents_total\\\": 998, \\\"documents_checked\\\": 931, \\\"parse_failures\\\": 67, \\\"unique_entities\\\": 11534, \\\"total_triples\\\": 16584, \\\"dr_eligible_triples\\\": 13936, \\\"fuzzy_relation_matches\\\": 121, \\\"ET_rate\\\": 0.13, \\\"RV_rate\\\": 15.89, \\\"DR_rate_all\\\": 26.18, \\\"DR_rate_eligible\\\": 31.15, \\\"CF_rate\\\": 0.17, \\\"entity_precision\\\": 61.19, \\\"entity_recall\\\": 51.06, \\\"entity_f1\\\": 55.67, \\\"relation_precision\\\": 5.18, \\\"relation_recall\\\": 7, \\\"relation_f1\\\": 5.95}, \\\"checkpoint_path\\\": \\\"/root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\\\", \\\"notes\\\": \\\"mt6144 vs mt4096 对比: parse_failures 68→67 (-1, 几乎无变化); unique_entities 11525→11534 (+9); triples 16437→16584 (+147, +0.9%); E-F1 55.65%→55.67% (+0.02pp); R-F1 5.98%→5.95% (-0.03pp); DR 26.07%→26.18% (+0.11pp); RV 16.03%→15.89% (-0.14pp); ET/CF 不变. 67 个 FAIL 中绝大多数 inference time ~96s (仍触发 max_tokens cap), 说明这些失败主要源于模型陷入重复循环直到 token 上限, 而非文档过长. 增加 max_new_tokens 不能挽救此类失败. 训练 wall clock 约 5h39m, 比 mt4096 (~5h02m) 多约 37 分钟. 结论: max_new_tokens 4096→6144 对 unconstrained 生成无实质影响, 不建议采用作为后续 baseline.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T14:08:19.680Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0004}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"llama_docred_unconstrained_mt6144\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:17:33.154Z\", \"updated_at\": \"2026-05-15T14:08:19.680Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"246947\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\", \"submitted_at\": \"2026-05-15T08:19:27.565Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 20932.1, \"gpu_hours\": 5.81}, \"server\": \"westd-16980\", \"gpu\": \"cuda:0\", \"pid\": \"246947\", \"log_path\": \"~/runs/schema_semantic_constrained_ie/llama_docred_unconstrained_mt6144.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/schema_semantic_constrained_ie && python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path outputs/llama_docred_unconstrained_mt6144.jsonl --device cuda:0 --batch_size 1 --max_new_tokens 6144\\\"\", \"finished_at\": \"2026-05-15T13:59:24.508Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:59:25.767053+00:00\"}]}, \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"f1_method\": \"all_set\", \"documents_total\": 998, \"documents_checked\": 931, \"parse_failures\": 67, \"unique_entities\": 11534, \"total_triples\": 16584, \"dr_eligible_triples\": 13936, \"fuzzy_relation_matches\": 121, \"ET_rate\": 0.13, \"RV_rate\": 15.89, \"DR_rate_all\": 26.18, \"DR_rate_eligible\": 31.15, \"CF_rate\": 0.17, \"entity_precision\": 61.19, \"entity_recall\": 51.06, \"entity_f1\": 55.67, \"relation_precision\": 5.18, \"relation_recall\": 7, \"relation_f1\": 5.95}, \"checkpoint_path\": \"/root/schema_semantic_constrained_ie/outputs/llama_docred_unconstrained_mt6144.jsonl\", \"notes\": \"mt6144 vs mt4096 对比: parse_failures 68→67 (-1, 几乎无变化); unique_entities 11525→11534 (+9); triples 16437→16584 (+147, +0.9%); E-F1 55.65%→55.67% (+0.02pp); R-F1 5.98%→5.95% (-0.03pp); DR 26.07%→26.18% (+0.11pp); RV 16.03%→15.89% (-0.14pp); ET/CF 不变. 67 个 FAIL 中绝大多数 inference time ~96s (仍触发 max_tokens cap), 说明这些失败主要源于模型陷入重复循环直到 token 上限, 而非文档过长. 增加 max_new_tokens 不能挽救此类失败. 训练 wall clock 约 5h39m, 比 mt4096 (~5h02m) 多约 37 分钟. 结论: max_new_tokens 4096→6144 对 unconstrained 生成无实质影响, 不建议采用作为后续 baseline.\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T14:08:19.680Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0004}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ec5163dc-f93a-4889-a24d-2e7187afca63",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "f1d9c572-f42b-49c8-b044-65112fb5d22d",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze llama_docred_unconstrained_mt6144 experiment",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269"
+}
+```
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T14:08:24.579Z_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_012D8BWWAvLBMViaAxWJaFca`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Confirm output file integrity",
+      "status": "completed",
+      "activeForm": "Confirming output file integrity"
+    },
+    {
+      "content": "Run violation checker + F1",
+      "status": "completed",
+      "activeForm": "Running violation checker + F1"
+    },
+    {
+      "content": "Compare with mt4096 baseline",
+      "status": "completed",
+      "activeForm": "Comparing with mt4096 baseline"
+    },
+    {
+      "content": "Update registry with metrics",
+      "status": "completed",
+      "activeForm": "Updating registry with metrics"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1d9c572-f42b-49c8-b044-65112fb5d22d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V8wrEPSCA8JsbnUqnr",
+  "type": "assistant",
+  "uuid": "f3585fac-e910-46a4-b44e-5132f6c7f0c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01QEV2L6eQvziunxaGS3RWZb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2185,
+      "cache_read_input_tokens": 62610,
+      "output_tokens": 237,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2185,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 237,
+          "cache_read_input_tokens": 62610,
+          "cache_creation_input_tokens": 2185,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2185
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T14:08:24.594Z_
+
+<details><summary>↩ Tool result · `toolu_012D8BWWAvLBMViaAxWJaFca`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f3585fac-e910-46a4-b44e-5132f6c7f0c6",
+  "isSidechain": false,
+  "promptId": "fd226bd5-9f20-4a0b-997f-a1ce63c505d0",
+  "type": "user",
+  "uuid": "4b17832d-5752-49b4-b002-661fb7d973c1",
+  "toolUseResult": {
+    "oldTodos": [
+      {
+        "content": "Confirm output file integrity",
+        "status": "completed",
+        "activeForm": "Confirming output file integrity"
+      },
+      {
+        "content": "Run violation checker + F1",
+        "status": "in_progress",
+        "activeForm": "Running violation checker + F1"
+      },
+      {
+        "content": "Compare with mt4096 baseline",
+        "status": "pending",
+        "activeForm": "Comparing with mt4096 baseline"
+      },
+      {
+        "content": "Update registry with metrics",
+        "status": "pending",
+        "activeForm": "Updating registry with metrics"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Confirm output file integrity",
+        "status": "completed",
+        "activeForm": "Confirming output file integrity"
+      },
+      {
+        "content": "Run violation checker + F1",
+        "status": "completed",
+        "activeForm": "Running violation checker + F1"
+      },
+      {
+        "content": "Compare with mt4096 baseline",
+        "status": "completed",
+        "activeForm": "Comparing with mt4096 baseline"
+      },
+      {
+        "content": "Update registry with metrics",
+        "status": "completed",
+        "activeForm": "Updating registry with metrics"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  },
+  "sourceToolAssistantUUID": "f3585fac-e910-46a4-b44e-5132f6c7f0c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-15T14:08:34.892Z_
+
+## 完成报告
+
+**文件完整性**: 998/998 docs ✓
+
+**Violation Report** (v2, unique_et 去重):
+| 指标 | mt6144 | 计数 |
+|---|---|---|
+| Parse fail | 67/998 | |
+| Unique entities | 11534 | |
+| Triples | 16584 | |
+| ET | 0.13% | 15/11534 |
+| RV | 15.89% | 2635/16584 |
+| DR (all) | 26.18% | 4341/16584 |
+| DR (eligible) | 31.15% | 4341/13936 |
+| CF | 0.17% | 20/11534 |
+
+**F1 (all_set)**:
+- Entity: P=61.19, R=51.06, **F1=55.67**
+- Relation: P=5.18, R=7.00, **F1=5.95**
+
+**mt6144 vs mt4096 对比**:
+
+| 指标 | mt4096 | mt6144 | Δ |
+|---|---|---|---|
+| Parse fail | 68 | 67 | -1 |
+| Triples | 16437 | 16584 | +0.9% |
+| ET | 0.13% | 0.13% | 0 |
+| RV | 16.03% | 15.89% | -0.14pp |
+| DR | 26.07% | 26.18% | +0.11pp |
+| CF | 0.17% | 0.17% | 0 |
+| E-F1 | 55.65 | 55.67 | +0.02pp |
+| R-F1 | 5.98 | 5.95 | -0.03pp |
+
+**结论**: max_new_tokens 4096→6144 对 unconstrained 生成几乎无影响。67 个 parse failures 主要源于模型陷入重复循环直到 token 上限（非文档过长），加大 budget 不能挽救。wall clock 多约 37 min。不建议采用为新 baseline。
+
+**Registry**: `llama_docred_unconstrained_mt6144` 状态 ANALYZING → DONE，metrics/conclusion=success/checkpoint_path/notes 均已就位。分析 JSON 落盘 `outputs/analysis_llama_docred_unconstrained_mt6144_v2.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b17832d-5752-49b4-b002-661fb7d973c1",
+  "isSidechain": false,
+  "requestId": "req_011Cb4V9FtS9jUbAQHAV7YKK",
+  "type": "assistant",
+  "uuid": "ca38665a-9797-46bf-95d4-8c8b2c739a49",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01AQmoArwzceQ6k569q3XUcn",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 295,
+      "cache_read_input_tokens": 64795,
+      "output_tokens": 737,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 295,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 737,
+          "cache_read_input_tokens": 64795,
+          "cache_creation_input_tokens": 295,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 295
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "ca38665a-9797-46bf-95d4-8c8b2c739a49",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze llama_docred_unconstrained_mt6144 experiment",
+  "sessionId": "140958bb-da6c-4f0d-b3b0-0c03dd6b6269"
+}
+```
+
+---

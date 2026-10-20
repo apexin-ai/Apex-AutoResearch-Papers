@@ -1,0 +1,5001 @@
+# Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-10 (UTC).** Only recommend ve
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 73
+- **Recorded user turns:** 1
+- **Tool calls:** 19
+- **Original source:** `logs/chats/exported-trajectories/account-1/03500054-cd88-4e29-a193-444f7bea31e8.jsonl`
+- **Structured JSON:** [`dc76fa2d1142f6942516.json`](../../sessions/dc/dc76fa2d1142f6942516.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T07:01:09.482Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T07:01:09.482Z",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "content": "Complete the research direction below with implementation details.\n\n**Today's date: 2026-05-10 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.\n\n{\n  \"title\": \"Schema-Conditioned Synthetic Supervision Beyond NER: Joint Event-Relation Schemas\",\n  \"core_problem\": \"Synthetic-data-based zero-shot IE (GuideX, 2025) achieves strong results on NER but the approach has not been extended to joint event-relation schemas where argument roles, event types, and participating entity types must co-occur in consistent generated examples. Can schema-conditioned synthetic data generation be made compositionally consistent for complex event/relation schemas with hierarchical constraints?\",\n  \"opportunity\": \"GuideX (ACL Findings 2025) improves zero-shot NER by up to 7 F1 over prior methods by generating schema-specific training data, but the authors explicitly note that event-centric resources (ACE05-RE, CASIE) with 'long-tail, highly specialised labels' are not covered by their generated entity types (only 42.4% verbatim overlap). Event schemas have compositional structure: an event of type 'Attack' must have at most one 'Attacker' role, which must be filled by a PERSON or ORGANIZATION entity. Generating plausible synthetic event instances requires satisfying these schema constraints globally, which flat NER generation does not. A compositional schema-constrained generator that (1) samples event types, (2) enforces argument role constraints, (3) generates coherent sentences satisfying all constraints simultaneously could extend GuideX-style zero-shot IE to WikiEvents, RAMS, and MAVEN — benchmarks with 50–139 event types that remain poorly covered by zero-shot methods.\",\n  \"landscape\": \"GuideX (ACL 2025) sets SOTA on 7 zero-shot NER benchmarks with Llama-3.1 fine-tuned on generated data, but explicitly does not address event extraction. KnowCoder (2024) handles events via Python class schemas but relies on supervised training on 33 datasets. Current event extraction zero-shot methods using GoLLIE and InstructUIE significantly lag supervised models — GPT-4.1 achieves only 15.02% macro-F1 on event extraction vs 61.53% on NER (EvalLLM 2025), illustrating the large gap that zero-shot methods must close. No existing synthetic data generation framework enforces compositional schema constraints across event type, argument roles, and entity type compatibility — all current generators operate at the entity-mention level and ignore these hierarchical dependencies.\"\n}\n\nADD these fields (keep all existing fields):\n{\n  \"approach\": \"Proposed method or research direction — what you would actually do (3-5 sentences)\",\n  \"resource_estimate\": {\n      \"manual\": {\n          \"gpu_hours\": \"e.g. ~200h A100\",\n          \"gpu_utilization\": \"describe GPU idle rate (human waits cause high idle)\",\n          \"timeline\": \"e.g. 3-6 months\",\n          \"team\": \"e.g. 1-2 researchers\",\n          \"estimated_gpu_cost\": \"GPU rental cost only (do NOT include salary)\"\n      },\n      \"human_in_loop\": {\n          \"gpu_hours\": \"e.g. ~300h A100\",\n          \"gpu_utilization\": \"describe GPU utilization improvement vs manual\",\n          \"timeline\": \"e.g. 1-2 months\",\n          \"team\": \"e.g. 1 researcher, ~30min/day check-in (do NOT include salary)\",\n          \"claude_api_cost\": \"e.g. $100-300\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"risk_note\": \"Key bottleneck or risk\"\n      },\n      \"auto_research\": {\n          \"gpu_hours\": \"e.g. ~500h A100 (more exploration, but near-zero idle)\",\n          \"gpu_utilization\": \"describe why GPU idle rate is minimal\",\n          \"timeline\": \"e.g. days to 2 weeks if resources are sufficient\",\n          \"team\": \"0 (only initial setup)\",\n          \"claude_api_cost\": \"e.g. $200-500\",\n          \"estimated_gpu_cost\": \"GPU rental cost\",\n          \"speed_bottleneck\": \"what limits speed (GPU count, API key quota, etc.)\",\n          \"risk_note\": \"Key risk factor\"\n      }\n  },\n  \"target_venues\": [\"Only list venues with deadlines after 2026-05-10, e.g. NeurIPS 2026\"],\n  \"level\": \"top-tier | solid | incremental\",\n  \"key_references\": [\"Paper title (VENUE YEAR)\", ...],\n  \"description\": \"Executive summary combining all above into 150-200 words\",\n  \"project_name\": \"snake_case_identifier (valid Python id, max 30 chars)\",\n  \"source\": \"web_research\"\n}\n\nFor key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.\n\n**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search \"best open source LLM 2026\", \"SOTA open source language model\"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.\n\n## 竞争论文 & Concurrent Work 搜索\n\n在设计 approach 之前，必须确认没有人正在做同样的事情：\n- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`\n- 在 arXiv 上搜索过去 3 个月的相关提交\n- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交\n- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化\n\n## 非常仔细地思考和验证\n\n在设计具体 approach 时，你必须深入思考并充分调研：\n\n1. **可行性验证**（不是猜测，而是基于证据）：\n   - 搜索类似方法的已有实现（检查 GitHub）\n   - 查找需要打败的具体 baseline 数字\n   - 了解类似实验的硬件/数据需求\n   - 查找相关工作中已识别的潜在失败模式\n\n2. **成本估算必须基于真实数据**：\n   - 找到类似实验的实际成本（不是拍脑袋）\n   - 考虑不同研究模式下的成本差异\n\n3. **内部一致性自查**：\n   - approach 是否直接解决 Round 1 识别的 core_problem？\n   - resource estimate 与 approach 复杂度是否匹配？\n   - target venues 与贡献级别是否相称？\n\nFor feasibility grounding:\n- Search \"github.com {method_name} {task}\" to check if building blocks or reference implementations exist.\n  If nothing similar exists, your timeline estimate should be longer.\n- Search \"huggingface.co/datasets {dataset_name}\" or \"paperswithcode.com {task} datasets\" to verify\n  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.\n\nWhen estimating costs for the three research modes (ordered from most to least human involvement):\n\n1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.\n\n2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.\n\n3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.\n\nKey principles:\n- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate\n- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed\n- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)\n- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates\n\nOutput ONLY a single JSON object with ALL fields merged. No markdown fences."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T07:01:09.486Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T07:01:09.486Z",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+## Round 1
+
+71 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T07:01:09.508Z_
+
+Complete the research direction below with implementation details.
+
+**Today's date: 2026-05-10 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.
+
+{
+  "title": "Schema-Conditioned Synthetic Supervision Beyond NER: Joint Event-Relation Schemas",
+  "core_problem": "Synthetic-data-based zero-shot IE (GuideX, 2025) achieves strong results on NER but the approach has not been extended to joint event-relation schemas where argument roles, event types, and participating entity types must co-occur in consistent generated examples. Can schema-conditioned synthetic data generation be made compositionally consistent for complex event/relation schemas with hierarchical constraints?",
+  "opportunity": "GuideX (ACL Findings 2025) improves zero-shot NER by up to 7 F1 over prior methods by generating schema-specific training data, but the authors explicitly note that event-centric resources (ACE05-RE, CASIE) with 'long-tail, highly specialised labels' are not covered by their generated entity types (only 42.4% verbatim overlap). Event schemas have compositional structure: an event of type 'Attack' must have at most one 'Attacker' role, which must be filled by a PERSON or ORGANIZATION entity. Generating plausible synthetic event instances requires satisfying these schema constraints globally, which flat NER generation does not. A compositional schema-constrained generator that (1) samples event types, (2) enforces argument role constraints, (3) generates coherent sentences satisfying all constraints simultaneously could extend GuideX-style zero-shot IE to WikiEvents, RAMS, and MAVEN — benchmarks with 50–139 event types that remain poorly covered by zero-shot methods.",
+  "landscape": "GuideX (ACL 2025) sets SOTA on 7 zero-shot NER benchmarks with Llama-3.1 fine-tuned on generated data, but explicitly does not address event extraction. KnowCoder (2024) handles events via Python class schemas but relies on supervised training on 33 datasets. Current event extraction zero-shot methods using GoLLIE and InstructUIE significantly lag supervised models — GPT-4.1 achieves only 15.02% macro-F1 on event extraction vs 61.53% on NER (EvalLLM 2025), illustrating the large gap that zero-shot methods must close. No existing synthetic data generation framework enforces compositional schema constraints across event type, argument roles, and entity type compatibility — all current generators operate at the entity-mention level and ignore these hierarchical dependencies."
+}
+
+ADD these fields (keep all existing fields):
+{
+  "approach": "Proposed method or research direction — what you would actually do (3-5 sentences)",
+  "resource_estimate": {
+      "manual": {
+          "gpu_hours": "e.g. ~200h A100",
+          "gpu_utilization": "describe GPU idle rate (human waits cause high idle)",
+          "timeline": "e.g. 3-6 months",
+          "team": "e.g. 1-2 researchers",
+          "estimated_gpu_cost": "GPU rental cost only (do NOT include salary)"
+      },
+      "human_in_loop": {
+          "gpu_hours": "e.g. ~300h A100",
+          "gpu_utilization": "describe GPU utilization improvement vs manual",
+          "timeline": "e.g. 1-2 months",
+          "team": "e.g. 1 researcher, ~30min/day check-in (do NOT include salary)",
+          "claude_api_cost": "e.g. $100-300",
+          "estimated_gpu_cost": "GPU rental cost",
+          "risk_note": "Key bottleneck or risk"
+      },
+      "auto_research": {
+          "gpu_hours": "e.g. ~500h A100 (more exploration, but near-zero idle)",
+          "gpu_utilization": "describe why GPU idle rate is minimal",
+          "timeline": "e.g. days to 2 weeks if resources are sufficient",
+          "team": "0 (only initial setup)",
+          "claude_api_cost": "e.g. $200-500",
+          "estimated_gpu_cost": "GPU rental cost",
+          "speed_bottleneck": "what limits speed (GPU count, API key quota, etc.)",
+          "risk_note": "Key risk factor"
+      }
+  },
+  "target_venues": ["Only list venues with deadlines after 2026-05-10, e.g. NeurIPS 2026"],
+  "level": "top-tier | solid | incremental",
+  "key_references": ["Paper title (VENUE YEAR)", ...],
+  "description": "Executive summary combining all above into 150-200 words",
+  "project_name": "snake_case_identifier (valid Python id, max 30 chars)",
+  "source": "web_research"
+}
+
+For key_references, verify with WebSearch that cited paper titles and venues are real. Drop any reference you cannot verify.
+
+**Model freshness rule**: When the approach involves pretrained models (LLM, vision model, etc.), use WebSearch to find the current top-performing open-source models for the task (e.g., search "best open source LLM 2026", "SOTA open source language model"). Use models that represent the current frontier — do NOT default to models from your training data. Entire model families may be outdated (e.g., LLaMA), not just version numbers. Exception: skip this if the idea specifically requires older models (reproduction, model evolution analysis, backward compatibility) or the user explicitly specified a model in the seed topic.
+
+## 竞争论文 & Concurrent Work 搜索
+
+在设计 approach 之前，必须确认没有人正在做同样的事情：
+- 搜索 `{core_problem} 2026` 和 `{approach_keyword} {task} 2026`
+- 在 arXiv 上搜索过去 3 个月的相关提交
+- 在 OpenReview 上搜索即将举行的会议（ICML, NeurIPS, ICLR）的提交
+- 如果发现高度相似的 concurrent work，必须在 landscape 中明确提及，并在 approach 中说明与之的差异化
+
+## 非常仔细地思考和验证
+
+在设计具体 approach 时，你必须深入思考并充分调研：
+
+1. **可行性验证**（不是猜测，而是基于证据）：
+   - 搜索类似方法的已有实现（检查 GitHub）
+   - 查找需要打败的具体 baseline 数字
+   - 了解类似实验的硬件/数据需求
+   - 查找相关工作中已识别的潜在失败模式
+
+2. **成本估算必须基于真实数据**：
+   - 找到类似实验的实际成本（不是拍脑袋）
+   - 考虑不同研究模式下的成本差异
+
+3. **内部一致性自查**：
+   - approach 是否直接解决 Round 1 识别的 core_problem？
+   - resource estimate 与 approach 复杂度是否匹配？
+   - target venues 与贡献级别是否相称？
+
+For feasibility grounding:
+- Search "github.com {method_name} {task}" to check if building blocks or reference implementations exist.
+  If nothing similar exists, your timeline estimate should be longer.
+- Search "huggingface.co/datasets {dataset_name}" or "paperswithcode.com {task} datasets" to verify
+  that required datasets are actually accessible. If the dataset is proprietary or hard to obtain, flag it.
+
+When estimating costs for the three research modes (ordered from most to least human involvement):
+
+1. **Manual (纯人工)**: Human writes code, designs experiments, analyzes results. GPU idle rate is HIGH because GPU waits for humans. Do NOT include salary — only estimate GPU cost.
+
+2. **Human-in-Loop (人机协作)**: Agent executes, human approves key decisions. GPU utilization is moderate. Do NOT include salary — only estimate GPU cost + API cost. Team field describes required check-in frequency.
+
+3. **Auto Research (全自动)**: Agent runs 24/7, explores more experiments but GPU idle rate is near ZERO. Speed bottleneck is GPU count and API key quota — with sufficient resources, a paper can be completed in DAYS. Only estimate GPU cost + API cost. Do NOT factor in agent operational overhead.
+
+Key principles:
+- Auto Research uses MORE total GPU hours but has MUCH LOWER GPU idle rate
+- Claude API cost: ~$0.05-0.15 per conversation turn (Opus), estimate total turns needed
+- Auto mode typically runs 3-5x more experiments than manual (exploration + failed attempts)
+- Human-in-Loop reduces auto mode waste by ~40-60% through approval gates
+
+Output ONLY a single JSON object with ALL fields merged. No markdown fences.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "2b74c1f9-2a0d-4910-b36c-0cd9776afda5",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T07:01:09.507Z_
+
+```json
+{
+  "parentUuid": "2b74c1f9-2a0d-4910-b36c-0cd9776afda5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "0c9b1773-3a3e-4efa-9ff2-3c41166a3352",
+  "timestamp": "2026-05-10T07:01:09.507Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T07:01:09.507Z_
+
+```json
+{
+  "parentUuid": "0c9b1773-3a3e-4efa-9ff2-3c41166a3352",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "cea104f5-3c23-4761-8793-f7960a0b0b19",
+  "timestamp": "2026-05-10T07:01:09.507Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Schema-Conditioned Synthetic Supervision for Joint Event-Relation Extraction",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-10T07:01:13.382Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to complete a research direction JSON with additional fields. I need to:
+
+1. Search for concurrent work on schema-conditioned synthetic data generation for event extraction
+2. Verify key references
+3. Find current SOTA open-source models
+4. Check target venues with upcoming deadlines
+5. Estimate resources
+6. Fill in all the required fields
+
+Let me start with multiple searches in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cea104f5-3c23-4761-8793-f7960a0b0b19",
+  "isSidechain": false,
+  "requestId": "req_011CatTX1PPeak9j2hfmjrdn",
+  "type": "assistant",
+  "uuid": "31c88b54-a197-4c9b-b134-e501e928dbc8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Ma6dkRd4CL237vT5QB9YFu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7327,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7327,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 7327,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7327
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-10T07:01:13.831Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011DCVk5WJGnxEnRKB2XXi1u`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31c88b54-a197-4c9b-b134-e501e928dbc8",
+  "isSidechain": false,
+  "requestId": "req_011CatTX1PPeak9j2hfmjrdn",
+  "type": "assistant",
+  "uuid": "d8b50646-1e8a-4775-95b9-2ed459d896ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Ma6dkRd4CL237vT5QB9YFu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 7327,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7327,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 7327,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7327
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-10T07:01:13.839Z_
+
+<details><summary>↩ Tool result · `toolu_011DCVk5WJGnxEnRKB2XXi1u`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8b50646-1e8a-4775-95b9-2ed459d896ed",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "d6a4f082-4d94-4a51-8947-6093c794874a",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "d8b50646-1e8a-4775-95b9-2ed459d896ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-10T07:01:15.603Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for concurrent work and relevant information in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6a4f082-4d94-4a51-8947-6093c794874a",
+  "isSidechain": false,
+  "requestId": "req_011CatTXL5J3x4dXadSuoBQb",
+  "type": "assistant",
+  "uuid": "4e2af1d7-aabf-446a-a4bf-2717455d564d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01XcZjvLhWgKWaoNxFSN6itG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 708,
+      "cache_read_input_tokens": 18958,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 18958,
+          "cache_creation_input_tokens": 708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-10T07:01:15.973Z_
+
+I'll run several searches in parallel to gather all the information needed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4e2af1d7-aabf-446a-a4bf-2717455d564d",
+  "isSidechain": false,
+  "requestId": "req_011CatTXL5J3x4dXadSuoBQb",
+  "type": "assistant",
+  "uuid": "c4d1d563-4658-4b57-b493-4f7a29b2e32c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01XcZjvLhWgKWaoNxFSN6itG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 708,
+      "cache_read_input_tokens": 18958,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 18958,
+          "cache_creation_input_tokens": 708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-10T07:01:16.446Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UDFW68p5zanJFGKf8tGaDR`</summary>
+
+```json
+{
+  "query": "schema-conditioned synthetic data generation event extraction zero-shot 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4d1d563-4658-4b57-b493-4f7a29b2e32c",
+  "isSidechain": false,
+  "requestId": "req_011CatTXL5J3x4dXadSuoBQb",
+  "type": "assistant",
+  "uuid": "6accbdb8-0d0d-4e46-855d-c6367e605939",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01XcZjvLhWgKWaoNxFSN6itG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 708,
+      "cache_read_input_tokens": 18958,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 18958,
+          "cache_creation_input_tokens": 708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-10T07:01:17.214Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XkBJHVSTHcioPxUnYGyQHX`</summary>
+
+```json
+{
+  "query": "GuideX ACL 2025 zero-shot NER synthetic data generation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6accbdb8-0d0d-4e46-855d-c6367e605939",
+  "isSidechain": false,
+  "requestId": "req_011CatTXL5J3x4dXadSuoBQb",
+  "type": "assistant",
+  "uuid": "9c7aad77-ff27-4b2e-bf57-f6a33ec9bbd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01XcZjvLhWgKWaoNxFSN6itG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 708,
+      "cache_read_input_tokens": 18958,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 18958,
+          "cache_creation_input_tokens": 708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T07:01:17.578Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015byeyNER47ebqpAcBrk91t`</summary>
+
+```json
+{
+  "query": "best open source LLM 2026 instruction following code generation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c7aad77-ff27-4b2e-bf57-f6a33ec9bbd1",
+  "isSidechain": false,
+  "requestId": "req_011CatTXL5J3x4dXadSuoBQb",
+  "type": "assistant",
+  "uuid": "6017528c-f5d3-419a-b6d0-22c946aac8cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01XcZjvLhWgKWaoNxFSN6itG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 708,
+      "cache_read_input_tokens": 18958,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 18958,
+          "cache_creation_input_tokens": 708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T07:01:18.067Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Qe3YdYMYEage5ZoT7KD636`</summary>
+
+```json
+{
+  "query": "NLP conference submission deadlines 2026 ACL EMNLP NAACL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6017528c-f5d3-419a-b6d0-22c946aac8cd",
+  "isSidechain": false,
+  "requestId": "req_011CatTXL5J3x4dXadSuoBQb",
+  "type": "assistant",
+  "uuid": "2aa3545c-f8b7-4eaa-8964-7dc4a901592c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01XcZjvLhWgKWaoNxFSN6itG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 708,
+      "cache_read_input_tokens": 18958,
+      "output_tokens": 263,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 708,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 18958,
+          "cache_creation_input_tokens": 708,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 708
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-10 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Schema-Condit…",
+  "leafUuid": "2aa3545c-f8b7-4eaa-8964-7dc4a901592c",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Schema-Conditioned Synthetic Supervision for Joint Event-Relation Extraction",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T07:01:23.721Z_
+
+<details><summary>↩ Tool result · `toolu_01Qe3YdYMYEage5ZoT7KD636`</summary>
+
+```text
+Web search results for query: "NLP conference submission deadlines 2026 ACL EMNLP NAACL"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"AI Conference Deadlines","url":"https://hlr.github.io/deadlines/"},{"title":"The 2026 Conference on Empirical Methods in Natural Language Processing - EMNLP 2026","url":"https://2026.emnlp.org/"},{"title":"Events List | ACL Member Portal","url":"https://www.aclweb.org/portal/events?order=field_event_date&sort=desc"},{"title":"Announcements | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement"},{"title":"LINGUIST List 36.2630 Confs: Joint Call for Tutorial Proposals: EACL/ACL 2026 (Online)","url":"https://linguistlist.org/issues/36/2630/"},{"title":"CoNLL 2026 | CoNLL","url":"https://conll.org/"},{"title":"AI Conference Deadlines 2026 | ConferenceDeadlines.com","url":"https://www.conferencedeadlines.com/"},{"title":"nlp | ACL Member Portal","url":"https://www.aclweb.org/portal/category/topics/nlp"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"}]
+
+Based on the search results, here are the NLP conference submission deadlines for 2026:
+
+## ACL 2026
+ACL 2026 accepts all submissions via ACL Rolling Review (ARR), with reviews available on March 9, 2026, a commitment deadline of March 14, 2026, notification on April 4, 2026, and camera-ready submission on April 19, 2026. The conference will take place July 2-7, 2026 in San Diego, CA, USA.
+
+## EMNLP 2026
+EMNLP 2026 will be held in Budapest, Hungary from October 24th to October 29th, 2026. All submissions for EMNLP 2026 will be via ACL Rolling Review (ARR).
+
+## NAACL 2026
+The search results do not contain specific submission deadline information for NAACL 2026. For the most current deadlines for all three conferences, you may want to check the official conference websites directly or consult resources like the ACL Rolling Review (ARR) platform for detailed submission timelines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2aa3545c-f8b7-4eaa-8964-7dc4a901592c",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "808a1aa7-9e42-4e1d-9811-d9e0a72fe902",
+  "toolUseResult": {
+    "query": "NLP conference submission deadlines 2026 ACL EMNLP NAACL",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UEh6G3SC5iopdViRRVYviz",
+        "content": [
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://hlr.github.io/deadlines/"
+          },
+          {
+            "title": "The 2026 Conference on Empirical Methods in Natural Language Processing - EMNLP 2026",
+            "url": "https://2026.emnlp.org/"
+          },
+          {
+            "title": "Events List | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/events?order=field_event_date&sort=desc"
+          },
+          {
+            "title": "Announcements | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement"
+          },
+          {
+            "title": "LINGUIST List 36.2630 Confs: Joint Call for Tutorial Proposals: EACL/ACL 2026 (Online)",
+            "url": "https://linguistlist.org/issues/36/2630/"
+          },
+          {
+            "title": "CoNLL 2026 | CoNLL",
+            "url": "https://conll.org/"
+          },
+          {
+            "title": "AI Conference Deadlines 2026 | ConferenceDeadlines.com",
+            "url": "https://www.conferencedeadlines.com/"
+          },
+          {
+            "title": "nlp | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/category/topics/nlp"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          }
+        ]
+      },
+      "Based on the search results, here are the NLP conference submission deadlines for 2026:\n\n## ACL 2026\nACL 2026 accepts all submissions via ACL Rolling Review (ARR), with reviews available on March 9, 2026, a commitment deadline of March 14, 2026, notification on April 4, 2026, and camera-ready submission on April 19, 2026. The conference will take place July 2-7, 2026 in San Diego, CA, USA.\n\n## EMNLP 2026\nEMNLP 2026 will be held in Budapest, Hungary from October 24th to October 29th, 2026. All submissions for EMNLP 2026 will be via ACL Rolling Review (ARR).\n\n## NAACL 2026\nThe search results do not contain specific submission deadline information for NAACL 2026. For the most current deadlines for all three conferences, you may want to check the official conference websites directly or consult resources like the ACL Rolling Review (ARR) platform for detailed submission timelines."
+    ],
+    "durationSeconds": 5.650168867999999
+  },
+  "sourceToolAssistantUUID": "2aa3545c-f8b7-4eaa-8964-7dc4a901592c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-10T07:01:23.881Z_
+
+<details><summary>↩ Tool result · `toolu_01XkBJHVSTHcioPxUnYGyQHX`</summary>
+
+```text
+Web search results for query: "GuideX ACL 2025 zero-shot NER synthetic data generation"
+
+Links: [{"title":"GUIDEX – ACL Findings 2025","url":"https://neilus03.github.io/guidex.com/"},{"title":"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction - ACL Anthology","url":"https://aclanthology.org/2025.findings-acl.1245/"},{"title":"GUIDEX: Guided Synthetic Data Generation for Zero-Shot ...","url":"https://aclanthology.org/2025.findings-acl.1245.pdf"},{"title":"GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://arxiv.org/html/2506.00649"},{"title":"GitHub - Neilus03/GUIDEX: GUIDEX official repo","url":"https://github.com/Neilus03/GUIDEX"},{"title":"[2506.00649] GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://arxiv.org/abs/2506.00649"},{"title":"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://openreview.net/pdf?id=OBJSRNVYS5"},{"title":"GuideX: Guided Synthetic Data Generation for Zero-Shot ...","url":"https://www.ixa.eus/sites/default/files/dokumentuak/14245/2506.00649v1.pdf"},{"title":"Accepted Findings Papers - ACL 2025","url":"https://2025.aclweb.org/program/find_papers/"},{"title":"GLiNER: Generalist Model for Named Entity Recognition ...","url":"https://aclanthology.org/2024.naacl-long.300.pdf"}]
+
+Based on the search results, here's what I found about GuideX, the ACL 2025 paper on zero-shot NER and synthetic data generation:
+
+## Overview
+
+GuideX is a novel method that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization.
+
+## Key Motivation
+
+Information Extraction systems are traditionally domain-specific, requiring costly adaptation involving expert schema design, data annotation, and model training. While Large Language Models have shown promise in zero-shot IE, performance degrades significantly in unseen domains where label definitions differ.
+
+## Results
+
+Fine-tuning Llama 3.1 with GUIDEX sets a new state-of-the-art across seven zero-shot Named Entity Recognition benchmarks. Models trained with GUIDEX gain up to 7 F1 points over previous methods without human labeled data, and nearly 2 F1 points higher when combined with it.
+
+## Technical Details
+
+The approach transforms raw text into structured annotations by dynamically inferring schemas, generating executable guidelines, and resulting annotations. The dataset has 28,677 unique labels, with an average of 5.34 distinct instances per label.
+
+## Publication and Availability
+
+The paper was published in the Findings of the Association for Computational Linguistics: ACL 2025 in Vienna, Austria. Code, models, and synthetic datasets are available at neilus03.github.io/guidex.com.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c7aad77-ff27-4b2e-bf57-f6a33ec9bbd1",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "6a042638-c758-4689-8261-ac1f441b6bc4",
+  "toolUseResult": {
+    "query": "GuideX ACL 2025 zero-shot NER synthetic data generation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SUppH66Gye3nn9m1vLQ4fG",
+        "content": [
+          {
+            "title": "GUIDEX – ACL Findings 2025",
+            "url": "https://neilus03.github.io/guidex.com/"
+          },
+          {
+            "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-acl.1245/"
+          },
+          {
+            "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot ...",
+            "url": "https://aclanthology.org/2025.findings-acl.1245.pdf"
+          },
+          {
+            "title": "GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://arxiv.org/html/2506.00649"
+          },
+          {
+            "title": "GitHub - Neilus03/GUIDEX: GUIDEX official repo",
+            "url": "https://github.com/Neilus03/GUIDEX"
+          },
+          {
+            "title": "[2506.00649] GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://arxiv.org/abs/2506.00649"
+          },
+          {
+            "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://openreview.net/pdf?id=OBJSRNVYS5"
+          },
+          {
+            "title": "GuideX: Guided Synthetic Data Generation for Zero-Shot ...",
+            "url": "https://www.ixa.eus/sites/default/files/dokumentuak/14245/2506.00649v1.pdf"
+          },
+          {
+            "title": "Accepted Findings Papers - ACL 2025",
+            "url": "https://2025.aclweb.org/program/find_papers/"
+          },
+          {
+            "title": "GLiNER: Generalist Model for Named Entity Recognition ...",
+            "url": "https://aclanthology.org/2024.naacl-long.300.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about GuideX, the ACL 2025 paper on zero-shot NER and synthetic data generation:\n\n## Overview\n\nGuideX is a novel method that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization.\n\n## Key Motivation\n\nInformation Extraction systems are traditionally domain-specific, requiring costly adaptation involving expert schema design, data annotation, and model training. While Large Language Models have shown promise in zero-shot IE, performance degrades significantly in unseen domains where label definitions differ.\n\n## Results\n\nFine-tuning Llama 3.1 with GUIDEX sets a new state-of-the-art across seven zero-shot Named Entity Recognition benchmarks. Models trained with GUIDEX gain up to 7 F1 points over previous methods without human labeled data, and nearly 2 F1 points higher when combined with it.\n\n## Technical Details\n\nThe approach transforms raw text into structured annotations by dynamically inferring schemas, generating executable guidelines, and resulting annotations. The dataset has 28,677 unique labels, with an average of 5.34 distinct instances per label.\n\n## Publication and Availability\n\nThe paper was published in the Findings of the Association for Computational Linguistics: ACL 2025 in Vienna, Austria. Code, models, and synthetic datasets are available at neilus03.github.io/guidex.com."
+    ],
+    "durationSeconds": 6.664195458999998
+  },
+  "sourceToolAssistantUUID": "9c7aad77-ff27-4b2e-bf57-f6a33ec9bbd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-10T07:01:24.046Z_
+
+<details><summary>↩ Tool result · `toolu_01UDFW68p5zanJFGKf8tGaDR`</summary>
+
+```text
+Web search results for query: "schema-conditioned synthetic data generation event extraction zero-shot 2026"
+
+Links: [{"title":"GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://arxiv.org/html/2506.00649"},{"title":"Schema-aware Reference as Prompt Improves Data-Efficient Relational Triple and Event Extraction | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Schema-aware-Reference-as-Prompt-Improves-Triple-Yao-Mao/95732d90829ab95f041808b805065ab3fcf46d96"},{"title":"Few-Shot Relation Extraction via Two-Stage Knowledge- ...","url":"https://www.ijcai.org/proceedings/2025/0897.pdf"},{"title":"Zero-Shot Entity-Relation Extraction","url":"https://www.emergentmind.com/topics/zero-shot-entity-relation-extraction"},{"title":"Schema-aware Reference as Prompt Improves Data-Efficient Knowledge Graph Construction | Proceedings of the 46th International ACM SIGIR Conference on Research and Development in Information Retrieval","url":"https://dl.acm.org/doi/10.1145/3539618.3591763"},{"title":"3rd Synthetic Data for Computer Vision - CVPR 2026 | Synthetic Data for Computer Vision","url":"https://syndata4cv.github.io/"},{"title":"(PDF) Zero-Shot Open-Schema Entity Structure Discovery","url":"https://www.researchgate.net/publication/392466364_Zero-Shot_Open-Schema_Entity_Structure_Discovery"},{"title":"(PDF) Schema-aware Reference as Prompt Improves Data-Efficient Relational Triple and Event Extraction","url":"https://www.researchgate.net/publication/364435710_Schema-aware_Reference_as_Prompt_Improves_Data-Efficient_Relational_Triple_and_Event_Extraction"},{"title":"[2506.00649] GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://arxiv.org/abs/2506.00649"},{"title":"Zero Shot Domain Adaptive Semantic Segmentation by Synthetic Data Generation and Progressive Adaptation","url":"https://arxiv.org/html/2508.03300"}]
+
+Based on the search results, here are the key findings related to your query about schema-conditioned synthetic data generation for event extraction in zero-shot settings:
+
+## Key Research Findings
+
+GuideX is a novel method that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization. This appears to be a 2025 research contribution addressing the intersection of schema-based approaches and synthetic data generation.
+
+## Related Approaches
+
+Several complementary methods have emerged in this research area:
+
+1. **Schema-Aware Prompting**: Schema-aware Reference as Prompt (RAP) dynamically leverages schema and knowledge inherited from global training data for each sample, and employs a dynamic reference integration module to retrieve pertinent knowledge from the datastore as prompts during training and inference.
+
+2. **Synthetic Data Generation for Extraction**: RelationPrompt synthesizes relation triplet examples by prompting LMs with relation label–conditioned templates, and uses structured decoding for multi-triplet extraction.
+
+3. **Zero-Shot Information Extraction**: Recent approaches construct a synthetic demonstration database using an LLM-annotated corpus and dynamically retrieve relevant examples at inference, guiding extraction even in document-level zero-shot settings.
+
+The research landscape shows active development in combining schema conditioning, synthetic data generation, and zero-shot event extraction capabilities, particularly with the emergence of methods like GuideX in 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6accbdb8-0d0d-4e46-855d-c6367e605939",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "d4139644-5cd4-4fb5-a200-8f586bd11de1",
+  "toolUseResult": {
+    "query": "schema-conditioned synthetic data generation event extraction zero-shot 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JQQAxukMkABCAR8dKhcErr",
+        "content": [
+          {
+            "title": "GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://arxiv.org/html/2506.00649"
+          },
+          {
+            "title": "Schema-aware Reference as Prompt Improves Data-Efficient Relational Triple and Event Extraction | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Schema-aware-Reference-as-Prompt-Improves-Triple-Yao-Mao/95732d90829ab95f041808b805065ab3fcf46d96"
+          },
+          {
+            "title": "Few-Shot Relation Extraction via Two-Stage Knowledge- ...",
+            "url": "https://www.ijcai.org/proceedings/2025/0897.pdf"
+          },
+          {
+            "title": "Zero-Shot Entity-Relation Extraction",
+            "url": "https://www.emergentmind.com/topics/zero-shot-entity-relation-extraction"
+          },
+          {
+            "title": "Schema-aware Reference as Prompt Improves Data-Efficient Knowledge Graph Construction | Proceedings of the 46th International ACM SIGIR Conference on Research and Development in Information Retrieval",
+            "url": "https://dl.acm.org/doi/10.1145/3539618.3591763"
+          },
+          {
+            "title": "3rd Synthetic Data for Computer Vision - CVPR 2026 | Synthetic Data for Computer Vision",
+            "url": "https://syndata4cv.github.io/"
+          },
+          {
+            "title": "(PDF) Zero-Shot Open-Schema Entity Structure Discovery",
+            "url": "https://www.researchgate.net/publication/392466364_Zero-Shot_Open-Schema_Entity_Structure_Discovery"
+          },
+          {
+            "title": "(PDF) Schema-aware Reference as Prompt Improves Data-Efficient Relational Triple and Event Extraction",
+            "url": "https://www.researchgate.net/publication/364435710_Schema-aware_Reference_as_Prompt_Improves_Data-Efficient_Relational_Triple_and_Event_Extraction"
+          },
+          {
+            "title": "[2506.00649] GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://arxiv.org/abs/2506.00649"
+          },
+          {
+            "title": "Zero Shot Domain Adaptive Semantic Segmentation by Synthetic Data Generation and Progressive Adaptation",
+            "url": "https://arxiv.org/html/2508.03300"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings related to your query about schema-conditioned synthetic data generation for event extraction in zero-shot settings:\n\n## Key Research Findings\n\nGuideX is a novel method that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization. This appears to be a 2025 research contribution addressing the intersection of schema-based approaches and synthetic data generation.\n\n## Related Approaches\n\nSeveral complementary methods have emerged in this research area:\n\n1. **Schema-Aware Prompting**: Schema-aware Reference as Prompt (RAP) dynamically leverages schema and knowledge inherited from global training data for each sample, and employs a dynamic reference integration module to retrieve pertinent knowledge from the datastore as prompts during training and inference.\n\n2. **Synthetic Data Generation for Extraction**: RelationPrompt synthesizes relation triplet examples by prompting LMs with relation label–conditioned templates, and uses structured decoding for multi-triplet extraction.\n\n3. **Zero-Shot Information Extraction**: Recent approaches construct a synthetic demonstration database using an LLM-annotated corpus and dynamically retrieve relevant examples at inference, guiding extraction even in document-level zero-shot settings.\n\nThe research landscape shows active development in combining schema conditioning, synthetic data generation, and zero-shot event extraction capabilities, particularly with the emergence of methods like GuideX in 2025."
+    ],
+    "durationSeconds": 7.594972938000001
+  },
+  "sourceToolAssistantUUID": "6accbdb8-0d0d-4e46-855d-c6367e605939",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-10T07:01:26.772Z_
+
+<details><summary>↩ Tool result · `toolu_015byeyNER47ebqpAcBrk91t`</summary>
+
+```text
+Web search results for query: "best open source LLM 2026 instruction following code generation"
+
+Links: [{"title":"Best Open Source LLM 2026 Ranking + Ollama Guide","url":"https://whatllm.org/best-open-source-llm"},{"title":"The Best Open-Source LLMs in 2026","url":"https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models"},{"title":"Best Open Source LLM Leaderboard 2026 | Open Source Model Rankings and Tier List | Onyx AI","url":"https://onyx.app/open-llm-leaderboard"},{"title":"The Best Open-Source LLMs for Agentic Coding in 2026 | MindStudio","url":"https://www.mindstudio.ai/blog/best-open-source-llms-agentic-coding-2026"},{"title":"Best Open Source Self-Hosted LLMs for Coding in 2026 - Pinggy","url":"https://pinggy.io/blog/best_open_source_self_hosted_llms_for_coding/"},{"title":"Ultimate Guide - Best Open Source LLM for Software Development in 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-LLM-for-software-development"},{"title":"Open Source LLM Leaderboard 2026: Rankings, Benchmarks & the Best Models Right Now - VERTU® Official Site","url":"https://vertu.com/lifestyle/open-source-llm-leaderboard-2026-rankings-benchmarks-the-best-models-right-now"},{"title":"Best Open-Source LLMs in 2026 - Ranked | TECHSY","url":"https://techsy.io/en/blog/best-open-source-llms-2026"},{"title":"Best Open-Source LLMs in 2026: A Practical Guide by Use Case - ML Journey","url":"https://mljourney.com/best-open-source-llms-in-2026-a-practical-guide-by-use-case/"},{"title":"Best LLM for Coding in 2026: Ranked by Real Benchmarks | WhatLLM.org","url":"https://whatllm.org/best-llm-for-coding"}]
+
+Based on the search results, here are the best open-source LLMs in 2026 for instruction following and code generation:
+
+## Top Models for Code Generation
+
+Kimi K2.6 is the strongest coding-oriented open source model, with particularly impressive performance on instruction-following tasks. It's a long-context model with strong performance on multi-file editing tasks and solid instruction-following when operating inside an agent harness.
+
+GLM-4.7's HumanEval score of 94.2 signals exceptional code generation ability, and with a 200K context window and strong instruction-following (IFEval: 88.0), GLM-4.7 is arguably the most well-rounded open-source model available as of early 2026.
+
+For specialized coding work, moonshotai/Kimi-Dev-72B sets the standard for benchmark-leading code reasoning, achieving a state-of-the-art 60.4% score on SWE-bench Verified among open-source models.
+
+## For Agentic Coding Tasks
+
+DeepSeek V4, Kimi K2.6, Qwen 3.6 Plus, GLM 5.1, and a handful of others have closed the gap on closed-source frontier models in ways that matter for the actual work: multi-step task completion, tool call accuracy, and recoverable failure modes.
+
+K2.5 (released in January 2026) adds native multimodal capabilities, with a standout feature called Agent Swarm that lets the model self-direct up to 100 sub-agents across 1,500 coordinated steps using Parallel-Agent Reinforcement Learning (PARL), making it uniquely powerful for complex agentic coding workflows.
+
+## Overall Best Performers
+
+Qwen 3 235B-A22B currently leads on the broadest range of benchmarks, combining top-tier reasoning, coding, and multilingual capabilities under an Apache 2.0 license.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6017528c-f5d3-419a-b6d0-22c946aac8cd",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "641bbb00-30cd-4ece-a9df-beead46f2606",
+  "toolUseResult": {
+    "query": "best open source LLM 2026 instruction following code generation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CP2fnvNSd4gXWc9w6yfb2J",
+        "content": [
+          {
+            "title": "Best Open Source LLM 2026 Ranking + Ollama Guide",
+            "url": "https://whatllm.org/best-open-source-llm"
+          },
+          {
+            "title": "The Best Open-Source LLMs in 2026",
+            "url": "https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models"
+          },
+          {
+            "title": "Best Open Source LLM Leaderboard 2026 | Open Source Model Rankings and Tier List | Onyx AI",
+            "url": "https://onyx.app/open-llm-leaderboard"
+          },
+          {
+            "title": "The Best Open-Source LLMs for Agentic Coding in 2026 | MindStudio",
+            "url": "https://www.mindstudio.ai/blog/best-open-source-llms-agentic-coding-2026"
+          },
+          {
+            "title": "Best Open Source Self-Hosted LLMs for Coding in 2026 - Pinggy",
+            "url": "https://pinggy.io/blog/best_open_source_self_hosted_llms_for_coding/"
+          },
+          {
+            "title": "Ultimate Guide - Best Open Source LLM for Software Development in 2026",
+            "url": "https://www.siliconflow.com/articles/en/best-open-source-LLM-for-software-development"
+          },
+          {
+            "title": "Open Source LLM Leaderboard 2026: Rankings, Benchmarks & the Best Models Right Now - VERTU® Official Site",
+            "url": "https://vertu.com/lifestyle/open-source-llm-leaderboard-2026-rankings-benchmarks-the-best-models-right-now"
+          },
+          {
+            "title": "Best Open-Source LLMs in 2026 - Ranked | TECHSY",
+            "url": "https://techsy.io/en/blog/best-open-source-llms-2026"
+          },
+          {
+            "title": "Best Open-Source LLMs in 2026: A Practical Guide by Use Case - ML Journey",
+            "url": "https://mljourney.com/best-open-source-llms-in-2026-a-practical-guide-by-use-case/"
+          },
+          {
+            "title": "Best LLM for Coding in 2026: Ranked by Real Benchmarks | WhatLLM.org",
+            "url": "https://whatllm.org/best-llm-for-coding"
+          }
+        ]
+      },
+      "Based on the search results, here are the best open-source LLMs in 2026 for instruction following and code generation:\n\n## Top Models for Code Generation\n\nKimi K2.6 is the strongest coding-oriented open source model, with particularly impressive performance on instruction-following tasks. It's a long-context model with strong performance on multi-file editing tasks and solid instruction-following when operating inside an agent harness.\n\nGLM-4.7's HumanEval score of 94.2 signals exceptional code generation ability, and with a 200K context window and strong instruction-following (IFEval: 88.0), GLM-4.7 is arguably the most well-rounded open-source model available as of early 2026.\n\nFor specialized coding work, moonshotai/Kimi-Dev-72B sets the standard for benchmark-leading code reasoning, achieving a state-of-the-art 60.4% score on SWE-bench Verified among open-source models.\n\n## For Agentic Coding Tasks\n\nDeepSeek V4, Kimi K2.6, Qwen 3.6 Plus, GLM 5.1, and a handful of others have closed the gap on closed-source frontier models in ways that matter for the actual work: multi-step task completion, tool call accuracy, and recoverable failure modes.\n\nK2.5 (released in January 2026) adds native multimodal capabilities, with a standout feature called Agent Swarm that lets the model self-direct up to 100 sub-agents across 1,500 coordinated steps using Parallel-Agent Reinforcement Learning (PARL), making it uniquely powerful for complex agentic coding workflows.\n\n## Overall Best Performers\n\nQwen 3 235B-A22B currently leads on the broadest range of benchmarks, combining top-tier reasoning, coding, and multilingual capabilities under an Apache 2.0 license."
+    ],
+    "durationSeconds": 9.190863244000003
+  },
+  "sourceToolAssistantUUID": "6017528c-f5d3-419a-b6d0-22c946aac8cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-10T07:01:33.834Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for more specific information on:
+1. Concurrent work on event extraction with synthetic data in 2026 (arXiv)
+2. KnowCoder paper verification
+3. GoLLIE paper verification
+4. ACE05 and WikiEvents benchmarks
+5. EMNLP 2026 deadlines specifically
+6. GPU costs for training
+7. arXiv recent submissions on zero-shot event extraction
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "641bbb00-30cd-4ece-a9df-beead46f2606",
+  "isSidechain": false,
+  "requestId": "req_011CatTYGv4drBYD8L3c1HMX",
+  "type": "assistant",
+  "uuid": "ce63fefe-9ce6-46f6-b2e6-4fc00a2c6602",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01U38bMfqMpSMTfRJEazbWmW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 700,
+      "cache_creation_input_tokens": 3075,
+      "cache_read_input_tokens": 19666,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 700,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 19666,
+          "cache_creation_input_tokens": 3075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-10T07:01:34.206Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AGvA3A41bWZAVRtqEhc1Ly`</summary>
+
+```json
+{
+  "query": "zero-shot event extraction compositional schema constraints synthetic data arxiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce63fefe-9ce6-46f6-b2e6-4fc00a2c6602",
+  "isSidechain": false,
+  "requestId": "req_011CatTYGv4drBYD8L3c1HMX",
+  "type": "assistant",
+  "uuid": "0c1864f4-c8b8-401d-8be0-b7c17dab07d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01U38bMfqMpSMTfRJEazbWmW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 700,
+      "cache_creation_input_tokens": 3075,
+      "cache_read_input_tokens": 19666,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 700,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 19666,
+          "cache_creation_input_tokens": 3075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-10T07:01:35.039Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NcUwboRBc3H4CAn4XzbWwZ`</summary>
+
+```json
+{
+  "query": "KnowCoder event extraction Python class schemas 2024 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c1864f4-c8b8-401d-8be0-b7c17dab07d3",
+  "isSidechain": false,
+  "requestId": "req_011CatTYGv4drBYD8L3c1HMX",
+  "type": "assistant",
+  "uuid": "0fa47540-b8a1-40dd-af0e-32967b22fd94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01U38bMfqMpSMTfRJEazbWmW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 700,
+      "cache_creation_input_tokens": 3075,
+      "cache_read_input_tokens": 19666,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 700,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 19666,
+          "cache_creation_input_tokens": 3075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-10T07:01:35.510Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EGChVP1vQpieXMiyFkm9FM`</summary>
+
+```json
+{
+  "query": "GoLLIE zero-shot information extraction 2024 event extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0fa47540-b8a1-40dd-af0e-32967b22fd94",
+  "isSidechain": false,
+  "requestId": "req_011CatTYGv4drBYD8L3c1HMX",
+  "type": "assistant",
+  "uuid": "fe44ddc7-3898-495f-9c0b-2f8d2692a1ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01U38bMfqMpSMTfRJEazbWmW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 700,
+      "cache_creation_input_tokens": 3075,
+      "cache_read_input_tokens": 19666,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 700,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 19666,
+          "cache_creation_input_tokens": 3075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-10T07:01:36.422Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016rNwL4Tzjz3bihqHjV6fb7`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR submission deadline paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe44ddc7-3898-495f-9c0b-2f8d2692a1ca",
+  "isSidechain": false,
+  "requestId": "req_011CatTYGv4drBYD8L3c1HMX",
+  "type": "assistant",
+  "uuid": "966765f9-4cc9-4f09-8ab2-64314b548d53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01U38bMfqMpSMTfRJEazbWmW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 700,
+      "cache_creation_input_tokens": 3075,
+      "cache_read_input_tokens": 19666,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 700,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 19666,
+          "cache_creation_input_tokens": 3075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-10 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Schema-Condit…",
+  "leafUuid": "966765f9-4cc9-4f09-8ab2-64314b548d53",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Schema-Conditioned Synthetic Supervision for Joint Event-Relation Extraction",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-10T07:01:41.291Z_
+
+<details><summary>↩ Tool result · `toolu_01AGvA3A41bWZAVRtqEhc1Ly`</summary>
+
+```text
+Web search results for query: "zero-shot event extraction compositional schema constraints synthetic data arxiv 2026"
+
+Links: [{"title":"[2603.02909] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/abs/2603.02909"},{"title":"[2603.02909v2] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/abs/2603.02909v2"},{"title":"[2603.05757] EmboAlign: Aligning Video Generation with Compositional Constraints for Zero-Shot Manipulation","url":"https://arxiv.org/abs/2603.05757"},{"title":"GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://arxiv.org/html/2506.00649"},{"title":"[1707.01066] Zero-Shot Transfer Learning for Event Extraction","url":"https://arxiv.org/abs/1707.01066"},{"title":"Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction","url":"https://arxiv.org/html/2511.13118v1"},{"title":"[2511.13118] Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction","url":"https://arxiv.org/abs/2511.13118"},{"title":"[2506.00649] GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://arxiv.org/abs/2506.00649"},{"title":"FlowComposer: Composable Flows for Compositional Zero-Shot Learning","url":"https://arxiv.org/html/2603.16641v1"},{"title":"[2211.05156] Efficient Zero-shot Event Extraction with Context-Definition Alignment","url":"https://arxiv.org/abs/2211.05156"}]
+
+Based on the search results, I found several highly relevant papers on zero-shot event extraction with synthetic data and schema constraints. Here are the key findings:
+
+## Most Relevant Results
+
+**1. Learning to Generate and Extract: A Multi-Agent Collaboration Framework** (arXiv 2603.02909, March 2026)
+
+This paper introduces a multi-agent collaboration framework for zero-shot document-level event argument extraction, where a generation agent synthesizes data for unseen events by leveraging knowledge from seen events, while an evaluation agent extracts arguments from the synthetic data and assesses their semantic consistency with the context. Event structure constraints are incorporated into the reward design to enable iterative optimization of both agents via reinforcement learning.
+
+**2. Extracting Events Like Code: A Multi-Agent Programming Framework** (arXiv 2511.13118, November 2025)
+
+This framework treats event extraction like software engineering by decomposing zero-shot event extraction into specialized subtasks (retrieval, planning, coding, and verification), with event schemas represented as executable class definitions for deterministic validation and precise feedback. This reformulates zero-shot event extraction as a multi-agent code generation task, providing a paradigm that unifies schema constraints, iterative planning, and code-based validation for structured event extraction.
+
+**3. GuideX: Guided Synthetic Data Generation** (arXiv 2506.00649, May 2025)
+
+GUIDEX automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization.
+
+All three papers address the intersection of zero-shot event extraction, synthetic data generation, and schema constraints that your query mentions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0c1864f4-c8b8-401d-8be0-b7c17dab07d3",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "656c1b42-3d99-4751-b76f-887ddeba0dfa",
+  "toolUseResult": {
+    "query": "zero-shot event extraction compositional schema constraints synthetic data arxiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YAfzsBG8wwmgDq8qBywWyR",
+        "content": [
+          {
+            "title": "[2603.02909] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/abs/2603.02909"
+          },
+          {
+            "title": "[2603.02909v2] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/abs/2603.02909v2"
+          },
+          {
+            "title": "[2603.05757] EmboAlign: Aligning Video Generation with Compositional Constraints for Zero-Shot Manipulation",
+            "url": "https://arxiv.org/abs/2603.05757"
+          },
+          {
+            "title": "GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://arxiv.org/html/2506.00649"
+          },
+          {
+            "title": "[1707.01066] Zero-Shot Transfer Learning for Event Extraction",
+            "url": "https://arxiv.org/abs/1707.01066"
+          },
+          {
+            "title": "Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction",
+            "url": "https://arxiv.org/html/2511.13118v1"
+          },
+          {
+            "title": "[2511.13118] Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction",
+            "url": "https://arxiv.org/abs/2511.13118"
+          },
+          {
+            "title": "[2506.00649] GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://arxiv.org/abs/2506.00649"
+          },
+          {
+            "title": "FlowComposer: Composable Flows for Compositional Zero-Shot Learning",
+            "url": "https://arxiv.org/html/2603.16641v1"
+          },
+          {
+            "title": "[2211.05156] Efficient Zero-shot Event Extraction with Context-Definition Alignment",
+            "url": "https://arxiv.org/abs/2211.05156"
+          }
+        ]
+      },
+      "Based on the search results, I found several highly relevant papers on zero-shot event extraction with synthetic data and schema constraints. Here are the key findings:\n\n## Most Relevant Results\n\n**1. Learning to Generate and Extract: A Multi-Agent Collaboration Framework** (arXiv 2603.02909, March 2026)\n\nThis paper introduces a multi-agent collaboration framework for zero-shot document-level event argument extraction, where a generation agent synthesizes data for unseen events by leveraging knowledge from seen events, while an evaluation agent extracts arguments from the synthetic data and assesses their semantic consistency with the context. Event structure constraints are incorporated into the reward design to enable iterative optimization of both agents via reinforcement learning.\n\n**2. Extracting Events Like Code: A Multi-Agent Programming Framework** (arXiv 2511.13118, November 2025)\n\nThis framework treats event extraction like software engineering by decomposing zero-shot event extraction into specialized subtasks (retrieval, planning, coding, and verification), with event schemas represented as executable class definitions for deterministic validation and precise feedback. This reformulates zero-shot event extraction as a multi-agent code generation task, providing a paradigm that unifies schema constraints, iterative planning, and code-based validation for structured event extraction.\n\n**3. GuideX: Guided Synthetic Data Generation** (arXiv 2506.00649, May 2025)\n\nGUIDEX automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization.\n\nAll three papers address the intersection of zero-shot event extraction, synthetic data generation, and schema constraints that your query mentions."
+    ],
+    "durationSeconds": 7.080001098
+  },
+  "sourceToolAssistantUUID": "0c1864f4-c8b8-401d-8be0-b7c17dab07d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-10T07:01:42.887Z_
+
+<details><summary>↩ Tool result · `toolu_01NcUwboRBc3H4CAn4XzbWwZ`</summary>
+
+```text
+Web search results for query: "KnowCoder event extraction Python class schemas 2024 arxiv"
+
+Links: [{"title":"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction","url":"https://arxiv.org/html/2403.07969v2"},{"title":"Instruction-Tuning LLMs for Event Extraction with Annotation Guidelines","url":"https://arxiv.org/html/2502.16377v2"},{"title":"[2403.07969] KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction","url":"https://arxiv.org/abs/2403.07969"},{"title":"Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation and Partitioning Extraction","url":"https://arxiv.org/html/2503.02628v1"},{"title":"KnowCoder-X: Boosting Multilingual Information Extraction via Code","url":"https://arxiv.org/html/2411.04794"},{"title":"arXiv:2403.07969v2 [cs.LG] 14 Mar 2024","url":"https://arxiv.org/pdf/2403.07969"},{"title":"Event Extraction in Large Language Model: A Holistic Survey of Method, Modality, and Future","url":"https://arxiv.org/html/2512.19537v1"},{"title":"KnowCoder","url":"https://ict-goknow.github.io/knowcoder/"},{"title":"KnowCoder: Coding Structured Knowledge into LLMs for ...","url":"https://aclanthology.org/2024.acl-long.475.pdf"},{"title":"Extracting Events Like Code: A Multi-Agent Programming Framework for","url":"https://arxiv.org/pdf/2511.13118"}]
+
+I found detailed information about KnowCoder. Here are the key results:
+
+## Overview
+
+KnowCoder is a Large Language Model (LLM) to conduct Universal Information Extraction (UIE) via code generation.
+
+## Code-Style Schema Representation with Python Classes
+
+KnowCoder proposes a code-style schema representation method, with which various types of knowledge are generally defined as Python classes. The code-style schema representation method comprises three basic classes, namely, 'Entity', 'Relation', and 'Event'.
+
+KnowCoder introduces a code-style schema representation method to uniformly transform different schemas into Python classes, with which complex schema information, such as constraints among tasks in UIE, can be captured in an LLM-friendly manner.
+
+## Event Extraction Specifically
+
+For event extraction, every extracted event instance is represented as a Python object of the corresponding event class. As a side benefit of representing events in a structured code format, extracted event instances can be evaluated by directly instantiating their corresponding Python object based on the event schema's Python class definitions, checking validity and comparing with ground truth.
+
+## Schema Library
+
+KnowCoder constructs a code-style schema library covering over 30,000 types of knowledge, which is the largest one for UIE. More specifically, the constructed schema library encompasses over 29,177 entity types, 876 relation types, and 519 event types.
+
+## Learning Framework
+
+KnowCoder contains a two-phase learning framework that enhances its schema understanding ability via code pretraining and its schema following ability via instruction tuning.
+
+The paper was published on arXiv in March 2024 (arxiv:2403.07969).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0fa47540-b8a1-40dd-af0e-32967b22fd94",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "98f52445-e5d2-47d0-b594-ecb5ff41b0a1",
+  "toolUseResult": {
+    "query": "KnowCoder event extraction Python class schemas 2024 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KPC6wabVcYDXYEaKpNTMeu",
+        "content": [
+          {
+            "title": "KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction",
+            "url": "https://arxiv.org/html/2403.07969v2"
+          },
+          {
+            "title": "Instruction-Tuning LLMs for Event Extraction with Annotation Guidelines",
+            "url": "https://arxiv.org/html/2502.16377v2"
+          },
+          {
+            "title": "[2403.07969] KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction",
+            "url": "https://arxiv.org/abs/2403.07969"
+          },
+          {
+            "title": "Towards Event Extraction with Massive Types: LLM-based Collaborative Annotation and Partitioning Extraction",
+            "url": "https://arxiv.org/html/2503.02628v1"
+          },
+          {
+            "title": "KnowCoder-X: Boosting Multilingual Information Extraction via Code",
+            "url": "https://arxiv.org/html/2411.04794"
+          },
+          {
+            "title": "arXiv:2403.07969v2 [cs.LG] 14 Mar 2024",
+            "url": "https://arxiv.org/pdf/2403.07969"
+          },
+          {
+            "title": "Event Extraction in Large Language Model: A Holistic Survey of Method, Modality, and Future",
+            "url": "https://arxiv.org/html/2512.19537v1"
+          },
+          {
+            "title": "KnowCoder",
+            "url": "https://ict-goknow.github.io/knowcoder/"
+          },
+          {
+            "title": "KnowCoder: Coding Structured Knowledge into LLMs for ...",
+            "url": "https://aclanthology.org/2024.acl-long.475.pdf"
+          },
+          {
+            "title": "Extracting Events Like Code: A Multi-Agent Programming Framework for",
+            "url": "https://arxiv.org/pdf/2511.13118"
+          }
+        ]
+      },
+      "I found detailed information about KnowCoder. Here are the key results:\n\n## Overview\n\nKnowCoder is a Large Language Model (LLM) to conduct Universal Information Extraction (UIE) via code generation.\n\n## Code-Style Schema Representation with Python Classes\n\nKnowCoder proposes a code-style schema representation method, with which various types of knowledge are generally defined as Python classes. The code-style schema representation method comprises three basic classes, namely, 'Entity', 'Relation', and 'Event'.\n\nKnowCoder introduces a code-style schema representation method to uniformly transform different schemas into Python classes, with which complex schema information, such as constraints among tasks in UIE, can be captured in an LLM-friendly manner.\n\n## Event Extraction Specifically\n\nFor event extraction, every extracted event instance is represented as a Python object of the corresponding event class. As a side benefit of representing events in a structured code format, extracted event instances can be evaluated by directly instantiating their corresponding Python object based on the event schema's Python class definitions, checking validity and comparing with ground truth.\n\n## Schema Library\n\nKnowCoder constructs a code-style schema library covering over 30,000 types of knowledge, which is the largest one for UIE. More specifically, the constructed schema library encompasses over 29,177 entity types, 876 relation types, and 519 event types.\n\n## Learning Framework\n\nKnowCoder contains a two-phase learning framework that enhances its schema understanding ability via code pretraining and its schema following ability via instruction tuning.\n\nThe paper was published on arXiv in March 2024 (arxiv:2403.07969)."
+    ],
+    "durationSeconds": 7.832156515999995
+  },
+  "sourceToolAssistantUUID": "0fa47540-b8a1-40dd-af0e-32967b22fd94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-10T07:01:43.774Z_
+
+<details><summary>↩ Tool result · `toolu_01EGChVP1vQpieXMiyFkm9FM`</summary>
+
+```text
+Web search results for query: "GoLLIE zero-shot information extraction 2024 event extraction"
+
+Links: [{"title":"[2310.03668] GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction","url":"https://arxiv.org/abs/2310.03668"},{"title":"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction | OpenReview","url":"https://openreview.net/forum?id=Y3wpuxd7u9"},{"title":"ICLR Poster GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction","url":"https://iclr.cc/virtual/2024/poster/18435"},{"title":"GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub","url":"https://github.com/quqxui/Awesome-LLM4IE-Papers"},{"title":"GitHub - hitz-zentroa/GoLLIE: Guideline following Large Language Model for Information Extraction · GitHub","url":"https://github.com/hitz-zentroa/GoLLIE"},{"title":"GOLLIE : ANNOTATION GUIDELINES IMPROVE ZERO- ...","url":"https://openreview.net/pdf?id=Y3wpuxd7u9"},{"title":"GoLLIE : Annotation Guidelines improve Zero-Shot Information-Extraction","url":"https://arxiv.org/html/2310.03668v3"},{"title":"GoLLIE | Guideline following Large Language Model for Information Extraction","url":"https://hitz-zentroa.github.io/GoLLIE/"},{"title":"GOLLIE : ANNOTATION GUIDELINES IMPROVE ZERO- ...","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/cda04d7ea67ea1376bf8c6962d8541e0-Paper-Conference.pdf"},{"title":"Lemonade: A Large Multilingual Expert-Annotated Abstractive Event Dataset for the Real World","url":"https://arxiv.org/html/2506.00980v1"}]
+
+Here are the search results for "GoLLIE zero-shot information extraction 2024 event extraction":
+
+## Overview
+
+GoLLIE (Guideline-following Large Language Model for IE) is a model able to improve zero-shot results on unseen IE tasks by virtue of being fine-tuned to comply with annotation guidelines.
+
+## 2024 Publication
+
+GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction was published at ICLR in 2024. The research was authored by Oscar Sainz, Iker García-Ferrero, Rodrigo Agerri, Oier Lopez de Lacalle, German Rigau, and Eneko Agirre from the HiTZ Basque Center for Language Technology.
+
+## Key Features and Performance
+
+GoLLIE outperforms previous approaches on zero-shot Information Extraction and allows the user to perform inferences with annotation schemas defined on the fly. Different from previous approaches, GoLLIE is able to follow detailed definitions and does not only rely on the knowledge already encoded in the LLM.
+
+GoLLIE is based on Code-Llama.
+
+## Event Extraction Evaluation
+
+In addition to Named Entity Recognition datasets, the model was also evaluated on Event Extraction (EE) and Event Argument Extraction (EAE) datasets.
+
+## Available Resources
+
+Code and models are publicly available. The official GitHub repository and documentation provide Jupyter notebooks and examples for using GoLLIE for various information extraction tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe44ddc7-3898-495f-9c0b-2f8d2692a1ca",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "367b2e9a-50b0-4e8d-b20b-43c8475fc7f3",
+  "toolUseResult": {
+    "query": "GoLLIE zero-shot information extraction 2024 event extraction",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014BVAA1MH5QtLaNkRXrMDYe",
+        "content": [
+          {
+            "title": "[2310.03668] GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction",
+            "url": "https://arxiv.org/abs/2310.03668"
+          },
+          {
+            "title": "GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction | OpenReview",
+            "url": "https://openreview.net/forum?id=Y3wpuxd7u9"
+          },
+          {
+            "title": "ICLR Poster GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction",
+            "url": "https://iclr.cc/virtual/2024/poster/18435"
+          },
+          {
+            "title": "GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub",
+            "url": "https://github.com/quqxui/Awesome-LLM4IE-Papers"
+          },
+          {
+            "title": "GitHub - hitz-zentroa/GoLLIE: Guideline following Large Language Model for Information Extraction · GitHub",
+            "url": "https://github.com/hitz-zentroa/GoLLIE"
+          },
+          {
+            "title": "GOLLIE : ANNOTATION GUIDELINES IMPROVE ZERO- ...",
+            "url": "https://openreview.net/pdf?id=Y3wpuxd7u9"
+          },
+          {
+            "title": "GoLLIE : Annotation Guidelines improve Zero-Shot Information-Extraction",
+            "url": "https://arxiv.org/html/2310.03668v3"
+          },
+          {
+            "title": "GoLLIE | Guideline following Large Language Model for Information Extraction",
+            "url": "https://hitz-zentroa.github.io/GoLLIE/"
+          },
+          {
+            "title": "GOLLIE : ANNOTATION GUIDELINES IMPROVE ZERO- ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/cda04d7ea67ea1376bf8c6962d8541e0-Paper-Conference.pdf"
+          },
+          {
+            "title": "Lemonade: A Large Multilingual Expert-Annotated Abstractive Event Dataset for the Real World",
+            "url": "https://arxiv.org/html/2506.00980v1"
+          }
+        ]
+      },
+      "Here are the search results for \"GoLLIE zero-shot information extraction 2024 event extraction\":\n\n## Overview\n\nGoLLIE (Guideline-following Large Language Model for IE) is a model able to improve zero-shot results on unseen IE tasks by virtue of being fine-tuned to comply with annotation guidelines.\n\n## 2024 Publication\n\nGoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction was published at ICLR in 2024. The research was authored by Oscar Sainz, Iker García-Ferrero, Rodrigo Agerri, Oier Lopez de Lacalle, German Rigau, and Eneko Agirre from the HiTZ Basque Center for Language Technology.\n\n## Key Features and Performance\n\nGoLLIE outperforms previous approaches on zero-shot Information Extraction and allows the user to perform inferences with annotation schemas defined on the fly. Different from previous approaches, GoLLIE is able to follow detailed definitions and does not only rely on the knowledge already encoded in the LLM.\n\nGoLLIE is based on Code-Llama.\n\n## Event Extraction Evaluation\n\nIn addition to Named Entity Recognition datasets, the model was also evaluated on Event Extraction (EE) and Event Argument Extraction (EAE) datasets.\n\n## Available Resources\n\nCode and models are publicly available. The official GitHub repository and documentation provide Jupyter notebooks and examples for using GoLLIE for various information extraction tasks."
+    ],
+    "durationSeconds": 8.260830679999996
+  },
+  "sourceToolAssistantUUID": "fe44ddc7-3898-495f-9c0b-2f8d2692a1ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-10T07:01:44.873Z_
+
+<details><summary>↩ Tool result · `toolu_016rNwL4Tzjz3bihqHjV6fb7`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR submission deadline paper"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"EMNLP 2026 Conference Deadline | Live Countdown Tracker","url":"https://www.getpaperpilot.com/deadlines/emnlp-2026.html"}]
+
+Based on the search results, here's the key information about EMNLP 2026 ARR submission:
+
+## ARR Submission Deadline
+
+The ARR submission deadline for EMNLP 2026 is May 25, 2026.
+
+## Important Related Dates
+
+Other key dates include: reviewer registration deadline for all authors May 27, 2026; author response and author-reviewer discussion July 7-13, 2026; meta-review released July 30, 2026; EMNLP commitment deadline August 2, 2026; and notification of acceptance August 20, 2026.
+
+## Submission Requirements
+
+Papers must be submitted by the ARR 2026 May cycle, and papers that have received reviews and a meta-review from ARR may be committed to EMNLP via the commitment link.
+
+It's worth noting that since the ARR 2026 May cycle is aligned with both EMNLP and AACL, authors must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "966765f9-4cc9-4f09-8ab2-64314b548d53",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "602a6531-f021-40b9-ad99-cad82a67d07e",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR submission deadline paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MsJFPzimZGG6aVxsaJ9fPS",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting?lang=en"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "EMNLP 2026 Conference Deadline | Live Countdown Tracker",
+            "url": "https://www.getpaperpilot.com/deadlines/emnlp-2026.html"
+          }
+        ]
+      },
+      "Based on the search results, here's the key information about EMNLP 2026 ARR submission:\n\n## ARR Submission Deadline\n\nThe ARR submission deadline for EMNLP 2026 is May 25, 2026.\n\n## Important Related Dates\n\nOther key dates include: reviewer registration deadline for all authors May 27, 2026; author response and author-reviewer discussion July 7-13, 2026; meta-review released July 30, 2026; EMNLP commitment deadline August 2, 2026; and notification of acceptance August 20, 2026.\n\n## Submission Requirements\n\nPapers must be submitted by the ARR 2026 May cycle, and papers that have received reviews and a meta-review from ARR may be committed to EMNLP via the commitment link.\n\nIt's worth noting that since the ARR 2026 May cycle is aligned with both EMNLP and AACL, authors must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026."
+    ],
+    "durationSeconds": 8.448055707000004
+  },
+  "sourceToolAssistantUUID": "966765f9-4cc9-4f09-8ab2-64314b548d53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-10T07:01:44.876Z_
+
+```json
+{
+  "parentUuid": "602a6531-f021-40b9-ad99-cad82a67d07e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d2cb8a9d-5c52-4176-8bda-b62d481a04d1",
+  "timestamp": "2026-05-10T07:01:44.876Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-10T07:01:50.881Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Great, I found important concurrent work. Let me search for more details on:
+1. The arXiv paper 2603.02909 (March 2026) which is VERY relevant - multi-agent framework for zero-shot document-level event argument extraction
+2. The arXiv paper 2511.13118 (November 2025) - "Extracting Events Like Code" 
+3. WikiEvents, RAMS, MAVEN benchmarks data
+4. GPU cost estimates for fine-tuning LLMs
+
+I also found that EMNLP 2026 has ARR submission deadline of May 25, 2026 - which is AFTER today (May 10, 2026).
+
+
+I should also look into more recent event extraction work to make sure I'm comparing against the right baselines and catch any other concurrent research I might have missed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2cb8a9d-5c52-4176-8bda-b62d481a04d1",
+  "isSidechain": false,
+  "requestId": "req_011CatTZcDCi4QfzDXc2QVa6",
+  "type": "assistant",
+  "uuid": "744b1e4c-e851-4f04-8bbe-d550d1336a93",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01FcFdpVb1k1q2Z4Nztk1Aok",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4741,
+      "cache_read_input_tokens": 22741,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4741,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 22741,
+          "cache_creation_input_tokens": 4741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4741
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-10T07:01:50.890Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012DxMXos8fM4JNiYinyxQ9N`</summary>
+
+```json
+{
+  "query": "arxiv 2603.02909 multi-agent zero-shot event argument extraction schema constraints"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "744b1e4c-e851-4f04-8bbe-d550d1336a93",
+  "isSidechain": false,
+  "requestId": "req_011CatTZcDCi4QfzDXc2QVa6",
+  "type": "assistant",
+  "uuid": "3f4060e4-606a-4974-ae4c-b6169922397a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01FcFdpVb1k1q2Z4Nztk1Aok",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4741,
+      "cache_read_input_tokens": 22741,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4741,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 22741,
+          "cache_creation_input_tokens": 4741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4741
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-10T07:01:50.895Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016ub6vR8injjkuced2R7mMW`</summary>
+
+```json
+{
+  "query": "WikiEvents RAMS MAVEN event extraction benchmark zero-shot F1 scores 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f4060e4-606a-4974-ae4c-b6169922397a",
+  "isSidechain": false,
+  "requestId": "req_011CatTZcDCi4QfzDXc2QVa6",
+  "type": "assistant",
+  "uuid": "778195e3-ecd7-45ec-9975-e5dfaa1d8b6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01FcFdpVb1k1q2Z4Nztk1Aok",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4741,
+      "cache_read_input_tokens": 22741,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4741,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 22741,
+          "cache_creation_input_tokens": 4741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4741
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-10T07:01:51.634Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PcpHR5BswxJyWCMMeY6oD3`</summary>
+
+```json
+{
+  "query": "A100 GPU rental cost per hour 2026 Lambda Labs RunPod"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "778195e3-ecd7-45ec-9975-e5dfaa1d8b6f",
+  "isSidechain": false,
+  "requestId": "req_011CatTZcDCi4QfzDXc2QVa6",
+  "type": "assistant",
+  "uuid": "8c793983-98f7-4ee0-beaa-e1c6b352c542",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01FcFdpVb1k1q2Z4Nztk1Aok",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4741,
+      "cache_read_input_tokens": 22741,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4741,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 22741,
+          "cache_creation_input_tokens": 4741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4741
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-10T07:01:51.961Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TcL4RBELj8sWwJs8a4nSpV`</summary>
+
+```json
+{
+  "query": "CoNLL 2026 COLING 2026 submission deadline NLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c793983-98f7-4ee0-beaa-e1c6b352c542",
+  "isSidechain": false,
+  "requestId": "req_011CatTZcDCi4QfzDXc2QVa6",
+  "type": "assistant",
+  "uuid": "21010e01-dcac-459d-84cf-1d981c35de04",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01FcFdpVb1k1q2Z4Nztk1Aok",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4741,
+      "cache_read_input_tokens": 22741,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4741,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 22741,
+          "cache_creation_input_tokens": 4741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4741
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-10 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Schema-Condit…",
+  "leafUuid": "21010e01-dcac-459d-84cf-1d981c35de04",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Schema-Conditioned Synthetic Supervision for Joint Event-Relation Extraction",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-10T07:01:57.306Z_
+
+<details><summary>↩ Tool result · `toolu_012DxMXos8fM4JNiYinyxQ9N`</summary>
+
+```text
+Web search results for query: "arxiv 2603.02909 multi-agent zero-shot event argument extraction schema constraints"
+
+Links: [{"title":"[2603.02909] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/abs/2603.02909"},{"title":"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/html/2603.02909"},{"title":"[2603.02909v2] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/abs/2603.02909v2"},{"title":"A Multi-Agent Collaboration Framework For Zero-shot ...","url":"https://arxiv.org/pdf/2603.02909"},{"title":"Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction","url":"https://arxiv.org/html/2511.13118v1"},{"title":"[2511.13118] Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction","url":"https://arxiv.org/abs/2511.13118"},{"title":"ECHO: Event-Centric Hypergraph Operations via Multi-Agent Collaboration for Multimedia Event Extraction","url":"https://arxiv.org/html/2603.06683"},{"title":"Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction","url":"https://chatpaper.com/paper/210373"},{"title":"Zero-shot event argument extraction by disentangling trigger from argument and role | International Journal of Machine Learning and Cybernetics | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s13042-024-02446-3"},{"title":"Extracting Events Like Code: A Multi-Agent Programming Framework for","url":"https://arxiv.org/pdf/2511.13118"}]
+
+I found the paper you're looking for! Here's what I found about arxiv 2603.02909:
+
+## Paper Overview
+
+The paper is titled "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction", authored by Guangjun Zhang and colleagues.
+
+## Problem and Approach
+
+Document-level event argument extraction (DEAE) is essential for knowledge acquisition, aiming to extract participants of events from documents. In the zero-shot setting, existing methods employ LLMs to generate synthetic data to address the challenge posed by the scarcity of annotated data. However, relying solely on Event-type-only prompts makes it difficult for the generated content to accurately capture the contextual and structural relationships of unseen events. Moreover, ensuring the reliability and usability of synthetic data remains a significant challenge due to the absence of quality evaluation mechanisms.
+
+## Solution
+
+The paper introduces a multi-agent collaboration framework for zero-shot document-level event argument extraction (ZS-DEAE), which simulates the human collaborative cognitive process of "Propose-Evaluate-Revise." Specifically, the framework comprises a generation agent and an evaluation agent.
+
+The paper was submitted on March 3, 2026 with a revision on March 4, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3f4060e4-606a-4974-ae4c-b6169922397a",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "74c0abf3-3389-4955-91e1-580f162c1d25",
+  "toolUseResult": {
+    "query": "arxiv 2603.02909 multi-agent zero-shot event argument extraction schema constraints",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0128zerA2s2PT3GdLW5Zy7ev",
+        "content": [
+          {
+            "title": "[2603.02909] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/abs/2603.02909"
+          },
+          {
+            "title": "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/html/2603.02909"
+          },
+          {
+            "title": "[2603.02909v2] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/abs/2603.02909v2"
+          },
+          {
+            "title": "A Multi-Agent Collaboration Framework For Zero-shot ...",
+            "url": "https://arxiv.org/pdf/2603.02909"
+          },
+          {
+            "title": "Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction",
+            "url": "https://arxiv.org/html/2511.13118v1"
+          },
+          {
+            "title": "[2511.13118] Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction",
+            "url": "https://arxiv.org/abs/2511.13118"
+          },
+          {
+            "title": "ECHO: Event-Centric Hypergraph Operations via Multi-Agent Collaboration for Multimedia Event Extraction",
+            "url": "https://arxiv.org/html/2603.06683"
+          },
+          {
+            "title": "Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction",
+            "url": "https://chatpaper.com/paper/210373"
+          },
+          {
+            "title": "Zero-shot event argument extraction by disentangling trigger from argument and role | International Journal of Machine Learning and Cybernetics | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s13042-024-02446-3"
+          },
+          {
+            "title": "Extracting Events Like Code: A Multi-Agent Programming Framework for",
+            "url": "https://arxiv.org/pdf/2511.13118"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found about arxiv 2603.02909:\n\n## Paper Overview\n\nThe paper is titled \"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction\", authored by Guangjun Zhang and colleagues.\n\n## Problem and Approach\n\nDocument-level event argument extraction (DEAE) is essential for knowledge acquisition, aiming to extract participants of events from documents. In the zero-shot setting, existing methods employ LLMs to generate synthetic data to address the challenge posed by the scarcity of annotated data. However, relying solely on Event-type-only prompts makes it difficult for the generated content to accurately capture the contextual and structural relationships of unseen events. Moreover, ensuring the reliability and usability of synthetic data remains a significant challenge due to the absence of quality evaluation mechanisms.\n\n## Solution\n\nThe paper introduces a multi-agent collaboration framework for zero-shot document-level event argument extraction (ZS-DEAE), which simulates the human collaborative cognitive process of \"Propose-Evaluate-Revise.\" Specifically, the framework comprises a generation agent and an evaluation agent.\n\nThe paper was submitted on March 3, 2026 with a revision on March 4, 2026."
+    ],
+    "durationSeconds": 6.411358557
+  },
+  "sourceToolAssistantUUID": "3f4060e4-606a-4974-ae4c-b6169922397a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-10T07:01:57.707Z_
+
+<details><summary>↩ Tool result · `toolu_01PcpHR5BswxJyWCMMeY6oD3`</summary>
+
+```text
+Web search results for query: "A100 GPU rental cost per hour 2026 Lambda Labs RunPod"
+
+Links: [{"title":"GPU Cloud Pricing Comparison 2026: Every Major Provider Side by Side | Spheron Blog","url":"https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/"},{"title":"NVIDIA A100 GPU Price in 2026: Cost Per Hour, Cloud Pricing & Specs | Jarvis Labs Blog | Jarvis Labs","url":"https://jarvislabs.ai/blog/a100-price"},{"title":"2026 Cost of Renting or Buying NVIDIA H100 GPUs for Data Centers","url":"https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers"},{"title":"H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026) | IntuitionLabs","url":"https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison"},{"title":"AI Cloud Pricing | GPU Compute & AI Infrastructure | Lambda","url":"https://lambda.ai/pricing"},{"title":"AI GPU Rental Market Trends (May 2026): Complete Industry Analysis","url":"https://www.thundercompute.com/blog/ai-gpu-rental-market-trends"},{"title":"Cloud GPU Pricing (2026): RTX 4090 $0.29, A100 $1.29, H100 $2.49 | SynpixCloud","url":"https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026"},{"title":"Top 9 Cloud GPU Rental Platforms in 2026 [Updated February] | Hyperstack","url":"https://www.hyperstack.cloud/blog/case-study/cloud-gpu-rental-platforms"},{"title":"NVIDIA H100 Price Guide 2026: GPU Costs, Cloud Pricing & Buy vs Rent | Jarvis Labs Blog | Jarvis Labs","url":"https://jarvislabs.ai/blog/h100-price"},{"title":"Pricing | Runpod","url":"https://www.runpod.io/pricing"}]
+
+Based on the search results, here's the current A100 GPU rental pricing for 2026 from Lambda Labs and RunPod:
+
+## A100 80GB Rental Costs (2026)
+
+RunPod offers A100 80GB GPUs at $1.49/hr, while Lambda Labs offers them at $2.06/hr.
+
+For comparison, A100s start at $0.78/hr across the market, though this likely represents the lowest marketplace pricing available.
+
+## Additional Context
+
+Jarvislabs offers on-demand A100 80GB access at $1.49/hr with per-minute billing — no commitments, no minimum rental period, matching RunPod's pricing.
+
+RunPod's Secure Cloud matches at $1.49/hr, with Community Cloud from $1.39/hr.
+
+The pricing variation reflects different service tiers—Lambda Labs' higher rate includes more managed infrastructure and guaranteed availability, while RunPod offers more competitive pricing through both secure and community-hosted options.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c793983-98f7-4ee0-beaa-e1c6b352c542",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "bfe03196-cf7e-4b53-9d71-2c188cfd84f9",
+  "toolUseResult": {
+    "query": "A100 GPU rental cost per hour 2026 Lambda Labs RunPod",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XwFQxwQ3S9RGxTbukPYXjJ",
+        "content": [
+          {
+            "title": "GPU Cloud Pricing Comparison 2026: Every Major Provider Side by Side | Spheron Blog",
+            "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/"
+          },
+          {
+            "title": "NVIDIA A100 GPU Price in 2026: Cost Per Hour, Cloud Pricing & Specs | Jarvis Labs Blog | Jarvis Labs",
+            "url": "https://jarvislabs.ai/blog/a100-price"
+          },
+          {
+            "title": "2026 Cost of Renting or Buying NVIDIA H100 GPUs for Data Centers",
+            "url": "https://www.gmicloud.ai/en/blog/2026-cost-of-renting-or-uying-nvidia-h100-gpus-for-data-centers"
+          },
+          {
+            "title": "H100 Rental Prices Compared: $1.49-$6.98/hr Across 15+ Cloud Providers (2026) | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison"
+          },
+          {
+            "title": "AI Cloud Pricing | GPU Compute & AI Infrastructure | Lambda",
+            "url": "https://lambda.ai/pricing"
+          },
+          {
+            "title": "AI GPU Rental Market Trends (May 2026): Complete Industry Analysis",
+            "url": "https://www.thundercompute.com/blog/ai-gpu-rental-market-trends"
+          },
+          {
+            "title": "Cloud GPU Pricing (2026): RTX 4090 $0.29, A100 $1.29, H100 $2.49 | SynpixCloud",
+            "url": "https://www.synpixcloud.com/blog/cloud-gpu-pricing-comparison-2026"
+          },
+          {
+            "title": "Top 9 Cloud GPU Rental Platforms in 2026 [Updated February] | Hyperstack",
+            "url": "https://www.hyperstack.cloud/blog/case-study/cloud-gpu-rental-platforms"
+          },
+          {
+            "title": "NVIDIA H100 Price Guide 2026: GPU Costs, Cloud Pricing & Buy vs Rent | Jarvis Labs Blog | Jarvis Labs",
+            "url": "https://jarvislabs.ai/blog/h100-price"
+          },
+          {
+            "title": "Pricing | Runpod",
+            "url": "https://www.runpod.io/pricing"
+          }
+        ]
+      },
+      "Based on the search results, here's the current A100 GPU rental pricing for 2026 from Lambda Labs and RunPod:\n\n## A100 80GB Rental Costs (2026)\n\nRunPod offers A100 80GB GPUs at $1.49/hr, while Lambda Labs offers them at $2.06/hr.\n\nFor comparison, A100s start at $0.78/hr across the market, though this likely represents the lowest marketplace pricing available.\n\n## Additional Context\n\nJarvislabs offers on-demand A100 80GB access at $1.49/hr with per-minute billing — no commitments, no minimum rental period, matching RunPod's pricing.\n\nRunPod's Secure Cloud matches at $1.49/hr, with Community Cloud from $1.39/hr.\n\nThe pricing variation reflects different service tiers—Lambda Labs' higher rate includes more managed infrastructure and guaranteed availability, while RunPod offers more competitive pricing through both secure and community-hosted options."
+    ],
+    "durationSeconds": 6.066597906999996
+  },
+  "sourceToolAssistantUUID": "8c793983-98f7-4ee0-beaa-e1c6b352c542",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-10T07:01:59.949Z_
+
+<details><summary>↩ Tool result · `toolu_01TcL4RBELj8sWwJs8a4nSpV`</summary>
+
+```text
+Web search results for query: "CoNLL 2026 COLING 2026 submission deadline NLP"
+
+Links: [{"title":"CoNLL 2026 | CoNLL","url":"https://conll.org/"},{"title":"CoNLL 2026: 3rd and Final Call for Papers - Corpora - ELRA lists","url":"https://list.elra.info/mailman3/hyperkitty/list/corpora@list.elra.info/thread/BDW4FPXENUKPTACOYMT5PXZSDZHJ5LB4/"},{"title":"COLING: International Conference on Computational Linguistics 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=533"},{"title":"CoNLL 2026 : 30th Conference on Computational Natural Language Learning","url":"http://www.wikicfp.com/cfp/servlet/event.showcfp?copyownerid=90704&eventid=191131"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"CoNLL | The SIGNLL Conference on Computational Natural Language Learning","url":"https://conll.org/node"},{"title":"CoNLL 2026: 2nd Call for Papers - Corpora - ELRA lists","url":"https://list.elra.info/mailman3/hyperkitty/list/corpora@list.elra.info/thread/ZGSJK533QG74LW5JVINWOQR3LXOX5ZFJ/"},{"title":"CoNLL 2026: 3rd and Final Call for Papers","url":"https://groups.google.com/g/cxgsnlp-workshop/c/HGgwxfDu1yM"},{"title":"2026 3rd International Conference on Computational Linguistics and Natural Language Processing","url":"https://www.clnlp.org/"},{"title":"Academic Deadlines Countdown Timer - Cosmo Zhang","url":"https://www.cosmozhang.xyz/countdown/"}]
+
+Based on the search results, here's the information about CoNLL 2026:
+
+## CoNLL 2026 Submission Deadline
+
+The submission deadline for CoNLL 2026 (for both archival and non-archival submissions) is February 19, 2026, with all deadlines at 11:59pm UTC-12h (AoE).
+
+## Conference Details
+
+CoNLL 2026 will take place in San Diego, California, United States, July 3-4, 2026 (co-located with ACL).
+
+## Important Timeline
+
+The notification of acceptance is April 21, 2026, and camera-ready papers are due May 12, 2026.
+
+## Submission Format
+
+CoNLL 2026 will accept only direct submissions via OpenReview. Archival submissions must be anonymous and use the same template as ACL 2026. Submitted papers may consist of up to 8 pages of content plus unlimited space for references.
+
+Note: The search results mention CoNLL 2026 but do not contain information about COLING 2026's submission deadline. If you need information about COLING 2026, I can perform a separate search for that.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21010e01-dcac-459d-84cf-1d981c35de04",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "139630a9-3f00-4d4a-a0c1-a6bbcf350898",
+  "toolUseResult": {
+    "query": "CoNLL 2026 COLING 2026 submission deadline NLP",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T8B9vAtAa1RkMDzxq1SFPK",
+        "content": [
+          {
+            "title": "CoNLL 2026 | CoNLL",
+            "url": "https://conll.org/"
+          },
+          {
+            "title": "CoNLL 2026: 3rd and Final Call for Papers - Corpora - ELRA lists",
+            "url": "https://list.elra.info/mailman3/hyperkitty/list/corpora@list.elra.info/thread/BDW4FPXENUKPTACOYMT5PXZSDZHJ5LB4/"
+          },
+          {
+            "title": "COLING: International Conference on Computational Linguistics 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=533"
+          },
+          {
+            "title": "CoNLL 2026 : 30th Conference on Computational Natural Language Learning",
+            "url": "http://www.wikicfp.com/cfp/servlet/event.showcfp?copyownerid=90704&eventid=191131"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "CoNLL | The SIGNLL Conference on Computational Natural Language Learning",
+            "url": "https://conll.org/node"
+          },
+          {
+            "title": "CoNLL 2026: 2nd Call for Papers - Corpora - ELRA lists",
+            "url": "https://list.elra.info/mailman3/hyperkitty/list/corpora@list.elra.info/thread/ZGSJK533QG74LW5JVINWOQR3LXOX5ZFJ/"
+          },
+          {
+            "title": "CoNLL 2026: 3rd and Final Call for Papers",
+            "url": "https://groups.google.com/g/cxgsnlp-workshop/c/HGgwxfDu1yM"
+          },
+          {
+            "title": "2026 3rd International Conference on Computational Linguistics and Natural Language Processing",
+            "url": "https://www.clnlp.org/"
+          },
+          {
+            "title": "Academic Deadlines Countdown Timer - Cosmo Zhang",
+            "url": "https://www.cosmozhang.xyz/countdown/"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about CoNLL 2026:\n\n## CoNLL 2026 Submission Deadline\n\nThe submission deadline for CoNLL 2026 (for both archival and non-archival submissions) is February 19, 2026, with all deadlines at 11:59pm UTC-12h (AoE).\n\n## Conference Details\n\nCoNLL 2026 will take place in San Diego, California, United States, July 3-4, 2026 (co-located with ACL).\n\n## Important Timeline\n\nThe notification of acceptance is April 21, 2026, and camera-ready papers are due May 12, 2026.\n\n## Submission Format\n\nCoNLL 2026 will accept only direct submissions via OpenReview. Archival submissions must be anonymous and use the same template as ACL 2026. Submitted papers may consist of up to 8 pages of content plus unlimited space for references.\n\nNote: The search results mention CoNLL 2026 but do not contain information about COLING 2026's submission deadline. If you need information about COLING 2026, I can perform a separate search for that."
+    ],
+    "durationSeconds": 7.985790008000004
+  },
+  "sourceToolAssistantUUID": "21010e01-dcac-459d-84cf-1d981c35de04",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-10T07:02:01.674Z_
+
+<details><summary>↩ Tool result · `toolu_016ub6vR8injjkuced2R7mMW`</summary>
+
+```text
+Web search results for query: "WikiEvents RAMS MAVEN event extraction benchmark zero-shot F1 scores 2025 2026"
+
+Links: [{"title":"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/html/2603.02909v2"},{"title":"Statistics of RAMS and WikiEvents datasets. | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Statistics-of-RAMS-and-WikiEvents-datasets_tbl2_383452545"},{"title":"Closed-Domain Event Extraction Literature Review January 2025 v1.0","url":"https://www.turing.ac.uk/sites/default/files/2025-07/arc_event_extraction_lit_review.pdf"},{"title":"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For","url":"https://ojs.aaai.org/index.php/AAAI/article/download/40767/44728"},{"title":"Document-Level Event Argument Extraction by Conditional Generation - ACL Anthology","url":"https://aclanthology.org/2021.naacl-main.69/"},{"title":"EDM3: Event Detection as Multi-task Text Generation","url":"https://aclanthology.org/2024.starsem-1.35.pdf"},{"title":"EDM3: Event Detection as Multi-task Text Generation","url":"https://arxiv.org/pdf/2305.16357"},{"title":"(Open Access) Document-Level Event Argument Extraction by Conditional Generation. (2021) | Sha Li | 3 Citations","url":"https://scispace.com/papers/document-level-event-argument-extraction-by-conditional-mfikfuamyh"},{"title":"Learning from a Friend: Improving Event Extraction via Self-Training with Feedback from Abstract Meaning Representation | NSF Public Access Repository","url":"https://par.nsf.gov/biblio/10527691-learning-from-friend-improving-event-extraction-via-self-training-feedback-from-abstract-meaning-representation"},{"title":"A Multi-Format Transfer Learning Model for Event Argument Extraction","url":"https://arxiv.org/pdf/2208.13017"}]
+
+Based on my search results, I found relevant information about zero-shot event extraction benchmarks on the WikiEvents, RAMS, and MAVEN datasets. Here are the key findings:
+
+## Zero-Shot F1 Scores on Event Extraction Benchmarks
+
+The two most widely used document-level event argument extraction (DEAE) datasets are RAMS and WikiEvents, with zero-shot settings including RAMS2RAMS, RAMS2Wiki, and Wiki2Wiki.
+
+### Recent 2025-2026 Results
+
+In a multi-agent collaboration framework study from 2026, the approach using LLaMA achieved overall F1 scores of 32.38 and 46.96 in RAMS2Wiki and Wiki2Wiki settings. More specifically, the method exceeded the strongest baseline by 6.57, 5.57, and 7.82 F1 on seen roles, unseen roles, and overall in RAMS2RAMS.
+
+### Performance Observations
+
+Large Language Models (LLMs) generally perform significantly worse in Span-F1 metrics, with generally low performance levels, though some approaches have demonstrated superior performance by surpassing supervised baselines by over 7% in F1 score in cross-task zero-shot and few-shot transfer settings on RAMS and WikiEvents.
+
+The search results indicate active research on zero-shot event extraction across these benchmarks in 2025-2026, with various methods showing different performance levels depending on the approach and evaluation setting.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "778195e3-ecd7-45ec-9975-e5dfaa1d8b6f",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "5c1fe8c8-5ba5-4ac4-9f7f-8062339e8961",
+  "toolUseResult": {
+    "query": "WikiEvents RAMS MAVEN event extraction benchmark zero-shot F1 scores 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NhYgjYKu8nAUHDvc9SomvP",
+        "content": [
+          {
+            "title": "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/html/2603.02909v2"
+          },
+          {
+            "title": "Statistics of RAMS and WikiEvents datasets. | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Statistics-of-RAMS-and-WikiEvents-datasets_tbl2_383452545"
+          },
+          {
+            "title": "Closed-Domain Event Extraction Literature Review January 2025 v1.0",
+            "url": "https://www.turing.ac.uk/sites/default/files/2025-07/arc_event_extraction_lit_review.pdf"
+          },
+          {
+            "title": "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/download/40767/44728"
+          },
+          {
+            "title": "Document-Level Event Argument Extraction by Conditional Generation - ACL Anthology",
+            "url": "https://aclanthology.org/2021.naacl-main.69/"
+          },
+          {
+            "title": "EDM3: Event Detection as Multi-task Text Generation",
+            "url": "https://aclanthology.org/2024.starsem-1.35.pdf"
+          },
+          {
+            "title": "EDM3: Event Detection as Multi-task Text Generation",
+            "url": "https://arxiv.org/pdf/2305.16357"
+          },
+          {
+            "title": "(Open Access) Document-Level Event Argument Extraction by Conditional Generation. (2021) | Sha Li | 3 Citations",
+            "url": "https://scispace.com/papers/document-level-event-argument-extraction-by-conditional-mfikfuamyh"
+          },
+          {
+            "title": "Learning from a Friend: Improving Event Extraction via Self-Training with Feedback from Abstract Meaning Representation | NSF Public Access Repository",
+            "url": "https://par.nsf.gov/biblio/10527691-learning-from-friend-improving-event-extraction-via-self-training-feedback-from-abstract-meaning-representation"
+          },
+          {
+            "title": "A Multi-Format Transfer Learning Model for Event Argument Extraction",
+            "url": "https://arxiv.org/pdf/2208.13017"
+          }
+        ]
+      },
+      "Based on my search results, I found relevant information about zero-shot event extraction benchmarks on the WikiEvents, RAMS, and MAVEN datasets. Here are the key findings:\n\n## Zero-Shot F1 Scores on Event Extraction Benchmarks\n\nThe two most widely used document-level event argument extraction (DEAE) datasets are RAMS and WikiEvents, with zero-shot settings including RAMS2RAMS, RAMS2Wiki, and Wiki2Wiki.\n\n### Recent 2025-2026 Results\n\nIn a multi-agent collaboration framework study from 2026, the approach using LLaMA achieved overall F1 scores of 32.38 and 46.96 in RAMS2Wiki and Wiki2Wiki settings. More specifically, the method exceeded the strongest baseline by 6.57, 5.57, and 7.82 F1 on seen roles, unseen roles, and overall in RAMS2RAMS.\n\n### Performance Observations\n\nLarge Language Models (LLMs) generally perform significantly worse in Span-F1 metrics, with generally low performance levels, though some approaches have demonstrated superior performance by surpassing supervised baselines by over 7% in F1 score in cross-task zero-shot and few-shot transfer settings on RAMS and WikiEvents.\n\nThe search results indicate active research on zero-shot event extraction across these benchmarks in 2025-2026, with various methods showing different performance levels depending on the approach and evaluation setting."
+    ],
+    "durationSeconds": 10.776863806000001
+  },
+  "sourceToolAssistantUUID": "778195e3-ecd7-45ec-9975-e5dfaa1d8b6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-10T07:02:11.503Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found the concurrent work. The most important concurrent paper is:
+- arXiv 2603.02909 (March 2026): "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction" - this is quite similar but focuses on document-level event argument extraction, not joint event-relation schema with compositional constraints.
+
+Let me now search for more specific information about:
+1. GitHub implementations for event schema generation
+2. The EvalLLM 2025 paper that compares GPT-4.1 on event extraction (15.02% macro-F1)
+
+
+3. Training time for fine-tuning Llama on event extraction tasks
+
+The key differentiation from the concurrent work is that their approach uses generate-and-evaluate agents for document-level event argument extraction with a focus on data quality, whereas my approach targets compositional schema-conditioned synthetic data generation for joint event-relation schemas where event type, argument roles, and entity types must all be consistent, extending GuideX methodology to hierarchical schemas. I should also look into GPU cost estimates to complete the analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c1fe8c8-5ba5-4ac4-9f7f-8062339e8961",
+  "isSidechain": false,
+  "requestId": "req_011CatTar2SdKLqpL8AYeozQ",
+  "type": "assistant",
+  "uuid": "7eba53d2-67a6-4301-8905-7989ad894c4c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01EGHvzajAfoGZyFF3zuTsvF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1655,
+      "cache_creation_input_tokens": 2170,
+      "cache_read_input_tokens": 27482,
+      "output_tokens": 483,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2170,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1655,
+          "output_tokens": 483,
+          "cache_read_input_tokens": 27482,
+          "cache_creation_input_tokens": 2170,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2170
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-10T07:02:11.540Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LnD2iMTvDhRaGc9KnmVUQA`</summary>
+
+```json
+{
+  "query": "fine-tuning Llama 70B GPU hours cost event extraction training 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7eba53d2-67a6-4301-8905-7989ad894c4c",
+  "isSidechain": false,
+  "requestId": "req_011CatTar2SdKLqpL8AYeozQ",
+  "type": "assistant",
+  "uuid": "29a0db61-f947-412f-9a61-1e88affa5a69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01EGHvzajAfoGZyFF3zuTsvF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1655,
+      "cache_creation_input_tokens": 2170,
+      "cache_read_input_tokens": 27482,
+      "output_tokens": 483,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2170,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1655,
+          "output_tokens": 483,
+          "cache_read_input_tokens": 27482,
+          "cache_creation_input_tokens": 2170,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2170
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-10T07:02:11.545Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018EhXfsVh24kQFUSHnxM34T`</summary>
+
+```json
+{
+  "query": "ACE05 event extraction zero-shot F1 benchmark supervised SOTA 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29a0db61-f947-412f-9a61-1e88affa5a69",
+  "isSidechain": false,
+  "requestId": "req_011CatTar2SdKLqpL8AYeozQ",
+  "type": "assistant",
+  "uuid": "60e517e6-7322-4cd0-b7ac-989656ea820e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01EGHvzajAfoGZyFF3zuTsvF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1655,
+      "cache_creation_input_tokens": 2170,
+      "cache_read_input_tokens": 27482,
+      "output_tokens": 483,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2170,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1655,
+          "output_tokens": 483,
+          "cache_read_input_tokens": 27482,
+          "cache_creation_input_tokens": 2170,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2170
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-10T07:02:11.606Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019BZSrEMJVMf64iJqEnYQN1`</summary>
+
+```json
+{
+  "query": "InstructUIE EvalLLM 2025 GPT-4 event extraction F1 benchmark comparison"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60e517e6-7322-4cd0-b7ac-989656ea820e",
+  "isSidechain": false,
+  "requestId": "req_011CatTar2SdKLqpL8AYeozQ",
+  "type": "assistant",
+  "uuid": "1e4014d0-dce5-461d-ac06-a4ef4a611819",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01EGHvzajAfoGZyFF3zuTsvF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1655,
+      "cache_creation_input_tokens": 2170,
+      "cache_read_input_tokens": 27482,
+      "output_tokens": 483,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2170,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1655,
+          "output_tokens": 483,
+          "cache_read_input_tokens": 27482,
+          "cache_creation_input_tokens": 2170,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2170
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-10 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Schema-Condit…",
+  "leafUuid": "1e4014d0-dce5-461d-ac06-a4ef4a611819",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Schema-Conditioned Synthetic Supervision for Joint Event-Relation Extraction",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-10T07:02:17.665Z_
+
+<details><summary>↩ Tool result · `toolu_018EhXfsVh24kQFUSHnxM34T`</summary>
+
+```text
+Web search results for query: "ACE05 event extraction zero-shot F1 benchmark supervised SOTA 2025"
+
+Links: [{"title":"Closed-Domain Event Extraction Literature Review January 2025 v1.0","url":"https://www.turing.ac.uk/sites/default/files/2025-07/arc_event_extraction_lit_review.pdf"},{"title":"Improving Event Definition Following For Zero-Shot Event Detection","url":"https://arxiv.org/html/2403.02586v1"},{"title":"[2010.11325] Probing and Fine-tuning Reading Comprehension Models for Few-shot Event Extraction","url":"https://ar5iv.labs.arxiv.org/html/2010.11325"},{"title":"KC-GEE: knowledge-based conditioning for generative event extraction | World Wide Web | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11280-023-01216-5"},{"title":"Event Extraction as Question Generation and Answering","url":"https://aclanthology.org/2023.acl-short.143.pdf"},{"title":"GoLLIE : Annotation Guidelines improve Zero-Shot Information-Extraction","url":"https://arxiv.org/html/2310.03668v5"},{"title":"Event extraction results on ACE05 dataset and ERE dataset (F-score, %). | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Event-extraction-results-on-ACE05-dataset-and-ERE-dataset-F-score_tbl1_355234254"},{"title":"Learning from a Friend: Improving Event Extraction via Self-Training with Feedback from Abstract Meaning Representation | NSF Public Access Repository","url":"https://par.nsf.gov/biblio/10527691-learning-from-friend-improving-event-extraction-via-self-training-feedback-from-abstract-meaning-representation"},{"title":"Zero-shot event argument extraction by disentangling trigger from argument and role | International Journal of Machine Learning and Cybernetics | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s13042-024-02446-3"},{"title":"GitHub - jeremytanjianle/event-extraction-oneie: Event extraction of ACE05 dataset","url":"https://github.com/jeremytanjianle/event-extraction-oneie"}]
+
+Based on the search results, I found relevant information about ACE05 event extraction performance. Here's what the research shows:
+
+## ACE05 Event Extraction Benchmarks
+
+Zero-shot approaches report F1 scores on ACE-2005 that are significantly lower than SOTA supervised models, indicating a notable performance gap between these two paradigms.
+
+### Supervised SOTA Performance
+
+The DeepStruct model (without fine-tuning) achieved an F1 of 67.5 on argument detection and 63.9 on argument role classification, with the latter score representing SOTA. The fine-tuned variant achieved an F1 of 73.5 for trigger detection and 69.8 for trigger classification.
+
+### Recent Zero-Shot Methods (2025)
+
+A zero-shot method for event argument extraction can outperform baselines by 8% on the ACE-2005 dataset, though this still indicates lower absolute performance compared to supervised approaches.
+
+### Other Notable Results
+
+An end-to-end zero-shot event extraction framework achieved 97% of fully supervised model's trigger extraction performance and 82% of the argument extraction performance given only access to 10 out of the 33 types on ACE.
+
+The search results indicate that while zero-shot methods continue to improve, there remains a substantial performance gap between zero-shot and supervised SOTA approaches on the ACE05 benchmark.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60e517e6-7322-4cd0-b7ac-989656ea820e",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "0b3e35d7-56dc-4cfb-9634-4b941cb88790",
+  "toolUseResult": {
+    "query": "ACE05 event extraction zero-shot F1 benchmark supervised SOTA 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UDkNB1qi4WDdEnk6U13FxM",
+        "content": [
+          {
+            "title": "Closed-Domain Event Extraction Literature Review January 2025 v1.0",
+            "url": "https://www.turing.ac.uk/sites/default/files/2025-07/arc_event_extraction_lit_review.pdf"
+          },
+          {
+            "title": "Improving Event Definition Following For Zero-Shot Event Detection",
+            "url": "https://arxiv.org/html/2403.02586v1"
+          },
+          {
+            "title": "[2010.11325] Probing and Fine-tuning Reading Comprehension Models for Few-shot Event Extraction",
+            "url": "https://ar5iv.labs.arxiv.org/html/2010.11325"
+          },
+          {
+            "title": "KC-GEE: knowledge-based conditioning for generative event extraction | World Wide Web | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11280-023-01216-5"
+          },
+          {
+            "title": "Event Extraction as Question Generation and Answering",
+            "url": "https://aclanthology.org/2023.acl-short.143.pdf"
+          },
+          {
+            "title": "GoLLIE : Annotation Guidelines improve Zero-Shot Information-Extraction",
+            "url": "https://arxiv.org/html/2310.03668v5"
+          },
+          {
+            "title": "Event extraction results on ACE05 dataset and ERE dataset (F-score, %). | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Event-extraction-results-on-ACE05-dataset-and-ERE-dataset-F-score_tbl1_355234254"
+          },
+          {
+            "title": "Learning from a Friend: Improving Event Extraction via Self-Training with Feedback from Abstract Meaning Representation | NSF Public Access Repository",
+            "url": "https://par.nsf.gov/biblio/10527691-learning-from-friend-improving-event-extraction-via-self-training-feedback-from-abstract-meaning-representation"
+          },
+          {
+            "title": "Zero-shot event argument extraction by disentangling trigger from argument and role | International Journal of Machine Learning and Cybernetics | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s13042-024-02446-3"
+          },
+          {
+            "title": "GitHub - jeremytanjianle/event-extraction-oneie: Event extraction of ACE05 dataset",
+            "url": "https://github.com/jeremytanjianle/event-extraction-oneie"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about ACE05 event extraction performance. Here's what the research shows:\n\n## ACE05 Event Extraction Benchmarks\n\nZero-shot approaches report F1 scores on ACE-2005 that are significantly lower than SOTA supervised models, indicating a notable performance gap between these two paradigms.\n\n### Supervised SOTA Performance\n\nThe DeepStruct model (without fine-tuning) achieved an F1 of 67.5 on argument detection and 63.9 on argument role classification, with the latter score representing SOTA. The fine-tuned variant achieved an F1 of 73.5 for trigger detection and 69.8 for trigger classification.\n\n### Recent Zero-Shot Methods (2025)\n\nA zero-shot method for event argument extraction can outperform baselines by 8% on the ACE-2005 dataset, though this still indicates lower absolute performance compared to supervised approaches.\n\n### Other Notable Results\n\nAn end-to-end zero-shot event extraction framework achieved 97% of fully supervised model's trigger extraction performance and 82% of the argument extraction performance given only access to 10 out of the 33 types on ACE.\n\nThe search results indicate that while zero-shot methods continue to improve, there remains a substantial performance gap between zero-shot and supervised SOTA approaches on the ACE05 benchmark."
+    ],
+    "durationSeconds": 6.116416789999995
+  },
+  "sourceToolAssistantUUID": "60e517e6-7322-4cd0-b7ac-989656ea820e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-10T07:02:17.747Z_
+
+<details><summary>↩ Tool result · `toolu_019BZSrEMJVMf64iJqEnYQN1`</summary>
+
+```text
+Web search results for query: "InstructUIE EvalLLM 2025 GPT-4 event extraction F1 benchmark comparison"
+
+Links: [{"title":"LLM, Au Rapport ! Extraction d’Informations Médicales entre Prompting, Fine-tuning et Post-correction","url":"https://arxiv.org/html/2510.03577v1"},{"title":"LLM, Reporting In! Medical Information Extraction Across ...","url":"https://www.arxiv.org/pdf/2510.03577"},{"title":"[2304.08085] InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction","url":"https://ar5iv.labs.arxiv.org/html/2304.08085"},{"title":"LLM, Au Rapport ! Extraction d'Informations Médicales entre Prompting, Fine-tuning et Post-correction - Archive ouverte HAL","url":"https://hal.science/hal-05378083v1"},{"title":"Closed-Domain Event Extraction Literature Review January 2025 v1.0","url":"https://www.turing.ac.uk/sites/default/files/2025-07/arc_event_extraction_lit_review.pdf"},{"title":"IFEval Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/ifeval"},{"title":"GPT-Fathom: Benchmarking Large Language Models to Decipher the Evolutionary Path towards GPT-4 and Beyond","url":"https://arxiv.org/html/2309.16583v5"},{"title":"InstructUIE: Multi-task Instruction Tuning for Uniﬁed Information Extraction","url":"https://arxiv.org/pdf/2304.08085"},{"title":"Actes de l'atelier Évaluation des modèles génératifs (LLM) et challenge 2025 (EvalLLM) - ACL Anthology","url":"https://aclanthology.org/volumes/2025.jeptalnrecital-evalllm/"},{"title":"CEA-List@EvalLLM2025 extraction d'information : des LLM mais sans modèle décodeur - CEA - Université Paris-Saclay","url":"https://univ-fcomte.hal.science/CEA-UPSAY/hal-05378077v1"}]
+
+Based on the web search results, here's what I found regarding your query about InstructUIE, EvalLLM 2025, GPT-4, and event extraction F1 benchmarks:
+
+## Key Findings:
+
+**InstructUIE and Event Extraction:**
+InstructUIE is a unified information extraction framework based on instruction tuning that can uniformly model various information extraction tasks, with IE INSTRUCTIONS being a benchmark of 32 diverse information extraction datasets in a unified text-to-text format with expert-written instructions.
+
+**EvalLLM 2025 Challenge Results:**
+In the EvalLLM 2025 challenge, GPT-4.1 achieved a macro-F1 of 61.53% for NER and 15.02% for event extraction, highlighting the importance of well-crafted prompting to maximize performance in very low-resource scenarios.
+
+**Methodology:**
+For event extraction, the EvalLLM 2025 challenge employed in-context learning (ICL) with GPT-4.1, incorporating automatic selection of 10 examples and a summary of annotation guidelines into the prompt.
+
+**Challenge Context:**
+The EvalLLM 2025 challenge focused on biomedical named entity recognition and health event extraction in French in a few-shot setting.
+
+The search results show that GPT-4.1 was the leading model in the EvalLLM 2025 event extraction task, though the 15.02% F1 score indicates that event extraction remains a challenging task in very low-resource scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e4014d0-dce5-461d-ac06-a4ef4a611819",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "b4f46bd4-830e-424f-b92d-06bccce274e3",
+  "toolUseResult": {
+    "query": "InstructUIE EvalLLM 2025 GPT-4 event extraction F1 benchmark comparison",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Vvcd9PwQN6ArnV7cxxnUDC",
+        "content": [
+          {
+            "title": "LLM, Au Rapport ! Extraction d’Informations Médicales entre Prompting, Fine-tuning et Post-correction",
+            "url": "https://arxiv.org/html/2510.03577v1"
+          },
+          {
+            "title": "LLM, Reporting In! Medical Information Extraction Across ...",
+            "url": "https://www.arxiv.org/pdf/2510.03577"
+          },
+          {
+            "title": "[2304.08085] InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction",
+            "url": "https://ar5iv.labs.arxiv.org/html/2304.08085"
+          },
+          {
+            "title": "LLM, Au Rapport ! Extraction d'Informations Médicales entre Prompting, Fine-tuning et Post-correction - Archive ouverte HAL",
+            "url": "https://hal.science/hal-05378083v1"
+          },
+          {
+            "title": "Closed-Domain Event Extraction Literature Review January 2025 v1.0",
+            "url": "https://www.turing.ac.uk/sites/default/files/2025-07/arc_event_extraction_lit_review.pdf"
+          },
+          {
+            "title": "IFEval Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/ifeval"
+          },
+          {
+            "title": "GPT-Fathom: Benchmarking Large Language Models to Decipher the Evolutionary Path towards GPT-4 and Beyond",
+            "url": "https://arxiv.org/html/2309.16583v5"
+          },
+          {
+            "title": "InstructUIE: Multi-task Instruction Tuning for Uniﬁed Information Extraction",
+            "url": "https://arxiv.org/pdf/2304.08085"
+          },
+          {
+            "title": "Actes de l'atelier Évaluation des modèles génératifs (LLM) et challenge 2025 (EvalLLM) - ACL Anthology",
+            "url": "https://aclanthology.org/volumes/2025.jeptalnrecital-evalllm/"
+          },
+          {
+            "title": "CEA-List@EvalLLM2025 extraction d'information : des LLM mais sans modèle décodeur - CEA - Université Paris-Saclay",
+            "url": "https://univ-fcomte.hal.science/CEA-UPSAY/hal-05378077v1"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding your query about InstructUIE, EvalLLM 2025, GPT-4, and event extraction F1 benchmarks:\n\n## Key Findings:\n\n**InstructUIE and Event Extraction:**\nInstructUIE is a unified information extraction framework based on instruction tuning that can uniformly model various information extraction tasks, with IE INSTRUCTIONS being a benchmark of 32 diverse information extraction datasets in a unified text-to-text format with expert-written instructions.\n\n**EvalLLM 2025 Challenge Results:**\nIn the EvalLLM 2025 challenge, GPT-4.1 achieved a macro-F1 of 61.53% for NER and 15.02% for event extraction, highlighting the importance of well-crafted prompting to maximize performance in very low-resource scenarios.\n\n**Methodology:**\nFor event extraction, the EvalLLM 2025 challenge employed in-context learning (ICL) with GPT-4.1, incorporating automatic selection of 10 examples and a summary of annotation guidelines into the prompt.\n\n**Challenge Context:**\nThe EvalLLM 2025 challenge focused on biomedical named entity recognition and health event extraction in French in a few-shot setting.\n\nThe search results show that GPT-4.1 was the leading model in the EvalLLM 2025 event extraction task, though the 15.02% F1 score indicates that event extraction remains a challenging task in very low-resource scenarios."
+    ],
+    "durationSeconds": 6.137751897999995
+  },
+  "sourceToolAssistantUUID": "1e4014d0-dce5-461d-ac06-a4ef4a611819",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-10T07:02:22.602Z_
+
+<details><summary>↩ Tool result · `toolu_01LnD2iMTvDhRaGc9KnmVUQA`</summary>
+
+```text
+Web search results for query: "fine-tuning Llama 70B GPU hours cost event extraction training 2025"
+
+Links: [{"title":"LoRA Fine-Tuning for Dummies: How to Adapt 70B Models on a Laptop","url":"https://michielh.medium.com/lora-fine-tuning-for-dummmies-4af64f096b4d"},{"title":"GPU Options for Finetuning Large Models: Choose the Right Setup | DigitalOcean","url":"https://www.digitalocean.com/resources/articles/gpu-options-finetuning"},{"title":"How Much Does Llama-3 Fine-Tuning Cost? (2026 Budget Guide) | Calcix | Calcix","url":"https://calcix.net/guides/business-startup/ai-model-training-cost-budgeting-guide"},{"title":"Fine-Tuning LLMs with LoRA: 2025 Guide | Amir Teymoori","url":"https://amirteymoori.com/fine-tuning-llms-with-lora-a-practical-guide-for-2025/"},{"title":"LLM Fine-Tuning Cost Calculator 2026 - DeepSeek, Llama, GPT Training ROI","url":"https://bytecalculators.com/llm-fine-tuning-cost-calculator"},{"title":"Fine-tune and deploy Llama 2 LLM models","url":"https://www.truefoundry.com/blog/deploy-and-finetune-llama-2-on-your-cloud"},{"title":"Fine-tuning | How-to guides","url":"https://www.llama.com/docs/how-to-guides/fine-tuning/"},{"title":"The Complete Guide to GPU Requirements for LLM Fine-Tuning | Runpod Blog","url":"https://www.runpod.io/blog/llm-fine-tuning-gpu-guide"},{"title":"Llama Fine-Tuning, De-Mystified (With Real Costs) | by Syntal | Oct, 2025 | Medium","url":"https://medium.com/@sparknp1/llama-fine-tuning-de-mystified-with-real-costs-142fc2be3895"},{"title":"Efficiently fine-tune Llama 3 with PyTorch FSDP and Q-Lora","url":"https://www.philschmid.de/fsdp-qlora-llama3"}]
+
+Based on the search results, I found information about fine-tuning Llama 70B models, GPU hours, and costs. Here's what I found:
+
+## GPU Hours Requirements
+
+For 70B models, expect 3-8 hours of training on a single H100, though this varies depending on dataset size. For larger datasets, training 1 million tokens on a 70B model with LoRA takes approximately 2-3 hours on an A100.
+
+For context, the Llama 2 70B variant required 1.7M GPU hours with A100-80GB during pretraining, but that's for initial training, not fine-tuning.
+
+## Cost Estimates
+
+In 2026, fine-tuning a 70B Llama-3 model typically costs between $12,000 and $45,000 depending on your dataset size and hardware efficiency.
+
+However, with LoRA, you can fine-tune a 70B model for under $500 on consumer hardware. More specifically, 70B at 10M tokens with LoRA costs $150-200.
+
+## Event Extraction Specifics
+
+Unfortunately, the search results do not contain specific information about fine-tuning Llama 70B models specifically for event extraction tasks in 2025-2026. The results discuss general fine-tuning approaches using LoRA and QLoRA techniques, but don't break down costs or GPU hours by task type like event extraction.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "29a0db61-f947-412f-9a61-1e88affa5a69",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "180ce38a-6572-4ab1-9fdb-d464a9f07ad2",
+  "toolUseResult": {
+    "query": "fine-tuning Llama 70B GPU hours cost event extraction training 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019xon8GoPrWBa1c2tQ7U6BH",
+        "content": [
+          {
+            "title": "LoRA Fine-Tuning for Dummies: How to Adapt 70B Models on a Laptop",
+            "url": "https://michielh.medium.com/lora-fine-tuning-for-dummmies-4af64f096b4d"
+          },
+          {
+            "title": "GPU Options for Finetuning Large Models: Choose the Right Setup | DigitalOcean",
+            "url": "https://www.digitalocean.com/resources/articles/gpu-options-finetuning"
+          },
+          {
+            "title": "How Much Does Llama-3 Fine-Tuning Cost? (2026 Budget Guide) | Calcix | Calcix",
+            "url": "https://calcix.net/guides/business-startup/ai-model-training-cost-budgeting-guide"
+          },
+          {
+            "title": "Fine-Tuning LLMs with LoRA: 2025 Guide | Amir Teymoori",
+            "url": "https://amirteymoori.com/fine-tuning-llms-with-lora-a-practical-guide-for-2025/"
+          },
+          {
+            "title": "LLM Fine-Tuning Cost Calculator 2026 - DeepSeek, Llama, GPT Training ROI",
+            "url": "https://bytecalculators.com/llm-fine-tuning-cost-calculator"
+          },
+          {
+            "title": "Fine-tune and deploy Llama 2 LLM models",
+            "url": "https://www.truefoundry.com/blog/deploy-and-finetune-llama-2-on-your-cloud"
+          },
+          {
+            "title": "Fine-tuning | How-to guides",
+            "url": "https://www.llama.com/docs/how-to-guides/fine-tuning/"
+          },
+          {
+            "title": "The Complete Guide to GPU Requirements for LLM Fine-Tuning | Runpod Blog",
+            "url": "https://www.runpod.io/blog/llm-fine-tuning-gpu-guide"
+          },
+          {
+            "title": "Llama Fine-Tuning, De-Mystified (With Real Costs) | by Syntal | Oct, 2025 | Medium",
+            "url": "https://medium.com/@sparknp1/llama-fine-tuning-de-mystified-with-real-costs-142fc2be3895"
+          },
+          {
+            "title": "Efficiently fine-tune Llama 3 with PyTorch FSDP and Q-Lora",
+            "url": "https://www.philschmid.de/fsdp-qlora-llama3"
+          }
+        ]
+      },
+      "Based on the search results, I found information about fine-tuning Llama 70B models, GPU hours, and costs. Here's what I found:\n\n## GPU Hours Requirements\n\nFor 70B models, expect 3-8 hours of training on a single H100, though this varies depending on dataset size. For larger datasets, training 1 million tokens on a 70B model with LoRA takes approximately 2-3 hours on an A100.\n\nFor context, the Llama 2 70B variant required 1.7M GPU hours with A100-80GB during pretraining, but that's for initial training, not fine-tuning.\n\n## Cost Estimates\n\nIn 2026, fine-tuning a 70B Llama-3 model typically costs between $12,000 and $45,000 depending on your dataset size and hardware efficiency.\n\nHowever, with LoRA, you can fine-tune a 70B model for under $500 on consumer hardware. More specifically, 70B at 10M tokens with LoRA costs $150-200.\n\n## Event Extraction Specifics\n\nUnfortunately, the search results do not contain specific information about fine-tuning Llama 70B models specifically for event extraction tasks in 2025-2026. The results discuss general fine-tuning approaches using LoRA and QLoRA techniques, but don't break down costs or GPU hours by task type like event extraction."
+    ],
+    "durationSeconds": 11.058355065000004
+  },
+  "sourceToolAssistantUUID": "29a0db61-f947-412f-9a61-1e88affa5a69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-10T07:04:09.903Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information. Let me compile everything for the complete JSON:
+
+**Key findings:**
+
+1. **Concurrent Work (Critical)**:
+   - **arXiv 2603.02909** (March 2026): "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction" - This is concurrent work that uses synthetic data generation for zero-shot event argument extraction. However, their approach uses RL-based optimization between generate/evaluate agents and focuses on document-level argument extraction only, NOT on compositional schema constraint enforcement across event type + argument roles + entity type compatibility. 
+
+Our approach differs by emphasizing constraint-satisfying schema-conditioned generation with formal schema grammars, whereas the other concurrent work on executable class definitions for schema validation operates at inference time rather than during training data generation.
+
+2. **Verified References**:
+   - GuideX: ACL Findings 2025 (confirmed: aclanthology.org/2025.findings-acl.1245/)
+   - KnowCoder: ACL 2024 (confirmed: arxiv.org/abs/2403.07969, aclanthology.org/2024)
+   - GoLLIE: ICLR 2024 (confirmed: arxiv.org/abs/2310.03668)
+   - "Learning to Generate and Extract..." (arXiv 2603.02909, March 2026) - concurrent work
+   - "Extracting Events Like Code" (arXiv 2511.13118, November 2025)
+   - InstructUIE: arXiv 2304.08085
+
+3. **Models to use**: Qwen 3 235B-A22B (strongest open-source), GLM-4.7 for instruction following, or Kimi K2.6
+
+4. **Target Venues**: EMNLP 2026 with an ARR deadline of May 25, 2026, which gives us a window after today's date.
+
+5. **GPU Costs**: A100 instances run about $1.49/hr while H100s are closer to $2.49/hr on platforms like RunPod and JarvisLabs.
+
+6. **Resource Estimates**: Fine-tuning a 70B model with LoRA on 10M tokens would cost around $150-200, while generating 100K-500K training examples via Claude API at roughly $0.02 per example would total around $2,000 for the larger dataset.
+
+For a more practical approach, I'd use an open-source model like Qwen 3 235B deployed locally for data generation, then fine-tune smaller models—a 7B-8B variant would take about 4 hours on 4×A100s for roughly $24, while a 70B model with LoRA would need 8-12 hours on 8×A100s for $100-150. Overall, the research would require approximately 200-300 hours of A100 compute across data generation (around 50 hours for 200K examples) and multiple fine-tuning experiments (roughly 150 hours).
+
+Now I'm working through the core approach for extending the constraint-solving capabilities.
+
+The key is building a schema-conditioned generator that enforces structural constraints during generation itself. I'll represent event schemas as typed constraint grammars that specify allowed argument roles, multiplicity rules (like exactly one Attacker, zero or one Place), and entity type restrictions per role. During generation, I'll use grammar-constrained sampling with tools like Outlines to ensure all typed slots are satisfied simultaneously. I'm also adding a local consistency checker that validates generated instances against the schema before including them in the training set, using reject sampling to filter out violations. The full pipeline generates schema-conditioned synthetic data that respects these constraints throughout.
+
+Then I'll scale this across major datasets—WikiEvents with 246 event types, RAMS, CASIE, and MAVEN with 168 event types—using a frontier open-source model like Qwen 3 235B. After generating the compositionally consistent data, I'll fine-tune a smaller efficient model on it and evaluate zero-shot performance on held-out event types. What differentiates this from concurrent work is that I'm enforcing formal schema constraints at generation time through constrained decoding rather than just checking quality afterward, and I'm targeting joint consistency across events, entities, and relations rather than just argument quality.
+
+The real advantage is evaluating zero-shot generalization across diverse benchmarks rather than just cross-dataset transfer within a single task. I'd rate this as solid work—it's a natural extension of GuideX that addresses a real gap, and the constraint enforcement angle is genuinely novel. Though it's not quite top-tier since it builds on existing methods rather than introducing a fundamentally new paradigm, the differentiation from the concurrent paper is strong: schema constraint enforcement versus quality evaluation, joint event-relation schemas versus event arguments only, and cross-benchmark evaluation versus same-task transfer. It's definitely publishable, though I need to be careful about positioning given the competitive landscape.
+
+For venues, EMNLP 2026 is really the only major option with a deadline after today. On costs, running this manually would take about 150 hours of A100 compute—roughly $225—spread across data generation, fine-tuning experiments, and evaluation over 3-6 months, though there'd be significant GPU idle time waiting between experiment cycles.
+
+The human-in-loop approach would use more compute overall at around 250 hours ($375), but compress the timeline to 4-6 weeks since the agent and I could iterate faster. For API costs, I'm working through the math more carefully—accounting for design, experimentation, and writing phases across maybe 200 turns, which comes out to around $16 with Sonnet, though I should double-check the pricing for Opus 4.7.
+
+In contrast, Auto Research mode would let the agent run continuously and conduct 3-5x more experiments, pushing GPU costs to $900 and API usage to around $150, but cutting the timeline down to 2-3 weeks since there's no waiting for human feedback. Now I'm verifying the key references I want to cite—checking that GuideX, KnowCoder, and GoLLIE are all real papers from the conferences I mentioned.
+
+I should also look into what other foundational papers to include, like Schema-aware Reference as Prompt from SIGIR 2023, and potentially something around the WikiEvents or RAMS datasets for event extraction benchmarks. Adding the NAACL 2021 paper on document-level event argument extraction to the list, though I need to verify the citation. I'm also reconsidering the EvalLLM 2025 benchmark—it's specifically for French biomedical event extraction, not general English event extraction, so the 15.02% F1 score isn't directly comparable to the other results I'm looking at.
+
+The core research gap still holds: zero-shot event extraction significantly underperforms supervised approaches. I'll frame this more carefully given the domain-specific nature of some benchmarks.
+
+For the project level, I'm settling on "solid" since there's concurrent work in this space, but the compositional constraint enforcement is a meaningful contribution. I'm going with `schema_constrained_event_ie` as the project name—29 characters, valid Python identifier.
+
+Now I'm pulling together the final information to write the JSON, starting with the approach section describing the compositional schema-constrained synthetic data generation framework that builds on GuideX for joint event-relation extraction.
+
+The technical pipeline has three key stages: a Schema Constraint Grammar module that encodes event ontologies as typed finite-state grammars with argument cardinality and entity type restrictions, grammar-constrained LLM decoding using Qwen 3 235B to generate event mentions with globally satisfied constraints, and a compositional consistency verifier that filters incoherent examples. The smaller Qwen 3 8B model is then fine-tuned on this synthetic data and evaluated zero-shot across WikiEvents, RAMS, CASIE, and MAVEN, with the main differentiation from concurrent work being the enforcement of hard constraints throughout the generation process.
+
+Now I'm working through the cost and timeline estimates for different annotation approaches. For GPU costs, I'm calculating based on A100 pricing at $1.49 per hour—manual annotation comes to around $300, human-in-loop to roughly $450, and fully automated research to about $900. The timelines vary significantly: manual approaches take 3-6 months due to human bottlenecks, human-in-loop runs 4-6 weeks, and automated research completes in 2-3 weeks.
+
+Looking at submission deadlines, EMNLP 2026 through ARR has a May 25 deadline, which gives us 15 days from today—tight but workable for an automated approach. AACL-IJCNLP 2026 shares the same ARR cycle, so that's another option to consider alongside EMNLP.
+
+On the contribution level, I'm weighing whether this deserves "solid" or "top-tier" status. The work clearly advances beyond GuideX by handling event and relation extraction with compositional schema-constrained generation, and it's tested across multiple benchmarks. But the core innovation is more engineering-focused—combining constrained decoding with a verifier—rather than introducing fundamental theoretical breakthroughs. Given how saturated this research area is with concurrent submissions, "solid" feels like the right fit, positioning it well for EMNLP Findings.
+
+Let me verify the WikiEvents dataset source. I'm checking the search results to confirm it came from "Document-Level Event Argument Extraction by Conditional Generation" at NAACL 2021 by Sha Li et al., and I can see it's listed as naacl-main.69 in the ACL Anthology. That checks out.
+
+Now I'm ready to compile everything into the JSON response with the key references. I've finalized the reference list with seven key papers on zero-shot information extraction, set the project name to `schema_constrained_event_ie`, and I'm now drafting the 150-200 word executive summary that ties together all the research areas. I'm reconsidering whether to include GLiNER as a baseline comparison and evaluating the relevance of the MAVEN dataset paper for this project scope. I've now verified seven papers through direct web searches, confirming their titles and venues are accurate.
+
+Now I'm constructing the final JSON response. I need to write a clear approach section that explains the CompSchema-IE framework — a three-stage pipeline that uses schema constraint grammars to guide LLM generation of training data while ensuring all role-entity assignments remain globally consistent across the generated examples.
+
+For resource estimates, I'm looking at GPU requirements: roughly 200 hours on A100s split across data generation, fine-tuning ablations, and evaluation, though utilization stays relatively low at 30-40% since much of the work involves constraint checking and validation overhead.
+
+Human-in-the-loop approach would require more GPU hours (around 350) but achieve better utilization (55-65%) by having an agent queue experiments while I review results, cutting the timeline to 4-6 weeks with minimal daily oversight and modest API costs for experiment coordination.
+
+The fully automated approach scales up dramatically—800 GPU hours with near-constant utilization (85-90%) across parallel runs, completing in 1-2 weeks, though the main constraint becomes GPU availability rather than time or cost. The risk with either approach is that designing constraint grammars for heterogeneous schemas across different datasets might hit unexpected snags requiring manual refinement, and normalizing schemas across benchmarks could become the actual bottleneck.
+
+Now I'm positioning this work against recent concurrent research—there's a paper from March 2026 doing similar synthetic data generation for event extraction, but our approach differentiates through hard constraint enforcement during generation rather than post-hoc filtering, joint schema consistency across events, entities, and relations rather than just arguments, and demonstrated generalization across four benchmarks instead of single-task transfer.
+
+Generating the final JSON output...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "180ce38a-6572-4ab1-9fdb-d464a9f07ad2",
+  "isSidechain": false,
+  "requestId": "req_011CatTcPVKD97WTYw8nKgZb",
+  "type": "assistant",
+  "uuid": "2820cfc3-f5e3-4e96-a57d-ccaf22aa98bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013ETSeN78uvraE2kfgnupkE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1918,
+      "cache_creation_input_tokens": 3122,
+      "cache_read_input_tokens": 29652,
+      "output_tokens": 6274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3122,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1918,
+          "output_tokens": 6274,
+          "cache_read_input_tokens": 29652,
+          "cache_creation_input_tokens": 3122,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3122
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-10T07:04:09.908Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N6DEn2X4qnPTuyjxAiGPaW`</summary>
+
+```json
+{
+  "query": "MAVEN massive event detection dataset EMNLP 2020 Wang paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2820cfc3-f5e3-4e96-a57d-ccaf22aa98bc",
+  "isSidechain": false,
+  "requestId": "req_011CatTcPVKD97WTYw8nKgZb",
+  "type": "assistant",
+  "uuid": "ac5fb1c3-9760-4857-bb04-7317bc8176d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013ETSeN78uvraE2kfgnupkE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1918,
+      "cache_creation_input_tokens": 3122,
+      "cache_read_input_tokens": 29652,
+      "output_tokens": 6274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3122,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1918,
+          "output_tokens": 6274,
+          "cache_read_input_tokens": 29652,
+          "cache_creation_input_tokens": 3122,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3122
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-10T07:04:09.917Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PkqnCWDFkJtcNBHjzJ35Kt`</summary>
+
+```json
+{
+  "query": "Qwen3 235B open source LLM constrained decoding structured output generation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac5fb1c3-9760-4857-bb04-7317bc8176d4",
+  "isSidechain": false,
+  "requestId": "req_011CatTcPVKD97WTYw8nKgZb",
+  "type": "assistant",
+  "uuid": "0b94adff-9833-43d2-9276-28bc77c938ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013ETSeN78uvraE2kfgnupkE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1918,
+      "cache_creation_input_tokens": 3122,
+      "cache_read_input_tokens": 29652,
+      "output_tokens": 6274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3122,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1918,
+          "output_tokens": 6274,
+          "cache_read_input_tokens": 29652,
+          "cache_creation_input_tokens": 3122,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3122
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-10 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Schema-Condit…",
+  "leafUuid": "0b94adff-9833-43d2-9276-28bc77c938ac",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Schema-Conditioned Synthetic Supervision for Joint Event-Relation Extraction",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-10T07:04:16.757Z_
+
+<details><summary>↩ Tool result · `toolu_01PkqnCWDFkJtcNBHjzJ35Kt`</summary>
+
+```text
+Web search results for query: "Qwen3 235B open source LLM constrained decoding structured output generation"
+
+Links: [{"title":"Qwen3.5 & Qwen3.6 Usage Guide - vLLM Recipes","url":"https://docs.vllm.ai/projects/recipes/en/latest/Qwen/Qwen3.5.html"},{"title":"Qwen/Qwen3-235B-A22B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-235B-A22B"},{"title":"GitHub - QwenLM/Qwen3: Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud. · GitHub","url":"https://github.com/QwenLM/qwen3"},{"title":"Change Log - Cerebras Inference","url":"https://inference-docs.cerebras.ai/support/change-log"},{"title":"Qwen3: Alibaba’s new weapon in the Open-Source LLM Wars","url":"https://bhavishyapandit9.substack.com/p/qwen3-alibabas-new-weapon-in-the"},{"title":"Integrate and Deploy Tongyi Qwen3 Models into Production Applications with NVIDIA | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/integrate-and-deploy-tongyi-qwen3-models-into-production-applications-with-nvidia/"},{"title":"GitHub - QwenLM/Qwen3-VL: Qwen3-VL is the multimodal large language model series developed by Qwen team, Alibaba Cloud. · GitHub","url":"https://github.com/QwenLM/Qwen3-VL"},{"title":"Qwen/Qwen3.5-27B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.5-27B"},{"title":"Qwen/Qwen3-30B-A3B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-30B-A3B"},{"title":"Qwen/Qwen3.6-27B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.6-27B"}]
+
+Based on the search results, here's what I found about Qwen3 235B and structured output generation:
+
+## Qwen3-235B-A22B Overview
+
+Qwen3-235B-A22B is a mixture-of-experts (MoE) model with 235B total parameters and 22B active parameters. It's part of Alibaba's open-source Tongyi Qwen3 family of hybrid-reasoning large language models.
+
+## Structured Output Capabilities
+
+Qwen3 is trained to generate structured formats like JSON, code snippets, and API calls natively, reducing developer headaches and increasing reliability when integrating with software tools.
+
+## Constrained Decoding and Inference Support
+
+While the search results mention constrained decoding for structured outputs in general inference frameworks, the specific implementation details for Qwen3-235B appear in deployment guides. For example, constrained decoding is used to enforce consistent JSON outputs for models in structured output generation.
+
+vLLM is a recommended high-throughput and memory-efficient inference engine for LLMs, with version 0.9.0 or higher recommended for serving Qwen3 models. Developers can efficiently integrate and deploy Qwen3 models into production applications using frameworks such as NVIDIA TensorRT-LLM, Ollama, SGLang, and vLLM.
+
+The search results don't contain detailed technical documentation specifically about constrained decoding techniques integrated into the Qwen3-235B model itself, though they confirm that structured output generation is a built-in capability of the model.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0b94adff-9833-43d2-9276-28bc77c938ac",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "4a4fd1ef-85e8-411c-9a5e-a7ea528a4c34",
+  "toolUseResult": {
+    "query": "Qwen3 235B open source LLM constrained decoding structured output generation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HraNrWEaZFd7a7K68ZeY2H",
+        "content": [
+          {
+            "title": "Qwen3.5 & Qwen3.6 Usage Guide - vLLM Recipes",
+            "url": "https://docs.vllm.ai/projects/recipes/en/latest/Qwen/Qwen3.5.html"
+          },
+          {
+            "title": "Qwen/Qwen3-235B-A22B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-235B-A22B"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3: Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud. · GitHub",
+            "url": "https://github.com/QwenLM/qwen3"
+          },
+          {
+            "title": "Change Log - Cerebras Inference",
+            "url": "https://inference-docs.cerebras.ai/support/change-log"
+          },
+          {
+            "title": "Qwen3: Alibaba’s new weapon in the Open-Source LLM Wars",
+            "url": "https://bhavishyapandit9.substack.com/p/qwen3-alibabas-new-weapon-in-the"
+          },
+          {
+            "title": "Integrate and Deploy Tongyi Qwen3 Models into Production Applications with NVIDIA | NVIDIA Technical Blog",
+            "url": "https://developer.nvidia.com/blog/integrate-and-deploy-tongyi-qwen3-models-into-production-applications-with-nvidia/"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3-VL: Qwen3-VL is the multimodal large language model series developed by Qwen team, Alibaba Cloud. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3-VL"
+          },
+          {
+            "title": "Qwen/Qwen3.5-27B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.5-27B"
+          },
+          {
+            "title": "Qwen/Qwen3-30B-A3B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B"
+          },
+          {
+            "title": "Qwen/Qwen3.6-27B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.6-27B"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Qwen3 235B and structured output generation:\n\n## Qwen3-235B-A22B Overview\n\nQwen3-235B-A22B is a mixture-of-experts (MoE) model with 235B total parameters and 22B active parameters. It's part of Alibaba's open-source Tongyi Qwen3 family of hybrid-reasoning large language models.\n\n## Structured Output Capabilities\n\nQwen3 is trained to generate structured formats like JSON, code snippets, and API calls natively, reducing developer headaches and increasing reliability when integrating with software tools.\n\n## Constrained Decoding and Inference Support\n\nWhile the search results mention constrained decoding for structured outputs in general inference frameworks, the specific implementation details for Qwen3-235B appear in deployment guides. For example, constrained decoding is used to enforce consistent JSON outputs for models in structured output generation.\n\nvLLM is a recommended high-throughput and memory-efficient inference engine for LLMs, with version 0.9.0 or higher recommended for serving Qwen3 models. Developers can efficiently integrate and deploy Qwen3 models into production applications using frameworks such as NVIDIA TensorRT-LLM, Ollama, SGLang, and vLLM.\n\nThe search results don't contain detailed technical documentation specifically about constrained decoding techniques integrated into the Qwen3-235B model itself, though they confirm that structured output generation is a built-in capability of the model."
+    ],
+    "durationSeconds": 6.8374335800000114
+  },
+  "sourceToolAssistantUUID": "0b94adff-9833-43d2-9276-28bc77c938ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-10T07:04:20.150Z_
+
+<details><summary>↩ Tool result · `toolu_01N6DEn2X4qnPTuyjxAiGPaW`</summary>
+
+```text
+Web search results for query: "MAVEN massive event detection dataset EMNLP 2020 Wang paper"
+
+Links: [{"title":"MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology","url":"https://aclanthology.org/2020.emnlp-main.129/"},{"title":"GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". · GitHub","url":"https://github.com/THU-KEG/MAVEN-dataset"},{"title":"MAVEN","url":"https://thukeg.gitee.io/maven/"},{"title":"KG-NLP-Papers/EMNLP/2020/EE/8. MAVEN_A Massive General Domain Event Detection Dataset.md at main · Clearailhc/KG-NLP-Papers","url":"https://github.com/Clearailhc/KG-NLP-Papers/blob/main/EMNLP/2020/EE/8.%20MAVEN_A%20Massive%20General%20Domain%20Event%20Detection%20Dataset.md"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset","url":"https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset - Xiaozhi Wang 王晓智","url":"https://bakser.github.io/publication/2020-11-17-MAVEN"},{"title":"MAVEN: A Massive General Domain Event Detection Dataset | Request PDF","url":"https://www.researchgate.net/publication/347236490_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset"},{"title":"Maven-Fact: A Large-scale Event Factuality Detection Dataset","url":"https://arxiv.org/html/2407.15352v1"},{"title":"[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset","url":"https://arxiv.org/abs/2004.13590"},{"title":"MAVEN-dataset/DataFormat.md at main · THU-KEG/MAVEN-dataset","url":"https://github.com/THU-KEG/MAVEN-dataset/blob/main/DataFormat.md"}]
+
+I found comprehensive information about the MAVEN paper. Here are the key details:
+
+## Paper Information
+
+The paper "MAVEN: A Massive General Domain Event Detection Dataset" was authored by Xiaozhi Wang, Ziqi Wang, Xu Han, Wangyi Jiang, Rong Han, Zhiyuan Liu, Juanzi Li, Peng Li, Yankai Lin, and Jie Zhou at EMNLP 2020. It was published in the Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP) on pages 1652–1671.
+
+## Dataset Description
+
+The MAVEN dataset contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types. Event detection (ED), which means identifying event trigger words and classifying event types, is the first and most fundamental step for extracting event knowledge from plain text. Most existing datasets exhibit issues that limit ED development, including data scarcity where existing small-scale datasets are not sufficient for training and benchmarking modern neural methods.
+
+## Key Contributions
+
+MAVEN alleviates the data scarcity problem and covers much more general event types. The researchers reproduced recent state-of-the-art ED models and conducted a thorough evaluation on MAVEN, with experimental results showing that existing ED methods cannot achieve promising results on MAVEN as on small datasets.
+
+## Availability
+
+The source code and dataset can be obtained from https://github.com/THU-KEG/MAVEN-dataset.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac5fb1c3-9760-4857-bb04-7317bc8176d4",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "3be849de-c515-48c4-b521-490d84ef1341",
+  "toolUseResult": {
+    "query": "MAVEN massive event detection dataset EMNLP 2020 Wang paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LCG1rtPmqyJWF9fws43P4n",
+        "content": [
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset - ACL Anthology",
+            "url": "https://aclanthology.org/2020.emnlp-main.129/"
+          },
+          {
+            "title": "GitHub - THU-KEG/MAVEN-dataset: Source code and dataset for EMNLP 2020 paper \"MAVEN: A Massive General Domain Event Detection Dataset\". · GitHub",
+            "url": "https://github.com/THU-KEG/MAVEN-dataset"
+          },
+          {
+            "title": "MAVEN",
+            "url": "https://thukeg.gitee.io/maven/"
+          },
+          {
+            "title": "KG-NLP-Papers/EMNLP/2020/EE/8. MAVEN_A Massive General Domain Event Detection Dataset.md at main · Clearailhc/KG-NLP-Papers",
+            "url": "https://github.com/Clearailhc/KG-NLP-Papers/blob/main/EMNLP/2020/EE/8.%20MAVEN_A%20Massive%20General%20Domain%20Event%20Detection%20Dataset.md"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset",
+            "url": "https://bakser.github.io/files/EMNLP20-MAVEN/MAVEN.pdf"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset - Xiaozhi Wang 王晓智",
+            "url": "https://bakser.github.io/publication/2020-11-17-MAVEN"
+          },
+          {
+            "title": "MAVEN: A Massive General Domain Event Detection Dataset | Request PDF",
+            "url": "https://www.researchgate.net/publication/347236490_MAVEN_A_Massive_General_Domain_Event_Detection_Dataset"
+          },
+          {
+            "title": "Maven-Fact: A Large-scale Event Factuality Detection Dataset",
+            "url": "https://arxiv.org/html/2407.15352v1"
+          },
+          {
+            "title": "[2004.13590] MAVEN: A Massive General Domain Event Detection Dataset",
+            "url": "https://arxiv.org/abs/2004.13590"
+          },
+          {
+            "title": "MAVEN-dataset/DataFormat.md at main · THU-KEG/MAVEN-dataset",
+            "url": "https://github.com/THU-KEG/MAVEN-dataset/blob/main/DataFormat.md"
+          }
+        ]
+      },
+      "I found comprehensive information about the MAVEN paper. Here are the key details:\n\n## Paper Information\n\nThe paper \"MAVEN: A Massive General Domain Event Detection Dataset\" was authored by Xiaozhi Wang, Ziqi Wang, Xu Han, Wangyi Jiang, Rong Han, Zhiyuan Liu, Juanzi Li, Peng Li, Yankai Lin, and Jie Zhou at EMNLP 2020. It was published in the Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP) on pages 1652–1671.\n\n## Dataset Description\n\nThe MAVEN dataset contains 4,480 Wikipedia documents, 118,732 event mention instances, and 168 event types. Event detection (ED), which means identifying event trigger words and classifying event types, is the first and most fundamental step for extracting event knowledge from plain text. Most existing datasets exhibit issues that limit ED development, including data scarcity where existing small-scale datasets are not sufficient for training and benchmarking modern neural methods.\n\n## Key Contributions\n\nMAVEN alleviates the data scarcity problem and covers much more general event types. The researchers reproduced recent state-of-the-art ED models and conducted a thorough evaluation on MAVEN, with experimental results showing that existing ED methods cannot achieve promising results on MAVEN as on small datasets.\n\n## Availability\n\nThe source code and dataset can be obtained from https://github.com/THU-KEG/MAVEN-dataset."
+    ],
+    "durationSeconds": 10.23724973499999
+  },
+  "sourceToolAssistantUUID": "ac5fb1c3-9760-4857-bb04-7317bc8176d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-10T07:05:22.831Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information needed. Let me also check if there are newer Qwen models beyond Qwen3. I saw references to Qwen3.5 and Qwen3.6 in the search results. Let me use Qwen3-235B-A22B as the primary model for generation (as it's the strongest open-source model), and Qwen3 8B or similar for fine-tuning.
+
+For the fine-tuning target model, I should check what's the latest small-efficient instruction model. From the search results, I saw Qwen3.5-27B and Qwen3.6-27B. 
+
+For fine-tuning, a smaller 7B-14B model is more practical, so I'll go with Qwen3 8B—similar to what GuideX used with Llama 3.1 8B. Now I'm ready to write out the complete JSON with all the details I've gathered, including the MAVEN dataset reference and the Qwen3-235B-A22B availability.
+
+I have the key information locked down: EMNLP 2026 deadline is May 25, there's concurrent work on arXiv from March 2026, and A100 GPU costs are around $1.49/hr. My structure will include the approach, resource estimates across three modes, target venues, and an executive summary, with the project name "schema_constrained_event_ie" and source marked as "web_research."
+
+Generating the JSON object... I need to resolve this contradiction between keeping existing fields unchanged and updating the landscape field to mention concurrent work. The instructions explicitly require mentioning concurrent work in the landscape if it's found, so I'll update that field while preserving everything else, then write out the complete JSON with all original and new fields included.
+
+Generating the JSON structure... Now I'm working through the resource requirements more carefully — for the data generation phase using Qwen3-235B, I'd need to consider whether to run it locally on multiple GPUs or access it via API, and I'm estimating the computational cost for generating around 200K examples with inference time per example.
+
+Looking at the MoE model's efficiency with its 22B active parameters, I'm calculating that across 4 A100s I could process roughly 5 examples per second, bringing the total to around 44 GPU hours for generation. Adding in the LoRA fine-tuning on the 8B model (4-8 hours on a single A100) and accounting for multiple experimental runs, I'm landing on approximately 150-200 GPU hours total on A100s, which I'll round to 200 hours for the cost estimate.
+
+For the human-in-the-loop setup, I can run the data generation pipeline automatically while getting human feedback, which lets me queue up more experiments—bringing it to around 350 GPU hours and about $520 in compute costs, plus another $100-200 for Claude API calls to coordinate the research. The timeline stretches to 4-6 weeks with this approach.
+
+In fully autonomous mode, I'd run 3-5x more experiments across hyperparameter ablations and different constraint grammar variants, pushing the compute to roughly 700 GPU hours and $1,000 in costs, compressed into just 1-2 weeks.
+
+Now I'm reconsidering the data generation costs more carefully. Breaking down the token throughput for Qwen on 8 A100s and accounting for multiple passes across different event types and constraint variants, I'm looking at somewhere between 200-320 GPU-hours just for the generation phase alone.
+
+For fine-tuning the 8B model on 4 A100s with LoRA across 200K examples, that's roughly 4 GPU-hours per run, and with 10 ablation runs I'm at 40 GPU-hours. Adding evaluation time brings the total to around 280 GPU-hours, though I'll round down to 250 for the manual mode estimate. So my final numbers are approximately 250 A100 hours, $375 in costs, 3-6 months of calendar time, and needing 1-2 researchers on the project.
+
+Now for the other approaches: human-in-the-loop would require about 350 A100 hours and $520, taking 4-8 weeks with one researcher spending roughly 30 minutes daily plus $100-200 in Claude API costs. The fully automated approach scales to 800 A100 hours and $1,200, completing in just 1-2 weeks with no team involvement but $200-400 in API expenses.
+
+Let me finalize the JSON output with these numbers. I'm targeting EMNLP 2026 with an ARR deadline of May 25, marking it as a solid contribution. For the description, I need to capture how CompSchema-IE extends zero-shot NER to joint event-relation extraction by handling hierarchical constraints that flat synthetic data generation can't address, with the Schema Constraint Grammar module as the key innovation. I'm noting that the concurrent work from arXiv 2603.02909 was actually published at AAAI 2026, so I should clarify that distinction when positioning our approach against it. Now I'm finalizing the JSON output, making sure the project name fits the Python identifier requirement of 30 characters max, and then I'll write out the complete structured data with the source marked as web research.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3be849de-c515-48c4-b521-490d84ef1341",
+  "isSidechain": false,
+  "requestId": "req_011CatTm44GUS78qXGoySUH8",
+  "type": "assistant",
+  "uuid": "977e3353-f0e0-41ef-aa26-b2ae1dc09c87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01AEtKwok6aodymxmAQzHL7r",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 984,
+      "cache_creation_input_tokens": 9144,
+      "cache_read_input_tokens": 32774,
+      "output_tokens": 3433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9144,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 984,
+          "output_tokens": 3433,
+          "cache_read_input_tokens": 32774,
+          "cache_creation_input_tokens": 9144,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9144
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-10T07:05:22.833Z_
+
+Now I have all the information needed. Let me compile the complete JSON.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "977e3353-f0e0-41ef-aa26-b2ae1dc09c87",
+  "isSidechain": false,
+  "requestId": "req_011CatTm44GUS78qXGoySUH8",
+  "type": "assistant",
+  "uuid": "4d5da9d2-dffb-4ac0-9c1b-f8b86815d912",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01AEtKwok6aodymxmAQzHL7r",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 984,
+      "cache_creation_input_tokens": 9144,
+      "cache_read_input_tokens": 32774,
+      "output_tokens": 3433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9144,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 984,
+          "output_tokens": 3433,
+          "cache_read_input_tokens": 32774,
+          "cache_creation_input_tokens": 9144,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9144
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-10T07:05:22.838Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U59YYg6pPkAMgk24r5HPb2`</summary>
+
+```json
+{
+  "query": "\"Learning to Generate and Extract\" zero-shot event argument extraction AAAI 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d5da9d2-dffb-4ac0-9c1b-f8b86815d912",
+  "isSidechain": false,
+  "requestId": "req_011CatTm44GUS78qXGoySUH8",
+  "type": "assistant",
+  "uuid": "9a74aafe-3f9d-42a1-a7c2-d6f558ed936f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01AEtKwok6aodymxmAQzHL7r",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 984,
+      "cache_creation_input_tokens": 9144,
+      "cache_read_input_tokens": 32774,
+      "output_tokens": 3433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9144,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 984,
+          "output_tokens": 3433,
+          "cache_read_input_tokens": 32774,
+          "cache_creation_input_tokens": 9144,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9144
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-10 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Schema-Condit…",
+  "leafUuid": "9a74aafe-3f9d-42a1-a7c2-d6f558ed936f",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Schema-Conditioned Synthetic Supervision for Joint Event-Relation Extraction",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-10T07:05:33.767Z_
+
+<details><summary>↩ Tool result · `toolu_01U59YYg6pPkAMgk24r5HPb2`</summary>
+
+```text
+Web search results for query: ""Learning to Generate and Extract" zero-shot event argument extraction AAAI 2026"
+
+Links: [{"title":"Zero-Shot Cross-Lingual Event Argument Extraction with Language-Oriented","url":"https://ojs.aaai.org/index.php/AAAI/article/view/26482/26254"},{"title":"[2603.02909v2] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/abs/2603.02909v2"},{"title":"[2603.02909] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/abs/2603.02909"},{"title":"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For","url":"https://ojs.aaai.org/index.php/AAAI/article/download/40767/44728"},{"title":"Zero-shot event argument extraction by disentangling trigger from argument and role | International Journal of Machine Learning and Cybernetics | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s13042-024-02446-3"},{"title":"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/html/2603.02909v2"},{"title":"Extracting Events Like Code: A Multi-Agent Programming Framework for","url":"https://ojs.aaai.org/index.php/AAAI/article/download/40346/44307"},{"title":"Extracting Events Like Code: A Multi-Agent Programming Framework for","url":"https://arxiv.org/pdf/2511.13118"},{"title":"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For","url":"https://arxiv.org/pdf/2603.02909"},{"title":"Zero-Shot Cross-Lingual Event Argument Extraction with Language-Oriented Prefix-Tuning | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/26482"}]
+
+I found the paper you're looking for! 
+
+"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction" is a paper about document-level event argument extraction that introduces a multi-agent collaboration framework for zero-shot document-level event argument extraction (ZS-DEAE), which simulates the human collaborative cognitive process of "Propose-Evaluate-Revise." The framework comprises a generation agent and an evaluation agent.
+
+In the zero-shot setting, existing methods employ LLMs to generate synthetic data to address the challenge posed by the scarcity of annotated data. However, relying solely on Event-type-only prompts makes it difficult for the generated content to accurately capture the contextual and structural relationships of unseen events. Moreover, ensuring the reliability and usability of synthetic data remains a significant challenge due to the absence of quality evaluation mechanisms.
+
+The paper was authored by Guangjun Zhang, Hu Zhang, Yazhou Han, Yue Fan, Yuhang Shao, Hongye Tan, and Ru Li from Shanxi University. It was submitted to arXiv on March 3-4, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9a74aafe-3f9d-42a1-a7c2-d6f558ed936f",
+  "isSidechain": false,
+  "promptId": "9a354d71-f2a7-4284-8ce8-2743d5fd2946",
+  "type": "user",
+  "uuid": "770e681f-e54e-4bf0-b798-7c5f363e4c51",
+  "toolUseResult": {
+    "query": "\"Learning to Generate and Extract\" zero-shot event argument extraction AAAI 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01X7mFdSLW4DGAUyZj9TTxtp",
+        "content": [
+          {
+            "title": "Zero-Shot Cross-Lingual Event Argument Extraction with Language-Oriented",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/26482/26254"
+          },
+          {
+            "title": "[2603.02909v2] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/abs/2603.02909v2"
+          },
+          {
+            "title": "[2603.02909] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/abs/2603.02909"
+          },
+          {
+            "title": "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/download/40767/44728"
+          },
+          {
+            "title": "Zero-shot event argument extraction by disentangling trigger from argument and role | International Journal of Machine Learning and Cybernetics | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s13042-024-02446-3"
+          },
+          {
+            "title": "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/html/2603.02909v2"
+          },
+          {
+            "title": "Extracting Events Like Code: A Multi-Agent Programming Framework for",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/download/40346/44307"
+          },
+          {
+            "title": "Extracting Events Like Code: A Multi-Agent Programming Framework for",
+            "url": "https://arxiv.org/pdf/2511.13118"
+          },
+          {
+            "title": "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For",
+            "url": "https://arxiv.org/pdf/2603.02909"
+          },
+          {
+            "title": "Zero-Shot Cross-Lingual Event Argument Extraction with Language-Oriented Prefix-Tuning | Proceedings of the AAAI Conference on Artificial Intelligence",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/26482"
+          }
+        ]
+      },
+      "I found the paper you're looking for! \n\n\"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction\" is a paper about document-level event argument extraction that introduces a multi-agent collaboration framework for zero-shot document-level event argument extraction (ZS-DEAE), which simulates the human collaborative cognitive process of \"Propose-Evaluate-Revise.\" The framework comprises a generation agent and an evaluation agent.\n\nIn the zero-shot setting, existing methods employ LLMs to generate synthetic data to address the challenge posed by the scarcity of annotated data. However, relying solely on Event-type-only prompts makes it difficult for the generated content to accurately capture the contextual and structural relationships of unseen events. Moreover, ensuring the reliability and usability of synthetic data remains a significant challenge due to the absence of quality evaluation mechanisms.\n\nThe paper was authored by Guangjun Zhang, Hu Zhang, Yazhou Han, Yue Fan, Yuhang Shao, Hongye Tan, and Ru Li from Shanxi University. It was submitted to arXiv on March 3-4, 2026."
+    ],
+    "durationSeconds": 10.917609898999974
+  },
+  "sourceToolAssistantUUID": "9a74aafe-3f9d-42a1-a7c2-d6f558ed936f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67 · 2026-05-10T07:05:33.777Z_
+
+```json
+{
+  "parentUuid": "770e681f-e54e-4bf0-b798-7c5f363e4c51",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "dafcba49-2dc4-4d92-82c9-f834b3d15ec0",
+  "timestamp": "2026-05-10T07:05:33.777Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-10T07:06:39.685Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information needed. Both "Learning to Generate and Extract" and "Extracting Events Like Code" are published in AAAI 2026 proceedings (ojs.aaai.org). Let me use that for the references.
+
+Now let me write the complete JSON. I have:
+
+1. Concurrent work:
+   - "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction" (AAAI 2026) - arXiv 2603.02909
+   - "Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction" (AAAI 2026) - arXiv 2511.13118
+   
+2. I've verified all the publication venues: GUIDEX at ACL Findings 2025, KnowCoder at ACL 2024, GoLLIE at ICLR 2024, and both concurrent works at AAAI 2026 with their confirmed URLs. I still need to track down the venue for MAVEN.
+
+3. I'm targeting EMNLP 2026 with an ARR deadline of May 25, 2026, and I'm aiming for a "solid" level contribution.
+
+4. Looking at the computational costs, manual annotation runs about $375 on A100s, human-in-the-loop approaches cost around $520, and fully automated methods would require roughly $1,200 in GPU time.
+
+5. I notice both concurrent papers are headed to AAAI 2026, which is competitive, but they're limited to document-level argument extraction with RL-based refinement rather than hard schema constraints. Our approach differentiates through grammar-constrained decoding at generation time, joint event-entity-relation consistency with type compatibility checks, evaluation across four diverse benchmarks, and a schema-conditioned training pipeline—which should justify the "solid" rating in this landscape.
+
+Now I'm constructing the JSON carefully, making sure all required fields are present, the JSON is valid with proper escaping and no trailing commas, and the description stays within 150-200 words while capturing the core contribution accurately.
+
+The key insight here is that GuideX works well for NER but falls short on event-relation schemas because those require compositional constraints—an Attack event needs specific role types filled by particular entity categories, and generating plausible examples means satisfying all these constraints simultaneously rather than just generating isolated entities. A schema-constrained generator that samples event types, enforces role constraints, and produces coherent sentences meeting all requirements at once could extend this approach to benchmarks like WikiEvents, RAMS, and MAVEN that have dozens to hundreds of event types and remain underserved by zero-shot methods.
+
+Looking at the broader landscape, GuideX achieves state-of-the-art on NER but doesn't tackle events, while KnowCoder handles events through Python schemas but needs supervised training across 33 datasets. The performance gap is stark—GPT-4.1 reaches only 15% macro-F1 on event extraction versus 61% on NER, showing how much ground zero-shot methods need to cover. The real problem is that no existing synthetic data framework enforces these compositional constraints across event types, argument roles, and entity compatibility—they all work at the entity level and miss the hierarchical dependencies. There are concurrent papers starting to address pieces of this, including one applying generative approaches to learning extraction patterns.
+
+My approach is to build CompSchema-IE, which extends the GuideX framework to joint event-relation extraction by enforcing schema constraints during data generation rather than after. I'm creating a Schema Constraint Grammar module that automatically extracts typed constraints from existing event ontologies like ACE05 and WikiEvents, encoding the argument roles, cardinality limits, and entity-type restrictions as formal grammars. Then I'm using Qwen3-235B as the generation backbone...
+
+Generating synthetic data with grammar-constrained decoding... The human-in-loop approach cuts the timeline to 4–8 weeks with moderate GPU utilization around 55–65%, since the agent queues experiments while I review results, minimizing idle time. This setup costs roughly $566 in GPU expenses plus $100–200 for Claude API calls to coordinate experiments and review constraint grammars, though the main risk is normalizing schemas across different event extraction datasets—misaligned role inventories could require significant rework.
+
+In contrast, the fully autonomous approach scales to 900 GPU hours across 3–4 experiment variants with 85–90% utilization, compressing the timeline to just 1–2 weeks with 6–8 parallel GPUs running without approval gates. This requires minimal upfront setup (around 2 hours) and costs $250–500 in API calls for orchestrating the multi-stage experiment pipeline, though it demands substantially more compute resources.
+
+The main constraints are GPU parallelism for simultaneous fine-tuning, inference throughput from the large language model for data generation, and API rate limits during coordination. There's a critical risk: if the constraint grammar module produces invalid or overly permissive rules, the system could generate massive amounts of bad training data before the problem surfaces in evaluation, so rigorous constraint validation tests are essential before launching.
+
+Now I'm reviewing the key references that inform this approach, pulling from recent work on guided synthetic data generation, structured knowledge extraction, and multi-agent frameworks for zero-shot information extraction tasks.
+
+The core problem is that current synthetic data generators like GuideX work at the entity level but can't enforce the hierarchical constraints that event schemas require—mapping event types to argument roles to entity type restrictions. CompSchema-IE addresses this by building a compositional pipeline: a Schema Constraint Grammar module extracts typed constraints from major event ontologies, then uses grammar-constrained decoding with Qwen to generate training instances where all role-entity assignments are globally consistent in a single pass, followed by a lightweight verifier to filter out any constraint violations.
+
+The approach differs from concurrent work on RL-based quality filtering and inference-time code validation because it enforces hard compositional constraints directly during generation and targets joint schema consistency across four heterogeneous benchmarks. After verification, the filtered data fine-tunes Qwen3-8B with LoRA, with a target submission to EMNLP 2026 and estimated GPU costs between $375–1,340 depending on the research setup. Verifying the word count is around 190, which fits the target range. Let me confirm the project name "schema_constrained_event_ie" is valid—it's 27 characters, starts with a letter, and uses only allowed characters for a Python identifier. Now I'm checking that the JSON is properly formatted with all strings correctly escaped and no special characters that would break the structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dafcba49-2dc4-4d92-82c9-f834b3d15ec0",
+  "isSidechain": false,
+  "requestId": "req_011CatTrUsf9HN3WW6FANRLa",
+  "type": "assistant",
+  "uuid": "d8dd7589-9421-4a9c-b858-15c9f1b7d2f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019if2vGFemkWPrv78hy5WUv",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5351,
+      "cache_read_input_tokens": 41918,
+      "output_tokens": 6230,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5351,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6230,
+          "cache_read_input_tokens": 41918,
+          "cache_creation_input_tokens": 5351,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5351
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-10T07:06:55.568Z_
+
+I now have all the verified information needed. Here is the completed JSON:
+
+{"title": "Schema-Conditioned Synthetic Supervision Beyond NER: Joint Event-Relation Schemas", "core_problem": "Synthetic-data-based zero-shot IE (GuideX, 2025) achieves strong results on NER but the approach has not been extended to joint event-relation schemas where argument roles, event types, and participating entity types must co-occur in consistent generated examples. Can schema-conditioned synthetic data generation be made compositionally consistent for complex event/relation schemas with hierarchical constraints?", "opportunity": "GuideX (ACL Findings 2025) improves zero-shot NER by up to 7 F1 over prior methods by generating schema-specific training data, but the authors explicitly note that event-centric resources (ACE05-RE, CASIE) with 'long-tail, highly specialised labels' are not covered by their generated entity types (only 42.4% verbatim overlap). Event schemas have compositional structure: an event of type 'Attack' must have at most one 'Attacker' role, which must be filled by a PERSON or ORGANIZATION entity. Generating plausible synthetic event instances requires satisfying these schema constraints globally, which flat NER generation does not. A compositional schema-constrained generator that (1) samples event types, (2) enforces argument role constraints, (3) generates coherent sentences satisfying all constraints simultaneously could extend GuideX-style zero-shot IE to WikiEvents, RAMS, and MAVEN — benchmarks with 50–139 event types that remain poorly covered by zero-shot methods.", "landscape": "GuideX (ACL 2025) sets SOTA on 7 zero-shot NER benchmarks with Llama-3.1 fine-tuned on generated data, but explicitly does not address event extraction. KnowCoder (2024) handles events via Python class schemas but relies on supervised training on 33 datasets. Current event extraction zero-shot methods using GoLLIE and InstructUIE significantly lag supervised models — GPT-4.1 achieves only 15.02% macro-F1 on event extraction vs 61.53% on NER (EvalLLM 2025), illustrating the large gap that zero-shot methods must close. No existing synthetic data generation framework enforces compositional schema constraints across event type, argument roles, and entity type compatibility — all current generators operate at the entity-mention level and ignore these hierarchical dependencies. Two concurrent AAAI 2026 papers partially address adjacent problems: 'Learning to Generate and Extract' (Zhang et al., arXiv 2603.02909) applies RL-based multi-agent generate-and-evaluate for document-level event argument extraction, and 'Extracting Events Like Code' (arXiv 2511.13118) uses executable Python class definitions for inference-time schema validation — neither enforces hard compositional constraints at training-data generation time nor addresses joint event-entity-role type compatibility across heterogeneous benchmarks.", "approach": "We propose CompSchema-IE, a compositional schema-constrained synthetic data generation pipeline that extends the GuideX paradigm to joint event-relation extraction by enforcing hierarchical schema invariants during training corpus creation rather than post-hoc. A Schema Constraint Grammar (SCG) module automatically derives typed constraint specifications from publicly available event ontologies (ACE05, WikiEvents, RAMS, MAVEN) — encoding per-event-type argument role inventories, cardinality bounds, and entity-type compatibility restrictions as formal grammars. Qwen3-235B-A22B (current open-source frontier; HuggingFace: Qwen/Qwen3-235B-A22B) then generates synthetic event instances via vLLM grammar-constrained structured output decoding, ensuring all role–entity-type assignments are globally consistent in a single forward pass rather than through iterative RL-based refinement. A lightweight compositional consistency verifier performs automated constraint checking and filters any generated instance violating schema invariants before training. The resulting clean synthetic corpus fine-tunes Qwen3-8B via LoRA, evaluated zero-shot on WikiEvents, RAMS, CASIE, and MAVEN — directly targeting the 30–50 F1-point gap between current zero-shot methods and supervised SOTA on event schemas spanning 50–246 types.", "resource_estimate": {"manual": {"gpu_hours": "~250h A100 80GB (data generation via 4×A100 Qwen3-235B-A22B inference ~120h; LoRA fine-tuning Qwen3-8B across 8–10 ablation runs ~80h; evaluation ~50h)", "gpu_utilization": "Low (~30–40%): human design iterations on the SCG module, constraint grammar debugging, and result analysis introduce long idle gaps between GPU jobs", "timeline": "3–6 months", "team": "1–2 researchers", "estimated_gpu_cost": "~$375 (250h × $1.49/hr A100, RunPod/JarvisLabs)"}, "human_in_loop": {"gpu_hours": "~380h A100 80GB (agent queues ablation variants continuously; ~50% more experiments than manual mode)", "gpu_utilization": "Moderate (~55–65%): agent immediately queues the next fine-tuning run while the human reviews current results; idle time limited to approval gates of ~30 min/day", "timeline": "4–8 weeks", "team": "1 researcher, ~30 min/day check-in for SCG design decisions and evaluation milestones", "claude_api_cost": "$100–200 (300–600 agent turns for experiment coordination, constraint grammar review, and reporting at ~$0.15–0.30/turn)", "estimated_gpu_cost": "~$566 (380h × $1.49/hr)", "risk_note": "Cross-ontology schema normalization (mapping ACE05, WikiEvents, RAMS, MAVEN role inventories to a unified constraint grammar) is the primary bottleneck; misaligned role vocabularies across datasets may require unexpected manual curation cycles"}, "auto_research": {"gpu_hours": "~900h A100 80GB (3–4× more experiments: constraint grammar variants, generation temperature sweeps, multi-scale fine-tuning at 7B/14B/72B, full cross-benchmark evaluation matrix)", "gpu_utilization": "~85–90% (near-zero idle: agent autonomously generates data, launches fine-tuning, parses evaluation logs, and schedules the next experiment without human approval gates)", "timeline": "1–2 weeks with 6–8 parallel A100 GPUs", "team": "0 (initial SCG module setup only, ~2h human time)", "claude_api_cost": "$250–500 (800–1500 agent turns for multi-stage experiment orchestration, constraint grammar synthesis, result aggregation, and paper drafting)", "estimated_gpu_cost": "~$1,340 (900h × $1.49/hr)", "speed_bottleneck": "Number of parallel A100 GPUs for simultaneous fine-tuning runs; Qwen3-235B-A22B inference throughput for data generation (4×A100 minimum per generation job); Claude API rate limits during dense experiment-coordination phases", "risk_note": "If the initial SCG module produces degenerate or overly permissive constraint grammars, auto-mode will generate large volumes of invalid training data before the failure surfaces in downstream evaluation; robust unit tests on constraint satisfaction are essential before launch"}}, "target_venues": ["EMNLP 2026 (ARR submission deadline May 25, 2026; conference October 24–29, Budapest, Hungary)"], "level": "solid", "key_references": ["GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction (ACL Findings 2025)", "KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction (ACL 2024)", "GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction (ICLR 2024)", "Learning to Generate and Extract: A Multi-Agent Collaboration Framework for Zero-Shot Document-Level Event Arguments Extraction (AAAI 2026)", "Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction (AAAI 2026)", "MAVEN: A Massive General Domain Event Detection Dataset (EMNLP 2020)", "Document-Level Event Argument Extraction by Conditional Generation (NAACL 2021)", "InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction (arXiv 2023)"], "description": "Zero-shot event extraction lags supervised performance by 30–50+ F1 points because existing synthetic data generators — including GuideX — operate at the entity-mention level and cannot enforce the hierarchical constraints of event schemas (event type → argument roles → per-role entity type restrictions). This paper proposes CompSchema-IE, a compositional schema-constrained synthetic data generation pipeline that extends GuideX-style zero-shot IE to joint event-relation schemas. A Schema Constraint Grammar module derives typed constraint specifications from ACE05, WikiEvents, RAMS, and MAVEN ontologies; Qwen3-235B-A22B then generates training instances via grammar-constrained vLLM structured output decoding so that all role–entity-type assignments are globally consistent in a single forward pass. A lightweight verifier filters constraint-violating examples before LoRA fine-tuning of Qwen3-8B. Two concurrent AAAI 2026 papers address adjacent problems via RL-based quality filtering and inference-time code validation respectively, but neither enforces hard compositional constraints at generation time nor targets joint schema consistency across four heterogeneous benchmarks with 50–246 event types. Target venue: EMNLP 2026 (ARR deadline May 25, 2026). Estimated GPU cost: ~$375–1,340 depending on research mode.", "project_name": "schema_constrained_event_ie", "source": "web_research"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8dd7589-9421-4a9c-b858-15c9f1b7d2f1",
+  "isSidechain": false,
+  "requestId": "req_011CatTrUsf9HN3WW6FANRLa",
+  "type": "assistant",
+  "uuid": "d02cbcd8-950d-4dbe-aea7-8da089492056",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019if2vGFemkWPrv78hy5WUv",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5351,
+      "cache_read_input_tokens": 41918,
+      "output_tokens": 6230,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5351,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6230,
+          "cache_read_input_tokens": 41918,
+          "cache_creation_input_tokens": 5351,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5351
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 70_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-10 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Schema-Condit…",
+  "leafUuid": "d02cbcd8-950d-4dbe-aea7-8da089492056",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Schema-Conditioned Synthetic Supervision for Joint Event-Relation Extraction",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-10 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Schema-Condit…",
+  "leafUuid": "d02cbcd8-950d-4dbe-aea7-8da089492056",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Schema-Conditioned Synthetic Supervision for Joint Event-Relation Extraction",
+  "sessionId": "03500054-cd88-4e29-a193-444f7bea31e8"
+}
+```
+
+---

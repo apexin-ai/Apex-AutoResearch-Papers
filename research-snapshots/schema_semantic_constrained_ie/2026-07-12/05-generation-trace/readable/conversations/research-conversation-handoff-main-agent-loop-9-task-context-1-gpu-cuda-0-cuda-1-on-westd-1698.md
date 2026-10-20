@@ -1,0 +1,3775 @@
+# Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #9。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：**仅 cuda:0, cuda:1 on westd-1698
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 65
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/exported-trajectories/account-3/b9056dca-4e32-4f00-b147-7b4e16b6e052.jsonl`
+- **Structured JSON:** [`9fa729914664e41d7a90.json`](../../sessions/9f/9fa729914664e41d7a90.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T14:29:06.152Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T14:29:06.152Z",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "content": "[HANDOFF] 你是 Main Agent，这是 Loop #9。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 cuda:0, cuda:1 on westd-16980**。不可用其他 GPU，Director 指令也不能覆盖\n- submit_training_job 命令必须用 `bash -c '...'` 包裹（tmux 默认 sh，source/conda activate 是 bash built-in，否则 EXIT_CODE=127）\n- Python 路径用绝对路径 `/root/miniconda3/bin/python`（aml-train 镜像，conda base 环境）\n- DDL: **ARR May 25, 2026**（10 天），不可建议降级 venue\n- W1 CF fallback 实验 conclusion 出来前，**不动 paper 的 CF 相关段落**\n- D019 已确认代码已是 pair-based → W2 是**纯写作修复**，不要改代码\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-16980, account=root\n- **工作目录**: `/root/schema_semantic_constrained_ie`\n- **Python**: `/root/miniconda3/bin/python`（conda base，不要创建 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: Qwen3-8B 在默认 HF cache; Llama-3.1-8B 在 `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n- **约束文件**: `data/docred/ontology_constraints_docred.json` (96 rels), SciERC 在默认位置\n- **核心代码**: `compiler/` (ontology_compiler.py, type_mask_processor.py), `run_constrained_extraction.py` (652 行, 5 模式)\n- **活跃进程**:\n  - `w1_cf_fallback_scierc_pilot`: PID 270088, cuda:0, cron 监控中\n  - `llama_docred_full_s1_mt6144`: PID 247487, cuda:1, cron 监控中\n- **活跃 Worker**: `worker_research_pair_based_impl_plan_20260515T141200` (running, turn 4, 正在 SSH 读代码分析 pair-based 实现)\n- **Cron**: 2 个活跃（对应上述两个 RUNNING 实验）\n\n### 3. 📊 当前状态\n**刚做完**: D019 决策——确认代码已是 pair-based（σ(r) enforcement），取消代码改动，W2 降级为纯写作修复。派了 Worker 调研 pair-based 实现细节（正在运行）。\n\n**Registry 概况**: 成功 20 / 负向 0 / 失败 0 / killed 1 / RUNNING 2 / PREPARING 3\n\n**RUNNING**:\n1. `w1_cf_fallback_scierc_pilot` (cuda:0) — Qwen SciERC CF fallback pilot，验证 CF violation 在 fallback 模式下的行为\n2. `llama_docred_full_s1_mt6144` (cuda:1) — Llama DocRED full S1 with max_tokens=6144，重跑以获得完整结果\n\n**PREPARING** (等 GPU 释放):\n- `w1_cf_fallback_llama_scierc` — Llama SciERC CF fallback\n- `w1_cf_fallback_docred` — Qwen DocRED CF fallback\n- `w1_cf_fallback_llama_docred` — Llama DocRED CF fallback\n\n**等待中**:\n- Worker `pair_based_impl_plan` 回调 → 产出 W2 写作修复方案\n- `w1_cf_fallback_scierc_pilot` cron 回调 → 分析 + 启动下一个 CF fallback 实验\n- `llama_docred_full_s1_mt6144` cron 回调 → 分析 + 释放 cuda:1 给 D018 W5 LoRA\n\n### 4. 📋 待办（条件触发式）\n- `w1_cf_fallback_scierc_pilot` 完成 → 分析 CF 结果 → 决定 CF fallback 代码是否需调整 → 提交 `w1_cf_fallback_docred` (cuda:0) + `w1_cf_fallback_llama_scierc` (cuda:1 若已释放)\n- `llama_docred_full_s1_mt6144` 完成 → 分析 Llama DocRED 完整结果 → 释放 cuda:1 → 启动 D018 W5 LoRA fine-tune (Qwen3-8B SciERC, ~6 GPU-hrs, cuda:1)\n- `pair_based_impl_plan` Worker 回调 → 根据调研结果写 W2 §3 形式化修复（pair-based notation 统一）\n- W5 LoRA 训练完成 → unconstrained fine-tuned eval → gate: DR>2% 才继续 constrained eval → 分析 composability\n- 全部 W1 CF fallback 4 实验完成 → DR-CF Pareto 图 + violation budget → 写入论文\n- 所有实验完成 → Track C 写作重构（§3 形式化 + narrative arc + claim 升级评估）\n\n### 5. 🎯 战略上下文\n**项目**: OntoCoDec — 两层约束解码（grammar + semantic）编译 IE ontology 为 token-level constraints，消除 LLM IE 的 ontology violations。投 EMNLP 2026。\n\n**核心结论链**:\n- D010: Dream 评分 Weak Reject 2.75/5 → 制定 6 项结构性补强\n- D012: Bootstrap CI framing 定稿（逐数据集报告）\n- D013: Post-hoc baseline framing（不以 F1 论高低，多维对比）\n- D014: Tightness scaling = tightness × model RV baseline 双因素\n- D016: Llama CI 修复完成，全部 p-values 写入论文\n- D018: W5 LoRA 批准（条件启动）\n- D019: 代码已是 pair-based，W2 降级为写作修复\n\n**关键数字**: SciERC DR↓94% (0.93% 残余), DocRED DR↓45% (10.19% 残余, Qwen) / DR↓90.2% (Llama)。R-F1 从不下降。CF 是已知 limitation (9.90% SciERC)。\n\n**最容易判断错的事**:\n1. **不要把 CF fallback 和 semantic fallback 搞混**: CF = cross-field consistency violation (entity type 在 entity list vs relation 中不一致)；semantic fallback = grammar∩semantic=∅ 时退化为 grammar-only。两个独立概念\n2. **Grammar-only DR 上升不是 bug**: DocRED grammar_only DR=26.17% > unconstrained 18.46%，这是因为 grammar 消除 RV 后暴露了 latent DR violations。这是**论文卖点**不是弱点\n3. **ET 指标待 D011 v2 checker 修正**: DocRED ET 数字可能需要更新（triple-counting 问题）\n4. **Llama fallback 数据单位是 token-level，Qwen 是 triple-level**: 不可直接对比绝对值，只能说趋势一致\n5. **W1 CF fallback 是 critical priority**（Round 1 Issue Tracker 唯一 in_progress 的 critical）——所有 GPU 时间优先给它，W5 LoRA 是条件启动（等 cuda:1 释放）\n\n## 项目硬约束 (memory.md 节选)\n\n## 环境信息\n\n### westd-16980 (2026-05-13)\n- GPU: 2× NVIDIA RTX PRO 6000 Blackwell (94GB each)\n- CUDA 12.8, Python 3.12.3 (conda base)\n- torch 2.10.0+cu128, transformers 4.57.6\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`\n- Llama 模型路径: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\n- XGrammar v2 已安装\n\n## 可查的历史\n前 24 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T14:29:06.156Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T14:29:06.156Z",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052"
+}
+```
+
+---
+
+## Round 1
+
+63 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T14:29:06.191Z_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #9。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：**仅 cuda:0, cuda:1 on westd-16980**。不可用其他 GPU，Director 指令也不能覆盖
+- submit_training_job 命令必须用 `bash -c '...'` 包裹（tmux 默认 sh，source/conda activate 是 bash built-in，否则 EXIT_CODE=127）
+- Python 路径用绝对路径 `/root/miniconda3/bin/python`（aml-train 镜像，conda base 环境）
+- DDL: **ARR May 25, 2026**（10 天），不可建议降级 venue
+- W1 CF fallback 实验 conclusion 出来前，**不动 paper 的 CF 相关段落**
+- D019 已确认代码已是 pair-based → W2 是**纯写作修复**，不要改代码
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: westd-16980, account=root
+- **工作目录**: `/root/schema_semantic_constrained_ie`
+- **Python**: `/root/miniconda3/bin/python`（conda base，不要创建 venv）
+- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **模型路径**: Qwen3-8B 在默认 HF cache; Llama-3.1-8B 在 `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`
+- **约束文件**: `data/docred/ontology_constraints_docred.json` (96 rels), SciERC 在默认位置
+- **核心代码**: `compiler/` (ontology_compiler.py, type_mask_processor.py), `run_constrained_extraction.py` (652 行, 5 模式)
+- **活跃进程**:
+  - `w1_cf_fallback_scierc_pilot`: PID 270088, cuda:0, cron 监控中
+  - `llama_docred_full_s1_mt6144`: PID 247487, cuda:1, cron 监控中
+- **活跃 Worker**: `worker_research_pair_based_impl_plan_20260515T141200` (running, turn 4, 正在 SSH 读代码分析 pair-based 实现)
+- **Cron**: 2 个活跃（对应上述两个 RUNNING 实验）
+
+### 3. 📊 当前状态
+**刚做完**: D019 决策——确认代码已是 pair-based（σ(r) enforcement），取消代码改动，W2 降级为纯写作修复。派了 Worker 调研 pair-based 实现细节（正在运行）。
+
+**Registry 概况**: 成功 20 / 负向 0 / 失败 0 / killed 1 / RUNNING 2 / PREPARING 3
+
+**RUNNING**:
+1. `w1_cf_fallback_scierc_pilot` (cuda:0) — Qwen SciERC CF fallback pilot，验证 CF violation 在 fallback 模式下的行为
+2. `llama_docred_full_s1_mt6144` (cuda:1) — Llama DocRED full S1 with max_tokens=6144，重跑以获得完整结果
+
+**PREPARING** (等 GPU 释放):
+- `w1_cf_fallback_llama_scierc` — Llama SciERC CF fallback
+- `w1_cf_fallback_docred` — Qwen DocRED CF fallback
+- `w1_cf_fallback_llama_docred` — Llama DocRED CF fallback
+
+**等待中**:
+- Worker `pair_based_impl_plan` 回调 → 产出 W2 写作修复方案
+- `w1_cf_fallback_scierc_pilot` cron 回调 → 分析 + 启动下一个 CF fallback 实验
+- `llama_docred_full_s1_mt6144` cron 回调 → 分析 + 释放 cuda:1 给 D018 W5 LoRA
+
+### 4. 📋 待办（条件触发式）
+- `w1_cf_fallback_scierc_pilot` 完成 → 分析 CF 结果 → 决定 CF fallback 代码是否需调整 → 提交 `w1_cf_fallback_docred` (cuda:0) + `w1_cf_fallback_llama_scierc` (cuda:1 若已释放)
+- `llama_docred_full_s1_mt6144` 完成 → 分析 Llama DocRED 完整结果 → 释放 cuda:1 → 启动 D018 W5 LoRA fine-tune (Qwen3-8B SciERC, ~6 GPU-hrs, cuda:1)
+- `pair_based_impl_plan` Worker 回调 → 根据调研结果写 W2 §3 形式化修复（pair-based notation 统一）
+- W5 LoRA 训练完成 → unconstrained fine-tuned eval → gate: DR>2% 才继续 constrained eval → 分析 composability
+- 全部 W1 CF fallback 4 实验完成 → DR-CF Pareto 图 + violation budget → 写入论文
+- 所有实验完成 → Track C 写作重构（§3 形式化 + narrative arc + claim 升级评估）
+
+### 5. 🎯 战略上下文
+**项目**: OntoCoDec — 两层约束解码（grammar + semantic）编译 IE ontology 为 token-level constraints，消除 LLM IE 的 ontology violations。投 EMNLP 2026。
+
+**核心结论链**:
+- D010: Dream 评分 Weak Reject 2.75/5 → 制定 6 项结构性补强
+- D012: Bootstrap CI framing 定稿（逐数据集报告）
+- D013: Post-hoc baseline framing（不以 F1 论高低，多维对比）
+- D014: Tightness scaling = tightness × model RV baseline 双因素
+- D016: Llama CI 修复完成，全部 p-values 写入论文
+- D018: W5 LoRA 批准（条件启动）
+- D019: 代码已是 pair-based，W2 降级为写作修复
+
+**关键数字**: SciERC DR↓94% (0.93% 残余), DocRED DR↓45% (10.19% 残余, Qwen) / DR↓90.2% (Llama)。R-F1 从不下降。CF 是已知 limitation (9.90% SciERC)。
+
+**最容易判断错的事**:
+1. **不要把 CF fallback 和 semantic fallback 搞混**: CF = cross-field consistency violation (entity type 在 entity list vs relation 中不一致)；semantic fallback = grammar∩semantic=∅ 时退化为 grammar-only。两个独立概念
+2. **Grammar-only DR 上升不是 bug**: DocRED grammar_only DR=26.17% > unconstrained 18.46%，这是因为 grammar 消除 RV 后暴露了 latent DR violations。这是**论文卖点**不是弱点
+3. **ET 指标待 D011 v2 checker 修正**: DocRED ET 数字可能需要更新（triple-counting 问题）
+4. **Llama fallback 数据单位是 token-level，Qwen 是 triple-level**: 不可直接对比绝对值，只能说趋势一致
+5. **W1 CF fallback 是 critical priority**（Round 1 Issue Tracker 唯一 in_progress 的 critical）——所有 GPU 时间优先给它，W5 LoRA 是条件启动（等 cuda:1 释放）
+
+## 项目硬约束 (memory.md 节选)
+
+## 环境信息
+
+### westd-16980 (2026-05-13)
+- GPU: 2× NVIDIA RTX PRO 6000 Blackwell (94GB each)
+- CUDA 12.8, Python 3.12.3 (conda base)
+- torch 2.10.0+cu128, transformers 4.57.6
+- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 模型路径: `/root/autodl-tmp/models/Qwen3-8B-ms/Qwen/Qwen3-8B`
+- Llama 模型路径: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`
+- XGrammar v2 已安装
+
+## 可查的历史
+前 24 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "86912635-7436-4057-be6d-9fbac5cbe194",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T14:29:06.190Z_
+
+```json
+{
+  "parentUuid": "86912635-7436-4057-be6d-9fbac5cbe194",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "244150af-a550-4b5c-8652-c250f3759976",
+  "timestamp": "2026-05-15T14:29:06.190Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T14:29:06.190Z_
+
+```json
+{
+  "parentUuid": "244150af-a550-4b5c-8652-c250f3759976",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "55043290-167e-4416-9442-0562d1c31395",
+  "timestamp": "2026-05-15T14:29:06.190Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T14:29:06.190Z_
+
+```json
+{
+  "parentUuid": "55043290-167e-4416-9442-0562d1c31395",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "e7940e38-92c2-427c-bcee-28804f716313",
+  "timestamp": "2026-05-15T14:29:06.190Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Monitor CF fallback experiments and pair-based implementation",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T14:29:13.203Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by confirming I've read the handoff and then execute the session-start protocol.
+
+Key points from handoff:
+- GPU whitelist: cuda:0, cuda:1 on westd-16980 only
+- Two RUNNING experiments: w1_cf_fallback_scierc_pilot (cuda:0), llama_docred_full_s1_mt6144 (cuda:1)
+- Three PREPARING experiments waiting for GPU
+- One active Worker analyzing pair-based implementation
+- DDL: ARR May 25, 2026 (10 days)
+- Must use bash -c wrapper for submit_training_job
+
+
+- Python is at /root/miniconda3/bin/python
+
+Now I'm initializing the session by reading the registry, reconciling any cron jobs, and checking the report and roadmap files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7940e38-92c2-427c-bcee-28804f716313",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WimyUB6Fqw9Xkw7QUy",
+  "type": "assistant",
+  "uuid": "e048434a-7d06-44ca-92f0-1d8897521b6c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hwtxm1Rvtm5RXgbCcTkkXP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25528,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25528,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 441,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25528,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25528
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-15T14:29:14.313Z_
+
+Loop #9 收到。确认硬约束：GPU 白名单仅 westd-16980 cuda:0/1，bash -c 包裹，DDL ARR May 25（10天），CF fallback 结论出来前不动 paper CF 段落。两个 RUNNING 实验 + 一个活跃 Worker。
+
+开始 session-start 初始化。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e048434a-7d06-44ca-92f0-1d8897521b6c",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WimyUB6Fqw9Xkw7QUy",
+  "type": "assistant",
+  "uuid": "4f306972-4fe4-4fbf-b31c-d34b66477e52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hwtxm1Rvtm5RXgbCcTkkXP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25528,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25528,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 441,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25528,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25528
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T14:29:15.354Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01C1uDBmtLTWm9Lf3fw47Jwh`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f306972-4fe4-4fbf-b31c-d34b66477e52",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WimyUB6Fqw9Xkw7QUy",
+  "type": "assistant",
+  "uuid": "b644a88d-56e4-4568-99e2-770b5bfa6f43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hwtxm1Rvtm5RXgbCcTkkXP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25528,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25528,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 441,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25528,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25528
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T14:29:15.361Z_
+
+<details><summary>↩ Tool result · `toolu_01C1uDBmtLTWm9Lf3fw47Jwh`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b644a88d-56e4-4568-99e2-770b5bfa6f43",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "c611db59-5ce2-43a5-9cb5-2b56e9b4e410",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "b644a88d-56e4-4568-99e2-770b5bfa6f43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T14:29:18.210Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01SCAEZx5k1Ub8UpyF8WVSp4`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c611db59-5ce2-43a5-9cb5-2b56e9b4e410",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WjT7vyYXjxarTNPVaU",
+  "type": "assistant",
+  "uuid": "15e3f219-b5eb-4532-89a8-362c45e055d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0157Vau59emzM1cRM9h9thUn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1319,
+      "cache_read_input_tokens": 37369,
+      "output_tokens": 243,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1319,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 37369,
+          "cache_creation_input_tokens": 1319,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1319
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T14:29:18.703Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01HrUmywkZQJRoiXFvMDgE7y`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15e3f219-b5eb-4532-89a8-362c45e055d4",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WjT7vyYXjxarTNPVaU",
+  "type": "assistant",
+  "uuid": "5a9e2a7c-9257-4c66-ada4-2586d6a71c93",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0157Vau59emzM1cRM9h9thUn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1319,
+      "cache_read_input_tokens": 37369,
+      "output_tokens": 243,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1319,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 37369,
+          "cache_creation_input_tokens": 1319,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1319
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T14:29:18.321Z_
+
+<details><summary>↩ Tool result · `toolu_01SCAEZx5k1Ub8UpyF8WVSp4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"llama_docred_unconstrained_mt6144\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T08:17:33.154Z\", \"updated_at\": \"2026-05-15T14:09:53.452Z\", \"metrics\": {\"ET_rate\": 0.13, \"RV_rate\": 15.89, \"DR_rate\": 26.18, \"DR_rate_eligible\": 31.15, \"CF_rate\": 0.17, \"entity_precision\": 61.19, \"entity_recall\": 51.06, \"entity_f1\": 55.67, \"relation_precision\": 5.18, \"relation_recall\": 7, \"relation_f1\": 5.95, \"parse_failures\": 67, \"documents_checked\": 931, \"total_documents\": 998, \"unique_entities\": 11534, \"total_triples\": 16584, \"dr_eligible_triples\": 13936, \"fuzzy_relation_matches\": 121}, \"notes\": \"mt6144 vs mt4096 对比: parse_failures 68→67 (-1, 几乎无变化); unique_entities 11525→11534 (+9); triples 16437→16584 (+147, +0.9%); E-F1 55.65%→55.67% (+0.02pp); R-F1 5.98%→5.95% (-0.03pp); DR 26.07%→26.18% (+0.11pp); RV 16.03%→15.89% (-0.14pp); ET/CF 不变. 67 个 FAIL 中绝大多数 inference time ~96s (仍触发 max_tokens cap), 说明这些失败主要源于模型陷入重复循环直到 token 上限, 而非文档过长. 增加 max_new_tokens 不能挽救此类失败. 训练 wall clock 约 5h39m, 比 mt4096 (~5h02m) 多约 37 分钟. 结论: max_new_tokens 4096→6144 对 unconstrained 生成无实质影响, 不建议采用作为后续 baseline.\", \"conclusion\": \"success\"}, \"w1_cf_fallback_scierc_pilot\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T10:32:48.425Z\", \"updated_at\": \"2026-05-15T14:07:15.170Z\"}, \"w1_cf_fallback_llama_scierc\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T10:32:57.470Z\", \"updated_at\": \"2026-05-15T11:48:00.744Z\"}, \"w1_cf_fallback_docred\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T10:32:53.234Z\", \"updated_at\": \"2026-05-15T11:47:56.874Z\"}, \"w1_cf_fallback_llama_docred\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T10:33:00.998Z\", \"updated_at\": \"2026-05-15T11:29:52.780Z\"}, \"llama_docred_full_s1_mt6144\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T08:17:36.675Z\", \"updated_at\": \"2026-05-15T10:36:41.601Z\", \"notes\": \"⚠️ 变量混淆：此实验同时包含 CF fallback 代码修改 + max_tokens 6144（两个变量）。CF 数据可作为 'Llama DocRED with fallback + mt6144' 参考点，但不能用于纯 CF ablation 对比。纯 CF ablation 必须控制 max_tokens=4096。unconstrained_mt6144 不受影响（不走 semantic layer）。\"}, \"llama_docred_full_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:42:59.855Z\", \"updated_at\": \"2026-05-14T20:29:59.744Z\", \"hypothesis\": \"Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上的效果。与 Qwen3-8B DocRED full_s1 (DR 10.19%) 对比，验证约束解码在不同模型+复杂 schema 上的泛化性。\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"f1_method\": \"all_set\", \"violations\": {\"ET\": 0, \"RV\": 0, \"DR\": 2.55, \"CF\": 12.02}, \"f1\": {\"entity_f1\": 55.01, \"entity_precision\": 61.41, \"entity_recall\": 49.82, \"relation_f1\": 6.27, \"relation_precision\": 5.49, \"relation_recall\": 7.32}, \"counts\": {\"documents\": 998, \"documents_checked\": 907, \"parse_failures\": 91, \"unique_entities\": 11296, \"triples\": 16368}}, \"conclusion\": \"success\", \"notes\": \"ET/RV→0%, DR 26.07%→2.55% (优于Qwen的10.19%)。但CF从0.17%暴涨至12.02%，说明Llama的entity type预测更容易被约束扰动。F1基本持平(E-F1 -0.64pp, R-F1 +0.29pp)。Parse failures从68增至91。Grammar-first fallback频繁触发。\"}, \"llama_docred_unconstrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:42:58.719Z\", \"updated_at\": \"2026-05-14T19:45:08.201Z\", \"hypothesis\": \"Llama-3.1-8B-Instruct 在 DocRED unconstrained baseline。与 Qwen3-8B DocRED unconstrained 对比 violation 分布。验证不同模型在复杂 schema (96 relations) 上的 violation 模式差异。\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"f1_method\": \"all_set\", \"documents\": 998, \"documents_checked\": 930, \"parse_failures\": 68, \"unique_entities\": 11525, \"total_triples\": 16437, \"dr_eligible_triples\": 13789, \"ET_rate_pct\": 0.13, \"RV_rate_pct\": 16.03, \"DR_rate_pct\": 26.07, \"CF_rate_pct\": 0.17, \"entity_precision\": 61.22, \"entity_recall\": 51.02, \"entity_f1\": 55.65, \"relation_precision\": 5.22, \"relation_recall\": 7, \"relation_f1\": 5.98, \"fuzzy_relation_matches\": 121}, \"conclusion\": \"success\", \"notes\": \"v2 checker (unique_et dedup) + all_set F1。930/998 docs parsed (68 parse failures, 6.8% vs Qwen 1.2%)。Violation profile 与 Qwen3-8B 显著不同：RV 大幅降低 (16.03% vs 29.66%，-13.6pp，Llama 更倾向使用标准关系名) 但 DR 更高 (26.07% vs 18.46%，+7.6pp，即使关系名正确 head/tail 类型约束违反更多)。ET 极低 (0.13% vs 2.48%，-2.35pp)，CF 接近 (0.17% vs 0.10%)。F1 弱于 Qwen: R-F1 5.98% vs 7.74% (-1.76pp)，E-F1 55.65% vs 58.15% (-2.50pp)。DR 26.07% 为约束解码提供更大改进空间。\"}, \"phase2_docred_grammar_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T01:55:50.031Z\", \"updated_at\": \"2026-05-14T18:52:55.527Z\", \"hypothesis\": \"Grammar-only constrained decoding 在 DocRED (96 relation types) 上能否消除 RV violations (28.9%) 和 ET violations (7.5%)？与 SciERC grammar_only (RV 1.4%→0%, ET 0.4%→0%) 对比，验证 grammar 层在复杂 schema 上的泛化性。\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 985, \"parse_failures\": 13, \"total_entities\": 20150, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.2617, \"cross_field_consistency_violation_rate\": 0.0007, \"relation_f1\": 8.31, \"relation_precision\": 7.06, \"relation_recall\": 10.12, \"entity_f1\": 59.38, \"entity_precision\": 58.47, \"entity_recall\": 60.32, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"posthoc_filtering_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:46:07.823Z\", \"updated_at\": \"2026-05-14T18:46:28.485Z\", \"conclusion\": \"success\", \"metrics\": {\"docred_f1_before\": 7.74, \"docred_f1_after\": 9.61, \"docred_precision_before\": 6.55, \"docred_precision_after\": 11.22, \"docred_recall_before\": 9.46, \"docred_recall_after\": 8.4, \"docred_rejection_rate\": 0.481, \"docred_tp_before\": 1137, \"docred_tp_after\": 1010, \"docred_tp_lost\": 127, \"docred_et_residual\": 0.0247, \"scierc_f1_before\": 8.23, \"scierc_f1_after\": 8.63, \"scierc_rejection_rate\": 0.168, \"scierc_recall_before\": 11.4, \"scierc_recall_after\": 10.68, \"scierc_tp_before\": 111, \"scierc_tp_after\": 104}}, \"llama_scierc_full_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:42:56.936Z\", \"updated_at\": \"2026-05-14T18:31:43.217Z\", \"hypothesis\": \"Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 SciERC 上的效果。与 Qwen3-8B full_s1 (DR 0.93%) 对比，验证 OntoCoDec 的 model-agnostic 特性。零代码修改。D009 cross-model 验证核心实验。\", \"conclusion\": \"success\", \"metrics\": {\"samples\": 550, \"entities_extracted\": 2469, \"relations_extracted\": 1315, \"domain_range_violation_rate\": 0.0008, \"relation_vocab_violation_rate\": 0, \"entity_type_violation_rate\": 0, \"cross_field_consistency_violation_rate\": 0.0656, \"total_violation_rate\": 0.0431, \"entity_f1\": 0.2349, \"entity_precision\": 0.1972, \"entity_recall\": 0.2902, \"relation_f1\": 0.0254, \"relation_precision\": 0.0221, \"relation_recall\": 0.0298, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"notes\": \"550/551 samples (1 corrupt line from duplicate PID removed). DR 0.08% — 约束合规性极好，优于 Qwen3-8B full_s1 (0.93%)。但 E-F1=23.49% (vs Qwen 30.98%), R-F1=2.54% (vs Qwen 8.36%)，Llama 在 IE 质量上显著弱于 Qwen。对比 Llama unconstrained: DR 13.3%→0.08% (约束生效), E-F1 23.56%→23.49% (持平), R-F1 2.68%→2.54% (微降)。约束大幅降低违规率但未提升抽取质量。Cross-field consistency violations 较高 (6.56%)。\"}, \"llama_scierc_unconstrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:42:55.421Z\", \"updated_at\": \"2026-05-14T18:31:40.240Z\", \"hypothesis\": \"Llama-3.1-8B-Instruct 在 SciERC unconstrained baseline — 验证 OntoCoDec 跨模型泛化性。零代码修改，与 Qwen3-8B unconstrained 对比 violation 分布差异。预期 DR~15%, RV~1.4%, ET~0.4%（Llama instruction-following 可能更好）。D009 cross-model 验证的第一步。\", \"conclusion\": \"success\", \"metrics\": {\"entity_type_violation_rate\": 0, \"relation_vocab_violation_rate\": 0.0055, \"domain_range_violation_rate\": 0.1334, \"cross_field_consistency_violations\": 6, \"entity_f1\": 0.2356, \"entity_precision\": 0.1983, \"entity_recall\": 0.2902, \"relation_f1\": 0.0268, \"relation_precision\": 0.0236, \"relation_recall\": 0.031, \"total_entities\": 2451, \"total_relations\": 1274, \"json_parse_failures\": 1, \"samples\": 551, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"notes\": \"Llama-3.1-8B-Instruct SciERC unconstrained baseline 完成。551 样本（550成功/1失败）。Violation: ET=0%, RV=0.5%, DR=13.3%。F1: E-F1=23.56%, R-F1=2.68%。与 Qwen3-8B unconstrained 对比：Llama violation 略低（DR 13.3% vs 15.4%），但 F1 明显更差（E-F1 低7.5pp, R-F1 低5.5pp）。Llama 更倾向保守提取——提取数量少、violation 低但 recall 也低。Qwen3 在 unconstrained 设定下提取质量优于 Llama。\"}, \"phase2_scierc_full_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T00:36:35.941Z\", \"updated_at\": \"2026-05-14T18:31:38.701Z\", \"hypothesis\": \"S2 两通道约束解码全量验证 — Grammar (Pass 1) + Semantic (Pass 2) 分离式约束。S2 pilot50 已验证 D/R violation=0%，全量运行检验 F1 稳定性和 per-relation 效果。与 S1 对比验证两种架构的 F1-violation trade-off。\", \"notes\": \"✅ 全量完成 551/551 via --resume. S2 两通道约束解码结果。DR=0.97% (vs S1 0.93%), RV=0%, ET=0%, R-F1=0.0803, E-F1=0.319.\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1644, \"total_entities\": 2228, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0097, \"cross_field_consistency_violation_rate\": 0.0803, \"entity_precision\": 0.2797, \"entity_recall\": 0.3712, \"entity_f1\": 0.319, \"relation_precision\": 0.064, \"relation_recall\": 0.1078, \"relation_f1\": 0.0803, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_full_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T21:48:44.785Z\", \"updated_at\": \"2026-05-14T18:31:34.603Z\", \"hypothesis\": \"Grammar + Semantic 双层约束 (S1 单通道) 能否同时消除 rv + dr violations？F1 变化是关键：<2pp 降=完美，2-5pp=可接受 trade-off，>5pp=需要 S2 策略\", \"notes\": \"✅ _v2 干净数据全量完成 551/551. DR violation = 0.93% (baseline 15.37%, -14.44pp). ET=0%, RV=0%. 数据来源: phase2_scierc_full_s1_v2.jsonl\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1729, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0093, \"cross_field_consistency_violation_rate\": 0.099, \"entity_f1\": 0.3098, \"entity_precision\": 0.2598, \"entity_recall\": 0.3837, \"relation_f1\": 0.0836, \"relation_precision\": 0.0654, \"relation_recall\": 0.116, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_semantic_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T21:48:44.427Z\", \"updated_at\": \"2026-05-14T18:31:31.811Z\", \"hypothesis\": \"Semantic-only constrained decoding (TypeConstraintProcessor) 能否消除 domain/range violations？预期 dr_violation→0%，但可能影响 F1（约束过强导致生成偏移）\", \"notes\": \"✅ _v2 干净数据全量完成 551/551. DR violation = 11.65% (baseline 15.37%, -3.72pp). ET=0.4%, RV=1.51%.\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1726, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0151, \"domain_range_violation_rate\": 0.1165, \"cross_field_consistency_violation_rate\": 0.0271, \"entity_f1\": 0.3101, \"entity_precision\": 0.2605, \"entity_recall\": 0.3831, \"relation_f1\": 0.0815, \"relation_precision\": 0.0637, \"relation_recall\": 0.1129, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_grammar_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T21:48:43.487Z\", \"updated_at\": \"2026-05-14T18:31:29.442Z\", \"hypothesis\": \"Grammar-only constrained decoding (XGrammar JSON schema + enum) 能否消除 relation vocabulary violations 同时不影响 F1？预期 rv_violation→0%, dr_violation 不变\", \"notes\": \"进程从未崩溃。原 'crash' 判定是 cron 追踪 stale PID 123425（已杀的 batch script）导致 5× dead 误报。实际进程 PID 126473 一直在 GPU 1 正常运行。nvidia-smi 确认: GPU 1 上 grammar_only(126473) + unconstrained(126948) 共享，各占 ~16.5GB，利用率 92%。\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1725, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.1484, \"cross_field_consistency_violation_rate\": 0.0008, \"entity_f1\": 0.3098, \"entity_precision\": 0.2598, \"entity_recall\": 0.3837, \"relation_f1\": 0.0823, \"relation_precision\": 0.0643, \"relation_recall\": 0.114, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"conclusion\": \"success\"}, \"phase2_scierc_unconstrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:19:07.120Z\", \"updated_at\": \"2026-05-14T18:31:26.645Z\", \"hypothesis\": \"Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的代码路径和 prompt，确保 F1 对比公平。预期结果接近 Phase 0 (entity_f1=0.31, relation_f1=0.08)\", \"metrics\": {\"json_parse_rate\": 1, \"entity_f1\": 0.3101, \"entity_precision\": 0.2605, \"entity_recall\": 0.3831, \"relation_f1\": 0.0823, \"relation_precision\": 0.0644, \"relation_recall\": 0.114, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0139, \"domain_range_violation_rate\": 0.1537, \"cross_field_consistency_violation_rate\": 0.0008, \"total_triples\": 1724, \"total_entities\": 2474, \"total_samples\": 551, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"conclusion\": \"success\"}, \"phase2_docred_full_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:07:20.166Z\", \"updated_at\": \"2026-05-14T18:31:19.721Z\", \"hypothesis\": \"Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上能否复现 SciERC 的 DR 消除效果 (15.37%→0.93%)？DocRED 约束更紧 (avg 5.68 valid pairs)，DR baseline 更高 (18.7%)，验证 OntoCoDec 在复杂 schema 上的泛化性。\", \"notes\": \"DR 18.46%→10.19% (↓44.8%). RV 29.66%→0.03% (↓99.9%), ET 8.18%→0% (↓100%). R-F1 7.74%→8.23% (+0.49pp), E-F1 58.15%→59.37% (+1.22pp). F1 method: all_set (OOV predictions included in denominator). 之前 recognized_set 方法 (R-F1=9.33%→8.17%, -1.16pp) 是错误的——它过滤了 unconstrained 的 5189 个 OOV predictions，人为抬高 precision。Grammar-only DR 上升(18.46→26.17%)是审稿必问点：grammar 强制 valid relation name 后 entity type 与新 relation 的 domain/range 不匹配加剧，恰好证明 semantic 层必要性。\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 987, \"parse_failures\": 11, \"total_entities\": 20187, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.1021, \"cross_field_consistency_violation_rate\": 0.0257, \"entity_f1\": 59.37, \"entity_precision\": 58.45, \"entity_recall\": 59.63, \"relation_f1\": 8.23, \"relation_precision\": 6.99, \"relation_recall\": 10.01, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_docred_semantic_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:40:51.107Z\", \"updated_at\": \"2026-05-14T18:31:13.783Z\", \"hypothesis\": \"Semantic-only constrained decoding 在 DocRED (96 relations, avg 5.68 valid pairs) 上的 DR 降低幅度。SciERC semantic_only DR↓24% (15.37→11.65%)，DocRED 约束更紧预期效果更明显。关键验证 Claim 3 enabling dependency：semantic_only 无法消除 RV/ET（需 grammar），证明两层互补非替代。\", \"notes\": \"DocRED semantic-only（checker 修复后定稿数字）。ET 10.44% (修复前 18.44%, -8pp: strip 修 507 假阳性 + PERSON alias 修 1108 假阳性)。DR 13.84% (修复前 15.05%, -1.21pp: normalize 也修正了 DR pair 匹配)。CF 1.05% (修复前 2.29%)。残余 ET 2107 violations 是真实退化：WORK(823)/EVENT(743)/ETHNIC_GROUP(137) 等非标类型。F1 无变化。998 lines, 0 duplicates。\", \"metrics\": {\"documents_checked\": 987, \"parse_failures\": 11, \"total_entities\": 20185, \"total_triples\": 17571, \"entity_type_violation_rate\": 0.0422, \"relation_vocabulary_violation_rate\": 0.2987, \"domain_range_violation_rate\": 0.1384, \"cross_field_consistency_violation_rate\": 0.0105, \"entity_f1\": 57.81, \"entity_precision\": 57.27, \"entity_recall\": 58.37, \"relation_f1\": 7.7, \"relation_precision\": 6.54, \"relation_recall\": 9.37, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"et_v1\": 0.1044, \"et_fix_note\": \"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\"}, \"conclusion\": \"success\"}, \"phase2_docred_unconstrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:40:50.853Z\", \"updated_at\": \"2026-05-14T18:31:10.378Z\", \"hypothesis\": \"DocRED Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的 Phase 2 pipeline 和 prompt，确保消融表 F1/violation 对比公平。预期 DR~18.7%, RV~28.9%, ET~7.5%（接近 Phase 0）。\", \"notes\": \"✅ Phase 2 重新分析完成。998 lines, 0 duplicates — 文件干净无残留。正确值: DR=18.5%, RV=29.7%, ET=8.2%, E-F1=58.15%, R-F1=7.74%。F1 method: all_set (Reviewer 2026-05-14 确认正确)。论文可 claim: constrained decoding 不损失 R-F1。\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 986, \"parse_failures\": 12, \"total_entities\": 20171, \"total_triples\": 17497, \"entity_type_violation_rate\": 0.0248, \"relation_vocabulary_violation_rate\": 0.2966, \"domain_range_violation_rate\": 0.1846, \"cross_field_consistency_violation_rate\": 0.001, \"entity_f1\": 58.15, \"entity_precision\": 57.26, \"entity_recall\": 58.32, \"relation_f1\": 7.74, \"relation_precision\": 6.55, \"relation_recall\": 9.46, \"unrecognized_relations\": 5189, \"f1_method\": \"all_set (includes OOV predictions in denominator)\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"et_v1\": 0.0818, \"et_fix_note\": \"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\"}}, \"mvp_phase0_docred_schema_r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T00:36:06.125Z\", \"updated_at\": \"2026-05-14T02:56:53.324Z\", \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心。（从被误杀的 mvp_phase0_docred_schema 恢复，--resume）\", \"notes\": \"归档：mvp_phase0_docred_schema 已完成全量 998/998 并有完整 metrics，此 r2 续跑实验不再需要。\", \"conclusion\": \"killed\"}, \"phase2_s2_pilot50\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T23:25:10.566Z\", \"updated_at\": \"2026-05-14T02:04:44.195Z\", \"hypothesis\": \"S2 两通道约束解码 50 样本 pilot — 验证 PositionDetector 修复后 D/R violation=0%，评估 relation_f1 质量\", \"conclusion\": \"success\", \"metrics\": {\"domain_range_violation_rate\": 0.0205, \"relation_vocabulary_violation_rate\": 0, \"relation_f1\": 0.1008, \"samples\": 50, \"predicted_relations\": 146, \"true_positives\": 13, \"gold_relations\": 112, \"entity_f1_approx\": 0.29, \"note\": \"DR 修正: 原值 0 来自 dryrun (n=25 triples)。实际 pilot50 DR=3/146=2.05% (来自 violation_report_s2_pilot50.json)。\"}, \"notes\": \"S2 pilot 实际 relation_f1=0.1008（非此前误报的 0.0）。根因：原 F1=0 来自 10 样本 dryrun 的 violation_report，不是 pilot50 评估结果。S2 架构无问题，F1 与 unconstrained 持平。FP 分析: entity span 质量差是主因(52.6% head+tail 都不匹配 gold)。改进方向: few-shot entity prompt / 编号引用格式 / 阻止自引用。\"}, \"mvp_phase0_docred_schema\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T17:58:18.184Z\", \"updated_at\": \"2026-05-14T01:49:57.097Z\", \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\", \"conclusion\": \"success\", \"notes\": \"Resume 完成 998/998 docs. Schema-informed prompt 结果: ET=0.61% (baseline 7.5%, Δ-6.89%), RV=18.4% (baseline 28.9%, Δ-10.5%), DR=12.8% (baseline 18.7%, Δ-5.9%). 全维度显著改善。\", \"metrics\": {\"total_documents\": 998, \"documents_checked\": 943, \"parse_failures\": 55, \"json_parse_rate\": 0.9449, \"total_entities\": 19524, \"total_triples\": 16782, \"entity_type_violations\": 119, \"entity_type_violation_rate\": 0.0061, \"relation_vocabulary_violations\": 3090, \"relation_vocabulary_violation_rate\": 0.1841, \"relation_fuzzy_matches\": 85, \"domain_range_violations\": 2154, \"domain_range_violation_rate\": 0.1284, \"cross_field_consistency_violations\": 29, \"cross_field_consistency_violation_rate\": 0.0015, \"total_violations_any\": 5392, \"total_violation_rate\": 0.1485, \"go_nogo_metric_dr\": 0.1284}}, \"mvp_phase0_violation_rate_docred\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T17:38:05.075Z\", \"updated_at\": \"2026-05-13T21:46:35.193Z\", \"hypothesis\": \"DocRED 有 96 relation types，约束空间远大于 SciERC (7 types)，预期 unconstrained LLM 的 per-triple violation rate 显著高于 SciERC，验证违规率与约束空间复杂度正相关\", \"metrics\": {\"total_docs\": 998, \"parsed_docs\": 962, \"json_parse_rate\": 0.964, \"total_entities\": 19099, \"total_triples\": 16540, \"entity_type_violation_rate\": 0.075, \"relation_vocabulary_violation_rate\": 0.289, \"domain_range_violation_rate\": 0.187, \"cross_field_consistency_violation_rate\": 0.0008, \"go_nogo_metric\": 0.187, \"fuzzy_matches\": 126, \"top_dr_violations_by_rate\": {\"P35_head_of_state\": 1, \"P710_participant\": 0.919, \"P172_ethnic_group\": 0.875}, \"top_dr_violations_by_count\": {\"P31_instance_of\": {\"violations\": 322, \"total\": 533, \"rate\": 0.604}, \"P1001_applies_to_jurisdiction\": {\"violations\": 264, \"total\": 594, \"rate\": 0.444}, \"P1344_participant_in\": {\"violations\": 194, \"total\": 312, \"rate\": 0.622}}}, \"conclusion\": \"success\"}, \"mvp_phase0_scierc_schema\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T17:58:17.259Z\", \"updated_at\": \"2026-05-13T20:58:13.410Z\", \"hypothesis\": \"Schema-informed prompt（显式给出 domain/range 约束）能否降低违规率？与 minimal prompt 对比，若违规率仍 >5% 则证明 prompt 级干预不足以替代 decoding-time enforcement\", \"metrics\": {\"domain_range_violation_rate\": 0.0578, \"relation_vocabulary_violation_rate\": 0.003, \"entity_type_violation_rate\": 0, \"total_violation_rate\": 0.0253, \"go_nogo_metric\": 0.0578, \"total_triples\": 1661, \"vs_minimal_dr_reduction\": -0.624, \"per_relation\": {\"Used-for\": {\"rate\": \"TBD\"}, \"Feature-of\": {\"delta_pp\": -22.3}, \"Part-of\": {\"delta_pp\": -22.5}, \"Compare\": {\"delta_pp\": -14.8}, \"Evaluate-for\": {\"delta_pp\": 5.8}}, \"mcnemar_all_significant\": true}, \"conclusion\": \"success\"}, \"mvp_phase0_violation_rate\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T17:35:38.680Z\", \"updated_at\": \"2026-05-13T19:13:34.510Z\", \"hypothesis\": \"Unconstrained LLM (Qwen3-8B) 在 SciERC zero-shot IE 任务上的本体类型约束违反率 >5%，证明解码时约束强制的必要性\", \"metrics\": {\"total_triples\": 1724, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0139, \"domain_range_violation_rate\": 0.1537, \"cross_field_consistency_violation_rate\": 0.0008, \"go_nogo_metric\": 0.1537, \"entity_f1\": 0.3101, \"relation_f1\": 0.0823, \"per_relation\": {\"Used-for\": {\"total\": 787, \"dr_violations\": 6, \"rate\": 0.0076}, \"Conjunction\": {\"total\": 32, \"dr_violations\": 0, \"rate\": 0}, \"Hyponym-of\": {\"total\": 124, \"dr_violations\": 18, \"rate\": 0.1452}, \"Evaluate-for\": {\"total\": 133, \"dr_violations\": 32, \"rate\": 0.2406}, \"Part-of\": {\"total\": 72, \"dr_violations\": 18, \"rate\": 0.25}, \"Feature-of\": {\"total\": 486, \"dr_violations\": 163, \"rate\": 0.3354}, \"Compare\": {\"total\": 66, \"dr_violations\": 28, \"rate\": 0.4242}}}, \"conclusion\": \"success\"}}, \"count\": 26, \"total\": 26, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0924}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "15e3f219-b5eb-4532-89a8-362c45e055d4",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "9461d486-87c2-41fe-a8de-8260d5e0fd75",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"llama_docred_unconstrained_mt6144\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-15T08:17:33.154Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:09:53.452Z\\\", \\\"metrics\\\": {\\\"ET_rate\\\": 0.13, \\\"RV_rate\\\": 15.89, \\\"DR_rate\\\": 26.18, \\\"DR_rate_eligible\\\": 31.15, \\\"CF_rate\\\": 0.17, \\\"entity_precision\\\": 61.19, \\\"entity_recall\\\": 51.06, \\\"entity_f1\\\": 55.67, \\\"relation_precision\\\": 5.18, \\\"relation_recall\\\": 7, \\\"relation_f1\\\": 5.95, \\\"parse_failures\\\": 67, \\\"documents_checked\\\": 931, \\\"total_documents\\\": 998, \\\"unique_entities\\\": 11534, \\\"total_triples\\\": 16584, \\\"dr_eligible_triples\\\": 13936, \\\"fuzzy_relation_matches\\\": 121}, \\\"notes\\\": \\\"mt6144 vs mt4096 对比: parse_failures 68→67 (-1, 几乎无变化); unique_entities 11525→11534 (+9); triples 16437→16584 (+147, +0.9%); E-F1 55.65%→55.67% (+0.02pp); R-F1 5.98%→5.95% (-0.03pp); DR 26.07%→26.18% (+0.11pp); RV 16.03%→15.89% (-0.14pp); ET/CF 不变. 67 个 FAIL 中绝大多数 inference time ~96s (仍触发 max_tokens cap), 说明这些失败主要源于模型陷入重复循环直到 token 上限, 而非文档过长. 增加 max_new_tokens 不能挽救此类失败. 训练 wall clock 约 5h39m, 比 mt4096 (~5h02m) 多约 37 分钟. 结论: max_new_tokens 4096→6144 对 unconstrained 生成无实质影响, 不建议采用作为后续 baseline.\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"w1_cf_fallback_scierc_pilot\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T10:32:48.425Z\\\", \\\"updated_at\\\": \\\"2026-05-15T14:07:15.170Z\\\"}, \\\"w1_cf_fallback_llama_scierc\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T10:32:57.470Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:48:00.744Z\\\"}, \\\"w1_cf_fallback_docred\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T10:32:53.234Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:47:56.874Z\\\"}, \\\"w1_cf_fallback_llama_docred\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T10:33:00.998Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:29:52.780Z\\\"}, \\\"llama_docred_full_s1_mt6144\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-15T08:17:36.675Z\\\", \\\"updated_at\\\": \\\"2026-05-15T10:36:41.601Z\\\", \\\"notes\\\": \\\"⚠️ 变量混淆：此实验同时包含 CF fallback 代码修改 + max_tokens 6144（两个变量）。CF 数据可作为 'Llama DocRED with fallback + mt6144' 参考点，但不能用于纯 CF ablation 对比。纯 CF ablation 必须控制 max_tokens=4096。unconstrained_mt6144 不受影响（不走 semantic layer）。\\\"}, \\\"llama_docred_full_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T10:42:59.855Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:29:59.744Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上的效果。与 Qwen3-8B DocRED full_s1 (DR 10.19%) 对比，验证约束解码在不同模型+复杂 schema 上的泛化性。\\\", \\\"metrics\\\": {\\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\", \\\"f1_method\\\": \\\"all_set\\\", \\\"violations\\\": {\\\"ET\\\": 0, \\\"RV\\\": 0, \\\"DR\\\": 2.55, \\\"CF\\\": 12.02}, \\\"f1\\\": {\\\"entity_f1\\\": 55.01, \\\"entity_precision\\\": 61.41, \\\"entity_recall\\\": 49.82, \\\"relation_f1\\\": 6.27, \\\"relation_precision\\\": 5.49, \\\"relation_recall\\\": 7.32}, \\\"counts\\\": {\\\"documents\\\": 998, \\\"documents_checked\\\": 907, \\\"parse_failures\\\": 91, \\\"unique_entities\\\": 11296, \\\"triples\\\": 16368}}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"ET/RV→0%, DR 26.07%→2.55% (优于Qwen的10.19%)。但CF从0.17%暴涨至12.02%，说明Llama的entity type预测更容易被约束扰动。F1基本持平(E-F1 -0.64pp, R-F1 +0.29pp)。Parse failures从68增至91。Grammar-first fallback频繁触发。\\\"}, \\\"llama_docred_unconstrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T10:42:58.719Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:45:08.201Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B-Instruct 在 DocRED unconstrained baseline。与 Qwen3-8B DocRED unconstrained 对比 violation 分布。验证不同模型在复杂 schema (96 relations) 上的 violation 模式差异。\\\", \\\"metrics\\\": {\\\"checker_version\\\": \\\"fixed_20260514_v2\\\", \\\"f1_method\\\": \\\"all_set\\\", \\\"documents\\\": 998, \\\"documents_checked\\\": 930, \\\"parse_failures\\\": 68, \\\"unique_entities\\\": 11525, \\\"total_triples\\\": 16437, \\\"dr_eligible_triples\\\": 13789, \\\"ET_rate_pct\\\": 0.13, \\\"RV_rate_pct\\\": 16.03, \\\"DR_rate_pct\\\": 26.07, \\\"CF_rate_pct\\\": 0.17, \\\"entity_precision\\\": 61.22, \\\"entity_recall\\\": 51.02, \\\"entity_f1\\\": 55.65, \\\"relation_precision\\\": 5.22, \\\"relation_recall\\\": 7, \\\"relation_f1\\\": 5.98, \\\"fuzzy_relation_matches\\\": 121}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"v2 checker (unique_et dedup) + all_set F1。930/998 docs parsed (68 parse failures, 6.8% vs Qwen 1.2%)。Violation profile 与 Qwen3-8B 显著不同：RV 大幅降低 (16.03% vs 29.66%，-13.6pp，Llama 更倾向使用标准关系名) 但 DR 更高 (26.07% vs 18.46%，+7.6pp，即使关系名正确 head/tail 类型约束违反更多)。ET 极低 (0.13% vs 2.48%，-2.35pp)，CF 接近 (0.17% vs 0.10%)。F1 弱于 Qwen: R-F1 5.98% vs 7.74% (-1.76pp)，E-F1 55.65% vs 58.15% (-2.50pp)。DR 26.07% 为约束解码提供更大改进空间。\\\"}, \\\"phase2_docred_grammar_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T01:55:50.031Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:52:55.527Z\\\", \\\"hypothesis\\\": \\\"Grammar-only constrained decoding 在 DocRED (96 relation types) 上能否消除 RV violations (28.9%) 和 ET violations (7.5%)？与 SciERC grammar_only (RV 1.4%→0%, ET 0.4%→0%) 对比，验证 grammar 层在复杂 schema 上的泛化性。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"documents_checked\\\": 985, \\\"parse_failures\\\": 13, \\\"total_entities\\\": 20150, \\\"total_triples\\\": 17341, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0.0003, \\\"domain_range_violation_rate\\\": 0.2617, \\\"cross_field_consistency_violation_rate\\\": 0.0007, \\\"relation_f1\\\": 8.31, \\\"relation_precision\\\": 7.06, \\\"relation_recall\\\": 10.12, \\\"entity_f1\\\": 59.38, \\\"entity_precision\\\": 58.47, \\\"entity_recall\\\": 60.32, \\\"unrecognized_relations\\\": 5, \\\"f1_method\\\": \\\"all_set\\\", \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}}, \\\"posthoc_filtering_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T18:46:07.823Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:46:28.485Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"docred_f1_before\\\": 7.74, \\\"docred_f1_after\\\": 9.61, \\\"docred_precision_before\\\": 6.55, \\\"docred_precision_after\\\": 11.22, \\\"docred_recall_before\\\": 9.46, \\\"docred_recall_after\\\": 8.4, \\\"docred_rejection_rate\\\": 0.481, \\\"docred_tp_before\\\": 1137, \\\"docred_tp_after\\\": 1010, \\\"docred_tp_lost\\\": 127, \\\"docred_et_residual\\\": 0.0247, \\\"scierc_f1_before\\\": 8.23, \\\"scierc_f1_after\\\": 8.63, \\\"scierc_rejection_rate\\\": 0.168, \\\"scierc_recall_before\\\": 11.4, \\\"scierc_recall_after\\\": 10.68, \\\"scierc_tp_before\\\": 111, \\\"scierc_tp_after\\\": 104}}, \\\"llama_scierc_full_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T10:42:56.936Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:43.217Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 SciERC 上的效果。与 Qwen3-8B full_s1 (DR 0.93%) 对比，验证 OntoCoDec 的 model-agnostic 特性。零代码修改。D009 cross-model 验证核心实验。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"samples\\\": 550, \\\"entities_extracted\\\": 2469, \\\"relations_extracted\\\": 1315, \\\"domain_range_violation_rate\\\": 0.0008, \\\"relation_vocab_violation_rate\\\": 0, \\\"entity_type_violation_rate\\\": 0, \\\"cross_field_consistency_violation_rate\\\": 0.0656, \\\"total_violation_rate\\\": 0.0431, \\\"entity_f1\\\": 0.2349, \\\"entity_precision\\\": 0.1972, \\\"entity_recall\\\": 0.2902, \\\"relation_f1\\\": 0.0254, \\\"relation_precision\\\": 0.0221, \\\"relation_recall\\\": 0.0298, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}, \\\"notes\\\": \\\"550/551 samples (1 corrupt line from duplicate PID removed). DR 0.08% — 约束合规性极好，优于 Qwen3-8B full_s1 (0.93%)。但 E-F1=23.49% (vs Qwen 30.98%), R-F1=2.54% (vs Qwen 8.36%)，Llama 在 IE 质量上显著弱于 Qwen。对比 Llama unconstrained: DR 13.3%→0.08% (约束生效), E-F1 23.56%→23.49% (持平), R-F1 2.68%→2.54% (微降)。约束大幅降低违规率但未提升抽取质量。Cross-field consistency violations 较高 (6.56%)。\\\"}, \\\"llama_scierc_unconstrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T10:42:55.421Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:40.240Z\\\", \\\"hypothesis\\\": \\\"Llama-3.1-8B-Instruct 在 SciERC unconstrained baseline — 验证 OntoCoDec 跨模型泛化性。零代码修改，与 Qwen3-8B unconstrained 对比 violation 分布差异。预期 DR~15%, RV~1.4%, ET~0.4%（Llama instruction-following 可能更好）。D009 cross-model 验证的第一步。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"entity_type_violation_rate\\\": 0, \\\"relation_vocab_violation_rate\\\": 0.0055, \\\"domain_range_violation_rate\\\": 0.1334, \\\"cross_field_consistency_violations\\\": 6, \\\"entity_f1\\\": 0.2356, \\\"entity_precision\\\": 0.1983, \\\"entity_recall\\\": 0.2902, \\\"relation_f1\\\": 0.0268, \\\"relation_precision\\\": 0.0236, \\\"relation_recall\\\": 0.031, \\\"total_entities\\\": 2451, \\\"total_relations\\\": 1274, \\\"json_parse_failures\\\": 1, \\\"samples\\\": 551, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}, \\\"notes\\\": \\\"Llama-3.1-8B-Instruct SciERC unconstrained baseline 完成。551 样本（550成功/1失败）。Violation: ET=0%, RV=0.5%, DR=13.3%。F1: E-F1=23.56%, R-F1=2.68%。与 Qwen3-8B unconstrained 对比：Llama violation 略低（DR 13.3% vs 15.4%），但 F1 明显更差（E-F1 低7.5pp, R-F1 低5.5pp）。Llama 更倾向保守提取——提取数量少、violation 低但 recall 也低。Qwen3 在 unconstrained 设定下提取质量优于 Llama。\\\"}, \\\"phase2_scierc_full_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T00:36:35.941Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:38.701Z\\\", \\\"hypothesis\\\": \\\"S2 两通道约束解码全量验证 — Grammar (Pass 1) + Semantic (Pass 2) 分离式约束。S2 pilot50 已验证 D/R violation=0%，全量运行检验 F1 稳定性和 per-relation 效果。与 S1 对比验证两种架构的 F1-violation trade-off。\\\", \\\"notes\\\": \\\"✅ 全量完成 551/551 via --resume. S2 两通道约束解码结果。DR=0.97% (vs S1 0.93%), RV=0%, ET=0%, R-F1=0.0803, E-F1=0.319.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_samples\\\": 551, \\\"total_triples\\\": 1644, \\\"total_entities\\\": 2228, \\\"json_parse_rate\\\": 1, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0, \\\"domain_range_violation_rate\\\": 0.0097, \\\"cross_field_consistency_violation_rate\\\": 0.0803, \\\"entity_precision\\\": 0.2797, \\\"entity_recall\\\": 0.3712, \\\"entity_f1\\\": 0.319, \\\"relation_precision\\\": 0.064, \\\"relation_recall\\\": 0.1078, \\\"relation_f1\\\": 0.0803, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}}, \\\"phase2_scierc_full_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T21:48:44.785Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:34.603Z\\\", \\\"hypothesis\\\": \\\"Grammar + Semantic 双层约束 (S1 单通道) 能否同时消除 rv + dr violations？F1 变化是关键：<2pp 降=完美，2-5pp=可接受 trade-off，>5pp=需要 S2 策略\\\", \\\"notes\\\": \\\"✅ _v2 干净数据全量完成 551/551. DR violation = 0.93% (baseline 15.37%, -14.44pp). ET=0%, RV=0%. 数据来源: phase2_scierc_full_s1_v2.jsonl\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_samples\\\": 551, \\\"total_triples\\\": 1729, \\\"total_entities\\\": 2474, \\\"json_parse_rate\\\": 1, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0, \\\"domain_range_violation_rate\\\": 0.0093, \\\"cross_field_consistency_violation_rate\\\": 0.099, \\\"entity_f1\\\": 0.3098, \\\"entity_precision\\\": 0.2598, \\\"entity_recall\\\": 0.3837, \\\"relation_f1\\\": 0.0836, \\\"relation_precision\\\": 0.0654, \\\"relation_recall\\\": 0.116, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}}, \\\"phase2_scierc_semantic_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T21:48:44.427Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:31.811Z\\\", \\\"hypothesis\\\": \\\"Semantic-only constrained decoding (TypeConstraintProcessor) 能否消除 domain/range violations？预期 dr_violation→0%，但可能影响 F1（约束过强导致生成偏移）\\\", \\\"notes\\\": \\\"✅ _v2 干净数据全量完成 551/551. DR violation = 11.65% (baseline 15.37%, -3.72pp). ET=0.4%, RV=1.51%.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_samples\\\": 551, \\\"total_triples\\\": 1726, \\\"total_entities\\\": 2474, \\\"json_parse_rate\\\": 1, \\\"entity_type_violation_rate\\\": 0.004, \\\"relation_vocabulary_violation_rate\\\": 0.0151, \\\"domain_range_violation_rate\\\": 0.1165, \\\"cross_field_consistency_violation_rate\\\": 0.0271, \\\"entity_f1\\\": 0.3101, \\\"entity_precision\\\": 0.2605, \\\"entity_recall\\\": 0.3831, \\\"relation_f1\\\": 0.0815, \\\"relation_precision\\\": 0.0637, \\\"relation_recall\\\": 0.1129, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}}, \\\"phase2_scierc_grammar_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T21:48:43.487Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:29.442Z\\\", \\\"hypothesis\\\": \\\"Grammar-only constrained decoding (XGrammar JSON schema + enum) 能否消除 relation vocabulary violations 同时不影响 F1？预期 rv_violation→0%, dr_violation 不变\\\", \\\"notes\\\": \\\"进程从未崩溃。原 'crash' 判定是 cron 追踪 stale PID 123425（已杀的 batch script）导致 5× dead 误报。实际进程 PID 126473 一直在 GPU 1 正常运行。nvidia-smi 确认: GPU 1 上 grammar_only(126473) + unconstrained(126948) 共享，各占 ~16.5GB，利用率 92%。\\\", \\\"metrics\\\": {\\\"total_samples\\\": 551, \\\"total_triples\\\": 1725, \\\"total_entities\\\": 2474, \\\"json_parse_rate\\\": 1, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0, \\\"domain_range_violation_rate\\\": 0.1484, \\\"cross_field_consistency_violation_rate\\\": 0.0008, \\\"entity_f1\\\": 0.3098, \\\"entity_precision\\\": 0.2598, \\\"entity_recall\\\": 0.3837, \\\"relation_f1\\\": 0.0823, \\\"relation_precision\\\": 0.0643, \\\"relation_recall\\\": 0.114, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"phase2_scierc_unconstrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T22:19:07.120Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:26.645Z\\\", \\\"hypothesis\\\": \\\"Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的代码路径和 prompt，确保 F1 对比公平。预期结果接近 Phase 0 (entity_f1=0.31, relation_f1=0.08)\\\", \\\"metrics\\\": {\\\"json_parse_rate\\\": 1, \\\"entity_f1\\\": 0.3101, \\\"entity_precision\\\": 0.2605, \\\"entity_recall\\\": 0.3831, \\\"relation_f1\\\": 0.0823, \\\"relation_precision\\\": 0.0644, \\\"relation_recall\\\": 0.114, \\\"entity_type_violation_rate\\\": 0.004, \\\"relation_vocabulary_violation_rate\\\": 0.0139, \\\"domain_range_violation_rate\\\": 0.1537, \\\"cross_field_consistency_violation_rate\\\": 0.0008, \\\"total_triples\\\": 1724, \\\"total_entities\\\": 2474, \\\"total_samples\\\": 551, \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"phase2_docred_full_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T02:07:20.166Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:19.721Z\\\", \\\"hypothesis\\\": \\\"Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上能否复现 SciERC 的 DR 消除效果 (15.37%→0.93%)？DocRED 约束更紧 (avg 5.68 valid pairs)，DR baseline 更高 (18.7%)，验证 OntoCoDec 在复杂 schema 上的泛化性。\\\", \\\"notes\\\": \\\"DR 18.46%→10.19% (↓44.8%). RV 29.66%→0.03% (↓99.9%), ET 8.18%→0% (↓100%). R-F1 7.74%→8.23% (+0.49pp), E-F1 58.15%→59.37% (+1.22pp). F1 method: all_set (OOV predictions included in denominator). 之前 recognized_set 方法 (R-F1=9.33%→8.17%, -1.16pp) 是错误的——它过滤了 unconstrained 的 5189 个 OOV predictions，人为抬高 precision。Grammar-only DR 上升(18.46→26.17%)是审稿必问点：grammar 强制 valid relation name 后 entity type 与新 relation 的 domain/range 不匹配加剧，恰好证明 semantic 层必要性。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"documents_checked\\\": 987, \\\"parse_failures\\\": 11, \\\"total_entities\\\": 20187, \\\"total_triples\\\": 17341, \\\"entity_type_violation_rate\\\": 0, \\\"relation_vocabulary_violation_rate\\\": 0.0003, \\\"domain_range_violation_rate\\\": 0.1021, \\\"cross_field_consistency_violation_rate\\\": 0.0257, \\\"entity_f1\\\": 59.37, \\\"entity_precision\\\": 58.45, \\\"entity_recall\\\": 59.63, \\\"relation_f1\\\": 8.23, \\\"relation_precision\\\": 6.99, \\\"relation_recall\\\": 10.01, \\\"unrecognized_relations\\\": 5, \\\"f1_method\\\": \\\"all_set\\\", \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\"}}, \\\"phase2_docred_semantic_only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T04:40:51.107Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:13.783Z\\\", \\\"hypothesis\\\": \\\"Semantic-only constrained decoding 在 DocRED (96 relations, avg 5.68 valid pairs) 上的 DR 降低幅度。SciERC semantic_only DR↓24% (15.37→11.65%)，DocRED 约束更紧预期效果更明显。关键验证 Claim 3 enabling dependency：semantic_only 无法消除 RV/ET（需 grammar），证明两层互补非替代。\\\", \\\"notes\\\": \\\"DocRED semantic-only（checker 修复后定稿数字）。ET 10.44% (修复前 18.44%, -8pp: strip 修 507 假阳性 + PERSON alias 修 1108 假阳性)。DR 13.84% (修复前 15.05%, -1.21pp: normalize 也修正了 DR pair 匹配)。CF 1.05% (修复前 2.29%)。残余 ET 2107 violations 是真实退化：WORK(823)/EVENT(743)/ETHNIC_GROUP(137) 等非标类型。F1 无变化。998 lines, 0 duplicates。\\\", \\\"metrics\\\": {\\\"documents_checked\\\": 987, \\\"parse_failures\\\": 11, \\\"total_entities\\\": 20185, \\\"total_triples\\\": 17571, \\\"entity_type_violation_rate\\\": 0.0422, \\\"relation_vocabulary_violation_rate\\\": 0.2987, \\\"domain_range_violation_rate\\\": 0.1384, \\\"cross_field_consistency_violation_rate\\\": 0.0105, \\\"entity_f1\\\": 57.81, \\\"entity_precision\\\": 57.27, \\\"entity_recall\\\": 58.37, \\\"relation_f1\\\": 7.7, \\\"relation_precision\\\": 6.54, \\\"relation_recall\\\": 9.37, \\\"f1_method\\\": \\\"all_set\\\", \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\", \\\"et_v1\\\": 0.1044, \\\"et_fix_note\\\": \\\"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"phase2_docred_unconstrained\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T04:40:50.853Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:10.378Z\\\", \\\"hypothesis\\\": \\\"DocRED Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的 Phase 2 pipeline 和 prompt，确保消融表 F1/violation 对比公平。预期 DR~18.7%, RV~28.9%, ET~7.5%（接近 Phase 0）。\\\", \\\"notes\\\": \\\"✅ Phase 2 重新分析完成。998 lines, 0 duplicates — 文件干净无残留。正确值: DR=18.5%, RV=29.7%, ET=8.2%, E-F1=58.15%, R-F1=7.74%。F1 method: all_set (Reviewer 2026-05-14 确认正确)。论文可 claim: constrained decoding 不损失 R-F1。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"documents_checked\\\": 986, \\\"parse_failures\\\": 12, \\\"total_entities\\\": 20171, \\\"total_triples\\\": 17497, \\\"entity_type_violation_rate\\\": 0.0248, \\\"relation_vocabulary_violation_rate\\\": 0.2966, \\\"domain_range_violation_rate\\\": 0.1846, \\\"cross_field_consistency_violation_rate\\\": 0.001, \\\"entity_f1\\\": 58.15, \\\"entity_precision\\\": 57.26, \\\"entity_recall\\\": 58.32, \\\"relation_f1\\\": 7.74, \\\"relation_precision\\\": 6.55, \\\"relation_recall\\\": 9.46, \\\"unrecognized_relations\\\": 5189, \\\"f1_method\\\": \\\"all_set (includes OOV predictions in denominator)\\\", \\\"checker_version\\\": \\\"fixed_20260514_v2 (strip + alias + unique_et)\\\", \\\"et_v1\\\": 0.0818, \\\"et_fix_note\\\": \\\"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\\\"}}, \\\"mvp_phase0_docred_schema_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T00:36:06.125Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:56:53.324Z\\\", \\\"hypothesis\\\": \\\"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心。（从被误杀的 mvp_phase0_docred_schema 恢复，--resume）\\\", \\\"notes\\\": \\\"归档：mvp_phase0_docred_schema 已完成全量 998/998 并有完整 metrics，此 r2 续跑实验不再需要。\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"phase2_s2_pilot50\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T23:25:10.566Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:04:44.195Z\\\", \\\"hypothesis\\\": \\\"S2 两通道约束解码 50 样本 pilot — 验证 PositionDetector 修复后 D/R violation=0%，评估 relation_f1 质量\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"domain_range_violation_rate\\\": 0.0205, \\\"relation_vocabulary_violation_rate\\\": 0, \\\"relation_f1\\\": 0.1008, \\\"samples\\\": 50, \\\"predicted_relations\\\": 146, \\\"true_positives\\\": 13, \\\"gold_relations\\\": 112, \\\"entity_f1_approx\\\": 0.29, \\\"note\\\": \\\"DR 修正: 原值 0 来自 dryrun (n=25 triples)。实际 pilot50 DR=3/146=2.05% (来自 violation_report_s2_pilot50.json)。\\\"}, \\\"notes\\\": \\\"S2 pilot 实际 relation_f1=0.1008（非此前误报的 0.0）。根因：原 F1=0 来自 10 样本 dryrun 的 violation_report，不是 pilot50 评估结果。S2 架构无问题，F1 与 unconstrained 持平。FP 分析: entity span 质量差是主因(52.6% head+tail 都不匹配 gold)。改进方向: few-shot entity prompt / 编号引用格式 / 阻止自引用。\\\"}, \\\"mvp_phase0_docred_schema\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T17:58:18.184Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:49:57.097Z\\\", \\\"hypothesis\\\": \\\"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Resume 完成 998/998 docs. Schema-informed prompt 结果: ET=0.61% (baseline 7.5%, Δ-6.89%), RV=18.4% (baseline 28.9%, Δ-10.5%), DR=12.8% (baseline 18.7%, Δ-5.9%). 全维度显著改善。\\\", \\\"metrics\\\": {\\\"total_documents\\\": 998, \\\"documents_checked\\\": 943, \\\"parse_failures\\\": 55, \\\"json_parse_rate\\\": 0.9449, \\\"total_entities\\\": 19524, \\\"total_triples\\\": 16782, \\\"entity_type_violations\\\": 119, \\\"entity_type_violation_rate\\\": 0.0061, \\\"relation_vocabulary_violations\\\": 3090, \\\"relation_vocabulary_violation_rate\\\": 0.1841, \\\"relation_fuzzy_matches\\\": 85, \\\"domain_range_violations\\\": 2154, \\\"domain_range_violation_rate\\\": 0.1284, \\\"cross_field_consistency_violations\\\": 29, \\\"cross_field_consistency_violation_rate\\\": 0.0015, \\\"total_violations_any\\\": 5392, \\\"total_violation_rate\\\": 0.1485, \\\"go_nogo_metric_dr\\\": 0.1284}}, \\\"mvp_phase0_violation_rate_docred\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T17:38:05.075Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:46:35.193Z\\\", \\\"hypothesis\\\": \\\"DocRED 有 96 relation types，约束空间远大于 SciERC (7 types)，预期 unconstrained LLM 的 per-triple violation rate 显著高于 SciERC，验证违规率与约束空间复杂度正相关\\\", \\\"metrics\\\": {\\\"total_docs\\\": 998, \\\"parsed_docs\\\": 962, \\\"json_parse_rate\\\": 0.964, \\\"total_entities\\\": 19099, \\\"total_triples\\\": 16540, \\\"entity_type_violation_rate\\\": 0.075, \\\"relation_vocabulary_violation_rate\\\": 0.289, \\\"domain_range_violation_rate\\\": 0.187, \\\"cross_field_consistency_violation_rate\\\": 0.0008, \\\"go_nogo_metric\\\": 0.187, \\\"fuzzy_matches\\\": 126, \\\"top_dr_violations_by_rate\\\": {\\\"P35_head_of_state\\\": 1, \\\"P710_participant\\\": 0.919, \\\"P172_ethnic_group\\\": 0.875}, \\\"top_dr_violations_by_count\\\": {\\\"P31_instance_of\\\": {\\\"violations\\\": 322, \\\"total\\\": 533, \\\"rate\\\": 0.604}, \\\"P1001_applies_to_jurisdiction\\\": {\\\"violations\\\": 264, \\\"total\\\": 594, \\\"rate\\\": 0.444}, \\\"P1344_participant_in\\\": {\\\"violations\\\": 194, \\\"total\\\": 312, \\\"rate\\\": 0.622}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_phase0_scierc_schema\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T17:58:17.259Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:58:13.410Z\\\", \\\"hypothesis\\\": \\\"Schema-informed prompt（显式给出 domain/range 约束）能否降低违规率？与 minimal prompt 对比，若违规率仍 >5% 则证明 prompt 级干预不足以替代 decoding-time enforcement\\\", \\\"metrics\\\": {\\\"domain_range_violation_rate\\\": 0.0578, \\\"relation_vocabulary_violation_rate\\\": 0.003, \\\"entity_type_violation_rate\\\": 0, \\\"total_violation_rate\\\": 0.0253, \\\"go_nogo_metric\\\": 0.0578, \\\"total_triples\\\": 1661, \\\"vs_minimal_dr_reduction\\\": -0.624, \\\"per_relation\\\": {\\\"Used-for\\\": {\\\"rate\\\": \\\"TBD\\\"}, \\\"Feature-of\\\": {\\\"delta_pp\\\": -22.3}, \\\"Part-of\\\": {\\\"delta_pp\\\": -22.5}, \\\"Compare\\\": {\\\"delta_pp\\\": -14.8}, \\\"Evaluate-for\\\": {\\\"delta_pp\\\": 5.8}}, \\\"mcnemar_all_significant\\\": true}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_phase0_violation_rate\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T17:35:38.680Z\\\", \\\"updated_at\\\": \\\"2026-05-13T19:13:34.510Z\\\", \\\"hypothesis\\\": \\\"Unconstrained LLM (Qwen3-8B) 在 SciERC zero-shot IE 任务上的本体类型约束违反率 >5%，证明解码时约束强制的必要性\\\", \\\"metrics\\\": {\\\"total_triples\\\": 1724, \\\"total_entities\\\": 2474, \\\"json_parse_rate\\\": 1, \\\"entity_type_violation_rate\\\": 0.004, \\\"relation_vocabulary_violation_rate\\\": 0.0139, \\\"domain_range_violation_rate\\\": 0.1537, \\\"cross_field_consistency_violation_rate\\\": 0.0008, \\\"go_nogo_metric\\\": 0.1537, \\\"entity_f1\\\": 0.3101, \\\"relation_f1\\\": 0.0823, \\\"per_relation\\\": {\\\"Used-for\\\": {\\\"total\\\": 787, \\\"dr_violations\\\": 6, \\\"rate\\\": 0.0076}, \\\"Conjunction\\\": {\\\"total\\\": 32, \\\"dr_violations\\\": 0, \\\"rate\\\": 0}, \\\"Hyponym-of\\\": {\\\"total\\\": 124, \\\"dr_violations\\\": 18, \\\"rate\\\": 0.1452}, \\\"Evaluate-for\\\": {\\\"total\\\": 133, \\\"dr_violations\\\": 32, \\\"rate\\\": 0.2406}, \\\"Part-of\\\": {\\\"total\\\": 72, \\\"dr_violations\\\": 18, \\\"rate\\\": 0.25}, \\\"Feature-of\\\": {\\\"total\\\": 486, \\\"dr_violations\\\": 163, \\\"rate\\\": 0.3354}, \\\"Compare\\\": {\\\"total\\\": 66, \\\"dr_violations\\\": 28, \\\"rate\\\": 0.4242}}}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 26, \\\"total\\\": 26, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0924}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"llama_docred_unconstrained_mt6144\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T08:17:33.154Z\", \"updated_at\": \"2026-05-15T14:09:53.452Z\", \"metrics\": {\"ET_rate\": 0.13, \"RV_rate\": 15.89, \"DR_rate\": 26.18, \"DR_rate_eligible\": 31.15, \"CF_rate\": 0.17, \"entity_precision\": 61.19, \"entity_recall\": 51.06, \"entity_f1\": 55.67, \"relation_precision\": 5.18, \"relation_recall\": 7, \"relation_f1\": 5.95, \"parse_failures\": 67, \"documents_checked\": 931, \"total_documents\": 998, \"unique_entities\": 11534, \"total_triples\": 16584, \"dr_eligible_triples\": 13936, \"fuzzy_relation_matches\": 121}, \"notes\": \"mt6144 vs mt4096 对比: parse_failures 68→67 (-1, 几乎无变化); unique_entities 11525→11534 (+9); triples 16437→16584 (+147, +0.9%); E-F1 55.65%→55.67% (+0.02pp); R-F1 5.98%→5.95% (-0.03pp); DR 26.07%→26.18% (+0.11pp); RV 16.03%→15.89% (-0.14pp); ET/CF 不变. 67 个 FAIL 中绝大多数 inference time ~96s (仍触发 max_tokens cap), 说明这些失败主要源于模型陷入重复循环直到 token 上限, 而非文档过长. 增加 max_new_tokens 不能挽救此类失败. 训练 wall clock 约 5h39m, 比 mt4096 (~5h02m) 多约 37 分钟. 结论: max_new_tokens 4096→6144 对 unconstrained 生成无实质影响, 不建议采用作为后续 baseline.\", \"conclusion\": \"success\"}, \"w1_cf_fallback_scierc_pilot\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T10:32:48.425Z\", \"updated_at\": \"2026-05-15T14:07:15.170Z\"}, \"w1_cf_fallback_llama_scierc\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T10:32:57.470Z\", \"updated_at\": \"2026-05-15T11:48:00.744Z\"}, \"w1_cf_fallback_docred\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T10:32:53.234Z\", \"updated_at\": \"2026-05-15T11:47:56.874Z\"}, \"w1_cf_fallback_llama_docred\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-15T10:33:00.998Z\", \"updated_at\": \"2026-05-15T11:29:52.780Z\"}, \"llama_docred_full_s1_mt6144\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-15T08:17:36.675Z\", \"updated_at\": \"2026-05-15T10:36:41.601Z\", \"notes\": \"⚠️ 变量混淆：此实验同时包含 CF fallback 代码修改 + max_tokens 6144（两个变量）。CF 数据可作为 'Llama DocRED with fallback + mt6144' 参考点，但不能用于纯 CF ablation 对比。纯 CF ablation 必须控制 max_tokens=4096。unconstrained_mt6144 不受影响（不走 semantic layer）。\"}, \"llama_docred_full_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:42:59.855Z\", \"updated_at\": \"2026-05-14T20:29:59.744Z\", \"hypothesis\": \"Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上的效果。与 Qwen3-8B DocRED full_s1 (DR 10.19%) 对比，验证约束解码在不同模型+复杂 schema 上的泛化性。\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"f1_method\": \"all_set\", \"violations\": {\"ET\": 0, \"RV\": 0, \"DR\": 2.55, \"CF\": 12.02}, \"f1\": {\"entity_f1\": 55.01, \"entity_precision\": 61.41, \"entity_recall\": 49.82, \"relation_f1\": 6.27, \"relation_precision\": 5.49, \"relation_recall\": 7.32}, \"counts\": {\"documents\": 998, \"documents_checked\": 907, \"parse_failures\": 91, \"unique_entities\": 11296, \"triples\": 16368}}, \"conclusion\": \"success\", \"notes\": \"ET/RV→0%, DR 26.07%→2.55% (优于Qwen的10.19%)。但CF从0.17%暴涨至12.02%，说明Llama的entity type预测更容易被约束扰动。F1基本持平(E-F1 -0.64pp, R-F1 +0.29pp)。Parse failures从68增至91。Grammar-first fallback频繁触发。\"}, \"llama_docred_unconstrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:42:58.719Z\", \"updated_at\": \"2026-05-14T19:45:08.201Z\", \"hypothesis\": \"Llama-3.1-8B-Instruct 在 DocRED unconstrained baseline。与 Qwen3-8B DocRED unconstrained 对比 violation 分布。验证不同模型在复杂 schema (96 relations) 上的 violation 模式差异。\", \"metrics\": {\"checker_version\": \"fixed_20260514_v2\", \"f1_method\": \"all_set\", \"documents\": 998, \"documents_checked\": 930, \"parse_failures\": 68, \"unique_entities\": 11525, \"total_triples\": 16437, \"dr_eligible_triples\": 13789, \"ET_rate_pct\": 0.13, \"RV_rate_pct\": 16.03, \"DR_rate_pct\": 26.07, \"CF_rate_pct\": 0.17, \"entity_precision\": 61.22, \"entity_recall\": 51.02, \"entity_f1\": 55.65, \"relation_precision\": 5.22, \"relation_recall\": 7, \"relation_f1\": 5.98, \"fuzzy_relation_matches\": 121}, \"conclusion\": \"success\", \"notes\": \"v2 checker (unique_et dedup) + all_set F1。930/998 docs parsed (68 parse failures, 6.8% vs Qwen 1.2%)。Violation profile 与 Qwen3-8B 显著不同：RV 大幅降低 (16.03% vs 29.66%，-13.6pp，Llama 更倾向使用标准关系名) 但 DR 更高 (26.07% vs 18.46%，+7.6pp，即使关系名正确 head/tail 类型约束违反更多)。ET 极低 (0.13% vs 2.48%，-2.35pp)，CF 接近 (0.17% vs 0.10%)。F1 弱于 Qwen: R-F1 5.98% vs 7.74% (-1.76pp)，E-F1 55.65% vs 58.15% (-2.50pp)。DR 26.07% 为约束解码提供更大改进空间。\"}, \"phase2_docred_grammar_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T01:55:50.031Z\", \"updated_at\": \"2026-05-14T18:52:55.527Z\", \"hypothesis\": \"Grammar-only constrained decoding 在 DocRED (96 relation types) 上能否消除 RV violations (28.9%) 和 ET violations (7.5%)？与 SciERC grammar_only (RV 1.4%→0%, ET 0.4%→0%) 对比，验证 grammar 层在复杂 schema 上的泛化性。\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 985, \"parse_failures\": 13, \"total_entities\": 20150, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.2617, \"cross_field_consistency_violation_rate\": 0.0007, \"relation_f1\": 8.31, \"relation_precision\": 7.06, \"relation_recall\": 10.12, \"entity_f1\": 59.38, \"entity_precision\": 58.47, \"entity_recall\": 60.32, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"posthoc_filtering_baseline\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T18:46:07.823Z\", \"updated_at\": \"2026-05-14T18:46:28.485Z\", \"conclusion\": \"success\", \"metrics\": {\"docred_f1_before\": 7.74, \"docred_f1_after\": 9.61, \"docred_precision_before\": 6.55, \"docred_precision_after\": 11.22, \"docred_recall_before\": 9.46, \"docred_recall_after\": 8.4, \"docred_rejection_rate\": 0.481, \"docred_tp_before\": 1137, \"docred_tp_after\": 1010, \"docred_tp_lost\": 127, \"docred_et_residual\": 0.0247, \"scierc_f1_before\": 8.23, \"scierc_f1_after\": 8.63, \"scierc_rejection_rate\": 0.168, \"scierc_recall_before\": 11.4, \"scierc_recall_after\": 10.68, \"scierc_tp_before\": 111, \"scierc_tp_after\": 104}}, \"llama_scierc_full_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:42:56.936Z\", \"updated_at\": \"2026-05-14T18:31:43.217Z\", \"hypothesis\": \"Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 SciERC 上的效果。与 Qwen3-8B full_s1 (DR 0.93%) 对比，验证 OntoCoDec 的 model-agnostic 特性。零代码修改。D009 cross-model 验证核心实验。\", \"conclusion\": \"success\", \"metrics\": {\"samples\": 550, \"entities_extracted\": 2469, \"relations_extracted\": 1315, \"domain_range_violation_rate\": 0.0008, \"relation_vocab_violation_rate\": 0, \"entity_type_violation_rate\": 0, \"cross_field_consistency_violation_rate\": 0.0656, \"total_violation_rate\": 0.0431, \"entity_f1\": 0.2349, \"entity_precision\": 0.1972, \"entity_recall\": 0.2902, \"relation_f1\": 0.0254, \"relation_precision\": 0.0221, \"relation_recall\": 0.0298, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"notes\": \"550/551 samples (1 corrupt line from duplicate PID removed). DR 0.08% — 约束合规性极好，优于 Qwen3-8B full_s1 (0.93%)。但 E-F1=23.49% (vs Qwen 30.98%), R-F1=2.54% (vs Qwen 8.36%)，Llama 在 IE 质量上显著弱于 Qwen。对比 Llama unconstrained: DR 13.3%→0.08% (约束生效), E-F1 23.56%→23.49% (持平), R-F1 2.68%→2.54% (微降)。约束大幅降低违规率但未提升抽取质量。Cross-field consistency violations 较高 (6.56%)。\"}, \"llama_scierc_unconstrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T10:42:55.421Z\", \"updated_at\": \"2026-05-14T18:31:40.240Z\", \"hypothesis\": \"Llama-3.1-8B-Instruct 在 SciERC unconstrained baseline — 验证 OntoCoDec 跨模型泛化性。零代码修改，与 Qwen3-8B unconstrained 对比 violation 分布差异。预期 DR~15%, RV~1.4%, ET~0.4%（Llama instruction-following 可能更好）。D009 cross-model 验证的第一步。\", \"conclusion\": \"success\", \"metrics\": {\"entity_type_violation_rate\": 0, \"relation_vocab_violation_rate\": 0.0055, \"domain_range_violation_rate\": 0.1334, \"cross_field_consistency_violations\": 6, \"entity_f1\": 0.2356, \"entity_precision\": 0.1983, \"entity_recall\": 0.2902, \"relation_f1\": 0.0268, \"relation_precision\": 0.0236, \"relation_recall\": 0.031, \"total_entities\": 2451, \"total_relations\": 1274, \"json_parse_failures\": 1, \"samples\": 551, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"notes\": \"Llama-3.1-8B-Instruct SciERC unconstrained baseline 完成。551 样本（550成功/1失败）。Violation: ET=0%, RV=0.5%, DR=13.3%。F1: E-F1=23.56%, R-F1=2.68%。与 Qwen3-8B unconstrained 对比：Llama violation 略低（DR 13.3% vs 15.4%），但 F1 明显更差（E-F1 低7.5pp, R-F1 低5.5pp）。Llama 更倾向保守提取——提取数量少、violation 低但 recall 也低。Qwen3 在 unconstrained 设定下提取质量优于 Llama。\"}, \"phase2_scierc_full_s2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T00:36:35.941Z\", \"updated_at\": \"2026-05-14T18:31:38.701Z\", \"hypothesis\": \"S2 两通道约束解码全量验证 — Grammar (Pass 1) + Semantic (Pass 2) 分离式约束。S2 pilot50 已验证 D/R violation=0%，全量运行检验 F1 稳定性和 per-relation 效果。与 S1 对比验证两种架构的 F1-violation trade-off。\", \"notes\": \"✅ 全量完成 551/551 via --resume. S2 两通道约束解码结果。DR=0.97% (vs S1 0.93%), RV=0%, ET=0%, R-F1=0.0803, E-F1=0.319.\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1644, \"total_entities\": 2228, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0097, \"cross_field_consistency_violation_rate\": 0.0803, \"entity_precision\": 0.2797, \"entity_recall\": 0.3712, \"entity_f1\": 0.319, \"relation_precision\": 0.064, \"relation_recall\": 0.1078, \"relation_f1\": 0.0803, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_full_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T21:48:44.785Z\", \"updated_at\": \"2026-05-14T18:31:34.603Z\", \"hypothesis\": \"Grammar + Semantic 双层约束 (S1 单通道) 能否同时消除 rv + dr violations？F1 变化是关键：<2pp 降=完美，2-5pp=可接受 trade-off，>5pp=需要 S2 策略\", \"notes\": \"✅ _v2 干净数据全量完成 551/551. DR violation = 0.93% (baseline 15.37%, -14.44pp). ET=0%, RV=0%. 数据来源: phase2_scierc_full_s1_v2.jsonl\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1729, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.0093, \"cross_field_consistency_violation_rate\": 0.099, \"entity_f1\": 0.3098, \"entity_precision\": 0.2598, \"entity_recall\": 0.3837, \"relation_f1\": 0.0836, \"relation_precision\": 0.0654, \"relation_recall\": 0.116, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_semantic_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T21:48:44.427Z\", \"updated_at\": \"2026-05-14T18:31:31.811Z\", \"hypothesis\": \"Semantic-only constrained decoding (TypeConstraintProcessor) 能否消除 domain/range violations？预期 dr_violation→0%，但可能影响 F1（约束过强导致生成偏移）\", \"notes\": \"✅ _v2 干净数据全量完成 551/551. DR violation = 11.65% (baseline 15.37%, -3.72pp). ET=0.4%, RV=1.51%.\", \"conclusion\": \"success\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1726, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0151, \"domain_range_violation_rate\": 0.1165, \"cross_field_consistency_violation_rate\": 0.0271, \"entity_f1\": 0.3101, \"entity_precision\": 0.2605, \"entity_recall\": 0.3831, \"relation_f1\": 0.0815, \"relation_precision\": 0.0637, \"relation_recall\": 0.1129, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_scierc_grammar_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T21:48:43.487Z\", \"updated_at\": \"2026-05-14T18:31:29.442Z\", \"hypothesis\": \"Grammar-only constrained decoding (XGrammar JSON schema + enum) 能否消除 relation vocabulary violations 同时不影响 F1？预期 rv_violation→0%, dr_violation 不变\", \"notes\": \"进程从未崩溃。原 'crash' 判定是 cron 追踪 stale PID 123425（已杀的 batch script）导致 5× dead 误报。实际进程 PID 126473 一直在 GPU 1 正常运行。nvidia-smi 确认: GPU 1 上 grammar_only(126473) + unconstrained(126948) 共享，各占 ~16.5GB，利用率 92%。\", \"metrics\": {\"total_samples\": 551, \"total_triples\": 1725, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0, \"domain_range_violation_rate\": 0.1484, \"cross_field_consistency_violation_rate\": 0.0008, \"entity_f1\": 0.3098, \"entity_precision\": 0.2598, \"entity_recall\": 0.3837, \"relation_f1\": 0.0823, \"relation_precision\": 0.0643, \"relation_recall\": 0.114, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"conclusion\": \"success\"}, \"phase2_scierc_unconstrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T22:19:07.120Z\", \"updated_at\": \"2026-05-14T18:31:26.645Z\", \"hypothesis\": \"Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的代码路径和 prompt，确保 F1 对比公平。预期结果接近 Phase 0 (entity_f1=0.31, relation_f1=0.08)\", \"metrics\": {\"json_parse_rate\": 1, \"entity_f1\": 0.3101, \"entity_precision\": 0.2605, \"entity_recall\": 0.3831, \"relation_f1\": 0.0823, \"relation_precision\": 0.0644, \"relation_recall\": 0.114, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0139, \"domain_range_violation_rate\": 0.1537, \"cross_field_consistency_violation_rate\": 0.0008, \"total_triples\": 1724, \"total_entities\": 2474, \"total_samples\": 551, \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}, \"conclusion\": \"success\"}, \"phase2_docred_full_s1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T02:07:20.166Z\", \"updated_at\": \"2026-05-14T18:31:19.721Z\", \"hypothesis\": \"Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上能否复现 SciERC 的 DR 消除效果 (15.37%→0.93%)？DocRED 约束更紧 (avg 5.68 valid pairs)，DR baseline 更高 (18.7%)，验证 OntoCoDec 在复杂 schema 上的泛化性。\", \"notes\": \"DR 18.46%→10.19% (↓44.8%). RV 29.66%→0.03% (↓99.9%), ET 8.18%→0% (↓100%). R-F1 7.74%→8.23% (+0.49pp), E-F1 58.15%→59.37% (+1.22pp). F1 method: all_set (OOV predictions included in denominator). 之前 recognized_set 方法 (R-F1=9.33%→8.17%, -1.16pp) 是错误的——它过滤了 unconstrained 的 5189 个 OOV predictions，人为抬高 precision。Grammar-only DR 上升(18.46→26.17%)是审稿必问点：grammar 强制 valid relation name 后 entity type 与新 relation 的 domain/range 不匹配加剧，恰好证明 semantic 层必要性。\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 987, \"parse_failures\": 11, \"total_entities\": 20187, \"total_triples\": 17341, \"entity_type_violation_rate\": 0, \"relation_vocabulary_violation_rate\": 0.0003, \"domain_range_violation_rate\": 0.1021, \"cross_field_consistency_violation_rate\": 0.0257, \"entity_f1\": 59.37, \"entity_precision\": 58.45, \"entity_recall\": 59.63, \"relation_f1\": 8.23, \"relation_precision\": 6.99, \"relation_recall\": 10.01, \"unrecognized_relations\": 5, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\"}}, \"phase2_docred_semantic_only\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:40:51.107Z\", \"updated_at\": \"2026-05-14T18:31:13.783Z\", \"hypothesis\": \"Semantic-only constrained decoding 在 DocRED (96 relations, avg 5.68 valid pairs) 上的 DR 降低幅度。SciERC semantic_only DR↓24% (15.37→11.65%)，DocRED 约束更紧预期效果更明显。关键验证 Claim 3 enabling dependency：semantic_only 无法消除 RV/ET（需 grammar），证明两层互补非替代。\", \"notes\": \"DocRED semantic-only（checker 修复后定稿数字）。ET 10.44% (修复前 18.44%, -8pp: strip 修 507 假阳性 + PERSON alias 修 1108 假阳性)。DR 13.84% (修复前 15.05%, -1.21pp: normalize 也修正了 DR pair 匹配)。CF 1.05% (修复前 2.29%)。残余 ET 2107 violations 是真实退化：WORK(823)/EVENT(743)/ETHNIC_GROUP(137) 等非标类型。F1 无变化。998 lines, 0 duplicates。\", \"metrics\": {\"documents_checked\": 987, \"parse_failures\": 11, \"total_entities\": 20185, \"total_triples\": 17571, \"entity_type_violation_rate\": 0.0422, \"relation_vocabulary_violation_rate\": 0.2987, \"domain_range_violation_rate\": 0.1384, \"cross_field_consistency_violation_rate\": 0.0105, \"entity_f1\": 57.81, \"entity_precision\": 57.27, \"entity_recall\": 58.37, \"relation_f1\": 7.7, \"relation_precision\": 6.54, \"relation_recall\": 9.37, \"f1_method\": \"all_set\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"et_v1\": 0.1044, \"et_fix_note\": \"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\"}, \"conclusion\": \"success\"}, \"phase2_docred_unconstrained\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:40:50.853Z\", \"updated_at\": \"2026-05-14T18:31:10.378Z\", \"hypothesis\": \"DocRED Phase 2 unconstrained baseline — 使用与 constrained 实验完全相同的 Phase 2 pipeline 和 prompt，确保消融表 F1/violation 对比公平。预期 DR~18.7%, RV~28.9%, ET~7.5%（接近 Phase 0）。\", \"notes\": \"✅ Phase 2 重新分析完成。998 lines, 0 duplicates — 文件干净无残留。正确值: DR=18.5%, RV=29.7%, ET=8.2%, E-F1=58.15%, R-F1=7.74%。F1 method: all_set (Reviewer 2026-05-14 确认正确)。论文可 claim: constrained decoding 不损失 R-F1。\", \"conclusion\": \"success\", \"metrics\": {\"documents_checked\": 986, \"parse_failures\": 12, \"total_entities\": 20171, \"total_triples\": 17497, \"entity_type_violation_rate\": 0.0248, \"relation_vocabulary_violation_rate\": 0.2966, \"domain_range_violation_rate\": 0.1846, \"cross_field_consistency_violation_rate\": 0.001, \"entity_f1\": 58.15, \"entity_precision\": 57.26, \"entity_recall\": 58.32, \"relation_f1\": 7.74, \"relation_precision\": 6.55, \"relation_recall\": 9.46, \"unrecognized_relations\": 5189, \"f1_method\": \"all_set (includes OOV predictions in denominator)\", \"checker_version\": \"fixed_20260514_v2 (strip + alias + unique_et)\", \"et_v1\": 0.0818, \"et_fix_note\": \"v1 triple-counted ET across entity_list + relation head/tail; v2 deduplicates by (text, normalized_type)\"}}, \"mvp_phase0_docred_schema_r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T00:36:06.125Z\", \"updated_at\": \"2026-05-14T02:56:53.324Z\", \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心。（从被误杀的 mvp_phase0_docred_schema 恢复，--resume）\", \"notes\": \"归档：mvp_phase0_docred_schema 已完成全量 998/998 并有完整 metrics，此 r2 续跑实验不再需要。\", \"conclusion\": \"killed\"}, \"phase2_s2_pilot50\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T23:25:10.566Z\", \"updated_at\": \"2026-05-14T02:04:44.195Z\", \"hypothesis\": \"S2 两通道约束解码 50 样本 pilot — 验证 PositionDetector 修复后 D/R violation=0%，评估 relation_f1 质量\", \"conclusion\": \"success\", \"metrics\": {\"domain_range_violation_rate\": 0.0205, \"relation_vocabulary_violation_rate\": 0, \"relation_f1\": 0.1008, \"samples\": 50, \"predicted_relations\": 146, \"true_positives\": 13, \"gold_relations\": 112, \"entity_f1_approx\": 0.29, \"note\": \"DR 修正: 原值 0 来自 dryrun (n=25 triples)。实际 pilot50 DR=3/146=2.05% (来自 violation_report_s2_pilot50.json)。\"}, \"notes\": \"S2 pilot 实际 relation_f1=0.1008（非此前误报的 0.0）。根因：原 F1=0 来自 10 样本 dryrun 的 violation_report，不是 pilot50 评估结果。S2 架构无问题，F1 与 unconstrained 持平。FP 分析: entity span 质量差是主因(52.6% head+tail 都不匹配 gold)。改进方向: few-shot entity prompt / 编号引用格式 / 阻止自引用。\"}, \"mvp_phase0_docred_schema\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T17:58:18.184Z\", \"updated_at\": \"2026-05-14T01:49:57.097Z\", \"hypothesis\": \"Schema-informed prompt 在 DocRED (96 relation types) 上的违规率降低幅度是否小于 SciERC (7 types)？验证约束空间越大 prompt 级干预越力不从心\", \"conclusion\": \"success\", \"notes\": \"Resume 完成 998/998 docs. Schema-informed prompt 结果: ET=0.61% (baseline 7.5%, Δ-6.89%), RV=18.4% (baseline 28.9%, Δ-10.5%), DR=12.8% (baseline 18.7%, Δ-5.9%). 全维度显著改善。\", \"metrics\": {\"total_documents\": 998, \"documents_checked\": 943, \"parse_failures\": 55, \"json_parse_rate\": 0.9449, \"total_entities\": 19524, \"total_triples\": 16782, \"entity_type_violations\": 119, \"entity_type_violation_rate\": 0.0061, \"relation_vocabulary_violations\": 3090, \"relation_vocabulary_violation_rate\": 0.1841, \"relation_fuzzy_matches\": 85, \"domain_range_violations\": 2154, \"domain_range_violation_rate\": 0.1284, \"cross_field_consistency_violations\": 29, \"cross_field_consistency_violation_rate\": 0.0015, \"total_violations_any\": 5392, \"total_violation_rate\": 0.1485, \"go_nogo_metric_dr\": 0.1284}}, \"mvp_phase0_violation_rate_docred\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T17:38:05.075Z\", \"updated_at\": \"2026-05-13T21:46:35.193Z\", \"hypothesis\": \"DocRED 有 96 relation types，约束空间远大于 SciERC (7 types)，预期 unconstrained LLM 的 per-triple violation rate 显著高于 SciERC，验证违规率与约束空间复杂度正相关\", \"metrics\": {\"total_docs\": 998, \"parsed_docs\": 962, \"json_parse_rate\": 0.964, \"total_entities\": 19099, \"total_triples\": 16540, \"entity_type_violation_rate\": 0.075, \"relation_vocabulary_violation_rate\": 0.289, \"domain_range_violation_rate\": 0.187, \"cross_field_consistency_violation_rate\": 0.0008, \"go_nogo_metric\": 0.187, \"fuzzy_matches\": 126, \"top_dr_violations_by_rate\": {\"P35_head_of_state\": 1, \"P710_participant\": 0.919, \"P172_ethnic_group\": 0.875}, \"top_dr_violations_by_count\": {\"P31_instance_of\": {\"violations\": 322, \"total\": 533, \"rate\": 0.604}, \"P1001_applies_to_jurisdiction\": {\"violations\": 264, \"total\": 594, \"rate\": 0.444}, \"P1344_participant_in\": {\"violations\": 194, \"total\": 312, \"rate\": 0.622}}}, \"conclusion\": \"success\"}, \"mvp_phase0_scierc_schema\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T17:58:17.259Z\", \"updated_at\": \"2026-05-13T20:58:13.410Z\", \"hypothesis\": \"Schema-informed prompt（显式给出 domain/range 约束）能否降低违规率？与 minimal prompt 对比，若违规率仍 >5% 则证明 prompt 级干预不足以替代 decoding-time enforcement\", \"metrics\": {\"domain_range_violation_rate\": 0.0578, \"relation_vocabulary_violation_rate\": 0.003, \"entity_type_violation_rate\": 0, \"total_violation_rate\": 0.0253, \"go_nogo_metric\": 0.0578, \"total_triples\": 1661, \"vs_minimal_dr_reduction\": -0.624, \"per_relation\": {\"Used-for\": {\"rate\": \"TBD\"}, \"Feature-of\": {\"delta_pp\": -22.3}, \"Part-of\": {\"delta_pp\": -22.5}, \"Compare\": {\"delta_pp\": -14.8}, \"Evaluate-for\": {\"delta_pp\": 5.8}}, \"mcnemar_all_significant\": true}, \"conclusion\": \"success\"}, \"mvp_phase0_violation_rate\": {\"status\": \"DONE\", \"created_at\": \"2026-05-13T17:35:38.680Z\", \"updated_at\": \"2026-05-13T19:13:34.510Z\", \"hypothesis\": \"Unconstrained LLM (Qwen3-8B) 在 SciERC zero-shot IE 任务上的本体类型约束违反率 >5%，证明解码时约束强制的必要性\", \"metrics\": {\"total_triples\": 1724, \"total_entities\": 2474, \"json_parse_rate\": 1, \"entity_type_violation_rate\": 0.004, \"relation_vocabulary_violation_rate\": 0.0139, \"domain_range_violation_rate\": 0.1537, \"cross_field_consistency_violation_rate\": 0.0008, \"go_nogo_metric\": 0.1537, \"entity_f1\": 0.3101, \"relation_f1\": 0.0823, \"per_relation\": {\"Used-for\": {\"total\": 787, \"dr_violations\": 6, \"rate\": 0.0076}, \"Conjunction\": {\"total\": 32, \"dr_violations\": 0, \"rate\": 0}, \"Hyponym-of\": {\"total\": 124, \"dr_violations\": 18, \"rate\": 0.1452}, \"Evaluate-for\": {\"total\": 133, \"dr_violations\": 32, \"rate\": 0.2406}, \"Part-of\": {\"total\": 72, \"dr_violations\": 18, \"rate\": 0.25}, \"Feature-of\": {\"total\": 486, \"dr_violations\": 163, \"rate\": 0.3354}, \"Compare\": {\"total\": 66, \"dr_violations\": 28, \"rate\": 0.4242}}}, \"conclusion\": \"success\"}}, \"count\": 26, \"total\": 26, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0924}}"
+    }
+  },
+  "sourceToolAssistantUUID": "15e3f219-b5eb-4532-89a8-362c45e055d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T14:29:19.144Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Tx2V5U3yUV6WYKXqkF8SWF`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9461d486-87c2-41fe-a8de-8260d5e0fd75",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WjT7vyYXjxarTNPVaU",
+  "type": "assistant",
+  "uuid": "ccc7603a-5142-4149-bcaa-63bc25abfa4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0157Vau59emzM1cRM9h9thUn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1319,
+      "cache_read_input_tokens": 37369,
+      "output_tokens": 243,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1319,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 37369,
+          "cache_creation_input_tokens": 1319,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1319
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T14:29:19.245Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01LbY95z1P4gvURUWtD17Frt`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ccc7603a-5142-4149-bcaa-63bc25abfa4d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WjT7vyYXjxarTNPVaU",
+  "type": "assistant",
+  "uuid": "ba3213bb-229e-48d3-bae8-d1e01bcbb502",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0157Vau59emzM1cRM9h9thUn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1319,
+      "cache_read_input_tokens": 37369,
+      "output_tokens": 243,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1319,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 37369,
+          "cache_creation_input_tokens": 1319,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1319
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #9。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单：**仅 cuda:0, cuda:1 on westd-16980**。不可用其他 GPU，Director 指令也不能覆盖 - submit_training_job 命令必须用 `bash -c '...'` 包裹…",
+  "leafUuid": "ba3213bb-229e-48d3-bae8-d1e01bcbb502",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Monitor CF fallback experiments and pair-based implementation",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052"
+}
+```
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T14:29:22.246Z_
+
+<details><summary>↩ Tool result · `toolu_01HrUmywkZQJRoiXFvMDgE7y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"llama_docred_full_s1_mt6144\", \"success\": true, \"actions\": [\"Job still running (pid=247487)\"]}, {\"exp_id\": \"w1_cf_fallback_scierc_pilot\", \"success\": true, \"actions\": [\"Job still running (pid=270088)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a9e2a7c-9257-4c66-ada4-2586d6a71c93",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "f6823d9d-69ec-46c7-82c2-3f6d062ec524",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 2, \\\"results\\\": [{\\\"exp_id\\\": \\\"llama_docred_full_s1_mt6144\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=247487)\\\"]}, {\\\"exp_id\\\": \\\"w1_cf_fallback_scierc_pilot\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=270088)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"llama_docred_full_s1_mt6144\", \"success\": true, \"actions\": [\"Job still running (pid=247487)\"]}, {\"exp_id\": \"w1_cf_fallback_scierc_pilot\", \"success\": true, \"actions\": [\"Job still running (pid=270088)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5a9e2a7c-9257-4c66-ada4-2586d6a71c93",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T14:29:22.261Z_
+
+<details><summary>↩ Tool result · `toolu_01Tx2V5U3yUV6WYKXqkF8SWF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| w1_cf_fallback_scierc_pilot | — | — | — | — |\\n| llama_docred_full_s1_mt6144 | — | — | — | — |\\n\\n## 待处理\\n- w1_cf_fallback_llama_scierc（准备中）\\n- w1_cf_fallback_docred（准备中）\\n- w1_cf_fallback_llama_docred（准备中）\\n\\n## 近期结论\\n- **llama_docred_unconstrained_mt6144** (success): —\\n  [llama_docred_unconstrained_mt6144 analysis](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/llama_docred_unconstrained_mt6144/report/analysis.md) | [llama_docred_unconstrained_mt6144 analysis](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/llama_docred_unconstrained_mt6144/report/analysis_f39df2.md)\\n- **llama_docred_full_s1** (success): Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上的效果。与 Qwen3-8B DocRED full_s1 (DR 10.19%) 对比，验证约束解码在不同模型+复杂 schema 上的泛化性。\\n  [llama_docred_full_s1_analysis](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/llama_docred_full_s1/report/llama_docred_full_s1_analysis.md) | [Llama DocRED full_s1 DR Residual Analysis](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/llama_docred_full_s1/report/dr_residual_analysis_d875c7.md)\\n- **llama_docred_unconstrained** (success): Llama-3.1-8B-Instruct 在 DocRED unconstrained baseline。与 Qwen3-8B DocRED unconstrained 对比 violation 分布。验证不同模型在复杂 schema (96 relations) 上的 violation 模式差异。\\n\\n## 趋势\\n成功 20 / 负向 0 / 失败 0 / 共 21\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-16980: 无 GPU 信息\\n\\n## 告警\\n- mvp_phase0_docred_schema_r2: 已被终止 — unknown\\n\", \"total_chars\": 1641, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ccc7603a-5142-4149-bcaa-63bc25abfa4d",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "31351094-632a-4f33-a0d1-583907833f76",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| w1_cf_fallback_scierc_pilot | — | — | — | — |\\\\n| llama_docred_full_s1_mt6144 | — | — | — | — |\\\\n\\\\n## 待处理\\\\n- w1_cf_fallback_llama_scierc（准备中）\\\\n- w1_cf_fallback_docred（准备中）\\\\n- w1_cf_fallback_llama_docred（准备中）\\\\n\\\\n## 近期结论\\\\n- **llama_docred_unconstrained_mt6144** (success): —\\\\n  [llama_docred_unconstrained_mt6144 analysis](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/llama_docred_unconstrained_mt6144/report/analysis.md) | [llama_docred_unconstrained_mt6144 analysis](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/llama_docred_unconstrained_mt6144/report/analysis_f39df2.md)\\\\n- **llama_docred_full_s1** (success): Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上的效果。与 Qwen3-8B DocRED full_s1 (DR 10.19%) 对比，验证约束解码在不同模型+复杂 schema 上的泛化性。\\\\n  [llama_docred_full_s1_analysis](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/llama_docred_full_s1/report/llama_docred_full_s1_analysis.md) | [Llama DocRED full_s1 DR Residual Analysis](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/llama_docred_full_s1/report/dr_residual_analysis_d875c7.md)\\\\n- **llama_docred_unconstrained** (success): Llama-3.1-8B-Instruct 在 DocRED unconstrained baseline。与 Qwen3-8B DocRED unconstrained 对比 violation 分布。验证不同模型在复杂 schema (96 relations) 上的 violation 模式差异。\\\\n\\\\n## 趋势\\\\n成功 20 / 负向 0 / 失败 0 / 共 21\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-16980: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- mvp_phase0_docred_schema_r2: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 1641, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| w1_cf_fallback_scierc_pilot | — | — | — | — |\\n| llama_docred_full_s1_mt6144 | — | — | — | — |\\n\\n## 待处理\\n- w1_cf_fallback_llama_scierc（准备中）\\n- w1_cf_fallback_docred（准备中）\\n- w1_cf_fallback_llama_docred（准备中）\\n\\n## 近期结论\\n- **llama_docred_unconstrained_mt6144** (success): —\\n  [llama_docred_unconstrained_mt6144 analysis](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/llama_docred_unconstrained_mt6144/report/analysis.md) | [llama_docred_unconstrained_mt6144 analysis](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/llama_docred_unconstrained_mt6144/report/analysis_f39df2.md)\\n- **llama_docred_full_s1** (success): Llama-3.1-8B-Instruct + Grammar+Semantic 双层约束 (S1) 在 DocRED (96 relations) 上的效果。与 Qwen3-8B DocRED full_s1 (DR 10.19%) 对比，验证约束解码在不同模型+复杂 schema 上的泛化性。\\n  [llama_docred_full_s1_analysis](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/llama_docred_full_s1/report/llama_docred_full_s1_analysis.md) | [Llama DocRED full_s1 DR Residual Analysis](/api/workspace-files/projects/schema_semantic_constrained_ie/artifacts/llama_docred_full_s1/report/dr_residual_analysis_d875c7.md)\\n- **llama_docred_unconstrained** (success): Llama-3.1-8B-Instruct 在 DocRED unconstrained baseline。与 Qwen3-8B DocRED unconstrained 对比 violation 分布。验证不同模型在复杂 schema (96 relations) 上的 violation 模式差异。\\n\\n## 趋势\\n成功 20 / 负向 0 / 失败 0 / 共 21\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-16980: 无 GPU 信息\\n\\n## 告警\\n- mvp_phase0_docred_schema_r2: 已被终止 — unknown\\n\", \"total_chars\": 1641, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ccc7603a-5142-4149-bcaa-63bc25abfa4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T14:29:22.283Z_
+
+<details><summary>↩ Tool result · `toolu_01LbY95z1P4gvURUWtD17Frt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\", \"content\": \"# schema_semantic_constrained_ie — Research Dashboard\\n\\n> 最后更新: 2026-05-15 14:15 UTC | 更新原因: Reviewer 深度审查：D017 pair-based 前提待验证 + D018 W5 LoRA 批准 + 分数路径更新\\n\\n## 核心方向\\nOntoCoDec: 两层约束解码（grammar + semantic）自动编译 IE ontology schema 为 token-level constraints，消除 LLM-based IE 的 ontology constraint violations。详见 paper_framing.md。\\n\\n## 当前进展\\n**阶段**: Round 1 审稿应对 — 关键验证 + 新增实验\\n- **Issue Tracker**: 15/16 resolved，W1 (CF fallback) in_progress，W2 需重新评估（§3 形式化可能只需写作修复）\\n- **Paper Agent**: 8 项写作修复完成 ✅\\n- **紧急验证中**: D017 pair-based 前提核实（代码可能已是 pair-based，Reviewer 发现）\\n- **新增**: D018 W5 LoRA fine-tune 已批准（条件启动）\\n- **编译状态**: 17 页，无 undefined refs\\n- **GPU**: 2 张（cuda:0 scierc_pilot, cuda:1 mt6144_full_s1）\\n\\n## Round 1 Issue Tracker\\n| ID | Severity | Status | 简述 |\\n|----|----------|--------|------|\\n| W1 | critical | **in_progress** | CF fallback pilot 运行中，3 实验 PREPARING |\\n| W2 | critical | **⚠️ 需重验** | §3 形式化：代码可能已 pair-based，论文描述为 independent（纯写作修复？） |\\n| W3 | critical | ✅ resolved | Runtime 表 + 分析 |\\n| W4 | critical | ✅ resolved | Table 1 v2 数据统一 |\\n| W5 | warning | **D018 批准** | LoRA fine-tune Qwen3-8B SciERC，~6 GPU-hrs，条件启动 |\\n| W6 | warning | ✅ resolved | 合并到 W3 |\\n| W7-W14, Q7-Q8 | various | ✅ resolved | 写作修复 |\\n\\n## 关键路径\\n### Track A: W1 CF Fallback（~12 GPU-hrs）\\n1. scierc_pilot 运行中 (~25min remaining)\\n2. ⚠️ **D017 验证中**：确认代码是否已 pair-based → 决定是否需要代码改动\\n3. pilot 完成 → 代码集成（如需）→ dry-run → 正式 4 实验\\n4. CF 结果分析 + DR-CF Pareto 图 + violation budget\\n5. Paper Agent: CF 结果写入论文\\n\\n### Track B: W5 LoRA Fine-tune（~6 GPU-hrs，D018）\\n1. mt6144 完成后 cuda:1 释放 → 启动 LoRA training (~2-3h)\\n2. Unconstrained fine-tuned eval → 检查 DR baseline（gate: DR>2% 才继续）\\n3. Constrained fine-tuned eval → 验证 OntoCoDec composability\\n4. 分析 + 写入论文\\n\\n### Track C: 写作重构（0 GPU）\\n1. §3 形式化统一（pair-based notation）— 等 D017 验证结果\\n2. Narrative arc 修复（Introduction + Discussion）\\n3. Claim 升级评估（等 W5 结果）\\n\\n## 目标分数路径（Reviewer 评估）\\n- 当前: Weak Reject 2.75/5\\n- P0 完成后 (W1+W2): 3.5/5 (Borderline Accept)\\n- P0+P1 完成后 (W5+narrative): **3.75-4.0/5 (Accept)**\\n\\n## GPU 预算\\nwestd-16980: cuda:0 + cuda:1\\n- cuda:0: w1_cf_fallback_scierc_pilot 运行中\\n- cuda:1: llama_docred_full_s1_mt6144 运行中\\n- 总剩余预算: ~18 GPU-hrs (W1: 12h + W5: 6h)\\n- 2 GPU 并行 wall-clock ~9-12h，DDL May 25 前充裕\\n\\n## 关键数字速查\\n| 指标 | Qwen SciERC | Qwen DocRED | Llama SciERC | Llama DocRED |\\n|------|-------------|-------------|--------------|--------------|\\n| DR reduction | 94% | 45% | 99.4% | 90.2% |\\n| R-F1 delta | +0.13pp (NS) | +0.50pp*** | -0.14pp | +0.29pp* |\\n| CF (S1) | 9.90% | 2.57% | 6.56% | 12.02% |\\n| Runtime overhead | −22.2% | +3.2% | +53.8% | +13.0% |\\n\\n## Rebuttal 强项\\n1. W2: pair-based enforcement 已在代码中实现（待验证）— 0 GPU 写作修复\\n2. W3/W6: 3/4 配置 overhead ≤13%，Qwen SciERC 反而加速 22%\\n3. Q7: CF 63.3% 来自 Generic catch-all type 固有歧义\\n4. Rectangularity: SciERC 0/7 矩形 → pair-based 必要性量化（新贡献）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D019 | 2026-05-15 | D018: 修正 D017 — 代码已是 pair-based，取消代码改动，改为纯写作修复 + 残 | phase2_scierc_full_s1, w1_cf_fallback_scierc_pilot |\\n| D018 | 2026-05-15 | D018: 批准 W5 LoRA fine-tune 实验（Qwen3-8B on SciERC）， | phase2_scierc_full_s1, phase2_scierc_unconstrained |\\n| D017 | 2026-05-15 | D017: 批准 pair-based σ(r) enforcement 升级，与 W1 CF fa | phase2_scierc_full_s1, phase2_docred_full_s1, w1_cf_fallback_scierc_pilot |\\n| D016 | 2026-05-14 | D016: Llama bootstrap CI 修复完成，全部 p-values 写入论文，fra | llama_scierc_unconstrained, llama_scierc_full_s1, llama_docred_unconstrained, llama_docred_full_s1 |\\n| D015 | 2026-05-14 | D015: Dream #2 结果处理 — Title 去掉 \\\"Near-Complete\\\"，6 项 | dream_20260514T205155 |\\n| D014 | 2026-05-14 | Tightness scaling claim 修订：从单因素(tightness)改为双因素(ti | llama_docred_full_s1, llama_docred_unconstrained, phase2_docred_full_s1 |\\n| D013 | 2026-05-14 | Post-hoc baseline framing: 不以 F1 论高低，多维对比 (recall  | phase2_scierc_unconstrained, phase2_scierc_full_s1, phase2_docred_unconstrained, phase2_docred_full_s1 |\\n| D012 | 2026-05-14 | Bootstrap CI framing: 选 (B) 逐数据集报告 F1 significance | phase2_docred_full_s1, phase2_scierc_full_s1 |\\n| D011 | 2026-05-14 | 推翻之前 ET 计数口径决定——修正 ET triple-counting，每个 entity 只计 | phase2_docred_unconstrained, phase2_docred_semantic_only |\\n| D010 | 2026-05-14 | Dream 三档 Weak Reject (3/6) → 制定 6 项结构性补强计划：post-ho | llama_docred_full_s1, llama_docred_unconstrained, llama_scierc_full_s1 |\\n\\n\\n\", \"lines\": 89}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba3213bb-229e-48d3-bae8-d1e01bcbb502",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "b7048dbf-0bf6-4467-b17f-31c6da71ec94",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\\\", \\\"content\\\": \\\"# schema_semantic_constrained_ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 14:15 UTC | 更新原因: Reviewer 深度审查：D017 pair-based 前提待验证 + D018 W5 LoRA 批准 + 分数路径更新\\\\n\\\\n## 核心方向\\\\nOntoCoDec: 两层约束解码（grammar + semantic）自动编译 IE ontology schema 为 token-level constraints，消除 LLM-based IE 的 ontology constraint violations。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n**阶段**: Round 1 审稿应对 — 关键验证 + 新增实验\\\\n- **Issue Tracker**: 15/16 resolved，W1 (CF fallback) in_progress，W2 需重新评估（§3 形式化可能只需写作修复）\\\\n- **Paper Agent**: 8 项写作修复完成 ✅\\\\n- **紧急验证中**: D017 pair-based 前提核实（代码可能已是 pair-based，Reviewer 发现）\\\\n- **新增**: D018 W5 LoRA fine-tune 已批准（条件启动）\\\\n- **编译状态**: 17 页，无 undefined refs\\\\n- **GPU**: 2 张（cuda:0 scierc_pilot, cuda:1 mt6144_full_s1）\\\\n\\\\n## Round 1 Issue Tracker\\\\n| ID | Severity | Status | 简述 |\\\\n|----|----------|--------|------|\\\\n| W1 | critical | **in_progress** | CF fallback pilot 运行中，3 实验 PREPARING |\\\\n| W2 | critical | **⚠️ 需重验** | §3 形式化：代码可能已 pair-based，论文描述为 independent（纯写作修复？） |\\\\n| W3 | critical | ✅ resolved | Runtime 表 + 分析 |\\\\n| W4 | critical | ✅ resolved | Table 1 v2 数据统一 |\\\\n| W5 | warning | **D018 批准** | LoRA fine-tune Qwen3-8B SciERC，~6 GPU-hrs，条件启动 |\\\\n| W6 | warning | ✅ resolved | 合并到 W3 |\\\\n| W7-W14, Q7-Q8 | various | ✅ resolved | 写作修复 |\\\\n\\\\n## 关键路径\\\\n### Track A: W1 CF Fallback（~12 GPU-hrs）\\\\n1. scierc_pilot 运行中 (~25min remaining)\\\\n2. ⚠️ **D017 验证中**：确认代码是否已 pair-based → 决定是否需要代码改动\\\\n3. pilot 完成 → 代码集成（如需）→ dry-run → 正式 4 实验\\\\n4. CF 结果分析 + DR-CF Pareto 图 + violation budget\\\\n5. Paper Agent: CF 结果写入论文\\\\n\\\\n### Track B: W5 LoRA Fine-tune（~6 GPU-hrs，D018）\\\\n1. mt6144 完成后 cuda:1 释放 → 启动 LoRA training (~2-3h)\\\\n2. Unconstrained fine-tuned eval → 检查 DR baseline（gate: DR>2% 才继续）\\\\n3. Constrained fine-tuned eval → 验证 OntoCoDec composability\\\\n4. 分析 + 写入论文\\\\n\\\\n### Track C: 写作重构（0 GPU）\\\\n1. §3 形式化统一（pair-based notation）— 等 D017 验证结果\\\\n2. Narrative arc 修复（Introduction + Discussion）\\\\n3. Claim 升级评估（等 W5 结果）\\\\n\\\\n## 目标分数路径（Reviewer 评估）\\\\n- 当前: Weak Reject 2.75/5\\\\n- P0 完成后 (W1+W2): 3.5/5 (Borderline Accept)\\\\n- P0+P1 完成后 (W5+narrative): **3.75-4.0/5 (Accept)**\\\\n\\\\n## GPU 预算\\\\nwestd-16980: cuda:0 + cuda:1\\\\n- cuda:0: w1_cf_fallback_scierc_pilot 运行中\\\\n- cuda:1: llama_docred_full_s1_mt6144 运行中\\\\n- 总剩余预算: ~18 GPU-hrs (W1: 12h + W5: 6h)\\\\n- 2 GPU 并行 wall-clock ~9-12h，DDL May 25 前充裕\\\\n\\\\n## 关键数字速查\\\\n| 指标 | Qwen SciERC | Qwen DocRED | Llama SciERC | Llama DocRED |\\\\n|------|-------------|-------------|--------------|--------------|\\\\n| DR reduction | 94% | 45% | 99.4% | 90.2% |\\\\n| R-F1 delta | +0.13pp (NS) | +0.50pp*** | -0.14pp | +0.29pp* |\\\\n| CF (S1) | 9.90% | 2.57% | 6.56% | 12.02% |\\\\n| Runtime overhead | −22.2% | +3.2% | +53.8% | +13.0% |\\\\n\\\\n## Rebuttal 强项\\\\n1. W2: pair-based enforcement 已在代码中实现（待验证）— 0 GPU 写作修复\\\\n2. W3/W6: 3/4 配置 overhead ≤13%，Qwen SciERC 反而加速 22%\\\\n3. Q7: CF 63.3% 来自 Generic catch-all type 固有歧义\\\\n4. Rectangularity: SciERC 0/7 矩形 → pair-based 必要性量化（新贡献）\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D019 | 2026-05-15 | D018: 修正 D017 — 代码已是 pair-based，取消代码改动，改为纯写作修复 + 残 | phase2_scierc_full_s1, w1_cf_fallback_scierc_pilot |\\\\n| D018 | 2026-05-15 | D018: 批准 W5 LoRA fine-tune 实验（Qwen3-8B on SciERC）， | phase2_scierc_full_s1, phase2_scierc_unconstrained |\\\\n| D017 | 2026-05-15 | D017: 批准 pair-based σ(r) enforcement 升级，与 W1 CF fa | phase2_scierc_full_s1, phase2_docred_full_s1, w1_cf_fallback_scierc_pilot |\\\\n| D016 | 2026-05-14 | D016: Llama bootstrap CI 修复完成，全部 p-values 写入论文，fra | llama_scierc_unconstrained, llama_scierc_full_s1, llama_docred_unconstrained, llama_docred_full_s1 |\\\\n| D015 | 2026-05-14 | D015: Dream #2 结果处理 — Title 去掉 \\\\\\\"Near-Complete\\\\\\\"，6 项 | dream_20260514T205155 |\\\\n| D014 | 2026-05-14 | Tightness scaling claim 修订：从单因素(tightness)改为双因素(ti | llama_docred_full_s1, llama_docred_unconstrained, phase2_docred_full_s1 |\\\\n| D013 | 2026-05-14 | Post-hoc baseline framing: 不以 F1 论高低，多维对比 (recall  | phase2_scierc_unconstrained, phase2_scierc_full_s1, phase2_docred_unconstrained, phase2_docred_full_s1 |\\\\n| D012 | 2026-05-14 | Bootstrap CI framing: 选 (B) 逐数据集报告 F1 significance | phase2_docred_full_s1, phase2_scierc_full_s1 |\\\\n| D011 | 2026-05-14 | 推翻之前 ET 计数口径决定——修正 ET triple-counting，每个 entity 只计 | phase2_docred_unconstrained, phase2_docred_semantic_only |\\\\n| D010 | 2026-05-14 | Dream 三档 Weak Reject (3/6) → 制定 6 项结构性补强计划：post-ho | llama_docred_full_s1, llama_docred_unconstrained, llama_scierc_full_s1 |\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 89}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/ROADMAP.md\", \"content\": \"# schema_semantic_constrained_ie — Research Dashboard\\n\\n> 最后更新: 2026-05-15 14:15 UTC | 更新原因: Reviewer 深度审查：D017 pair-based 前提待验证 + D018 W5 LoRA 批准 + 分数路径更新\\n\\n## 核心方向\\nOntoCoDec: 两层约束解码（grammar + semantic）自动编译 IE ontology schema 为 token-level constraints，消除 LLM-based IE 的 ontology constraint violations。详见 paper_framing.md。\\n\\n## 当前进展\\n**阶段**: Round 1 审稿应对 — 关键验证 + 新增实验\\n- **Issue Tracker**: 15/16 resolved，W1 (CF fallback) in_progress，W2 需重新评估（§3 形式化可能只需写作修复）\\n- **Paper Agent**: 8 项写作修复完成 ✅\\n- **紧急验证中**: D017 pair-based 前提核实（代码可能已是 pair-based，Reviewer 发现）\\n- **新增**: D018 W5 LoRA fine-tune 已批准（条件启动）\\n- **编译状态**: 17 页，无 undefined refs\\n- **GPU**: 2 张（cuda:0 scierc_pilot, cuda:1 mt6144_full_s1）\\n\\n## Round 1 Issue Tracker\\n| ID | Severity | Status | 简述 |\\n|----|----------|--------|------|\\n| W1 | critical | **in_progress** | CF fallback pilot 运行中，3 实验 PREPARING |\\n| W2 | critical | **⚠️ 需重验** | §3 形式化：代码可能已 pair-based，论文描述为 independent（纯写作修复？） |\\n| W3 | critical | ✅ resolved | Runtime 表 + 分析 |\\n| W4 | critical | ✅ resolved | Table 1 v2 数据统一 |\\n| W5 | warning | **D018 批准** | LoRA fine-tune Qwen3-8B SciERC，~6 GPU-hrs，条件启动 |\\n| W6 | warning | ✅ resolved | 合并到 W3 |\\n| W7-W14, Q7-Q8 | various | ✅ resolved | 写作修复 |\\n\\n## 关键路径\\n### Track A: W1 CF Fallback（~12 GPU-hrs）\\n1. scierc_pilot 运行中 (~25min remaining)\\n2. ⚠️ **D017 验证中**：确认代码是否已 pair-based → 决定是否需要代码改动\\n3. pilot 完成 → 代码集成（如需）→ dry-run → 正式 4 实验\\n4. CF 结果分析 + DR-CF Pareto 图 + violation budget\\n5. Paper Agent: CF 结果写入论文\\n\\n### Track B: W5 LoRA Fine-tune（~6 GPU-hrs，D018）\\n1. mt6144 完成后 cuda:1 释放 → 启动 LoRA training (~2-3h)\\n2. Unconstrained fine-tuned eval → 检查 DR baseline（gate: DR>2% 才继续）\\n3. Constrained fine-tuned eval → 验证 OntoCoDec composability\\n4. 分析 + 写入论文\\n\\n### Track C: 写作重构（0 GPU）\\n1. §3 形式化统一（pair-based notation）— 等 D017 验证结果\\n2. Narrative arc 修复（Introduction + Discussion）\\n3. Claim 升级评估（等 W5 结果）\\n\\n## 目标分数路径（Reviewer 评估）\\n- 当前: Weak Reject 2.75/5\\n- P0 完成后 (W1+W2): 3.5/5 (Borderline Accept)\\n- P0+P1 完成后 (W5+narrative): **3.75-4.0/5 (Accept)**\\n\\n## GPU 预算\\nwestd-16980: cuda:0 + cuda:1\\n- cuda:0: w1_cf_fallback_scierc_pilot 运行中\\n- cuda:1: llama_docred_full_s1_mt6144 运行中\\n- 总剩余预算: ~18 GPU-hrs (W1: 12h + W5: 6h)\\n- 2 GPU 并行 wall-clock ~9-12h，DDL May 25 前充裕\\n\\n## 关键数字速查\\n| 指标 | Qwen SciERC | Qwen DocRED | Llama SciERC | Llama DocRED |\\n|------|-------------|-------------|--------------|--------------|\\n| DR reduction | 94% | 45% | 99.4% | 90.2% |\\n| R-F1 delta | +0.13pp (NS) | +0.50pp*** | -0.14pp | +0.29pp* |\\n| CF (S1) | 9.90% | 2.57% | 6.56% | 12.02% |\\n| Runtime overhead | −22.2% | +3.2% | +53.8% | +13.0% |\\n\\n## Rebuttal 强项\\n1. W2: pair-based enforcement 已在代码中实现（待验证）— 0 GPU 写作修复\\n2. W3/W6: 3/4 配置 overhead ≤13%，Qwen SciERC 反而加速 22%\\n3. Q7: CF 63.3% 来自 Generic catch-all type 固有歧义\\n4. Rectangularity: SciERC 0/7 矩形 → pair-based 必要性量化（新贡献）\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D019 | 2026-05-15 | D018: 修正 D017 — 代码已是 pair-based，取消代码改动，改为纯写作修复 + 残 | phase2_scierc_full_s1, w1_cf_fallback_scierc_pilot |\\n| D018 | 2026-05-15 | D018: 批准 W5 LoRA fine-tune 实验（Qwen3-8B on SciERC）， | phase2_scierc_full_s1, phase2_scierc_unconstrained |\\n| D017 | 2026-05-15 | D017: 批准 pair-based σ(r) enforcement 升级，与 W1 CF fa | phase2_scierc_full_s1, phase2_docred_full_s1, w1_cf_fallback_scierc_pilot |\\n| D016 | 2026-05-14 | D016: Llama bootstrap CI 修复完成，全部 p-values 写入论文，fra | llama_scierc_unconstrained, llama_scierc_full_s1, llama_docred_unconstrained, llama_docred_full_s1 |\\n| D015 | 2026-05-14 | D015: Dream #2 结果处理 — Title 去掉 \\\"Near-Complete\\\"，6 项 | dream_20260514T205155 |\\n| D014 | 2026-05-14 | Tightness scaling claim 修订：从单因素(tightness)改为双因素(ti | llama_docred_full_s1, llama_docred_unconstrained, phase2_docred_full_s1 |\\n| D013 | 2026-05-14 | Post-hoc baseline framing: 不以 F1 论高低，多维对比 (recall  | phase2_scierc_unconstrained, phase2_scierc_full_s1, phase2_docred_unconstrained, phase2_docred_full_s1 |\\n| D012 | 2026-05-14 | Bootstrap CI framing: 选 (B) 逐数据集报告 F1 significance | phase2_docred_full_s1, phase2_scierc_full_s1 |\\n| D011 | 2026-05-14 | 推翻之前 ET 计数口径决定——修正 ET triple-counting，每个 entity 只计 | phase2_docred_unconstrained, phase2_docred_semantic_only |\\n| D010 | 2026-05-14 | Dream 三档 Weak Reject (3/6) → 制定 6 项结构性补强计划：post-ho | llama_docred_full_s1, llama_docred_unconstrained, llama_scierc_full_s1 |\\n\\n\\n\", \"lines\": 89}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ba3213bb-229e-48d3-bae8-d1e01bcbb502",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-15T14:29:34.804Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Let me summarize the current state:
+
+**Registry confirmed:**
+- RUNNING: 2 experiments
+  - `w1_cf_fallback_scierc_pilot` (PID 270088, cuda:0) — still running
+  - `llama_docred_full_s1_mt6144` (PID 247487, cuda:1) — still running
+- PREPARING: 3 experiments (w1_cf_fallback_llama_scierc, w1_cf_fallback_docred, w1_cf_fallback_llama_docred)
+
+
+- DONE: 20 success, 1 killed out of 26 total
+
+**Crons confirmed:** Both active experiments still have processes running. There's also an active worker analyzing the pair-based implementation approach from the handoff notes.
+
+**Next steps:** I need to wait for the SciERC pilot to finish so I can analyze results and queue up the remaining CF fallback experiments, then do the same for the Llama DocRED run once it completes.
+
+Let me check the worker status and resource availability before updating the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7048dbf-0bf6-4467-b17f-31c6da71ec94",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WjxhR7n5VYvqRWrHLD",
+  "type": "assistant",
+  "uuid": "af99d28b-8eae-4e92-969d-e03331db2fc5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fzq2BUNLB6Dr25ieuHWyVg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14976,
+      "cache_read_input_tokens": 38688,
+      "output_tokens": 514,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14976,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 514,
+          "cache_read_input_tokens": 38688,
+          "cache_creation_input_tokens": 14976,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14976
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-15T14:29:35.148Z_
+
+两个 RUNNING 实验均存活，cron 正常。让我检查 Worker 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af99d28b-8eae-4e92-969d-e03331db2fc5",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WjxhR7n5VYvqRWrHLD",
+  "type": "assistant",
+  "uuid": "815397f2-ac6a-4ff4-b993-50cebc3ddd4b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fzq2BUNLB6Dr25ieuHWyVg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14976,
+      "cache_read_input_tokens": 38688,
+      "output_tokens": 514,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14976,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 514,
+          "cache_read_input_tokens": 38688,
+          "cache_creation_input_tokens": 14976,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14976
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T14:29:35.953Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01R5dQmXL2DGyks1VP9h2x4W`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_worker_status",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "815397f2-ac6a-4ff4-b993-50cebc3ddd4b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WjxhR7n5VYvqRWrHLD",
+  "type": "assistant",
+  "uuid": "9c6e2c2b-c7b1-494f-95a5-ec7fcfb457e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fzq2BUNLB6Dr25ieuHWyVg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14976,
+      "cache_read_input_tokens": 38688,
+      "output_tokens": 514,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14976,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 514,
+          "cache_read_input_tokens": 38688,
+          "cache_creation_input_tokens": 14976,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14976
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T14:29:35.963Z_
+
+<details><summary>↩ Tool result · `toolu_01R5dQmXL2DGyks1VP9h2x4W`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_worker_status"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c6e2c2b-c7b1-494f-95a5-ec7fcfb457e3",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "2d2594eb-3a19-4524-a341-6957813d5630",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__get_worker_status"
+    ],
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_worker_status",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "9c6e2c2b-c7b1-494f-95a5-ec7fcfb457e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #9。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单：**仅 cuda:0, cuda:1 on westd-16980**。不可用其他 GPU，Director 指令也不能覆盖 - submit_training_job 命令必须用 `bash -c '...'` 包裹…",
+  "leafUuid": "2d2594eb-3a19-4524-a341-6957813d5630",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Monitor CF fallback experiments and pair-based implementation",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052"
+}
+```
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T14:29:39.030Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_01Y4Ed1LrSfHt7KKSe2ALjAk`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d2594eb-3a19-4524-a341-6957813d5630",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WkyQc8iiAoPbSYBLvF",
+  "type": "assistant",
+  "uuid": "5a31d5c7-7a65-4a4e-bebe-b3a3c9790b69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UhHETaxcXv9n4hAjwAScFT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1224,
+      "cache_read_input_tokens": 53664,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1224,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 53664,
+          "cache_creation_input_tokens": 1224,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1224
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T14:29:39.077Z_
+
+<details><summary>↩ Tool result · `toolu_01Y4Ed1LrSfHt7KKSe2ALjAk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_research_pair_based_impl_plan_20260515T141200\", \"task_type\": \"research:pair_based_impl_plan\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"running\", \"started_at\": \"2026-05-15T14:12:00.785659+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a31d5c7-7a65-4a4e-bebe-b3a3c9790b69",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "050f0490-4f5a-48de-87da-12568cc95647",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_research_pair_based_impl_plan_20260515T141200\\\", \\\"task_type\\\": \\\"research:pair_based_impl_plan\\\", \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-15T14:12:00.785659+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_research_pair_based_impl_plan_20260515T141200\", \"task_type\": \"research:pair_based_impl_plan\", \"project\": \"schema_semantic_constrained_ie\", \"status\": \"running\", \"started_at\": \"2026-05-15T14:12:00.785659+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5a31d5c7-7a65-4a4e-bebe-b3a3c9790b69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-15T14:29:57.444Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so:
+- 1 active Worker: `worker_research_pair_based_impl_plan_20260515T141200` (running, analyzing pair-based implementation)
+- 2 RUNNING experiments on GPUs
+- 3 PREPARING experiments waiting
+
+Now let me check resource saturation before reporting. The handoff says Worker pool < 2 = failure. Currently I have only 1 Worker running. But both GPUs are occupied by running experiments, and there are 3 PREPARING experiments waiting. The active Worker is doing research (pair-based impl plan).
+ 
+I'm thinking about what else I can parallelize while the GPUs are saturated—I could spawn another Worker for non-GPU tasks like literature research or preparing the LoRA fine-tune code and data for when cuda:1 frees up, though the pair-based Worker's output is a blocker for the W2 writing fix. Let me check the resource-saturation skill to see what else I can optimize.
+
+Actually, looking at the handoff constraints more carefully: I have one Worker running plus two GPU experiments, which means I'm below the Worker pool capacity and should consider spawning another one for preparatory work. The immediate priorities are monitoring the two running experiments and processing their results once they complete, but I could also start preparing the LoRA training script and data in parallel so it's ready when GPU resources become available.
+
+Let me spawn a Worker for the LoRA prep work since it's already approved and doesn't require GPU access, but I should check the resource-saturation skill first and report to the Director before making that decision.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "050f0490-4f5a-48de-87da-12568cc95647",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WmDYfDq7i3pmP7t3NA",
+  "type": "assistant",
+  "uuid": "d4e78bc3-2de3-4250-876c-02b63e8ba316",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HxaLDcT8hntS1X3GsbTfy7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 245,
+      "cache_read_input_tokens": 54888,
+      "output_tokens": 824,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 245,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 824,
+          "cache_read_input_tokens": 54888,
+          "cache_creation_input_tokens": 245,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 245
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-15T14:29:57.989Z_
+
+1 个 Worker 在跑。Worker 池 < 2，需要补充非 GPU Worker。让我先读 resource-saturation skill，然后评估可并行任务。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4e78bc3-2de3-4250-876c-02b63e8ba316",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WmDYfDq7i3pmP7t3NA",
+  "type": "assistant",
+  "uuid": "04055cd5-7747-4833-a6ad-ec2f62878031",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HxaLDcT8hntS1X3GsbTfy7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 245,
+      "cache_read_input_tokens": 54888,
+      "output_tokens": 824,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 245,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 824,
+          "cache_read_input_tokens": 54888,
+          "cache_creation_input_tokens": 245,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 245
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T14:29:58.408Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PjAC4dELThRYG8KvCMEzAD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04055cd5-7747-4833-a6ad-ec2f62878031",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WmDYfDq7i3pmP7t3NA",
+  "type": "assistant",
+  "uuid": "208916d3-066d-4b6e-9e3d-5de6a5c54e4b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HxaLDcT8hntS1X3GsbTfy7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 245,
+      "cache_read_input_tokens": 54888,
+      "output_tokens": 824,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 245,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 824,
+          "cache_read_input_tokens": 54888,
+          "cache_creation_input_tokens": 245,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 245
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T14:29:58.431Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01PjAC4dELThRYG8KvCMEzAD`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "208916d3-066d-4b6e-9e3d-5de6a5c54e4b",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "caab0523-dd41-47b6-8a25-600cdf935b72",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4.",
+  "sourceToolAssistantUUID": "208916d3-066d-4b6e-9e3d-5de6a5c54e4b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34 · 2026-05-15T14:29:58.469Z_
+
+```json
+{
+  "parentUuid": "caab0523-dd41-47b6-8a25-600cdf935b72",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1be3c796-1d7f-4751-a7ec-8e2bbaafac4d",
+  "timestamp": "2026-05-15T14:29:58.469Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T14:30:01.137Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01PFDQ86mf4PWuMFxAVeLJc3`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1be3c796-1d7f-4751-a7ec-8e2bbaafac4d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WndVbiqZ1W1CKZfEUa",
+  "type": "assistant",
+  "uuid": "5f72c010-a4b8-425a-b36b-01ec22f3ffcb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cw7vZHCYu99towtFpCXkaK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1000,
+      "cache_read_input_tokens": 55133,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1000,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 55133,
+          "cache_creation_input_tokens": 1000,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1000
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T14:30:01.251Z_
+
+<details><summary>↩ Tool result · `toolu_01PFDQ86mf4PWuMFxAVeLJc3`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5f72c010-a4b8-425a-b36b-01ec22f3ffcb",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "f4beed92-c398-40cb-a7d2-a72b481fb55b",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 108,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "5f72c010-a4b8-425a-b36b-01ec22f3ffcb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T14:30:06.617Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01RWcQQMUZx4h1v3FM5wDYXt`</summary>
+
+```json
+{
+  "pattern": "**/skills/**/resource*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4beed92-c398-40cb-a7d2-a72b481fb55b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WnqLyph45jmDVuX5cA",
+  "type": "assistant",
+  "uuid": "60071ef9-a5c1-48d1-864f-40823302cb65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GGTKjWfLQV1uqKddeiTRvd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 108,
+      "cache_read_input_tokens": 56133,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 56133,
+          "cache_creation_input_tokens": 108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T14:30:06.723Z_
+
+<details><summary>↩ Tool result · `toolu_01RWcQQMUZx4h1v3FM5wDYXt`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60071ef9-a5c1-48d1-864f-40823302cb65",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "45f08fe1-45b0-4598-85f9-7024a5820a18",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 102,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "60071ef9-a5c1-48d1-864f-40823302cb65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-15T14:30:19.280Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The resource-saturation skill file doesn't exist. Let me proceed with reporting to Director and spawning additional Workers.
+
+Current state:
+- GPU: cuda:0 running w1_cf_fallback_scierc_pilot, cuda:1 running llama_docred_full_s1_mt6144 → 2/2 allocated GPUs in use ✅
+- Worker pool: 1 (pair_based_impl_plan) → need at least 2
+
+What can I spawn now that doesn't need GPU:
+1. **W5 LoRA preparation** — Write the training script, data prep, config. 
+
+W5 LoRA prep is the best move since it'll be ready to submit immediately once cuda:1 frees up, cutting down the critical path. Let me check what D018/W5 LoRA actually requires—it's a LoRA fine-tune of Qwen3-8B on SciERC with roughly 6 GPU-hours needed.
+
+The prep Worker can handle the setup work upfront: writing the LoRA training script with PEFT/TRL, formatting the SciERC dataset correctly, building out the eval pipeline, and running dry-run validation without GPU. I'll spawn this Worker now, but I should first verify the exact LoRA configuration from the experiment plan.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45f08fe1-45b0-4598-85f9-7024a5820a18",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WoEocxXMUMujbcebtx",
+  "type": "assistant",
+  "uuid": "6b358b2f-e00e-4d84-8ca2-d733b64c5f5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017XZU7Pz9A1G8nkGDSF51VF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 108,
+      "cache_read_input_tokens": 56241,
+      "output_tokens": 713,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 713,
+          "cache_read_input_tokens": 56241,
+          "cache_creation_input_tokens": 108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-15T14:30:21.040Z_
+
+resource-saturation skill 文件不存在，跳过。当前状态评估：
+
+- **GPU**: 2/2 在用（cuda:0 CF pilot, cuda:1 mt6144）✅
+- **Worker 池**: 1（pair_based_impl_plan）❌ < 2
+
+需要补充 Worker。W5 LoRA 训练准备是最佳候选——cuda:1 释放后需要立刻提交，提前准备代码和数据可以减少等待。
+
+让我先读实验计划确认 W5 LoRA 的详细配置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b358b2f-e00e-4d84-8ca2-d733b64c5f5e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WoEocxXMUMujbcebtx",
+  "type": "assistant",
+  "uuid": "12825819-6b88-41ad-a17b-72d665e22335",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017XZU7Pz9A1G8nkGDSF51VF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 108,
+      "cache_read_input_tokens": 56241,
+      "output_tokens": 713,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 713,
+          "cache_read_input_tokens": 56241,
+          "cache_creation_input_tokens": 108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T14:30:21.651Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UPe4yjS9iaEZYthPnVe7TK`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__spawn_worker",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12825819-6b88-41ad-a17b-72d665e22335",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WoEocxXMUMujbcebtx",
+  "type": "assistant",
+  "uuid": "961ebcb9-34b4-406b-9be1-e8bdb92ea214",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017XZU7Pz9A1G8nkGDSF51VF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 108,
+      "cache_read_input_tokens": 56241,
+      "output_tokens": 713,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 713,
+          "cache_read_input_tokens": 56241,
+          "cache_creation_input_tokens": 108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T14:30:21.661Z_
+
+<details><summary>↩ Tool result · `toolu_01UPe4yjS9iaEZYthPnVe7TK`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "961ebcb9-34b4-406b-9be1-e8bdb92ea214",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "e5616999-86f5-4730-9fe5-84ef8600da76",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__spawn_worker"
+    ],
+    "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__spawn_worker",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "961ebcb9-34b4-406b-9be1-e8bdb92ea214",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T14:30:24.109Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status · `toolu_01SieenUfcyPWjJEJazGiZuZ`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5616999-86f5-4730-9fe5-84ef8600da76",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WpLoJnEYK668ajAGo6",
+  "type": "assistant",
+  "uuid": "d18dc353-4073-45c2-9001-65d50aa673c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pj1iLsnhSywjDBSJu1u8DT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2110,
+      "cache_read_input_tokens": 56349,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2110,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 56349,
+          "cache_creation_input_tokens": 2110,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2110
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T14:30:24.235Z_
+
+<details><summary>↩ Tool result · `toolu_01SieenUfcyPWjJEJazGiZuZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": [], \"total\": 0}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d18dc353-4073-45c2-9001-65d50aa673c7",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "25b40358-c15b-4444-adb2-8108ab2d1477",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [], \\\"total\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": [], \"total\": 0}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d18dc353-4073-45c2-9001-65d50aa673c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-15T14:30:26.989Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The experiment plan is empty. Let me check the memory.md for W5 LoRA details and the decisions log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25b40358-c15b-4444-adb2-8108ab2d1477",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WpXax9DJvX8iXJ5RYr",
+  "type": "assistant",
+  "uuid": "98211f58-a16c-48f0-b21d-bb52da5655be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mHXj4SsUMsP1yAKumP2J5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 129,
+      "cache_read_input_tokens": 58459,
+      "output_tokens": 280,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 129,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 280,
+          "cache_read_input_tokens": 58459,
+          "cache_creation_input_tokens": 129,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 129
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-15T14:30:27.938Z_
+
+实验计划为空，让我查 memory.md 和 decisions 获取 W5 LoRA 的详细配置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98211f58-a16c-48f0-b21d-bb52da5655be",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WpXax9DJvX8iXJ5RYr",
+  "type": "assistant",
+  "uuid": "a0def9dd-bf3c-4513-96ce-0a70757bb098",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mHXj4SsUMsP1yAKumP2J5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 129,
+      "cache_read_input_tokens": 58459,
+      "output_tokens": 280,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 129,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 280,
+          "cache_read_input_tokens": 58459,
+          "cache_creation_input_tokens": 129,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 129
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T14:30:28.389Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01PGqJJ61o7dtsksEJAtF3xV`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "file": "memory.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a0def9dd-bf3c-4513-96ce-0a70757bb098",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WpXax9DJvX8iXJ5RYr",
+  "type": "assistant",
+  "uuid": "47ed8f92-d0f2-4b1a-98bb-878e15cf9cc9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mHXj4SsUMsP1yAKumP2J5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 129,
+      "cache_read_input_tokens": 58459,
+      "output_tokens": 280,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 129,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 280,
+          "cache_read_input_tokens": 58459,
+          "cache_creation_input_tokens": 129,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 129
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T14:30:28.409Z_
+
+<details><summary>↩ Tool result · `toolu_01PGqJJ61o7dtsksEJAtF3xV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md\", \"content\": \"# Memory — schema_semantic_constrained_ie\\n\\n## 文献调研 (2026-05-13)\\n\\n### 核心结论: OntoCoDec 的 novelty 成立\\n**没有人做过 \\\"compile IE ontology domain/range → decoding-time logits masking\\\" 的完整 pipeline。**\\n\\nGap 结构：\\n- Syntactic constrained decoding for IE: well-explored (GCD, XGrammar, Outlines)\\n- Vocabulary-level: exists (GENRE, iNERD, AdaKGC)\\n- **Semantic (domain/range) decoding for IE: OPEN GAP** ← OntoCoDec\\n- Semantic type checking at decode time: only for code gen (MGD NeurIPS'23, PLDI'25)\\n- Ontology compliance for IE: only post-processing (ODKE+ Apple'25, OntoLogX'25)\\n\\n最近竞争者：PLDI'25 Type-Constrained Code Gen（同机制但领域是代码生成，必须引用并区分）\\n\\n风险：CRANE (ICML'25) 严格约束可能降低推理质量；Grammar-Aligned Decoding (NeurIPS'24) naive masking 扭曲分布\\n\\nNovelty 定位：\\\"OntoCoDec 将 type-constrained generation 引入信息抽取，编译 IE ontology axioms 为解码时语义约束，预防而非检测 type violations。\\\"\\n\\n详细报告: `artifacts/literature_map.yaml`, `artifacts/literature_survey_*.md`\\n\\n## 实验发现\\n\\n### SciERC Phase 0 — Minimal (2026-05-13)\\n- **go_nogo_metric = 15.4%** (domain_range_violation_rate), 3× 超过 5% 阈值 → GO\\n- Violation 分布极不均匀: Used-for 0.76% vs Compare 42.4% vs Feature-of 33.5%\\n- Feature-of + Compare 贡献 72% 的 domain/range violations\\n- Relation vocabulary violations 仅 1.4%\\n- 关键 insight: OntoCoDec 的价值在于精确靶向高违规 relation types\\n\\n### SciERC Phase 0 — Schema-informed (2026-05-13)\\n- **domain_range_violation_rate = 5.78%**（vs minimal 15.37%, -62.4%）\\n- 仍高于 5% 阈值 → prompt 级干预不足以替代 decoding-time enforcement\\n- Entity type violations 降到 0%，relation vocabulary 降到 0.30%\\n- Per-relation: Feature-of -22.3pp, Part-of -22.5pp, Compare -14.8pp\\n- ⚠️ Evaluate-for 反而退步 +5.8pp — prompt 复杂度反而干扰\\n- McNemar 四类全显著 p<0.01\\n- **论文 story**: LLM 能理解约束（-62%）但执行不完美（仍>5%），需要 hard constraint\\n\\n### DocRED Phase 0 — Minimal (2026-05-13)\\n- **domain_range_violation_rate = 18.7%** (16,540 triples, 998 docs)\\n- Relation vocabulary violation = 28.9% (4,775 triples) — 远高于 SciERC 1.4%\\n- Entity type violation = 7.5% (vs SciERC 0.4%)\\n- JSON parse rate = 96.4% (36 docs 解析失败)\\n- Top violators: P31 instance_of (60.4%, 322/533), P1001 applies_to_jurisdiction (44.4%)\\n- 约束更紧(avg 5.68 pairs)确实导致更高违规(18.7% vs 15.4%)\\n\\n### SciERC vs DocRED 对比 (2026-05-13)\\n| 指标 | SciERC (7 rels) | DocRED (96 rels) |\\n|------|----------------|-----------------|\\n| D/R violation | 15.4% | 18.7% (+3.3pp) |\\n| Relation vocab | 1.4% | 28.9% (+27.5pp) |\\n| Entity type | 0.4% | 7.5% (+7.1pp) |\\n| Avg valid pairs | 26.1 | 5.68 |\\n两个数据集都远超 5% 阈值 → 强 GO 信号。Vocabulary layer 在复杂 schema 上尤为关键。\\n\\n### SciERC Phase 2 — Grammar-only (2026-05-13)\\n- **Grammar 层约束是\\\"免费\\\"的**：零 F1 代价完全消除 rv (1.4%→0%) 和 et (0.4%→0%) violations\\n- entity_f1 delta = -0.03pp ≈ 0，relation_f1 delta = 0\\n- **论文 claim**: \\\"Structural constraints can be enforced at zero quality cost\\\"\\n- DR violation 基本不变 (15.37%→14.84%, -0.53pp) — 符合预期，grammar 不含 D/R 约束\\n- DR 热点: Compare 40.85%, Feature-of 31.98%, Part-of 23.38% — 这些是 semantic 层的目标\\n- **决策依据**: grammar 层可以 always-on，无需 ablation 它的\\\"代价\\\"。论文只需关注 semantic 层的 F1 trade-off。\\n\\n### SciERC Phase 2 — 全量最终结果 (2026-05-14, _v2 干净数据)\\n\\n| Mode | R-F1 | E-F1 | DR% | RV% | ET% | ΔDR |\\n|------|------|------|-----|-----|-----|-----|\\n| unconstrained | 0.0823 | 0.3101 | 15.37% | 1.39% | 0.4% | — |\\n| grammar_only | 0.0823 | 0.3098 | 14.84% | 0% | 0% | -0.53pp |\\n| semantic_only | 0.0815 | 0.3101 | 11.65% | 1.51% | 0.4% | -3.72pp |\\n| **full_s1** | **0.0836** | **0.3098** | **0.93%** | **0%** | **0%** | **-14.44pp (↓94%)** |\\n\\n**核心发现**:\\n- **full_s1 是论文核心结果**: DR 15.37%→0.93% (消除 94%), F1 反而微升 +0.0013, 零质量代价\\n- **semantic_only 有效但不够**: DR -3.72pp (↓24%), 但 RV/ET 未消除（需 grammar 层配合）\\n- 早期污染数据 (108样本) 显示 semantic_only DR=16.43%（误导），干净数据实际 11.65%\\n- **Ablation story**: grammar 处理结构约束 (RV, ET), semantic 处理类型约束 (DR), 合并达最佳效果\\n\\n**Per-relation DR (full_s1)**: Used-for/Hyponym-of/Part-of/Conjunction = 0%, Feature-of 1.21%, Compare 2.82%, Evaluate-for 5.76% (残留最多)\\n\\n### SciERC Phase 2 — S2 全量结果 (2026-05-14)\\n| Mode | R-F1 | E-F1 | DR% | CF% |\\n|------|------|------|-----|-----|\\n| full_s1 | 0.0836 | 0.3098 | 0.93% | 9.90% |\\n| full_s2 | 0.0803 | 0.3190 | 0.97% | 8.03% |\\nS1 全面略优 (R-F1 +0.33pp, DR 持平)，S2 降级为 ablation。\\n\\n### DocRED Phase 2 — 全量最终结果 (2026-05-14, all_set 方法, Reviewer 确认) ⚠️ ET 待 D011 v2 checker 修正\\n\\n| Mode | R-F1 | E-F1 | DR% | RV% | ET% | CF% | Triples |\\n|------|------|------|-----|-----|-----|-----|---------|\\n| **unconstrained** | **7.74%** | **58.15%** | **18.46%** | **29.66%** | **8.18%** | 0.10% | 17,497 |\\n| grammar_only | 8.31% | — | 26.17% | 0.03% | 0% | — | 17,341 |\\n| **full_s1** | **8.23%** | **59.37%** | **10.19%** | **0.03%** | **0%** | 2.57% | 17,372 |\\n| semantic_only | 7.70% | 57.81% | 13.84% | 29.87% | 10.44% | 1.05% | 17,571 |\\n\\n**核心发现**:\\n1. ✅ Grammar 层在 DocRED 完美泛化: ET/RV→0%（与 SciERC 一致）\\n2. ⚠️ **DR 降幅 scaling gap**: SciERC ↓94% (15.37→0.93%) vs DocRED ↓45% (18.46→10.19%)\\n3. ✅ **R-F1 不降反升**: 7.74%→8.23% (+0.49pp)，E-F1 58.15%→59.37% (+1.22pp)\\n4. **论文可 claim：两个数据集上 constrained decoding 均不损失 R-F1**（Reviewer 2026-05-14 确认）\\n5. Grammar-only DR 上升 (18.46→26.17%) 是审稿必问点：grammar 强制 valid relation name 后 entity type 与新 relation 的 domain/range 不匹配加剧，恰好证明 semantic 层必要性\\n6. 残余 DR 集中在特定关系: P190_sister_city 58%, P582_end_time 43.5%, P205_basin_country 37%\\n7. Semantic 层在 grammar 基础上额外贡献: DR 26.17→10.19% (↓61%)\\n\\n### Semantic Fallback 频率分析 (2026-05-14) ⚠️ 论文 §5 + Discussion 关键数据\\n\\n| Model | Dataset | Fallback Rate | Avg/doc | Source | Unit |\\n|-------|---------|--------------|---------|--------|------|\\n| Qwen | SciERC | 0.9% (16/1,729) | 0.03 | post-hoc | triple-level |\\n| Qwen | DocRED | 10.2% (1,770/17,341) | 1.77 | post-hoc | triple-level |\\n| Llama | SciERC | — | ~10.7 | 日志 | token-level |\\n| Llama | DocRED | — | ~57 | 日志 | token-level |\\n\\n**关键发现**:\\n- Qwen DocRED 10.2% triple-level fallback ≈ DR 残余 10.19% — **fallback 精确解释了 DR 残余**\\n- Qwen SciERC 0.9% ≈ DR 残余 0.93% — 同样精确匹配\\n- DocRED >> SciERC 趋势跨模型一致（Llama 也是 ~5.3× 差异）\\n- **⚠️ 单位不可比**: Llama 是 token-level 事件计数（每步 mask 检查），Qwen 是 triple-level DR violation（fallback 下界）。论文中不能直接对比绝对值，只能说趋势一致\\n- 高频 fallback 关系 (Qwen DocRED): parent_taxon 77.8%, unemployment_rate 83.3%, territory_claimed_by 45%\\n- **论文定位**: \\\"Constraint coverage\\\"——semantic masking 实际生效的比例，与 constraint tightness 反相关\\n\\n### Constraint Tightness ↔ DR Violation Scaling (2026-05-14) ⚠️ 论文核心 insight\\n**根因分析确认：DR 差异由约束紧度驱动，非 semantic 层失效。**\\n\\n| Tightness 区间 | Valid pairs | DocRED 聚合 DR | SciERC 对应 |\\n|---------------|-------------|---------------|------------|\\n| ≥ 0.95 (极紧) | 1-2 pairs | 30.6% | 无此类 relation |\\n| 0.90-0.94 | 3-4 pairs | 19.3% | 无此类 relation |\\n| < 0.70 (宽松) | 11+ pairs | 0.7% | SciERC 全部在此区间 |\\n\\n- DocRED avg tightness = 0.842 vs SciERC = 0.333\\n- DocRED 中位数仅允许 5/36 type pairs，SciERC 中位数 23/36\\n- 高 tightness 下 semantic∩grammar=∅ 概率高 → fallback 到 grammar-only → DR 未被约束\\n- SciERC DR 低是因为约束本身宽松，LLM 几乎不可能违规\\n- **论文定位**：effectiveness scales inversely with constraint tightness，这是 **contribution** 而非 weakness（首个 constraint scaling 实证，无文献可比）\\n- **文献确认**：无任何论文在 DocRED 上报告 constrained decoding violation rate，我们是首个 benchmark\\n\\n### CF Violation 根因分析 (2026-05-14)\\n- **CF = 跨字段一致性违规**：同一 entity mention 在 entity list 和 relation head/tail 中被标注为不同类型\\n- 根因: semantic constraint 按 per-relation 独立强制 type，导致 entity-vs-relation type drift\\n- 主要冲突: Generic ↔ OtherScientificTerm (60 次, 占比最高)\\n- grammar_only CF=0.08% → S1 CF=9.90% → **CF 100% 来自 semantic 层**\\n- **论文 limitation**: per-relation 独立 type enforcement 的固有副作用，需 future work 做跨 relation entity type 一致性约束\\n\\n### CF 指标口径澄清 (2026-05-14)\\n- violation_checker: 合并所有 type 来源 (entity list + relation head/tail)，denominator = total_entities (2474)\\n- analyze_cf: 分 WR (Within-Relations) + EVR (Entity-vs-Relation) 两维度，denominator 不同 (checked_slots=3380)\\n- **分子一致**: S1=245=245, S2=178 vs 179 (差 1 due to analyze_cf entity_type_map overwrite bug)\\n- **论文统一用 violation_checker 口径**: S1=9.90%, S2=8.03%\\n\\n### S2 Pilot 调查 (2026-05-13)\\n- **原报告 relation_f1=0 是误读**：数据来自 10 样本 dryrun 的 violation_report，非 pilot50 评估\\n- pilot50 实际 relation_f1=0.1008 (13 TP / 146 pred / 112 gold)，与 unconstrained 0.0823 持平\\n- S2 架构可行，DR violation=0% 达标，F1 瓶颈在 entity span 质量（zero-shot entity F1≈0.29）\\n- FP 根因: 52.6% head+tail 都不匹配 gold（entity span 提取错误以平方级放大到 relation）\\n\\n## 技术路线决策\\n\\n### Phase 1 Compiler 完成 (2026-05-13)\\n**HF transformers + XGrammar (standalone)**，代码在 `/root/schema_semantic_constrained_ie/compiler/`：\\n- `ontology_compiler.py`: compile_type_constraints() + build_processor()\\n- `type_mask_processor.py`: _build_first_token_map(), _mask_entity_type/head/tail_type(), _detect_position()\\n- 24 单元测试 + 12 e2e 测试全部通过\\n- SGLang 作为后续性能优化路径，vLLM 暂不可用\\n\\n### Phase 2 脚本完成 (2026-05-13)\\n`run_constrained_extraction.py` (652 行) 支持 5 模式：unconstrained/grammar_only/semantic_only/full_s1/full_s2\\n- 所有模式 dry-run 通过 + violation_checker 兼容\\n\\n### DocRED constrained decoding 就绪 (2026-05-14)\\n`run_constrained_extraction.py --dataset docred` 零代码修改即可运行 grammar_only / full_s1 模式。\\n约束文件: `data/docred/ontology_constraints_docred.json` (6 entity types, 96 relations)\\n建议命令加 `--max_new_tokens 4096`（文档级比句子级长得多）\\n\\n### Grammar-Semantic 交互 Bug 修复 (2026-05-14)\\n**根因**: `compiler/type_mask_processor.py` → `_apply_type_mask`。full_s1 模式下 XGrammar 将 grammar-invalid tokens 设为有限负值 (-1e10)，TypeConstraintProcessor 将 semantically-disallowed types 设为 -inf。当 `allowed_types` 与 grammar-valid tokens 无交集时，所有 grammar-valid tokens 变为 -inf，而 grammar-invalid tokens 仍为 -1e10 (> -inf) → argmax 选中 grammar-invalid token → XGrammar assertion failure。\\n**修复**: `_apply_type_mask` 增加 `_GRAMMAR_MASK_THRESHOLD = -1e8` 安全检查：应用 semantic mask 前验证至少一个 semantically-allowed type 有非 grammar-masked logit；若无交集则跳过 semantic masking，交由 grammar 控制。\\n**论文意义**: 此 invariant（semantic mask ⊆ grammar allowed set）是双层约束架构的关键设计约束，应在 Method section 明确描述。在 SciERC 上未触发是因为约束更松 (avg 26.1 valid pairs vs DocRED 5.68)。\\n\\n### Llama-3.1-8B 兼容性验证 (2026-05-14)\\n- 模型已在服务器: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\\n- 零代码修改：AutoTokenizer/AutoModelForCausalLM 模型无关，chat_template 自动适配\\n- XGrammar + TypeConstraintProcessor first-token 唯一性验证通过（SciERC 6 types + DocRED 6 types）\\n- pad_token=None 已有处理逻辑\\n\\n### First-token masking 验证 (2026-05-13)\\n简单 first-token masking 安全可用，不需要 trie-based 方案。\\nSciERC: Task=6262, Method=3523, Material=13415, Metric=54310, OtherScientificTerm=11409, Generic=19964\\nDocRED: PER=9654, ORG=44927, LOC=12052, TIME=18129, NUM=17488, MISC=44\\n上下文无关性已验证。\\n\\n## 方法论决策\\n\\n### R-F1 评估方法 — ✅ 定稿 (2026-05-14, Reviewer 独立确认)\\n- **all_set 方法正确**：OOV predictions 计为 FP，包含在分母中\\n- recognized_set 方法有误：过滤 5189 个 OOV predictions 人为抬高 precision\\n- **定稿 R-F1 数字**：\\n  | 数据集 | Unconstrained | Full S1 | Delta |\\n  |--------|:---:|:---:|:---:|\\n  | SciERC | 8.23% | 8.36% | +0.13pp |\\n  | DocRED | 7.74% | 8.23% | +0.49pp |\\n- **论文可 claim：两个数据集上 constrained decoding 均不损失 R-F1**\\n- §5 评估方法段必须明确描述：DocRED name→PID 归一化流程 + OOV 计为 FP 的处理（审稿必问）\\n\\n### Violation 分类体系 (2026-05-13)\\n4 类独立计数：entity_type / relation_vocabulary / domain_range / cross_field_consistency\\ngo/no-go 阈值 (5%) 基于 domain_range_violation_rate\\n\\n### Fuzzy Matching (2026-05-13)\\nDocRED: token overlap >80% 或 Levenshtein ≤2\\n\\n## §5 写作备忘 (2026-05-14)\\n\\n### Grammar-only DR 上升是审稿必问点\\n- DocRED grammar_only DR=26.17% > unconstrained DR=18.46%\\n- 原因：grammar 强制 valid relation name 后，原来因 RV violation 被过滤的 triples 现在保留，但这些 triples 的 entity type 与新 relation 的 domain/range 可能不匹配\\n- **论文定位**：恰好证明 semantic 层必要性——grammar alone 不仅不够，反而加剧 DR；需要 semantic 层配合\\n- 预写 rebuttal 要点：grammar + semantic 合并后 DR 从 26.17% 降到 10.19% (↓61%)\\n\\n### DocRED 评估方法段写作要点（审稿必问）\\n- 必须明确描述 name→PID 归一化流程（如何匹配模型输出的自然语言 relation name 到 Wikidata PID）\\n- 必须说明 OOV predictions（模型输出的 relation name 无法匹配任何 PID）计为 FP 的处理逻辑\\n- 这两点是审稿人必然攻击面，主动说清楚比被动辩解好\\n\\n### ET 归因修正 (2026-05-14, Reviewer 补充 1)\\n- ❌ 错误归因：\\\"leading spaces in entity type tokens\\\"（strip 已修复 space 问题）\\n- ✅ 正确归因：\\\"trajectory perturbation — constrained logit masking shifts generation distribution, producing non-standard entity types (WORK 823, EVENT 743, ETHNIC_GROUP 137)\\\"\\n- 已修正 section5_docred_draft.tex\\n\\n## 踩坑记录\\n\\n### submit_training_job 必须 bash -c 包裹 (2026-05-13)\\n- tmux session 默认用 `sh` 执行命令，`source` 和 `conda activate` 是 bash built-in\\n- **直接写 `python3 ...` 会 EXIT_CODE=127 (command not found)**\\n\\n\\n... [截断: 省略 2556 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 14556, \"truncated\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "47ed8f92-d0f2-4b1a-98bb-878e15cf9cc9",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "267725de-ea39-466e-bd32-dbb8113f65c1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md\\\", \\\"content\\\": \\\"# Memory — schema_semantic_constrained_ie\\\\n\\\\n## 文献调研 (2026-05-13)\\\\n\\\\n### 核心结论: OntoCoDec 的 novelty 成立\\\\n**没有人做过 \\\\\\\"compile IE ontology domain/range → decoding-time logits masking\\\\\\\" 的完整 pipeline。**\\\\n\\\\nGap 结构：\\\\n- Syntactic constrained decoding for IE: well-explored (GCD, XGrammar, Outlines)\\\\n- Vocabulary-level: exists (GENRE, iNERD, AdaKGC)\\\\n- **Semantic (domain/range) decoding for IE: OPEN GAP** ← OntoCoDec\\\\n- Semantic type checking at decode time: only for code gen (MGD NeurIPS'23, PLDI'25)\\\\n- Ontology compliance for IE: only post-processing (ODKE+ Apple'25, OntoLogX'25)\\\\n\\\\n最近竞争者：PLDI'25 Type-Constrained Code Gen（同机制但领域是代码生成，必须引用并区分）\\\\n\\\\n风险：CRANE (ICML'25) 严格约束可能降低推理质量；Grammar-Aligned Decoding (NeurIPS'24) naive masking 扭曲分布\\\\n\\\\nNovelty 定位：\\\\\\\"OntoCoDec 将 type-constrained generation 引入信息抽取，编译 IE ontology axioms 为解码时语义约束，预防而非检测 type violations。\\\\\\\"\\\\n\\\\n详细报告: `artifacts/literature_map.yaml`, `artifacts/literature_survey_*.md`\\\\n\\\\n## 实验发现\\\\n\\\\n### SciERC Phase 0 — Minimal (2026-05-13)\\\\n- **go_nogo_metric = 15.4%** (domain_range_violation_rate), 3× 超过 5% 阈值 → GO\\\\n- Violation 分布极不均匀: Used-for 0.76% vs Compare 42.4% vs Feature-of 33.5%\\\\n- Feature-of + Compare 贡献 72% 的 domain/range violations\\\\n- Relation vocabulary violations 仅 1.4%\\\\n- 关键 insight: OntoCoDec 的价值在于精确靶向高违规 relation types\\\\n\\\\n### SciERC Phase 0 — Schema-informed (2026-05-13)\\\\n- **domain_range_violation_rate = 5.78%**（vs minimal 15.37%, -62.4%）\\\\n- 仍高于 5% 阈值 → prompt 级干预不足以替代 decoding-time enforcement\\\\n- Entity type violations 降到 0%，relation vocabulary 降到 0.30%\\\\n- Per-relation: Feature-of -22.3pp, Part-of -22.5pp, Compare -14.8pp\\\\n- ⚠️ Evaluate-for 反而退步 +5.8pp — prompt 复杂度反而干扰\\\\n- McNemar 四类全显著 p<0.01\\\\n- **论文 story**: LLM 能理解约束（-62%）但执行不完美（仍>5%），需要 hard constraint\\\\n\\\\n### DocRED Phase 0 — Minimal (2026-05-13)\\\\n- **domain_range_violation_rate = 18.7%** (16,540 triples, 998 docs)\\\\n- Relation vocabulary violation = 28.9% (4,775 triples) — 远高于 SciERC 1.4%\\\\n- Entity type violation = 7.5% (vs SciERC 0.4%)\\\\n- JSON parse rate = 96.4% (36 docs 解析失败)\\\\n- Top violators: P31 instance_of (60.4%, 322/533), P1001 applies_to_jurisdiction (44.4%)\\\\n- 约束更紧(avg 5.68 pairs)确实导致更高违规(18.7% vs 15.4%)\\\\n\\\\n### SciERC vs DocRED 对比 (2026-05-13)\\\\n| 指标 | SciERC (7 rels) | DocRED (96 rels) |\\\\n|------|----------------|-----------------|\\\\n| D/R violation | 15.4% | 18.7% (+3.3pp) |\\\\n| Relation vocab | 1.4% | 28.9% (+27.5pp) |\\\\n| Entity type | 0.4% | 7.5% (+7.1pp) |\\\\n| Avg valid pairs | 26.1 | 5.68 |\\\\n两个数据集都远超 5% 阈值 → 强 GO 信号。Vocabulary layer 在复杂 schema 上尤为关键。\\\\n\\\\n### SciERC Phase 2 — Grammar-only (2026-05-13)\\\\n- **Grammar 层约束是\\\\\\\"免费\\\\\\\"的**：零 F1 代价完全消除 rv (1.4%→0%) 和 et (0.4%→0%) violations\\\\n- entity_f1 delta = -0.03pp ≈ 0，relation_f1 delta = 0\\\\n- **论文 claim**: \\\\\\\"Structural constraints can be enforced at zero quality cost\\\\\\\"\\\\n- DR violation 基本不变 (15.37%→14.84%, -0.53pp) — 符合预期，grammar 不含 D/R 约束\\\\n- DR 热点: Compare 40.85%, Feature-of 31.98%, Part-of 23.38% — 这些是 semantic 层的目标\\\\n- **决策依据**: grammar 层可以 always-on，无需 ablation 它的\\\\\\\"代价\\\\\\\"。论文只需关注 semantic 层的 F1 trade-off。\\\\n\\\\n### SciERC Phase 2 — 全量最终结果 (2026-05-14, _v2 干净数据)\\\\n\\\\n| Mode | R-F1 | E-F1 | DR% | RV% | ET% | ΔDR |\\\\n|------|------|------|-----|-----|-----|-----|\\\\n| unconstrained | 0.0823 | 0.3101 | 15.37% | 1.39% | 0.4% | — |\\\\n| grammar_only | 0.0823 | 0.3098 | 14.84% | 0% | 0% | -0.53pp |\\\\n| semantic_only | 0.0815 | 0.3101 | 11.65% | 1.51% | 0.4% | -3.72pp |\\\\n| **full_s1** | **0.0836** | **0.3098** | **0.93%** | **0%** | **0%** | **-14.44pp (↓94%)** |\\\\n\\\\n**核心发现**:\\\\n- **full_s1 是论文核心结果**: DR 15.37%→0.93% (消除 94%), F1 反而微升 +0.0013, 零质量代价\\\\n- **semantic_only 有效但不够**: DR -3.72pp (↓24%), 但 RV/ET 未消除（需 grammar 层配合）\\\\n- 早期污染数据 (108样本) 显示 semantic_only DR=16.43%（误导），干净数据实际 11.65%\\\\n- **Ablation story**: grammar 处理结构约束 (RV, ET), semantic 处理类型约束 (DR), 合并达最佳效果\\\\n\\\\n**Per-relation DR (full_s1)**: Used-for/Hyponym-of/Part-of/Conjunction = 0%, Feature-of 1.21%, Compare 2.82%, Evaluate-for 5.76% (残留最多)\\\\n\\\\n### SciERC Phase 2 — S2 全量结果 (2026-05-14)\\\\n| Mode | R-F1 | E-F1 | DR% | CF% |\\\\n|------|------|------|-----|-----|\\\\n| full_s1 | 0.0836 | 0.3098 | 0.93% | 9.90% |\\\\n| full_s2 | 0.0803 | 0.3190 | 0.97% | 8.03% |\\\\nS1 全面略优 (R-F1 +0.33pp, DR 持平)，S2 降级为 ablation。\\\\n\\\\n### DocRED Phase 2 — 全量最终结果 (2026-05-14, all_set 方法, Reviewer 确认) ⚠️ ET 待 D011 v2 checker 修正\\\\n\\\\n| Mode | R-F1 | E-F1 | DR% | RV% | ET% | CF% | Triples |\\\\n|------|------|------|-----|-----|-----|-----|---------|\\\\n| **unconstrained** | **7.74%** | **58.15%** | **18.46%** | **29.66%** | **8.18%** | 0.10% | 17,497 |\\\\n| grammar_only | 8.31% | — | 26.17% | 0.03% | 0% | — | 17,341 |\\\\n| **full_s1** | **8.23%** | **59.37%** | **10.19%** | **0.03%** | **0%** | 2.57% | 17,372 |\\\\n| semantic_only | 7.70% | 57.81% | 13.84% | 29.87% | 10.44% | 1.05% | 17,571 |\\\\n\\\\n**核心发现**:\\\\n1. ✅ Grammar 层在 DocRED 完美泛化: ET/RV→0%（与 SciERC 一致）\\\\n2. ⚠️ **DR 降幅 scaling gap**: SciERC ↓94% (15.37→0.93%) vs DocRED ↓45% (18.46→10.19%)\\\\n3. ✅ **R-F1 不降反升**: 7.74%→8.23% (+0.49pp)，E-F1 58.15%→59.37% (+1.22pp)\\\\n4. **论文可 claim：两个数据集上 constrained decoding 均不损失 R-F1**（Reviewer 2026-05-14 确认）\\\\n5. Grammar-only DR 上升 (18.46→26.17%) 是审稿必问点：grammar 强制 valid relation name 后 entity type 与新 relation 的 domain/range 不匹配加剧，恰好证明 semantic 层必要性\\\\n6. 残余 DR 集中在特定关系: P190_sister_city 58%, P582_end_time 43.5%, P205_basin_country 37%\\\\n7. Semantic 层在 grammar 基础上额外贡献: DR 26.17→10.19% (↓61%)\\\\n\\\\n### Semantic Fallback 频率分析 (2026-05-14) ⚠️ 论文 §5 + Discussion 关键数据\\\\n\\\\n| Model | Dataset | Fallback Rate | Avg/doc | Source | Unit |\\\\n|-------|---------|--------------|---------|--------|------|\\\\n| Qwen | SciERC | 0.9% (16/1,729) | 0.03 | post-hoc | triple-level |\\\\n| Qwen | DocRED | 10.2% (1,770/17,341) | 1.77 | post-hoc | triple-level |\\\\n| Llama | SciERC | — | ~10.7 | 日志 | token-level |\\\\n| Llama | DocRED | — | ~57 | 日志 | token-level |\\\\n\\\\n**关键发现**:\\\\n- Qwen DocRED 10.2% triple-level fallback ≈ DR 残余 10.19% — **fallback 精确解释了 DR 残余**\\\\n- Qwen SciERC 0.9% ≈ DR 残余 0.93% — 同样精确匹配\\\\n- DocRED >> SciERC 趋势跨模型一致（Llama 也是 ~5.3× 差异）\\\\n- **⚠️ 单位不可比**: Llama 是 token-level 事件计数（每步 mask 检查），Qwen 是 triple-level DR violation（fallback 下界）。论文中不能直接对比绝对值，只能说趋势一致\\\\n- 高频 fallback 关系 (Qwen DocRED): parent_taxon 77.8%, unemployment_rate 83.3%, territory_claimed_by 45%\\\\n- **论文定位**: \\\\\\\"Constraint coverage\\\\\\\"——semantic masking 实际生效的比例，与 constraint tightness 反相关\\\\n\\\\n### Constraint Tightness ↔ DR Violation Scaling (2026-05-14) ⚠️ 论文核心 insight\\\\n**根因分析确认：DR 差异由约束紧度驱动，非 semantic 层失效。**\\\\n\\\\n| Tightness 区间 | Valid pairs | DocRED 聚合 DR | SciERC 对应 |\\\\n|---------------|-------------|---------------|------------|\\\\n| ≥ 0.95 (极紧) | 1-2 pairs | 30.6% | 无此类 relation |\\\\n| 0.90-0.94 | 3-4 pairs | 19.3% | 无此类 relation |\\\\n| < 0.70 (宽松) | 11+ pairs | 0.7% | SciERC 全部在此区间 |\\\\n\\\\n- DocRED avg tightness = 0.842 vs SciERC = 0.333\\\\n- DocRED 中位数仅允许 5/36 type pairs，SciERC 中位数 23/36\\\\n- 高 tightness 下 semantic∩grammar=∅ 概率高 → fallback 到 grammar-only → DR 未被约束\\\\n- SciERC DR 低是因为约束本身宽松，LLM 几乎不可能违规\\\\n- **论文定位**：effectiveness scales inversely with constraint tightness，这是 **contribution** 而非 weakness（首个 constraint scaling 实证，无文献可比）\\\\n- **文献确认**：无任何论文在 DocRED 上报告 constrained decoding violation rate，我们是首个 benchmark\\\\n\\\\n### CF Violation 根因分析 (2026-05-14)\\\\n- **CF = 跨字段一致性违规**：同一 entity mention 在 entity list 和 relation head/tail 中被标注为不同类型\\\\n- 根因: semantic constraint 按 per-relation 独立强制 type，导致 entity-vs-relation type drift\\\\n- 主要冲突: Generic ↔ OtherScientificTerm (60 次, 占比最高)\\\\n- grammar_only CF=0.08% → S1 CF=9.90% → **CF 100% 来自 semantic 层**\\\\n- **论文 limitation**: per-relation 独立 type enforcement 的固有副作用，需 future work 做跨 relation entity type 一致性约束\\\\n\\\\n### CF 指标口径澄清 (2026-05-14)\\\\n- violation_checker: 合并所有 type 来源 (entity list + relation head/tail)，denominator = total_entities (2474)\\\\n- analyze_cf: 分 WR (Within-Relations) + EVR (Entity-vs-Relation) 两维度，denominator 不同 (checked_slots=3380)\\\\n- **分子一致**: S1=245=245, S2=178 vs 179 (差 1 due to analyze_cf entity_type_map overwrite bug)\\\\n- **论文统一用 violation_checker 口径**: S1=9.90%, S2=8.03%\\\\n\\\\n### S2 Pilot 调查 (2026-05-13)\\\\n- **原报告 relation_f1=0 是误读**：数据来自 10 样本 dryrun 的 violation_report，非 pilot50 评估\\\\n- pilot50 实际 relation_f1=0.1008 (13 TP / 146 pred / 112 gold)，与 unconstrained 0.0823 持平\\\\n- S2 架构可行，DR violation=0% 达标，F1 瓶颈在 entity span 质量（zero-shot entity F1≈0.29）\\\\n- FP 根因: 52.6% head+tail 都不匹配 gold（entity span 提取错误以平方级放大到 relation）\\\\n\\\\n## 技术路线决策\\\\n\\\\n### Phase 1 Compiler 完成 (2026-05-13)\\\\n**HF transformers + XGrammar (standalone)**，代码在 `/root/schema_semantic_constrained_ie/compiler/`：\\\\n- `ontology_compiler.py`: compile_type_constraints() + build_processor()\\\\n- `type_mask_processor.py`: _build_first_token_map(), _mask_entity_type/head/tail_type(), _detect_position()\\\\n- 24 单元测试 + 12 e2e 测试全部通过\\\\n- SGLang 作为后续性能优化路径，vLLM 暂不可用\\\\n\\\\n### Phase 2 脚本完成 (2026-05-13)\\\\n`run_constrained_extraction.py` (652 行) 支持 5 模式：unconstrained/grammar_only/semantic_only/full_s1/full_s2\\\\n- 所有模式 dry-run 通过 + violation_checker 兼容\\\\n\\\\n### DocRED constrained decoding 就绪 (2026-05-14)\\\\n`run_constrained_extraction.py --dataset docred` 零代码修改即可运行 grammar_only / full_s1 模式。\\\\n约束文件: `data/docred/ontology_constraints_docred.json` (6 entity types, 96 relations)\\\\n建议命令加 `--max_new_tokens 4096`（文档级比句子级长得多）\\\\n\\\\n### Grammar-Semantic 交互 Bug 修复 (2026-05-14)\\\\n**根因**: `compiler/type_mask_processor.py` → `_apply_type_mask`。full_s1 模式下 XGrammar 将 grammar-invalid tokens 设为有限负值 (-1e10)，TypeConstraintProcessor 将 semantically-disallowed types 设为 -inf。当 `allowed_types` 与 grammar-valid tokens 无交集时，所有 grammar-valid tokens 变为 -inf，而 grammar-invalid tokens 仍为 -1e10 (> -inf) → argmax 选中 grammar-invalid token → XGrammar assertion failure。\\\\n**修复**: `_apply_type_mask` 增加 `_GRAMMAR_MASK_THRESHOLD = -1e8` 安全检查：应用 semantic mask 前验证至少一个 semantically-allowed type 有非 grammar-masked logit；若无交集则跳过 semantic masking，交由 grammar 控制。\\\\n**论文意义**: 此 invariant（semantic mask ⊆ grammar allowed set）是双层约束架构的关键设计约束，应在 Method section 明确描述。在 SciERC 上未触发是因为约束更松 (avg 26.1 valid pairs vs DocRED 5.68)。\\\\n\\\\n### Llama-3.1-8B 兼容性验证 (2026-05-14)\\\\n- 模型已在服务器: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\\\\n- 零代码修改：AutoTokenizer/AutoModelForCausalLM 模型无关，chat_template 自动适配\\\\n- XGrammar + TypeConstraintProcessor first-token 唯一性验证通过（SciERC 6 types + DocRED 6 types）\\\\n- pad_token=None 已有处理逻辑\\\\n\\\\n### First-token masking 验证 (2026-05-13)\\\\n简单 first-token masking 安全可用，不需要 trie-based 方案。\\\\nSciERC: Task=6262, Method=3523, Material=13415, Metric=54310, OtherScientificTerm=11409, Generic=19964\\\\nDocRED: PER=9654, ORG=44927, LOC=12052, TIME=18129, NUM=17488, MISC=44\\\\n上下文无关性已验证。\\\\n\\\\n## 方法论决策\\\\n\\\\n### R-F1 评估方法 — ✅ 定稿 (2026-05-14, Reviewer 独立确认)\\\\n- **all_set 方法正确**：OOV predictions 计为 FP，包含在分母中\\\\n- recognized_set 方法有误：过滤 5189 个 OOV predictions 人为抬高 precision\\\\n- **定稿 R-F1 数字**：\\\\n  | 数据集 | Unconstrained | Full S1 | Delta |\\\\n  |--------|:---:|:---:|:---:|\\\\n  | SciERC | 8.23% | 8.36% | +0.13pp |\\\\n  | DocRED | 7.74% | 8.23% | +0.49pp |\\\\n- **论文可 claim：两个数据集上 constrained decoding 均不损失 R-F1**\\\\n- §5 评估方法段必须明确描述：DocRED name→PID 归一化流程 + OOV 计为 FP 的处理（审稿必问）\\\\n\\\\n### Violation 分类体系 (2026-05-13)\\\\n4 类独立计数：entity_type / relation_vocabulary / domain_range / cross_field_consistency\\\\ngo/no-go 阈值 (5%) 基于 domain_range_violation_rate\\\\n\\\\n### Fuzzy Matching (2026-05-13)\\\\nDocRED: token overlap >80% 或 Levenshtein ≤2\\\\n\\\\n## §5 写作备忘 (2026-05-14)\\\\n\\\\n### Grammar-only DR 上升是审稿必问点\\\\n- DocRED grammar_only DR=26.17% > unconstrained DR=18.46%\\\\n- 原因：grammar 强制 valid relation name 后，原来因 RV violation 被过滤的 triples 现在保留，但这些 triples 的 entity type 与新 relation 的 domain/range 可能不匹配\\\\n- **论文定位**：恰好证明 semantic 层必要性——grammar alone 不仅不够，反而加剧 DR；需要 semantic 层配合\\\\n- 预写 rebuttal 要点：grammar + semantic 合并后 DR 从 26.17% 降到 10.19% (↓61%)\\\\n\\\\n### DocRED 评估方法段写作要点（审稿必问）\\\\n- 必须明确描述 name→PID 归一化流程（如何匹配模型输出的自然语言 relation name 到 Wikidata PID）\\\\n- 必须说明 OOV predictions（模型输出的 relation name 无法匹配任何 PID）计为 FP 的处理逻辑\\\\n- 这两点是审稿人必然攻击面，主动说清楚比被动辩解好\\\\n\\\\n### ET 归因修正 (2026-05-14, Reviewer 补充 1)\\\\n- ❌ 错误归因：\\\\\\\"leading spaces in entity type tokens\\\\\\\"（strip 已修复 space 问题）\\\\n- ✅ 正确归因：\\\\\\\"trajectory perturbation — constrained logit masking shifts generation distribution, producing non-standard entity types (WORK 823, EVENT 743, ETHNIC_GROUP 137)\\\\\\\"\\\\n- 已修正 section5_docred_draft.tex\\\\n\\\\n## 踩坑记录\\\\n\\\\n### submit_training_job 必须 bash -c 包裹 (2026-05-13)\\\\n- tmux session 默认用 `sh` 执行命令，`source` 和 `conda activate` 是 bash built-in\\\\n- **直接写 `python3 ...` 会 EXIT_CODE=127 (command not found)**\\\\n\\\\n\\\\n... [截断: 省略 2556 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 14556, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md\", \"content\": \"# Memory — schema_semantic_constrained_ie\\n\\n## 文献调研 (2026-05-13)\\n\\n### 核心结论: OntoCoDec 的 novelty 成立\\n**没有人做过 \\\"compile IE ontology domain/range → decoding-time logits masking\\\" 的完整 pipeline。**\\n\\nGap 结构：\\n- Syntactic constrained decoding for IE: well-explored (GCD, XGrammar, Outlines)\\n- Vocabulary-level: exists (GENRE, iNERD, AdaKGC)\\n- **Semantic (domain/range) decoding for IE: OPEN GAP** ← OntoCoDec\\n- Semantic type checking at decode time: only for code gen (MGD NeurIPS'23, PLDI'25)\\n- Ontology compliance for IE: only post-processing (ODKE+ Apple'25, OntoLogX'25)\\n\\n最近竞争者：PLDI'25 Type-Constrained Code Gen（同机制但领域是代码生成，必须引用并区分）\\n\\n风险：CRANE (ICML'25) 严格约束可能降低推理质量；Grammar-Aligned Decoding (NeurIPS'24) naive masking 扭曲分布\\n\\nNovelty 定位：\\\"OntoCoDec 将 type-constrained generation 引入信息抽取，编译 IE ontology axioms 为解码时语义约束，预防而非检测 type violations。\\\"\\n\\n详细报告: `artifacts/literature_map.yaml`, `artifacts/literature_survey_*.md`\\n\\n## 实验发现\\n\\n### SciERC Phase 0 — Minimal (2026-05-13)\\n- **go_nogo_metric = 15.4%** (domain_range_violation_rate), 3× 超过 5% 阈值 → GO\\n- Violation 分布极不均匀: Used-for 0.76% vs Compare 42.4% vs Feature-of 33.5%\\n- Feature-of + Compare 贡献 72% 的 domain/range violations\\n- Relation vocabulary violations 仅 1.4%\\n- 关键 insight: OntoCoDec 的价值在于精确靶向高违规 relation types\\n\\n### SciERC Phase 0 — Schema-informed (2026-05-13)\\n- **domain_range_violation_rate = 5.78%**（vs minimal 15.37%, -62.4%）\\n- 仍高于 5% 阈值 → prompt 级干预不足以替代 decoding-time enforcement\\n- Entity type violations 降到 0%，relation vocabulary 降到 0.30%\\n- Per-relation: Feature-of -22.3pp, Part-of -22.5pp, Compare -14.8pp\\n- ⚠️ Evaluate-for 反而退步 +5.8pp — prompt 复杂度反而干扰\\n- McNemar 四类全显著 p<0.01\\n- **论文 story**: LLM 能理解约束（-62%）但执行不完美（仍>5%），需要 hard constraint\\n\\n### DocRED Phase 0 — Minimal (2026-05-13)\\n- **domain_range_violation_rate = 18.7%** (16,540 triples, 998 docs)\\n- Relation vocabulary violation = 28.9% (4,775 triples) — 远高于 SciERC 1.4%\\n- Entity type violation = 7.5% (vs SciERC 0.4%)\\n- JSON parse rate = 96.4% (36 docs 解析失败)\\n- Top violators: P31 instance_of (60.4%, 322/533), P1001 applies_to_jurisdiction (44.4%)\\n- 约束更紧(avg 5.68 pairs)确实导致更高违规(18.7% vs 15.4%)\\n\\n### SciERC vs DocRED 对比 (2026-05-13)\\n| 指标 | SciERC (7 rels) | DocRED (96 rels) |\\n|------|----------------|-----------------|\\n| D/R violation | 15.4% | 18.7% (+3.3pp) |\\n| Relation vocab | 1.4% | 28.9% (+27.5pp) |\\n| Entity type | 0.4% | 7.5% (+7.1pp) |\\n| Avg valid pairs | 26.1 | 5.68 |\\n两个数据集都远超 5% 阈值 → 强 GO 信号。Vocabulary layer 在复杂 schema 上尤为关键。\\n\\n### SciERC Phase 2 — Grammar-only (2026-05-13)\\n- **Grammar 层约束是\\\"免费\\\"的**：零 F1 代价完全消除 rv (1.4%→0%) 和 et (0.4%→0%) violations\\n- entity_f1 delta = -0.03pp ≈ 0，relation_f1 delta = 0\\n- **论文 claim**: \\\"Structural constraints can be enforced at zero quality cost\\\"\\n- DR violation 基本不变 (15.37%→14.84%, -0.53pp) — 符合预期，grammar 不含 D/R 约束\\n- DR 热点: Compare 40.85%, Feature-of 31.98%, Part-of 23.38% — 这些是 semantic 层的目标\\n- **决策依据**: grammar 层可以 always-on，无需 ablation 它的\\\"代价\\\"。论文只需关注 semantic 层的 F1 trade-off。\\n\\n### SciERC Phase 2 — 全量最终结果 (2026-05-14, _v2 干净数据)\\n\\n| Mode | R-F1 | E-F1 | DR% | RV% | ET% | ΔDR |\\n|------|------|------|-----|-----|-----|-----|\\n| unconstrained | 0.0823 | 0.3101 | 15.37% | 1.39% | 0.4% | — |\\n| grammar_only | 0.0823 | 0.3098 | 14.84% | 0% | 0% | -0.53pp |\\n| semantic_only | 0.0815 | 0.3101 | 11.65% | 1.51% | 0.4% | -3.72pp |\\n| **full_s1** | **0.0836** | **0.3098** | **0.93%** | **0%** | **0%** | **-14.44pp (↓94%)** |\\n\\n**核心发现**:\\n- **full_s1 是论文核心结果**: DR 15.37%→0.93% (消除 94%), F1 反而微升 +0.0013, 零质量代价\\n- **semantic_only 有效但不够**: DR -3.72pp (↓24%), 但 RV/ET 未消除（需 grammar 层配合）\\n- 早期污染数据 (108样本) 显示 semantic_only DR=16.43%（误导），干净数据实际 11.65%\\n- **Ablation story**: grammar 处理结构约束 (RV, ET), semantic 处理类型约束 (DR), 合并达最佳效果\\n\\n**Per-relation DR (full_s1)**: Used-for/Hyponym-of/Part-of/Conjunction = 0%, Feature-of 1.21%, Compare 2.82%, Evaluate-for 5.76% (残留最多)\\n\\n### SciERC Phase 2 — S2 全量结果 (2026-05-14)\\n| Mode | R-F1 | E-F1 | DR% | CF% |\\n|------|------|------|-----|-----|\\n| full_s1 | 0.0836 | 0.3098 | 0.93% | 9.90% |\\n| full_s2 | 0.0803 | 0.3190 | 0.97% | 8.03% |\\nS1 全面略优 (R-F1 +0.33pp, DR 持平)，S2 降级为 ablation。\\n\\n### DocRED Phase 2 — 全量最终结果 (2026-05-14, all_set 方法, Reviewer 确认) ⚠️ ET 待 D011 v2 checker 修正\\n\\n| Mode | R-F1 | E-F1 | DR% | RV% | ET% | CF% | Triples |\\n|------|------|------|-----|-----|-----|-----|---------|\\n| **unconstrained** | **7.74%** | **58.15%** | **18.46%** | **29.66%** | **8.18%** | 0.10% | 17,497 |\\n| grammar_only | 8.31% | — | 26.17% | 0.03% | 0% | — | 17,341 |\\n| **full_s1** | **8.23%** | **59.37%** | **10.19%** | **0.03%** | **0%** | 2.57% | 17,372 |\\n| semantic_only | 7.70% | 57.81% | 13.84% | 29.87% | 10.44% | 1.05% | 17,571 |\\n\\n**核心发现**:\\n1. ✅ Grammar 层在 DocRED 完美泛化: ET/RV→0%（与 SciERC 一致）\\n2. ⚠️ **DR 降幅 scaling gap**: SciERC ↓94% (15.37→0.93%) vs DocRED ↓45% (18.46→10.19%)\\n3. ✅ **R-F1 不降反升**: 7.74%→8.23% (+0.49pp)，E-F1 58.15%→59.37% (+1.22pp)\\n4. **论文可 claim：两个数据集上 constrained decoding 均不损失 R-F1**（Reviewer 2026-05-14 确认）\\n5. Grammar-only DR 上升 (18.46→26.17%) 是审稿必问点：grammar 强制 valid relation name 后 entity type 与新 relation 的 domain/range 不匹配加剧，恰好证明 semantic 层必要性\\n6. 残余 DR 集中在特定关系: P190_sister_city 58%, P582_end_time 43.5%, P205_basin_country 37%\\n7. Semantic 层在 grammar 基础上额外贡献: DR 26.17→10.19% (↓61%)\\n\\n### Semantic Fallback 频率分析 (2026-05-14) ⚠️ 论文 §5 + Discussion 关键数据\\n\\n| Model | Dataset | Fallback Rate | Avg/doc | Source | Unit |\\n|-------|---------|--------------|---------|--------|------|\\n| Qwen | SciERC | 0.9% (16/1,729) | 0.03 | post-hoc | triple-level |\\n| Qwen | DocRED | 10.2% (1,770/17,341) | 1.77 | post-hoc | triple-level |\\n| Llama | SciERC | — | ~10.7 | 日志 | token-level |\\n| Llama | DocRED | — | ~57 | 日志 | token-level |\\n\\n**关键发现**:\\n- Qwen DocRED 10.2% triple-level fallback ≈ DR 残余 10.19% — **fallback 精确解释了 DR 残余**\\n- Qwen SciERC 0.9% ≈ DR 残余 0.93% — 同样精确匹配\\n- DocRED >> SciERC 趋势跨模型一致（Llama 也是 ~5.3× 差异）\\n- **⚠️ 单位不可比**: Llama 是 token-level 事件计数（每步 mask 检查），Qwen 是 triple-level DR violation（fallback 下界）。论文中不能直接对比绝对值，只能说趋势一致\\n- 高频 fallback 关系 (Qwen DocRED): parent_taxon 77.8%, unemployment_rate 83.3%, territory_claimed_by 45%\\n- **论文定位**: \\\"Constraint coverage\\\"——semantic masking 实际生效的比例，与 constraint tightness 反相关\\n\\n### Constraint Tightness ↔ DR Violation Scaling (2026-05-14) ⚠️ 论文核心 insight\\n**根因分析确认：DR 差异由约束紧度驱动，非 semantic 层失效。**\\n\\n| Tightness 区间 | Valid pairs | DocRED 聚合 DR | SciERC 对应 |\\n|---------------|-------------|---------------|------------|\\n| ≥ 0.95 (极紧) | 1-2 pairs | 30.6% | 无此类 relation |\\n| 0.90-0.94 | 3-4 pairs | 19.3% | 无此类 relation |\\n| < 0.70 (宽松) | 11+ pairs | 0.7% | SciERC 全部在此区间 |\\n\\n- DocRED avg tightness = 0.842 vs SciERC = 0.333\\n- DocRED 中位数仅允许 5/36 type pairs，SciERC 中位数 23/36\\n- 高 tightness 下 semantic∩grammar=∅ 概率高 → fallback 到 grammar-only → DR 未被约束\\n- SciERC DR 低是因为约束本身宽松，LLM 几乎不可能违规\\n- **论文定位**：effectiveness scales inversely with constraint tightness，这是 **contribution** 而非 weakness（首个 constraint scaling 实证，无文献可比）\\n- **文献确认**：无任何论文在 DocRED 上报告 constrained decoding violation rate，我们是首个 benchmark\\n\\n### CF Violation 根因分析 (2026-05-14)\\n- **CF = 跨字段一致性违规**：同一 entity mention 在 entity list 和 relation head/tail 中被标注为不同类型\\n- 根因: semantic constraint 按 per-relation 独立强制 type，导致 entity-vs-relation type drift\\n- 主要冲突: Generic ↔ OtherScientificTerm (60 次, 占比最高)\\n- grammar_only CF=0.08% → S1 CF=9.90% → **CF 100% 来自 semantic 层**\\n- **论文 limitation**: per-relation 独立 type enforcement 的固有副作用，需 future work 做跨 relation entity type 一致性约束\\n\\n### CF 指标口径澄清 (2026-05-14)\\n- violation_checker: 合并所有 type 来源 (entity list + relation head/tail)，denominator = total_entities (2474)\\n- analyze_cf: 分 WR (Within-Relations) + EVR (Entity-vs-Relation) 两维度，denominator 不同 (checked_slots=3380)\\n- **分子一致**: S1=245=245, S2=178 vs 179 (差 1 due to analyze_cf entity_type_map overwrite bug)\\n- **论文统一用 violation_checker 口径**: S1=9.90%, S2=8.03%\\n\\n### S2 Pilot 调查 (2026-05-13)\\n- **原报告 relation_f1=0 是误读**：数据来自 10 样本 dryrun 的 violation_report，非 pilot50 评估\\n- pilot50 实际 relation_f1=0.1008 (13 TP / 146 pred / 112 gold)，与 unconstrained 0.0823 持平\\n- S2 架构可行，DR violation=0% 达标，F1 瓶颈在 entity span 质量（zero-shot entity F1≈0.29）\\n- FP 根因: 52.6% head+tail 都不匹配 gold（entity span 提取错误以平方级放大到 relation）\\n\\n## 技术路线决策\\n\\n### Phase 1 Compiler 完成 (2026-05-13)\\n**HF transformers + XGrammar (standalone)**，代码在 `/root/schema_semantic_constrained_ie/compiler/`：\\n- `ontology_compiler.py`: compile_type_constraints() + build_processor()\\n- `type_mask_processor.py`: _build_first_token_map(), _mask_entity_type/head/tail_type(), _detect_position()\\n- 24 单元测试 + 12 e2e 测试全部通过\\n- SGLang 作为后续性能优化路径，vLLM 暂不可用\\n\\n### Phase 2 脚本完成 (2026-05-13)\\n`run_constrained_extraction.py` (652 行) 支持 5 模式：unconstrained/grammar_only/semantic_only/full_s1/full_s2\\n- 所有模式 dry-run 通过 + violation_checker 兼容\\n\\n### DocRED constrained decoding 就绪 (2026-05-14)\\n`run_constrained_extraction.py --dataset docred` 零代码修改即可运行 grammar_only / full_s1 模式。\\n约束文件: `data/docred/ontology_constraints_docred.json` (6 entity types, 96 relations)\\n建议命令加 `--max_new_tokens 4096`（文档级比句子级长得多）\\n\\n### Grammar-Semantic 交互 Bug 修复 (2026-05-14)\\n**根因**: `compiler/type_mask_processor.py` → `_apply_type_mask`。full_s1 模式下 XGrammar 将 grammar-invalid tokens 设为有限负值 (-1e10)，TypeConstraintProcessor 将 semantically-disallowed types 设为 -inf。当 `allowed_types` 与 grammar-valid tokens 无交集时，所有 grammar-valid tokens 变为 -inf，而 grammar-invalid tokens 仍为 -1e10 (> -inf) → argmax 选中 grammar-invalid token → XGrammar assertion failure。\\n**修复**: `_apply_type_mask` 增加 `_GRAMMAR_MASK_THRESHOLD = -1e8` 安全检查：应用 semantic mask 前验证至少一个 semantically-allowed type 有非 grammar-masked logit；若无交集则跳过 semantic masking，交由 grammar 控制。\\n**论文意义**: 此 invariant（semantic mask ⊆ grammar allowed set）是双层约束架构的关键设计约束，应在 Method section 明确描述。在 SciERC 上未触发是因为约束更松 (avg 26.1 valid pairs vs DocRED 5.68)。\\n\\n### Llama-3.1-8B 兼容性验证 (2026-05-14)\\n- 模型已在服务器: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B-Instruct`\\n- 零代码修改：AutoTokenizer/AutoModelForCausalLM 模型无关，chat_template 自动适配\\n- XGrammar + TypeConstraintProcessor first-token 唯一性验证通过（SciERC 6 types + DocRED 6 types）\\n- pad_token=None 已有处理逻辑\\n\\n### First-token masking 验证 (2026-05-13)\\n简单 first-token masking 安全可用，不需要 trie-based 方案。\\nSciERC: Task=6262, Method=3523, Material=13415, Metric=54310, OtherScientificTerm=11409, Generic=19964\\nDocRED: PER=9654, ORG=44927, LOC=12052, TIME=18129, NUM=17488, MISC=44\\n上下文无关性已验证。\\n\\n## 方法论决策\\n\\n### R-F1 评估方法 — ✅ 定稿 (2026-05-14, Reviewer 独立确认)\\n- **all_set 方法正确**：OOV predictions 计为 FP，包含在分母中\\n- recognized_set 方法有误：过滤 5189 个 OOV predictions 人为抬高 precision\\n- **定稿 R-F1 数字**：\\n  | 数据集 | Unconstrained | Full S1 | Delta |\\n  |--------|:---:|:---:|:---:|\\n  | SciERC | 8.23% | 8.36% | +0.13pp |\\n  | DocRED | 7.74% | 8.23% | +0.49pp |\\n- **论文可 claim：两个数据集上 constrained decoding 均不损失 R-F1**\\n- §5 评估方法段必须明确描述：DocRED name→PID 归一化流程 + OOV 计为 FP 的处理（审稿必问）\\n\\n### Violation 分类体系 (2026-05-13)\\n4 类独立计数：entity_type / relation_vocabulary / domain_range / cross_field_consistency\\ngo/no-go 阈值 (5%) 基于 domain_range_violation_rate\\n\\n### Fuzzy Matching (2026-05-13)\\nDocRED: token overlap >80% 或 Levenshtein ≤2\\n\\n## §5 写作备忘 (2026-05-14)\\n\\n### Grammar-only DR 上升是审稿必问点\\n- DocRED grammar_only DR=26.17% > unconstrained DR=18.46%\\n- 原因：grammar 强制 valid relation name 后，原来因 RV violation 被过滤的 triples 现在保留，但这些 triples 的 entity type 与新 relation 的 domain/range 可能不匹配\\n- **论文定位**：恰好证明 semantic 层必要性——grammar alone 不仅不够，反而加剧 DR；需要 semantic 层配合\\n- 预写 rebuttal 要点：grammar + semantic 合并后 DR 从 26.17% 降到 10.19% (↓61%)\\n\\n### DocRED 评估方法段写作要点（审稿必问）\\n- 必须明确描述 name→PID 归一化流程（如何匹配模型输出的自然语言 relation name 到 Wikidata PID）\\n- 必须说明 OOV predictions（模型输出的 relation name 无法匹配任何 PID）计为 FP 的处理逻辑\\n- 这两点是审稿人必然攻击面，主动说清楚比被动辩解好\\n\\n### ET 归因修正 (2026-05-14, Reviewer 补充 1)\\n- ❌ 错误归因：\\\"leading spaces in entity type tokens\\\"（strip 已修复 space 问题）\\n- ✅ 正确归因：\\\"trajectory perturbation — constrained logit masking shifts generation distribution, producing non-standard entity types (WORK 823, EVENT 743, ETHNIC_GROUP 137)\\\"\\n- 已修正 section5_docred_draft.tex\\n\\n## 踩坑记录\\n\\n### submit_training_job 必须 bash -c 包裹 (2026-05-13)\\n- tmux session 默认用 `sh` 执行命令，`source` 和 `conda activate` 是 bash built-in\\n- **直接写 `python3 ...` 会 EXIT_CODE=127 (command not found)**\\n\\n\\n... [截断: 省略 2556 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 14556, \"truncated\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "47ed8f92-d0f2-4b1a-98bb-878e15cf9cc9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T14:30:29.077Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01KH3GC9zZD8V3BBEQbKZLJ9`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "file": "decisions.yaml",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "267725de-ea39-466e-bd32-dbb8113f65c1",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WpXax9DJvX8iXJ5RYr",
+  "type": "assistant",
+  "uuid": "4e682365-8b86-4990-8207-c6ed80205b45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013mHXj4SsUMsP1yAKumP2J5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 129,
+      "cache_read_input_tokens": 58459,
+      "output_tokens": 280,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 129,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 280,
+          "cache_read_input_tokens": 58459,
+          "cache_creation_input_tokens": 129,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 129
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T14:30:29.092Z_
+
+<details><summary>↩ Tool result · `toolu_01KH3GC9zZD8V3BBEQbKZLJ9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/decisions.yaml\", \"content\": \"_next_id: 20\\ndecisions:\\n- id: D001\\n  date: 2026-05-13 17:38 UTC\\n  summary: 主目标调整为 EMNLP 2026 ARR (5/25), AAAI 2027 为后备\\n  rationale: 用户明确指出 EMNLP ARR 5/25 时间不紧、不要保守、资源会给够。12 天 AI 团队速度足够：Phase 0 (1-2天) →\\n    Phase 1 compiler (2-3天) → Phase 2 experiments (2-3天) → Paper (2-3天)。禁止 fallback\\n    思维，冲最高目标。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-13 19:14 UTC\\n  summary: SciERC Phase 0 结果确认 GO — domain_range violation rate 15.4%，3× 超阈值\\n  rationale: 'SciERC 全量 test set (551 sentences, 1724 triples): domain_range_violation_rate\\n    = 15.4%，远超 5% go/no-go 阈值。违规分布极不均匀 (Feature-of 33.5%, Compare 42.4% vs Used-for\\n    0.76%)，支持\\\"特定 relation types 需要 decoding-time enforcement\\\"的论文 claim。DocRED dry-run\\n    (37 docs) 同样显示 14.4%。两个数据集均为 GO 信号，MVP 核心假设得到强验证。等 schema-informed prompt 结果确认\\n    prompt 级干预不足以解决问题后正式宣布 MVP 通过。'\\n  related_experiments:\\n  - exp_id: mvp_phase0_violation_rate\\n    role: primary\\n    result: domain_range_violation_rate=15.4%, go_nogo=GO\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-13 21:48 UTC\\n  summary: MVP 通过，进入 Research 阶段，立即启动 Phase 2 constrained decoding 实验\\n  rationale: Phase 0 三个实验完成：SciERC 15.4%/5.78%, DocRED 18.7% domain_range violation\\n    rate。两个数据集均远超 5% 阈值，核心假设得到强验证。Phase 1 compiler 代码就绪（36 tests 通过），Phase 2 脚本就绪（S1\\n    路径可用，S2 bug 修复中）。cuda:1 空闲，立即启动 Phase 2 SciERC grammar_only/semantic_only/full_s1\\n    实验。\\n  related_experiments:\\n  - exp_id: mvp_phase0_violation_rate\\n    role: primary\\n    result: SciERC DR=15.4%, GO\\n  - exp_id: mvp_phase0_scierc_schema\\n    role: primary\\n    result: SciERC DR=5.78%, prompt insufficient\\n  - exp_id: mvp_phase0_violation_rate_docred\\n    role: primary\\n    result: DocRED DR=18.7%, GO\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-14 01:53 UTC\\n  summary: Phase 2 SciERC 核心结果确认：grammar+semantic (full_s1) DR↓94% F1 neutral，两层约束协同效应成立\\n  rationale: _v2 干净数据 551 样本全量结果：full_s1 DR=0.93%（baseline 15.37%，↓94%），R-F1 微升 +0.0013。grammar\\n    单独消除 RV/ET，semantic 单独降 DR 24%，组合后 94%——超加性效应。论文核心 claim 站住。早期污染数据 semantic_only\\n    DR=16.43% 已修正为 11.65%。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: DR=15.37%\\n  - exp_id: phase2_scierc_grammar_only\\n    role: ablation\\n    result: DR=14.84%, RV/ET=0%\\n  - exp_id: phase2_scierc_semantic_only\\n    role: ablation\\n    result: DR=11.65%\\n  - exp_id: phase2_scierc_full_s1\\n    role: core_result\\n    result: DR=0.93%, F1=0.0836\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-14 01:53 UTC\\n  summary: Phase 2 SciERC 核心结果确认：Full S1 DR↓94% F1无损，CF violation↑124x 作为已知 tradeoff\\n    待 S2 对比后决定处理策略\\n  rationale: v2 干净数据 551/551 全量验证，Reviewer PASS。Grammar+Semantic 协同效应成立，ablation story\\n    清晰。CF violation（0.08%→9.9%）是约束副作用，需等 S2 结果判断是在论文中作为 limitation 还是加 CF 约束修复。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: DR=15.37%, RV=1.39%, ET=0.4%, RF1=0.0823\\n  - exp_id: phase2_scierc_grammar_only\\n    role: ablation\\n    result: DR=14.84%, RV=0%, ET=0%, RF1=0.0823\\n  - exp_id: phase2_scierc_semantic_only\\n    role: ablation\\n    result: DR=11.65%, RV=1.51%, ET=0.4%, RF1=0.0815\\n  - exp_id: phase2_scierc_full_s1\\n    role: core_result\\n    result: DR=0.93%, RV=0%, ET=0%, RF1=0.0836, CF=9.9%\\n  depends_on: []\\n- id: D006\\n  date: 2026-05-14 01:54 UTC\\n  summary: Phase 2 SciERC 核心结果确认：Full S1 DR -94% 且 F1 无损，CF violation 上升为已知 limitation\\n  rationale: v2 干净数据全量（551/551）结果经 Reviewer PASS 验证：Full S1 DR 15.37%→0.93%（↓94%），R-F1\\n    +0.13pp，ET/RV→0%。Ablation story 清晰（grammar 管格式、semantic 管语义、双层协同）。CF violation\\n    从 0.08%→9.9% 是已知副作用，需在论文中正面报告并论述与 DR 的性质差异。Semantic-only DR=11.65% 说明两层是 multiplicative\\n    关系。决定推进 DocRED Phase 2 跨数据集验证 + 等 S2 对比。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: DR=15.37%, R-F1=0.0823\\n  - exp_id: phase2_scierc_grammar_only\\n    role: ablation\\n    result: DR=14.84%, RV/ET=0%, F1持平\\n  - exp_id: phase2_scierc_semantic_only\\n    role: ablation\\n    result: DR=11.65%, F1-0.08pp\\n  - exp_id: phase2_scierc_full_s1\\n    role: core_result\\n    result: DR=0.93%, R-F1=0.0836(+0.13pp)\\n  - exp_id: mvp_phase0_docred_schema\\n    role: motivation\\n    result: DocRED DR=12.8%(-32%), 验证prompt级不足\\n  depends_on: []\\n- id: D007\\n  date: 2026-05-14 02:09 UTC\\n  summary: S2 降级为架构 ablation，S1 为主推策略；标题去掉 \\\"Guaranteed\\\" 改 \\\"Near-Complete\\\"\\n  rationale: S2 全量结果(551/551)确认：DR 0.97%(vs S1 0.93%)、CF 8.03%(vs S1 9.9%，降幅不显著)、R-F1\\n    8.03%(vs S1 8.36%)。S2 在所有指标上均未优于 S1，两通道分离未能解决 CF 问题。CF 是 per-relation 独立 type\\n    enforcement 的固有限制，非架构可解。S2 定位从\\\"CF 解决方案\\\"调整为\\\"架构灵活性展示\\\"，论文中放 ablation/appendix。标题\\n    \\\"Guaranteed\\\" 与 0.93% 残余不符，改为 \\\"Near-Complete\\\"。\\n  related_experiments:\\n  - exp_id: phase2_scierc_full_s2\\n    role: primary\\n    result: DR=0.97%, CF=8.03%, R-F1=8.03% — no advantage over S1\\n  - exp_id: phase2_scierc_full_s1\\n    role: baseline\\n    result: DR=0.93%, CF=9.9%, R-F1=8.36%\\n  depends_on: []\\n- id: D008\\n  date: 2026-05-14 04:33 UTC\\n  summary: 补跑 DocRED semantic_only 完成跨数据集全消融；论文写作提前至 DocRED 分析完成后立即启动\\n  rationale: 'SciERC 有 5 路消融但 DocRED 只有 grammar_only + full_s1，缺 semantic_only。Claim\\n    3 (enabling dependency) 在 DocRED 上的证据链不完整——审稿人必问\\\"为何 DocRED 不做 semantic_only 对比\\\"。DocRED\\n    约束更紧(avg 5.68 valid pairs)，semantic_only 预期效果更差，反而是 enabling dependency 的更强证据。论文写作从\\n    5/19 提前到 DocRED 分析完成后(~5/16)，DocRED semantic_only 与写作并行，结果 patch 进去。grammar-semantic\\n    交互 bug (invariant: semantic mask ⊆ grammar allowed set) 需写入 Method section 作为\\n    resolution protocol。'\\n  related_experiments:\\n  - exp_id: phase2_docred_grammar_only\\n    role: running\\n    result: pending\\n  - exp_id: phase2_docred_full_s1\\n    role: running\\n    result: pending\\n  - exp_id: phase2_scierc_semantic_only\\n    role: reference\\n    result: DR↓24% but ET/RV not eliminated\\n  depends_on:\\n  - D006\\n  - D007\\n- id: D009\\n  date: 2026-05-14 06:19 UTC\\n  summary: Llama-3.1-8B cross-model 验证升级为 should-have，SciERC-only (unconstrained +\\n    full_s1)\\n  rationale: Reviewer 实测 DocRED 实验进度远超预期（May 15 早间全部完成 vs 原估 May 17-18），多出 2-3 天 buffer。单模型是最可能的\\n    EMNLP reviewer 批评 (C5)，2 组 SciERC 实验 4-6 GPU 小时即可完成，风险可控。constraint compiler 声称\\n    model-agnostic，跨模型验证是最直接的证据。\\n  related_experiments:\\n  - exp_id: phase2_scierc_full_s1\\n    role: baseline_same_model\\n    result: DR↓94% F1无损\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline_same_model\\n    result: DR 15.37%\\n  depends_on:\\n  - D006\\n  - D008\\n- id: D010\\n  date: 2026-05-14 17:59 UTC\\n  summary: Dream 三档 Weak Reject (3/6) → 制定 6 项结构性补强计划：post-hoc baseline + bootstrap\\n    CI + related work 20+ + PICARD 对比 + CF/F1 Discussion 段\\n  rationale: Dream 模拟三档一致指出 6 个结构性缺陷：(1) 单模型泛化弱 → Llama cross-model 已在跑，(2) 无 post-hoc\\n    filtering baseline → 必须加，(3) related work 仅 7 引用 → 扩到 20+，(4) 无统计显著性 → bootstrap\\n    CI，(5) CF trade-off 无下游验证 → 加强论证，(6) 低 F1 实用性 → Discussion 段。Dream 基于缺少 Llama\\n    数据 + 有 bug 的 violation 数字，实际情况好于模拟。补强后预期从 3/6 提升到 4-5/6 区间。\\n  related_experiments:\\n  - exp_id: llama_docred_full_s1\\n    role: addresses U1 (cross-model)\\n    result: RUNNING\\n  - exp_id: llama_docred_unconstrained\\n    role: addresses U1 (cross-model)\\n    result: RUNNING\\n  - exp_id: llama_scierc_full_s1\\n    role: addresses U1 (cross-model)\\n    result: success\\n  depends_on:\\n  - D009\\n- id: D011\\n  date: 2026-05-14 18:16 UTC\\n  summary: 推翻之前 ET 计数口径决定——修正 ET triple-counting，每个 entity 只计 1 次 ET violation（不在\\n    entity_list + head + tail 各计一次）\\n  rationale: Reviewer 审查指出：(1) ET=8.18% 被 inflate 至多 3× (实际 ~2.47%)，是不必要的攻击面；(2) grammar/full_s1\\n    ET=0% 不受影响；(3) 相对对比仍有效；(4) 距 May 19 DDL 仍有修正窗口。之前\\\"保持一致性\\\"的理由成立但 Reviewer 认为论文可信度\\n    > 方法学惰性。修正后所有非零 ET 数字将变小，但 constrained decoding 的 ET→0% 仍然成立，paper story 更干净。\\n  related_experiments:\\n  - exp_id: phase2_docred_unconstrained\\n    role: ET 8.18%→~2.47%\\n    result: 需重算\\n  - exp_id: phase2_docred_semantic_only\\n    role: ET 10.44%→~3.5%\\n    result: 需重算\\n  depends_on:\\n  - D010\\n- id: D012\\n  date: 2026-05-14 18:26 UTC\\n  summary: 'Bootstrap CI framing: 选 (B) 逐数据集报告 F1 significance，DocRED +0.50pp p<0.001，SciERC\\n    neutral p=0.58'\\n  rationale: Bootstrap CI (10000×) 揭示 DocRED F1 提升统计显著，机制为 grammar 消除 OOV relation\\n    names (RV 29.66%→0.03%) 减少 FP。SciERC RV 仅 1.39% 故效果不显著。选逐数据集报告而非统一 framing，最诚实且不升级为\\n    core claim。更新 paper_framing.md 中 C6/C8 相关表述。\\n  related_experiments:\\n  - exp_id: phase2_docred_full_s1\\n    role: primary\\n    result: R-F1 +0.50pp vs unconstrained, p<0.001\\n  - exp_id: phase2_scierc_full_s1\\n    role: primary\\n    result: R-F1 +0.13pp vs unconstrained, p=0.58 (non-significant)\\n  depends_on:\\n  - D010\\n- id: D013\\n  date: 2026-05-14 18:28 UTC\\n  summary: 'Post-hoc baseline framing: 不以 F1 论高低，多维对比 (recall + coverage + operational)，诚实承认\\n    precision trade-off'\\n  rationale: Post-hoc F1 > OntoCoDec F1（SciERC 8.63 vs 8.36, DocRED 9.61 vs 8.24），因\\n    low F1 regime 下移除 FP 大幅提升 precision。但 post-hoc recall 下降（SciERC -0.72pp, DocRED\\n    -1.06pp），DocRED 丢弃 48.1% triples。OntoCoDec recall 上升（+0.20/+0.56pp）= 概率质量重分配生效。Framing\\n    重心放在 recall preservation + information coverage + streaming compatibility，诚实承认\\n    precision trade-off。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: R-F1 8.23\\n  - exp_id: phase2_scierc_full_s1\\n    role: primary\\n    result: R-F1 8.36, recall 11.60\\n  - exp_id: phase2_docred_unconstrained\\n    role: baseline\\n    result: R-F1 7.74\\n  - exp_id: phase2_docred_full_s1\\n    role: primary\\n    result: R-F1 8.24, recall 10.02\\n  depends_on:\\n  - D010\\n  - D012\\n- id: D014\\n  date: 2026-05-14 20:33 UTC\\n  summary: Tightness scaling claim 修订：从单因素(tightness)改为双因素(tightness × model RV baseline)。Llama\\n    DocRED DR↓90.2% 打破原 \\\"scales inversely with tightness\\\" claim。\\n  rationale: Llama DocRED full_s1 DR 26.07%→2.55% (↓90.2%) vs Qwen 18.46%→10.21% (↓44.7%)。同一\\n    ontology (τ̄=0.842) 下差距巨大。原因：Qwen RV=29.66% 远高于 Llama RV=16.03%，grammar 层将 OOV\\n    triples 强制匹配有效关系名后揭露大量 latent DR violations。修订为\\\"tightness 与 model RV baseline\\n    共同决定 enforcement ceiling\\\"。这实际强化论文——揭示 model-constraint 交互效应。同时 E-F1 claim 需限定为\\n    Qwen-specific（Llama E-F1 -0.64pp）。\\n  related_experiments:\\n  - exp_id: llama_docred_full_s1\\n    role: primary\\n    result: DR 26.07→2.55 (↓90.2%), R-F1 +0.29pp, E-F1 -0.64pp, CF 12.02%\\n  - exp_id: llama_docred_unconstrained\\n    role: baseline\\n    result: DR 26.07%, RV 16.03%, R-F1 5.98%\\n  - exp_id: phase2_docred_full_s1\\n    role: comparison\\n    result: DR 10.21% (↓44.7%), Qwen RV baseline 29.66%\\n  depends_on:\\n  - D012\\n  - D013\\n- id: D015\\n  date: 2026-05-14 22:29 UTC\\n  summary: 'D015: Dream #2 结果处理 — Title 去掉 \\\"Near-Complete\\\"，6 项 action items 按优先级处理'\\n  rationale: 'Dream #2 三档 worst=2.5/median=3.0/best=3.0，比 Dream #1 (全 3/6) 改善。三档共识：(1)\\n    Title \\\"Near-Complete\\\" overclaim (DocRED 10.21% residual)，(2) CF severity 无 downstream\\n    验证，(3) 技术新颖性质疑。Title 修订为去掉 \\\"Near-Complete\\\"——论文贡献是方法（compiled ontology constraints），不是特定消除率；结果从\\n    0.93% 到 10.21% 变异太大不适合 \\\"Near-Complete\\\"。CF downstream 验证需架构修改，5天内不可行，保持在 limitations。技术新颖性通过\\n    §6 positioning 强化 IE-specific 贡献（stateful entity registry, prefix-decidable constraints）。'\\n  related_experiments:\\n  - exp_id: dream_20260514T205155\\n    role: dream\\n    result: worst=2.5, median=3.0, best=3.0\\n  depends_on:\\n  - D014\\n  - D013\\n  - D012\\n- id: D016\\n  date: 2026-05-14 22:57 UTC\\n  summary: 'D016: Llama bootstrap CI 修复完成，全部 p-values 写入论文，framing 从 \\\"F1-neutral\\\"\\n    升级为 \\\"both models significant R-F1 gains on DocRED\\\"'\\n  rationale: v2 bootstrap 脚本修复了两个 bug（int entity crash + entity type normalization），8\\n    项 point estimate 全部 registry-aligned (≤0.05pp)。结果：Llama DocRED R-F1 +0.29pp p=0.013（显著正向），E-F1\\n    -0.64pp p=0.022（显著负向）。这使得 DocRED 上两个模型 R-F1 都显著提升，是比 \\\"F1-neutral\\\" 更强的 claim。E-F1\\n    模型依赖性如实报告。已更新 crossmodel §5、abstract、conclusion。\\n  related_experiments:\\n  - exp_id: llama_scierc_unconstrained\\n    role: baseline\\n    result: R-F1=2.68, E-F1=23.56\\n  - exp_id: llama_scierc_full_s1\\n    role: treatment\\n    result: R-F1=2.54 (-0.14pp p=0.011), E-F1=23.49 (NS)\\n  - exp_id: llama_docred_unconstrained\\n    role: baseline\\n    result: R-F1=5.98, E-F1=55.65\\n  - exp_id: llama_docred_full_s1\\n    role: treatment\\n    result: R-F1=6.27 (+0.29pp p=0.013), E-F1=55.01 (-0.64pp p=0.022)\\n  depen\\n\\n... [截断: 省略 2525 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 14525, \"truncated\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4e682365-8b86-4990-8207-c6ed80205b45",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "5b54e8f0-239e-41b6-93c4-fdba33ebc5a3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 20\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-13 17:38 UTC\\\\n  summary: 主目标调整为 EMNLP 2026 ARR (5/25), AAAI 2027 为后备\\\\n  rationale: 用户明确指出 EMNLP ARR 5/25 时间不紧、不要保守、资源会给够。12 天 AI 团队速度足够：Phase 0 (1-2天) →\\\\n    Phase 1 compiler (2-3天) → Phase 2 experiments (2-3天) → Paper (2-3天)。禁止 fallback\\\\n    思维，冲最高目标。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-13 19:14 UTC\\\\n  summary: SciERC Phase 0 结果确认 GO — domain_range violation rate 15.4%，3× 超阈值\\\\n  rationale: 'SciERC 全量 test set (551 sentences, 1724 triples): domain_range_violation_rate\\\\n    = 15.4%，远超 5% go/no-go 阈值。违规分布极不均匀 (Feature-of 33.5%, Compare 42.4% vs Used-for\\\\n    0.76%)，支持\\\\\\\"特定 relation types 需要 decoding-time enforcement\\\\\\\"的论文 claim。DocRED dry-run\\\\n    (37 docs) 同样显示 14.4%。两个数据集均为 GO 信号，MVP 核心假设得到强验证。等 schema-informed prompt 结果确认\\\\n    prompt 级干预不足以解决问题后正式宣布 MVP 通过。'\\\\n  related_experiments:\\\\n  - exp_id: mvp_phase0_violation_rate\\\\n    role: primary\\\\n    result: domain_range_violation_rate=15.4%, go_nogo=GO\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-13 21:48 UTC\\\\n  summary: MVP 通过，进入 Research 阶段，立即启动 Phase 2 constrained decoding 实验\\\\n  rationale: Phase 0 三个实验完成：SciERC 15.4%/5.78%, DocRED 18.7% domain_range violation\\\\n    rate。两个数据集均远超 5% 阈值，核心假设得到强验证。Phase 1 compiler 代码就绪（36 tests 通过），Phase 2 脚本就绪（S1\\\\n    路径可用，S2 bug 修复中）。cuda:1 空闲，立即启动 Phase 2 SciERC grammar_only/semantic_only/full_s1\\\\n    实验。\\\\n  related_experiments:\\\\n  - exp_id: mvp_phase0_violation_rate\\\\n    role: primary\\\\n    result: SciERC DR=15.4%, GO\\\\n  - exp_id: mvp_phase0_scierc_schema\\\\n    role: primary\\\\n    result: SciERC DR=5.78%, prompt insufficient\\\\n  - exp_id: mvp_phase0_violation_rate_docred\\\\n    role: primary\\\\n    result: DocRED DR=18.7%, GO\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-14 01:53 UTC\\\\n  summary: Phase 2 SciERC 核心结果确认：grammar+semantic (full_s1) DR↓94% F1 neutral，两层约束协同效应成立\\\\n  rationale: _v2 干净数据 551 样本全量结果：full_s1 DR=0.93%（baseline 15.37%，↓94%），R-F1 微升 +0.0013。grammar\\\\n    单独消除 RV/ET，semantic 单独降 DR 24%，组合后 94%——超加性效应。论文核心 claim 站住。早期污染数据 semantic_only\\\\n    DR=16.43% 已修正为 11.65%。\\\\n  related_experiments:\\\\n  - exp_id: phase2_scierc_unconstrained\\\\n    role: baseline\\\\n    result: DR=15.37%\\\\n  - exp_id: phase2_scierc_grammar_only\\\\n    role: ablation\\\\n    result: DR=14.84%, RV/ET=0%\\\\n  - exp_id: phase2_scierc_semantic_only\\\\n    role: ablation\\\\n    result: DR=11.65%\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: core_result\\\\n    result: DR=0.93%, F1=0.0836\\\\n  depends_on:\\\\n  - D003\\\\n- id: D005\\\\n  date: 2026-05-14 01:53 UTC\\\\n  summary: Phase 2 SciERC 核心结果确认：Full S1 DR↓94% F1无损，CF violation↑124x 作为已知 tradeoff\\\\n    待 S2 对比后决定处理策略\\\\n  rationale: v2 干净数据 551/551 全量验证，Reviewer PASS。Grammar+Semantic 协同效应成立，ablation story\\\\n    清晰。CF violation（0.08%→9.9%）是约束副作用，需等 S2 结果判断是在论文中作为 limitation 还是加 CF 约束修复。\\\\n  related_experiments:\\\\n  - exp_id: phase2_scierc_unconstrained\\\\n    role: baseline\\\\n    result: DR=15.37%, RV=1.39%, ET=0.4%, RF1=0.0823\\\\n  - exp_id: phase2_scierc_grammar_only\\\\n    role: ablation\\\\n    result: DR=14.84%, RV=0%, ET=0%, RF1=0.0823\\\\n  - exp_id: phase2_scierc_semantic_only\\\\n    role: ablation\\\\n    result: DR=11.65%, RV=1.51%, ET=0.4%, RF1=0.0815\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: core_result\\\\n    result: DR=0.93%, RV=0%, ET=0%, RF1=0.0836, CF=9.9%\\\\n  depends_on: []\\\\n- id: D006\\\\n  date: 2026-05-14 01:54 UTC\\\\n  summary: Phase 2 SciERC 核心结果确认：Full S1 DR -94% 且 F1 无损，CF violation 上升为已知 limitation\\\\n  rationale: v2 干净数据全量（551/551）结果经 Reviewer PASS 验证：Full S1 DR 15.37%→0.93%（↓94%），R-F1\\\\n    +0.13pp，ET/RV→0%。Ablation story 清晰（grammar 管格式、semantic 管语义、双层协同）。CF violation\\\\n    从 0.08%→9.9% 是已知副作用，需在论文中正面报告并论述与 DR 的性质差异。Semantic-only DR=11.65% 说明两层是 multiplicative\\\\n    关系。决定推进 DocRED Phase 2 跨数据集验证 + 等 S2 对比。\\\\n  related_experiments:\\\\n  - exp_id: phase2_scierc_unconstrained\\\\n    role: baseline\\\\n    result: DR=15.37%, R-F1=0.0823\\\\n  - exp_id: phase2_scierc_grammar_only\\\\n    role: ablation\\\\n    result: DR=14.84%, RV/ET=0%, F1持平\\\\n  - exp_id: phase2_scierc_semantic_only\\\\n    role: ablation\\\\n    result: DR=11.65%, F1-0.08pp\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: core_result\\\\n    result: DR=0.93%, R-F1=0.0836(+0.13pp)\\\\n  - exp_id: mvp_phase0_docred_schema\\\\n    role: motivation\\\\n    result: DocRED DR=12.8%(-32%), 验证prompt级不足\\\\n  depends_on: []\\\\n- id: D007\\\\n  date: 2026-05-14 02:09 UTC\\\\n  summary: S2 降级为架构 ablation，S1 为主推策略；标题去掉 \\\\\\\"Guaranteed\\\\\\\" 改 \\\\\\\"Near-Complete\\\\\\\"\\\\n  rationale: S2 全量结果(551/551)确认：DR 0.97%(vs S1 0.93%)、CF 8.03%(vs S1 9.9%，降幅不显著)、R-F1\\\\n    8.03%(vs S1 8.36%)。S2 在所有指标上均未优于 S1，两通道分离未能解决 CF 问题。CF 是 per-relation 独立 type\\\\n    enforcement 的固有限制，非架构可解。S2 定位从\\\\\\\"CF 解决方案\\\\\\\"调整为\\\\\\\"架构灵活性展示\\\\\\\"，论文中放 ablation/appendix。标题\\\\n    \\\\\\\"Guaranteed\\\\\\\" 与 0.93% 残余不符，改为 \\\\\\\"Near-Complete\\\\\\\"。\\\\n  related_experiments:\\\\n  - exp_id: phase2_scierc_full_s2\\\\n    role: primary\\\\n    result: DR=0.97%, CF=8.03%, R-F1=8.03% — no advantage over S1\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: baseline\\\\n    result: DR=0.93%, CF=9.9%, R-F1=8.36%\\\\n  depends_on: []\\\\n- id: D008\\\\n  date: 2026-05-14 04:33 UTC\\\\n  summary: 补跑 DocRED semantic_only 完成跨数据集全消融；论文写作提前至 DocRED 分析完成后立即启动\\\\n  rationale: 'SciERC 有 5 路消融但 DocRED 只有 grammar_only + full_s1，缺 semantic_only。Claim\\\\n    3 (enabling dependency) 在 DocRED 上的证据链不完整——审稿人必问\\\\\\\"为何 DocRED 不做 semantic_only 对比\\\\\\\"。DocRED\\\\n    约束更紧(avg 5.68 valid pairs)，semantic_only 预期效果更差，反而是 enabling dependency 的更强证据。论文写作从\\\\n    5/19 提前到 DocRED 分析完成后(~5/16)，DocRED semantic_only 与写作并行，结果 patch 进去。grammar-semantic\\\\n    交互 bug (invariant: semantic mask ⊆ grammar allowed set) 需写入 Method section 作为\\\\n    resolution protocol。'\\\\n  related_experiments:\\\\n  - exp_id: phase2_docred_grammar_only\\\\n    role: running\\\\n    result: pending\\\\n  - exp_id: phase2_docred_full_s1\\\\n    role: running\\\\n    result: pending\\\\n  - exp_id: phase2_scierc_semantic_only\\\\n    role: reference\\\\n    result: DR↓24% but ET/RV not eliminated\\\\n  depends_on:\\\\n  - D006\\\\n  - D007\\\\n- id: D009\\\\n  date: 2026-05-14 06:19 UTC\\\\n  summary: Llama-3.1-8B cross-model 验证升级为 should-have，SciERC-only (unconstrained +\\\\n    full_s1)\\\\n  rationale: Reviewer 实测 DocRED 实验进度远超预期（May 15 早间全部完成 vs 原估 May 17-18），多出 2-3 天 buffer。单模型是最可能的\\\\n    EMNLP reviewer 批评 (C5)，2 组 SciERC 实验 4-6 GPU 小时即可完成，风险可控。constraint compiler 声称\\\\n    model-agnostic，跨模型验证是最直接的证据。\\\\n  related_experiments:\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: baseline_same_model\\\\n    result: DR↓94% F1无损\\\\n  - exp_id: phase2_scierc_unconstrained\\\\n    role: baseline_same_model\\\\n    result: DR 15.37%\\\\n  depends_on:\\\\n  - D006\\\\n  - D008\\\\n- id: D010\\\\n  date: 2026-05-14 17:59 UTC\\\\n  summary: Dream 三档 Weak Reject (3/6) → 制定 6 项结构性补强计划：post-hoc baseline + bootstrap\\\\n    CI + related work 20+ + PICARD 对比 + CF/F1 Discussion 段\\\\n  rationale: Dream 模拟三档一致指出 6 个结构性缺陷：(1) 单模型泛化弱 → Llama cross-model 已在跑，(2) 无 post-hoc\\\\n    filtering baseline → 必须加，(3) related work 仅 7 引用 → 扩到 20+，(4) 无统计显著性 → bootstrap\\\\n    CI，(5) CF trade-off 无下游验证 → 加强论证，(6) 低 F1 实用性 → Discussion 段。Dream 基于缺少 Llama\\\\n    数据 + 有 bug 的 violation 数字，实际情况好于模拟。补强后预期从 3/6 提升到 4-5/6 区间。\\\\n  related_experiments:\\\\n  - exp_id: llama_docred_full_s1\\\\n    role: addresses U1 (cross-model)\\\\n    result: RUNNING\\\\n  - exp_id: llama_docred_unconstrained\\\\n    role: addresses U1 (cross-model)\\\\n    result: RUNNING\\\\n  - exp_id: llama_scierc_full_s1\\\\n    role: addresses U1 (cross-model)\\\\n    result: success\\\\n  depends_on:\\\\n  - D009\\\\n- id: D011\\\\n  date: 2026-05-14 18:16 UTC\\\\n  summary: 推翻之前 ET 计数口径决定——修正 ET triple-counting，每个 entity 只计 1 次 ET violation（不在\\\\n    entity_list + head + tail 各计一次）\\\\n  rationale: Reviewer 审查指出：(1) ET=8.18% 被 inflate 至多 3× (实际 ~2.47%)，是不必要的攻击面；(2) grammar/full_s1\\\\n    ET=0% 不受影响；(3) 相对对比仍有效；(4) 距 May 19 DDL 仍有修正窗口。之前\\\\\\\"保持一致性\\\\\\\"的理由成立但 Reviewer 认为论文可信度\\\\n    > 方法学惰性。修正后所有非零 ET 数字将变小，但 constrained decoding 的 ET→0% 仍然成立，paper story 更干净。\\\\n  related_experiments:\\\\n  - exp_id: phase2_docred_unconstrained\\\\n    role: ET 8.18%→~2.47%\\\\n    result: 需重算\\\\n  - exp_id: phase2_docred_semantic_only\\\\n    role: ET 10.44%→~3.5%\\\\n    result: 需重算\\\\n  depends_on:\\\\n  - D010\\\\n- id: D012\\\\n  date: 2026-05-14 18:26 UTC\\\\n  summary: 'Bootstrap CI framing: 选 (B) 逐数据集报告 F1 significance，DocRED +0.50pp p<0.001，SciERC\\\\n    neutral p=0.58'\\\\n  rationale: Bootstrap CI (10000×) 揭示 DocRED F1 提升统计显著，机制为 grammar 消除 OOV relation\\\\n    names (RV 29.66%→0.03%) 减少 FP。SciERC RV 仅 1.39% 故效果不显著。选逐数据集报告而非统一 framing，最诚实且不升级为\\\\n    core claim。更新 paper_framing.md 中 C6/C8 相关表述。\\\\n  related_experiments:\\\\n  - exp_id: phase2_docred_full_s1\\\\n    role: primary\\\\n    result: R-F1 +0.50pp vs unconstrained, p<0.001\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: primary\\\\n    result: R-F1 +0.13pp vs unconstrained, p=0.58 (non-significant)\\\\n  depends_on:\\\\n  - D010\\\\n- id: D013\\\\n  date: 2026-05-14 18:28 UTC\\\\n  summary: 'Post-hoc baseline framing: 不以 F1 论高低，多维对比 (recall + coverage + operational)，诚实承认\\\\n    precision trade-off'\\\\n  rationale: Post-hoc F1 > OntoCoDec F1（SciERC 8.63 vs 8.36, DocRED 9.61 vs 8.24），因\\\\n    low F1 regime 下移除 FP 大幅提升 precision。但 post-hoc recall 下降（SciERC -0.72pp, DocRED\\\\n    -1.06pp），DocRED 丢弃 48.1% triples。OntoCoDec recall 上升（+0.20/+0.56pp）= 概率质量重分配生效。Framing\\\\n    重心放在 recall preservation + information coverage + streaming compatibility，诚实承认\\\\n    precision trade-off。\\\\n  related_experiments:\\\\n  - exp_id: phase2_scierc_unconstrained\\\\n    role: baseline\\\\n    result: R-F1 8.23\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: primary\\\\n    result: R-F1 8.36, recall 11.60\\\\n  - exp_id: phase2_docred_unconstrained\\\\n    role: baseline\\\\n    result: R-F1 7.74\\\\n  - exp_id: phase2_docred_full_s1\\\\n    role: primary\\\\n    result: R-F1 8.24, recall 10.02\\\\n  depends_on:\\\\n  - D010\\\\n  - D012\\\\n- id: D014\\\\n  date: 2026-05-14 20:33 UTC\\\\n  summary: Tightness scaling claim 修订：从单因素(tightness)改为双因素(tightness × model RV baseline)。Llama\\\\n    DocRED DR↓90.2% 打破原 \\\\\\\"scales inversely with tightness\\\\\\\" claim。\\\\n  rationale: Llama DocRED full_s1 DR 26.07%→2.55% (↓90.2%) vs Qwen 18.46%→10.21% (↓44.7%)。同一\\\\n    ontology (τ̄=0.842) 下差距巨大。原因：Qwen RV=29.66% 远高于 Llama RV=16.03%，grammar 层将 OOV\\\\n    triples 强制匹配有效关系名后揭露大量 latent DR violations。修订为\\\\\\\"tightness 与 model RV baseline\\\\n    共同决定 enforcement ceiling\\\\\\\"。这实际强化论文——揭示 model-constraint 交互效应。同时 E-F1 claim 需限定为\\\\n    Qwen-specific（Llama E-F1 -0.64pp）。\\\\n  related_experiments:\\\\n  - exp_id: llama_docred_full_s1\\\\n    role: primary\\\\n    result: DR 26.07→2.55 (↓90.2%), R-F1 +0.29pp, E-F1 -0.64pp, CF 12.02%\\\\n  - exp_id: llama_docred_unconstrained\\\\n    role: baseline\\\\n    result: DR 26.07%, RV 16.03%, R-F1 5.98%\\\\n  - exp_id: phase2_docred_full_s1\\\\n    role: comparison\\\\n    result: DR 10.21% (↓44.7%), Qwen RV baseline 29.66%\\\\n  depends_on:\\\\n  - D012\\\\n  - D013\\\\n- id: D015\\\\n  date: 2026-05-14 22:29 UTC\\\\n  summary: 'D015: Dream #2 结果处理 — Title 去掉 \\\\\\\"Near-Complete\\\\\\\"，6 项 action items 按优先级处理'\\\\n  rationale: 'Dream #2 三档 worst=2.5/median=3.0/best=3.0，比 Dream #1 (全 3/6) 改善。三档共识：(1)\\\\n    Title \\\\\\\"Near-Complete\\\\\\\" overclaim (DocRED 10.21% residual)，(2) CF severity 无 downstream\\\\n    验证，(3) 技术新颖性质疑。Title 修订为去掉 \\\\\\\"Near-Complete\\\\\\\"——论文贡献是方法（compiled ontology constraints），不是特定消除率；结果从\\\\n    0.93% 到 10.21% 变异太大不适合 \\\\\\\"Near-Complete\\\\\\\"。CF downstream 验证需架构修改，5天内不可行，保持在 limitations。技术新颖性通过\\\\n    §6 positioning 强化 IE-specific 贡献（stateful entity registry, prefix-decidable constraints）。'\\\\n  related_experiments:\\\\n  - exp_id: dream_20260514T205155\\\\n    role: dream\\\\n    result: worst=2.5, median=3.0, best=3.0\\\\n  depends_on:\\\\n  - D014\\\\n  - D013\\\\n  - D012\\\\n- id: D016\\\\n  date: 2026-05-14 22:57 UTC\\\\n  summary: 'D016: Llama bootstrap CI 修复完成，全部 p-values 写入论文，framing 从 \\\\\\\"F1-neutral\\\\\\\"\\\\n    升级为 \\\\\\\"both models significant R-F1 gains on DocRED\\\\\\\"'\\\\n  rationale: v2 bootstrap 脚本修复了两个 bug（int entity crash + entity type normalization），8\\\\n    项 point estimate 全部 registry-aligned (≤0.05pp)。结果：Llama DocRED R-F1 +0.29pp p=0.013（显著正向），E-F1\\\\n    -0.64pp p=0.022（显著负向）。这使得 DocRED 上两个模型 R-F1 都显著提升，是比 \\\\\\\"F1-neutral\\\\\\\" 更强的 claim。E-F1\\\\n    模型依赖性如实报告。已更新 crossmodel §5、abstract、conclusion。\\\\n  related_experiments:\\\\n  - exp_id: llama_scierc_unconstrained\\\\n    role: baseline\\\\n    result: R-F1=2.68, E-F1=23.56\\\\n  - exp_id: llama_scierc_full_s1\\\\n    role: treatment\\\\n    result: R-F1=2.54 (-0.14pp p=0.011), E-F1=23.49 (NS)\\\\n  - exp_id: llama_docred_unconstrained\\\\n    role: baseline\\\\n    result: R-F1=5.98, E-F1=55.65\\\\n  - exp_id: llama_docred_full_s1\\\\n    role: treatment\\\\n    result: R-F1=6.27 (+0.29pp p=0.013), E-F1=55.01 (-0.64pp p=0.022)\\\\n  depen\\\\n\\\\n... [截断: 省略 2525 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 14525, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/decisions.yaml\", \"content\": \"_next_id: 20\\ndecisions:\\n- id: D001\\n  date: 2026-05-13 17:38 UTC\\n  summary: 主目标调整为 EMNLP 2026 ARR (5/25), AAAI 2027 为后备\\n  rationale: 用户明确指出 EMNLP ARR 5/25 时间不紧、不要保守、资源会给够。12 天 AI 团队速度足够：Phase 0 (1-2天) →\\n    Phase 1 compiler (2-3天) → Phase 2 experiments (2-3天) → Paper (2-3天)。禁止 fallback\\n    思维，冲最高目标。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-13 19:14 UTC\\n  summary: SciERC Phase 0 结果确认 GO — domain_range violation rate 15.4%，3× 超阈值\\n  rationale: 'SciERC 全量 test set (551 sentences, 1724 triples): domain_range_violation_rate\\n    = 15.4%，远超 5% go/no-go 阈值。违规分布极不均匀 (Feature-of 33.5%, Compare 42.4% vs Used-for\\n    0.76%)，支持\\\"特定 relation types 需要 decoding-time enforcement\\\"的论文 claim。DocRED dry-run\\n    (37 docs) 同样显示 14.4%。两个数据集均为 GO 信号，MVP 核心假设得到强验证。等 schema-informed prompt 结果确认\\n    prompt 级干预不足以解决问题后正式宣布 MVP 通过。'\\n  related_experiments:\\n  - exp_id: mvp_phase0_violation_rate\\n    role: primary\\n    result: domain_range_violation_rate=15.4%, go_nogo=GO\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-13 21:48 UTC\\n  summary: MVP 通过，进入 Research 阶段，立即启动 Phase 2 constrained decoding 实验\\n  rationale: Phase 0 三个实验完成：SciERC 15.4%/5.78%, DocRED 18.7% domain_range violation\\n    rate。两个数据集均远超 5% 阈值，核心假设得到强验证。Phase 1 compiler 代码就绪（36 tests 通过），Phase 2 脚本就绪（S1\\n    路径可用，S2 bug 修复中）。cuda:1 空闲，立即启动 Phase 2 SciERC grammar_only/semantic_only/full_s1\\n    实验。\\n  related_experiments:\\n  - exp_id: mvp_phase0_violation_rate\\n    role: primary\\n    result: SciERC DR=15.4%, GO\\n  - exp_id: mvp_phase0_scierc_schema\\n    role: primary\\n    result: SciERC DR=5.78%, prompt insufficient\\n  - exp_id: mvp_phase0_violation_rate_docred\\n    role: primary\\n    result: DocRED DR=18.7%, GO\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-14 01:53 UTC\\n  summary: Phase 2 SciERC 核心结果确认：grammar+semantic (full_s1) DR↓94% F1 neutral，两层约束协同效应成立\\n  rationale: _v2 干净数据 551 样本全量结果：full_s1 DR=0.93%（baseline 15.37%，↓94%），R-F1 微升 +0.0013。grammar\\n    单独消除 RV/ET，semantic 单独降 DR 24%，组合后 94%——超加性效应。论文核心 claim 站住。早期污染数据 semantic_only\\n    DR=16.43% 已修正为 11.65%。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: DR=15.37%\\n  - exp_id: phase2_scierc_grammar_only\\n    role: ablation\\n    result: DR=14.84%, RV/ET=0%\\n  - exp_id: phase2_scierc_semantic_only\\n    role: ablation\\n    result: DR=11.65%\\n  - exp_id: phase2_scierc_full_s1\\n    role: core_result\\n    result: DR=0.93%, F1=0.0836\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-14 01:53 UTC\\n  summary: Phase 2 SciERC 核心结果确认：Full S1 DR↓94% F1无损，CF violation↑124x 作为已知 tradeoff\\n    待 S2 对比后决定处理策略\\n  rationale: v2 干净数据 551/551 全量验证，Reviewer PASS。Grammar+Semantic 协同效应成立，ablation story\\n    清晰。CF violation（0.08%→9.9%）是约束副作用，需等 S2 结果判断是在论文中作为 limitation 还是加 CF 约束修复。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: DR=15.37%, RV=1.39%, ET=0.4%, RF1=0.0823\\n  - exp_id: phase2_scierc_grammar_only\\n    role: ablation\\n    result: DR=14.84%, RV=0%, ET=0%, RF1=0.0823\\n  - exp_id: phase2_scierc_semantic_only\\n    role: ablation\\n    result: DR=11.65%, RV=1.51%, ET=0.4%, RF1=0.0815\\n  - exp_id: phase2_scierc_full_s1\\n    role: core_result\\n    result: DR=0.93%, RV=0%, ET=0%, RF1=0.0836, CF=9.9%\\n  depends_on: []\\n- id: D006\\n  date: 2026-05-14 01:54 UTC\\n  summary: Phase 2 SciERC 核心结果确认：Full S1 DR -94% 且 F1 无损，CF violation 上升为已知 limitation\\n  rationale: v2 干净数据全量（551/551）结果经 Reviewer PASS 验证：Full S1 DR 15.37%→0.93%（↓94%），R-F1\\n    +0.13pp，ET/RV→0%。Ablation story 清晰（grammar 管格式、semantic 管语义、双层协同）。CF violation\\n    从 0.08%→9.9% 是已知副作用，需在论文中正面报告并论述与 DR 的性质差异。Semantic-only DR=11.65% 说明两层是 multiplicative\\n    关系。决定推进 DocRED Phase 2 跨数据集验证 + 等 S2 对比。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: DR=15.37%, R-F1=0.0823\\n  - exp_id: phase2_scierc_grammar_only\\n    role: ablation\\n    result: DR=14.84%, RV/ET=0%, F1持平\\n  - exp_id: phase2_scierc_semantic_only\\n    role: ablation\\n    result: DR=11.65%, F1-0.08pp\\n  - exp_id: phase2_scierc_full_s1\\n    role: core_result\\n    result: DR=0.93%, R-F1=0.0836(+0.13pp)\\n  - exp_id: mvp_phase0_docred_schema\\n    role: motivation\\n    result: DocRED DR=12.8%(-32%), 验证prompt级不足\\n  depends_on: []\\n- id: D007\\n  date: 2026-05-14 02:09 UTC\\n  summary: S2 降级为架构 ablation，S1 为主推策略；标题去掉 \\\"Guaranteed\\\" 改 \\\"Near-Complete\\\"\\n  rationale: S2 全量结果(551/551)确认：DR 0.97%(vs S1 0.93%)、CF 8.03%(vs S1 9.9%，降幅不显著)、R-F1\\n    8.03%(vs S1 8.36%)。S2 在所有指标上均未优于 S1，两通道分离未能解决 CF 问题。CF 是 per-relation 独立 type\\n    enforcement 的固有限制，非架构可解。S2 定位从\\\"CF 解决方案\\\"调整为\\\"架构灵活性展示\\\"，论文中放 ablation/appendix。标题\\n    \\\"Guaranteed\\\" 与 0.93% 残余不符，改为 \\\"Near-Complete\\\"。\\n  related_experiments:\\n  - exp_id: phase2_scierc_full_s2\\n    role: primary\\n    result: DR=0.97%, CF=8.03%, R-F1=8.03% — no advantage over S1\\n  - exp_id: phase2_scierc_full_s1\\n    role: baseline\\n    result: DR=0.93%, CF=9.9%, R-F1=8.36%\\n  depends_on: []\\n- id: D008\\n  date: 2026-05-14 04:33 UTC\\n  summary: 补跑 DocRED semantic_only 完成跨数据集全消融；论文写作提前至 DocRED 分析完成后立即启动\\n  rationale: 'SciERC 有 5 路消融但 DocRED 只有 grammar_only + full_s1，缺 semantic_only。Claim\\n    3 (enabling dependency) 在 DocRED 上的证据链不完整——审稿人必问\\\"为何 DocRED 不做 semantic_only 对比\\\"。DocRED\\n    约束更紧(avg 5.68 valid pairs)，semantic_only 预期效果更差，反而是 enabling dependency 的更强证据。论文写作从\\n    5/19 提前到 DocRED 分析完成后(~5/16)，DocRED semantic_only 与写作并行，结果 patch 进去。grammar-semantic\\n    交互 bug (invariant: semantic mask ⊆ grammar allowed set) 需写入 Method section 作为\\n    resolution protocol。'\\n  related_experiments:\\n  - exp_id: phase2_docred_grammar_only\\n    role: running\\n    result: pending\\n  - exp_id: phase2_docred_full_s1\\n    role: running\\n    result: pending\\n  - exp_id: phase2_scierc_semantic_only\\n    role: reference\\n    result: DR↓24% but ET/RV not eliminated\\n  depends_on:\\n  - D006\\n  - D007\\n- id: D009\\n  date: 2026-05-14 06:19 UTC\\n  summary: Llama-3.1-8B cross-model 验证升级为 should-have，SciERC-only (unconstrained +\\n    full_s1)\\n  rationale: Reviewer 实测 DocRED 实验进度远超预期（May 15 早间全部完成 vs 原估 May 17-18），多出 2-3 天 buffer。单模型是最可能的\\n    EMNLP reviewer 批评 (C5)，2 组 SciERC 实验 4-6 GPU 小时即可完成，风险可控。constraint compiler 声称\\n    model-agnostic，跨模型验证是最直接的证据。\\n  related_experiments:\\n  - exp_id: phase2_scierc_full_s1\\n    role: baseline_same_model\\n    result: DR↓94% F1无损\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline_same_model\\n    result: DR 15.37%\\n  depends_on:\\n  - D006\\n  - D008\\n- id: D010\\n  date: 2026-05-14 17:59 UTC\\n  summary: Dream 三档 Weak Reject (3/6) → 制定 6 项结构性补强计划：post-hoc baseline + bootstrap\\n    CI + related work 20+ + PICARD 对比 + CF/F1 Discussion 段\\n  rationale: Dream 模拟三档一致指出 6 个结构性缺陷：(1) 单模型泛化弱 → Llama cross-model 已在跑，(2) 无 post-hoc\\n    filtering baseline → 必须加，(3) related work 仅 7 引用 → 扩到 20+，(4) 无统计显著性 → bootstrap\\n    CI，(5) CF trade-off 无下游验证 → 加强论证，(6) 低 F1 实用性 → Discussion 段。Dream 基于缺少 Llama\\n    数据 + 有 bug 的 violation 数字，实际情况好于模拟。补强后预期从 3/6 提升到 4-5/6 区间。\\n  related_experiments:\\n  - exp_id: llama_docred_full_s1\\n    role: addresses U1 (cross-model)\\n    result: RUNNING\\n  - exp_id: llama_docred_unconstrained\\n    role: addresses U1 (cross-model)\\n    result: RUNNING\\n  - exp_id: llama_scierc_full_s1\\n    role: addresses U1 (cross-model)\\n    result: success\\n  depends_on:\\n  - D009\\n- id: D011\\n  date: 2026-05-14 18:16 UTC\\n  summary: 推翻之前 ET 计数口径决定——修正 ET triple-counting，每个 entity 只计 1 次 ET violation（不在\\n    entity_list + head + tail 各计一次）\\n  rationale: Reviewer 审查指出：(1) ET=8.18% 被 inflate 至多 3× (实际 ~2.47%)，是不必要的攻击面；(2) grammar/full_s1\\n    ET=0% 不受影响；(3) 相对对比仍有效；(4) 距 May 19 DDL 仍有修正窗口。之前\\\"保持一致性\\\"的理由成立但 Reviewer 认为论文可信度\\n    > 方法学惰性。修正后所有非零 ET 数字将变小，但 constrained decoding 的 ET→0% 仍然成立，paper story 更干净。\\n  related_experiments:\\n  - exp_id: phase2_docred_unconstrained\\n    role: ET 8.18%→~2.47%\\n    result: 需重算\\n  - exp_id: phase2_docred_semantic_only\\n    role: ET 10.44%→~3.5%\\n    result: 需重算\\n  depends_on:\\n  - D010\\n- id: D012\\n  date: 2026-05-14 18:26 UTC\\n  summary: 'Bootstrap CI framing: 选 (B) 逐数据集报告 F1 significance，DocRED +0.50pp p<0.001，SciERC\\n    neutral p=0.58'\\n  rationale: Bootstrap CI (10000×) 揭示 DocRED F1 提升统计显著，机制为 grammar 消除 OOV relation\\n    names (RV 29.66%→0.03%) 减少 FP。SciERC RV 仅 1.39% 故效果不显著。选逐数据集报告而非统一 framing，最诚实且不升级为\\n    core claim。更新 paper_framing.md 中 C6/C8 相关表述。\\n  related_experiments:\\n  - exp_id: phase2_docred_full_s1\\n    role: primary\\n    result: R-F1 +0.50pp vs unconstrained, p<0.001\\n  - exp_id: phase2_scierc_full_s1\\n    role: primary\\n    result: R-F1 +0.13pp vs unconstrained, p=0.58 (non-significant)\\n  depends_on:\\n  - D010\\n- id: D013\\n  date: 2026-05-14 18:28 UTC\\n  summary: 'Post-hoc baseline framing: 不以 F1 论高低，多维对比 (recall + coverage + operational)，诚实承认\\n    precision trade-off'\\n  rationale: Post-hoc F1 > OntoCoDec F1（SciERC 8.63 vs 8.36, DocRED 9.61 vs 8.24），因\\n    low F1 regime 下移除 FP 大幅提升 precision。但 post-hoc recall 下降（SciERC -0.72pp, DocRED\\n    -1.06pp），DocRED 丢弃 48.1% triples。OntoCoDec recall 上升（+0.20/+0.56pp）= 概率质量重分配生效。Framing\\n    重心放在 recall preservation + information coverage + streaming compatibility，诚实承认\\n    precision trade-off。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: R-F1 8.23\\n  - exp_id: phase2_scierc_full_s1\\n    role: primary\\n    result: R-F1 8.36, recall 11.60\\n  - exp_id: phase2_docred_unconstrained\\n    role: baseline\\n    result: R-F1 7.74\\n  - exp_id: phase2_docred_full_s1\\n    role: primary\\n    result: R-F1 8.24, recall 10.02\\n  depends_on:\\n  - D010\\n  - D012\\n- id: D014\\n  date: 2026-05-14 20:33 UTC\\n  summary: Tightness scaling claim 修订：从单因素(tightness)改为双因素(tightness × model RV baseline)。Llama\\n    DocRED DR↓90.2% 打破原 \\\"scales inversely with tightness\\\" claim。\\n  rationale: Llama DocRED full_s1 DR 26.07%→2.55% (↓90.2%) vs Qwen 18.46%→10.21% (↓44.7%)。同一\\n    ontology (τ̄=0.842) 下差距巨大。原因：Qwen RV=29.66% 远高于 Llama RV=16.03%，grammar 层将 OOV\\n    triples 强制匹配有效关系名后揭露大量 latent DR violations。修订为\\\"tightness 与 model RV baseline\\n    共同决定 enforcement ceiling\\\"。这实际强化论文——揭示 model-constraint 交互效应。同时 E-F1 claim 需限定为\\n    Qwen-specific（Llama E-F1 -0.64pp）。\\n  related_experiments:\\n  - exp_id: llama_docred_full_s1\\n    role: primary\\n    result: DR 26.07→2.55 (↓90.2%), R-F1 +0.29pp, E-F1 -0.64pp, CF 12.02%\\n  - exp_id: llama_docred_unconstrained\\n    role: baseline\\n    result: DR 26.07%, RV 16.03%, R-F1 5.98%\\n  - exp_id: phase2_docred_full_s1\\n    role: comparison\\n    result: DR 10.21% (↓44.7%), Qwen RV baseline 29.66%\\n  depends_on:\\n  - D012\\n  - D013\\n- id: D015\\n  date: 2026-05-14 22:29 UTC\\n  summary: 'D015: Dream #2 结果处理 — Title 去掉 \\\"Near-Complete\\\"，6 项 action items 按优先级处理'\\n  rationale: 'Dream #2 三档 worst=2.5/median=3.0/best=3.0，比 Dream #1 (全 3/6) 改善。三档共识：(1)\\n    Title \\\"Near-Complete\\\" overclaim (DocRED 10.21% residual)，(2) CF severity 无 downstream\\n    验证，(3) 技术新颖性质疑。Title 修订为去掉 \\\"Near-Complete\\\"——论文贡献是方法（compiled ontology constraints），不是特定消除率；结果从\\n    0.93% 到 10.21% 变异太大不适合 \\\"Near-Complete\\\"。CF downstream 验证需架构修改，5天内不可行，保持在 limitations。技术新颖性通过\\n    §6 positioning 强化 IE-specific 贡献（stateful entity registry, prefix-decidable constraints）。'\\n  related_experiments:\\n  - exp_id: dream_20260514T205155\\n    role: dream\\n    result: worst=2.5, median=3.0, best=3.0\\n  depends_on:\\n  - D014\\n  - D013\\n  - D012\\n- id: D016\\n  date: 2026-05-14 22:57 UTC\\n  summary: 'D016: Llama bootstrap CI 修复完成，全部 p-values 写入论文，framing 从 \\\"F1-neutral\\\"\\n    升级为 \\\"both models significant R-F1 gains on DocRED\\\"'\\n  rationale: v2 bootstrap 脚本修复了两个 bug（int entity crash + entity type normalization），8\\n    项 point estimate 全部 registry-aligned (≤0.05pp)。结果：Llama DocRED R-F1 +0.29pp p=0.013（显著正向），E-F1\\n    -0.64pp p=0.022（显著负向）。这使得 DocRED 上两个模型 R-F1 都显著提升，是比 \\\"F1-neutral\\\" 更强的 claim。E-F1\\n    模型依赖性如实报告。已更新 crossmodel §5、abstract、conclusion。\\n  related_experiments:\\n  - exp_id: llama_scierc_unconstrained\\n    role: baseline\\n    result: R-F1=2.68, E-F1=23.56\\n  - exp_id: llama_scierc_full_s1\\n    role: treatment\\n    result: R-F1=2.54 (-0.14pp p=0.011), E-F1=23.49 (NS)\\n  - exp_id: llama_docred_unconstrained\\n    role: baseline\\n    result: R-F1=5.98, E-F1=55.65\\n  - exp_id: llama_docred_full_s1\\n    role: treatment\\n    result: R-F1=6.27 (+0.29pp p=0.013), E-F1=55.01 (-0.64pp p=0.022)\\n  depen\\n\\n... [截断: 省略 2525 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 14525, \"truncated\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4e682365-8b86-4990-8207-c6ed80205b45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #9。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单：**仅 cuda:0, cuda:1 on westd-16980**。不可用其他 GPU，Director 指令也不能覆盖 - submit_training_job 命令必须用 `bash -c '...'` 包裹…",
+  "leafUuid": "5b54e8f0-239e-41b6-93c4-fdba33ebc5a3",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Monitor CF fallback experiments and pair-based implementation",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052"
+}
+```
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-15T14:30:35.484Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the truncated parts of decisions.yaml to get D017, D018, D019 details since those are the most recent decisions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b54e8f0-239e-41b6-93c4-fdba33ebc5a3",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WptW3RiD8TfqUPZyMr",
+  "type": "assistant",
+  "uuid": "6622528a-a51a-4afb-9557-129fc3f273de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQsmvrqPdA7MY35QVExCna",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13787,
+      "cache_read_input_tokens": 58588,
+      "output_tokens": 172,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13787,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 172,
+          "cache_read_input_tokens": 58588,
+          "cache_creation_input_tokens": 13787,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13787
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-15T14:30:35.840Z_
+
+让我读 D017-D019 的详细信息。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6622528a-a51a-4afb-9557-129fc3f273de",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WptW3RiD8TfqUPZyMr",
+  "type": "assistant",
+  "uuid": "6f0fd8cc-f4f0-4db5-af4a-a1ff1e1f3589",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQsmvrqPdA7MY35QVExCna",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13787,
+      "cache_read_input_tokens": 58588,
+      "output_tokens": 172,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13787,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 172,
+          "cache_read_input_tokens": 58588,
+          "cache_creation_input_tokens": 13787,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13787
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T14:30:36.841Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01B1aj9eKJtCWb9n5LED4FfV`</summary>
+
+```json
+{
+  "project": "schema_semantic_constrained_ie",
+  "file": "decisions.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f0fd8cc-f4f0-4db5-af4a-a1ff1e1f3589",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WptW3RiD8TfqUPZyMr",
+  "type": "assistant",
+  "uuid": "97420d8d-76e5-4ca4-b3ff-7f0206dfd7c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQsmvrqPdA7MY35QVExCna",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13787,
+      "cache_read_input_tokens": 58588,
+      "output_tokens": 172,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13787,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 172,
+          "cache_read_input_tokens": 58588,
+          "cache_creation_input_tokens": 13787,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13787
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T14:30:36.851Z_
+
+<details><summary>↩ Tool result · `toolu_01B1aj9eKJtCWb9n5LED4FfV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/decisions.yaml\", \"content\": \"_next_id: 20\\ndecisions:\\n- id: D001\\n  date: 2026-05-13 17:38 UTC\\n  summary: 主目标调整为 EMNLP 2026 ARR (5/25), AAAI 2027 为后备\\n  rationale: 用户明确指出 EMNLP ARR 5/25 时间不紧、不要保守、资源会给够。12 天 AI 团队速度足够：Phase 0 (1-2天) →\\n    Phase 1 compiler (2-3天) → Phase 2 experiments (2-3天) → Paper (2-3天)。禁止 fallback\\n    思维，冲最高目标。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-13 19:14 UTC\\n  summary: SciERC Phase 0 结果确认 GO — domain_range violation rate 15.4%，3× 超阈值\\n  rationale: 'SciERC 全量 test set (551 sentences, 1724 triples): domain_range_violation_rate\\n    = 15.4%，远超 5% go/no-go 阈值。违规分布极不均匀 (Feature-of 33.5%, Compare 42.4% vs Used-for\\n    0.76%)，支持\\\"特定 relation types 需要 decoding-time enforcement\\\"的论文 claim。DocRED dry-run\\n    (37 docs) 同样显示 14.4%。两个数据集均为 GO 信号，MVP 核心假设得到强验证。等 schema-informed prompt 结果确认\\n    prompt 级干预不足以解决问题后正式宣布 MVP 通过。'\\n  related_experiments:\\n  - exp_id: mvp_phase0_violation_rate\\n    role: primary\\n    result: domain_range_violation_rate=15.4%, go_nogo=GO\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-13 21:48 UTC\\n  summary: MVP 通过，进入 Research 阶段，立即启动 Phase 2 constrained decoding 实验\\n  rationale: Phase 0 三个实验完成：SciERC 15.4%/5.78%, DocRED 18.7% domain_range violation\\n    rate。两个数据集均远超 5% 阈值，核心假设得到强验证。Phase 1 compiler 代码就绪（36 tests 通过），Phase 2 脚本就绪（S1\\n    路径可用，S2 bug 修复中）。cuda:1 空闲，立即启动 Phase 2 SciERC grammar_only/semantic_only/full_s1\\n    实验。\\n  related_experiments:\\n  - exp_id: mvp_phase0_violation_rate\\n    role: primary\\n    result: SciERC DR=15.4%, GO\\n  - exp_id: mvp_phase0_scierc_schema\\n    role: primary\\n    result: SciERC DR=5.78%, prompt insufficient\\n  - exp_id: mvp_phase0_violation_rate_docred\\n    role: primary\\n    result: DocRED DR=18.7%, GO\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-14 01:53 UTC\\n  summary: Phase 2 SciERC 核心结果确认：grammar+semantic (full_s1) DR↓94% F1 neutral，两层约束协同效应成立\\n  rationale: _v2 干净数据 551 样本全量结果：full_s1 DR=0.93%（baseline 15.37%，↓94%），R-F1 微升 +0.0013。grammar\\n    单独消除 RV/ET，semantic 单独降 DR 24%，组合后 94%——超加性效应。论文核心 claim 站住。早期污染数据 semantic_only\\n    DR=16.43% 已修正为 11.65%。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: DR=15.37%\\n  - exp_id: phase2_scierc_grammar_only\\n    role: ablation\\n    result: DR=14.84%, RV/ET=0%\\n  - exp_id: phase2_scierc_semantic_only\\n    role: ablation\\n    result: DR=11.65%\\n  - exp_id: phase2_scierc_full_s1\\n    role: core_result\\n    result: DR=0.93%, F1=0.0836\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-14 01:53 UTC\\n  summary: Phase 2 SciERC 核心结果确认：Full S1 DR↓94% F1无损，CF violation↑124x 作为已知 tradeoff\\n    待 S2 对比后决定处理策略\\n  rationale: v2 干净数据 551/551 全量验证，Reviewer PASS。Grammar+Semantic 协同效应成立，ablation story\\n    清晰。CF violation（0.08%→9.9%）是约束副作用，需等 S2 结果判断是在论文中作为 limitation 还是加 CF 约束修复。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: DR=15.37%, RV=1.39%, ET=0.4%, RF1=0.0823\\n  - exp_id: phase2_scierc_grammar_only\\n    role: ablation\\n    result: DR=14.84%, RV=0%, ET=0%, RF1=0.0823\\n  - exp_id: phase2_scierc_semantic_only\\n    role: ablation\\n    result: DR=11.65%, RV=1.51%, ET=0.4%, RF1=0.0815\\n  - exp_id: phase2_scierc_full_s1\\n    role: core_result\\n    result: DR=0.93%, RV=0%, ET=0%, RF1=0.0836, CF=9.9%\\n  depends_on: []\\n- id: D006\\n  date: 2026-05-14 01:54 UTC\\n  summary: Phase 2 SciERC 核心结果确认：Full S1 DR -94% 且 F1 无损，CF violation 上升为已知 limitation\\n  rationale: v2 干净数据全量（551/551）结果经 Reviewer PASS 验证：Full S1 DR 15.37%→0.93%（↓94%），R-F1\\n    +0.13pp，ET/RV→0%。Ablation story 清晰（grammar 管格式、semantic 管语义、双层协同）。CF violation\\n    从 0.08%→9.9% 是已知副作用，需在论文中正面报告并论述与 DR 的性质差异。Semantic-only DR=11.65% 说明两层是 multiplicative\\n    关系。决定推进 DocRED Phase 2 跨数据集验证 + 等 S2 对比。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: DR=15.37%, R-F1=0.0823\\n  - exp_id: phase2_scierc_grammar_only\\n    role: ablation\\n    result: DR=14.84%, RV/ET=0%, F1持平\\n  - exp_id: phase2_scierc_semantic_only\\n    role: ablation\\n    result: DR=11.65%, F1-0.08pp\\n  - exp_id: phase2_scierc_full_s1\\n    role: core_result\\n    result: DR=0.93%, R-F1=0.0836(+0.13pp)\\n  - exp_id: mvp_phase0_docred_schema\\n    role: motivation\\n    result: DocRED DR=12.8%(-32%), 验证prompt级不足\\n  depends_on: []\\n- id: D007\\n  date: 2026-05-14 02:09 UTC\\n  summary: S2 降级为架构 ablation，S1 为主推策略；标题去掉 \\\"Guaranteed\\\" 改 \\\"Near-Complete\\\"\\n  rationale: S2 全量结果(551/551)确认：DR 0.97%(vs S1 0.93%)、CF 8.03%(vs S1 9.9%，降幅不显著)、R-F1\\n    8.03%(vs S1 8.36%)。S2 在所有指标上均未优于 S1，两通道分离未能解决 CF 问题。CF 是 per-relation 独立 type\\n    enforcement 的固有限制，非架构可解。S2 定位从\\\"CF 解决方案\\\"调整为\\\"架构灵活性展示\\\"，论文中放 ablation/appendix。标题\\n    \\\"Guaranteed\\\" 与 0.93% 残余不符，改为 \\\"Near-Complete\\\"。\\n  related_experiments:\\n  - exp_id: phase2_scierc_full_s2\\n    role: primary\\n    result: DR=0.97%, CF=8.03%, R-F1=8.03% — no advantage over S1\\n  - exp_id: phase2_scierc_full_s1\\n    role: baseline\\n    result: DR=0.93%, CF=9.9%, R-F1=8.36%\\n  depends_on: []\\n- id: D008\\n  date: 2026-05-14 04:33 UTC\\n  summary: 补跑 DocRED semantic_only 完成跨数据集全消融；论文写作提前至 DocRED 分析完成后立即启动\\n  rationale: 'SciERC 有 5 路消融但 DocRED 只有 grammar_only + full_s1，缺 semantic_only。Claim\\n    3 (enabling dependency) 在 DocRED 上的证据链不完整——审稿人必问\\\"为何 DocRED 不做 semantic_only 对比\\\"。DocRED\\n    约束更紧(avg 5.68 valid pairs)，semantic_only 预期效果更差，反而是 enabling dependency 的更强证据。论文写作从\\n    5/19 提前到 DocRED 分析完成后(~5/16)，DocRED semantic_only 与写作并行，结果 patch 进去。grammar-semantic\\n    交互 bug (invariant: semantic mask ⊆ grammar allowed set) 需写入 Method section 作为\\n    resolution protocol。'\\n  related_experiments:\\n  - exp_id: phase2_docred_grammar_only\\n    role: running\\n    result: pending\\n  - exp_id: phase2_docred_full_s1\\n    role: running\\n    result: pending\\n  - exp_id: phase2_scierc_semantic_only\\n    role: reference\\n    result: DR↓24% but ET/RV not eliminated\\n  depends_on:\\n  - D006\\n  - D007\\n- id: D009\\n  date: 2026-05-14 06:19 UTC\\n  summary: Llama-3.1-8B cross-model 验证升级为 should-have，SciERC-only (unconstrained +\\n    full_s1)\\n  rationale: Reviewer 实测 DocRED 实验进度远超预期（May 15 早间全部完成 vs 原估 May 17-18），多出 2-3 天 buffer。单模型是最可能的\\n    EMNLP reviewer 批评 (C5)，2 组 SciERC 实验 4-6 GPU 小时即可完成，风险可控。constraint compiler 声称\\n    model-agnostic，跨模型验证是最直接的证据。\\n  related_experiments:\\n  - exp_id: phase2_scierc_full_s1\\n    role: baseline_same_model\\n    result: DR↓94% F1无损\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline_same_model\\n    result: DR 15.37%\\n  depends_on:\\n  - D006\\n  - D008\\n- id: D010\\n  date: 2026-05-14 17:59 UTC\\n  summary: Dream 三档 Weak Reject (3/6) → 制定 6 项结构性补强计划：post-hoc baseline + bootstrap\\n    CI + related work 20+ + PICARD 对比 + CF/F1 Discussion 段\\n  rationale: Dream 模拟三档一致指出 6 个结构性缺陷：(1) 单模型泛化弱 → Llama cross-model 已在跑，(2) 无 post-hoc\\n    filtering baseline → 必须加，(3) related work 仅 7 引用 → 扩到 20+，(4) 无统计显著性 → bootstrap\\n    CI，(5) CF trade-off 无下游验证 → 加强论证，(6) 低 F1 实用性 → Discussion 段。Dream 基于缺少 Llama\\n    数据 + 有 bug 的 violation 数字，实际情况好于模拟。补强后预期从 3/6 提升到 4-5/6 区间。\\n  related_experiments:\\n  - exp_id: llama_docred_full_s1\\n    role: addresses U1 (cross-model)\\n    result: RUNNING\\n  - exp_id: llama_docred_unconstrained\\n    role: addresses U1 (cross-model)\\n    result: RUNNING\\n  - exp_id: llama_scierc_full_s1\\n    role: addresses U1 (cross-model)\\n    result: success\\n  depends_on:\\n  - D009\\n- id: D011\\n  date: 2026-05-14 18:16 UTC\\n  summary: 推翻之前 ET 计数口径决定——修正 ET triple-counting，每个 entity 只计 1 次 ET violation（不在\\n    entity_list + head + tail 各计一次）\\n  rationale: Reviewer 审查指出：(1) ET=8.18% 被 inflate 至多 3× (实际 ~2.47%)，是不必要的攻击面；(2) grammar/full_s1\\n    ET=0% 不受影响；(3) 相对对比仍有效；(4) 距 May 19 DDL 仍有修正窗口。之前\\\"保持一致性\\\"的理由成立但 Reviewer 认为论文可信度\\n    > 方法学惰性。修正后所有非零 ET 数字将变小，但 constrained decoding 的 ET→0% 仍然成立，paper story 更干净。\\n  related_experiments:\\n  - exp_id: phase2_docred_unconstrained\\n    role: ET 8.18%→~2.47%\\n    result: 需重算\\n  - exp_id: phase2_docred_semantic_only\\n    role: ET 10.44%→~3.5%\\n    result: 需重算\\n  depends_on:\\n  - D010\\n- id: D012\\n  date: 2026-05-14 18:26 UTC\\n  summary: 'Bootstrap CI framing: 选 (B) 逐数据集报告 F1 significance，DocRED +0.50pp p<0.001，SciERC\\n    neutral p=0.58'\\n  rationale: Bootstrap CI (10000×) 揭示 DocRED F1 提升统计显著，机制为 grammar 消除 OOV relation\\n    names (RV 29.66%→0.03%) 减少 FP。SciERC RV 仅 1.39% 故效果不显著。选逐数据集报告而非统一 framing，最诚实且不升级为\\n    core claim。更新 paper_framing.md 中 C6/C8 相关表述。\\n  related_experiments:\\n  - exp_id: phase2_docred_full_s1\\n    role: primary\\n    result: R-F1 +0.50pp vs unconstrained, p<0.001\\n  - exp_id: phase2_scierc_full_s1\\n    role: primary\\n    result: R-F1 +0.13pp vs unconstrained, p=0.58 (non-significant)\\n  depends_on:\\n  - D010\\n- id: D013\\n  date: 2026-05-14 18:28 UTC\\n  summary: 'Post-hoc baseline framing: 不以 F1 论高低，多维对比 (recall + coverage + operational)，诚实承认\\n    precision trade-off'\\n  rationale: Post-hoc F1 > OntoCoDec F1（SciERC 8.63 vs 8.36, DocRED 9.61 vs 8.24），因\\n    low F1 regime 下移除 FP 大幅提升 precision。但 post-hoc recall 下降（SciERC -0.72pp, DocRED\\n    -1.06pp），DocRED 丢弃 48.1% triples。OntoCoDec recall 上升（+0.20/+0.56pp）= 概率质量重分配生效。Framing\\n    重心放在 recall preservation + information coverage + streaming compatibility，诚实承认\\n    precision trade-off。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: R-F1 8.23\\n  - exp_id: phase2_scierc_full_s1\\n    role: primary\\n    result: R-F1 8.36, recall 11.60\\n  - exp_id: phase2_docred_unconstrained\\n    role: baseline\\n    result: R-F1 7.74\\n  - exp_id: phase2_docred_full_s1\\n    role: primary\\n    result: R-F1 8.24, recall 10.02\\n  depends_on:\\n  - D010\\n  - D012\\n- id: D014\\n  date: 2026-05-14 20:33 UTC\\n  summary: Tightness scaling claim 修订：从单因素(tightness)改为双因素(tightness × model RV baseline)。Llama\\n    DocRED DR↓90.2% 打破原 \\\"scales inversely with tightness\\\" claim。\\n  rationale: Llama DocRED full_s1 DR 26.07%→2.55% (↓90.2%) vs Qwen 18.46%→10.21% (↓44.7%)。同一\\n    ontology (τ̄=0.842) 下差距巨大。原因：Qwen RV=29.66% 远高于 Llama RV=16.03%，grammar 层将 OOV\\n    triples 强制匹配有效关系名后揭露大量 latent DR violations。修订为\\\"tightness 与 model RV baseline\\n    共同决定 enforcement ceiling\\\"。这实际强化论文——揭示 model-constraint 交互效应。同时 E-F1 claim 需限定为\\n    Qwen-specific（Llama E-F1 -0.64pp）。\\n  related_experiments:\\n  - exp_id: llama_docred_full_s1\\n    role: primary\\n    result: DR 26.07→2.55 (↓90.2%), R-F1 +0.29pp, E-F1 -0.64pp, CF 12.02%\\n  - exp_id: llama_docred_unconstrained\\n    role: baseline\\n    result: DR 26.07%, RV 16.03%, R-F1 5.98%\\n  - exp_id: phase2_docred_full_s1\\n    role: comparison\\n    result: DR 10.21% (↓44.7%), Qwen RV baseline 29.66%\\n  depends_on:\\n  - D012\\n  - D013\\n- id: D015\\n  date: 2026-05-14 22:29 UTC\\n  summary: 'D015: Dream #2 结果处理 — Title 去掉 \\\"Near-Complete\\\"，6 项 action items 按优先级处理'\\n  rationale: 'Dream #2 三档 worst=2.5/median=3.0/best=3.0，比 Dream #1 (全 3/6) 改善。三档共识：(1)\\n    Title \\\"Near-Complete\\\" overclaim (DocRED 10.21% residual)，(2) CF severity 无 downstream\\n    验证，(3) 技术新颖性质疑。Title 修订为去掉 \\\"Near-Complete\\\"——论文贡献是方法（compiled ontology constraints），不是特定消除率；结果从\\n    0.93% 到 10.21% 变异太大不适合 \\\"Near-Complete\\\"。CF downstream 验证需架构修改，5天内不可行，保持在 limitations。技术新颖性通过\\n    §6 positioning 强化 IE-specific 贡献（stateful entity registry, prefix-decidable constraints）。'\\n  related_experiments:\\n  - exp_id: dream_20260514T205155\\n    role: dream\\n    result: worst=2.5, median=3.0, best=3.0\\n  depends_on:\\n  - D014\\n  - D013\\n  - D012\\n- id: D016\\n  date: 2026-05-14 22:57 UTC\\n  summary: 'D016: Llama bootstrap CI 修复完成，全部 p-values 写入论文，framing 从 \\\"F1-neutral\\\"\\n    升级为 \\\"both models significant R-F1 gains on DocRED\\\"'\\n  rationale: v2 bootstrap 脚本修复了两个 bug（int entity crash + entity type normalization），8\\n    项 point estimate 全部 registry-aligned (≤0.05pp)。结果：Llama DocRED R-F1 +0.29pp p=0.013（显著正向），E-F1\\n    -0.64pp p=0.022（显著负向）。这使得 DocRED 上两个模型 R-F1 都显著提升，是比 \\\"F1-neutral\\\" 更强的 claim。E-F1\\n    模型依赖性如实报告。已更新 crossmodel §5、abstract、conclusion。\\n  related_experiments:\\n  - exp_id: llama_scierc_unconstrained\\n    role: baseline\\n    result: R-F1=2.68, E-F1=23.56\\n  - exp_id: llama_scierc_full_s1\\n    role: treatment\\n    result: R-F1=2.54 (-0.14pp p=0.011), E-F1=23.49 (NS)\\n  - exp_id: llama_docred_unconstrained\\n    role: baseline\\n    result: R-F1=5.98, E-F1=55.65\\n  - exp_id: llama_docred_full_s1\\n    role: treatment\\n    result: R-F1=6.27 (+0.29pp p=0.013), E-F1=55.01 (-0.64pp p=0.022)\\n  depends_on:\\n  - D015\\n  - D014\\n  - D012\\n- id: D017\\n  date: 2026-05-15 14:10 UTC\\n  summary: 'D017: 批准 pair-based σ(r) enforcement 升级，与 W1 CF fallback 合并实现。SciERC DR\\n    0.93%→0% 可期，DocRED DR 再降 ~28%'\\n  rationale: Rectangularity 分析显示 SciERC 0/7、DocRED 73/96 relations 非矩形。当前 independent\\n    enforcement (head∈dom ∧ tail∈range) 是 pair-based σ(r) 的松弛近似，SciERC 全部 16 个残余 DR\\n    violations 属于 over-permissive gap。实现 pair-based 改动量小（set membership → tuple lookup），可与\\n    CF fallback 代码合并，无额外 GPU 开销。收益：SciERC DR=0% 是 complete elimination claim，显著强于\\n    near-complete。\\n  related_experiments:\\n  - exp_id: phase2_scierc_full_s1\\n    role: evidence\\n    result: 16 residual DR all from over-permissive gap\\n  - exp_id: phase2_docred_full_s1\\n    role: evidence\\n    result: 491/1770 DR (27.7%) from over-permissive gap\\n  - exp_id: w1_cf_fallback_scierc_pilot\\n    role: baseline\\n    result: running, validates CF mechanism\\n  depends_on:\\n  - D014\\n- id: D018\\n  date: 2026-05-15 14:14 UTC\\n  summary: 'D018: 批准 W5 LoRA fine-tune 实验（Qwen3-8B on SciERC），条件启动——先验 baseline DR\\n    再决定跑 constrained'\\n  rationale: Reviewer 分析指出 W5 是从 Weak Reject → Accept 的最大杠杆（预估 +0.5 分）。LoRA fine-tune\\n    Qwen3-8B on SciERC 是最受控实验（同模型同数据只加 fine-tuning 变量），~6 GPU-hrs，可与 W1 CF fallback\\n    并行。风险控制：先跑 unconstrained fine-tuned baseline 检查 DR 率，若 DR<2% 则边际收益不显著需重新评估。10\\n    天 DDL 内时间充裕。\\n  related_experiments:\\n  - exp_id: phase2_scierc_full_s1\\n    role: baseline\\n    result: DR=0.93%, R-F1=8.36%\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: DR=15.21%, R-F1=8.23%\\n  depends_on:\\n  - D017\\n- id: D019\\n  date: 2026-05-15 14:14 UTC\\n  summary: 'D018: 修正 D017 — 代码已是 pair-based，取消代码改动，改为纯写作修复 + 残余 DR 根因调查。批准 W5 LoRA\\n    fine-tune 实验（~6 GPU-hrs）'\\n  rationale: 'Reviewer 独立核实 type_mask_processor.py:360 调用 valid_tail_types_for_head(head_type)，combined\\n    enforcement 等价于 full pair-based。§3 Eq.(2) 和 line 106-107 描述错误（写了 independent dom/range），W2\\n    标注 resolved 不正确。D017 的代码改动取消，转为：(1) §3 formalization 与代码对齐（σ-notation）(2) 调查 SciERC\\n    16 个残余 DR 的真实原因（代码已 pair-based 却仍有 violations）(3) rectangularity 量化数据作为新 finding\\n    写入论文。同时批准 W5 LoRA fine-tune SciERC 实验（~6 GPU-hrs），staged approach: 先跑 unconstrained\\n    fine-tuned baseline 检查 DR，>5% 再跑 constrained。这是从 Weak Reject 到 Accept 的最大杠杆。'\\n  related_experiments:\\n  - exp_id: phase2_scierc_full_s1\\n    role: evidence\\n    result: 16 residual DR despite pair-based code — cause unknown\\n  - exp_id: w1_cf_fallback_scierc_pilot\\n    role: ongoing\\n    result: running, validates CF mechanism\\n  depends_on:\\n  - D017\\n\", \"total_chars\": 14525, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "97420d8d-76e5-4ca4-b3ff-7f0206dfd7c5",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "8ed4f85d-3f30-490a-be24-fb7a41c66b9b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 20\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-13 17:38 UTC\\\\n  summary: 主目标调整为 EMNLP 2026 ARR (5/25), AAAI 2027 为后备\\\\n  rationale: 用户明确指出 EMNLP ARR 5/25 时间不紧、不要保守、资源会给够。12 天 AI 团队速度足够：Phase 0 (1-2天) →\\\\n    Phase 1 compiler (2-3天) → Phase 2 experiments (2-3天) → Paper (2-3天)。禁止 fallback\\\\n    思维，冲最高目标。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-13 19:14 UTC\\\\n  summary: SciERC Phase 0 结果确认 GO — domain_range violation rate 15.4%，3× 超阈值\\\\n  rationale: 'SciERC 全量 test set (551 sentences, 1724 triples): domain_range_violation_rate\\\\n    = 15.4%，远超 5% go/no-go 阈值。违规分布极不均匀 (Feature-of 33.5%, Compare 42.4% vs Used-for\\\\n    0.76%)，支持\\\\\\\"特定 relation types 需要 decoding-time enforcement\\\\\\\"的论文 claim。DocRED dry-run\\\\n    (37 docs) 同样显示 14.4%。两个数据集均为 GO 信号，MVP 核心假设得到强验证。等 schema-informed prompt 结果确认\\\\n    prompt 级干预不足以解决问题后正式宣布 MVP 通过。'\\\\n  related_experiments:\\\\n  - exp_id: mvp_phase0_violation_rate\\\\n    role: primary\\\\n    result: domain_range_violation_rate=15.4%, go_nogo=GO\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-13 21:48 UTC\\\\n  summary: MVP 通过，进入 Research 阶段，立即启动 Phase 2 constrained decoding 实验\\\\n  rationale: Phase 0 三个实验完成：SciERC 15.4%/5.78%, DocRED 18.7% domain_range violation\\\\n    rate。两个数据集均远超 5% 阈值，核心假设得到强验证。Phase 1 compiler 代码就绪（36 tests 通过），Phase 2 脚本就绪（S1\\\\n    路径可用，S2 bug 修复中）。cuda:1 空闲，立即启动 Phase 2 SciERC grammar_only/semantic_only/full_s1\\\\n    实验。\\\\n  related_experiments:\\\\n  - exp_id: mvp_phase0_violation_rate\\\\n    role: primary\\\\n    result: SciERC DR=15.4%, GO\\\\n  - exp_id: mvp_phase0_scierc_schema\\\\n    role: primary\\\\n    result: SciERC DR=5.78%, prompt insufficient\\\\n  - exp_id: mvp_phase0_violation_rate_docred\\\\n    role: primary\\\\n    result: DocRED DR=18.7%, GO\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-14 01:53 UTC\\\\n  summary: Phase 2 SciERC 核心结果确认：grammar+semantic (full_s1) DR↓94% F1 neutral，两层约束协同效应成立\\\\n  rationale: _v2 干净数据 551 样本全量结果：full_s1 DR=0.93%（baseline 15.37%，↓94%），R-F1 微升 +0.0013。grammar\\\\n    单独消除 RV/ET，semantic 单独降 DR 24%，组合后 94%——超加性效应。论文核心 claim 站住。早期污染数据 semantic_only\\\\n    DR=16.43% 已修正为 11.65%。\\\\n  related_experiments:\\\\n  - exp_id: phase2_scierc_unconstrained\\\\n    role: baseline\\\\n    result: DR=15.37%\\\\n  - exp_id: phase2_scierc_grammar_only\\\\n    role: ablation\\\\n    result: DR=14.84%, RV/ET=0%\\\\n  - exp_id: phase2_scierc_semantic_only\\\\n    role: ablation\\\\n    result: DR=11.65%\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: core_result\\\\n    result: DR=0.93%, F1=0.0836\\\\n  depends_on:\\\\n  - D003\\\\n- id: D005\\\\n  date: 2026-05-14 01:53 UTC\\\\n  summary: Phase 2 SciERC 核心结果确认：Full S1 DR↓94% F1无损，CF violation↑124x 作为已知 tradeoff\\\\n    待 S2 对比后决定处理策略\\\\n  rationale: v2 干净数据 551/551 全量验证，Reviewer PASS。Grammar+Semantic 协同效应成立，ablation story\\\\n    清晰。CF violation（0.08%→9.9%）是约束副作用，需等 S2 结果判断是在论文中作为 limitation 还是加 CF 约束修复。\\\\n  related_experiments:\\\\n  - exp_id: phase2_scierc_unconstrained\\\\n    role: baseline\\\\n    result: DR=15.37%, RV=1.39%, ET=0.4%, RF1=0.0823\\\\n  - exp_id: phase2_scierc_grammar_only\\\\n    role: ablation\\\\n    result: DR=14.84%, RV=0%, ET=0%, RF1=0.0823\\\\n  - exp_id: phase2_scierc_semantic_only\\\\n    role: ablation\\\\n    result: DR=11.65%, RV=1.51%, ET=0.4%, RF1=0.0815\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: core_result\\\\n    result: DR=0.93%, RV=0%, ET=0%, RF1=0.0836, CF=9.9%\\\\n  depends_on: []\\\\n- id: D006\\\\n  date: 2026-05-14 01:54 UTC\\\\n  summary: Phase 2 SciERC 核心结果确认：Full S1 DR -94% 且 F1 无损，CF violation 上升为已知 limitation\\\\n  rationale: v2 干净数据全量（551/551）结果经 Reviewer PASS 验证：Full S1 DR 15.37%→0.93%（↓94%），R-F1\\\\n    +0.13pp，ET/RV→0%。Ablation story 清晰（grammar 管格式、semantic 管语义、双层协同）。CF violation\\\\n    从 0.08%→9.9% 是已知副作用，需在论文中正面报告并论述与 DR 的性质差异。Semantic-only DR=11.65% 说明两层是 multiplicative\\\\n    关系。决定推进 DocRED Phase 2 跨数据集验证 + 等 S2 对比。\\\\n  related_experiments:\\\\n  - exp_id: phase2_scierc_unconstrained\\\\n    role: baseline\\\\n    result: DR=15.37%, R-F1=0.0823\\\\n  - exp_id: phase2_scierc_grammar_only\\\\n    role: ablation\\\\n    result: DR=14.84%, RV/ET=0%, F1持平\\\\n  - exp_id: phase2_scierc_semantic_only\\\\n    role: ablation\\\\n    result: DR=11.65%, F1-0.08pp\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: core_result\\\\n    result: DR=0.93%, R-F1=0.0836(+0.13pp)\\\\n  - exp_id: mvp_phase0_docred_schema\\\\n    role: motivation\\\\n    result: DocRED DR=12.8%(-32%), 验证prompt级不足\\\\n  depends_on: []\\\\n- id: D007\\\\n  date: 2026-05-14 02:09 UTC\\\\n  summary: S2 降级为架构 ablation，S1 为主推策略；标题去掉 \\\\\\\"Guaranteed\\\\\\\" 改 \\\\\\\"Near-Complete\\\\\\\"\\\\n  rationale: S2 全量结果(551/551)确认：DR 0.97%(vs S1 0.93%)、CF 8.03%(vs S1 9.9%，降幅不显著)、R-F1\\\\n    8.03%(vs S1 8.36%)。S2 在所有指标上均未优于 S1，两通道分离未能解决 CF 问题。CF 是 per-relation 独立 type\\\\n    enforcement 的固有限制，非架构可解。S2 定位从\\\\\\\"CF 解决方案\\\\\\\"调整为\\\\\\\"架构灵活性展示\\\\\\\"，论文中放 ablation/appendix。标题\\\\n    \\\\\\\"Guaranteed\\\\\\\" 与 0.93% 残余不符，改为 \\\\\\\"Near-Complete\\\\\\\"。\\\\n  related_experiments:\\\\n  - exp_id: phase2_scierc_full_s2\\\\n    role: primary\\\\n    result: DR=0.97%, CF=8.03%, R-F1=8.03% — no advantage over S1\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: baseline\\\\n    result: DR=0.93%, CF=9.9%, R-F1=8.36%\\\\n  depends_on: []\\\\n- id: D008\\\\n  date: 2026-05-14 04:33 UTC\\\\n  summary: 补跑 DocRED semantic_only 完成跨数据集全消融；论文写作提前至 DocRED 分析完成后立即启动\\\\n  rationale: 'SciERC 有 5 路消融但 DocRED 只有 grammar_only + full_s1，缺 semantic_only。Claim\\\\n    3 (enabling dependency) 在 DocRED 上的证据链不完整——审稿人必问\\\\\\\"为何 DocRED 不做 semantic_only 对比\\\\\\\"。DocRED\\\\n    约束更紧(avg 5.68 valid pairs)，semantic_only 预期效果更差，反而是 enabling dependency 的更强证据。论文写作从\\\\n    5/19 提前到 DocRED 分析完成后(~5/16)，DocRED semantic_only 与写作并行，结果 patch 进去。grammar-semantic\\\\n    交互 bug (invariant: semantic mask ⊆ grammar allowed set) 需写入 Method section 作为\\\\n    resolution protocol。'\\\\n  related_experiments:\\\\n  - exp_id: phase2_docred_grammar_only\\\\n    role: running\\\\n    result: pending\\\\n  - exp_id: phase2_docred_full_s1\\\\n    role: running\\\\n    result: pending\\\\n  - exp_id: phase2_scierc_semantic_only\\\\n    role: reference\\\\n    result: DR↓24% but ET/RV not eliminated\\\\n  depends_on:\\\\n  - D006\\\\n  - D007\\\\n- id: D009\\\\n  date: 2026-05-14 06:19 UTC\\\\n  summary: Llama-3.1-8B cross-model 验证升级为 should-have，SciERC-only (unconstrained +\\\\n    full_s1)\\\\n  rationale: Reviewer 实测 DocRED 实验进度远超预期（May 15 早间全部完成 vs 原估 May 17-18），多出 2-3 天 buffer。单模型是最可能的\\\\n    EMNLP reviewer 批评 (C5)，2 组 SciERC 实验 4-6 GPU 小时即可完成，风险可控。constraint compiler 声称\\\\n    model-agnostic，跨模型验证是最直接的证据。\\\\n  related_experiments:\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: baseline_same_model\\\\n    result: DR↓94% F1无损\\\\n  - exp_id: phase2_scierc_unconstrained\\\\n    role: baseline_same_model\\\\n    result: DR 15.37%\\\\n  depends_on:\\\\n  - D006\\\\n  - D008\\\\n- id: D010\\\\n  date: 2026-05-14 17:59 UTC\\\\n  summary: Dream 三档 Weak Reject (3/6) → 制定 6 项结构性补强计划：post-hoc baseline + bootstrap\\\\n    CI + related work 20+ + PICARD 对比 + CF/F1 Discussion 段\\\\n  rationale: Dream 模拟三档一致指出 6 个结构性缺陷：(1) 单模型泛化弱 → Llama cross-model 已在跑，(2) 无 post-hoc\\\\n    filtering baseline → 必须加，(3) related work 仅 7 引用 → 扩到 20+，(4) 无统计显著性 → bootstrap\\\\n    CI，(5) CF trade-off 无下游验证 → 加强论证，(6) 低 F1 实用性 → Discussion 段。Dream 基于缺少 Llama\\\\n    数据 + 有 bug 的 violation 数字，实际情况好于模拟。补强后预期从 3/6 提升到 4-5/6 区间。\\\\n  related_experiments:\\\\n  - exp_id: llama_docred_full_s1\\\\n    role: addresses U1 (cross-model)\\\\n    result: RUNNING\\\\n  - exp_id: llama_docred_unconstrained\\\\n    role: addresses U1 (cross-model)\\\\n    result: RUNNING\\\\n  - exp_id: llama_scierc_full_s1\\\\n    role: addresses U1 (cross-model)\\\\n    result: success\\\\n  depends_on:\\\\n  - D009\\\\n- id: D011\\\\n  date: 2026-05-14 18:16 UTC\\\\n  summary: 推翻之前 ET 计数口径决定——修正 ET triple-counting，每个 entity 只计 1 次 ET violation（不在\\\\n    entity_list + head + tail 各计一次）\\\\n  rationale: Reviewer 审查指出：(1) ET=8.18% 被 inflate 至多 3× (实际 ~2.47%)，是不必要的攻击面；(2) grammar/full_s1\\\\n    ET=0% 不受影响；(3) 相对对比仍有效；(4) 距 May 19 DDL 仍有修正窗口。之前\\\\\\\"保持一致性\\\\\\\"的理由成立但 Reviewer 认为论文可信度\\\\n    > 方法学惰性。修正后所有非零 ET 数字将变小，但 constrained decoding 的 ET→0% 仍然成立，paper story 更干净。\\\\n  related_experiments:\\\\n  - exp_id: phase2_docred_unconstrained\\\\n    role: ET 8.18%→~2.47%\\\\n    result: 需重算\\\\n  - exp_id: phase2_docred_semantic_only\\\\n    role: ET 10.44%→~3.5%\\\\n    result: 需重算\\\\n  depends_on:\\\\n  - D010\\\\n- id: D012\\\\n  date: 2026-05-14 18:26 UTC\\\\n  summary: 'Bootstrap CI framing: 选 (B) 逐数据集报告 F1 significance，DocRED +0.50pp p<0.001，SciERC\\\\n    neutral p=0.58'\\\\n  rationale: Bootstrap CI (10000×) 揭示 DocRED F1 提升统计显著，机制为 grammar 消除 OOV relation\\\\n    names (RV 29.66%→0.03%) 减少 FP。SciERC RV 仅 1.39% 故效果不显著。选逐数据集报告而非统一 framing，最诚实且不升级为\\\\n    core claim。更新 paper_framing.md 中 C6/C8 相关表述。\\\\n  related_experiments:\\\\n  - exp_id: phase2_docred_full_s1\\\\n    role: primary\\\\n    result: R-F1 +0.50pp vs unconstrained, p<0.001\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: primary\\\\n    result: R-F1 +0.13pp vs unconstrained, p=0.58 (non-significant)\\\\n  depends_on:\\\\n  - D010\\\\n- id: D013\\\\n  date: 2026-05-14 18:28 UTC\\\\n  summary: 'Post-hoc baseline framing: 不以 F1 论高低，多维对比 (recall + coverage + operational)，诚实承认\\\\n    precision trade-off'\\\\n  rationale: Post-hoc F1 > OntoCoDec F1（SciERC 8.63 vs 8.36, DocRED 9.61 vs 8.24），因\\\\n    low F1 regime 下移除 FP 大幅提升 precision。但 post-hoc recall 下降（SciERC -0.72pp, DocRED\\\\n    -1.06pp），DocRED 丢弃 48.1% triples。OntoCoDec recall 上升（+0.20/+0.56pp）= 概率质量重分配生效。Framing\\\\n    重心放在 recall preservation + information coverage + streaming compatibility，诚实承认\\\\n    precision trade-off。\\\\n  related_experiments:\\\\n  - exp_id: phase2_scierc_unconstrained\\\\n    role: baseline\\\\n    result: R-F1 8.23\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: primary\\\\n    result: R-F1 8.36, recall 11.60\\\\n  - exp_id: phase2_docred_unconstrained\\\\n    role: baseline\\\\n    result: R-F1 7.74\\\\n  - exp_id: phase2_docred_full_s1\\\\n    role: primary\\\\n    result: R-F1 8.24, recall 10.02\\\\n  depends_on:\\\\n  - D010\\\\n  - D012\\\\n- id: D014\\\\n  date: 2026-05-14 20:33 UTC\\\\n  summary: Tightness scaling claim 修订：从单因素(tightness)改为双因素(tightness × model RV baseline)。Llama\\\\n    DocRED DR↓90.2% 打破原 \\\\\\\"scales inversely with tightness\\\\\\\" claim。\\\\n  rationale: Llama DocRED full_s1 DR 26.07%→2.55% (↓90.2%) vs Qwen 18.46%→10.21% (↓44.7%)。同一\\\\n    ontology (τ̄=0.842) 下差距巨大。原因：Qwen RV=29.66% 远高于 Llama RV=16.03%，grammar 层将 OOV\\\\n    triples 强制匹配有效关系名后揭露大量 latent DR violations。修订为\\\\\\\"tightness 与 model RV baseline\\\\n    共同决定 enforcement ceiling\\\\\\\"。这实际强化论文——揭示 model-constraint 交互效应。同时 E-F1 claim 需限定为\\\\n    Qwen-specific（Llama E-F1 -0.64pp）。\\\\n  related_experiments:\\\\n  - exp_id: llama_docred_full_s1\\\\n    role: primary\\\\n    result: DR 26.07→2.55 (↓90.2%), R-F1 +0.29pp, E-F1 -0.64pp, CF 12.02%\\\\n  - exp_id: llama_docred_unconstrained\\\\n    role: baseline\\\\n    result: DR 26.07%, RV 16.03%, R-F1 5.98%\\\\n  - exp_id: phase2_docred_full_s1\\\\n    role: comparison\\\\n    result: DR 10.21% (↓44.7%), Qwen RV baseline 29.66%\\\\n  depends_on:\\\\n  - D012\\\\n  - D013\\\\n- id: D015\\\\n  date: 2026-05-14 22:29 UTC\\\\n  summary: 'D015: Dream #2 结果处理 — Title 去掉 \\\\\\\"Near-Complete\\\\\\\"，6 项 action items 按优先级处理'\\\\n  rationale: 'Dream #2 三档 worst=2.5/median=3.0/best=3.0，比 Dream #1 (全 3/6) 改善。三档共识：(1)\\\\n    Title \\\\\\\"Near-Complete\\\\\\\" overclaim (DocRED 10.21% residual)，(2) CF severity 无 downstream\\\\n    验证，(3) 技术新颖性质疑。Title 修订为去掉 \\\\\\\"Near-Complete\\\\\\\"——论文贡献是方法（compiled ontology constraints），不是特定消除率；结果从\\\\n    0.93% 到 10.21% 变异太大不适合 \\\\\\\"Near-Complete\\\\\\\"。CF downstream 验证需架构修改，5天内不可行，保持在 limitations。技术新颖性通过\\\\n    §6 positioning 强化 IE-specific 贡献（stateful entity registry, prefix-decidable constraints）。'\\\\n  related_experiments:\\\\n  - exp_id: dream_20260514T205155\\\\n    role: dream\\\\n    result: worst=2.5, median=3.0, best=3.0\\\\n  depends_on:\\\\n  - D014\\\\n  - D013\\\\n  - D012\\\\n- id: D016\\\\n  date: 2026-05-14 22:57 UTC\\\\n  summary: 'D016: Llama bootstrap CI 修复完成，全部 p-values 写入论文，framing 从 \\\\\\\"F1-neutral\\\\\\\"\\\\n    升级为 \\\\\\\"both models significant R-F1 gains on DocRED\\\\\\\"'\\\\n  rationale: v2 bootstrap 脚本修复了两个 bug（int entity crash + entity type normalization），8\\\\n    项 point estimate 全部 registry-aligned (≤0.05pp)。结果：Llama DocRED R-F1 +0.29pp p=0.013（显著正向），E-F1\\\\n    -0.64pp p=0.022（显著负向）。这使得 DocRED 上两个模型 R-F1 都显著提升，是比 \\\\\\\"F1-neutral\\\\\\\" 更强的 claim。E-F1\\\\n    模型依赖性如实报告。已更新 crossmodel §5、abstract、conclusion。\\\\n  related_experiments:\\\\n  - exp_id: llama_scierc_unconstrained\\\\n    role: baseline\\\\n    result: R-F1=2.68, E-F1=23.56\\\\n  - exp_id: llama_scierc_full_s1\\\\n    role: treatment\\\\n    result: R-F1=2.54 (-0.14pp p=0.011), E-F1=23.49 (NS)\\\\n  - exp_id: llama_docred_unconstrained\\\\n    role: baseline\\\\n    result: R-F1=5.98, E-F1=55.65\\\\n  - exp_id: llama_docred_full_s1\\\\n    role: treatment\\\\n    result: R-F1=6.27 (+0.29pp p=0.013), E-F1=55.01 (-0.64pp p=0.022)\\\\n  depends_on:\\\\n  - D015\\\\n  - D014\\\\n  - D012\\\\n- id: D017\\\\n  date: 2026-05-15 14:10 UTC\\\\n  summary: 'D017: 批准 pair-based σ(r) enforcement 升级，与 W1 CF fallback 合并实现。SciERC DR\\\\n    0.93%→0% 可期，DocRED DR 再降 ~28%'\\\\n  rationale: Rectangularity 分析显示 SciERC 0/7、DocRED 73/96 relations 非矩形。当前 independent\\\\n    enforcement (head∈dom ∧ tail∈range) 是 pair-based σ(r) 的松弛近似，SciERC 全部 16 个残余 DR\\\\n    violations 属于 over-permissive gap。实现 pair-based 改动量小（set membership → tuple lookup），可与\\\\n    CF fallback 代码合并，无额外 GPU 开销。收益：SciERC DR=0% 是 complete elimination claim，显著强于\\\\n    near-complete。\\\\n  related_experiments:\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: evidence\\\\n    result: 16 residual DR all from over-permissive gap\\\\n  - exp_id: phase2_docred_full_s1\\\\n    role: evidence\\\\n    result: 491/1770 DR (27.7%) from over-permissive gap\\\\n  - exp_id: w1_cf_fallback_scierc_pilot\\\\n    role: baseline\\\\n    result: running, validates CF mechanism\\\\n  depends_on:\\\\n  - D014\\\\n- id: D018\\\\n  date: 2026-05-15 14:14 UTC\\\\n  summary: 'D018: 批准 W5 LoRA fine-tune 实验（Qwen3-8B on SciERC），条件启动——先验 baseline DR\\\\n    再决定跑 constrained'\\\\n  rationale: Reviewer 分析指出 W5 是从 Weak Reject → Accept 的最大杠杆（预估 +0.5 分）。LoRA fine-tune\\\\n    Qwen3-8B on SciERC 是最受控实验（同模型同数据只加 fine-tuning 变量），~6 GPU-hrs，可与 W1 CF fallback\\\\n    并行。风险控制：先跑 unconstrained fine-tuned baseline 检查 DR 率，若 DR<2% 则边际收益不显著需重新评估。10\\\\n    天 DDL 内时间充裕。\\\\n  related_experiments:\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: baseline\\\\n    result: DR=0.93%, R-F1=8.36%\\\\n  - exp_id: phase2_scierc_unconstrained\\\\n    role: baseline\\\\n    result: DR=15.21%, R-F1=8.23%\\\\n  depends_on:\\\\n  - D017\\\\n- id: D019\\\\n  date: 2026-05-15 14:14 UTC\\\\n  summary: 'D018: 修正 D017 — 代码已是 pair-based，取消代码改动，改为纯写作修复 + 残余 DR 根因调查。批准 W5 LoRA\\\\n    fine-tune 实验（~6 GPU-hrs）'\\\\n  rationale: 'Reviewer 独立核实 type_mask_processor.py:360 调用 valid_tail_types_for_head(head_type)，combined\\\\n    enforcement 等价于 full pair-based。§3 Eq.(2) 和 line 106-107 描述错误（写了 independent dom/range），W2\\\\n    标注 resolved 不正确。D017 的代码改动取消，转为：(1) §3 formalization 与代码对齐（σ-notation）(2) 调查 SciERC\\\\n    16 个残余 DR 的真实原因（代码已 pair-based 却仍有 violations）(3) rectangularity 量化数据作为新 finding\\\\n    写入论文。同时批准 W5 LoRA fine-tune SciERC 实验（~6 GPU-hrs），staged approach: 先跑 unconstrained\\\\n    fine-tuned baseline 检查 DR，>5% 再跑 constrained。这是从 Weak Reject 到 Accept 的最大杠杆。'\\\\n  related_experiments:\\\\n  - exp_id: phase2_scierc_full_s1\\\\n    role: evidence\\\\n    result: 16 residual DR despite pair-based code — cause unknown\\\\n  - exp_id: w1_cf_fallback_scierc_pilot\\\\n    role: ongoing\\\\n    result: running, validates CF mechanism\\\\n  depends_on:\\\\n  - D017\\\\n\\\", \\\"total_chars\\\": 14525, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/decisions.yaml\", \"content\": \"_next_id: 20\\ndecisions:\\n- id: D001\\n  date: 2026-05-13 17:38 UTC\\n  summary: 主目标调整为 EMNLP 2026 ARR (5/25), AAAI 2027 为后备\\n  rationale: 用户明确指出 EMNLP ARR 5/25 时间不紧、不要保守、资源会给够。12 天 AI 团队速度足够：Phase 0 (1-2天) →\\n    Phase 1 compiler (2-3天) → Phase 2 experiments (2-3天) → Paper (2-3天)。禁止 fallback\\n    思维，冲最高目标。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-13 19:14 UTC\\n  summary: SciERC Phase 0 结果确认 GO — domain_range violation rate 15.4%，3× 超阈值\\n  rationale: 'SciERC 全量 test set (551 sentences, 1724 triples): domain_range_violation_rate\\n    = 15.4%，远超 5% go/no-go 阈值。违规分布极不均匀 (Feature-of 33.5%, Compare 42.4% vs Used-for\\n    0.76%)，支持\\\"特定 relation types 需要 decoding-time enforcement\\\"的论文 claim。DocRED dry-run\\n    (37 docs) 同样显示 14.4%。两个数据集均为 GO 信号，MVP 核心假设得到强验证。等 schema-informed prompt 结果确认\\n    prompt 级干预不足以解决问题后正式宣布 MVP 通过。'\\n  related_experiments:\\n  - exp_id: mvp_phase0_violation_rate\\n    role: primary\\n    result: domain_range_violation_rate=15.4%, go_nogo=GO\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-13 21:48 UTC\\n  summary: MVP 通过，进入 Research 阶段，立即启动 Phase 2 constrained decoding 实验\\n  rationale: Phase 0 三个实验完成：SciERC 15.4%/5.78%, DocRED 18.7% domain_range violation\\n    rate。两个数据集均远超 5% 阈值，核心假设得到强验证。Phase 1 compiler 代码就绪（36 tests 通过），Phase 2 脚本就绪（S1\\n    路径可用，S2 bug 修复中）。cuda:1 空闲，立即启动 Phase 2 SciERC grammar_only/semantic_only/full_s1\\n    实验。\\n  related_experiments:\\n  - exp_id: mvp_phase0_violation_rate\\n    role: primary\\n    result: SciERC DR=15.4%, GO\\n  - exp_id: mvp_phase0_scierc_schema\\n    role: primary\\n    result: SciERC DR=5.78%, prompt insufficient\\n  - exp_id: mvp_phase0_violation_rate_docred\\n    role: primary\\n    result: DocRED DR=18.7%, GO\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-14 01:53 UTC\\n  summary: Phase 2 SciERC 核心结果确认：grammar+semantic (full_s1) DR↓94% F1 neutral，两层约束协同效应成立\\n  rationale: _v2 干净数据 551 样本全量结果：full_s1 DR=0.93%（baseline 15.37%，↓94%），R-F1 微升 +0.0013。grammar\\n    单独消除 RV/ET，semantic 单独降 DR 24%，组合后 94%——超加性效应。论文核心 claim 站住。早期污染数据 semantic_only\\n    DR=16.43% 已修正为 11.65%。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: DR=15.37%\\n  - exp_id: phase2_scierc_grammar_only\\n    role: ablation\\n    result: DR=14.84%, RV/ET=0%\\n  - exp_id: phase2_scierc_semantic_only\\n    role: ablation\\n    result: DR=11.65%\\n  - exp_id: phase2_scierc_full_s1\\n    role: core_result\\n    result: DR=0.93%, F1=0.0836\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-14 01:53 UTC\\n  summary: Phase 2 SciERC 核心结果确认：Full S1 DR↓94% F1无损，CF violation↑124x 作为已知 tradeoff\\n    待 S2 对比后决定处理策略\\n  rationale: v2 干净数据 551/551 全量验证，Reviewer PASS。Grammar+Semantic 协同效应成立，ablation story\\n    清晰。CF violation（0.08%→9.9%）是约束副作用，需等 S2 结果判断是在论文中作为 limitation 还是加 CF 约束修复。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: DR=15.37%, RV=1.39%, ET=0.4%, RF1=0.0823\\n  - exp_id: phase2_scierc_grammar_only\\n    role: ablation\\n    result: DR=14.84%, RV=0%, ET=0%, RF1=0.0823\\n  - exp_id: phase2_scierc_semantic_only\\n    role: ablation\\n    result: DR=11.65%, RV=1.51%, ET=0.4%, RF1=0.0815\\n  - exp_id: phase2_scierc_full_s1\\n    role: core_result\\n    result: DR=0.93%, RV=0%, ET=0%, RF1=0.0836, CF=9.9%\\n  depends_on: []\\n- id: D006\\n  date: 2026-05-14 01:54 UTC\\n  summary: Phase 2 SciERC 核心结果确认：Full S1 DR -94% 且 F1 无损，CF violation 上升为已知 limitation\\n  rationale: v2 干净数据全量（551/551）结果经 Reviewer PASS 验证：Full S1 DR 15.37%→0.93%（↓94%），R-F1\\n    +0.13pp，ET/RV→0%。Ablation story 清晰（grammar 管格式、semantic 管语义、双层协同）。CF violation\\n    从 0.08%→9.9% 是已知副作用，需在论文中正面报告并论述与 DR 的性质差异。Semantic-only DR=11.65% 说明两层是 multiplicative\\n    关系。决定推进 DocRED Phase 2 跨数据集验证 + 等 S2 对比。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: DR=15.37%, R-F1=0.0823\\n  - exp_id: phase2_scierc_grammar_only\\n    role: ablation\\n    result: DR=14.84%, RV/ET=0%, F1持平\\n  - exp_id: phase2_scierc_semantic_only\\n    role: ablation\\n    result: DR=11.65%, F1-0.08pp\\n  - exp_id: phase2_scierc_full_s1\\n    role: core_result\\n    result: DR=0.93%, R-F1=0.0836(+0.13pp)\\n  - exp_id: mvp_phase0_docred_schema\\n    role: motivation\\n    result: DocRED DR=12.8%(-32%), 验证prompt级不足\\n  depends_on: []\\n- id: D007\\n  date: 2026-05-14 02:09 UTC\\n  summary: S2 降级为架构 ablation，S1 为主推策略；标题去掉 \\\"Guaranteed\\\" 改 \\\"Near-Complete\\\"\\n  rationale: S2 全量结果(551/551)确认：DR 0.97%(vs S1 0.93%)、CF 8.03%(vs S1 9.9%，降幅不显著)、R-F1\\n    8.03%(vs S1 8.36%)。S2 在所有指标上均未优于 S1，两通道分离未能解决 CF 问题。CF 是 per-relation 独立 type\\n    enforcement 的固有限制，非架构可解。S2 定位从\\\"CF 解决方案\\\"调整为\\\"架构灵活性展示\\\"，论文中放 ablation/appendix。标题\\n    \\\"Guaranteed\\\" 与 0.93% 残余不符，改为 \\\"Near-Complete\\\"。\\n  related_experiments:\\n  - exp_id: phase2_scierc_full_s2\\n    role: primary\\n    result: DR=0.97%, CF=8.03%, R-F1=8.03% — no advantage over S1\\n  - exp_id: phase2_scierc_full_s1\\n    role: baseline\\n    result: DR=0.93%, CF=9.9%, R-F1=8.36%\\n  depends_on: []\\n- id: D008\\n  date: 2026-05-14 04:33 UTC\\n  summary: 补跑 DocRED semantic_only 完成跨数据集全消融；论文写作提前至 DocRED 分析完成后立即启动\\n  rationale: 'SciERC 有 5 路消融但 DocRED 只有 grammar_only + full_s1，缺 semantic_only。Claim\\n    3 (enabling dependency) 在 DocRED 上的证据链不完整——审稿人必问\\\"为何 DocRED 不做 semantic_only 对比\\\"。DocRED\\n    约束更紧(avg 5.68 valid pairs)，semantic_only 预期效果更差，反而是 enabling dependency 的更强证据。论文写作从\\n    5/19 提前到 DocRED 分析完成后(~5/16)，DocRED semantic_only 与写作并行，结果 patch 进去。grammar-semantic\\n    交互 bug (invariant: semantic mask ⊆ grammar allowed set) 需写入 Method section 作为\\n    resolution protocol。'\\n  related_experiments:\\n  - exp_id: phase2_docred_grammar_only\\n    role: running\\n    result: pending\\n  - exp_id: phase2_docred_full_s1\\n    role: running\\n    result: pending\\n  - exp_id: phase2_scierc_semantic_only\\n    role: reference\\n    result: DR↓24% but ET/RV not eliminated\\n  depends_on:\\n  - D006\\n  - D007\\n- id: D009\\n  date: 2026-05-14 06:19 UTC\\n  summary: Llama-3.1-8B cross-model 验证升级为 should-have，SciERC-only (unconstrained +\\n    full_s1)\\n  rationale: Reviewer 实测 DocRED 实验进度远超预期（May 15 早间全部完成 vs 原估 May 17-18），多出 2-3 天 buffer。单模型是最可能的\\n    EMNLP reviewer 批评 (C5)，2 组 SciERC 实验 4-6 GPU 小时即可完成，风险可控。constraint compiler 声称\\n    model-agnostic，跨模型验证是最直接的证据。\\n  related_experiments:\\n  - exp_id: phase2_scierc_full_s1\\n    role: baseline_same_model\\n    result: DR↓94% F1无损\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline_same_model\\n    result: DR 15.37%\\n  depends_on:\\n  - D006\\n  - D008\\n- id: D010\\n  date: 2026-05-14 17:59 UTC\\n  summary: Dream 三档 Weak Reject (3/6) → 制定 6 项结构性补强计划：post-hoc baseline + bootstrap\\n    CI + related work 20+ + PICARD 对比 + CF/F1 Discussion 段\\n  rationale: Dream 模拟三档一致指出 6 个结构性缺陷：(1) 单模型泛化弱 → Llama cross-model 已在跑，(2) 无 post-hoc\\n    filtering baseline → 必须加，(3) related work 仅 7 引用 → 扩到 20+，(4) 无统计显著性 → bootstrap\\n    CI，(5) CF trade-off 无下游验证 → 加强论证，(6) 低 F1 实用性 → Discussion 段。Dream 基于缺少 Llama\\n    数据 + 有 bug 的 violation 数字，实际情况好于模拟。补强后预期从 3/6 提升到 4-5/6 区间。\\n  related_experiments:\\n  - exp_id: llama_docred_full_s1\\n    role: addresses U1 (cross-model)\\n    result: RUNNING\\n  - exp_id: llama_docred_unconstrained\\n    role: addresses U1 (cross-model)\\n    result: RUNNING\\n  - exp_id: llama_scierc_full_s1\\n    role: addresses U1 (cross-model)\\n    result: success\\n  depends_on:\\n  - D009\\n- id: D011\\n  date: 2026-05-14 18:16 UTC\\n  summary: 推翻之前 ET 计数口径决定——修正 ET triple-counting，每个 entity 只计 1 次 ET violation（不在\\n    entity_list + head + tail 各计一次）\\n  rationale: Reviewer 审查指出：(1) ET=8.18% 被 inflate 至多 3× (实际 ~2.47%)，是不必要的攻击面；(2) grammar/full_s1\\n    ET=0% 不受影响；(3) 相对对比仍有效；(4) 距 May 19 DDL 仍有修正窗口。之前\\\"保持一致性\\\"的理由成立但 Reviewer 认为论文可信度\\n    > 方法学惰性。修正后所有非零 ET 数字将变小，但 constrained decoding 的 ET→0% 仍然成立，paper story 更干净。\\n  related_experiments:\\n  - exp_id: phase2_docred_unconstrained\\n    role: ET 8.18%→~2.47%\\n    result: 需重算\\n  - exp_id: phase2_docred_semantic_only\\n    role: ET 10.44%→~3.5%\\n    result: 需重算\\n  depends_on:\\n  - D010\\n- id: D012\\n  date: 2026-05-14 18:26 UTC\\n  summary: 'Bootstrap CI framing: 选 (B) 逐数据集报告 F1 significance，DocRED +0.50pp p<0.001，SciERC\\n    neutral p=0.58'\\n  rationale: Bootstrap CI (10000×) 揭示 DocRED F1 提升统计显著，机制为 grammar 消除 OOV relation\\n    names (RV 29.66%→0.03%) 减少 FP。SciERC RV 仅 1.39% 故效果不显著。选逐数据集报告而非统一 framing，最诚实且不升级为\\n    core claim。更新 paper_framing.md 中 C6/C8 相关表述。\\n  related_experiments:\\n  - exp_id: phase2_docred_full_s1\\n    role: primary\\n    result: R-F1 +0.50pp vs unconstrained, p<0.001\\n  - exp_id: phase2_scierc_full_s1\\n    role: primary\\n    result: R-F1 +0.13pp vs unconstrained, p=0.58 (non-significant)\\n  depends_on:\\n  - D010\\n- id: D013\\n  date: 2026-05-14 18:28 UTC\\n  summary: 'Post-hoc baseline framing: 不以 F1 论高低，多维对比 (recall + coverage + operational)，诚实承认\\n    precision trade-off'\\n  rationale: Post-hoc F1 > OntoCoDec F1（SciERC 8.63 vs 8.36, DocRED 9.61 vs 8.24），因\\n    low F1 regime 下移除 FP 大幅提升 precision。但 post-hoc recall 下降（SciERC -0.72pp, DocRED\\n    -1.06pp），DocRED 丢弃 48.1% triples。OntoCoDec recall 上升（+0.20/+0.56pp）= 概率质量重分配生效。Framing\\n    重心放在 recall preservation + information coverage + streaming compatibility，诚实承认\\n    precision trade-off。\\n  related_experiments:\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: R-F1 8.23\\n  - exp_id: phase2_scierc_full_s1\\n    role: primary\\n    result: R-F1 8.36, recall 11.60\\n  - exp_id: phase2_docred_unconstrained\\n    role: baseline\\n    result: R-F1 7.74\\n  - exp_id: phase2_docred_full_s1\\n    role: primary\\n    result: R-F1 8.24, recall 10.02\\n  depends_on:\\n  - D010\\n  - D012\\n- id: D014\\n  date: 2026-05-14 20:33 UTC\\n  summary: Tightness scaling claim 修订：从单因素(tightness)改为双因素(tightness × model RV baseline)。Llama\\n    DocRED DR↓90.2% 打破原 \\\"scales inversely with tightness\\\" claim。\\n  rationale: Llama DocRED full_s1 DR 26.07%→2.55% (↓90.2%) vs Qwen 18.46%→10.21% (↓44.7%)。同一\\n    ontology (τ̄=0.842) 下差距巨大。原因：Qwen RV=29.66% 远高于 Llama RV=16.03%，grammar 层将 OOV\\n    triples 强制匹配有效关系名后揭露大量 latent DR violations。修订为\\\"tightness 与 model RV baseline\\n    共同决定 enforcement ceiling\\\"。这实际强化论文——揭示 model-constraint 交互效应。同时 E-F1 claim 需限定为\\n    Qwen-specific（Llama E-F1 -0.64pp）。\\n  related_experiments:\\n  - exp_id: llama_docred_full_s1\\n    role: primary\\n    result: DR 26.07→2.55 (↓90.2%), R-F1 +0.29pp, E-F1 -0.64pp, CF 12.02%\\n  - exp_id: llama_docred_unconstrained\\n    role: baseline\\n    result: DR 26.07%, RV 16.03%, R-F1 5.98%\\n  - exp_id: phase2_docred_full_s1\\n    role: comparison\\n    result: DR 10.21% (↓44.7%), Qwen RV baseline 29.66%\\n  depends_on:\\n  - D012\\n  - D013\\n- id: D015\\n  date: 2026-05-14 22:29 UTC\\n  summary: 'D015: Dream #2 结果处理 — Title 去掉 \\\"Near-Complete\\\"，6 项 action items 按优先级处理'\\n  rationale: 'Dream #2 三档 worst=2.5/median=3.0/best=3.0，比 Dream #1 (全 3/6) 改善。三档共识：(1)\\n    Title \\\"Near-Complete\\\" overclaim (DocRED 10.21% residual)，(2) CF severity 无 downstream\\n    验证，(3) 技术新颖性质疑。Title 修订为去掉 \\\"Near-Complete\\\"——论文贡献是方法（compiled ontology constraints），不是特定消除率；结果从\\n    0.93% 到 10.21% 变异太大不适合 \\\"Near-Complete\\\"。CF downstream 验证需架构修改，5天内不可行，保持在 limitations。技术新颖性通过\\n    §6 positioning 强化 IE-specific 贡献（stateful entity registry, prefix-decidable constraints）。'\\n  related_experiments:\\n  - exp_id: dream_20260514T205155\\n    role: dream\\n    result: worst=2.5, median=3.0, best=3.0\\n  depends_on:\\n  - D014\\n  - D013\\n  - D012\\n- id: D016\\n  date: 2026-05-14 22:57 UTC\\n  summary: 'D016: Llama bootstrap CI 修复完成，全部 p-values 写入论文，framing 从 \\\"F1-neutral\\\"\\n    升级为 \\\"both models significant R-F1 gains on DocRED\\\"'\\n  rationale: v2 bootstrap 脚本修复了两个 bug（int entity crash + entity type normalization），8\\n    项 point estimate 全部 registry-aligned (≤0.05pp)。结果：Llama DocRED R-F1 +0.29pp p=0.013（显著正向），E-F1\\n    -0.64pp p=0.022（显著负向）。这使得 DocRED 上两个模型 R-F1 都显著提升，是比 \\\"F1-neutral\\\" 更强的 claim。E-F1\\n    模型依赖性如实报告。已更新 crossmodel §5、abstract、conclusion。\\n  related_experiments:\\n  - exp_id: llama_scierc_unconstrained\\n    role: baseline\\n    result: R-F1=2.68, E-F1=23.56\\n  - exp_id: llama_scierc_full_s1\\n    role: treatment\\n    result: R-F1=2.54 (-0.14pp p=0.011), E-F1=23.49 (NS)\\n  - exp_id: llama_docred_unconstrained\\n    role: baseline\\n    result: R-F1=5.98, E-F1=55.65\\n  - exp_id: llama_docred_full_s1\\n    role: treatment\\n    result: R-F1=6.27 (+0.29pp p=0.013), E-F1=55.01 (-0.64pp p=0.022)\\n  depends_on:\\n  - D015\\n  - D014\\n  - D012\\n- id: D017\\n  date: 2026-05-15 14:10 UTC\\n  summary: 'D017: 批准 pair-based σ(r) enforcement 升级，与 W1 CF fallback 合并实现。SciERC DR\\n    0.93%→0% 可期，DocRED DR 再降 ~28%'\\n  rationale: Rectangularity 分析显示 SciERC 0/7、DocRED 73/96 relations 非矩形。当前 independent\\n    enforcement (head∈dom ∧ tail∈range) 是 pair-based σ(r) 的松弛近似，SciERC 全部 16 个残余 DR\\n    violations 属于 over-permissive gap。实现 pair-based 改动量小（set membership → tuple lookup），可与\\n    CF fallback 代码合并，无额外 GPU 开销。收益：SciERC DR=0% 是 complete elimination claim，显著强于\\n    near-complete。\\n  related_experiments:\\n  - exp_id: phase2_scierc_full_s1\\n    role: evidence\\n    result: 16 residual DR all from over-permissive gap\\n  - exp_id: phase2_docred_full_s1\\n    role: evidence\\n    result: 491/1770 DR (27.7%) from over-permissive gap\\n  - exp_id: w1_cf_fallback_scierc_pilot\\n    role: baseline\\n    result: running, validates CF mechanism\\n  depends_on:\\n  - D014\\n- id: D018\\n  date: 2026-05-15 14:14 UTC\\n  summary: 'D018: 批准 W5 LoRA fine-tune 实验（Qwen3-8B on SciERC），条件启动——先验 baseline DR\\n    再决定跑 constrained'\\n  rationale: Reviewer 分析指出 W5 是从 Weak Reject → Accept 的最大杠杆（预估 +0.5 分）。LoRA fine-tune\\n    Qwen3-8B on SciERC 是最受控实验（同模型同数据只加 fine-tuning 变量），~6 GPU-hrs，可与 W1 CF fallback\\n    并行。风险控制：先跑 unconstrained fine-tuned baseline 检查 DR 率，若 DR<2% 则边际收益不显著需重新评估。10\\n    天 DDL 内时间充裕。\\n  related_experiments:\\n  - exp_id: phase2_scierc_full_s1\\n    role: baseline\\n    result: DR=0.93%, R-F1=8.36%\\n  - exp_id: phase2_scierc_unconstrained\\n    role: baseline\\n    result: DR=15.21%, R-F1=8.23%\\n  depends_on:\\n  - D017\\n- id: D019\\n  date: 2026-05-15 14:14 UTC\\n  summary: 'D018: 修正 D017 — 代码已是 pair-based，取消代码改动，改为纯写作修复 + 残余 DR 根因调查。批准 W5 LoRA\\n    fine-tune 实验（~6 GPU-hrs）'\\n  rationale: 'Reviewer 独立核实 type_mask_processor.py:360 调用 valid_tail_types_for_head(head_type)，combined\\n    enforcement 等价于 full pair-based。§3 Eq.(2) 和 line 106-107 描述错误（写了 independent dom/range），W2\\n    标注 resolved 不正确。D017 的代码改动取消，转为：(1) §3 formalization 与代码对齐（σ-notation）(2) 调查 SciERC\\n    16 个残余 DR 的真实原因（代码已 pair-based 却仍有 violations）(3) rectangularity 量化数据作为新 finding\\n    写入论文。同时批准 W5 LoRA fine-tune SciERC 实验（~6 GPU-hrs），staged approach: 先跑 unconstrained\\n    fine-tuned baseline 检查 DR，>5% 再跑 constrained。这是从 Weak Reject 到 Accept 的最大杠杆。'\\n  related_experiments:\\n  - exp_id: phase2_scierc_full_s1\\n    role: evidence\\n    result: 16 residual DR despite pair-based code — cause unknown\\n  - exp_id: w1_cf_fallback_scierc_pilot\\n    role: ongoing\\n    result: running, validates CF mechanism\\n  depends_on:\\n  - D017\\n\", \"total_chars\": 14525, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "97420d8d-76e5-4ca4-b3ff-7f0206dfd7c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57 · 2026-05-15T14:30:36.911Z_
+
+```json
+{
+  "parentUuid": "8ed4f85d-3f30-490a-be24-fb7a41c66b9b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "acb90fd5-1b9f-4520-8b02-879e08798f27",
+  "timestamp": "2026-05-15T14:30:36.911Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #9。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单：**仅 cuda:0, cuda:1 on westd-16980**。不可用其他 GPU，Director 指令也不能覆盖 - submit_training_job 命令必须用 `bash -c '...'` 包裹…",
+  "leafUuid": "acb90fd5-1b9f-4520-8b02-879e08798f27",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Monitor CF fallback experiments and pair-based implementation",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052"
+}
+```
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-15T14:31:00.367Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me summarize the current state and decide what to do:
+
+**Current State:**
+- 2 RUNNING experiments on both GPUs
+- 1 active Worker (pair_based_impl_plan, analyzing code)
+- 3 PREPARING experiments waiting for GPU
+- Worker pool = 1 < 2 → need to spawn another Worker
+
+**D018/D019 W5 LoRA Details:**
+- LoRA fine-tune Qwen3-8B on SciERC
+- ~6 GPU-hrs
+- Staged: first unconstrained fine-tuned baseline, check DR>5%, then constrained
+
+
+- cuda:1 will free up after llama_docred_full_s1_mt6144 completes, which is the biggest opportunity to move from Weak Reject to Accept
+
+I should spawn a Worker now to prepare the W5 LoRA training setup—building the PEFT/LoRA script for Qwen3-8B and converting SciERC data into the right format—so everything's ready when cuda:1 becomes available. Then I'll update the Director on where things stand.
+
+For the W5 prep, I need to clarify the workflow: convert the SciERC training set into SFT format (document → expected JSON extraction), write the LoRA training script using PEFT and SFTTrainer, then evaluate by running the existing constrained extraction pipeline with the fine-tuned model. I'll give the Worker the server details, model path, data location, and the task to write the training script and prepare the data. so the core experiment is testing whether fine-tuning Qwen3-8B on SciERC reduces constraint violations enough to make constrained decoding redundant—I need to hit a DR>5% improvement threshold to justify running the constrained version. For the training data, I'll need to convert the SciERC training split into the same prompt-to-JSON format that run_constrained_extraction.py expects, then write up the Worker prompt to handle the LoRA preparation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "acb90fd5-1b9f-4520-8b02-879e08798f27",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WqToXRR8QmpRV287UZ",
+  "type": "assistant",
+  "uuid": "09990ed2-5a9f-4f97-90f3-4034b43c93d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5rdvSppnB9MstKX2w7rUD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8223,
+      "cache_read_input_tokens": 72375,
+      "output_tokens": 3560,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8223,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3560,
+          "cache_read_input_tokens": 72375,
+          "cache_creation_input_tokens": 8223,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8223
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-15T14:31:03.072Z_
+
+初始化完成。状态确认：
+- **GPU**: 2/2 在用 ✅
+- **Worker 池**: 1（pair_based_impl_plan）❌ < 2
+- **RUNNING**: w1_cf_fallback_scierc_pilot (cuda:0) + llama_docred_full_s1_mt6144 (cuda:1)
+- **PREPARING**: 3 个 CF fallback 实验等 GPU
+
+W5 LoRA 是 DDL 前最大杠杆（+0.5 分），cuda:1 释放后需立即提交。现在派 Worker 提前准备 LoRA 训练代码和数据，同时向 Director 汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09990ed2-5a9f-4f97-90f3-4034b43c93d6",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WqToXRR8QmpRV287UZ",
+  "type": "assistant",
+  "uuid": "d51334b7-c3b9-4da3-bf39-eb9c9098dfb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5rdvSppnB9MstKX2w7rUD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8223,
+      "cache_read_input_tokens": 72375,
+      "output_tokens": 3560,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8223,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3560,
+          "cache_read_input_tokens": 72375,
+          "cache_creation_input_tokens": 8223,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8223
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-15T14:31:38.682Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01Fa5NaGkSpeYaRubS25u9qp`</summary>
+
+```json
+{
+  "task_type": "code:w5_lora_prep",
+  "project": "schema_semantic_constrained_ie",
+  "task_prompt": "## 任务：W5 LoRA Fine-tune 训练代码和数据准备\n\n你的目标是为 Qwen3-8B 在 SciERC 上做 LoRA fine-tuning 准备好所有代码和数据，使得 GPU 释放后可以立即提交训练。\n\n### 背景\n- 项目 OntoCoDec：两层约束解码（grammar + semantic）消除 LLM IE 的 ontology violations\n- 当前用 zero-shot prompting，W5 实验要验证 fine-tuned 模型 + constrained decoding 的 composability\n- 审稿人认为这是从 Weak Reject 提升到 Accept 的最大杠杆\n- 分两步：(1) unconstrained fine-tuned baseline → 检查 DR>5% (2) constrained fine-tuned eval\n\n### 服务器环境\n- **服务器**: westd-16980, account=root\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **Python**: `/root/miniconda3/bin/python` (Python 3.12.3)\n- **已装包**: torch 2.10.0+cu128, transformers 4.57.6, 2× NVIDIA RTX PRO 6000 Blackwell (94GB)\n- **模型路径**: Qwen3-8B 在默认 HF cache（可通过 `ls /root/.cache/huggingface/hub/` 确认具体路径）\n- **项目目录**: `/root/schema_semantic_constrained_ie/`\n- **SciERC 数据**: 在 `data/scierc/` 目录下，查看其中的 train/dev/test 文件格式\n- **现有核心脚本**: `run_constrained_extraction.py` (652 行, 5 模式)\n\n### 你的具体任务\n\n1. **探测环境**（ssh_read_only）：\n   - 确认 PEFT、TRL、datasets 等包是否已安装，未安装则用 ssh_execute 安装\n   - 查看 SciERC 训练数据的格式和文件名\n   - 查看 `run_constrained_extraction.py` 的 prompt 格式（模型输入输出的 JSON 格式），确保 SFT 数据格式一致\n   - 查看 Qwen3-8B 的确切路径\n\n2. **准备 SFT 训练数据**（写脚本到服务器 `/root/schema_semantic_constrained_ie/scripts/`）：\n   - 读取 SciERC training set，将每个样本转换为 (input_prompt, expected_output_json) 对\n   - input_prompt 必须和 `run_constrained_extraction.py` 使用的 prompt 完全一致（这样 fine-tuned 模型可以直接用原脚本 eval）\n   - output 是 ground truth 的 JSON 格式（entities + relations）\n   - 保存为 JSONL 格式，兼容 TRL SFTTrainer\n   - 运行脚本生成数据，确认样本数和格式正确\n\n3. **写 LoRA 训练脚本** (`/root/schema_semantic_constrained_ie/scripts/train_lora_scierc.py`)：\n   - 使用 PEFT LoRA + TRL SFTTrainer\n   - LoRA 配置：rank=16, alpha=32, target_modules=[\"q_proj\", \"v_proj\", \"k_proj\", \"o_proj\", \"gate_proj\", \"up_proj\", \"down_proj\"]\n   - 训练参数：epochs=3, batch_size=4, gradient_accumulation_steps=4, lr=2e-4, warmup_ratio=0.1, bf16=True\n   - 单 GPU 训练（cuda:0 或 cuda:1，由外部 CUDA_VISIBLE_DEVICES 控制，脚本内用 device_map=\"auto\"）\n   - 保存 checkpoint 到 `/root/schema_semantic_constrained_ie/checkpoints/qwen3_8b_lora_scierc/`\n   - 训练完成后自动 merge adapter 并保存完整模型到 `checkpoints/qwen3_8b_lora_scierc_merged/`\n   - 加 wandb logging（project=\"schema_semantic_constrained_ie\", run_name=\"w5_lora_qwen3_scierc\"）\n   - 脚本顶部写清楚文件注释（目的、输入输出、关键依赖）\n\n4. **写 eval 脚本** 或确认现有 `run_constrained_extraction.py` 可以直接用 merged 模型路径：\n   - 确认只需改 model_name_or_path 参数即可 eval fine-tuned 模型\n\n5. **Dry-run 验证**：\n   - 数据准备脚本能正常生成 SFT 数据\n   - 训练脚本 `--help` 或 `--dry_run`（跑 2 steps 验证不崩溃）\n   - 确认 merged 模型路径格式和 eval 脚本兼容\n\n### 产出\n- `/root/schema_semantic_constrained_ie/scripts/prepare_sft_data_scierc.py`\n- `/root/schema_semantic_constrained_ie/scripts/train_lora_scierc.py`\n- SFT 训练数据 JSONL 文件\n- 简报：训练预估时间、数据量、确认 dry-run 通过\n\n### 注意事项\n- 不要启动完整训练！只做准备 + dry-run\n- 所有脚本加详细文件注释和关键函数 docstring\n- 代码里非显而易见的 trick/workaround 必须注释\n- Qwen3-8B 使用 chat_template，SFT 数据要用 apply_chat_template 格式化\n- 94GB GPU 内存充足，不需要 QLoRA 量化，直接 LoRA bf16 即可\n",
+  "tool_groups": [
+    "ssh",
+    "knowledge"
+  ],
+  "context": "项目 OntoCoDec: 两层约束解码编译 IE ontology 为 token-level constraints。当前 zero-shot 实验完成（20 success），W5 LoRA fine-tune 是审稿人要求的关键补强实验。服务器 westd-16980 用 conda base 环境，不要创建 venv。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d51334b7-c3b9-4da3-bf39-eb9c9098dfb9",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WqToXRR8QmpRV287UZ",
+  "type": "assistant",
+  "uuid": "0bff2a65-72dc-46df-b853-be6374de8982",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5rdvSppnB9MstKX2w7rUD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8223,
+      "cache_read_input_tokens": 72375,
+      "output_tokens": 3560,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8223,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3560,
+          "cache_read_input_tokens": 72375,
+          "cache_creation_input_tokens": 8223,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8223
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-15T14:31:41.378Z_
+
+<details><summary>↩ Tool result · `toolu_01Fa5NaGkSpeYaRubS25u9qp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_w5_lora_prep_20260515T143139\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_code_w5_lora_prep_20260515T143139.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_w5_lora_prep_20260515T143139 started. Use get_worker_status('worker_code_w5_lora_prep_20260515T143139') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0bff2a65-72dc-46df-b853-be6374de8982",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "acea9184-4bfe-4e3d-abef-e5b54889ca8c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_w5_lora_prep_20260515T143139\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_code_w5_lora_prep_20260515T143139.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_w5_lora_prep_20260515T143139 started. Use get_worker_status('worker_code_w5_lora_prep_20260515T143139') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_code_w5_lora_prep_20260515T143139\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/logs/workers/worker_code_w5_lora_prep_20260515T143139.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_w5_lora_prep_20260515T143139 started. Use get_worker_status('worker_code_w5_lora_prep_20260515T143139') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0bff2a65-72dc-46df-b853-be6374de8982",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-15T14:31:48.984Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_01YJ4RyMVWUoYHnwg3Wk1pHd`</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 2 (GPU 0 / CPU 2)\n\n## Loop #9 Session Start 汇报\n\n**RUNNING (2/2 GPU 饱和)**:\n1. `w1_cf_fallback_scierc_pilot` (cuda:0, PID 270088) — CF fallback pilot 运行中\n2. `llama_docred_full_s1_mt6144` (cuda:1, PID 247487) — Llama DocRED full S1 重跑\n\n**PREPARING (3, 等 GPU)**:\n- w1_cf_fallback_llama_scierc / w1_cf_fallback_docred / w1_cf_fallback_llama_docred\n\n**Worker 池 (2)**:\n1. `pair_based_impl_plan` — 正在分析代码确认 pair-based 实现细节（D019 W2 写作修复）\n2. `w5_lora_prep` — **刚派出**，准备 LoRA 训练代码+SFT 数据（D018），cuda:1 释放后立即可提交\n\n**待处理触发**:\n- CF pilot 完成 → 分析 + 提交下一个 CF fallback (cuda:0)\n- mt6144 完成 → 分析 + 释放 cuda:1 → 提交 W5 LoRA training\n- pair_based Worker 完成 → W2 §3 写作修复方案\n\n**关键进展**: D019 确认代码已是 pair-based（σ(r) enforcement），W2 降级为纯写作修复。W5 LoRA 代码提前准备中，预计 Worker 产出后可零等待提交训练。\n\n10 天 DDL，关键路径顺利。",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "acea9184-4bfe-4e3d-abef-e5b54889ca8c",
+  "isSidechain": false,
+  "requestId": "req_011Cb4WqToXRR8QmpRV287UZ",
+  "type": "assistant",
+  "uuid": "6e019239-2011-402e-a5e5-f54096b243b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5rdvSppnB9MstKX2w7rUD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8223,
+      "cache_read_input_tokens": 72375,
+      "output_tokens": 3560,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8223,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3560,
+          "cache_read_input_tokens": 72375,
+          "cache_creation_input_tokens": 8223,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8223
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-15T14:31:53.699Z_
+
+<details><summary>↩ Tool result · `toolu_01YJ4RyMVWUoYHnwg3Wk1pHd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6e019239-2011-402e-a5e5-f54096b243b4",
+  "isSidechain": false,
+  "promptId": "4c6c19cb-cd75-4744-b8d3-3e4d8edbda95",
+  "type": "user",
+  "uuid": "3586dfaa-2da6-4c61-b37a-2f4c3c487297",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2216d5b8b87a9472ce204aba11481390:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "6e019239-2011-402e-a5e5-f54096b243b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/agent_c5ac85f4",
+  "sessionId": "b9056dca-4e32-4f00-b147-7b4e16b6e052",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
